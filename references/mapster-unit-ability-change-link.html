@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Replace Unit Ability / Reference / Galaxy API / StarCraft II API Documentation</title>
+            <meta property="og:type" content="website"/>
+            <meta property="og:site_name" content="StarCraft II API Documentation"/>
+            
+                <meta property="og:image" content="/favicon-32.png"/>
+            
+            <meta property="og:title" content="Galaxy: Replace Unit Ability"/>
+                <meta property="og:description" content="native void UnitAbilityChangeLink(unit inUnit, string ability, string newAbility);"/>
+                
+        
+            <link rel="canonical" href="https://mapster.talv.space/galaxy/reference/unit-ability-change-link">
+        <link rel="stylesheet" href="/dist/main.css?4ec9599f">
+        <style type="text/css">@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/300/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/300/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/300/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/300/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/300/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/300/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/400/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/400/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/400/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/400/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/400/italic.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/400/italic.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/400/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/400/italic.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/400/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/400/italic.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/500/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/500/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/500/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/500/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/500/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/500/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/700/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/700/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/700/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/700/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/700/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}</style>
+        <script src="/dist/jquery.min.js?4ec9599f" defer></script>
+        <script src="/dist/bootstrap.min.js?4ec9599f" defer></script>
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar-main">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/galaxy/reference">Scripting (<em>.galaxy</em>)</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/ui-layout" role="button" aria-haspopup="true" aria-expanded="false">UI (<em>.SC2Layout</em>)</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/ui-layout/frame-type">Frame types</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/ui-layout/frame-class">Frame classes</a>
+                            <a class="dropdown-item" href="/ui-layout/type">Basic types</a>
+                            <a class="dropdown-item" href="/ui-layout/complex-type">Complex types</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/ui-layout/complex-type/cstate-desc">CStateDesc</a>
+                            <a class="dropdown-item" href="/ui-layout/complex-type/cframe-animation-desc">CFrameAnimationDesc</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/data"">Data (<em>.xml</em>)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/star-tools"">Star Tools (<em>.M3</em>)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://sc2mapster.wiki.gg" rel="noopener" target="_blank"><strong>SC2Mapster Wiki</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="d-none d-xl-block col-xl-2 px-0 py-1 bd-toc">
+                    
+                </div>
+
+                <main class="col-12 col-xl-10 py-md-2 px-md-2 px-lg-3 bd-content">
+                    
+                        
+    <h1 id="replace-unit-ability"><a class="markdownIt-Anchor" href="#replace-unit-ability">#</a> Replace Unit Ability</h1>
+
+
+
+
+
+
+
+    <blockquote>
+<p><em>Grammar</em> — Replace <strong>unit</strong> ability <strong>ability</strong> to <strong>newAbility</strong><br>
+<em>Flags</em> — <code>Native</code> | <code>Action</code></p>
+</blockquote>
+<h3 id="arguments"><a class="markdownIt-Anchor" href="#arguments">#</a> Arguments</h3>
+<ul>
+<li><code>unit</code> — Unit</li>
+<li><code>string</code><em>&lt;gamelink::Abil&gt;</em> — Ability</li>
+<li><code>string</code><em>&lt;gamelink::Abil&gt;</em> — New Ability</li>
+</ul>
+<p>Returns — <code>void</code></p>
+<pre class="hljs"><code><span class="hljs-function">native <span class="hljs-keyword">void</span> <span class="hljs-title">UnitAbilityChangeLink</span>(<span class="hljs-params">
+	unit inUnit,
+	<span class="hljs-keyword">string</span> ability,
+	<span class="hljs-keyword">string</span> newAbility,
+</span>)</span>;
+</code></pre>
+<h3 id="related"><a class="markdownIt-Anchor" href="#related">#</a> Related</h3>
+<p>Category: <a href="/galaxy/reference#ability-basic">Ability / Basic</a></p>
+<ul>
+<li><strong><a href="/galaxy/reference/unit-ability-remove">Remove Ability</a></strong> — <code>void</code> — UnitAbilityRemove</li>
+<li><strong><a href="/galaxy/reference/unit-ability-add">Add Ability</a></strong> — <code>void</code> — UnitAbilityAdd</li>
+<li><strong><a href="/galaxy/reference/trigger-add-event-unit-ability">Unit Uses Ability</a></strong> — <code>void</code> — TriggerAddEventUnitAbility</li>
+<li><strong><a href="/galaxy/reference/trigger-add-event-unit-ability-auto-cast-change">Unit Changes Ability Auto Cast State</a></strong> — <code>void</code> — TriggerAddEventUnitAbilityAutoCastChange</li>
+<li><strong><a href="/galaxy/reference/event-unit-ability">Triggering Ability</a></strong> — <code>abilcmd</code> — EventUnitAbility</li>
+<li><strong><a href="/galaxy/reference/event-unit-ability-stage">Triggering Ability Stage</a></strong> — <code>int</code><em>&lt;preset::<a href="/galaxy/reference/preset-ability-stage">AbilityStage</a>&gt;</em> — EventUnitAbilityStage</li>
+<li><strong><a href="/galaxy/reference/event-unit-target-point">Triggering Ability Target Point</a></strong> — <code>point</code> — EventUnitTargetPoint</li>
+<li><strong><a href="/galaxy/reference/event-unit-target-unit">Triggering Ability Target Unit</a></strong> — <code>unit</code> — EventUnitTargetUnit</li>
+<li><strong><a href="/galaxy/reference/event-unit-ability-other-unit">Triggering Ability Other Unit</a></strong> — <code>unit</code> — EventUnitAbilityOtherUnit</li>
+<li><strong><a href="/galaxy/reference/lib-ntve-gf-event-item-ability-or-unit-ability">Ability From Item or Trigger</a></strong> — <code>abilcmd</code> — libNtve_gf_EventItemAbilityOrUnitAbility</li>
+<li><strong><a href="/galaxy/reference/trigger-add-event-unit-created">Unit Is Created</a></strong> — <code>void</code> — TriggerAddEventUnitCreated</li>
+<li><strong><a href="/galaxy/reference/event-unit-created-unit">Created Unit</a></strong> — <code>unit</code> — EventUnitCreatedUnit</li>
+<li><strong><a href="/galaxy/reference/event-unit-created-behavior">Behavior That Created Unit</a></strong> — <code>string</code><em>&lt;gamelink::Behavior&gt;</em> — EventUnitCreatedBehavior</li>
+<li><strong><a href="/galaxy/reference/event-unit-created-abil">Ability That Created Unit</a></strong> — <code>string</code><em>&lt;gamelink::Abil&gt;</em> — EventUnitCreatedAbil</li>
+<li><strong><a href="/galaxy/reference/unit-ability-show">Show/Hide Ability For Unit</a></strong> — <code>void</code> — UnitAbilityShow</li>
+<li><strong><a href="/galaxy/reference/unit-ability-check">Ability Enabled For Unit</a></strong> — <code>bool</code> — UnitAbilityCheck</li>
+<li><strong><a href="/galaxy/reference/unit-ability-count">Number Of Abilities On Unit</a></strong> — <code>int</code> — UnitAbilityCount</li>
+<li><strong><a href="/galaxy/reference/unit-ability-get">Unit Ability</a></strong> — <code>string</code><em>&lt;gamelink::Abil&gt;</em> — UnitAbilityGet</li>
+<li><strong><a href="/galaxy/reference/lib-ntve-gf-unit-ability-get-by-type">Unit Ability By Class</a></strong> — <code>string</code><em>&lt;gamelink::Abil&gt;</em> — libNtve_gf_UnitAbilityGetByType</li>
+<li><strong><a href="/galaxy/reference/unit-check-abil-cmd-state">Unit Ability Command State</a></strong> — <code>bool</code> — UnitCheckAbilCmdState</li>
+<li><strong><a href="/galaxy/reference/unit-abil-order-state-flags">Unit Ability Order State (Flags)</a></strong> — <code>int</code> — UnitAbilOrderStateFlags</li>
+<li><strong><a href="/galaxy/reference/unit-ability-exists">Unit Has Ability</a></strong> — <code>bool</code> — UnitAbilityExists</li>
+<li><strong><a href="/galaxy/reference/unit-ability-enable">Enable/Disable Ability For Unit</a></strong> — <code>void</code> — UnitAbilityEnable</li>
+<li><strong><a href="/galaxy/reference/unit-ability-change-level">Add Level To Unit Ability</a></strong> — <code>void</code> — UnitAbilityChangeLevel</li>
+<li><strong><a href="/galaxy/reference/unit-ability-change-link">Replace Unit Ability</a></strong> — <code>void</code> — UnitAbilityChangeLink</li>
+<li><strong><a href="/galaxy/reference/unit-ability-change-card-id">Set Ability Default Submenu</a></strong> — <code>void</code> — UnitAbilityChangeCardId</li>
+<li><strong><a href="/galaxy/reference/unit-ability-get-level">Current Level For Unit Ability</a></strong> — <code>int</code> — UnitAbilityGetLevel</li>
+<li><strong><a href="/galaxy/reference/unit-ability-max-level">Maximum Level For Unit Ability</a></strong> — <code>int</code> — UnitAbilityMaxLevel</li>
+<li><strong><a href="/galaxy/reference/lib-ntve-gf-ability-matches-filters">Ability Matches Filters</a></strong> — <code>bool</code> — libNtve_gf_AbilityMatchesFilters</li>
+<li><strong><a href="/galaxy/reference/lib-ntve-gf-unit-ability-by-filters">Unit Ability By Filters</a></strong> — <code>string</code><em>&lt;gamelink::Abil&gt;</em> — libNtve_gf_UnitAbilityByFilters</li>
+<li><strong><a href="/galaxy/reference/unit-ability-get-card-id">Unit Ability Default Submenu</a></strong> — <code>string</code> — UnitAbilityGetCardId</li>
+</ul>
+<h3 id="examples"><a class="markdownIt-Anchor" href="#examples">#</a> Examples</h3>
+<p>— None found —</p>
+
+
+
+                    
+                </main>
+
+                <footer class="bd-footer col-12 bg-primary text-secondary">
+                    <p class="my-2 float-lg-right"><small>See more at <a href="https://github.com/SC2Mapster" target="_blank">Github/SC2Mapster</a>.</small></p>
+                </footer>
+            </div>
+        </div>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"25562e12bc934540bba3efbd6544521a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

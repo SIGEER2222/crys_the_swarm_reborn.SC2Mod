@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Catalog Field Value Modify / Reference / Galaxy API / StarCraft II API Documentation</title>
+            <meta property="og:type" content="website"/>
+            <meta property="og:site_name" content="StarCraft II API Documentation"/>
+            
+                <meta property="og:image" content="/favicon-32.png"/>
+            
+            <meta property="og:title" content="Galaxy: Catalog Field Value Modify"/>
+                <meta property="og:description" content="Modifies the value of a field for an entry.  To find the name of a field path, open the data editor and turn on View Raw Data.  For example, if you wanted to set the unit for the first index of a train ability, your field path string would be &quot;InfoArray[0].Unit&quot;.
+
+Returns: bool"/>
+                
+        
+            <link rel="canonical" href="https://mapster.talv.space/galaxy/reference/catalog-field-value-modify">
+        <link rel="stylesheet" href="/dist/main.css?4ec9599f">
+        <style type="text/css">@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/300/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/300/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/300/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/300/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/300/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:300;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/300/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/400/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/400/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/400/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/400/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/400/italic.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/400/italic.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/400/italic.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/400/italic.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/400/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:italic;font-weight:400;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/400/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/500/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/500/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/500/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/500/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/500/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:500;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/500/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/latin-ext/700/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic/700/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/greek-ext/700/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/greek/700/normal.woff2);unicode-range:U+0370-03FF;font-display:swap;}@font-face {font-family:Ubuntu;font-style:normal;font-weight:700;src:url(/cf-fonts/s/ubuntu/5.0.11/cyrillic-ext/700/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}</style>
+        <script src="/dist/jquery.min.js?4ec9599f" defer></script>
+        <script src="/dist/bootstrap.min.js?4ec9599f" defer></script>
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar-main">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/galaxy/reference">Scripting (<em>.galaxy</em>)</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/ui-layout" role="button" aria-haspopup="true" aria-expanded="false">UI (<em>.SC2Layout</em>)</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/ui-layout/frame-type">Frame types</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/ui-layout/frame-class">Frame classes</a>
+                            <a class="dropdown-item" href="/ui-layout/type">Basic types</a>
+                            <a class="dropdown-item" href="/ui-layout/complex-type">Complex types</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/ui-layout/complex-type/cstate-desc">CStateDesc</a>
+                            <a class="dropdown-item" href="/ui-layout/complex-type/cframe-animation-desc">CFrameAnimationDesc</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/data"">Data (<em>.xml</em>)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/star-tools"">Star Tools (<em>.M3</em>)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://sc2mapster.wiki.gg" rel="noopener" target="_blank"><strong>SC2Mapster Wiki</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="d-none d-xl-block col-xl-2 px-0 py-1 bd-toc">
+                    
+                </div>
+
+                <main class="col-12 col-xl-10 py-md-2 px-md-2 px-lg-3 bd-content">
+                    
+                        
+    <h1 id="catalog-field-value-modify"><a class="markdownIt-Anchor" href="#catalog-field-value-modify">#</a> Catalog Field Value Modify</h1>
+
+
+
+
+
+
+
+    <blockquote>
+<p><em>Grammar</em> — Modify value of <strong>catalog</strong> <strong>entry</strong> <strong>fieldPath</strong> for player <strong>player</strong> using <strong>operation</strong> and <strong>value</strong><br>
+<em>Flags</em> — <code>Native</code> | <code>Action</code></p>
+</blockquote>
+<p>Modifies the value of a field for an entry.  To find the name of a field path, open the data editor and turn on View Raw Data.  For example, if you wanted to set the unit for the first index of a train ability, your field path string would be <em>“InfoArray[0].Unit”</em>.</p>
+<h3 id="arguments"><a class="markdownIt-Anchor" href="#arguments">#</a> Arguments</h3>
+<ul>
+<li><code>int</code><em>&lt;preset::<a href="/galaxy/reference/preset-catalog-type">CatalogType</a>&gt;</em> — Catalog</li>
+<li><code>string</code><em>&lt;catalogentry&gt;</em> — Entry</li>
+<li><code>string</code><em>&lt;catalogfieldpath&gt;</em> — Field Path</li>
+<li><code>int</code> — Player</li>
+<li><code>string</code> — Value</li>
+<li><code>int</code><em>&lt;preset::<a href="/galaxy/reference/preset-upgrade-operation">UpgradeOperation</a>&gt;</em> — Operation</li>
+</ul>
+<p>Returns — <code>bool</code></p>
+<pre class="hljs"><code><span class="hljs-function">native <span class="hljs-keyword">bool</span> <span class="hljs-title">CatalogFieldValueModify</span>(<span class="hljs-params">
+	<span class="hljs-keyword">int</span> catalog,
+	<span class="hljs-keyword">string</span> entry,
+	<span class="hljs-keyword">string</span> fieldPath,
+	<span class="hljs-keyword">int</span> player,
+	<span class="hljs-keyword">string</span> <span class="hljs-keyword">value</span>,
+	<span class="hljs-keyword">int</span> operation,
+</span>)</span>;
+</code></pre>
+<h3 id="related"><a class="markdownIt-Anchor" href="#related">#</a> Related</h3>
+<p>Category: <a href="/galaxy/reference#catalog-support">Catalog / Support</a></p>
+<ul>
+<li><strong><a href="/galaxy/reference/preset-upgrade-operation">Upgrade Operation</a></strong> — <em>preset</em> — <code>int</code></li>
+<li><strong><a href="/galaxy/reference/preset-no-game-link">No Game Link</a></strong> — <em>preset</em> — <code>gamelink</code></li>
+<li><strong><a href="/galaxy/reference/preset-no-alert">No Alert</a></strong> — <em>preset</em> — <code>string</code></li>
+<li><strong><a href="/galaxy/reference/preset-cost-type">Cost Type</a></strong> — <em>preset</em> — <code>string</code></li>
+<li><strong><a href="/galaxy/reference/preset-catalog-type">Catalog Type</a></strong> — <em>preset</em> — <code>int</code></li>
+<li><strong><a href="/galaxy/reference/preset-any-game-link">Any Game Link</a></strong> — <em>preset</em> — <code>gamelink</code></li>
+<li><strong><a href="/galaxy/reference/preset-field-type-category">Field Type Category</a></strong> — <em>preset</em> — <code>int</code></li>
+<li><strong><a href="/galaxy/reference/catalog-field-value-set">Catalog Field Value Set</a></strong> — <code>bool</code> — CatalogFieldValueSet</li>
+<li><strong><a href="/galaxy/reference/lib-ntve-gf-catalog-field-value-set-as-real">Catalog Field Value Set As Real</a></strong> — <code>bool</code> — libNtve_gf_CatalogFieldValueSetAsReal</li>
+<li><strong><a href="/galaxy/reference/catalog-field-value-modify">Catalog Field Value Modify</a></strong> — <code>bool</code> — CatalogFieldValueModify</li>
+<li><strong><a href="/galaxy/reference/lib-ntve-gf-catalog-field-value-modify-based-on-default-value">Catalog Field Value Modify (Based On Default Value)</a></strong> — <code>bool</code> — libNtve_gf_CatalogFieldValueModifyBasedOnDefaultValue</li>
+<li><strong><a href="/galaxy/reference/catalog-reference-set">Catalog Reference Set</a></strong> — <code>bool</code> — CatalogReferenceSet</li>
+<li><strong><a href="/galaxy/reference/lib-ntve-gf-catalog-reference-set-as-real">Catalog Reference Set As Real</a></strong> — <code>bool</code> — libNtve_gf_CatalogReferenceSetAsReal</li>
+<li><strong><a href="/galaxy/reference/catalog-reference-modify">Catalog Reference Modify</a></strong> — <code>bool</code> — CatalogReferenceModify</li>
+<li><strong><a href="/galaxy/reference/lib-ntve-gf-catalog-reference-modify-based-on-default-value">Catalog Reference Modify (Based On Default Value)</a></strong> — <code>bool</code> — libNtve_gf_CatalogReferenceModifyBasedOnDefaultValue</li>
+<li><strong><a href="/galaxy/reference/catalog-link-replace">Catalog Link Replace</a></strong> — <code>void</code> — CatalogLinkReplace</li>
+<li><strong><a href="/galaxy/reference/catalog-link-replacement">Catalog Link Replacement</a></strong> — <code>string</code> — CatalogLinkReplacement</li>
+</ul>
+<h3 id="examples"><a class="markdownIt-Anchor" href="#examples">#</a> Examples</h3>
+<p><strong>mods/heroes.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy#L1493">base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy:1493</a></em></p>
+<pre class="hljs"><code>    libCore_gv_data_XP_MinionXPModifier[<span class="hljs-number">1</span>] = <span class="hljs-number">1.0</span>;
+    libCore_gv_data_XP_MinionXPModifier[<span class="hljs-number">2</span>] = <span class="hljs-number">1.0</span>;
+    CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"UtherHolyLight"</span>, <span class="hljs-string">"Cost["</span> + IntToString(<span class="hljs-number">0</span>) + <span class="hljs-string">"].Cooldown.TimeUse"</span>, libStEx_gv_pLAYER_02_UTHER, <span class="hljs-string">"4"</span>, c_upgradeOperationAdd);
+    libNtve_gf_MakeUnitInvulnerable(libStEx_gv_hERO_PlayerUnit, <span class="hljs-literal">true</span>);
+    libNtve_gf_MakeUnitInvulnerable(libStEx_gv_hERO_FriendlyRaynor, <span class="hljs-literal">true</span>);
+</code></pre>
+<p><strong>mods/heroes.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy#L5290">base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy:5290</a></em></p>
+<pre class="hljs"><code>    libStEx_gv_hERO_FriendlyUther = libGame_gv_players[libStEx_gv_pLAYER_02_UTHER].lv_heroUnit;
+    UnitBehaviorAdd(libStEx_gv_hERO_FriendlyUther, <span class="hljs-string">"UtherHolyLightUpgrade"</span>, libStEx_gv_hERO_FriendlyUther, <span class="hljs-number">1</span>);
+    CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"UtherHolyLight"</span>, <span class="hljs-string">"Cost["</span> + IntToString(<span class="hljs-number">0</span>) + <span class="hljs-string">"].Cooldown.TimeUse"</span>, libStEx_gv_pLAYER_02_UTHER, <span class="hljs-string">"4"</span>, c_upgradeOperationSubtract);
+    libStEx_gf_SwaptoNewHeroforPlayer(libStEx_gv_pLAYER_03_ORDER1, <span class="hljs-string">"Raynor"</span>, <span class="hljs-number">8</span>);
+    libStEx_gv_hERO_FriendlyRaynor = libGame_gv_players[libStEx_gv_pLAYER_03_ORDER1].lv_heroUnit;
+</code></pre>
+<p><strong>mods/heroes.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy#L5596">base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy:5596</a></em></p>
+<pre class="hljs"><code>    libNtve_gf_MakeUnitInvulnerable(libStEx_gv_hERO_EnemyGreymane, <span class="hljs-literal">true</span>);
+    libCore_gv_bALDeathTimeOverride = <span class="hljs-number">60.0</span>;
+    CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"UtherHolyLight"</span>, <span class="hljs-string">"Cost["</span> + IntToString(<span class="hljs-number">0</span>) + <span class="hljs-string">"].Cooldown.TimeUse"</span>, libStEx_gv_pLAYER_02_UTHER, <span class="hljs-string">"4"</span>, c_upgradeOperationAdd);
+    TriggerStop(gt__1E_RoamingTipMount);
+    libGame_gf_MinionStartStopMinionSpawnCycle(<span class="hljs-literal">false</span>);
+</code></pre>
+<p><strong>mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy#L1493">MapScript.galaxy:1493</a></em></p>
+<pre class="hljs"><code>    libCore_gv_data_XP_MinionXPModifier[<span class="hljs-number">1</span>] = <span class="hljs-number">1.0</span>;
+    libCore_gv_data_XP_MinionXPModifier[<span class="hljs-number">2</span>] = <span class="hljs-number">1.0</span>;
+    CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"UtherHolyLight"</span>, <span class="hljs-string">"Cost["</span> + IntToString(<span class="hljs-number">0</span>) + <span class="hljs-string">"].Cooldown.TimeUse"</span>, libStEx_gv_pLAYER_02_UTHER, <span class="hljs-string">"4"</span>, c_upgradeOperationAdd);
+    libNtve_gf_MakeUnitInvulnerable(libStEx_gv_hERO_PlayerUnit, <span class="hljs-literal">true</span>);
+    libNtve_gf_MakeUnitInvulnerable(libStEx_gv_hERO_FriendlyRaynor, <span class="hljs-literal">true</span>);
+</code></pre>
+<p><strong>mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy#L5290">MapScript.galaxy:5290</a></em></p>
+<pre class="hljs"><code>    libStEx_gv_hERO_FriendlyUther = libGame_gv_players[libStEx_gv_pLAYER_02_UTHER].lv_heroUnit;
+    UnitBehaviorAdd(libStEx_gv_hERO_FriendlyUther, <span class="hljs-string">"UtherHolyLightUpgrade"</span>, libStEx_gv_hERO_FriendlyUther, <span class="hljs-number">1</span>);
+    CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"UtherHolyLight"</span>, <span class="hljs-string">"Cost["</span> + IntToString(<span class="hljs-number">0</span>) + <span class="hljs-string">"].Cooldown.TimeUse"</span>, libStEx_gv_pLAYER_02_UTHER, <span class="hljs-string">"4"</span>, c_upgradeOperationSubtract);
+    libStEx_gf_SwaptoNewHeroforPlayer(libStEx_gv_pLAYER_03_ORDER1, <span class="hljs-string">"Raynor"</span>, <span class="hljs-number">8</span>);
+    libStEx_gv_hERO_FriendlyRaynor = libGame_gv_players[libStEx_gv_pLAYER_03_ORDER1].lv_heroUnit;
+</code></pre>
+<p><strong>mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroes.stormmod/base.stormmaps/maps/heroes/singleplayermaps/startingexperience/tutorialveteran.stormmap/MapScript.galaxy#L5596">MapScript.galaxy:5596</a></em></p>
+<pre class="hljs"><code>    libNtve_gf_MakeUnitInvulnerable(libStEx_gv_hERO_EnemyGreymane, <span class="hljs-literal">true</span>);
+    libCore_gv_bALDeathTimeOverride = <span class="hljs-number">60.0</span>;
+    CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"UtherHolyLight"</span>, <span class="hljs-string">"Cost["</span> + IntToString(<span class="hljs-number">0</span>) + <span class="hljs-string">"].Cooldown.TimeUse"</span>, libStEx_gv_pLAYER_02_UTHER, <span class="hljs-string">"4"</span>, c_upgradeOperationAdd);
+    TriggerStop(gt__1E_RoamingTipMount);
+    libGame_gf_MinionStartStopMinionSpawnCycle(<span class="hljs-literal">false</span>);
+</code></pre>
+<p><strong>mods/heroesdata.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesdata.stormmod/base.stormdata/TriggerLibs/GameDataHelperLib.galaxy#L6023">base.stormdata/TriggerLibs/GameDataHelperLib.galaxy:6023</a></em></p>
+<pre class="hljs"><code>        lv_symbioteHostPlayer = UnitGetOwner(lv_symbioteHost);
+        <span class="hljs-keyword">if</span> ((UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeHeroic) == <span class="hljs-literal">true</span>) &amp;&amp; (UnitGetType(lv_symbioteHost) != <span class="hljs-string">"AbathurEvolvedMonstrosity"</span>)) {
+            CatalogFieldValueModify(c_gameCatalogActor, <span class="hljs-string">"AbathurSymbiote"</span>, <span class="hljs-string">"MinimapUnitStatusFrame"</span>, lv_abathurPlayer, <span class="hljs-string">"Abathur/AbathurSymbioteMinimapIconHero"</span>, c_upgradeOperationSet);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (((UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureTownHall) == <span class="hljs-literal">true</span>))) {
+</code></pre>
+<p><strong>mods/heroesdata.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesdata.stormmod/base.stormdata/TriggerLibs/GameDataHelperLib.galaxy#L6026">base.stormdata/TriggerLibs/GameDataHelperLib.galaxy:6026</a></em></p>
+<pre class="hljs"><code>        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (((UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureTownHall) == <span class="hljs-literal">true</span>))) {
+            CatalogFieldValueModify(c_gameCatalogActor, <span class="hljs-string">"AbathurSymbiote"</span>, <span class="hljs-string">"MinimapUnitStatusFrame"</span>, lv_abathurPlayer, <span class="hljs-string">"Abathur/AbathurSymbioteMinimapIconTownHall"</span>, c_upgradeOperationSet);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (((UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureCore) == <span class="hljs-literal">true</span>))) {
+</code></pre>
+<p><strong>mods/heroesdata.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesdata.stormmod/base.stormdata/TriggerLibs/GameDataHelperLib.galaxy#L6029">base.stormdata/TriggerLibs/GameDataHelperLib.galaxy:6029</a></em></p>
+<pre class="hljs"><code>        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (((UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureCore) == <span class="hljs-literal">true</span>))) {
+            CatalogFieldValueModify(c_gameCatalogActor, <span class="hljs-string">"AbathurSymbiote"</span>, <span class="hljs-string">"MinimapUnitStatusFrame"</span>, lv_abathurPlayer, <span class="hljs-string">"Abathur/AbathurSymbioteMinimapIconCore"</span>, c_upgradeOperationSet);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (((UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureMoonwell) == <span class="hljs-literal">true</span>) || (UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureGate) == <span class="hljs-literal">true</span>) || (UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureCannonTower) == <span class="hljs-literal">true</span>))) {
+</code></pre>
+<p><strong>mods/heroesdata.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesdata.stormmod/base.stormdata/TriggerLibs/GameDataHelperLib.galaxy#L6032">base.stormdata/TriggerLibs/GameDataHelperLib.galaxy:6032</a></em></p>
+<pre class="hljs"><code>        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (((UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureMoonwell) == <span class="hljs-literal">true</span>) || (UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureGate) == <span class="hljs-literal">true</span>) || (UnitTypeTestFlag(UnitGetType(lv_symbioteHost), c_unitFlagTownStructureCannonTower) == <span class="hljs-literal">true</span>))) {
+            CatalogFieldValueModify(c_gameCatalogActor, <span class="hljs-string">"AbathurSymbiote"</span>, <span class="hljs-string">"MinimapUnitStatusFrame"</span>, lv_abathurPlayer, <span class="hljs-string">"Abathur/AbathurSymbioteMinimapIconStructure"</span>, c_upgradeOperationSet);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((UnitGetType(lv_symbioteHost) == <span class="hljs-string">"AbathurEvolvedMonstrosity"</span>)) {
+</code></pre>
+<p><strong>mods/heroesdata.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesdata.stormmod/base.stormdata/TriggerLibs/GameDataHelperLib.galaxy#L6035">base.stormdata/TriggerLibs/GameDataHelperLib.galaxy:6035</a></em></p>
+<pre class="hljs"><code>        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((UnitGetType(lv_symbioteHost) == <span class="hljs-string">"AbathurEvolvedMonstrosity"</span>)) {
+            CatalogFieldValueModify(c_gameCatalogActor, <span class="hljs-string">"AbathurSymbiote"</span>, <span class="hljs-string">"MinimapUnitStatusFrame"</span>, lv_abathurPlayer, <span class="hljs-string">"Abathur/AbathurSymbioteMinimapIconMonstrosity"</span>, c_upgradeOperationSet);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeMerc) == <span class="hljs-literal">true</span>)) {
+</code></pre>
+<p><strong>mods/heroesdata.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesdata.stormmod/base.stormdata/TriggerLibs/GameDataHelperLib.galaxy#L6038">base.stormdata/TriggerLibs/GameDataHelperLib.galaxy:6038</a></em></p>
+<pre class="hljs"><code>        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeMerc) == <span class="hljs-literal">true</span>)) {
+            CatalogFieldValueModify(c_gameCatalogActor, <span class="hljs-string">"AbathurSymbiote"</span>, <span class="hljs-string">"MinimapUnitStatusFrame"</span>, lv_abathurPlayer, <span class="hljs-string">"Abathur/AbathurSymbioteMinimapIconMerc"</span>, c_upgradeOperationSet);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (((UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeMinion) == <span class="hljs-literal">true</span>) || (UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeSummoned) == <span class="hljs-literal">true</span>) || (UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeMerc) != <span class="hljs-literal">true</span>))) {
+</code></pre>
+<p><strong>mods/heroesdata.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesdata.stormmod/base.stormdata/TriggerLibs/GameDataHelperLib.galaxy#L6041">base.stormdata/TriggerLibs/GameDataHelperLib.galaxy:6041</a></em></p>
+<pre class="hljs"><code>        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (((UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeMinion) == <span class="hljs-literal">true</span>) || (UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeSummoned) == <span class="hljs-literal">true</span>) || (UnitTypeTestAttribute(UnitGetType(lv_symbioteHost), c_unitAttributeMerc) != <span class="hljs-literal">true</span>))) {
+            CatalogFieldValueModify(c_gameCatalogActor, <span class="hljs-string">"AbathurSymbiote"</span>, <span class="hljs-string">"MinimapUnitStatusFrame"</span>, lv_abathurPlayer, <span class="hljs-string">"Abathur/AbathurSymbioteMinimapIconMinion"</span>, c_upgradeOperationSet);
+        }
+    }
+</code></pre>
+<p><strong>mods/heroesdata.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesdata.stormmod/base.stormdata/TriggerLibs/GameDataHelperLib.galaxy#L6045">base.stormdata/TriggerLibs/GameDataHelperLib.galaxy:6045</a></em></p>
+<pre class="hljs"><code>    }
+    <span class="hljs-keyword">else</span> {
+        CatalogFieldValueModify(c_gameCatalogActor, <span class="hljs-string">"AbathurSymbiote"</span>, <span class="hljs-string">"MinimapUnitStatusFrame"</span>, lv_abathurPlayer, <span class="hljs-string">""</span>, c_upgradeOperationSet);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+</code></pre>
+<p><strong>mods/heroesmapmods/battlegroundmapmods/warheadjunction.stormmod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/heroesmapmods/battlegroundmapmods/warheadjunction.stormmod/base.stormdata/LibMSC2.galaxy#L1725">base.stormdata/LibMSC2.galaxy:1725</a></em></p>
+<pre class="hljs"><code>        	lv_playerIndex = PlayerGroupNextPlayer(autoF6E0373D_g, lv_playerIndex);
+        	<span class="hljs-keyword">if</span> (lv_playerIndex&lt;<span class="hljs-number">0</span>) { <span class="hljs-keyword">break</span>; }
+        	CatalogFieldValueModify(c_gameCatalogEffect, <span class="hljs-string">"NukeOuterImpactDamage"</span>, <span class="hljs-string">"Amount"</span>, lv_playerIndex, <span class="hljs-string">"70"</span>, c_upgradeOperationAdd);
+    }
+    libMSC2_gv_mMSC2NukeDamageScalesDone += <span class="hljs-number">1</span>;
+</code></pre>
+<p><strong>mods/novastoryassets.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy#L1588">base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy:1588</a></em></p>
+<pre class="hljs"><code>            lv_i = <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">for</span> ( ; ( (autoFD766A59_ai &gt;= <span class="hljs-number">0</span> &amp;&amp; lv_i &lt;= autoFD766A59_ae) || (autoFD766A59_ai &lt; <span class="hljs-number">0</span> &amp;&amp; lv_i &gt;= autoFD766A59_ae) ) ; lv_i += autoFD766A59_ai ) {
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"BarracksTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"FactoryTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"StarportTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"30"</span>, c_upgradeOperationSet);
+</code></pre>
+<p><strong>mods/novastoryassets.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy#L1589">base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy:1589</a></em></p>
+<pre class="hljs"><code>            <span class="hljs-keyword">for</span> ( ; ( (autoFD766A59_ai &gt;= <span class="hljs-number">0</span> &amp;&amp; lv_i &lt;= autoFD766A59_ae) || (autoFD766A59_ai &lt; <span class="hljs-number">0</span> &amp;&amp; lv_i &gt;= autoFD766A59_ae) ) ; lv_i += autoFD766A59_ai ) {
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"BarracksTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"FactoryTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"StarportTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"30"</span>, c_upgradeOperationSet);
+            }
+</code></pre>
+<p><strong>mods/novastoryassets.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy#L1590">base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy:1590</a></em></p>
+<pre class="hljs"><code>                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"BarracksTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"FactoryTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"StarportTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"30"</span>, c_upgradeOperationSet);
+            }
+        }
+</code></pre>
+<p><strong>mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy#L1588">MapScript.galaxy:1588</a></em></p>
+<pre class="hljs"><code>            lv_i = <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">for</span> ( ; ( (autoFD766A59_ai &gt;= <span class="hljs-number">0</span> &amp;&amp; lv_i &lt;= autoFD766A59_ae) || (autoFD766A59_ai &lt; <span class="hljs-number">0</span> &amp;&amp; lv_i &gt;= autoFD766A59_ae) ) ; lv_i += autoFD766A59_ai ) {
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"BarracksTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"FactoryTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"StarportTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"30"</span>, c_upgradeOperationSet);
+</code></pre>
+<p><strong>mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy#L1589">MapScript.galaxy:1589</a></em></p>
+<pre class="hljs"><code>            <span class="hljs-keyword">for</span> ( ; ( (autoFD766A59_ai &gt;= <span class="hljs-number">0</span> &amp;&amp; lv_i &lt;= autoFD766A59_ae) || (autoFD766A59_ai &lt; <span class="hljs-number">0</span> &amp;&amp; lv_i &gt;= autoFD766A59_ae) ) ; lv_i += autoFD766A59_ai ) {
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"BarracksTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"FactoryTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"StarportTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"30"</span>, c_upgradeOperationSet);
+            }
+</code></pre>
+<p><strong>mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/novastoryassets.sc2mod/base3.sc2maps/maps/campaign/nova/nova09.sc2map/MapScript.galaxy#L1590">MapScript.galaxy:1590</a></em></p>
+<pre class="hljs"><code>                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"BarracksTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"FactoryTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"25"</span>, c_upgradeOperationSet);
+                CatalogFieldValueModify(c_gameCatalogAbil, <span class="hljs-string">"StarportTrain"</span>, <span class="hljs-string">"InfoArray["</span> + IntToString(lv_i) + <span class="hljs-string">"].Time"</span>, auto60B674C5_var, <span class="hljs-string">"30"</span>, c_upgradeOperationSet);
+            }
+        }
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L3512">base.sc2data/LibCOMI.galaxy:3512</a></em></p>
+<pre class="hljs"><code>    }
+    lv_changed = (lv_newDelta-lv_oldDelta);
+    CatalogFieldValueModify(lp_catalog, lp_entry, lp_fieldPath, lp_player, FixedToString(lv_changed, c_fixedPrecisionAny), c_upgradeOperationAdd);
+    DataTableSetFixed(<span class="hljs-literal">true</span>, lv_dataPath, lv_newDelta);
+}
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L4901">base.sc2data/LibCOMI.galaxy:4901</a></em></p>
+<pre class="hljs"><code>        }
+
+        CatalogFieldValueModify(c_gameCatalogBehavior, libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBehaviors[lp_group], <span class="hljs-string">"Modification.MoveSpeedMultiplier"</span>, lp_player, FixedToString((<span class="hljs-number">1.0</span> + (libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBuffStacks[lp_group] * lv_moveSpeedHastePerStack)), c_fixedPrecisionAny), c_upgradeOperationSet);
+        CatalogFieldValueModify(c_gameCatalogBehavior, libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBehaviors[lp_group], <span class="hljs-string">"Modification.AttackSpeedMultiplier"</span>, lp_player, FixedToString((<span class="hljs-number">1.0</span> + (libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBuffStacks[lp_group] * lv_attackSpeedHastePerStack)), c_fixedPrecisionAny), c_upgradeOperationSet);
+        UnitBehaviorAdd(libCOMI_gv_cM_Fenix_ChampionUnit[lp_group][lp_player], libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBehaviors[lp_group], libCOMI_gv_cM_Fenix_ChampionUnit[lp_group][lp_player], <span class="hljs-number">1</span>);
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L4902">base.sc2data/LibCOMI.galaxy:4902</a></em></p>
+<pre class="hljs"><code>
+        CatalogFieldValueModify(c_gameCatalogBehavior, libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBehaviors[lp_group], <span class="hljs-string">"Modification.MoveSpeedMultiplier"</span>, lp_player, FixedToString((<span class="hljs-number">1.0</span> + (libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBuffStacks[lp_group] * lv_moveSpeedHastePerStack)), c_fixedPrecisionAny), c_upgradeOperationSet);
+        CatalogFieldValueModify(c_gameCatalogBehavior, libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBehaviors[lp_group], <span class="hljs-string">"Modification.AttackSpeedMultiplier"</span>, lp_player, FixedToString((<span class="hljs-number">1.0</span> + (libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBuffStacks[lp_group] * lv_attackSpeedHastePerStack)), c_fixedPrecisionAny), c_upgradeOperationSet);
+        UnitBehaviorAdd(libCOMI_gv_cM_Fenix_ChampionUnit[lp_group][lp_player], libCOMI_gv_cM_Fenix_ChampionAvengingProtocolBehaviors[lp_group], libCOMI_gv_cM_Fenix_ChampionUnit[lp_group][lp_player], <span class="hljs-number">1</span>);
+    }
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L5057">base.sc2data/LibCOMI.galaxy:5057</a></em></p>
+<pre class="hljs"><code>                    }
+
+                    CatalogFieldValueModify(c_gameCatalogEffect, <span class="hljs-string">"HornerMSOHealthDisplayDummy"</span>, <span class="hljs-string">"Amount"</span>, lp_player, FixedToString(lv_factionBonusLifeMulti, <span class="hljs-number">2</span>), c_upgradeOperationSet);
+                    <span class="hljs-keyword">if</span> ((lv_itBonusAtkSpeedMulti != <span class="hljs-number">0.0</span>)) {
+                        autoE55E46B6_catalog = c_gameCatalogUnit;
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L5069">base.sc2data/LibCOMI.galaxy:5069</a></em></p>
+<pre class="hljs"><code>                            libCOMI_gf_CatalogFieldValueAdditiveBonus(c_gameCatalogWeapon, lv_itWeapons, <span class="hljs-string">"Period"</span>, lp_player, <span class="hljs-string">"MSO"</span>, lv_factionBonusAtkSpeedMulti, <span class="hljs-literal">true</span>);
+                        }
+                        CatalogFieldValueModify(c_gameCatalogEffect, <span class="hljs-string">"HornerMSOAttackSpeedDisplayDummy"</span>, <span class="hljs-string">"Amount"</span>, lp_player, FixedToString(lv_factionBonusAtkSpeedMulti, c_fixedPrecisionAny), c_upgradeOperationSet);
+                        <span class="hljs-keyword">if</span> ((TechTreeUpgradeCount(lp_player, <span class="hljs-string">"HHWidowMineDeathBlossom"</span>, c_techCountCompleteOnly) == <span class="hljs-number">1</span>)) {
+                            libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogAbil, <span class="hljs-string">"HHWidowMineBurrowedAttack"</span>, <span class="hljs-string">"Cost["</span> + IntToString(<span class="hljs-number">0</span>) + <span class="hljs-string">"].Cooldown.TimeUse"</span>, lp_player, (<span class="hljs-number">20.0</span> * (<span class="hljs-number">1.0</span> - (<span class="hljs-number">0.01</span> * lv_factionBonusAtkSpeedMulti))));
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L5198">base.sc2data/LibCOMI.galaxy:5198</a></em></p>
+<pre class="hljs"><code>                <span class="hljs-keyword">if</span> (lv_itPlayer &lt; <span class="hljs-number">0</span>) { <span class="hljs-keyword">break</span>; }
+                <span class="hljs-keyword">if</span> ((lv_playerLevel[lv_itPlayer] &gt; <span class="hljs-number">0</span>)) {
+                    CatalogFieldValueModify(c_gameCatalogUnit, lv_entry, <span class="hljs-string">"LifeRegenRateCreep"</span>, lv_itPlayer, FixedToString(lv_liferegenrate, c_fixedPrecisionAny), c_upgradeOperationAdd);
+                    CatalogFieldValueModify(c_gameCatalogUnit, lv_entry, <span class="hljs-string">"AttackSpeedMultiplierCreep"</span>, lv_itPlayer, FixedToString(lv_attackspeedmultiplier, c_fixedPrecisionAny), c_upgradeOperationAdd);
+                }
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L5199">base.sc2data/LibCOMI.galaxy:5199</a></em></p>
+<pre class="hljs"><code>                <span class="hljs-keyword">if</span> ((lv_playerLevel[lv_itPlayer] &gt; <span class="hljs-number">0</span>)) {
+                    CatalogFieldValueModify(c_gameCatalogUnit, lv_entry, <span class="hljs-string">"LifeRegenRateCreep"</span>, lv_itPlayer, FixedToString(lv_liferegenrate, c_fixedPrecisionAny), c_upgradeOperationAdd);
+                    CatalogFieldValueModify(c_gameCatalogUnit, lv_entry, <span class="hljs-string">"AttackSpeedMultiplierCreep"</span>, lv_itPlayer, FixedToString(lv_attackspeedmultiplier, c_fixedPrecisionAny), c_upgradeOperationAdd);
+                }
+
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L15164">base.sc2data/LibCOMI.galaxy:15164</a></em></p>
+<pre class="hljs"><code>    }
+
+    CatalogFieldValueModify(c_gameCatalogEffect, <span class="hljs-string">"BrutalizeDamage"</span>, <span class="hljs-string">"Amount"</span>, libCOOC_gf_CC_PlayerOfCommanderInGroupFirst(<span class="hljs-string">"ZergAbathur"</span>, libCOOC_gf_CC_PlayersOfCommander(<span class="hljs-string">"ZergAbathur"</span>)), <span class="hljs-string">"3"</span>, c_upgradeOperationAdd);
+    CatalogFieldValueModify(c_gameCatalogWeapon, <span class="hljs-string">"Brutalize"</span>, <span class="hljs-string">"Level"</span>, libCOOC_gf_CC_PlayerOfCommanderInGroupFirst(<span class="hljs-string">"ZergAbathur"</span>, libCOOC_gf_CC_PlayersOfCommander(<span class="hljs-string">"ZergAbathur"</span>)), <span class="hljs-string">"1"</span>, c_upgradeOperationAdd);
+    <span class="hljs-keyword">if</span> ((libNtve_gf_TriggeringProgressUpgrade() == <span class="hljs-string">"ZergMissileWeaponsLevel1"</span>)) {
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L15165">base.sc2data/LibCOMI.galaxy:15165</a></em></p>
+<pre class="hljs"><code>
+    CatalogFieldValueModify(c_gameCatalogEffect, <span class="hljs-string">"BrutalizeDamage"</span>, <span class="hljs-string">"Amount"</span>, libCOOC_gf_CC_PlayerOfCommanderInGroupFirst(<span class="hljs-string">"ZergAbathur"</span>, libCOOC_gf_CC_PlayersOfCommander(<span class="hljs-string">"ZergAbathur"</span>)), <span class="hljs-string">"3"</span>, c_upgradeOperationAdd);
+    CatalogFieldValueModify(c_gameCatalogWeapon, <span class="hljs-string">"Brutalize"</span>, <span class="hljs-string">"Level"</span>, libCOOC_gf_CC_PlayerOfCommanderInGroupFirst(<span class="hljs-string">"ZergAbathur"</span>, libCOOC_gf_CC_PlayersOfCommander(<span class="hljs-string">"ZergAbathur"</span>)), <span class="hljs-string">"1"</span>, c_upgradeOperationAdd);
+    <span class="hljs-keyword">if</span> ((libNtve_gf_TriggeringProgressUpgrade() == <span class="hljs-string">"ZergMissileWeaponsLevel1"</span>)) {
+        CatalogFieldValueSet(c_gameCatalogWeapon, <span class="hljs-string">"Brutalize"</span>, <span class="hljs-string">"Icon"</span>, libCOOC_gf_CC_PlayerOfCommanderInGroupFirst(<span class="hljs-string">"ZergAbathur"</span>, libCOOC_gf_CC_PlayersOfCommander(<span class="hljs-string">"ZergAbathur"</span>)), <span class="hljs-string">"Assets\\Textures\\btn-upgrade-zerg-meleeattacks-level1.dds"</span>);
+</code></pre>
+<p><strong>mods/starcoop/starcoop.sc2mod</strong>
+— <em><a href="https://github.com/SC2Mapster/SC2GameData/blob/b7587cca570f6a7ce27efa3336a6495d54a71720/mods/starcoop/starcoop.sc2mod/base.sc2data/LibCOMI.galaxy#L16960">base.sc2data/LibCOMI.galaxy:16960</a></em></p>
+<pre class="hljs"><code>    }
+
+    CatalogFieldValueModify(c_gameCatalogBehavior, <span class="hljs-string">"DehakaConsumeEffectAir"</span>, <span class="hljs-string">"Duration"</span>, EventPlayer(), FixedToString(lv_durationModifier, <span class="hljs-number">2</span>), c_upgradeOperationMultiply);
+    CatalogFieldValueModify(c_gameCatalogBehavior, <span class="hljs-string">"DehakaConsumeEffectArmored"</span>, <span class="hljs-string">"Duration"</span>, EventPlayer(), FixedToString(lv_durationModifier, <span class="hljs-number">2</span>), c_upgradeOperationMultiply);
+    CatalogFieldValueModify(c_gameCatalogBehavior, <span class="hljs-string">"DehakaConsumeEffectDetector"</span>, <span class="hljs-string">"Duration"</span>, EventPlayer(), FixedToString(lv_durationModifier, <span class="hljs-number">2</span>), c_upgradeOperationMultiply);
+</code></pre>
+
+
+
+                    
+                </main>
+
+                <footer class="bd-footer col-12 bg-primary text-secondary">
+                    <p class="my-2 float-lg-right"><small>See more at <a href="https://github.com/SC2Mapster" target="_blank">Github/SC2Mapster</a>.</small></p>
+                </footer>
+            </div>
+        </div>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"25562e12bc934540bba3efbd6544521a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
