@@ -4471,25 +4471,25 @@ void lib48DF4533_gf_AIAttackWaveAddUnits6 (int lp_unitType2) {
     else {
         libNtve_gf_SetDialogItemDesaturated(lib48DF4533_gv_structures2, true, lv_thisguy);
     }
-    if ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Twin Drones")) {
+    if (((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A") == "Twin Drones") || ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A") == "") && (BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Twin Drones")))) {
         libNtve_gf_SetDialogItemDesaturated(lib48DF4533_gv_twin_drones2, false, lv_thisguy);
     }
     else {
         libNtve_gf_SetDialogItemDesaturated(lib48DF4533_gv_twin_drones2, true, lv_thisguy);
     }
-    if ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Malignant Creep")) {
+    if (((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3B") == "Malignant Creep") || ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3B") == "") && (BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Malignant Creep")))) {
         libNtve_gf_SetDialogItemDesaturated(lib48DF4533_gv_malignant_creep2, false, lv_thisguy);
     }
     else {
         libNtve_gf_SetDialogItemDesaturated(lib48DF4533_gv_malignant_creep2, true, lv_thisguy);
     }
-    if ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Automated Extractors")) {
+    if (((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A") == "Automated Extractors") || ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A") == "") && (BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Automated Extractors")))) {
         libNtve_gf_SetDialogItemDesaturated(lib48DF4533_gv_automated_extractors2, false, lv_thisguy);
     }
     else {
         libNtve_gf_SetDialogItemDesaturated(lib48DF4533_gv_automated_extractors2, true, lv_thisguy);
     }
-    if ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Resonance")) {
+    if (((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3B") == "Resonance") || ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3B") == "") && (BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Resonance")))) {
         libNtve_gf_SetDialogItemDesaturated(lib48DF4533_gv_resonance2, false, lv_thisguy);
     }
     else {
@@ -5501,6 +5501,8 @@ bool lib48DF4533_gt_UnityUnlocks_Func (bool testConds, bool runActions) {
     string auto5AE1CA90_val;
     string auto5DCC3B70_val;
     string auto3FC5E5DC_val;
+    string lv_army3Legacy;
+    string lv_army3Combat;
     string auto1B515A94_val;
     string autoF8C89BE7_val;
     string auto5C9DD7F9_val;
@@ -5581,13 +5583,18 @@ bool lib48DF4533_gt_UnityUnlocks_Func (bool testConds, bool runActions) {
         }
         else {
         }
-        auto3FC5E5DC_val = BankValueGetAsString(BankLastCreated(), "Unity", "Army 3");
+        lv_army3Legacy = BankValueGetAsString(BankLastCreated(), "Unity", "Army 3");
+        auto3FC5E5DC_val = BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A");
+        if ((auto3FC5E5DC_val == "")) {
+            if (lv_army3Legacy == "Twin Drones") {
+                auto3FC5E5DC_val = "Twin Drones";
+            }
+            else if (lv_army3Legacy == "Automated Extractors") {
+                auto3FC5E5DC_val = "Automated Extractors";
+            }
+        }
         if (auto3FC5E5DC_val == "Twin Drones") {
             libNtve_gf_SetUpgradeLevelForPlayer(auto764D5361_var, "K5TwoDrones", 1);
-        }
-        else if (auto3FC5E5DC_val == "Malignant Creep") {
-            libNtve_gf_SetUpgradeLevelForPlayer(auto764D5361_var, "K5CreepBonuses", 1);
-            TriggerEnable(lib48DF4533_gt_MalignantCreep, true);
         }
         else if (auto3FC5E5DC_val == "Automated Extractors") {
             libNtve_gf_SetUpgradeLevelForPlayer(auto764D5361_var, "K5AutoExtractor", 1);
@@ -5600,7 +5607,22 @@ bool lib48DF4533_gt_UnityUnlocks_Func (bool testConds, bool runActions) {
             TechTreeAbilityAllow(auto764D5361_var, AbilityCommand("ZergBuild", 2), false);
             TechTreeAbilityAllow(auto764D5361_var, AbilityCommand("TerranBuild", 7), false);
         }
-        else if (auto3FC5E5DC_val == "Resonance") {
+        else {
+        }
+        lv_army3Combat = BankValueGetAsString(BankLastCreated(), "Unity", "Army 3B");
+        if ((lv_army3Combat == "")) {
+            if (lv_army3Legacy == "Malignant Creep") {
+                lv_army3Combat = "Malignant Creep";
+            }
+            else if (lv_army3Legacy == "Resonance") {
+                lv_army3Combat = "Resonance";
+            }
+        }
+        if (lv_army3Combat == "Malignant Creep") {
+            libNtve_gf_SetUpgradeLevelForPlayer(auto764D5361_var, "K5CreepBonuses", 1);
+            TriggerEnable(lib48DF4533_gt_MalignantCreep, true);
+        }
+        else if (lv_army3Combat == "Resonance") {
             libNtve_gf_SetUpgradeLevelForPlayer(auto764D5361_var, "K5Resonance", 1);
             PlayerModifyPropertyInt(auto764D5361_var, c_playerPropSuppliesMade, c_playerPropOperAdd, 50);
             PlayerModifyPropertyInt(auto764D5361_var, c_playerPropSuppliesLimit, c_playerPropOperAdd, 50);
@@ -12773,7 +12795,7 @@ bool lib48DF4533_gt_Urun_Func (bool testConds, bool runActions) {
                 }
             }
 
-            if ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Automated Extractors")) {
+            if (((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A") == "Automated Extractors") || ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A") == "") && (BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Automated Extractors")))) {
                 autoFB1D1F3F_g = UnitGroup("PrideofAuriga", autoFCC1B206_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 autoFB1D1F3F_u = UnitGroupCount(autoFB1D1F3F_g, c_unitCountAll);
                 for (;; autoFB1D1F3F_u -= 1) {
@@ -12783,7 +12805,7 @@ bool lib48DF4533_gt_Urun_Func (bool testConds, bool runActions) {
                 }
             }
 
-            if ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Twin Drones")) {
+            if (((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A") == "Twin Drones") || ((BankValueGetAsString(BankLastCreated(), "Unity", "Army 3A") == "") && (BankValueGetAsString(BankLastCreated(), "Unity", "Army 3") == "Twin Drones")))) {
                 CatalogFieldValueModify(c_gameCatalogUnit, "Zealot", "Food", autoFCC1B206_var, "-1", c_upgradeOperationSet);
             }
 
@@ -19204,25 +19226,25 @@ bool lib48DF4533_gt_UnityButtons_Func (bool testConds, bool runActions) {
     }
     else if (autoFD23FC11_val == lib48DF4533_gv_twin_drones) {
         if ((lv_level >= 35)) {
-            BankValueSetFromString(BankLastCreated(), "Unity", "Army 3", "Twin Drones");
+            BankValueSetFromString(BankLastCreated(), "Unity", "Army 3A", "Twin Drones");
         }
 
     }
     else if (autoFD23FC11_val == lib48DF4533_gv_malignant_creep) {
         if ((lv_level >= 35)) {
-            BankValueSetFromString(BankLastCreated(), "Unity", "Army 3", "Malignant Creep");
+            BankValueSetFromString(BankLastCreated(), "Unity", "Army 3B", "Malignant Creep");
         }
 
     }
     else if (autoFD23FC11_val == lib48DF4533_gv_automated_extractors) {
         if ((lv_level >= 35)) {
-            BankValueSetFromString(BankLastCreated(), "Unity", "Army 3", "Automated Extractors");
+            BankValueSetFromString(BankLastCreated(), "Unity", "Army 3A", "Automated Extractors");
         }
 
     }
     else if (autoFD23FC11_val == lib48DF4533_gv_resonance) {
         if ((lv_level >= 35)) {
-            BankValueSetFromString(BankLastCreated(), "Unity", "Army 3", "Resonance");
+            BankValueSetFromString(BankLastCreated(), "Unity", "Army 3B", "Resonance");
         }
 
     }
