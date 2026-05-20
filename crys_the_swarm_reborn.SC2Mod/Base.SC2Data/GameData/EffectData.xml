@@ -45,6 +45,16 @@
         <EditorCategories value="Race:Zerg"/>
         <Resources index="Vespene" value="25"/>
     </CEffectModifyPlayer>
+    <CEffectModifyPlayer id="BaseSubtract50Minerals">
+        <EditorCategories value="Race:Zerg"/>
+        <Resources index="Minerals" value="-50"/>
+    </CEffectModifyPlayer>
+    <CEffectSet id="BaseGasExchangeAutoSet">
+        <ValidatorArray value="Have50MineralsForBaseGasExchange"/>
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="BaseSubtract50Minerals"/>
+        <EffectArray value="BaseConvertMineralsToVespene25"/>
+    </CEffectSet>
     <CEffectApplyBehavior id="AggressiveMutationAB">
         <ValidatorArray index="0" removed="1"/>
         <ValidatorArray index="1" removed="1"/>
