@@ -6470,4 +6470,49 @@
             <Flags index="CreateDefaultButton" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CAbilEffectInstant id="BrutaliskTramplingCarapacePurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="BrutaliskTramplingCarapacePurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="100"/>
+            <Resource index="Vespene" value="100"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskTramplingCarapace" Requirements="NotBrutaliskTramplingCarapacePurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="BrutaliskSavageRendPurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="BrutaliskSavageRendPurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="100"/>
+            <Resource index="Vespene" value="100"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskSavageRend" Requirements="NotBrutaliskSavageRendPurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="BrutaliskFleshRecompositionPurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="BrutaliskFleshRecompositionPurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="100"/>
+            <Resource index="Vespene" value="100"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskFleshRecomposition" Requirements="NotBrutaliskFleshRecompositionPurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
 </Catalog>
