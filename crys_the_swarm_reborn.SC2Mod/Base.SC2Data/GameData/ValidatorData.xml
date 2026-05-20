@@ -52,6 +52,17 @@
         <Compare value="GT"/>
         <Behavior value="BanelingZerglings"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="QueenCasterHasFleshyAbundancePurchased">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="QueenFleshyAbundancePurchasedBuff"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="QueenCasterNotFleshyAbundancePurchased">
+        <WhichUnit Value="Caster"/>
+        <Compare value="LT"/>
+        <Value value="1"/>
+        <Behavior value="QueenFleshyAbundancePurchasedBuff"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareVital id="CasterEnergyGE25" parent="CasterEnergyLT50">
         <Compare value="GE"/>
         <Value value="25"/>
@@ -201,6 +212,12 @@
         <Behavior value="AberrantGrowth"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerCompareResource id="OutOfMinerals"/>
+    <CValidatorPlayerCompareResource id="Have50MineralsForBaseGasExchange">
+        <WhichPlayer Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="50"/>
+        <Resource value="Minerals"/>
+    </CValidatorPlayerCompareResource>
     <CValidatorPlayerCompareResource id="OutofVespene">
         <Compare value="GT"/>
         <Resource value="Vespene"/>

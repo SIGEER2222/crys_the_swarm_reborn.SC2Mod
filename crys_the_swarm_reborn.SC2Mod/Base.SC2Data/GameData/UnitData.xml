@@ -1661,6 +1661,7 @@
         <AbilArray index="11" Link="NaturalCamouflage"/>
         <AbilArray Link="VespeneEfficiency"/>
         <AbilArray Link="FastMorphing"/>
+        <AbilArray Link="BaseGasExchange"/>
         <BehaviorArray Link="IzshaQueue"/>
         <CardLayouts index="0">
             <LayoutButtons index="8" Column="1"/>
@@ -1685,6 +1686,7 @@
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
+            <LayoutButtons Face="BaseGasExchange" Type="AbilCmd" AbilCmd="BaseGasExchange,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="SummonZagara" Type="AbilCmd" AbilCmd="TrainQueen,Train21" Row="0" Column="4"/>
             <LayoutButtons Face="CommanderRaynor" Type="Passive" Requirements="Raynor" Row="0" Column="4"/>
         </CardLayouts>
@@ -1719,6 +1721,7 @@
         <AbilArray index="10" Link="NaturalCamouflage"/>
         <AbilArray Link="VespeneEfficiency"/>
         <AbilArray Link="FastMorphing"/>
+        <AbilArray Link="BaseGasExchange"/>
         <BehaviorArray Link="IzshaQueue"/>
         <CardLayouts index="0">
             <LayoutButtons index="6" Column="1"/>
@@ -1742,6 +1745,7 @@
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
+            <LayoutButtons Face="BaseGasExchange" Type="AbilCmd" AbilCmd="BaseGasExchange,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="BirthBroodQueen" Type="AbilCmd" AbilCmd="TrainQueen,Train3" Row="0" Column="3"/>
             <LayoutButtons Face="SummonNaktul" Type="AbilCmd" AbilCmd="TrainQueen,Train20" Row="0" Column="4"/>
             <LayoutButtons Face="SummonZagara" Type="AbilCmd" AbilCmd="TrainQueen,Train21" Row="0" Column="4"/>
@@ -1778,6 +1782,7 @@
         <AbilArray index="11" Link="NaturalCamouflage"/>
         <AbilArray Link="VespeneEfficiency"/>
         <AbilArray Link="FastMorphing"/>
+        <AbilArray Link="BaseGasExchange"/>
         <BehaviorArray Link="IzshaQueue"/>
         <CardLayouts index="0">
             <LayoutButtons index="8" Column="1"/>
@@ -1801,6 +1806,7 @@
                 <Row value="1"/>
                 <Column value="0"/>
             </LayoutButtons>
+            <LayoutButtons Face="BaseGasExchange" Type="AbilCmd" AbilCmd="BaseGasExchange,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="BirthBroodQueen" Type="AbilCmd" AbilCmd="TrainQueen,Train3" Row="0" Column="3"/>
             <LayoutButtons Face="SummonNaktul" Type="AbilCmd" AbilCmd="TrainQueen,Train20" Row="0" Column="4"/>
             <LayoutButtons Face="SummonZagara" Type="AbilCmd" AbilCmd="TrainQueen,Train21" Row="0" Column="4"/>
@@ -15054,7 +15060,6 @@
     </CUnit>
     <CUnit id="Queen">
         <BehaviorArray Link="AggressionSearch"/>
-        <BehaviorArray Link="QueenLifeLeech20"/>
         <CardLayouts index="0">
             <LayoutButtons>
                 <Face value="RapidTransfusion"/>
@@ -15065,10 +15070,12 @@
                 <Column value="0"/>
             </LayoutButtons>
             <LayoutButtons Face="Aggression" Type="Passive" Requirements="Zagara" Row="2" Column="2"/>
-            <LayoutButtons Face="FleshyAbundance2" Type="Passive" Requirements="HaveFleshweaver" Row="1" Column="1"/>
-            <LayoutButtons Face="NornQueen" Type="Passive" Requirements="HaveNornQueen" Row="1" Column="2"/>
+            <LayoutButtons Face="FleshyAbundance2" Type="AbilCmd" AbilCmd="QueenFleshyAbundancePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="NornQueen" Type="AbilCmd" AbilCmd="QueenNornQueenPurchase,Execute" Row="1" Column="2"/>
         </CardLayouts>
         <AbilArray Link="WildMutation2"/>
+        <AbilArray Link="QueenFleshyAbundancePurchase"/>
+        <AbilArray Link="QueenNornQueenPurchase"/>
         <EnergyRegenRate value="1"/>
     </CUnit>
     <CUnit id="Ravager">
