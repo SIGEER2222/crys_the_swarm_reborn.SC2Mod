@@ -12341,7 +12341,13 @@
         <KillXP value="60"/>
     </CUnit>
     <CUnit id="SwarmHostBurrowed">
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons index="2" Face="LocustSpeed" Requirements="HaveHotSLocustSpeed" Row="1"/>
             <LayoutButtons index="3" Face="SwarmHostUprootUnburrow" Type="AbilCmd" AbilCmd="MorphToSwarmHost,Execute" Requirements="" Column="4"/>
             <LayoutButtons index="4">
@@ -12372,9 +12378,15 @@
         </CardLayouts>
     </CUnit>
     <CUnit id="SwarmHostSplitA">
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
         <CardLayouts index="0">
             <LayoutButtons index="7" Face="SwarmHostRoot" Type="AbilCmd" AbilCmd="MorphToSwarmHostSplitARooted,Execute" Requirements="" Column="4"/>
             <LayoutButtons index="8" Face="SwarmHostRootBurrow" Type="AbilCmd" AbilCmd="MorphToSwarmHostSplitABurrowed,Execute" Requirements="" Column="4"/>
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons index="9" Face="RapidIncubation" Requirements="HaveHotSRapidIncubation" Row="1" Column="0"/>
             <LayoutButtons index="10">
                 <Face value="LocustSpeed"/>
@@ -12398,7 +12410,13 @@
         <KillXP value="50"/>
     </CUnit>
     <CUnit id="SwarmHostSplitABurrowed">
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons index="2" Face="LocustSpeed" Requirements="HaveHotSLocustSpeed" Row="1"/>
             <LayoutButtons index="3" Face="SwarmHostUprootUnburrow" Type="AbilCmd" AbilCmd="MorphToSwarmHostSplitA,Execute" Requirements="" Column="4"/>
             <LayoutButtons index="4">
@@ -12429,10 +12447,16 @@
         </CardLayouts>
     </CUnit>
     <CUnit id="SwarmHostSplitB">
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
         <CardLayouts index="0">
             <LayoutButtons index="8" Face="SwarmHostDeepBurrow" Type="AbilCmd" AbilCmd="SwarmHostDeepBurrow,Execute" Requirements="" Column="1"/>
             <LayoutButtons index="9" Face="SwarmHostRoot" Type="AbilCmd" AbilCmd="MorphToSwarmHostSplitBRooted,Execute" Requirements="" Column="4"/>
             <LayoutButtons index="10" Face="SwarmHostRootBurrow" Type="AbilCmd" AbilCmd="MorphToSwarmHostSplitBBurrowed,Execute" Requirements="" Column="4"/>
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons index="11">
                 <Face value="RapidIncubation"/>
                 <Type value="Passive"/>
@@ -14809,7 +14833,13 @@
         <KillXP value="400"/>
     </CUnit>
     <CUnit id="Mutalisk">
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons index="5" Row="1"/>
             <LayoutButtons index="6" Row="1" Column="1"/>
             <LayoutButtons index="7" Row="1" Column="2"/>
@@ -14822,8 +14852,14 @@
         <Name value="Unit/Name/MutaliskChar"/>
         <Subtitle value="MutaliskChar"/>
         <Description value="Button/Tooltip/MutaliskChar"/>
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
         <WeaponArray index="0" Link="Fireball"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons index="8" Face="Incinerate"/>
             <LayoutButtons Face="Recuperation" Type="Passive" Row="2" Column="1"/>
         </CardLayouts>
@@ -14870,6 +14906,9 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
         <BehaviorArray Link="MutaliskRapidRegen"/>
         <BehaviorArray Link="MutaliskBaseRegeneration"/>
         <WeaponArray Link="DegenerationRay"/>
@@ -14880,6 +14919,9 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="SynapticDisintegration" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="ExplosiveGlaive" Type="Passive" Requirements="HaveHotSExplosiveGlaive" Row="1" Column="0"/>
             <LayoutButtons Face="ViciousGlaive" Type="Passive" Requirements="HaveHotSViciousGlaive" Row="1" Column="1"/>
             <LayoutButtons Face="MutaliskRapidRegeneration" Type="Passive" Requirements="HaveHotSRapidRegeneration" Row="1" Column="2"/>
@@ -14942,6 +14984,9 @@
         <AbilArray Link="NeuralCamouflage"/>
         <AbilArray Link="Teleport"/>
         <AbilArray Link="ChargedGlaives"/>
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
         <BehaviorArray Link="MutaliskRapidRegen"/>
         <BehaviorArray Link="MutaliskBaseRegeneration"/>
         <WeaponArray Link="GlaiveWurm"/>
@@ -14953,6 +14998,9 @@
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="Enshroud" Type="AbilCmd" AbilCmd="NeuralCamouflage,On" Row="2" Column="0"/>
             <LayoutButtons Face="Unveiled" Type="AbilCmd" AbilCmd="NeuralCamouflage,Off" Row="2" Column="0"/>
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="ExplosiveGlaive" Type="Passive" Requirements="HaveHotSExplosiveGlaive" Row="1" Column="0"/>
             <LayoutButtons Face="ViciousGlaive" Type="Passive" Requirements="HaveHotSViciousGlaive" Row="1" Column="1"/>
             <LayoutButtons Face="MutaliskRapidRegeneration" Type="Passive" Requirements="HaveHotSRapidRegeneration" Row="1" Column="2"/>
@@ -15012,6 +15060,9 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
         <BehaviorArray Link="MutaliskRapidRegen"/>
         <BehaviorArray Link="MutaliskBaseRegeneration"/>
         <WeaponArray Link="CorrosiveStream"/>
@@ -15021,6 +15072,9 @@
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="ExplosiveGlaive" Type="Passive" Requirements="HaveHotSExplosiveGlaive" Row="1" Column="0"/>
             <LayoutButtons Face="ViciousGlaive" Type="Passive" Requirements="HaveHotSViciousGlaive" Row="1" Column="1"/>
             <LayoutButtons Face="MutaliskRapidRegeneration" Type="Passive" Requirements="HaveHotSRapidRegeneration" Row="1" Column="2"/>
@@ -15287,11 +15341,17 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="UnburrowBaneHost"/>
         <AbilArray Link="BanelingLaunch"/>
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
         <BehaviorArray Link="SwarmHostPressurizedGlands"/>
         <WeaponArray Link="BanelingSpawn"/>
         <WeaponArray Link="BanelingSpawn"/>
         <CardLayouts>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="BurrowSwarmHost" Type="Passive" Requirements="HaveHotSBurrowSwarmHost" Row="2" Column="1"/>
             <LayoutButtons Face="RapidIncubation" Type="Passive" Requirements="HaveHotSRapidIncubation" Row="2" Column="1"/>
             <LayoutButtons Face="LocustSpeed" Type="Passive" Requirements="HaveHotSLocustSpeed" Row="2" Column="1"/>
@@ -15398,7 +15458,13 @@
         <KillXP value="50"/>
     </CUnit>
     <CUnit id="SwarmHostSplitBBurrowed">
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons index="3" Row="1" Column="0"/>
             <LayoutButtons index="4" Row="1" Column="1"/>
             <LayoutButtons index="5" Row="1"/>
