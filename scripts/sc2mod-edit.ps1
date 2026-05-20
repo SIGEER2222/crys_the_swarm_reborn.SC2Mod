@@ -20,7 +20,31 @@ if (-not (Test-Path $projectPath)) {
     throw "Tool project not found: $projectPath"
 }
 
-$argList = @("run", "--project", $projectPath, "--", $Command, "--mod-root", $ModRoot)
+$projectDir = Split-Path -Parent $projectPath
+$dllPath = Join-Path $projectDir "bin\Debug\net9.0\Sc2ModTool.dll"
+
+$needsBuild = $true
+if (Test-Path $dllPath) {
+    $dllTime = (Get-Item -LiteralPath $dllPath).LastWriteTimeUtc
+    $latestSourceTime = (Get-ChildItem -LiteralPath $projectDir -Recurse -File | Where-Object {
+        $_.Extension -in ".cs", ".csproj" -and
+        $_.FullName -notmatch '\\bin\\' -and
+        $_.FullName -notmatch '\\obj\\'
+    } | Measure-Object -Property LastWriteTimeUtc -Maximum).Maximum
+
+    if ($null -ne $latestSourceTime -and $dllTime -ge $latestSourceTime) {
+        $needsBuild = $false
+    }
+}
+
+if ($needsBuild) {
+    & dotnet build $projectPath --nologo
+    if ($LASTEXITCODE -ne 0) {
+        throw "dotnet build failed."
+    }
+}
+
+$argList = @($dllPath, $Command, "--mod-root", $ModRoot)
 
 switch ($Command.ToLowerInvariant()) {
     "find" {

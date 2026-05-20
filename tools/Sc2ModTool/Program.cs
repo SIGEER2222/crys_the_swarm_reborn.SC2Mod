@@ -1,7 +1,6 @@
 using System.Text;
 using System.Text.Json;
 using System.Xml;
-using System.Xml.XPath;
 
 return await Cli.RunAsync(args);
 
@@ -29,7 +28,7 @@ internal static class Cli
                     await RunApplyAsync(options);
                     return 0;
                 default:
-                    throw new InvalidOperationException($"未知命令: {command}");
+                    throw new InvalidOperationException($"Unknown command: {command}");
             }
         }
         catch (Exception ex)
@@ -49,8 +48,8 @@ internal static class Cli
         foreach (var file in files)
         {
             var doc = XmlHelpers.Load(file);
-            var root = doc.DocumentElement ?? throw new InvalidOperationException($"XML 缺少根节点: {file}");
-            var found = root.SelectNodes($"//*[@id='{EscapeForXPath(id)}']");
+            var root = doc.DocumentElement ?? throw new InvalidOperationException($"Missing XML root: {file}");
+            var found = root.SelectNodes($"//*[@id={XmlHelpers.ToXPathLiteral(id)}]");
             if (found is null)
             {
                 continue;
@@ -67,11 +66,11 @@ internal static class Cli
 
         if (matches.Count == 0)
         {
-            Console.WriteLine($"未找到 id={id}");
+            Console.WriteLine($"No matches for id={id}");
             return;
         }
 
-        foreach (var match in matches.OrderBy(m => m.File))
+        foreach (var match in matches.OrderBy(m => m.File, StringComparer.OrdinalIgnoreCase))
         {
             Console.WriteLine($"{match.File}\t{match.NodeName}\t{match.Id}");
         }
@@ -85,7 +84,7 @@ internal static class Cli
 
         var patchJson = await File.ReadAllTextAsync(patchPath, Encoding.UTF8);
         var patch = JsonSerializer.Deserialize<PatchDocument>(patchJson, JsonOptions.Default)
-            ?? throw new InvalidOperationException($"无法读取 patch: {patchPath}");
+            ?? throw new InvalidOperationException($"Unable to parse patch file: {patchPath}");
 
         var runner = new PatchRunner(modRoot, whatIf);
         runner.Apply(patch);
@@ -96,7 +95,7 @@ internal static class Cli
         var gameDataRoot = Path.Combine(modRoot, "Base.SC2Data", "GameData");
         if (!Directory.Exists(gameDataRoot))
         {
-            throw new DirectoryNotFoundException($"不存在 GameData 目录: {gameDataRoot}");
+            throw new DirectoryNotFoundException($"GameData directory not found: {gameDataRoot}");
         }
 
         return Directory.EnumerateFiles(gameDataRoot, "*.xml", SearchOption.TopDirectoryOnly);
@@ -111,7 +110,7 @@ internal static class Cli
             var arg = args[i];
             if (!arg.StartsWith("--", StringComparison.Ordinal))
             {
-                throw new InvalidOperationException($"无法识别参数: {arg}");
+                throw new InvalidOperationException($"Unknown option syntax: {arg}");
             }
 
             var key = arg[2..];
@@ -132,7 +131,7 @@ internal static class Cli
     {
         if (!options.TryGetValue(key, out var value) || string.IsNullOrWhiteSpace(value))
         {
-            throw new InvalidOperationException($"缺少参数 --{key}");
+            throw new InvalidOperationException($"Missing required option --{key}");
         }
 
         return value;
@@ -143,19 +142,20 @@ internal static class Cli
         arg.Equals("--help", StringComparison.OrdinalIgnoreCase) ||
         arg.Equals("-h", StringComparison.OrdinalIgnoreCase);
 
-    private static string EscapeForXPath(string value) => value.Replace("'", "&apos;");
-
     private static void PrintHelp()
     {
         Console.WriteLine("Sc2ModTool");
         Console.WriteLine();
-        Console.WriteLine("用法:");
+        Console.WriteLine("Usage:");
         Console.WriteLine("  find  --mod-root <path> --id <ObjectId>");
         Console.WriteLine("  apply --mod-root <path> --patch <patch.json> [--what-if]");
         Console.WriteLine();
-        Console.WriteLine("patch 支持的操作:");
+        Console.WriteLine("Supported patch operations:");
         Console.WriteLine("  setXmlAttribute");
+        Console.WriteLine("  appendObject");
+        Console.WriteLine("  insertChild");
         Console.WriteLine("  setStringValue");
+        Console.WriteLine("  replaceTextInFile");
     }
 }
 
@@ -167,6 +167,8 @@ internal sealed class PatchRunner
     private readonly HashSet<string> _dirtyXmlFiles = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, StringTableFile> _stringCache = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _dirtyStringFiles = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, PlainTextFile> _textCache = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _dirtyTextFiles = new(StringComparer.OrdinalIgnoreCase);
 
     public PatchRunner(string modRoot, bool whatIf)
     {
@@ -178,7 +180,7 @@ internal sealed class PatchRunner
     {
         if (patch.Operations.Count == 0)
         {
-            Console.WriteLine("patch 没有操作，跳过。");
+            Console.WriteLine("Patch has no operations.");
             return;
         }
 
@@ -191,7 +193,7 @@ internal sealed class PatchRunner
 
         if (_whatIf)
         {
-            Console.WriteLine("what-if 模式，不写回文件。");
+            Console.WriteLine("What-if mode, no files written.");
             return;
         }
 
@@ -205,11 +207,20 @@ internal sealed class PatchRunner
             case "setXmlAttribute":
                 ApplySetXmlAttribute(operation);
                 break;
+            case "appendObject":
+                ApplyAppendObject(operation);
+                break;
+            case "insertChild":
+                ApplyInsertChild(operation);
+                break;
             case "setStringValue":
                 ApplySetStringValue(operation);
                 break;
+            case "replaceTextInFile":
+                ApplyReplaceTextInFile(operation);
+                break;
             default:
-                throw new InvalidOperationException($"不支持的操作类型: {operation.Type}");
+                throw new InvalidOperationException($"Unsupported operation type: {operation.Type}");
         }
     }
 
@@ -228,13 +239,104 @@ internal sealed class PatchRunner
 
         if (currentValue == value)
         {
-            Console.WriteLine($"[skip] {relativeFile} :: {objectId} :: {xpath} @{attribute} 已经是 {value}");
+            Console.WriteLine($"[skip] {relativeFile} :: {objectId} :: {xpath} @{attribute} already {value}");
             return;
         }
 
         XmlHelpers.SetAttribute(targetNode, attribute, value);
         _dirtyXmlFiles.Add(fullPath);
         Console.WriteLine($"[xml ] {relativeFile} :: {objectId} :: {xpath} @{attribute} = {value}");
+    }
+
+    private void ApplyAppendObject(PatchOperation operation)
+    {
+        var relativeFile = RequireValue(operation.File, nameof(operation.File), operation.Type);
+        var xml = RequireValue(operation.Xml, nameof(operation.Xml), operation.Type);
+        var fullPath = GetFullPath(relativeFile);
+        var doc = GetXmlDocument(fullPath);
+        var fragment = XmlHelpers.ImportFragmentElement(doc, xml);
+        var fragmentId = fragment.GetAttribute("id");
+
+        if (!string.IsNullOrWhiteSpace(fragmentId))
+        {
+            var existing = XmlHelpers.TryFindObjectNode(doc, fragmentId, fragment.Name);
+            if (existing is not null)
+            {
+                if (!XmlHelpers.AreElementsEquivalent(existing, fragment))
+                {
+                    throw new InvalidOperationException($"Object id already exists with different content: {fragmentId}");
+                }
+
+                Console.WriteLine($"[skip] {relativeFile} :: object {fragmentId} already exists");
+                return;
+            }
+        }
+        else
+        {
+            var root = doc.DocumentElement ?? throw new InvalidOperationException($"Missing XML root: {relativeFile}");
+            if (XmlHelpers.HasEquivalentDirectChild(root, fragment))
+            {
+                Console.WriteLine($"[skip] {relativeFile} :: equivalent root object already exists");
+                return;
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(operation.AfterObjectId))
+        {
+            var anchor = XmlHelpers.FindObjectNode(doc, operation.AfterObjectId!, operation.AfterObjectType);
+            XmlHelpers.InsertElementAfter(anchor, fragment);
+            Console.WriteLine($"[xml+] {relativeFile} :: append object after {operation.AfterObjectId}");
+        }
+        else
+        {
+            var root = doc.DocumentElement ?? throw new InvalidOperationException($"Missing XML root: {relativeFile}");
+            XmlHelpers.AppendElement(root, fragment);
+            Console.WriteLine($"[xml+] {relativeFile} :: append object at root");
+        }
+
+        _dirtyXmlFiles.Add(fullPath);
+    }
+
+    private void ApplyInsertChild(PatchOperation operation)
+    {
+        var relativeFile = RequireValue(operation.File, nameof(operation.File), operation.Type);
+        var objectId = RequireValue(operation.ObjectId, nameof(operation.ObjectId), operation.Type);
+        var xml = RequireValue(operation.Xml, nameof(operation.Xml), operation.Type);
+        var fullPath = GetFullPath(relativeFile);
+        var doc = GetXmlDocument(fullPath);
+        var objectNode = XmlHelpers.FindObjectNode(doc, objectId, operation.ObjectType);
+        var fragment = XmlHelpers.ImportFragmentElement(doc, xml);
+
+        if (!string.IsNullOrWhiteSpace(operation.UniqueXPath) && objectNode.SelectSingleNode(operation.UniqueXPath!) is not null)
+        {
+            Console.WriteLine($"[skip] {relativeFile} :: {objectId} :: unique child already exists");
+            return;
+        }
+
+        if (XmlHelpers.HasEquivalentDirectChild(objectNode, fragment))
+        {
+            Console.WriteLine($"[skip] {relativeFile} :: {objectId} :: equivalent child already exists");
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(operation.AfterXPath))
+        {
+            var anchor = objectNode.SelectSingleNode(operation.AfterXPath!);
+            if (anchor is null)
+            {
+                throw new InvalidOperationException($"Anchor XPath not found for insertChild: {operation.AfterXPath}");
+            }
+
+            XmlHelpers.InsertElementAfter(anchor, fragment);
+            Console.WriteLine($"[xml+] {relativeFile} :: {objectId} :: insert child after {operation.AfterXPath}");
+        }
+        else
+        {
+            XmlHelpers.AppendElement(objectNode, fragment);
+            Console.WriteLine($"[xml+] {relativeFile} :: {objectId} :: append child");
+        }
+
+        _dirtyXmlFiles.Add(fullPath);
     }
 
     private void ApplySetStringValue(PatchOperation operation)
@@ -247,13 +349,48 @@ internal sealed class PatchRunner
 
         if (table.TryGetValue(key, out var currentValue) && currentValue == value)
         {
-            Console.WriteLine($"[skip] {relativeFile} :: {key} 已经是目标值");
+            Console.WriteLine($"[skip] {relativeFile} :: {key} already target value");
             return;
         }
 
         table.SetValue(key, value);
         _dirtyStringFiles.Add(fullPath);
         Console.WriteLine($"[text] {relativeFile} :: {key} = {value}");
+    }
+
+    private void ApplyReplaceTextInFile(PatchOperation operation)
+    {
+        var relativeFile = RequireValue(operation.File, nameof(operation.File), operation.Type);
+        var find = RequireValue(operation.Find, nameof(operation.Find), operation.Type);
+        var replace = RequireValue(operation.Replace, nameof(operation.Replace), operation.Type);
+        var fullPath = GetFullPath(relativeFile);
+        var textFile = GetTextFile(fullPath);
+        var normalizedContent = NormalizeLineEndings(textFile.Content);
+        var normalizedFind = NormalizeLineEndings(find);
+        var normalizedReplace = NormalizeLineEndings(replace);
+
+        if (!textFile.Content.Contains(find, StringComparison.Ordinal))
+        {
+            if (textFile.Content.Contains(replace, StringComparison.Ordinal) ||
+                normalizedContent.Contains(normalizedReplace, StringComparison.Ordinal))
+            {
+                Console.WriteLine($"[skip] {relativeFile} :: replacement already applied");
+                return;
+            }
+
+            throw new InvalidOperationException($"Find text not found in {relativeFile}");
+        }
+
+        var count = CountOccurrences(textFile.Content, find);
+        if (operation.ExpectedCount.HasValue && count != operation.ExpectedCount.Value)
+        {
+            throw new InvalidOperationException(
+                $"Expected {operation.ExpectedCount.Value} occurrences in {relativeFile}, found {count}");
+        }
+
+        textFile.Content = textFile.Content.Replace(find, replace, StringComparison.Ordinal);
+        _dirtyTextFiles.Add(fullPath);
+        Console.WriteLine($"[text] {relativeFile} :: replaced {count} occurrence(s)");
     }
 
     private void SaveAll()
@@ -267,6 +404,12 @@ internal sealed class PatchRunner
         foreach (var file in _dirtyStringFiles.OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
         {
             _stringCache[file].Save();
+            Console.WriteLine($"[save] {Path.GetRelativePath(_modRoot, file)}");
+        }
+
+        foreach (var file in _dirtyTextFiles.OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
+        {
+            _textCache[file].Save();
             Console.WriteLine($"[save] {Path.GetRelativePath(_modRoot, file)}");
         }
     }
@@ -293,12 +436,23 @@ internal sealed class PatchRunner
         return table;
     }
 
+    private PlainTextFile GetTextFile(string fullPath)
+    {
+        if (!_textCache.TryGetValue(fullPath, out var textFile))
+        {
+            textFile = PlainTextFile.Load(fullPath);
+            _textCache[fullPath] = textFile;
+        }
+
+        return textFile;
+    }
+
     private string GetFullPath(string relativeFile)
     {
         var fullPath = Path.GetFullPath(Path.Combine(_modRoot, relativeFile));
         if (!File.Exists(fullPath))
         {
-            throw new FileNotFoundException($"目标文件不存在: {relativeFile}", fullPath);
+            throw new FileNotFoundException($"Target file does not exist: {relativeFile}", fullPath);
         }
 
         return fullPath;
@@ -308,10 +462,34 @@ internal sealed class PatchRunner
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new InvalidOperationException($"{operationType} 缺少字段 {fieldName}");
+            throw new InvalidOperationException($"{operationType} is missing required field: {fieldName}");
         }
 
         return value;
+    }
+
+    private static int CountOccurrences(string text, string value)
+    {
+        var count = 0;
+        var startIndex = 0;
+
+        while (true)
+        {
+            var index = text.IndexOf(value, startIndex, StringComparison.Ordinal);
+            if (index < 0)
+            {
+                return count;
+            }
+
+            count++;
+            startIndex = index + value.Length;
+        }
+    }
+
+    private static string NormalizeLineEndings(string text)
+    {
+        return text.Replace("\r\n", "\n", StringComparison.Ordinal)
+            .Replace("\r", "\n", StringComparison.Ordinal);
     }
 }
 
@@ -335,22 +513,33 @@ internal static class XmlHelpers
 
     public static XmlNode FindObjectNode(XmlDocument doc, string objectId, string? objectType)
     {
-        var root = doc.DocumentElement ?? throw new InvalidOperationException("XML 缺少根节点");
+        var root = doc.DocumentElement ?? throw new InvalidOperationException("Missing XML root");
         var xpath = string.IsNullOrWhiteSpace(objectType)
-            ? $"//*[@id='{EscapeXPathLiteral(objectId)}']"
-            : $"//{objectType}[@id='{EscapeXPathLiteral(objectId)}']";
+            ? $"//*[@id={ToXPathLiteral(objectId)}]"
+            : $"//{objectType}[@id={ToXPathLiteral(objectId)}]";
 
         var nodes = root.SelectNodes(xpath);
         if (nodes is null || nodes.Count == 0)
         {
-            throw new InvalidOperationException($"未找到对象 id={objectId}");
+            throw new InvalidOperationException($"Object not found: {objectId}");
         }
+
         if (nodes.Count > 1)
         {
-            throw new InvalidOperationException($"对象 id={objectId} 命中多个节点，请补充 objectType");
+            throw new InvalidOperationException($"Multiple objects matched id={objectId}. Provide objectType.");
         }
 
         return nodes[0]!;
+    }
+
+    public static XmlElement? TryFindObjectNode(XmlDocument doc, string objectId, string? objectType)
+    {
+        var root = doc.DocumentElement ?? throw new InvalidOperationException("Missing XML root");
+        var xpath = string.IsNullOrWhiteSpace(objectType)
+            ? $"//*[@id={ToXPathLiteral(objectId)}]"
+            : $"//{objectType}[@id={ToXPathLiteral(objectId)}]";
+
+        return root.SelectSingleNode(xpath) as XmlElement;
     }
 
     public static XmlNode SelectOrCreateNode(XmlNode objectNode, string xpath, bool createPath)
@@ -368,7 +557,7 @@ internal static class XmlHelpers
 
         if (!createPath)
         {
-            throw new InvalidOperationException($"XPath 未命中且未开启 createPath: {xpath}");
+            throw new InvalidOperationException($"XPath not found and createPath is false: {xpath}");
         }
 
         return CreateSimplePath(objectNode, xpath);
@@ -378,10 +567,138 @@ internal static class XmlHelpers
     {
         if (node is not XmlElement element)
         {
-            throw new InvalidOperationException("目标节点不是元素节点，无法设置属性");
+            throw new InvalidOperationException("Target node is not an element");
         }
 
         element.SetAttribute(attribute, value);
+    }
+
+    public static XmlElement ImportFragmentElement(XmlDocument ownerDocument, string xml)
+    {
+        var fragmentDoc = new XmlDocument
+        {
+            PreserveWhitespace = true
+        };
+
+        fragmentDoc.LoadXml($"<Root>{xml}</Root>");
+        var elements = fragmentDoc.DocumentElement?
+            .ChildNodes
+            .OfType<XmlElement>()
+            .ToList() ?? [];
+
+        if (elements.Count != 1)
+        {
+            throw new InvalidOperationException("XML fragment must contain exactly one root element");
+        }
+
+        return (XmlElement)ownerDocument.ImportNode(elements[0], true);
+    }
+
+    public static void AppendElement(XmlNode parent, XmlElement newElement)
+    {
+        var doc = parent.OwnerDocument ?? parent as XmlDocument ?? throw new InvalidOperationException("Missing owner document");
+        var closingWhitespace = parent.LastChild as XmlWhitespace;
+        var childIndent = DetectChildIndent(parent);
+        var closingIndent = DetectClosingIndent(parent);
+
+        if (closingWhitespace is not null)
+        {
+            parent.InsertBefore(doc.CreateWhitespace(childIndent), closingWhitespace);
+            parent.InsertBefore(newElement, closingWhitespace);
+            return;
+        }
+
+        parent.AppendChild(doc.CreateWhitespace(childIndent));
+        parent.AppendChild(newElement);
+        parent.AppendChild(doc.CreateWhitespace(closingIndent));
+    }
+
+    public static void InsertElementAfter(XmlNode anchor, XmlElement newElement)
+    {
+        var parent = anchor.ParentNode ?? throw new InvalidOperationException("Anchor node has no parent");
+        var doc = anchor.OwnerDocument ?? throw new InvalidOperationException("Anchor node has no owner document");
+        var nextSibling = anchor.NextSibling;
+        var childIndent = DetectChildIndent(parent);
+
+        if (nextSibling is null)
+        {
+            AppendElement(parent, newElement);
+            return;
+        }
+
+        parent.InsertBefore(doc.CreateWhitespace(childIndent), nextSibling);
+        parent.InsertBefore(newElement, nextSibling);
+    }
+
+    public static bool HasEquivalentDirectChild(XmlNode parent, XmlElement candidate)
+    {
+        foreach (var child in parent.ChildNodes.OfType<XmlElement>())
+        {
+            if (AreElementsEquivalent(child, candidate))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool AreElementsEquivalent(XmlElement left, XmlElement right)
+    {
+        if (!left.Name.Equals(right.Name, StringComparison.Ordinal))
+        {
+            return false;
+        }
+
+        if (left.Attributes.Count != right.Attributes.Count)
+        {
+            return false;
+        }
+
+        foreach (XmlAttribute leftAttribute in left.Attributes)
+        {
+            var rightAttribute = right.Attributes[leftAttribute.Name];
+            if (rightAttribute is null || !rightAttribute.Value.Equals(leftAttribute.Value, StringComparison.Ordinal))
+            {
+                return false;
+            }
+        }
+
+        var leftChildren = GetSignificantChildren(left).ToList();
+        var rightChildren = GetSignificantChildren(right).ToList();
+
+        if (leftChildren.Count != rightChildren.Count)
+        {
+            return false;
+        }
+
+        for (var i = 0; i < leftChildren.Count; i++)
+        {
+            var leftChild = leftChildren[i];
+            var rightChild = rightChildren[i];
+
+            if (leftChild.NodeType != rightChild.NodeType)
+            {
+                return false;
+            }
+
+            if (leftChild is XmlElement leftElement && rightChild is XmlElement rightElement)
+            {
+                if (!AreElementsEquivalent(leftElement, rightElement))
+                {
+                    return false;
+                }
+
+                continue;
+            }
+
+            if (!leftChild.Value!.Equals(rightChild.Value, StringComparison.Ordinal))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static void Save(XmlDocument doc, string path)
@@ -395,11 +712,26 @@ internal static class XmlHelpers
         doc.Save(writer);
     }
 
+    public static string ToXPathLiteral(string value)
+    {
+        if (!value.Contains('\''))
+        {
+            return $"'{value}'";
+        }
+
+        if (!value.Contains('"'))
+        {
+            return $"\"{value}\"";
+        }
+
+        throw new InvalidOperationException("XPath literal cannot contain both quote types");
+    }
+
     private static XmlNode CreateSimplePath(XmlNode objectNode, string xpath)
     {
         if (!xpath.StartsWith("./", StringComparison.Ordinal))
         {
-            throw new InvalidOperationException($"createPath 目前只支持 ./A/B 这种简单路径: {xpath}");
+            throw new InvalidOperationException($"createPath currently supports only ./A/B paths: {xpath}");
         }
 
         var segments = xpath[2..]
@@ -407,10 +739,10 @@ internal static class XmlHelpers
 
         if (segments.Length == 0 || segments.Any(s => s.Contains('[') || s.Contains('@')))
         {
-            throw new InvalidOperationException($"createPath 目前不支持谓词路径: {xpath}");
+            throw new InvalidOperationException($"createPath does not support predicate paths: {xpath}");
         }
 
-        var doc = objectNode.OwnerDocument ?? throw new InvalidOperationException("节点不属于任何文档");
+        var doc = objectNode.OwnerDocument ?? throw new InvalidOperationException("Node has no owner document");
         var current = objectNode;
 
         foreach (var segment in segments)
@@ -418,16 +750,13 @@ internal static class XmlHelpers
             var next = current.SelectSingleNode(segment);
             if (next is null)
             {
-                if (current is not XmlElement currentElement)
+                if (current is not XmlElement)
                 {
-                    throw new InvalidOperationException("无法在非元素节点下创建子节点");
+                    throw new InvalidOperationException("Cannot create child under a non-element node");
                 }
 
-                var indent = DetectIndentBefore(currentElement);
                 var child = doc.CreateElement(segment);
-                current.AppendChild(doc.CreateTextNode(indent.ChildIndent));
-                current.AppendChild(child);
-                current.AppendChild(doc.CreateTextNode(indent.ClosingIndent));
+                AppendElement(current, child);
                 next = child;
             }
 
@@ -437,29 +766,60 @@ internal static class XmlHelpers
         return current;
     }
 
-    private static (string ChildIndent, string ClosingIndent) DetectIndentBefore(XmlElement element)
+    private static IEnumerable<XmlNode> GetSignificantChildren(XmlElement element)
     {
-        var currentIndent = element.PreviousSibling is XmlWhitespace ws
-            ? ws.Value
-            : Environment.NewLine;
+        foreach (XmlNode child in element.ChildNodes)
+        {
+            if (child is XmlWhitespace)
+            {
+                continue;
+            }
 
-        var deeperIndent = currentIndent + "    ";
-        return (deeperIndent, currentIndent ?? Environment.NewLine);
+            if (child is XmlText textNode && string.IsNullOrWhiteSpace(textNode.Value))
+            {
+                continue;
+            }
+
+            yield return child;
+        }
     }
 
-    private static string EscapeXPathLiteral(string value)
+    private static string DetectChildIndent(XmlNode parent)
     {
-        if (!value.Contains('\''))
+        foreach (var child in parent.ChildNodes.OfType<XmlElement>())
         {
-            return value;
+            if (child.PreviousSibling is XmlWhitespace ws)
+            {
+                return ws.Value ?? (Environment.NewLine + "    ");
+            }
         }
 
-        if (!value.Contains('"'))
+        return DetectOwnIndent(parent) + "    ";
+    }
+
+    private static string DetectClosingIndent(XmlNode parent)
+    {
+        if (parent.LastChild is XmlWhitespace ws)
         {
-            return $"\"{value}\"";
+            return ws.Value ?? Environment.NewLine;
         }
 
-        throw new InvalidOperationException("当前实现暂不支持同时包含单双引号的 XPath 字面量");
+        return DetectOwnIndent(parent);
+    }
+
+    private static string DetectOwnIndent(XmlNode node)
+    {
+        if (node.PreviousSibling is XmlWhitespace ws)
+        {
+            return ws.Value ?? Environment.NewLine;
+        }
+
+        if (node.ParentNode is XmlNode parent && parent.PreviousSibling is XmlWhitespace parentWs)
+        {
+            return (parentWs.Value ?? Environment.NewLine) + "    ";
+        }
+
+        return Environment.NewLine;
     }
 }
 
@@ -537,6 +897,29 @@ internal sealed class StringTableFile
     }
 }
 
+internal sealed class PlainTextFile
+{
+    private readonly string _path;
+
+    private PlainTextFile(string path, string content)
+    {
+        _path = path;
+        Content = content;
+    }
+
+    public string Content { get; set; }
+
+    public static PlainTextFile Load(string path)
+    {
+        return new PlainTextFile(path, File.ReadAllText(path, Encoding.UTF8));
+    }
+
+    public void Save()
+    {
+        File.WriteAllText(_path, Content, new UTF8Encoding(false));
+    }
+}
+
 internal sealed record ObjectMatch(string File, string NodeName, string Id);
 
 internal sealed class PatchDocument
@@ -556,6 +939,14 @@ internal sealed class PatchOperation
     public string? Value { get; init; }
     public string? Key { get; init; }
     public bool CreatePath { get; init; }
+    public string? Xml { get; init; }
+    public string? AfterObjectId { get; init; }
+    public string? AfterObjectType { get; init; }
+    public string? AfterXPath { get; init; }
+    public string? UniqueXPath { get; init; }
+    public string? Find { get; init; }
+    public string? Replace { get; init; }
+    public int? ExpectedCount { get; init; }
 }
 
 internal static class JsonOptions
