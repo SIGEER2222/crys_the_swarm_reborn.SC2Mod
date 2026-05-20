@@ -30,26 +30,59 @@
 3. 运行 `scripts\\sync-to-live.ps1`
 4. 进游戏验证
 
-## 查链路工具
+## 索引工具
+
+现在统一从 `scripts\\mod-index.ps1` 进入，老脚本仍然保留做兼容。
+
+### 常用命令
+
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\mod-index.ps1 build`
+  重建对象索引、文本缓存和 `references\\unit-index.tsv`
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\mod-index.ps1 lookup -Id SwarmHost`
+  查任意 ID 的精确对象、入站/出站引用、本地化文本、原始文件命中
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\mod-index.ps1 unit -Id Brutalisk`
+  查单位主链路，适合顺藤摸瓜看武器/能力/效果/行为
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\mod-index.ps1 upgrade -Id QueenNornQueenPurchase`
+  查升级、按钮、效果、行为等对象在各 XML 里的引用
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\mod-index.ps1 validate`
+  跑常见断链校验，并输出到 `references\\latest-validate-report.md`
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\mod-index.ps1 export`
+  只重导单位中文索引
+
+### 生成产物
+
+`references\\index\\` 里现在会有：
+
+- 分类型对象索引：
+  `units-index.json` / `abilities-index.json` / `effects-index.json` / `behaviors-index.json` / `weapons-index.json` / `buttons-index.json` / `requirements-index.json` / `validators-index.json` / `upgrades-index.json`
+- 跨对象引用：
+  `references-index.json`
+- 统一反查缓存：
+  `lookup-index.json`
+- 查找文件清单：
+  `lookup-search-files.json`
+- 文本表缓存：
+  `zhCN-game-strings.json` / `zhCN-object-strings.json` / `zhCN-trigger-strings.json`
+  `enUS-game-strings.json` / `enUS-object-strings.json` / `enUS-trigger-strings.json`
+- 汇总：
+  `catalog-summary.json`
+
+### 什么时候用哪个
+
+- 想先找“这个单位挂了哪些能力/武器/按钮”：`unit`
+- 想查“这个升级或按钮到底在哪些地方生效”：`upgrade`
+- 想查“一个 ID 在哪里定义、谁引用了它、文本里又出现在哪”：`lookup`
+- 改完一轮后想确认没明显断链：`validate`
+
+## 旧脚本
+
+如果需要，也可以直接调用旧脚本：
 
 - `scripts\\find-unit-chain.ps1`
-  输入单位 ID，输出单位 -> 武器/能力 -> 效果/行为 的主要链路
 - `scripts\\find-upgrade-chain.ps1`
-  输入升级、按钮、效果、行为等 ID，输出精确对象和跨文件引用
 - `scripts\\export-unit-index.ps1`
-  导出单位 ID / 中文名基础索引到 `references\\unit-index.tsv`
 - `scripts\\build-object-index.ps1`
-  导出分类型 JSON 索引与跨对象引用图到 `references\\index\\`
 - `scripts\\validate-common-refs.ps1`
-  检查常见 Ability / Effect / Behavior / Unit / Weapon / Requirement 断链，并输出报告
-
-常用示例：
-
-- `powershell -ExecutionPolicy Bypass -File .\\scripts\\find-unit-chain.ps1 -UnitId Devourer`
-- `powershell -ExecutionPolicy Bypass -File .\\scripts\\find-upgrade-chain.ps1 -Id AbathurCasterBrainPoolPurchase`
-- `powershell -ExecutionPolicy Bypass -File .\\scripts\\export-unit-index.ps1`
-- `powershell -ExecutionPolicy Bypass -File .\\scripts\\build-object-index.ps1`
-- `powershell -ExecutionPolicy Bypass -File .\\scripts\\validate-common-refs.ps1`
 
 ## 说明
 
