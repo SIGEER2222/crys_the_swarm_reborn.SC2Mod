@@ -1,9 +1,9 @@
-﻿# Common Reference Validation Report
+# Common Reference Validation Report
 
-Generated at: 2026-05-20 18:51:00
+Generated at: 2026-05-20 20:16:00
 Mod root: C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\crys_the_swarm_reborn.SC2Mod
 
-Local unresolved refs: **2591**
+Local unresolved refs: **2596**
 
 Note: this validator only checks objects present in the current work copy.
 Refs that are satisfied by Blizzard or external dependencies may still appear here.
@@ -14,8 +14,8 @@ Refs that are satisfied by Blizzard or external dependencies may still appear he
 |---|---|---|
 | UnitData.xml | LayoutButtons.Face | 1342 |
 | UnitData.xml | AbilArray | 727 |
+| EffectData.xml | ValidatorArray | 111 |
 | UnitData.xml | BehaviorArray | 110 |
-| EffectData.xml | ValidatorArray | 107 |
 | AbilData.xml | CmdButtonArray.DefaultButtonFace | 72 |
 | UnitData.xml | LayoutButtons.Requirements | 62 |
 | UnitData.xml | WeaponArray | 32 |
@@ -23,20 +23,20 @@ Refs that are satisfied by Blizzard or external dependencies may still appear he
 | BehaviorData.xml | RemoveValidatorArray | 19 |
 | BehaviorData.xml | DisableValidatorArray | 14 |
 | WeaponData.xml | DisplayEffect | 11 |
-| EffectData.xml | Behavior | 10 |
+| EffectData.xml | Behavior | 11 |
 | RequirementData.xml | NodeArray.Link | 8 |
 | AbilData.xml | Effect | 6 |
-| BehaviorData.xml | ExpireEffect | 5 |
-| EffectData.xml | ./PeriodicEffectArray | 5 |
 | EffectData.xml | BehaviorLink | 5 |
-| WeaponData.xml | Effect | 4 |
-| AbilData.xml | CmdButtonArray.Requirements | 4 |
+| EffectData.xml | ./PeriodicEffectArray | 5 |
+| BehaviorData.xml | ExpireEffect | 5 |
 | EffectData.xml | PeriodicValidator | 4 |
 | EffectData.xml | ./InitialEffect | 4 |
+| AbilData.xml | CmdButtonArray.Requirements | 4 |
+| WeaponData.xml | Effect | 4 |
 | BehaviorData.xml | FinalEffect | 3 |
-| EffectData.xml | AreaArray.Effect | 2 |
-| BehaviorData.xml | PeriodicEffect | 2 |
 | BehaviorData.xml | Requirements | 2 |
+| BehaviorData.xml | PeriodicEffect | 2 |
+| EffectData.xml | AreaArray.Effect | 2 |
 | BehaviorData.xml | InitialEffect | 1 |
 
 ## Details (first 250)
@@ -276,6 +276,11 @@ Refs that are satisfied by Blizzard or external dependencies may still appear he
 | warning | EffectData.xml | PurificationNovaSlowCleanse | BehaviorLink | behavior:PurificationNovaTargettedCaster | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | PyrovoreBlast | ValidatorArray | validator:noMarkers | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | PyrovoreBlast2 | ValidatorArray | validator:noMarkers | Not found in local work copy. Could still come from dependencies. |
+| warning | EffectData.xml | QueenBurstHealApplyBehaviorFleshyAbundance | ValidatorArray | validator:LifeNotFull | Not found in local work copy. Could still come from dependencies. |
+| warning | EffectData.xml | QueenBurstHealApplyBehaviorFleshyAbundance | ValidatorArray | validator:NoQueenBurstHeal | Not found in local work copy. Could still come from dependencies. |
+| warning | EffectData.xml | QueenBurstHealApplyBehaviorNormal | Behavior | behavior:QueenBurstHeal | Not found in local work copy. Could still come from dependencies. |
+| warning | EffectData.xml | QueenBurstHealApplyBehaviorNormal | ValidatorArray | validator:LifeNotFull | Not found in local work copy. Could still come from dependencies. |
+| warning | EffectData.xml | QueenBurstHealApplyBehaviorNormal | ValidatorArray | validator:NoQueenBurstHeal | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | QueenWildMutationSearch | AreaArray.Effect | effect:WildMutation | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | Repair2 | ValidatorArray | validator:HiddenCompareAB | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | Repair2 | ValidatorArray | validator:HiddenCompareBA | Not found in local work copy. Could still come from dependencies. |
@@ -288,10 +293,5 @@ Refs that are satisfied by Blizzard or external dependencies may still appear he
 | warning | EffectData.xml | SavageChargeApplyBuff | ValidatorArray | validator:ChargeMinTriggerDistance | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | SeekerMissileLM | ValidatorArray | validator:HunterSeekerLaunchMissileTargetFilters | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | SeerHealBehavior | ValidatorArray | validator:LifeNotFull | Not found in local work copy. Could still come from dependencies. |
-| warning | EffectData.xml | SeerHealBehavior | ValidatorArray | validator:NoQueenBurstHeal | Not found in local work copy. Could still come from dependencies. |
-| warning | EffectData.xml | SeerHealSet | ValidatorArray | validator:LifeNotFull | Not found in local work copy. Could still come from dependencies. |
-| warning | EffectData.xml | SentryGunReleaseLaunch | ./EffectArray | effect:MakePrecursor | Not found in local work copy. Could still come from dependencies. |
-| warning | EffectData.xml | SentryGunSet | ./EffectArray | effect:AutoturretTimedLife | Not found in local work copy. Could still come from dependencies. |
-| warning | EffectData.xml | SIInfestedBunkerBunkerUnloadSet | ./EffectArray | effect:SIBarracksTrainTimedLifeAB | Not found in local work copy. Could still come from dependencies. |
 
-Omitted rows: 2341
+Omitted rows: 2346

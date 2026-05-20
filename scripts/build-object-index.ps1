@@ -25,19 +25,17 @@ $catalogPlan = @(
     @{ File = "ButtonData.xml"; Node = "CButton"; Out = "buttons-index.json"; Kind = "button" }
     @{ File = "RequirementData.xml"; Node = "CRequirement"; Out = "requirements-index.json"; Kind = "requirement" }
     @{ File = "ValidatorData.xml"; Node = "*"; Out = "validators-index.json"; Kind = "validator" }
+    @{ File = "UpgradeData.xml"; Node = "CUpgrade"; Out = "upgrades-index.json"; Kind = "upgrade" }
 )
 
-$catalogByFile = @{
-    "UnitData.xml" = "unit"
-    "AbilData.xml" = "ability"
-    "EffectData.xml" = "effect"
-    "BehaviorData.xml" = "behavior"
-    "WeaponData.xml" = "weapon"
-    "ButtonData.xml" = "button"
-    "RequirementData.xml" = "requirement"
-    "RequirementNodeData.xml" = "requirementNode"
-    "ValidatorData.xml" = "validator"
-}
+$textTablePlan = @(
+    @{ Locale = "zhCN"; RelativePath = "zhCN.SC2Data\LocalizedData\GameStrings.txt"; Out = "zhCN-game-strings.json"; Table = "GameStrings" }
+    @{ Locale = "zhCN"; RelativePath = "zhCN.SC2Data\LocalizedData\ObjectStrings.txt"; Out = "zhCN-object-strings.json"; Table = "ObjectStrings" }
+    @{ Locale = "zhCN"; RelativePath = "zhCN.SC2Data\LocalizedData\TriggerStrings.txt"; Out = "zhCN-trigger-strings.json"; Table = "TriggerStrings" }
+    @{ Locale = "enUS"; RelativePath = "enUS.SC2Data\LocalizedData\GameStrings.txt"; Out = "enUS-game-strings.json"; Table = "GameStrings" }
+    @{ Locale = "enUS"; RelativePath = "enUS.SC2Data\LocalizedData\ObjectStrings.txt"; Out = "enUS-object-strings.json"; Table = "ObjectStrings" }
+    @{ Locale = "enUS"; RelativePath = "enUS.SC2Data\LocalizedData\TriggerStrings.txt"; Out = "enUS-trigger-strings.json"; Table = "TriggerStrings" }
+)
 
 $xmlCache = @{}
 $stringsCache = $null
@@ -56,18 +54,35 @@ function Get-CatalogXml {
     return $xmlCache[$FileName]
 }
 
+function Read-KeyValueEntries {
+    param([string]$Path)
+
+    $entries = New-Object System.Collections.Generic.List[object]
+    if (-not (Test-Path $Path)) {
+        return $entries
+    }
+
+    foreach ($line in Get-Content -Encoding UTF8 $Path) {
+        if ([string]::IsNullOrWhiteSpace($line)) { continue }
+        if ($line.StartsWith("#")) { continue }
+
+        $parts = $line -split "=", 2
+        if ($parts.Count -ne 2) { continue }
+
+        $entries.Add([pscustomobject]@{
+            key   = $parts[0]
+            value = $parts[1]
+        })
+    }
+
+    return $entries
+}
+
 function Get-Strings {
     if ($null -eq $stringsCache) {
         $map = @{}
-        if (Test-Path $stringsPath) {
-            foreach ($line in Get-Content -Encoding UTF8 $stringsPath) {
-                if ([string]::IsNullOrWhiteSpace($line)) { continue }
-                if ($line.StartsWith("#")) { continue }
-                $parts = $line -split "=", 2
-                if ($parts.Count -eq 2) {
-                    $map[$parts[0]] = $parts[1]
-                }
-            }
+        foreach ($entry in Read-KeyValueEntries -Path $stringsPath) {
+            $map[$entry.key] = $entry.value
         }
         $script:stringsCache = $map
     }
@@ -103,6 +118,47 @@ function Get-AttrValue {
     return $attr.Value
 }
 
+function Resolve-UpgradeReference {
+    param([string]$Reference)
+
+    if ([string]::IsNullOrWhiteSpace($Reference)) {
+        return $null
+    }
+
+    $parts = $Reference -split ","
+    if ($parts.Count -lt 2) {
+        return $null
+    }
+
+    $catalogMap = @{
+        Abil        = "ability"
+        Ability     = "ability"
+        Behavior    = "behavior"
+        Button      = "button"
+        Effect      = "effect"
+        Requirement = "requirement"
+        Unit        = "unit"
+        Upgrade     = "upgrade"
+        Validator   = "validator"
+        Weapon      = "weapon"
+    }
+
+    $rawType = $parts[0].Trim()
+    $id = $parts[1].Trim()
+    if ([string]::IsNullOrWhiteSpace($id)) {
+        return $null
+    }
+    if (-not $catalogMap.ContainsKey($rawType)) {
+        return $null
+    }
+
+    return [pscustomobject]@{
+        catalog = $catalogMap[$rawType]
+        id      = $id
+        rawType = $rawType
+    }
+}
+
 function Add-Reference {
     param(
         [System.Collections.Generic.List[object]]$RefList,
@@ -126,6 +182,62 @@ function Add-Reference {
         toId        = $ToId
         sourceFile  = $SourceFile
     })
+}
+
+function New-LookupBucket {
+    return @{
+        definitions = New-Object System.Collections.Generic.List[object]
+        incomingRefs = New-Object System.Collections.Generic.List[object]
+        outgoingRefs = New-Object System.Collections.Generic.List[object]
+        localizations = New-Object System.Collections.Generic.List[object]
+    }
+}
+
+function Ensure-LookupBucket {
+    param(
+        [hashtable]$LookupMap,
+        [string]$Id
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Id)) {
+        return $null
+    }
+
+    if (-not $LookupMap.ContainsKey($Id)) {
+        $LookupMap[$Id] = New-LookupBucket
+    }
+
+    return $LookupMap[$Id]
+}
+
+function Add-LookupEntry {
+    param(
+        [hashtable]$LookupMap,
+        [string]$Id,
+        [string]$BucketName,
+        [object]$Entry
+    )
+
+    $bucket = Ensure-LookupBucket -LookupMap $LookupMap -Id $Id
+    if ($null -eq $bucket) {
+        return
+    }
+
+    $bucket[$BucketName].Add($Entry)
+}
+
+function Get-ObjectPropertyValue {
+    param(
+        [object]$InputObject,
+        [string]$Name
+    )
+
+    $property = $InputObject.PSObject.Properties[$Name]
+    if ($null -eq $property) {
+        return $null
+    }
+
+    return $property.Value
 }
 
 function Get-NodeSnapshot {
@@ -344,6 +456,28 @@ function Get-NodeSnapshot {
             }
             $result.behaviors = $behaviors
         }
+        "upgrade" {
+            $modifiers = @()
+            foreach ($child in $Node.SelectNodes("./EffectArray")) {
+                $reference = Get-AttrValue $child "Reference"
+                $modifier = [ordered]@{
+                    index     = Get-AttrValue $child "index"
+                    operation = Get-AttrValue $child "Operation"
+                    reference = $reference
+                    value     = Get-AttrValue $child "Value"
+                }
+                $modifiers += $modifier
+
+                $resolvedRef = Resolve-UpgradeReference -Reference $reference
+                if ($null -ne $resolvedRef) {
+                    Add-Reference $RefList "upgrade" $id ("effectArray:{0}" -f $resolvedRef.rawType) $resolvedRef.catalog $resolvedRef.id $SourceFile
+                }
+            }
+
+            $result.nameZh = Get-LocalizedValue ("Upgrade/Name/{0}" -f $id)
+            $result.tooltipZh = Get-LocalizedValue ("Upgrade/Tooltip/{0}" -f $id)
+            $result.effects = $modifiers
+        }
     }
 
     return [pscustomobject]$result
@@ -353,6 +487,9 @@ New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
 
 $references = New-Object System.Collections.Generic.List[object]
 $summaryRows = New-Object System.Collections.Generic.List[object]
+$textSummaryRows = New-Object System.Collections.Generic.List[object]
+$allItems = New-Object System.Collections.Generic.List[object]
+$lookupMap = @{}
 
 foreach ($plan in $catalogPlan) {
     $xml = Get-CatalogXml $plan.File
@@ -363,10 +500,17 @@ foreach ($plan in $catalogPlan) {
     foreach ($node in $nodes) {
         $id = Get-AttrValue $node "id"
         if ([string]::IsNullOrWhiteSpace($id)) { continue }
-        $items.Add((Get-NodeSnapshot -Node $node -Kind $plan.Kind -RefList $references -SourceFile $plan.File))
+
+        $snapshot = Get-NodeSnapshot -Node $node -Kind $plan.Kind -RefList $references -SourceFile $plan.File
+        $items.Add($snapshot)
+        $allItems.Add([pscustomobject]@{
+            catalog = $plan.Kind
+            file    = $plan.File
+            item    = $snapshot
+        })
     }
 
-    $items | ConvertTo-Json -Depth 10 | Set-Content -Encoding UTF8 (Join-Path $OutputDir $plan.Out)
+    $items | ConvertTo-Json -Depth 12 | Set-Content -Encoding UTF8 (Join-Path $OutputDir $plan.Out)
     $summaryRows.Add([pscustomobject]@{
         kind  = $plan.Kind
         file  = $plan.File
@@ -374,14 +518,110 @@ foreach ($plan in $catalogPlan) {
     })
 }
 
+foreach ($itemRow in $allItems) {
+    $item = $itemRow.item
+    Add-LookupEntry -LookupMap $lookupMap -Id $item.id -BucketName "definitions" -Entry ([pscustomobject]@{
+        catalog    = $itemRow.catalog
+        file       = $itemRow.file
+        type       = $item.type
+        nameZh     = Get-ObjectPropertyValue -InputObject $item -Name "nameZh"
+        subtitleZh = Get-ObjectPropertyValue -InputObject $item -Name "subtitleZh"
+        tooltipZh  = Get-ObjectPropertyValue -InputObject $item -Name "tooltipZh"
+    })
+}
+
+foreach ($ref in $references) {
+    Add-LookupEntry -LookupMap $lookupMap -Id $ref.fromId -BucketName "outgoingRefs" -Entry ([pscustomobject]@{
+        refType    = $ref.refType
+        toCatalog  = $ref.toCatalog
+        toId       = $ref.toId
+        sourceFile = $ref.sourceFile
+    })
+    Add-LookupEntry -LookupMap $lookupMap -Id $ref.toId -BucketName "incomingRefs" -Entry ([pscustomobject]@{
+        refType     = $ref.refType
+        fromCatalog = $ref.fromCatalog
+        fromId      = $ref.fromId
+        sourceFile  = $ref.sourceFile
+    })
+}
+
+foreach ($plan in $textTablePlan) {
+    $path = Join-Path $ModRoot $plan.RelativePath
+    $entries = Read-KeyValueEntries -Path $path
+    $entries | ConvertTo-Json -Depth 4 | Set-Content -Encoding UTF8 (Join-Path $OutputDir $plan.Out)
+
+    $textSummaryRows.Add([pscustomobject]@{
+        locale = $plan.Locale
+        table  = $plan.Table
+        file   = $plan.RelativePath
+        count  = $entries.Count
+    })
+
+    foreach ($entry in $entries) {
+        if ($entry.key -match "/([^/=]+)$") {
+            Add-LookupEntry -LookupMap $lookupMap -Id $Matches[1] -BucketName "localizations" -Entry ([pscustomobject]@{
+                locale = $plan.Locale
+                table  = $plan.Table
+                key    = $entry.key
+                value  = $entry.value
+            })
+        }
+    }
+}
+
 $references | ConvertTo-Json -Depth 6 | Set-Content -Encoding UTF8 (Join-Path $OutputDir "references-index.json")
+
+$lookupRows = foreach ($id in ($lookupMap.Keys | Sort-Object)) {
+    $bucket = $lookupMap[$id]
+    [pscustomobject]@{
+        id            = $id
+        definitions   = $bucket.definitions.ToArray()
+        incomingRefs  = $bucket.incomingRefs.ToArray()
+        outgoingRefs  = $bucket.outgoingRefs.ToArray()
+        localizations = $bucket.localizations.ToArray()
+    }
+}
+
+$lookupRows | ConvertTo-Json -Depth 10 | Set-Content -Encoding UTF8 (Join-Path $OutputDir "lookup-index.json")
+
+$searchFiles = New-Object System.Collections.Generic.List[object]
+foreach ($plan in $catalogPlan) {
+    $searchFiles.Add([pscustomobject]@{
+        kind         = "catalog"
+        relativePath = (Join-Path "Base.SC2Data\GameData" $plan.File)
+    })
+}
+foreach ($plan in $textTablePlan) {
+    $searchFiles.Add([pscustomobject]@{
+        kind         = "localizedText"
+        relativePath = $plan.RelativePath
+    })
+}
+foreach ($galaxyFile in Get-ChildItem -Path (Join-Path $ModRoot "Base.SC2Data") -Filter *.galaxy -File -ErrorAction SilentlyContinue) {
+    $searchFiles.Add([pscustomobject]@{
+        kind         = "galaxy"
+        relativePath = [System.IO.Path]::GetRelativePath($ModRoot, $galaxyFile.FullName)
+    })
+}
+$triggersPath = Join-Path $ModRoot "Triggers"
+if (Test-Path $triggersPath) {
+    $searchFiles.Add([pscustomobject]@{
+        kind         = "triggers"
+        relativePath = "Triggers"
+    })
+}
+
+$searchFiles | ConvertTo-Json -Depth 4 | Set-Content -Encoding UTF8 (Join-Path $OutputDir "lookup-search-files.json")
 
 [pscustomobject]@{
     generatedAtUtc = (Get-Date).ToUniversalTime().ToString("s") + "Z"
     modRoot        = [System.IO.Path]::GetFullPath($ModRoot)
     outputDir      = [System.IO.Path]::GetFullPath($OutputDir)
     catalogs       = $summaryRows
+    textTables     = $textSummaryRows
     referenceCount = $references.Count
+    lookupEntryCount = $lookupRows.Count
+    searchFileCount  = $searchFiles.Count
 } | ConvertTo-Json -Depth 6 | Set-Content -Encoding UTF8 (Join-Path $OutputDir "catalog-summary.json")
 
 Write-Host "Index build completed."
