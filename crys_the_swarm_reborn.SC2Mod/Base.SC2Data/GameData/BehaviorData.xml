@@ -3974,6 +3974,35 @@
             </VitalDamageLeechArray>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AberrationPlaguebearerPurchasedBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-creepspread.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AberrationMutagenicFissionPurchasedBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\abilityicon_spawnbanelings_square.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AberrationChaosSpawnPurchasedBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-genemutation-lifeleech.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Modification>
+            <VitalMaxArray index="Life" value="125"/>
+            <VitalMaxIncreaseAffectsCurrentArray index="Life" value="0"/>
+            <VitalRegenArray index="Life" value="3"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AberrationImposingPresencePurchasedBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\fear_coop.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="SlipspaceField">
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-stetmann-garystetelliteovercharge-speed.dds"/>
@@ -4105,11 +4134,13 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImposingPresence">
-        <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\fear_coop.dds"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-armoraura.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="2"/>
-        <Modification AttackSpeedMultiplier="0.85"/>
+        <Modification>
+            <LifeArmorBonus value="1"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImposingPresenceSearch">
         <EditorCategories value="AbilityorEffectType:Units"/>

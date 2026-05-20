@@ -14584,10 +14584,18 @@
         <Collide index="Locust" value="0"/>
     </CUnit>
     <CUnit id="InfestedAbomination">
+        <AbilArray Link="AberrationPlaguebearerPurchase"/>
+        <AbilArray Link="AberrationMutagenicFissionPurchase"/>
+        <AbilArray Link="AberrationChaosSpawnPurchase"/>
+        <AbilArray Link="AberrationImposingPresencePurchase"/>
         <BehaviorArray Link="Plaguebearer"/>
         <BehaviorArray Link="MutagenicFission"/>
         <BehaviorArray Link="ImposingPresenceSearch"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="Plaguebearer" Type="AbilCmd" AbilCmd="AberrationPlaguebearerPurchase,Execute" Requirements="NotAberrationPlaguebearerPurchased" Row="1" Column="0"/>
+            <LayoutButtons Face="MutagenicFission" Type="AbilCmd" AbilCmd="AberrationMutagenicFissionPurchase,Execute" Requirements="NotAberrationMutagenicFissionPurchased" Row="1" Column="1"/>
+            <LayoutButtons Face="ChaosSpawn" Type="AbilCmd" AbilCmd="AberrationChaosSpawnPurchase,Execute" Requirements="NotAberrationChaosSpawnPurchased" Row="1" Column="2"/>
+            <LayoutButtons Face="ImposingPresence" Type="AbilCmd" AbilCmd="AberrationImposingPresencePurchase,Execute" Requirements="NotAberrationImposingPresencePurchased" Row="2" Column="1"/>
             <LayoutButtons Face="Plaguebearer" Type="Passive" Requirements="HavePlaguebearer2" Row="1" Column="0"/>
             <LayoutButtons Face="MutagenicFission" Type="Passive" Requirements="HaveMutagenicFission2" Row="1" Column="1"/>
             <LayoutButtons Face="ChaosSpawn" Type="Passive" Requirements="HaveChaosSpawn" Row="1" Column="2"/>

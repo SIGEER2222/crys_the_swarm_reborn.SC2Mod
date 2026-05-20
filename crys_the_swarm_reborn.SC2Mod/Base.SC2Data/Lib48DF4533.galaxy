@@ -13460,6 +13460,53 @@ void lib48DF4533_gt_MalignantCreep_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Base Gas Exchange (Auto)
+//--------------------------------------------------------------------------------------------------
+void lib48DF4533_gf_BaseGasExchangeAutoForPlayer (int lp_player) {
+    // Variable Declarations
+    unitgroup lv_bases;
+    int lv_baseCount;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_bases = UnitGroup("Hatchery", lp_player, RegionEntireMap(), UnitFilter(0, (1 << (c_targetFilterUnderConstruction - 32)), (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    UnitGroupAddUnitGroup(lv_bases, UnitGroup("Lair", lp_player, RegionEntireMap(), UnitFilter(0, (1 << (c_targetFilterUnderConstruction - 32)), (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupAddUnitGroup(lv_bases, UnitGroup("Hive", lp_player, RegionEntireMap(), UnitFilter(0, (1 << (c_targetFilterUnderConstruction - 32)), (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    lv_baseCount = UnitGroupCount(lv_bases, c_unitCountAlive);
+    for (lv_i = 1; lv_i <= lv_baseCount; lv_i += 1) {
+        if ((PlayerGetPropertyInt(lp_player, c_playerPropMinerals) < 50)) {
+            break;
+        }
+        PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSubtract, 50);
+        PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperAdd, 25);
+    }
+}
+
+bool lib48DF4533_gt_BaseGasExchangeAuto_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((PlayerType(1) == c_playerTypeUser)) {
+        lib48DF4533_gf_BaseGasExchangeAutoForPlayer(1);
+    }
+    if ((PlayerType(14) == c_playerTypeUser)) {
+        lib48DF4533_gf_BaseGasExchangeAutoForPlayer(14);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib48DF4533_gt_BaseGasExchangeAuto_Init () {
+    lib48DF4533_gt_BaseGasExchangeAuto = TriggerCreate("lib48DF4533_gt_BaseGasExchangeAuto_Func");
+    TriggerEnable(lib48DF4533_gt_BaseGasExchangeAuto, true);
+    TriggerAddEventTimePeriodic(lib48DF4533_gt_BaseGasExchangeAuto, 30.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Adaptive Evolution
 //--------------------------------------------------------------------------------------------------
 bool lib48DF4533_gt_AdaptiveEvolution_Func (bool testConds, bool runActions) {
@@ -21039,6 +21086,7 @@ void lib48DF4533_InitTriggers () {
     lib48DF4533_gt_K5StructuresComplete_Init();
     lib48DF4533_gt_K5StructuresBuild_Init();
     lib48DF4533_gt_MalignantCreep_Init();
+    lib48DF4533_gt_BaseGasExchangeAuto_Init();
     lib48DF4533_gt_AdaptiveEvolution_Init();
     lib48DF4533_gt_RavagingInfestation_Init();
     lib48DF4533_gt_UndyingEssence_Init();

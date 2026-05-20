@@ -5357,8 +5357,8 @@
     </CEffectApplyBehavior>
     <CEffectEnumArea id="ImposingPresenceSearch">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="7" Effect="ImposingPresenceApply"/>
+        <SearchFilters value="-;Player,Enemy,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="6" Effect="ImposingPresenceApply"/>
     </CEffectEnumArea>
     <CEffectDamage id="BileTitanAcidDamage">
         <ValidatorArray value="NotInvulnerable"/>
@@ -6128,6 +6128,26 @@
     <CEffectApplyBehavior id="QueenNornQueenPurchaseEffect">
         <EditorCategories value="Race:Zerg"/>
         <Behavior value="QueenNornQueenPurchasedBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AberrationPlaguebearerPurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AberrationPlaguebearerPurchasedBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AberrationMutagenicFissionPurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AberrationMutagenicFissionPurchasedBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AberrationChaosSpawnPurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AberrationChaosSpawnPurchasedBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AberrationImposingPresencePurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="AberrationImposingPresencePurchasedBuff"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="BrutaliskTramplingCarapacePurchaseEffect">
         <EditorCategories value="Race:Zerg"/>

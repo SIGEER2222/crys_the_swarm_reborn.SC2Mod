@@ -1,6 +1,6 @@
-# Common Reference Validation Report
+﻿# Common Reference Validation Report
 
-Generated at: 2026-05-20 20:16:00
+Generated at: 2026-05-20 21:09:41
 Mod root: C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\crys_the_swarm_reborn.SC2Mod
 
 Local unresolved refs: **2596**
@@ -22,21 +22,21 @@ Refs that are satisfied by Blizzard or external dependencies may still appear he
 | EffectData.xml | ./EffectArray | 30 |
 | BehaviorData.xml | RemoveValidatorArray | 19 |
 | BehaviorData.xml | DisableValidatorArray | 14 |
-| WeaponData.xml | DisplayEffect | 11 |
 | EffectData.xml | Behavior | 11 |
+| WeaponData.xml | DisplayEffect | 11 |
 | RequirementData.xml | NodeArray.Link | 8 |
 | AbilData.xml | Effect | 6 |
-| EffectData.xml | BehaviorLink | 5 |
-| EffectData.xml | ./PeriodicEffectArray | 5 |
 | BehaviorData.xml | ExpireEffect | 5 |
+| EffectData.xml | ./PeriodicEffectArray | 5 |
+| EffectData.xml | BehaviorLink | 5 |
+| WeaponData.xml | Effect | 4 |
+| AbilData.xml | CmdButtonArray.Requirements | 4 |
 | EffectData.xml | PeriodicValidator | 4 |
 | EffectData.xml | ./InitialEffect | 4 |
-| AbilData.xml | CmdButtonArray.Requirements | 4 |
-| WeaponData.xml | Effect | 4 |
 | BehaviorData.xml | FinalEffect | 3 |
-| BehaviorData.xml | Requirements | 2 |
-| BehaviorData.xml | PeriodicEffect | 2 |
 | EffectData.xml | AreaArray.Effect | 2 |
+| BehaviorData.xml | PeriodicEffect | 2 |
+| BehaviorData.xml | Requirements | 2 |
 | BehaviorData.xml | InitialEffect | 1 |
 
 ## Details (first 250)

@@ -1072,6 +1072,78 @@
         <OperandArray index="0" value="CountBehaviorQueenNornQueenPurchasedBuffCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
+    <CRequirementCountBehavior id="CountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit">
+        <Count Link="AberrationPlaguebearerPurchasedBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementCountBehavior id="CountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit">
+        <Count Link="AberrationMutagenicFissionPurchasedBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementCountBehavior id="CountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit">
+        <Count Link="AberrationChaosSpawnPurchasedBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementCountBehavior id="CountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit">
+        <Count Link="AberrationImposingPresencePurchasedBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementEq id="Eq2852615412CountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementEq id="Eq2852615412CountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementEq id="Eq2852615412CountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementEq id="Eq2852615412CountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementOr id="OrCountUpgradePlaguebearerCompleteOnlyCountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit">
+        <OperandArray value="CountUpgradePlaguebearerCompleteOnly"/>
+        <OperandArray value="CountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit"/>
+    </CRequirementOr>
+    <CRequirementOr id="OrCountUpgradeMutagenicFissionCompleteOnlyCountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit">
+        <OperandArray value="CountUpgradeMutagenicFissionCompleteOnly"/>
+        <OperandArray value="CountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit"/>
+    </CRequirementOr>
+    <CRequirementOr id="OrCountUpgradeChaosSpawnCompleteOnlyCountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit">
+        <OperandArray value="CountUpgradeChaosSpawnCompleteOnly"/>
+        <OperandArray value="CountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit"/>
+    </CRequirementOr>
+    <CRequirementOr id="OrCountUpgradeImposingPresenceCompleteOnlyCountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit">
+        <OperandArray value="CountUpgradeImposingPresenceCompleteOnly"/>
+        <OperandArray value="CountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit"/>
+    </CRequirementOr>
+    <CRequirementNot id="NotCountUpgradePlaguebearerCompleteOnly">
+        <OperandArray index="0" value="CountUpgradePlaguebearerCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementNot id="NotCountUpgradeMutagenicFissionCompleteOnly">
+        <OperandArray index="0" value="CountUpgradeMutagenicFissionCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementNot id="NotCountUpgradeChaosSpawnCompleteOnly">
+        <OperandArray index="0" value="CountUpgradeChaosSpawnCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementNot id="NotCountUpgradeImposingPresenceCompleteOnly">
+        <OperandArray index="0" value="CountUpgradeImposingPresenceCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementAnd id="AndNotCountUpgradePlaguebearerCompleteOnlyEq2852615412CountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit0">
+        <OperandArray value="NotCountUpgradePlaguebearerCompleteOnly"/>
+        <OperandArray value="Eq2852615412CountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit0"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AndNotCountUpgradeMutagenicFissionCompleteOnlyEq2852615412CountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit0">
+        <OperandArray value="NotCountUpgradeMutagenicFissionCompleteOnly"/>
+        <OperandArray value="Eq2852615412CountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit0"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AndNotCountUpgradeChaosSpawnCompleteOnlyEq2852615412CountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit0">
+        <OperandArray value="NotCountUpgradeChaosSpawnCompleteOnly"/>
+        <OperandArray value="Eq2852615412CountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit0"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AndNotCountUpgradeImposingPresenceCompleteOnlyEq2852615412CountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit0">
+        <OperandArray value="NotCountUpgradeImposingPresenceCompleteOnly"/>
+        <OperandArray value="Eq2852615412CountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit0"/>
+    </CRequirementAnd>
     <CRequirementCountBehavior id="CountBehaviorBrutaliskTramplingCarapaceBuffCompleteOnlyAtUnit">
         <Count Link="BrutaliskTramplingCarapaceBuff" State="CompleteOnlyAtUnit"/>
     </CRequirementCountBehavior>
