@@ -41,6 +41,10 @@
         <EditorCategories value=""/>
         <Resources index="Vespene" value="1"/>
     </CEffectModifyPlayer>
+    <CEffectModifyPlayer id="BaseConvertMineralsToVespene25">
+        <EditorCategories value="Race:Zerg"/>
+        <Resources index="Vespene" value="25"/>
+    </CEffectModifyPlayer>
     <CEffectApplyBehavior id="AggressiveMutationAB">
         <ValidatorArray index="0" removed="1"/>
         <ValidatorArray index="1" removed="1"/>
@@ -5116,6 +5120,25 @@
         <ValidatorArray value="LifeNotFull"/>
         <ValidatorArray value="NoQueenBurstHeal"/>
     </CEffectSet>
+    <CEffectSet id="QueenBurstHealApplyBehaviorSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="QueenBurstHealApplyBehaviorNormal"/>
+        <EffectArray value="QueenBurstHealApplyBehaviorFleshyAbundance"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="QueenBurstHealApplyBehaviorNormal">
+        <ValidatorArray value="LifeNotFull"/>
+        <ValidatorArray value="NoQueenBurstHeal"/>
+        <ValidatorArray value="QueenCasterNotFleshyAbundancePurchased"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="QueenBurstHeal"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="QueenBurstHealApplyBehaviorFleshyAbundance">
+        <ValidatorArray value="LifeNotFull"/>
+        <ValidatorArray value="NoQueenBurstHeal"/>
+        <ValidatorArray value="QueenCasterHasFleshyAbundancePurchased"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="QueenBurstHealFleshyAbundanceBuff"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="HotSBanelingExplodeLargeSearchDamage">
         <AINotifyFlags index="HurtEnemy" value="0"/>
     </CEffectDamage>
@@ -6097,6 +6120,14 @@
     <CEffectApplyBehavior id="AbathurCasterMimeticMembranePurchase">
         <EditorCategories value="Race:Zerg"/>
         <Behavior value="AbathurCasterMimeticMembraneBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="QueenFleshyAbundancePurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="QueenFleshyAbundancePurchasedBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="QueenNornQueenPurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="QueenNornQueenPurchasedBuff"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AbathurCasterMimeticMembraneApply">
         <EditorCategories value="Race:Zerg"/>
