@@ -415,22 +415,22 @@
         <NodeArray index="Show" Link=""/>
     </CRequirement>
     <CRequirement id="HaveImposingPresence">
-        <NodeArray index="Use" Link="CountUpgradeImposingPresenceCompleteOnly"/>
+        <NodeArray index="Use" Link="OrCountUpgradeImposingPresenceCompleteOnlyCountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="HaveMutagenicFission2">
-        <NodeArray index="Use" Link="CountUpgradeMutagenicFissionCompleteOnly"/>
+        <NodeArray index="Use" Link="OrCountUpgradeMutagenicFissionCompleteOnlyCountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="HaveMutagenicFission">
-        <NodeArray index="Use" Link="CountUpgradeMutagenicFissionCompleteOnly"/>
+        <NodeArray index="Use" Link="OrCountUpgradeMutagenicFissionCompleteOnlyCountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="HavePlaguebearer2">
-        <NodeArray index="Use" Link="CountUpgradePlaguebearerCompleteOnly"/>
+        <NodeArray index="Use" Link="OrCountUpgradePlaguebearerCompleteOnlyCountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="HavePlaguebearer">
-        <NodeArray index="Use" Link="CountUpgradePlaguebearerCompleteOnly"/>
+        <NodeArray index="Use" Link="OrCountUpgradePlaguebearerCompleteOnlyCountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="HaveChaosSpawn">
-        <NodeArray index="Use" Link="CountUpgradeChaosSpawnCompleteOnly"/>
+        <NodeArray index="Use" Link="OrCountUpgradeChaosSpawnCompleteOnlyCountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="AnaerobicEnhancements">
         <EditorCategories value="Race:Zerg"/>
@@ -608,5 +608,17 @@
     </CRequirement>
     <CRequirement id="NotBrutaliskFleshRecompositionPurchased">
         <NodeArray index="Use" Link="Eq2852615412CountBehaviorBrutaliskFleshRecompositionBuffCompleteOnlyAtUnit0"/>
+    </CRequirement>
+    <CRequirement id="NotAberrationPlaguebearerPurchased">
+        <NodeArray index="Use" Link="AndNotCountUpgradePlaguebearerCompleteOnlyEq2852615412CountBehaviorAberrationPlaguebearerPurchasedBuffCompleteOnlyAtUnit0"/>
+    </CRequirement>
+    <CRequirement id="NotAberrationMutagenicFissionPurchased">
+        <NodeArray index="Use" Link="AndNotCountUpgradeMutagenicFissionCompleteOnlyEq2852615412CountBehaviorAberrationMutagenicFissionPurchasedBuffCompleteOnlyAtUnit0"/>
+    </CRequirement>
+    <CRequirement id="NotAberrationChaosSpawnPurchased">
+        <NodeArray index="Use" Link="AndNotCountUpgradeChaosSpawnCompleteOnlyEq2852615412CountBehaviorAberrationChaosSpawnPurchasedBuffCompleteOnlyAtUnit0"/>
+    </CRequirement>
+    <CRequirement id="NotAberrationImposingPresencePurchased">
+        <NodeArray index="Use" Link="AndNotCountUpgradeImposingPresenceCompleteOnlyEq2852615412CountBehaviorAberrationImposingPresencePurchasedBuffCompleteOnlyAtUnit0"/>
     </CRequirement>
 </Catalog>
