@@ -1,0 +1,62 @@
+{
+  "name": "aberration-carapace",
+  "operations": [
+    {
+      "type": "setXmlAttribute",
+      "file": "Base.SC2Data/GameData/BehaviorData.xml",
+      "objectId": "ImposingPresence",
+      "objectType": "CBehaviorBuff",
+      "xpath": "./Alignment",
+      "attribute": "value",
+      "value": "Positive"
+    },
+    {
+      "type": "setXmlAttribute",
+      "file": "Base.SC2Data/GameData/BehaviorData.xml",
+      "objectId": "ImposingPresence",
+      "objectType": "CBehaviorBuff",
+      "xpath": "./InfoIcon",
+      "attribute": "value",
+      "value": "Assets\\Textures\\btn-ability-zerg-armoraura.dds"
+    },
+    {
+      "type": "setXmlAttribute",
+      "file": "Base.SC2Data/GameData/BehaviorData.xml",
+      "objectId": "ImposingPresence",
+      "objectType": "CBehaviorBuff",
+      "xpath": "./Modification/LifeArmorBonus",
+      "attribute": "value",
+      "value": "1"
+    },
+    {
+      "type": "setXmlAttribute",
+      "file": "Base.SC2Data/GameData/EffectData.xml",
+      "objectId": "ImposingPresenceSearch",
+      "objectType": "CEffectEnumArea",
+      "xpath": "./SearchFilters",
+      "attribute": "value",
+      "value": "-;Player,Enemy,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"
+    },
+    {
+      "type": "setXmlAttribute",
+      "file": "Base.SC2Data/GameData/EffectData.xml",
+      "objectId": "ImposingPresenceSearch",
+      "objectType": "CEffectEnumArea",
+      "xpath": "./AreaArray",
+      "attribute": "Radius",
+      "value": "6"
+    },
+    {
+      "type": "setStringValue",
+      "file": "zhCN.SC2Data/LocalizedData/GameStrings.txt",
+      "key": "Button/Name/ImposingPresence",
+      "value": "畸变甲幕"
+    },
+    {
+      "type": "setStringValue",
+      "file": "zhCN.SC2Data/LocalizedData/GameStrings.txt",
+      "key": "Button/Tooltip/ImposingPresence",
+      "value": "6码范围内友方单位获得+1护甲。不可叠加。"
+    }
+  ]
+}

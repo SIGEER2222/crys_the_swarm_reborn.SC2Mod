@@ -34,6 +34,19 @@
 
 现在统一从 `scripts\\mod-index.ps1` 进入，老脚本仍然保留做兼容。
 
+## 结构化修改工具
+
+现在新增一套 C# 小工具，专门负责“结构化修改”而不是继续手抠 XML：
+
+- 项目：`tools\\Sc2ModTool`
+- 入口：`scripts\\sc2mod-edit.ps1`
+- 说明：`docs\\结构化XML修改工具.md`
+
+常用命令：
+
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\sc2mod-edit.ps1 find -Id ImposingPresence`
+- `powershell -ExecutionPolicy Bypass -File .\\scripts\\sc2mod-edit.ps1 apply -Patch .\\tools\\patches\\aberration-carapace.patch.json`
+
 ### 常用命令
 
 - `powershell -ExecutionPolicy Bypass -File .\\scripts\\mod-index.ps1 build`
