@@ -47,6 +47,14 @@
 - `powershell -ExecutionPolicy Bypass -File .\\scripts\\sc2mod-edit.ps1 find -Id ImposingPresence`
 - `powershell -ExecutionPolicy Bypass -File .\\scripts\\sc2mod-edit.ps1 apply -Patch .\\tools\\patches\\aberration-carapace.patch.json`
 
+当前 patch 能力：
+
+- 改现有 XML 属性：`setXmlAttribute`
+- 新增整段 catalog 对象：`appendObject`
+- 给现有对象插子节点：`insertChild`
+- 改本地化键值：`setStringValue`
+- 改触发器/脚本纯文本：`replaceTextInFile`
+
 ### 常用命令
 
 - `powershell -ExecutionPolicy Bypass -File .\\scripts\\mod-index.ps1 build`

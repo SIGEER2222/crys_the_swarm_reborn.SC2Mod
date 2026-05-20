@@ -1,0 +1,60 @@
+{
+  "name": "base-gas-exchange-auto",
+  "operations": [
+    {
+      "type": "appendObject",
+      "file": "Base.SC2Data/GameData/BehaviorData.xml",
+      "afterObjectId": "K5Macro",
+      "afterObjectType": "CBehaviorBuff",
+      "xml": "<CBehaviorBuff id=\"BaseGasExchangeAutoBehavior\"><InfoFlags index=\"Hidden\" value=\"1\"/><EditorCategories value=\"Race:Zerg,AbilityorEffectType:Structures\"/><Requirements value=\"HaveK5Resonance\"/><BuffFlags index=\"DisableWhileUnderConstruction\" value=\"1\"/><Period value=\"30\"/><PeriodicEffect value=\"BaseGasExchangeAutoSet\"/></CBehaviorBuff>"
+    },
+    {
+      "type": "appendObject",
+      "file": "Base.SC2Data/GameData/EffectData.xml",
+      "afterObjectId": "BaseConvertMineralsToVespene25",
+      "afterObjectType": "CEffectModifyPlayer",
+      "xml": "<CEffectModifyPlayer id=\"BaseSubtract50Minerals\"><EditorCategories value=\"Race:Zerg\"/><Resources index=\"Minerals\" value=\"-50\"/></CEffectModifyPlayer>"
+    },
+    {
+      "type": "appendObject",
+      "file": "Base.SC2Data/GameData/EffectData.xml",
+      "afterObjectId": "BaseSubtract50Minerals",
+      "afterObjectType": "CEffectModifyPlayer",
+      "xml": "<CEffectSet id=\"BaseGasExchangeAutoSet\"><ValidatorArray value=\"Have50MineralsForBaseGasExchange\"/><EditorCategories value=\"Race:Zerg\"/><EffectArray value=\"BaseSubtract50Minerals\"/><EffectArray value=\"BaseConvertMineralsToVespene25\"/></CEffectSet>"
+    },
+    {
+      "type": "insertChild",
+      "file": "Base.SC2Data/GameData/UnitData.xml",
+      "objectId": "Hatchery",
+      "objectType": "CUnit",
+      "afterXPath": "./AbilArray[@Link='BaseGasExchange']",
+      "uniqueXPath": "./BehaviorArray[@Link='BaseGasExchangeAutoBehavior']",
+      "xml": "<BehaviorArray Link=\"BaseGasExchangeAutoBehavior\"/>"
+    },
+    {
+      "type": "insertChild",
+      "file": "Base.SC2Data/GameData/UnitData.xml",
+      "objectId": "Hive",
+      "objectType": "CUnit",
+      "afterXPath": "./AbilArray[@Link='BaseGasExchange']",
+      "uniqueXPath": "./BehaviorArray[@Link='BaseGasExchangeAutoBehavior']",
+      "xml": "<BehaviorArray Link=\"BaseGasExchangeAutoBehavior\"/>"
+    },
+    {
+      "type": "insertChild",
+      "file": "Base.SC2Data/GameData/UnitData.xml",
+      "objectId": "Lair",
+      "objectType": "CUnit",
+      "afterXPath": "./AbilArray[@Link='BaseGasExchange']",
+      "uniqueXPath": "./BehaviorArray[@Link='BaseGasExchangeAutoBehavior']",
+      "xml": "<BehaviorArray Link=\"BaseGasExchangeAutoBehavior\"/>"
+    },
+    {
+      "type": "replaceTextInFile",
+      "file": "Base.SC2Data/Lib48DF4533.galaxy",
+      "expectedCount": 1,
+      "find": "void lib48DF4533_gt_BaseGasExchangeAuto_Init () {\r\n    lib48DF4533_gt_BaseGasExchangeAuto = TriggerCreate(\"lib48DF4533_gt_BaseGasExchangeAuto_Func\");\r\n    TriggerEnable(lib48DF4533_gt_BaseGasExchangeAuto, true);\r\n    TriggerAddEventTimePeriodic(lib48DF4533_gt_BaseGasExchangeAuto, 30.0, c_timeGame);\r\n}",
+      "replace": "void lib48DF4533_gt_BaseGasExchangeAuto_Init () {\r\n    lib48DF4533_gt_BaseGasExchangeAuto = TriggerCreate(\"lib48DF4533_gt_BaseGasExchangeAuto_Func\");\r\n    TriggerEnable(lib48DF4533_gt_BaseGasExchangeAuto, false);\r\n}"
+    }
+  ]
+}
