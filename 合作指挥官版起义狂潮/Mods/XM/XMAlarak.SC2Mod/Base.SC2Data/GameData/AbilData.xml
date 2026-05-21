@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CAbilEffectTarget id="AlarakKnockbackAlarak">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="AlarakKnockbackICP"/>
+        <Flags index="RangeUseCasterRadius" value="0"/>
+        <Cost>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range value="8"/>
+        <Arc value="0.9997"/>
+        <FinishTime value="0.75"/>
+        <Marker Link="Abil/DestructionWave">
+            <MatchFlags index="Id" value="1"/>
+            <MatchFlags index="Link" value="0"/>
+        </Marker>
+        <UninterruptibleArray index="Finish" value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="KnockbackAlarak"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AlarakACDeadlyCharge">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Flags index="AbortOnAllianceChange" value="0"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Cost>
+            <Cooldown Location="Player" TimeUse="15"/>
+        </Cost>
+        <Range value="6"/>
+        <TrackingArc value="360"/>
+        <PrepTime value="0.125"/>
+        <AINotifyEffect value="PrimalSlash"/>
+        <IgnoreFilters value="Ground;Self,Invulnerable"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AlarakDeadlyCharge"/>
+        <Arc value="360"/>
+    </CAbilEffectTarget>
+</Catalog>
