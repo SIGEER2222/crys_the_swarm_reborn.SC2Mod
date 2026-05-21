@@ -1,9 +1,9 @@
 ﻿# Common Reference Validation Report
 
-Generated at: 2026-05-20 21:09:41
+Generated at: 2026-05-21 20:22:40
 Mod root: C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\crys_the_swarm_reborn.SC2Mod
 
-Local unresolved refs: **2596**
+Local unresolved refs: **2608**
 
 Note: this validator only checks objects present in the current work copy.
 Refs that are satisfied by Blizzard or external dependencies may still appear here.
@@ -12,11 +12,11 @@ Refs that are satisfied by Blizzard or external dependencies may still appear he
 
 | File | Ref Type | Count |
 |---|---|---|
-| UnitData.xml | LayoutButtons.Face | 1342 |
+| UnitData.xml | LayoutButtons.Face | 1352 |
 | UnitData.xml | AbilArray | 727 |
 | EffectData.xml | ValidatorArray | 111 |
 | UnitData.xml | BehaviorArray | 110 |
-| AbilData.xml | CmdButtonArray.DefaultButtonFace | 72 |
+| AbilData.xml | CmdButtonArray.DefaultButtonFace | 74 |
 | UnitData.xml | LayoutButtons.Requirements | 62 |
 | UnitData.xml | WeaponArray | 32 |
 | EffectData.xml | ./EffectArray | 30 |
@@ -43,6 +43,8 @@ Refs that are satisfied by Blizzard or external dependencies may still appear he
 
 | Severity | File | Source ID | Ref Type | Target | Message |
 |---|---|---|---|---|---|
+| warning | AbilData.xml | AbathurMutaliskExplosiveGlaivePurchase | CmdButtonArray.DefaultButtonFace | button:ExplosiveGlaive | Not found in local work copy. Could still come from dependencies. |
+| warning | AbilData.xml | AbathurMutaliskViciousGlaivePurchase | CmdButtonArray.DefaultButtonFace | button:ViciousGlaive | Not found in local work copy. Could still come from dependencies. |
 | warning | AbilData.xml | ApplyVespeneExtractionField | CmdButtonArray.DefaultButtonFace | button:ResourceBlocker2 | Not found in local work copy. Could still come from dependencies. |
 | warning | AbilData.xml | ApplyVespeneExtractionField | Effect | effect:ApplyMineralShield2 | Not found in local work copy. Could still come from dependencies. |
 | warning | AbilData.xml | AttackRedirectInfestedBunker | CmdButtonArray.DefaultButtonFace | button:AttackRedirect | Not found in local work copy. Could still come from dependencies. |
@@ -291,7 +293,5 @@ Refs that are satisfied by Blizzard or external dependencies may still appear he
 | warning | EffectData.xml | RoachCorpserApplyBehavior | ValidatorArray | validator:NotStructure | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | SavageChargeApplyBuff | ValidatorArray | validator:ChargeMaxDistance | Not found in local work copy. Could still come from dependencies. |
 | warning | EffectData.xml | SavageChargeApplyBuff | ValidatorArray | validator:ChargeMinTriggerDistance | Not found in local work copy. Could still come from dependencies. |
-| warning | EffectData.xml | SeekerMissileLM | ValidatorArray | validator:HunterSeekerLaunchMissileTargetFilters | Not found in local work copy. Could still come from dependencies. |
-| warning | EffectData.xml | SeerHealBehavior | ValidatorArray | validator:LifeNotFull | Not found in local work copy. Could still come from dependencies. |
 
-Omitted rows: 2346
+Omitted rows: 2358
