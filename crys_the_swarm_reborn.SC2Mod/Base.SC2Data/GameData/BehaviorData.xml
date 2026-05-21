@@ -4676,6 +4676,15 @@
             <DamageDealtFraction index="Splash" value="0.1"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="UltraliskElectricShockStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-stetmann-ultraliskburrowchargestun.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="UltraliskHighVoltageBuff">
         <BehaviorFlags index="Permanent" value="1"/>
         <InfoFlags index="Hidden" value="1"/>
@@ -4684,6 +4693,13 @@
         <Modification>
             <DamageDealtFraction index="Ranged" value="0.25"/>
         </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UltraliskHighVoltageSlow">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-fungalgrowth.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.7"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="UltraliskLightningRaidBuff">
         <BehaviorFlags index="Permanent" value="1"/>
@@ -4698,7 +4714,7 @@
         <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Period value="1"/>
-        <PeriodicEffect value="UltraliskThunderstormDamage"/>
+        <PeriodicEffect value="UltraliskThunderstormSearch"/>
     </CBehaviorBuff>
     <!-- Omegalisk Purchase Buffs -->
     <CBehaviorBuff id="OmegaliskThickArmorBuff">
@@ -4719,6 +4735,17 @@
         <Period value="1"/>
         <PeriodicEffect value="OmegaliskBattleCrySearch"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="OmegaliskBattleCryAuraBuff">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-swarmfrenzy.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification>
+            <DamageDealtFraction index="Melee" value="0.15"/>
+            <DamageDealtFraction index="Ranged" value="0.15"/>
+            <AttackSpeedMultiplier value="1.1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="OmegaliskKingStrikeBuff">
         <BehaviorFlags index="Permanent" value="1"/>
         <InfoFlags index="Hidden" value="1"/>
@@ -4728,11 +4755,29 @@
             <DamageDealtFraction index="Splash" value="0.4"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="OmegaliskKingStrikeStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-stetmann-ultraliskburrowchargestun.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="OmegaliskDeterrenceOrderBuff">
         <BehaviorFlags index="Permanent" value="1"/>
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Period value="1"/>
+        <PeriodicEffect value="OmegaliskDeterrenceOrderSearch"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OmegaliskDeterrenceOrderDebuff">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Duration value="8"/>
+        <Modification MoveSpeedMultiplier="0.8" AttackSpeedMultiplier="0.85"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AbathurHostRapidIncubationBuff">
         <BehaviorFlags index="Permanent" value="1"/>
