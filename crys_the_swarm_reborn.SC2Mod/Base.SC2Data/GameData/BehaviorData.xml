@@ -344,7 +344,6 @@
     <CBehaviorBuff id="BaseGasExchangeAutoBehavior">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>
-        <Requirements value="HaveK5Resonance"/>
         <BuffFlags index="DisableWhileUnderConstruction" value="1"/>
         <Period value="30"/>
         <PeriodicEffect value="BaseGasExchangeAutoSet"/>
@@ -4666,6 +4665,74 @@
         <Modification>
             <VitalRegenArray index="Life" value="12"/>
         </Modification>
+    </CBehaviorBuff>
+    <!-- Ultralisk Purchase Buffs -->
+    <CBehaviorBuff id="UltraliskElectricShockBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageDealtFraction index="Splash" value="0.1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UltraliskHighVoltageBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageDealtFraction index="Ranged" value="0.25"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UltraliskLightningRaidBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="1.3" AttackSpeedMultiplier="1.25"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UltraliskThunderstormBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Period value="1"/>
+        <PeriodicEffect value="UltraliskThunderstormDamage"/>
+    </CBehaviorBuff>
+    <!-- Omegalisk Purchase Buffs -->
+    <CBehaviorBuff id="OmegaliskThickArmorBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Modification>
+            <LifeArmorBonus value="6"/>
+            <VitalMaxArray index="Life" value="500"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OmegaliskBattleCryBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Period value="1"/>
+        <PeriodicEffect value="OmegaliskBattleCrySearch"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OmegaliskKingStrikeBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageDealtFraction index="Splash" value="0.4"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OmegaliskDeterrenceOrderBuff">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AbathurHostRapidIncubationBuff">
         <BehaviorFlags index="Permanent" value="1"/>
