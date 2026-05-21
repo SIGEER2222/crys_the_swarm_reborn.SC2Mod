@@ -6211,6 +6211,36 @@
         <WhichUnit Value="Caster"/>
         <Behavior value="UltraliskThunderstormBuff"/>
     </CEffectApplyBehavior>
+    <!-- Ultralisk Thunderstorm Damage Effect -->
+    <CEffectDamage id="UltraliskThunderstormDamage">
+        <EditorCategories value="Race:Zerg"/>
+        <Kind value="Spell"/>
+        <Amount value="30"/>
+        <Fraction value="0.3"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+    </CEffectDamage>
+    <CEffectSearchArea id="UltraliskThunderstormSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="Enemy;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="UltraliskThunderstormDamage"/>
+    </CEffectSearchArea>
+    <!-- Ultralisk On-Hit Effects -->
+    <CEffectApplyBehavior id="UltraliskElectricShockStunApply">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Target"/>
+        <Behavior value="UltraliskElectricShockStun"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UltraliskHighVoltageSlowApply">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Target"/>
+        <Behavior value="UltraliskHighVoltageSlow"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="OmegaliskKingStrikeStunApply">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Target"/>
+        <Behavior value="OmegaliskKingStrikeStun"/>
+    </CEffectApplyBehavior>
     <!-- Omegalisk Purchase Effects -->
     <CEffectSet id="OmegaliskThickArmorSet">
         <EditorCategories value="Race:Zerg"/>
@@ -6247,6 +6277,30 @@
         <EditorCategories value="Race:Zerg"/>
         <WhichUnit Value="Caster"/>
         <Behavior value="OmegaliskDeterrenceOrderBuff"/>
+    </CEffectApplyBehavior>
+    <!-- Omegalisk BattleCry Search Effect -->
+    <CEffectSearchArea id="OmegaliskBattleCrySearch">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="Ally;Player,Enemy,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="8" Effect="OmegaliskBattleCryAuraBuffApply"/>
+        <MaxCount value="20"/>
+    </CEffectSearchArea>
+    <CEffectApplyBehavior id="OmegaliskBattleCryAuraBuffApply">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Target"/>
+        <Behavior value="OmegaliskBattleCryAuraBuff"/>
+    </CEffectApplyBehavior>
+    <!-- Omegalisk DeterrenceOrder Search Effect -->
+    <CEffectSearchArea id="OmegaliskDeterrenceOrderSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="Enemy;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="999" Effect="OmegaliskDeterrenceOrderDebuffApply"/>
+        <MaxCount value="200"/>
+    </CEffectSearchArea>
+    <CEffectApplyBehavior id="OmegaliskDeterrenceOrderDebuffApply">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Target"/>
+        <Behavior value="OmegaliskDeterrenceOrderDebuff"/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AbathurCasterMimeticMembraneApply">
         <EditorCategories value="Race:Zerg"/>
