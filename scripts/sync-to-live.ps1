@@ -17,11 +17,17 @@ if (-not (Test-Path $target)) {
 Write-Host "Sync source :" $source
 Write-Host "Sync target :" $target
 
-robocopy $source $target /E /R:1 /W:1 /NFL /NDL /NP /MT:8
-$exitCode = $LASTEXITCODE
+$robocopy = Get-Command robocopy -ErrorAction SilentlyContinue
+if ($robocopy) {
+    & $robocopy.Source $source $target /E /R:1 /W:1 /NFL /NDL /NP /MT:8
+    $exitCode = $LASTEXITCODE
 
-if ($exitCode -ge 8) {
-    throw "robocopy failed with exit code $exitCode"
+    if ($exitCode -ge 8) {
+        throw "robocopy failed with exit code $exitCode"
+    }
+}
+else {
+    Copy-Item -Path (Join-Path $source "*") -Destination $target -Recurse -Force -ErrorAction Stop
 }
 
 Write-Host "Sync completed."
