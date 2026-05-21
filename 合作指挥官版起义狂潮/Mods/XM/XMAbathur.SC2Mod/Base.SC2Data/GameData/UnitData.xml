@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CUnit id="HatcheryAbathur" parent="Hatchery">
+        <TechAliasArray value="Alias_Hatchery"/>
+        <Race value="Zerg"/>
+        <Mob value="Campaign"/>
+    </CUnit>
+    <CUnit id="DroneAbathur" parent="Drone">
+        <Race value="Zerg"/>
+        <Mob value="Campaign"/>
+    </CUnit>
+    <CUnit id="OverlordAbathur" parent="Overlord">
+        <Race value="Zerg"/>
+        <Mob value="Campaign"/>
+    </CUnit>
+    <CUnit id="CoopCasterAbathur" parent="CoopGlobalCaster">
+        <Race value="Zerg"/>
+        <Mob value="Campaign"/>
+        <Food value="200"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+    </CUnit>
+    <CUnit id="BiomassPickupAbathur" parent="BiomassPickup">
+        <Race value="Zerg"/>
+        <Mob value="Campaign"/>
+        <LifeMax value="10"/>
+        <LifeStart value="10"/>
+        <ShieldMax value="0"/>
+        <EnergyMax value="0"/>
+        <ResourceState value="Unknown"/>
+        <EditorCategories value="ObjectType:Item,ObjectFamily:Campaign"/>
+        <BehaviorArray Link="BiomassTimedLifeAbathur"/>
+    </CUnit>
+</Catalog>
