@@ -2,7 +2,15 @@ using System.Text;
 using System.Text.Json;
 using System.Xml;
 
-return await Cli.RunAsync(args);
+namespace Sc2ModTool;
+
+public static class Program
+{
+    public static async Task<int> Main(string[] args)
+    {
+        return await Cli.RunAsync(args);
+    }
+}
 
 internal static class Cli
 {
@@ -26,6 +34,9 @@ internal static class Cli
                     return 0;
                 case "apply":
                     await RunApplyAsync(options);
+                    return 0;
+                case "abathur-techs":
+                    RunAbathurTechs(options);
                     return 0;
                 default:
                     throw new InvalidOperationException($"Unknown command: {command}");
@@ -142,6 +153,45 @@ internal static class Cli
         arg.Equals("--help", StringComparison.OrdinalIgnoreCase) ||
         arg.Equals("-h", StringComparison.OrdinalIgnoreCase);
 
+    private static void RunAbathurTechs(Dictionary<string, string> options)
+    {
+        var modRoot = options.GetValueOrDefault("mod-root") ?? GetDefaultModRoot();
+        var format = options.GetValueOrDefault("format") ?? "summary";
+        var output = options.GetValueOrDefault("output");
+
+        var analyzer = new AbathurTechPurchaseAnalyzer(modRoot);
+
+        switch (format.ToLowerInvariant())
+        {
+            case "json":
+                if (!string.IsNullOrEmpty(output))
+                {
+                    analyzer.ExportToFile(output);
+                }
+                else
+                {
+                    analyzer.PrintJson();
+                }
+                break;
+            case "summary":
+            default:
+                analyzer.PrintSummary();
+                break;
+        }
+    }
+
+    private static string GetDefaultModRoot()
+    {
+        // 从脚本位置推断mod根目录
+        var scriptDir = AppContext.BaseDirectory;
+        var modRoot = Path.GetFullPath(Path.Combine(scriptDir, "..", "..", "..", "..", "crys_the_swarm_reborn.SC2Mod"));
+        if (Directory.Exists(modRoot))
+        {
+            return modRoot;
+        }
+        throw new InvalidOperationException("无法自动检测mod根目录，请使用 --mod-root 指定");
+    }
+
     private static void PrintHelp()
     {
         Console.WriteLine("Sc2ModTool");
@@ -149,6 +199,7 @@ internal static class Cli
         Console.WriteLine("Usage:");
         Console.WriteLine("  find  --mod-root <path> --id <ObjectId>");
         Console.WriteLine("  apply --mod-root <path> --patch <patch.json> [--what-if]");
+        Console.WriteLine("  abathur-techs [--mod-root <path>] [--format <summary|json>] [--output <path>]");
         Console.WriteLine();
         Console.WriteLine("Supported patch operations:");
         Console.WriteLine("  setXmlAttribute");
