@@ -6,6 +6,7 @@ include "TriggerLibs/natives"
 // Variable Declarations
 string libE0EAE146_gv_commander;
 int libE0EAE146_gv_bon;
+bool libE0EAE146_gv_allowAbathurDebugBank;
 bool libE0EAE146_gv_abathurDebugEnabled;
 
 // Function Declarations
@@ -30,6 +31,11 @@ bool libE0EAE146_gf_AbathurHasUltimateUnlock ();
 void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, point lp_point);
 void libE0EAE146_gf_AbathurCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region);
 void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind);
+bool libE0EAE146_gf_AbathurUnitCanCollectBiomass (unit lp_unit);
+int libE0EAE146_gf_AbathurBiomassMaxStacks ();
+int libE0EAE146_gf_AbathurCurrentBiomass (unit lp_unit);
+void libE0EAE146_gf_AbathurSetBiomass (unit lp_unit, int lp_amount);
+void libE0EAE146_gf_AbathurApplyBiomass (unit lp_unit, int lp_amount);
 void libE0EAE146_gf_AttackWaveRun (int lp_type, int lp_level);
 void libE0EAE146_gf_StartGame ();
 void libE0EAE146_gf_ProphecyCameraCreate (unit lp_u);

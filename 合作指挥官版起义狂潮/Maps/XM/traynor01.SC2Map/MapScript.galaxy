@@ -5062,6 +5062,15 @@ bool gt_IntroCinematic_Func (bool testConds, bool runActions) {
         }
 
     }
+    else if (auto440B2AF1_val == "Alarak") {
+        UnitCargoCreate(gv_introDropship, "AlarakCoop", 1);
+        gv_raynor = UnitCargoLastCreated();
+        UnitCargoCreate(gv_introDropship, "Zealot", 4);
+    }
+    else if (auto440B2AF1_val == "Kerrigan") {
+        UnitCargoCreate(gv_introDropship, "K5Kerrigan", 1);
+        gv_raynor = UnitCargoLastCreated();
+    }
     else if (auto440B2AF1_val == "Tychus") {
         UnitCargoCreate(gv_introDropship, "TychusCoop", 1);
         gv_raynor = UnitCargoLastCreated();

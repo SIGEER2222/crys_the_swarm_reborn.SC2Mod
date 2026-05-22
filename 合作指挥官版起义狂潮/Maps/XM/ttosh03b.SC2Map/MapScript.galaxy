@@ -868,6 +868,15 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         }
 
     }
+    else if (auto2F29E444_val == "Alarak") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "AlarakCoop", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zealot", 0, 1, PointFromId(29));
+    }
+    else if (auto2F29E444_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+    }
     else if (auto2F29E444_val == "Mira") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "GhostMira", 0, 1, PointFromId(29));
         gv_nova = UnitLastCreated();

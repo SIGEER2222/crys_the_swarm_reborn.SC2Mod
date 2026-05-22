@@ -21,8 +21,7 @@ void libA1BA7A9F_InitVariables () {
 
 void libA1BA7A9F_gf_InitializeAbathurEvent (int lp_player) {
     libA1BA7A9F_gv_abathurPlayer = lp_player;
-    TriggerEnable(libA1BA7A9F_gt_AbathurBiomassDrop, true);
-    TriggerEnable(libA1BA7A9F_gt_AbathurBiomassPickup, true);
+    // Runtime ownership moved to XMFinal. Keep this library data-only.
 }
 
 bool libA1BA7A9F_gf_AbathurCanDropBiomass (unit lp_unit) {

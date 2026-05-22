@@ -916,6 +916,13 @@ bool gt_FirebatDropshipAction_Func (bool testConds, bool runActions) {
         }
 
     }
+    else if (auto8F0E1D21_val == "Alarak") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "AlarakCoop", 0, 1, PointFromId(2150));
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zealot", 0, 1, PointFromId(2150));
+    }
+    else if (auto8F0E1D21_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(2150));
+    }
     else if (auto8F0E1D21_val == "Nova") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "NovaCoop", 0, 1, PointFromId(2150));
         lib0940FFB7_gf_NovaTrigger(UnitLastCreated());
