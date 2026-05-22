@@ -6,6 +6,7 @@ include "TriggerLibs/natives"
 // Variable Declarations
 string libE0EAE146_gv_commander;
 int libE0EAE146_gv_bon;
+bool libE0EAE146_gv_abathurDebugEnabled;
 
 // Function Declarations
 void libE0EAE146_gf_FinishLevel ();
@@ -17,6 +18,18 @@ void libE0EAE146_gf_EnemyBriefSet (string lp_race, int lp_type);
 void libE0EAE146_gf_EnemyBrief2Set (string lp_race, int lp_type);
 void libE0EAE146_gf_EnemyBrief3Set (string lp_race, int lp_type);
 void libE0EAE146_gf_PickUpSet (unit lp_u, int lp_n);
+void libE0EAE146_gf_AbathurDebugOutput (string lp_payload);
+void libE0EAE146_gf_AbathurDebugSet (bool lp_enabled);
+bool libE0EAE146_gf_AbathurDebugIsEnabled ();
+void libE0EAE146_gf_AbathurDebugRefresh ();
+void libE0EAE146_gf_AbathurEarlySnapshot (string lp_phase);
+void libE0EAE146_gf_AbathurDebugBankUnitType (bank lp_bank, string lp_unitType);
+void libE0EAE146_gf_AbathurDebugUnitType (string lp_unitType);
+void libE0EAE146_gf_AbathurDebugSnapshot ();
+bool libE0EAE146_gf_AbathurHasUltimateUnlock ();
+void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, point lp_point);
+void libE0EAE146_gf_AbathurCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region);
+void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind);
 void libE0EAE146_gf_AttackWaveRun (int lp_type, int lp_level);
 void libE0EAE146_gf_StartGame ();
 void libE0EAE146_gf_ProphecyCameraCreate (unit lp_u);

@@ -803,6 +803,16 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "RavagerStetmann", 0, gv_p12_MOEBIUS, PointFromId(665));
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "RavagerStetmann", 0, gv_p12_MOEBIUS, PointFromId(344935602));
     }
+    else if (auto412F2E68_val == "Abathur") {
+        libE0EAE146_gf_AbathurEarlySnapshot("tvalerian01Init03Units");
+        libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(385406063));
+        libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(855382681));
+        libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(898485624));
+        libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(95514741));
+        libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(1089641768));
+        libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(665));
+        libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(344935602));
+    }
     else {
     }
     auto23D7A4A6_g = UnitGroup("InfestedCC", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);

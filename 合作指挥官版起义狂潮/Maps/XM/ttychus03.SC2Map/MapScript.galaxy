@@ -816,6 +816,12 @@ bool gt_CreateMedivacIntro_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsAtPoint2(1, "MedivacMengsk", 0, gv_p01_USER, PointFromId(2827));
         UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(462539341)), c_orderQueueReplace);
     }
+    else if (autoBEEAC669_val == "Abathur") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Overlord", 0, gv_p01_USER, PointFromId(999));
+        UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(618516690)), c_orderQueueReplace);
+        libNtve_gf_CreateUnitsAtPoint2(1, "Overlord", 0, gv_p01_USER, PointFromId(2827));
+        UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(462539341)), c_orderQueueReplace);
+    }
     else {
         libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(999));
         UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(618516690)), c_orderQueueReplace);

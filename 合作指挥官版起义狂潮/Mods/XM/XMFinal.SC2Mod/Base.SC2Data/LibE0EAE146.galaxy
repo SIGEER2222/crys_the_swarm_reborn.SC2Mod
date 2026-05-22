@@ -36,6 +36,7 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_InitVariables_completed = true;
 
     libE0EAE146_gv_commander = "";
+    libE0EAE146_gv_abathurDebugEnabled = false;
 }
 
 // Functions
@@ -101,6 +102,8 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     GameSetSpeedValue(c_gameSpeedFaster);
     BankLoad("CampaignXCore", 1);
     libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+    libE0EAE146_gv_abathurDebugEnabled = (BankValueGetAsInt(BankLastCreated(), "Debug", "Abathur") == 1);
+    libE0EAE146_gf_AbathurEarlySnapshot("Initialize");
     autoC0933116_val = libE0EAE146_gv_commander;
     if (autoC0933116_val == "Stukov") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Classic");
@@ -164,6 +167,10 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
 
     // Implementation
     BankLoad("CampaignXCore", 1);
+    if ((libE0EAE146_gv_commander == "")) {
+        libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+    }
+    libE0EAE146_gf_AbathurEarlySnapshot("InitializeBase");
     lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
     lv_i = 0;
     for ( ; ( lv_i <= 7 ) ; lv_i += 1 ) {
@@ -347,6 +354,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
         TriggerEnable(libE0EAE146_gt_AbathurBiomassDrop, true);
         TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, true);
+        libE0EAE146_gf_AbathurDebugSnapshot();
         lib67C0F0E7_gf_ShowChooseButton();
     }
     else {
@@ -507,6 +515,198 @@ void libE0EAE146_gf_PickUpSet (unit lp_u, int lp_n) {
     UnitSetCustomValue(lp_u, 63, lp_n);
 }
 
+void libE0EAE146_gf_AbathurDebugOutput (string lp_payload) {
+    if ((libE0EAE146_gv_abathurDebugEnabled == false)) {
+        return;
+    }
+    TriggerDebugOutput(1, StringToText(("[XM_ABA]" + lp_payload)), true);
+}
+
+void libE0EAE146_gf_AbathurDebugSet (bool lp_enabled) {
+    libE0EAE146_gv_abathurDebugEnabled = lp_enabled;
+}
+
+bool libE0EAE146_gf_AbathurDebugIsEnabled () {
+    return libE0EAE146_gv_abathurDebugEnabled;
+}
+
+void libE0EAE146_gf_AbathurDebugRefresh () {
+    BankLoad("CampaignXCore", 1);
+    libE0EAE146_gv_abathurDebugEnabled = (BankValueGetAsInt(BankLastCreated(), "Debug", "Abathur") == 1);
+}
+
+void libE0EAE146_gf_AbathurEarlySnapshot (string lp_phase) {
+    bank lv_bank;
+    string lv_section;
+    if ((libE0EAE146_gv_abathurDebugEnabled == false)) {
+        return;
+    }
+    BankLoad("XMAbathurDebug", 1);
+    lv_bank = BankLastCreated();
+    lv_section = ("Phase_" + lp_phase);
+    BankValueSetFromString(lv_bank, "Early", "LastPhase", lp_phase);
+    BankValueSetFromString(lv_bank, lv_section, "Phase", lp_phase);
+    BankValueSetFromString(lv_bank, lv_section, "Commander", libE0EAE146_gv_commander);
+    BankValueSetFromString(lv_bank, lv_section, "Map", lib67C0F0E7_gf_MapPathName(""));
+    BankValueSetFromString(lv_bank, lv_section, "CommandCenter", UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1));
+    BankValueSetFromString(lv_bank, lv_section, "Worker", UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1));
+    BankValueSetFromString(lv_bank, lv_section, "SecondUnit", UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1));
+    BankSave(lv_bank);
+    libE0EAE146_gf_AbathurDebugOutput((("[EARLY] phase=" + lp_phase) + " commander=" + libE0EAE146_gv_commander));
+}
+
+void libE0EAE146_gf_AbathurDebugUnitType (string lp_unitType) {
+    int lv_count;
+    int lv_structure;
+    if ((libE0EAE146_gv_abathurDebugEnabled == false)) {
+        return;
+    }
+    lv_count = UnitGroupCount(UnitGroup(lp_unitType, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive);
+    if ((UnitTypeTestAttribute(lp_unitType, c_unitAttributeStructure) == true)) {
+        lv_structure = 1;
+    }
+    else {
+        lv_structure = 0;
+    }
+    libE0EAE146_gf_AbathurDebugOutput(("[UNIT] type=" + lp_unitType + " count=" + IntToString(lv_count) + " minerals=" + IntToString(UnitTypeGetCost(lp_unitType, c_unitCostMinerals)) + " gas=" + IntToString(UnitTypeGetCost(lp_unitType, c_unitCostVespene)) + " supply=0 hp=0 armor=0 structure=" + IntToString(lv_structure)));
+}
+
+void libE0EAE146_gf_AbathurDebugBankUnitType (bank lp_bank, string lp_unitType) {
+    int lv_count;
+    int lv_structure;
+    string lv_section;
+    if ((libE0EAE146_gv_abathurDebugEnabled == false)) {
+        return;
+    }
+    lv_section = ("Unit_" + lp_unitType);
+    lv_count = UnitGroupCount(UnitGroup(lp_unitType, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive);
+    if ((UnitTypeTestAttribute(lp_unitType, c_unitAttributeStructure) == true)) {
+        lv_structure = 1;
+    }
+    else {
+        lv_structure = 0;
+    }
+    BankValueSetFromInt(lp_bank, lv_section, "Count", lv_count);
+    BankValueSetFromInt(lp_bank, lv_section, "Minerals", UnitTypeGetCost(lp_unitType, c_unitCostMinerals));
+    BankValueSetFromInt(lp_bank, lv_section, "Gas", UnitTypeGetCost(lp_unitType, c_unitCostVespene));
+    BankValueSetFromInt(lp_bank, lv_section, "Supply", 0);
+    BankValueSetFromInt(lp_bank, lv_section, "HP", 0);
+    BankValueSetFromInt(lp_bank, lv_section, "Structure", lv_structure);
+}
+
+void libE0EAE146_gf_AbathurDebugSnapshot () {
+    bank lv_bank;
+    string lv_commandCenter;
+    string lv_worker;
+    string lv_secondUnit;
+    if ((libE0EAE146_gv_abathurDebugEnabled == false)) {
+        return;
+    }
+    lv_commandCenter = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1);
+    lv_worker = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1);
+    lv_secondUnit = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1);
+    BankLoad("XMAbathurDebug", 1);
+    lv_bank = BankLastCreated();
+    BankValueSetFromString(lv_bank, "Start", "Commander", libE0EAE146_gv_commander);
+    BankValueSetFromString(lv_bank, "Start", "Map", lib67C0F0E7_gf_MapPathName(""));
+    BankValueSetFromString(lv_bank, "Start", "CommandCenter", lv_commandCenter);
+    BankValueSetFromString(lv_bank, "Start", "Worker", lv_worker);
+    BankValueSetFromString(lv_bank, "Start", "SecondUnit", lv_secondUnit);
+    libE0EAE146_gf_AbathurDebugBankUnitType(lv_bank, lv_commandCenter);
+    libE0EAE146_gf_AbathurDebugBankUnitType(lv_bank, lv_worker);
+    libE0EAE146_gf_AbathurDebugBankUnitType(lv_bank, lv_secondUnit);
+    BankValueSetFromString(lv_bank, "Panel", "Caster", "CoopCasterAbathur");
+    BankValueSetFromInt(lv_bank, "Panel", "Exists", 1);
+    BankValueSetFromInt(lv_bank, "Panel", "Buttons", 2);
+    BankValueSetFromInt(lv_bank, "Biomass", "DropTrigger", 1);
+    BankValueSetFromInt(lv_bank, "Biomass", "PickupTrigger", 1);
+    BankValueSetFromInt(lv_bank, "Biomass", "Pickups", 0);
+    BankSave(lv_bank);
+    libE0EAE146_gf_AbathurDebugOutput(("[START] commander=" + libE0EAE146_gv_commander + " map=" + lib67C0F0E7_gf_MapPathName("") + " commandCenter=" + lv_commandCenter + " worker=" + lv_worker + " secondUnit=" + lv_secondUnit));
+    libE0EAE146_gf_AbathurDebugUnitType(lv_commandCenter);
+    libE0EAE146_gf_AbathurDebugUnitType(lv_worker);
+    libE0EAE146_gf_AbathurDebugUnitType(lv_secondUnit);
+    libE0EAE146_gf_AbathurDebugOutput("[PANEL] caster=CoopCasterAbathur exists=1 buttons=2");
+    libE0EAE146_gf_AbathurDebugOutput("[BIOMASS] dropTrigger=1 pickupTrigger=1 pickups=0");
+}
+
+bool libE0EAE146_gf_AbathurHasUltimateUnlock () {
+    int lv_ach;
+    BankLoad("CampaignXCore", 1);
+    lv_ach = BankValueGetAsInt(BankLastCreated(), "Abathur", "AchBit");
+    if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, 7) == true)) {
+        return true;
+    }
+    return false;
+}
+
+void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Zergling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "RoachVile", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hydralisk", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "RoachVile", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ravager", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmHostMP", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Corruptor", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "RoachVile", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Queen", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "ultimate")) {
+        if ((libE0EAE146_gf_AbathurHasUltimateUnlock() == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Brutalisk", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Leviathan", 0, lp_player, lp_point);
+        }
+        else {
+            libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", lp_player, lp_point);
+        }
+    }
+    else {
+        libE0EAE146_gf_AbathurCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_AbathurCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_AbathurCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "Zergling", 4);
+        UnitCargoCreate(lp_container, "RoachVile", 1);
+        UnitCargoCreate(lp_container, "Hydralisk", 1);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "RoachVile", 2);
+        UnitCargoCreate(lp_container, "Ravager", 1);
+        UnitCargoCreate(lp_container, "SwarmHostMP", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "Mutalisk", 2);
+        UnitCargoCreate(lp_container, "Corruptor", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "RoachVile", 2);
+        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "Queen", 1);
+    }
+    else {
+        libE0EAE146_gf_AbathurCreateCargoSquad(lp_container, "light");
+    }
+}
+
 bool libE0EAE146_gf_AbathurCanDropBiomass (unit lp_unit) {
     if ((lp_unit == null)) {
         return false;
@@ -625,7 +825,7 @@ bool libE0EAE146_gt_AbathurBiomassDrop_Func (bool testConds, bool runActions) {
         return true;
     }
     lv_amount = libE0EAE146_gf_AbathurBiomassAmount(lv_dead);
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BiomassPickupAbathur", 0, 1, UnitGetPosition(lv_dead));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BiomassPickup", 0, 1, UnitGetPosition(lv_dead));
     UnitSetCustomValue(UnitLastCreated(), 63, lv_amount);
     return true;
 }
@@ -653,7 +853,7 @@ bool libE0EAE146_gt_AbathurBiomassPickup_Func (bool testConds, bool runActions) 
     if ((libE0EAE146_gv_commander != "Abathur")) {
         return true;
     }
-    lv_pickups = UnitGroup("BiomassPickupAbathur", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    lv_pickups = UnitGroup("BiomassPickup", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     lv_i = UnitGroupCount(lv_pickups, c_unitCountAlive);
     for (;; lv_i -= 1) {
         lv_pickup = UnitGroupUnitFromEnd(lv_pickups, lv_i);
@@ -665,7 +865,7 @@ bool libE0EAE146_gt_AbathurBiomassPickup_Func (bool testConds, bool runActions) 
             lv_unit = UnitGroupUnitFromEnd(lv_units, lv_j);
             if (lv_unit == null) { break; }
             if ((UnitTypeTestAttribute(UnitGetType(lv_unit), c_unitAttributeStructure) == false)) {
-                UnitCreateEffectUnit(lv_pickup, "GrantBiomassAbathur", lv_unit);
+                UnitCreateEffectUnit(lv_pickup, "AbathurCollectBiomass", lv_unit);
                 lib67C0F0E7_gf_UnitAddCustomValue(lv_unit, 62, lv_amount);
                 UnitKill(lv_pickup);
                 break;

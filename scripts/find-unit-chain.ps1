@@ -11,7 +11,7 @@ $ErrorActionPreference = "Stop"
 
 $scriptRoot = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Path }
 if ([string]::IsNullOrWhiteSpace($ModRoot)) {
-    $ModRoot = Join-Path $scriptRoot "..\crys_the_swarm_reborn.SC2Mod"
+    $ModRoot = Join-Path $scriptRoot "..\合作指挥官版起义狂潮\Mods\XM\XMFinal.SC2Mod"
 }
 
 $gameDataRoot = Join-Path $ModRoot "Base.SC2Data\GameData"
