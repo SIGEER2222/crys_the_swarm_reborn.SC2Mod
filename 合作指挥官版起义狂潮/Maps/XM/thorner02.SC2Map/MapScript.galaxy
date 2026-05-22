@@ -2513,6 +2513,12 @@ bool gt_MiraHanGivesVulturestoPlayer_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
         lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
     }
+    else if (auto07E521E1_val == "Abathur") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        libE0EAE146_gf_AbathurCreateCargoSquad(UnitLastCreated(), "hero");
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
     else {
         libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
         UnitCargoCreate(UnitLastCreated(), "Vulture", 2);

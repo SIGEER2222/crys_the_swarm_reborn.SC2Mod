@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 
 $scriptRoot = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Path }
 if ([string]::IsNullOrWhiteSpace($ModRoot)) {
-    $ModRoot = Join-Path $scriptRoot "..\crys_the_swarm_reborn.SC2Mod"
+    $ModRoot = Join-Path $scriptRoot "..\合作指挥官版起义狂潮\Mods\XM\XMFinal.SC2Mod"
 }
 if ([string]::IsNullOrWhiteSpace($OutputPath)) {
     $OutputPath = Join-Path $scriptRoot "..\references\unit-index.tsv"

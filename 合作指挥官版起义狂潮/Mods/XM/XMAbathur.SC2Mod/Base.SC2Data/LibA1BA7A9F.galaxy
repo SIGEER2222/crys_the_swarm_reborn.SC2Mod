@@ -81,7 +81,7 @@ bool libA1BA7A9F_gt_AbathurBiomassDrop_Func (bool testConds, bool runActions) {
         return true;
     }
     lv_amount = libA1BA7A9F_gf_AbathurBiomassAmount(lv_dead);
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BiomassPickupAbathur", 0, libA1BA7A9F_gv_abathurPlayer, UnitGetPosition(lv_dead));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BiomassPickup", 0, libA1BA7A9F_gv_abathurPlayer, UnitGetPosition(lv_dead));
     UnitSetCustomValue(UnitLastCreated(), 63, lv_amount);
     return true;
 }
@@ -103,7 +103,7 @@ bool libA1BA7A9F_gt_AbathurBiomassPickup_Func (bool testConds, bool runActions) 
     if (!runActions) {
         return true;
     }
-    lv_pickups = UnitGroup("BiomassPickupAbathur", libA1BA7A9F_gv_abathurPlayer, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    lv_pickups = UnitGroup("BiomassPickup", libA1BA7A9F_gv_abathurPlayer, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     lv_i = UnitGroupCount(lv_pickups, c_unitCountAlive);
     for (;; lv_i -= 1) {
         lv_pickup = UnitGroupUnitFromEnd(lv_pickups, lv_i);
@@ -115,7 +115,7 @@ bool libA1BA7A9F_gt_AbathurBiomassPickup_Func (bool testConds, bool runActions) 
             lv_unit = UnitGroupUnitFromEnd(lv_units, lv_j);
             if (lv_unit == null) { break; }
             if ((UnitTypeTestAttribute(UnitGetType(lv_unit), c_unitAttributeStructure) == false)) {
-                UnitCreateEffectUnit(lv_pickup, "GrantBiomassAbathur", lv_unit);
+                UnitCreateEffectUnit(lv_pickup, "AbathurCollectBiomass", lv_unit);
                 lib67C0F0E7_gf_UnitAddCustomValue(lv_unit, 62, lv_amount);
                 UnitKill(lv_pickup);
                 break;

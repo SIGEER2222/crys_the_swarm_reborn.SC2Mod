@@ -731,6 +731,9 @@ bool gt_SiegeTanksComeIn_Func (bool testConds, bool runActions) {
     else if (auto6309E628_val == "Stetmann") {
         UnitCargoCreate(UnitLastCreated(), "InfestorStetmann", 2);
     }
+    else if (auto6309E628_val == "Abathur") {
+        libE0EAE146_gf_AbathurCreateCargoSquad(UnitLastCreated(), "heavy");
+    }
     else {
         UnitCargoCreate(UnitLastCreated(), "SiegeTank", 2);
     }
@@ -936,6 +939,9 @@ bool gt_StartGameTacticalPhase_Func (bool testConds, bool runActions) {
     else if (autoA39A42DB_val == "Stetmann") {
         UnitCargoCreate(UnitFromId(317), "ZerglingStetmann", 6);
         UnitCargoCreate(UnitFromId(317), "HydraliskStetmann", 3);
+    }
+    else if (autoA39A42DB_val == "Abathur") {
+        libE0EAE146_gf_AbathurCreateCargoSquad(UnitFromId(317), "hero");
     }
     else {
     }

@@ -1,6 +1,6 @@
 param(
-    [string]$SourceModPath = (Join-Path $PSScriptRoot "..\\crys_the_swarm_reborn.SC2Mod"),
-    [string]$TargetModPath = "E:\\SC2\\SC2new\\StarCraft II\\Mods\\crys_the_swarm_reborn.SC2Mod"
+    [string]$SourceModPath = (Join-Path $PSScriptRoot "..\\合作指挥官版起义狂潮\\Mods\\XM\\XMFinal.SC2Mod"),
+    [string]$TargetModPath = "E:\\SC2\\SC2new\\StarCraft II\\Mods\\XM\\XMFinal.SC2Mod"
 )
 
 $source = [System.IO.Path]::GetFullPath($SourceModPath)

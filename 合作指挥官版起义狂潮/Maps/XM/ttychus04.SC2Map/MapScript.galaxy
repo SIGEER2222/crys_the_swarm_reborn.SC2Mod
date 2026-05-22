@@ -424,6 +424,10 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
     else if (autoFDF18DCD_val == "Stetmann") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLordStetmann", 0, 1, PointFromId(394));
     }
+    else if (autoFDF18DCD_val == "Abathur") {
+        libE0EAE146_gf_AbathurCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_AbathurCreateMapStartSquad("air", 1, PointFromId(395));
+    }
     else {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "DuskWing", 0, 1, PointFromId(394));
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "DuskWing", 0, 1, PointFromId(395));

@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 $scriptRoot = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Path }
 if ([string]::IsNullOrWhiteSpace($ModRoot)) {
-    $ModRoot = Join-Path $scriptRoot "..\crys_the_swarm_reborn.SC2Mod"
+    $ModRoot = Join-Path $scriptRoot "..\合作指挥官版起义狂潮\Mods\XM\XMFinal.SC2Mod"
 }
 if ([string]::IsNullOrWhiteSpace($ReportPath)) {
     $ReportPath = Join-Path $scriptRoot "..\references\latest-validate-report.md"
@@ -23,7 +23,7 @@ function Get-CatalogXml {
     if (-not $xmlCache.ContainsKey($FileName)) {
         $path = Join-Path $gameDataRoot $FileName
         if (-not (Test-Path $path)) {
-            throw "Catalog file not found: $path"
+            return $null
         }
         $xmlCache[$FileName] = [xml](Get-Content -Raw -Encoding UTF8 $path)
     }
@@ -49,13 +49,28 @@ function Get-AttrValue {
     return $attr.Value
 }
 
+function Get-CatalogNodeId {
+    param([System.Xml.XmlNode]$Node)
+
+    $id = Get-AttrValue $Node "id"
+    if ($id) { return $id }
+    return Get-AttrValue $Node "default"
+}
+
 function New-IdSet {
     param([string]$FileName)
 
     $set = New-Object System.Collections.Generic.HashSet[string]
     $xml = Get-CatalogXml $FileName
+    if ($null -eq $xml) {
+        return $set
+    }
     foreach ($node in $xml.SelectNodes("/Catalog/*[@id]")) {
-        $id = Get-AttrValue $node "id"
+        $id = Get-CatalogNodeId $node
+        if ($id) { $set.Add($id) | Out-Null }
+    }
+    foreach ($node in $xml.SelectNodes("/Catalog/*[@default]")) {
+        $id = Get-CatalogNodeId $node
         if ($id) { $set.Add($id) | Out-Null }
     }
     return $set
@@ -70,6 +85,7 @@ $catalogIds = @{
     requirementNode = New-IdSet "RequirementNodeData.xml"
     unit            = New-IdSet "UnitData.xml"
     validator       = New-IdSet "ValidatorData.xml"
+    upgrade         = New-IdSet "UpgradeData.xml"
     weapon          = New-IdSet "WeaponData.xml"
 }
 
@@ -110,15 +126,22 @@ function Test-Ref {
         return
     }
 
-    if (-not $catalogIds[$TargetCatalog].Contains($TargetId)) {
+    $targetSet = $catalogIds[$TargetCatalog]
+    if ($null -eq $targetSet) {
+        Add-Problem "warning" $SourceFile $SourceId $RefType $TargetCatalog $TargetId "Target catalog missing in local catalog set."
+        return
+    }
+
+    if (-not $targetSet.Contains($TargetId)) {
         Add-Problem "warning" $SourceFile $SourceId $RefType $TargetCatalog $TargetId "Not found in local work copy. Could still come from dependencies."
     }
 }
 
 function Validate-UnitRefs {
     $xml = Get-CatalogXml "UnitData.xml"
+    if ($null -eq $xml) { return }
     foreach ($node in $xml.SelectNodes("/Catalog/CUnit[@id]")) {
-        $id = Get-AttrValue $node "id"
+        $id = Get-CatalogNodeId $node
 
         foreach ($child in $node.SelectNodes("./AbilArray")) {
             Test-Ref "UnitData.xml" $id "AbilArray" "ability" (Get-AttrValue $child "Link")
@@ -138,8 +161,9 @@ function Validate-UnitRefs {
 
 function Validate-AbilityRefs {
     $xml = Get-CatalogXml "AbilData.xml"
+    if ($null -eq $xml) { return }
     foreach ($node in $xml.SelectNodes("/Catalog/*[@id]")) {
-        $id = Get-AttrValue $node "id"
+        $id = Get-CatalogNodeId $node
         foreach ($child in $node.SelectNodes("./Effect")) {
             Test-Ref "AbilData.xml" $id "Effect" "effect" (Get-AttrValue $child "value")
         }
@@ -152,8 +176,9 @@ function Validate-AbilityRefs {
 
 function Validate-EffectRefs {
     $xml = Get-CatalogXml "EffectData.xml"
+    if ($null -eq $xml) { return }
     foreach ($node in $xml.SelectNodes("/Catalog/*[@id]")) {
-        $id = Get-AttrValue $node "id"
+        $id = Get-CatalogNodeId $node
         foreach ($xpath in @("./Effect", "./EffectArray", "./ImpactEffect", "./InitialEffect", "./PeriodicEffect", "./PeriodicEffectArray")) {
             foreach ($child in $node.SelectNodes($xpath)) {
                 Test-Ref "EffectData.xml" $id $xpath "effect" (Get-AttrValue $child "value")
@@ -173,8 +198,9 @@ function Validate-EffectRefs {
 
 function Validate-BehaviorRefs {
     $xml = Get-CatalogXml "BehaviorData.xml"
+    if ($null -eq $xml) { return }
     foreach ($node in $xml.SelectNodes("/Catalog/*[@id]")) {
-        $id = Get-AttrValue $node "id"
+        $id = Get-CatalogNodeId $node
         foreach ($child in $node.SelectNodes("./InitialEffect | ./PeriodicEffect | ./ExpireEffect | ./FinalEffect")) {
             Test-Ref "BehaviorData.xml" $id $child.Name "effect" (Get-AttrValue $child "value")
         }
@@ -189,8 +215,9 @@ function Validate-BehaviorRefs {
 
 function Validate-WeaponRefs {
     $xml = Get-CatalogXml "WeaponData.xml"
+    if ($null -eq $xml) { return }
     foreach ($node in $xml.SelectNodes("/Catalog/*[@id]")) {
-        $id = Get-AttrValue $node "id"
+        $id = Get-CatalogNodeId $node
         foreach ($child in $node.SelectNodes("./Effect | ./DisplayEffect")) {
             Test-Ref "WeaponData.xml" $id $child.Name "effect" (Get-AttrValue $child "value")
         }
@@ -199,8 +226,9 @@ function Validate-WeaponRefs {
 
 function Validate-RequirementRefs {
     $xml = Get-CatalogXml "RequirementData.xml"
+    if ($null -eq $xml) { return }
     foreach ($node in $xml.SelectNodes("/Catalog/CRequirement[@id]")) {
-        $id = Get-AttrValue $node "id"
+        $id = Get-CatalogNodeId $node
         foreach ($child in $node.SelectNodes("./NodeArray")) {
             Test-Ref "RequirementData.xml" $id "NodeArray.Link" "requirementNode" (Get-AttrValue $child "Link")
         }
