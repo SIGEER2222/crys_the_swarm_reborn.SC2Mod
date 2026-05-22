@@ -75,9 +75,10 @@ else {
 
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern "libE0EAE146_gf_AbathurCreateMapStartSquad" -Simple
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern "libE0EAE146_gv_abathurDebugEnabled = false" -Simple
+Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern "libE0EAE146_gv_allowAbathurDebugBank = false" -Simple
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern "libE0EAE146_gf_AbathurDebugIsEnabled" -Simple
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern "libE0EAE146_gf_AbathurCreateCargoSquad" -Simple
-Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern "if ((libE0EAE146_gv_abathurDebugEnabled == false))" -Simple
+Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern "libE0EAE146_gv_allowAbathurDebugBank == false" -Simple
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern "libE0EAE146_gf_AbathurDebugRefresh" -Simple
 
 Test-Contains -Path (Join-Path $xmAbathur "Base.SC2Data\GameData\UnitData.xml") -Pattern "CoopCasterAbathur" -Simple

@@ -2489,6 +2489,18 @@ bool gt_MiraHanGivesVulturestoPlayer_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
         lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
     }
+    else if (auto07E521E1_val == "Alarak") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        UnitCargoCreate(UnitLastCreated(), "Zealot", 2);
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
+    else if (auto07E521E1_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        UnitCargoCreate(UnitLastCreated(), "Hydralisk", 2);
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
     else if (auto07E521E1_val == "Mira") {
         libNtve_gf_CreateUnitsAtPoint2(2, "MedivacMira", 0, gv_p01_USER, PointFromId(1242));
         UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(1243)), c_orderQueueReplace);
