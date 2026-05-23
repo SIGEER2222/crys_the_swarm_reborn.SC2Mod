@@ -130,6 +130,16 @@ function Click-Absolute {
     Start-Sleep -Milliseconds $DelayMs
 }
 
+function Click-BattleNetLogin {
+    param([Sc2Live+RECT]$Rect)
+
+    $width = $Rect.Right - $Rect.Left
+    $height = $Rect.Bottom - $Rect.Top
+    $x = $Rect.Left + [math]::Round($width * 0.618)
+    $y = $Rect.Top + [math]::Round($height * 0.395)
+    Click-Absolute -X $x -Y $y -DelayMs 1500
+}
+
 function Invoke-TargetClicks {
     param(
         [string]$Spec,
@@ -266,6 +276,10 @@ if ($LaunchGame) {
 $proc = Wait-Sc2Window
 $rect = Focus-Sc2Window -Process $proc
 $before = Save-Screenshot -Name "${OutputPrefix}_before"
+if ($LaunchGame) {
+    Click-BattleNetLogin -Rect $rect
+    Start-Sleep -Seconds 8
+}
 
 $entryEvidence = $null
 if ($InitialLoadWaitMs -gt 0) {
