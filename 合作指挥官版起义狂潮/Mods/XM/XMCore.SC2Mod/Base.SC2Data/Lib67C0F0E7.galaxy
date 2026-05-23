@@ -2422,8 +2422,102 @@ void lib67C0F0E7_gf_CU_GPInitAbathur (int lp_player) {
     CutscenePlay(CutsceneGetTriggerControl(lib67C0F0E7_gv_cU_GPCutscene[lp_player]));
     
     // 阿巴瑟毒巢触发器初始化
-    gt_Abathur_ToxicNest_All_Init();
-    gt_Abathur_ToxicNest_Enable();
+    lib67C0F0E7_gf_AbathurToxicNestAllInit();
+    lib67C0F0E7_gf_AbathurToxicNestEnable();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbathurToxicNest
+//--------------------------------------------------------------------------------------------------
+bool lib67C0F0E7_gt_AbathurToxicNest_Func (bool testConds, bool runActions) {
+    unit lv_caster;
+    point lv_point;
+    int lv_owner;
+    unit lv_toxicNest;
+
+    if (testConds) {
+        lv_caster = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+        if ((lv_caster == null)) {
+            return false;
+        }
+        if ((UnitGetType(lv_caster) != "ToxicNest")) {
+            return false;
+        }
+    }
+
+    if (!runActions) {
+        return true;
+    }
+
+    lv_caster = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_point = UnitGetPosition(lv_caster);
+    lv_owner = UnitGetOwner(lv_caster);
+    UnitCreate(1, "ToxicNestBurrowed", c_unitCreateIgnorePlacement, lv_owner, lv_point, UnitGetFacing(lv_caster));
+    lv_toxicNest = UnitLastCreated();
+    UnitSetPropertyFixed(lv_toxicNest, c_unitPropLife, UnitGetPropertyFixed(lv_caster, c_unitPropLife, c_unitPropCurrent));
+    UnitSetPropertyFixed(lv_toxicNest, c_unitPropEnergy, UnitGetPropertyFixed(lv_caster, c_unitPropEnergy, c_unitPropCurrent));
+    if (UnitHasBehavior2(lv_caster, "AbathurImprovedToxicNest")) {
+        UnitBehaviorAdd(lv_toxicNest, "AbathurImprovedToxicNest", lv_toxicNest, 1);
+    }
+    if (UnitHasBehavior2(lv_caster, "AbathurHiddenToxicNest")) {
+        UnitBehaviorAdd(lv_toxicNest, "AbathurHiddenToxicNest", lv_toxicNest, 1);
+    }
+    if (UnitHasBehavior2(lv_caster, "AbathurToxicNestIcreasedBiomass")) {
+        UnitBehaviorAdd(lv_toxicNest, "AbathurToxicNestIcreasedBiomass", lv_toxicNest, 1);
+    }
+    if (UnitHasBehavior2(lv_caster, "AbathurToxicNestRespawnTalent")) {
+        UnitBehaviorAdd(lv_toxicNest, "AbathurToxicNestRespawnTalent", lv_toxicNest, 1);
+    }
+    UnitSetFacing(lv_toxicNest, UnitGetFacing(lv_caster), 0.0);
+    return true;
+}
+
+void lib67C0F0E7_gt_AbathurToxicNest_Init () {
+    lib67C0F0E7_gt_AbathurToxicNest = TriggerCreate("lib67C0F0E7_gt_AbathurToxicNest_Func");
+    TriggerEnable(lib67C0F0E7_gt_AbathurToxicNest, false);
+    TriggerAddEventPlayerEffectUsed(lib67C0F0E7_gt_AbathurToxicNest, c_playerAny, "SpawnToxicNest");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbathurToxicNestDeathFailsafe
+//--------------------------------------------------------------------------------------------------
+bool lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    UnitKill(EventPlayerEffectUsedUnit(c_effectUnitCaster));
+    return true;
+}
+
+void lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe_Init () {
+    lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe = TriggerCreate("lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe_Func");
+    TriggerEnable(lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe, false);
+    TriggerAddEventPlayerEffectUsed(lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe, c_playerAny, "KillCaster");
+}
+
+void lib67C0F0E7_gf_AbathurToxicNestAllInit () {
+    if ((lib67C0F0E7_gv_abathurToxicNestInitialized == true)) {
+        return;
+    }
+    lib67C0F0E7_gv_abathurToxicNestInitialized = true;
+    lib67C0F0E7_gt_AbathurToxicNest_Init();
+    lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe_Init();
+}
+
+void lib67C0F0E7_gf_AbathurToxicNestEnable () {
+    if ((lib67C0F0E7_gv_abathurToxicNestInitialized == false)) {
+        lib67C0F0E7_gf_AbathurToxicNestAllInit();
+    }
+    TriggerEnable(lib67C0F0E7_gt_AbathurToxicNest, true);
+    TriggerEnable(lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe, true);
+}
+
+void lib67C0F0E7_gf_AbathurToxicNestDisable () {
+    if ((lib67C0F0E7_gv_abathurToxicNestInitialized == false)) {
+        return;
+    }
+    TriggerEnable(lib67C0F0E7_gt_AbathurToxicNest, false);
+    TriggerEnable(lib67C0F0E7_gt_AbathurToxicNestDeathFailsafe, false);
 }
 
 void lib67C0F0E7_gf_CU_GPInitKerrigan (int lp_player) {
