@@ -42,7 +42,7 @@ Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml") -Pa
 Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\Lib67C0F0E7.galaxy") -Pattern 'lib67C0F0E7_gf_CU_GPInitAlarak' -Simple
 Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\Lib67C0F0E7_h.galaxy") -Pattern 'lib67C0F0E7_gf_CU_GPInitAlarak' -Simple
 
-Test-Contains -Path (Join-Path $launcherRoot "MapScript.galaxy") -Pattern 'const int gv_commanderNum = 10;' -Simple
+Test-Contains -Path (Join-Path $launcherRoot "MapScript.galaxy") -Pattern 'const int gv_commanderNum = 17;' -Simple
 Test-Contains -Path (Join-Path $launcherRoot "Base.SC2Data\GameData\UserData.xml") -Pattern 'String="Alarak"' -Simple
 Test-Contains -Path (Join-Path $launcherRoot "zhCN.SC2Data\LocalizedData\GameStrings.txt") -Pattern 'Alarak_TitU' -Simple
 

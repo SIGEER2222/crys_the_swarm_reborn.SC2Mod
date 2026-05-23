@@ -167,12 +167,12 @@ if ($RequireLauncherCandidate) {
         $launcherMapScript = Join-Path $launcherDir "MapScript.galaxy"
 
         foreach ($pattern in @(
-            'gv_commanderNum = 10',
+            'gv_commanderNum = 17',
             'String="Zagara"',
             'ID_Por_010',
             'btn-commander-zagara.dds'
         )) {
-            if ($pattern -eq 'gv_commanderNum = 10') {
+            if ($pattern -eq 'gv_commanderNum = 17') {
                 Test-Contains -Path $launcherMapScript -Pattern $pattern -Simple
             }
             else {

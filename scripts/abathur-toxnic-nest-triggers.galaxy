@@ -1,0 +1,122 @@
+//==================================================================================================
+// 阿巴瑟毒巢触发器 - 基于官方 libCOMI 数据
+// 简化版本用于 XMFinal 接入
+//==================================================================================================
+
+// 触发器：毒巢放置
+// 功能：当阿巴瑟放置毒巢时，创建一个埋地的毒巢单位
+trigger gt_Abathur_ToxicNest;
+
+// 触发器：毒巢死亡保护
+// 功能：当毒巢的施法者被杀死时，确保毒巢单位也被删除
+trigger gt_Abathur_ToxicNestDeathFailsafe;
+
+//==================================================================================================
+// 毒巢放置触发器
+//==================================================================================================
+bool gt_Abathur_ToxicNest_Func (bool testConds, bool runActions) {
+    // 条件检查
+    if (testConds) {
+        if (!((PlayerCommander(EventPlayerEffectUsedUnitOwner(c_effectUnitCaster)) == "Abathur"))) {
+            return false;
+        }
+        if (!((UnitGetType(EventPlayerEffectUsedUnit(c_effectUnitCaster)) == "ToxicNest"))) {
+            return false;
+        }
+    }
+
+    // 动作
+    if (!runActions) {
+        return true;
+    }
+
+    // 获取施法者位置
+    unit lv_caster = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    point lv_point = UnitGetPosition(lv_caster);
+    int lv_owner = UnitGetOwner(lv_caster);
+    
+    // 创建埋地毒巢
+    unit lv_toxicNest = UnitCreate(1, "ToxicNestBurrowed", c_unitCreateIgnorePlacementError, lv_owner, lv_point, 0.0);
+    
+    // 设置毒巢的生命值和能量
+    UnitSetPropertyFixed(lv_toxicNest, c_unitPropLife, UnitGetPropertyFixed(lv_caster, c_unitPropLife, c_unitPropCurrent));
+    UnitSetPropertyFixed(lv_toxicNest, c_unitPropEnergy, UnitGetPropertyFixed(lv_caster, c_unitPropEnergy, c_unitPropCurrent));
+    
+    // 复制强化标记
+    if (UnitHasBehavior2(lv_caster, "AbathurImprovedToxicNest")) {
+        UnitBehaviorAdd(lv_toxicNest, "AbathurImprovedToxicNest", 1);
+    }
+    if (UnitHasBehavior2(lv_caster, "AbathurHiddenToxicNest")) {
+        UnitBehaviorAdd(lv_toxicNest, "AbathurHiddenToxicNest", 1);
+    }
+    if (UnitHasBehavior2(lv_caster, "AbathurToxicNestIcreasedBiomass")) {
+        UnitBehaviorAdd(lv_toxicNest, "AbathurToxicNestIcreasedBiomass", 1);
+    }
+    if (UnitHasBehavior2(lv_caster, "AbathurToxicNestRespawnTalent")) {
+        UnitBehaviorAdd(lv_toxicNest, "AbathurToxicNestRespawnTalent", 1);
+    }
+    
+    // 设置朝向
+    UnitSetFacing(lv_toxicNest, UnitGetFacing(lv_caster));
+    
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+// 触发器初始化
+//--------------------------------------------------------------------------------------------------
+void gt_Abathur_ToxicNest_Init () {
+    gt_Abathur_ToxicNest = TriggerCreate("gt_Abathur_ToxicNest_Func");
+    TriggerEnable(gt_Abathur_ToxicNest, false);
+    TriggerAddEventPlayerEffectUsed(gt_Abathur_ToxicNest, c_playerAny, "SpawnToxicNest");
+}
+
+//==================================================================================================
+// 毒巢死亡保护触发器
+//==================================================================================================
+bool gt_Abathur_ToxicNestDeathFailsafe_Func (bool testConds, bool runActions) {
+    // 动作
+    if (!runActions) {
+        return true;
+    }
+
+    // 当毒巢施法者被杀死时，删除对应的埋地毒巢
+    UnitKill(EventPlayerEffectUsedUnit(c_effectUnitCaster));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+// 触发器初始化
+//--------------------------------------------------------------------------------------------------
+void gt_Abathur_ToxicNestDeathFailsafe_Init () {
+    gt_Abathur_ToxicNestDeathFailsafe = TriggerCreate("gt_Abathur_ToxicNestDeathFailsafe_Func");
+    TriggerEnable(gt_Abathur_ToxicNestDeathFailsafe, false);
+    TriggerAddEventPlayerEffectUsed(gt_Abathur_ToxicNestDeathFailsafe, c_playerAny, "KillCaster");
+}
+
+//==================================================================================================
+// 阿巴瑟毒巢触发器总初始化
+// 需要在阿巴瑟初始化时调用
+//==================================================================================================
+void gt_Abathur_ToxicNest_All_Init () {
+    gt_Abathur_ToxicNest_Init();
+    gt_Abathur_ToxicNestDeathFailsafe_Init();
+}
+
+//==================================================================================================
+// 启用阿巴瑟毒巢触发器
+// 当阿巴瑟指挥官被激活时调用
+//==================================================================================================
+void gt_Abathur_ToxicNest_Enable () {
+    TriggerEnable(gt_Abathur_ToxicNest, true);
+    TriggerEnable(gt_Abathur_ToxicNestDeathFailsafe, true);
+}
+
+//==================================================================================================
+// 禁用阿巴瑟毒巢触发器
+// 当阿巴瑟指挥官被停用时调用
+//==================================================================================================
+void gt_Abathur_ToxicNest_Disable () {
+    TriggerEnable(gt_Abathur_ToxicNest, false);
+    TriggerEnable(gt_Abathur_ToxicNestDeathFailsafe, false);
+}

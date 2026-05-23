@@ -1,3 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CUnit id="Zeratul">
+        <ScoreMake value="0"/>
+        <ScoreKill value="0"/>
+        <KillXP value="0"/>
+        <DamageDealtXP value="0"/>
+        <DamageTakenXP value="0"/>
+        <HotkeyCategory value=""/>
+    </CUnit>
+    <CUnit id="ZeratulVoid">
+        <ScoreMake value="0"/>
+        <ScoreKill value="0"/>
+        <KillXP value="0"/>
+        <DamageDealtXP value="0"/>
+        <DamageTakenXP value="0"/>
+        <HotkeyCategory value=""/>
+    </CUnit>
+    <CUnit id="ZeratulVoidAiur01">
+        <ScoreMake value="0"/>
+        <ScoreKill value="0"/>
+        <KillXP value="0"/>
+        <DamageDealtXP value="0"/>
+        <DamageTakenXP value="0"/>
+        <HotkeyCategory value=""/>
+    </CUnit>
+    <CUnit id="MutatorAmonZeratul">
+        <DeathRevealRadius value="3"/>
+        <Race value="Prot"/>
+        <Mob value="Campaign"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Locust" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Psionic" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <Attributes index="MapBoss" value="1"/>
+        <LifeStart value="300"/>
+        <LifeMax value="300"/>
+        <LifeArmor value="2"/>
+        <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+        <ShieldsStart value="100"/>
+        <ShieldsMax value="100"/>
+        <ShieldRegenDelay value="10"/>
+        <ShieldRegenRate value="2"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="3"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <Sight value="12"/>
+        <CostCategory value="Army"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="MutatorAmonZeratulBlink"/>
+        <AbilArray Link="MutatorAmonShadowBlade"/>
+        <AbilArray Link="MutatorAmonPrologueVoidArmor"/>
+        <AbilArray Link="Warpable"/>
+        <AbilArray Link="ProgressRally"/>
+        <BehaviorArray Link="Detector12"/>
+        <BehaviorArray Link="HeroDetectorRadar"/>
+        <BehaviorArray Link="VoidShade"/>
+        <WeaponArray Link="MutatorAmonPrologueZeratul"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="MutatorAmonZeratulBlink" Type="AbilCmd" AbilCmd="MutatorAmonZeratulBlink,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="MutatorAmonPrologueVoidArmor" Type="AbilCmd" AbilCmd="MutatorAmonPrologueVoidArmor,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="MutatorAmonShadowBlade" Type="AbilCmd" AbilCmd="MutatorAmonShadowBlade,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="MutatorAmonZeratulPermanentlyCloaked" Type="Passive" Row="2" Column="3"/>
+            <LayoutButtons Face="Detector" Type="Passive" Behavior="Detector12" Row="2" Column="4"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
+        </CardLayouts>
+        <CargoSize value="2"/>
+        <SubgroupPriority value="90"/>
+        <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
+        <AlliedPushPriority value="11"/>
+    </CUnit>
+    <CUnit id="Oracle">
+        <BehaviorArray Link="AllUnitBehaviorController"/>
+        <BehaviorArray Link="CorsairPermanentCloak"/>
+        <BehaviorArray Link="VorazunCloakedShieldRegenPermanent"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="6" Face="OracleWeaponOn" AbilCmd="OracleWeapon,On"/>
+            <LayoutButtons index="7" Column="2"/>
+            <LayoutButtons index="8" Face="OracleRevelation" AbilCmd="OracleRevelation,Execute" Column="0"/>
+            <LayoutButtons index="9" Column="1"/>
+            <LayoutButtons Face="PermanentlyCloakedOracle" Type="Passive" Requirements="HaveCorsairPermanentCloak" Row="2" Column="4"/>
+            <LayoutButtons Face="HaveOracleStasisWardUpgrade" Type="Passive" Requirements="HaveOracleStasisWardUpgrade" Row="2" Column="3"/>
+        </CardLayouts>
+        <ScoreMake value="0"/>
+        <ScoreKill value="0"/>
+        <CostResource index="Minerals" value="100"/>
+        <CostResource index="Vespene" value="75"/>
+        <RepairTime value="18.75"/>
+        <TacticalAIChannel value="AIChannelOracle"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionNerazim"/>
+        <HotkeyCategory value="Unit/Category/ProtossStory"/>
+        <SubgroupPriority value="117"/>
+    </CUnit>
+    <CUnit id="OracleStasisTrap">
+        <AttackTargetPriority value="30"/>
+        <Attributes index="Summoned" value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionNerazim"/>
+    </CUnit>
+    <CUnit id="CarrierTaldarim">
+        <RepairTime value="80"/>
+        <DamageDealtXP value="0"/>
+        <DamageTakenXP value="0"/>
+        <KillXP value="0"/>
+        <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+        <ScoreMake value="0"/>
+        <ScoreKill value="0"/>
+    </CUnit>
+    <CUnit id="ColossusTaldarim">
+        <DamageDealtXP value="0"/>
+        <DamageTakenXP value="0"/>
+        <KillXP value="0"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="DarkTemplarTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="HighTemplarTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="ImmortalTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="SentryTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="VoidRayTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="WarpPrismTaldarim">
+        <AbilArray Link="PhasingModeTaldarim"/>
+    </CUnit>
+    <CUnit id="ZealotTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="StalkerTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="ObserverTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="ImmortalTaldarim">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="PhotonCannonTaldarim">
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="PylonTaldarim">
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="GatewayTaldarim">
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="CyberneticsCoreTaldarim">
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="RoboticsFacilityTaldarim">
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="StargateTaldarim">
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
+    <CUnit id="NexusTaldarim">
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionTaldarim"/>
+        <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+    </CUnit>
 </Catalog>

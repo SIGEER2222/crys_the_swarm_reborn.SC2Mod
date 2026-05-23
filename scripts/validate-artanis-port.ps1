@@ -58,8 +58,8 @@ function Test-ArtanisLauncherCandidate {
     param([switch]$Required)
 
     $sourceLauncherFiles = @(
-        @{ Path = Join-Path $projectRoot.FullName "tools\launcher_mpq\MapScript.galaxy"; Pattern = 'gv_commanderNum = 12'; Label = 'launcher source Artanis loop max index' },
-        @{ Path = Join-Path $projectRoot.FullName "tools\launcher_mpq\Base.SC2Data\GameData\UserData.xml"; Pattern = 'Count="13"'; Label = 'launcher source Artanis candidate count' },
+        @{ Path = Join-Path $projectRoot.FullName "tools\launcher_mpq\MapScript.galaxy"; Pattern = 'gv_commanderNum = 17'; Label = 'launcher source Artanis loop max index' },
+        @{ Path = Join-Path $projectRoot.FullName "tools\launcher_mpq\Base.SC2Data\GameData\UserData.xml"; Pattern = 'Count="18"'; Label = 'launcher source Artanis candidate count' },
         @{ Path = Join-Path $projectRoot.FullName "tools\launcher_mpq\Base.SC2Data\GameData\UserData.xml"; Pattern = 'String="Artanis"'; Label = 'launcher source Artanis commander id' },
         @{ Path = Join-Path $projectRoot.FullName "tools\launcher_mpq\Base.SC2Data\GameData\UserData.xml"; Pattern = 'ID_Por_012'; Label = 'launcher source Artanis portrait text link' },
         @{ Path = Join-Path $projectRoot.FullName "tools\launcher_mpq\Base.SC2Data\GameData\UserData.xml"; Pattern = 'ui_btn_commanderportrait_artanis.dds'; Label = 'launcher source Artanis button image link' },
@@ -123,8 +123,8 @@ x
         }
 
         $launcherChecks = @(
-            @{ Path = Join-Path $extractRoot "MapScript.galaxy"; Pattern = 'gv_commanderNum = 12'; Label = 'packed Launcher Artanis loop max index' },
-            @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'Count="13"'; Label = 'packed Launcher Artanis candidate count' },
+            @{ Path = Join-Path $extractRoot "MapScript.galaxy"; Pattern = 'gv_commanderNum = 17'; Label = 'packed Launcher Artanis loop max index' },
+            @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'Count="18"'; Label = 'packed Launcher Artanis candidate count' },
             @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'String="Artanis"'; Label = 'packed Launcher Artanis commander id' },
             @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'ID_Por_012'; Label = 'packed Launcher Artanis portrait text link' },
             @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'ui_btn_commanderportrait_artanis.dds'; Label = 'packed Launcher Artanis button image link' },

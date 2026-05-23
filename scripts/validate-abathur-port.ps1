@@ -9,6 +9,29 @@ $xmFinal = Join-Path $xmRoot "XMFinal.SC2Mod"
 $xmCore = Join-Path $xmRoot "XMCore.SC2Mod"
 $xmAbathur = Join-Path $xmRoot "XMAbathur.SC2Mod"
 $manifestPath = Join-Path $WorkspaceRoot "docs\official-abathur-import-manifest.md"
+$launcherSourceRoot = Join-Path $WorkspaceRoot "tools\launcher_mpq"
+$launcherAutoRoot = Join-Path $WorkspaceRoot "合作指挥官版起义狂潮\Maps\XM\LauncherAuto.SC2Map"
+$launcherRoots = @($launcherSourceRoot, $launcherAutoRoot)
+$requiredLauncherCommanders = @(
+    "Stukov",
+    "Dehaka",
+    "Tychus",
+    "Mira",
+    "Nova",
+    "Mengsk",
+    "Swann",
+    "Stetmann",
+    "Raynor",
+    "Fenix",
+    "Zagara",
+    "Vorazun",
+    "Artanis",
+    "Karax",
+    "Zeratul",
+    "Abathur",
+    "Alarak",
+    "Kerrigan"
+)
 
 $errors = New-Object System.Collections.Generic.List[string]
 
@@ -65,6 +88,56 @@ function Test-AnyContains {
     return $false
 }
 
+function Test-XmlParse {
+    param([string]$Path)
+
+    if (-not (Test-Path $Path)) {
+        Add-Error "Missing XML file: $Path"
+        return
+    }
+
+    try {
+        [xml](Get-Content -Path $Path -Raw -Encoding UTF8) | Out-Null
+    }
+    catch {
+        Add-Error "Invalid XML: $Path :: $($_.Exception.Message)"
+    }
+}
+
+function Test-LauncherCommanderPreset {
+    param([string]$Root)
+
+    $scriptPath = Join-Path $Root "MapScript.galaxy"
+    $userDataPath = Join-Path $Root "Base.SC2Data\GameData\UserData.xml"
+    $gameStringsPath = Join-Path $Root "zhCN.SC2Data\LocalizedData\GameStrings.txt"
+
+    Test-Contains -Path $scriptPath -Pattern "const int gv_commanderNum = 17;" -Simple
+    Test-XmlParse -Path $userDataPath
+    Test-Contains -Path $userDataPath -Pattern '<Fields Id="Commander" Type="String" Count="18"/>' -Simple
+    Test-Contains -Path $userDataPath -Pattern '<Fields Id="Por" Type="Text" Count="18"/>' -Simple
+    Test-Contains -Path $userDataPath -Pattern '<Fields Id="CommanderPortrait" Type="Image" Count="18"/>' -Simple
+
+    foreach ($commander in $requiredLauncherCommanders) {
+        Test-Contains -Path $userDataPath -Pattern "<String String=`"$commander`">" -Simple
+    }
+
+    $requiredPortraits = @(
+        "Assets\Textures\ui_btn_commanderportrait_abathur.dds",
+        "Assets\Textures\ui_btn_commanderportrait_alarak.dds",
+        "Assets\Textures\ui_btn_commanderportrait_kerrigan.dds"
+    )
+
+    foreach ($portrait in $requiredPortraits) {
+        Test-Contains -Path $userDataPath -Pattern $portrait -Simple
+        Test-Contains -Path $gameStringsPath -Pattern $portrait -Simple
+    }
+
+    foreach ($key in @("ID_Por_015", "ID_Por_016", "ID_Por_017")) {
+        Test-Contains -Path $userDataPath -Pattern "UserData/CommanderPreset/$key" -Simple
+        Test-Contains -Path $gameStringsPath -Pattern "UserData/CommanderPreset/$key=" -Simple
+    }
+}
+
 if (-not (Test-Path $manifestPath)) {
     Add-Error "Missing manifest: $manifestPath"
 }
@@ -88,8 +161,10 @@ Test-Contains -Path (Join-Path $xmAbathur "Base.SC2Data\GameData\EffectData.xml"
 
 Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml") -Pattern '<CUser id="CommanderAch">' -Simple
 Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml") -Pattern '<Instances Id="Abathur">' -Simple
-Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml") -Pattern '<Count value="8" />' -Simple
-Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml") -Pattern '<Count value="6" />' -Simple
+
+foreach ($launcherRoot in $launcherRoots) {
+    Test-LauncherCommanderPreset -Root $launcherRoot
+}
 
 $requiredMaps = @(
     "traynor01",
