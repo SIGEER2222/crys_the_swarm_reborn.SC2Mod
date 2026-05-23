@@ -48,9 +48,9 @@ Add-Check 'XMFinal helper declarations' ((Test-Contains $xmFinalHeader 'libE0EAE
 Add-Check 'XMFinal initialize branch' ((Test-Contains $xmFinalGalaxy 'else if ((libE0EAE146_gv_commander == "Zeratul"))') -and (Test-Contains $xmFinalGalaxy 'CoopCasterZeratul')) $xmFinalGalaxy
 Add-Check 'Official Zeratul objects imported' ((Test-Contains $futureCommanders 'CoopCasterZeratul') -and (Test-Contains $futureCommanders 'ZeratulCommander') -and (Test-Contains $futureCommanders 'ZeratulTopBarWarpTrain')) $futureCommanders
 Add-Check 'XMRaynor localized commander text' ((Test-Contains $xmRaynorStrings 'UserData/PlayerCommanders/ProtossZeratul_Name=泽拉图') -and (Test-Contains $xmRaynorStrings 'Button/Tooltip/ZeratulMapWideStasis=')) $xmRaynorStrings
-Add-Check 'Launcher source count' (Test-Contains $launcherSourceScript 'const int gv_commanderNum = 14;') $launcherSourceScript
+Add-Check 'Launcher source count' (Test-Contains $launcherSourceScript 'const int gv_commanderNum = 17;') $launcherSourceScript
 Add-Check 'Launcher source candidate' ((Test-Contains $launcherSourceUserData '<String String="Zeratul">') -and (Test-Contains $launcherSourceStrings 'UserData/CommanderPreset/ID_Por_014=')) $launcherSourceUserData
-Add-Check 'Launcher auto count' (Test-Contains $launcherAutoScript 'const int gv_commanderNum = 14;') $launcherAutoScript
+Add-Check 'Launcher auto count' (Test-Contains $launcherAutoScript 'const int gv_commanderNum = 17;') $launcherAutoScript
 Add-Check 'Launcher auto candidate' ((Test-Contains $launcherAutoUserData '<String String="Zeratul">') -and (Test-Contains $launcherAutoStrings 'UserData/CommanderPreset/ID_Por_014=')) $launcherAutoUserData
 Add-Check 'ttychus03 Zeratul branch' (Test-Contains $ttychus03 'else if (autoBEEAC669_val == "Zeratul")') $ttychus03
 

@@ -181,7 +181,7 @@ if ($RequireLauncherCandidate) {
         $launcherStrings = Join-Path $launcherDir "zhCN.SC2Data\LocalizedData\GameStrings.txt"
         $launcherMapScript = Join-Path $launcherDir "MapScript.galaxy"
 
-        Test-Contains -Path $launcherMapScript -Pattern 'gv_commanderNum = 12' -Simple
+        Test-Contains -Path $launcherMapScript -Pattern 'gv_commanderNum = 17' -Simple
         Test-Contains -Path $launcherUserData -Pattern 'String="Vorazun"' -Simple
         Test-Contains -Path $launcherUserData -Pattern 'btn-commander-vorazun.dds' -Simple
         Test-Contains -Path $launcherStrings -Pattern 'UserData/CommanderPreset/ID_Por_011=<img path="Assets\Textures\btn-commander-vorazun.dds"' -Simple

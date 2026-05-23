@@ -81,9 +81,19 @@
 | Abil/Name/SOAOrbitalStrikeKarax | 轨道轰炸 |
 | Abil/Name/SOAThermalLanceActivate | 净化光束 |
 
+### 面板模板说明
+
+**当前配置**: `CU_GPInit(1, "Karax", UnitLastCreated(), null)`
+
+**说明**: 
+- 第四个参数传入 `null` 表示使用默认面板模板
+- 官方数据中**没有独立的 `KaraxGlobalCommandPanelTemplate`**
+- 这与阿巴瑟类似，凯拉克斯不像德哈卡那样有专属的面板模板
+- 传入 `null` 是正确的做法，使用默认的 Protoss 面板模板
+
 ## 待收口
 
-### 实机验证
+### 实机验证 ⚠️
 
 当前所有链路均为静态确认，尚未实机验证。需在游戏中实际选 Karax 进图确认：
 
@@ -102,10 +112,6 @@ Karax 作为 Protoss 三雄之一（Artanis 体系），需要在关键合作地
 - 连接面板按钮
 - 基地 / 开局资源配置
 
-### 面板效果
-
-当前 `ApplyKaraxCommanderRuntime` 只设置了 TechTreeAbilityAllow 和 UpgradeLevel。Karax 的亚顿之矛面板（能量恢复、被动物等）需要通过 `lib67C0F0E7_gf_CU_GPInit(1, "Karax", UnitLastCreated(), null)` 的第四个参数（面板模板）来激活。当前传入的是 `null`，可能需要替换为 Karax 专用的面板布局。
-
 ### 声望（Prestige）
 
 XMKarax 包含 7 个 Prestige 定义，但 Galaxy runtime 中尚未接入 Prestige 分支逻辑（类似 Artanis/Vorazun 的声望选择）。
@@ -122,3 +128,4 @@ scripts/validate-karax-port.ps1
 ## 结论
 
 Karax 的数据层和 runtime 调度层已完整接入 XMFinal 体系，中文文本和 Launcher 候选也已配置。当前状态为**静态链路闭环，实机待验证收口**。
+

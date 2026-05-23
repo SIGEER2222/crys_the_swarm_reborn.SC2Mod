@@ -105,8 +105,8 @@ x
         }
 
         $launcherChecks = @(
-            @{ Path = Join-Path $extractRoot "MapScript.galaxy"; Pattern = 'gv_commanderNum = 8'; Label = 'Launcher Raynor loop count' },
-            @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'Count="9"'; Label = 'Launcher Raynor candidate count' },
+            @{ Path = Join-Path $extractRoot "MapScript.galaxy"; Pattern = 'gv_commanderNum = 17'; Label = 'Launcher Raynor loop count' },
+            @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'Count="18"'; Label = 'Launcher Raynor candidate count' },
             @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'String="Raynor"'; Label = 'Launcher Raynor commander id' },
             @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'ID_Por_008'; Label = 'Launcher Raynor portrait text link' },
             @{ Path = Join-Path $extractRoot "Base.SC2Data\GameData\UserData.xml"; Pattern = 'ui_btn_commanderportrait_raynor.dds'; Label = 'Launcher Raynor button image link' },

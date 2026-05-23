@@ -2420,6 +2420,10 @@ void lib67C0F0E7_gf_CU_GPInitAbathur (int lp_player) {
     DialogControlSetVisible(lib67C0F0E7_gv_cU_GPPanel[lp_player], PlayerGroupAll(), false);
     libNtve_gf_SetDialogItemCutscene(lib67C0F0E7_gv_cU_GPCutscene[lp_player], "Cutscenes\\UI_ZergCastingPanel.SC2Cutscene", PlayerGroupAll());
     CutscenePlay(CutsceneGetTriggerControl(lib67C0F0E7_gv_cU_GPCutscene[lp_player]));
+    
+    // 阿巴瑟毒巢触发器初始化
+    gt_Abathur_ToxicNest_All_Init();
+    gt_Abathur_ToxicNest_Enable();
 }
 
 void lib67C0F0E7_gf_CU_GPInitKerrigan (int lp_player) {
