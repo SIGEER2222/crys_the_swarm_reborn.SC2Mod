@@ -519,6 +519,31 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
         libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
     }
+    else if (auto935BE165_val == "Zagara") {
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
+    }
+    else if (auto935BE165_val == "Fenix") {
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
+    }
+    else if (auto935BE165_val == "Artanis") {
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
+    }
+    else if (auto935BE165_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
+    }
+    else if (auto935BE165_val == "Zeratul") {
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
+    }
     else {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "WarPig", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "WarPig", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
@@ -5065,7 +5090,35 @@ bool gt_IntroCinematic_Func (bool testConds, bool runActions) {
     else if (auto440B2AF1_val == "Alarak") {
         UnitCargoCreate(gv_introDropship, "AlarakCoop", 1);
         gv_raynor = UnitCargoLastCreated();
-        UnitCargoCreate(gv_introDropship, "Zealot", 4);
+        libE0EAE146_gf_AlarakCreateCargoSquad(gv_introDropship, "hero");
+    }
+    else if (auto440B2AF1_val == "Raynor") {
+        UnitCargoCreate(gv_introDropship, "RaynorCommando", 1);
+        gv_raynor = UnitCargoLastCreated();
+        libE0EAE146_gf_RaynorCreateCargoSquad(gv_introDropship, "light");
+    }
+    else if (auto440B2AF1_val == "Fenix") {
+        UnitCargoCreate(gv_introDropship, "FenixDragoon", 1);
+        gv_raynor = UnitCargoLastCreated();
+        libE0EAE146_gf_FenixCreateCargoSquad(gv_introDropship, "light");
+    }
+    else if (auto440B2AF1_val == "Artanis") {
+        UnitCargoCreate(gv_introDropship, "Dragoon", 1);
+        gv_raynor = UnitCargoLastCreated();
+        libE0EAE146_gf_ArtanisCreateCargoSquad(gv_introDropship, "light");
+    }
+    else if (auto440B2AF1_val == "Zagara") {
+        UnitCargoCreate(gv_introDropship, "ZagaraVoidCoop", 1);
+        gv_raynor = UnitCargoLastCreated();
+        libE0EAE146_gf_ZagaraCreateCargoSquad(gv_introDropship, "hero");
+    }
+    else if (auto440B2AF1_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateCargoSquad(gv_introDropship, "hero");
+    }
+    else if (auto440B2AF1_val == "Zeratul") {
+        UnitCargoCreate(gv_introDropship, "ZeratulCoop", 1);
+        gv_raynor = UnitCargoLastCreated();
+        libE0EAE146_gf_ZeratulCreateCargoSquad(gv_introDropship, "light");
     }
     else if (auto440B2AF1_val == "Kerrigan") {
         UnitCargoCreate(gv_introDropship, "K5Kerrigan", 1);
@@ -5331,6 +5384,26 @@ bool gt_IntroCleanupEscape_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "LarvaPStetmann", 0, 1, PointFromId(505));
         libNtve_gf_CreateUnitsAtPoint2(1, "HydraliskStetmann", 0, gv_p1_USER, PointFromId(415));
         libNtve_gf_CreateUnitsAtPoint2(1, "HydraliskStetmann", 0, gv_p1_USER, PointFromId(581));
+    }
+    else if (autoACB5ADFA_val == "Raynor") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "RaynorCommando", 0, gv_p1_USER, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+        libE0EAE146_gf_RaynorCreateMapStartSquad("light", gv_p1_USER, PointFromId(415));
+    }
+    else if (autoACB5ADFA_val == "Fenix") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "FenixDragoon", 0, gv_p1_USER, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", gv_p1_USER, PointFromId(415));
+    }
+    else if (autoACB5ADFA_val == "Artanis") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Dragoon", 0, gv_p1_USER, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", gv_p1_USER, PointFromId(415));
+    }
+    else if (autoACB5ADFA_val == "Zeratul") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "ZeratulCoop", 0, gv_p1_USER, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", gv_p1_USER, PointFromId(415));
     }
     else {
     }

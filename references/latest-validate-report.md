@@ -1,6 +1,6 @@
 # Common Reference Validation Report
 
-Generated at: 2026-05-22 21:40:24
+Generated at: 2026-05-23 15:00:23
 Mod root: C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合作指挥官版起义狂潮\Mods\XM\XMFinal.SC2Mod
 
 Local unresolved refs: **47**

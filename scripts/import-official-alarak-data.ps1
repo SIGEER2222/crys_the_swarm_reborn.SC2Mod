@@ -36,7 +36,7 @@ $seedIds = @(
     "Nexus", "Probe", "Pylon", "Gateway", "WarpGate", "CyberneticsCore", "TwilightCouncil", "RoboticsFacility", "Stargate", "Forge", "TemplarArchive", "RoboticsBay", "FleetBeacon",
     "AlarakACDeadlyCharge", "AlarakKnockbackAlarak", "AlarakEmpower", "AlarakACSummonDeathfleet", "AlarakACSummonDeathfleetTarget", "AlarakACMyLifefortheHighlord", "AlarakStructureOvercharge",
     "CommanderPrestigeAlarakMech", "CommanderPrestigeAlarakEmpowerMe", "CommanderPrestigeAlarakDeathFleet", "CommanderPrestigeAlarakDeathFleetMastery", "CommanderPrestigeAlarakDeathFleetPerk",
-    "AlarakHavocAbilityRange", "AlarakACSupplicantAttackAir", "AlarakDestructionWaveDistance", "AlarakLightningStrikes", "AlarakAreaDamageUpgrade", "AlarakAttackStun",
+    "AlarakHavocAbilityRange", "AlarakACSupplicantAttackAir", "AlarakDestructionWaveDistance", "AlarakSupplicantSacrificeLightningStrikes", "AlarakAreaDamageUpgrade", "AlarakAttackStun",
     "MasteryAlarakAutoAttackDamage", "MasteryAlarakAbilityDamage", "MasteryAlarakDeathfleetCooldown", "MasteryAlarakChronoBoostEfficiency", "MasteryAlarakStructureOverchargeShieldAndAttackSpeed", "MasteryAlarakAttackSpeed"
 )
 

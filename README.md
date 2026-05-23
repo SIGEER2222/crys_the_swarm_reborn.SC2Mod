@@ -30,6 +30,32 @@
 3. 运行 `scripts\\sync-to-live.ps1`
 4. 进游戏验证
 
+## Codex 自治规则
+
+如果后续希望 Codex 在这个仓库里少打断、连续推进、自己收口，优先看：
+
+- `AGENTS.md`
+- `docs\\Codex自治执行规则.md`
+- `docs\\Codex长跑基础提示词.md`
+- `docs\\Codex双会话基础提示词.md`
+- `docs\\Codex恢复策略.md`
+
+配套心跳与 watchdog：
+
+- `scripts\\codex-heartbeat.ps1`
+- `scripts\\codex-watchdog.ps1`
+- `scripts\\codex-dual-watchdog.ps1`
+- `scripts\\codex-watchdog-task.ps1`
+
+如果你想用“定时 PowerShell / 计划任务”方式长期盯双会话，优先用：
+
+- 安装：
+  `pwsh -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\codex-watchdog-task.ps1 -Action install -Mode dual -TaskName CodexDualWatchdog -IntervalMinutes 5`
+- 查看状态：
+  `pwsh -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\codex-watchdog-task.ps1 -Action status -TaskName CodexDualWatchdog`
+- 卸载：
+  `pwsh -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\codex-watchdog-task.ps1 -Action uninstall -TaskName CodexDualWatchdog`
+
 ## 索引工具
 
 现在统一从 `scripts\\mod-index.ps1` 进入，老脚本仍然保留做兼容。

@@ -2491,7 +2491,7 @@ bool gt_MiraHanGivesVulturestoPlayer_Func (bool testConds, bool runActions) {
     }
     else if (auto07E521E1_val == "Alarak") {
         libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
-        UnitCargoCreate(UnitLastCreated(), "Zealot", 2);
+        libE0EAE146_gf_AlarakCreateCargoSquad(UnitLastCreated(), "light");
         Wait(1.0, c_timeGame);
         lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
     }
@@ -2528,6 +2528,36 @@ bool gt_MiraHanGivesVulturestoPlayer_Func (bool testConds, bool runActions) {
     else if (auto07E521E1_val == "Abathur") {
         libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
         libE0EAE146_gf_AbathurCreateCargoSquad(UnitLastCreated(), "hero");
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
+    else if (auto07E521E1_val == "Zagara") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        libE0EAE146_gf_ZagaraCreateCargoSquad(UnitLastCreated(), "hero");
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
+    else if (auto07E521E1_val == "Fenix") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        libE0EAE146_gf_FenixCreateCargoSquad(UnitLastCreated(), "hero");
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
+    else if (auto07E521E1_val == "Artanis") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        libE0EAE146_gf_ArtanisCreateCargoSquad(UnitLastCreated(), "hero");
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
+    else if (auto07E521E1_val == "Vorazun") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        libE0EAE146_gf_VorazunCreateCargoSquad(UnitLastCreated(), "hero");
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
+    else if (auto07E521E1_val == "Zeratul") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        libE0EAE146_gf_ZeratulCreateCargoSquad(UnitLastCreated(), "hero");
         Wait(1.0, c_timeGame);
         lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
     }

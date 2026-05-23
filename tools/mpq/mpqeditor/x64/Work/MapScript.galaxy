@@ -1,0 +1,1036 @@
+//==================================================================================================
+// 
+// Generated Map Script
+// 
+// Name:   Launcher
+// 
+//==================================================================================================
+include "TriggerLibs/NativeLib"
+include "Lib67C0F0E7"
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+void InitLibs () {
+    libNtve_InitLib();
+    lib67C0F0E7_InitLib();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Constants
+//--------------------------------------------------------------------------------------------------
+const int gv_commanderNum = 7;
+const int gv_achN = 7;
+const int gv_bonN = 5;
+const int gv_maps = 29;
+
+//--------------------------------------------------------------------------------------------------
+// Global Structures
+//--------------------------------------------------------------------------------------------------
+struct gs_DialogGroupAch {
+    int lv_btn;
+    int lv_cost;
+};
+
+struct gs_DialogGroupBon {
+    int[4] lv_btn;
+    int lv_title;
+    int lv_text;
+    int lv_val;
+};
+
+//--------------------------------------------------------------------------------------------------
+// Global Variables
+//--------------------------------------------------------------------------------------------------
+int gv_commanderIndex;
+int gv_achBitMask;
+int[gv_commanderNum + 1] gv_selectionBorder;
+int[gv_commanderNum + 1] gv_commanderBtn;
+int gv_commanderBtnHolder;
+string gv_commander;
+int gv_cleanBank;
+int gv_achHolder;
+int gv_achLabel;
+gs_DialogGroupAch[gv_achN + 1] gv_ach;
+int gv_achievementPoints;
+int gv_bonHolder;
+int gv_bonLabel;
+gs_DialogGroupBon[gv_bonN + 1] gv_bon;
+int gv_levelHolder;
+int[4] gv_difficulty;
+int gv_difficultyHolder;
+int[gv_maps + 1] gv_mapButtons;
+
+void InitGlobals () {
+    int init_i;
+    int init_i1;
+
+    for (init_i = 0; init_i <= gv_commanderNum; init_i += 1) {
+        gv_selectionBorder[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= gv_commanderNum; init_i += 1) {
+        gv_commanderBtn[init_i] = c_invalidDialogControlId;
+    }
+    gv_commanderBtnHolder = c_invalidDialogId;
+    gv_commander = "";
+    gv_cleanBank = c_invalidDialogControlId;
+    gv_achHolder = c_invalidDialogId;
+    gv_achLabel = c_invalidDialogControlId;
+    for (init_i = 0; init_i <= gv_achN; init_i += 1) {
+        gv_ach[init_i].lv_btn = c_invalidDialogControlId;
+    }
+    gv_bonHolder = c_invalidDialogId;
+    gv_bonLabel = c_invalidDialogControlId;
+    for (init_i = 0; init_i <= gv_bonN; init_i += 1) {
+        for (init_i1 = 0; init_i1 <= 3; init_i1 += 1) {
+            gv_bon[init_i].lv_btn[init_i1] = c_invalidDialogControlId;
+        }
+        gv_bon[init_i].lv_title = c_invalidDialogControlId;
+        gv_bon[init_i].lv_text = c_invalidDialogControlId;
+    }
+    gv_levelHolder = c_invalidDialogId;
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        gv_difficulty[init_i] = c_invalidDialogControlId;
+    }
+    gv_difficultyHolder = c_invalidDialogId;
+    for (init_i = 0; init_i <= gv_maps; init_i += 1) {
+        gv_mapButtons[init_i] = c_invalidDialogControlId;
+    }
+}
+
+//--------------------------------------------------------------------------------------------------
+// Global Function Declarations
+//--------------------------------------------------------------------------------------------------
+void gf_UpdateAch ();
+void gf_DialogGroupAch (text lp_title, text lp_toolTip, int lp_cost, int lp_yoffset, int lp_i);
+void gf_DialogGroupBon (text lp_title, text lp_toolTip, int lp_yOffset, int lp_i);
+
+//--------------------------------------------------------------------------------------------------
+// Trigger Variables
+//--------------------------------------------------------------------------------------------------
+trigger gt_Main;
+trigger gt_LevelUI;
+trigger gt_LevelNext;
+trigger gt_CleanBankUI;
+trigger gt_CleanBankOnC;
+trigger gt_CleanBankF;
+trigger gt_CommanderUI;
+trigger gt_CommanderChange;
+trigger gt_AchUI;
+trigger gt_AchSet;
+trigger gt_BonSet;
+trigger gt_SaveBank;
+trigger gt_DifficultyUI;
+trigger gt_DifficultySet;
+
+//--------------------------------------------------------------------------------------------------
+// Global Functions
+//--------------------------------------------------------------------------------------------------
+void gf_UpdateAch () {
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+
+    // Automatic Variable Declarations
+    const int auto80822571_ae = gv_achN;
+    const int auto80822571_ai = 1;
+    const int auto9BBBB52C_ae = gv_bonN;
+    const int auto9BBBB52C_ai = 1;
+
+    // Variable Initialization
+
+    // Implementation
+    BankLoad("CampaignXCore", 1);
+    gv_achievementPoints = BankValueGetAsInt(BankLastCreated(), "Finished", "Finished");
+    gv_achBitMask = BankValueGetAsInt(BankLastCreated(), gv_commander, "AchBit");
+    lv_i = 0;
+    for ( ; ( (auto80822571_ai >= 0 && lv_i <= auto80822571_ae) || (auto80822571_ai < 0 && lv_i >= auto80822571_ae) ) ; lv_i += auto80822571_ai ) {
+        lv_j += 1;
+        gv_ach[lv_i].lv_cost = UserDataGetInt("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "Cost", lv_j);
+        if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(gv_achBitMask, lv_i) == true)) {
+            gv_achievementPoints -= gv_ach[lv_i].lv_cost;
+            libNtve_gf_SetDialogItemDesaturated(gv_ach[lv_i].lv_btn, true, PlayerGroupAll());
+        }
+        else {
+            libNtve_gf_SetDialogItemDesaturated(gv_ach[lv_i].lv_btn, false, PlayerGroupAll());
+        }
+        TextExpressionSetToken("Param/Expression/211AB068", "A", UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "TitU", lv_j));
+        TextExpressionSetToken("Param/Expression/211AB068", "B", IntToText(gv_ach[lv_i].lv_cost));
+        libNtve_gf_SetDialogItemText(gv_ach[lv_i].lv_btn, TextExpressionAssemble("Param/Expression/211AB068"), PlayerGroupAll());
+        libNtve_gf_SetDialogItemTooltip(gv_ach[lv_i].lv_btn, UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "DesU", lv_j), PlayerGroupAll());
+    }
+    lv_j = 0;
+    lv_i = 0;
+    for ( ; ( (auto9BBBB52C_ai >= 0 && lv_i <= auto9BBBB52C_ae) || (auto9BBBB52C_ai < 0 && lv_i >= auto9BBBB52C_ae) ) ; lv_i += auto9BBBB52C_ai ) {
+        gv_bon[lv_i].lv_val = BankValueGetAsInt(BankLastCreated(), gv_commander, IntToString(lv_i));
+        gv_achievementPoints -= gv_bon[lv_i].lv_val;
+        lv_j += 1;
+        libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_title, UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "TitP", lv_j), PlayerGroupAll());
+        libNtve_gf_SetDialogItemTooltip(gv_bon[lv_i].lv_title, UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "DesP", lv_j), PlayerGroupAll());
+        libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_text, IntToText(gv_bon[lv_i].lv_val), PlayerGroupAll());
+    }
+}
+
+void gf_DialogGroupAch (text lp_title, text lp_toolTip, int lp_cost, int lp_yoffset, int lp_i) {
+    // Variable Declarations
+    int lv_x;
+    int lv_y;
+    int lv_xoffset;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_x = 200;
+    lv_y = 60;
+    lv_xoffset = 110;
+
+    // Implementation
+    if ((ModI(lp_i, 2) == 0)) {
+        TextExpressionSetToken("Param/Expression/74A8044D", "A", lp_title);
+        TextExpressionSetToken("Param/Expression/74A8044D", "B", IntToText(lp_cost));
+        libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_x, lv_y, c_anchorTop, (-lv_xoffset), lp_yoffset, lp_toolTip, TextExpressionAssemble("Param/Expression/74A8044D"), "");
+        libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize24", PlayerGroupAll());
+    }
+    else {
+        TextExpressionSetToken("Param/Expression/6445E51E", "A", lp_title);
+        TextExpressionSetToken("Param/Expression/6445E51E", "B", IntToText(lp_cost));
+        libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_x, lv_y, c_anchorTop, (lv_xoffset), lp_yoffset, lp_toolTip, TextExpressionAssemble("Param/Expression/6445E51E"), "");
+        libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize24", PlayerGroupAll());
+    }
+    gv_ach[lp_i].lv_btn = DialogControlLastCreated();
+    gv_ach[lp_i].lv_cost = lp_cost;
+    if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(gv_achBitMask, lp_i) == true)) {
+        gv_achievementPoints -= gv_ach[lp_i].lv_cost;
+        libNtve_gf_SetDialogItemDesaturated(gv_ach[lp_i].lv_btn, true, PlayerGroupAll());
+    }
+
+}
+
+void gf_DialogGroupBon (text lp_title, text lp_toolTip, int lp_yOffset, int lp_i) {
+    // Variable Declarations
+    int lv_xoffset;
+    int lv_yoffset;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    gv_bon[lp_i].lv_val = BankValueGetAsInt(BankLastCreated(), gv_commander, IntToString(lp_i));
+    lv_yoffset = lp_yOffset;
+    lv_xoffset = 60;
+    libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 250, 60, c_anchorTop, 0, lv_yoffset, lp_title, ColorWithAlpha(0,0,0,0), false, 2.0);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize24", PlayerGroupAll());
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), lp_toolTip, PlayerGroupAll());
+    gv_bon[lp_i].lv_title = DialogControlLastCreated();
+    lv_yoffset += 40;
+    TextExpressionSetToken("Param/Expression/146296BB", "A", StringToText(""));
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 60, 50, c_anchorTop, (-2*lv_xoffset), lv_yoffset, StringToText(""), TextExpressionAssemble("Param/Expression/146296BB"), "ui_arrow_button_left_l_normaloverpressed.dds");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "ui_arrow_button_left_l_normalpressed.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), c_triggerImageTypeNormal, PlayerGroupAll());
+    gv_bon[lp_i].lv_btn[0] = DialogControlLastCreated();
+    TextExpressionSetToken("Param/Expression/292895A0", "A", StringToText(""));
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 60, 50, c_anchorTop, (-lv_xoffset), lv_yoffset, StringToText(""), TextExpressionAssemble("Param/Expression/292895A0"), "ui_arrow_button_left_normaloverpressed.dds");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "ui_arrow_button_left_normalpressed.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), c_triggerImageTypeNormal, PlayerGroupAll());
+    gv_bon[lp_i].lv_btn[1] = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 250, 60, c_anchorTop, 0, lv_yoffset, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize24", PlayerGroupAll());
+    gv_bon[lp_i].lv_text = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemText(DialogControlLastCreated(), IntToText(gv_bon[lp_i].lv_val), PlayerGroupAll());
+    TextExpressionSetToken("Param/Expression/1AE73476", "A", StringToText(""));
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 60, 50, c_anchorTop, (lv_xoffset), lv_yoffset, StringToText(""), TextExpressionAssemble("Param/Expression/1AE73476"), "ui_arrow_button_right_normaloverpressed.dds");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "ui_arrow_button_right_normalpressed.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), c_triggerImageTypeNormal, PlayerGroupAll());
+    gv_bon[lp_i].lv_btn[2] = DialogControlLastCreated();
+    TextExpressionSetToken("Param/Expression/9C5D5DF2", "A", StringToText(""));
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 60, 50, c_anchorTop, (2*lv_xoffset), lv_yoffset, StringToText(""), TextExpressionAssemble("Param/Expression/9C5D5DF2"), "ui_arrow_button_right_l_normaloverpressed.dds");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "ui_arrow_button_right_l_normalpressed.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), c_triggerImageTypeNormal, PlayerGroupAll());
+    gv_bon[lp_i].lv_btn[3] = DialogControlLastCreated();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Main
+//--------------------------------------------------------------------------------------------------
+bool gt_Main_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    string auto108709B1_val;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_HideGameUI(false, PlayerGroupAll());
+    UISetWorldVisible(PlayerGroupAll(), false);
+    AITimePause(true);
+    CameraLockInput(1, true);
+    auto108709B1_val = PlayerRace(1);
+    if (auto108709B1_val == "Terr") {
+        libNtve_gf_DisplayScreenImage(1, "Assets\\Textures\\ui_glues_scorescreen_racebg_terr.dds", c_triggerBlendModeAdd, 2120, 1200, c_anchorCenter, 0, 0);
+    }
+    else if (auto108709B1_val == "Prot") {
+        libNtve_gf_DisplayScreenImage(1, "Assets\\Textures\\ui_glues_scorescreen_racebg_prot.dds", c_triggerBlendModeAdd, 2120, 1200, c_anchorCenter, 0, 0);
+    }
+    else if (auto108709B1_val == "Zerg") {
+        libNtve_gf_DisplayScreenImage(1, "Assets\\Textures\\ui_glues_scorescreen_racebg_zerg.dds", c_triggerBlendModeAdd, 2120, 1200, c_anchorCenter, 0, 0);
+    }
+    else {
+        libNtve_gf_DisplayScreenImage(1, "Assets\\Textures\\ui_glues_scorescreen_racebg_terr.dds", c_triggerBlendModeAdd, 2120, 1200, c_anchorCenter, 0, 0);
+    }
+    SetNextMissionDifficulty(PlayerGroupAll(), 4);
+    TriggerExecute(gt_LevelUI, true, true);
+    TriggerExecute(gt_AchUI, true, false);
+    TriggerExecute(gt_DifficultyUI, true, false);
+    TriggerExecute(gt_CommanderUI, true, false);
+    TriggerExecute(gt_CleanBankUI, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_Main_Init () {
+    gt_Main = TriggerCreate("gt_Main_Func");
+    TriggerAddEventMapInit(gt_Main);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: LevelUI
+//--------------------------------------------------------------------------------------------------
+bool gt_LevelUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_str;
+    int lv_j;
+    int lv_i;
+    int lv_xOffset;
+    int lv_yOffset;
+
+    // Automatic Variable Declarations
+    string auto4A8C23D1_val;
+    int auto47F90CB0_val;
+
+    // Variable Initialization
+    lv_str = "";
+    lv_xOffset = 50;
+    lv_yOffset = 55;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogCreate(1410, 780, c_anchorLeft, 100, 100, true);
+    gv_levelHolder = DialogLastCreated();
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    BankLoad("CampaignXCore", 1);
+    lv_i = 1;
+    for ( ; ( lv_i <= gv_maps ) ; lv_i += 1 ) {
+        TextExpressionSetToken("Param/Expression/0A55AEE3", "A", null);
+        libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 250, 100, c_anchorTopLeft, lv_xOffset, lv_yOffset, StringToText(""), TextExpressionAssemble("Param/Expression/0A55AEE3"), "");
+        auto4A8C23D1_val = UserDataGetString("Campaign", "Wol", "Type", lv_i);
+        if (auto4A8C23D1_val == "Terr") {
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_generic_button_normalpressed.dds", PlayerGroupAll());
+            libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), c_triggerImageTypeBorder, PlayerGroupAll());
+            libNtve_gf_SetDialogItemImage2(DialogControlLastCreated(), "Assets\\Textures\\ui_generic_button_normaloverpressedover.dds", PlayerGroupAll());
+        }
+        else if (auto4A8C23D1_val == "Prot") {
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_generic_button_normalpressed_protoss.dds", PlayerGroupAll());
+            libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), c_triggerImageTypeBorder, PlayerGroupAll());
+            libNtve_gf_SetDialogItemImage2(DialogControlLastCreated(), "Assets\\Textures\\ui_generic_button_normaloverpressedover_protoss.dds", PlayerGroupAll());
+        }
+        else if (auto4A8C23D1_val == "Zerg") {
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_generic_button_normalpressed_zerg.dds", PlayerGroupAll());
+            libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), c_triggerImageTypeBorder, PlayerGroupAll());
+            libNtve_gf_SetDialogItemImage2(DialogControlLastCreated(), "Assets\\Textures\\ui_generic_button_normaloverpressedover_zerg.dds", PlayerGroupAll());
+        }
+        else {
+            libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_generic_button_normaloverpressed_Red.dds", PlayerGroupAll());
+            libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), c_triggerImageTypeBorder, PlayerGroupAll());
+            libNtve_gf_SetDialogItemImage2(DialogControlLastCreated(), "Assets\\Textures\\ui_generic_button_normaloverpressedover_Red.dds", PlayerGroupAll());
+        }
+        if ((BankValueGetAsInt(BankLastCreated(), "Finished", UserDataGetString("Campaign", "Wol", "MapPathName", lv_i)) == 1)) {
+            auto47F90CB0_val = BankValueGetAsInt(BankLastCreated(), "Bon", UserDataGetString("Campaign", "Wol", "MapPathName", lv_i));
+            if (auto47F90CB0_val == 1) {
+                TextExpressionSetToken("Param/Expression/90D4EEA6", "A", StringExternal("Param/Value/374A75CC"));
+                TextExpressionSetToken("Param/Expression/90D4EEA6", "B", UserDataGetText("Campaign", "Wol", "MapName", lv_i));
+                libNtve_gf_SetDialogItemText(DialogControlLastCreated(), TextExpressionAssemble("Param/Expression/90D4EEA6"), PlayerGroupAll());
+            }
+            else if (auto47F90CB0_val == 2) {
+                TextExpressionSetToken("Param/Expression/22324253", "A", StringExternal("Param/Value/8835D661"));
+                TextExpressionSetToken("Param/Expression/22324253", "B", UserDataGetText("Campaign", "Wol", "MapName", lv_i));
+                libNtve_gf_SetDialogItemText(DialogControlLastCreated(), TextExpressionAssemble("Param/Expression/22324253"), PlayerGroupAll());
+            }
+            else if (auto47F90CB0_val == 3) {
+                TextExpressionSetToken("Param/Expression/3AF74BFE", "A", StringExternal("Param/Value/3DC60411"));
+                TextExpressionSetToken("Param/Expression/3AF74BFE", "B", UserDataGetText("Campaign", "Wol", "MapName", lv_i));
+                libNtve_gf_SetDialogItemText(DialogControlLastCreated(), TextExpressionAssemble("Param/Expression/3AF74BFE"), PlayerGroupAll());
+            }
+            else if (auto47F90CB0_val == 4) {
+                TextExpressionSetToken("Param/Expression/EFB4DB9D", "A", StringExternal("Param/Value/BC65BBFC"));
+                TextExpressionSetToken("Param/Expression/EFB4DB9D", "B", UserDataGetText("Campaign", "Wol", "MapName", lv_i));
+                libNtve_gf_SetDialogItemText(DialogControlLastCreated(), TextExpressionAssemble("Param/Expression/EFB4DB9D"), PlayerGroupAll());
+            }
+            else {
+                libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Campaign", "Wol", "MapName", lv_i), PlayerGroupAll());
+            }
+            libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize24Gold", PlayerGroupAll());
+            gv_achievementPoints += 1;
+        }
+        else {
+            libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("Campaign", "Wol", "MapName", lv_i), PlayerGroupAll());
+            libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize24", PlayerGroupAll());
+        }
+        gv_mapButtons[lv_i] = DialogControlLastCreated();
+        lv_yOffset += 115;
+        if ((ModI(lv_i, 6) == 0)) {
+            lv_yOffset = 55;
+            lv_xOffset += 265;
+        }
+
+    }
+    gv_achievementPoints *= 4;
+    lv_i = 1;
+    for ( ; ( lv_i <= gv_maps ) ; lv_i += 1 ) {
+        gv_achievementPoints += BankValueGetAsInt(BankLastCreated(), "Bon", UserDataGetString("Campaign", "Wol", "MapPathName", lv_i));
+    }
+    gv_achievementPoints += 8;
+    BankValueSetFromInt(BankLastCreated(), "Finished", "Finished", gv_achievementPoints);
+    BankSave(BankLastCreated());
+    lv_str = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+    if ((lv_str == "")) {
+        gv_commander = "Stukov";
+    }
+    else {
+        gv_commander = lv_str;
+    }
+    gv_achBitMask = BankValueGetAsInt(BankLastCreated(), gv_commander, "AchBit");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_LevelUI_Init () {
+    gt_LevelUI = TriggerCreate("gt_LevelUI_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: LevelNext
+//--------------------------------------------------------------------------------------------------
+bool gt_LevelNext_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    const int auto960BEADA_ae = gv_maps;
+    const int auto960BEADA_ai = 1;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetDialog(EventDialogControl()) == gv_levelHolder))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_i = 1;
+    for ( ; ( (auto960BEADA_ai >= 0 && lv_i <= auto960BEADA_ae) || (auto960BEADA_ai < 0 && lv_i >= auto960BEADA_ae) ) ; lv_i += auto960BEADA_ai ) {
+        if ((EventDialogControl() == gv_mapButtons[lv_i])) {
+            TriggerExecute(gt_SaveBank, true, true);
+            GameOver(1, c_gameOverVictory, false, false);
+            GameSetNextMap((("XM/") + UserDataGetString("Campaign", "Wol", "MapPathName", lv_i)));
+            break;
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_LevelNext_Init () {
+    gt_LevelNext = TriggerCreate("gt_LevelNext_Func");
+    TriggerAddEventDialogControl(gt_LevelNext, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CleanBankUI
+//--------------------------------------------------------------------------------------------------
+bool gt_CleanBankUI_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogCreate(100, 100, c_anchorTopRight, 0, 0, true);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    DialogSetImageVisible(DialogLastCreated(), false);
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 100, 100, c_anchorCenter, 0, 0, StringExternal("Param/Value/82099470"), StringExternal("Param/Value/5B51B6B6"), "");
+    gv_cleanBank = DialogControlLastCreated();
+    TriggerAddEventDialogControl(gt_CleanBankOnC,c_playerAny,gv_cleanBank,c_triggerControlEventTypeClick);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CleanBankUI_Init () {
+    gt_CleanBankUI = TriggerCreate("gt_CleanBankUI_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CleanBankOnC
+//--------------------------------------------------------------------------------------------------
+bool gt_CleanBankOnC_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib67C0F0E7_gf_IsEven(TriggerGetExecCount(TriggerGetCurrent())) == true)) {
+        TriggerEnable(gt_CleanBankF, true);
+        libNtve_gf_SetDialogItemDesaturated(gv_cleanBank, true, PlayerGroupAll());
+    }
+    else {
+        TriggerEnable(gt_CleanBankF, false);
+        libNtve_gf_SetDialogItemDesaturated(gv_cleanBank, false, PlayerGroupAll());
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CleanBankOnC_Init () {
+    gt_CleanBankOnC = TriggerCreate("gt_CleanBankOnC_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CleanBankF
+//--------------------------------------------------------------------------------------------------
+bool gt_CleanBankF_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+
+    // Automatic Variable Declarations
+    const int auto45A41ED1_ae = gv_commanderNum;
+    const int auto45A41ED1_ai = 1;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    BankLoad("CampaignXCore", 1);
+    lv_i = 0;
+    for ( ; ( (auto45A41ED1_ai >= 0 && lv_i <= auto45A41ED1_ae) || (auto45A41ED1_ai < 0 && lv_i >= auto45A41ED1_ae) ) ; lv_i += auto45A41ED1_ai ) {
+        lv_j += 1;
+        BankSectionRemove(BankLastCreated(), UserDataGetString("CommanderPreset", "ID", "Commander", lv_j));
+    }
+    BankSectionRemove(BankLastCreated(), "Ach");
+    BankSectionRemove(BankLastCreated(), "Bon");
+    BankSectionRemove(BankLastCreated(), "Finished");
+    BankSave(BankLastCreated());
+    GameOver(1, c_gameOverVictory, false, false);
+    GameSetNextMap("CURRENT");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CleanBankF_Init () {
+    gt_CleanBankF = TriggerCreate("gt_CleanBankF_Func");
+    TriggerEnable(gt_CleanBankF, false);
+    TriggerAddEventChatMessage(gt_CleanBankF, c_playerAny, "-cleanbank", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CommanderUI
+//--------------------------------------------------------------------------------------------------
+bool gt_CommanderUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_j;
+    int lv_i;
+    int lv_xoffset;
+
+    // Automatic Variable Declarations
+    const int autoB88F511D_ae = gv_commanderNum;
+    const int autoB88F511D_ai = 1;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogCreate(1410, 200, c_anchorTopLeft, 100, 120, true);
+    gv_commanderBtnHolder = DialogLastCreated();
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    DialogSetImageVisible(DialogLastCreated(), false);
+    lv_i = 0;
+    for ( ; ( (autoB88F511D_ai >= 0 && lv_i <= autoB88F511D_ae) || (autoB88F511D_ai < 0 && lv_i >= autoB88F511D_ae) ) ; lv_i += autoB88F511D_ai ) {
+        lv_j += 1;
+        DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypeButton, "CommanderSelectBtn/CommanderButtonTemplate");
+        DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lv_xoffset, 0);
+        gv_commanderBtn[lv_i] = DialogControlLastCreated();
+        DialogControlHookup(gv_commanderBtn[lv_i], c_triggerControlTypeImage, "CommanderPortrait");
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("CommanderPreset", "ID", "CommanderPortrait", lv_j), PlayerGroupAll());
+        DialogControlHookup(gv_commanderBtn[lv_i], c_triggerControlTypeImage, "SelectionBorder");
+        gv_selectionBorder[lv_i] = DialogControlLastCreated();
+        if ((gv_commander == UserDataGetString("CommanderPreset", "ID", "Commander", lv_j))) {
+            gv_commanderIndex = lv_i;
+            DialogControlSetVisible(gv_selectionBorder[lv_i], PlayerGroupAll(), true);
+        }
+
+        lv_xoffset += 82;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CommanderUI_Init () {
+    gt_CommanderUI = TriggerCreate("gt_CommanderUI_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CommanderChange
+//--------------------------------------------------------------------------------------------------
+bool gt_CommanderChange_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+
+    // Automatic Variable Declarations
+    const int auto83321415_ae = gv_commanderNum;
+    const int auto83321415_ai = 1;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetDialog(EventDialogControl()) == gv_commanderBtnHolder))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlSetVisible(gv_selectionBorder[gv_commanderIndex], PlayerGroupAll(), false);
+    lv_i = 0;
+    for ( ; ( (auto83321415_ai >= 0 && lv_i <= auto83321415_ae) || (auto83321415_ai < 0 && lv_i >= auto83321415_ae) ) ; lv_i += auto83321415_ai ) {
+        lv_j += 1;
+        if ((EventDialogControl() == gv_commanderBtn[lv_i])) {
+            gv_commanderIndex = lv_i;
+            DialogControlSetVisible(gv_selectionBorder[lv_i], PlayerGroupAll(), true);
+            gv_commander = UserDataGetString("CommanderPreset", "ID", "Commander", lv_j);
+            SoundPlayForPlayer(SoundLink(UserDataGetSound("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "Sound", 1), c_soundIndexAny), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
+        }
+
+    }
+    gf_UpdateAch();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_CommanderChange_Init () {
+    gt_CommanderChange = TriggerCreate("gt_CommanderChange_Func");
+    TriggerAddEventDialogControl(gt_CommanderChange, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AchUI
+//--------------------------------------------------------------------------------------------------
+bool gt_AchUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+    int lv_xOffset;
+    int lv_yOffset;
+
+    // Automatic Variable Declarations
+    const int autoCF3D70FA_n = 4;
+    int autoCF3D70FA_i;
+    const int auto978FDD76_n = 6;
+    int auto978FDD76_i;
+
+    // Variable Initialization
+    lv_xOffset = 50;
+    lv_yOffset = 40;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    BankLoad("CampaignXCore", 1);
+    lv_i = 0;
+    lv_j = 0;
+    DialogCreate(520, 980, c_anchorRight, 100, 0, true);
+    gv_achHolder = DialogLastCreated();
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    TextExpressionSetToken("Param/Expression/371654B8", "A", StringExternal("Param/Value/5C84C7C8"));
+    libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 250, 60, c_anchorTop, 0, lv_yOffset, TextExpressionAssemble("Param/Expression/371654B8"), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "ModCenterSize36", PlayerGroupAll());
+    gv_achLabel = DialogControlLastCreated();
+    lv_yOffset += 60;
+    for (autoCF3D70FA_i = 1; autoCF3D70FA_i <= autoCF3D70FA_n; autoCF3D70FA_i += 1) {
+        lv_j += 1;
+        gf_DialogGroupAch(UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "TitU", lv_j), UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "DesU", lv_j), UserDataGetInt("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "Cost", lv_j), lv_yOffset, lv_i);
+        lv_i += 1;
+        lv_j += 1;
+        gf_DialogGroupAch(UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "TitU", lv_j), UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "DesU", lv_j), UserDataGetInt("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "Cost", lv_j), lv_yOffset, lv_i);
+        lv_i += 1;
+        lv_yOffset += 70;
+    }
+    lv_i = 0;
+    lv_j = 0;
+    for (auto978FDD76_i = 1; auto978FDD76_i <= auto978FDD76_n; auto978FDD76_i += 1) {
+        lv_j += 1;
+        gf_DialogGroupBon(UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "TitP", lv_j), UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "DesP", lv_j), lv_yOffset, lv_i);
+        lv_i += 1;
+        lv_yOffset += 80;
+    }
+    lv_i = 0;
+    for ( ; ( lv_i <= gv_bonN ) ; lv_i += 1 ) {
+        gv_achievementPoints -= gv_bon[lv_i].lv_val;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_AchUI_Init () {
+    gt_AchUI = TriggerCreate("gt_AchUI_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AchSet
+//--------------------------------------------------------------------------------------------------
+bool gt_AchSet_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetDialog(EventDialogControl()) == gv_achHolder))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_i = 0;
+    for ( ; ( lv_i <= gv_achN ) ; lv_i += 1 ) {
+        if ((EventDialogControl() == gv_ach[lv_i].lv_btn)) {
+            if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(gv_achBitMask, lv_i) == true)) {
+                gv_achBitMask = lib67C0F0E7_gf_BitMaskSetIndex(gv_achBitMask, lv_i, false);
+                gv_achievementPoints += gv_ach[lv_i].lv_cost;
+                libNtve_gf_SetDialogItemDesaturated(gv_ach[lv_i].lv_btn, false, PlayerGroupAll());
+                BankLoad("CampaignXCore", 1);
+                BankValueSetFromInt(BankLastCreated(), gv_commander, "AchBit", gv_achBitMask);
+                BankSave(BankLastCreated());
+                break;
+            }
+            else {
+                if ((gv_achievementPoints >= gv_ach[lv_i].lv_cost)) {
+                    gv_achBitMask = lib67C0F0E7_gf_BitMaskSetIndex(gv_achBitMask, lv_i, true);
+                    gv_achievementPoints -= gv_ach[lv_i].lv_cost;
+                    libNtve_gf_SetDialogItemDesaturated(gv_ach[lv_i].lv_btn, true, PlayerGroupAll());
+                    BankLoad("CampaignXCore", 1);
+                    BankValueSetFromInt(BankLastCreated(), gv_commander, "AchBit", gv_achBitMask);
+                    BankSave(BankLastCreated());
+                    break;
+                }
+
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_AchSet_Init () {
+    gt_AchSet = TriggerCreate("gt_AchSet_Func");
+    TriggerAddEventDialogControl(gt_AchSet, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: BonSet
+//--------------------------------------------------------------------------------------------------
+bool gt_BonSet_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_x;
+
+    // Automatic Variable Declarations
+    int autoE9F3B74C_val;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetDialog(EventDialogControl()) == gv_achHolder))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    BankLoad("CampaignXCore", 1);
+    lv_i = 0;
+    for ( ; ( lv_i <= gv_bonN ) ; lv_i += 1 ) {
+        autoE9F3B74C_val = EventDialogControl();
+        if (autoE9F3B74C_val == gv_bon[lv_i].lv_btn[0]) {
+            if ((gv_bon[lv_i].lv_val < 5)) {
+                gv_achievementPoints += gv_bon[lv_i].lv_val;
+                gv_bon[lv_i].lv_val = 0;
+                libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_text, IntToText(gv_bon[lv_i].lv_val), PlayerGroupAll());
+                BankValueSetFromInt(BankLastCreated(), gv_commander, IntToString(lv_i), gv_bon[lv_i].lv_val);
+                BankSave(BankLastCreated());
+                break;
+            }
+            else {
+                gv_achievementPoints += 5;
+                gv_bon[lv_i].lv_val -= 5;
+                libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_text, IntToText(gv_bon[lv_i].lv_val), PlayerGroupAll());
+                BankValueSetFromInt(BankLastCreated(), gv_commander, IntToString(lv_i), gv_bon[lv_i].lv_val);
+                BankSave(BankLastCreated());
+                break;
+            }
+        }
+        else if (autoE9F3B74C_val == gv_bon[lv_i].lv_btn[1]) {
+            if ((gv_bon[lv_i].lv_val > 0)) {
+                gv_achievementPoints += 1;
+                gv_bon[lv_i].lv_val -= 1;
+                libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_text, IntToText(gv_bon[lv_i].lv_val), PlayerGroupAll());
+                BankValueSetFromInt(BankLastCreated(), gv_commander, IntToString(lv_i), gv_bon[lv_i].lv_val);
+                BankSave(BankLastCreated());
+                break;
+            }
+            else {
+                break;
+            }
+        }
+        else if (autoE9F3B74C_val == gv_bon[lv_i].lv_btn[2]) {
+            if ((gv_achievementPoints > 0) && (gv_bon[lv_i].lv_val < 30)) {
+                gv_achievementPoints -= 1;
+                gv_bon[lv_i].lv_val += 1;
+                libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_text, IntToText(gv_bon[lv_i].lv_val), PlayerGroupAll());
+                BankValueSetFromInt(BankLastCreated(), gv_commander, IntToString(lv_i), gv_bon[lv_i].lv_val);
+                BankSave(BankLastCreated());
+                break;
+            }
+            else {
+                break;
+            }
+        }
+        else if (autoE9F3B74C_val == gv_bon[lv_i].lv_btn[3]) {
+            if ((gv_achievementPoints >= 5) && (gv_bon[lv_i].lv_val <= 25)) {
+                gv_achievementPoints -= 5;
+                gv_bon[lv_i].lv_val += 5;
+                libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_text, IntToText(gv_bon[lv_i].lv_val), PlayerGroupAll());
+                BankValueSetFromInt(BankLastCreated(), gv_commander, IntToString(lv_i), gv_bon[lv_i].lv_val);
+                BankSave(BankLastCreated());
+                break;
+            }
+            else {
+                if ((gv_achievementPoints == 0)) {
+                    break;
+                }
+                else {
+                    lv_x = gv_bon[lv_i].lv_val;
+                    lv_x += gv_achievementPoints;
+                    if ((lv_x > 30)) {
+                        gv_bon[lv_i].lv_val = 30;
+                        gv_achievementPoints = (lv_x-30);
+                        libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_text, IntToText(gv_bon[lv_i].lv_val), PlayerGroupAll());
+                        BankValueSetFromInt(BankLastCreated(), gv_commander, IntToString(lv_i), gv_bon[lv_i].lv_val);
+                        BankSave(BankLastCreated());
+                        break;
+                    }
+                    else {
+                        gv_bon[lv_i].lv_val = lv_x;
+                        gv_achievementPoints = 0;
+                        libNtve_gf_SetDialogItemText(gv_bon[lv_i].lv_text, IntToText(gv_bon[lv_i].lv_val), PlayerGroupAll());
+                        BankValueSetFromInt(BankLastCreated(), gv_commander, IntToString(lv_i), gv_bon[lv_i].lv_val);
+                        BankSave(BankLastCreated());
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_BonSet_Init () {
+    gt_BonSet = TriggerCreate("gt_BonSet_Func");
+    TriggerAddEventDialogControl(gt_BonSet, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: SaveBank
+//--------------------------------------------------------------------------------------------------
+bool gt_SaveBank_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    BankLoad("CampaignXCore", 1);
+    BankValueSetFromString(BankLastCreated(), "Ach", "Commander", gv_commander);
+    BankSave(BankLastCreated());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_SaveBank_Init () {
+    gt_SaveBank = TriggerCreate("gt_SaveBank_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DifficultyUI
+//--------------------------------------------------------------------------------------------------
+bool gt_DifficultyUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_xOffset;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_xOffset = 39;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogCreate(520, 80, c_anchorRight, 100, 430, true);
+    gv_difficultyHolder = DialogLastCreated();
+    DialogSetImageVisible(DialogLastCreated(), false);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 100, 50, c_anchorLeft, lv_xOffset, 0, StringToText(""), StringExternal("Param/Value/201BFF9E"), "");
+    gv_difficulty[lv_i] = DialogControlLastCreated();
+    lv_i += 1;
+    lv_xOffset += 114;
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 100, 50, c_anchorLeft, lv_xOffset, 0, StringToText(""), StringExternal("Param/Value/375D74E4"), "");
+    gv_difficulty[lv_i] = DialogControlLastCreated();
+    lv_i += 1;
+    lv_xOffset += 114;
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 100, 50, c_anchorLeft, lv_xOffset, 0, StringToText(""), StringExternal("Param/Value/11FE43A4"), "");
+    gv_difficulty[lv_i] = DialogControlLastCreated();
+    lv_i += 1;
+    lv_xOffset += 114;
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 100, 50, c_anchorLeft, lv_xOffset, 0, StringToText(""), StringExternal("Param/Value/F3FD0291"), "");
+    libNtve_gf_SetDialogItemDesaturated(DialogControlLastCreated(), true, PlayerGroupAll());
+    gv_difficulty[lv_i] = DialogControlLastCreated();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DifficultyUI_Init () {
+    gt_DifficultyUI = TriggerCreate("gt_DifficultyUI_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DifficultySet
+//--------------------------------------------------------------------------------------------------
+bool gt_DifficultySet_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    // Variable Declarations
+    int[4] lv_dif;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lv_dif[init_i] = 4;
+    }
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetDialog(EventDialogControl()) == gv_difficultyHolder))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_dif[0] = 1;
+    lv_dif[1] = 2;
+    lv_dif[2] = 3;
+    lv_dif[3] = 4;
+    lv_i = 0;
+    for ( ; ( lv_i <= 3 ) ; lv_i += 1 ) {
+        if ((EventDialogControl() == gv_difficulty[lv_i])) {
+            libNtve_gf_SetDialogItemDesaturated(gv_difficulty[lv_i], true, PlayerGroupAll());
+            SetNextMissionDifficulty(PlayerGroupSingle(EventPlayer()), lv_dif[lv_i]);
+        }
+        else {
+            libNtve_gf_SetDialogItemDesaturated(gv_difficulty[lv_i], false, PlayerGroupAll());
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_DifficultySet_Init () {
+    gt_DifficultySet = TriggerCreate("gt_DifficultySet_Func");
+    TriggerAddEventDialogControl(gt_DifficultySet, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger Initialization
+//--------------------------------------------------------------------------------------------------
+void InitTriggers () {
+    gt_Main_Init();
+    gt_LevelUI_Init();
+    gt_LevelNext_Init();
+    gt_CleanBankUI_Init();
+    gt_CleanBankOnC_Init();
+    gt_CleanBankF_Init();
+    gt_CommanderUI_Init();
+    gt_CommanderChange_Init();
+    gt_AchUI_Init();
+    gt_AchSet_Init();
+    gt_BonSet_Init();
+    gt_SaveBank_Init();
+    gt_DifficultyUI_Init();
+    gt_DifficultySet_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Map Initialization
+//--------------------------------------------------------------------------------------------------
+void InitMap () {
+    InitLibs();
+    InitGlobals();
+    InitTriggers();
+}

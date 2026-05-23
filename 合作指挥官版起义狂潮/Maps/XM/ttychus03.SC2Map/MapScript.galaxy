@@ -824,6 +824,26 @@ bool gt_CreateMedivacIntro_Func (bool testConds, bool runActions) {
         libE0EAE146_gf_AbathurCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
         libE0EAE146_gf_AbathurCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
     }
+    else if (autoBEEAC669_val == "Zagara") {
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
+    }
+    else if (autoBEEAC669_val == "Fenix") {
+        libE0EAE146_gf_FenixCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
+        libE0EAE146_gf_FenixCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
+    }
+    else if (autoBEEAC669_val == "Artanis") {
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
+    }
+    else if (autoBEEAC669_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
+    }
+    else if (autoBEEAC669_val == "Zeratul") {
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
+    }
     else {
         libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(999));
         UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(618516690)), c_orderQueueReplace);
