@@ -107,6 +107,16 @@ function Click-Absolute {
     Start-Sleep -Milliseconds $DelayMs
 }
 
+function Click-BattleNetLogin {
+    param([Sc2Live+RECT]$Rect)
+
+    $width = $Rect.Right - $Rect.Left
+    $height = $Rect.Bottom - $Rect.Top
+    $x = $Rect.Left + [math]::Round($width * 0.618)
+    $y = $Rect.Top + [math]::Round($height * 0.395)
+    Click-Absolute -X $x -Y $y -DelayMs 1500
+}
+
 function Send-Escape {
     param([int]$DelayMs = 500)
     [Sc2Live]::keybd_event(0x1B, 0, 0, [UIntPtr]::Zero)
@@ -139,6 +149,8 @@ if (-not $mapPoints.ContainsKey($MapClick)) {
 $target = $mapPoints[$MapClick]
 
 $before = Save-Screenshot -Name 'sc2_before'
+Click-BattleNetLogin -Rect $rect
+Start-Sleep -Seconds 8
 
 # single-click launcher flow: map -> difficulty -> map again, then skip opening sequences
 Click-Absolute -X $target.X -Y $target.Y -DelayMs 450
