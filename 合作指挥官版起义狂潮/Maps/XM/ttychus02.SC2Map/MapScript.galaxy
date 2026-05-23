@@ -710,7 +710,7 @@ bool gt_SiegeTanksComeIn_Func (bool testConds, bool runActions) {
         UnitCargoCreate(UnitLastCreated(), "DehakaPrimalSwarmHost", 2);
     }
     else if (auto6309E628_val == "Alarak") {
-        UnitCargoCreate(UnitLastCreated(), "Zealot", 2);
+        UnitCargoCreate(UnitLastCreated(), "Supplicant", 2);
     }
     else if (auto6309E628_val == "Kerrigan") {
         UnitCargoCreate(UnitLastCreated(), "Hydralisk", 2);
@@ -739,6 +739,21 @@ bool gt_SiegeTanksComeIn_Func (bool testConds, bool runActions) {
     }
     else if (auto6309E628_val == "Abathur") {
         libE0EAE146_gf_AbathurCreateCargoSquad(UnitLastCreated(), "heavy");
+    }
+    else if (auto6309E628_val == "Zagara") {
+        libE0EAE146_gf_ZagaraCreateCargoSquad(UnitLastCreated(), "heavy");
+    }
+    else if (auto6309E628_val == "Fenix") {
+        libE0EAE146_gf_FenixCreateCargoSquad(UnitLastCreated(), "heavy");
+    }
+    else if (auto6309E628_val == "Artanis") {
+        libE0EAE146_gf_ArtanisCreateCargoSquad(UnitLastCreated(), "heavy");
+    }
+    else if (auto6309E628_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateCargoSquad(UnitLastCreated(), "heavy");
+    }
+    else if (auto6309E628_val == "Zeratul") {
+        libE0EAE146_gf_ZeratulCreateCargoSquad(UnitLastCreated(), "heavy");
     }
     else {
         UnitCargoCreate(UnitLastCreated(), "SiegeTank", 2);
@@ -948,6 +963,21 @@ bool gt_StartGameTacticalPhase_Func (bool testConds, bool runActions) {
     }
     else if (autoA39A42DB_val == "Abathur") {
         libE0EAE146_gf_AbathurCreateCargoSquad(UnitFromId(317), "hero");
+    }
+    else if (autoA39A42DB_val == "Zagara") {
+        libE0EAE146_gf_ZagaraCreateCargoSquad(UnitFromId(317), "hero");
+    }
+    else if (autoA39A42DB_val == "Fenix") {
+        libE0EAE146_gf_FenixCreateCargoSquad(UnitFromId(317), "hero");
+    }
+    else if (autoA39A42DB_val == "Artanis") {
+        libE0EAE146_gf_ArtanisCreateCargoSquad(UnitFromId(317), "hero");
+    }
+    else if (autoA39A42DB_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateCargoSquad(UnitFromId(317), "hero");
+    }
+    else if (autoA39A42DB_val == "Zeratul") {
+        libE0EAE146_gf_ZeratulCreateCargoSquad(UnitFromId(317), "hero");
     }
     else {
     }

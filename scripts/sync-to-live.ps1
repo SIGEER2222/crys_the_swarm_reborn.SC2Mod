@@ -14,7 +14,7 @@ if (-not (Test-Path $target)) {
     throw "Target mod path not found: $target"
 }
 
-Write-Host "Sync source :" $source
+Write-Host "Sync source :" $source~
 Write-Host "Sync target :" $target
 
 $robocopy = Get-Command robocopy -ErrorAction SilentlyContinue

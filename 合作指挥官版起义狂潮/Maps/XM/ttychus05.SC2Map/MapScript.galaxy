@@ -721,8 +721,8 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         }
     }
     else if (auto901728B1_val == "Alarak") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "VoidRay", 0, 1, PointFromId(1709600040));
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "VoidRay", 0, 1, PointFromId(2080109945));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "VoidRayTaldarim", 0, 1, PointFromId(1709600040));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "VoidRayTaldarim", 0, 1, PointFromId(2080109945));
     }
     else if (auto901728B1_val == "Kerrigan") {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "Mutalisk", 0, 1, PointFromId(1709600040));
@@ -751,6 +751,26 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
     else if (auto901728B1_val == "Abathur") {
         libE0EAE146_gf_AbathurCreateMapStartSquad("air", 1, PointFromId(1709600040));
         libE0EAE146_gf_AbathurCreateMapStartSquad("air", 1, PointFromId(2080109945));
+    }
+    else if (auto901728B1_val == "Zagara") {
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("air", 1, PointFromId(1709600040));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("air", 1, PointFromId(2080109945));
+    }
+    else if (auto901728B1_val == "Fenix") {
+        libE0EAE146_gf_FenixCreateMapStartSquad("air", 1, PointFromId(1709600040));
+        libE0EAE146_gf_FenixCreateMapStartSquad("air", 1, PointFromId(2080109945));
+    }
+    else if (auto901728B1_val == "Artanis") {
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("air", 1, PointFromId(1709600040));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("air", 1, PointFromId(2080109945));
+    }
+    else if (auto901728B1_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateMapStartSquad("air", 1, PointFromId(1709600040));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("air", 1, PointFromId(2080109945));
+    }
+    else if (auto901728B1_val == "Zeratul") {
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("air", 1, PointFromId(1709600040));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("air", 1, PointFromId(2080109945));
     }
     else {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Battlecruiser", 0, 1, PointFromId(1709600040));

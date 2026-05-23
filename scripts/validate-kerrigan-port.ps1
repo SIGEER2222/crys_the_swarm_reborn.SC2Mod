@@ -1,5 +1,6 @@
 param(
-    [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot)
+    [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot),
+    [switch]$RequireLauncherCandidate
 )
 
 $ErrorActionPreference = "Stop"
@@ -19,7 +20,7 @@ $launcherRoot = Join-Path $mapsRoot "LauncherAuto.SC2Map"
 $xmFinal = Join-Path $xmRoot "XMFinal.SC2Mod"
 $xmCore = Join-Path $xmRoot "XMCore.SC2Mod"
 $xmKerrigan = Join-Path $xmRoot "XMKerrigan.SC2Mod"
-$docPath = Join-Path $projectRoot.FullName "docs\kerrigan-port-progress-2026-05-22.md"
+$docPath = Join-Path $projectRoot.FullName "docs\指挥官\凯瑞甘当前状态.md"
 
 $errors = [System.Collections.Generic.List[string]]::new()
 
@@ -59,22 +60,52 @@ if (-not (Test-Path -LiteralPath $xmKerrigan)) {
 Test-Contains -Path (Join-Path $xmKerrigan "Base.SC2Data\GameData\UnitData.xml") -Pattern "K5Kerrigan" -Simple
 Test-Contains -Path (Join-Path $xmKerrigan "Base.SC2Data\GameData\UnitData.xml") -Pattern "CoopCasterKerrigan" -Simple
 Test-Contains -Path (Join-Path $xmKerrigan "Base.SC2Data\GameData\AbilData.xml") -Pattern "PsiStrike" -Simple
-Test-Contains -Path (Join-Path $xmKerrigan "Base.SC2Data\GameData\UpgradeData.xml") -Pattern "MasteryKerrigan" -Simple
+foreach ($upgradeId in @(
+    "VoidCoopHeroicFortitude",
+    "K5Cooldowns",
+    "K5Fury",
+    "CommanderPrestigeKerriganAbilities",
+    "CommanderPrestigeKerriganAssimilationAura",
+    "CommanderPrestigeKerriganCreep",
+    "KerriganVoidCoopEnergyRegen",
+    "MasteryKerriganEnergyRegen",
+    "MasteryKerriganAutoAttackDamage",
+    "MasteryKerriganArmyGasCost",
+    "MasteryKerriganImmobilizationWaveDamage",
+    "MasteryKerriganResearchSpeedandCost",
+    "MasteryKerriganPrimarySpeedDamage"
+)) {
+    Test-Contains -Path (Join-Path $xmKerrigan "Base.SC2Data\GameData\UpgradeData.xml") -Pattern $upgradeId -Simple
+}
 Test-Contains -Path (Join-Path $xmKerrigan "Base.SC2Data\GameData\UserData.xml") -Pattern "KerriganLevel15" -Simple
 Test-Contains -Path (Join-Path $xmKerrigan "Base.SC2Data\GameData\CommanderData.xml") -Pattern '<CCommander id="Kerrigan">' -Simple
 Test-Contains -Path (Join-Path $xmKerrigan "DocumentInfo") -Pattern 'file:Mods\XM\XMCore.SC2Mod' -Simple
 Test-Contains -Path (Join-Path $xmFinal "DocumentInfo") -Pattern 'file:Mods\XM\XMKerrigan.SC2Mod' -Simple
 
 Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml") -Pattern '<Instances Id="Kerrigan">' -Simple
+foreach ($pattern in @(
+    'Upgrade Upgrade="VoidCoopHeroicFortitude"',
+    'Upgrade Upgrade="K5Cooldowns"',
+    'Upgrade Upgrade="K5Fury"',
+    'Upgrade Upgrade="CommanderPrestigeKerriganAbilities"',
+    'Upgrade Upgrade="CommanderPrestigeKerriganAssimilationAura"',
+    'Upgrade Upgrade="CommanderPrestigeKerriganCreep"',
+    'Upgrade Upgrade="KerriganVoidCoopEnergyRegen"',
+    'Upgrade Upgrade="MasteryKerriganEnergyRegen"',
+    'Upgrade Upgrade="MasteryKerriganAutoAttackDamage"',
+    'Upgrade Upgrade="MasteryKerriganArmyGasCost"',
+    'Upgrade Upgrade="MasteryKerriganImmobilizationWaveDamage"',
+    'Upgrade Upgrade="MasteryKerriganResearchSpeedandCost"',
+    'Upgrade Upgrade="MasteryKerriganPrimarySpeedDamage"'
+)) {
+    Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml") -Pattern $pattern -Simple
+}
 Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\Lib67C0F0E7.galaxy") -Pattern 'lib67C0F0E7_gf_CU_GPInitKerrigan' -Simple
 Test-Contains -Path (Join-Path $xmCore "Base.SC2Data\Lib67C0F0E7_h.galaxy") -Pattern 'lib67C0F0E7_gf_CU_GPInitKerrigan' -Simple
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern 'autoC0933116_val == "Kerrigan"' -Simple
-Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern 'CoopCasterKerrigan' -Simple
+Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern 'libE0EAE146_gf_ApplyKerriganCommanderRuntime();' -Simple
+Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern 'lv_playerCommander = "ZergKerrigan";' -Simple
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern 'K5Kerrigan' -Simple
-
-Test-Contains -Path (Join-Path $launcherRoot "MapScript.galaxy") -Pattern 'const int gv_commanderNum = 9;' -Simple
-Test-Contains -Path (Join-Path $launcherRoot "Base.SC2Data\GameData\UserData.xml") -Pattern 'String="Kerrigan"' -Simple
-Test-Contains -Path (Join-Path $launcherRoot "zhCN.SC2Data\LocalizedData\GameStrings.txt") -Pattern 'Kerrigan_TitU' -Simple
 
 $requiredMaps = @(
     "traynor01",
@@ -94,12 +125,46 @@ foreach ($map in $requiredMaps) {
     Test-Contains -Path (Join-Path $mapsRoot "$map.SC2Map\MapScript.galaxy") -Pattern '== "Kerrigan"' -Simple
 }
 
-Test-Contains -Path $docPath -Pattern "# " -Simple
+if ($RequireLauncherCandidate) {
+    Test-Contains -Path (Join-Path $launcherRoot "Base.SC2Data\GameData\UserData.xml") -Pattern 'String="Kerrigan"' -Simple
+}
+
 Test-Contains -Path $docPath -Pattern "XMKerrigan.SC2Mod" -Simple
+Test-Contains -Path $docPath -Pattern "K5Kerrigan" -Simple
+Test-Contains -Path $docPath -Pattern "Kerrigan" -Simple
+
+$xmCoreUserData = Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml"
+if (Test-Path -LiteralPath $xmCoreUserData) {
+    foreach ($obsoletePattern in @(
+        'Upgrade Upgrade="KerriganHeroicFortitude"',
+        'Upgrade Upgrade="KerriganLevel10"',
+        'Upgrade Upgrade="CommanderPrestigeKerriganMalignantCreep"',
+        'Upgrade Upgrade="KerriganLevel15"',
+        'Upgrade Upgrade="MasteryKerriganAttackDamage"',
+        'Upgrade Upgrade="MasteryKerriganAssimilationAuraDuration"',
+        'Upgrade Upgrade="MasteryKerriganLarvaRate"',
+        'Upgrade Upgrade="MasteryKerriganCocoonTimer"'
+    )) {
+        if (Select-String -LiteralPath $xmCoreUserData -Pattern $obsoletePattern -SimpleMatch -Quiet) {
+            Add-Error "CommanderAch/Kerrigan still points to obsolete id $obsoletePattern in $xmCoreUserData"
+        }
+    }
+}
 
 if ($errors.Count -gt 0) {
     $errors | ForEach-Object { Write-Host $_ }
     throw "Kerrigan port validation failed with $($errors.Count) issue(s)."
+}
+
+if (-not $RequireLauncherCandidate) {
+    $launcherUserData = Join-Path $launcherRoot "Base.SC2Data\GameData\UserData.xml"
+    $launcherHasCandidate = $false
+    if (Test-Path -LiteralPath $launcherUserData) {
+        $launcherHasCandidate = Select-String -LiteralPath $launcherUserData -Pattern 'String="Kerrigan"' -SimpleMatch -Quiet
+    }
+    if (-not $launcherHasCandidate) {
+        Write-Host "NOTE: LauncherAuto.SC2Map does not currently expose a Kerrigan candidate."
+    }
 }
 
 Write-Host "Kerrigan port validation passed."

@@ -736,15 +736,16 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "DehakaRoachLevel3", 0, gv_p12_MOEBIUS, PointFromId(344935602));
     }
     else if (auto412F2E68_val == "Alarak") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zealot", 0, gv_p12_MOEBIUS, PointFromId(385406063));
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Stalker", 0, gv_p12_MOEBIUS, PointFromId(385406063));
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Immortal", 0, gv_p12_MOEBIUS, PointFromId(855382681));
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Colossus", 0, gv_p12_MOEBIUS, PointFromId(898485624));
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "VoidRay", 0, gv_p12_MOEBIUS, PointFromId(95514741));
-        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Stalker", 0, gv_p12_MOEBIUS, PointFromId(95514741));
-        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zealot", 0, gv_p12_MOEBIUS, PointFromId(1089641768));
-        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Immortal", 0, gv_p12_MOEBIUS, PointFromId(665));
-        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Stalker", 0, gv_p12_MOEBIUS, PointFromId(344935602));
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Supplicant", 0, gv_p12_MOEBIUS, PointFromId(385406063));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HighTemplarTaldarim", 0, gv_p12_MOEBIUS, PointFromId(385406063));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ImmortalTaldarim", 0, gv_p12_MOEBIUS, PointFromId(855382681));
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ColossusTaldarim", 0, gv_p12_MOEBIUS, PointFromId(898485624));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "VoidRayTaldarim", 0, gv_p12_MOEBIUS, PointFromId(95514741));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Supplicant", 0, gv_p12_MOEBIUS, PointFromId(95514741));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ImmortalTaldarim", 0, gv_p12_MOEBIUS, PointFromId(95514741));
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Supplicant", 0, gv_p12_MOEBIUS, PointFromId(1089641768));
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "ImmortalTaldarim", 0, gv_p12_MOEBIUS, PointFromId(665));
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "HighTemplarTaldarim", 0, gv_p12_MOEBIUS, PointFromId(344935602));
     }
     else if (auto412F2E68_val == "Kerrigan") {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Roach", 0, gv_p12_MOEBIUS, PointFromId(385406063));
@@ -834,6 +835,51 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(1089641768));
         libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(665));
         libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(344935602));
+    }
+    else if (auto412F2E68_val == "Zagara") {
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(385406063));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(855382681));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(898485624));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(95514741));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(1089641768));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(665));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(344935602));
+    }
+    else if (auto412F2E68_val == "Fenix") {
+        libE0EAE146_gf_FenixCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(385406063));
+        libE0EAE146_gf_FenixCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(855382681));
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(898485624));
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(95514741));
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(1089641768));
+        libE0EAE146_gf_FenixCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(665));
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(344935602));
+    }
+    else if (auto412F2E68_val == "Artanis") {
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(385406063));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(855382681));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(898485624));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(95514741));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(1089641768));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(665));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(344935602));
+    }
+    else if (auto412F2E68_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(385406063));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(855382681));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(898485624));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(95514741));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(1089641768));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(665));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(344935602));
+    }
+    else if (auto412F2E68_val == "Zeratul") {
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(385406063));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(855382681));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(898485624));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(95514741));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(1089641768));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("heavy", gv_p12_MOEBIUS, PointFromId(665));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", gv_p12_MOEBIUS, PointFromId(344935602));
     }
     else {
     }
