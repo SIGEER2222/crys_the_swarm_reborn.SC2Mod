@@ -18,6 +18,7 @@ param(
     [switch]$ClickCommandCard = $false,
     [string]$CommandCardSlots = "",
     [int]$PostEntryWaitMs = 1500,
+    [int]$CloseDelaySec = 0,
     [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot),
     [string]$LiveRoot = "E:\SC2\SC2new\StarCraft II",
     [string]$Sc2SwitcherPath = "E:\SC2\SC2new\StarCraft II\Support64\SC2Switcher_x64.exe"
@@ -61,6 +62,10 @@ function Get-Sc2Process {
         throw "SC2_x64 is not running."
     }
     return $proc
+}
+
+function Try-GetSc2Process {
+    return Get-Process SC2_x64 -ErrorAction SilentlyContinue | Select-Object -First 1
 }
 
 function Wait-Sc2Window {
@@ -289,7 +294,11 @@ $entryEvidence = Wait-ForMapEntryEvidence -Since $startTime -TimeoutSec $MapEntr
 
 if ($entryEvidence.Signal -ne "timeout") {
     for ($i = 0; $i -lt $EscapeCount; $i++) {
-        $proc = Get-Sc2Process
+        $proc = Try-GetSc2Process
+        if (-not $proc) {
+            Write-Output "GAME_EXITED_BEFORE_ESCAPES=1"
+            break
+        }
         Focus-Sc2Window -Process $proc | Out-Null
         Send-Escape
     }
@@ -297,34 +306,54 @@ if ($entryEvidence.Signal -ne "timeout") {
 }
 
 if ($SelectHero -and $HeroSelectPoint.Count -ge 2 -and $HeroSelectPoint[0] -gt 0 -and $HeroSelectPoint[1] -gt 0) {
-    $proc = Get-Sc2Process
+    $proc = Try-GetSc2Process
+    if (-not $proc) {
+        Write-Output "GAME_EXITED_BEFORE_SELECT_HERO=1"
+    }
+    else {
     $rect = Focus-Sc2Window -Process $proc
     Click-Absolute -X $HeroSelectPoint[0] -Y $HeroSelectPoint[1] -DelayMs 700
+    }
 }
 
 if ($ClickTopBarButtons -and -not [string]::IsNullOrWhiteSpace($TopBarButtons)) {
-    $proc = Get-Sc2Process
-    $rect = Focus-Sc2Window -Process $proc
-    foreach ($token in ($TopBarButtons -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" })) {
-        $index = [int]$token
-        $point = Get-TopBarButtonPoint -Rect $rect -Index $index
-        Click-Absolute -X $point[0] -Y $point[1] -DelayMs 900
+    $proc = Try-GetSc2Process
+    if (-not $proc) {
+        Write-Output "GAME_EXITED_BEFORE_TOPBAR=1"
+    }
+    else {
+        $rect = Focus-Sc2Window -Process $proc
+        foreach ($token in ($TopBarButtons -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" })) {
+            $index = [int]$token
+            $point = Get-TopBarButtonPoint -Rect $rect -Index $index
+            Click-Absolute -X $point[0] -Y $point[1] -DelayMs 900
+        }
     }
 }
 
 if (-not [string]::IsNullOrWhiteSpace($TargetClicks)) {
-    $proc = Get-Sc2Process
-    $rect = Focus-Sc2Window -Process $proc
-    Invoke-TargetClicks -Spec $TargetClicks -DelayMs 900
+    $proc = Try-GetSc2Process
+    if (-not $proc) {
+        Write-Output "GAME_EXITED_BEFORE_TARGET_CLICKS=1"
+    }
+    else {
+        $rect = Focus-Sc2Window -Process $proc
+        Invoke-TargetClicks -Spec $TargetClicks -DelayMs 900
+    }
 }
 
 if ($ClickCommandCard -and -not [string]::IsNullOrWhiteSpace($CommandCardSlots)) {
-    $proc = Get-Sc2Process
-    $rect = Focus-Sc2Window -Process $proc
-    foreach ($token in ($CommandCardSlots -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" })) {
-        $slot = [int]$token
-        $point = Get-CommandCardPoint -Rect $rect -Slot $slot
-        Click-Absolute -X $point[0] -Y $point[1] -DelayMs 900
+    $proc = Try-GetSc2Process
+    if (-not $proc) {
+        Write-Output "GAME_EXITED_BEFORE_COMMAND_CARD=1"
+    }
+    else {
+        $rect = Focus-Sc2Window -Process $proc
+        foreach ($token in ($CommandCardSlots -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" })) {
+            $slot = [int]$token
+            $point = Get-CommandCardPoint -Rect $rect -Slot $slot
+            Click-Absolute -X $point[0] -Y $point[1] -DelayMs 900
+        }
     }
 }
 
@@ -379,6 +408,9 @@ if ($latestScriptError) {
 }
 
 if ($CloseGame) {
+    if ($CloseDelaySec -gt 0) {
+        Start-Sleep -Seconds $CloseDelaySec
+    }
     Get-Process | Where-Object { $_.ProcessName -match "SC2|StarCraft" } | Stop-Process -Force -ErrorAction SilentlyContinue
     Write-Output "GAME_CLOSED=1"
 }
