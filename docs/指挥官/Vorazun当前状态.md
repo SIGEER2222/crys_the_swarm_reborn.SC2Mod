@@ -7,8 +7,8 @@
 ### 独立模组
 - XMVorazun.SC2Mod 已创建，位于 `合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod`。
 - DocumentInfo 声明依赖 `XMCore.SC2Mod`。
-- 包含标准的 Base.SC2Data/GameData XML 文件结构
-- 包含 zhCN.SC2Data/LocalizedData 目录
+- 包含标准的 Base.SC2Data/GameData XML 文件结构（UnitData.xml 超过 700KB，包含大量数据）
+- 包含 zhCN.SC2Data/LocalizedData 目录（已填充 100+ 条本地化字符串）
 
 ### XMCore 指挥官数据
 - XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml 中 `<Instances Id="Vorazun">` 已完整定义。
@@ -27,18 +27,19 @@
   - 头像配置已设置
   - UI 配置已就绪。
 
+### 中文本地化
+- zhCN.SC2Data/LocalizedData/GameStrings.txt 已填充 Vorazun 相关本地化字符串（100+ 条）
+- 包括所有技能名称（黑暗水晶塔、阴影之怒、时间停止等）、按钮提示、行为描述等
+
 ## 待完成
 
-### 游戏数据导入
-- 目前 Base.SC2Data/GameData XML 文件是空的，需要：
-  - 从官方数据或 XMArtanis.SC2Mod 中提取 Vorazun 相关数据
-  - 导入到 XMVorazun.SC2Mod 中的相应文件
-
-### 中文本地化
-- zhCN.SC2Data/LocalizedData/GameStrings.txt 需要填充中文文本
+### 游戏数据导入（可选）
+- UnitData.xml 已包含大量数据（超过 700KB），核心数据已导入
+- 其他 GameData XML 文件可能需要进一步填充
 
 ## 验证状态
 
-- ⚠️ 静态结构基本完整，但核心游戏数据尚未导入
-- ⚠️ 本地化文本尚未填充
+- ✅ 静态结构完整
+- ✅ 核心游戏数据已导入（UnitData.xml）
+- ✅ 本地化文本已填充（100+ 条）
 
