@@ -1,8 +1,9 @@
+
 param(
     [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot),
     [string]$OfficialGameDataRoot = "references\official-casc-export\mods\starcoop\starcoop.sc2mod\base.sc2data\gamedata",
     [string]$TargetGameDataRoot = "",
-    [string]$SummaryPath = "references\official-zeratul-import-summary.tsv"
+    [string]$SummaryPath = "references\official-zagara-import-summary.tsv"
 )
 
 $ErrorActionPreference = "Stop"
@@ -16,12 +17,12 @@ if (-not [System.IO.Path]::IsPathRooted($SummaryPath)) {
 }
 if ([string]::IsNullOrWhiteSpace($TargetGameDataRoot)) {
     $scenarioRoot = Get-ChildItem -LiteralPath $projectRoot.FullName -Directory | Where-Object {
-        Test-Path -LiteralPath (Join-Path $_.FullName "Mods\XM\XMZeratul.SC2Mod")
+        Test-Path -LiteralPath (Join-Path $_.FullName "Mods\XM\XMZagara.SC2Mod")
     } | Select-Object -First 1
     if (-not $scenarioRoot) {
-        throw "Unable to locate scenario root containing Mods\XM\XMZeratul.SC2Mod under $($projectRoot.FullName)"
+        throw "Unable to locate scenario root containing Mods\XM\XMZagara.SC2Mod under $($projectRoot.FullName)"
     }
-    $TargetGameDataRoot = Join-Path $scenarioRoot.FullName "Mods\XM\XMZeratul.SC2Mod\Base.SC2Data\GameData"
+    $TargetGameDataRoot = Join-Path $scenarioRoot.FullName "Mods\XM\XMZagara.SC2Mod\Base.SC2Data\GameData"
 }
 
 if (-not (Test-Path -LiteralPath $OfficialGameDataRoot)) {
@@ -31,25 +32,12 @@ if (-not (Test-Path -LiteralPath $OfficialGameDataRoot)) {
 New-Item -ItemType Directory -Path $TargetGameDataRoot -Force | Out-Null
 
 $seedIds = @(
-    "Zeratul", "ProtossZeratul", "ZeratulCommander",
-    "CoopCasterZeratul", "ZeratulCoop", "ZeratulACArtifact", "ZeratulCoopReviveBeacon",
-    "ZeratulInitialReviveTimer", "ZeratulReviveTimer", "ZeratulRevive",
-    "ZeratulBuild", "ZeratulTopBarBuild", "ZeratulTopBarWarpTrain", "ZeratulTopBarUltimateWarpTrain",
-    "ZeratulMapWideStasis", "ZeratulMapWideStasisIssueOrder",
-    "ZeratulTopBarZealotSquad", "ZeratulTopBarVoidRaySquad",
-    "AutomatedAssimilatorZeratul", "DarkPylon",
-    "CommanderPrestigeZeratulVoidSeeker", "CommanderPrestigeZeratulArtifactFragments", "CommanderPrestigeZeratulTornadoes",
-    "MasteryZeratulArtifactFragmentSpawnRate", "MasteryZeratulLegendaryLegionCost",
-    "MasteryZeratulSupportCalldownCooldownReduction", "MasteryZeratulAvatarCooldown",
-    "MasteryZeratulZeratulAttackSpeed", "MasteryZeratulCombatUnitAttackSpeed",
-    "ZeratulGateway", "ZeratulCyberneticsCore", "ZeratulPhotonCannon", "ZeratulDarkShrine",
-    "ZeratulRoboticsBay", "ZeratulRoboticsFacility",
-    "ZeratulXelNagaConstructCyan", "ZeratulXelNagaConstructPsiBlast", "ZeratulXelNagaConstructPsiStorm",
-    "ZeratulKhaydarinMonolith", "VoidArray", "VoidArrayArtifactSearch", "VoidArrayWarpIn"
+    "Zagara", "ZergZagara", "ZagaraCommander",
+    "SoACasterZagara",
+    "CommanderPrestigeZagara", "CommanderPrestigeZagaraHyperevolution", "CommanderPrestigeZagaraTidal", "CommanderPrestigeZagaraAggression"
 )
-
-$seedPattern = "^(Zeratul|CoopCasterZeratul|ProtossZeratul|CommanderPrestigeZeratul|MasteryZeratul|HaveMasteryZeratul|HaveZeratul|CountUpgradeZeratul|EqCountUpgradeZeratul|LTECountUpgradeZeratul|AutomatedAssimilatorZeratul|VoidArray|XelNaga)"
-$seedPatternEnd = "(Zeratul|VoidArray|XelNaga|Monolith|Artifact|Seeker)$"
+$seedPattern = "^(Zagara|ZagaraVoidCoop|CommanderPrestigeZagara|ZagaraEgg|ZagaraLarva|ZagaraSpawn|ZagaraMorph|ZagaraMastery|ZagaraEvolve|ZagaraCocoon|ZagaraHunter|ZagaraHydralisk|ZagaraInfestedTerran|ZagaraRoach|ZagaraBaneling|ZagaraScourge|ZagaraSwarmHost|ZagaraBroodling)"
+$seedPatternEnd = "(Zagara|VoidCoop)$"
 $skipFiles = @("armycategorydata.xml", "conversationdata.xml", "soundtrackdata.xml", "voiceoverdata.xml")
 $skipFileSet = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 $skipFiles | ForEach-Object { [void]$skipFileSet.Add($_) }
@@ -105,13 +93,33 @@ for ($pass = 1; $pass -le 5; $pass++) {
 }
 
 foreach ($id in @($selected)) {
-    if ($idToSourceFile[$id] -eq "commanderdata.xml" -and $id -ne "Zeratul") {
+    if ($idToSourceFile[$id] -eq "commanderdata.xml" -and $id -ne "Zagara") {
         [void]$selected.Remove($id)
     }
 }
 
 $canonicalFileNames = @{
-    "abildata.xml" = "AbilData.xml"; "accumulatordata.xml" = "AccumulatorData.xml"; "actordata.xml" = "ActorData.xml"; "alertdata.xml" = "AlertData.xml"; "behaviordata.xml" = "BehaviorData.xml"; "buttondata.xml" = "ButtonData.xml"; "commanderdata.xml" = "CommanderData.xml"; "effectdata.xml" = "EffectData.xml"; "modeldata.xml" = "ModelData.xml"; "moddata.xml" = "ModData.xml"; "moverdata.xml" = "MoverData.xml"; "requirementdata.xml" = "RequirementData.xml"; "requirementnodedata.xml" = "RequirementNodeData.xml"; "skindata.xml" = "skindata.xml"; "sounddata.xml" = "SoundData.xml"; "turretdata.xml" = "TurretData.xml"; "unitdata.xml" = "UnitData.xml"; "upgradedata.xml" = "UpgradeData.xml"; "userdata.xml" = "UserData.xml"; "validatordata.xml" = "ValidatorData.xml"; "weapondata.xml" = "WeaponData.xml"
+    "abildata.xml" = "AbilData.xml"
+    "accumulatordata.xml" = "AccumulatorData.xml"
+    "actordata.xml" = "ActorData.xml"
+    "alertdata.xml" = "AlertData.xml"
+    "behaviordata.xml" = "BehaviorData.xml"
+    "buttondata.xml" = "ButtonData.xml"
+    "commanderdata.xml" = "CommanderData.xml"
+    "effectdata.xml" = "EffectData.xml"
+    "modeldata.xml" = "ModelData.xml"
+    "moddata.xml" = "ModData.xml"
+    "moverdata.xml" = "MoverData.xml"
+    "requirementdata.xml" = "RequirementData.xml"
+    "requirementnodedata.xml" = "RequirementNodeData.xml"
+    "skindata.xml" = "SkinData.xml"
+    "sounddata.xml" = "SoundData.xml"
+    "turretdata.xml" = "TurretData.xml"
+    "unitdata.xml" = "UnitData.xml"
+    "upgradedata.xml" = "UpgradeData.xml"
+    "userdata.xml" = "UserData.xml"
+    "validatordata.xml" = "ValidatorData.xml"
+    "weapondata.xml" = "WeaponData.xml"
 }
 
 $idsByTargetFile = @{}
@@ -122,7 +130,7 @@ foreach ($file in ($sourceDocs.Keys | Sort-Object)) {
         if ($node.NodeType -ne "Element" -or -not $node.id) { continue }
         $id = [string]$node.id
         if (-not $selected.Contains($id)) { continue }
-        if ($file -eq "commanderdata.xml" -and $id -ne "Zeratul") { continue }
+        if ($file -eq "commanderdata.xml" -and $id -ne "Zagara") { continue }
         if (-not $idsByTargetFile.ContainsKey($file)) {
             $idsByTargetFile[$file] = [System.Collections.Generic.List[System.Xml.XmlElement]]::new()
         }
@@ -151,5 +159,5 @@ foreach ($file in ($idsByTargetFile.Keys | Sort-Object)) {
 
 New-Item -ItemType Directory -Path (Split-Path -Parent $SummaryPath) -Force | Out-Null
 $summaryRows | Set-Content -LiteralPath $SummaryPath -Encoding UTF8
-Write-Host "Imported $($summaryRows.Count - 1) official Zeratul-related catalog objects."
+Write-Host "Imported $($summaryRows.Count - 1) official Zagara-related catalog objects."
 Write-Host "Summary: $SummaryPath"

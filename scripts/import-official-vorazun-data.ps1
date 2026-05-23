@@ -2,7 +2,7 @@ param(
     [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot),
     [string]$OfficialGameDataRoot = "references\official-casc-export\mods\starcoop\starcoop.sc2mod\base.sc2data\gamedata",
     [string]$TargetGameDataRoot = "",
-    [string]$SummaryPath = "references\official-zeratul-import-summary.tsv"
+    [string]$SummaryPath = "references\official-vorazun-import-summary.tsv"
 )
 
 $ErrorActionPreference = "Stop"
@@ -16,12 +16,12 @@ if (-not [System.IO.Path]::IsPathRooted($SummaryPath)) {
 }
 if ([string]::IsNullOrWhiteSpace($TargetGameDataRoot)) {
     $scenarioRoot = Get-ChildItem -LiteralPath $projectRoot.FullName -Directory | Where-Object {
-        Test-Path -LiteralPath (Join-Path $_.FullName "Mods\XM\XMZeratul.SC2Mod")
+        Test-Path -LiteralPath (Join-Path $_.FullName "Mods\XM\XMVorazun.SC2Mod")
     } | Select-Object -First 1
     if (-not $scenarioRoot) {
-        throw "Unable to locate scenario root containing Mods\XM\XMZeratul.SC2Mod under $($projectRoot.FullName)"
+        throw "Unable to locate scenario root containing Mods\XM\XMVorazun.SC2Mod under $($projectRoot.FullName)"
     }
-    $TargetGameDataRoot = Join-Path $scenarioRoot.FullName "Mods\XM\XMZeratul.SC2Mod\Base.SC2Data\GameData"
+    $TargetGameDataRoot = Join-Path $scenarioRoot.FullName "Mods\XM\XMVorazun.SC2Mod\Base.SC2Data\GameData"
 }
 
 if (-not (Test-Path -LiteralPath $OfficialGameDataRoot)) {
@@ -31,25 +31,69 @@ if (-not (Test-Path -LiteralPath $OfficialGameDataRoot)) {
 New-Item -ItemType Directory -Path $TargetGameDataRoot -Force | Out-Null
 
 $seedIds = @(
-    "Zeratul", "ProtossZeratul", "ZeratulCommander",
-    "CoopCasterZeratul", "ZeratulCoop", "ZeratulACArtifact", "ZeratulCoopReviveBeacon",
-    "ZeratulInitialReviveTimer", "ZeratulReviveTimer", "ZeratulRevive",
-    "ZeratulBuild", "ZeratulTopBarBuild", "ZeratulTopBarWarpTrain", "ZeratulTopBarUltimateWarpTrain",
-    "ZeratulMapWideStasis", "ZeratulMapWideStasisIssueOrder",
-    "ZeratulTopBarZealotSquad", "ZeratulTopBarVoidRaySquad",
-    "AutomatedAssimilatorZeratul", "DarkPylon",
-    "CommanderPrestigeZeratulVoidSeeker", "CommanderPrestigeZeratulArtifactFragments", "CommanderPrestigeZeratulTornadoes",
-    "MasteryZeratulArtifactFragmentSpawnRate", "MasteryZeratulLegendaryLegionCost",
-    "MasteryZeratulSupportCalldownCooldownReduction", "MasteryZeratulAvatarCooldown",
-    "MasteryZeratulZeratulAttackSpeed", "MasteryZeratulCombatUnitAttackSpeed",
-    "ZeratulGateway", "ZeratulCyberneticsCore", "ZeratulPhotonCannon", "ZeratulDarkShrine",
-    "ZeratulRoboticsBay", "ZeratulRoboticsFacility",
-    "ZeratulXelNagaConstructCyan", "ZeratulXelNagaConstructPsiBlast", "ZeratulXelNagaConstructPsiStorm",
-    "ZeratulKhaydarinMonolith", "VoidArray", "VoidArrayArtifactSearch", "VoidArrayWarpIn"
+    "Vorazun", "ProtossVorazun", "VorazunCommander",
+    "SoACasterVorazun",
+    "VorazunVoidCoopSOAEnergyRechargeTargetingDummy",
+    "VorazunVoidCoopSOAEnergyRechargeTargetAB",
+    "VorazunVoidCoopSOAEnergyRechargeTargetAC",
+    "VorazunVoidCoopSentinelSpawn",
+    "VorazunVoidCoopSentinelLaunch",
+    "VorazunVoidCoopSentinelSpawnImpact",
+    "VorazunVoidCoopSentinelSpawnImpactDamage",
+    "VorazunVoidCoopSentinelSpawnImpactSearch",
+    "VorazunVoidCoopSOAThermalLanceSearch",
+    "VorazunVoidCoopSOAThermalLanceDamage",
+    "VorazunVoidCoopSOAThermalLanceSet",
+    "VorazunVoidCoopOrbitalStrikeLaunch",
+    "VorazunVoidCoopOrbitalStrikeImpact",
+    "VorazunVoidCoopOrbitalStrikeDamage",
+    "VorazunVoidCoopOrbitalStrikeSet",
+    "VorazunVoidCoopOrbitalStrikeSearch",
+    "VorazunVoidCoopChronoBoostArea",
+    "VorazunEx2Portrait",
+    "VorazunPurifierBeamReady",
+    "VorazunHaveSolarEfficiencyLevel1",
+    "VorazunHaveSolarEfficiencyLevel2",
+    "VorazunHaveSolarEfficiencyLevel3",
+    "VorazunInstantWarpStructures",
+    "HasVorazunSOAChronoPassive",
+    "VorazunHaveStructureInstantWarp",
+    "VorazunLevel04",
+    "VorazunLevel05",
+    "VorazunLevel06",
+    "VorazunLevel14",
+    "CommanderPrestigeVorazunArmy",
+    "CommanderPrestigeVorazunStructures",
+    "CommanderPrestigeVorazunTopBar",
+    "CommanderPrestigeVorazunStructuresMastery",
+    "CommanderPrestigeVorazunStructuresMasteryChronoBoostSpeed",
+    "CommanderPrestigeVorazunStructuresPerk",
+    "OnDeathVorazunReconstruction",
+    "IsVorazunCoopCommander",
+    "TargetisVorazunCoopCommander",
+    "SourceisVorazunCoopCommander",
+    "IsSOACasterVorazun",
+    "HaveVorazunCommander",
+    "HaveVorazunEnergyRegenUpgrade",
+    "HaveVorazunInstantWarp",
+    "HaveVorazunUnityBarrier",
+    "HaveMasteryVorazunBuildHealthandShields",
+    "HaveMasteryVorazunStartingandMaxSOAEnergy",
+    "HaveMasteryVorazunRepairBeamHeal",
+    "HaveMasteryVorazunSOAEnergyRegenSuperChrono",
+    "HaveMasteryVorazunChronoBoostSpeed",
+    "HaveMasteryVorazunUnitCost",
+    "MasteryVorazunChronoBoostSpeedDisplayDummy",
+    "MasteryVorazunRepairBeamHealStructureDisplayDummy",
+    "MasteryVorazunRepairBeamHealUnitDisplayDummy",
+    "MasteryVorazunUnitCostDisplayDummy",
+    "MasteryVorazunStartingandMaxSOAEnergyDisplayDummy",
+    "MasteryVorazunBuildHealthandShieldsDisplayDummy",
+    "MasteryVorazunSOAEnergyRegenSuperChronoDisplayDummy"
 )
 
-$seedPattern = "^(Zeratul|CoopCasterZeratul|ProtossZeratul|CommanderPrestigeZeratul|MasteryZeratul|HaveMasteryZeratul|HaveZeratul|CountUpgradeZeratul|EqCountUpgradeZeratul|LTECountUpgradeZeratul|AutomatedAssimilatorZeratul|VoidArray|XelNaga)"
-$seedPatternEnd = "(Zeratul|VoidArray|XelNaga|Monolith|Artifact|Seeker)$"
+$seedPattern = "^(Vorazun|VorazunVoidCoop|VorazunMastery|VorazunPurifier|HaveVorazun|CommanderPrestigeVorazun|NotVorazun|OnDeathVorazun|TargetisVorazun|SourceisVorazun|IsVorazun|IsSOACasterVorazun|VorazunInstant|VorazunHave|VorazunUnit|HasVorazun|VorazunEnergy|VorazunTurret|VorazunChrono|VorazunReconstruction|VorazunRepair|VorazunCarrier|VorazunBeam|VorazunLevel|VorazunEx|SOAVorazun)"
+$seedPatternEnd = "(Vorazun|SolarForge|Energizer|Monolith|Reclamation|Orbital|Strike|Lance|Chrono|Barrier|BarrierDisabled|Sentinel|SOA|SOAVorazun|RepairBeam|EnergyRegen|TurretRange|TurretAttack|SoACaster)$"
 $skipFiles = @("armycategorydata.xml", "conversationdata.xml", "soundtrackdata.xml", "voiceoverdata.xml")
 $skipFileSet = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 $skipFiles | ForEach-Object { [void]$skipFileSet.Add($_) }
@@ -105,7 +149,7 @@ for ($pass = 1; $pass -le 5; $pass++) {
 }
 
 foreach ($id in @($selected)) {
-    if ($idToSourceFile[$id] -eq "commanderdata.xml" -and $id -ne "Zeratul") {
+    if ($idToSourceFile[$id] -eq "commanderdata.xml" -and $id -ne "Vorazun") {
         [void]$selected.Remove($id)
     }
 }
@@ -122,7 +166,7 @@ foreach ($file in ($sourceDocs.Keys | Sort-Object)) {
         if ($node.NodeType -ne "Element" -or -not $node.id) { continue }
         $id = [string]$node.id
         if (-not $selected.Contains($id)) { continue }
-        if ($file -eq "commanderdata.xml" -and $id -ne "Zeratul") { continue }
+        if ($file -eq "commanderdata.xml" -and $id -ne "Vorazun") { continue }
         if (-not $idsByTargetFile.ContainsKey($file)) {
             $idsByTargetFile[$file] = [System.Collections.Generic.List[System.Xml.XmlElement]]::new()
         }
@@ -151,5 +195,5 @@ foreach ($file in ($idsByTargetFile.Keys | Sort-Object)) {
 
 New-Item -ItemType Directory -Path (Split-Path -Parent $SummaryPath) -Force | Out-Null
 $summaryRows | Set-Content -LiteralPath $SummaryPath -Encoding UTF8
-Write-Host "Imported $($summaryRows.Count - 1) official Zeratul-related catalog objects."
+Write-Host "Imported $($summaryRows.Count - 1) official Vorazun-related catalog objects."
 Write-Host "Summary: $SummaryPath"
