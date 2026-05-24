@@ -383,6 +383,14 @@ void libE0EAE146_gf_ApplyZeratulCommanderRuntime () {
             libNtve_gf_SetUpgradeLevelForPlayer(1, UserDataGetUpgrade("PlayerCommanders", lv_playerCommander, "DefaultUpgrades", lv_indexTech), 1);
         }
     }
+    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarWarpTrain", 0), true);
+    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarWarpTrain", 1), true);
+    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarWarpTrain", 2), true);
+    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarWarpTrain", 7), true);
+    TechTreeAbilityAllow(1, AbilityCommand("ZeratulMapWideStasisIssueOrder", 0), true);
+    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarUltimateWarpTrain", 0), true);
+    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarUltimateWarpTrain", 1), true);
+    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarBuild", 0), true);
     libNtve_gf_SetUpgradeLevelForPlayer(1, "ZeratulCommander", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(1, "CommanderLevel", 15);
     lv_commanderSkin = UserDataGetGameLink("PlayerCommanders", lv_playerCommander, "CommanderSkin", 1);
@@ -673,6 +681,8 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
 void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp_secondBase, bool lp_createHero) {
     // Variable Declarations
     unit lv_u;
+    unit lv_commandCenter;
+    unit lv_secondCommandCenter;
     unitgroup lv_uG;
     unit lv_secondUnit;
     int lv_i;
@@ -687,6 +697,8 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
 
     // Variable Initialization
     lv_uG = UnitGroupEmpty();
+    lv_commandCenter = null;
+    lv_secondCommandCenter = null;
     lv_tooltip = StringExternal("Param/Value/lib_E0EAE146_4A6D72C1");
 
     // Implementation
@@ -725,10 +737,18 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "CommanderIcon");
     libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommanderIcon", 1), PlayerGroupAll());
     libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, PlayerStartLocation(1));
+    lv_commandCenter = UnitLastCreated();
     if ((lp_secondBase == null)) {
     }
     else {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, lp_secondBase);
+        lv_secondCommandCenter = UnitLastCreated();
+    }
+    if ((libE0EAE146_gv_commander == "Abathur") || (libE0EAE146_gv_commander == "AbathurReborn")) {
+        lib67C0F0E7_gf_MissionObjectives(lv_commandCenter);
+        if ((lv_secondCommandCenter != null)) {
+            lib67C0F0E7_gf_MissionObjectives(lv_secondCommandCenter);
+        }
     }
     auto93C1ECD3_g = UnitGroup(null, c_playerAny, RegionCircle(PlayerStartLocation(1), 8.0), UnitFilter((1 << c_targetFilterHarvestableResource), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto93C1ECD3_u = UnitGroupCount(auto93C1ECD3_g, c_unitCountAll);
