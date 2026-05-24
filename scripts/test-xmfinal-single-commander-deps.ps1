@@ -9,7 +9,7 @@ param(
         "XMVorazun",
         "XMZeratul"
     ),
-    [string]$MapName = "thanson03b.SC2Map",
+    [string]$MapClick = "1",
     [string]$Commander = "Alarak",
     [int]$MapEntryTimeoutSec = 120,
     [int]$PollIntervalMs = 2000,
@@ -39,7 +39,7 @@ $xmFinalInfo = Join-Path $xmFinalSource "DocumentInfo"
 $xmFinalHeader = Join-Path $xmFinalSource "DocumentHeader"
 $syncHeaderScript = Join-Path $PSScriptRoot "sync-sc2-documentheader-deps.ps1"
 $setBankScript = Join-Path $PSScriptRoot "set-campaignxcore-commander.ps1"
-$liveVerifyScript = Join-Path $PSScriptRoot "live-verify-alarak.ps1"
+$liveVerifyScript = Join-Path $PSScriptRoot "live-verify-abathur.ps1"
 $syncLiveScript = Join-Path $PSScriptRoot "sync-alarak-live.ps1"
 
 function Read-Bytes {
@@ -144,7 +144,6 @@ $results = New-Object System.Collections.Generic.List[object]
 $restored = $false
 
 try {
-    & $syncLiveScript -WorkspaceRoot $WorkspaceRoot -LiveRoot $LiveRoot -Maps @($MapName) | Out-Null
     Sync-Directory -Source $xmFinalSource -Target $xmFinalLive
 
     foreach ($module in $Modules) {
@@ -172,22 +171,20 @@ try {
         Copy-Item -LiteralPath $xmFinalInfo -Destination (Join-Path $xmFinalLive "DocumentInfo") -Force
         Copy-Item -LiteralPath $xmFinalHeader -Destination (Join-Path $xmFinalLive "DocumentHeader") -Force
 
-        & $setBankScript -Commander $Commander -Backup:$false | Out-Null
+        $commanderName = $module.Substring(2)
+        & $setBankScript -Commander $commanderName -Backup:$false | Out-Null
 
         $verifyArgs = @(
             "-NoProfile",
             "-ExecutionPolicy", "Bypass",
             "-File", $liveVerifyScript,
-            "-Prepare:$false",
             "-LaunchGame:$true",
             "-RestartExisting:$true",
             "-CloseGame:$true",
-            "-MapName", $MapName,
-            "-Commander", $Commander,
-            "-MapEntryTimeoutSec", $MapEntryTimeoutSec,
-            "-PollIntervalMs", $PollIntervalMs,
+            "-MapClick", $MapClick,
+            "-Commander", $commanderName,
+            "-InitialLoadWaitMs", 12000,
             "-EscapeCount", $EscapeCount,
-            "-CloseDelaySec", $CloseDelaySec,
             "-OutputPrefix", $module.ToLowerInvariant()
         )
 

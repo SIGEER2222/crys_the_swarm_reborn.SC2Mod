@@ -1,5 +1,6 @@
 param(
-    [string]$MapClick = '自由日',
+    [string]$Commander = 'Abathur',
+    [string]$MapClick = '1',
     [int]$InitialLoadWaitMs = 15000,
     [int]$EscapeCount = 20
 )
@@ -13,6 +14,7 @@ $target = Join-Path $scriptDir 'live-verify-abathur.ps1'
     -LaunchGame `
     -RestartExisting `
     -CloseGame `
+    -Commander $Commander `
     -MapClick $MapClick `
     -InitialLoadWaitMs $InitialLoadWaitMs `
     -EscapeCount $EscapeCount

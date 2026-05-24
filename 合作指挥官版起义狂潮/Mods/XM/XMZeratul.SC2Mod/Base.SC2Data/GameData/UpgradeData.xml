@@ -1,3 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+  <CUpgrade id="Charge">
+    <ScoreAmount value="0" />
+  </CUpgrade>
+  <CUpgrade default="1" id="CommanderPrestige">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeVorazunStasis" parent="CommanderPrestige">
+    <EffectArray Operation="Subtract" Reference="Behavior,OracleStasisTrapTarget,Duration" Value="11.250000" />
+    <EffectArray Operation="Subtract" Reference="Behavior,OracleStasisTrapStunTarget,Duration" Value="11.250000" />
+    <EffectArray Reference="Effect,CommanderPrestigeVorazunStasisDoT,Chance" Value="1" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeZeratulArtifactFragments" parent="CommanderPrestige">
+    <EffectArray Reference="Effect,ZeratulArtifactLimitDummy,Amount" Value="100" />
+    <EffectArray Reference="Unit,ZeratulStalker,CostResource[Minerals]" Value="75" />
+    <EffectArray Reference="Unit,ZeratulStalker,CostResource[Vespene]" Value="13" />
+    <EffectArray Reference="Unit,ZeratulSentry,CostResource[Minerals]" Value="19" />
+    <EffectArray Reference="Unit,ZeratulSentry,CostResource[Vespene]" Value="38" />
+    <EffectArray Reference="Unit,ZeratulDarkTemplar,CostResource[Minerals]" Value="94" />
+    <EffectArray Reference="Unit,ZeratulDarkTemplar,CostResource[Vespene]" Value="56" />
+    <EffectArray Reference="Unit,ZeratulImmortal,CostResource[Minerals]" Value="188" />
+    <EffectArray Reference="Unit,ZeratulImmortal,CostResource[Vespene]" Value="75" />
+    <EffectArray Reference="Unit,ZeratulDisruptor,CostResource[Minerals]" Value="113" />
+    <EffectArray Reference="Unit,ZeratulDisruptor,CostResource[Vespene]" Value="113" />
+    <EffectArray Reference="Unit,ZeratulWarpPrism,CostResource[Minerals]" Value="38" />
+    <EffectArray Reference="Unit,ZeratulWarpPrismPhasing,CostResource[Minerals]" Value="38" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeZeratulArtifactFragmentsUnlimitedUpgrade" parent="CommanderPrestige">
+    <EffectArray Reference="Unit,ZeratulSummonKarass,ShieldsMax" Value="100" />
+    <EffectArray Reference="Unit,ZeratulSummonKarass,ShieldsStart" Value="100" />
+    <EffectArray Reference="Unit,ZeratulSummonKarass,EnergyStart" Value="100" />
+    <EffectArray Reference="Unit,ZeratulSummonKarass,EnergyMax" Value="100" />
+    <EffectArray Reference="Unit,ZeratulHeroDarkArchon,ShieldsMax" Value="100" />
+    <EffectArray Reference="Unit,ZeratulHeroDarkArchon,ShieldsStart" Value="100" />
+    <EffectArray Reference="Unit,ZeratulHeroDarkArchon,EnergyStart" Value="100" />
+    <EffectArray Reference="Unit,ZeratulHeroDarkArchon,EnergyMax" Value="100" />
+    <EffectArray Reference="Unit,Mohandar,ShieldsMax" Value="100" />
+    <EffectArray Reference="Unit,Mohandar,ShieldsStart" Value="100" />
+    <MaxLevel value="100" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeZeratulTornadoes" parent="CommanderPrestige">
+    <EffectArray Reference="Effect,CommanderPrestigeZeratulTornadoesCU,Chance" Value="1" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeZeratulTornadoesShadowCleave1" parent="CommanderPrestige">
+    <EffectArray Operation="Subtract" Reference="Abil,ZeratulShadowCleave,Cost[0].Cooldown.TimeUse" Value="5" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeZeratulTornadoesShadowCleave2" parent="CommanderPrestige">
+    <EffectArray Operation="Subtract" Reference="Abil,ZeratulShadowCleave,Cost[0].Cooldown.TimeUse" Value="5" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeZeratulVoidSeeker" parent="CommanderPrestige" />
+  <CUpgrade id="DarkArchonFullStartingEnergy">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-ability-protoss-energize.dds" />
+    <EffectArray Reference="Unit,DarkArchon,EnergyStart" Value="150" />
+    <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="DarkArchon" />
+  </CUpgrade>
+  <CUpgrade id="DarkArchonMindControl">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-ability-protoss-mindcontrol.dds" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="DarkArchon" />
+  </CUpgrade>
+  <CUpgrade id="DarkProtoss">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="DarkTemplarResearchShadowDash">
+    <Icon value="Assets\Textures\btn-ability-protoss-shadowdash.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="DarkTemplarShakuras" />
+  </CUpgrade>
+  <CUpgrade id="DarkTemplarResearchShadowFury">
+    <Icon value="Assets\Textures\btn-ability-protoss-shadowfury.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="DarkTemplarShakuras" />
+    <Name value="Upgrade/Name/VoidDarkTemplarShadowFury" />
+  </CUpgrade>
+  <CUpgrade id="DarkTemplarResearchVoidStasis">
+    <Icon value="Assets\Textures\BTN-Ability-Protoss-VoidStasis.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="DarkTemplarShakuras" />
+  </CUpgrade>
+  <CUpgrade id="HaveKhaydarinMonolith">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="HunterSeeker">
+    <ScoreAmount value="0" />
+  </CUpgrade>
+  <CUpgrade id="KaraxInstantStructureWarp">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build2].Time" Value="24" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build8].Time" Value="39" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build25].Time" Value="79" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build22].Time" Value="29" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryVorazunDarkPylonRadius">
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryVorazunDarkPylonRadiusDisplayDummy,Amount" Value="2" />
+    <EffectArray Reference="Effect,DarkPylonCloakSearch,AreaArray[0].Radius" Value=".13" />
+    <EffectArray Reference="Actor,DarkPylonCloakingField,Scale" Value="0.02" />
+    <EffectArray Reference="Actor,DarkPylonPowerPowerVisual,Scale" Value="0.02" />
+    <EffectArray Reference="Actor,DarkPylonPowerRadiusLow,Range" Value="0.130000" />
+    <EffectArray Reference="Actor,DarkPylonUnpoweredRadiusLow,Range" Value="0.13" />
+    <EffectArray Reference="Actor,DarkPylonWarpInSplat,Scale" Value="0.02" />
+    <EffectArray Reference="Actor,DarkPylonUnpoweredVisual,Scale" Value="0.02" />
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Protoss" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="VoidDarkTemplarShadowFury">
+    <Icon value="Assets\Textures\btn-ability-protoss-shadowfury.dds" />
+    <EffectArray Operation="Set" Reference="Abil,GatewayTrain,InfoArray[Train5].Unit[0]" Value="DarkTemplarShakuras" />
+    <EffectArray Operation="Set" Reference="Abil,WarpGateTrain,InfoArray[Train5].Unit" Value="DarkTemplarShakuras" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="VorazunCommander">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Set" Reference="Button,VoidSentryBlackHole,Hotkey" Value="Button/Hotkey/VoidSentryBlackHole" />
+    <EffectArray Operation="Set" Reference="Abil,VoidSentryBlackHole,Range[0]" Value="500" />
+    <EffectArray Reference="Unit,DarkTemplarShakuras,ShieldsMax" Value="80" />
+    <EffectArray Reference="Unit,DarkTemplarShakuras,ShieldsStart" Value="80" />
+    <EffectArray Operation="Set" Reference="Button,Gateway,Tooltip" Value="Button/Tooltip/ACVorazunGateway" />
+    <!--EffectArray Operation="Set" Reference="Button,UpgradeToWarpGate,Tooltip" Value="Button/Tooltip/ACVorazunWarpgate"/-->
+    <EffectArray Operation="Set" Reference="Button,CyberneticsCore,Tooltip" Value="Button/Tooltip/ACVorazunCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Button,TwilightCouncil,Tooltip" Value="Button/Tooltip/ACVorazunTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Button,Stargate,Tooltip" Value="Button/Tooltip/ACVorazunStargate" />
+    <EffectArray Operation="Set" Reference="Button,DarkShrine,Tooltip" Value="Button/Tooltip/ACVorazunDarkShrine" />
+    <EffectArray Operation="Set" Reference="Button,FleetBeacon,Tooltip" Value="Button/Tooltip/ACVorazunFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Button,Forge,Tooltip" Value="Button/Tooltip/ACVorazunForge" />
+    <EffectArray Operation="Set" Reference="Unit,Gateway,Description" Value="Button/Tooltip/ACVorazunGateway" />
+    <EffectArray Operation="Set" Reference="Unit,WarpGate,Description" Value="Button/Tooltip/ACVorazunWarpgate" />
+    <EffectArray Operation="Set" Reference="Unit,CyberneticsCore,Description" Value="Button/Tooltip/ACVorazunCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Unit,TwilightCouncil,Description" Value="Button/Tooltip/ACVorazunTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Unit,Stargate,Description" Value="Button/Tooltip/ACVorazunStargate" />
+    <EffectArray Operation="Set" Reference="Unit,DarkShrine,Description" Value="Button/Tooltip/ACVorazunDarkShrine" />
+    <EffectArray Operation="Set" Reference="Unit,FleetBeacon,Description" Value="Button/Tooltip/ACVorazunFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Unit,Forge,Description" Value="Button/Tooltip/ACVorazunForge" />
+    <EffectArray Operation="Set" Reference="Button,FleetBeacon,AlertTooltip" Value="Button/Tooltip/ACVorazunFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Actor,Zealot,PlacementModel" Value="ZealotNoCordsPlacement" />
+    <EffectArray Operation="Set" Reference="Actor,Zealot,PortraitModel" Value="Zealot_NoNerveCordsPortrait" />
+    <EffectArray Operation="Set" Reference="Actor,Zealot,UnitIcon" Value="Assets\Textures\btn-unit-protoss-zealotnocord.dds" />
+    <EffectArray Operation="Set" Reference="Button,Zealot,Icon" Value="Assets\Textures\btn-unit-protoss-zealotnocord.dds" />
+    <EffectArray Operation="Set" Reference="Button,Zealot,AlertIcon" Value="Assets\Textures\btn-unit-protoss-zealotnocord.dds" />
+    <AffectedUnitArray value="Zealot" />
+    <AffectedUnitArray value="SoACasterVorazun" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="VorazunDarkTemplarRecall">
+    <Icon value="Assets\Textures\btn-ability-protoss-recallondeath.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="DarkTemplarShakuras" />
+    <LeaderAlias value="DarkTemplarResearchShadowFury" />
+  </CUpgrade>
 </Catalog>

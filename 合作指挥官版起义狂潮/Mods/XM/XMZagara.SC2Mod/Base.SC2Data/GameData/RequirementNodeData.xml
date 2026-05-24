@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-  <CRequirementAnd id="AndCountUnitAlias_LairCompleteOnly1515591279Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter">
-    <OperandArray value="CountUnitAlias_LairCompleteOnly1515591279" />
-    <OperandArray value="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter" />
-  </CRequirementAnd>
   <CRequirementAnd id="AndCountUnitBanelingNestCompleteOnly">
     <OperandArray value="CountUnitBanelingNestCompleteOnly" />
   </CRequirementAnd>
@@ -247,10 +243,6 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="MutatorWorkerSleep" State="CompleteOnlyAtUnit" />
   </CRequirementCountBehavior>
-  <CRequirementCountUnit id="CountUnitAlias_LairCompleteOnly1515591279">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="Alias_Lair" State="CompleteOnly" />
-  </CRequirementCountUnit>
   <CRequirementCountUnit id="CountUnitBanelingNestCompleteOnly">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="BanelingNest" State="CompleteOnly" />
@@ -1097,10 +1089,6 @@
   <CRequirementNot id="NotOrCountBehaviorHHMercStarportCargoInstalledCompleteOnlyAtUnitCountUnitHHMercStarportCargoQueuedOrBetterAtUnit">
     <OperandArray index="0" value="OrCountBehaviorHHMercStarportCargoInstalledCompleteOnlyAtUnitCountUnitHHMercStarportCargoQueuedOrBetterAtUnit" />
   </CRequirementNot>
-  <CRequirementOr id="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter">
-    <OperandArray value="NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnly" />
-    <OperandArray value="NotCountUnitScourgeNestQueuedOrBetter" />
-  </CRequirementOr>
   <CRequirementOr id="OrAndCountUpgradeKerriganCommanderCompleteOnlyLTE4CountUpgradeCommanderLevelCompleteOnlyAndCountUpgradeZagaraCommanderCompleteOnlyLTE6CountUpgradeCommanderLevelCompleteOnly">
     <OperandArray value="AndCountUpgradeKerriganCommanderCompleteOnlyLTE4CountUpgradeCommanderLevelCompleteOnly" />
     <OperandArray value="AndCountUpgradeZagaraCommanderCompleteOnlyLTE6CountUpgradeCommanderLevelCompleteOnly" />
@@ -1108,5 +1096,17 @@
   <CRequirementOr id="OrCountUpgradeZagaraCommanderCompleteOnlyCountUpgradeKerriganCommanderCompleteOnly">
     <OperandArray value="CountUpgradeZagaraCommanderCompleteOnly" />
     <OperandArray value="CountUpgradeKerriganCommanderCompleteOnly" />
+  </CRequirementOr>
+  <CRequirementAnd id="AndCountUnitAlias_LairCompleteOnly1515591279Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter">
+    <OperandArray value="CountUnitAlias_LairCompleteOnly1515591279" />
+    <OperandArray value="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter" />
+  </CRequirementAnd>
+  <CRequirementCountUnit id="CountUnitAlias_LairCompleteOnly1515591279">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="Alias_Lair" State="CompleteOnly" />
+  </CRequirementCountUnit>
+  <CRequirementOr id="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter">
+    <OperandArray value="NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnly" />
+    <OperandArray value="NotCountUnitScourgeNestQueuedOrBetter" />
   </CRequirementOr>
 </Catalog>

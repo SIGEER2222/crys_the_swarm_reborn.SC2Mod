@@ -1,12 +1,22 @@
 param(
-    [string]$MapClick = '自由日',
+    [string]$Commander = "Abathur",
+    [string]$MapClick = '1',
+    [string]$OutputPrefix = "",
     [switch]$CloseGame = $true,
     [switch]$LaunchGame = $true,
     [switch]$RestartExisting = $true,
     [int]$InitialLoadWaitMs = 12000,
+    [int]$LoadWaitMinSec = 60,
+    [int]$LoadWaitMaxSec = 180,
+    [int]$LoadPollIntervalSec = 5,
     [int]$EscapeCount = 18,
+    [string]$ProbeTopBarButtons = "0,1,2,3",
+    [string]$ProbeCommandCardSlots = "7,9,11,15",
+    [switch]$CaptureLogEvidence = $true,
     [string]$Sc2SwitcherPath = 'E:\SC2\SC2new\StarCraft II\Support64\SC2Switcher_x64.exe',
-    [string]$LauncherMapPath = 'E:\SC2\SC2new\StarCraft II\Maps\XM\Launcher.SC2Map'
+    [string]$LauncherMapPath = 'E:\SC2\SC2new\StarCraft II\Maps\XM\Launcher.SC2Map',
+    [int]$LauncherReadyWaitMs = 30000,
+    [switch]$ClickLogin = $false
 )
 
 $ErrorActionPreference = 'Stop'
@@ -33,6 +43,7 @@ public static class Sc2Live {
 "@
 
 $workspace = Split-Path -Parent $PSScriptRoot
+$logRoot = Join-Path $env:USERPROFILE 'Documents\StarCraft II\GameLogs'
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
 
 function Get-Sc2Process {
@@ -57,7 +68,14 @@ function Wait-Sc2Window {
     do {
         $proc = Get-Process SC2_x64 -ErrorAction SilentlyContinue | Select-Object -First 1
         if ($proc -and $proc.MainWindowHandle -ne 0 -and $proc.MainWindowTitle) {
-            return $proc
+            $rect = New-Object Sc2Live+RECT
+            if ([Sc2Live]::GetWindowRect([IntPtr]$proc.MainWindowHandle, [ref]$rect)) {
+                $width = $rect.Right - $rect.Left
+                $height = $rect.Bottom - $rect.Top
+                if ($width -ge 1000 -and $height -ge 700) {
+                    return $proc
+                }
+            }
         }
         Start-Sleep -Seconds 1
     } while ((Get-Date) -lt $deadline)
@@ -114,7 +132,119 @@ function Click-BattleNetLogin {
     $height = $Rect.Bottom - $Rect.Top
     $x = $Rect.Left + [math]::Round($width * 0.618)
     $y = $Rect.Top + [math]::Round($height * 0.395)
+    # 登录弹层点击：默认点 Launcher 里 BNet 按钮的位置。
     Click-Absolute -X $x -Y $y -DelayMs 1500
+}
+
+function Get-CommanderIndex {
+    param([string]$Name)
+
+    $userDataPath = Join-Path $PSScriptRoot "..\tools\launcher_mpq\Base.SC2Data\GameData\UserData.xml"
+    if (-not (Test-Path -LiteralPath $userDataPath)) {
+        return $null
+    }
+
+    [xml]$doc = Get-Content -LiteralPath $userDataPath -Raw -Encoding UTF8
+    $node = $doc.SelectSingleNode("//CUser[@id='CommanderPreset']//String[@String='$Name']/Field[@Id='Commander']")
+    if ($node -and $node.Attributes["Index"]) {
+        return [int]$node.Attributes["Index"].Value
+    }
+    if ($node) {
+        return 0
+    }
+
+    return $null
+}
+
+function Get-LatestLogSince {
+    param(
+        [string]$Filter,
+        [datetime]$Since
+    )
+
+    if (-not (Test-Path -LiteralPath $logRoot)) {
+        return $null
+    }
+
+    return Get-ChildItem -LiteralPath $logRoot -Filter $Filter -Recurse -ErrorAction SilentlyContinue |
+        Where-Object { $_.LastWriteTime -ge $Since } |
+        Sort-Object LastWriteTime -Descending |
+        Select-Object -First 1
+}
+
+function Get-CommanderButtonPoint {
+    param(
+        [Sc2Live+RECT]$Rect,
+        [int]$Index
+    )
+
+    $col = $Index % 9
+    $row = [math]::Floor($Index / 9)
+    $x = $Rect.Left + 100 + (82 * $col) + 40
+    $y = $Rect.Top + 120 + (92 * $row) + 135
+    return @([int]$x, [int]$y)
+}
+
+function Get-TopBarButtonPoint {
+    param(
+        [Sc2Live+RECT]$Rect,
+        [int]$Index
+    )
+
+    $width = $Rect.Right - $Rect.Left
+    $x = $Rect.Left + [math]::Round($width * (0.455 + (0.075 * $Index)))
+    $y = $Rect.Top + [math]::Round(($Rect.Bottom - $Rect.Top) * 0.04)
+    return @([int]$x, [int]$y)
+}
+
+function Get-CommandCardPoint {
+    param(
+        [Sc2Live+RECT]$Rect,
+        [int]$Slot
+    )
+
+    $width = $Rect.Right - $Rect.Left
+    $height = $Rect.Bottom - $Rect.Top
+    $baseX = $Rect.Left + [math]::Round($width * 0.805)
+    $baseY = $Rect.Top + [math]::Round($height * 0.82)
+    $col = ($Slot - 1) % 4
+    $row = [math]::Floor(($Slot - 1) / 4)
+    $stepX = [math]::Round($width * 0.034)
+    $stepY = [math]::Round($height * 0.06)
+    return @([int]($baseX + ($stepX * $col)), [int]($baseY + ($stepY * $row)))
+}
+
+function Get-MapButtonPoint {
+    param(
+        [Sc2Live+RECT]$Rect,
+        [int]$Index
+    )
+
+    if ($Index -lt 1) {
+        throw "Map index must be >= 1."
+    }
+
+    $col = ($Index - 1) % 6
+    $row = [math]::Floor(($Index - 1) / 6)
+    $x = $Rect.Left + 100 + 50 + (265 * $col) + 125
+    $y = $Rect.Top + 100 + 55 + (115 * $row) + 50
+    return @([int]$x, [int]$y)
+}
+
+function Get-DifficultyButtonPoint {
+    param(
+        [Sc2Live+RECT]$Rect,
+        [int]$Index = 0
+    )
+
+    if ($Index -lt 0 -or $Index -gt 3) {
+        throw "Difficulty index must be between 0 and 3."
+    }
+
+    $width = $Rect.Right - $Rect.Left
+    $x = $Rect.Right - 100 - 520 + 39 + 50 + (114 * $Index)
+    $y = $Rect.Top + 430 + 25
+    return @([int]$x, [int]$y)
 }
 
 function Send-Escape {
@@ -125,11 +255,104 @@ function Send-Escape {
     Start-Sleep -Milliseconds $DelayMs
 }
 
-$mapPoints = @{
-    '自由日' = @{ X = 248; Y = 430 }
+function Get-LoadWaitSeconds {
+    param(
+        [int]$MinSec,
+        [int]$MaxSec
+    )
+
+    if ($MaxSec -lt $MinSec) {
+        $MaxSec = $MinSec
+    }
+
+    if ($MaxSec -le $MinSec) {
+        return $MinSec
+    }
+
+    return (Get-Random -Minimum $MinSec -Maximum ($MaxSec + 1))
 }
 
-$difficultyPoint = @{ X = 1644; Y = 1118 }
+function Wait-ForLoadWindow {
+    param(
+        [datetime]$Since,
+        [int]$MinSec,
+        [int]$MaxSec,
+        [int]$PollIntervalSec
+    )
+
+    $target = Get-LoadWaitSeconds -MinSec $MinSec -MaxSec $MaxSec
+    $elapsed = 0
+    $signal = "timeout"
+    $latestAlerts = $null
+    $latestScriptError = $null
+
+    while ($elapsed -lt $target) {
+        $sleepSec = [math]::Min([math]::Max($PollIntervalSec, 1), $target - $elapsed)
+        Start-Sleep -Seconds $sleepSec
+        $elapsed += $sleepSec
+
+        $latestScriptError = Get-LatestLogSince -Filter "*ScriptError.txt" -Since $Since
+        if ($latestScriptError) {
+            $signal = "script-error"
+            break
+        }
+    }
+
+    $latestAlerts = Get-LatestLogSince -Filter "*Alerts.txt" -Since $Since
+
+    return [pscustomobject]@{
+        TargetSec = $target
+        ElapsedSec = $elapsed
+        Signal = $signal
+        Alerts = $latestAlerts
+        ScriptError = $latestScriptError
+    }
+}
+
+function Get-GameLogEvidence {
+    param(
+        [datetime]$Since,
+        [string]$Pattern = 'Unit|Structure|Hero|Panel|Ability|Commander|Building|Caster|TopBar|CommandCard'
+    )
+
+    if (-not (Test-Path -LiteralPath $logRoot)) {
+        return [pscustomobject]@{
+            Files = @()
+            Lines = @()
+        }
+    }
+
+    $files = Get-ChildItem -LiteralPath $logRoot -File -Recurse -ErrorAction SilentlyContinue |
+        Where-Object { $_.LastWriteTime -ge $Since } |
+        Sort-Object LastWriteTime -Descending |
+        Select-Object -First 6
+
+    $lines = New-Object System.Collections.Generic.List[string]
+    foreach ($file in $files) {
+        $tail = Get-Content -LiteralPath $file.FullName -ErrorAction SilentlyContinue | Select-Object -Last 800
+        foreach ($line in $tail) {
+            if ($line -match $Pattern -or $line -match '\[XM_' -or $line -match 'ScriptError' -or $line -match 'Alerts') {
+                [void]$lines.Add($line)
+            }
+        }
+    }
+
+    return [pscustomobject]@{
+        Files = @($files.FullName)
+        Lines = $lines.ToArray()
+    }
+}
+
+function Save-TextReport {
+    param(
+        [string]$Name,
+        [string[]]$Lines
+    )
+
+    $path = Join-Path $workspace ("{0}_{1}.txt" -f $Name, $stamp)
+    $Lines | Set-Content -LiteralPath $path -Encoding UTF8
+    return $path
+}
 
 $proc = $null
 if ($LaunchGame) {
@@ -142,35 +365,155 @@ else {
 
 $rect = Focus-Sc2Window -Process $proc
 
-if (-not $mapPoints.ContainsKey($MapClick)) {
-    throw "Unknown map click preset: $MapClick"
+$mapIndex = 1
+if ($MapClick -eq '1') {
+    $mapIndex = 1
+}
+else {
+    $parsedMapIndex = 0
+    if (-not [int]::TryParse($MapClick, [ref]$parsedMapIndex)) {
+        throw "Unknown map click preset: $MapClick"
+    }
+    $mapIndex = [int]$parsedMapIndex
 }
 
-$target = $mapPoints[$MapClick]
+$beforeName = 'sc2_before'
+$mapSelectedName = 'sc2_mapselected'
+$afterName = 'sc2_after'
+if (-not [string]::IsNullOrWhiteSpace($OutputPrefix)) {
+    $beforeName = "${OutputPrefix}_before"
+    $mapSelectedName = "${OutputPrefix}_mapselected"
+    $afterName = "${OutputPrefix}_after"
+}
+$startTime = Get-Date
 
-$before = Save-Screenshot -Name 'sc2_before'
-Click-BattleNetLogin -Rect $rect
-Start-Sleep -Seconds 8
+if ($ClickLogin) {
+    # 1) 可选：先点一次登录提示，避免 Launcher 停在 BNet 弹层。
+    Click-BattleNetLogin -Rect $rect
+}
+Start-Sleep -Milliseconds $LauncherReadyWaitMs
+$before = Save-Screenshot -Name $beforeName
 
-# single-click launcher flow: map -> difficulty -> map again, then skip opening sequences
-Click-Absolute -X $target.X -Y $target.Y -DelayMs 450
-Click-Absolute -X $difficultyPoint.X -Y $difficultyPoint.Y -DelayMs 300
-Click-Absolute -X $target.X -Y $target.Y -DelayMs $InitialLoadWaitMs
+$commanderIndex = Get-CommanderIndex -Name $Commander
+if ($commanderIndex -eq $null) {
+    throw "Commander not found in Launcher UserData: $Commander"
+}
+# 2) 点击指挥官头像：这里是候选指挥官页，改这里就能换进哪个指挥官。
+$commanderPoint = Get-CommanderButtonPoint -Rect $rect -Index $commanderIndex
+Click-Absolute -X $commanderPoint[0] -Y $commanderPoint[1] -DelayMs 900
+Start-Sleep -Milliseconds 1200
 
+$selectionName = 'sc2_selection'
+if (-not [string]::IsNullOrWhiteSpace($OutputPrefix)) {
+    $selectionName = "${OutputPrefix}_selection"
+}
+$selection = Save-Screenshot -Name $selectionName
+
+# 3) 点击关卡按钮：这里决定进哪张地图，`MapClick` 的坐标就是从这里算出来的。
+$mapPoint = Get-MapButtonPoint -Rect $rect -Index $mapIndex
+Click-Absolute -X $mapPoint[0] -Y $mapPoint[1] -DelayMs 450
+
+# 4) 点击难度按钮：先选难度，再确认进图。
+$difficultyPoint = Get-DifficultyButtonPoint -Rect $rect -Index 0
+Click-Absolute -X $difficultyPoint[0] -Y $difficultyPoint[1] -DelayMs 300
+
+# 5) 再点一次关卡按钮：这是正式确认进图的那一下。
+Click-Absolute -X $mapPoint[0] -Y $mapPoint[1] -DelayMs $InitialLoadWaitMs
+
+# 6) 记录“已点关卡后”的截图，用来确认是否离开候选页。
+$mapSelected = Save-Screenshot -Name $mapSelectedName
+
+$loadWindow = Wait-ForLoadWindow -Since $startTime -MinSec $LoadWaitMinSec -MaxSec $LoadWaitMaxSec -PollIntervalSec $LoadPollIntervalSec
+Start-Sleep -Milliseconds $InitialLoadWaitMs
+
+$probeLog = $null
+if ($CaptureLogEvidence) {
+    $probeEvidence = Get-GameLogEvidence -Since $startTime
+    $probeLines = @()
+    if ($probeEvidence.Lines.Count -gt 0) {
+        $probeLines += "LOG_EVIDENCE_FILES:"
+        $probeLines += $probeEvidence.Files
+        $probeLines += ""
+        $probeLines += "LOG_EVIDENCE_LINES:"
+        $probeLines += $probeEvidence.Lines
+    }
+    else {
+        $probeLines += "LOG_EVIDENCE: none found since launch"
+    }
+
+    $probeName = $Commander.ToLowerInvariant()
+    if (-not [string]::IsNullOrWhiteSpace($OutputPrefix)) {
+        $probeName = $OutputPrefix
+    }
+    $probeLog = Save-TextReport -Name ("tmp_{0}_probe" -f $probeName) -Lines $probeLines
+}
+
+if (-not [string]::IsNullOrWhiteSpace($ProbeTopBarButtons)) {
+    $probeRect = Focus-Sc2Window -Process (Get-Sc2Process)
+    foreach ($token in ($ProbeTopBarButtons -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" })) {
+        $index = [int]$token
+        # Probe 顶部面板按钮：这里的 index 可以直接改，逐个测试按钮是否可点。
+        $point = Get-TopBarButtonPoint -Rect $probeRect -Index $index
+        Click-Absolute -X $point[0] -Y $point[1] -DelayMs 900
+    }
+}
+
+if (-not [string]::IsNullOrWhiteSpace($ProbeCommandCardSlots)) {
+    $probeRect = Focus-Sc2Window -Process (Get-Sc2Process)
+    foreach ($token in ($ProbeCommandCardSlots -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" })) {
+        $slot = [int]$token
+        # Probe 指令卡槽位：这里的 slot 可以直接改，逐个测试技能键是否可点。
+        $point = Get-CommandCardPoint -Rect $probeRect -Slot $slot
+        Click-Absolute -X $point[0] -Y $point[1] -DelayMs 900
+    }
+}
+
+# 7) 连续按 Esc：这里是退出当前局面或回到安全状态。
 for ($i = 0; $i -lt $EscapeCount; $i++) {
     $proc = Get-Sc2Process
     Focus-Sc2Window -Process $proc | Out-Null
     Send-Escape -DelayMs 900
 }
 
-$after = Save-Screenshot -Name 'sc2_after'
+$after = Save-Screenshot -Name $afterName
 
 Write-Output "PID=$($proc.Id)"
 Write-Output "WINDOW_RECT=$($rect.Left),$($rect.Top),$($rect.Right - $rect.Left),$($rect.Bottom - $rect.Top)"
 Write-Output "BEFORE_SCREENSHOT=$before"
+Write-Output "SELECTION_SCREENSHOT=$selection"
+Write-Output "MAP_SELECTED_SCREENSHOT=$mapSelected"
 Write-Output "AFTER_SCREENSHOT=$after"
+Write-Output "COMMANDER=$Commander"
+if ($commanderIndex -ne $null) {
+    Write-Output "COMMANDER_INDEX=$commanderIndex"
+}
+Write-Output "MAP_INDEX=$mapIndex"
+Write-Output "MAP_POINT=$($mapPoint[0]),$($mapPoint[1])"
+Write-Output "DIFFICULTY_POINT=$($difficultyPoint[0]),$($difficultyPoint[1])"
+Write-Output "LOAD_WAIT_TARGET_SEC=$($loadWindow.TargetSec)"
+Write-Output "LOAD_WAIT_ELAPSED_SEC=$($loadWindow.ElapsedSec)"
+Write-Output "LOAD_WAIT_SIGNAL=$($loadWindow.Signal)"
+if ($probeLog) {
+    Write-Output "LOG_EVIDENCE_REPORT=$probeLog"
+}
+
+if ($CaptureLogEvidence -and $Commander -eq 'Abathur') {
+    $probeName = $Commander.ToLowerInvariant()
+    if (-not [string]::IsNullOrWhiteSpace($OutputPrefix)) {
+        $probeName = $OutputPrefix
+    }
+    $abathurJson = Join-Path $workspace ("tmp_{0}_abathur_debug_{1}.json" -f $probeName, $stamp)
+    try {
+        & (Join-Path $PSScriptRoot 'parse-latest-abathur-debug-log.ps1') -AsJson | Set-Content -LiteralPath $abathurJson -Encoding UTF8
+        Write-Output "ABATHUR_DEBUG_JSON=$abathurJson"
+    }
+    catch {
+        $abathurNote = Save-TextReport -Name ("tmp_{0}_abathur_debug_note" -f $probeName) -Lines @("parse-latest-abathur-debug-log.ps1 failed: $($_.Exception.Message)")
+        Write-Output "ABATHUR_DEBUG_NOTE=$abathurNote"
+    }
+}
 
 if ($CloseGame) {
-    Get-Process | Where-Object { $_.ProcessName -match 'SC2|StarCraft' } | Stop-Process -Force
+    Get-Process | Where-Object { $_.ProcessName -like 'SC2*' -or $_.ProcessName -like 'StarCraft*' } | Stop-Process -Force
     Write-Output "GAME_CLOSED=1"
 }
