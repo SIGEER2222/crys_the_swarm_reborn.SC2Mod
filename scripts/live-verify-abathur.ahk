@@ -93,25 +93,33 @@ RunMain(config) {
 
     if config.ProbeTopBarButtons != "" {
         Log("STEP=probe_topbar")
-        probeRect := FocusSc2Window(WaitSc2Window(10).Hwnd)
-        for _, token in StrSplit(config.ProbeTopBarButtons, ",") {
-            token := Trim(token)
-            if (token = "")
-                continue
-            point := GetTopBarButtonPoint(probeRect, Integer(token))
-            ClickAbsolute(point[1], point[2], 900)
+        try {
+            probeRect := FocusSc2Window(WaitSc2Window(10).Hwnd)
+            for _, token in StrSplit(config.ProbeTopBarButtons, ",") {
+                token := Trim(token)
+                if (token = "")
+                    continue
+                point := GetTopBarButtonPoint(probeRect, Integer(token))
+                ClickAbsolute(point[1], point[2], 900)
+            }
+        } catch as err {
+            Log("PROBE_TOPBAR_ERROR=" err.Message)
         }
     }
 
     if config.ProbeCommandCardSlots != "" {
         Log("STEP=probe_command_card")
-        probeRect := FocusSc2Window(WaitSc2Window(10).Hwnd)
-        for _, token in StrSplit(config.ProbeCommandCardSlots, ",") {
-            token := Trim(token)
-            if (token = "")
-                continue
-            point := GetCommandCardPoint(probeRect, Integer(token))
-            ClickAbsolute(point[1], point[2], 900)
+        try {
+            probeRect := FocusSc2Window(WaitSc2Window(10).Hwnd)
+            for _, token in StrSplit(config.ProbeCommandCardSlots, ",") {
+                token := Trim(token)
+                if (token = "")
+                    continue
+                point := GetCommandCardPoint(probeRect, Integer(token))
+                ClickAbsolute(point[1], point[2], 900)
+            }
+        } catch as err {
+            Log("PROBE_COMMAND_CARD_ERROR=" err.Message)
         }
     }
 
@@ -336,7 +344,7 @@ GetCommanderIndex(name) {
 
 GetCommanderButtonPoint(rect, index) {
     commanderXs := [168, 266, 364, 462, 560, 658, 756, 854, 952]
-    commanderYs := [322, 421]
+    commanderYs := [278, 377]
     col := Mod(index, 9)
     row := Floor(index / 9)
 
@@ -377,7 +385,7 @@ GetMapButtonPoint(rect, index) {
     if (row >= mapYs.Length)
         throw Error("Map row out of range: " row)
 
-    return [rect.Left + mapXs[col + 1], rect.Top + mapYs[row + 1]]
+    return [rect.Left + mapXs[col + 1], rect.Top + mapYs[row + 1] + 100]
 }
 
 GetDifficultyButtonPoint(rect, index := 0) {
