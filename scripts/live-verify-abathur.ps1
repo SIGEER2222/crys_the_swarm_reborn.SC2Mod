@@ -180,7 +180,7 @@ function Get-CommanderButtonPoint {
 
     $commanderXs = @(168, 266, 364, 462, 560, 658, 756, 854, 952)
     # 指挥官按钮的有效点击区更靠上，避开下方文字与边缘。
-    $commanderYs = @(322, 421)
+    $commanderYs = @(278, 377)
 
     $col = $Index % 9
     $row = [math]::Floor($Index / 9)
