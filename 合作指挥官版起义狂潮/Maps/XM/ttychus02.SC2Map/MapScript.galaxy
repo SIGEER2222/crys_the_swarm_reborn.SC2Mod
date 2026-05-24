@@ -713,7 +713,7 @@ bool gt_SiegeTanksComeIn_Func (bool testConds, bool runActions) {
         UnitCargoCreate(UnitLastCreated(), "Supplicant", 2);
     }
     else if (auto6309E628_val == "Kerrigan") {
-        UnitCargoCreate(UnitLastCreated(), "Hydralisk", 2);
+        libE0EAE146_gf_KerriganCreateCargoSquad(UnitLastCreated(), "heavy");
     }
     else if (auto6309E628_val == "Mira") {
         UnitCargoCreate(UnitLastCreated(), "SiegeBreakerMira", 2);
@@ -751,6 +751,9 @@ bool gt_SiegeTanksComeIn_Func (bool testConds, bool runActions) {
     }
     else if (auto6309E628_val == "Vorazun") {
         libE0EAE146_gf_VorazunCreateCargoSquad(UnitLastCreated(), "heavy");
+    }
+    else if (auto6309E628_val == "Karax") {
+        libE0EAE146_gf_KaraxCreateCargoSquad(UnitLastCreated(), "heavy");
     }
     else if (auto6309E628_val == "Zeratul") {
         libE0EAE146_gf_ZeratulCreateCargoSquad(UnitLastCreated(), "heavy");
@@ -975,6 +978,13 @@ bool gt_StartGameTacticalPhase_Func (bool testConds, bool runActions) {
     }
     else if (autoA39A42DB_val == "Vorazun") {
         libE0EAE146_gf_VorazunCreateCargoSquad(UnitFromId(317), "hero");
+    }
+    else if (autoA39A42DB_val == "Kerrigan") {
+        libE0EAE146_gf_KerriganCreateCargoSquad(UnitFromId(317), "hero");
+    }
+    else if (autoA39A42DB_val == "Karax") {
+        UnitCargoCreate(UnitFromId(317), "KaraxChampion", 1);
+        libE0EAE146_gf_KaraxCreateCargoSquad(UnitFromId(317), "hero");
     }
     else if (autoA39A42DB_val == "Zeratul") {
         libE0EAE146_gf_ZeratulCreateCargoSquad(UnitFromId(317), "hero");

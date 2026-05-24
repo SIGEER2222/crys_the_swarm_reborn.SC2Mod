@@ -876,6 +876,7 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     else if (auto2F29E444_val == "Kerrigan") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(29));
         gv_nova = UnitLastCreated();
+        libE0EAE146_gf_KerriganCreateMapStartSquad("heavy", 1, PointFromId(29));
     }
     else if (auto2F29E444_val == "Karax") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "KaraxChampion", 0, 1, PointFromId(29));
@@ -958,9 +959,6 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     }
     else if (auto2F29E444_val == "Vorazun") {
         libE0EAE146_gf_VorazunCreateMapStartSquad("heavy", 1, PointFromId(29));
-    }
-    else if (auto2F29E444_val == "Karax") {
-        libE0EAE146_gf_KaraxCreateMapStartSquad("heavy", 1, PointFromId(29));
     }
     else if (auto2F29E444_val == "Zeratul") {
         libE0EAE146_gf_ZeratulCreateMapStartSquad("heavy", 1, PointFromId(29));
