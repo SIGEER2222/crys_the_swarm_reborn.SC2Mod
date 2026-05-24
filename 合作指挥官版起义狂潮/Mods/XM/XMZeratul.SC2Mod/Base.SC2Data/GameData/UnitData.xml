@@ -436,21 +436,15 @@
     <ScoreKill value="0" />
     <CardLayouts index="0">
       <LayoutButtons index="0" AbilCmd="que5notPassive,CancelLast" />
-      <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="GatewayTrain,Train1" Row="0" Column="0" />
-      <LayoutButtons Face="WarpInSupplicant" Type="AbilCmd" AbilCmd="GatewayTrain,Train11" Row="0" Column="0" />
-      <LayoutButtons Face="Stalker" Type="AbilCmd" AbilCmd="GatewayTrain,Train2" Row="0" Column="2" />
-      <LayoutButtons Face="WarpinAscendentLocked" Type="Passive" Requirements="AlarakLevel08" Row="1" Column="0" />
-      <LayoutButtons Face="Sentry" Type="AbilCmd" AbilCmd="GatewayTrain,Train6" Row="0" Column="1" />
-      <LayoutButtons Face="Monitor" Type="AbilCmd" AbilCmd="GatewayTrain,Train10" Row="0" Column="1" />
-      <LayoutButtons Face="SentryFenix" Type="AbilCmd" AbilCmd="GatewayTrain,Train15" Row="0" Column="1" />
-      <LayoutButtons Face="DarkArchon" Type="AbilCmd" AbilCmd="GatewayTrain,Train9" Row="1" Column="2" />
-      <LayoutButtons Face="WarpInDarkArchonLocked" Type="Passive" Requirements="VorazunLevel05" Row="1" Column="2" />
-      <LayoutButtons Face="AlarakMasteryUnitAttackSpeed" Type="Passive" Requirements="HaveMasteryAlarakUnitAttackSpeed" Row="2" Column="2" />
+      <LayoutButtons Face="StalkerZeratul" Type="AbilCmd" AbilCmd="ZeratulGatewayTrain,Train2" Row="0" Column="0" />
+      <LayoutButtons Face="SentryZeratul" Type="AbilCmd" AbilCmd="ZeratulGatewayTrain,Train6" Row="0" Column="1" />
+      <LayoutButtons Face="DarkTemplarZeratul" Type="AbilCmd" AbilCmd="ZeratulGatewayTrain,Train5" Row="0" Column="2" />
     </CardLayouts>
     <RepairTime value="32.5" />
     <BehaviorArray Link="ChronoBoostTarget" />
     <SubgroupPriority value="57" />
     <AbilArray index="1" Link="que5notPassive" />
+    <AbilArray Link="ZeratulGatewayTrain" />
   </CUnit>
   <CUnit id="InfestedTerran">
     <ScoreKill value="0" />
@@ -1276,24 +1270,15 @@
     <Attributes index="Mechanical" value="1" />
     <ScoreKill value="0" />
     <CardLayouts index="0">
-      <LayoutButtons index="0" Face="WarpInSupplicant" AbilCmd="WarpGateTrain,Train11" />
-      <LayoutButtons index="2" Face="WarpinAscendentLocked" Type="Passive" AbilCmd="" Requirements="AlarakLevel08" />
-      <LayoutButtons index="8" AbilCmd="WarpGateTrain,Train4" />
-      <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="WarpGateTrain,Train1" Row="0" Column="0" />
-      <LayoutButtons Face="HighTemplar" Type="AbilCmd" AbilCmd="WarpGateTrain,Train8" Row="1" Column="0" />
-      <LayoutButtons Face="Monitor" Type="AbilCmd" AbilCmd="WarpGateTrain,Train10" Row="0" Column="1" />
-      <LayoutButtons Face="SentryFenix" Type="AbilCmd" AbilCmd="WarpGateTrain,Train15" Row="0" Column="1" />
-      <LayoutButtons Face="DarkArchon" Type="AbilCmd" AbilCmd="WarpGateTrain,Train9" Row="1" Column="2" />
-      <LayoutButtons Face="WarpInDarkArchonLocked" Type="Passive" Requirements="VorazunLevel05" Row="1" Column="2" />
-      <LayoutButtons Face="AlarakMasteryUnitAttackSpeed" Type="Passive" Requirements="HaveMasteryAlarakUnitAttackSpeed" Row="2" Column="2" />
-    </CardLayouts>
-    <CardLayouts CardId="0003">
-      <LayoutButtons Face="WarpInSupplicant" Type="AbilCmd" AbilCmd="WarpGateTrain,Train12" Row="0" Column="0" />
+      <LayoutButtons Face="StalkerZeratul" Type="AbilCmd" AbilCmd="ZeratulGatewayTrain,Train2" Row="0" Column="0" />
+      <LayoutButtons Face="SentryZeratul" Type="AbilCmd" AbilCmd="ZeratulGatewayTrain,Train6" Row="0" Column="1" />
+      <LayoutButtons Face="DarkTemplarZeratul" Type="AbilCmd" AbilCmd="ZeratulGatewayTrain,Train5" Row="0" Column="2" />
     </CardLayouts>
     <RepairTime value="32.5" />
     <BehaviorArray Link="ChronoBoostTarget" />
     <HotkeyAlias value="WarpGate" />
     <SubgroupPriority value="58" />
+    <AbilArray Link="ZeratulGatewayTrain" />
   </CUnit>
   <CUnit id="XelNagaConstruct">
     <ScoreMake value="0" />
@@ -1362,5 +1347,221 @@
     <DamageDealtXP value="0" />
     <DamageTakenXP value="0" />
     <HotkeyCategory value="" />
+  </CUnit>
+  <CUnit id="CoopCasterZeratul" parent="CoopGlobalCaster">
+    <Race value="Prot" />
+    <FlagArray index="ArmorDisabledWhileConstructing" value="1" />
+    <EnergyMax value="200" />
+    <EnergyRegenRate value="0.2812" />
+    <AbilArray Link="ZeratulTopBarWarpTrain" />
+    <AbilArray Link="ZeratulBlackHole" />
+    <AbilArray Link="ZeratulStasisField" />
+    <AbilArray Link="ZeratulStasisFieldUpgraded" />
+    <AbilArray Link="RallyZeratulTopBarRedirect" />
+    <AbilArray Link="ZeratulMapWideStasisIssueOrder" />
+    <AbilArray Link="ZeratulTopBarUltimateWarpTrain" />
+    <AbilArray Link="ZeratulTopBarBuild" />
+    <BehaviorArray Link="ZeratulTopBarFullEnergy" />
+    <BehaviorArray Link="HaveZeratulArtifactTier1AndCyberCore" />
+    <BehaviorArray Link="HaveZeratulArtifactTier1AndDarkShine" />
+    <BehaviorArray Link="HaveZeratulArtifactTier1AndRoboticsBay" />
+    <BehaviorArray Link="HaveZeratulArtifactTier2AndCyberCore" />
+    <BehaviorArray Link="HaveZeratulArtifactTier2AndDarkShine" />
+    <BehaviorArray Link="HaveZeratulArtifactTier2AndRoboticsBay" />
+    <BehaviorArray Link="HaveZeratulArtifactTier3AndCyberCore" />
+    <BehaviorArray Link="HaveZeratulArtifactTier3AndDarkShine" />
+    <BehaviorArray Link="HaveZeratulArtifactTier3AndRoboticsBay" />
+    <BehaviorArray Link="TesseractMonolithZeratulDisableRecharge" />
+    <CardLayouts>
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4" />
+      <LayoutButtons Face="RallyZeratulTopBarRedirect" Type="AbilCmd" AbilCmd="RallyZeratulTopBarRedirect,Rally1" Row="0" Column="0" />
+      <LayoutButtons Face="ZeratulSummonKarass" Type="AbilCmd" AbilCmd="ZeratulTopBarWarpTrain,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="ZeratulSummonMohandar" Type="AbilCmd" AbilCmd="ZeratulTopBarWarpTrain,Train2" Row="0" Column="0" />
+      <LayoutButtons Face="ZeratulSummonDarkArchon" Type="AbilCmd" AbilCmd="ZeratulTopBarWarpTrain,Train3" Row="0" Column="0" />
+      <LayoutButtons Face="ZeratulArtifactUpgradeTier1B" Type="AbilCmd" AbilCmd="ZeratulTopBarWarpTrain,Train8" Row="0" Column="1" />
+      <LayoutButtons Face="ZeratulMapWideStasis" Type="AbilCmd" AbilCmd="ZeratulMapWideStasisIssueOrder,Execute" Row="0" Column="1" />
+      <LayoutButtons Face="ZeratulKhaydarinMonolith" Type="AbilCmd" AbilCmd="ZeratulTopBarBuild,Build1" Row="0" Column="1" />
+      <LayoutButtons Face="ZeratulArtifactUpgradeTier2A" Type="Passive" Requirements="HaveZeratulArtifactUpgradeTier2A" Row="0" Column="2" />
+      <LayoutButtons Face="ZeratulArtifactUpgradeTier2B" Type="Passive" Requirements="HaveZeratulArtifactUpgradeTier2B" Row="0" Column="2" />
+      <LayoutButtons Face="ZeratulStructureBarrierChose" Type="Passive" Requirements="HaveZeratulArtifactUpgradeTier2C" Row="0" Column="2" />
+      <LayoutButtons Face="FinalArtifactPowerLocked" Type="Passive" Requirements="ZeratulLevel02" Row="0" Column="3" />
+      <LayoutButtons Face="ZeratulArtifactUpgradeTier3A" Type="AbilCmd" AbilCmd="ZeratulTopBarUltimateWarpTrain,Train2" Row="0" Column="3" />
+      <LayoutButtons Face="ZeratulArtifactUpgradeTier3B" Type="AbilCmd" AbilCmd="ZeratulTopBarUltimateWarpTrain,Train1" Row="0" Column="3" />
+    </CardLayouts>
+    <EditorCategories value="ObjectType:Other,ObjectFamily:FactionXelNaga" />
+    <LeaderAlias value="" />
+  </CUnit>
+  <CUnit id="ZeratulCoop">
+    <DeathTime value="-1" />
+    <DeathRevealRadius value="3" />
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <FlagArray index="UseLineOfSight" value="1" />
+    <FlagArray index="Cloaked" value="1" />
+    <FlagArray index="ArmySelect" value="1" />
+    <PlaneArray index="Ground" value="1" />
+    <Collide index="Ground" value="1" />
+    <Collide index="ForceField" value="1" />
+    <Collide index="Locust" value="1" />
+    <Collide index="Small" value="1" />
+    <Attributes index="Light" value="1" />
+    <Attributes index="Biological" value="1" />
+    <Attributes index="Psionic" value="1" />
+    <Attributes index="Heroic" value="1" />
+    <LifeStart value="150" />
+    <LifeMax value="150" />
+    <LifeArmor value="1" />
+    <LifeRegenRate value="1" />
+    <LifeArmorName value="Unit/LifeArmorName/ProtossArmor" />
+    <ShieldsStart value="450" />
+    <ShieldsMax value="450" />
+    <ShieldRegenRate value="15" />
+    <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields" />
+    <Speed value="3" />
+    <Acceleration value="1000" />
+    <LateralAcceleration value="46.0625" />
+    <Sight value="12" />
+    <CostCategory value="Army" />
+    <AttackTargetPriority value="20" />
+    <AbilArray Link="stop" />
+    <AbilArray Link="attack" />
+    <AbilArray Link="move" />
+    <AbilArray Link="ZeratulBlink" />
+    <AbilArray Link="ZeratulShadowCleave" />
+    <AbilArray Link="ZeratulTeleport" />
+    <AbilArray Link="WarpableAnywhere" />
+    <AbilArray Link="ProgressRally" />
+    <AbilArray Link="ProphecyVision" />
+    <AbilArray Link="CommanderPrestigeZeratulVoidSeeker" />
+    <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="HeroCCImmunity" />
+    <BehaviorArray Link="ZeratulShadowPhaseController" />
+    <BehaviorArray Link="VorazunCloakedShieldRegenPermanent" />
+    <WeaponArray Link="ZeratulCoopWeapon" />
+    <WeaponArray Link="ZeratulCoopAA" />
+    <CardLayouts>
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
+      <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1" />
+      <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
+      <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
+      <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
+      <LayoutButtons Face="ZeratulBlink" Type="AbilCmd" AbilCmd="ZeratulBlink,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="ZeratulSummonVoidSeeker" Type="AbilCmd" AbilCmd="ZeratulTeleport,Execute" Row="2" Column="1" />
+      <LayoutButtons Face="CommanderPrestigeZeratulVoidSeekerSummon" Type="AbilCmd" AbilCmd="CommanderPrestigeZeratulVoidSeeker,Execute" Row="2" Column="1" />
+      <LayoutButtons Face="ZeratulShadowCleave" Type="AbilCmd" AbilCmd="ZeratulShadowCleave,Execute" Row="2" Column="2" />
+      <LayoutButtons Face="ProphecyVision" Type="AbilCmd" AbilCmd="ProphecyVision,Execute" Row="2" Column="3" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="1" Column="4" />
+      <LayoutButtons Face="ZeratulShadowPhase" Type="Passive" Row="1" Column="0" />
+      <LayoutButtons Face="ZeratulPurityofWillLocked" Type="Passive" Requirements="ZeratulLevel15" Row="1" Column="1" />
+      <LayoutButtons Face="CommanderZeratulLevel15" Type="Passive" Row="1" Column="1" />
+    </CardLayouts>
+    <CargoSize value="2" />
+    <SubgroupPriority value="199" />
+    <EditorCategories value="ObjectType:Hero,ObjectFamily:FactionXelNaga" />
+    <GlossaryCategory value="Unit/Category/ProtossUnits" />
+    <GlossaryPriority value="300" />
+    <GlossaryStrongArray value="Zergling" />
+    <GlossaryStrongArray value="Roach" />
+    <GlossaryStrongArray value="Hydralisk" />
+    <GlossaryWeakArray value="Overseer" />
+    <GlossaryWeakArray value="SporeCrawler" />
+    <HotkeyCategory value="Unit/Category/ProtossZeratul" />
+    <AlliedPushPriority value="11" />
+  </CUnit>
+  <CUnit id="ZeratulCoopReviveBeacon">
+    <Facing value="315" />
+    <Race value="Prot" />
+    <FlagArray index="Untargetable" value="1" />
+    <FlagArray index="PreventDestroy" value="1" />
+    <FlagArray index="Invulnerable" value="1" />
+    <FlagArray index="NoScore" value="1" />
+    <FlagArray index="NoPortraitTalk" value="1" />
+    <PlaneArray index="Ground" value="1" />
+    <Collide index="Structure" value="1" />
+    <Collide index="ForceField" value="1" />
+    <Attributes index="Structure" value="1" />
+    <Attributes index="MapBoss" value="1" />
+    <LifeStart value="100" />
+    <LifeMax value="100" />
+    <AbilArray Link="que1" />
+    <AbilArray Link="ZeratulRevive" />
+    <AbilArray Link="RallyReviveBeacon" />
+    <BehaviorArray Link="Unmoved" />
+    <BehaviorArray Link="Unrepairable" />
+    <BehaviorArray Link="DisableRallyFor1Second" />
+    <BehaviorArray Link="SuppressCollision" />
+    <BehaviorArray Link="ZeratulReviveDisable" />
+    <CardLayouts>
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
+      <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1" />
+      <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
+      <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
+      <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="RallyReviveBeacon,Rally1" Row="2" Column="4" />
+    </CardLayouts>
+    <Radius value="1" />
+    <SubgroupPriority value="1" />
+    <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionXelNaga" />
+    <AIEvalFactor value="0" />
+    <SelectAlias value="ZeratulCoop" />
+    <HotkeyCategory value="Unit/Category/ProtossZeratul" />
+  </CUnit>
+  <CUnit id="Probe">
+    <AbilArray Link="MapObjectInteract" />
+    <AbilArray Link="MutatorRemoveWorkerSleep" />
+    <AbilArray Link="SprayProtoss" />
+    <AbilArray Link="ZeratulBuild" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="MapObjectInteract" Type="AbilCmd" AbilCmd="MapObjectInteract,Execute" Row="0" Column="0" />
+      <LayoutButtons Face="MutatorWorkerSleep" Type="AbilCmd" AbilCmd="MutatorRemoveWorkerSleep,Execute" Row="2" Column="3" />
+      <LayoutButtons Face="Spray" Type="AbilCmd" AbilCmd="SprayProtoss,Execute" Row="2" Column="3" />
+    </CardLayouts>
+    <CardLayouts index="1">
+      <LayoutButtons Face="ZeratulGateway" Type="AbilCmd" AbilCmd="ZeratulBuild,Build2" Row="1" Column="0" />
+      <LayoutButtons Face="ZeratulCyberneticsCore" Type="AbilCmd" AbilCmd="ZeratulBuild,Build3" Row="2" Column="0" />
+      <LayoutButtons Face="ZeratulPhotonCannon" Type="AbilCmd" AbilCmd="ZeratulBuild,Build4" Row="2" Column="1" />
+    </CardLayouts>
+    <CardLayouts index="2">
+      <LayoutButtons Face="ZeratulDarkShrine" Type="AbilCmd" AbilCmd="ZeratulBuild,Build5" Row="0" Column="0" />
+      <LayoutButtons Face="ZeratulRoboticsBay" Type="AbilCmd" AbilCmd="ZeratulBuild,Build6" Row="0" Column="1" />
+      <LayoutButtons Face="ZeratulRoboticsFacility" Type="AbilCmd" AbilCmd="ZeratulBuild,Build7" Row="0" Column="2" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="RoboticsFacility">
+    <Attributes index="Mechanical" value="1" />
+    <RepairTime value="32.5" />
+    <BehaviorArray Link="ChronoBoostTarget" />
+    <CardLayouts index="0">
+      <LayoutButtons index="6" Face="MorphToRoboticsFacilityWarp" Type="AbilCmd" AbilCmd="MorphToRoboticsFacilityWarp,Execute" Column="1" />
+      <LayoutButtons Face="ZeratulObserver" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train2" Row="0" Column="0" />
+      <LayoutButtons Face="WarpInZeratulWarpPrism" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train5" Row="0" Column="1" />
+      <LayoutButtons Face="ImmortalZeratul" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train6" Row="0" Column="2" />
+      <LayoutButtons Face="ZeratulWarpinDisruptor" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train7" Row="1" Column="0" />
+    </CardLayouts>
+    <Footprint value="Footprint3x3CreepNormalContour" />
+    <PlacementFootprint value="Footprint3x3CreepNormal" />
+    <ScoreMake value="0" />
+    <ScoreKill value="0" />
+    <SubgroupPriority value="56" />
+    <AbilArray Link="ZeratulRoboticsFacilityTrain" />
+  </CUnit>
+  <CUnit id="RoboticsFacilityWarp">
+    <Attributes index="Mechanical" value="1" />
+    <RepairTime value="32.5" />
+    <BehaviorArray Link="ChronoBoostTarget" />
+    <CardLayouts index="0">
+      <LayoutButtons index="6" Face="MorphBackToRoboticsFacility" Type="AbilCmd" AbilCmd="MorphBackToRoboticsFacility,Execute" Column="1" />
+      <LayoutButtons Face="ZeratulObserver" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train2" Row="0" Column="0" />
+      <LayoutButtons Face="WarpInZeratulWarpPrism" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train5" Row="0" Column="1" />
+      <LayoutButtons Face="ImmortalZeratul" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train6" Row="0" Column="2" />
+      <LayoutButtons Face="ZeratulWarpinDisruptor" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train7" Row="1" Column="0" />
+    </CardLayouts>
+    <Footprint value="Footprint3x3CreepNormalContour" />
+    <PlacementFootprint value="Footprint3x3CreepNormal" />
+    <ScoreMake value="0" />
+    <ScoreKill value="0" />
+    <GlossaryPriority value="211" />
+    <SubgroupPriority value="57" />
+    <AbilArray Link="ZeratulRoboticsFacilityTrain" />
   </CUnit>
 </Catalog>

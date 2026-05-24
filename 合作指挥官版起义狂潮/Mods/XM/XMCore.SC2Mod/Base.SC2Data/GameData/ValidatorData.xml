@@ -276,4 +276,83 @@
         <Compare value="LE"/>
         <Value value="3"/>
     </CValidatorUnitCompareVeterancyLevel>
+    <CValidatorUnitType id="IsHHCommandCenter">
+        <Value value="HHCommandCenter"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHCommandCenterFlying">
+        <Value value="HHCommandCenterFlying"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHBattlecruiser">
+        <Value value="HHBattlecruiser"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHRaven">
+        <Value value="HHRaven"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHRavenSieged">
+        <Value value="HHRavenSiegeMode"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHStarport">
+        <Value value="HHStarport"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHStarportFlying">
+        <Value value="HHStarportFlying"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHMercCompound">
+        <Value value="HHMercCompound"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHVikingAssault">
+        <Value value="HHVikingAssault"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHHVikingFighter">
+        <Value value="HHVikingFighter"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="IsHanStarport">
+        <Value value="HHMercStarportUpgraded"/>
+    </CValidatorUnitType>
+    <CValidatorPlayerRequirement id="HHBattlecruiserUpgraded">
+        <ResultNoPlayer value="Error"/>
+        <Find value="1"/>
+        <Value value="HaveHHBattlecruiserYamatoAttacks"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="HHBattlecruiserNotUpgraded">
+        <ResultNoPlayer value="Error"/>
+        <Value value="HaveHHBattlecruiserYamatoAttacks"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="HHWidowMineAttackRangeUpgraded">
+        <Find value="1"/>
+        <Value value="HaveHHWidowMineAttackRange"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="HHWidowMineDeathBlossomUpgraded">
+        <Find value="1"/>
+        <Value value="HaveHHWidowMineDeathBlossom"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="HHReaperClusterBombUpgraded">
+        <Find value="1"/>
+        <Value value="HaveHHReaperClusterBomb"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="HHWidowMineCombine">
+        <CombineArray value="IsHHWidowMine"/>
+        <CombineArray value="HHWidowMineDeathBlossomUpgraded"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="HHReaperCombine">
+        <CombineArray value="IsHHReaper"/>
+        <CombineArray value="HHReaperClusterBombUpgraded"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="IsHHWidowMine">
+        <CombineArray value="SourceIsHHWidowMine"/>
+        <CombineArray value="SourceIsHHWidowMineBurrowed"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="IsHHReaper">
+        <CombineArray value="SourceIsHHReaper"/>
+        <CombineArray value="SourceIsHHReaperFlying"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="IsHornerUnit">
+        <CombineArray value="IsHHVikingAssault"/>
+        <CombineArray value="IsHHVikingFighter"/>
+        <CombineArray value="IsHHBattlecruiser"/>
+        <CombineArray value="IsHHRaven"/>
+        <CombineArray value="IsHHRavenSieged"/>
+    </CValidatorCombine>
 </Catalog>

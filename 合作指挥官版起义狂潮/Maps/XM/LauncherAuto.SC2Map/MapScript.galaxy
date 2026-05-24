@@ -19,7 +19,7 @@ void InitLibs () {
 //--------------------------------------------------------------------------------------------------
 // Constants
 //--------------------------------------------------------------------------------------------------
-const int gv_commanderNum = 17;
+const int gv_commanderNum = 18;
 const int gv_achN = 7;
 const int gv_bonN = 5;
 const int gv_maps = 29;
@@ -278,9 +278,6 @@ bool gt_Main_Func (bool testConds, bool runActions) {
         libNtve_gf_DisplayScreenImage(1, "Assets\\Textures\\ui_glues_scorescreen_racebg_terr.dds", c_triggerBlendModeAdd, 2120, 1200, c_anchorCenter, 0, 0);
     }
     SetNextMissionDifficulty(PlayerGroupAll(), 4);
-    BankLoad("CampaignXCore", 1);
-    BankValueSetFromString(BankLastCreated(), "Ach", "Commander", "Abathur");
-    BankSave(BankLastCreated());
     GameOver(1, c_gameOverVictory, false, false);
     GameSetNextMap("XM/thanson02");
     return true;

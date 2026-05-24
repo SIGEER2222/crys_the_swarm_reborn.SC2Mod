@@ -368,7 +368,7 @@ function Wait-ForMapEntryEvidence {
 }
 
 if ($Prepare) {
-    & (Join-Path $PSScriptRoot "sync-alarak-live.ps1") -WorkspaceRoot $WorkspaceRoot -LiveRoot $LiveRoot -Maps @($MapName)
+    & (Join-Path $PSScriptRoot "sync-all-to-live.ps1") -WorkspaceRoot $WorkspaceRoot -LiveRoot $LiveRoot -Maps @($MapName) -SkipLauncher
     & (Join-Path $PSScriptRoot "set-campaignxcore-commander.ps1") -Commander $Commander -BankPath $bankPath
 }
 

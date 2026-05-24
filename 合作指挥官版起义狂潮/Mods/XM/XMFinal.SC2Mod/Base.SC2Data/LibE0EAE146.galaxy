@@ -385,15 +385,18 @@ void libE0EAE146_gf_ApplyZeratulCommanderRuntime () {
     }
     libNtve_gf_SetUpgradeLevelForPlayer(1, "ZeratulCommander", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(1, "CommanderLevel", 15);
-    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarWarpTrain", 0), true);
-    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarWarpTrain", 1), true);
-    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarWarpTrain", 2), true);
-    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarWarpTrain", 7), true);
-    TechTreeAbilityAllow(1, AbilityCommand("ZeratulMapWideStasisIssueOrder", 0), true);
-    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarUltimateWarpTrain", 0), true);
-    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarUltimateWarpTrain", 1), true);
-    TechTreeAbilityAllow(1, AbilityCommand("ZeratulTopBarBuild", 0), true);
     lv_commanderSkin = UserDataGetGameLink("PlayerCommanders", lv_playerCommander, "CommanderSkin", 1);
+    if ((lv_commanderSkin != "")) {
+        PlayerApplySkin(1, lv_commanderSkin, true);
+    }
+}
+
+void libE0EAE146_gf_ApplyDehakaCommanderRuntime () {
+    string lv_commanderSkin;
+
+    libNtve_gf_SetUpgradeLevelForPlayer(1, "DehakaCommander", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(1, "CommanderLevel", 15);
+    lv_commanderSkin = UserDataGetGameLink("PlayerCommanders", "ZergDehaka", "CommanderSkin", 1);
     if ((lv_commanderSkin != "")) {
         PlayerApplySkin(1, lv_commanderSkin, true);
     }
@@ -527,10 +530,15 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     GameSetSpeedValue(c_gameSpeedFaster);
     BankLoad("CampaignXCore", 1);
     libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
-    libE0EAE146_gv_abathurDebugEnabled = (libE0EAE146_gv_allowAbathurDebugBank && (BankValueGetAsInt(BankLastCreated(), "Debug", "Abathur") == 1));
+    libE0EAE146_gv_abathurDebugEnabled = (libE0EAE146_gv_allowAbathurDebugBank && (BankValueGetAsInt(BankLastCreated(), "Debug", libE0EAE146_gv_commander) == 1));
     libE0EAE146_gf_AbathurEarlySnapshot("Initialize");
-    if ((libE0EAE146_gv_commander == "Abathur")) {
-        libNtve_gf_SetUpgradeLevelForPlayer(1, "AbathurCommander", 1);
+    if ((libE0EAE146_gv_commander == "Abathur") || (libE0EAE146_gv_commander == "AbathurReborn")) {
+        if ((libE0EAE146_gv_commander == "AbathurReborn")) {
+            libNtve_gf_SetUpgradeLevelForPlayer(1, "AbathurRebornCommander", 1);
+        }
+        else {
+            libNtve_gf_SetUpgradeLevelForPlayer(1, "AbathurCommander", 1);
+        }
     }
     else if ((libE0EAE146_gv_commander == "Raynor")) {
         libNtve_gf_SetUpgradeLevelForPlayer(1, "RaynorCommander", 1);
@@ -558,6 +566,9 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     }
     else if ((libE0EAE146_gv_commander == "Zeratul")) {
         libE0EAE146_gf_ApplyZeratulCommanderRuntime();
+    }
+    else if ((libE0EAE146_gv_commander == "Dehaka")) {
+        libE0EAE146_gf_ApplyDehakaCommanderRuntime();
     }
     autoC0933116_val = libE0EAE146_gv_commander;
     if (autoC0933116_val == "Stukov") {
@@ -595,7 +606,7 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     else if (autoC0933116_val == "Stetmann") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Mecha");
     }
-    else if (autoC0933116_val == "Abathur") {
+    else if ((autoC0933116_val == "Abathur") || (autoC0933116_val == "AbathurReborn")) {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Abathur");
         if ((lp_rpg == false)) {
             PlayerModifyPropertyInt(1, c_playerPropSuppliesLimit, c_playerPropOperAdd, 60);
@@ -663,6 +674,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     // Variable Declarations
     unit lv_u;
     unitgroup lv_uG;
+    unit lv_secondUnit;
     int lv_i;
     int lv_j;
     int lv_ach;
@@ -742,6 +754,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         }
     }
     libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1), 0, 1, lp_secondUnit);
+    lv_secondUnit = UnitLastCreated();
     auto09490B45_val = libE0EAE146_gv_commander;
     if (auto09490B45_val == "Stukov") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterStukov", 0, 1, RegionGetCenter(RegionEntireMap()));
@@ -758,6 +771,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         if ((lp_createHero == true)) {
             libNtve_gf_CreateUnitsWithDefaultFacing(1, "DehakaCoop", 0, 1, lp_secondUnit);
             libDF8E6945_gf_InitializeDehakaEvent(1, UnitLastCreated());
+            libDF8E6945_gf_DehakaEnsureMinimumLevel(UnitLastCreated(), 2);
             if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit"), 0) == true)) {
                 libDF8E6945_gf_DehakaBroodbrother();
             }
@@ -860,9 +874,14 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         lib975E2FE9_gf_PowerFieldTrigger(1, BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(2)));
         lib67C0F0E7_gf_ShowChooseButton();
     }
-    else if (auto09490B45_val == "Abathur") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathur", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Abathur", UnitLastCreated(), null);
+    else if ((auto09490B45_val == "Abathur") || (auto09490B45_val == "AbathurReborn")) {
+        if ((auto09490B45_val == "AbathurReborn")) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathurReborn", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        }
+        else {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathur", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        }
+        lib67C0F0E7_gf_CU_GPInit(1, auto09490B45_val, UnitLastCreated(), null);
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
         TriggerEnable(libE0EAE146_gt_AbathurBiomassDrop, true);
         TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, true);
@@ -940,7 +959,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     }
     else if (auto09490B45_val == "Zeratul") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterZeratul", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Zeratul", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPInit(1, "Zeratul", UnitLastCreated(), lv_secondUnit);
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
         if ((lp_createHero == true)) {
             libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulCoop", 0, 1, lp_secondUnit);
@@ -1123,7 +1142,7 @@ bool libE0EAE146_gf_AbathurDebugIsEnabled () {
 
 void libE0EAE146_gf_AbathurDebugRefresh () {
     BankLoad("CampaignXCore", 1);
-    libE0EAE146_gv_abathurDebugEnabled = (libE0EAE146_gv_allowAbathurDebugBank && (BankValueGetAsInt(BankLastCreated(), "Debug", "Abathur") == 1));
+    libE0EAE146_gv_abathurDebugEnabled = (libE0EAE146_gv_allowAbathurDebugBank && (BankValueGetAsInt(BankLastCreated(), "Debug", libE0EAE146_gv_commander) == 1));
 }
 
 void libE0EAE146_gf_AbathurEarlySnapshot (string lp_phase) {
@@ -1187,6 +1206,7 @@ void libE0EAE146_gf_AbathurDebugBankUnitType (bank lp_bank, string lp_unitType) 
 
 void libE0EAE146_gf_AbathurDebugSnapshot () {
     bank lv_bank;
+    string lv_caster;
     string lv_commandCenter;
     string lv_worker;
     string lv_secondUnit;
@@ -1196,6 +1216,10 @@ void libE0EAE146_gf_AbathurDebugSnapshot () {
     lv_commandCenter = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1);
     lv_worker = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1);
     lv_secondUnit = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1);
+    lv_caster = "CoopCasterAbathur";
+    if ((libE0EAE146_gv_commander == "AbathurReborn")) {
+        lv_caster = "CoopCasterAbathurReborn";
+    }
     BankLoad("XMAbathurDebug", 1);
     lv_bank = BankLastCreated();
     BankValueSetFromString(lv_bank, "Start", "Commander", libE0EAE146_gv_commander);
@@ -1206,7 +1230,7 @@ void libE0EAE146_gf_AbathurDebugSnapshot () {
     libE0EAE146_gf_AbathurDebugBankUnitType(lv_bank, lv_commandCenter);
     libE0EAE146_gf_AbathurDebugBankUnitType(lv_bank, lv_worker);
     libE0EAE146_gf_AbathurDebugBankUnitType(lv_bank, lv_secondUnit);
-    BankValueSetFromString(lv_bank, "Panel", "Caster", "CoopCasterAbathur");
+    BankValueSetFromString(lv_bank, "Panel", "Caster", lv_caster);
     BankValueSetFromInt(lv_bank, "Panel", "Exists", 1);
     BankValueSetFromInt(lv_bank, "Panel", "Buttons", 2);
     BankValueSetFromInt(lv_bank, "Biomass", "DropTrigger", 1);
@@ -1217,14 +1241,14 @@ void libE0EAE146_gf_AbathurDebugSnapshot () {
     libE0EAE146_gf_AbathurDebugUnitType(lv_commandCenter);
     libE0EAE146_gf_AbathurDebugUnitType(lv_worker);
     libE0EAE146_gf_AbathurDebugUnitType(lv_secondUnit);
-    libE0EAE146_gf_AbathurDebugOutput("[PANEL] caster=CoopCasterAbathur exists=1 buttons=2");
+    libE0EAE146_gf_AbathurDebugOutput(("[PANEL] caster=" + lv_caster + " exists=1 buttons=2"));
     libE0EAE146_gf_AbathurDebugOutput("[BIOMASS] dropTrigger=1 pickupTrigger=1 pickups=0");
 }
 
 bool libE0EAE146_gf_AbathurHasUltimateUnlock () {
     int lv_ach;
     BankLoad("CampaignXCore", 1);
-    lv_ach = BankValueGetAsInt(BankLastCreated(), "Abathur", "AchBit");
+    lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
     if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, 7) == true)) {
         return true;
     }
@@ -1243,7 +1267,7 @@ bool libE0EAE146_gf_AbathurUnitCanCollectBiomass (unit lp_unit) {
         return false;
     }
     lv_type = UnitGetType(lp_unit);
-    if ((lv_type == "Roach") || (lv_type == "RoachVile") || (lv_type == "Ravager") || (lv_type == "RavagerAbathur") || (lv_type == "Hydralisk") || (lv_type == "SwarmHostMP") || (lv_type == "Mutalisk") || (lv_type == "GuardianMP") || (lv_type == "Devourer") || (lv_type == "Viper") || (lv_type == "Queen") || (lv_type == "QueenCoop")) {
+    if ((lv_type == "Roach") || (lv_type == "RoachVile") || (lv_type == "Ravager") || (lv_type == "RavagerAbathur") || (lv_type == "RavagerAbathurReborn") || (lv_type == "Hydralisk") || (lv_type == "SwarmHostMP") || (lv_type == "Mutalisk") || (lv_type == "GuardianMP") || (lv_type == "Devourer") || (lv_type == "Viper") || (lv_type == "Queen") || (lv_type == "QueenCoop")) {
         return true;
     }
     return false;
@@ -1252,10 +1276,10 @@ bool libE0EAE146_gf_AbathurUnitCanCollectBiomass (unit lp_unit) {
 int libE0EAE146_gf_AbathurBiomassMaxStacks () {
     int lv_max;
     lv_max = 100;
-    if ((TechTreeUpgradeCount(1, "CommanderPrestigeAbathurBiomass", c_techCountCompleteOnly) > 0)) {
+    if (((libE0EAE146_gv_commander == "AbathurReborn") && (TechTreeUpgradeCount(1, "CommanderPrestigeAbathurRebornBiomass", c_techCountCompleteOnly) > 0)) || ((libE0EAE146_gv_commander != "AbathurReborn") && (TechTreeUpgradeCount(1, "CommanderPrestigeAbathurBiomass", c_techCountCompleteOnly) > 0))) {
         lv_max += 25;
     }
-    if ((TechTreeUpgradeCount(1, "CommanderPrestigeAbathurUltEvo", c_techCountCompleteOnly) > 0)) {
+    if (((libE0EAE146_gv_commander == "AbathurReborn") && (TechTreeUpgradeCount(1, "CommanderPrestigeAbathurRebornUltEvo", c_techCountCompleteOnly) > 0)) || ((libE0EAE146_gv_commander != "AbathurReborn") && (TechTreeUpgradeCount(1, "CommanderPrestigeAbathurUltEvo", c_techCountCompleteOnly) > 0))) {
         lv_max += 100;
     }
     return lv_max;
@@ -1308,7 +1332,7 @@ void libE0EAE146_gf_AbathurApplyBiomass (unit lp_unit, int lp_amount) {
     if ((lv_gain <= 0)) {
         return;
     }
-    if ((TechTreeUpgradeCount(1, "MasteryAbathurDoubleBiomass", c_techCountCompleteOnly) > 0)) {
+    if (((libE0EAE146_gv_commander == "AbathurReborn") && (TechTreeUpgradeCount(1, "MasteryAbathurRebornDoubleBiomass", c_techCountCompleteOnly) > 0)) || ((libE0EAE146_gv_commander != "AbathurReborn") && (TechTreeUpgradeCount(1, "MasteryAbathurDoubleBiomass", c_techCountCompleteOnly) > 0))) {
         lv_gain *= 2;
     }
     lv_current = libE0EAE146_gf_AbathurCurrentBiomass(lp_unit);
@@ -2005,7 +2029,7 @@ bool libE0EAE146_gf_AbathurCanDropBiomass (unit lp_unit) {
     if ((EventUnitDamageDeathCheck(c_deathTypeRemove) == true)) {
         return false;
     }
-    if ((libE0EAE146_gv_commander != "Abathur")) {
+    if ((libE0EAE146_gv_commander != "Abathur") && (libE0EAE146_gv_commander != "AbathurReborn")) {
         return false;
     }
     if ((libNtve_gf_PlayerIsEnemy(EventPlayer(), 1, libNtve_ge_PlayerRelation_Enemy) == false)) {
@@ -2141,7 +2165,7 @@ bool libE0EAE146_gt_AbathurBiomassPickup_Func (bool testConds, bool runActions) 
     if (!runActions) {
         return true;
     }
-    if ((libE0EAE146_gv_commander != "Abathur")) {
+    if ((libE0EAE146_gv_commander != "Abathur") && (libE0EAE146_gv_commander != "AbathurReborn")) {
         return true;
     }
     lv_pickups = UnitGroup("BiomassPickup", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);

@@ -2227,16 +2227,12 @@
         <RecycleCount value="8"/>
     </CEffectEnumArea>
     <CEffectCreatePersistent id="HornerAirFleetLaserShot">
-        <ValidatorArray value="SourceNotDead"/>
         <EditorCategories value="Race:Terran"/>
-        <WhichLocation Value="TargetUnit"/>
         <TimeScaleSource Value="Caster"/>
-        <Flags index="RandomPeriod" value="1"/>
-        <PeriodCount value="1"/>
-        <PeriodicEffectArray value="HornerAirFleetLaserLM"/>
-        <PeriodicPeriodArray value="1.8"/>
-        <PeriodicPeriodArray value="2"/>
-        <PeriodicPeriodArray value="2.2"/>
+        <InitialDelay value="2"/>
+        <InitialEffect value="HornerAirFleetLaserLM"/>
+        <WhichLocation Value="TargetUnit"/>
+        <ValidatorArray value="SourceNotDead"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="HornerAirFleetMissileDamage">
         <EditorCategories value="Race:Terran"/>
@@ -2256,16 +2252,12 @@
         <AmmoUnit value="HornerAirFleetMissileWeapon"/>
     </CEffectLaunchMissile>
     <CEffectCreatePersistent id="HornerAirFleetMissileShot">
-        <ValidatorArray value="SourceNotDead"/>
         <EditorCategories value="Race:Terran"/>
-        <WhichLocation Value="TargetUnit"/>
         <TimeScaleSource Value="Caster"/>
-        <Flags index="RandomPeriod" value="1"/>
-        <PeriodCount value="1"/>
-        <PeriodicEffectArray value="HornerAirFleetMissileLM"/>
-        <PeriodicPeriodArray value="1.8"/>
-        <PeriodicPeriodArray value="2"/>
-        <PeriodicPeriodArray value="2.2"/>
+        <InitialDelay value="2"/>
+        <InitialEffect value="HornerAirFleetMissileLM"/>
+        <WhichLocation Value="TargetUnit"/>
+        <ValidatorArray value="SourceNotDead"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="HornerAirFleetSearch">
         <ImpactLocation Value="CasterUnit"/>
