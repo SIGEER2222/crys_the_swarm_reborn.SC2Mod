@@ -75,6 +75,7 @@ void libDF8E6945_gf_InitializeDehakaEvent (int lp_player, unit lp_dehaka) {
     // Implementation
         libDF8E6945_gv_dehakaPlayer = lp_player;
         libDF8E6945_gv_dehaka=lp_dehaka;
+        libDF8E6945_gf_DehakaEnsureMinimumLevel(lp_dehaka, 2);
         TriggerAddEventPlayerEffectUsed(libDF8E6945_gt_DehakaExpAdd, lp_player, "EssenceBuffSetDehaka");
         TriggerAddEventPlayerEffectUsed(libDF8E6945_gt_DehakaConsumeExecuted, lp_player, "DehakaConsumeImpactEatDamage");
         TriggerAddEventPlayerEffectUsed(libDF8E6945_gt_DehakaRevive, lp_player, "DehakaCoopReviveEatKillSet");
@@ -96,12 +97,79 @@ void libDF8E6945_gf_DehakaBroodbrother () {
     UnitCreateEffectUnit(libDF8E6945_gv_dehaka, "CommanderPrestigeDehakaCloneSpawnTracker", UnitLastCreated());
     UnitCreateEffectUnit(UnitLastCreated(), "CommanderPrestigeDehakaCloneSpawnTracker", libDF8E6945_gv_dehaka);
     libDF8E6945_gf_InitializeZehakaEvent(1, UnitLastCreated());
+    libDF8E6945_gf_DehakaEnsureMinimumLevel(UnitLastCreated(), UnitXPGetCurrentLevel(libDF8E6945_gv_dehaka, "DehakaVeterancyCoopFinal"));
 }
 
 void libDF8E6945_gf_DehakaMaxVeterancySet (int lp_player, int lp_maxVeterancy) {
     // Automatic Variable Declarations
     // Implementation
     CatalogReferenceModify("Behavior,DehakaVeterancyCoopFinal,Levels", lp_player, IntToString(lp_maxVeterancy), c_upgradeOperationSet);
+}
+
+void libDF8E6945_gf_DehakaRefreshLevelState (unit lp_dehaka) {
+    // Variable Declarations
+    int lv_level;
+    fixed lv_scale;
+    fixed lv_turnRate;
+    string lv_unitType;
+
+    // Implementation
+    if ((lp_dehaka == null)) {
+        return;
+    }
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_level = UnitXPGetCurrentLevel(lp_dehaka, null);
+    lv_unitType = UnitGetType(lp_dehaka);
+    lv_scale = (IntToFixed(lv_level) * 0.1) + 0.5;
+    libNtve_gf_SendActorMessageToUnit(lp_dehaka, libNtve_gf_SetScale(lv_scale, lv_scale, lv_scale, 0.0));
+    libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogUnit, lv_unitType, "Radius", libDF8E6945_gv_dehakaPlayer, (IntToFixed(lv_level) * 0.0625) + 0.5);
+    lv_turnRate = 800.0 - (IntToFixed(lv_level) * 40.0);
+    if ((lv_turnRate < 300.0)) {
+        lv_turnRate = 300.0;
+    }
+    libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogUnit, lv_unitType, "TurningRate", libDF8E6945_gv_dehakaPlayer, lv_turnRate);
+    libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogUnit, lv_unitType, "StationaryTurningRate", libDF8E6945_gv_dehakaPlayer, lv_turnRate);
+    libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogEffect, "DehakaDroneReviveTimerRefLink", "Amount", libDF8E6945_gv_dehakaPlayer, IntToFixed(lv_level) - 24.0);
+    if (((lv_level >= 6) && (TechTreeUpgradeCount(libDF8E6945_gv_dehakaPlayer, "DehakaCoopStage2", c_techCountCompleteOnly) == 0))) {
+        TechTreeUpgradeAddLevel(libDF8E6945_gv_dehakaPlayer, "DehakaCoopStage2", 1);
+        if ((UnitBehaviorCount(lp_dehaka, "DehakaMassive") == 0)) {
+            UnitBehaviorAdd(lp_dehaka, "DehakaMassive", lp_dehaka, 1);
+        }
+        if ((UnitBehaviorCount(lp_dehaka, "DehakaModelSwapStun") == 0)) {
+            UnitBehaviorAdd(lp_dehaka, "DehakaModelSwapStun", lp_dehaka, 1);
+        }
+    }
+    if (((lv_level >= 10) && (TechTreeUpgradeCount(libDF8E6945_gv_dehakaPlayer, "DehakaCoopStage3", c_techCountCompleteOnly) == 0))) {
+        TechTreeUpgradeAddLevel(libDF8E6945_gv_dehakaPlayer, "DehakaCoopStage3", 1);
+        if ((UnitBehaviorCount(lp_dehaka, "DehakaCoopAirTargetable") == 0)) {
+            UnitBehaviorAdd(lp_dehaka, "DehakaCoopAirTargetable", lp_dehaka, 1);
+        }
+    }
+}
+
+void libDF8E6945_gf_DehakaEnsureMinimumLevel (unit lp_dehaka, int lp_minLevel) {
+    // Variable Declarations
+    int lv_level;
+    int lv_guard;
+
+    // Implementation
+    if ((lp_dehaka == null)) {
+        return;
+    }
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_level = UnitXPGetCurrentLevel(lp_dehaka, "DehakaVeterancyCoopFinal");
+    lv_guard = 0;
+    if ((UnitBehaviorCount(lp_dehaka, "DehakaVeterancyCoopFinal") == 0)) {
+        UnitBehaviorAdd(lp_dehaka, "DehakaVeterancyCoopFinal", lp_dehaka, 1);
+    }
+    while ((lv_level < lp_minLevel) && (lv_guard < 4)) {
+        UnitXPAddXP(lp_dehaka, "DehakaVeterancyCoopFinal", 15);
+        lv_level = UnitXPGetCurrentLevel(lp_dehaka, "DehakaVeterancyCoopFinal");
+        lv_guard += 1;
+    }
+    libDF8E6945_gf_DehakaRefreshLevelState(lp_dehaka);
 }
 
 // Triggers
@@ -139,21 +207,11 @@ void libDF8E6945_gt_DehakaRevive_Init () {
 // Trigger: DehakaReviveActor
 //--------------------------------------------------------------------------------------------------
 bool libDF8E6945_gt_DehakaReviveActor_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_level;
-    fixed lv_i;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_level = UnitXPGetCurrentLevel(EventUnit(), null);
-
     // Actions
     if (!runActions) {
         return true;
     }
-
-        lv_i=(IntToFixed(lv_level)*0.1)+0.5;
-    libNtve_gf_SendActorMessageToUnit(EventUnit(), libNtve_gf_SetScale(lv_i, lv_i, lv_i, 1.0));
+    libDF8E6945_gf_DehakaRefreshLevelState(EventUnit());
     return true;
 }
 
@@ -167,21 +225,11 @@ void libDF8E6945_gt_DehakaReviveActor_Init () {
 // Trigger: ZehakaReviveActor
 //--------------------------------------------------------------------------------------------------
 bool libDF8E6945_gt_ZehakaReviveActor_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_level;
-    fixed lv_i;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_level = UnitXPGetCurrentLevel(EventPlayerEffectUsedUnit(c_effectUnitTarget), null);
-
     // Actions
     if (!runActions) {
         return true;
     }
-
-        lv_i=(IntToFixed(lv_level)*0.1)+0.5;
-    libNtve_gf_SendActorMessageToUnit(EventPlayerEffectUsedUnit(c_effectUnitTarget), libNtve_gf_SetScale(lv_i, lv_i, lv_i, 1.0));
+    libDF8E6945_gf_DehakaRefreshLevelState(EventPlayerEffectUsedUnit(c_effectUnitTarget));
     return true;
 }
 
@@ -427,32 +475,11 @@ void libDF8E6945_gt_DehakaConsumeExecuted_Init () {
 // Trigger: DehakaGainLevel
 //--------------------------------------------------------------------------------------------------
 bool libDF8E6945_gt_DehakaGainLevel_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_level;
-    fixed lv_i;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_level = UnitXPGetCurrentLevel(EventUnit(), null);
-
     // Actions
     if (!runActions) {
         return true;
     }
-
-        lv_i=(IntToFixed(lv_level)*0.1)+0.5;
-    libNtve_gf_SendActorMessageToUnit(EventUnit(), libNtve_gf_SetScale(lv_i, lv_i, lv_i, 1.0));
-        lv_i=(IntToFixed(lv_level)*0.0625)+0.5;
-    libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogUnit, UnitGetType(EventUnit()), "Radius", libDF8E6945_gv_dehakaPlayer, lv_i);
-    if ((lv_level <= 12)) {
-            lv_i=800-(lv_level*40);
-        libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogUnit, UnitGetType(EventUnit()), "TurningRate", libDF8E6945_gv_dehakaPlayer, lv_i);
-        libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogUnit, UnitGetType(EventUnit()), "StationaryTurningRate", libDF8E6945_gv_dehakaPlayer, lv_i);
-    }
-    else {
-        libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogUnit, UnitGetType(EventUnit()), "TurningRate", libDF8E6945_gv_dehakaPlayer, 300.0);
-        libNtve_gf_CatalogFieldValueSetAsReal(c_gameCatalogUnit, UnitGetType(EventUnit()), "StationaryTurningRate", libDF8E6945_gv_dehakaPlayer, 300.0);
-    }
+    libDF8E6945_gf_DehakaRefreshLevelState(EventUnit());
     return true;
 }
 
