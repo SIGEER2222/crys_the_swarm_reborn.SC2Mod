@@ -247,6 +247,29 @@ void libE0EAE146_gf_KaraxCreateMapStartSquadInRegion (string lp_kind, int lp_pla
     libE0EAE146_gf_KaraxCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
 }
 
+void libE0EAE146_gf_KaraxCreateCargoSquad (unit lp_container, string lp_kind) {
+    if ((lp_kind == "light")) {
+        UnitCargoCreate(lp_container, "Zealot", 4);
+        UnitCargoCreate(lp_container, "SentryPhasing", 2);
+    }
+    else if ((lp_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "Zealot", 3);
+        UnitCargoCreate(lp_container, "SentryPhasing", 2);
+        UnitCargoCreate(lp_container, "Immortal", 2);
+    }
+    else if ((lp_kind == "air")) {
+        UnitCargoCreate(lp_container, "Carrier", 3);
+    }
+    else if ((lp_kind == "hero")) {
+        UnitCargoCreate(lp_container, "Zealot", 3);
+        UnitCargoCreate(lp_container, "Immortal", 2);
+        UnitCargoCreate(lp_container, "Colossus", 2);
+    }
+    else {
+        libE0EAE146_gf_KaraxCreateCargoSquad(lp_container, "light");
+    }
+}
+
 void libE0EAE146_gf_ApplyArtanisCommanderRuntime () {
     // Variable Declarations
     int lv_indexTech;
@@ -284,6 +307,7 @@ void libE0EAE146_gf_ApplyArtanisCommanderRuntime () {
     TechTreeAbilityAllow(1, AbilityCommand("SOAOrbitalStrikeTargetingDummy", 0), true);
     TechTreeAbilityAllow(1, AbilityCommand("SOAOrbitalStrikeExecute", 0), true);
     TechTreeAbilityAllow(1, AbilityCommand("SoASuperShield", 0), true);
+    TechTreeAbilityAllow(1, AbilityCommand("CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargeted", 0), true);
     TechTreeAbilityAllow(1, AbilityCommand("SOAStrafeAttackActivate", 0), true);
     TechTreeAbilityAllow(1, AbilityCommand("SOAStrafeAttack", 0), true);
     TechTreeAbilityAllow(1, AbilityCommand("SOAStrafeAttackExecute", 0), true);
@@ -859,6 +883,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         if ((lp_createHero == true)) {
             libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, lp_secondUnit);
         }
+        libE0EAE146_gf_KerriganCreateMapStartSquad("light", 1, lp_secondUnit);
         lib67C0F0E7_gf_ShowChooseButton();
     }
     else if (auto09490B45_val == "Alarak") {
@@ -875,7 +900,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         lib67C0F0E7_gf_CU_GPInit(1, "Artanis", UnitLastCreated(), null);
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
         if ((lp_createHero == true)) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "SMX2ProtossArtanis", 0, 1, lp_secondUnit);
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "ArtanisVoid", 0, 1, lp_secondUnit);
         }
         libE0EAE146_gf_ArtanisCreateMapStartSquad("light", 1, lp_secondUnit);
         lib67C0F0E7_gf_ShowChooseButton();
@@ -1544,6 +1569,68 @@ void libE0EAE146_gf_RaynorCreateCargoSquad (unit lp_container, string lp_kind) {
     }
 }
 
+void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zergling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Queen", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "MutaliskBroodlord", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Zergling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Queen", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "ultimate")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
+    }
+    else {
+        libE0EAE146_gf_KerriganCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_KerriganCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_KerriganCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "Zergling", 4);
+        UnitCargoCreate(lp_container, "Hydralisk", 2);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "Queen", 1);
+        UnitCargoCreate(lp_container, "Ultralisk", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "Mutalisk", 2);
+        UnitCargoCreate(lp_container, "MutaliskBroodlord", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "K5Kerrigan", 1);
+        UnitCargoCreate(lp_container, "Zergling", 3);
+        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "Queen", 1);
+    }
+    else {
+        libE0EAE146_gf_KerriganCreateCargoSquad(lp_container, "light");
+    }
+}
+
 void libE0EAE146_gf_FenixCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
     string lv_kind;
     lv_kind = lp_kind;
@@ -1695,7 +1782,7 @@ void libE0EAE146_gf_ArtanisCreateMapStartSquad (string lp_kind, int lp_player, p
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Tempest", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SMX2ProtossArtanis", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ArtanisVoid", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotAiur", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Dragoon", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, lp_player, lp_point);
@@ -1736,7 +1823,7 @@ void libE0EAE146_gf_ArtanisCreateCargoSquad (unit lp_container, string lp_kind) 
         UnitCargoCreate(lp_container, "Tempest", 1);
     }
     else if ((lv_kind == "hero")) {
-        UnitCargoCreate(lp_container, "SMX2ProtossArtanis", 1);
+        UnitCargoCreate(lp_container, "ArtanisVoid", 1);
         UnitCargoCreate(lp_container, "ZealotAiur", 2);
         UnitCargoCreate(lp_container, "Dragoon", 2);
         UnitCargoCreate(lp_container, "HighTemplar", 1);
