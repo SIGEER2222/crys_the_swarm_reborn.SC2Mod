@@ -40,6 +40,7 @@ $launcherAutoUserData = Join-Path $repoRoot '合作指挥官版起义狂潮\Maps
 $launcherAutoScript = Join-Path $repoRoot '合作指挥官版起义狂潮\Maps\XM\LauncherAuto.SC2Map\MapScript.galaxy'
 $launcherAutoStrings = Join-Path $repoRoot '合作指挥官版起义狂潮\Maps\XM\LauncherAuto.SC2Map\zhCN.SC2Data\LocalizedData\GameStrings.txt'
 $ttychus03 = Join-Path $repoRoot '合作指挥官版起义狂潮\Maps\XM\ttychus03.SC2Map\MapScript.galaxy'
+$xmMapsRoot = Join-Path $repoRoot '合作指挥官版起义狂潮\Maps\XM'
 
 Add-Check 'XMCore CommanderAch/Zeratul' (Test-Contains $xmCoreUserData '<Instances Id="Zeratul">') $xmCoreUserData
 Add-Check 'XMCore Zeratul localized achievements' (Test-Contains $xmCoreStrings 'UserData/CommanderAch/Zeratul_TitU=') $xmCoreStrings
@@ -48,11 +49,26 @@ Add-Check 'XMFinal helper declarations' ((Test-Contains $xmFinalHeader 'libE0EAE
 Add-Check 'XMFinal initialize branch' ((Test-Contains $xmFinalGalaxy 'else if ((libE0EAE146_gv_commander == "Zeratul"))') -and (Test-Contains $xmFinalGalaxy 'CoopCasterZeratul')) $xmFinalGalaxy
 Add-Check 'Official Zeratul objects imported' ((Test-Contains $futureCommanders 'CoopCasterZeratul') -and (Test-Contains $futureCommanders 'ZeratulCommander') -and (Test-Contains $futureCommanders 'ZeratulTopBarWarpTrain')) $futureCommanders
 Add-Check 'XMRaynor localized commander text' ((Test-Contains $xmRaynorStrings 'UserData/PlayerCommanders/ProtossZeratul_Name=泽拉图') -and (Test-Contains $xmRaynorStrings 'Button/Tooltip/ZeratulMapWideStasis=')) $xmRaynorStrings
-Add-Check 'Launcher source count' (Test-Contains $launcherSourceScript 'const int gv_commanderNum = 17;') $launcherSourceScript
+Add-Check 'Launcher source count' (Test-Contains $launcherSourceScript 'const int gv_commanderNum = 18;') $launcherSourceScript
 Add-Check 'Launcher source candidate' ((Test-Contains $launcherSourceUserData '<String String="Zeratul">') -and (Test-Contains $launcherSourceStrings 'UserData/CommanderPreset/ID_Por_014=')) $launcherSourceUserData
-Add-Check 'Launcher auto count' (Test-Contains $launcherAutoScript 'const int gv_commanderNum = 17;') $launcherAutoScript
+Add-Check 'Launcher auto count' (Test-Contains $launcherAutoScript 'const int gv_commanderNum = 18;') $launcherAutoScript
 Add-Check 'Launcher auto candidate' ((Test-Contains $launcherAutoUserData '<String String="Zeratul">') -and (Test-Contains $launcherAutoStrings 'UserData/CommanderPreset/ID_Por_014=')) $launcherAutoUserData
+Add-Check 'Zeratul map bank override' ((Test-Contains (Join-Path $repoRoot '合作指挥官版起义狂潮\Maps\XM\tzeratul02.SC2Map\MapScript.galaxy') 'BankValueSetFromString(BankLastCreated(), "Ach", "Commander", "Zeratul");') -and (Test-Contains (Join-Path $repoRoot '合作指挥官版起义狂潮\Maps\XM\tzeratul03.SC2Map\MapScript.galaxy') 'BankValueSetFromString(BankLastCreated(), "Ach", "Commander", "Zeratul");') -and (Test-Contains (Join-Path $repoRoot '合作指挥官版起义狂潮\Maps\XM\tzeratul04.SC2Map\MapScript.galaxy') 'BankValueSetFromString(BankLastCreated(), "Ach", "Commander", "Zeratul");')) 'tzeratul02/03/04 map init'
 Add-Check 'ttychus03 Zeratul branch' (Test-Contains $ttychus03 'else if (autoBEEAC669_val == "Zeratul")') $ttychus03
+
+$missingGenericZeratulDeps = @(
+    Get-ChildItem -LiteralPath $xmMapsRoot -Directory |
+        Where-Object { Test-Path (Join-Path $_.FullName 'DocumentInfo') } |
+        Where-Object {
+            $docPath = Join-Path $_.FullName 'DocumentInfo'
+            $text = Get-Content -LiteralPath $docPath -Raw
+            ($text.Contains('file:Mods\XM\XMFinal.SC2Mod')) -and
+            ($text.Contains('file:Mods\XM\XMAlarak.SC2Mod')) -and
+            (-not $text.Contains('file:Mods\XM\XMZeratul.SC2Mod'))
+        } |
+        ForEach-Object { $_.Name }
+)
+Add-Check 'Generic campaign maps load XMZeratul' ($missingGenericZeratulDeps.Count -eq 0) ((($missingGenericZeratulDeps | Sort-Object) -join ', '), 'none' | Where-Object { $_ -ne '' } | Select-Object -First 1)
 
 $failed = $checks | Where-Object { -not $_.Passed }
 $checks | ForEach-Object {

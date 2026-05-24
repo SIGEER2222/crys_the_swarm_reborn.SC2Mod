@@ -369,6 +369,9 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    BankLoad("CampaignXCore", 1);
+    BankValueSetFromString(BankLastCreated(), "Ach", "Commander", "Zeratul");
+    BankSave(BankLastCreated());
     libE0EAE146_gf_Initialize(false);
     TriggerExecute(gt_Init01Technology, true, true);
     TriggerExecute(gt_Init02Players, true, true);

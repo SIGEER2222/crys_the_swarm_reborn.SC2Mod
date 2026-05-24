@@ -560,13 +560,16 @@ bool gt_CommanderUI_Func (bool testConds, bool runActions) {
     const int autoB88F511D_ai = 1;
 
     // Variable Initialization
+    lv_xoffset = 0;
+    lv_yoffset = 0;
 
     // Actions
     if (!runActions) {
         return true;
     }
 
-    DialogCreate(1410, 300, c_anchorTopLeft, 100, 76, true);
+    // Ö¸»Ó¹ÙÍ·ÏñÎ»ÖÃ
+    DialogCreate(1330, 220, c_anchorTopLeft, 100, 20, true);
     gv_commanderBtnHolder = DialogLastCreated();
     DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
     DialogSetImageVisible(DialogLastCreated(), false);
@@ -586,7 +589,7 @@ bool gt_CommanderUI_Func (bool testConds, bool runActions) {
         }
 
         lv_xoffset += 82;
-        if ((lv_xoffset >= 738)) {
+        if ((lv_xoffset >= 1230)) {
             lv_xoffset = 0;
             lv_yoffset += 92;
         }

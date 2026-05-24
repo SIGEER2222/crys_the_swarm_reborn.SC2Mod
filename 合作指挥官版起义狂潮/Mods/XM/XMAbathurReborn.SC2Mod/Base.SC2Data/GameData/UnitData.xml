@@ -4,6 +4,7 @@
     <TechAliasArray value="Alias_Hatchery" />
     <Race value="Zerg" />
     <Mob value="Campaign" />
+    <FlagArray index="PreventDefeat" value="1" />
   </CUnit>
   <CUnit id="DroneAbathurReborn" parent="Drone">
     <Race value="Zerg" />
@@ -2660,9 +2661,15 @@
   <CUnit id="BroodLord">
     <!--BehaviorArray Link="Supply4"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="AbathurBroodLordDoubleSacOvipositionPurchase" />
+    <AbilArray Link="AbathurBroodLordThickEmbryoMembranePurchase" />
+    <AbilArray Link="AbathurBroodLordParasiteFrenzyPurchase" />
     <ScoreMake value="0" />
     <ScoreKill value="0" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurBroodLordDoubleSacOviposition" Type="AbilCmd" AbilCmd="AbathurBroodLordDoubleSacOvipositionPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurBroodLordThickEmbryoMembrane" Type="AbilCmd" AbilCmd="AbathurBroodLordThickEmbryoMembranePurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurBroodLordParasiteFrenzy" Type="AbilCmd" AbilCmd="AbathurBroodLordParasiteFrenzyPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons Face="BroodlordSpeed" Type="Passive" Requirements="HaveBroodlordSpeed" Row="2" Column="1" />
     </CardLayouts>
     <KillXP value="0" />
@@ -3506,10 +3513,16 @@
     <Radius value="0.75" />
   </CUnit>
   <CUnit id="Devourer">
+    <AbilArray Link="AbathurDevourerAcidCloudSacsPurchase" />
+    <AbilArray Link="AbathurDevourerCorrosiveGlandsPurchase" />
+    <AbilArray Link="AbathurDevourerStomachOverloadPurchase" />
     <AbilArray Link="CorrosiveAcid" />
     <AbilArray Link="EvolveToLeviathanDevourer" />
     <AbilArray Link="que1" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurDevourerAcidCloudSacs" Type="AbilCmd" AbilCmd="AbathurDevourerAcidCloudSacsPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurDevourerCorrosiveGlands" Type="AbilCmd" AbilCmd="AbathurDevourerCorrosiveGlandsPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurDevourerStomachOverload" Type="AbilCmd" AbilCmd="AbathurDevourerStomachOverloadPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons Face="DevourerAoEDamage" Type="Passive" Requirements="HaveDevourerAoEDamage" Row="1" Column="0" />
       <LayoutButtons Face="CorrosiveAcidDevourer" Type="AbilCmd" AbilCmd="CorrosiveAcid,Execute" Row="2" Column="0" />
       <LayoutButtons Face="CommanderPrestigeAbathurRebornLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
@@ -4798,7 +4811,13 @@
     <GlossaryStrongArray value="PhotonCannon" />
     <GlossaryWeakArray value="Phoenix" />
     <GlossaryWeakArray value="VoidRay" />
+    <AbilArray Link="AbathurGuardianExtendedSpinesPurchase" />
+    <AbilArray Link="AbathurGuardianCorrosiveBombardmentPurchase" />
+    <AbilArray Link="AbathurGuardianRegenerativeSacsPurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurGuardianExtendedSpines" Type="AbilCmd" AbilCmd="AbathurGuardianExtendedSpinesPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurGuardianCorrosiveBombardment" Type="AbilCmd" AbilCmd="AbathurGuardianCorrosiveBombardmentPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurGuardianRegenerativeSacs" Type="AbilCmd" AbilCmd="AbathurGuardianRegenerativeSacsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons Face="CommanderPrestigeAbathurRebornLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanGuardianMP,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
@@ -5882,7 +5901,13 @@
   <CUnit id="HydraliskImpaler">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="AbathurImpalerArmorPiercingSpinesPurchase" />
+    <AbilArray Link="AbathurImpalerEarthveinGlidePurchase" />
+    <AbilArray Link="AbathurImpalerAftershockImpalePurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurImpalerArmorPiercingSpines" Type="AbilCmd" AbilCmd="AbathurImpalerArmorPiercingSpinesPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurImpalerEarthveinGlide" Type="AbilCmd" AbilCmd="AbathurImpalerEarthveinGlidePurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurImpalerAftershockImpale" Type="AbilCmd" AbilCmd="AbathurImpalerAftershockImpalePurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="6" Column="1" />
       <LayoutButtons index="7" Row="1" />
       <LayoutButtons index="8" Face="MuscularAugmentsCoop" Requirements="HaveGroovedSpines" Row="1" Column="0" />
@@ -5901,7 +5926,13 @@
   <CUnit id="HydraliskImpalerBurrowed">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="AbathurImpalerArmorPiercingSpinesPurchase" />
+    <AbilArray Link="AbathurImpalerEarthveinGlidePurchase" />
+    <AbilArray Link="AbathurImpalerAftershockImpalePurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurImpalerArmorPiercingSpines" Type="AbilCmd" AbilCmd="AbathurImpalerArmorPiercingSpinesPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurImpalerEarthveinGlide" Type="AbilCmd" AbilCmd="AbathurImpalerEarthveinGlidePurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurImpalerAftershockImpale" Type="AbilCmd" AbilCmd="AbathurImpalerAftershockImpalePurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="2" Row="1" />
       <LayoutButtons index="3" Face="MuscularAugmentsCoop" Requirements="HaveGroovedSpines" Row="1" Column="0" />
     </CardLayouts>
@@ -5918,7 +5949,13 @@
     <KillXP value="0" />
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="AbathurLurkerRiftSpinesPurchase" />
+    <AbilArray Link="AbathurLurkerStalkerGlidePurchase" />
+    <AbilArray Link="AbathurLurkerVenomAmbushPurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurLurkerRiftSpines" Type="AbilCmd" AbilCmd="AbathurLurkerRiftSpinesPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurLurkerStalkerGlide" Type="AbilCmd" AbilCmd="AbathurLurkerStalkerGlidePurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurLurkerVenomAmbush" Type="AbilCmd" AbilCmd="AbathurLurkerVenomAmbushPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="7" Column="3" />
       <LayoutButtons index="8" Face="MuscularAugmentsCoop" Requirements="HaveGroovedSpines" Column="2" />
       <LayoutButtons index="9" Face="FrenzyLocked" Type="Passive" AbilCmd="" Requirements="KerriganLevel06" />
@@ -5933,7 +5970,13 @@
   <CUnit id="HydraliskLurkerBurrowed">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="AbathurLurkerRiftSpinesPurchase" />
+    <AbilArray Link="AbathurLurkerStalkerGlidePurchase" />
+    <AbilArray Link="AbathurLurkerVenomAmbushPurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurLurkerRiftSpines" Type="AbilCmd" AbilCmd="AbathurLurkerRiftSpinesPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurLurkerStalkerGlide" Type="AbilCmd" AbilCmd="AbathurLurkerStalkerGlidePurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurLurkerVenomAmbush" Type="AbilCmd" AbilCmd="AbathurLurkerVenomAmbushPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="2" Column="3" />
       <LayoutButtons index="3" Face="MuscularAugmentsCoop" Requirements="HaveGroovedSpines" Column="2" />
     </CardLayouts>
@@ -6788,6 +6831,9 @@
   </CUnit>
   <CUnit id="Mutalisk">
     <CardLayouts index="0">
+      <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="5" Row="1" Column="2" />
       <LayoutButtons index="6" Row="1" Column="1" />
       <LayoutButtons index="7" Row="1" />
@@ -6807,6 +6853,9 @@
     <KillXP value="0" />
     <DamageDealtXP value="0" />
     <DamageTakenXP value="0" />
+    <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase" />
+    <AbilArray Link="AbathurMutaliskViciousGlaivePurchase" />
+    <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase" />
     <AbilArray Link="MutaliskMorphToGuardian" />
     <AbilArray Link="MutaliskMorphToDevourer" />
     <AbilArray Link="que1" />
@@ -10093,6 +10142,9 @@
     <BehaviorArray index="0" Link="SwarmHostPressurizedGlands" />
     <BehaviorArray index="1" Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="6" Row="1" />
       <LayoutButtons index="7" Row="1" />
       <LayoutButtons index="8" Row="1" />
@@ -10108,6 +10160,9 @@
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
       <LayoutButtons Face="LocustLaunch" Type="AbilCmd" AbilCmd="LocustLaunch,Execute" Row="2" Column="0" />
     </CardLayouts>
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <AbilArray Link="AbathurRebornDeepTunnel" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <AbilArray Link="LocustLaunch" />
@@ -10125,6 +10180,9 @@
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="SwarmHostCreep" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="1" Row="1" />
       <LayoutButtons index="2" Row="1" />
       <LayoutButtons index="3" Row="1" />
@@ -10138,6 +10196,9 @@
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Row="2" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09" Row="2" Column="1" />
     </CardLayouts>
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <AbilArray Link="AbathurRebornDeepTunnel" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <AbilArray Link="EvolveToBrutaliskSwarmHost" />
@@ -10150,7 +10211,13 @@
   <CUnit id="SwarmHostRooted">
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="4" Column="2" />
     </CardLayouts>
     <Radius value="0.75" />
@@ -10162,8 +10229,14 @@
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="8" Column="2" />
     </CardLayouts>
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="118" />
@@ -10172,8 +10245,14 @@
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="4" Column="2" />
     </CardLayouts>
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="118" />
@@ -10182,7 +10261,13 @@
   <CUnit id="SwarmHostSplitARooted">
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="4" Column="2" />
     </CardLayouts>
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
@@ -10194,9 +10279,15 @@
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="10" Row="1" Column="3" />
       <LayoutButtons index="11" Face="AbathurRebornDeepTunnel" />
     </CardLayouts>
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="118" />
@@ -10205,9 +10296,15 @@
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="5" Row="1" Column="3" />
       <LayoutButtons index="9" Face="AbathurRebornDeepTunnel" />
     </CardLayouts>
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="118" />
@@ -10216,7 +10313,13 @@
   <CUnit id="SwarmHostSplitBRooted">
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="AbathurHostRapidIncubationPurchase" />
+    <AbilArray Link="AbathurHostLocustSpeedPurchase" />
+    <AbilArray Link="AbathurHostPressurizedGlandsPurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons index="5" Row="1" Column="3" />
       <LayoutButtons index="9" Face="AbathurRebornDeepTunnel" />
     </CardLayouts>
@@ -10586,11 +10689,19 @@
     <DamageDealtXP value="0" />
     <DamageTakenXP value="0" />
     <AbilArray index="3" Link="ParasiticBomb" />
+    <AbilArray Link="AbathurCasterBrainPoolPurchase" />
+    <AbilArray Link="AbathurCasterNeuralTethersPurchase" />
+    <AbilArray Link="AbathurCasterFleshReactorPurchase" />
+    <AbilArray Link="AbathurCasterMimeticMembranePurchase" />
     <AbilArray Link="EvolveToLeviathanViper" />
     <AbilArray Link="que1" />
     <CardLayouts index="0">
       <LayoutButtons index="3" Face="AttackGhost" />
       <LayoutButtons Face="ParasiticBomb" Type="AbilCmd" AbilCmd="ParasiticBomb,Execute" Row="2" Column="3" />
+      <LayoutButtons Face="AbathurCasterBrainPool" Type="AbilCmd" AbilCmd="AbathurCasterBrainPoolPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="AbathurCasterNeuralTethers" Type="AbilCmd" AbilCmd="AbathurCasterNeuralTethersPurchase,Execute" Row="1" Column="2" />
+      <LayoutButtons Face="AbathurCasterFleshReactor" Type="AbilCmd" AbilCmd="AbathurCasterFleshReactorPurchase,Execute" Row="1" Column="3" />
+      <LayoutButtons Face="AbathurCasterMimeticMembrane" Type="AbilCmd" AbilCmd="AbathurCasterMimeticMembranePurchase,Execute" Row="1" Column="4" />
       <LayoutButtons Face="ViperImprovedCastRangePassive" Type="Passive" Requirements="HaveViperImprovedCastRange" Row="1" Column="0" />
       <LayoutButtons Face="ViperAbductImprovedStunPassive" Type="Passive" Requirements="HaveViperAbductImprovedStun" Row="1" Column="1" />
       <LayoutButtons Face="CommanderPrestigeAbathurRebornLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
