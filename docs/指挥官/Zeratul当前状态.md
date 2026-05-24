@@ -148,6 +148,22 @@
   - 开局建筑、探机、第二单位和编队也会按别的指挥官模板走
 - 因此这次修复把“泽拉图战役图必须以泽拉图身份启动”固定到了地图初始化入口，而不是继续依赖 launcher 或旧 bank 恰好写对。
 
+### 欢迎来到丛林 实测修正
+- 用户实测的核心问题图是 `合作指挥官版起义狂潮/Maps/XM/ttosh02.SC2Map`（欢迎来到丛林）。
+- 这张图虽然已经：
+  - 加载了 `XMFinal.SC2Mod`
+  - 已补上 `XMZeratul.SC2Mod`
+  - 在 `MapScript.galaxy` 中调用了 `libE0EAE146_gf_Initialize(false)` 与 `libE0EAE146_gf_InitializeBase(...)`
+- 但实机检查 `CampaignXCore.SC2Bank` 时，`Ach/Commander` 当前仍然是 `Stetmann`，不是 `Zeratul`。
+- 这说明 `ttosh02` 的问题已经不是“泽拉图单位覆盖层没接进去”，而是地图启动时吃到的指挥官身份本身就不是泽拉图。
+- 已对 `ttosh02.SC2Map/MapScript.galaxy` 做与 `tzeratul02/03/04` 同类处理：
+  - 在 `gt_Initialization_Func` 中，先写 `Ach/Commander = Zeratul`
+  - 再执行 `libE0EAE146_gf_Initialize(false)`
+- 同时补上了 `ttosh02.SC2Map/DocumentInfo` 的显式依赖顺序：
+  - `XMFinal.SC2Mod`
+  - `XMZeratul.SC2Mod`
+- 这样 `欢迎来到丛林` 进入图时会强制走泽拉图分支，不再依赖 launcher 当前 bank 恰好写对。
+
 ## 对比方式
 
 本次不是从别的模组整包复制单位，而是按下面三层对比后只修本地接线：
@@ -188,6 +204,7 @@
 5. 地图初始化 / bank 身份链
 - 对比文件：
   - `合作指挥官版起义狂潮/Maps/XM/LauncherAuto.SC2Map/MapScript.galaxy`
+  - `合作指挥官版起义狂潮/Maps/XM/ttosh02.SC2Map/MapScript.galaxy`
   - `合作指挥官版起义狂潮/Maps/XM/tzeratul02.SC2Map/MapScript.galaxy`
   - `合作指挥官版起义狂潮/Maps/XM/tzeratul03.SC2Map/MapScript.galaxy`
   - `合作指挥官版起义狂潮/Maps/XM/tzeratul04.SC2Map/MapScript.galaxy`
@@ -195,9 +212,13 @@
 - 作用：确认地图真正进入 `XMFinal` 前，`CampaignXCore.SC2Bank` 的 `Ach/Commander` 是谁。
 - 结论：
   - `LauncherAuto` 的确会把 `gv_commander` 写入 `Ach/Commander`。
-  - 但泽拉图三图的实际问题表现说明，实机进入时这项值并不稳定落在 `Zeratul`。
+  - 当前用户实测这条链在 `ttosh02` 上落地后，bank 实际值仍是 `Stetmann`，不是 `Zeratul`。
   - `XMFinal` 又把几乎所有开局接线都挂在这个 bank 值上，所以只要这里偏了，玩家看到的就会是“顶部技能、建筑、兵种、英雄全都不是泽拉图”。
-  - 修复方式不是继续堆单位定义，而是在 `tzeratul02/03/04` 的地图初始化里先把 `Ach/Commander` 锁成 `Zeratul`，再执行 `libE0EAE146_gf_Initialize(false)`。
+  - 修复方式不是继续堆单位定义，而是在实际测试图的地图初始化里先把 `Ach/Commander` 锁成 `Zeratul`，再执行 `libE0EAE146_gf_Initialize(false)`。
+  - 当前已覆盖：
+    - `tzeratul02/03/04`
+    - `ttosh02`
+  - `ttosh02` 还额外显式把 `XMZeratul.SC2Mod` 放到了 `XMFinal` 后面，避免依赖传递不稳定。
 
 ## 当前结论
 
@@ -206,7 +227,7 @@
 - 英雄侧已把 `XMFinal` 运行时明确创建的三个关键单位壳补回 `XMZeratul`，因此英雄本体、顶部技能条、复活建筑都具备了本地接入点。
 - 地图侧已把 `tzeratul02/03/04` 的实际加载链补上 `XMZeratul.SC2Mod`，因此实机将不再只落到 `XMAlarak` 的覆盖结果。
 - 通用战役图侧也已把 `ttosh02` 等一整批 `XMFinal + XMAlarak` 地图补上 `XMZeratul.SC2Mod`，因此泽拉图不再只在专属战役图里可见。
-- 地图初始化侧已把 `tzeratul02/03/04` 在进入 `XMFinal.Initialize(false)` 前先强制写 `Ach/Commander = Zeratul`，因此 `XMFinal` 的顶栏、开局模板、英雄创建会稳定走泽拉图分支。
+- 地图初始化侧已把 `tzeratul02/03/04` 与当前实测图 `ttosh02` 在进入 `XMFinal.Initialize(false)` 前先强制写 `Ach/Commander = Zeratul`，因此 `XMFinal` 的顶栏、开局模板、英雄创建会稳定走泽拉图分支。
 - `MapScript.galaxy` 的确是分地图承载指挥官逻辑的，阿拉纳克 / 泽拉图都不只是“换一个 mod 依赖”就能完全正确。
 - 本次仍然没有把整套泽拉图能力/效果/按钮对象从 `XMRaynor` 重复复制到 `XMZeratul`，因为这些对象已由依赖链前置提供；这里只补本地覆盖层缺失部分，避免重复定义。
 
