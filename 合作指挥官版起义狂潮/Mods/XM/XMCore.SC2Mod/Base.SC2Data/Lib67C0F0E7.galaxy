@@ -2068,7 +2068,12 @@ void lib67C0F0E7_gf_CU_GPInit (int lp_player, string lp_type, unit lp_unit, unit
 
     lib67C0F0E7_gv_cU_GPInitialized[lp_player] = true;
     lib67C0F0E7_gv_cU_GPUnit[lp_player] = lp_unit;
-    lib67C0F0E7_gv_commandPanelType[lp_player] = lp_type;
+    if (lp_type == "Artanis") {
+        lib67C0F0E7_gv_commandPanelType[lp_player] = "Protoss";
+    }
+    else {
+        lib67C0F0E7_gv_commandPanelType[lp_player] = lp_type;
+    }
     UnitGroupAdd(lib67C0F0E7_gv_cU_GPCasterGroup[lp_player], lib67C0F0E7_gv_cU_GPUnit[lp_player]);
     if ((lib67C0F0E7_gv_cU_GPPanelHolder == c_invalidDialogControlId)) {
         DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/FullscreenUpperContainer/GlobalCastingPanel");

@@ -3,7 +3,7 @@ param(
     [string]$ScenarioName = "",
     [string]$LiveRoot = "E:\SC2\SC2new\StarCraft II",
     [string[]]$Maps = @("thanson01.SC2Map"),
-    [switch]$PreserveXMFinalDocumentMeta = $true
+    [switch]$PreserveXMFinalDocumentMeta
 )
 
 $ErrorActionPreference = "Stop"
