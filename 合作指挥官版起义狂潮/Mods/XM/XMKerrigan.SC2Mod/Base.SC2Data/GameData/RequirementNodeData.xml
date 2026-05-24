@@ -8,10 +8,6 @@
     <OperandArray value="CountUnitAlias_InfestedFactoryCompleteOnlyTechTreeCheat" />
     <OperandArray value="CountUnitSIEvolutionChamberCompleteOnly" />
   </CRequirementAnd>
-  <CRequirementAnd id="AndCountUnitAlias_LairCompleteOnly1515591279Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter">
-    <OperandArray value="CountUnitAlias_LairCompleteOnly1515591279" />
-    <OperandArray value="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter" />
-  </CRequirementAnd>
   <CRequirementAnd id="AndCountUnitBanelingNestCompleteOnly">
     <OperandArray value="CountUnitBanelingNestCompleteOnly" />
   </CRequirementAnd>
@@ -440,10 +436,6 @@
   </CRequirementCountUnit>
   <CRequirementCountUnit id="CountUnitAlias_InfestedFactoryCompleteOnlyTechTreeCheat">
     <Count Link="Alias_InfestedFactory" State="CompleteOnly" />
-  </CRequirementCountUnit>
-  <CRequirementCountUnit id="CountUnitAlias_LairCompleteOnly1515591279">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="Alias_Lair" State="CompleteOnly" />
   </CRequirementCountUnit>
   <CRequirementCountUnit id="CountUnitAlias_RoachWarrenCompleteOnly1336656448TechTreeCheat">
     <Count Link="Alias_RoachWarren" State="CompleteOnly" />
@@ -1434,10 +1426,6 @@
   <CRequirementNot id="NotCountUpgradeZerglingArmorShredQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeZerglingArmorShredQueuedOrBetter" />
   </CRequirementNot>
-  <CRequirementOr id="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter">
-    <OperandArray value="NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnly" />
-    <OperandArray value="NotCountUnitScourgeNestQueuedOrBetter" />
-  </CRequirementOr>
   <CRequirementOr id="OrAndCountUpgradeKerriganCommanderCompleteOnlyLTE4CountUpgradeCommanderLevelCompleteOnlyAndCountUpgradeZagaraCommanderCompleteOnlyLTE6CountUpgradeCommanderLevelCompleteOnly">
     <OperandArray value="AndCountUpgradeKerriganCommanderCompleteOnlyLTE4CountUpgradeCommanderLevelCompleteOnly" />
     <OperandArray value="AndCountUpgradeZagaraCommanderCompleteOnlyLTE6CountUpgradeCommanderLevelCompleteOnly" />
@@ -1445,5 +1433,17 @@
   <CRequirementOr id="OrCountUpgradeZagaraCommanderCompleteOnlyCountUpgradeKerriganCommanderCompleteOnly">
     <OperandArray value="CountUpgradeZagaraCommanderCompleteOnly" />
     <OperandArray value="CountUpgradeKerriganCommanderCompleteOnly" />
+  </CRequirementOr>
+  <CRequirementAnd id="AndCountUnitAlias_LairCompleteOnly1515591279Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter">
+    <OperandArray value="CountUnitAlias_LairCompleteOnly1515591279" />
+    <OperandArray value="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter" />
+  </CRequirementAnd>
+  <CRequirementCountUnit id="CountUnitAlias_LairCompleteOnly1515591279">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="Alias_Lair" State="CompleteOnly" />
+  </CRequirementCountUnit>
+  <CRequirementOr id="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter">
+    <OperandArray value="NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnly" />
+    <OperandArray value="NotCountUnitScourgeNestQueuedOrBetter" />
   </CRequirementOr>
 </Catalog>

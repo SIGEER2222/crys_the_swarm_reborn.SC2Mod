@@ -1,3 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+  <CModel id="CommanderPrestigeZeratulTornadoesTornado" parent="Unit">
+    <Model value="Assets\COOP\Zeratul\Effects\EnergyTornado_Zeratul_COOP\EnergyTornado_Zeratul_COOP.m3" />
+    <EditorCategories value="" />
+  </CModel>
+  <CModel id="CommanderPrestigeZeratulVoidSeekerCloakingField" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\XelNagaShieldDome\XelNagaShieldDome.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <ScaleMax value="2.800000,2.800000,2.800000" />
+    <ScaleMin value="2.800000,2.800000,2.800000" />
+  </CModel>
+  <CModel id="DarkPylonWarpInSplat" parent="UI">
+    <Model value="Assets/Effects/Protoss/SOA_MatrixOverload/SOA_MatrixOverload.m3" />
+    <ScaleMax value="0.900000,0.900000,0.100000" />
+    <ScaleMin value="0.900000,0.900000,0.100000" />
+  </CModel>
+  <CModel id="DarkTemplarShakuras">
+    <Model value="Assets\Units\Protoss\DarkTemplar\DarkTemplar_01.m3" />
+  </CModel>
+  <CModel id="KhaydarinMonolith">
+    <Model value="Assets\Buildings\Protoss\DarkProtossTurretEx2\DarkProtossTurretEx2.m3" />
+    <ScaleMax value="0.900000,0.900000,0.900000" />
+    <ScaleMin value="0.900000,0.900000,0.900000" />
+  </CModel>
+  <CModel id="MoebiusSeeker" parent="Unit" Race="Protoss">
+    <Model value="Assets\Effects\Terran\Hybrid_ProtossAdvanced_Experimented_MoebiusSeeker\Hybrid_ProtossAdvanced_Experimented_MoebiusSeeker.m3" />
+  </CModel>
+  <CModel id="MutatorAmonZeratul" parent="Unit" Race="Protoss">
+    <Model value="Assets\Units\Protoss\Zeratul\Zeratul.m3" />
+    <PlanetPanelCamera value="Star2CameraMid05" />
+    <ScaleMax value="1.200000,1.200000,1.200000" />
+    <ScaleMin value="1.200000,1.200000,1.200000" />
+    <TechPurchaseCamera value="Star2CameraMid05" />
+    <UnitGlossaryCamera value="Star2CameraMid05" />
+  </CModel>
+  <CModel id="MutatorAmonZeratulPortrait" parent="Portrait" Race="Protoss">
+    <RequiredAnims value="Assets\Portraits\Protoss\ZeratulPortrait_RequiredAnims\ZeratulPortrait_RequiredAnims.m3a" />
+    <FacialController value="LocalizedData\Facial\ZeratulPortrait.fxa" />
+    <Model value="Assets\Portraits\Protoss\ZeratulPortrait\ZeratulPortrait.m3" />
+    <Image value="Assets\Textures\zeratul_amon_mutator_portrait_static.dds" />
+  </CModel>
+  <CModel id="SiegeTankWreckage">
+    <Model value="Assets\Units\Terran\SiegeTankEx2_Wrecked\SiegeTankEx2_Wrecked.m3" />
+    <Occlusion value="Show" />
+    <ScaleMax value="0.800000,0.800000,0.800000" />
+    <ScaleMin value="0.800000,0.800000,0.800000" />
+    <SelectionRadius value="1.250000" />
+    <Tipability value="0.750000" />
+    <TipabilityWidth value="0.400000" />
+    <TipabilityLength value="0.800000" />
+    <SquibTypeDefault value="Metal" />
+    <Radius value="1.000000" />
+    <TechPurchaseCamera value="TechPurchaseSiegeTank" />
+    <UnitGlossaryCamera value="Star2CameraMid08" />
+    <PlanetPanelCamera value="Star2CameraMid08" />
+    <ShadowRadius value="1.250000" />
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="Terran_ExplosionMedium" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="Terran_ExplosionMedium" />
+    </Events>
+  </CModel>
+  <CModel id="SlaynElementalGrabAOEWeapon" parent="MissileFX">
+    <Model value="Assets\Effects\Protoss\AmonShards_Orange_AnimaShower_Missile\AmonShards_Orange_AnimaShower_Missile.m3" />
+  </CModel>
+  <CModel id="StukovAleksanderCrashed" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\Aleksander_Stukov_Coop_Spawn\Aleksander_Stukov_Coop_Spawn.m3" />
+    <Radius value="2.000000" />
+    <ScaleMax value="1.500000,1.500000,1.500000" />
+    <ScaleMin value="1.500000,1.500000,1.500000" />
+    <SelectionOffset value="0.000000,0.000000,-0.950000" />
+    <SelectionRadius value="1.666200" />
+    <ShadowRadius value="1.666200" />
+    <SquibTypeDefault value="Flesh" />
+    <Events>
+      <Anim value="Stand,Work,Start,00" />
+      <Name value="SMModelEventSound" />
+      <Type value="Sound" />
+      <Time value="0.150000" />
+      <Payload value="StukovAleksanderCrash_Explosion_Small" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Work,Start,00" />
+      <Name value="SMModelEventSound" />
+      <Type value="Sound" />
+      <Time value="0.620000" />
+      <Payload value="StukovAleksanderCrash_Explosion_Small" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Work,Start,00" />
+      <Name value="SMModelEventSound" />
+      <Type value="Sound" />
+      <Time value="1.000000" />
+      <Payload value="StukovAleksanderCrash_Explosion_Medium" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Work,Start,00" />
+      <Name value="SMModelEventSound" />
+      <Type value="Sound" />
+      <Time value="1.330000" />
+      <Payload value="StukovAleksanderCrash_Explosion_Large" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Work,Start,00" />
+      <Name value="SMModelEventSound" />
+      <Type value="Sound" />
+      <Time value="1.920000" />
+      <Payload value="StukovAleksanderCrash_Explosion_Small" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Work,End,00" />
+      <Name value="SMModelEventSound" />
+      <Type value="Sound" />
+      <Payload value="StukovAleksanderCrash_Explosion_Large" />
+    </Events>
+  </CModel>
+  <CModel id="SuperCloak" parent="RacePersistentSpellFX" Race="Zerg">
+    <Model value="Assets\COOP\Zeratul\Effects\SuperCloak_Zeratul_COOP\SuperCloak_Zeratul_COOP.m3" />
+  </CModel>
+  <CModel id="ThorWreckage">
+    <ScaleMax value="0.500000,0.500000,0.500000" />
+    <ScaleMin value="0.500000,0.500000,0.500000" />
+  </CModel>
+  <CModel id="XelNaga_Amon_Temple">
+    <Events index="0" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="1" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="2" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="3" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="4" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="5" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="6" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="7" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="8" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="9" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+    <Events index="10" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
+  </CModel>
+  <CModel id="XelNagaShrine">
+    <Events>
+      <Anim value="Stand,Work,00" />
+      <Name value="XelNagaShrine_Awake" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="XelNagaShrine_Awake" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Work,00" />
+      <Name value="XelNagaShrine_StandWork" />
+      <Type value="Sound" />
+      <Time value="0.005000" />
+      <Payload value="XelNagaShrine_StandWork" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Work,End,00" />
+      <Name value="XelNagaShrine_StandWorkEnd" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="XelNagaShrine_StandWorkEnd" />
+    </Events>
+  </CModel>
+  <CModel id="ZeratulXelNagaConstructPsiBlastAttackImpact" parent="RaceImpactFX" Race="Protoss">
+    <Model value="Assets\Effects\Zerg\HybridPlasmaMissileImpact\HybridPlasmaMissileImpact.m3" />
+  </CModel>
+  <CModel id="ZeratulXelNagaConstructPsiBlastWeapon" parent="MissileFX">
+    <Model value="Assets\Effects\Zerg\HybridPlasmaMissile\HybridPlasmaMissile.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <ScaleMax value="2.000000,2.000000,2.000000" />
+    <ScaleMin value="2.000000,2.000000,2.000000" />
+  </CModel>
 </Catalog>

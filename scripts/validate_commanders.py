@@ -193,7 +193,7 @@ def main():
     
     for mod_name, commander_name in commanders:
         print(f"\n验证 {commander_name}...")
-        mod_unitdata = mods_path / mod_name / "Base.SC2Data" / "GameData" / "UnitData.xml"
+        mod_unitdata = mods_path / f"{mod_name}.SC2Mod" / "Base.SC2Data" / "GameData" / "UnitData.xml"
         
         if mod_unitdata.exists():
             mod_units = parse_unitdata(mod_unitdata)
@@ -218,4 +218,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

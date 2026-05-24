@@ -1,3 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+  <CValidatorUnitOrderQueue id="AleksanderCrashingEncasedAoE">
+    <AbilLink value="StukovAleksanderCrashed" />
+    <WhichUnit Effect="SlaynElementalGrabAOELM" Value="Target" />
+    <Find value="0" />
+  </CValidatorUnitOrderQueue>
+  <CValidatorPlayerRequirement id="CommanderPrestigeVorazunStasis">
+    <Find value="1" />
+    <Value value="CommanderPrestigeVorazunStasis" />
+  </CValidatorPlayerRequirement>
+  <CValidatorPlayerRequirement id="CommanderPrestigeZeratulArtifactFragments">
+    <Find value="1" />
+    <Value value="CommanderPrestigeZeratulArtifactFragments" />
+  </CValidatorPlayerRequirement>
+  <CValidatorPlayerRequirement id="CommanderPrestigeZeratulTornadoes">
+    <Find value="1" />
+    <Value value="CommanderPrestigeZeratulTornadoes" />
+  </CValidatorPlayerRequirement>
+  <CValidatorUnitCompareBehaviorCount id="DoesNotHaveSOAMapWideChronoPassiveTarget">
+    <Behavior value="SOAMapWideChronoPassiveTarget" />
+  </CValidatorUnitCompareBehaviorCount>
+  <CValidatorPlayerRequirement id="HaveMasteryVorazunDarkPylonCloakRadius">
+    <Find value="1" />
+    <Value value="HaveMasteryVorazunDarkPylonCloakRadius" />
+    <WhichPlayer Value="Creator" />
+    <UnitSelectionNotRequired value="1" />
+  </CValidatorPlayerRequirement>
+  <CValidatorPlayerRequirement id="HaveVorazunCommander">
+    <ResultNoPlayer value="Error" />
+    <Find value="1" />
+    <Value value="HaveVorazunCommander" />
+  </CValidatorPlayerRequirement>
+  <CValidatorPlayerRequirement id="IsAnyCommander">
+    <Find value="1" />
+    <Value value="HavePlayerCommander" />
+  </CValidatorPlayerRequirement>
+  <CValidatorUnitType id="IsMutatorAmonZeratul">
+    <Value value="MutatorAmonZeratul" />
+  </CValidatorUnitType>
+  <CValidatorUnitType id="IsZeratul">
+    <Value value="Zeratul" />
+  </CValidatorUnitType>
+  <CValidatorPlayerRequirement id="KaraxHaveStructureInstantWarp">
+    <Find value="1" />
+    <Value value="HaveKaraxInstantWarp" />
+  </CValidatorPlayerRequirement>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE100">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="100" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE150">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="150" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE200">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="200" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE250">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="250" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE300">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="300" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE350">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="350" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE400">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="400" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE450">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="450" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE50">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="50" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE500">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="GE" />
+    <Type value="Maximum" />
+    <Value value="500" />
+  </CValidatorUnitCompareVital>
+  <CValidatorUnitMover id="SlaynElementalAOEGrabTargetIsAir">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Value value="Fly" />
+    <Find value="1" />
+  </CValidatorUnitMover>
+  <CValidatorCombine id="SlaynElementalAOEGrabTargetIsColossi">
+    <CombineArray value="SlaynElementalAOEGrabTargetIsColossus" />
+    <CombineArray value="SlaynElementalAOEGrabTargetIsColossusPurifier" />
+    <CombineArray value="SlaynElementalAOEGrabTargetIsColossusTaldarim" />
+  </CValidatorCombine>
+  <CValidatorUnitType id="SlaynElementalAOEGrabTargetIsColossus">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Value value="Colossus" />
+    <Type value="SelectAlias" />
+  </CValidatorUnitType>
+  <CValidatorUnitType id="SlaynElementalAOEGrabTargetIsColossusPurifier">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Value value="ColossusPurifier" />
+    <Type value="SelectAlias" />
+  </CValidatorUnitType>
+  <CValidatorUnitType id="SlaynElementalAOEGrabTargetIsColossusTaldarim">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Value value="ColossusTaldarim" />
+    <Type value="SelectAlias" />
+  </CValidatorUnitType>
+  <CValidatorUnitType id="SlaynElementalAOEGrabTargetIsMonolith">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Value value="KhaydarinMonolith" />
+    <Type value="SelectAlias" />
+  </CValidatorUnitType>
+  <CValidatorUnitCompareBehaviorCount id="SlaynElementalGrabAOECUNotBurning">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Compare value="LT" />
+    <Value value="1" />
+    <Behavior value="SwannCommanderMechWreckageBurning" />
+  </CValidatorUnitCompareBehaviorCount>
+  <CValidatorUnitFilters id="SlaynElementalGrabAOECUNotDead">
+    <Filters value="-;Dead" />
+  </CValidatorUnitFilters>
+  <CValidatorUnitFilters id="SlaynElementalGrabAOEOriginNotDead">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" Value="Caster" />
+    <Filters value="-;Dead" />
+  </CValidatorUnitFilters>
+  <CValidatorCombine id="SlaynElementalGrabAOESourceNotDeadAndTargetNotDeadAndOriginNotDead">
+    <Type value="And" />
+    <CombineArray value="SlaynElementalGrabAOEOriginNotDead" />
+    <CombineArray value="SlaynElementalGrabAOETargetNotDead" />
+    <CombineArray value="SlaynElementalGrabAOECUNotDead" />
+    <CombineArray value="SlaynElementalGrabAOECUNotBurning" />
+    <CombineArray value="AleksanderCrashingEncasedAoE" />
+  </CValidatorCombine>
+  <CValidatorUnitFilters id="SlaynElementalGrabAOETargetNotDead">
+    <WhichUnit Effect="SlaynElementalGrabAOELM" />
+    <Filters value="-;Dead" />
+  </CValidatorUnitFilters>
 </Catalog>

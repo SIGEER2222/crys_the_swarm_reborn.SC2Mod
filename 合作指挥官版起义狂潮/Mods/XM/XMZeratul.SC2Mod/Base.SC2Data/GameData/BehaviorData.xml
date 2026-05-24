@@ -1,3 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+  <CBehaviorBuff id="AllUnitBehaviorController">
+    <InitialEffect value="AllUnitBehaviorControllerSet" />
+    <InfoFlags index="Hidden" value="1" />
+    <Duration value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ChronoBoostTarget">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <InitialEffect value="SOAMapWideChronoPassiveTarget" />
+    <RemoveValidatorArray value="DoesNotHaveSOAMapWideChronoPassiveTarget" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeZeratulTornadoes">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="5" />
+    <Period value="0.25" />
+    <InitialEffect value="CommanderPrestigeZeratulTornadoesSearch" />
+    <PeriodicEffect value="CommanderPrestigeZeratulTornadoesSearch" />
+    <ExpireEffect value="Suicide" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeZeratulTornadoesDoT">
+    <Alignment value="Negative" />
+    <InfoIcon value="Assets\Textures\tornadoes_coop.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="1" />
+    <Period value="0.25" />
+    <InitialEffect value="CommanderPrestigeZeratulTornadoesSlow" />
+    <RefreshEffect value="CommanderPrestigeZeratulTornadoesSlow" />
+    <PeriodicEffect value="CommanderPrestigeZeratulTornadoesDamage" />
+    <Modification AttackSpeedMultiplier="0.7" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeZeratulTornadoesSlow">
+    <Alignment value="Negative" />
+    <InfoFlags index="Hidden" value="1" />
+    <InfoIcon value="Assets\Textures\tornadoes_coop.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="1" />
+    <Period value="0.25" />
+    <Modification MoveSpeedMultiplier="0.7" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeZeratulVoidSeekerSuperCloak">
+    <Alignment value="Positive" />
+    <InfoIcon value="Assets\Textures\btn-ability-zeratul-hero-summonvoidseeker.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="0.5625" />
+    <Modification>
+      <StateFlags index="Cloak" value="1" />
+      <StateFlags index="Undetectable" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="DarkArchonMindControl">
+    <FinalEffect value="MindControlDummyMU" />
+    <Player Value="Unknown" />
+    <BehaviorCategories index="User8" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="HybridPnPMirrorImage">
+    <InfoFlags index="Hidden" value="1" />
+    <Alignment value="Negative" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BehaviorFlags index="Permanent" value="1" />
+    <BehaviorFlags index="EnabledWhileDead" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="MoebiusSeekerTint">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="1.25" />
+    <InfoFlags index="Hidden" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="PreventKnockback">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SlaynElementalGrabAOEStun">
+    <Name value="Behavior/Name/SlaynElementalGrabStun" />
+    <Tooltip value="Behavior/Tooltip/SlaynElementalGrabStun" />
+    <Alignment value="Negative" />
+    <InfoIcon value="Assets\Textures\btn-ability-slaynelemental-solaritecocoon.dds" />
+    <Duration value="0.75" />
+    <Period value="5" />
+    <PeriodicEffect value="SlaynElementalGrabAOEStunDrainDamage" />
+    <Modification>
+      <ModifyFlags index="DisableAbils" value="1" />
+      <ModifyFlags index="SuppressMoving" value="1" />
+      <ModifyFlags index="SuppressTurning" value="1" />
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="SuppressAttack" value="1" />
+      <StateFlags index="SuppressCloak" value="1" />
+      <StateFlags index="SuppressDetection" value="1" />
+      <StateFlags index="SuppressRadar" value="1" />
+      <StateFlags index="Untargetable" value="1" />
+      <AbilLinkEnableArray value="ThorWreckage" />
+      <AbilLinkEnableArray value="SiegeTankWreckage" />
+      <AbilLinkEnableArray value="ThorWreckageSwann" />
+      <AbilLinkEnableArray value="StukovAleksanderCrashed" />
+      <AbilLinkEnableArray value="StukovAleksanderCrashedInstant" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SlaynElementalGrabStun">
+    <Modification>
+      <StateFlags index="Untargetable" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SOAMapWideChronoPassiveTarget">
+    <Alignment value="Positive" />
+    <InfoIcon value="Assets\Textures\btn-upgrade-karax-chronofield.dds" />
+    <BehaviorCategories index="Fast" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
+    <BuffFlags index="DisableWhileUnderConstruction" value="1" />
+    <TimeScaleSource Value="Global" />
+    <InitialEffect value="ChronoFieldBlackOpsSet" />
+    <!--Modification TimeScale="1.15" AttackSpeedMultiplier="0.85">
+            <VitalRegenArray index="Energy" value="-0.0703"/>
+        </Modification-->
+    <Modification MoveSpeedMultiplier="1.15">
+      <RateMultiplierArray index="Charge" value="1.15" />
+      <RateMultiplierArray index="Cooldown" value="1.15" />
+      <RateMultiplierArray index="Progress" value="1.15" />
+      <RateMultiplierArray index="Queueable" value="1.15" />
+      <RateMultiplierArray index="Spawn" value="1.15" />
+      <RateMultiplierArray index="Creep" value="1.15" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SwannCommanderMechWreckageBurning">
+    <BehaviorFlags index="Permanent" value="1" />
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <Period value="1" />
+    <PeriodicEffect value="SwannCommanderMechWreckageBurningDamage" />
+    <InfoIcon value="Assets\Textures\btn-techupgrade-terran-bearclawnozzles.dds" />
+    <Alignment value="Negative" />
+    <Modification>
+      <ModifyFlags index="DisableAbils" value="1" />
+      <AbilLinkEnableArray value="SiegeTankWreckage" />
+      <AbilLinkEnableArray value="ThorWreckage" />
+      <AbilLinkEnableArray value="ThorRebornSwann" />
+      <AbilLinkEnableArray value="SiegeTankReborn" />
+      <AbilLinkEnableArray value="ThorWreckageSwann" />
+      <AbilLinkEnableArray value="Rally" />
+      <AbilLinkEnableArray value="SiegeMode" />
+      <AbilLinkEnableArray value="Unsiege" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="TempShortInvulnerable">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="0.0625" />
+    <Modification>
+      <StateFlags index="Invulnerable" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="TriggerInheritsParentBuffs">
+    <BehaviorFlags index="Permanent" value="1" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="VoidSentryBlackHole">
+    <Modification MoveSpeedMultiplier="1.5" />
+    <Alignment value="Negative" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ZeratulStun">
+    <Modification>
+      <StateFlags index="SuppressCloak" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ZeratulXelNagaConstructDevolveHeroic">
+    <InfoIcon value="Assets\Textures\btn-ability-zeratul-avatarofessence-devolutionwave.dds" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="20" />
+    <Modification>
+      <AdditiveMoveSpeedFactor value="-0.5" />
+      <AdditiveAttackSpeedFactor value="-0.5" />
+    </Modification>
+  </CBehaviorBuff>
 </Catalog>

@@ -553,6 +553,7 @@ bool gt_CommanderUI_Func (bool testConds, bool runActions) {
     int lv_j;
     int lv_i;
     int lv_xoffset;
+    int lv_yoffset;
 
     // Automatic Variable Declarations
     const int autoB88F511D_ae = gv_commanderNum;
@@ -565,7 +566,7 @@ bool gt_CommanderUI_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    DialogCreate(1410, 200, c_anchorTopLeft, 100, 120, true);
+    DialogCreate(1410, 300, c_anchorTopLeft, 100, 120, true);
     gv_commanderBtnHolder = DialogLastCreated();
     DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
     DialogSetImageVisible(DialogLastCreated(), false);
@@ -573,7 +574,7 @@ bool gt_CommanderUI_Func (bool testConds, bool runActions) {
     for ( ; ( (autoB88F511D_ai >= 0 && lv_i <= autoB88F511D_ae) || (autoB88F511D_ai < 0 && lv_i >= autoB88F511D_ae) ) ; lv_i += autoB88F511D_ai ) {
         lv_j += 1;
         DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypeButton, "CommanderSelectBtn/CommanderButtonTemplate");
-        DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lv_xoffset, 0);
+        DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorLeft, lv_xoffset, lv_yoffset);
         gv_commanderBtn[lv_i] = DialogControlLastCreated();
         DialogControlHookup(gv_commanderBtn[lv_i], c_triggerControlTypeImage, "CommanderPortrait");
         libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("CommanderPreset", "ID", "CommanderPortrait", lv_j), PlayerGroupAll());
@@ -585,6 +586,10 @@ bool gt_CommanderUI_Func (bool testConds, bool runActions) {
         }
 
         lv_xoffset += 82;
+        if ((lv_xoffset >= 738)) {
+            lv_xoffset = 0;
+            lv_yoffset += 92;
+        }
     }
     return true;
 }

@@ -1,3 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+  <CAbilMerge id="ArchonWarp">
+    <CmdButtonArray index="SelectedUnits" Requirements="NotHaveDarkArchonMindControl" />
+  </CAbilMerge>
+  <CAbilAugment id="Charge">
+    <CmdButtonArray index="Execute" Requirements="UseCharge" />
+  </CAbilAugment>
+  <CAbilMerge id="DarkArchonMerge">
+    <Info Unit="DarkArchon" />
+    <CmdButtonArray index="SelectedUnits" State="Restricted" Requirements="NotHaveDarkArchonMindControl" />
+  </CAbilMerge>
+  <CAbilEffectTarget id="DarkArchonMindControl">
+    <Cost index="0">
+      <Vital index="Energy" value="150" />
+      <Cooldown TimeUse="30" />
+    </Cost>
+    <CmdButtonArray index="Execute" State="Restricted" Requirements="HaveDarkArchonMindControl" />
+    <Range index="0" value="9" />
+  </CAbilEffectTarget>
+  <CAbilResearch id="DarkShrineResearch">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures" />
+    <InfoArray index="Research1" Time="120" Upgrade="DarkTemplarResearchShadowFury">
+      <Resource index="Minerals" value="200" />
+      <Resource index="Vespene" value="200" />
+      <Button DefaultButtonFace="ResearchShadowFury" State="Restricted" Requirements="LearnShadowFury" />
+    </InfoArray>
+    <InfoArray index="Research2" Time="120" Upgrade="DarkTemplarResearchVoidStasis">
+      <Resource index="Minerals" value="200" />
+      <Resource index="Vespene" value="200" />
+      <Button DefaultButtonFace="ResearchVoidStasis" State="Restricted" Requirements="LearnVoidStasis" />
+    </InfoArray>
+    <InfoArray index="Research3" Time="100" Upgrade="VorazunDarkTemplarRecall">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchDarkTemplarRecall" State="Restricted" Requirements="LearnVorazunDarkTemplarRecall" />
+    </InfoArray>
+    <InfoArray index="Research4" Time="90" Upgrade="DarkArchonMindControl">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchDarkArchonMindControl" State="Restricted" Requirements="LearnDarkArchonMindControl" />
+    </InfoArray>
+    <InfoArray index="Research5" Time="60" Upgrade="DarkArchonFullStartingEnergy">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchDarkArchonFullStartingEnergy" State="Restricted" Requirements="LearnDarkArchonFullStartingEnergy" />
+    </InfoArray>
+    <InfoArray index="Research6" Time="90" Upgrade="DarkTemplarResearchShadowDash">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchShadowDash" State="Restricted" Requirements="LearnShadowDash" />
+    </InfoArray>
+    <!--InfoArray index="Research7" Time="90" Upgrade="ZeratulZealotBlinkHeal">
+            <Resource index="Minerals" value="150"/>
+            <Resource index="Vespene" value="150"/>
+            <Button DefaultButtonFace="ResearchZeratulZealotBlinkHeal" State="Restricted" Requirements="LearnZeratulZealotBlinkHealUpgrade"/>
+        </InfoArray>
+        <InfoArray index="Research9" Time="90" Upgrade="ZeratulDarkTemplarShadowFury">
+            <Resource index="Minerals" value="150"/>
+            <Resource index="Vespene" value="150"/>
+            <Button DefaultButtonFace="ResearchZeratulDarkTemplarShadowFury" State="Restricted" Requirements="LearnZeratulDarkTemplarShadowFury"/>
+        </InfoArray>
+        <InfoArray index="Research10" Time="90" Upgrade="ZeratulZealotDarkTemplar">
+            <Resource index="Minerals" value="150"/>
+            <Resource index="Vespene" value="150"/>
+            <Button DefaultButtonFace="ResearchZeratulZealotDarkTemplar" State="Restricted" Requirements="LearnZeratulZealotDarkTemplar"/>
+        </InfoArray>
+        <InfoArray index="Research11" Time="90" Upgrade="ZeratulBlinkDarkTemplar">
+            <Resource index="Minerals" value="100"/>
+            <Resource index="Vespene" value="100"/>
+            <Button DefaultButtonFace="ResearchZeratulBlinkDarkTemplar" State="Restricted" Requirements="LearnZeratulBlinkDarkTemplarUpgrade"/>
+        </InfoArray-->
+  </CAbilResearch>
+  <CAbilEffectTarget id="MutatorAmonKhaydarinMonolith">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Flags index="RangeUseCasterRadius" value="0" />
+    <Cost>
+      <Cooldown TimeUse="10" />
+    </Cost>
+    <Placeholder value="MutatorAmonKhaydarinMonolith" />
+    <Range value="8" />
+    <ProducedUnitArray value="MutatorAmonKhaydarinMonolith" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="KhaydarinMonolith" />
+    <PlaceUnit value="MutatorAmonKhaydarinMonolith" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="MutatorAmonShadowBlade">
+    <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
+    <Effect index="0" value="MutatorAmonShadowBladeDamage" />
+    <Cost>
+      <Cooldown TimeUse="6" />
+    </Cost>
+    <TargetFilters value="Ground,Visible;Self,Player,Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <Range value="0" />
+    <FinishTime value="0.513" />
+    <UninterruptibleArray index="Cast" value="1" />
+    <UninterruptibleArray index="Channel" value="1" />
+    <UninterruptibleArray index="Finish" value="1" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="MutatorAmonShadowBlade" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="MutatorAmonZeratulBlink">
+    <AbilSetId value="Blnk" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Flags index="BestUnit" value="0" />
+    <Flags index="RequireTargetVision" value="0" />
+    <Cost>
+      <Cooldown TimeUse="3" />
+    </Cost>
+    <Range value="500" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="MutatorAmonZeratulBlink">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+  </CAbilEffectTarget>
+  <CAbilMorph id="PhotonOverchargeMorphDarkPylonBack">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="MothershipCoreWeapon" />
+    <Flags index="Transient" value="1" />
+    <InfoArray Unit="DarkPylon" />
+  </CAbilMorph>
+  <CAbilEffectTarget id="PnPSingleTargetLockOn">
+    <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
+    <Effect index="0" value="PnPSingleTargetLockOnPersistentSet" />
+    <TargetFilters value="Visible;Self,Missile,Stasis,Dead,Hidden,Hallucination,Invulnerable,MapBoss" />
+    <Range value="13" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="PnPSingleTargetLockOn2" />
+  </CAbilEffectTarget>
+  <CAbilBuild id="ProtossBuild">
+    <InfoArray index="Build4">
+      <Button State="Available" Requirements="HaveNexus" />
+    </InfoArray>
+    <InfoArray index="Build6">
+      <Button State="Available" />
+    </InfoArray>
+    <InfoArray index="Build7">
+      <Button State="Available" />
+    </InfoArray>
+    <InfoArray index="Build10">
+      <Button State="Available" Requirements="HaveCyberneticsCore" />
+    </InfoArray>
+    <InfoArray index="Build11">
+      <Button State="Available" Requirements="HaveTwilightCouncil" />
+    </InfoArray>
+    <InfoArray index="Build12">
+      <Button State="Available" Requirements="HaveTwilightCouncil" />
+    </InfoArray>
+    <InfoArray index="Build13">
+      <Button State="Available" />
+    </InfoArray>
+    <InfoArray index="Build14">
+      <Button State="Restricted" Requirements="HaveCyberneticsCore" />
+    </InfoArray>
+    <InfoArray index="Build15">
+      <Button State="Available" />
+    </InfoArray>
+    <InfoArray index="Build17" Unit="FenixAltarOfPsiStorms" Time="60">
+      <Button DefaultButtonFace="FenixAltarOfPsiStorms" Requirements="BuildFenixAltarOfPsiStorms" />
+    </InfoArray>
+    <InfoArray index="Build18" Unit="RoboticsFacilityWarp" Time="65">
+      <Button DefaultButtonFace="WarpInRoboticsWarpFacility" State="Restricted" Requirements="HaveCyberneticsCoreandArtanisWarpTech" />
+    </InfoArray>
+    <InfoArray index="Build19" Unit="StargateWarp" Time="60">
+      <Button DefaultButtonFace="WarpInStarWarpGate" State="Restricted" Requirements="HaveCyberneticsCoreandArtanisWarpTech" />
+    </InfoArray>
+    <InfoArray index="Build22">
+      <Button Requirements="HaveGateway" />
+    </InfoArray>
+    <InfoArray index="Build27" Unit="" Time="0">
+      <Button DefaultButtonFace="" Requirements="" />
+    </InfoArray>
+    <InfoArray index="Build28" Unit="" Time="0">
+      <Button DefaultButtonFace="" Requirements="" />
+    </InfoArray>
+    <InfoArray index="Build29" Unit="SolarForge" Time="65">
+      <Button DefaultButtonFace="SolarForge" State="Restricted" Requirements="SolarForgeRequirements" />
+    </InfoArray>
+    <InfoArray index="Build30" Unit="WarpGate" Time="65">
+      <Button DefaultButtonFace="WarpInWarpGate" State="Suppressed" Requirements="HaveCoopArtanisUpgrade" />
+    </InfoArray>
+  </CAbilBuild>
+  <CAbilQueue id="que5">
+    <Flags index="Passive" value="1" />
+  </CAbilQueue>
+  <CAbilRally id="Rally">
+    <CmdButtonArray index="Rally1" Requirements="HideForNovaCommander" />
+  </CAbilRally>
+  <CAbilMorph id="SiegeTankReborn">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SwannCommanderRebuild" Requirements="NotHaveSwannCommanderImmortalityCheapRebuild">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <Flags index="BestUnit" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="ShowProgress" value="1" />
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Score="1" Unit="SiegeTank">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="9" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="9" />
+        <EffectArray index="Start" value="SwannCommanderMechWreckageBurningRB" />
+        <EffectArray index="Finish" value="SwannCommanderMechRebirthHeal" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Delay" value="9" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="9" />
+      </SectionArray>
+    </InfoArray>
+    <RefundFraction>
+      <Resource index="Minerals" value="0" />
+      <Resource index="Vespene" value="0" />
+      <Resource index="Terrazine" value="0" />
+      <Resource index="Custom" value="0" />
+    </RefundFraction>
+    <!--Cost>
+            <Resource index="Vespene" value="125"/>
+        </Cost-->
+    <AbilSetId value="SwannReborn" />
+    <Activity value="UI/Repairing" />
+  </CAbilMorph>
+  <CAbilMorph id="SiegeTankWreckage">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SwannCommanderRebuild" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="IgnoreUnitCost" value="1" />
+    <!--Flags index="IgnoreUnitCost" value="1"/-->
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Unit="SiegeTankWreckage">
+      <SectionArray index="Stats">
+        <EffectArray index="Finish" value="PostMorphHeal" />
+      </SectionArray>
+    </InfoArray>
+    <Activity value="UI/Repairing" />
+  </CAbilMorph>
+  <CAbilMorph id="StukovAleksanderCrashed">
+    <EditorCategories value="Race:InfestedTerran,AbilityorEffectType:MorphsandBurrows" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="WaitUntilStopped" value="0" />
+    <InfoArray Unit="StukovAleksanderCrashed">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="3" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Delay" value="3" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <EffectArray index="Finish" value="StukovAleksanderCrashedDamageSearch" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilEffectInstant id="StukovAleksanderCrashedInstant">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Effect index="0" value="StukovAleksanderCrashedToAPathableLocationPrecursor" />
+    <Flags index="AllowMovement" value="1" />
+    <Flags index="NoDeceleration" value="1" />
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="Suicide">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="Suicide" />
+  </CAbilEffectInstant>
+  <CAbilMorph id="ThorRebornSwann">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SwannCommanderRebuild" Requirements="NotHaveSwannCommanderImmortalityCheapRebuild">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <Flags index="BestUnit" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="ShowProgress" value="1" />
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Score="1" Unit="Thor">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="12" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="12" />
+        <EffectArray index="Start" value="SwannCommanderMechWreckageBurningRB" />
+        <EffectArray index="Finish" value="SwannCommanderMechRebirthHeal" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Delay" value="12" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="12" />
+      </SectionArray>
+    </InfoArray>
+    <RefundFraction>
+      <Resource index="Minerals" value="0" />
+      <Resource index="Vespene" value="0" />
+      <Resource index="Terrazine" value="0" />
+      <Resource index="Custom" value="0" />
+    </RefundFraction>
+    <!--Cost>
+            <Resource index="Vespene" value="200"/>
+        </Cost-->
+    <AbilSetId value="SwannReborn" />
+    <Activity value="UI/Repairing" />
+  </CAbilMorph>
+  <CAbilMorph id="ThorWreckageSwann">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SwannCommanderRebuild" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="IgnoreUnitCost" value="1" />
+    <!--Flags index="IgnoreUnitCost" value="1"/-->
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Unit="ThorWreckageSwann">
+      <SectionArray index="Stats">
+        <EffectArray index="Finish" value="PostMorphHeal" />
+      </SectionArray>
+    </InfoArray>
+    <Activity value="UI/Repairing" />
+  </CAbilMorph>
+  <CAbilAugment id="VoidDarkTemplarShadowFury">
+    <CmdButtonArray index="Execute" Requirements="HaveResearchShadowFury" />
+  </CAbilAugment>
+  <CAbilEffectTarget id="VoidSentryBlackHole">
+    <Cost index="0">
+      <Vital index="Energy" value="25" />
+    </Cost>
+  </CAbilEffectTarget>
 </Catalog>

@@ -222,6 +222,53 @@
     </MotionPhases>
     <MotionPhases YawPitchRoll="MAX" />
   </CMoverMissile>
+  <CMoverMissile id="SiegeTankJumpJet">
+    <MotionPhases>
+      <Driver value="AdaptableParabola" />
+      <MinSpeed value="3" />
+      <MaxSpeed value="3" />
+      <ActorTracking value="Actual" />
+      <Outro value="0,4" />
+      <AdaptableParabolaClearance value="3" />
+    </MotionPhases>
+    <MotionPhases>
+      <Driver value="Guidance" />
+      <MinSpeed value="5" />
+      <MaxSpeed value="5" />
+      <Outro value="4.1,4.2" />
+    </MotionPhases>
+    <MotionPhases>
+      <Driver value="Guidance" />
+      <MinSpeed value="8" />
+      <MaxSpeed value="8" />
+      <YawPitchRoll value="MAX" />
+    </MotionPhases>
+    <RotationIgnoredByUnit value="1" />
+  </CMoverMissile>
+  <CMoverMissile id="SymbioteStab" parent="MissileDefault">
+    <MotionPhases index="0">
+      <Driver value="Guidance" />
+      <Acceleration value="3200" />
+      <MaxSpeed value="18.75" />
+      <ClearanceAcceleration value="75" />
+      <ActorTracking value="Actual" />
+      <Outro value="-1" />
+      <RotationLaunchActorType value="LaunchToTarget" />
+      <YawPitchRoll value="719.2968" />
+    </MotionPhases>
+  </CMoverMissile>
+  <CMoverMissile id="FenixPurificationNova" parent="MissileDefault">
+    <MotionPhases index="0">
+      <Driver value="Guidance" />
+      <Acceleration value="1000" />
+      <MaxSpeed value="4.25" />
+      <ClearanceAcceleration value="75" />
+      <Outro value="-1" />
+      <ThrowBandYaw value="-360,-360,-360,-360" />
+      <ThrowBandPitch value="-360,-360,-360,-360" />
+      <YawPitchRoll value="719.2968" />
+    </MotionPhases>
+  </CMoverMissile>
   <CMoverMissile id="RavenScramblerMissile" parent="MissileDefault">
     <MotionPhases index="0">
       <Driver value="Guidance" />
@@ -288,41 +335,6 @@
       <Clearance value="0.25" />
       <ClearanceLookahead value="3" />
       <YawPitchRoll value="MAX" />
-    </MotionPhases>
-  </CMoverMissile>
-  <CMoverMissile id="SiegeTankJumpJet">
-    <MotionPhases>
-      <Driver value="AdaptableParabola" />
-      <MinSpeed value="3" />
-      <MaxSpeed value="3" />
-      <ActorTracking value="Actual" />
-      <Outro value="0,4" />
-      <AdaptableParabolaClearance value="3" />
-    </MotionPhases>
-    <MotionPhases>
-      <Driver value="Guidance" />
-      <MinSpeed value="5" />
-      <MaxSpeed value="5" />
-      <Outro value="4.1,4.2" />
-    </MotionPhases>
-    <MotionPhases>
-      <Driver value="Guidance" />
-      <MinSpeed value="8" />
-      <MaxSpeed value="8" />
-      <YawPitchRoll value="MAX" />
-    </MotionPhases>
-    <RotationIgnoredByUnit value="1" />
-  </CMoverMissile>
-  <CMoverMissile id="SymbioteStab" parent="MissileDefault">
-    <MotionPhases index="0">
-      <Driver value="Guidance" />
-      <Acceleration value="3200" />
-      <MaxSpeed value="18.75" />
-      <ClearanceAcceleration value="75" />
-      <ActorTracking value="Actual" />
-      <Outro value="-1" />
-      <RotationLaunchActorType value="LaunchToTarget" />
-      <YawPitchRoll value="719.2968" />
     </MotionPhases>
   </CMoverMissile>
 </Catalog>
