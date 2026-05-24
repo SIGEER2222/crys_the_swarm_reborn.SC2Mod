@@ -1,16 +1,20 @@
 param(
-    [string]$MapName = "thanson03b.SC2Map",
+    [string]$MapName = "thanson01.SC2Map",
     [switch]$Prepare = $true,
     [switch]$LaunchGame = $true,
     [switch]$RestartExisting = $true,
     [switch]$CloseGame = $true,
-    [int]$InitialLoadWaitMs = 12000,
+    [int]$InitialLoadWaitMs = 16000,
     [int]$MapEntryTimeoutSec = 180,
     [int]$PollIntervalMs = 2000,
     [int]$EscapeCount = 12,
+    [switch]$SelectHero = $true,
+    [double[]]$HeroSelectRatio = @(0.974, 0.683),
+    [string]$KeySequence = "",
     [switch]$ClickCommandCard = $true,
-    [string]$CommandCardSlots = "7,9,11,15",
-    [int]$PostEntryWaitMs = 2000,
+    [string]$CommandCardSlots = "7",
+    [string]$TargetClicks = "0.50,0.50",
+    [int]$PostEntryWaitMs = 3500,
     [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot),
     [string]$LiveRoot = "E:\SC2\SC2new\StarCraft II",
     [string]$Sc2SwitcherPath = "E:\SC2\SC2new\StarCraft II\Support64\SC2Switcher_x64.exe"
@@ -30,8 +34,12 @@ $ErrorActionPreference = "Stop"
     -MapEntryTimeoutSec $MapEntryTimeoutSec `
     -PollIntervalMs $PollIntervalMs `
     -EscapeCount $EscapeCount `
+    -SelectHero:$SelectHero `
+    -HeroSelectRatio $HeroSelectRatio `
+    -KeySequence $KeySequence `
     -ClickCommandCard:$ClickCommandCard `
     -CommandCardSlots $CommandCardSlots `
+    -TargetClicks $TargetClicks `
     -PostEntryWaitMs $PostEntryWaitMs `
     -WorkspaceRoot $WorkspaceRoot `
     -LiveRoot $LiveRoot `

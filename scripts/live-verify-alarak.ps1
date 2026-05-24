@@ -12,6 +12,8 @@ param(
     [int]$EscapeCount = 12,
     [switch]$SelectHero = $false,
     [int[]]$HeroSelectPoint = @(0, 0),
+    [double[]]$HeroSelectRatio = @(0, 0),
+    [string]$KeySequence = "",
     [switch]$ClickTopBarButtons = $false,
     [string]$TopBarButtons = "",
     [string]$TargetClicks = "",
@@ -145,8 +147,24 @@ function Click-BattleNetLogin {
     Click-Absolute -X $x -Y $y -DelayMs 1500
 }
 
+function Get-RelativePoint {
+    param(
+        [Sc2Live+RECT]$Rect,
+        [double]$XRatio,
+        [double]$YRatio
+    )
+
+    $width = $Rect.Right - $Rect.Left
+    $height = $Rect.Bottom - $Rect.Top
+    return @(
+        [int]($Rect.Left + [math]::Round($width * $XRatio)),
+        [int]($Rect.Top + [math]::Round($height * $YRatio))
+    )
+}
+
 function Invoke-TargetClicks {
     param(
+        [Sc2Live+RECT]$Rect,
         [string]$Spec,
         [int]$DelayMs = 900
     )
@@ -161,8 +179,28 @@ function Invoke-TargetClicks {
             continue
         }
 
-        $x = [int]$pair[0].Trim()
-        $y = [int]$pair[1].Trim()
+        $xToken = $pair[0].Trim()
+        $yToken = $pair[1].Trim()
+        $xValue = 0.0
+        $yValue = 0.0
+        $isRelative = (
+            ($xToken.Contains('.') -and [double]::TryParse($xToken, [ref]$xValue) -and $xValue -ge 0 -and $xValue -le 1) -or
+            ($yToken.Contains('.') -and [double]::TryParse($yToken, [ref]$yValue) -and $yValue -ge 0 -and $yValue -le 1)
+        )
+
+        if ($isRelative) {
+            if (-not [double]::TryParse($xToken, [ref]$xValue) -or -not [double]::TryParse($yToken, [ref]$yValue)) {
+                continue
+            }
+            $point = Get-RelativePoint -Rect $Rect -XRatio $xValue -YRatio $yValue
+            $x = $point[0]
+            $y = $point[1]
+        }
+        else {
+            $x = [int]$xToken
+            $y = [int]$yToken
+        }
+
         Click-Absolute -X $x -Y $y -DelayMs $DelayMs
     }
 }
@@ -201,6 +239,79 @@ function Send-Escape {
     Start-Sleep -Milliseconds 50
     [Sc2Live]::keybd_event(0x1B, 0, [Sc2Live]::KEYUP, [UIntPtr]::Zero)
     Start-Sleep -Milliseconds $DelayMs
+}
+
+function Get-VirtualKeyCode {
+    param([string]$Token)
+
+    switch ($Token.ToUpperInvariant()) {
+        "ESC" { return 0x1B }
+        "SPACE" { return 0x20 }
+        "TAB" { return 0x09 }
+        "ENTER" { return 0x0D }
+        "F1" { return 0x70 }
+        "F2" { return 0x71 }
+        "F3" { return 0x72 }
+        "F4" { return 0x73 }
+        "F5" { return 0x74 }
+        "F6" { return 0x75 }
+        "F7" { return 0x76 }
+        "F8" { return 0x77 }
+        "F9" { return 0x78 }
+        "F10" { return 0x79 }
+        "F11" { return 0x7A }
+        "F12" { return 0x7B }
+        default {
+            if ($Token.Length -eq 1) {
+                $charCode = [int][char]$Token.ToUpperInvariant()
+                if (($charCode -ge [int][char]'0' -and $charCode -le [int][char]'9') -or
+                    ($charCode -ge [int][char]'A' -and $charCode -le [int][char]'Z')) {
+                    return $charCode
+                }
+            }
+            throw "Unsupported key token: $Token"
+        }
+    }
+}
+
+function Send-Key {
+    param(
+        [int]$VirtualKey,
+        [int]$DelayMs = 450
+    )
+
+    [Sc2Live]::keybd_event([byte]$VirtualKey, 0, 0, [UIntPtr]::Zero)
+    Start-Sleep -Milliseconds 50
+    [Sc2Live]::keybd_event([byte]$VirtualKey, 0, [Sc2Live]::KEYUP, [UIntPtr]::Zero)
+    Start-Sleep -Milliseconds $DelayMs
+}
+
+function Invoke-KeySequence {
+    param(
+        [string]$Sequence,
+        [int]$DelayMs = 450
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Sequence)) {
+        return
+    }
+
+    foreach ($rawToken in ($Sequence -split '[,;]' | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" })) {
+        $parts = $rawToken -split '\*', 2
+        $token = $parts[0].Trim()
+        $repeat = 1
+        if ($parts.Count -eq 2) {
+            [void][int]::TryParse($parts[1].Trim(), [ref]$repeat)
+            if ($repeat -lt 1) {
+                $repeat = 1
+            }
+        }
+
+        $vk = Get-VirtualKeyCode -Token $token
+        for ($i = 0; $i -lt $repeat; $i++) {
+            Send-Key -VirtualKey $vk -DelayMs $DelayMs
+        }
+    }
 }
 
 function Get-LatestLogSince {
@@ -287,6 +398,7 @@ if ($LaunchGame) {
 }
 
 $entryEvidence = $null
+$heroSelectionScreenshot = $null
 if ($InitialLoadWaitMs -gt 0) {
     Start-Sleep -Milliseconds $InitialLoadWaitMs
 }
@@ -311,8 +423,32 @@ if ($SelectHero -and $HeroSelectPoint.Count -ge 2 -and $HeroSelectPoint[0] -gt 0
         Write-Output "GAME_EXITED_BEFORE_SELECT_HERO=1"
     }
     else {
-    $rect = Focus-Sc2Window -Process $proc
-    Click-Absolute -X $HeroSelectPoint[0] -Y $HeroSelectPoint[1] -DelayMs 700
+        $rect = Focus-Sc2Window -Process $proc
+        Click-Absolute -X $HeroSelectPoint[0] -Y $HeroSelectPoint[1] -DelayMs 700
+        $heroSelectionScreenshot = Save-Screenshot -Name "${OutputPrefix}_selectedhero"
+    }
+}
+elseif ($SelectHero -and $HeroSelectRatio.Count -ge 2 -and $HeroSelectRatio[0] -gt 0 -and $HeroSelectRatio[1] -gt 0) {
+    $proc = Try-GetSc2Process
+    if (-not $proc) {
+        Write-Output "GAME_EXITED_BEFORE_SELECT_HERO=1"
+    }
+    else {
+        $rect = Focus-Sc2Window -Process $proc
+        $heroPoint = Get-RelativePoint -Rect $rect -XRatio $HeroSelectRatio[0] -YRatio $HeroSelectRatio[1]
+        Click-Absolute -X $heroPoint[0] -Y $heroPoint[1] -DelayMs 700
+        $heroSelectionScreenshot = Save-Screenshot -Name "${OutputPrefix}_selectedhero"
+    }
+}
+
+if (-not [string]::IsNullOrWhiteSpace($KeySequence)) {
+    $proc = Try-GetSc2Process
+    if (-not $proc) {
+        Write-Output "GAME_EXITED_BEFORE_KEY_SEQUENCE=1"
+    }
+    else {
+        $rect = Focus-Sc2Window -Process $proc
+        Invoke-KeySequence -Sequence $KeySequence -DelayMs 500
     }
 }
 
@@ -338,7 +474,7 @@ if (-not [string]::IsNullOrWhiteSpace($TargetClicks)) {
     }
     else {
         $rect = Focus-Sc2Window -Process $proc
-        Invoke-TargetClicks -Spec $TargetClicks -DelayMs 900
+        Invoke-TargetClicks -Rect $rect -Spec $TargetClicks -DelayMs 900
     }
 }
 
@@ -358,7 +494,7 @@ if ($ClickCommandCard -and -not [string]::IsNullOrWhiteSpace($CommandCardSlots))
 }
 
 $postClick = $null
-if ($ClickTopBarButtons -or $ClickCommandCard -or $SelectHero -or -not [string]::IsNullOrWhiteSpace($TargetClicks)) {
+if ($ClickTopBarButtons -or $ClickCommandCard -or $SelectHero -or -not [string]::IsNullOrWhiteSpace($TargetClicks) -or -not [string]::IsNullOrWhiteSpace($KeySequence)) {
     Start-Sleep -Milliseconds 1200
     $postClick = Save-Screenshot -Name "${OutputPrefix}_postclick"
 }
@@ -399,6 +535,9 @@ Write-Output "BEFORE_SCREENSHOT=$before"
 Write-Output "AFTER_SCREENSHOT=$after"
 if ($postClick) {
     Write-Output "POSTCLICK_SCREENSHOT=$postClick"
+}
+if ($heroSelectionScreenshot) {
+    Write-Output "SELECTED_HERO_SCREENSHOT=$heroSelectionScreenshot"
 }
 if ($latestAlerts) {
     Write-Output "LATEST_ALERTS=$($latestAlerts.FullName)"
