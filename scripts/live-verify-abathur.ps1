@@ -178,11 +178,20 @@ function Get-CommanderButtonPoint {
         [int]$Index
     )
 
+    $commanderXs = @(168, 266, 364, 462, 560, 658, 756, 854, 952)
+    # 指挥官按钮的有效点击区更靠上，避开下方文字与边缘。
+    $commanderYs = @(322, 421)
+
     $col = $Index % 9
     $row = [math]::Floor($Index / 9)
-    $x = $Rect.Left + 100 + (82 * $col) + 40
-    $y = $Rect.Top + 120 + (92 * $row) + 135
-    return @([int]$x, [int]$y)
+    if ($row -ge $commanderYs.Count) {
+        throw "Commander row out of range: $row"
+    }
+
+    return @(
+        [int]($Rect.Left + $commanderXs[$col]),
+        [int]($Rect.Top + $commanderYs[$row])
+    )
 }
 
 function Get-TopBarButtonPoint {
@@ -224,11 +233,19 @@ function Get-MapButtonPoint {
         throw "Map index must be >= 1."
     }
 
-    $col = ($Index - 1) % 6
-    $row = [math]::Floor(($Index - 1) / 6)
-    $x = $Rect.Left + 100 + 50 + (265 * $col) + 125
-    $y = $Rect.Top + 100 + 55 + (115 * $row) + 50
-    return @([int]$x, [int]$y)
+    $mapXs = @(328, 647, 965, 1283, 1601)
+    $mapYs = @(461, 630, 768, 906, 1045, 1182)
+
+    $col = ($Index - 1) % $mapXs.Count
+    $row = [math]::Floor(($Index - 1) / $mapXs.Count)
+    if ($row -ge $mapYs.Count) {
+        throw "Map row out of range: $row"
+    }
+
+    return @(
+        [int]($Rect.Left + $mapXs[$col]),
+        [int]($Rect.Top + $mapYs[$row])
+    )
 }
 
 function Get-DifficultyButtonPoint {

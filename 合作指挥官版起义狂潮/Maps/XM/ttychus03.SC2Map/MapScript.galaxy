@@ -2640,7 +2640,7 @@ bool gt_BriefingScene03_Func (bool testConds, bool runActions) {
 
     UnitRemove(gv_uNIT_KERRIGAN);
     Wait(3.0, c_timeGame);
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Kerrigan", 0, gv_p07_ZERG_KERRIGAN, PointFromId(1));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, gv_p07_ZERG_KERRIGAN, PointFromId(1));
     gv_briefingKerrigan = UnitLastCreated();
     libCamp_gf_CreateDropPod(libCamp_ge_DropPodRace_Zerg, PointFromId(361), UnitLastCreatedGroup(), false);
     CameraApplyInfo(gv_p01_USER, CameraInfoFromId(90), 0.0, -1, 10, true);
