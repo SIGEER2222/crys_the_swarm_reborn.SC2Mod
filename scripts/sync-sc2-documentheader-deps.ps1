@@ -1,6 +1,8 @@
 param(
     [Parameter(Mandatory = $true)]
-    [string]$DocumentRoot
+    [string]$DocumentRoot,
+    [string]$TemplateHeader = "",
+    [int]$MaxDependencies = 0
 )
 
 $ErrorActionPreference = "Stop"
@@ -22,12 +24,28 @@ $dependencyValues = @(
         Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
         ForEach-Object { $_.Trim() }
 )
+if ($MaxDependencies -gt 0) {
+    $dependencyValues = @($dependencyValues | Select-Object -First $MaxDependencies)
+}
 
 $headerBytes = [IO.File]::ReadAllBytes($documentHeaderPath)
 $magic = [Text.Encoding]::ASCII.GetString($headerBytes, 0, [Math]::Min(4, $headerBytes.Length))
 if ($magic -ne "H2CS") {
-    Write-Output "SKIPPED_NON_H2CS=$documentHeaderPath"
-    exit 0
+    if ([string]::IsNullOrWhiteSpace($TemplateHeader)) {
+        Write-Output "SKIPPED_NON_H2CS=$documentHeaderPath"
+        exit 0
+    }
+
+    $resolvedTemplateHeader = (Resolve-Path -LiteralPath $TemplateHeader).Path
+    $templateBytes = [IO.File]::ReadAllBytes($resolvedTemplateHeader)
+    $templateMagic = [Text.Encoding]::ASCII.GetString($templateBytes, 0, [Math]::Min(4, $templateBytes.Length))
+    if ($templateMagic -ne "H2CS") {
+        throw "Template DocumentHeader is not H2CS: $resolvedTemplateHeader"
+    }
+
+    $headerBytes = $templateBytes
+    Write-Output "BOOTSTRAPPED_DOCUMENTHEADER=$documentHeaderPath"
+    Write-Output "TEMPLATE_DOCUMENTHEADER=$resolvedTemplateHeader"
 }
 
 if ($headerBytes.Length -lt 0x30) {
@@ -66,3 +84,6 @@ $newBytes = New-Object byte[] (0x2C + 4 + $dependencyBytes.Count + $suffixLength
 
 Write-Output "UPDATED_DOCUMENTHEADER=$documentHeaderPath"
 Write-Output "DEPENDENCY_COUNT=$($dependencyValues.Count)"
+if ($MaxDependencies -gt 0) {
+    Write-Output "DEPENDENCY_LIMIT=$MaxDependencies"
+}

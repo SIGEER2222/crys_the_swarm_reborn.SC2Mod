@@ -1,20 +1,23 @@
 param(
     [string]$Commander = "Abathur",
     [string]$MapClick = '1',
+    [string]$MapName = "",
     [string]$OutputPrefix = "",
     [switch]$CloseGame = $true,
     [switch]$LaunchGame = $true,
     [switch]$RestartExisting = $true,
-    [int]$InitialLoadWaitMs = 12000,
-    [int]$LoadWaitMinSec = 60,
-    [int]$LoadWaitMaxSec = 180,
+    [switch]$DirectMap = $false,
+    [int]$InitialLoadWaitMs = 5000,
+    [int]$LoadWaitMinSec = 40,
+    [int]$LoadWaitMaxSec = 40,
     [int]$LoadPollIntervalSec = 5,
     [int]$EscapeCount = 18,
-    [string]$ProbeTopBarButtons = "0,1,2,3",
-    [string]$ProbeCommandCardSlots = "7,9,11,15",
+    [string]$ProbeTopBarButtons = "",
+    [string]$ProbeCommandCardSlots = "",
     [switch]$CaptureLogEvidence = $true,
     [string]$Sc2SwitcherPath = 'E:\SC2\SC2new\StarCraft II\Support64\SC2Switcher_x64.exe',
     [string]$LauncherMapPath = 'E:\SC2\SC2new\StarCraft II\Maps\XM\Launcher.SC2Map',
+    [string]$OutputRoot = "",
     [int]$LauncherReadyWaitMs = 30000,
     [switch]$ClickLogin = $false
 )
@@ -45,6 +48,12 @@ public static class Sc2Live {
 $workspace = Split-Path -Parent $PSScriptRoot
 $logRoot = Join-Path $env:USERPROFILE 'Documents\StarCraft II\GameLogs'
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
+    $OutputRoot = Join-Path $workspace "tmp\sc2-live-verify"
+}
+if (-not (Test-Path -LiteralPath $OutputRoot)) {
+    New-Item -ItemType Directory -Force -Path $OutputRoot | Out-Null
+}
 
 function Get-Sc2Process {
     $proc = Get-Process SC2_x64 -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -60,6 +69,29 @@ function Start-LauncherGame {
         Start-Sleep -Seconds 2
     }
     & $Sc2SwitcherPath $LauncherMapPath
+}
+
+function Start-MapGame {
+    param([string]$Map)
+
+    if ([string]::IsNullOrWhiteSpace($Map)) {
+        throw "Direct map launch requires -MapName."
+    }
+
+    if ($RestartExisting) {
+        Get-Process | Where-Object { $_.ProcessName -match 'SC2|StarCraft' } | Stop-Process -Force -ErrorAction SilentlyContinue
+        Start-Sleep -Seconds 2
+    }
+
+    $launcherXmRoot = Split-Path -Parent $LauncherMapPath
+    $mapBaseName = Normalize-MapName -Name $Map
+    $mapPath = Join-Path $launcherXmRoot ($mapBaseName + ".SC2Map")
+    if (-not (Test-Path -LiteralPath $mapPath)) {
+        throw "Direct map path not found: $mapPath"
+    }
+
+    & $Sc2SwitcherPath $mapPath
+    return $mapPath
 }
 
 function Wait-Sc2Window {
@@ -99,12 +131,30 @@ function Focus-Sc2Window {
 }
 
 function Save-Screenshot {
-    param([string]$Name)
-    $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-    $bmp = New-Object System.Drawing.Bitmap $bounds.Width, $bounds.Height
+    param(
+        [string]$Name,
+        [switch]$Sc2Window
+    )
+
+    if ($Sc2Window) {
+        $shotRect = Focus-Sc2Window -Process (Get-Sc2Process)
+        $width = $shotRect.Right - $shotRect.Left
+        $height = $shotRect.Bottom - $shotRect.Top
+        $sourcePoint = New-Object System.Drawing.Point $shotRect.Left, $shotRect.Top
+        $size = New-Object System.Drawing.Size $width, $height
+    }
+    else {
+        $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+        $width = $bounds.Width
+        $height = $bounds.Height
+        $sourcePoint = $bounds.Location
+        $size = $bounds.Size
+    }
+
+    $bmp = New-Object System.Drawing.Bitmap $width, $height
     $g = [System.Drawing.Graphics]::FromImage($bmp)
-    $g.CopyFromScreen($bounds.Location, [System.Drawing.Point]::Empty, $bounds.Size)
-    $path = Join-Path $workspace ("tmp_{0}_{1}.png" -f $Name, $stamp)
+    $g.CopyFromScreen($sourcePoint, [System.Drawing.Point]::Empty, $size)
+    $path = Join-Path $OutputRoot ("tmp_{0}_{1}.png" -f $Name, $stamp)
     $bmp.Save($path, [System.Drawing.Imaging.ImageFormat]::Png)
     $g.Dispose()
     $bmp.Dispose()
@@ -248,6 +298,73 @@ function Get-MapButtonPoint {
     )
 }
 
+function Normalize-MapName {
+    param([string]$Name)
+
+    $value = $Name.Trim()
+    $value = $value -replace '/', '\'
+    $value = $value -replace '^.*\\XM\\', ''
+    $value = $value -replace '^XM\\', ''
+    $value = $value -replace '\.SC2Map$', ''
+    return $value.ToLowerInvariant()
+}
+
+function Get-CampaignUserDataPaths {
+    $paths = New-Object System.Collections.Generic.List[string]
+    $workspacePath = Join-Path $workspace "合作指挥官版起义狂潮\Mods\XM\XMCore.SC2Mod\Base.SC2Data\GameData\UserData.xml"
+    [void]$paths.Add($workspacePath)
+
+    $launcherXmRoot = Split-Path -Parent $LauncherMapPath
+    $launcherMapsRoot = Split-Path -Parent $launcherXmRoot
+    $liveRoot = Split-Path -Parent $launcherMapsRoot
+    $livePath = Join-Path $liveRoot "Mods\XM\XMCore.SC2Mod\Base.SC2Data\GameData\UserData.xml"
+    [void]$paths.Add($livePath)
+
+    return $paths.ToArray() | Select-Object -Unique
+}
+
+function Get-MapIndexFromUserData {
+    param([string]$Name)
+
+    $normalized = Normalize-MapName -Name $Name
+    $aliases = @{
+        "自由日" = "traynor01"
+        "liberationday" = "traynor01"
+        "liberation day" = "traynor01"
+    }
+    if ($aliases.ContainsKey($normalized)) {
+        $normalized = $aliases[$normalized]
+    }
+
+    foreach ($path in Get-CampaignUserDataPaths) {
+        if (-not (Test-Path -LiteralPath $path)) {
+            continue
+        }
+
+        [xml]$doc = Get-Content -LiteralPath $path -Raw -Encoding UTF8
+        $nodes = $doc.SelectNodes("//CUser[@id='Campaign']/Instances[@Id='Wol']/String[Field[@Id='MapPathName']]")
+        foreach ($node in $nodes) {
+            $map = Normalize-MapName -Name $node.GetAttribute("String")
+            if ($map -ne $normalized) {
+                continue
+            }
+
+            $field = $node.SelectSingleNode("Field[@Id='MapPathName']")
+            $xmlIndex = 0
+            if ($field -and $field.HasAttribute("Index")) {
+                $xmlIndex = [int]$field.GetAttribute("Index")
+            }
+            return [pscustomobject]@{
+                Name = $map
+                Index = $xmlIndex + 1
+                Source = $path
+            }
+        }
+    }
+
+    throw "Unknown map name: $Name"
+}
+
 function Get-DifficultyButtonPoint {
     param(
         [Sc2Live+RECT]$Rect,
@@ -366,14 +483,42 @@ function Save-TextReport {
         [string[]]$Lines
     )
 
-    $path = Join-Path $workspace ("{0}_{1}.txt" -f $Name, $stamp)
+    $path = Join-Path $OutputRoot ("{0}_{1}.txt" -f $Name, $stamp)
     $Lines | Set-Content -LiteralPath $path -Encoding UTF8
     return $path
 }
 
+$mapIndex = 1
+$resolvedMapName = ""
+if (-not [string]::IsNullOrWhiteSpace($MapName)) {
+    $resolved = Get-MapIndexFromUserData -Name $MapName
+    $mapIndex = $resolved.Index
+    $resolvedMapName = $resolved.Name
+}
+elseif ($MapClick -eq '1') {
+    $mapIndex = 1
+}
+else {
+    $parsedMapIndex = 0
+    if ([int]::TryParse($MapClick, [ref]$parsedMapIndex)) {
+        $mapIndex = [int]$parsedMapIndex
+    }
+    else {
+        $resolved = Get-MapIndexFromUserData -Name $MapClick
+        $mapIndex = $resolved.Index
+        $resolvedMapName = $resolved.Name
+    }
+}
+
 $proc = $null
+$directMapPath = ""
 if ($LaunchGame) {
-    Start-LauncherGame
+    if ($DirectMap) {
+        $directMapPath = Start-MapGame -Map $resolvedMapName
+    }
+    else {
+        Start-LauncherGame
+    }
     $proc = Wait-Sc2Window
 }
 else {
@@ -382,66 +527,67 @@ else {
 
 $rect = Focus-Sc2Window -Process $proc
 
-$mapIndex = 1
-if ($MapClick -eq '1') {
-    $mapIndex = 1
-}
-else {
-    $parsedMapIndex = 0
-    if (-not [int]::TryParse($MapClick, [ref]$parsedMapIndex)) {
-        throw "Unknown map click preset: $MapClick"
-    }
-    $mapIndex = [int]$parsedMapIndex
-}
-
 $beforeName = 'sc2_before'
 $mapSelectedName = 'sc2_mapselected'
+$entryName = 'sc2_entry'
 $afterName = 'sc2_after'
 if (-not [string]::IsNullOrWhiteSpace($OutputPrefix)) {
     $beforeName = "${OutputPrefix}_before"
     $mapSelectedName = "${OutputPrefix}_mapselected"
+    $entryName = "${OutputPrefix}_entry"
     $afterName = "${OutputPrefix}_after"
 }
 $startTime = Get-Date
+$selection = ""
+$mapSelected = ""
+$commanderIndex = $null
+$mapPoint = @(0, 0)
+$difficultyPoint = @(0, 0)
 
-if ($ClickLogin) {
-    # 1) 可选：先点一次登录提示，避免 Launcher 停在 BNet 弹层。
-    Click-BattleNetLogin -Rect $rect
+if ($DirectMap) {
+    Start-Sleep -Milliseconds $InitialLoadWaitMs
+    $before = Save-Screenshot -Name $beforeName -Sc2Window
 }
-Start-Sleep -Milliseconds $LauncherReadyWaitMs
-$before = Save-Screenshot -Name $beforeName
+else {
+    if ($ClickLogin) {
+        # 1) 可选：先点一次登录提示，避免 Launcher 停在 BNet 弹层。
+        Click-BattleNetLogin -Rect $rect
+    }
+    Start-Sleep -Milliseconds $LauncherReadyWaitMs
+    $before = Save-Screenshot -Name $beforeName -Sc2Window
 
-$commanderIndex = Get-CommanderIndex -Name $Commander
-if ($commanderIndex -eq $null) {
-    throw "Commander not found in Launcher UserData: $Commander"
+    $commanderIndex = Get-CommanderIndex -Name $Commander
+    if ($commanderIndex -eq $null) {
+        throw "Commander not found in Launcher UserData: $Commander"
+    }
+    # 2) 点击指挥官头像：这里是候选指挥官页，改这里就能换进哪个指挥官。
+    $commanderPoint = Get-CommanderButtonPoint -Rect $rect -Index $commanderIndex
+    Click-Absolute -X $commanderPoint[0] -Y $commanderPoint[1] -DelayMs 900
+    Start-Sleep -Milliseconds 1200
+
+    $selectionName = 'sc2_selection'
+    if (-not [string]::IsNullOrWhiteSpace($OutputPrefix)) {
+        $selectionName = "${OutputPrefix}_selection"
+    }
+    $selection = Save-Screenshot -Name $selectionName -Sc2Window
+
+    # 3) 点击关卡按钮：这里决定进哪张地图，`MapClick` 的坐标就是从这里算出来的。
+    $mapPoint = Get-MapButtonPoint -Rect $rect -Index $mapIndex
+    Click-Absolute -X $mapPoint[0] -Y $mapPoint[1] -DelayMs 450
+
+    # 4) 点击难度按钮：先选难度，再确认进图。
+    $difficultyPoint = Get-DifficultyButtonPoint -Rect $rect -Index 0
+    Click-Absolute -X $difficultyPoint[0] -Y $difficultyPoint[1] -DelayMs 300
+
+    # 5) 再点一次关卡按钮：这是正式确认进图的那一下。
+    Click-Absolute -X $mapPoint[0] -Y $mapPoint[1] -DelayMs $InitialLoadWaitMs
+
+    # 6) 记录“已点关卡后”的截图，用来确认是否离开候选页。
+    $mapSelected = Save-Screenshot -Name $mapSelectedName -Sc2Window
 }
-# 2) 点击指挥官头像：这里是候选指挥官页，改这里就能换进哪个指挥官。
-$commanderPoint = Get-CommanderButtonPoint -Rect $rect -Index $commanderIndex
-Click-Absolute -X $commanderPoint[0] -Y $commanderPoint[1] -DelayMs 900
-Start-Sleep -Milliseconds 1200
-
-$selectionName = 'sc2_selection'
-if (-not [string]::IsNullOrWhiteSpace($OutputPrefix)) {
-    $selectionName = "${OutputPrefix}_selection"
-}
-$selection = Save-Screenshot -Name $selectionName
-
-# 3) 点击关卡按钮：这里决定进哪张地图，`MapClick` 的坐标就是从这里算出来的。
-$mapPoint = Get-MapButtonPoint -Rect $rect -Index $mapIndex
-Click-Absolute -X $mapPoint[0] -Y $mapPoint[1] -DelayMs 450
-
-# 4) 点击难度按钮：先选难度，再确认进图。
-$difficultyPoint = Get-DifficultyButtonPoint -Rect $rect -Index 0
-Click-Absolute -X $difficultyPoint[0] -Y $difficultyPoint[1] -DelayMs 300
-
-# 5) 再点一次关卡按钮：这是正式确认进图的那一下。
-Click-Absolute -X $mapPoint[0] -Y $mapPoint[1] -DelayMs $InitialLoadWaitMs
-
-# 6) 记录“已点关卡后”的截图，用来确认是否离开候选页。
-$mapSelected = Save-Screenshot -Name $mapSelectedName
 
 $loadWindow = Wait-ForLoadWindow -Since $startTime -MinSec $LoadWaitMinSec -MaxSec $LoadWaitMaxSec -PollIntervalSec $LoadPollIntervalSec
-Start-Sleep -Milliseconds $InitialLoadWaitMs
+$entry = Save-Screenshot -Name $entryName -Sc2Window
 
 $probeLog = $null
 if ($CaptureLogEvidence) {
@@ -492,19 +638,26 @@ for ($i = 0; $i -lt $EscapeCount; $i++) {
     Send-Escape -DelayMs 900
 }
 
-$after = Save-Screenshot -Name $afterName
+$after = Save-Screenshot -Name $afterName -Sc2Window
 
 Write-Output "PID=$($proc.Id)"
 Write-Output "WINDOW_RECT=$($rect.Left),$($rect.Top),$($rect.Right - $rect.Left),$($rect.Bottom - $rect.Top)"
 Write-Output "BEFORE_SCREENSHOT=$before"
 Write-Output "SELECTION_SCREENSHOT=$selection"
 Write-Output "MAP_SELECTED_SCREENSHOT=$mapSelected"
+Write-Output "ENTRY_SCREENSHOT=$entry"
 Write-Output "AFTER_SCREENSHOT=$after"
 Write-Output "COMMANDER=$Commander"
+if (-not [string]::IsNullOrWhiteSpace($directMapPath)) {
+    Write-Output "DIRECT_MAP_PATH=$directMapPath"
+}
 if ($commanderIndex -ne $null) {
     Write-Output "COMMANDER_INDEX=$commanderIndex"
 }
 Write-Output "MAP_INDEX=$mapIndex"
+if (-not [string]::IsNullOrWhiteSpace($resolvedMapName)) {
+    Write-Output "MAP_NAME=$resolvedMapName"
+}
 Write-Output "MAP_POINT=$($mapPoint[0]),$($mapPoint[1])"
 Write-Output "DIFFICULTY_POINT=$($difficultyPoint[0]),$($difficultyPoint[1])"
 Write-Output "LOAD_WAIT_TARGET_SEC=$($loadWindow.TargetSec)"
@@ -519,7 +672,7 @@ if ($CaptureLogEvidence -and $Commander -eq 'Abathur') {
     if (-not [string]::IsNullOrWhiteSpace($OutputPrefix)) {
         $probeName = $OutputPrefix
     }
-    $abathurJson = Join-Path $workspace ("tmp_{0}_abathur_debug_{1}.json" -f $probeName, $stamp)
+    $abathurJson = Join-Path $OutputRoot ("tmp_{0}_abathur_debug_{1}.json" -f $probeName, $stamp)
     try {
         & (Join-Path $PSScriptRoot 'parse-latest-abathur-debug-log.ps1') -AsJson | Set-Content -LiteralPath $abathurJson -Encoding UTF8
         Write-Output "ABATHUR_DEBUG_JSON=$abathurJson"

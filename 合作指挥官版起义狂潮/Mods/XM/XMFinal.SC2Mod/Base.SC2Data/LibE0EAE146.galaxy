@@ -137,6 +137,9 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     else if (autoC0933116_val == "Stetmann") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Mecha");
     }
+    else if (autoC0933116_val == "Kerrigan") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Classic");
+    }
     else {
     }
 }
@@ -337,6 +340,25 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
         lib975E2FE9_gf_PowerFieldTrigger(1, BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(2)));
         lib67C0F0E7_gf_ShowChooseButton();
+    }
+    else if (auto09490B45_val == "Kerrigan") {
+        TechTreeUpgradeAddLevel(1, "CommanderLevel", 15);
+        TechTreeUpgradeAddLevel(1, "KerriganCommander", 1);
+        TechTreeUpgradeAddLevel(1, "KerriganInfestedCosmetic", 1);
+        TechTreeUpgradeAddLevel(1, "VoidCoopHeroicFortitude", 1);
+        TechTreeUpgradeAddLevel(1, "K5PrimalSlash", 1);
+        TechTreeUpgradeAddLevel(1, "K5PsiStrike", 1);
+        TechTreeUpgradeAddLevel(1, "K5ChainLightning", 1);
+        TechTreeUpgradeAddLevel(1, "K5Cooldowns", 1);
+        TechTreeUpgradeAddLevel(1, "K5Fury", 1);
+        TechTreeUpgradeAddLevel(1, "KerriganVoidCoopEnergyRegen", 1);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterKerrigan", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Kerrigan", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, lp_secondUnit);
+        }
     }
     else {
     }

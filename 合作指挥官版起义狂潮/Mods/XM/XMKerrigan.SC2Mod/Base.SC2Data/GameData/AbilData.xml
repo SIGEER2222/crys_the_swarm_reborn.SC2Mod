@@ -2993,6 +2993,19 @@
     <Range value="10" />
     <Alert value="KerriganReviveComplete" />
   </CAbilRevive>
+  <CAbilRevive id="KerriganRevive" parent="ReviveSelf">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Revive1" DefaultButtonFace="KerriganRevive" />
+    <CmdButtonArray index="ReviveAtTarget1" DefaultButtonFace="KerriganRevivePlacement" />
+    <Flags index="UnitOrderQueue" value="1" />
+    <BaseInfo>
+      <Cooldown Location="Player" TimeUse="0.1" />
+    </BaseInfo>
+    <Effect value="KerriganReviveHeal" />
+    <Offset value="0,0" />
+    <Range value="10" />
+    <Alert value="KerriganReviveComplete" />
+  </CAbilRevive>
   <CAbilEffectTarget id="AlarakStructureOvercharge">
     <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
     <Effect index="0" value="AlarakStructureOverchargeSet" />
