@@ -324,4 +324,87 @@
       <Vital index="Energy" value="25" />
     </Cost>
   </CAbilEffectTarget>
+  <CAbilEffectInstant id="ZeratulMapWideStasisIssueOrder">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Flags index="Transient" value="1" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="ZeratulMapWideStasis" Requirements="HaveZeratulArtifactUpgradeTier1A" />
+    <Cost>
+      <Charge Link="Abil/ZeratulMapWideStasis" Location="Player" />
+      <Cooldown Link="Abil/ZeratulMapWideStasis" Location="Player" TimeUse="90" />
+    </Cost>
+  </CAbilEffectInstant>
+  <CAbilBuild id="ZeratulTopBarBuild">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures" />
+    <FlagArray index="Cancelable" value="0" />
+    <FlagArray index="PeonMaintained" value="0" />
+    <InfoArray index="Build1" Unit="ZeratulKhaydarinMonolith" Time="1">
+      <Charge>
+        <CountMax value="3" />
+        <CountStart value="1" />
+        <CountUse value="1" />
+        <Link value="Abil/ZeratulTopBarKhaydarinMonolith" />
+        <TimeStart value="180" />
+        <TimeUse value="180" />
+      </Charge>
+      <Button DefaultButtonFace="ZeratulKhaydarinMonolith" Requirements="HaveZeratulArtifactUpgradeTier1C" />
+      <ValidatorArray value="HasVision" />
+    </InfoArray>
+    <Range value="500" />
+  </CAbilBuild>
+  <CAbilWarpTrain id="ZeratulTopBarWarpTrain">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures" />
+    <InfoArray index="Train1" Time="1" Unit="ZeratulSummonKarass">
+      <Resource index="Minerals" value="800" />
+      <Cooldown TimeUse="120" />
+      <Button DefaultButtonFace="ZeratulSummonKarass" Requirements="HaveZeratulArtifactUpgradeTier0A" />
+    </InfoArray>
+    <InfoArray index="Train2" Time="1" Unit="Mohandar">
+      <Resource index="Minerals" value="800" />
+      <Cooldown TimeUse="120" />
+      <Button DefaultButtonFace="ZeratulSummonMohandar" Requirements="HaveZeratulArtifactUpgradeTier0B" />
+    </InfoArray>
+    <InfoArray index="Train3" Time="1" Unit="ZeratulHeroDarkArchon">
+      <Resource index="Minerals" value="800" />
+      <Cooldown TimeUse="120" />
+      <Button DefaultButtonFace="ZeratulSummonDarkArchon" Requirements="HaveZeratulArtifactUpgradeTier0C" />
+    </InfoArray>
+    <InfoArray index="Train4" Time="1" Unit="ZeratulKhaydarinMonolith">
+      <Charge>
+        <CountMax value="3" />
+        <CountStart value="1" />
+        <CountUse value="1" />
+        <Link value="Abil/ZeratulTopBarKhaydarinMonolith" />
+        <Location value="Unit" />
+        <TimeStart value="180" />
+        <TimeUse value="180" />
+      </Charge>
+      <Button DefaultButtonFace="ZeratulKhaydarinMonolith" Requirements="HaveZeratulArtifactUpgradeTier1C" />
+    </InfoArray>
+    <InfoArray index="Train7" Unit="ZeratulXelNagaConstruct">
+      <Cooldown TimeStart="300" TimeUse="300" />
+      <Button DefaultButtonFace="ZeratulArtifactUpgradeTier3B" Requirements="HaveZeratulArtifactUpgradeTier3B" />
+    </InfoArray>
+    <InfoArray index="Train8" Unit="ZeratulSuppressionCrystal">
+      <Cooldown Link="Abil/ZeratulSuppressionCrystal" TimeUse="180" />
+      <Button DefaultButtonFace="ZeratulSuppressionCrystal" Requirements="HaveZeratulArtifactUpgradeTier1B" />
+    </InfoArray>
+    <Flags index="WarpTrainersButton" value="0" />
+    <RefundFraction>
+      <Vital index="Life" value="-1" />
+      <Vital index="Shields" value="-1" />
+      <Vital index="Energy" value="-1" />
+    </RefundFraction>
+  </CAbilWarpTrain>
+  <CAbilWarpTrain id="ZeratulTopBarUltimateWarpTrain">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures" />
+    <InfoArray index="Train1" Time="1" Unit="ZeratulXelNagaConstruct">
+      <Cooldown Location="Player" TimeStart="120" TimeUse="300" />
+      <Button DefaultButtonFace="ZeratulArtifactUpgradeTier3B" Requirements="HaveZeratulArtifactUpgradeTier3B" />
+    </InfoArray>
+    <InfoArray index="Train2" Time="1" Unit="ZeratulXelNagaConstructCyan">
+      <Cooldown Location="Player" TimeStart="120" TimeUse="300" />
+      <Button DefaultButtonFace="ZeratulArtifactUpgradeTier3A" Requirements="HaveZeratulArtifactUpgradeTier3A" />
+    </InfoArray>
+  </CAbilWarpTrain>
 </Catalog>
