@@ -14,10 +14,6 @@ include "LibE0EAE146"
 //--------------------------------------------------------------------------------------------------
 // Library Initialization
 //--------------------------------------------------------------------------------------------------
-bool gf_KerriganCommanderBranchMarker () {
-    return (libE0EAE146_gv_commander == "Kerrigan");
-}
-
 void InitLibs () {
     libNtve_InitLib();
     libLbty_InitLib();
@@ -819,34 +815,6 @@ bool gt_CreateMedivacIntro_Func (bool testConds, bool runActions) {
         UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(618516690)), c_orderQueueReplace);
         libNtve_gf_CreateUnitsAtPoint2(1, "MedivacMengsk", 0, gv_p01_USER, PointFromId(2827));
         UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(462539341)), c_orderQueueReplace);
-    }
-    else if (autoBEEAC669_val == "Abathur") {
-        libE0EAE146_gf_AbathurCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
-        libE0EAE146_gf_AbathurCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
-    }
-    else if (autoBEEAC669_val == "Zagara") {
-        libE0EAE146_gf_ZagaraCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
-        libE0EAE146_gf_ZagaraCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
-    }
-    else if (autoBEEAC669_val == "Fenix") {
-        libE0EAE146_gf_FenixCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
-        libE0EAE146_gf_FenixCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
-    }
-    else if (autoBEEAC669_val == "Artanis") {
-        libE0EAE146_gf_ArtanisCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
-        libE0EAE146_gf_ArtanisCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
-    }
-    else if (autoBEEAC669_val == "Vorazun") {
-        libE0EAE146_gf_VorazunCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
-        libE0EAE146_gf_VorazunCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
-    }
-    else if (autoBEEAC669_val == "Karax") {
-        libE0EAE146_gf_KaraxCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
-        libE0EAE146_gf_KaraxCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
-    }
-    else if (autoBEEAC669_val == "Zeratul") {
-        libE0EAE146_gf_ZeratulCreateMapStartSquad("air", gv_p01_USER, PointFromId(618516690));
-        libE0EAE146_gf_ZeratulCreateMapStartSquad("air", gv_p01_USER, PointFromId(462539341));
     }
     else {
         libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(999));
@@ -2644,7 +2612,7 @@ bool gt_BriefingScene03_Func (bool testConds, bool runActions) {
 
     UnitRemove(gv_uNIT_KERRIGAN);
     Wait(3.0, c_timeGame);
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, gv_p07_ZERG_KERRIGAN, PointFromId(1));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Kerrigan", 0, gv_p07_ZERG_KERRIGAN, PointFromId(1));
     gv_briefingKerrigan = UnitLastCreated();
     libCamp_gf_CreateDropPod(libCamp_ge_DropPodRace_Zerg, PointFromId(361), UnitLastCreatedGroup(), false);
     CameraApplyInfo(gv_p01_USER, CameraInfoFromId(90), 0.0, -1, 10, true);

@@ -369,9 +369,6 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    BankLoad("CampaignXCore", 1);
-    BankValueSetFromString(BankLastCreated(), "Ach", "Commander", "Zeratul");
-    BankSave(BankLastCreated());
     libE0EAE146_gf_Initialize(false);
     TriggerExecute(gt_Init01Technology, true, true);
     TriggerExecute(gt_Init02Players, true, true);
@@ -502,7 +499,7 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
     }
 
     UnitSetState(UnitFromId(685), c_unitStateTargetable, false);
-    UnitCargoCreate(UnitFromId(685), "ZeratulCoop", 1);
+    UnitCargoCreate(UnitFromId(685), "Zeratul", 1);
     gv_zeratul = UnitCargoLastCreated();
     libNtve_gf_ShowHideUnit(UnitFromId(552), false);
     UnitGroupIssueOrder(UnitGroup("ZerglingBurrowed", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), OrderSetAutoCast(AbilityCommand("BurrowZerglingUp", 0), true), c_orderQueueReplace);
@@ -2211,7 +2208,7 @@ bool gt_TransmissionZeratulGetstoBaseQ_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((UnitGetType(EventUnit()) == "ZeratulCoop"))) {
+        if (!((UnitGetType(EventUnit()) == "Zeratul"))) {
             return false;
         }
     }
@@ -3794,7 +3791,7 @@ bool gt_VictoryCineFinalTendrilScene3_Func (bool testConds, bool runActions) {
     }
     UnitCreate(1, "KerriganEgg", c_unitCreateIgnorePlacement, gv_p05_ZERG_LOW_GROUND_NOAI, PointFromId(230), 270.0);
     lv_egg = UnitLastCreated();
-    UnitCreate(1, "K5Kerrigan", c_unitCreateIgnorePlacement, gv_p05_ZERG_LOW_GROUND_NOAI, PointFromId(230), 270.0);
+    UnitCreate(1, "Kerrigan", c_unitCreateIgnorePlacement, gv_p05_ZERG_LOW_GROUND_NOAI, PointFromId(230), 270.0);
     lv_kerrigan = UnitLastCreated();
     libNtve_gf_PlayAnimation(libNtve_gf_MainActorofUnit(lv_kerrigan), c_animNameDefault, "Stand Morph", c_animFlagPlayForever, c_animTimeDefault);
     UnitCreate(1, "InfestationSpire", 0, gv_p05_ZERG_LOW_GROUND_NOAI, PointFromId(560), 99.0);
