@@ -405,6 +405,14 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "DehakaMutaliskLevel3", 0, 1, PointFromId(395));
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "DehakaGuardian", 0, 1, PointFromId(395));
     }
+    else if (autoFDF18DCD_val == "Alarak") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "VoidRayTaldarim", 0, 1, PointFromId(394));
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "VoidRayTaldarim", 0, 1, PointFromId(395));
+    }
+    else if (autoFDF18DCD_val == "Kerrigan") {
+        libE0EAE146_gf_KerriganCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_KerriganCreateMapStartSquad("air", 1, PointFromId(395));
+    }
     else if (autoFDF18DCD_val == "Stukov") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "StukovInfestedBanshee", 0, 1, PointFromId(394));
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "StukovInfestedBanshee", 0, 1, PointFromId(395));
@@ -423,6 +431,34 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
     }
     else if (autoFDF18DCD_val == "Stetmann") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLordStetmann", 0, 1, PointFromId(394));
+    }
+    else if (autoFDF18DCD_val == "Abathur") {
+        libE0EAE146_gf_AbathurCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_AbathurCreateMapStartSquad("air", 1, PointFromId(395));
+    }
+    else if (autoFDF18DCD_val == "Zagara") {
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("air", 1, PointFromId(395));
+    }
+    else if (autoFDF18DCD_val == "Fenix") {
+        libE0EAE146_gf_FenixCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_FenixCreateMapStartSquad("air", 1, PointFromId(395));
+    }
+    else if (autoFDF18DCD_val == "Artanis") {
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("air", 1, PointFromId(395));
+    }
+    else if (autoFDF18DCD_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_VorazunCreateMapStartSquad("air", 1, PointFromId(395));
+    }
+    else if (autoFDF18DCD_val == "Karax") {
+        libE0EAE146_gf_KaraxCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_KaraxCreateMapStartSquad("air", 1, PointFromId(395));
+    }
+    else if (autoFDF18DCD_val == "Zeratul") {
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("air", 1, PointFromId(395));
     }
     else {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "DuskWing", 0, 1, PointFromId(394));

@@ -868,6 +868,21 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         }
 
     }
+    else if (auto2F29E444_val == "Alarak") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "AlarakCoop", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+        libE0EAE146_gf_AlarakCreateMapStartSquad("hero", 1, PointFromId(29));
+    }
+    else if (auto2F29E444_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+        libE0EAE146_gf_KerriganCreateMapStartSquad("heavy", 1, PointFromId(29));
+    }
+    else if (auto2F29E444_val == "Karax") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "KaraxChampion", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+        libE0EAE146_gf_KaraxCreateMapStartSquad("heavy", 1, PointFromId(29));
+    }
     else if (auto2F29E444_val == "Mira") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "GhostMira", 0, 1, PointFromId(29));
         gv_nova = UnitLastCreated();
@@ -920,6 +935,33 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         gv_nova = UnitLastCreated();
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HydraliskStetmann", 0, 1, PointFromId(29));
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "ZerglingStetmann", 0, 1, PointFromId(29));
+    }
+    else if (auto2F29E444_val == "Abathur") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathur", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Abathur", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        libE0EAE146_gf_AbathurEarlySnapshot("ttosh03bInit03Units");
+        libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+    }
+    else if (auto2F29E444_val == "Zagara") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZagaraVoidCoop", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("heavy", 1, PointFromId(29));
+    }
+    else if (auto2F29E444_val == "Fenix") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "FenixDragoon", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+        libE0EAE146_gf_FenixCreateMapStartSquad("heavy", 1, PointFromId(29));
+    }
+    else if (auto2F29E444_val == "Artanis") {
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("heavy", 1, PointFromId(29));
+    }
+    else if (auto2F29E444_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateMapStartSquad("heavy", 1, PointFromId(29));
+    }
+    else if (auto2F29E444_val == "Zeratul") {
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("heavy", 1, PointFromId(29));
     }
     else {
     }
