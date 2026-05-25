@@ -291,6 +291,8 @@
 - `ttosh02` 的最新硬错误已进一步缩小到顶部技能条能力对象缺失；当前已把 `ZeratulTopBarWarpTrain / ZeratulMapWideStasisIssueOrder / ZeratulTopBarUltimateWarpTrain / ZeratulTopBarBuild` 手工补进 `XMZeratul.AbilData.xml`，并同步到 live 目录。
 - `MapScript.galaxy` 的确是分地图承载指挥官逻辑的，阿拉纳克 / 泽拉图都不只是“换一个 mod 依赖”就能完全正确。
 - 本次仍然没有把整套泽拉图能力/效果/按钮对象从 `XMRaynor` 重复复制到 `XMZeratul`，因为这些对象已由依赖链前置提供；这里只补本地覆盖层缺失部分，避免重复定义。
+- 本轮又补了一组高置信的玩家可见本地化残口，主要覆盖顶部技能条控制、虚空寻觅者号研究/跃迁、折跃棱镜自动卸载与虚空裂隙选择等名称；这一步不改变 ability id，只处理显示层。
+- 仍然保留一批官方 `zhCN` 里本就没有翻译、且更偏 helper / 占位 / 内部控制的 key，不按中文名反推整批硬译，避免后续把非玩家面向对象误当正式技能名。
 
 ## 待完成（可选）
 
