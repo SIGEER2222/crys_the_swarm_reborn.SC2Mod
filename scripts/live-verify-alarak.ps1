@@ -147,6 +147,16 @@ function Click-BattleNetLogin {
     Click-Absolute -X $x -Y $y -DelayMs 1500
 }
 
+function Click-BattleNetOfflineFallback {
+    param([Sc2Live+RECT]$Rect)
+
+    $width = $Rect.Right - $Rect.Left
+    $height = $Rect.Bottom - $Rect.Top
+    $x = $Rect.Left + [math]::Round($width * 0.45)
+    $y = $Rect.Top + [math]::Round($height * 0.665)
+    Click-Absolute -X $x -Y $y -DelayMs 1200
+}
+
 function Get-RelativePoint {
     param(
         [Sc2Live+RECT]$Rect,
@@ -394,6 +404,8 @@ $rect = Focus-Sc2Window -Process $proc
 $before = Save-Screenshot -Name "${OutputPrefix}_before"
 if ($LaunchGame) {
     Click-BattleNetLogin -Rect $rect
+    Start-Sleep -Milliseconds 800
+    Click-BattleNetOfflineFallback -Rect $rect
     Start-Sleep -Seconds 8
 }
 

@@ -29,6 +29,7 @@ $ErrorActionPreference = "Stop"
 
 $runtimeCommanderOrder = @(
     "Abathur",
+    "AbathurReborn",
     "Raynor",
     "Kerrigan",
     "Alarak",
