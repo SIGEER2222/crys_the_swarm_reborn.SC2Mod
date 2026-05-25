@@ -164,6 +164,27 @@
   - `XMZeratul.SC2Mod`
 - 这样 `欢迎来到丛林` 进入图时会强制走泽拉图分支，不再依赖 launcher 当前 bank 恰好写对。
 
+### 顶部技能条能力缺口修正
+- 后续根据实机 `ScriptError.txt` 继续定位，发现问题不再是 bank 或地图依赖，而是运行时直接报：
+  - `Invalid ability id specified: 'ZeratulTopBarWarpTrain'`
+  - `Invalid ability id specified: 'ZeratulMapWideStasisIssueOrder'`
+  - `Invalid ability id specified: 'ZeratulTopBarUltimateWarpTrain'`
+  - `Invalid ability id specified: 'ZeratulTopBarBuild'`
+- 报错位置来自 `XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146.galaxy` 中的 `TechTreeAbilityAllow(...)`，说明：
+  - `XMFinal` 的泽拉图运行时分支已经在执行
+  - 地图初始化和 `Commander = Zeratul` 已经生效
+  - 真正缺的是 `XMZeratul` 覆盖层里这 4 个顶部技能条能力对象
+- 已在 `XMZeratul.SC2Mod/Base.SC2Data/GameData/AbilData.xml` 补入：
+  - `ZeratulTopBarWarpTrain`
+  - `ZeratulMapWideStasisIssueOrder`
+  - `ZeratulTopBarUltimateWarpTrain`
+  - `ZeratulTopBarBuild`
+- 这些能力定义按官方 `starcoop` 导出的 `futurecommanders.xml` 对照后，采用最小补丁方式手工接入，没有再次整包覆盖 `UnitData.xml`。
+- 这样做的原因是：
+  - `XMZeratul` 本地已经有用户需要的建筑卡面、兵种入口、英雄壳、复活建筑壳
+  - 整包重导会把这些本地接线重新冲回官方原值
+  - 当前最小修复目标是先消除 `invalid ability id`，让顶部技能条能够被 `XMFinal` 正常放行和创建
+
 ## 对比方式
 
 本次不是从别的模组整包复制单位，而是按下面三层对比后只修本地接线：
@@ -187,6 +208,21 @@
 - 结论：问题分两层：
   - 兵种层：`XMZeratul` 仍在使用错误的混合卡面和训练链接，导致游戏里出来的不是泽拉图兵种。
   - 英雄层：`XMZeratul` 缺少 `CoopCasterZeratul`、`ZeratulCoop`、`ZeratulCoopReviveBeacon` 这 3 个运行时关键单位外壳，导致英雄、技能面板、复活建筑没有本地接入。
+
+3.1. 顶栏能力对象补对比
+- 对比文件：
+  - `合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/AbilData.xml`
+  - `references/official-casc-export/mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/commanders/futurecommanders.xml`
+  - `合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146.galaxy`
+- 作用：
+  - 先看 `XMFinal` 运行时究竟要放行哪些 ability id
+  - 再看 `XMZeratul` 本地覆盖层是否真的定义了这些 ability id
+  - 最后用官方导出的 `futurecommanders.xml` 补齐缺失能力本体
+- 结论：
+  - `XMFinal` 已明确调用 4 个泽拉图顶部能力 id
+  - `XMZeratul` 原先的 `UnitData.xml` 已经引用这些 id，但 `AbilData.xml` 里并没有对应定义
+  - 所以运行时不是“按钮没显示”，而是初始化期就因为 `ability id` 无效直接报错
+  - 修复方式是只把这 4 个能力对象补入 `XMZeratul/AbilData.xml`，不再整包重导 `UnitData.xml`
 
 4. 地图实际加载链
 - 对比文件：
@@ -228,6 +264,7 @@
 - 地图侧已把 `tzeratul02/03/04` 的实际加载链补上 `XMZeratul.SC2Mod`，因此实机将不再只落到 `XMAlarak` 的覆盖结果。
 - 通用战役图侧也已把 `ttosh02` 等一整批 `XMFinal + XMAlarak` 地图补上 `XMZeratul.SC2Mod`，因此泽拉图不再只在专属战役图里可见。
 - 地图初始化侧已把 `tzeratul02/03/04` 与当前实测图 `ttosh02` 在进入 `XMFinal.Initialize(false)` 前先强制写 `Ach/Commander = Zeratul`，因此 `XMFinal` 的顶栏、开局模板、英雄创建会稳定走泽拉图分支。
+- `ttosh02` 的最新硬错误已进一步缩小到顶部技能条能力对象缺失；当前已把 `ZeratulTopBarWarpTrain / ZeratulMapWideStasisIssueOrder / ZeratulTopBarUltimateWarpTrain / ZeratulTopBarBuild` 手工补进 `XMZeratul.AbilData.xml`，并同步到 live 目录。
 - `MapScript.galaxy` 的确是分地图承载指挥官逻辑的，阿拉纳克 / 泽拉图都不只是“换一个 mod 依赖”就能完全正确。
 - 本次仍然没有把整套泽拉图能力/效果/按钮对象从 `XMRaynor` 重复复制到 `XMZeratul`，因为这些对象已由依赖链前置提供；这里只补本地覆盖层缺失部分，避免重复定义。
 
