@@ -1,6 +1,30 @@
 # Zeratul 当前状态
 
-日期：2026-05-24
+日期：2026-05-25
+
+## 2026-05-25 继续修正
+
+### 这轮和阿拉纳克的直接对比结论
+- 阿拉纳克能正常工作，不只是因为 `XMFinal` 有分支，而是因为 `XMAlarak` 自己就带着可直接运行的指挥官数据：
+  - `UserData.xml` 里有 `PlayerCommanders/ProtossAlarak`
+  - `UnitData.xml` 里有 `CoopCasterAlarak`、`AlarakCoop`、`AlarakReviveBeacon`
+  - `AbilData.xml` 里有 `AlarakRevive` 和顶部技能能力
+- 泽拉图当前不是这条模式：
+  - `XMZeratul/UserData.xml` 仍然是空壳
+  - `XMZeratul/AbilData.xml` 本地只有一部分顶部技能能力，`ZeratulBuild`、`ZeratulRevive`、`ZeratulGatewayTrain`、`ZeratulRoboticsFacilityTrain` 等关键能力仍不在本地
+  - 这些对象实际还在 `XMRaynor.SC2Mod/Base.SC2Data/GameData/commanders/futurecommanders.xml` 和 `XMRaynor.SC2Mod/Base.SC2Data/GameData/UserData.xml`
+
+### 这轮实际修正
+- `XMZeratul.SC2Mod/DocumentInfo` 已显式补上 `XMRaynor.SC2Mod` 依赖。
+- 这样地图只要加载 `XMZeratul.SC2Mod`，就会稳定把泽拉图当前仍借用的 commander metadata、建造/训练/复活能力、顶部技能相关对象一起带进来，不再依赖隐式加载顺序。
+- 这一步不是最终的“完全自包含”，但它把当前实机阻塞从“地图里压根没有那套对象”先消掉，优先保证英雄、顶部技能、建筑和兵种能真正落到游戏。
+
+### 这轮额外确认到的 live 问题
+- 用户测试用的 live 图 `E:\SC2\SC2new\StarCraft II\Maps\XM\ttosh02.SC2Map` 一度仍是旧版本：
+  - `DocumentInfo` 里没有 `XMZeratul.SC2Mod`
+  - `MapScript.galaxy` 里也没有先写 `Ach/Commander = Zeratul`
+- 这会导致仓库内已经改过的泽拉图接线，在游戏里完全不生效。
+- 因此这轮收尾必须包含一次真正的 live 同步，而不只是仓库内静态改动。
 
 ## 已完成
 

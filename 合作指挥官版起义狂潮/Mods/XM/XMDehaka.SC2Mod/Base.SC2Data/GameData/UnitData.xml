@@ -103,7 +103,7 @@
         <SubgroupPriority value="199"/>
         <EditorCategories value="ObjectType:Hero,ObjectFamily:FactionPrimal"/>
         <HotkeyCategory value="Unit/Category/DehakaMod"/>
-        <RankDisplay value="Always"/>
+        <RankDisplay value="Never"/>
         <AlliedPushPriority value="11"/>
         <GlossaryPriority value="4"/>
         <TauntDuration index="Dance" value="5"/>
@@ -113,65 +113,7 @@
         <Mover value="PrimalRoachWeapon"/>
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
     </CUnit>
-    <CUnit id="MutatorAmonDehaka">
-        <DeathRevealRadius value="3"/>
-        <Race value="Zerg"/>
-        <Mob value="Campaign"/>
-        <FlagArray index="PreventDestroy" value="1"/>
-        <FlagArray index="UseLineOfSight" value="1"/>
-        <FlagArray index="ArmySelect" value="1"/>
-        <PlaneArray index="Ground" value="1"/>
-        <Collide index="Ground" value="1"/>
-        <Collide index="ForceField" value="1"/>
-        <Collide index="Small" value="1"/>
-        <Attributes index="Biological" value="1"/>
-        <Attributes index="Heroic" value="1"/>
-        <Attributes index="MapBoss" value="1"/>
-        <LifeStart value="500"/>
-        <LifeMax value="500"/>
-        <LifeArmor value="1"/>
-        <LifeRegenRate value="2"/>
-        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
-        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
-        <Mover value="CliffJumper"/>
-        <Speed value="3.3984"/>
-        <Acceleration value="1000"/>
-        <Sight value="10"/>
-        <CostCategory value="Army"/>
-        <AttackTargetPriority value="20"/>
-        <AbilArray Link="stop"/>
-        <AbilArray Link="attack"/>
-        <AbilArray Link="move"/>
-        <AbilArray Link="MutatorAmonDehakaDrag"/>
-        <AbilArray Link="MutatorAmonDehakaHeal"/>
-        <AbilArray Link="MutatorAmonDehakaMirrorImage"/>
-        <AbilArray Link="BurrowMutatorAmonDehakaDown"/>
-        <BehaviorArray Link="MutatorAmonDehakaJump"/>
-        <BehaviorArray Link="VoidShade"/>
-        <BehaviorArray Link="Detector10"/>
-        <WeaponArray Link="MutatorAmonDehaka"/>
-        <WeaponArray Link="MutatorAmonDehakaAir"/>
-        <CardLayouts>
-            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
-            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
-            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="Drag" Type="AbilCmd" AbilCmd="MutatorAmonDehakaDrag,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="DehakaMirrorImage" Type="AbilCmd" AbilCmd="MutatorAmonDehakaMirrorImage,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="DehakaHeal" Type="AbilCmd" AbilCmd="MutatorAmonDehakaHeal,Execute" Row="2" Column="2"/>
-            <LayoutButtons Face="DehakaCliffJumper" Type="Passive" Row="2" Column="3"/>
-            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowMutatorAmonDehakaDown,Execute" Row="2" Column="4"/>
-        </CardLayouts>
-        <Radius value="1"/>
-        <InnerRadius value="0.5"/>
-        <CargoSize value="2"/>
-        <SubgroupPriority value="98"/>
-        <EditorCategories value="ObjectFamily:Campaign,ObjectType:Hero"/>
-        <RankDisplay value="Never"/>
-        <AlliedPushPriority value="11"/>
-        <TacticalAIThink value="libCOMU_gf_CT_AmonHeroDehaka_AIThink"/>
-    </CUnit>
+    <CUnit id="MutatorAmonDehaka"/>
     <CUnit id="DehakaConsumeLaunchTargetMissile" parent="MISSILE_INVULNERABLE">
         <Race value="PZrg"/>
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:FactionNerazim"/>
@@ -278,7 +220,7 @@
         <InnerRadius value="0.5"/>
         <SubgroupPriority value="99"/>
         <EditorCategories value="ObjectFamily:Campaign,ObjectType:Other"/>
-        <RankDisplay value="Always"/>
+        <RankDisplay value="Never"/>
     </CUnit>
     <CUnit id="DehakaAirTownHall">
         <DeathRevealRadius value="3"/>
