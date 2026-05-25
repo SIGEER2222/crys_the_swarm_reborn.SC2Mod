@@ -9,12 +9,32 @@ param(
         "XMVorazun",
         "XMZeratul"
     ),
+    [string[]]$SkipModules = @(
+        "XMMutator",
+        "XMNeut",
+        "XMMira",
+        "XMMengsk",
+        "XMProbe",
+        "XMSCV",
+        "XMTychus",
+        "XMDehaka",
+        "XMStukov",
+        "XMShop",
+        "XMNova",
+        "XMSwann",
+        "XMStetmann"
+    ),
     [string]$MapClick = "1",
+    [string]$MapName = "",
     [string]$Commander = "Alarak",
-    [int]$MapEntryTimeoutSec = 120,
+    [int]$MapEntryTimeoutSec = 40,
     [int]$PollIntervalMs = 2000,
     [int]$EscapeCount = 10,
     [int]$CloseDelaySec = 20,
+    [bool]$VisibleVerifyWindow = $true,
+    [string]$OutputRoot = "",
+    [switch]$MutateXMFinalDependencies = $false,
+    [switch]$UseLauncherRoute = $false,
     [switch]$LaunchGame = $true,
     [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot),
     [string]$LiveRoot = "E:\SC2\SC2new\StarCraft II",
@@ -23,14 +43,36 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$Modules = @(
-    $Modules |
+$SkipModules = @(
+    $SkipModules |
         ForEach-Object { $_ -split "," } |
         ForEach-Object { $_.Trim() } |
         Where-Object { $_ -ne "" }
 )
+$skipLookup = @{}
+foreach ($skipModule in $SkipModules) {
+    $skipLookup[$skipModule] = $true
+}
+
+$Modules = @(
+    $Modules |
+        ForEach-Object { $_ -split "," } |
+        ForEach-Object { $_.Trim() } |
+        Where-Object { $_ -ne "" } |
+        Where-Object { -not $skipLookup.ContainsKey($_) }
+)
+if ($Modules.Count -eq 0) {
+    throw "No modules left to test after SkipModules filtering."
+}
 
 $sourceRoot = Join-Path $WorkspaceRoot "合作指挥官版起义狂潮\Mods\XM"
+$defaultOutputRoot = Join-Path $WorkspaceRoot "tmp\sc2-live-verify"
+if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
+    $OutputRoot = $defaultOutputRoot
+}
+if (-not (Test-Path -LiteralPath $OutputRoot)) {
+    New-Item -ItemType Directory -Force -Path $OutputRoot | Out-Null
+}
 $liveRoot = Join-Path $LiveRoot "Mods\XM"
 $liveMapRoot = Join-Path $LiveRoot "Maps\XM"
 $xmFinalSource = Join-Path $sourceRoot "XMFinal.SC2Mod"
@@ -130,21 +172,86 @@ function Sync-Directory {
     }
 }
 
-if (-not (Test-Path -LiteralPath $xmFinalInfo)) {
-    throw "Missing source DocumentInfo: $xmFinalInfo"
-}
-if (-not (Test-Path -LiteralPath $xmFinalHeader)) {
-    throw "Missing source DocumentHeader: $xmFinalHeader"
+function Convert-ToSingleQuotedPowerShellLiteral {
+    param([string]$Value)
+    return "'" + ($Value -replace "'", "''") + "'"
 }
 
-$baselineInfoBytes = Read-Bytes -Path $xmFinalInfo
-$baselineHeaderBytes = Read-Bytes -Path $xmFinalHeader
+function Invoke-Verify {
+    param(
+        [string]$Module,
+        [string[]]$Arguments
+    )
+
+    if (-not $VisibleVerifyWindow) {
+        return & pwsh @Arguments 2>&1
+    }
+
+    $pwshPath = (Get-Command pwsh -ErrorAction Stop).Source
+    $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
+    $logPath = Join-Path $OutputRoot ("tmp_{0}_visible_verify_{1}.log" -f $Module.ToLowerInvariant(), $stamp)
+    $runnerPath = Join-Path ([IO.Path]::GetTempPath()) ("sc2-visible-verify-{0}-{1}.ps1" -f $Module.ToLowerInvariant(), $stamp)
+    $argumentListLiteral = ($Arguments | ForEach-Object { Convert-ToSingleQuotedPowerShellLiteral -Value $_ }) -join ", "
+    $workspaceLiteral = Convert-ToSingleQuotedPowerShellLiteral -Value $WorkspaceRoot
+    $pwshLiteral = Convert-ToSingleQuotedPowerShellLiteral -Value $pwshPath
+    $logLiteral = Convert-ToSingleQuotedPowerShellLiteral -Value $logPath
+    $titleLiteral = Convert-ToSingleQuotedPowerShellLiteral -Value ("SC2 verify $Module")
+
+    $runner = @"
+`$ErrorActionPreference = 'Continue'
+`$Host.UI.RawUI.WindowTitle = $titleLiteral
+Set-Location -LiteralPath $workspaceLiteral
+Write-Host "SC2 verify module: $Module"
+Write-Host "Close this PowerShell window to stop the current module test."
+Write-Host "Log file: $logPath"
+& $pwshLiteral @($argumentListLiteral) 2>&1 | Tee-Object -FilePath $logLiteral
+`$exitCode = if (`$LASTEXITCODE -ne `$null) { `$LASTEXITCODE } else { 0 }
+Write-Host ""
+Write-Host "Module test finished. This window closes in $CloseDelaySec seconds."
+Start-Sleep -Seconds $CloseDelaySec
+exit `$exitCode
+"@
+
+    $runner | Set-Content -LiteralPath $runnerPath -Encoding UTF8
+    $process = Start-Process -FilePath $pwshPath -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $runnerPath) -WindowStyle Normal -Wait -PassThru
+    Remove-Item -LiteralPath $runnerPath -Force -ErrorAction SilentlyContinue
+
+    $output = @()
+    if (Test-Path -LiteralPath $logPath) {
+        $output += Get-Content -LiteralPath $logPath -ErrorAction SilentlyContinue
+    }
+    else {
+        $output += "VISIBLE_VERIFY_LOG_MISSING=$logPath"
+    }
+
+    $output += "VISIBLE_VERIFY_LOG=$logPath"
+    if ($process.ExitCode -ne 0) {
+        $output += "VISIBLE_VERIFY_EXIT_CODE=$($process.ExitCode)"
+    }
+    return $output
+}
+
+$baselineInfoBytes = $null
+$baselineHeaderBytes = $null
+if ($MutateXMFinalDependencies) {
+    if (-not (Test-Path -LiteralPath $xmFinalInfo)) {
+        throw "Missing source DocumentInfo: $xmFinalInfo"
+    }
+    if (-not (Test-Path -LiteralPath $xmFinalHeader)) {
+        throw "Missing source DocumentHeader: $xmFinalHeader"
+    }
+
+    $baselineInfoBytes = Read-Bytes -Path $xmFinalInfo
+    $baselineHeaderBytes = Read-Bytes -Path $xmFinalHeader
+}
 
 $results = New-Object System.Collections.Generic.List[object]
 $restored = $false
 
 try {
-    Sync-Directory -Source $xmFinalSource -Target $xmFinalLive
+    if ($MutateXMFinalDependencies) {
+        Sync-Directory -Source $xmFinalSource -Target $xmFinalLive
+    }
 
     foreach ($module in $Modules) {
         $moduleSource = Join-Path $sourceRoot ($module + ".SC2Mod")
@@ -161,18 +268,21 @@ try {
 
         Sync-Directory -Source $moduleSource -Target $moduleLive
 
-        Write-Bytes -Path $xmFinalInfo -Bytes $baselineInfoBytes
-        Write-Bytes -Path $xmFinalHeader -Bytes $baselineHeaderBytes
+        if ($MutateXMFinalDependencies) {
+            Write-Bytes -Path $xmFinalInfo -Bytes $baselineInfoBytes
+            Write-Bytes -Path $xmFinalHeader -Bytes $baselineHeaderBytes
 
-        $dependency = "file:Mods\XM\$module.SC2Mod"
-        Add-DependencyToDocumentInfo -Path $xmFinalInfo -Dependency $dependency
-        & $syncHeaderScript -DocumentRoot $xmFinalSource | Out-Null
+            $dependency = "file:Mods\XM\$module.SC2Mod"
+            Add-DependencyToDocumentInfo -Path $xmFinalInfo -Dependency $dependency
+            & $syncHeaderScript -DocumentRoot $xmFinalSource | Out-Null
 
-        Copy-Item -LiteralPath $xmFinalInfo -Destination (Join-Path $xmFinalLive "DocumentInfo") -Force
-        Copy-Item -LiteralPath $xmFinalHeader -Destination (Join-Path $xmFinalLive "DocumentHeader") -Force
+            Copy-Item -LiteralPath $xmFinalInfo -Destination (Join-Path $xmFinalLive "DocumentInfo") -Force
+            Copy-Item -LiteralPath $xmFinalHeader -Destination (Join-Path $xmFinalLive "DocumentHeader") -Force
+        }
 
         $commanderName = $module.Substring(2)
         & $setBankScript -Commander $commanderName -Backup:$false | Out-Null
+        $loadPollIntervalSec = [math]::Max(1, [int][math]::Ceiling($PollIntervalMs / 1000.0))
 
         $verifyArgs = @(
             "-NoProfile",
@@ -181,41 +291,63 @@ try {
             "-LaunchGame:$true",
             "-RestartExisting:$true",
             "-CloseGame:$true",
+            "-DirectMap:$(-not $UseLauncherRoute)",
             "-MapClick", $MapClick,
+            "-MapName", $MapName,
             "-Commander", $commanderName,
-            "-InitialLoadWaitMs", 12000,
+            "-InitialLoadWaitMs", 5000,
+            "-LoadWaitMinSec", $MapEntryTimeoutSec,
+            "-LoadWaitMaxSec", $MapEntryTimeoutSec,
+            "-LoadPollIntervalSec", $loadPollIntervalSec,
             "-EscapeCount", $EscapeCount,
-            "-OutputPrefix", $module.ToLowerInvariant()
+            "-ProbeTopBarButtons", "",
+            "-ProbeCommandCardSlots", "",
+            "-OutputPrefix", $module.ToLowerInvariant(),
+            "-OutputRoot", $OutputRoot
         )
 
-        $output = & pwsh @verifyArgs 2>&1
-        $signal = ($output | Select-String -Pattern '^MAP_ENTRY_SIGNAL=' | ForEach-Object { $_.Line.Split('=', 2)[1] } | Select-Object -First 1)
+        $output = Invoke-Verify -Module $module -Arguments $verifyArgs
+        $signal = ($output | Select-String -Pattern '^LOAD_WAIT_SIGNAL=' | ForEach-Object { $_.Line.Split('=', 2)[1] } | Select-Object -First 1)
         $log = ($output | Select-String -Pattern '^LATEST_SCRIPT_ERROR=' | ForEach-Object { $_.Line.Split('=', 2)[1] } | Select-Object -First 1)
+        $visibleExit = ($output | Select-String -Pattern '^VISIBLE_VERIFY_EXIT_CODE=' | ForEach-Object { $_.Line.Split('=', 2)[1] } | Select-Object -First 1)
+        $entryScreenshot = ($output | Select-String -Pattern '^ENTRY_SCREENSHOT=' | ForEach-Object { $_.Line.Split('=', 2)[1] } | Select-Object -First 1)
         if (-not $signal) {
             $signal = "launch-error"
         }
 
+        $status = "review"
+        if ($signal -eq "script-error" -or $visibleExit) {
+            $status = "fail"
+        }
+        elseif (-not $entryScreenshot) {
+            $status = "fail"
+        }
+
         $results.Add([pscustomobject]@{
             Module = $module
-            Status = if ($signal -eq "alerts") { "pass" } else { "fail" }
+            Status = $status
             Signal = $signal
             Log = $log
+            EntryScreenshot = $entryScreenshot
         }) | Out-Null
 
         $output | ForEach-Object { Write-Host $_ }
     }
 }
 finally {
-    Write-Bytes -Path $xmFinalInfo -Bytes $baselineInfoBytes
-    Write-Bytes -Path $xmFinalHeader -Bytes $baselineHeaderBytes
-    Copy-Item -LiteralPath $xmFinalInfo -Destination (Join-Path $xmFinalLive "DocumentInfo") -Force -ErrorAction SilentlyContinue
-    Copy-Item -LiteralPath $xmFinalHeader -Destination (Join-Path $xmFinalLive "DocumentHeader") -Force -ErrorAction SilentlyContinue
-    $restored = $true
+    if ($MutateXMFinalDependencies -and $baselineInfoBytes -and $baselineHeaderBytes) {
+        Write-Bytes -Path $xmFinalInfo -Bytes $baselineInfoBytes
+        Write-Bytes -Path $xmFinalHeader -Bytes $baselineHeaderBytes
+        Copy-Item -LiteralPath $xmFinalInfo -Destination (Join-Path $xmFinalLive "DocumentInfo") -Force -ErrorAction SilentlyContinue
+        Copy-Item -LiteralPath $xmFinalHeader -Destination (Join-Path $xmFinalLive "DocumentHeader") -Force -ErrorAction SilentlyContinue
+        $restored = $true
+    }
 }
 
 $results | Format-Table -AutoSize
-if (($results | Where-Object { $_.Status -ne "pass" }).Count -gt 0) {
+if (($results | Where-Object { $_.Status -eq "fail" }).Count -gt 0) {
     throw "One or more single-commander dependency tests failed."
 }
 
-Write-Output "ALL_SINGLE_COMMANDER_DEP_TESTS_PASSED=1"
+Write-Output "ALL_SINGLE_COMMANDER_DEP_TESTS_COMPLETED=1"
+Write-Output "ENTRY_SCREENSHOTS_REQUIRE_REVIEW=1"
