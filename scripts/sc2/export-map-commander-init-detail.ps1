@@ -119,7 +119,7 @@ $unitNamesZh = @{
     "TychusResearchCenter" = "泰凯斯研究中心"
     "TychusSCV" = "泰凯斯工程车"
     "SwarmHostMP" = "虫群宿主"
-    "QueenCoop" = "女王"
+    "QueenCoop" = "合作女王"
     "HotSLeviathan" = "利维坦"
     "ZagaraCorruptor" = "扎加拉腐化者"
     "ImmortalTaldarim" = "塔达林不朽者"
@@ -180,6 +180,7 @@ $unitNamesZh = @{
     "Probe" = "探机"
     "SCV" = "工程车"
     "Zergling" = "跳虫"
+    "HotSRaptor" = "腾跃虫"
     "RoachVile" = "邪恶蟑螂"
     "Hydralisk" = "刺蛇"
     "Ravager" = "破坏者"
@@ -613,39 +614,39 @@ function Get-SquadComposition {
         "Abathur" {
             if ($Mode -eq "MapStart") {
                 switch ($k) {
-                    "light" { return "2 Zergling；1 RoachVile；1 Hydralisk" }
+                    "light" { return "2 RoachVile；1 Ravager" }
                     "heavy" { return "2 RoachVile；1 Ravager；1 SwarmHostMP" }
-                    "air" { return "2 Mutalisk；1 Corruptor" }
-                    "hero" { return "2 RoachVile；2 Hydralisk；1 Queen" }
+                    "air" { return "2 Mutalisk；1 Devourer" }
+                    "hero" { return "2 RoachVile；1 Ravager；1 SwarmHostMP；1 Queen" }
                     "ultimate" { return "若 AbathurUnlockUltimateEvolutions 已解锁：1 Brutalisk；1 Leviathan；否则回退 heavy" }
-                    default { return "默认回退 light：2 Zergling；1 RoachVile；1 Hydralisk" }
+                    default { return "默认回退 light：2 RoachVile；1 Ravager" }
                 }
             }
             switch ($k) {
-                "light" { return "4 Zergling；1 RoachVile；1 Hydralisk" }
+                "light" { return "3 RoachVile；1 Ravager" }
                 "heavy" { return "2 RoachVile；1 Ravager；1 SwarmHostMP" }
-                "air" { return "2 Mutalisk；1 Corruptor" }
-                "hero" { return "2 RoachVile；2 Hydralisk；1 Queen" }
-                default { return "默认回退 light：4 Zergling；1 RoachVile；1 Hydralisk" }
+                "air" { return "2 Mutalisk；1 Devourer" }
+                "hero" { return "2 RoachVile；1 Ravager；1 SwarmHostMP；1 Queen" }
+                default { return "默认回退 light：3 RoachVile；1 Ravager" }
             }
         }
         "AbathurReborn" {
             if ($Mode -eq "MapStart") {
                 switch ($k) {
-                    "light" { return "2 Zergling；1 RoachVile；1 Hydralisk" }
+                    "light" { return "2 RoachVile；1 RavagerAbathurReborn" }
                     "heavy" { return "2 RoachVile；1 RavagerAbathurReborn；1 SwarmHost" }
-                    "air" { return "2 Mutalisk；1 Corruptor" }
-                    "hero" { return "2 RoachVile；2 Hydralisk；1 QueenCoop" }
+                    "air" { return "2 Mutalisk；1 Devourer" }
+                    "hero" { return "2 RoachVile；1 RavagerAbathurReborn；1 SwarmHost；1 QueenCoop" }
                     "ultimate" { return "若 AbathurUnlockUltimateEvolutions 已解锁：1 Brutalisk；1 HotSLeviathan；否则回退 heavy" }
-                    default { return "默认回退 light：2 Zergling；1 RoachVile；1 Hydralisk" }
+                    default { return "默认回退 light：2 RoachVile；1 RavagerAbathurReborn" }
                 }
             }
             switch ($k) {
-                "light" { return "4 Zergling；1 RoachVile；1 Hydralisk" }
+                "light" { return "3 RoachVile；1 RavagerAbathurReborn" }
                 "heavy" { return "2 RoachVile；1 RavagerAbathurReborn；1 SwarmHost" }
-                "air" { return "2 Mutalisk；1 Corruptor" }
-                "hero" { return "2 RoachVile；2 Hydralisk；1 QueenCoop" }
-                default { return "默认回退 light：4 Zergling；1 RoachVile；1 Hydralisk" }
+                "air" { return "2 Mutalisk；1 Devourer" }
+                "hero" { return "2 RoachVile；1 RavagerAbathurReborn；1 SwarmHost；1 QueenCoop" }
+                default { return "默认回退 light：3 RoachVile；1 RavagerAbathurReborn" }
             }
         }
         "Zagara" {
@@ -654,7 +655,7 @@ function Get-SquadComposition {
                     "light" { return "4 HotSSwarmling；2 Baneling；1 Hydralisk" }
                     "heavy" { return "3 RoachVile；2 Hydralisk；1 Baneling" }
                     "air" { return "4 Scourge；2 ZagaraCorruptor" }
-                    "hero" { return "1 Queen；3 HotSSwarmling；2 Baneling；1 RoachVile" }
+                    "hero" { return "1 QueenCoop；3 HotSSwarmling；2 Baneling；1 RoachVile" }
                     default { return "默认回退 light：4 HotSSwarmling；2 Baneling；1 Hydralisk" }
                 }
             }
@@ -705,20 +706,20 @@ function Get-SquadComposition {
         "Kerrigan" {
             if ($Mode -eq "MapStart") {
                 switch ($k) {
-                    "light" { return "4 Zergling；2 Hydralisk" }
-                    "heavy" { return "2 Hydralisk；1 Queen；1 Ultralisk" }
+                    "light" { return "4 HotSRaptor；2 Hydralisk" }
+                    "heavy" { return "2 Hydralisk；1 QueenCoop；1 Ultralisk" }
                     "air" { return "2 Mutalisk；1 MutaliskBroodlord" }
-                    "hero" { return "1 K5Kerrigan；3 Zergling；2 Hydralisk；1 Queen" }
+                    "hero" { return "1 K5Kerrigan；3 HotSRaptor；2 Hydralisk；1 QueenCoop" }
                     "ultimate" { return "1 Ultralisk；2 Mutalisk" }
-                    default { return "默认回退 light：4 Zergling；2 Hydralisk" }
+                    default { return "默认回退 light：4 HotSRaptor；2 Hydralisk" }
                 }
             }
             switch ($k) {
-                "light" { return "4 Zergling；2 Hydralisk" }
-                "heavy" { return "2 Hydralisk；1 Queen；1 Ultralisk" }
+                "light" { return "4 HotSRaptor；2 Hydralisk" }
+                "heavy" { return "2 Hydralisk；1 QueenCoop；1 Ultralisk" }
                 "air" { return "2 Mutalisk；1 MutaliskBroodlord" }
-                "hero" { return "1 K5Kerrigan；3 Zergling；2 Hydralisk；1 Queen" }
-                default { return "默认回退 light：4 Zergling；2 Hydralisk" }
+                "hero" { return "1 K5Kerrigan；3 HotSRaptor；2 Hydralisk；1 QueenCoop" }
+                default { return "默认回退 light：4 HotSRaptor；2 Hydralisk" }
             }
         }
         "Fenix" {
@@ -753,7 +754,7 @@ function Get-SquadComposition {
             switch ($k) {
                 "light" { return "2 Zealot；1 Stalker；2 DarkTemplarShakuras" }
                 "heavy" { return "2 Stalker；2 DarkTemplarShakuras；1 Immortal" }
-                "air" { return "2 Stalker；2 DarkTemplarShakuras；1 Immortal" }
+                "air" { return "2 CorsairMP；1 VoidRay；1 Oracle" }
                 "hero" { return "2 DarkTemplarShakuras；2 Stalker；1 Immortal" }
                 default { return "默认回退 light：2 Zealot；1 Stalker；2 DarkTemplarShakuras" }
             }
