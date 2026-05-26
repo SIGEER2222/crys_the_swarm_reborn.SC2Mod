@@ -936,6 +936,7 @@ bool gt_FirebatDropshipAction_Func (bool testConds, bool runActions) {
     }
     else if ((auto8F0E1D21_val == "Abathur") || (auto8F0E1D21_val == "AbathurReborn")) {
         libE0EAE146_gf_AbathurCreateCargoSquad(UnitFromId(290), "hero");
+        libE0EAE146_gf_AbathurCreateMapStartSquad("hero", 1, PointWithOffsetPolar(PointFromId(2157), 2.0, 180.0));
     }
     else if (auto8F0E1D21_val == "Raynor") {
         libE0EAE146_gf_RaynorCreateCargoSquad(UnitFromId(290), "hero");
