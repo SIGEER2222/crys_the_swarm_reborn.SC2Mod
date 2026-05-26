@@ -934,8 +934,11 @@ bool gt_FirebatDropshipAction_Func (bool testConds, bool runActions) {
     else if (auto8F0E1D21_val == "Swann") {
         UnitCargoCreate(UnitFromId(290), "PredatorSwann", 4);
     }
-    else if (auto8F0E1D21_val == "Abathur") {
+    else if ((auto8F0E1D21_val == "Abathur") || (auto8F0E1D21_val == "AbathurReborn")) {
         libE0EAE146_gf_AbathurCreateCargoSquad(UnitFromId(290), "hero");
+    }
+    else if (auto8F0E1D21_val == "Raynor") {
+        libE0EAE146_gf_RaynorCreateCargoSquad(UnitFromId(290), "hero");
     }
     else if (auto8F0E1D21_val == "Zagara") {
         libE0EAE146_gf_ZagaraCreateCargoSquad(UnitFromId(290), "hero");

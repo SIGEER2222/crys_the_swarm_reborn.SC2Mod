@@ -6,9 +6,14 @@ include "TriggerLibs/natives"
 // Variable Declarations
 string libE0EAE146_gv_commander;
 int libE0EAE146_gv_bon;
+string libE0EAE146_gv_abathurBiomassEffect;
 
 // Function Declarations
 void libE0EAE146_gf_FinishLevel ();
+void libE0EAE146_gf_CommanderPanelInit (string lp_casterUnit, string lp_gpCommander);
+void libE0EAE146_gf_InitializeAbathurBiomass (string lp_collectEffect);
+bool libE0EAE146_gf_AbathurCanDropBiomass (unit lp_unit);
+fixed libE0EAE146_gf_AbathurBiomassAmount (unit lp_unit);
 void libE0EAE146_gf_Initialize (bool lp_rpg);
 void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp_secondBase, bool lp_createHero);
 void libE0EAE146_gf_CommanderUpgrade ();
@@ -63,6 +68,8 @@ trigger libE0EAE146_gt_PickUpPickUp;
 trigger libE0EAE146_gt_RPG;
 trigger libE0EAE146_gt_PAttack;
 trigger libE0EAE146_gt_AIAttakcWaveUpgrade2;
+trigger libE0EAE146_gt_AbathurBiomassDrop;
+trigger libE0EAE146_gt_AbathurBiomassPickup;
 
 // Library Initialization
 void libE0EAE146_InitVariables ();

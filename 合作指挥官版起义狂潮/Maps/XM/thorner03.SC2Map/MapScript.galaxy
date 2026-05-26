@@ -683,8 +683,11 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "PredatorSwann", 0, 1, UnitGetPosition(UnitFromId(4)));
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "MicrobotSwann", 0, 1, UnitGetPosition(UnitFromId(4)));
     }
-    else if (auto06F49FBE_val == "Abathur") {
+    else if ((auto06F49FBE_val == "Abathur") || (auto06F49FBE_val == "AbathurReborn")) {
         libE0EAE146_gf_AbathurCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
+    }
+    else if (auto06F49FBE_val == "Raynor") {
+        libE0EAE146_gf_RaynorCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
     }
     else if (auto06F49FBE_val == "Zagara") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZagaraVoidCoop", 0, 1, UnitGetPosition(UnitFromId(4)));

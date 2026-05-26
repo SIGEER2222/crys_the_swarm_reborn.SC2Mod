@@ -668,8 +668,11 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "MicrobotSwann", 0, 1, PointFromId(163));
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "GoliathSwann", 0, 1, PointFromId(163));
     }
-    else if (autoD5EA1928_val == "Abathur") {
+    else if ((autoD5EA1928_val == "Abathur") || (autoD5EA1928_val == "AbathurReborn")) {
         libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", 1, PointFromId(163));
+    }
+    else if (autoD5EA1928_val == "Raynor") {
+        libE0EAE146_gf_RaynorCreateMapStartSquad("heavy", 1, PointFromId(163));
     }
     else if (autoD5EA1928_val == "Zagara") {
         libE0EAE146_gf_ZagaraCreateMapStartSquad("heavy", 1, PointFromId(163));

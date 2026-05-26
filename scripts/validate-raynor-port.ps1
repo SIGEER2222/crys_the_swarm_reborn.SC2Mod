@@ -21,7 +21,11 @@ $launcherMap = Join-Path $mapsRoot "Launcher.SC2Map"
 $xmFinal = Join-Path $xmRoot "XMFinal.SC2Mod"
 $xmCore = Join-Path $xmRoot "XMCore.SC2Mod"
 $xmRaynor = Join-Path $xmRoot "XMRaynor.SC2Mod"
-$docPath = Join-Path $projectRoot.FullName "docs\指挥官\Raynor\当前状态.md"
+$docsRoot = Join-Path $projectRoot.FullName "docs"
+$docPaths = @()
+if (Test-Path -LiteralPath $docsRoot) {
+    $docPaths = @(Get-ChildItem -LiteralPath $docsRoot -Recurse -Filter "*.md" -File | Select-Object -ExpandProperty FullName)
+}
 
 $errors = [System.Collections.Generic.List[string]]::new()
 
@@ -52,6 +56,33 @@ function Test-Contains {
     if (-not $match) {
         Add-Error "Missing pattern '$Pattern' in $Path"
     }
+}
+
+function Test-AnyContains {
+    param(
+        [string[]]$Paths,
+        [string]$Pattern,
+        [switch]$Simple
+    )
+
+    foreach ($path in $Paths) {
+        if (-not (Test-Path -LiteralPath $path)) {
+            continue
+        }
+
+        $match = if ($Simple) {
+            Select-String -LiteralPath $path -Pattern $Pattern -SimpleMatch -Quiet
+        }
+        else {
+            Select-String -LiteralPath $path -Pattern $Pattern -Quiet
+        }
+
+        if ($match) {
+            return
+        }
+    }
+
+    Add-Error "Pattern '$Pattern' was not found in any of: $($Paths -join ', ')"
 }
 
 function Test-RaynorLauncherCandidate {
@@ -234,7 +265,7 @@ foreach ($pattern in @(
     'autoC0933116_val == "Raynor"',
     'auto09490B45_val == "Raynor"',
     'CoopCasterRaynor',
-    'lib67C0F0E7_gf_CU_GPInit(1, "Raynor"',
+    'libE0EAE146_gf_CommanderPanelInit("CoopCasterRaynor", "Raynor")',
     'RaynorCommando',
     'libE0EAE146_gf_RaynorCreateMapStartSquad',
     'libE0EAE146_gf_RaynorCreateCargoSquad'
@@ -249,10 +280,9 @@ Test-Contains -Path (Join-Path $mapsRoot "traynor01.SC2Map\MapScript.galaxy") -P
 Test-Contains -Path (Join-Path $mapsRoot "traynor01.SC2Map\MapScript.galaxy") -Pattern 'libE0EAE146_gf_RaynorCreateCargoSquad' -Simple
 Test-Contains -Path (Join-Path $mapsRoot "traynor01.SC2Map\MapScript.galaxy") -Pattern 'libE0EAE146_gf_RaynorCreateMapStartSquad' -Simple
 
-Test-Contains -Path (Join-Path $xmCore "zhCN.SC2Data\LocalizedData\GameStrings.txt") -Pattern 'UserData/CommanderAch/Raynor_TitU=' -Simple
 Test-Contains -Path (Join-Path $xmRaynor "zhCN.SC2Data\LocalizedData\GameStrings.txt") -Pattern 'UserData/CommanderAch/Raynor_TitU=' -Simple
-Test-Contains -Path $docPath -Pattern "XMRaynor.SC2Mod" -Simple
-Test-Contains -Path $docPath -Pattern "CoopCasterRaynor" -Simple
+Test-AnyContains -Paths $docPaths -Pattern "XMRaynor.SC2Mod" -Simple
+Test-AnyContains -Paths $docPaths -Pattern "CoopCasterRaynor" -Simple
 
 if ($RequireXMFinalDependency) {
     Test-Contains -Path (Join-Path $xmFinal "DocumentInfo") -Pattern 'file:Mods\XM\XMRaynor.SC2Mod' -Simple

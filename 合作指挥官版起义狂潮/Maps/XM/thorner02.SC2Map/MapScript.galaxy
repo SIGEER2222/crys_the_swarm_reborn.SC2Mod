@@ -2497,7 +2497,7 @@ bool gt_MiraHanGivesVulturestoPlayer_Func (bool testConds, bool runActions) {
     }
     else if (auto07E521E1_val == "Kerrigan") {
         libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
-        UnitCargoCreate(UnitLastCreated(), "Hydralisk", 2);
+        libE0EAE146_gf_KerriganCreateCargoSquad(UnitLastCreated(), "light");
         Wait(1.0, c_timeGame);
         lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
     }
@@ -2519,9 +2519,15 @@ bool gt_MiraHanGivesVulturestoPlayer_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsAtPoint2(1, "HerculesSwann", 0, gv_p01_USER, PointFromId(1242));
         UnitIssueOrder(UnitLastCreated(), OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(1243)), c_orderQueueReplace);
     }
-    else if (auto07E521E1_val == "Abathur") {
+    else if ((auto07E521E1_val == "Abathur") || (auto07E521E1_val == "AbathurReborn")) {
         libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
         libE0EAE146_gf_AbathurCreateCargoSquad(UnitLastCreated(), "hero");
+        Wait(1.0, c_timeGame);
+        lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
+    }
+    else if (auto07E521E1_val == "Raynor") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "Medivac", 0, gv_p01_USER, PointFromId(1242));
+        libE0EAE146_gf_RaynorCreateCargoSquad(UnitLastCreated(), "hero");
         Wait(1.0, c_timeGame);
         lib67C0F0E7_gf_DropCargoAndExit(UnitLastCreated(), PointFromId(1243), PointFromId(1242));
     }
