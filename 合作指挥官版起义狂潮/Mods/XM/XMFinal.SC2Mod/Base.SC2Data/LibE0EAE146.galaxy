@@ -734,10 +734,6 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         TechTreeUpgradeAddLevel(1, "K5Cooldowns", 1);
         TechTreeUpgradeAddLevel(1, "K5Fury", 1);
         TechTreeUpgradeAddLevel(1, "KerriganVoidCoopEnergyRegen", 1);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterKerrigan", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Kerrigan", UnitLastCreated(), null);
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
-        lib67C0F0E7_gf_ShowChooseButton();
         if ((lp_createHero == true)) {
             libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, lp_secondUnit);
         }
