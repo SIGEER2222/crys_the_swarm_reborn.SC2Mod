@@ -22,14 +22,36 @@ $targetCommanders = @(
     "AbathurReborn",
     "Alarak",
     "Artanis",
+    "Dehaka",
     "Fenix",
     "Karax",
     "Kerrigan",
+    "Mengsk",
+    "Mira",
+    "Nova",
     "Raynor",
+    "Stetmann",
+    "Stukov",
+    "Swann",
+    "Tychus",
     "Vorazun",
     "Zagara",
     "Zeratul"
 )
+
+$helperFamilyByCommander = @{
+    "Abathur" = "Abathur"
+    "AbathurReborn" = "Abathur"
+    "Alarak" = "Alarak"
+    "Artanis" = "Artanis"
+    "Fenix" = "Fenix"
+    "Karax" = "Karax"
+    "Kerrigan" = "Kerrigan"
+    "Raynor" = "Raynor"
+    "Vorazun" = "Vorazun"
+    "Zagara" = "Zagara"
+    "Zeratul" = "Zeratul"
+}
 
 $mapNames = @{
     "LauncherAuto.SC2Map" = "Launcher"
@@ -183,6 +205,7 @@ foreach ($mapDir in Get-ChildItem -LiteralPath $mapsRoot -Directory -Filter "*.S
         $hasStartHelper = $startCounts[$commander] -gt 0
         $hasCargoHelper = $cargoCounts[$commander] -gt 0
         $usesAbathurAlias = $false
+        $expectsMapHelper = $helperFamilyByCommander.ContainsKey($commander)
 
         if ($commander -eq "AbathurReborn") {
             $usesAbathurAlias = $hasBranch -and (($startCounts["Abathur"] -gt 0) -or ($cargoCounts["Abathur"] -gt 0))
@@ -195,13 +218,13 @@ foreach ($mapDir in Get-ChildItem -LiteralPath $mapsRoot -Directory -Filter "*.S
         }
 
         $missing = @()
-        if ($hasAnyTargetBranch -and -not $hasBranch) {
+        if ($expectsMapHelper -and $hasAnyTargetBranch -and -not $hasBranch) {
             $missing += "branch"
         }
-        if ($hasAnyStartHelper -and -not $hasStartHelper) {
+        if ($expectsMapHelper -and $hasAnyStartHelper -and -not $hasStartHelper) {
             $missing += "start"
         }
-        if ($hasAnyCargoHelper -and -not $hasCargoHelper) {
+        if ($expectsMapHelper -and $hasAnyCargoHelper -and -not $hasCargoHelper) {
             $missing += "cargo"
         }
 
@@ -217,6 +240,7 @@ foreach ($mapDir in Get-ChildItem -LiteralPath $mapsRoot -Directory -Filter "*.S
             HasStartSquadHelper = $hasStartHelper
             HasCargoHelper = $hasCargoHelper
             UsesAbathurAlias = $usesAbathurAlias
+            ExpectsMapHelper = $expectsMapHelper
             MissingLocalPieces = ($missing -join "+")
             Notes = ($notes -join "；")
         }
