@@ -407,4 +407,41 @@
       <Button DefaultButtonFace="ZeratulArtifactUpgradeTier3A" Requirements="HaveZeratulArtifactUpgradeTier3A" />
     </InfoArray>
   </CAbilWarpTrain>
+  <CAbilMorph id="ObserverSiegeMorphtoObserver">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="MorphtoObserver">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <Flags index="BestUnit" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <!--Flags index="Transient" value="1"/-->
+    <RefundFraction>
+      <Resource index="Minerals" value="0" />
+      <Resource index="Vespene" value="0" />
+      <Resource index="Terrazine" value="0" />
+      <Resource index="Custom" value="0" />
+    </RefundFraction>
+    <InfoArray Score="1" Unit="Observer">
+      <SectionArray index="Abils">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Mover">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilEffectTarget id="ObserverTargetLock">
+    <AbilSetId value="TargetLock" />
+  </CAbilEffectTarget>
 </Catalog>

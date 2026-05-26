@@ -1,422 +1,821 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-    <CUpgrade id="CommanderPrestigeAlarakMech">
-        <EffectArray Reference="Effect,AlarakTheStrongestSurvivePrestigeMechBuffSearch,Chance" Value="1"/>
-        <EffectArray Operation="Subtract" Reference="Effect,DestructionWaveDamage,Amount" Value="25"/>
-        <EffectArray Operation="Subtract" Reference="Effect,DestructionWaveDamageAir,Amount" Value="25"/>
-        <EffectArray Operation="Subtract" Reference="Effect,DestructionWaveConjoinedDamage,Amount" Value="25"/>
-        <EffectArray Operation="Subtract" Reference="Effect,AlarakACDeadlyChargeDamage,Amount" Value="100"/>
-    </CUpgrade>
-    <CUpgrade id="CommanderPrestigeAlarakEmpowerMe">
-        <EffectArray Operation="Subtract" Reference="Abil,AlarakEmpower,Cost[0].Cooldown.TimeUse" Value="120.000000"/>
-    </CUpgrade>
-    <CUpgrade id="CommanderPrestigeAlarakDeathFleet">
-        <EffectArray Operation="Subtract" Reference="Effect,SOAMothershipTimedLifeAB,Chance" Value="1"/>
-        <EffectArray Operation="Subtract" Reference="Effect,AlarakDestroyerTimedLife,Chance" Value="1"/>
-        <EffectArray Reference="Effect,CommanderPrestigeAlarakDeathFleetDamage,Chance" Value="1"/>
-        <EffectArray Reference="Abil,AlarakMothershipMassRecall,Cost[0].Cooldown.TimeUse" Value="60"/>
-        <EffectArray Operation="Subtract" Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Cooldown.TimeStart" Value="600.000000"/>
-        <EffectArray Operation="Set" Reference="Button,AlarakACSummonDeathfleet,Tooltip" Value="Button/Tooltip/AlarakACSummonDeathfleetPrestige"/>
-        <EffectArray Operation="Set" Reference="Button,AlarakACSummonDeathfleet,AlertTooltip" Value="Button/Tooltip/AlarakACSummonDeathfleetPrestige"/>
-        <EffectArray Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Resource[Minerals]" Value="400"/>
-        <EffectArray Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Resource[Vespene]" Value="400"/>
-        <EffectArray Operation="Subtract" Reference="Effect,AlarakDestroyerCreationCP,PeriodCount" Value="4"/>
-    </CUpgrade>
-    <CUpgrade id="CommanderPrestigeAlarakDeathFleetMastery"/>
-    <CUpgrade id="CommanderPrestigeAlarakDeathFleetPerk">
-        <EffectArray Operation="Subtract" Reference="Effect,AlarakDestroyerCreationCP,PeriodCount" Value="4"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakHavocAbilityRange">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-rangeincrease.dds"/>
-        <EffectArray Reference="Abil,ObserverTargetLock,Range[0]" Value="3"/>
-        <EffectArray Reference="Weapon,ObserverFakeWeapon,Range" Value="3"/>
-        <EffectArray Reference="Weapon,ObserverFakeWeapon,MinScanRange" Value="3"/>
-        <EffectArray Reference="Abil,ForceFieldMonitor,Range[0]" Value="3"/>
-        <EffectArray Reference="Effect,ObserverSquadSightSearch,AreaArray[0].Radius" Value="3"/>
-        <!--EffectArray Reference="Actor,SquadSightAttachment,Scale" Value="0.75"/-->
-        <EffectArray Reference="Actor,SquadSightRange,Range" Value="3.000000"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="Monitor"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakACSupplicantAttackAir">
-        <EffectArray Operation="Set" Reference="Weapon,SupplicantWeapon,TargetFilters" Value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <EffectArray Reference="Effect,SupplicantDamage,AttributeBonus[Light]" Value="3"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-    </CUpgrade>
-    <CUpgrade id="MasteryAlarakAutoAttackDamage">
-        <EditorCategories value="Race:Protoss"/>
-        <Flags index="UpgradeCheat" value="0"/>
-        <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-        <EffectArray Reference="Effect,MasteryAlarakAutoAttackDamageDisplayDummy,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AlarakBaneBladesDamage,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AlarakBaneBladesAoED,Amount" Value="1"/>
-        <EffectArray Reference="Effect,AlarakAADamage,Amount" Value="1"/>
-        <MaxLevel value="30"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="MasteryAlarakOverchargeShieldsDamage">
-        <Flags index="UpgradeCheat" value="0"/>
-        <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-        <EffectArray Reference="Effect,MasteryAlarakStructureOverchargeDamageDisplayDummy,Amount" Value="8"/>
-        <EffectArray Reference="Effect,MasteryAlarakStructureOverchargeDamageDisplayDummyPercent,Amount" Value="2"/>
-        <EffectArray Reference="Behavior,AlarakStructureOverchargeShield,DamageResponse.ModifyLimit" Value="8"/>
-        <EffectArray Reference="Behavior,AlarakStructureOvercharge,PeriodicEffectRateMultiplier" Value="0.02"/>
-        <EffectArray Reference="Weapon,AlarakStructureOvercharge,RateMultiplier" Value="0.02"/>
-        <EditorCategories value="Race:Protoss"/>
-        <MaxLevel value="30"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="MasteryAlarakCocoonTimer">
-        <Flags index="UpgradeCheat" value="0"/>
-        <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-        <EffectArray Reference="Effect,MasteryAlarakCocoonTimerDisplayDummy,Amount" Value="0.5"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,AlarakInitialReviveTimer,Duration" Value="0.5"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,AlarakReviveTimer,Duration" Value="0.5"/>
-        <EditorCategories value="Race:Protoss"/>
-        <MaxLevel value="30"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="MasteryAlarakUnitAttackSpeed">
-        <Flags index="UpgradeCheat" value="0"/>
-        <EffectArray Reference="Effect,MasteryAlarakUnitAttackSpeedDisplayDummy,Amount" Value="0.5"/>
-        <EffectArray Reference="Weapon,WarpPrismTaldarimWeapon,RateMultiplier" Value="0.005"/>
-        <EffectArray Reference="Weapon,SupplicantWeapon,RateMultiplier" Value="0.005"/>
-        <EffectArray Reference="Weapon,ParticleDisruptors,RateMultiplier" Value="0.005"/>
-        <EffectArray Reference="Weapon,AscendantWeapon,RateMultiplier" Value="0.005"/>
-        <EffectArray Reference="Weapon,ImmortalTaldarim,RateMultiplier" Value="0.005"/>
-        <EffectArray Reference="Weapon,ColossusTaldarimChargedBeamFast,RateMultiplier" Value="0.005"/>
-        <EffectArray Reference="Weapon,ColossusTaldarimChargedBeam,RateMultiplier" Value="0.005"/>
-        <!--EffectArray Reference="Weapon,SOAMothershipv4Weapon,RateMultiplier" Value="0.005"/>
+  <CUpgrade id="CommanderPrestigeAlarakMech">
+    <EffectArray Reference="Effect,AlarakTheStrongestSurvivePrestigeMechBuffSearch,Chance" Value="1" />
+    <EffectArray Operation="Subtract" Reference="Effect,DestructionWaveDamage,Amount" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Effect,DestructionWaveDamageAir,Amount" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Effect,DestructionWaveConjoinedDamage,Amount" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Effect,AlarakACDeadlyChargeDamage,Amount" Value="100" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeAlarakEmpowerMe">
+    <EffectArray Operation="Subtract" Reference="Abil,AlarakEmpower,Cost[0].Cooldown.TimeUse" Value="120.000000" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeAlarakDeathFleet">
+    <EffectArray Operation="Subtract" Reference="Effect,SOAMothershipTimedLifeAB,Chance" Value="1" />
+    <EffectArray Operation="Subtract" Reference="Effect,AlarakDestroyerTimedLife,Chance" Value="1" />
+    <EffectArray Reference="Effect,CommanderPrestigeAlarakDeathFleetDamage,Chance" Value="1" />
+    <EffectArray Reference="Abil,AlarakMothershipMassRecall,Cost[0].Cooldown.TimeUse" Value="60" />
+    <EffectArray Operation="Subtract" Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Cooldown.TimeStart" Value="600.000000" />
+    <EffectArray Operation="Set" Reference="Button,AlarakACSummonDeathfleet,Tooltip" Value="Button/Tooltip/AlarakACSummonDeathfleetPrestige" />
+    <EffectArray Operation="Set" Reference="Button,AlarakACSummonDeathfleet,AlertTooltip" Value="Button/Tooltip/AlarakACSummonDeathfleetPrestige" />
+    <EffectArray Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Resource[Minerals]" Value="400" />
+    <EffectArray Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Resource[Vespene]" Value="400" />
+    <EffectArray Operation="Subtract" Reference="Effect,AlarakDestroyerCreationCP,PeriodCount" Value="4" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeAlarakDeathFleetMastery" />
+  <CUpgrade id="CommanderPrestigeAlarakDeathFleetPerk">
+    <EffectArray Operation="Subtract" Reference="Effect,AlarakDestroyerCreationCP,PeriodCount" Value="4" />
+  </CUpgrade>
+  <CUpgrade id="AlarakHavocAbilityRange">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-rangeincrease.dds" />
+    <EffectArray Reference="Abil,ObserverTargetLock,Range[0]" Value="3" />
+    <EffectArray Reference="Weapon,ObserverFakeWeapon,Range" Value="3" />
+    <EffectArray Reference="Weapon,ObserverFakeWeapon,MinScanRange" Value="3" />
+    <EffectArray Reference="Abil,ForceFieldMonitor,Range[0]" Value="3" />
+    <EffectArray Reference="Effect,ObserverSquadSightSearch,AreaArray[0].Radius" Value="3" />
+    <!--EffectArray Reference="Actor,SquadSightAttachment,Scale" Value="0.75"/-->
+    <EffectArray Reference="Actor,SquadSightRange,Range" Value="3.000000" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="Monitor" />
+  </CUpgrade>
+  <CUpgrade id="AlarakACSupplicantAttackAir">
+    <EffectArray Operation="Set" Reference="Weapon,SupplicantWeapon,TargetFilters" Value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <EffectArray Reference="Effect,SupplicantDamage,AttributeBonus[Light]" Value="3" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAlarakAutoAttackDamage">
+    <EditorCategories value="Race:Protoss" />
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAlarakAutoAttackDamageDisplayDummy,Amount" Value="1" />
+    <EffectArray Reference="Effect,AlarakBaneBladesDamage,Amount" Value="1" />
+    <EffectArray Reference="Effect,AlarakBaneBladesAoED,Amount" Value="1" />
+    <EffectArray Reference="Effect,AlarakAADamage,Amount" Value="1" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAlarakOverchargeShieldsDamage">
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAlarakStructureOverchargeDamageDisplayDummy,Amount" Value="8" />
+    <EffectArray Reference="Effect,MasteryAlarakStructureOverchargeDamageDisplayDummyPercent,Amount" Value="2" />
+    <EffectArray Reference="Behavior,AlarakStructureOverchargeShield,DamageResponse.ModifyLimit" Value="8" />
+    <EffectArray Reference="Behavior,AlarakStructureOvercharge,PeriodicEffectRateMultiplier" Value="0.02" />
+    <EffectArray Reference="Weapon,AlarakStructureOvercharge,RateMultiplier" Value="0.02" />
+    <EditorCategories value="Race:Protoss" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAlarakCocoonTimer">
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAlarakCocoonTimerDisplayDummy,Amount" Value="0.5" />
+    <EffectArray Operation="Subtract" Reference="Behavior,AlarakInitialReviveTimer,Duration" Value="0.5" />
+    <EffectArray Operation="Subtract" Reference="Behavior,AlarakReviveTimer,Duration" Value="0.5" />
+    <EditorCategories value="Race:Protoss" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAlarakUnitAttackSpeed">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Reference="Effect,MasteryAlarakUnitAttackSpeedDisplayDummy,Amount" Value="0.5" />
+    <EffectArray Reference="Weapon,WarpPrismTaldarimWeapon,RateMultiplier" Value="0.005" />
+    <EffectArray Reference="Weapon,SupplicantWeapon,RateMultiplier" Value="0.005" />
+    <EffectArray Reference="Weapon,ParticleDisruptors,RateMultiplier" Value="0.005" />
+    <EffectArray Reference="Weapon,AscendantWeapon,RateMultiplier" Value="0.005" />
+    <EffectArray Reference="Weapon,ImmortalTaldarim,RateMultiplier" Value="0.005" />
+    <EffectArray Reference="Weapon,ColossusTaldarimChargedBeamFast,RateMultiplier" Value="0.005" />
+    <EffectArray Reference="Weapon,ColossusTaldarimChargedBeam,RateMultiplier" Value="0.005" />
+    <!--EffectArray Reference="Weapon,SOAMothershipv4Weapon,RateMultiplier" Value="0.005"/>
         <EffectArray Reference="Weapon,VoidRayChargeBeamBounce,RateMultiplier" Value="0.005"/>
         <EffectArray Reference="Effect,VoidRayChargeBeamBounce,PeriodicEffectRateMultiplier" Value="0.005"/-->
-        <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch"/>
-        <AffectedUnitArray value="WarpPrismTaldarim"/>
-        <AffectedUnitArray value="SupplicantAlarak"/>
-        <AffectedUnitArray value="ImmortalTaldarim"/>
-        <AffectedUnitArray value="HighTemplarTaldarim"/>
-        <AffectedUnitArray value="ImmortalTaldarim"/>
-        <AffectedUnitArray value="ColossusTaldarim"/>
-        <AffectedUnitArray value="ColossusTaldarim"/>
-        <!--AffectedUnitArray value="SOAMothershipv4"/>
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="WarpPrismTaldarim" />
+    <AffectedUnitArray value="SupplicantAlarak" />
+    <AffectedUnitArray value="ImmortalTaldarim" />
+    <AffectedUnitArray value="HighTemplarTaldarim" />
+    <AffectedUnitArray value="ImmortalTaldarim" />
+    <AffectedUnitArray value="ColossusTaldarim" />
+    <AffectedUnitArray value="ColossusTaldarim" />
+    <!--AffectedUnitArray value="SOAMothershipv4"/>
         <AffectedUnitArray value="VoidRayTaldarim"/-->
-        <MaxLevel value="30"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="MasteryAlarakEmpowerMeSlavesDuration">
-        <Flags index="UpgradeCheat" value="0"/>
-        <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-        <EffectArray Reference="Effect,MasteryAlarakEmpowerMeSlavesDurationDisplayDummy,Amount" Value="1"/>
-        <EffectArray Reference="Behavior,AlarakEmpowerCaster,Duration" Value="1"/>
-        <EditorCategories value="Race:Protoss"/>
-        <MaxLevel value="30"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="MasteryAlarakDeathFleetCDR">
-        <Flags index="UpgradeCheat" value="0"/>
-        <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-        <EffectArray Reference="Effect,MasteryAlarakDeathFleetCDRDisplayDummy,Amount" Value="4"/>
-        <EffectArray Operation="Subtract" Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Cooldown.TimeUse" Value="4"/>
-        <!--EffectArray Operation="Subtract" Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Cooldown.TimeStart" Value="2"/-->
-        <EditorCategories value="Race:Protoss"/>
-        <MaxLevel value="30"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="MasteryAlarakChronoBoost">
-        <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-        <EffectArray Reference="Effect,MasteryAlarakChronoBoostDisplayDummy,Amount" Value="1"/>
-        <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Charge]" Value="0.01"/>
-        <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Cooldown]" Value="0.01"/>
-        <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Creep]" Value="0.01"/>
-        <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Morph]" Value="0.01"/>
-        <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Progress]" Value="0.01"/>
-        <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Queueable]" Value="0.01"/>
-        <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Spawn]" Value="0.01"/>
-        <EditorCategories value="Race:Protoss"/>
-        <Flags index="UpgradeCheat" value="0"/>
-        <MaxLevel value="30"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="AlarakStructureImprovedOvercharge">
-        <!--EffectArray Operation="Set" Reference="Behavior,AlarakStructureOvercharge,DamageResponse.Chance" Value="1"/>
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAlarakEmpowerMeSlavesDuration">
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAlarakEmpowerMeSlavesDurationDisplayDummy,Amount" Value="1" />
+    <EffectArray Reference="Behavior,AlarakEmpowerCaster,Duration" Value="1" />
+    <EditorCategories value="Race:Protoss" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAlarakDeathFleetCDR">
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAlarakDeathFleetCDRDisplayDummy,Amount" Value="4" />
+    <EffectArray Operation="Subtract" Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Cooldown.TimeUse" Value="4" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,AlarakACSummonDeathfleetTarget,Cost[0].Cooldown.TimeStart" Value="2"/-->
+    <EditorCategories value="Race:Protoss" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAlarakChronoBoost">
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAlarakChronoBoostDisplayDummy,Amount" Value="1" />
+    <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Charge]" Value="0.01" />
+    <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Cooldown]" Value="0.01" />
+    <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Creep]" Value="0.01" />
+    <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Morph]" Value="0.01" />
+    <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Progress]" Value="0.01" />
+    <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Queueable]" Value="0.01" />
+    <EffectArray Reference="Behavior,TimeWarpProduction,Modification.RateMultiplierArray[Spawn]" Value="0.01" />
+    <EditorCategories value="Race:Protoss" />
+    <Flags index="UpgradeCheat" value="0" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AlarakStructureImprovedOvercharge">
+    <!--EffectArray Operation="Set" Reference="Behavior,AlarakStructureOvercharge,DamageResponse.Chance" Value="1"/>
         <EffectArray Operation="Set" Reference="Behavior,AlarakStructureOvercharge,DamageResponse.ModifyMinimumDamage" Value="1"/>
         <EffectArray Operation="Set" Reference="Behavior,AlarakStructureOvercharge,DamageResponse.ModifyFraction" Value="0"/>
         <EffectArray Operation="Set" Reference="Behavior,AlarakStructureOvercharge,DamageResponse.ModifyLimit" Value="200"/-->
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="AlarakImprovedDeathFleet">
-        <EffectArray Reference="Effect,AlarakDestroyerCreationCP,PeriodCount" Value="4"/>
-        <!--EffectArray Operation="Subtract" Reference="Abil,SOAMothershipLineAttack,Cost[0].Cooldown.TimeUse" Value="5.000000"/-->
-        <EffectArray Operation="Set" Reference="Button,AlarakACSummonDeathfleet,AlertIcon" Value="Assets\Textures\btn-upgrade-protoss-alarak-improveddeathfleet.dds"/>
-        <EffectArray Operation="Set" Reference="Button,AlarakACSummonDeathfleet,Icon" Value="Assets\Textures\btn-upgrade-protoss-alarak-improveddeathfleet.dds"/>
-        <AffectedUnitArray value="AlarakCoop"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="AlarakImprovedDeadlyCharge">
-        <EffectArray Operation="Subtract" Reference="Abil,AlarakACDeadlyCharge,Cost[0].Cooldown.TimeUse" Value="5.000000"/>
-        <EffectArray Reference="Abil,AlarakACDeadlyCharge,Range[0]" Value="3"/>
-        <EffectArray Operation="Set" Reference="Button,AlarakDeadlyCharge,AlertIcon" Value="Assets\Textures\btn-upgrade-protoss-alarak-dashrange&amp;cdr.dds"/>
-        <EffectArray Operation="Set" Reference="Button,AlarakDeadlyCharge,Icon" Value="Assets\Textures\btn-upgrade-protoss-alarak-dashrange&amp;cdr.dds"/>
-        <AffectedUnitArray value="AlarakCoop"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="AlarakSupplicantSacrificeCDR">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-ability-protoss-timebomb.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="SupplicantAlarak"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="AlarakSupplicantShieldRegen">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="SupplicantAlarak"/>
-        <EffectArray Reference="Unit,SupplicantAlarak,ShieldRegenRate" Value="2"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakSupplicantMaxShields">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-supplicantextrashields.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <!--Uses AlarakSupplicantMaxShieldsDisplayDummy to display amount in Data ref-->
-        <EffectArray Reference="Unit,SupplicantAlarak,ShieldsMax" Value="25"/>
-        <EffectArray Reference="Unit,SupplicantAlarak,ShieldsStart" Value="25"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="SupplicantAlarak"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakSupplicantSacrificeLightningStrikes">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="SupplicantAlarak"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="AlarakSupplicantShieldArmor">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="SupplicantAlarak"/>
-        <EffectArray Reference="Unit,SupplicantAlarak,ShieldArmor" Value="2"/>
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-supplicantarmor.dds"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakVanguardMovingShot">
-        <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,LegacyOptions[FaceTargetWhileInCooldown]" Value="1"/>
-        <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,LegacyOptions[NoDeceleration]" Value="1"/>
-        <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,AllowedMovement" Value="Moving"/>
-        <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,Options[OnlyFireAtAttackOrderTarget]" Value="0"/>
-        <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,Options[OnlyFireWhileInAttackOrder]" Value="0"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="ImmortalTaldarim"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakVanguardLongshot">
-        <EffectArray Reference="Weapon,ImmortalTaldarim,Range" Value="2"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="ImmortalTaldarim"/>
-    </CUpgrade>
-    <CUpgrade id="VanguardArmoredDamage">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-vanguard-increasedarmordamage.dds"/>
-        <EffectArray Reference="Effect,ImmortalTaldarimWeaponDamage,AttributeBonus[Armored]" Value="7.000000"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="ImmortalTaldarim"/>
-    </CUpgrade>
-    <CUpgrade id="AlarackHavocPermanentCloak">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-permanentcloak.dds"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch"/>
-        <LeaderAlias value="AlarackACHavocDetection"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakZealotFrenziedOverload">
-        <AffectedUnitArray value="Zealot"/>
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-ability-protoss-voidarmor.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakStalkerForceBlast">
-        <AffectedUnitArray value="Stalker"/>
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-ability-protoss-blinkcharges.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakHavocTargetLockBuff">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-havoctargetlockbuffed.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[Melee]" Value="0.15"/>
-        <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[NoProc]" Value="0.15"/>
-        <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[Ranged]" Value="0.15"/>
-        <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[Spell]" Value="0.15"/>
-        <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[Splash]" Value="0.15"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="Monitor"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakSquadSightBuff">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-ability-protoss-squadsight.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EffectArray Reference="Behavior,ObserverSquadSight,Modification.WeaponRange" Value="2"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="Monitor"/>
-    </CUpgrade>
-    <CUpgrade id="VoidHighTemplarMindBlast">
-        <Icon value="Assets\Textures\btn-ability-protoss-mindblast.dds"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch"/>
-    </CUpgrade>
-    <CUpgrade id="WorshipAlarak">
-        <EditorCategories value="Race:Protoss"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakStalkerPhasingArmor">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-stalkerphasingarmor.dds"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakColossusChargedBlastChargeTime">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-wrathwalker-chargetimeimproved.dds"/>
-        <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeam,Options[Disabled]" Value="1"/>
-        <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeam,Options[Hidden]" Value="1"/>
-        <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeamFast,Options[Disabled]" Value="0"/>
-        <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeamFast,Options[Hidden]" Value="0"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="ColossusTaldarim"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakColossusChargedBlastAirAttack">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-wrathwalker-cantargetairunits.dds"/>
-        <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeam,TargetFilters" Value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeamFast,TargetFilters" Value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <EffectArray Operation="Set" Reference="Button,ColossusTaldarim,Tooltip" Value="Button/Tooltip/ColossusTaldarimAA"/>
-        <EffectArray Operation="Set" Reference="Button,ColossusTaldarim,AlertTooltip" Value="Button/Tooltip/ColossusTaldarimAA"/>
-        <EffectArray Operation="Set" Reference="Button,Colossus,Tooltip" Value="Button/Tooltip/ColossusTaldarimAA"/>
-        <EffectArray Operation="Set" Reference="Button,Colossus,AlertTooltip" Value="Button/Tooltip/ColossusTaldarimAA"/>
-        <EffectArray Operation="Set" Reference="Unit,ColossusTaldarim,Description" Value="Button/Tooltip/ColossusTaldarimAA"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="ColossusTaldarim"/>
-        <AffectedUnitArray value="RoboticsFacility"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakHighTemplarPsionicOrbTravelDistance">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-ascendant&apos;spsiorbtravelsfurther.dds"/>
-        <EffectArray Operation="Set" Reference="Effect,VoidHighTemplarPsiOrbInitialPersistent,InitialOffset" Value="0,-16.25,0"/>
-        <EffectArray Reference="Actor,VoidHighTemplarPsiOrbAttackGuide,Height" Value="3.25"/>
-        <EffectArray Reference="Abil,VoidHighTemplarPsiOrb,Range[0]" Value="3.25"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="HighTemplarTaldarim"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakHighTemplarImprovedSacrifice">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-ascendantspermanentlybetter.dds"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="HighTemplarTaldarim"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakCommander">
-        <Flags index="UpgradeCheat" value="0"/>
-        <EffectArray Operation="Set" Reference="Button,Gateway,Tooltip" Value="Button/Tooltip/ACAlarakGateway"/>
-        <!--EffectArray Operation="Set" Reference="Button,UpgradeToWarpGate,Tooltip" Value="Button/Tooltip/ACAlarakWarpgate"/-->
-        <EffectArray Operation="Set" Reference="Button,CyberneticsCore,Tooltip" Value="Button/Tooltip/ACAlarakCyberneticsCore"/>
-        <EffectArray Operation="Set" Reference="Button,TwilightCouncil,Tooltip" Value="Button/Tooltip/ACAlarakTwilightCouncil"/>
-        <EffectArray Operation="Set" Reference="Button,TemplarArchive,Tooltip" Value="Button/Tooltip/ACAlarakTemplarArchives"/>
-        <EffectArray Operation="Set" Reference="Button,Forge,Tooltip" Value="Button/Tooltip/ACAlarakForge"/>
-        <EffectArray Operation="Set" Reference="Button,RoboticsFacility,Tooltip" Value="Button/Tooltip/ACAlarakRoboticsFacility"/>
-        <EffectArray Operation="Set" Reference="Button,RoboticsBay,Tooltip" Value="Button/Tooltip/ACAlarakRoboticsBay"/>
-        <EffectArray Operation="Set" Reference="Unit,RoboticsFacility,Description" Value="Button/Tooltip/ACAlarakRoboticsFacility"/>
-        <EffectArray Operation="Set" Reference="Unit,Gateway,Description" Value="Button/Tooltip/ACAlarakGateway"/>
-        <EffectArray Operation="Set" Reference="Unit,WarpGate,Description" Value="Button/Tooltip/ACAlarakWarpgate"/>
-        <EffectArray Operation="Set" Reference="Unit,CyberneticsCore,Description" Value="Button/Tooltip/ACAlarakCyberneticsCore"/>
-        <EffectArray Operation="Set" Reference="Unit,TwilightCouncil,Description" Value="Button/Tooltip/ACAlarakTwilightCouncil"/>
-        <EffectArray Operation="Set" Reference="Unit,TemplarArchive,Description" Value="Button/Tooltip/ACAlarakTemplarArchives"/>
-        <EffectArray Operation="Set" Reference="Unit,Forge,Description" Value="Button/Tooltip/ACAlarakForge"/>
-        <EffectArray Operation="Set" Reference="Unit,RoboticsBay,Description" Value="Button/Tooltip/ACAlarakRoboticsBay"/>
-        <EffectArray Operation="Set" Reference="Button,Gateway,AlertTooltip" Value="Button/Tooltip/ACAlarakGateway"/>
-        <EffectArray Operation="Set" Reference="Button,UpgradeToWarpGate,AlertTooltip" Value="Button/Tooltip/ACAlarakWarpgate"/>
-        <EffectArray Operation="Set" Reference="Button,CyberneticsCore,AlertTooltip" Value="Button/Tooltip/ACAlarakCyberneticsCore"/>
-        <EffectArray Operation="Set" Reference="Button,TwilightCouncil,AlertTooltip" Value="Button/Tooltip/ACAlarakTwilightCouncil"/>
-        <EffectArray Operation="Set" Reference="Button,TemplarArchive,AlertTooltip" Value="Button/Tooltip/ACAlarakTemplarArchives"/>
-        <EffectArray Operation="Set" Reference="Button,Forge,AlertTooltip" Value="Button/Tooltip/ACAlarakForge"/>
-        <EffectArray Operation="Set" Reference="Button,RoboticsFacility,AlertTooltip" Value="Button/Tooltip/ACAlarakRoboticsFacility"/>
-        <EffectArray Operation="Set" Reference="Button,RoboticsBay,AlertTooltip" Value="Button/Tooltip/ACAlarakRoboticsBay"/>
-        <EffectArray Operation="Set" Reference="Unit,TwilightCouncil,Name" Value="Unit/Name/ACAlarakTwilightCouncil"/>
-        <EffectArray Operation="Set" Reference="Button,TwilightCouncil,Name" Value="Unit/Name/ACAlarakWarpInTwilightCouncil"/>
-        <EffectArray Operation="Set" Reference="Button,TwilightCouncil,AlertName" Value="Unit/Name/ACAlarakWarpInTwilightCouncil"/>
-        <EffectArray Operation="Set" Reference="Actor,TwilightCouncil,HighlightTooltip" Value="Unit/Name/ACAlarakTwilightCouncil"/>
-        <EffectArray Operation="Set" Reference="Unit,TemplarArchive,Name" Value="Unit/Name/ACAlarakTemplarArchive"/>
-        <EffectArray Operation="Set" Reference="Button,TemplarArchive,Name" Value="Unit/Name/ACAlarakWarpinTemplarArchive"/>
-        <EffectArray Operation="Set" Reference="Button,TemplarArchive,AlertName" Value="Unit/Name/ACAlarakWarpinTemplarArchive"/>
-        <EffectArray Operation="Set" Reference="Actor,TemplarArchive,HighlightTooltip" Value="Unit/Name/ACAlarakTemplarArchive"/>
-        <EffectArray Operation="Set" Reference="Unit,Stalker,Name" Value="Unit/Name/ACAlarakSlayer"/>
-        <EffectArray Operation="Set" Reference="Button,Stalker,Name" Value="Unit/Name/ACAlarakSlayerWarpIn"/>
-        <EffectArray Operation="Set" Reference="Button,Stalker,AlertName" Value="Unit/Name/ACAlarakSlayerWarpIn"/>
-        <EffectArray Operation="Set" Reference="Actor,Stalker,HighlightTooltip" Value="Unit/Name/ACAlarakSlayer"/>
-        <EffectArray Operation="Set" Reference="Button,Stalker,Tooltip" Value="Unit/Name/ACAlarakSlayerDescription"/>
-        <EffectArray Operation="Set" Reference="Button,Stalker,AlertTooltip" Value="Unit/Name/ACAlarakSlayerDescription"/>
-        <EffectArray Operation="Set" Reference="Unit,Stalker,Description" Value="Unit/Name/ACAlarakSlayerDescription"/>
-        <EffectArray Operation="Set" Reference="Button,Blink,Name" Value="Button/Name/BlinkSlayer"/>
-        <EffectArray Operation="Set" Reference="Button,Blink,Tooltip" Value="Button/Tooltip/BlinkSlayer"/>
-        <EffectArray Operation="Set" Reference="Button,ResearchStalkerTeleport,Tooltip" Value="Button/Tooltip/ResearchSlayerTeleport"/>
-        <EffectArray Operation="Set" Reference="Button,ResearchStalkerTeleport,AlertTooltip" Value="Button/Tooltip/ResearchSlayerTeleport"/>
-        <EffectArray Operation="Set" Reference="Effect,StalkerEntropyLanceSearchSet,EffectArray[0]" Value="AlarakParticleDisruptorsU"/>
-        <EffectArray Operation="Set" Reference="Weapon,ParticleDisruptors,DisplayEffect" Value="AlarakParticleDisruptorsU"/>
-        <EffectArray Operation="Set" Reference="Button,ResearchStalkerTeleport,Name" Value="Button/Name/ResearchSlayerTeleport"/>
-        <!--EffectArray Operation="Set" Reference="Button,TransportMode,Tooltip" Value="Button/Tooltip/ACAlarakTransportMode"/>
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AlarakImprovedDeathFleet">
+    <EffectArray Reference="Effect,AlarakDestroyerCreationCP,PeriodCount" Value="4" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,SOAMothershipLineAttack,Cost[0].Cooldown.TimeUse" Value="5.000000"/-->
+    <EffectArray Operation="Set" Reference="Button,AlarakACSummonDeathfleet,AlertIcon" Value="Assets\Textures\btn-upgrade-protoss-alarak-improveddeathfleet.dds" />
+    <EffectArray Operation="Set" Reference="Button,AlarakACSummonDeathfleet,Icon" Value="Assets\Textures\btn-upgrade-protoss-alarak-improveddeathfleet.dds" />
+    <AffectedUnitArray value="AlarakCoop" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AlarakImprovedDeadlyCharge">
+    <EffectArray Operation="Subtract" Reference="Abil,AlarakACDeadlyCharge,Cost[0].Cooldown.TimeUse" Value="5.000000" />
+    <EffectArray Reference="Abil,AlarakACDeadlyCharge,Range[0]" Value="3" />
+    <EffectArray Operation="Set" Reference="Button,AlarakDeadlyCharge,AlertIcon" Value="Assets\Textures\btn-upgrade-protoss-alarak-dashrange&amp;cdr.dds" />
+    <EffectArray Operation="Set" Reference="Button,AlarakDeadlyCharge,Icon" Value="Assets\Textures\btn-upgrade-protoss-alarak-dashrange&amp;cdr.dds" />
+    <AffectedUnitArray value="AlarakCoop" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AlarakSupplicantSacrificeCDR">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-ability-protoss-timebomb.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="SupplicantAlarak" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AlarakSupplicantShieldRegen">
+    <Flags index="TechTreeCheat" value="1" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="SupplicantAlarak" />
+    <EffectArray Reference="Unit,SupplicantAlarak,ShieldRegenRate" Value="2" />
+  </CUpgrade>
+  <CUpgrade id="AlarakSupplicantMaxShields">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-supplicantextrashields.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <!--Uses AlarakSupplicantMaxShieldsDisplayDummy to display amount in Data ref-->
+    <EffectArray Reference="Unit,SupplicantAlarak,ShieldsMax" Value="25" />
+    <EffectArray Reference="Unit,SupplicantAlarak,ShieldsStart" Value="25" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="SupplicantAlarak" />
+  </CUpgrade>
+  <CUpgrade id="AlarakSupplicantSacrificeLightningStrikes">
+    <Flags index="TechTreeCheat" value="1" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="SupplicantAlarak" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AlarakSupplicantShieldArmor">
+    <Flags index="TechTreeCheat" value="1" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="SupplicantAlarak" />
+    <EffectArray Reference="Unit,SupplicantAlarak,ShieldArmor" Value="2" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-supplicantarmor.dds" />
+  </CUpgrade>
+  <CUpgrade id="AlarakVanguardMovingShot">
+    <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,LegacyOptions[FaceTargetWhileInCooldown]" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,LegacyOptions[NoDeceleration]" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,AllowedMovement" Value="Moving" />
+    <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,Options[OnlyFireAtAttackOrderTarget]" Value="0" />
+    <EffectArray Operation="Set" Reference="Weapon,ImmortalTaldarim,Options[OnlyFireWhileInAttackOrder]" Value="0" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="ImmortalTaldarim" />
+  </CUpgrade>
+  <CUpgrade id="AlarakVanguardLongshot">
+    <EffectArray Reference="Weapon,ImmortalTaldarim,Range" Value="2" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="ImmortalTaldarim" />
+  </CUpgrade>
+  <CUpgrade id="VanguardArmoredDamage">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-vanguard-increasedarmordamage.dds" />
+    <EffectArray Reference="Effect,ImmortalTaldarimWeaponDamage,AttributeBonus[Armored]" Value="7.000000" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="ImmortalTaldarim" />
+  </CUpgrade>
+  <CUpgrade id="AlarackHavocPermanentCloak">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-permanentcloak.dds" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <LeaderAlias value="AlarackACHavocDetection" />
+  </CUpgrade>
+  <CUpgrade id="AlarakZealotFrenziedOverload">
+    <AffectedUnitArray value="Zealot" />
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-ability-protoss-voidarmor.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+  </CUpgrade>
+  <CUpgrade id="AlarakStalkerForceBlast">
+    <AffectedUnitArray value="Stalker" />
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-ability-protoss-blinkcharges.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+  </CUpgrade>
+  <CUpgrade id="AlarakHavocTargetLockBuff">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-havoctargetlockbuffed.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[Melee]" Value="0.15" />
+    <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[NoProc]" Value="0.15" />
+    <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[Ranged]" Value="0.15" />
+    <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[Spell]" Value="0.15" />
+    <EffectArray Reference="Behavior,ObserverTargetLock,Modification.DamageTakenFraction[Splash]" Value="0.15" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="Monitor" />
+  </CUpgrade>
+  <CUpgrade id="AlarakSquadSightBuff">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-ability-protoss-squadsight.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Reference="Behavior,ObserverSquadSight,Modification.WeaponRange" Value="2" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="Monitor" />
+  </CUpgrade>
+  <CUpgrade id="VoidHighTemplarMindBlast">
+    <Icon value="Assets\Textures\btn-ability-protoss-mindblast.dds" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+  </CUpgrade>
+  <CUpgrade id="WorshipAlarak">
+    <EditorCategories value="Race:Protoss" />
+  </CUpgrade>
+  <CUpgrade id="AlarakStalkerPhasingArmor">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-stalkerphasingarmor.dds" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+  </CUpgrade>
+  <CUpgrade id="AlarakColossusChargedBlastChargeTime">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-wrathwalker-chargetimeimproved.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeam,Options[Disabled]" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeam,Options[Hidden]" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeamFast,Options[Disabled]" Value="0" />
+    <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeamFast,Options[Hidden]" Value="0" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="ColossusTaldarim" />
+  </CUpgrade>
+  <CUpgrade id="AlarakColossusChargedBlastAirAttack">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-wrathwalker-cantargetairunits.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeam,TargetFilters" Value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <EffectArray Operation="Set" Reference="Weapon,ColossusTaldarimChargedBeamFast,TargetFilters" Value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <EffectArray Operation="Set" Reference="Button,ColossusTaldarim,Tooltip" Value="Button/Tooltip/ColossusTaldarimAA" />
+    <EffectArray Operation="Set" Reference="Button,ColossusTaldarim,AlertTooltip" Value="Button/Tooltip/ColossusTaldarimAA" />
+    <EffectArray Operation="Set" Reference="Button,Colossus,Tooltip" Value="Button/Tooltip/ColossusTaldarimAA" />
+    <EffectArray Operation="Set" Reference="Button,Colossus,AlertTooltip" Value="Button/Tooltip/ColossusTaldarimAA" />
+    <EffectArray Operation="Set" Reference="Unit,ColossusTaldarim,Description" Value="Button/Tooltip/ColossusTaldarimAA" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="ColossusTaldarim" />
+    <AffectedUnitArray value="RoboticsFacility" />
+  </CUpgrade>
+  <CUpgrade id="AlarakHighTemplarPsionicOrbTravelDistance">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-ascendant'spsiorbtravelsfurther.dds" />
+    <EffectArray Operation="Set" Reference="Effect,VoidHighTemplarPsiOrbInitialPersistent,InitialOffset" Value="0,-16.25,0" />
+    <EffectArray Reference="Actor,VoidHighTemplarPsiOrbAttackGuide,Height" Value="3.25" />
+    <EffectArray Reference="Abil,VoidHighTemplarPsiOrb,Range[0]" Value="3.25" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="HighTemplarTaldarim" />
+  </CUpgrade>
+  <CUpgrade id="AlarakHighTemplarImprovedSacrifice">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-ascendantspermanentlybetter.dds" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="HighTemplarTaldarim" />
+  </CUpgrade>
+  <CUpgrade id="AlarakCommander">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Set" Reference="Button,Gateway,Tooltip" Value="Button/Tooltip/ACAlarakGateway" />
+    <!--EffectArray Operation="Set" Reference="Button,UpgradeToWarpGate,Tooltip" Value="Button/Tooltip/ACAlarakWarpgate"/-->
+    <EffectArray Operation="Set" Reference="Button,CyberneticsCore,Tooltip" Value="Button/Tooltip/ACAlarakCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Button,TwilightCouncil,Tooltip" Value="Button/Tooltip/ACAlarakTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Button,TemplarArchive,Tooltip" Value="Button/Tooltip/ACAlarakTemplarArchives" />
+    <EffectArray Operation="Set" Reference="Button,Forge,Tooltip" Value="Button/Tooltip/ACAlarakForge" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsFacility,Tooltip" Value="Button/Tooltip/ACAlarakRoboticsFacility" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsBay,Tooltip" Value="Button/Tooltip/ACAlarakRoboticsBay" />
+    <EffectArray Operation="Set" Reference="Unit,RoboticsFacility,Description" Value="Button/Tooltip/ACAlarakRoboticsFacility" />
+    <EffectArray Operation="Set" Reference="Unit,Gateway,Description" Value="Button/Tooltip/ACAlarakGateway" />
+    <EffectArray Operation="Set" Reference="Unit,WarpGate,Description" Value="Button/Tooltip/ACAlarakWarpgate" />
+    <EffectArray Operation="Set" Reference="Unit,CyberneticsCore,Description" Value="Button/Tooltip/ACAlarakCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Unit,TwilightCouncil,Description" Value="Button/Tooltip/ACAlarakTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Unit,TemplarArchive,Description" Value="Button/Tooltip/ACAlarakTemplarArchives" />
+    <EffectArray Operation="Set" Reference="Unit,Forge,Description" Value="Button/Tooltip/ACAlarakForge" />
+    <EffectArray Operation="Set" Reference="Unit,RoboticsBay,Description" Value="Button/Tooltip/ACAlarakRoboticsBay" />
+    <EffectArray Operation="Set" Reference="Button,Gateway,AlertTooltip" Value="Button/Tooltip/ACAlarakGateway" />
+    <EffectArray Operation="Set" Reference="Button,UpgradeToWarpGate,AlertTooltip" Value="Button/Tooltip/ACAlarakWarpgate" />
+    <EffectArray Operation="Set" Reference="Button,CyberneticsCore,AlertTooltip" Value="Button/Tooltip/ACAlarakCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Button,TwilightCouncil,AlertTooltip" Value="Button/Tooltip/ACAlarakTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Button,TemplarArchive,AlertTooltip" Value="Button/Tooltip/ACAlarakTemplarArchives" />
+    <EffectArray Operation="Set" Reference="Button,Forge,AlertTooltip" Value="Button/Tooltip/ACAlarakForge" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsFacility,AlertTooltip" Value="Button/Tooltip/ACAlarakRoboticsFacility" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsBay,AlertTooltip" Value="Button/Tooltip/ACAlarakRoboticsBay" />
+    <EffectArray Operation="Set" Reference="Unit,TwilightCouncil,Name" Value="Unit/Name/ACAlarakTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Button,TwilightCouncil,Name" Value="Unit/Name/ACAlarakWarpInTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Button,TwilightCouncil,AlertName" Value="Unit/Name/ACAlarakWarpInTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Actor,TwilightCouncil,HighlightTooltip" Value="Unit/Name/ACAlarakTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Unit,TemplarArchive,Name" Value="Unit/Name/ACAlarakTemplarArchive" />
+    <EffectArray Operation="Set" Reference="Button,TemplarArchive,Name" Value="Unit/Name/ACAlarakWarpinTemplarArchive" />
+    <EffectArray Operation="Set" Reference="Button,TemplarArchive,AlertName" Value="Unit/Name/ACAlarakWarpinTemplarArchive" />
+    <EffectArray Operation="Set" Reference="Actor,TemplarArchive,HighlightTooltip" Value="Unit/Name/ACAlarakTemplarArchive" />
+    <EffectArray Operation="Set" Reference="Unit,Stalker,Name" Value="Unit/Name/ACAlarakSlayer" />
+    <EffectArray Operation="Set" Reference="Button,Stalker,Name" Value="Unit/Name/ACAlarakSlayerWarpIn" />
+    <EffectArray Operation="Set" Reference="Button,Stalker,AlertName" Value="Unit/Name/ACAlarakSlayerWarpIn" />
+    <EffectArray Operation="Set" Reference="Actor,Stalker,HighlightTooltip" Value="Unit/Name/ACAlarakSlayer" />
+    <EffectArray Operation="Set" Reference="Button,Stalker,Tooltip" Value="Unit/Name/ACAlarakSlayerDescription" />
+    <EffectArray Operation="Set" Reference="Button,Stalker,AlertTooltip" Value="Unit/Name/ACAlarakSlayerDescription" />
+    <EffectArray Operation="Set" Reference="Unit,Stalker,Description" Value="Unit/Name/ACAlarakSlayerDescription" />
+    <EffectArray Operation="Set" Reference="Button,Blink,Name" Value="Button/Name/BlinkSlayer" />
+    <EffectArray Operation="Set" Reference="Button,Blink,Tooltip" Value="Button/Tooltip/BlinkSlayer" />
+    <EffectArray Operation="Set" Reference="Button,ResearchStalkerTeleport,Tooltip" Value="Button/Tooltip/ResearchSlayerTeleport" />
+    <EffectArray Operation="Set" Reference="Button,ResearchStalkerTeleport,AlertTooltip" Value="Button/Tooltip/ResearchSlayerTeleport" />
+    <EffectArray Operation="Set" Reference="Effect,StalkerEntropyLanceSearchSet,EffectArray[0]" Value="AlarakParticleDisruptorsU" />
+    <EffectArray Operation="Set" Reference="Weapon,ParticleDisruptors,DisplayEffect" Value="AlarakParticleDisruptorsU" />
+    <EffectArray Operation="Set" Reference="Button,ResearchStalkerTeleport,Name" Value="Button/Name/ResearchSlayerTeleport" />
+    <!--EffectArray Operation="Set" Reference="Button,TransportMode,Tooltip" Value="Button/Tooltip/ACAlarakTransportMode"/>
         <EffectArray Operation="Set" Reference="Button,PhasingMode,Tooltip" Value="Button/Tooltip/ACAlarakPhasingMode"/-->
-        <AffectedUnitArray value="Stalker"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="AlarakSupplicantSacrificeDamage">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-ability-protoss-voidarmor.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="SupplicantAlarak"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakAreaDamageUpgrade">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-upgrade-nova-sword.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="AlarakCoop"/>
-        <LeaderAlias value=""/>
-    </CUpgrade>
-    <CUpgrade id="AlarakAttackStunUpgrade">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="AlarakCoop"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakDestructionWaveDistance">
-        <Flags index="TechTreeCheat" value="1"/>
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-waveknockbackdistanceincreased.dds"/>
-        <Alert value="ResearchComplete"/>
-        <Race value="Prot"/>
-        <ScoreResult value="BuildOrder"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="AlarakCoop"/>
-    </CUpgrade>
-    <CUpgrade id="AlarakVanguardIncreaseSplashArea">
-        <Icon value="Assets\Textures\btn-upgrade-protoss-vanguard-aoeradiusincreased.dds"/>
-        <EffectArray Operation="Set" Reference="Effect,ImmortalTaldarimWeaponSearch,AreaArray[0].Radius" Value="1.8"/>
-        <EditorCategories value="Race:Protoss,UpgradeType:Talents"/>
-        <AffectedUnitArray value="ImmortalTaldarim"/>
-    </CUpgrade>
+    <AffectedUnitArray value="Stalker" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AlarakSupplicantSacrificeDamage">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-ability-protoss-voidarmor.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="SupplicantAlarak" />
+  </CUpgrade>
+  <CUpgrade id="AlarakAreaDamageUpgrade">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-nova-sword.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="AlarakCoop" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AlarakAttackStunUpgrade">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="AlarakCoop" />
+  </CUpgrade>
+  <CUpgrade id="AlarakDestructionWaveDistance">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-waveknockbackdistanceincreased.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="AlarakCoop" />
+  </CUpgrade>
+  <CUpgrade id="AlarakVanguardIncreaseSplashArea">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-vanguard-aoeradiusincreased.dds" />
+    <EffectArray Operation="Set" Reference="Effect,ImmortalTaldarimWeaponSearch,AreaArray[0].Radius" Value="1.8" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="ImmortalTaldarim" />
+  </CUpgrade>
+  <CUpgrade id="AdeptFenixShadeSpawn">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AdeptShadeDebuff">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="Adept" />
+    <AffectedUnitArray value="AdeptFenix" />
+    <AffectedUnitArray value="AdeptPhaseShift" />
+    <EffectArray Operation="Set" Reference="Button,AdeptPhaseShift,Tooltip" Value="Button/Tooltip/AdeptPhaseShiftUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,AdeptPhaseShift,AlertTooltip" Value="Button/Tooltip/AdeptPhaseShiftUpgraded" />
+  </CUpgrade>
+  <CUpgrade id="ArtanisCommander">
+    <Flags index="UpgradeCheat" value="0" />
+    <!--EffectArray Reference="Unit,Zealot,ShieldsMax" Value="10"/>
+        <EffectArray Reference="Unit,Zealot,ShieldsStart" Value="10"/>
+        <EffectArray Reference="Unit,ZealotAiur,ShieldsMax" Value="10"/>
+        <EffectArray Reference="Unit,ZealotAiur,ShieldsStart" Value="10"/>
+        <EffectArray Reference="Unit,ZealotShakuras,ShieldsMax" Value="10"/>
+        <EffectArray Reference="Unit,ZealotShakuras,ShieldsStart" Value="10"/>
+        <EffectArray Reference="Unit,ZealotPurifier,ShieldsMax" Value="10"/>
+        <EffectArray Reference="Unit,ZealotPurifier,ShieldsStart" Value="10"/>
+        <EffectArray Reference="Unit,Sentry,ShieldsMax" Value="8"/>
+        <EffectArray Reference="Unit,Sentry,ShieldsStart" Value="8"/>
+        <EffectArray Reference="Unit,SentryAiur,ShieldsMax" Value="8"/>
+        <EffectArray Reference="Unit,SentryAiur,ShieldsStart" Value="8"/>
+        <EffectArray Reference="Unit,SentryPurifier,ShieldsMax" Value="8"/>
+        <EffectArray Reference="Unit,SentryPurifier,ShieldsStart" Value="8"/>
+        <EffectArray Reference="Unit,Replicant,ShieldsMax" Value="12"/>
+        <EffectArray Reference="Unit,Replicant,ShieldsStart" Value="12"/>
+        <EffectArray Reference="Unit,Stalker,ShieldsMax" Value="16"/>
+        <EffectArray Reference="Unit,Stalker,ShieldsStart" Value="16"/>
+        <EffectArray Reference="Unit,StalkerShakuras,ShieldsMax" Value="16"/>
+        <EffectArray Reference="Unit,StalkerShakuras,ShieldsStart" Value="16"/>
+        <EffectArray Reference="Unit,Dragoon,ShieldsMax" Value="16"/>
+        <EffectArray Reference="Unit,Dragoon,ShieldsStart" Value="16"/>
+        <EffectArray Reference="Unit,StalkerPurifier,ShieldsMax" Value="16"/>
+        <EffectArray Reference="Unit,StalkerPurifier,ShieldsStart" Value="16"/>
+        <EffectArray Reference="Unit,HighTemplar,ShieldsMax" Value="8"/>
+        <EffectArray Reference="Unit,HighTemplar,ShieldsStart" Value="8"/>
+        <EffectArray Reference="Unit,ArchonAdvanced,ShieldsMax" Value="70"/>
+        <EffectArray Reference="Unit,ArchonAdvanced,ShieldsStart" Value="70"/>
+        <EffectArray Reference="Unit,Archon,ShieldsMax" Value="70"/>
+        <EffectArray Reference="Unit,Archon,ShieldsStart" Value="70"/>
+        <EffectArray Reference="Unit,HighTemplarTaldarim,ShieldsMax" Value="8"/>
+        <EffectArray Reference="Unit,HighTemplarTaldarim,ShieldsStart" Value="8"/>
+        <EffectArray Reference="Unit,HighTemplarShakuras,ShieldsMax" Value="8"/>
+        <EffectArray Reference="Unit,HighTemplarShakuras,ShieldsStart" Value="8"/>
+        <EffectArray Reference="Unit,DarkTemplar,ShieldsMax" Value="16"/>
+        <EffectArray Reference="Unit,DarkTemplar,ShieldsStart" Value="16"/>
+        <EffectArray Reference="Unit,DarkTemplarShakuras,ShieldsMax" Value="16"/>
+        <EffectArray Reference="Unit,DarkTemplarShakuras,ShieldsStart" Value="16"/>
+        <EffectArray Reference="Unit,DarkTemplarAiur,ShieldsMax" Value="16"/>
+        <EffectArray Reference="Unit,DarkTemplarAiur,ShieldsStart" Value="16"/>
+        <EffectArray Reference="Unit,DarkTemplarTaldarim,ShieldsMax" Value="16"/>
+        <EffectArray Reference="Unit,DarkTemplarTaldarim,ShieldsStart" Value="16"/-->
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train1].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train2].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train3].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train4].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train5].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train6].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train7].Time" Value="4.500000" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train8].Time" Value="4.500000"/-->
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train9].Time" Value="4.500000" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train10].Time" Value="4.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train11].Time" Value="4.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train12].Time" Value="4.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train13].Time" Value="4.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train14].Time" Value="4.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train15].Time" Value="4.500000"/-->
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train1].Time" Value="4.500000" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train2].Time" Value="4.500000"/-->
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train3].Time" Value="4.500000" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train4].Time" Value="4.500000"/-->
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train5].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train6].Time" Value="4.500000" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train7].Time" Value="4.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train8].Time" Value="4.500000"/-->
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train9].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train10].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train11].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train12].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train13].Time" Value="4.500000" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train14].Time" Value="4.500000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,StargateWarpTrain,InfoArray[Train15].Time" Value="4.500000"/-->
+    <EffectArray Operation="Subtract" Reference="Abil,RoboticsFacilityWarpTrain,InfoArray[Train1].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoboticsFacilityWarpTrain,InfoArray[Train2].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoboticsFacilityWarpTrain,InfoArray[Train3].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoboticsFacilityWarpTrain,InfoArray[Train4].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoboticsFacilityWarpTrain,InfoArray[Train5].Time" Value="4.500000" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoboticsFacilityWarpTrain,InfoArray[Train19].Time" Value="4.500000" />
+    <!--EffectArray Reference="Unit,Sentry,EnergyStart" Value="150"/>
+        <EffectArray Reference="Unit,SentryAiur,EnergyStart" Value="150"/>
+        <EffectArray Reference="Unit,SentryPurifier,EnergyStart" Value="150"/>
+        <EffectArray Reference="Unit,HighTemplar,EnergyStart" Value="150"/>
+        <EffectArray Reference="Unit,ArchonAdvanced,EnergyStart" Value="150"/>
+        <EffectArray Reference="Unit,HighArchonTemplar,EnergyStart" Value="150"/>
+        <EffectArray Reference="Unit,HighTemplarTaldarim,EnergyStart" Value="150"/>
+        <EffectArray Reference="Unit,HighTemplarShakuras,EnergyStart" Value="150"/-->
+    <EffectArray Operation="Subtract" Reference="Abil,SOAPylonPower,Cost[0].Vital[Energy]" Value="50" />
+    <EffectArray Operation="Subtract" Reference="Abil,SOAPylonPower,Cost[0].Cooldown.TimeUse" Value="30.000000" />
+    <EffectArray Operation="Set" Reference="Button,Gateway,Tooltip" Value="Button/Tooltip/ACArtanisGateway" />
+    <!--EffectArray Operation="Set" Reference="Button,UpgradeToWarpGate,Tooltip" Value="Button/Tooltip/ACArtanisWarpgate"/-->
+    <EffectArray Operation="Set" Reference="Button,CyberneticsCore,Tooltip" Value="Button/Tooltip/ACArtanisCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Button,TwilightCouncil,Tooltip" Value="Button/Tooltip/ACArtanisTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Button,Stargate,Tooltip" Value="Button/Tooltip/ACArtanisStargate" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsFacility,Tooltip" Value="Button/Tooltip/ACArtanisRoboticsFacility" />
+    <EffectArray Operation="Set" Reference="Button,TemplarArchive,Tooltip" Value="Button/Tooltip/ACArtanisTemplarArchive" />
+    <EffectArray Operation="Set" Reference="Button,DarkShrine,Tooltip" Value="Button/Tooltip/ACArtanisDarkShrine" />
+    <EffectArray Operation="Set" Reference="Button,FleetBeacon,Tooltip" Value="Button/Tooltip/ACArtanisFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsBay,Tooltip" Value="Button/Tooltip/ACArtanisRoboticsBay" />
+    <EffectArray Operation="Set" Reference="Button,Forge,Tooltip" Value="Button/Tooltip/ACArtanisForge" />
+    <EffectArray Operation="Set" Reference="Unit,Gateway,Description" Value="Button/Tooltip/ACArtanisGateway" />
+    <EffectArray Operation="Set" Reference="Unit,WarpGate,Description" Value="Button/Tooltip/ACArtanisWarpgate" />
+    <EffectArray Operation="Set" Reference="Unit,CyberneticsCore,Description" Value="Button/Tooltip/ACArtanisCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Unit,TwilightCouncil,Description" Value="Button/Tooltip/ACArtanisTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Unit,Stargate,Description" Value="Button/Tooltip/ACArtanisStargate" />
+    <EffectArray Operation="Set" Reference="Unit,RoboticsFacility,Description" Value="Button/Tooltip/ACArtanisRoboticsFacility" />
+    <EffectArray Operation="Set" Reference="Unit,TemplarArchive,Description" Value="Button/Tooltip/ACArtanisTemplarArchive" />
+    <EffectArray Operation="Set" Reference="Unit,DarkShrine,Description" Value="Button/Tooltip/ACArtanisDarkShrine" />
+    <EffectArray Operation="Set" Reference="Unit,FleetBeacon,Description" Value="Button/Tooltip/ACArtanisFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Unit,RoboticsBay,Description" Value="Button/Tooltip/ACArtanisRoboticsBay" />
+    <EffectArray Operation="Set" Reference="Unit,Forge,Description" Value="Button/Tooltip/ACArtanisForge" />
+    <EffectArray Operation="Set" Reference="Button,FleetBeacon,AlertTooltip" Value="Button/Tooltip/ACArtanisFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Actor,Zealot,PlacementModel" Value="ZealotNoCordsPlacement" />
+    <EffectArray Operation="Set" Reference="Actor,Zealot,PortraitModel" Value="Zealot_NoNerveCordsPortrait" />
+    <EffectArray Operation="Set" Reference="Actor,HighTemplar,PortraitModel" Value="HighTemplar_NoNerveCordsPortrait" />
+    <EffectArray Operation="Set" Reference="Actor,ZealotAiur,PortraitModel" Value="Aiur_ZealotEx2_NoNerveCordsPortrait" />
+    <EffectArray Operation="Set" Reference="Actor,Zealot,UnitIcon" Value="Assets\Textures\btn-unit-protoss-zealotnocord.dds" />
+    <EffectArray Operation="Set" Reference="Button,Zealot,Icon" Value="Assets\Textures\btn-unit-protoss-zealotnocord.dds" />
+    <EffectArray Operation="Set" Reference="Button,Zealot,AlertIcon" Value="Assets\Textures\btn-unit-protoss-zealotnocord.dds" />
+    <EffectArray Operation="Subtract" Reference="Abil,SOAOrbitalStrikeActivate,Cost[0].Cooldown.TimeUse" Value="30.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,SOAOrbitalStrikeActivate,Cost[0].Vital[Energy]" Value="25" />
+    <EffectArray Operation="Set" Reference="Weapon,Tempest,MinScanRange" Value="10.5" />
+    <EffectArray Operation="Set" Reference="Weapon,Tempest,Range" Value="10" />
+    <AffectedUnitArray value="Zealot" />
+    <AffectedUnitArray value="HighTemplar" />
+    <AffectedUnitArray value="ZealotAiur" />
+    <EditorCategories value="Race:Protoss" />
+    <LeaderAlias value="" />
+    <!--EffectArray Operation="Set" Reference="Unit,SoACasterArtanis,Food" Value="200"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAProxyPylon,InfoArray[Build1].Vital[Energy]" Value="75"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAProxyPylon,InfoArray[Build1].Cooldown.TimeUse" Value="60.000000"/-->
+  </CUpgrade>
+  <CUpgrade id="BlinkTech">
+    <ScoreAmount value="0" />
+  </CUpgrade>
+  <CUpgrade id="Burrow">
+    <ScoreAmount value="0" />
+  </CUpgrade>
+  <CUpgrade id="Charge">
+    <ScoreAmount value="0" />
+  </CUpgrade>
+  <CUpgrade id="DarkProtoss">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="FenixChampionKaldalisZealot">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="FenixChampionTalisAdept">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="FenixChampionTalisAdeptBounceShotUpgrade">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-adeptchampionbounceattack.dds" />
+    <EffectArray Operation="Set" Reference="Effect,FenixTalisAdeptBounceShotSet3,EffectArray[3]" Value="FenixTalisAdeptBounceShotSearch3" />
+    <EffectArray Operation="Set" Reference="Button,FenixTalisAdeptBounceShot,Tooltip" Value="Button/Tooltip/FenixTalisAdeptBounceShotUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,FenixTalisAdeptBounceShot,Icon" Value="Assets\Textures\btn-upgrade-protoss-fenix-adept-recochetglaiveupgraded.dds" />
+    <EffectArray Operation="Set" Reference="Button,FenixTalisAdeptBounceShot,AlertIcon" Value="Assets\Textures\btn-upgrade-protoss-fenix-adept-recochetglaiveupgraded.dds" />
+    <AffectedUnitArray value="FenixTalisAdept" />
+  </CUpgrade>
+  <CUpgrade id="FenixCommander">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Set" Reference="Button,Zealot,Name" Value="Button/Name/ZealotFenix" />
+    <EffectArray Operation="Set" Reference="Button,Zealot,Tooltip" Value="Button/Tooltip/ZealotFenix" />
+    <EffectArray Operation="Set" Reference="Button,Zealot,AlertTooltip" Value="Button/Tooltip/ZealotFenix" />
+    <EffectArray Operation="Set" Reference="Unit,ZealotPurifier,Name" Value="Unit/Name/ZealotFenix" />
+    <EffectArray Operation="Set" Reference="Actor,ZealotPurifier,HighlightTooltip" Value="Unit/Name/ZealotFenix" />
+    <EffectArray Operation="Set" Reference="Unit,ZealotPurifier,Description" Value="Button/Tooltip/ZealotFenix" />
+    <EffectArray Operation="Set" Reference="Button,WarpInAdept,Tooltip" Value="Button/Tooltip/AdeptFenix" />
+    <EffectArray Operation="Set" Reference="Button,WarpInAdept,AlertTooltip" Value="Button/Tooltip/AdeptFenix" />
+    <EffectArray Operation="Set" Reference="Unit,Adept,Description" Value="Button/Tooltip/AdeptFenix" />
+    <EffectArray Operation="Set" Reference="Button,Scout,Tooltip" Value="Button/Tooltip/ScoutFenix" />
+    <EffectArray Operation="Set" Reference="Button,Scout,AlertTooltip" Value="Button/Tooltip/ScoutFenix" />
+    <EffectArray Operation="Set" Reference="Button,WarpInScout,Tooltip" Value="Button/Tooltip/ScoutFenix" />
+    <EffectArray Operation="Set" Reference="Button,WarpInScout,AlertTooltip" Value="Button/Tooltip/ScoutFenix" />
+    <EffectArray Operation="Set" Reference="Unit,Scout,Description" Value="Button/Tooltip/ScoutFenix" />
+    <EffectArray Operation="Set" Reference="Button,Carrier,Tooltip" Value="Button/Tooltip/CarrierFenix" />
+    <EffectArray Operation="Set" Reference="Button,Carrier,AlertTooltip" Value="Button/Tooltip/CarrierFenix" />
+    <EffectArray Operation="Set" Reference="Unit,Carrier,Description" Value="Button/Tooltip/CarrierFenix" />
+    <EffectArray Operation="Set" Reference="Button,Immortal,Tooltip" Value="Button/Tooltip/ImmortalFenix" />
+    <EffectArray Operation="Set" Reference="Button,Immortal,AlertTooltip" Value="Button/Tooltip/ImmortalFenix" />
+    <EffectArray Operation="Set" Reference="Unit,Immortal,Description" Value="Button/Tooltip/ImmortalFenix" />
+    <EffectArray Operation="Set" Reference="Button,Colossus,Tooltip" Value="Button/Tooltip/ColossusFenix" />
+    <EffectArray Operation="Set" Reference="Button,Colossus,AlertTooltip" Value="Button/Tooltip/ColossusFenix" />
+    <EffectArray Operation="Set" Reference="Unit,ColossusPurifier,Description" Value="Button/Tooltip/ColossusFenix" />
+    <EffectArray Operation="Set" Reference="Button,WarpinDisruptor,Tooltip" Value="Button/Tooltip/DisruptorFenix" />
+    <EffectArray Operation="Set" Reference="Button,WarpinDisruptor,AlertTooltip" Value="Button/Tooltip/DisruptorFenix" />
+    <EffectArray Operation="Set" Reference="Unit,Disruptor,Description" Value="Button/Tooltip/DisruptorFenix" />
+    <EffectArray Operation="Set" Reference="Button,Observer,Tooltip" Value="Button/Tooltip/ObserverFenix" />
+    <EffectArray Operation="Set" Reference="Button,Observer,AlertTooltip" Value="Button/Tooltip/ObserverFenix" />
+    <EffectArray Operation="Set" Reference="Unit,Observer,Description" Value="Button/Tooltip/ObserverFenix" />
+    <EffectArray Operation="Set" Reference="Button,Gateway,Tooltip" Value="Button/Tooltip/ACFenixGateway" />
+    <!--EffectArray Operation="Set" Reference="Button,UpgradeToWarpGate,Tooltip" Value="Button/Tooltip/ACFenixWarpgate"/-->
+    <EffectArray Operation="Set" Reference="Button,CyberneticsCore,Tooltip" Value="Button/Tooltip/ACFenixCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Button,TwilightCouncil,Tooltip" Value="Button/Tooltip/ACFenixTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Button,Stargate,Tooltip" Value="Button/Tooltip/ACFenixStargate" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsFacility,Tooltip" Value="Button/Tooltip/ACFenixRoboticsFacility" />
+    <EffectArray Operation="Set" Reference="Button,FleetBeacon,Tooltip" Value="Button/Tooltip/ACFenixFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsBay,Tooltip" Value="Button/Tooltip/ACFenixRoboticsBay" />
+    <EffectArray Operation="Set" Reference="Button,Forge,Tooltip" Value="Button/Tooltip/ACFenixForge" />
+    <EffectArray Operation="Set" Reference="Button,ResearchCharge,Tooltip" Value="Button/Tooltip/ACFenixResearchCharge" />
+    <EffectArray Operation="Set" Reference="Button,Gateway,AlertTooltip" Value="Button/Tooltip/ACFenixGateway" />
+    <EffectArray Operation="Set" Reference="Button,UpgradeToWarpGate,AlertTooltip" Value="Button/Tooltip/ACFenixWarpgate" />
+    <EffectArray Operation="Set" Reference="Button,CyberneticsCore,AlertTooltip" Value="Button/Tooltip/ACFenixCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Button,TwilightCouncil,AlertTooltip" Value="Button/Tooltip/ACFenixTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Button,Stargate,AlertTooltip" Value="Button/Tooltip/ACFenixStargate" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsFacility,AlertTooltip" Value="Button/Tooltip/ACFenixRoboticsFacility" />
+    <EffectArray Operation="Set" Reference="Button,FleetBeacon,AlertTooltip" Value="Button/Tooltip/ACFenixFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Button,RoboticsBay,AlertTooltip" Value="Button/Tooltip/ACFenixRoboticsBay" />
+    <EffectArray Operation="Set" Reference="Button,Forge,AlertTooltip" Value="Button/Tooltip/ACFenixForge" />
+    <EffectArray Operation="Set" Reference="Button,ResearchCharge,AlertTooltip" Value="Button/Tooltip/ACFenixResearchCharge" />
+    <EffectArray Operation="Set" Reference="Unit,Gateway,Description" Value="Button/Tooltip/ACFenixGateway" />
+    <EffectArray Operation="Set" Reference="Unit,WarpGate,Description" Value="Button/Tooltip/ACFenixWarpgate" />
+    <EffectArray Operation="Set" Reference="Unit,CyberneticsCore,Description" Value="Button/Tooltip/ACFenixCyberneticsCore" />
+    <EffectArray Operation="Set" Reference="Unit,TwilightCouncil,Description" Value="Button/Tooltip/ACFenixTwilightCouncil" />
+    <EffectArray Operation="Set" Reference="Unit,Stargate,Description" Value="Button/Tooltip/ACFenixStargate" />
+    <EffectArray Operation="Set" Reference="Unit,RoboticsFacility,Description" Value="Button/Tooltip/ACFenixRoboticsFacility" />
+    <EffectArray Operation="Set" Reference="Unit,FleetBeacon,Description" Value="Button/Tooltip/ACFenixFleetBeacon" />
+    <EffectArray Operation="Set" Reference="Unit,RoboticsBay,Description" Value="Button/Tooltip/ACFenixRoboticsBay" />
+    <EffectArray Operation="Set" Reference="Unit,Forge,Description" Value="Button/Tooltip/ACFenixForge" />
+    <EffectArray Reference="Unit,ZealotPurifier,LifeMax" Value="100" />
+    <EffectArray Reference="Unit,ZealotPurifier,LifeStart" Value="100" />
+    <EffectArray Reference="Unit,ZealotPurifier,ShieldsMax" Value="50" />
+    <EffectArray Reference="Unit,ZealotPurifier,ShieldsStart" Value="50" />
+    <EffectArray Operation="Subtract" Reference="Unit,ZealotPurifier,Food" Value="1" />
+    <EffectArray Operation="Set" Reference="Effect,ZealotPsiBladesCleaveSet,EffectArray[0]" Value="LegionnairePsiBladesBurst" />
+    <EffectArray Operation="Set" Reference="Weapon,PsiBlades,DisplayEffect" Value="LegionnairePsiBlades" />
+    <!--EffectArray Reference="Effect,PsiBlades,Amount" Value="8"/-->
+    <EffectArray Operation="Set" Reference="Weapon,DisruptorPsiBlast,Options[Hidden]" Value="0" />
+    <EffectArray Operation="Set" Reference="Weapon,DisruptorPsiBlast,Options[Disabled]" Value="0" />
+    <EffectArray Operation="Subtract" Reference="Abil,GatewayTrain,InfoArray[Train1].Time" Value="8.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train7].Charge.TimeUse" Value="5.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,WarpGateTrain,InfoArray[Train1].Charge.TimeUse" Value="5.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,StargateTrain,InfoArray[Train6].Time" Value="15.000000" />
+    <EffectArray Operation="Set" Reference="Abil,GatewayTrain,InfoArray[Train7].Unit[0]" Value="AdeptFenix" />
+    <EffectArray Operation="Set" Reference="Abil,WarpGateTrain,InfoArray[Train7].Unit" Value="AdeptFenix" />
+    <!-- Fenix base trait unit cost reduction -->
+    <EffectArray Reference="Unit,ZealotPurifier,CostResource[Minerals]" Value="60" />
+    <!--EffectArray Operation="Subtract" Reference="Unit,Adept,CostResource[Minerals]" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Unit,Adept,CostResource[Vespene]" Value="10"/-->
+    <EffectArray Operation="Subtract" Reference="Unit,SentryFenix,CostResource[Minerals]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,SentryFenix,CostResource[Vespene]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,SentryFenixPhasing,CostResource[Minerals]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,SentryFenixPhasing,CostResource[Vespene]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,Scout,CostResource[Minerals]" Value="70" />
+    <EffectArray Operation="Subtract" Reference="Unit,Scout,CostResource[Vespene]" Value="15" />
+    <EffectArray Operation="Subtract" Reference="Unit,Carrier,CostResource[Minerals]" Value="70" />
+    <EffectArray Operation="Subtract" Reference="Unit,Carrier,CostResource[Vespene]" Value="50" />
+    <EffectArray Operation="Subtract" Reference="Unit,Immortal,CostResource[Minerals]" Value="50" />
+    <EffectArray Operation="Subtract" Reference="Unit,Immortal,CostResource[Vespene]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,ColossusPurifier,CostResource[Minerals]" Value="60" />
+    <EffectArray Operation="Subtract" Reference="Unit,ColossusPurifier,CostResource[Vespene]" Value="40" />
+    <EffectArray Operation="Subtract" Reference="Unit,Observer,CostResource[Minerals]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,Observer,CostResource[Vespene]" Value="15" />
+    <EffectArray Operation="Subtract" Reference="Unit,ObserverSiegeMode,CostResource[Minerals]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,ObserverSiegeMode,CostResource[Vespene]" Value="15" />
+    <EffectArray Operation="Subtract" Reference="Unit,Disruptor,CostResource[Minerals]" Value="30" />
+    <EffectArray Operation="Subtract" Reference="Unit,Disruptor,CostResource[Vespene]" Value="30" />
+    <EffectArray Operation="Set" Reference="Button,WarpInAdept,Icon" Value="Assets\Textures\btn-unit-protoss-adeptfenix-purifier.dds" />
+    <EffectArray Operation="Set" Reference="Button,WarpInAdept,AlertIcon" Value="Assets\Textures\btn-unit-protoss-adeptfenix-purifier.dds" />
+    <EffectArray Reference="Abil,CarrierHangar,InfoArray[Ammo1].CountStart" Value="1" />
+    <EffectArray Reference="Abil,CarrierHangar,InfoArray[Ammo1].Time" Value="5.000000" />
+    <EditorCategories value="Race:Protoss" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="FenixKaldalisCleave">
+    <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-zealotcleave.dds" />
+    <AffectedUnitArray value="FenixKaldalisZealot" />
+  </CUpgrade>
+  <CUpgrade id="KaraxInstantStructureWarp">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build2].Time" Value="24" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build8].Time" Value="39" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build25].Time" Value="79" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build22].Time" Value="29" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="SolarEfficiencyLevel1">
+    <!--EffectArray Operation="Subtract" Reference="Abil,SOAOrbitalStrikeActivate,Cost[0].Cooldown.TimeUse" Value="6.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAThermalLanceActivate,Cost[0].Cooldown.TimeUse" Value="18.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAMapWideChrono,Cost[0].Cooldown.TimeUse" Value="36.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAPurifierBeam,Cost[0].Cooldown.TimeUse" Value="90.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAOrbitalStrikeActivate,Cost[0].Cooldown.TimeUse" Value="12.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAThermalLanceActivate,Cost[0].Cooldown.TimeUse" Value="18.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAMapWideChrono,Cost[0].Cooldown.TimeUse" Value="12.000000"/-->
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <Icon value="Assets\Textures\btn-upgrade-karax-solarefficiencylevel1.dds" />
+    <LeaderLevel value="1" />
+  </CUpgrade>
+  <CUpgrade id="SolarEfficiencyLevel2">
+    <!--EffectArray Operation="Subtract" Reference="Abil,SOAOrbitalStrikeActivate,Cost[0].Cooldown.TimeUse" Value="5.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAThermalLanceActivate,Cost[0].Cooldown.TimeUse" Value="15.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAMapWideChrono,Cost[0].Cooldown.TimeUse" Value="29.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAPurifierBeam,Cost[0].Cooldown.TimeUse" Value="72.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAOrbitalStrikeActivate,Cost[0].Cooldown.TimeUse" Value="10.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAThermalLanceActivate,Cost[0].Cooldown.TimeUse" Value="15.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAMapWideChrono,Cost[0].Cooldown.TimeUse" Value="10.000000"/-->
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <Icon value="Assets\Textures\btn-upgrade-karax-solarefficiencylevel2.dds" />
+    <LeaderAlias value="SolarEfficiencyLevel1" />
+    <LeaderLevel value="2" />
+  </CUpgrade>
+  <CUpgrade id="SolarEfficiencyLevel3">
+    <!--EffectArray Operation="Subtract" Reference="Abil,SOAOrbitalStrikeActivate,Cost[0].Cooldown.TimeUse" Value="4.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAThermalLanceActivate,Cost[0].Cooldown.TimeUse" Value="12.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAMapWideChrono,Cost[0].Cooldown.TimeUse" Value="23.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAPurifierBeam,Cost[0].Cooldown.TimeUse" Value="58.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAOrbitalStrikeActivate,Cost[0].Cooldown.TimeUse" Value="8.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAThermalLanceActivate,Cost[0].Cooldown.TimeUse" Value="12.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,SOAMapWideChrono,Cost[0].Cooldown.TimeUse" Value="8.000000"/-->
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <Icon value="Assets\Textures\btn-upgrade-karax-solarefficiencylevel3.dds" />
+    <LeaderAlias value="SolarEfficiencyLevel1" />
+    <LeaderLevel value="3" />
+  </CUpgrade>
+  <CUpgrade id="StalkerResearchBlinkCharges">
+    <Icon value="Assets\Textures\btn-ability-protoss-blink-color.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="StalkerPurifier" />
+  </CUpgrade>
+  <CUpgrade id="StalkerResearchBlinkShieldRestore">
+    <Icon value="Assets\Textures\btn-ability-protoss-blinkshieldrestore.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="StalkerShakuras" />
+  </CUpgrade>
+  <CUpgrade id="StalkerResearchDragoonHealth">
+    <Icon value="Assets\Textures\btn-ability-protoss-dragoonchassis.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Reference="Unit,Dragoon,LifeMax" Value="20" />
+    <EffectArray Reference="Unit,Dragoon,LifeStart" Value="20" />
+    <EffectArray Operation="Set" Reference="Unit,Dragoon,ShieldRegenDelay" Value="0.000000" />
+    <EffectArray Reference="Unit,Dragoon,ShieldRegenRate" Value="2.000000" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="Dragoon" />
+  </CUpgrade>
+  <CUpgrade id="StalkerResearchDragoonRange">
+    <Icon value="Assets\Textures\BTN-Upgrade-Artanis-SingularityCharge.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Reference="Weapon,Dragoon,Range" Value="2" />
+    <EffectArray Reference="Weapon,Dragoon,MinScanRange" Value="2" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="Dragoon" />
+  </CUpgrade>
+  <CUpgrade id="ZealotResearchReconstruction">
+    <Icon value="Assets\Textures\btn-ability-protoss-reconstruction.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="ZealotPurifier" />
+  </CUpgrade>
+  <CUpgrade id="ZealotResearchShadowCharge">
+    <Icon value="Assets\Textures\btn-ability-protoss-charge-color.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="ZealotShakuras" />
+    <EffectArray Reference="Unit,ZealotShakuras,Speed" Value="0.250000" />
+  </CUpgrade>
+  <CUpgrade id="ZealotResearchShadowStun">
+    <Icon value="Assets\Textures\btn-upgrade-vorazun-shadowstun.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="ZealotShakuras" />
+    <LeaderAlias value="ZealotResearchShadowCharge" />
+  </CUpgrade>
+  <CUpgrade id="ZealotResearchWhirlwind">
+    <Icon value="Assets\Textures\btn-ability-protoss-whirlwind.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Prot" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="ZealotAiur" />
+  </CUpgrade>
 </Catalog>

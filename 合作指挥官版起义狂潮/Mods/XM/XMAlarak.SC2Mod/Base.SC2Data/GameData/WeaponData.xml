@@ -1,24 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-    <CWeaponLegacy id="AlarakAA">
-        <EditorCategories value="Race:Protoss"/>
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-rangeweapon.dds"/>
-        <DisplayEffect value="AlarakAADamage"/>
-        <TargetFilters value="Air,Visible;Ground,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <Range value="2"/>
-        <Period value="1.5"/>
-        <DamagePoint value="0.2"/>
-        <Effect value="AlarakPsionicLightningSet"/>
-    </CWeaponLegacy>
-    <CWeaponLegacy id="AlarakAG">
-        <EditorCategories value="Race:Protoss"/>
-        <Options index="Hidden" value="1"/>
-        <Options index="Melee" value="1"/>
-        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-melleeweapon.dds"/>
-        <DisplayEffect value="AlarakBaneBladesD"/>
-        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <Range value="0.1"/>
-        <Period value="1.5"/>
-        <Effect value="AlarakBaneBladesHoldPosition"/>
-    </CWeaponLegacy>
+  <CWeaponLegacy id="AlarakAA">
+    <EditorCategories value="Race:Protoss" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-rangeweapon.dds" />
+    <DisplayEffect value="AlarakAADamage" />
+    <TargetFilters value="Air,Visible;Ground,Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <Range value="2" />
+    <Period value="1.5" />
+    <DamagePoint value="0.2" />
+    <Effect value="AlarakPsionicLightningSet" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="AlarakAG">
+    <EditorCategories value="Race:Protoss" />
+    <Options index="Hidden" value="1" />
+    <Options index="Melee" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-melleeweapon.dds" />
+    <DisplayEffect value="AlarakBaneBladesD" />
+    <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <Range value="0.1" />
+    <Period value="1.5" />
+    <Effect value="AlarakBaneBladesHoldPosition" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="Adept">
+    <MinScanRange value="5.5" />
+    <Effect value="AdeptLMSet" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="ColossusTaldarimChargedBeamFast">
+    <EditorCategories value="Race:Protoss" />
+    <Options index="Disabled" value="1" />
+    <Options index="Hidden" value="1" />
+    <Options index="OnlyFireWhileInAttackOrder" value="0" />
+    <Options index="OnlyFireAtAttackOrderTarget" value="0" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds" />
+    <DisplayEffect value="ColossusTaldarimDamage" />
+    <DisplayAttackCount value="1" />
+    <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <AcquirePrioritization value="ByDistanceFromTarget" />
+    <MinScanRange value="9.5" />
+    <Range value="11" />
+    <Arc value="90" />
+    <Period value="2.5" />
+    <DamagePoint value="0.2" />
+    <Effect value="ColossusTaldarimLM" />
+    <AllowedMovement value="Moving" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="DarkArchonChampionWeaponFunctional">
+    <EditorCategories value="Race:Protoss" />
+    <Options index="Hidden" value="1" />
+    <Options index="Melee" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-melleeweapon.dds" />
+    <DisplayEffect value="AlarakBaneBladesDamage" />
+    <DisplayAttackCount value="1" />
+    <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <Range value="2" />
+    <Cost>
+      <Cooldown Location="Unit" />
+    </Cost>
+    <Period value="1.5" />
+    <Effect value="AlarakBaneBladesSwitch" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="DarkArchonChampionWeaponFunctionalHoldPos">
+    <EditorCategories value="Race:Protoss" />
+    <Options index="Hidden" value="1" />
+    <Options index="Melee" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-melleeweapon.dds" />
+    <DisplayEffect value="AlarakBaneBladesDamage" />
+    <DisplayAttackCount value="1" />
+    <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <Range value="0.1" />
+    <Cost>
+      <Cooldown Location="Unit" />
+    </Cost>
+    <Period value="1.5" />
+    <Effect value="AlarakBaneBladesHoldPosition" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="Dragoon">
+    <Range value="6" />
+    <MinScanRange value="6.5" />
+    <Period value="1.764" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="FenixTalisAdept">
+    <EditorCategories value="Race:Protoss" />
+    <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds" />
+    <DisplayEffect value="FenixTalisAdeptDamage" />
+    <TargetFilters value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <MinScanRange value="4.5" />
+    <Period value="2.25" />
+    <Effect value="FenixTalisAdeptLM" />
+    <Range value="4" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="ImmortalTaldarim">
+    <MinScanRange value="6.5" />
+    <DisplayAttackCount value="8" />
+    <Arc value="360" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="Locust">
+    <MinScanRange value="15" />
+  </CWeaponLegacy>
+  <CWeaponLegacy id="PhotonCannon">
+    <MinScanRange value="7.5" />
+  </CWeaponLegacy>
 </Catalog>

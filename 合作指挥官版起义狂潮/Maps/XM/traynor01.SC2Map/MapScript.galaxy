@@ -5046,11 +5046,13 @@ bool gt_IntroSetup_Func (bool testConds, bool runActions) {
         UnitGroupAdd(gv_introCinHiddenUnitGroup, autoBFA525CF_var);
     }
     auto73025897_g = UnitLastCreatedGroup();
-    auto73025897_u = UnitGroupCount(auto73025897_g, c_unitCountAll);
-    for (;; auto73025897_u -= 1) {
-        auto73025897_var = UnitGroupUnitFromEnd(auto73025897_g, auto73025897_u);
-        if (auto73025897_var == null) { break; }
-        libNtve_gf_ShowHideUnit(auto73025897_var, false);
+    if (auto73025897_g != null) {
+        auto73025897_u = UnitGroupCount(auto73025897_g, c_unitCountAll);
+        for (;; auto73025897_u -= 1) {
+            auto73025897_var = UnitGroupUnitFromEnd(auto73025897_g, auto73025897_u);
+            if (auto73025897_var == null) { break; }
+            libNtve_gf_ShowHideUnit(auto73025897_var, false);
+        }
     }
     return true;
 }

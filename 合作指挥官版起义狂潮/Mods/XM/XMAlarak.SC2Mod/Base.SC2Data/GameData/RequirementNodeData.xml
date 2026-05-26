@@ -11,10 +11,6 @@
     <OperandArray value="CountUnitAlias_LairCompleteOnly1515591279" />
     <OperandArray value="Or993869882NotCountUpgradeCommanderPrestigeZagaraMaxSupplyCompleteOnlyNotCountUnitScourgeNestQueuedOrBetter" />
   </CRequirementAnd>
-  <CRequirementAnd id="AndCountUnitCyberneticsCoreCompleteOnlyTechTreeCheatEq2888706574CountUnitSolarForgeQueuedOrBetter0">
-    <OperandArray value="CountUnitCyberneticsCoreCompleteOnlyTechTreeCheat" />
-    <OperandArray value="Eq2888706574CountUnitSolarForgeQueuedOrBetter0" />
-  </CRequirementAnd>
   <CRequirementAnd id="AndCountUnitTwilightCouncilCompleteOnlyEq1740904084CountUpgradeProtossGroundWeaponsLevel1CompleteOnly1">
     <OperandArray value="CountUnitTwilightCouncilCompleteOnly" />
     <OperandArray value="Eq1740904084CountUpgradeProtossGroundWeaponsLevel1CompleteOnly1" />
@@ -929,10 +925,6 @@
     <OperandArray index="0" value="CountUpgradeProtossGroundWeaponsLevel1CompleteOnly" />
     <OperandArray index="1" value="1" />
   </CRequirementEq>
-  <CRequirementEq id="Eq2888706574CountUnitSolarForgeQueuedOrBetter0">
-    <OperandArray index="0" value="CountUnitSolarForgeQueuedOrBetter" />
-    <OperandArray index="1" value="0" />
-  </CRequirementEq>
   <CRequirementEq id="Eq3056608045CountUpgradeProtossGroundWeaponsLevel2CompleteOnly1">
     <OperandArray index="0" value="CountUpgradeProtossGroundWeaponsLevel2CompleteOnly" />
     <OperandArray index="1" value="1" />
@@ -1172,9 +1164,6 @@
   <CRequirementNot id="NotCountUpgradeDualFusionWeldersQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeDualFusionWeldersQueuedOrBetter" />
   </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeEnergizerReclamationQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeEnergizerReclamationQueuedOrBetter" />
-  </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeFenixArbiterDetectionQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeFenixArbiterDetectionQueuedOrBetter" />
   </CRequirementNot>
@@ -1243,9 +1232,6 @@
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeKaraxEnergyRegenUpgradeQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeKaraxEnergyRegenUpgradeQueuedOrBetter" />
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeKaraxTurretAttackSpeedQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeKaraxTurretAttackSpeedQueuedOrBetter" />
@@ -1374,5 +1360,75 @@
   <CRequirementNot id="NotCountUpgradeZealotResearchWhirlwindQueuedOrBetter">
     <Tooltip value="" />
     <OperandArray index="0" value="CountUpgradeZealotResearchWhirlwindQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementAllowUnit id="AllowUnitSupplicant">
+    <Link value="Supplicant" />
+  </CRequirementAllowUnit>
+  <CRequirementCountUpgrade id="CountUpgradeAdeptFenixShadeSpawnQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="AdeptFenixShadeSpawn" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeAdeptShadeDebuffQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="AdeptShadeDebuff" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeAlarakStalkerPhasingArmorQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="AlarakStalkerPhasingArmor" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeAlarakSupplicantShieldArmorQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="AlarakSupplicantShieldArmor" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeStalkerResearchBlinkChargesQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Tooltip value="" />
+    <Count Link="StalkerResearchBlinkCharges" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeStalkerResearchBlinkShieldRestoreQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="StalkerResearchBlinkShieldRestore" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeStalkerResearchDragoonHealthQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="StalkerResearchDragoonHealth" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeStalkerResearchDragoonRangeQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Tooltip value="" />
+    <Count Link="StalkerResearchDragoonRange" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeZealotResearchReconstructionQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZealotResearchReconstruction" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeZealotResearchShadowChargeQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Tooltip value="" />
+    <Count Link="ZealotResearchShadowCharge" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeZealotResearchShadowStunQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZealotResearchShadowStun" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeZealotResearchWhirlwindQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Tooltip value="" />
+    <Count Link="ZealotResearchWhirlwind" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementNot id="NotCountUpgradeAlarakStalkerForceBlastQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeAlarakStalkerForceBlastQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeAlarakSupplicantMaxShieldsQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeAlarakSupplicantMaxShieldsQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeAlarakZealotFrenziedOverloadQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeAlarakZealotFrenziedOverloadQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeFenixChampionTalisAdeptBounceShotUpgradeQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeFenixChampionTalisAdeptBounceShotUpgradeQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeFenixKaldalisCleaveQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeFenixKaldalisCleaveQueuedOrBetter" />
   </CRequirementNot>
 </Catalog>

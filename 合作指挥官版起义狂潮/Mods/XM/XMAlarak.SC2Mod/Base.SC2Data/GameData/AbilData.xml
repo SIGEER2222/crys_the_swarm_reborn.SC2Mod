@@ -1,36 +1,430 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-    <CAbilEffectTarget id="AlarakKnockbackAlarak">
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Effect index="0" value="AlarakKnockbackICP"/>
-        <Flags index="RangeUseCasterRadius" value="0"/>
-        <Cost>
-            <Cooldown TimeUse="5"/>
-        </Cost>
-        <Range value="8"/>
-        <Arc value="0.9997"/>
-        <FinishTime value="0.75"/>
-        <Marker Link="Abil/DestructionWave">
-            <MatchFlags index="Id" value="1"/>
-            <MatchFlags index="Link" value="0"/>
-        </Marker>
-        <UninterruptibleArray index="Finish" value="1"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="KnockbackAlarak"/>
-    </CAbilEffectTarget>
-    <CAbilEffectTarget id="AlarakACDeadlyCharge">
-        <Alignment value="Negative"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Flags index="AbortOnAllianceChange" value="0"/>
-        <Flags index="AllowMovement" value="1"/>
-        <Cost>
-            <Cooldown Location="Player" TimeUse="15"/>
-        </Cost>
-        <Range value="6"/>
-        <TrackingArc value="360"/>
-        <PrepTime value="0.125"/>
-        <AINotifyEffect value="PrimalSlash"/>
-        <IgnoreFilters value="Ground;Self,Invulnerable"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="AlarakDeadlyCharge"/>
-        <Arc value="360"/>
-    </CAbilEffectTarget>
+  <CAbilEffectTarget id="AlarakKnockbackAlarak">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Effect index="0" value="AlarakKnockbackICP" />
+    <Flags index="RangeUseCasterRadius" value="0" />
+    <Cost>
+      <Cooldown TimeUse="5" />
+    </Cost>
+    <Range value="8" />
+    <Arc value="0.9997" />
+    <FinishTime value="0.75" />
+    <Marker Link="Abil/DestructionWave">
+      <MatchFlags index="Id" value="1" />
+      <MatchFlags index="Link" value="0" />
+    </Marker>
+    <UninterruptibleArray index="Finish" value="1" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="KnockbackAlarak" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="AlarakACDeadlyCharge">
+    <Alignment value="Negative" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Flags index="AbortOnAllianceChange" value="0" />
+    <Flags index="AllowMovement" value="1" />
+    <Cost>
+      <Cooldown Location="Player" TimeUse="15" />
+    </Cost>
+    <Range value="6" />
+    <TrackingArc value="360" />
+    <PrepTime value="0.125" />
+    <AINotifyEffect value="PrimalSlash" />
+    <IgnoreFilters value="Ground;Self,Invulnerable" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="AlarakDeadlyCharge" />
+    <Arc value="360" />
+  </CAbilEffectTarget>
+  <CAbilEffectInstant id="AlarakEmpower">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Effect index="0" value="AlarakEmpowerMe" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="AlarakEmpower" State="Restricted" />
+    <Cost>
+      <Cooldown Location="Player" TimeUse="240" />
+    </Cost>
+    <Flags index="Transient" value="1" />
+  </CAbilEffectInstant>
+  <CAbilEffectTarget id="AlarakKnockback">
+    <Flags index="ReApproachable" value="0" />
+    <Flags index="RequireTargetVision" value="0" />
+    <Flags index="Transient" value="1" />
+    <Range index="0" value="500" />
+    <Cost index="0">
+      <Cooldown Location="Player" />
+    </Cost>
+    <Arc value="360" />
+    <Effect index="0" value="AlarakKnockback" />
+  </CAbilEffectTarget>
+  <CAbilEffectInstant id="AlarakZealotFrenziedOverload">
+    <Alignment value="Negative" />
+    <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
+    <Effect index="0" value="AlarakZealotFrenziedOverloadAB" />
+    <Flags index="AutoCast" value="1" />
+    <Flags index="AutoCastOn" value="1" />
+    <Flags index="Transient" value="1" />
+    <Cost>
+      <Charge Link="Abil/AlarakZealotFrenziedOverloadEI" />
+      <Cooldown Link="Abil/AlarakZealotFrenziedOverloadEI" TimeUse="10" />
+    </Cost>
+    <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral" />
+    <AutoCastRange value="5" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="AlarakZealotFrenziedOverload" Requirements="HaveAlarakZealotFrenziedOverload" />
+    <AutoCastValidatorArray value="AlarakCasterRecentlyDealtDamage" />
+  </CAbilEffectInstant>
+  <CAbilMerge id="ArchonWarp">
+    <CmdButtonArray index="SelectedUnits" Requirements="NotHaveDarkArchonMindControl" />
+  </CAbilMerge>
+  <CAbilEffectTarget id="Blink">
+    <!--Effect index="0" value="VoidStalkerBlinkSet"/-->
+    <CmdButtonArray index="Execute" State="Available" Requirements="UseBlink" />
+  </CAbilEffectTarget>
+  <CAbilAugment id="Charge">
+    <CmdButtonArray index="Execute" Requirements="UseCharge" />
+  </CAbilAugment>
+  <CAbilMerge id="DarkArchonMerge">
+    <Info Unit="DarkArchon" />
+    <CmdButtonArray index="SelectedUnits" State="Restricted" Requirements="NotHaveDarkArchonMindControl" />
+  </CAbilMerge>
+  <CAbilAugment id="FenixKaldalisZealotCharge">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="FenixKaldalisZealotCharge" />
+    <AbilCmd value="attack,Execute" />
+    <Flags index="AutoCast" value="1" />
+    <Flags index="AutoCastOn" value="1" />
+    <Cost>
+      <Cooldown Link="Charge" Location="Unit" TimeUse="5" />
+    </Cost>
+    <AutoCastValidatorArray value="CasterNotHoldingPosition" />
+    <Effect value="FenixKaldalisZealotChargeLaunch" />
+    <Alignment value="Negative" />
+  </CAbilAugment>
+  <CAbilEffectTarget id="FenixSentryGuardianZone">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Range value="11" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="FenixSentryGuardianZone" />
+    <Cost>
+      <Cooldown TimeUse="20" />
+    </Cost>
+    <Effect index="0" value="FenixSentryGuardianZoneCP" />
+    <CursorEffect value="FenixSentryGuardianZoneSearch" />
+  </CAbilEffectTarget>
+  <CAbilAugment id="FenixTalisAdeptBounceShot">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="FenixTalisAdeptBounceShot" />
+    <AbilCmd value="attack,Execute" />
+    <Flags index="AutoCast" value="1" />
+    <Flags index="AutoCastOn" value="1" />
+    <Cost>
+      <Cooldown Link="Charge" Location="Unit" TimeUse="5" />
+    </Cost>
+    <Effect value="FenixTalisAdeptBounceShotLM1" />
+  </CAbilAugment>
+  <CAbilEffectTarget id="FenixTalisAdeptPhaseShift">
+    <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
+    <Effect index="0" value="FenixTalisAdeptPhaseShiftInitialSet" />
+    <Flags index="BestUnit" value="0" />
+    <Flags index="RequireTargetVision" value="0" />
+    <Cost>
+      <Cooldown TimeUse="16" />
+    </Cost>
+    <Range value="500" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="FenixTalisAdeptPhaseShift">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+  </CAbilEffectTarget>
+  <CAbilTrain id="GatewayTrain">
+    <InfoArray index="Train9" Time="55">
+      <Button DefaultButtonFace="DarkArchon" State="Restricted" Requirements="HaveDarkShrine" />
+      <Unit value="DarkArchon" />
+    </InfoArray>
+    <InfoArray index="Train10" Time="37">
+      <Button DefaultButtonFace="Monitor" State="Restricted" Requirements="HaveCyberneticsCore" />
+      <Unit value="Monitor" />
+    </InfoArray>
+    <InfoArray index="Train11" Time="28">
+      <Button DefaultButtonFace="WarpInSupplicant" State="Restricted" />
+      <Unit value="Supplicant" />
+      <Unit value="Supplicant" />
+    </InfoArray>
+    <InfoArray index="Train15" Time="37">
+      <Button DefaultButtonFace="SentryFenix" State="Restricted" Requirements="HaveCyberneticsCore" />
+      <Unit value="SentryFenix" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilEffectTarget id="PrimalSlash">
+    <Cost index="0">
+      <Cooldown Location="Player" />
+    </Cost>
+    <Effect index="0" value="PrimalSlashInitialSet" />
+  </CAbilEffectTarget>
+  <CAbilBuild id="ProtossBuild">
+    <InfoArray index="Build4">
+      <Button State="Available" Requirements="HaveNexus" />
+    </InfoArray>
+    <InfoArray index="Build6">
+      <Button State="Available" />
+    </InfoArray>
+    <InfoArray index="Build7">
+      <Button State="Available" />
+    </InfoArray>
+    <InfoArray index="Build10">
+      <Button State="Available" Requirements="HaveCyberneticsCore" />
+    </InfoArray>
+    <InfoArray index="Build11">
+      <Button State="Available" Requirements="HaveTwilightCouncil" />
+    </InfoArray>
+    <InfoArray index="Build12">
+      <Button State="Available" Requirements="HaveTwilightCouncil" />
+    </InfoArray>
+    <InfoArray index="Build13">
+      <Button State="Available" />
+    </InfoArray>
+    <InfoArray index="Build14">
+      <Button State="Restricted" Requirements="HaveCyberneticsCore" />
+    </InfoArray>
+    <InfoArray index="Build15">
+      <Button State="Available" />
+    </InfoArray>
+    <InfoArray index="Build17" Unit="FenixAltarOfPsiStorms" Time="60">
+      <Button DefaultButtonFace="FenixAltarOfPsiStorms" Requirements="BuildFenixAltarOfPsiStorms" />
+    </InfoArray>
+    <InfoArray index="Build18" Unit="RoboticsFacilityWarp" Time="65">
+      <Button DefaultButtonFace="WarpInRoboticsWarpFacility" State="Restricted" Requirements="HaveCyberneticsCoreandArtanisWarpTech" />
+    </InfoArray>
+    <InfoArray index="Build19" Unit="StargateWarp" Time="60">
+      <Button DefaultButtonFace="WarpInStarWarpGate" State="Restricted" Requirements="HaveCyberneticsCoreandArtanisWarpTech" />
+    </InfoArray>
+    <InfoArray index="Build22">
+      <Button Requirements="HaveGateway" />
+    </InfoArray>
+    <InfoArray index="Build27" Unit="" Time="0">
+      <Button DefaultButtonFace="" Requirements="" />
+    </InfoArray>
+    <InfoArray index="Build28" Unit="" Time="0">
+      <Button DefaultButtonFace="" Requirements="" />
+    </InfoArray>
+    <InfoArray index="Build30" Unit="WarpGate" Time="65">
+      <Button DefaultButtonFace="WarpInWarpGate" State="Suppressed" Requirements="HaveCoopArtanisUpgrade" />
+    </InfoArray>
+  </CAbilBuild>
+  <CAbilQueue id="que5notPassive">
+    <EditorCategories value="Race:Neutral,AbilityorEffectType:Structures" />
+    <QueueSize value="5" />
+  </CAbilQueue>
+  <CAbilQueue id="Queue1Passive">
+    <EditorCategories value="Race:Neutral,AbilityorEffectType:Structures" />
+    <QueueSize value="1" />
+    <Flags index="Passive" value="1" />
+    <CmdButtonArray index="CancelLast">
+      <Flags index="IgnoreUser" value="1" />
+    </CmdButtonArray>
+    <CmdButtonArray index="CancelSlot">
+      <Flags index="IgnoreUser" value="1" />
+    </CmdButtonArray>
+  </CAbilQueue>
+  <CAbilMorph id="RepairFenixAltarOfPsiStormsStage2">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <DataCollection value="RepairFenixAltarOfPsiStorms" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="RepairFenixAltarOfPsiStorms">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <ActorKey value="RepairFenixAltarOfPsiStorms" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="BestUnit" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="ShowProgress" value="1" />
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Score="1" Unit="FenixAltarOfPsiStorms">
+      <SectionArray index="Stats">
+        <EffectArray index="Finish" value="FenixAltarOfPsiStormsRebuildCompleteSet" />
+      </SectionArray>
+    </InfoArray>
+    <Activity value="UI/Repairing" />
+  </CAbilMorph>
+  <CAbilResearch id="TwilightCouncilResearch">
+    <InfoArray index="Research1" Time="60">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+    </InfoArray>
+    <InfoArray index="Research2" Time="60">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+    </InfoArray>
+    <InfoArray index="Research3" Time="90" Upgrade="ZealotResearchWhirlwind">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchWhirlwind" State="Restricted" Requirements="LearnWhirlwind" />
+    </InfoArray>
+    <InfoArray index="Research4" Time="100" Upgrade="StalkerResearchBlinkCharges">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchBlinkCharges" State="Restricted" Requirements="LearnBlinkCharges" />
+    </InfoArray>
+    <InfoArray index="Research5" Time="60" Upgrade="ZealotResearchShadowCharge">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchShadowCharge" Requirements="LearnShadowCharge" />
+    </InfoArray>
+    <InfoArray index="Research6" Time="60" Upgrade="StalkerResearchDragoonRange">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchDragoonRange" State="Restricted" Requirements="LearnDragoonRange" />
+    </InfoArray>
+    <InfoArray index="Research7" Time="90" Upgrade="StalkerResearchDragoonHealth">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchDragoonChassis" State="Restricted" Requirements="LearnDragoonHealth" />
+    </InfoArray>
+    <InfoArray index="Research8" Time="90" Upgrade="StalkerResearchBlinkShieldRestore">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchBlinkShieldRestore" State="Restricted" Requirements="LearnBlinkShieldRestore" />
+    </InfoArray>
+    <InfoArray index="Research9" Time="90" Upgrade="ZealotResearchShadowStun">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchShadowStun" State="Restricted" Requirements="LearnShadowStun" />
+    </InfoArray>
+    <InfoArray index="Research10" Time="90" Upgrade="ZealotResearchReconstruction">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ZealotPurifierResearchReconstruction" Requirements="LearnZealotPurifierReconstruction" />
+    </InfoArray>
+    <InfoArray index="Research11" Time="60" Upgrade="AdeptShadeDebuff">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchAdeptShadeDebuff" State="Restricted" Requirements="LearnAdeptShadeDebuff" />
+    </InfoArray>
+    <InfoArray index="Research12" Time="90" Upgrade="AdeptPiercingAttack">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="AdeptResearchPiercingUpgrade" State="Restricted" Requirements="LearnAdeptPiercingAttack" />
+    </InfoArray>
+    <InfoArray index="Research15" Time="120" Upgrade="AlarakZealotFrenziedOverload">
+      <Resource index="Minerals" value="200" />
+      <Resource index="Vespene" value="200" />
+      <Button DefaultButtonFace="ResearchAlarakZealotFrenziedOverload" Requirements="ResearchZealotFrenziedOverload" />
+    </InfoArray>
+    <InfoArray index="Research16" Time="120" Upgrade="AlarakStalkerForceBlast">
+      <Resource index="Minerals" value="200" />
+      <Resource index="Vespene" value="200" />
+      <Button DefaultButtonFace="ResearchAlarakStalkerForceBlast" Requirements="LearnAlarakStalkerForceBlast" />
+    </InfoArray>
+    <InfoArray index="Research18" Time="90" Upgrade="AlarakStalkerPhasingArmor">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="AlarakResearchStalkerPhasingArmor" State="Restricted" Requirements="LearnAlarakStalkerPhasingArmor" />
+    </InfoArray>
+    <InfoArray index="Research21" Time="90" Upgrade="AlarakSupplicantMaxShields">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchAlarakSupplicantMaxShields" State="Restricted" Requirements="LearnAlarakSupplicantMaxShields" />
+    </InfoArray>
+    <InfoArray index="Research25" Time="60" Upgrade="AlarakSupplicantShieldArmor">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ArmorResearchSupplicantShieldArmor" Requirements="LearnSupplicantShieldArmor" />
+    </InfoArray>
+    <InfoArray index="Research26" Time="60" Upgrade="FenixChampionTalisAdeptBounceShotUpgrade">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="FenixTalisAdeptLearnBounceShotUpgrade" State="Restricted" Requirements="LearnTalisBounceShotUpgrade" />
+    </InfoArray>
+    <InfoArray index="Research27" Time="60" Upgrade="AdeptFenixShadeSpawn">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchAdeptFenixShadeSpawn" State="Restricted" Requirements="LearnAdeptFenixShadeSpawn" />
+    </InfoArray>
+    <InfoArray index="Research30" Time="60" Upgrade="FenixKaldalisCleave">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchFenixKaldalisZealotCleave" State="Restricted" Requirements="LearnKaldalisCleave" />
+    </InfoArray>
+  </CAbilResearch>
+  <CAbilEffectTarget id="VoidHighTemplarMindBlast">
+    <CmdButtonArray index="Execute" Requirements="UseVoidHighTemplarMindBlast" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="VoidHighTemplarPsiOrb">
+    <Cost index="0">
+      <Vital index="Energy" value="100" />
+    </Cost>
+  </CAbilEffectTarget>
+  <CAbilWarpTrain id="WarpGateTrain">
+    <InfoArray index="Train9" Time="5" Unit="DarkArchon">
+      <Charge>
+        <CountMax value="1" />
+        <CountStart value="1" />
+        <CountUse value="1" />
+        <Link value="WarpGateTrain" />
+        <TimeUse value="45" />
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+      <Cooldown Link="WarpGateTrain" />
+      <Button DefaultButtonFace="DarkArchon" State="Restricted" Requirements="HaveDarkShrine" />
+    </InfoArray>
+    <InfoArray index="Train10" Time="5" Unit="Monitor">
+      <Charge>
+        <CountMax value="1" />
+        <CountStart value="1" />
+        <CountUse value="1" />
+        <Link value="WarpGateTrain" />
+        <TimeUse value="32" />
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+      <Button DefaultButtonFace="Monitor" State="Restricted" Requirements="HaveCyberneticsCore" />
+    </InfoArray>
+    <InfoArray index="Train11" Time="5" Unit="AlarakSupplicantWarpTrainDummy">
+      <Charge>
+        <CountMax value="1" />
+        <CountStart value="1" />
+        <CountUse value="1" />
+        <Link value="WarpGateTrain" />
+        <TimeUse value="21" />
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+      <Cooldown Link="WarpGateTrain" />
+      <Button DefaultButtonFace="WarpInSupplicant" State="Restricted" />
+    </InfoArray>
+    <InfoArray index="Train15" Time="5" Unit="SentryFenix">
+      <Charge>
+        <CountMax value="1" />
+        <CountStart value="1" />
+        <CountUse value="1" />
+        <Link value="WarpGateTrain" />
+        <TimeUse value="32" />
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+      <Cooldown Link="WarpGateTrain" />
+      <Button DefaultButtonFace="SentryFenix" State="Restricted" Requirements="HaveCyberneticsCore" />
+    </InfoArray>
+    <InfoArray index="Train16">
+      <Charge>
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+    </InfoArray>
+    <InfoArray index="Train17">
+      <Charge>
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+    </InfoArray>
+    <InfoArray index="Train18">
+      <Charge>
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+    </InfoArray>
+    <!--InfoArray index="Train12" Time="5" Unit="Supplicant">
+            <Charge>
+                <CountMax value="1"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="WarpGateTrain"/>
+                <TimeUse value="21"/>
+                <Flags index="EnableChargeTimeQueuing" value="1"/>
+            </Charge>
+            <Button DefaultButtonFace="WarpInSupplicantHidden" State="Restricted">
+                <Flags index="IgnoreUser" value="1"/>
+            </Button>
+        </InfoArray-->
+  </CAbilWarpTrain>
 </Catalog>

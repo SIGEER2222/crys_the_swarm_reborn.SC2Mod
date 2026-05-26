@@ -1,45 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-    <CBehaviorBuff id="AlarakKnockback">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
-        <Period value="0.0625"/>
-        <PeriodicEffect value="AlarakKnockbackAF"/>
-        <Modification Height="3" MoveSpeedMultiplier="2">
-            <StateFlags index="Stun" value="1"/>
-            <StateFlags index="Uncommandable" value="1"/>
-            <HeightTime index="Start" value="0.4"/>
-            <HeightTime index="Stop" value="0.2"/>
-        </Modification>
-        <Duration value="2">
-            <AccumulatorArray value="AlarakKnockbackR"/>
-        </Duration>
-        <FinalEffect value="AlarakKnockbackD"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AlarakBaneBladesSlow">
-        <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-slow.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Duration value="2"/>
-        <Modification MoveSpeedMultiplier="0.5" AttackSpeedMultiplier="0.5"/>
-        <BehaviorCategories index="Slow" value="1"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="AlarakBaneBladesStun">
-        <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-terran-ultrasonicpulse.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="2"/>
-        <Modification>
-            <StateFlags index="Stun" value="1"/>
-        </Modification>
-        <BehaviorCategories index="Stun" value="1"/>
-    </CBehaviorBuff>
-    <CBehaviorClickResponse id="AlarakLightningStrikes">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Relationship index="Self" value="0"/>
-        <Relationship index="Ally" value="0"/>
-        <Relationship index="Neutral" value="0"/>
-        <Relationship index="Enemy" value="0"/>
-    </CBehaviorClickResponse>
+  <CBehaviorBuff id="AlarakKnockback">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Period value="0.0625" />
+    <PeriodicEffect value="AlarakKnockbackAF" />
+    <Modification Height="3" MoveSpeedMultiplier="2">
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="Uncommandable" value="1" />
+      <HeightTime index="Start" value="0.4" />
+      <HeightTime index="Stop" value="0.2" />
+    </Modification>
+    <Duration value="2">
+      <AccumulatorArray value="AlarakKnockbackR" />
+    </Duration>
+    <FinalEffect value="AlarakKnockbackD" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakBaneBladesSlow">
+    <Alignment value="Negative" />
+    <InfoIcon value="Assets\Textures\btn-ability-terran-slow.dds" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="2" />
+    <Modification MoveSpeedMultiplier="0.5" AttackSpeedMultiplier="0.5" />
+    <BehaviorCategories index="Slow" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakBaneBladesStun">
+    <Alignment value="Negative" />
+    <InfoIcon value="Assets\Textures\btn-ability-terran-ultrasonicpulse.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="2" />
+    <Modification>
+      <StateFlags index="Stun" value="1" />
+    </Modification>
+    <BehaviorCategories index="Stun" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorClickResponse id="AlarakLightningStrikes">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Relationship index="Self" value="0" />
+    <Relationship index="Ally" value="0" />
+    <Relationship index="Neutral" value="0" />
+    <Relationship index="Enemy" value="0" />
+  </CBehaviorClickResponse>
+  <CBehaviorBuff id="AlarakEmpowerCaster">
+    <InfoIcon value="Assets\Textures\tip_rakshir.dds" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="20" />
+    <Period value="0.5" />
+    <PeriodicEffect value="AlarakEmpowerCasterSearch" />
+    <Alignment value="Positive" />
+    <Cost>
+      <Cooldown Link="Abil/AlarakEmpower" Location="Unit" TimeUse="180" />
+    </Cost>
+    <BuffFlags index="UpdateDurationWhileDisabled" value="1" />
+    <InfoFlags index="Hidden" value="1" />
+    <DisableValidatorArray value="NotHiddenSelf" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakEmpowerTarget">
+    <InfoIcon value="Assets\Textures\tip_rakshir.dds" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="1" />
+    <!--Modification MoveSpeedMultiplier="0.7" AttackSpeedMultiplier="0.9"/>
+        <Alignment value="Negative"/-->
+    <FinalEffect value="AlarakEmpowerTargetPlayerFinal" />
+    <MaxStackCount value="0" />
+    <MaxStackCountPerCaster value="1" />
+    <InfoFlags index="Hidden" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakReviveWarpIn">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="3.9" />
+    <Modification>
+      <ModifyFlags index="SuppressMoving" value="1" />
+      <ModifyFlags index="SuppressTurning" value="1" />
+      <StateFlags index="Invulnerable" value="1" />
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="SuppressCollision" value="1" />
+      <StateFlags index="NoDraw" value="1" />
+      <StateFlags index="Uncommandable" value="1" />
+      <!--StateFlags index="Unselectable" value="1"/-->
+      <StateFlags index="Untargetable" value="1" />
+    </Modification>
+    <ExpireEffect value="AlarakReviveWarpInIntro" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakReviveWarpInIntro">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="0.5" />
+    <Modification>
+      <ModifyFlags index="SuppressMoving" value="1" />
+      <ModifyFlags index="SuppressTurning" value="1" />
+      <StateFlags index="Invulnerable" value="1" />
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="SuppressCollision" value="1" />
+      <StateFlags index="Uncommandable" value="1" />
+      <StateFlags index="Untargetable" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakStalkerPhasingArmor">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <DamageResponse Handled="AlarakStalkerPhasingArmorBuffApply">
+      <Chance value="1" />
+      <Cost>
+        <Cooldown TimeUse="5" />
+      </Cost>
+    </DamageResponse>
+    <DisableValidatorArray value="HaveAlarakStalkerPhasingArmor" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakStalkerPhasingArmorBuff">
+    <InfoIcon value="Assets\Textures\btn-ability-protoss-phaseshift2.dds" />
+    <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
+    <Duration value="2" />
+    <Modification>
+      <StateFlags index="Invulnerable" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakZealotFrenziedOverload">
+    <InfoIcon value="Assets\Textures\btn-ability-protoss-voidarmor.dds" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="3" />
+    <Modification AttackSpeedMultiplier="2" />
+    <Alignment value="Positive" />
+    <DisableValidatorArray value="HaveAlarakZealotFrenziedOverload" />
+    <BehaviorCategories index="Fast" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AllUnitBehaviorController">
+    <InitialEffect value="AllUnitBehaviorControllerSet" />
+    <InfoFlags index="Hidden" value="1" />
+    <Duration value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AscendantSacrificeSelfBuff">
+    <BehaviorFlags index="Permanent" value="1" />
+    <InfoIcon value="Assets\Textures\tip_rakshir.dds" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <MaxStackCount value="10" />
+    <Modification>
+      <DamageDealtFraction index="Spell" value="0.25" />
+      <DamageDealtFraction index="Splash" value="0.25" />
+      <VitalMaxArray index="Shields" value="100" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ChronoBoostTarget">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <InitialEffect value="SOAMapWideChronoPassiveTarget" />
+    <RemoveValidatorArray value="DoesNotHaveSOAMapWideChronoPassiveTarget" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="FenixAltarOfPsiStormsPreventDestroy">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <DamageResponse>
+      <Fatal value="1" />
+      <Handled value="BrokenFenixAltarOfPsiStormsIssueOrder" />
+      <ModifyFraction value="0" />
+      <ModifyMinimumDamage value="1" />
+      <Chance value="1" />
+    </DamageResponse>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="FenixSentryGuardianZone">
+    <Alignment value="Positive" />
+    <InfoIcon value="Assets\Textures\btn-ability-protoss-shieldbattery.dds" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="0.6" />
+    <Modification>
+      <DamageTakenFraction index="Spell" value="-0.35" />
+      <DamageTakenFraction index="Melee" value="-0.35" />
+      <DamageTakenFraction index="Ranged" value="-0.35" />
+      <DamageTakenFraction index="Splash" value="-0.35" />
+      <DamageTakenFraction index="NoProc" value="-0.35" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="FenixTalisAdeptBounceShotMarker">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="2" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="FenixTalisAdeptPhaseShift">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Modification MoveSpeedBonus="1.75">
+      <StateFlags index="Benign" value="1" />
+      <StateFlags index="Passive" value="1" />
+      <StateFlags index="SuppressAttack" value="1" />
+      <StateFlags index="SuppressPassenger" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="FenixTalisAdeptPhaseShiftCaster">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Neutral" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <DisableValidatorArray value="NotBeingAbducted" />
+    <DisableValidatorArray value="KD8CasterKnockingBack" />
+    <Duration value="10.0625" />
+    <Modification>
+      <StateFlags index="SuppressPassenger" value="1" />
+    </Modification>
+    <FinalEffect value="FenixTalisAdeptPhaseShiftCancel" />
+    <ExpireEffect value="FenixTalisAdeptPhaseShiftCancel" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="MutatorAmonPhaseCannonInitialStun">
+    <InfoFlags index="Hidden" value="1" />
+    <BehaviorCategories index="Invulnerable" value="1" />
+    <BehaviorCategories index="Stun" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="1.5" />
+    <ExpireEffect value="MutatorAmonPhaseCannonTimedLife" />
+    <Modification>
+      <ModifyFlags index="DisableWeapons" value="1" />
+      <StateFlags index="Invulnerable" value="1" />
+      <StateFlags index="Stun" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="MutatorAmonPhaseCannonTimedLife" parent="TimedLife">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Duration value="30" />
+    <Modification>
+      <StateFlags index="SuppressFoodUsed" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SoulAbsorption">
+    <BehaviorFlags index="Permanent" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SquadSightPersistentBehavior">
+    <Period value="0.5" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="TriggerInheritsParentBuffs">
+    <BehaviorFlags index="Permanent" value="1" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+  </CBehaviorBuff>
 </Catalog>
