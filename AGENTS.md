@@ -89,6 +89,10 @@
 - 新指挥官或新机制优先接到统一框架，不要把通用逻辑散到每张地图。
 - `crys_the_swarm_reborn.SC2Mod` 只可作参考，不可直接当来源。
 - Launcher 能显示，不代表玩法已完成。
+- 官方原始合作指挥官数据以 `references/sc2-build-96883-casc-export` 为准；该目录来自 SC2 Build 96883 CASC 导出。
+- 提取官方等级加点/精通时，读取 `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` 里的 `CampaignPerk` / `MasteryUpgrades`，并补读 `mods/starcoop/commanders/egonstetmann.sc2mod` 与 `mods/starcoop/commanders/arcturusmengsk.sc2mod` 的 `userdata.xml`。
+- 不要把 `合作指挥官版起义狂潮/Mods/XM/**/CommanderAch` 当作官方原始数据源；它是当前 Mod 的 runtime/custom 映射。
+- 当前官方合作指挥官加点/精通提取脚本：`scripts/sc2/export-official-coop-progression.py`；当前输出目录：`docs/每日进度/2026-05-26官方合作指挥官原始精通加点/`。
 
 ### 文档
 
