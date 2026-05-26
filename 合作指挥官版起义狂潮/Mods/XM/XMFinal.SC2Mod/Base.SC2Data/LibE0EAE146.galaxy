@@ -38,6 +38,7 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_gv_commander = "";
     libE0EAE146_gv_abathurBiomassEffect = "";
     libE0EAE146_gv_abathurBiomassPlayer = 1;
+    libE0EAE146_gv_abathurBiomassTestPickupCreated = false;
 }
 
 // Functions
@@ -107,6 +108,18 @@ void libE0EAE146_gf_InitializeAbathurBiomass (int lp_player, string lp_collectEf
     libE0EAE146_gv_abathurBiomassEffect = lp_collectEffect;
     TriggerEnable(libE0EAE146_gt_AbathurBiomassDrop, true);
     TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, true);
+    if ((libE0EAE146_gv_abathurBiomassTestPickupCreated == false)) {
+        libE0EAE146_gf_CreateAbathurBiomassTestPickup(PointWithOffsetPolar(PlayerStartLocation(lp_player), 6.0, 45.0), 10);
+        libE0EAE146_gv_abathurBiomassTestPickupCreated = true;
+    }
+}
+
+void libE0EAE146_gf_CreateAbathurBiomassTestPickup (point lp_point, int lp_stack) {
+    if ((lp_point == null)) {
+        return;
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BiomassPickup", c_unitCreateIgnorePlacement, libE0EAE146_gv_abathurBiomassPlayer, lp_point);
+    UnitSetCustomValue(UnitLastCreated(), 63, IntToFixed(MaxI(1, lp_stack)));
 }
 
 bool libE0EAE146_gf_AbathurCanDropBiomass (unit lp_unit) {
