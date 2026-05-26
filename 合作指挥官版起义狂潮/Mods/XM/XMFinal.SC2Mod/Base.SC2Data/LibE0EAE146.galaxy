@@ -122,9 +122,6 @@ bool libE0EAE146_gf_AbathurCanDropBiomass (unit lp_unit) {
     if ((libNtve_gf_PlayerIsEnemy(UnitGetOwner(lp_unit), libE0EAE146_gv_abathurBiomassPlayer, libNtve_ge_PlayerRelation_Enemy) == false)) {
         return false;
     }
-    if ((UnitTypeGetCost(UnitGetType(lp_unit), c_unitCostMinerals) <= 0)) {
-        return false;
-    }
     if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true)) {
         return false;
     }
@@ -134,22 +131,55 @@ bool libE0EAE146_gf_AbathurCanDropBiomass (unit lp_unit) {
     if ((UnitHasBehavior2(lp_unit, "NoBiomassDrop") == true)) {
         return false;
     }
+    if ((libE0EAE146_gf_AbathurBiomassAmount(lp_unit) <= 0.0)) {
+        return false;
+    }
     return true;
 }
 
 fixed libE0EAE146_gf_AbathurBiomassAmount (unit lp_unit) {
     fixed lv_amount;
-    lv_amount = UnitGetPropertyInt(lp_unit, c_unitPropSuppliesUsed, c_unitPropNormal);
+    fixed lv_food;
+    int lv_resourceCost;
+
+    if ((lp_unit == null)) {
+        return 0.0;
+    }
     if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeHeroic) == true)) {
         lv_amount = 12.0;
     }
+    else if ((UnitHasBehavior2(lp_unit, "HybridUnitDummy") == true)) {
+        lv_amount = 12.0;
+    }
+    else if ((UnitHasBehavior2(lp_unit, "CritterExplode") == true)) {
+        lv_amount = 1.0;
+    }
     else {
-        lv_amount *= 2.0;
-        if ((lv_amount < 1.0)) {
-            lv_amount = 1.0;
+        lv_food = StringToFixed(CatalogFieldValueGet(c_gameCatalogUnit, UnitGetType(lp_unit), "Food", libE0EAE146_gv_abathurBiomassPlayer));
+        if ((lv_food < 0.0)) {
+            lv_amount = (-2.0 * lv_food);
         }
-        if ((lv_amount > 12.0)) {
-            lv_amount = 12.0;
+        else {
+            lv_amount = UnitGetPropertyInt(lp_unit, c_unitPropSuppliesUsed, c_unitPropNormal);
+            if ((lv_amount > 0.0)) {
+                lv_amount *= 2.0;
+            }
+        }
+
+        if ((lv_amount <= 0.0)) {
+            lv_resourceCost = UnitTypeGetCost(UnitGetType(lp_unit), c_unitCostSumMineralsVespene);
+            if ((lv_resourceCost > 0)) {
+                lv_amount = 1.0;
+            }
+        }
+
+        if ((lv_amount > 0.0)) {
+            if ((lv_amount < 1.0)) {
+                lv_amount = 1.0;
+            }
+            if ((lv_amount > 12.0)) {
+                lv_amount = 12.0;
+            }
         }
     }
     return lv_amount;
