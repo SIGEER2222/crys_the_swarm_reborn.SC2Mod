@@ -87,6 +87,12 @@ Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Patt
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern 'AlarakCoop' -Simple
 Test-Contains -Path (Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy") -Pattern 'CU_GPInit(1, "Alarak"' -Simple
 
+$xmFinalDocInfo = Join-Path $xmFinal "DocumentInfo"
+$xmFinalProvidesAlarakDependency = $false
+if (Test-Path -LiteralPath $xmFinalDocInfo) {
+    $xmFinalProvidesAlarakDependency = Select-String -LiteralPath $xmFinalDocInfo -Pattern 'file:Mods\XM\XMAlarak.SC2Mod' -SimpleMatch -Quiet
+}
+
 $requiredMaps = @(
     "traynor01",
     "ttosh03b",
@@ -100,7 +106,14 @@ $requiredMaps = @(
     "ttychus05"
 )
 foreach ($map in $requiredMaps) {
-    Test-Contains -Path (Join-Path $mapsRoot "$map.SC2Map\DocumentInfo") -Pattern 'file:Mods\XM\XMAlarak.SC2Mod' -Simple
+    $mapDocInfo = Join-Path $mapsRoot "$map.SC2Map\DocumentInfo"
+    $mapProvidesAlarakDependency = $false
+    if (Test-Path -LiteralPath $mapDocInfo) {
+        $mapProvidesAlarakDependency = Select-String -LiteralPath $mapDocInfo -Pattern 'file:Mods\XM\XMAlarak.SC2Mod' -SimpleMatch -Quiet
+    }
+    if ((-not $mapProvidesAlarakDependency) -and (-not $xmFinalProvidesAlarakDependency)) {
+        Add-Error "Neither $mapDocInfo nor $xmFinalDocInfo contains file:Mods\\XM\\XMAlarak.SC2Mod"
+    }
     Test-Contains -Path (Join-Path $mapsRoot "$map.SC2Map\MapScript.galaxy") -Pattern '== "Alarak"' -Simple
 }
 

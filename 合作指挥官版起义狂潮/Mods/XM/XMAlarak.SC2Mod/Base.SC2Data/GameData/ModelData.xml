@@ -1,301 +1,756 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-    <CModel id="Alarak_COOP_SoulAbsorption_Impact" parent="RaceImpactFX" Race="Protoss"/>
-    <CModel id="Alarak_COOP_SoulAbsorption_Missile" parent="RaceMissileFX" Race="Protoss">
-        <Events>
-            <Anim value="Stand,00"/>
-            <Name value="Alarak_SoulSteal_Missile"/>
-            <Type value="Sound"/>
-            <Time value="0.009000"/>
-            <Payload value="Alarak_SoulSteal_Missile"/>
-        </Events>
-        <SelectionRadius value="0.333200"/>
-        <ShadowRadius value="0.333200"/>
-    </CModel>
-    <CModel id="Alarak_COOP" parent="Unit" Race="Protoss">
-        <Occlusion value="Show"/>
-        <PlanetPanelCamera value="Star2CameraHigher09"/>
-        <Radius value="0.675000"/>
-        <ShadowRadius value="1.093700"/>
-        <TechPurchaseCamera value="Star2CameraHigher09"/>
-        <UnitGlossaryCamera value="Star2CameraHigher09"/>
-        <AnimAliases Anim="Attack,A,00" Alias="Attack,Upgrade,00"/>
-        <AnimAliases Anim="Attack,A,01" Alias="Attack,Upgrade,01"/>
-        <AnimAliases Anim="Attack,A,02" Alias="Attack,Upgrade,02"/>
-        <ScaleMax value="1.250000,1.250000,1.250000"/>
-        <ScaleMin value="1.250000,1.250000,1.250000"/>
-        <Events>
-            <Anim value="Attack,00"/>
-            <Name value="Alarak_BaneBlade_AttackImpactSound"/>
-            <Type value="Sound"/>
-            <Time value="0.200000"/>
-            <Payload value="Alarak_BaneBlade_AttackImpactSound"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,01"/>
-            <Name value="Alarak_BaneBlade_AttackImpactSound"/>
-            <Type value="Sound"/>
-            <Time value="0.201000"/>
-            <Payload value="Alarak_BaneBlade_AttackImpactSound"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,03"/>
-            <Name value="Alarak_BaneBlade_AttackImpactSound"/>
-            <Type value="Sound"/>
-            <Time value="0.201000"/>
-            <Payload value="Alarak_BaneBlade_AttackImpactSound"/>
-        </Events>
-    </CModel>
-    <CModel id="Alarak_COOP_AirAttack_Missile" parent="RaceMissileFX" Race="Protoss"/>
-    <CModel id="Alarak_COOP_Empower_Beam" parent="RaceMissileFX" Race="Protoss">
-        <Events>
-            <Anim value="Birth,00"/>
-            <Name value="Alarak_EmpowerBeam_StartStop"/>
-            <Type value="Sound"/>
-            <Time value="0.010000"/>
-            <Payload value="Alarak_EmpowerBeam_StartStop"/>
-        </Events>
-        <Events>
-            <Anim value="Death,00"/>
-            <Name value="Alarak_EmpowerBeam_StartStop"/>
-            <Type value="Sound"/>
-            <Time value="0.010000"/>
-            <Payload value="Alarak_EmpowerBeam_StartStop"/>
-        </Events>
-    </CModel>
-    <CModel id="Alarak_COOP_Empower_Impact" parent="RaceImpactFX" Race="Protoss"/>
-    <CModel id="Alarak_COOP_Empower_PowerUp" parent="RacePersistentSpellFX" Race="Protoss"/>
-    <CModel id="Alarak_COOP_LightningStrikes_Beam" parent="RaceMissileFX" Race="Protoss">
-        <Events>
-            <Anim value="Birth,00"/>
-            <Name value="Alarak_LightningStrike_AS"/>
-            <Type value="Actor"/>
-            <Time value="0.010000"/>
-            <Payload value="Alarak_LightningStrike_AS"/>
-        </Events>
-    </CModel>
-    <CModel id="Alarak_COOP_LightningStrikes_PowerUp" parent="RacePersistentSpellFX" Race="Protoss">
-        <Events>
-            <Anim value="Birth,00"/>
-            <Name value="Alarak_LightningCharge_Start"/>
-            <Type value="Sound"/>
-            <Time value="0.007000"/>
-            <Payload value="Alarak_LightningCharge_Start"/>
-        </Events>
-        <Events>
-            <Anim value="Stand,00"/>
-            <Name value="Alarak_LightningCharge_Stand"/>
-            <Type value="Sound"/>
-            <Time value="0.013000"/>
-            <Payload value="Alarak_LightningCharge_Stand"/>
-        </Events>
-        <Events>
-            <Anim value="Stand,00"/>
-            <Name value="Alarak_LightningCharge_Stand"/>
-            <Type value="Sound"/>
-            <Time value="0.267000"/>
-            <Payload value="Alarak_LightningCharge_Stand"/>
-        </Events>
-        <Events>
-            <Anim value="Stand,00"/>
-            <Name value="Alarak_LightningCharge_Stand"/>
-            <Type value="Sound"/>
-            <Time value="0.523000"/>
-            <Payload value="Alarak_LightningCharge_Stand"/>
-        </Events>
-        <Events>
-            <Anim value="Stand,00"/>
-            <Name value="Alarak_LightningCharge_Stand"/>
-            <Type value="Sound"/>
-            <Time value="0.849000"/>
-            <Payload value="Alarak_LightningCharge_Stand"/>
-        </Events>
-        <Events>
-            <Anim value="Stand,01"/>
-            <Name value="Alarak_LightningCharge_Stand"/>
-            <Type value="Sound"/>
-            <Time value="0.005000"/>
-            <Payload value="Alarak_LightningCharge_Stand"/>
-        </Events>
-        <Events>
-            <Anim value="Stand,01"/>
-            <Name value="Alarak_LightningCharge_Stand"/>
-            <Type value="Sound"/>
-            <Time value="0.208000"/>
-            <Payload value="Alarak_LightningCharge_Stand"/>
-        </Events>
-        <Events>
-            <Anim value="Stand,01"/>
-            <Name value="Alarak_LightningCharge_Stand"/>
-            <Type value="Sound"/>
-            <Time value="0.512000"/>
-            <Payload value="Alarak_LightningCharge_Stand"/>
-        </Events>
-        <Events>
-            <Anim value="Death,00"/>
-            <Name value="Alarak_LightningCharge_Stop"/>
-            <Type value="Sound"/>
-            <Time value="0.013000"/>
-            <Payload value="Alarak_LightningCharge_Stop"/>
-        </Events>
-    </CModel>
-    <CModel id="Alarak_COOP_RespawnBase" parent="Unit" Race="Protoss">
-        <ScaleMax value="1.250000,1.250000,1.250000"/>
-        <ScaleMin value="1.250000,1.250000,1.250000"/>
-        <Events>
-            <Anim value="Death,00"/>
-            <Name value="AlarakReviveBeacon_RingExplosion2"/>
-            <Type value="Sound"/>
-            <Time value="0.125000"/>
-            <Payload value="AlarakReviveBeacon_RingExplosion2"/>
-        </Events>
-        <Events>
-            <Anim value="Death,00"/>
-            <Name value="AlarakReviveBeacon_RingExplosion"/>
-            <Type value="Sound"/>
-            <Time value="3.998000"/>
-            <Payload value="AlarakReviveBeacon_RingExplosion"/>
-        </Events>
-        <Events>
-            <Anim value="Death,00"/>
-            <Name value="AlarakReviveBeacon_NearCompletion"/>
-            <Type value="Sound"/>
-            <Time value="0.100000"/>
-            <Payload value="AlarakReviveBeacon_NearCompletion"/>
-        </Events>
-    </CModel>
-    <CModel id="Alarak_COOP_Sacrifice_Impact" parent="RaceImpactFX" Race="Protoss"/>
-    <CModel id="Alarak_COOP_Sacrifice_Missile" parent="RaceMissileFX" Race="Protoss"/>
-    <CModel id="Alarak_COOP_Sacrifice_Missile_Impact" parent="RaceImpactFX" Race="Protoss"/>
-    <CModel id="Alarak_COOP_Sacrifice_Missile_Impact_Small" parent="RaceImpactFX" Race="Protoss">
-        <Model value="Assets\Effects\Protoss\Alarak_COOP_Sacrifice_Missile_Impact\Alarak_COOP_Sacrifice_Missile_Impact.m3"/>
-        <ScaleMax value="0.500000,0.500000,0.500000"/>
-        <ScaleMin value="0.500000,0.500000,0.500000"/>
-    </CModel>
-    <CModel id="Glaze_Alarak_COOP_Empower" parent="Glaze">
-        <EditorCategories value="Race:Protoss"/>
-    </CModel>
-    <CModel id="Glaze_Alarak_COOP_Sacrifice" parent="Glaze">
-        <EditorCategories value="Race:Protoss"/>
-    </CModel>
-    <CModel id="Glaze_Alarak_COOP_SoulAbsorption" parent="Glaze">
-        <EditorCategories value="Race:Protoss"/>
-    </CModel>
-    <CModel id="AlarakLightningStrike" parent="BuffFX">
-        <Model value="Assets\Doodads\ActorShapeSphere\ActorShapeSphere.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-        <Events>
-            <Anim value="Birth,00"/>
-            <Name value="Alarak_LightningStrike_AS"/>
-            <Type value="Actor"/>
-            <Time value="0.010000"/>
-            <Payload value="Alarak_LightningStrike_AS"/>
-        </Events>
-    </CModel>
-    <CModel id="AlarakEx2PortraitAddition">
-        <Flags index="VariationFallback" value="0"/>
-    </CModel>
-    <CModelFoliage id="AlarakStalkerForceBlast" parent="OneShotSpellFX">
-        <Model value="Assets\Effects\Zerg\HybridPlasmaMissileImpact\HybridPlasmaMissileImpact.m3"/>
-        <ScaleMax value="0.350000,0.350000,0.350000"/>
-        <ScaleMin value="0.350000,0.350000,0.350000"/>
-    </CModelFoliage>
-    <CModel id="Glaze_Alarak_COOP_PrestigeMechBuff" parent="PersistentSpellFX">
-        <Model value="Assets\Effects\Glaze\Glaze_Alarak_COOP_PrestigeMechBuff\Glaze_Alarak_COOP_PrestigeMechBuff.m3"/>
-        <EditorCategories value="Race:Terran"/>
-    </CModel>
-    <CModel id="PitAlarak">
-        <Model value="Assets\Units\Protoss\Jinara\Jinara.m3"/>
-    </CModel>
-    <CModel id="PitAlarakPowerConduit">
-        <Model value="Assets\Effects\Protoss\Coop_Alarak_Minion_Psionic_Beam\Coop_Alarak_Minion_Psionic_Beam.m3"/>
-    </CModel>
-    <CModel id="AlarakEmpowerBubble">
-        <Model value="Assets\Effects\Protoss\Alarak_Malash_Storm\Alarak_Malash_Storm.m3"/>
-        <ScaleMax value="0.500000,0.500000,0.500000"/>
-        <ScaleMin value="0.500000,0.500000,0.500000"/>
-    </CModel>
-    <CModel id="AlarakStructureOvercharge" parent="PersistentSpellFX">
-        <Model value="Assets\Effects\Protoss\PurifyLaunch\PurifyLaunch.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-    </CModel>
-    <CModel id="AlarakStructureOverchargeAttackImpact" parent="ImpactFX">
-        <Model value="Assets\Effects\Protoss\MothershipPurifyMissileImpact\MothershipPurifyMissileImpact.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-        <Events>
-            <Anim value="Death,00"/>
-            <Name value="MotherShip_Purify_AttackImpact"/>
-            <Type value="Sound"/>
-            <Time value="0.010000"/>
-            <Payload value="MotherShip_Purify_AttackImpact"/>
-        </Events>
-    </CModel>
-    <CModel id="AlarakStructureOverchargeWeapon" parent="MissileFX">
-        <Model value="Assets\Effects\Protoss\MothershipPurifyMissile\MothershipPurifyMissile.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-        <Events>
-            <Anim value="Stand,00"/>
-            <Name value="MotherShip_Purify_AttackLaunch"/>
-            <Type value="Sound"/>
-            <Time value="0.010000"/>
-            <Payload value="MotherShip_Purify_AttackLaunch"/>
-        </Events>
-    </CModel>
-    <CModel id="AlarakTheStrongestSurviveSupplicantSacrificeDamage" parent="OneShotSpellFX">
-        <Model value="Assets\Effects\Zerg\HybridPlasmaMissileImpact\HybridPlasmaMissileImpact.m3"/>
-        <ScaleMax value="0.600000,0.600000,0.600000"/>
-        <ScaleMin value="0.600000,0.600000,0.600000"/>
-    </CModel>
-    <CModel id="Alarak_COOP_Sacrifice_CDR" parent="RaceImpactFX" Race="Protoss"/>
-    <CModel id="AlarakAttackStun" parent="PersistentSpellFX">
-        <Model value="Assets\Effects\Zerg\UnitStunImpact\UnitStunImpact.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-    </CModel>
-    <CModel id="AlarakAttackSlow" parent="BuffFX">
-        <Model value="Assets\Effects\Terran\PsiDisruptorImpact\PsiDisruptorImpact.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-        <SelectionRadius value="0.400000"/>
-        <ShadowRadius value="0.400000"/>
-    </CModel>
-    <CModel id="AlarakLightningStrikesAttackBeam" parent="PersistentSpellFX">
-        <Model value="Assets\Effects\Protoss\ArchonBeam\ArchonBeam.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-    </CModel>
-    <CModel id="AlarakAAWeapon" parent="MissileFX">
-        <Model value="Assets\Doodads\LightningBolt\LightningBolt.m3"/>
-    </CModel>
-    <CModel id="AlarakAAAttackImpact" parent="ImpactFX">
-        <Model value="Assets\Doodads\Sparks_Protoss\Sparks_Protoss.m3"/>
-    </CModel>
-    <CModel id="AlarakAABeam" parent="PersistentSpellFX">
-        <Model value="Assets\Effects\Protoss\Alarak_Attack_Beam\Alarak_Attack_Beam.m3"/>
-        <EditorCategories value="Race:Terran"/>
-    </CModel>
-    <CModel id="Probe_Taldarim_Alarak" parent="ProbeBase">
-        <Model value="Assets\Units\Protoss\Probe_Taldarim\Probe_Taldarim.m3"/>
-    </CModel>
-    <CModel id="Probe_Taldarim_Collection_Death_Alarak">
-        <Model value="Assets\Units\Protoss\Probe_Taldarim_Death\Probe_Taldarim_Death.m3"/>
-    </CModel>
-    <CModel id="RoboticsSupportBay_Taldarim_Alarak" parent="RoboticsSupportBay">
-        <Model value="Assets\Buildings\Protoss\RoboticsSupportBay_Taldarim\RoboticsSupportBay_Taldarim.m3"/>
-    </CModel>
-    <CModel id="RoboticsSupportBay_Taldarim_Death_Alarak" parent="RoboticsSupportBayDeath">
-        <Model value="Assets\Buildings\Protoss\RoboticsSupportBay_Taldarim_Death\RoboticsSupportBay_Taldarim_Death.m3"/>
-    </CModel>
-    <CModel id="Stalker_Taldarim_Alarak" parent="StalkerBase">
-        <Model value="Assets\Units\Protoss\Stalker_TalDarim\Stalker_TalDarim.m3"/>
-    </CModel>
-    <CModel id="Stalker_Taldarim_Death_Alarak" parent="StalkerDeathBase">
-        <Model value="Assets\Units\Protoss\Stalker_TalDarim_Death\Stalker_TalDarim_Death.m3"/>
-    </CModel>
-    <CModel id="WarpPrism_Taldarim_Alarak" parent="WarpPrismBase">
-        <Model value="Assets\Units\Protoss\WarpPrism_Taldarim\WarpPrism_Taldarim.m3"/>
-    </CModel>
-    <CModel id="WarpPrism_Taldarim_Death_Alarak" parent="WarpPrismDeathBase">
-        <Model value="Assets\Units\Protoss\WarpPrism_Taldarim_Death\WarpPrism_Taldarim_Death.m3"/>
-    </CModel>
-    <CModel id="WarpPrism_Taldarim_Phasing_Death_Alarak" parent="WarpPrismPhasingDeathBase">
-        <Model value="Assets\Units\Protoss\WarpPrism_Taldarim_OpenDeath\WarpPrism_Taldarim_OpenDeath.m3"/>
-    </CModel>
+  <CModel id="Alarak_COOP_SoulAbsorption_Impact" parent="RaceImpactFX" Race="Protoss" />
+  <CModel id="Alarak_COOP_SoulAbsorption_Missile" parent="RaceMissileFX" Race="Protoss">
+    <Events>
+      <Anim value="Stand,00" />
+      <Name value="Alarak_SoulSteal_Missile" />
+      <Type value="Sound" />
+      <Time value="0.009000" />
+      <Payload value="Alarak_SoulSteal_Missile" />
+    </Events>
+    <SelectionRadius value="0.333200" />
+    <ShadowRadius value="0.333200" />
+  </CModel>
+  <CModel id="Alarak_COOP" parent="Unit" Race="Protoss">
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraHigher09" />
+    <Radius value="0.675000" />
+    <ShadowRadius value="1.093700" />
+    <TechPurchaseCamera value="Star2CameraHigher09" />
+    <UnitGlossaryCamera value="Star2CameraHigher09" />
+    <AnimAliases Anim="Attack,A,00" Alias="Attack,Upgrade,00" />
+    <AnimAliases Anim="Attack,A,01" Alias="Attack,Upgrade,01" />
+    <AnimAliases Anim="Attack,A,02" Alias="Attack,Upgrade,02" />
+    <ScaleMax value="1.250000,1.250000,1.250000" />
+    <ScaleMin value="1.250000,1.250000,1.250000" />
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Alarak_BaneBlade_AttackImpactSound" />
+      <Type value="Sound" />
+      <Time value="0.200000" />
+      <Payload value="Alarak_BaneBlade_AttackImpactSound" />
+    </Events>
+    <Events>
+      <Anim value="Attack,01" />
+      <Name value="Alarak_BaneBlade_AttackImpactSound" />
+      <Type value="Sound" />
+      <Time value="0.201000" />
+      <Payload value="Alarak_BaneBlade_AttackImpactSound" />
+    </Events>
+    <Events>
+      <Anim value="Attack,03" />
+      <Name value="Alarak_BaneBlade_AttackImpactSound" />
+      <Type value="Sound" />
+      <Time value="0.201000" />
+      <Payload value="Alarak_BaneBlade_AttackImpactSound" />
+    </Events>
+  </CModel>
+  <CModel id="Alarak_COOP_AirAttack_Missile" parent="RaceMissileFX" Race="Protoss" />
+  <CModel id="Alarak_COOP_Empower_Beam" parent="RaceMissileFX" Race="Protoss">
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="Alarak_EmpowerBeam_StartStop" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="Alarak_EmpowerBeam_StartStop" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="Alarak_EmpowerBeam_StartStop" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="Alarak_EmpowerBeam_StartStop" />
+    </Events>
+  </CModel>
+  <CModel id="Alarak_COOP_Empower_Impact" parent="RaceImpactFX" Race="Protoss" />
+  <CModel id="Alarak_COOP_Empower_PowerUp" parent="RacePersistentSpellFX" Race="Protoss" />
+  <CModel id="Alarak_COOP_LightningStrikes_Beam" parent="RaceMissileFX" Race="Protoss">
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="Alarak_LightningStrike_AS" />
+      <Type value="Actor" />
+      <Time value="0.010000" />
+      <Payload value="Alarak_LightningStrike_AS" />
+    </Events>
+  </CModel>
+  <CModel id="Alarak_COOP_LightningStrikes_PowerUp" parent="RacePersistentSpellFX" Race="Protoss">
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="Alarak_LightningCharge_Start" />
+      <Type value="Sound" />
+      <Time value="0.007000" />
+      <Payload value="Alarak_LightningCharge_Start" />
+    </Events>
+    <Events>
+      <Anim value="Stand,00" />
+      <Name value="Alarak_LightningCharge_Stand" />
+      <Type value="Sound" />
+      <Time value="0.013000" />
+      <Payload value="Alarak_LightningCharge_Stand" />
+    </Events>
+    <Events>
+      <Anim value="Stand,00" />
+      <Name value="Alarak_LightningCharge_Stand" />
+      <Type value="Sound" />
+      <Time value="0.267000" />
+      <Payload value="Alarak_LightningCharge_Stand" />
+    </Events>
+    <Events>
+      <Anim value="Stand,00" />
+      <Name value="Alarak_LightningCharge_Stand" />
+      <Type value="Sound" />
+      <Time value="0.523000" />
+      <Payload value="Alarak_LightningCharge_Stand" />
+    </Events>
+    <Events>
+      <Anim value="Stand,00" />
+      <Name value="Alarak_LightningCharge_Stand" />
+      <Type value="Sound" />
+      <Time value="0.849000" />
+      <Payload value="Alarak_LightningCharge_Stand" />
+    </Events>
+    <Events>
+      <Anim value="Stand,01" />
+      <Name value="Alarak_LightningCharge_Stand" />
+      <Type value="Sound" />
+      <Time value="0.005000" />
+      <Payload value="Alarak_LightningCharge_Stand" />
+    </Events>
+    <Events>
+      <Anim value="Stand,01" />
+      <Name value="Alarak_LightningCharge_Stand" />
+      <Type value="Sound" />
+      <Time value="0.208000" />
+      <Payload value="Alarak_LightningCharge_Stand" />
+    </Events>
+    <Events>
+      <Anim value="Stand,01" />
+      <Name value="Alarak_LightningCharge_Stand" />
+      <Type value="Sound" />
+      <Time value="0.512000" />
+      <Payload value="Alarak_LightningCharge_Stand" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="Alarak_LightningCharge_Stop" />
+      <Type value="Sound" />
+      <Time value="0.013000" />
+      <Payload value="Alarak_LightningCharge_Stop" />
+    </Events>
+  </CModel>
+  <CModel id="Alarak_COOP_RespawnBase" parent="Unit" Race="Protoss">
+    <ScaleMax value="1.250000,1.250000,1.250000" />
+    <ScaleMin value="1.250000,1.250000,1.250000" />
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="AlarakReviveBeacon_RingExplosion2" />
+      <Type value="Sound" />
+      <Time value="0.125000" />
+      <Payload value="AlarakReviveBeacon_RingExplosion2" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="AlarakReviveBeacon_RingExplosion" />
+      <Type value="Sound" />
+      <Time value="3.998000" />
+      <Payload value="AlarakReviveBeacon_RingExplosion" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="AlarakReviveBeacon_NearCompletion" />
+      <Type value="Sound" />
+      <Time value="0.100000" />
+      <Payload value="AlarakReviveBeacon_NearCompletion" />
+    </Events>
+  </CModel>
+  <CModel id="Alarak_COOP_Sacrifice_Impact" parent="RaceImpactFX" Race="Protoss" />
+  <CModel id="Alarak_COOP_Sacrifice_Missile" parent="RaceMissileFX" Race="Protoss" />
+  <CModel id="Alarak_COOP_Sacrifice_Missile_Impact" parent="RaceImpactFX" Race="Protoss" />
+  <CModel id="Alarak_COOP_Sacrifice_Missile_Impact_Small" parent="RaceImpactFX" Race="Protoss">
+    <Model value="Assets\Effects\Protoss\Alarak_COOP_Sacrifice_Missile_Impact\Alarak_COOP_Sacrifice_Missile_Impact.m3" />
+    <ScaleMax value="0.500000,0.500000,0.500000" />
+    <ScaleMin value="0.500000,0.500000,0.500000" />
+  </CModel>
+  <CModel id="Glaze_Alarak_COOP_Empower" parent="Glaze">
+    <EditorCategories value="Race:Protoss" />
+  </CModel>
+  <CModel id="Glaze_Alarak_COOP_Sacrifice" parent="Glaze">
+    <EditorCategories value="Race:Protoss" />
+  </CModel>
+  <CModel id="Glaze_Alarak_COOP_SoulAbsorption" parent="Glaze">
+    <EditorCategories value="Race:Protoss" />
+  </CModel>
+  <CModel id="AlarakLightningStrike" parent="BuffFX">
+    <Model value="Assets\Doodads\ActorShapeSphere\ActorShapeSphere.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="Alarak_LightningStrike_AS" />
+      <Type value="Actor" />
+      <Time value="0.010000" />
+      <Payload value="Alarak_LightningStrike_AS" />
+    </Events>
+  </CModel>
+  <CModel id="AlarakEx2PortraitAddition">
+    <Flags index="VariationFallback" value="0" />
+  </CModel>
+  <CModelFoliage id="AlarakStalkerForceBlast" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Zerg\HybridPlasmaMissileImpact\HybridPlasmaMissileImpact.m3" />
+    <ScaleMax value="0.350000,0.350000,0.350000" />
+    <ScaleMin value="0.350000,0.350000,0.350000" />
+  </CModelFoliage>
+  <CModel id="Glaze_Alarak_COOP_PrestigeMechBuff" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Glaze\Glaze_Alarak_COOP_PrestigeMechBuff\Glaze_Alarak_COOP_PrestigeMechBuff.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="PitAlarak">
+    <Model value="Assets\Units\Protoss\Jinara\Jinara.m3" />
+  </CModel>
+  <CModel id="PitAlarakPowerConduit">
+    <Model value="Assets\Effects\Protoss\Coop_Alarak_Minion_Psionic_Beam\Coop_Alarak_Minion_Psionic_Beam.m3" />
+  </CModel>
+  <CModel id="AlarakEmpowerBubble">
+    <Model value="Assets\Effects\Protoss\Alarak_Malash_Storm\Alarak_Malash_Storm.m3" />
+    <ScaleMax value="0.500000,0.500000,0.500000" />
+    <ScaleMin value="0.500000,0.500000,0.500000" />
+  </CModel>
+  <CModel id="AlarakStructureOvercharge" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\PurifyLaunch\PurifyLaunch.m3" />
+    <EditorCategories value="Race:Protoss" />
+  </CModel>
+  <CModel id="AlarakStructureOverchargeAttackImpact" parent="ImpactFX">
+    <Model value="Assets\Effects\Protoss\MothershipPurifyMissileImpact\MothershipPurifyMissileImpact.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="MotherShip_Purify_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="MotherShip_Purify_AttackImpact" />
+    </Events>
+  </CModel>
+  <CModel id="AlarakStructureOverchargeWeapon" parent="MissileFX">
+    <Model value="Assets\Effects\Protoss\MothershipPurifyMissile\MothershipPurifyMissile.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <Events>
+      <Anim value="Stand,00" />
+      <Name value="MotherShip_Purify_AttackLaunch" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="MotherShip_Purify_AttackLaunch" />
+    </Events>
+  </CModel>
+  <CModel id="AlarakTheStrongestSurviveSupplicantSacrificeDamage" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Zerg\HybridPlasmaMissileImpact\HybridPlasmaMissileImpact.m3" />
+    <ScaleMax value="0.600000,0.600000,0.600000" />
+    <ScaleMin value="0.600000,0.600000,0.600000" />
+  </CModel>
+  <CModel id="Alarak_COOP_Sacrifice_CDR" parent="RaceImpactFX" Race="Protoss" />
+  <CModel id="AlarakAttackStun" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\UnitStunImpact\UnitStunImpact.m3" />
+    <EditorCategories value="Race:Protoss" />
+  </CModel>
+  <CModel id="AlarakAttackSlow" parent="BuffFX">
+    <Model value="Assets\Effects\Terran\PsiDisruptorImpact\PsiDisruptorImpact.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <SelectionRadius value="0.400000" />
+    <ShadowRadius value="0.400000" />
+  </CModel>
+  <CModel id="AlarakLightningStrikesAttackBeam" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\ArchonBeam\ArchonBeam.m3" />
+    <EditorCategories value="Race:Protoss" />
+  </CModel>
+  <CModel id="AlarakAAWeapon" parent="MissileFX">
+    <Model value="Assets\Doodads\LightningBolt\LightningBolt.m3" />
+  </CModel>
+  <CModel id="AlarakAAAttackImpact" parent="ImpactFX">
+    <Model value="Assets\Doodads\Sparks_Protoss\Sparks_Protoss.m3" />
+  </CModel>
+  <CModel id="AlarakAABeam" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\Alarak_Attack_Beam\Alarak_Attack_Beam.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="Probe_Taldarim_Alarak" parent="ProbeBase">
+    <Model value="Assets\Units\Protoss\Probe_Taldarim\Probe_Taldarim.m3" />
+  </CModel>
+  <CModel id="Probe_Taldarim_Collection_Death_Alarak">
+    <Model value="Assets\Units\Protoss\Probe_Taldarim_Death\Probe_Taldarim_Death.m3" />
+  </CModel>
+  <CModel id="RoboticsSupportBay_Taldarim_Alarak" parent="RoboticsSupportBay">
+    <Model value="Assets\Buildings\Protoss\RoboticsSupportBay_Taldarim\RoboticsSupportBay_Taldarim.m3" />
+  </CModel>
+  <CModel id="RoboticsSupportBay_Taldarim_Death_Alarak" parent="RoboticsSupportBayDeath">
+    <Model value="Assets\Buildings\Protoss\RoboticsSupportBay_Taldarim_Death\RoboticsSupportBay_Taldarim_Death.m3" />
+  </CModel>
+  <CModel id="Stalker_Taldarim_Alarak" parent="StalkerBase">
+    <Model value="Assets\Units\Protoss\Stalker_TalDarim\Stalker_TalDarim.m3" />
+  </CModel>
+  <CModel id="Stalker_Taldarim_Death_Alarak" parent="StalkerDeathBase">
+    <Model value="Assets\Units\Protoss\Stalker_TalDarim_Death\Stalker_TalDarim_Death.m3" />
+  </CModel>
+  <CModel id="WarpPrism_Taldarim_Alarak" parent="WarpPrismBase">
+    <Model value="Assets\Units\Protoss\WarpPrism_Taldarim\WarpPrism_Taldarim.m3" />
+  </CModel>
+  <CModel id="WarpPrism_Taldarim_Death_Alarak" parent="WarpPrismDeathBase">
+    <Model value="Assets\Units\Protoss\WarpPrism_Taldarim_Death\WarpPrism_Taldarim_Death.m3" />
+  </CModel>
+  <CModel id="WarpPrism_Taldarim_Phasing_Death_Alarak" parent="WarpPrismPhasingDeathBase">
+    <Model value="Assets\Units\Protoss\WarpPrism_Taldarim_OpenDeath\WarpPrism_Taldarim_OpenDeath.m3" />
+  </CModel>
+  <CModel id="AdeptFenix" parent="Unit" Race="Protoss">
+    <Model value="Assets\Units\Protoss\Adept_Purifier_EX3_Coop\Adept_Purifier_EX3_Coop.m3" />
+    <Occlusion value="Show" />
+    <SquibTypeDefault value="Metal" />
+    <PlanetPanelCamera value="Star2CameraMid05" />
+    <TechPurchaseCamera value="Star2CameraMid05" />
+    <UnitGlossaryCamera value="Star2CameraMid05" />
+  </CModel>
+  <CModel id="AscendantSacrificeEffect" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\Colossus_FireBeam_Unit_Impact\Colossus_FireBeam_Unit_Impact.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <ScaleMax value="1.000000,1.000000,0.500000" />
+    <ScaleMin value="1.000000,1.000000,0.500000" />
+  </CModel>
+  <CModel id="FenixAltarOfPsiStorms" parent="Building" Race="Protoss">
+    <Model value="Assets\Buildings\Protoss\Conclave_Purifier_COOP\Conclave_Purifier_COOP.m3" />
+    <!--ScaleMax value="0.750000,0.750000,0.200000"/>
+        <ScaleMin value="0.750000,0.750000,0.200000"/-->
+    <SelectionLayer value="2" />
+    <SelectionRadius value="1.999700" />
+    <SquibTypeDefault value="Metal" />
+    <Radius value="1.500000" />
+    <ShadowRadius value="1.999700" />
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Beam01" />
+      <Type value="Sound" />
+      <Time value="0.683000" />
+      <Payload value="PurifierConclave_RepairBot_Beam01" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Beam02" />
+      <Type value="Sound" />
+      <Time value="1.487000" />
+      <Payload value="PurifierConclave_RepairBot_Beam02" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Beam01" />
+      <Type value="Sound" />
+      <Time value="4.017000" />
+      <Payload value="PurifierConclave_RepairBot_Beam01" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Beam02" />
+      <Type value="Sound" />
+      <Time value="5.341000" />
+      <Payload value="PurifierConclave_RepairBot_Beam02" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Beam01" />
+      <Type value="Sound" />
+      <Time value="7.762000" />
+      <Payload value="PurifierConclave_RepairBot_Beam01" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Fly" />
+      <Type value="Sound" />
+      <Time value="2.185000" />
+      <Payload value="PurifierConclave_RepairBot_Fly" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Fly" />
+      <Type value="Sound" />
+      <Time value="6.009000" />
+      <Payload value="PurifierConclave_RepairBot_Fly" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Fly" />
+      <Type value="Sound" />
+      <Time value="7.045000" />
+      <Payload value="PurifierConclave_RepairBot_Fly" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Fly" />
+      <Type value="Sound" />
+      <Time value="9.004000" />
+      <Payload value="PurifierConclave_RepairBot_Fly" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Fly" />
+      <Type value="Sound" />
+      <Time value="9.435000" />
+      <Payload value="PurifierConclave_RepairBot_Fly" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_RepairBot_Fly" />
+      <Type value="Sound" />
+      <Time value="0.063000" />
+      <Payload value="PurifierConclave_RepairBot_Fly" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="0.544000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="1.024000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="4.574000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="5.044000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="5.930000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="0.009000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,End,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="0.014000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,End,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="0.516000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,End,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="0.887000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,End,00" />
+      <Name value="PurifierConclave_RepairBot_Beam01" />
+      <Type value="Sound" />
+      <Time value="0.018000" />
+      <Payload value="PurifierConclave_RepairBot_Beam01" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,Start,00" />
+      <Name value="PurifierConclave_RepairBot_Beam01" />
+      <Type value="Sound" />
+      <Time value="0.018000" />
+      <Payload value="PurifierConclave_RepairBot_Beam01" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,Start,00" />
+      <Name value="PurifierConclave_RepairBot_Fly" />
+      <Type value="Sound" />
+      <Time value="0.215000" />
+      <Payload value="PurifierConclave_RepairBot_Fly" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,Start,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="0.026000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,Start,00" />
+      <Name value="PurifierConclave_Repair_Sparks" />
+      <Type value="Sound" />
+      <Time value="0.580000" />
+      <Payload value="PurifierConclave_Repair_Sparks" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,End,00" />
+      <Name value="PurifierConclave_RepairBot_Fly" />
+      <Type value="Sound" />
+      <Time value="0.014000" />
+      <Payload value="PurifierConclave_RepairBot_Fly" />
+    </Events>
+    <ScaleMax value="0.900000,0.900000,0.900000" />
+    <ScaleMin value="0.900000,0.900000,0.900000" />
+  </CModel>
+  <CModel id="FenixAltarOfPsiStormsResearchAdept" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\AI_Champion_Hologram_Adept\AI_Champion_Hologram_Adept.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="FenixAltarOfPsiStormsResearchCarrier" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\AI_Champion_Hologram_Carrier\AI_Champion_Hologram_Carrier.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="FenixAltarOfPsiStormsResearchColossus" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\AI_Champion_Hologram_Colossus\AI_Champion_Hologram_Colossus.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="FenixAltarOfPsiStormsResearchImmortal" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\AI_Champion_Hologram_Immortal\AI_Champion_Hologram_Immortal.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="FenixAltarOfPsiStormsResearchScout" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\AI_Champion_Hologram_Scout\AI_Champion_Hologram_Scout.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="FenixAltarOfPsiStormsResearchZealot" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\AI_Champion_Hologram_Zealot\AI_Champion_Hologram_Zealot.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="FenixChampionSwapImpactAdept" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\AI_Champion_Ground_Coop_WarpIn\AI_Champion_Ground_Coop_WarpIn.m3" />
+    <Occlusion value="Show" />
+    <EditorCategories value="Race:Protoss" />
+    <ScaleMax value="0.600000,0.600000,0.600000" />
+    <ScaleMin value="0.600000,0.600000,0.600000" />
+    <Flags index="CloakedUndetectedIsHidden" value="1" />
+  </CModel>
+  <CModel id="FenixChampionSwapImpactZealot" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\AI_Champion_Ground_Coop_WarpIn\AI_Champion_Ground_Coop_WarpIn.m3" />
+    <Occlusion value="Show" />
+    <EditorCategories value="Race:Protoss" />
+    <ScaleMax value="0.800000,0.800000,0.800000" />
+    <ScaleMin value="0.800000,0.800000,0.800000" />
+    <Flags index="CloakedUndetectedIsHidden" value="1" />
+  </CModel>
+  <CModel id="FenixKaldalisZealot">
+    <Model value="Assets\Units\Protoss\Zealot_Purifier_Collection\Zealot_Purifier_Collection.m3" />
+    <ScaleMax value="1.440000,1.440000,1.440000" />
+    <ScaleMin value="1.440000,1.440000,1.440000" />
+    <!-- C for cleave, D for dash/dive -->
+    <AnimAliases Anim="Attack,00" Alias="Attack,C,00" />
+    <AnimAliases Anim="Attack,01" Alias="Attack,C,00" />
+    <AnimAliases Anim="Attack,02" Alias="Attack,D,00" />
+    <!--RequiredAnims value="Assets\Units\Protoss\Zealot_SwarmAnims\Zealot_SwarmAnims.m3a"/-->
+    <Occlusion value="Show" />
+    <SelectionRadius value="0.416500" />
+    <SquibTypeDefault value="Metal" />
+    <Radius value="0.375000" />
+    <TechPurchaseCamera value="Star2CameraMid05" />
+    <UnitGlossaryCamera value="Star2CameraMid05" />
+    <PlanetPanelCamera value="Star2CameraMid05" />
+    <ShadowRadius value="0.416500" />
+    <TextureDeclares Prefix="zealot_">
+      <Adaptions TriggerOnSubstring="_Diffuse" Slot="main" />
+    </TextureDeclares>
+    <Events>
+      <Anim value="Jump,Start,00" />
+      <Name value="FenixKaldalisZealot_Jump" />
+      <Type value="Sound" />
+      <Time value="0.006000" />
+      <Payload value="FenixKaldalisZealot_Jump" />
+    </Events>
+    <Events>
+      <Anim value="Jump,End,00" />
+      <Name value="FenixKaldalisZealot_Land" />
+      <Type value="Sound" />
+      <Time value="0.022000" />
+      <Payload value="FenixKaldalisZealot_Land" />
+    </Events>
+  </CModel>
+  <CModel id="FenixKaldalisZealotChargeThrust" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Protoss\Zealot_Purifier_Collection_Charge_Thrust\Zealot_Purifier_Collection_Charge_Thrust.m3" />
+    <Occlusion value="Show" />
+    <EditorCategories value="Race:Protoss" />
+  </CModel>
+  <CModel id="FenixKaldalisZealotDeath" parent="UnitDeath" Race="Protoss">
+    <Model value="Assets\Units\Protoss\Zealot_Purifier_Collection_Death\Zealot_Purifier_Collection_Death.m3" />
+    <Occlusion value="Show" />
+    <LowQualityModel value="ProtossSpiritDeathLow" />
+    <SelectionRadius value="0.555400" />
+    <ShadowRadius value="0.555400" />
+    <VariationCount value="2" />
+  </CModel>
+  <CModel id="FenixKaldalisZealotPlacement" parent="Placement" Race="Protoss">
+    <Model value="Assets\Units\Protoss\Zealot_Purifier_Placement\Zealot_Purifier_Placement.m3" />
+    <Radius value="-1.000000" />
+    <Lighting value="Zealot" />
+    <Occlusion value="Show" />
+    <SelectionRadius value="0.416500" />
+    <ShadowRadius value="0.416500" />
+  </CModel>
+  <CModel id="FenixKaldalisZealotPortrait" parent="Portrait" Race="Protoss">
+    <Model value="Assets\Portraits\Protoss\Zealot_Purifier_Collection_Kaldalis_Portrait\Zealot_Purifier_Collection_Kaldalis_Portrait.m3" />
+    <Image value="Assets\Textures\zealot_purifier_collection_kaldalis_static.dds" />
+  </CModel>
+  <CModel id="FenixKaldalisZealotReviveCorpse">
+    <Model value="Assets\Effects\Protoss\Zealot_Purifier_Reconstruction\Zealot_Purifier_Reconstruction.m3" />
+    <Occlusion value="Show" />
+    <SelectionRadius value="0.416500" />
+    <SquibTypeDefault value="Metal" />
+    <Radius value="0.375000" />
+    <ShadowRadius value="0.416500" />
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="ZealotPurifier_Reconstruction_Start" />
+      <Type value="Sound" />
+      <Time value="2.169000" />
+      <Payload value="ZealotPurifier_Reconstruction_Start" />
+    </Events>
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="ZealotPurifier_Reconstruction_ExplodeStart" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="ZealotPurifier_Reconstruction_ExplodeStart" />
+    </Events>
+  </CModel>
+  <CModel id="FenixKaldalisZealotWarpIn" parent="OneShotSpellFX">
+    <Model value="Assets\Units\Protoss\Zealot_Purifier_WarpIn\Zealot_Purifier_WarpIn.m3" />
+    <Occlusion value="Show" />
+    <EditorCategories value="Race:Protoss" />
+    <LowQualityModel value="ProtossUnitBirth" />
+    <SelectionRadius value="0.555400" />
+    <ShadowRadius value="0.555400" />
+  </CModel>
+  <CModel id="FenixTalisAdept" parent="Unit" Race="Protoss">
+    <Model value="Assets\Units\Protoss\Adept_Purifier_EX3_Coop\Adept_Purifier_EX3_Coop.m3" />
+    <Occlusion value="Show" />
+    <SquibTypeDefault value="Metal" />
+    <PlanetPanelCamera value="Star2CameraMid05" />
+    <TechPurchaseCamera value="Star2CameraMid05" />
+    <UnitGlossaryCamera value="Star2CameraMid05" />
+    <ScaleMax value="1.200000,1.200000,1.200000" />
+    <ScaleMin value="1.200000,1.200000,1.200000" />
+  </CModel>
+  <CModel id="FenixTalisAdeptDeath" parent="UnitDeath" Race="Protoss">
+    <Model value="Assets\Units\Protoss\Purifier_Adept_Death\Purifier_Adept_Death.m3" />
+    <LowQualityModel value="ProtossSpiritDeathLow" />
+    <Occlusion value="Show" />
+    <SelectionRadius value="0.555400" />
+    <ShadowRadius value="0.555400" />
+  </CModel>
+  <CModel id="FenixTalisAdeptDeathRagdoll" parent="UnitDeathRagdoll" Race="Protoss">
+    <Model value="Assets\Units\Protoss\Purifier_AdeptDeathRagdoll\Purifier_AdeptDeathRagdoll.m3" />
+    <!-- We can totally throttle his physics, b/c he fades out, so it'll make his death look
+             more violent w/out his ragdoll flying across the screen in a visible way. -->
+    <PhysicsForceFactor value="2.000000" />
+  </CModel>
+  <CModel id="FenixTalisAdeptPlacement" parent="Placement" Race="Protoss">
+    <Model value="Assets\Units\Protoss\Purifier_Adept_Placement\Purifier_Adept_Placement.m3" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="FenixTalisAdeptPortrait" parent="Portrait" Race="Protoss">
+    <Model value="Assets\Portraits\Protoss\Adept_Purifier_Collection_Talis_Portrait\Adept_Purifier_Collection_Talis_Portrait.m3" />
+    <Image value="Assets\Textures\Adept_Purifier_Collection_Talis_Portrait_Static.dds" />
+  </CModel>
+  <CModel id="FenixTalisAdeptSpiritIn" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Protoss\Adept_SpiritIn\Adept_SpiritIn.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="FenixTalisAdeptSpiritSpawn" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Protoss\Adept_SpiritSpawn\Adept_SpiritSpawn.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="FenixTalisAdeptWarpIn" parent="OneShotSpellFX">
+    <Model value="Assets\Units\Protoss\Purifier_Adept_WarpIn\Purifier_Adept_WarpIn.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <Occlusion value="Show" />
+    <LowQualityModel value="ProtossUnitBirth" />
+  </CModel>
+  <CModel id="ImmortalTaldarim">
+    <Model value="Assets\Units\Protoss\Immortal_Taldarim_Coop\Immortal_Taldarim_Coop.m3" />
+  </CModel>
+  <CModel id="PhotonCannon">
+    <Events>
+      <Anim value="Stand,Unpowered,End,00" />
+      <Name value="PhaseCannon_PowerOn" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="PhaseCannon_PowerOn" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Unpowered,Start,00" />
+      <Name value="PhaseCannon_PowerOff" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="PhaseCannon_PowerOff" />
+    </Events>
+  </CModel>
+  <CModel id="SOAReconstructionBeamImpactLarge" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Protoss\SOA_Reconstruction_Beam_Impact_Large\SOA_Reconstruction_Beam_Impact_Large.m3" />
+    <EditorCategories value="Race:Protoss" />
+  </CModel>
+  <CModel id="Supplicant" parent="Unit" Race="Protoss">
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraMid05" />
+    <SquibTypeDefault value="Metal" />
+    <TechPurchaseCamera value="Star2CameraMid05" />
+    <UnitGlossaryCamera value="Star2CameraMid05" />
+    <ScaleMax value="0.850000,0.850000,0.850000" />
+    <ScaleMin value="0.850000,0.850000,0.850000" />
+  </CModel>
+  <CModel id="Supplicant_Death" parent="UnitDeath" Race="Protoss">
+    <Occlusion value="Show" />
+    <LowQualityModel value="ProtossSpiritDeathLow" />
+  </CModel>
+  <CModel id="Supplicant_PlacementModel" parent="Placement">
+    <Model value="Assets\Units\Protoss\Supplicant_PlacementModel\Supplicant_PlacementModel.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <ScaleMax value="0.850000,0.850000,0.850000" />
+    <ScaleMin value="0.850000,0.850000,0.850000" />
+  </CModel>
+  <CModel id="Supplicant_Portrait" parent="Portrait" Race="Protoss">
+    <Image value="Assets\Textures\supplicantportrait_static.dds" />
+    <Lighting value="UnknownLight" />
+  </CModel>
+  <CModel id="Supplicant_Sacrifice_Death" parent="UnitDeath" Race="Protoss">
+    <Occlusion value="Show" />
+    <LowQualityModel value="ProtossSpiritDeathLow" />
+  </CModel>
+  <CModel id="Supplicant_WarpIn" parent="OneShotSpellFX">
+    <Model value="Assets\Units\Protoss\Supplicant_WarpIn\Supplicant_WarpIn.m3" />
+    <EditorCategories value="Race:Protoss" />
+    <LowQualityModel value="ProtossUnitBirth" />
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraMid05" />
+    <TechPurchaseCamera value="Star2CameraMid05" />
+    <UnitGlossaryCamera value="Star2CameraMid05" />
+    <ScaleMax value="0.850000,0.850000,0.850000" />
+    <ScaleMin value="0.850000,0.850000,0.850000" />
+  </CModel>
+  <CModel id="WarpPrismDeathRagdoll">
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="WarpPrism_Explode" />
+      <Type value="Sound" />
+      <Time value="0.029000" />
+      <Payload value="WarpPrism_Explode" />
+    </Events>
+  </CModel>
 </Catalog>

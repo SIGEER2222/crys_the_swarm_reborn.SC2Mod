@@ -127,6 +127,9 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     else if (autoC0933116_val == "Nova") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_CovertOps");
     }
+    else if (autoC0933116_val == "Alarak") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Default");
+    }
     else if (autoC0933116_val == "Mengsk") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Imperial");
         libC0F50AA6_gf_InitlizeMengskVeterancy();
@@ -243,6 +246,16 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
                 libDF8E6945_gf_DehakaBroodbrother();
             }
 
+        }
+
+    }
+    else if (auto09490B45_val == "Alarak") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAlarak", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Alarak", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "AlarakCoop", 0, 1, lp_secondUnit);
         }
 
     }
@@ -520,6 +533,9 @@ void libE0EAE146_gf_PickUpSet (unit lp_u, int lp_n) {
 
 bool libE0EAE146_gf_AbathurHasUltimateUnlock () {
     return (TechTreeUpgradeCount(1, "AbathurUnlockUltimateEvolutions", c_techCountCompleteOnly) > 0);
+}
+
+void libE0EAE146_gf_AbathurEarlySnapshot (string lp_phase) {
 }
 
 void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {

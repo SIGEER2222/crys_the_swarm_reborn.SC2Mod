@@ -2,7 +2,11 @@ param(
     [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot),
     [string]$OfficialGameDataRoot = "references\official-casc-export\mods\starcoop\starcoop.sc2mod\base.sc2data\gamedata",
     [string]$TargetGameDataRoot = "",
-    [string]$SummaryPath = "references\official-alarak-import-summary.tsv"
+    [string]$SummaryPath = "references\official-alarak-import-summary.tsv",
+    [string[]]$SeedIds = @(),
+    [switch]$DisablePatternExpansion,
+    [string[]]$ExcludeIdPatterns = @(),
+    [string[]]$KeepIdPatterns = @()
 )
 
 $ErrorActionPreference = "Stop"
@@ -30,7 +34,7 @@ if (-not (Test-Path -LiteralPath $OfficialGameDataRoot)) {
 
 New-Item -ItemType Directory -Path $TargetGameDataRoot -Force | Out-Null
 
-$seedIds = @(
+$defaultSeedIds = @(
     "Alarak", "AlarakCoop", "AlarakRushPlaceholder", "CoopCasterAlarak",
     "Supplicant", "Havoc", "HighTemplarTaldarim", "ImmortalTaldarim", "ColossusTaldarim", "WarpPrismTaldarim", "DestroyerTaldarim", "CarrierTaldarim", "SOAMothership",
     "Nexus", "Probe", "Pylon", "Gateway", "WarpGate", "CyberneticsCore", "TwilightCouncil", "RoboticsFacility", "Stargate", "Forge", "TemplarArchive", "RoboticsBay", "FleetBeacon",
@@ -66,13 +70,21 @@ Get-ChildItem -LiteralPath $OfficialGameDataRoot -Filter "*.xml" | ForEach-Objec
 }
 
 $selected = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+if ($SeedIds.Count -gt 0) {
+    $seedIds = @($SeedIds | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Sort-Object -Unique)
+} else {
+    $seedIds = $defaultSeedIds
+}
+
 foreach ($seed in $seedIds) {
     if ($allIds.Contains($seed)) { [void]$selected.Add($seed) }
 }
-foreach ($id in $allIds) {
-    $file = $idToSourceFile[$id]
-    if ($skipFileSet.Contains($file)) { continue }
-    if ($id -match $seedPattern -or $id -match $seedPatternEnd) { [void]$selected.Add($id) }
+if (-not $DisablePatternExpansion) {
+    foreach ($id in $allIds) {
+        $file = $idToSourceFile[$id]
+        if ($skipFileSet.Contains($file)) { continue }
+        if ($id -match $seedPattern -or $id -match $seedPatternEnd) { [void]$selected.Add($id) }
+    }
 }
 
 for ($pass = 1; $pass -le 4; $pass++) {
@@ -99,6 +111,52 @@ for ($pass = 1; $pass -le 4; $pass++) {
 foreach ($id in @($selected)) {
     if ($idToSourceFile[$id] -eq "commanderdata.xml" -and $id -ne "Alarak") {
         [void]$selected.Remove($id)
+    }
+}
+
+if ($ExcludeIdPatterns.Count -gt 0) {
+    foreach ($id in @($selected)) {
+        foreach ($pattern in $ExcludeIdPatterns) {
+            if ([string]::IsNullOrWhiteSpace($pattern)) {
+                continue
+            }
+
+            if ($id -match $pattern) {
+                [void]$selected.Remove($id)
+                break
+            }
+        }
+    }
+}
+
+if ($KeepIdPatterns.Count -gt 0) {
+    $pinnedIds = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    foreach ($seed in $seedIds) {
+        if (-not [string]::IsNullOrWhiteSpace($seed)) {
+            [void]$pinnedIds.Add($seed)
+        }
+    }
+
+    foreach ($id in @($selected)) {
+        if ($pinnedIds.Contains($id)) {
+            continue
+        }
+
+        $keep = $false
+        foreach ($pattern in $KeepIdPatterns) {
+            if ([string]::IsNullOrWhiteSpace($pattern)) {
+                continue
+            }
+
+            if ($id -match $pattern) {
+                $keep = $true
+                break
+            }
+        }
+
+        if (-not $keep) {
+            [void]$selected.Remove($id)
+        }
     }
 }
 

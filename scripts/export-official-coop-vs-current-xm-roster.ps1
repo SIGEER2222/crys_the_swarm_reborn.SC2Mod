@@ -8,9 +8,10 @@ $ErrorActionPreference = "Stop"
 
 $scriptRoot = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Path }
 $repoRoot = Split-Path -Parent $scriptRoot
+$todayStamp = Get-Date -Format "yyyy-MM-dd"
 
 if ([string]::IsNullOrWhiteSpace($OutputPath)) {
-    $OutputPath = Join-Path $repoRoot "docs\指挥官\官方合作指挥官对当前XM落地差异-SC2Build96883-2026-05-25.md"
+    $OutputPath = Join-Path $repoRoot ("docs\指挥官\官方合作指挥官对当前XM落地差异-SC2Build96883-{0}.md" -f $todayStamp)
 }
 
 if ([string]::IsNullOrWhiteSpace($Sc2BuildExportRoot)) {
@@ -21,7 +22,30 @@ if ([string]::IsNullOrWhiteSpace($ScenarioRoot)) {
     $ScenarioRoot = Join-Path $repoRoot "合作指挥官版起义狂潮"
 }
 
+$reportDate = $todayStamp
+$outputLeaf = Split-Path -Leaf $OutputPath
+$leafDateMatch = [regex]::Match($outputLeaf, '(?<date>\d{4}-\d{2}-\d{2})')
+if ($leafDateMatch.Success) {
+    $reportDate = $leafDateMatch.Groups['date'].Value
+}
+
 $modsRoot = Join-Path $ScenarioRoot "Mods\XM"
+
+$frozenModules = @(
+    "XMMutator.SC2Mod",
+    "XMNeut.SC2Mod",
+    "XMMira.SC2Mod",
+    "XMMengsk.SC2Mod",
+    "XMProbe.SC2Mod",
+    "XMSCV.SC2Mod",
+    "XMTychus.SC2Mod",
+    "XMDehaka.SC2Mod",
+    "XMStukov.SC2Mod",
+    "XMShop.SC2Mod",
+    "XMNova.SC2Mod",
+    "XMSwann.SC2Mod",
+    "XMStetmann.SC2Mod"
+)
 
 $commanderDefs = @(
     [pscustomobject]@{ Key = "Abathur"; Display = "阿巴瑟 Abathur"; PlayerId = "ZergAbathur"; Module = "XMAbathurReborn.SC2Mod"; Source = "TechUnit+AbilityChain" },
@@ -175,6 +199,29 @@ $manualNameFallback = @{
     "HotSLeviathan" = "利维坦"
 }
 
+$techUnitOfficialIdOverrides = @{
+    Zeratul = @{
+        # ZealotZeratul is wired through the TemplarCallDown legion path; the
+        # gameplay unit is ZeratulSummonZealot rather than the actor-only id.
+        ZealotZeratul = @("ZeratulSummonZealot")
+    }
+}
+
+$intentionalParallelRenameHints = @(
+    [pscustomobject]@{
+        Module = "XMAbathurReborn.SC2Mod"
+        Name = "穿刺者"
+        OfficialId = "ImpalerAbathur"
+        Reason = "XMFinal 当前同时挂载 XMAbathur 与 XMAbathurReborn；这条异 ID 更像为双阿巴瑟并存保留的改名，而不是硬缺口。已复核 MorphRoachToImpaler、BurrowImpaler*、WeaponData、UpgradeData，玩法与升级入口仍落在 ImpalerAbathurReborn 链。"
+    }
+    [pscustomobject]@{
+        Module = "XMAbathurReborn.SC2Mod"
+        Name = "破坏者"
+        OfficialId = "RavagerAbathur"
+        Reason = "XMFinal 当前同时挂载 XMAbathur 与 XMAbathurReborn；这条异 ID 更像为双阿巴瑟并存保留的改名，而不是硬缺口。已复核 MorphRoachToRavager、RavagerAbathurRebornCorrosiveBile、BurrowRavager*、Actor/Upgrade，真实变异目标是 RavagerAbathurReborn；普通 Ravager 只是平行自定义条目。"
+    }
+)
+
 function New-Set {
     return ,([System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase))
 }
@@ -246,6 +293,31 @@ function Join-Values {
     }
 
     return ($items -join $Separator)
+}
+
+function Test-IntentionalParallelRename {
+    param(
+        [pscustomobject]$Row,
+        [object[]]$Hints
+    )
+
+    foreach ($hint in @($Hints)) {
+        if ($Row.Module -ne $hint.Module) {
+            continue
+        }
+
+        if ($Row.Name -ne $hint.Name) {
+            continue
+        }
+
+        if ($hint.OfficialId -and ($Row.OfficialIds -notcontains $hint.OfficialId)) {
+            continue
+        }
+
+        return $hint
+    }
+
+    return $null
 }
 
 function Escape-MarkdownCell {
@@ -324,11 +396,12 @@ function Get-GameDataRoots {
 
 function Get-CatalogIndex {
     param(
-        [string]$Root,
+        [string[]]$Roots,
         [string]$Label
     )
 
-    $gameDataRoots = Get-GameDataRoots $Root
+    $rootList = @($Roots | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Sort-Object -Unique)
+    $gameDataRoots = @($rootList | ForEach-Object { Get-GameDataRoots $_ } | Sort-Object -Unique)
     $unitIds = New-Set
     $unitParents = @{}
     $unitSources = @{}
@@ -338,9 +411,12 @@ function Get-CatalogIndex {
     $gameDataRefs = @{}
     $actorIds = @{}
     $modelAssets = @{}
+    $unitAbils = @{}
     $armyCategoryUnits = @{}
     $armyCategoryCommands = @{}
+    $abilityCommands = @{}
     $abilCommandUnits = @{}
+    $abilCommandProducers = @{}
     $unitBehaviors = @{}
     $behaviorInitialEffects = @{}
     $effectChildren = @{}
@@ -382,6 +458,12 @@ function Get-CatalogIndex {
                 }
                 foreach ($behaviorNode in $node.SelectNodes('./BehaviorArray[@Link]')) {
                     Add-MapSet $unitBehaviors $id $behaviorNode.GetAttribute("Link")
+                }
+                foreach ($abilNode in $node.SelectNodes('./AbilArray[@Link]')) {
+                    Add-MapSet $unitAbils $id $abilNode.GetAttribute("Link")
+                }
+                foreach ($buttonNode in $node.SelectNodes('.//LayoutButtons[@AbilCmd]')) {
+                    Add-MapSet $abilCommandProducers $buttonNode.GetAttribute("AbilCmd") $id
                 }
             }
 
@@ -437,14 +519,18 @@ function Get-CatalogIndex {
                     $cmd = "$abilId,$index"
                     if ($infoNode.HasAttribute("Unit")) {
                         Add-MapSet $abilCommandUnits $cmd $infoNode.GetAttribute("Unit")
+                        Add-MapSet $abilityCommands $abilId $cmd
                     }
                     foreach ($unitNode in $infoNode.SelectNodes('./Unit[@value]')) {
                         Add-MapSet $abilCommandUnits $cmd $unitNode.GetAttribute("value")
+                        Add-MapSet $abilityCommands $abilId $cmd
                     }
                 }
 
                 foreach ($infoNode in $node.SelectNodes('./Info[@Unit]')) {
-                    Add-MapSet $abilCommandUnits "$abilId,Info" $infoNode.GetAttribute("Unit")
+                    $cmd = "$abilId,Info"
+                    Add-MapSet $abilCommandUnits $cmd $infoNode.GetAttribute("Unit")
+                    Add-MapSet $abilityCommands $abilId $cmd
                 }
             }
 
@@ -600,12 +686,12 @@ function Get-CatalogIndex {
             Add-MapSet $techUnitCommanders $entry.Id $commanderId
         }
 
-        $entryUnits = New-Set
+        $categoryUnits = New-Set
+        $commandUnits = New-Set
         foreach ($categoryId in @($entry.ArmyCategories)) {
-            $commandUnits = New-Set
             if ($armyCategoryUnits.ContainsKey($categoryId)) {
                 foreach ($unitId in Set-ToArray $armyCategoryUnits[$categoryId]) {
-                    Add-ToSet $entryUnits $unitId
+                    Add-ResolvedUnitOrSpawn ([pscustomobject]@{ ResolvedSpawnerUnits = $resolvedSpawnerUnits }) $categoryUnits $unitId
                 }
             }
             if ($armyCategoryCommands.ContainsKey($categoryId)) {
@@ -617,16 +703,31 @@ function Get-CatalogIndex {
                     }
                 }
             }
-            if ($commandUnits.Count -gt 0) {
-                $entryUnits = $commandUnits
+        }
+
+        $entryUnits = New-Set
+        $exactUnitIds = @($unitIds | Where-Object { [string]::Equals($_, $entry.Id, [System.StringComparison]::Ordinal) })
+        foreach ($unitId in $exactUnitIds) {
+            Add-ResolvedUnitOrSpawn ([pscustomobject]@{ ResolvedSpawnerUnits = $resolvedSpawnerUnits }) $entryUnits $unitId
+        }
+
+        if ($entryUnits.Count -eq 0) {
+            foreach ($unitId in Set-ToArray $categoryUnits) {
+                if ($unitIds.Contains($unitId)) {
+                    Add-ToSet $entryUnits $unitId
+                }
             }
         }
 
-        if ($unitIds.Contains($entry.Id)) {
-            Add-ResolvedUnitOrSpawn ([pscustomobject]@{ ResolvedSpawnerUnits = $resolvedSpawnerUnits }) $entryUnits $entry.Id
+        if ($entryUnits.Count -eq 0) {
+            foreach ($unitId in Set-ToArray $commandUnits) {
+                if ($unitIds.Contains($unitId)) {
+                    Add-ToSet $entryUnits $unitId
+                }
+            }
         }
 
-        if ($unitNameRefs.ContainsKey($entry.Id)) {
+        if ($entryUnits.Count -eq 0 -and $unitNameRefs.ContainsKey($entry.Id)) {
             foreach ($unitId in Set-ToArray $unitNameRefs[$entry.Id]) {
                 Add-ResolvedUnitOrSpawn ([pscustomobject]@{ ResolvedSpawnerUnits = $resolvedSpawnerUnits }) $entryUnits $unitId
             }
@@ -640,9 +741,32 @@ function Get-CatalogIndex {
         }
     }
 
+    $unitProductionCommands = @{}
+    foreach ($command in @($abilCommandUnits.Keys)) {
+        foreach ($unitId in Set-ToArray $abilCommandUnits[$command]) {
+            $producedUnits = New-Set
+            Add-ResolvedUnitOrSpawn ([pscustomobject]@{ ResolvedSpawnerUnits = $resolvedSpawnerUnits }) $producedUnits $unitId
+            foreach ($producedUnit in Set-ToArray $producedUnits) {
+                Add-MapSet $unitProductionCommands $producedUnit $command
+            }
+        }
+    }
+
+    foreach ($producerId in @($unitAbils.Keys)) {
+        foreach ($abilId in Set-ToArray $unitAbils[$producerId]) {
+            if (-not $abilityCommands.ContainsKey($abilId)) {
+                continue
+            }
+
+            foreach ($command in Set-ToArray $abilityCommands[$abilId]) {
+                Add-MapSet $abilCommandProducers $command $producerId
+            }
+        }
+    }
+
     return [pscustomobject]@{
         Label = $Label
-        Root = $Root
+        Root = Join-Values $rootList "; "
         GameDataRoots = $gameDataRoots
         UnitIds = $unitIds
         UnitParents = $unitParents
@@ -653,9 +777,13 @@ function Get-CatalogIndex {
         GameDataRefs = $gameDataRefs
         ActorIds = $actorIds
         ModelAssets = $modelAssets
+        UnitAbils = $unitAbils
         ArmyCategoryUnits = $armyCategoryUnits
         ArmyCategoryCommands = $armyCategoryCommands
+        AbilityCommands = $abilityCommands
         AbilCommandUnits = $abilCommandUnits
+        UnitProductionCommands = $unitProductionCommands
+        AbilCommandProducers = $abilCommandProducers
         ResolvedSpawnerUnits = $resolvedSpawnerUnits
         UnitNameRefs = $unitNameRefs
         TechUnitEntries = $techUnitEntries
@@ -663,6 +791,53 @@ function Get-CatalogIndex {
         TechUnitUnits = $techUnitUnits
         UnitCommanders = $unitCommanders
     }
+}
+
+function Get-XmModuleScanRoots {
+    param(
+        [string]$ModuleRoot,
+        [string]$ModsRoot
+    )
+
+    $roots = New-Object System.Collections.Generic.List[string]
+    $visited = New-Set
+
+    function Add-XmModuleScanRoot {
+        param([string]$Root)
+
+        if ([string]::IsNullOrWhiteSpace($Root) -or -not (Test-Path -LiteralPath $Root)) {
+            return
+        }
+
+        $resolvedRoot = (Resolve-Path -LiteralPath $Root).Path
+        if ($visited.Contains($resolvedRoot)) {
+            return
+        }
+
+        Add-ToSet $visited $resolvedRoot
+        $roots.Add($resolvedRoot)
+
+        $documentInfoPath = Join-Path $resolvedRoot "DocumentInfo"
+        if (-not (Test-Path -LiteralPath $documentInfoPath)) {
+            return
+        }
+
+        try {
+            [xml]$documentInfo = Get-Content -LiteralPath $documentInfoPath -Raw -Encoding UTF8
+        } catch {
+            return
+        }
+
+        foreach ($valueNode in $documentInfo.SelectNodes('/DocInfo/Dependencies/Value')) {
+            $value = Normalize-StringValue $valueNode.InnerText
+            if ($value -match '^file:Mods[\\/]+XM[\\/]+([^\\/]+\.SC2Mod)$') {
+                Add-XmModuleScanRoot (Join-Path $ModsRoot $Matches[1])
+            }
+        }
+    }
+
+    Add-XmModuleScanRoot $ModuleRoot
+    return @($roots)
 }
 
 function Get-UnitEvidence {
@@ -695,6 +870,108 @@ function Get-EvidenceIds {
     foreach ($id in @($CandidateIds)) {
         $evidence = @(Get-UnitEvidence $Index $id)
         if ($evidence.Count -gt 0) {
+            Add-ToSet $ids $id
+        }
+    }
+
+    return Set-ToArray $ids
+}
+
+function Get-UnitEvidencePaths {
+    param(
+        [object]$Index,
+        [string]$UnitId
+    )
+
+    $paths = New-Set
+    foreach ($map in @($Index.UnitSources, $Index.AbilRefs, $Index.GameDataRefs)) {
+        if ($null -eq $map -or -not $map.ContainsKey($UnitId)) {
+            continue
+        }
+
+        foreach ($path in Set-ToArray $map[$UnitId]) {
+            Add-ToSet $paths $path
+        }
+    }
+
+    return Set-ToArray $paths
+}
+
+function Get-XmModuleNameFromPath {
+    param([string]$Path)
+
+    if ([string]::IsNullOrWhiteSpace($Path)) {
+        return $null
+    }
+
+    if ($Path -match '[\\/]+Mods[\\/]+XM[\\/]+([^\\/]+\.SC2Mod)[\\/]') {
+        return $Matches[1]
+    }
+
+    return $null
+}
+
+function Get-IdEvidenceScopes {
+    param(
+        [object]$Index,
+        [string]$UnitId,
+        [string]$PrimaryModule
+    )
+
+    $scopes = New-Set
+    foreach ($path in Get-UnitEvidencePaths $Index $UnitId) {
+        $moduleName = Get-XmModuleNameFromPath $path
+        if ([string]::IsNullOrWhiteSpace($moduleName)) {
+            continue
+        }
+
+        if ($moduleName -eq $PrimaryModule) {
+            Add-ToSet $scopes "Primary"
+            continue
+        }
+
+        if ($moduleName -eq "XMCore.SC2Mod") {
+            Add-ToSet $scopes "SharedCore"
+            continue
+        }
+
+        Add-ToSet $scopes "ForeignDependency"
+    }
+
+    return Set-ToArray $scopes
+}
+
+function Filter-IdsByAllowedEvidenceScope {
+    param(
+        [object]$Index,
+        [string[]]$UnitIds,
+        [string]$PrimaryModule
+    )
+
+    $ids = New-Set
+    foreach ($id in @($UnitIds)) {
+        $scopes = @(Get-IdEvidenceScopes $Index $id $PrimaryModule)
+        if ($scopes -contains "Primary" -or $scopes -contains "SharedCore") {
+            Add-ToSet $ids $id
+        }
+    }
+
+    return Set-ToArray $ids
+}
+
+function Filter-IdsByForeignOnlyEvidenceScope {
+    param(
+        [object]$Index,
+        [string[]]$UnitIds,
+        [string]$PrimaryModule
+    )
+
+    $ids = New-Set
+    foreach ($id in @($UnitIds)) {
+        $scopes = @(Get-IdEvidenceScopes $Index $id $PrimaryModule)
+        if (($scopes -contains "ForeignDependency") -and
+            -not ($scopes -contains "Primary") -and
+            -not ($scopes -contains "SharedCore")) {
             Add-ToSet $ids $id
         }
     }
@@ -792,6 +1069,26 @@ function Resolve-CandidateIds {
     }
 
     return Get-EvidenceIds $Index (Set-ToArray $resolved)
+}
+
+function Resolve-TechUnitIds {
+    param(
+        [object]$Index,
+        [string]$TechUnitId
+    )
+
+    $resolved = New-Set
+    if (-not [string]::IsNullOrWhiteSpace($TechUnitId) -and $Index.TechUnitUnits.ContainsKey($TechUnitId)) {
+        foreach ($unitId in Set-ToArray $Index.TechUnitUnits[$TechUnitId]) {
+            Add-ToSet $resolved $unitId
+        }
+    }
+
+    if ($resolved.Count -gt 0) {
+        return Get-EvidenceIds $Index (Set-ToArray $resolved)
+    }
+
+    return Resolve-CandidateIds $Index @($TechUnitId)
 }
 
 function Add-ResolvedUnitOrSpawn {
@@ -931,7 +1228,16 @@ function Get-TechUnitOfficialEntries {
             continue
         }
 
-        $ids = Get-PrimaryOfficialIds (Resolve-CandidateIds $OfficialIndex @($tech.Id))
+        $ids = @()
+        $source = "official TechUnit:$($tech.Id)"
+        if ($techUnitOfficialIdOverrides.ContainsKey($CommanderDef.Key) -and
+            $techUnitOfficialIdOverrides[$CommanderDef.Key].ContainsKey($tech.Id)) {
+            $ids = Get-PrimaryOfficialIds (Resolve-CandidateIds $OfficialIndex $techUnitOfficialIdOverrides[$CommanderDef.Key][$tech.Id])
+            $source = "official TechUnitOverride:$($tech.Id)"
+        }
+        if ($ids.Count -eq 0) {
+            $ids = Get-PrimaryOfficialIds (Resolve-TechUnitIds $OfficialIndex $tech.Id)
+        }
         if ($ids.Count -eq 0) {
             continue
         }
@@ -951,7 +1257,7 @@ function Get-TechUnitOfficialEntries {
         }
 
         $kind = if (Test-UnitIsStructure $OfficialIndex $ids) { "建筑" } else { "兵种" }
-        Add-OrMergeOfficialEntry $entries (New-OfficialEntry $CommanderDef.Display $CommanderDef.Module $name $kind $ids "official TechUnit:$($tech.Id)")
+        Add-OrMergeOfficialEntry $entries (New-OfficialEntry $CommanderDef.Display $CommanderDef.Module $name $kind $ids $source)
     }
 
     return @($entries | Sort-Object Kind, Name)
@@ -1159,6 +1465,40 @@ function Get-UnitShortSummary {
     return Join-Values $rows "<br>"
 }
 
+function Get-ProductionShortSummary {
+    param(
+        [object]$Index,
+        [string[]]$UnitIds
+    )
+
+    $rows = New-Object System.Collections.Generic.List[string]
+    foreach ($id in @($UnitIds | Sort-Object -Unique)) {
+        if (-not $Index.UnitProductionCommands.ContainsKey($id)) {
+            continue
+        }
+
+        $commandRows = New-Object System.Collections.Generic.List[string]
+        foreach ($command in @(Set-ToArray $Index.UnitProductionCommands[$id] | Sort-Object -Unique | Select-Object -First 4)) {
+            $producers = @()
+            if ($Index.AbilCommandProducers.ContainsKey($command)) {
+                $producers = @(Set-ToArray $Index.AbilCommandProducers[$command] | Sort-Object -Unique | Select-Object -First 4)
+            }
+
+            if ($producers.Count -gt 0) {
+                $commandRows.Add("$command by $(Join-Values $producers ',')")
+            } else {
+                $commandRows.Add($command)
+            }
+        }
+
+        if ($commandRows.Count -gt 0) {
+            $rows.Add("${id}: $(Join-Values $commandRows '; ')")
+        }
+    }
+
+    return Join-Values $rows "<br>"
+}
+
 function Get-StatusDiagnosis {
     param([string]$Status)
 
@@ -1166,6 +1506,7 @@ function Get-StatusDiagnosis {
         "ImplementedSameId" { return "当前 XM 已落到官方同 ID" }
         "ShapeAmbiguous" { return "当前与官方有同 ID 交集，但存在多形态/变形/潜地/攻城等形态，需要按训练链裁剪主形态" }
         "ImplementedDifferentId" { return "当前 XM 有同名落地，但单位 ID 与官方合作数据不同" }
+        "DependencyOnly" { return "当前只在其他指挥官依赖模块中命中，不算本模块或 XMCore 自身落地" }
         "LocalizedOnly" { return "当前 XM 只有同名本地化，没有 CUnit 或 Unit 引用证据" }
         "Missing" { return "当前 XM 未发现同名落地，也未发现官方同 ID" }
         default { return $Status }
@@ -1254,16 +1595,28 @@ foreach ($commander in $commanderDefs) {
 }
 
 $currentIndexCache = @{}
+$currentAllowedIndexCache = @{}
 $currentStringCache = @{}
 $rows = New-Object System.Collections.Generic.List[object]
 $extraRows = New-Object System.Collections.Generic.List[object]
 
 foreach ($commander in $commanderDefs) {
     $modRoot = Join-Path $modsRoot $commander.Module
-    $currentIndexCache[$commander.Module] = Get-CatalogIndex $modRoot $commander.Module
+    $currentScanRoots = @(Get-XmModuleScanRoots $modRoot $modsRoot)
+    $currentAllowedRoots = New-Object System.Collections.Generic.List[string]
+    if (Test-Path -LiteralPath $modRoot) {
+        $currentAllowedRoots.Add((Resolve-Path -LiteralPath $modRoot).Path) | Out-Null
+    }
+    $xmCoreRoot = Join-Path $modsRoot "XMCore.SC2Mod"
+    if (Test-Path -LiteralPath $xmCoreRoot) {
+        $currentAllowedRoots.Add((Resolve-Path -LiteralPath $xmCoreRoot).Path) | Out-Null
+    }
+    $currentIndexCache[$commander.Module] = Get-CatalogIndex $currentScanRoots $commander.Module
+    $currentAllowedIndexCache[$commander.Module] = Get-CatalogIndex @($currentAllowedRoots | Sort-Object -Unique) "$($commander.Module) Primary+Core"
     $currentStringCache[$commander.Module] = @(Get-StringEntries $modRoot)
 
     $currentIndex = $currentIndexCache[$commander.Module]
+    $currentAllowedIndex = $currentAllowedIndexCache[$commander.Module]
     $currentStrings = $currentStringCache[$commander.Module]
     $commanderOfficialRows = @($officialRoster | Where-Object Commander -eq $commander.Display)
     $officialNames = New-Set
@@ -1277,19 +1630,25 @@ foreach ($commander in $commanderDefs) {
 
     foreach ($entry in $commanderOfficialRows) {
         $current = Get-CurrentIdsForOfficialEntry $currentIndex $currentStrings $entry
-        $shared = @(Intersect-Values $current.CurrentIds $entry.OfficialIds)
+        $allowedCurrent = Get-CurrentIdsForOfficialEntry $currentAllowedIndex $currentStrings $entry
+        $allowedCurrentIds = @($allowedCurrent.CurrentIds)
+        $allowedSameIds = @($allowedCurrent.SameIds)
+        $allowedNameEvidenceIds = @($allowedCurrent.NameEvidenceIds)
+        $foreignOnlyCurrentIds = @($current.CurrentIds | Where-Object { $allowedCurrentIds -notcontains $_ } | Sort-Object -Unique)
+        $shared = @(Intersect-Values $allowedCurrentIds $entry.OfficialIds)
+        $sameIdShared = @(Intersect-Values $allowedSameIds $entry.OfficialIds)
 
-        $status = "ImplementedSameId"
-        if ($shared.Count -gt 0) {
-            if ($entry.OfficialIds.Count -gt 1 -or $current.CurrentIds.Count -gt 1 -or $shared.Count -lt $entry.OfficialIds.Count) {
-                $status = "ShapeAmbiguous"
-            }
-        } elseif ($current.NameEvidenceIds.Count -gt 0) {
+        $status = "Missing"
+        if ($sameIdShared.Count -eq $entry.OfficialIds.Count) {
+            $status = "ImplementedSameId"
+        } elseif ($sameIdShared.Count -gt 0 -or $shared.Count -gt 0) {
+            $status = "ShapeAmbiguous"
+        } elseif ($allowedNameEvidenceIds.Count -gt 0) {
             $status = "ImplementedDifferentId"
         } elseif ($current.NameCandidateIds.Count -gt 0) {
             $status = "LocalizedOnly"
-        } else {
-            $status = "Missing"
+        } elseif ($foreignOnlyCurrentIds.Count -gt 0) {
+            $status = "DependencyOnly"
         }
 
         $rows.Add([pscustomobject]@{
@@ -1300,11 +1659,14 @@ foreach ($commander in $commanderDefs) {
             Status = $status
             OfficialIds = $entry.OfficialIds
             CurrentIds = $current.CurrentIds
+            AllowedCurrentIds = $allowedCurrentIds
+            ForeignOnlyCurrentIds = $foreignOnlyCurrentIds
             CurrentNameIds = $current.NameCandidateIds
             SharedIds = $shared
             Source = $entry.Source
             OfficialSummary = Get-UnitShortSummary $officialIndex $entry.OfficialIds
             CurrentSummary = Get-UnitShortSummary $currentIndex $current.CurrentIds
+            CurrentProductionSummary = Get-ProductionShortSummary $currentIndex $current.CurrentIds
         })
     }
 
@@ -1328,7 +1690,7 @@ foreach ($commander in $commanderDefs) {
 $report = New-Object System.Collections.Generic.List[string]
 $report.Add("# 官方合作指挥官对当前 XM 落地差异：SC2 Build 96883")
 $report.Add("")
-$report.Add("日期：2026-05-25")
+$report.Add("日期：$reportDate")
 $report.Add("")
 $report.Add("## 口径")
 $report.Add("")
@@ -1336,7 +1698,8 @@ $report.Add("- 主表：以本机 SC2 Build 96883 的官方合作指挥官数据
 $report.Add("- 官方来源：references/sc2-build-96883-casc-export，来自本机 E:\SC2\SC2new\StarCraft II\SC2Data 的 CASC 抽取，Product=s2，Build=96883。")
 $report.Add("- 普通指挥官优先读取官方 TechUnit 的 PlayerCommanders 归属，并穿透 ArmyCategory.Unit、Unit/Name 改写与 CUnit。")
 $report.Add("- 泰凯斯读取官方 commandertychus.xml 的单位条目；德哈卡、蒙斯克、斯台特曼读取官方数据中可命名、可训练/建造/英雄相关的 CUnit ID 白名单。")
-$report.Add("- 当前侧只读取 合作指挥官版起义狂潮/Mods/XM/<Commander>.SC2Mod 的当前文件。")
+$report.Add("- 当前侧 CUnit/能力/模型引用读取 合作指挥官版起义狂潮/Mods/XM/<Commander>.SC2Mod 及其 DocumentInfo 依赖模块；但若命中只来自其他指挥官模块依赖，而不是本模块或 XMCore，则单独记为 DependencyOnly。")
+$report.Add("- 冻结模块：$(Join-Values $frozenModules ', ')；这些模块本轮只参与扫描和报告，不作为数据改动目标。")
 $report.Add("- 本报告是静态文件对比，没有进图验证，也没有修改 XMFinal.SC2Mod/DocumentHeader 或 DocumentInfo。")
 $report.Add("")
 $report.Add("## 状态定义")
@@ -1344,6 +1707,7 @@ $report.Add("")
 $report.Add("- ImplementedSameId：当前 XM 找到官方同 ID 的 CUnit 或 Unit 引用。")
 $report.Add("- ShapeAmbiguous：当前与官方有同 ID 交集，但存在多形态、潜地、攻城、起飞、变形等多个 ID，后续需要按训练/建造链裁剪主对象。")
 $report.Add("- ImplementedDifferentId：当前 XM 有同名落地，但实际 ID 与官方合作数据不同，属于模型/机制可能不一致的重点风险。")
+$report.Add("- DependencyOnly：当前只在其他指挥官依赖模块中命中；这说明静态上可解析到对象，但不算本模块或 XMCore 自身已落地。")
 $report.Add("- LocalizedOnly：当前 XM 只有同名本地化，没有 CUnit 或 Unit 引用证据。")
 $report.Add("- Missing：官方主表存在，但当前 XM 没有同名落地，也没有官方同 ID。")
 $report.Add("- ExtraCurrent：当前 XM 有本地化且有落地证据，但不在官方主表中；可能是额外建筑、测试对象、投射体、旧实现残留或本项目自定义对象。")
@@ -1359,6 +1723,7 @@ $summary = @($commanderDefs | ForEach-Object {
         ImplementedSameId = @($commanderRows | Where-Object Status -eq "ImplementedSameId").Count
         ShapeAmbiguous = @($commanderRows | Where-Object Status -eq "ShapeAmbiguous").Count
         ImplementedDifferentId = @($commanderRows | Where-Object Status -eq "ImplementedDifferentId").Count
+        DependencyOnly = @($commanderRows | Where-Object Status -eq "DependencyOnly").Count
         LocalizedOnly = @($commanderRows | Where-Object Status -eq "LocalizedOnly").Count
         Missing = @($commanderRows | Where-Object Status -eq "Missing").Count
         ExtraCurrent = $commanderExtras.Count
@@ -1367,23 +1732,107 @@ $summary = @($commanderDefs | ForEach-Object {
 
 $report.Add("## 总览")
 $report.Add("")
-$report.Add("| 指挥官 | 当前模块 | 官方条目 | 同 ID | 多形态待裁剪 | 异 ID | 仅本地化 | 缺失 | 当前额外 |")
-$report.Add("|---|---|---:|---:|---:|---:|---:|---:|---:|")
+$report.Add("| 指挥官 | 当前模块 | 官方条目 | 同 ID | 多形态待裁剪 | 异 ID | 仅外部依赖 | 仅本地化 | 缺失 | 当前额外 |")
+$report.Add("|---|---|---:|---:|---:|---:|---:|---:|---:|---:|")
 foreach ($item in $summary) {
-    $report.Add("| $($item.Commander) | $($item.Module) | $($item.OfficialTotal) | $($item.ImplementedSameId) | $($item.ShapeAmbiguous) | $($item.ImplementedDifferentId) | $($item.LocalizedOnly) | $($item.Missing) | $($item.ExtraCurrent) |")
+    $report.Add("| $($item.Commander) | $($item.Module) | $($item.OfficialTotal) | $($item.ImplementedSameId) | $($item.ShapeAmbiguous) | $($item.ImplementedDifferentId) | $($item.DependencyOnly) | $($item.LocalizedOnly) | $($item.Missing) | $($item.ExtraCurrent) |")
 }
 $report.Add("")
 
-$focusRows = @($rows | Where-Object { $_.Status -in @("Missing", "LocalizedOnly", "ImplementedDifferentId") } | Sort-Object Commander, Status, Kind, Name)
+$focusRows = @($rows | Where-Object { $_.Status -in @("Missing", "LocalizedOnly", "ImplementedDifferentId", "DependencyOnly") } | Sort-Object Commander, Status, Kind, Name)
 $report.Add("## 当前缺口与异 ID")
 $report.Add("")
 if ($focusRows.Count -eq 0) {
-    $report.Add("- 没有发现 Missing、LocalizedOnly 或 ImplementedDifferentId。")
+    $report.Add("- 没有发现 Missing、LocalizedOnly、DependencyOnly 或 ImplementedDifferentId。")
 } else {
-    $report.Add("| 指挥官 | 条目 | 类型 | 状态 | 结论 | 官方 ID | 当前 ID | 当前命名 ID |")
-    $report.Add("|---|---|---|---|---|---|---|---|")
+    $report.Add("| 指挥官 | 条目 | 类型 | 状态 | 结论 | 官方 ID | 当前 ID | 仅外部依赖 ID | 当前命名 ID |")
+    $report.Add("|---|---|---|---|---|---|---|---|---|")
     foreach ($row in $focusRows) {
-        $report.Add("| $($row.Commander) | $(Escape-MarkdownCell $row.Name) | $($row.Kind) | $($row.Status) | $(Get-StatusDiagnosis $row.Status) | $(Escape-MarkdownCell (Join-Values $row.OfficialIds)) | $(Escape-MarkdownCell (Join-Values $row.CurrentIds)) | $(Escape-MarkdownCell (Join-Values $row.CurrentNameIds)) |")
+        $report.Add("| $($row.Commander) | $(Escape-MarkdownCell $row.Name) | $($row.Kind) | $($row.Status) | $(Get-StatusDiagnosis $row.Status) | $(Escape-MarkdownCell (Join-Values $row.OfficialIds)) | $(Escape-MarkdownCell (Join-Values $row.AllowedCurrentIds)) | $(Escape-MarkdownCell (Join-Values $row.ForeignOnlyCurrentIds)) | $(Escape-MarkdownCell (Join-Values $row.CurrentNameIds)) |")
+    }
+}
+$report.Add("")
+
+$actionableFocusRows = @(
+    $focusRows |
+    Where-Object {
+        $_.Module -notin $frozenModules -and
+        -not (
+            $_.Status -eq "ImplementedDifferentId" -and
+            $null -ne (Test-IntentionalParallelRename $_ $intentionalParallelRenameHints)
+        )
+    } |
+    Sort-Object Commander, Status, Kind, Name
+)
+$report.Add("## 本轮可处理缺口（排除冻结模块）")
+$report.Add("")
+$report.Add("- 这一节从上一节中过滤掉冻结模块，只用于后续真正落数据时排优先级；冻结模块仍在全量报告中保留扫描结果。")
+$report.Add("")
+if ($actionableFocusRows.Count -eq 0) {
+    $report.Add("- 排除冻结模块后，没有发现 Missing、LocalizedOnly、DependencyOnly 或 ImplementedDifferentId。")
+} else {
+    $report.Add("| 指挥官 | 当前模块 | 条目 | 类型 | 状态 | 结论 | 官方 ID | 当前 ID | 仅外部依赖 ID | 当前命名 ID |")
+    $report.Add("|---|---|---|---|---|---|---|---|---|---|")
+    foreach ($row in $actionableFocusRows) {
+        $report.Add("| $($row.Commander) | $($row.Module) | $(Escape-MarkdownCell $row.Name) | $($row.Kind) | $($row.Status) | $(Get-StatusDiagnosis $row.Status) | $(Escape-MarkdownCell (Join-Values $row.OfficialIds)) | $(Escape-MarkdownCell (Join-Values $row.AllowedCurrentIds)) | $(Escape-MarkdownCell (Join-Values $row.ForeignOnlyCurrentIds)) | $(Escape-MarkdownCell (Join-Values $row.CurrentNameIds)) |")
+    }
+}
+$report.Add("")
+
+$intentionalParallelRenameRows = @(
+    $focusRows |
+    Where-Object {
+        $_.Module -notin $frozenModules -and
+        $_.Status -eq "ImplementedDifferentId"
+    } |
+    ForEach-Object {
+        $hint = Test-IntentionalParallelRename $_ $intentionalParallelRenameHints
+        if ($null -ne $hint) {
+            [pscustomobject]@{
+                Row = $_
+                Hint = $hint
+            }
+        }
+    }
+)
+$report.Add("## 并存改名候选（排除冻结模块）")
+$report.Add("")
+$report.Add('- 这一节用于单独标出当前静态上属于异 ID、但从项目装载关系看更像为了旧模块并存而主动改名的条目。它们仍保留在全量异 ID 统计里，但默认不按硬缺口处理。')
+$report.Add("")
+if ($intentionalParallelRenameRows.Count -eq 0) {
+    $report.Add("- 排除冻结模块后，没有发现可直接判定为并存改名的异 ID 条目。")
+} else {
+    $report.Add("| 指挥官 | 当前模块 | 条目 | 官方 ID | 当前 ID | 说明 |")
+    $report.Add("|---|---|---|---|---|---|")
+    foreach ($item in $intentionalParallelRenameRows) {
+        $row = $item.Row
+        $hint = $item.Hint
+        $report.Add("| $($row.Commander) | $($row.Module) | $(Escape-MarkdownCell $row.Name) | $(Escape-MarkdownCell (Join-Values $row.OfficialIds)) | $(Escape-MarkdownCell (Join-Values $row.AllowedCurrentIds)) | $(Escape-MarkdownCell $hint.Reason) |")
+    }
+}
+$report.Add("")
+
+$actionableNoProductionRows = @(
+    $rows |
+    Where-Object {
+        $_.Module -notin $frozenModules -and
+        $_.Kind -eq "兵种" -and
+        $_.Status -eq "ImplementedSameId" -and
+        [string]::IsNullOrWhiteSpace($_.CurrentProductionSummary)
+    } |
+    Sort-Object Commander, Name
+)
+$report.Add("## 同 ID 但未找到当前生产入口（排除冻结模块）")
+$report.Add("")
+$report.Add('- 这一节用于识别“当前能扫到同 ID 单位，但还没有在当前模块或依赖链里静态找到训练、折跃、建造、变异入口”的条目。它不一定等于玩法未接通，但需要后续优先核实。')
+$report.Add("")
+if ($actionableNoProductionRows.Count -eq 0) {
+    $report.Add("- 排除冻结模块后，没有发现同 ID 但缺少当前生产入口的兵种条目。")
+} else {
+    $report.Add("| 指挥官 | 当前模块 | 条目 | 官方 ID | 当前 ID | 官方来源 |")
+    $report.Add("|---|---|---|---|---|---|")
+    foreach ($row in $actionableNoProductionRows) {
+        $report.Add("| $($row.Commander) | $($row.Module) | $(Escape-MarkdownCell $row.Name) | $(Escape-MarkdownCell (Join-Values $row.OfficialIds)) | $(Escape-MarkdownCell (Join-Values $row.CurrentIds)) | $(Escape-MarkdownCell $row.Source) |")
     }
 }
 $report.Add("")
@@ -1404,6 +1853,31 @@ if ($shapeRows.Count -eq 0) {
 }
 $report.Add("")
 
+$nonFrozenClosedRows = @(
+    $summary |
+    Where-Object {
+        $_.Module -notin $frozenModules -and
+        $_.ShapeAmbiguous -eq 0 -and
+        $_.DependencyOnly -eq 0 -and
+        $_.LocalizedOnly -eq 0 -and
+        $_.Missing -eq 0 -and
+        $_.ImplementedDifferentId -eq 0
+    } |
+    Sort-Object Commander
+)
+$report.Add("## 非冻结模块静态闭环情况")
+$report.Add("")
+if ($nonFrozenClosedRows.Count -eq 0) {
+    $report.Add('- 当前没有同 ID / 生产入口 / 缺口全部静态闭环的非冻结模块。')
+} else {
+    $report.Add("- 以下非冻结模块在当前静态口径下已经闭环：没有 Missing、LocalizedOnly、DependencyOnly、ImplementedDifferentId、ShapeAmbiguous。")
+    $report.Add("")
+    foreach ($item in $nonFrozenClosedRows) {
+        $report.Add("- $($item.Commander) -> $($item.Module)")
+    }
+}
+$report.Add("")
+
 $report.Add("## 官方主表明细")
 $report.Add("")
 foreach ($commander in $commanderDefs) {
@@ -1417,10 +1891,10 @@ foreach ($commander in $commanderDefs) {
     $report.Add("- 当前模块：$($commander.Module)")
     $report.Add("- 官方主表来源：$($commander.Source)")
     $report.Add("")
-    $report.Add("| 官方条目 | 类型 | 状态 | 官方 ID | 当前 ID | 共享 ID | 官方来源 |")
-    $report.Add("|---|---|---|---|---|---|---|")
+    $report.Add("| 官方条目 | 类型 | 状态 | 官方 ID | 当前 ID | 仅外部依赖 ID | 共享 ID | 当前生产/建造入口 | 官方来源 |")
+    $report.Add("|---|---|---|---|---|---|---|---|---|")
     foreach ($row in $commanderRows) {
-        $report.Add("| $(Escape-MarkdownCell $row.Name) | $($row.Kind) | $($row.Status) | $(Escape-MarkdownCell (Join-Values $row.OfficialIds)) | $(Escape-MarkdownCell (Join-Values $row.CurrentIds)) | $(Escape-MarkdownCell (Join-Values $row.SharedIds)) | $(Escape-MarkdownCell $row.Source) |")
+        $report.Add("| $(Escape-MarkdownCell $row.Name) | $($row.Kind) | $($row.Status) | $(Escape-MarkdownCell (Join-Values $row.OfficialIds)) | $(Escape-MarkdownCell (Join-Values $row.AllowedCurrentIds)) | $(Escape-MarkdownCell (Join-Values $row.ForeignOnlyCurrentIds)) | $(Escape-MarkdownCell (Join-Values $row.SharedIds)) | $(Escape-MarkdownCell $row.CurrentProductionSummary) | $(Escape-MarkdownCell $row.Source) |")
     }
     $report.Add("")
 }
@@ -1452,7 +1926,20 @@ foreach ($commander in $commanderDefs) {
 }
 
 $hardCount = @($rows | Where-Object { $_.Status -in @("Missing", "LocalizedOnly") }).Count
+$dependencyOnlyCount = @($rows | Where-Object Status -eq "DependencyOnly").Count
 $differentCount = @($rows | Where-Object Status -eq "ImplementedDifferentId").Count
+$actionableHardCount = @($actionableFocusRows | Where-Object { $_.Status -in @("Missing", "LocalizedOnly") }).Count
+$actionableDependencyOnlyCount = @($actionableFocusRows | Where-Object Status -eq "DependencyOnly").Count
+$actionableDifferentCount = @($actionableFocusRows | Where-Object Status -eq "ImplementedDifferentId").Count
+$actionableIntentionalRenameCount = $intentionalParallelRenameRows.Count
+$actionableRealDifferentCount = @(
+    $actionableFocusRows |
+    Where-Object {
+        $_.Status -eq "ImplementedDifferentId" -and
+        $null -eq (Test-IntentionalParallelRename $_ $intentionalParallelRenameHints)
+    }
+).Count
+$actionableNoProductionCount = $actionableNoProductionRows.Count
 $shapeCount = @($rows | Where-Object Status -eq "ShapeAmbiguous").Count
 $extraCount = $extraRows.Count
 $sameCount = @($rows | Where-Object Status -eq "ImplementedSameId").Count
@@ -1462,9 +1949,12 @@ $report.Add("## 直接结论")
 $report.Add("")
 $report.Add("1. 这版报告的主方向已经改为官方合作模式主表 -> 当前 XM 反查。")
 $report.Add("2. 官方主表共 $totalCount 条；当前同 ID 直接落地 $sameCount 条；多形态待裁剪 $shapeCount 条。")
-$report.Add("3. 当前硬缺口（Missing + LocalizedOnly）共 $hardCount 条；异 ID 落地共 $differentCount 条。")
-$report.Add("4. 当前 XM 额外命名落地共 $extraCount 条；这些不等于错误，但后续需要区分自定义内容、辅助对象和旧实现残留。")
-$report.Add("5. 下一步如果要改数据，优先顺序建议是 Missing / LocalizedOnly -> ImplementedDifferentId -> ShapeAmbiguous。")
+$report.Add("3. 当前硬缺口（Missing + LocalizedOnly）共 $hardCount 条；仅外部依赖命中 $dependencyOnlyCount 条；异 ID 落地共 $differentCount 条。")
+$report.Add("4. 排除冻结模块后，本轮可处理硬缺口共 $actionableHardCount 条；仅外部依赖命中 $actionableDependencyOnlyCount 条；异 ID 落地共 $actionableDifferentCount 条。")
+$report.Add(("5. 上述非冻结异 ID 中，有 {0} 条已单列为并存改名候选；若保持旧阿巴瑟与新阿巴瑟并存，则真正需要继续收口的非冻结异 ID 还剩 {1} 条。" -f $actionableIntentionalRenameCount, $actionableRealDifferentCount))
+$report.Add(("6. 排除冻结模块后，另有 {0} 条同 ID 但未找到当前生产入口的兵种，需要继续核实入口链。" -f $actionableNoProductionCount))
+$report.Add("7. 当前 XM 额外命名落地共 $extraCount 条；这些不等于错误，但后续需要区分自定义内容、辅助对象和旧实现残留。")
+$report.Add("8. 下一步如果要改数据，优先顺序建议是 Missing / LocalizedOnly / DependencyOnly -> 非并存改名的 ImplementedDifferentId -> 无生产入口同 ID -> ShapeAmbiguous，并且跳过冻结模块。")
 
 $outputDir = Split-Path -Parent $OutputPath
 if (-not (Test-Path -LiteralPath $outputDir)) {
