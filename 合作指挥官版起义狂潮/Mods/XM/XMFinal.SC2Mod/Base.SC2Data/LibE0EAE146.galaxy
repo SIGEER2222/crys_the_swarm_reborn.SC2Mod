@@ -1017,7 +1017,7 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
     string lv_kind;
     lv_kind = lp_kind;
     if ((lv_kind == "light")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zergling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "heavy")) {
@@ -1031,7 +1031,7 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
     }
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Zergling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSRaptor", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Queen", 0, lp_player, lp_point);
     }
@@ -1052,7 +1052,7 @@ void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind)
     string lv_kind;
     lv_kind = lp_kind;
     if ((lv_kind == "light")) {
-        UnitCargoCreate(lp_container, "Zergling", 4);
+        UnitCargoCreate(lp_container, "HotSRaptor", 4);
         UnitCargoCreate(lp_container, "Hydralisk", 2);
     }
     else if ((lv_kind == "heavy")) {
@@ -1066,7 +1066,7 @@ void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind)
     }
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "K5Kerrigan", 1);
-        UnitCargoCreate(lp_container, "Zergling", 3);
+        UnitCargoCreate(lp_container, "HotSRaptor", 3);
         UnitCargoCreate(lp_container, "Hydralisk", 2);
         UnitCargoCreate(lp_container, "Queen", 1);
     }
