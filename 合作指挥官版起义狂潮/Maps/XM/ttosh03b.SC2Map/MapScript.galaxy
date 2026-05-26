@@ -936,13 +936,25 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HydraliskStetmann", 0, 1, PointFromId(29));
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "ZerglingStetmann", 0, 1, PointFromId(29));
     }
-    else if (auto2F29E444_val == "Abathur") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathur", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Abathur", UnitLastCreated(), null);
+    else if ((auto2F29E444_val == "Abathur") || (auto2F29E444_val == "AbathurReborn")) {
+        if ((auto2F29E444_val == "AbathurReborn")) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathurReborn", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+            lib67C0F0E7_gf_CU_GPInit(1, "AbathurReborn", UnitLastCreated(), null);
+        }
+        else {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathur", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+            lib67C0F0E7_gf_CU_GPInit(1, "Abathur", UnitLastCreated(), null);
+        }
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
         libE0EAE146_gf_AbathurEarlySnapshot("ttosh03bInit03Units");
         libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", 1, PointFromId(29));
         gv_nova = UnitLastCreated();
+    }
+    else if (auto2F29E444_val == "Raynor") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterRaynor", "Raynor");
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "RaynorCommando", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+        libE0EAE146_gf_RaynorCreateMapStartSquad("heavy", 1, PointFromId(29));
     }
     else if (auto2F29E444_val == "Zagara") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZagaraVoidCoop", 0, 1, PointFromId(29));

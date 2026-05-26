@@ -507,7 +507,7 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskStetmann", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "RavagerStetmann", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
     }
-    else if (auto935BE165_val == "Abathur") {
+    else if ((auto935BE165_val == "Abathur") || (auto935BE165_val == "AbathurReborn")) {
         libE0EAE146_gf_AbathurEarlySnapshot("traynor01Init03Units");
         libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
         libE0EAE146_gf_AbathurCreateMapStartSquad("light", gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
@@ -5118,6 +5118,10 @@ bool gt_IntroCinematic_Func (bool testConds, bool runActions) {
         UnitCargoCreate(gv_introDropship, "TrooperMengsk", 2);
         libNtve_gf_CreateUnitsAtPoint2(1, "PickupPalletMinerals", 0, gv_p1_USER, PointFromId(2034889046));
     }
+    else if ((auto440B2AF1_val == "Abathur") || (auto440B2AF1_val == "AbathurReborn")) {
+        libE0EAE146_gf_AbathurCreateCargoSquad(gv_introDropship, "hero");
+        gv_raynor = UnitCargoLastCreated();
+    }
     else if (auto440B2AF1_val == "Alarak") {
         UnitCargoCreate(gv_introDropship, "AlarakCoop", 1);
         gv_raynor = UnitCargoLastCreated();
@@ -5145,6 +5149,7 @@ bool gt_IntroCinematic_Func (bool testConds, bool runActions) {
     }
     else if (auto440B2AF1_val == "Vorazun") {
         libE0EAE146_gf_VorazunCreateCargoSquad(gv_introDropship, "hero");
+        gv_raynor = UnitCargoLastCreated();
     }
     else if (auto440B2AF1_val == "Karax") {
         UnitCargoCreate(gv_introDropship, "KaraxChampion", 1);
@@ -5384,6 +5389,16 @@ bool gt_IntroCleanupEscape_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsAtPoint2(1, "TrooperMengsk", 0, gv_p1_USER, PointFromId(885));
         libNtve_gf_CreateUnitsAtPoint2(1, "PickupPalletMinerals", 0, gv_p1_USER, PointFromId(2034889046));
     }
+    else if ((autoACB5ADFA_val == "Abathur") || (autoACB5ADFA_val == "AbathurReborn")) {
+        libE0EAE146_gf_AbathurEarlySnapshot("traynor01IntroCleanupEscape");
+        libE0EAE146_gf_AbathurCreateMapStartSquad("hero", gv_p1_USER, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+    }
+    else if (autoACB5ADFA_val == "Alarak") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "AlarakCoop", 0, gv_p1_USER, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+        libE0EAE146_gf_AlarakCreateMapStartSquad("hero", gv_p1_USER, PointFromId(415));
+    }
     else if (autoACB5ADFA_val == "Raynor") {
         libNtve_gf_CreateUnitsAtPoint2(1, "RaynorCommando", 0, gv_p1_USER, PointFromId(505));
         gv_raynor = UnitLastCreated();
@@ -5403,6 +5418,15 @@ bool gt_IntroCleanupEscape_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsAtPoint2(1, "K5Kerrigan", 0, gv_p1_USER, PointFromId(505));
         gv_raynor = UnitLastCreated();
         libE0EAE146_gf_KerriganCreateMapStartSquad("light", gv_p1_USER, PointFromId(415));
+    }
+    else if (autoACB5ADFA_val == "Zagara") {
+        libNtve_gf_CreateUnitsAtPoint2(1, "ZagaraVoidCoop", 0, gv_p1_USER, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("hero", gv_p1_USER, PointFromId(415));
+    }
+    else if (autoACB5ADFA_val == "Vorazun") {
+        libE0EAE146_gf_VorazunCreateMapStartSquad("hero", gv_p1_USER, PointFromId(505));
+        gv_raynor = UnitLastCreated();
     }
     else if (autoACB5ADFA_val == "Karax") {
         libNtve_gf_CreateUnitsAtPoint2(1, "KaraxChampion", 0, gv_p1_USER, PointFromId(505));

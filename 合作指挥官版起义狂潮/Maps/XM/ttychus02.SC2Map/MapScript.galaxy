@@ -710,7 +710,7 @@ bool gt_SiegeTanksComeIn_Func (bool testConds, bool runActions) {
         UnitCargoCreate(UnitLastCreated(), "DehakaPrimalSwarmHost", 2);
     }
     else if (auto6309E628_val == "Alarak") {
-        UnitCargoCreate(UnitLastCreated(), "Supplicant", 2);
+        libE0EAE146_gf_AlarakCreateCargoSquad(UnitLastCreated(), "heavy");
     }
     else if (auto6309E628_val == "Kerrigan") {
         libE0EAE146_gf_KerriganCreateCargoSquad(UnitLastCreated(), "heavy");
@@ -943,8 +943,11 @@ bool gt_StartGameTacticalPhase_Func (bool testConds, bool runActions) {
         UnitCargoCreate(UnitFromId(317), "ZerglingStetmann", 6);
         UnitCargoCreate(UnitFromId(317), "HydraliskStetmann", 3);
     }
-    else if (autoA39A42DB_val == "Abathur") {
+    else if ((autoA39A42DB_val == "Abathur") || (autoA39A42DB_val == "AbathurReborn")) {
         libE0EAE146_gf_AbathurCreateCargoSquad(UnitFromId(317), "hero");
+    }
+    else if (autoA39A42DB_val == "Raynor") {
+        libE0EAE146_gf_RaynorCreateCargoSquad(UnitFromId(317), "hero");
     }
     else if (autoA39A42DB_val == "Zagara") {
         libE0EAE146_gf_ZagaraCreateCargoSquad(UnitFromId(317), "hero");

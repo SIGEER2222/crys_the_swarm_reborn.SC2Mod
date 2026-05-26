@@ -406,8 +406,8 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "DehakaGuardian", 0, 1, PointFromId(395));
     }
     else if (autoFDF18DCD_val == "Alarak") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "VoidRayTaldarim", 0, 1, PointFromId(394));
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "VoidRayTaldarim", 0, 1, PointFromId(395));
+        libE0EAE146_gf_AlarakCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_AlarakCreateMapStartSquad("air", 1, PointFromId(395));
     }
     else if (autoFDF18DCD_val == "Kerrigan") {
         libE0EAE146_gf_KerriganCreateMapStartSquad("air", 1, PointFromId(394));
@@ -432,9 +432,13 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
     else if (autoFDF18DCD_val == "Stetmann") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLordStetmann", 0, 1, PointFromId(394));
     }
-    else if (autoFDF18DCD_val == "Abathur") {
+    else if ((autoFDF18DCD_val == "Abathur") || (autoFDF18DCD_val == "AbathurReborn")) {
         libE0EAE146_gf_AbathurCreateMapStartSquad("air", 1, PointFromId(394));
         libE0EAE146_gf_AbathurCreateMapStartSquad("air", 1, PointFromId(395));
+    }
+    else if (autoFDF18DCD_val == "Raynor") {
+        libE0EAE146_gf_RaynorCreateMapStartSquad("air", 1, PointFromId(394));
+        libE0EAE146_gf_RaynorCreateMapStartSquad("air", 1, PointFromId(395));
     }
     else if (autoFDF18DCD_val == "Zagara") {
         libE0EAE146_gf_ZagaraCreateMapStartSquad("air", 1, PointFromId(394));
