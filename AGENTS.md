@@ -87,6 +87,7 @@
 
 - `XMFinal.SC2Mod` 优先作为统一 runtime owner。
 - 新指挥官或新机制优先接到统一框架，不要把通用逻辑散到每张地图。
+- SC2 新增/活跃维护的 runtime 代码文件默认不超过 1000 行；特别是 `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/*.galaxy`，新增逻辑应按职责拆成 include/profile/helper 文件。可用 `scripts/sc2/check-galaxy-line-limit.ps1` 校验。历史地图脚本、`t3Terrain.xml`、官方/原始导出 XML 这类生成或遗留资源不要为满足行数而盲拆。
 - `crys_the_swarm_reborn.SC2Mod` 只可作参考，不可直接当来源。
 - Launcher 能显示，不代表玩法已完成。
 - `合作指挥官版起义狂潮/` 是此前尚未成功的半成品测试实现，不要把其中的文件当作官方数据、最终设计依据或已验证 runtime 行为；只有在单独标注“半成品实现线索”时才可参考。
