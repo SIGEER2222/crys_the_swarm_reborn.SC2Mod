@@ -1466,5 +1466,300 @@
         ]
       }
     ]
+  },
+  {
+    "id": "ZagaraVoidCoop",
+    "unit_id": "ZagaraVoidCoop",
+    "name": "扎加拉",
+    "object_type": "Hero",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "MoveChampions",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
+          },
+          {
+            "face": "AttackChampions",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZagaraVoidCoopRelentlessSwarmer",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZagaraVoidCoopRelentlessSwarmer",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/ZagaraVoidCoopRelentlessSwarmer",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/ZagaraVoidCoopRelentlessSwarmer",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "VolatileNestLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ZagaraLevel07",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "VolatileNestLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "哺育腔",
+              "name_key": "Button/Name/VolatileNestLocked",
+              "tooltip": "该技能将在指挥官等级7时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel07",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "MedusasBladesLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ZagaraLevel09",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MedusasBladesLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "美杜莎之刃",
+              "name_key": "Button/Name/MedusasBladesLocked",
+              "tooltip": "该科技将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "CommanderPrestigeZagaraZagaraDeepTunnel",
+            "type": "AbilCmd",
+            "abil_cmd": "CommanderPrestigeZagaraZagaraDeepTunnel,Execute",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CommanderPrestigeZagaraZagaraDeepTunnel",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "深槽虫道",
+              "name_key": "Button/Name/CommanderPrestigeZagaraZagaraDeepTunnel",
+              "tooltip": "快速潜地前往目标位置。",
+              "tooltip_key": "Button/Tooltip/CommanderPrestigeZagaraZagaraDeepTunnel",
+              "icon": "Assets\\Textures\\btn-ability-zerg-deeptunnel.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-deeptunnel.dds"
+            }
+          },
+          {
+            "face": "ZagaraVoidCoopBanelingBarrage",
+            "type": "AbilCmd",
+            "abil_cmd": "ZagaraVoidCoopBanelingBarrage,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZagaraVoidCoopBanelingBarrage",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/ZagaraVoidCoopBanelingBarrage",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/ZagaraVoidCoopBanelingBarrage",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "ZagaraVoidCoopSpawnHunterKillers",
+            "type": "AbilCmd",
+            "abil_cmd": "ZagaraVoidCoopSpawnHunterKillers,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZagaraVoidCoopMassFrenzy",
+            "type": "AbilCmd",
+            "abil_cmd": "ZagaraVoidCoopMassFrenzy,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZagaraVoidCoopMassFrenzy",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "群体狂暴",
+              "name_key": "Button/Name/ZagaraVoidCoopMassFrenzy",
+              "tooltip": "使地图上所有友方单位的攻击速度提高{(Behavior,ZagaraVoidCoopMassFrenzyTarget,Modification.AttackSpeedMultiplier - 1) * 100}%，移动速度提高{(Behavior,ZagaraVoidCoopMassFrenzyTarget,Modification.MoveSpeedMultiplier - 1) * 100}%，持续{Behavior,ZagaraVoidCoopMassFrenzyTarget,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/ZagaraVoidCoopMassFrenzy",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-frenzy.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-frenzy.dds"
+            }
+          },
+          {
+            "face": "ZagaraVoidCoopMassRoachDropLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ZagaraLevel02",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZagaraVoidCoopMassRoachDropLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "感染空投",
+              "name_key": "Button/Name/ZagaraVoidCoopMassRoachDropLocked",
+              "tooltip": "该技能将在指挥官等级2时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel02",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "ZagaraVoidCoopBurrow,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "BurrowDown",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "潜地",
+              "name_key": "Button/Name/BurrowDown",
+              "tooltip": "命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。",
+              "tooltip_key": "Button/Tooltip/BurrowDown",
+              "icon": "Assets\\Textures\\btn-ability-zerg-burrow-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-burrow-color.dds"
+            }
+          }
+        ]
+      }
+    ]
   }
 ]
