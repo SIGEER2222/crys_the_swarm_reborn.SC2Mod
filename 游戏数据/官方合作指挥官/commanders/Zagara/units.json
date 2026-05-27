@@ -43,6 +43,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "",
+      "supply_raw": "",
+      "supply_cost": "",
+      "supply_provided": "",
       "build_time": "",
       "life": "",
       "shields": "",
@@ -59,7 +62,57 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "SILarva",
+      "button_face": "Aberration",
+      "abil_cmd": "SILarvaTrain,Train1",
+      "ability_id": "SILarvaTrain",
+      "command_index": "Train1",
+      "minerals": "",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "30",
+      "unit": "InfestedAbomination",
+      "source_catalog": "starcoop",
+      "cost_mode": "",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "SILarva",
+        "button_face": "Aberration",
+        "abil_cmd": "SILarvaTrain,Train1",
+        "ability_id": "SILarvaTrain",
+        "command_index": "Train1",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "30",
+        "unit": "InfestedAbomination",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "SICocoonInfestedAberration",
+        "button_face": "Aberration",
+        "abil_cmd": "SIMorphtoInfestedAberration,Train1",
+        "ability_id": "SIMorphtoInfestedAberration",
+        "command_index": "Train1",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "30",
+        "unit": "InfestedAbomination",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "Baneling",
@@ -117,6 +170,9 @@
       "vespene": "25",
       "terrazine": "",
       "supply": "-0.5",
+      "supply_raw": "-0.5",
+      "supply_cost": "0.5",
+      "supply_provided": "",
       "build_time": "",
       "life": "30",
       "shields": "",
@@ -158,7 +214,57 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Zergling",
+      "button_face": "Baneling",
+      "abil_cmd": "MorphZerglingToBaneling,Train1",
+      "ability_id": "MorphZerglingToBaneling",
+      "command_index": "Train1",
+      "minerals": "25",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "20",
+      "unit": "Baneling",
+      "source_catalog": "starcoop",
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "Zergling"
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Zergling",
+        "button_face": "Baneling",
+        "abil_cmd": "MorphZerglingToBaneling,Train1",
+        "ability_id": "MorphZerglingToBaneling",
+        "command_index": "Train1",
+        "minerals": "25",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "20",
+        "unit": "Baneling",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "Zergling"
+      },
+      {
+        "producer_unit_id": "BanelingNest",
+        "button_face": "ZagaraVoidCoopBanelingSpawner",
+        "abil_cmd": "ZagaraVoidCoopBanelingSpawnerTrain,Train1",
+        "ability_id": "ZagaraVoidCoopBanelingSpawnerTrain",
+        "command_index": "Train1",
+        "minerals": "50",
+        "vespene": "25",
+        "terrazine": "",
+        "custom": "",
+        "time": "",
+        "unit": "Baneling",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "Corruptor",
@@ -213,6 +319,9 @@
       "vespene": "100",
       "terrazine": "",
       "supply": "-2",
+      "supply_raw": "-2",
+      "supply_cost": "2",
+      "supply_provided": "",
       "build_time": "",
       "life": "200",
       "shields": "",
@@ -249,7 +358,41 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Larva",
+      "button_face": "Corruptor",
+      "abil_cmd": "LarvaTrain,Train12",
+      "ability_id": "LarvaTrain",
+      "command_index": "Train12",
+      "minerals": "150",
+      "vespene": "100",
+      "terrazine": "",
+      "custom": "",
+      "time": "40",
+      "unit": "Corruptor",
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Larva",
+        "button_face": "Corruptor",
+        "abil_cmd": "LarvaTrain,Train12",
+        "ability_id": "LarvaTrain",
+        "command_index": "Train12",
+        "minerals": "150",
+        "vespene": "100",
+        "terrazine": "",
+        "custom": "",
+        "time": "40",
+        "unit": "Corruptor",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "Scourge",
@@ -297,6 +440,9 @@
       "vespene": "37",
       "terrazine": "",
       "supply": "",
+      "supply_raw": "",
+      "supply_cost": "",
+      "supply_provided": "",
       "build_time": "",
       "life": "",
       "shields": "",
@@ -313,7 +459,57 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Larva",
+      "button_face": "Scourge",
+      "abil_cmd": "LarvaTrainSwarm,Train30",
+      "ability_id": "LarvaTrainSwarm",
+      "command_index": "Train30",
+      "minerals": "1",
+      "vespene": "1",
+      "terrazine": "",
+      "custom": "",
+      "time": "30",
+      "unit": "Scourge",
+      "source_catalog": "starcoop",
+      "cost_mode": "direct",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Larva",
+        "button_face": "Scourge",
+        "abil_cmd": "LarvaTrainSwarm,Train30",
+        "ability_id": "LarvaTrainSwarm",
+        "command_index": "Train30",
+        "minerals": "1",
+        "vespene": "1",
+        "terrazine": "",
+        "custom": "",
+        "time": "30",
+        "unit": "Scourge",
+        "source_catalog": "starcoop",
+        "cost_mode": "direct",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "ScourgeNest",
+        "button_face": "CommanderPrestigeZagaraMaxSupplyScourgeSpawn",
+        "abil_cmd": "CommanderPrestigeZagaraMaxSupplyScourgeSpawner,Train1",
+        "ability_id": "CommanderPrestigeZagaraMaxSupplyScourgeSpawner",
+        "command_index": "Train1",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "",
+        "unit": "Scourge",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "SwarmQueen",
@@ -365,6 +561,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "",
+      "supply_raw": "",
+      "supply_cost": "",
+      "supply_provided": "",
       "build_time": "",
       "life": "",
       "shields": "",
@@ -438,6 +637,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "-0.5",
+      "supply_raw": "-0.5",
+      "supply_cost": "0.5",
+      "supply_provided": "",
       "build_time": "",
       "life": "35",
       "shields": "",
@@ -479,6 +681,56 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Larva",
+      "button_face": "Zergling",
+      "abil_cmd": "LarvaTrain,Train2",
+      "ability_id": "LarvaTrain",
+      "command_index": "Train2",
+      "minerals": "25",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "24",
+      "unit": "Zergling",
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Larva",
+        "button_face": "Zergling",
+        "abil_cmd": "LarvaTrain,Train2",
+        "ability_id": "LarvaTrain",
+        "command_index": "Train2",
+        "minerals": "25",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "24",
+        "unit": "Zergling",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "SILarva",
+        "button_face": "Zergling",
+        "abil_cmd": "SILarvaTrain,Train4",
+        "ability_id": "SILarvaTrain",
+        "command_index": "Train4",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "24",
+        "unit": "Zergling",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   }
 ]
