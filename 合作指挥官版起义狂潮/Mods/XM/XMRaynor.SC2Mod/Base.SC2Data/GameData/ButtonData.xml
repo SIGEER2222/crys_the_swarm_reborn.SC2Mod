@@ -489,6 +489,16 @@
     <AlertIcon value="Assets\Textures\btn-ability-dehaka-detector.dds" />
     <EditorCategories value="Race:PrimalZerg" />
   </CButton>
+  <CButton id="DehakaDrone">
+    <Icon value="Assets\Textures\btn-unit-collection-primal-Drone.dds" />
+    <AlertIcon value="Assets\Textures\btn-unit-collection-primal-Drone.dds" />
+    <EditorCategories value="Race:PrimalZerg" />
+  </CButton>
+  <CButton id="DehakaHatchery">
+    <Icon value="Assets\Textures\btn-building-dehaka-primalhatchery.dds" />
+    <AlertIcon value="Assets\Textures\btn-building-dehaka-primalhatchery.dds" />
+    <EditorCategories value="Race:Zerg" />
+  </CButton>
   <CButton id="DehakaIntimidatingRoar">
     <Icon value="Assets\Textures\btn-ability-zerg-dehaka-intimidatingroar.dds" />
     <AlertIcon value="Assets\Textures\btn-ability-zerg-dehaka-intimidatingroar.dds" />
@@ -2759,6 +2769,12 @@
     <AlertIcon value="Assets\Textures\btn-missing-kaeo.dds" />
     <EditorCategories value="Race:Zerg" />
   </CButton>
+  <CButton id="SICommandCenter">
+    <Icon value="Assets\Textures\btn-building-stukov-infestedcommandcenter.dds" />
+    <AlertIcon value="Assets\Textures\btn-building-stukov-infestedcommandcenter.dds" />
+    <Hotkey value="Button/Hotkey/CommandCenter" />
+    <EditorCategories value="Race:Terran" />
+  </CButton>
   <CButton id="SICommandCenterLoad">
     <Icon value="Assets\Textures\btn-ability-terran-load.dds" />
     <AlertIcon value="Assets\Textures\btn-ability-terran-load.dds" />
@@ -2777,6 +2793,13 @@
     <EditorCategories value="Race:InfestedTerran" />
     <TooltipAppender Validator="HaveMasteryStukovVolatileChance" Text="Button/Tooltip/MasteryStukovVolatileChanceAppend" />
     <TooltipAppender Validator="HaveMasteryStukovTimedLife" Text="Button/Tooltip/MasteryMasteryStukovTimedLifeAppend" />
+  </CButton>
+  <CButton id="SISCV">
+    <Icon value="Assets\Textures\btn-unit-zerg-infestedscv.dds" />
+    <AlertIcon value="Assets\Textures\btn-unit-zerg-infestedscv.dds" />
+    <EditorCategories value="Race:Terran" />
+    <Universal value="1" />
+    <TooltipTimeOverrideAbilCmd AbilCmd="SIMorphtoInfestedSCV,Train1" />
   </CButton>
   <CButton id="SIStukovInfestStructure">
     <TooltipAppender Validator="HaveMasteryStukovInfestStructureCDR" Text="Button/Tooltip/MasteryStukovInfestStructureCDRAppend" />
@@ -3212,181 +3235,5 @@
     <Icon value="Assets\Textures\btn-upgrade-zergling-armorshredding.dds" />
     <AlertIcon value="Assets\Textures\btn-upgrade-zergling-armorshredding.dds" />
     <EditorCategories value="Race:Zerg" />
-  </CButton>
-  <CButton id="CloakingField">
-    <TooltipAppender Validator="HaveMasteryVorazunDarkPylonCloakRadius" Text="Button/Tooltip/MasteryVorazunDarkPylonCloakRadiusAppend" />
-  </CButton>
-  <CButton id="MutatorAmonShadowBlade">
-    <Icon value="Assets\Textures\BTN-Ability-Protoss-ShadowBlade.dds" />
-    <AlertIcon value="Assets\Textures\BTN-Ability-Protoss-ShadowBlade.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="MutatorAmonZeratulBlink">
-    <Icon value="Assets\Textures\btn-ability-protoss-stealth-blink.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-stealth-blink.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="PnPSingleTargetLockOn2">
-    <Icon value="Assets\Textures\btn-ability-protoss-targetlock.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-targetlock.dds" />
-    <EditorCategories value="Race:Neutral" />
-  </CButton>
-  <CButton id="ResearchDarkTemplarRecall">
-    <Icon value="Assets\Textures\BTN-Ability-Protoss-RecallOnDeath.dds" />
-    <AlertIcon value="Assets\Textures\BTN-Ability-Protoss-RecallOnDeath.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="VoidStasis">
-    <TooltipAppender Validator="CommanderPrestigeVorazunStasis" Text="Button/Tooltip/CommanderPrestigeVorazunStasisDoTUpgrade" />
-  </CButton>
-  <CButton id="ZeratulBlink">
-    <TooltipAppender Validator="HaveZeratulArtifactUpgradeTier2A" Text="Button/Tooltip/ZeratulBlinkVoidBlinkAppend" />
-    <Icon value="Assets\Textures\btn-ability-protoss-stealth-blink.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-stealth-blink.dds" />
-    <TintRacially value="0" />
-    <ChargeText value="Button/ChargeText/ZeratulBlinkSingleCharge" />
-  </CButton>
-  <CButton id="ZeratulDarkArchonMindControl">
-    <Icon value="Assets\Textures\btn-ability-protoss-mindcontrol.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-mindcontrol.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="ZeratulZorayaVoidPrismaticRange">
-    <Icon value="Assets\Textures\btn-ability-protoss-prismaticrange.dds" />
-    <AlertIcon value="Assets\Textures\btn-missing-kaeo.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="AlarackACResearchHavocDetection">
-    <Icon value="Assets\Textures\btn-ability-protoss-confusion.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-confusion.dds" />
-    <EditorCategories value="Race:Terran" />
-    <Placeholder value="1" />
-  </CButton>
-  <CButton id="BrokenFenixAltarOfPsiStorms">
-    <Icon value="Assets\Textures\btn-unit-protoss-fenix-purifier-conclave.dds" />
-    <AlertIcon value="Assets\Textures\btn-unit-protoss-fenix-purifier-conclave.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="CreateSymbiotes">
-    <Icon value="Assets\Textures\btn-unit-zerg-overseer.dds" />
-    <AlertIcon value="Assets\Textures\btn-unit-zerg-overseer.dds" />
-  </CButton>
-  <CButton id="EntropicBlast">
-    <Icon value="Assets\Textures\btn-ability-zeratul-avatarofform-entropicblast.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-zeratul-avatarofform-entropicblast.dds" />
-  </CButton>
-  <CButton id="EvolveBrutalisk">
-    <Icon value="Assets\Textures\btn-unit-zerg-brutalisk.dds" />
-    <AlertIcon value="Assets\Textures\btn-unit-zerg-brutalisk.dds" />
-  </CButton>
-  <CButton id="FenixArbiterStasisField">
-    <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-stasisfield.dds" />
-    <AlertIcon value="Assets\Textures\btn-upgrade-protoss-fenix-stasisfield.dds" />
-  </CButton>
-  <CButton id="FenixClolarionBomber">
-    <TooltipAppender Validator="HaveFenixNetworkedSuperiority" Text="Button/Tooltip/FenixClolarionBomberNetworkSuperiorityAppend" />
-    <Icon value="Assets\Textures\btn-unit-collection-purifier-bomber.dds" />
-    <AlertIcon value="Assets\Textures\btn-unit-collection-purifier-bomber.dds" />
-    <EditorCategories value="Race:Protoss" />
-    <Hotkey value="Button/Hotkey/FenixClolarionBomberDummy" />
-    <HotkeyAlias value="FenixClolarionBomberDummy" />
-  </CButton>
-  <CButton id="FenixDragoonChargeBuster">
-    <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-dragoonovercharge.dds" />
-    <AlertIcon value="Assets\Textures\btn-upgrade-protoss-fenix-dragoonovercharge.dds" />
-    <EditorCategories value="Race:Protoss" />
-    <TooltipAppender Validator="FenixDragoonArsenalOverchargeNotOnCooldown" Text="Button/Tooltip/FenixDragoonChargeBusterCooldown" />
-    <TooltipAppender Text="Button/Tooltip/FenixDragoonChargeBusterBase" />
-  </CButton>
-  <CButton id="FenixDragoonChargedBuster">
-    <TooltipAppender Validator="HaveChargeBuster" Text="Button/Tooltip/FenixDragoonChargedBusterCharged" />
-    <Icon value="Assets\Textures\btn-upgrade-protoss-fenix-dragoongroundattack.dds" />
-    <AlertIcon value="Assets\Textures\btn-upgrade-protoss-fenix-dragoongroundattack.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="FenixThunderousChargeCoop">
-    <Icon value="Assets\Textures\btn-ability-protoss-thunderouscharge.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-thunderouscharge.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="FenixWarbringerColossusIceBeam">
-    <Icon value="Assets\Textures\btn-ability-protoss-prismaticbeam-color.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-prismaticbeam-color.dds" />
-    <EditorCategories value="Race:Protoss" />
-    <Placeholder value="1" />
-  </CButton>
-  <CButton id="GravitonBeam">
-    <TooltipAppender Validator="CommanderPrestigeArtanisCombatAbilities" Text="Button/Tooltip/CommanderPrestigeArtanisCombatAbilitiesCooldownUpgrade" />
-  </CButton>
-  <CButton id="HaveGraviticBoosters">
-    <Tooltip value="Button/Tooltip/HaveGraviticBooster" />
-    <Icon value="Assets\Textures\btn-upgrade-protoss-graviticbooster.dds" />
-    <AlertIcon value="Assets\Textures\btn-upgrade-protoss-graviticbooster.dds" />
-    <AlertTooltip value="Button/Tooltip/HaveGraviticBooster" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="HaveReaverIncreasedScarabCount">
-    <Icon value="Assets\Textures\btn-ability-protoss-scarabshot.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-scarabshot.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="HighTemplarTaldarim">
-    <Icon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-hightemplar.dds" />
-    <AlertIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-hightemplar.dds" />
-  </CButton>
-  <CButton id="Irradiate">
-    <Icon value="Assets\Textures\btn-upgrade-swann-irradiate.dds" />
-    <AlertIcon value="Assets\Textures\btn-upgrade-swann-irradiate.dds" />
-    <TintRacially value="0" />
-  </CButton>
-  <CButton id="MutatorAmonPhaseCannon">
-    <Icon value="Assets\Textures\btn-ability-protoss-phasecannon.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-protoss-phasecannon.dds" />
-    <EditorCategories value="Race:Protoss" />
-  </CButton>
-  <CButton id="PassiveReaverIncreasedScarabSplashRadius">
-    <Tooltip value="Button/Tooltip/HaveReaverIncreasedScarabSplashRadius" />
-    <Icon value="Assets\Textures\BTN-Upgrade-Artanis-ScarabSplashRadius.dds" />
-    <AlertIcon value="Assets\Textures\BTN-Upgrade-Artanis-ScarabSplashRadius.dds" />
-    <AlertTooltip value="Button/Tooltip/HaveReaverIncreasedScarabSplashRadius" />
-    <EditorCategories value="Race:Terran" />
-  </CButton>
-  <CButton id="PickupMinerals50">
-    <Icon value="Assets\Textures\btn-ability-terran-salvage.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-terran-salvage.dds" />
-    <EditorCategories value="Race:Terran" />
-    <TintRacially value="1" />
-  </CButton>
-  <CButton id="PsiStorm">
-    <TooltipAppender Validator="CommanderPrestigeArtanisCombatAbilities" Text="Button/Tooltip/CommanderPrestigeArtanisCombatAbilitiesDamageUpgrade" />
-  </CButton>
-  <CButton id="ReaverScarabs">
-    <TooltipAppender Validator="CommanderPrestigeArtanisCombatAbilities" Text="Button/Tooltip/CommanderPrestigeArtanisCombatAbilitiesBuildTimeUpgrade" />
-  </CButton>
-  <CButton id="SIInfestedBunker">
-    <Icon value="Assets\Textures\btn-building-stukov-infestedbunker.dds" />
-    <AlertIcon value="Assets\Textures\btn-building-stukov-infestedbunker.dds" />
-    <EditorCategories value="Race:Terran" />
-  </CButton>
-  <CButton id="SIInfestedBunkerUproot">
-    <Icon value="Assets\Textures\btn-ability-zerg-uproot-color.dds" />
-    <AlertIcon value="Assets\Textures\btn-ability-zerg-uproot-color.dds" />
-    <EditorCategories value="Race:Zerg" />
-  </CButton>
-  <CButton id="SOADarkPylon">
-    <Icon value="Assets\Textures\btn-upgrade-vorazun-summondarkpylon.dds" />
-    <AlertIcon value="Assets\Textures\btn-upgrade-vorazun-summondarkpylon.dds" />
-    <EditorCategories value="Race:Protoss" />
-    <TooltipAppender Validator="HaveMasteryVorazunDarkPylonCloakRadius" Text="Button/Tooltip/MasteryVorazunDarkPylonCloakRadiusAppend" />
-  </CButton>
-  <CButton id="SOAStrafeAttack">
-    <HotkeyAlias value="SOAStrafeAttack" />
-  </CButton>
-  <CButton id="SymbioteStab">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-hotsgroovedspines.dds" />
-    <AlertIcon value="Assets\Textures\btn-upgrade-zerg-hotsgroovedspines.dds" />
-  </CButton>
-  <CButton id="VoidZealotWhirlwind">
-    <TooltipAppender Validator="CommanderPrestigeArtanisCombatAbilities" Text="Button/Tooltip/CommanderPrestigeArtanisCombatAbilitiesDamageUpgrade" />
   </CButton>
 </Catalog>

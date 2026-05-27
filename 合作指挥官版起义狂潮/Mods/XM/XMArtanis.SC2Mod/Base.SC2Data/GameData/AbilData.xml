@@ -731,40 +731,6 @@
       <Flags index="ToSelection" value="1" />
     </CmdButtonArray>
   </CAbilEffectTarget>
-  <CAbilMorph id="ConstructDrakkenLaserDrillCoop">
-    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
-    <CmdButtonArray index="Execute" DefaultButtonFace="BuildDrakkenLaserDrill">
-      <Flags index="ToSelection" value="1" />
-    </CmdButtonArray>
-    <Flags index="Automatic" value="1" />
-    <Flags index="BestUnit" value="1" />
-    <Flags index="DisableAbils" value="1" />
-    <Flags index="FastBuild" value="1" />
-    <Flags index="IgnoreFacing" value="1" />
-    <Flags index="ShowProgress" value="1" />
-    <Flags index="SuppressMovement" value="1" />
-    <InfoArray Score="1" Unit="DrakkenLaserDrillCoop">
-      <SectionArray index="Abils">
-        <DurationArray index="Delay" value="300" />
-      </SectionArray>
-      <SectionArray index="Actor">
-        <DurationArray index="Delay" value="300" />
-      </SectionArray>
-      <SectionArray index="Collide">
-        <DurationArray index="Duration" value="300" />
-        <EffectArray index="Start" value="DrakkenLaserDrillBuildAB" />
-        <EffectArray index="Finish" value="FullHeal" />
-      </SectionArray>
-      <SectionArray index="Stats">
-        <DurationArray index="Delay" value="300" />
-      </SectionArray>
-    </InfoArray>
-    <Activity value="UI/Building" />
-    <!--Cost>
-            <Resource index="Minerals" value="300"/>
-            <Resource index="Vespene" value="200"/>
-        </Cost-->
-  </CAbilMorph>
   <CAbilEffectTarget id="Contaminate">
     <CmdButtonArray index="Execute" State="Restricted" />
   </CAbilEffectTarget>
@@ -1145,6 +1111,41 @@
       <Cooldown TimeUse="0.5" />
     </Cost>
   </CAbilEffectTarget>
+  <CAbilBuild id="DehakaHatcheryBuild">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <FlagArray index="PeonMaintained" value="0" />
+    <FlagArray index="RangeIncludesBuilding" value="0" />
+    <InfoArray index="Build1" Unit="Extractor" Time="30">
+      <Button DefaultButtonFace="BuildDehakaExtractor" />
+      <ValidatorArray value="HasVespene" />
+    </InfoArray>
+    <Range value="9" />
+    <EffectArray index="Start" value="CreepTumorLaunchMissile" />
+  </CAbilBuild>
+  <CAbilTrain id="DehakaHatcheryTrainEgg">
+    <EditorCategories value="Race:PrimalZerg,AbilityorEffectType:Structures" />
+    <Flags index="UnitOrderQueue" value="1" />
+    <Flags index="WaitForFood" value="0" />
+    <Range value="5" />
+    <InfoArray index="Train1" Effect="DehakaTrainInitialSet" Rotation="Source">
+      <Charge>
+        <CountMax value="5" />
+        <CountStart value="3" />
+        <CountUse value="1" />
+        <Location value="Unit" />
+        <TimeStart value="16" />
+        <TimeUse value="16" />
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+      <Cooldown TimeStart="20" />
+      <Button DefaultButtonFace="DehakaDrone">
+        <Flags index="ToSelection" value="1" />
+      </Button>
+      <Unit value="DehakaTrainEggDrone" />
+      <Flags index="InheritRally" value="1" />
+    </InfoArray>
+    <Alert value="" />
+  </CAbilTrain>
   <CAbilEffectInstant id="DehakaIntimidatingRoar">
     <EditorCategories value="AbilityorEffectType:Units,Race:PrimalZerg" />
     <Effect index="0" value="DehakaIntimidatingRoarSearch" />
@@ -2237,14 +2238,6 @@
     </InfoArray>
   </CAbilResearch>
   <CAbilTrain id="GatewayTrain">
-    <InfoArray index="Train1" Time="28">
-      <Button DefaultButtonFace="Zealot" State="Restricted" />
-      <Unit value="ZealotAiur" />
-    </InfoArray>
-    <InfoArray index="Train5" Time="37">
-      <Button DefaultButtonFace="Dragoon" State="Restricted" Requirements="HaveCyberneticsCore" />
-      <Unit value="Dragoon" />
-    </InfoArray>
     <InfoArray index="Train9" Time="55">
       <Button DefaultButtonFace="DarkArchon" State="Restricted" Requirements="HaveDarkShrine" />
       <Unit value="DarkArchon" />
@@ -2261,10 +2254,6 @@
     <InfoArray index="Train15" Time="37">
       <Button DefaultButtonFace="SentryFenix" State="Restricted" Requirements="HaveCyberneticsCore" />
       <Unit value="SentryFenix" />
-    </InfoArray>
-    <InfoArray index="Train19" Time="55">
-      <Button DefaultButtonFace="HighTemplar" State="Restricted" Requirements="HaveTemplarArchives" />
-      <Unit value="HighTemplar" />
     </InfoArray>
   </CAbilTrain>
   <CAbilResearch id="GhostAcademyResearch">
@@ -4267,18 +4256,6 @@
         </InfoArray-->
   </CAbilResearch>
   <CAbilTrain id="RoboticsFacilityTrain">
-    <InfoArray index="Train2" Time="30">
-      <Button DefaultButtonFace="Observer" State="Restricted" Requirements="HaveCyberneticsCore" />
-      <Unit value="Observer" />
-    </InfoArray>
-    <InfoArray index="Train4" Time="55">
-      <Button DefaultButtonFace="Immortal" State="Restricted" Requirements="HaveRoboticsFacility" />
-      <Unit value="ImmortalAiur" />
-    </InfoArray>
-    <InfoArray index="Train7" Time="60">
-      <Button DefaultButtonFace="Reaver" State="Restricted" Requirements="ArtanisLevel05" />
-      <Unit value="Reaver" />
-    </InfoArray>
     <InfoArray index="Train19">
       <Button Requirements="" />
     </InfoArray>
@@ -4352,6 +4329,34 @@
     <CmdButtonArray index="Execute" DefaultButtonFace="SIInfestedCivilian" Requirements="IsSICivilianStructureRooted" />
   </CAbilEffectInstant>
   <CAbilMorphPlacement id="SICommandCenterLand" parent="SIBuildingRoot" unit="SICommandCenter" />
+  <CAbilTransport id="SICommandCenterTransport">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <MaxCargoCount value="5" />
+    <MaxCargoSize value="1" />
+    <TotalCargoSpace value="5" />
+    <SearchRadius value="8" />
+    <CmdButtonArray index="Load">
+      <Flags index="Hidden" value="1" />
+    </CmdButtonArray>
+    <CmdButtonArray index="UnloadAll" DefaultButtonFace="CommandCenterUnloadAll">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <CmdButtonArray index="UnloadAt">
+      <Flags index="Hidden" value="1" />
+    </CmdButtonArray>
+    <CmdButtonArray index="UnloadUnit">
+      <Flags index="Hidden" value="1" />
+    </CmdButtonArray>
+    <CmdButtonArray index="LoadAll" DefaultButtonFace="CommandCenterLoad" />
+    <Flags index="AllowPassengerSmartCmd" value="0" />
+    <Flags index="AllowSmartCmd" value="0" />
+    <LoadValidatorArray value="CommandCenterTransportCombine" />
+    <LoadCargoBehavior value="CCTransportDummy" />
+    <AbilSetId value="ULdS" />
+    <DeathUnloadEffect value="RemoveCommandCenterCargo" />
+    <LoadCargoEffect value="CCLoadDummy" />
+    <UnloadCargoEffect value="CCUnloadDummy" />
+  </CAbilTransport>
   <CAbilEffectTarget id="SiegeTankJumpJet">
     <EditorCategories value="AbilityorEffectType:Units,Race:Terran" />
     <Effect index="0" value="SiegeTankJumpJetCreatePlaceholder" />
@@ -4550,51 +4555,9 @@
     <CursorEffect value="SOAOrbitalStrikeImpactSearch" />
     <CmdButtonArray index="Execute" DefaultButtonFace="SOAOrbitalStrikeKarax" Requirements="HaveSOAOrbitalStrike" />
   </CAbilEffectTarget>
-  <CAbilBehavior id="SOAOrbitalStrikeActivate">
-    <Cost>
-      <Vital index="Energy" value="25" />
-      <Cooldown Location="Player" TimeUse="20" />
-    </Cost>
-    <CmdButtonArray index="On" DefaultButtonFace="SOAOrbitalStrike" />
-    <CmdButtonArray index="Off" DefaultButtonFace="SOAOrbitalStrike" />
-    <Flags index="Toggle" value="1" />
-    <BehaviorArray value="SOAOrbitalStrikeActivate" />
-  </CAbilBehavior>
-  <CAbilEffectTarget id="SOAOrbitalStrikeTargetingDummy">
-    <Range value="500" />
-    <Arc value="360" />
-    <CursorEffect value="SOAOrbitalStrikeImpactSearch" />
-    <CmdButtonArray index="Execute" DefaultButtonFace="SOAOrbitalStrike" />
-  </CAbilEffectTarget>
-  <CAbilEffectTarget id="SOAOrbitalStrikeExecute">
-    <Effect index="0" value="SOAOrbitalStrikeCP" />
-    <Cost>
-      <Vital index="Energy" value="25" />
-      <Cooldown Location="Player" TimeUse="5" />
-    </Cost>
-    <Range value="500" />
-    <Arc value="360" />
-    <CursorEffect value="SOAOrbitalStrikeImpactSearch" />
-    <CmdButtonArray index="Execute" DefaultButtonFace="SOAOrbitalStrike" />
-  </CAbilEffectTarget>
   <CAbilEffectTarget id="SOAPylonPower">
     <Effect index="0" value="SOAPylonPowerCoop" />
-    <Cost>
-      <Cooldown Location="Player" TimeUse="60" />
-    </Cost>
-    <Range value="500" />
-    <Arc value="360" />
-    <CursorEffect value="SOAPylonPower" />
-    <CmdButtonArray index="Execute" DefaultButtonFace="SOAPylonPower" />
   </CAbilEffectTarget>
-  <CAbilEffectInstant id="SoASuperShield">
-    <Effect index="0" value="SOASuperShieldApply" />
-    <Cost>
-      <Vital index="Energy" value="50" />
-      <Cooldown Location="Player" TimeStart="180" TimeUse="180" />
-    </Cost>
-    <CmdButtonArray index="Execute" DefaultButtonFace="SOASuperShield" />
-  </CAbilEffectInstant>
   <CAbilEffectTarget id="SOARecall">
     <Cost index="0">
       <Cooldown TimeStart="90" TimeUse="90" />
@@ -4618,33 +4581,7 @@
     <Cost index="0">
       <Cooldown TimeStart="450" TimeUse="450" />
     </Cost>
-    <CmdButtonArray index="On" DefaultButtonFace="SOAStrafeAttack" />
-    <CmdButtonArray index="Off" DefaultButtonFace="SOAStrafeAttack" />
-    <Flags index="Toggle" value="1" />
-    <BehaviorArray value="SOAStrafeAttackActivate" />
   </CAbilBehavior>
-  <CAbilEffectTarget id="SOAStrafeAttack">
-    <Effect index="0" value="SOAStrafeAttackDamage" />
-    <Cost>
-      <Vital index="Energy" value="100" />
-      <Cooldown Location="Player" TimeUse="450" />
-    </Cost>
-    <Range value="500" />
-    <Arc value="360" />
-    <CursorEffect value="SOAStrafeAttackDamage" />
-    <CmdButtonArray index="Execute" DefaultButtonFace="SOAStrafeAttack" />
-  </CAbilEffectTarget>
-  <CAbilEffectTarget id="SOAStrafeAttackExecute">
-    <Effect index="0" value="SOAStrafeAttackDamage" />
-    <Cost>
-      <Vital index="Energy" value="100" />
-      <Cooldown Location="Player" TimeUse="450" />
-    </Cost>
-    <Range value="500" />
-    <Arc value="360" />
-    <CursorEffect value="SOAStrafeAttackDamage" />
-    <CmdButtonArray index="Execute" DefaultButtonFace="SOAStrafeAttack" />
-  </CAbilEffectTarget>
   <CAbilBehavior id="SOAThermalLanceActivate">
     <Cost index="0">
       <Cooldown TimeUse="120" />
@@ -4761,19 +4698,7 @@
     </InfoArray>
   </CAbilResearch>
   <CAbilTrain id="StargateTrain">
-    <InfoArray index="Train1" Time="35">
-      <Button DefaultButtonFace="Phoenix" State="Restricted" Requirements="HaveCyberneticsCore" />
-      <Unit value="PhoenixAiur" />
-    </InfoArray>
-    <InfoArray index="Train3" Time="120">
-      <Button DefaultButtonFace="CarrierAiur" State="Restricted" Requirements="HaveFleetBeacon" />
-      <Unit value="CarrierAiur" />
-    </InfoArray>
     <InfoArray index="Train9" Time="30" />
-    <InfoArray index="Train10" Time="60">
-      <Button DefaultButtonFace="Tempest" State="Restricted" Requirements="ArtanisLevel11" />
-      <Unit value="Tempest" />
-    </InfoArray>
     <InfoArray index="Train12">
       <Button Requirements="HaveFleetBeacon" />
     </InfoArray>
@@ -5486,42 +5411,6 @@
     <VitalStartFactor index="Shields" value="1" />
   </CAbilWarpable>
   <CAbilWarpTrain id="WarpGateTrain">
-    <InfoArray index="Train1" Time="5" Unit="ZealotAiur">
-      <Charge>
-        <CountMax value="1" />
-        <CountStart value="1" />
-        <CountUse value="1" />
-        <Link value="WarpGateTrain" />
-        <TimeUse value="28" />
-        <Flags index="EnableChargeTimeQueuing" value="1" />
-      </Charge>
-      <Cooldown Link="WarpGateTrain" />
-      <Button DefaultButtonFace="Zealot" State="Restricted" />
-    </InfoArray>
-    <InfoArray index="Train5" Time="5" Unit="Dragoon">
-      <Charge>
-        <CountMax value="1" />
-        <CountStart value="1" />
-        <CountUse value="1" />
-        <Link value="WarpGateTrain" />
-        <TimeUse value="37" />
-        <Flags index="EnableChargeTimeQueuing" value="1" />
-      </Charge>
-      <Cooldown Link="WarpGateTrain" />
-      <Button DefaultButtonFace="Dragoon" State="Restricted" Requirements="HaveCyberneticsCore" />
-    </InfoArray>
-    <InfoArray index="Train8" Time="5" Unit="HighTemplar">
-      <Charge>
-        <CountMax value="1" />
-        <CountStart value="1" />
-        <CountUse value="1" />
-        <Link value="WarpGateTrain" />
-        <TimeUse value="55" />
-        <Flags index="EnableChargeTimeQueuing" value="1" />
-      </Charge>
-      <Cooldown Link="WarpGateTrain" />
-      <Button DefaultButtonFace="HighTemplar" State="Restricted" Requirements="HaveTemplarArchives" />
-    </InfoArray>
     <InfoArray index="Train9" Time="5" Unit="DarkArchon">
       <Charge>
         <CountMax value="1" />

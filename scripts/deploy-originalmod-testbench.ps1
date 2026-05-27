@@ -140,6 +140,11 @@ function Invoke-Preflight {
     $xmFinalRoot = Join-Path $SourceModsRoot "XMFinal.SC2Mod"
     $xmFinalGalaxy = Join-Path $xmFinalRoot "Base.SC2Data\LibE0EAE146.galaxy"
     $xmFinalHeader = Join-Path $xmFinalRoot "Base.SC2Data\LibE0EAE146_h.galaxy"
+    $xmFinalTestBenchCore = Join-Path $xmFinalRoot "Base.SC2Data\LibE0EAE146_TestBenchCore.galaxy"
+    $xmFinalTestBench = Join-Path $xmFinalRoot "Base.SC2Data\LibE0EAE146_TestBench.galaxy"
+    $xmFinalCommanderPanels = Join-Path $xmFinalRoot "Base.SC2Data\LibE0EAE146_CommanderPanels.galaxy"
+    $xmFinalCommanderRosters = Join-Path $xmFinalRoot "Base.SC2Data\LibE0EAE146_CommanderRosters.galaxy"
+    $xmFinalExtraAbathur = Join-Path $xmFinalRoot "Base.SC2Data\LibE0EAE146_ExtraAbathur.galaxy"
     $testBenchRoot = Join-Path $SourceMapsRoot "CommanderTestBench.SC2Map"
     $testBenchDocInfo = Join-Path $testBenchRoot "DocumentInfo"
     $testBenchScript = Join-Path $testBenchRoot "MapScript.galaxy"
@@ -157,9 +162,11 @@ function Invoke-Preflight {
 
     Assert-FileContains -Path $xmFinalGalaxy -Pattern 'libE0EAE146_gf_XMRuntime_ApplyCommanderProgression' -Simple
     Assert-FileContains -Path $xmFinalGalaxy -Pattern 'libE0EAE146_gf_XMRuntime_RunCommanderBaseHook' -Simple
-    Assert-FileContains -Path $xmFinalGalaxy -Pattern 'void XMTestBench_SetCommander (int lp_player, string lp_commander)' -Simple
-    Assert-FileContains -Path $xmFinalGalaxy -Pattern 'void XMTestBench_RunScenario (int lp_player, string lp_scenarioKind)' -Simple
-    Assert-FileContains -Path $xmFinalGalaxy -Pattern 'bool XM_InvokeCommanderPanelAbility (int lp_player, string lp_commander, string lp_panelAbilityId, point lp_targetPoint)' -Simple
+    Assert-FileContains -Path $xmFinalTestBenchCore -Pattern 'bool libE0EAE146_gf_XMTestBench_PlayerValid (int lp_player)' -Simple
+    Assert-FileContains -Path $xmFinalTestBench -Pattern 'void XMTestBench_SetCommander (int lp_player, string lp_commander)' -Simple
+    Assert-FileContains -Path $xmFinalCommanderPanels -Pattern 'bool XM_InvokeCommanderPanelAbility (int lp_player, string lp_commander, string lp_panelAbilityId, point lp_targetPoint)' -Simple
+    Assert-FileContains -Path $xmFinalCommanderRosters -Pattern 'bool libE0EAE146_gf_XMTestBench_NovaRoster (int lp_player, string lp_rosterKind)' -Simple
+    Assert-FileContains -Path $xmFinalExtraAbathur -Pattern 'bool libE0EAE146_gf_XMTestBench_AbathurCustomRoster (int lp_player, string lp_rosterKind)' -Simple
 }
 
 $scenarioRootResolved = Resolve-ScenarioRoot -Root $WorkspaceRoot -Preferred $ScenarioRoot

@@ -322,6 +322,9 @@
   <CBehaviorBuff id="CarryHarvestableVespeneGeyserGasProtoss">
     <BehaviorCategories index="User6" value="1" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="CarryHarvestableVespeneGeyserGasZerg">
+    <BehaviorCategories index="User6" value="1" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="ChargeBuster">
     <InfoFlags index="Hidden" value="1" />
     <!--FinalEffect value="ChargeBusterCooldown"/-->
@@ -839,19 +842,6 @@
     <Modification>
       <StateFlags index="NoDraw" value="1" />
     </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="DrakkenLaserDrillBuild">
-    <Alignment value="Positive" />
-    <InfoFlags index="Hidden" value="1" />
-    <Duration value="300" />
-    <Modification>
-      <StateFlags index="Invulnerable" value="1" />
-      <StateFlags index="Benign" value="1" />
-      <StateFlags index="RevealProgress" value="1" />
-    </Modification>
-    <!--VitalRegenArray index="Life" value="10"/-->
-    <RemoveValidatorArray value="CasterLifeNotFull" />
-    <InitialEffect value="DrakkenLaserDrillBuildHeal" />
   </CBehaviorBuff>
   <CBehaviorBuff id="DrakkenLaserDrillPreventDestroy">
     <Alignment value="Positive" />
@@ -2113,12 +2103,7 @@
   </CBehaviorBuff>
   <CBehaviorBuff id="SOAHeroicShieldImmunity">
     <RefreshEffect value="SOAHeroicShieldWeaknessApply" />
-    <ExpireEffect value="SOAHeroicShieldWeaknessApply" />
     <InitialEffect value="MasteryArtanisGuardianShellHeal" />
-    <Duration value="5" />
-    <Modification>
-      <StateFlags index="Invulnerable" value="1" />
-    </Modification>
   </CBehaviorBuff>
   <CBehaviorBuff id="SOAHeroicShieldWeakness">
     <Duration value="240" />
@@ -2253,18 +2238,8 @@
     </Modification>
     <BehaviorFlags index="EnabledWhileDead" value="1" />
   </CBehaviorBuff>
-  <CBehaviorBuff id="SOAOrbitalStrikeActivate">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Duration value="0.1" />
-  </CBehaviorBuff>
   <CBehaviorBuff id="SOASuperShield">
     <DamageResponse ModifyLimit="100" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="SOAStrafeAttackActivate">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Duration value="0.1" />
   </CBehaviorBuff>
   <CBehaviorBuff id="SOAThermalLanceActivate">
     <InitialEffect value="KaraxVoidCoopSOAEnergyRechargeTargetingDummy" />

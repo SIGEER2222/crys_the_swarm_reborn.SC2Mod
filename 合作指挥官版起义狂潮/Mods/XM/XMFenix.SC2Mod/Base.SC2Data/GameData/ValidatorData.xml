@@ -118,6 +118,11 @@
     <Value value="ColossusPurifier" />
     <Find value="0" />
   </CValidatorUnitType>
+  <CValidatorCombine id="CasterIsStructureWithWeapon">
+    <Type value="And" />
+    <CombineArray value="CasterIsStructure" />
+    <CombineArray value="CasterHasWeapon" />
+  </CValidatorCombine>
   <CValidatorUnitCompareBehaviorCount id="CasterNotHaveFenixClolarionChargeBeamActive">
     <WhichUnit Value="Caster" />
     <Behavior value="FenixClolarionChargeBeamActive" />
@@ -1481,6 +1486,9 @@
   </CValidatorUnitType>
   <CValidatorUnitType id="SICivilianStructureFlying">
     <Value value="SICivilianStructureFlying" />
+  </CValidatorUnitType>
+  <CValidatorUnitType id="SICommandCenterFlying">
+    <Value value="SICommandCenterFlying" />
   </CValidatorUnitType>
   <CValidatorUnitCompareOrderTargetRange id="SiegeTankDeploySpiderMinesRangeCheck">
     <Compare value="GT" />

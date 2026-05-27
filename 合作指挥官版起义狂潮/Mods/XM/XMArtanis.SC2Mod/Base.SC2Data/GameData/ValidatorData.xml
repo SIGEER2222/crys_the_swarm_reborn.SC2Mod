@@ -118,6 +118,11 @@
     <Behavior value="SOAPylonPowerCoopTracker" />
     <WhichUnit Value="Caster" />
   </CValidatorUnitCompareBehaviorCount>
+  <CValidatorCombine id="CasterIsStructureWithWeapon">
+    <Type value="And" />
+    <CombineArray value="CasterIsStructure" />
+    <CombineArray value="CasterHasWeapon" />
+  </CValidatorCombine>
   <CValidatorUnitCompareDamageTakenTime id="CasterNotInCombat10">
     <Compare value="GE" />
     <Value value="10" />
@@ -1182,6 +1187,9 @@
   </CValidatorUnitType>
   <CValidatorUnitType id="SICivilianStructureFlying">
     <Value value="SICivilianStructureFlying" />
+  </CValidatorUnitType>
+  <CValidatorUnitType id="SICommandCenterFlying">
+    <Value value="SICommandCenterFlying" />
   </CValidatorUnitType>
   <CValidatorUnitCompareOrderTargetRange id="SiegeTankDeploySpiderMinesRangeCheck">
     <Compare value="GT" />

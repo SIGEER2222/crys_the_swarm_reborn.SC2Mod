@@ -5,7 +5,7 @@ param(
     [string]$Sc2SwitcherPath = "",
     [string]$MapPath = "",
     [string]$OutputRoot = "",
-    [string[]]$Commanders = @("Abathur", "AbathurReborn", "Alarak", "Artanis", "Fenix", "Karax", "Kerrigan", "Raynor", "Vorazun", "Zagara", "Zeratul"),
+    [string[]]$Commanders = @("Nova", "Dehaka"),
     [int]$MapLoadWaitSec = 18,
     [int]$CommanderSettleMs = 1800,
     [int]$SmokeWaitSec = 18,
@@ -175,11 +175,17 @@ function Send-ChatCommand {
         throw "Clipboard did not become available for chat command '$Command'."
     }
 
+    [System.Windows.Forms.SendKeys]::SendWait("{ESC}")
+    Start-Sleep -Milliseconds 120
+    [System.Windows.Forms.SendKeys]::SendWait("{ESC}")
+    Start-Sleep -Milliseconds 120
     [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
     Start-Sleep -Milliseconds 150
     [System.Windows.Forms.SendKeys]::SendWait("^v")
     Start-Sleep -Milliseconds 150
     [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+    Start-Sleep -Milliseconds 120
+    [System.Windows.Forms.SendKeys]::SendWait("{ESC}")
     Start-Sleep -Milliseconds $DelayMs
 }
 
@@ -283,18 +289,23 @@ foreach ($commander in $Commanders) {
     Start-Sleep -Seconds $MapLoadWaitSec
 
     $beforeShot = Join-Path $commanderRoot ("{0}_before.png" -f $safeName)
+    Focus-Window -Process $sc2Process | Out-Null
     Save-Screenshot -Path $beforeShot -Process $sc2Process
 
+    Focus-Window -Process $sc2Process | Out-Null
     $commanderCommand = Get-CommanderChatCommand -Commander $commander
     Send-ChatCommand -Command $commanderCommand -DelayMs $CommanderSettleMs
 
     $selectedShot = Join-Path $commanderRoot ("{0}_selected.png" -f $safeName)
+    Focus-Window -Process $sc2Process | Out-Null
     Save-Screenshot -Path $selectedShot -Process $sc2Process
 
+    Focus-Window -Process $sc2Process | Out-Null
     Send-ChatCommand -Command "-tbsmoke" -DelayMs 800
     Start-Sleep -Seconds $SmokeWaitSec
 
     $afterShot = Join-Path $commanderRoot ("{0}_after_smoke.png" -f $safeName)
+    Focus-Window -Process $sc2Process | Out-Null
     Save-Screenshot -Path $afterShot -Process $sc2Process
 
     $graphicsLog = Copy-LatestLog -Since $startTime -Filter "*Graphics.txt" -TargetPath (Join-Path $commanderRoot "Graphics.txt")
