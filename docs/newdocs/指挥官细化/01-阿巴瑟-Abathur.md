@@ -107,17 +107,35 @@ Owner：`CommanderPanelProfile`、`CommanderPanelAbilityProfile`、`CommanderPan
 
 Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbilityProfile`、`CommanderHeroSkillTreeProfile`、`CommanderHeroReviveProfile`、`CommanderHeroModifierProfile`。
 
+### 英雄单位清单
+
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 利维坦 | `Leviathan` | `HotSLeviathan, Leviathan` | -; - | 矿:- 气:- 人口字段:- 生命:- | 统治天空的巨型飞行怪兽。 / 可以对空和对地。 |
+| 利维坦 | `Leviathan` | `HotSLeviathan, Leviathan` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:0 | 统治天空的巨型飞行怪兽。 / 可以对空和对地。 |
 
-### 英雄/形态候选
+### 英雄技能按钮候选
 
-- 暂无自动命中项，需 CASC/实机日志补充。
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 利维坦 | `SymbioteCarapace` | 甲壳 | `SymbioteCarapace,Execute` | - | 为自己添加护盾{Behavior,SymbioteCarapace,Modification.VitalMaxArray[Shields]}，持续8秒。 |
+| 利维坦 | `AbathurBrutaliskLeviathanSymbioteLocked` | 共生体 | `-` | AbathurLevel10 | 该技能将在指挥官等级10时解锁。 |
+| 利维坦 | `AbathurBrutaliskLeviathanSymbiote` | 共生体 | `-` | HaveBrutaliskLeviathanSymbiote | 获得一个拥有下列技能的共生体： / 刺击：每{Abil,SymbioteStab,Cost[0].Cooldown.TimeUse}秒攻击周围的敌人，造成... |
 
-口径：生物质驱动单位成长，终极进化和毒巢需要 runtime hook 记录堆叠、拾取和单位替换。
+### 英雄形态/模式候选
 
-待审计：Hero Unit、技能按钮、复活、形态切换、武器/Actor/Sound 闭包。
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| - | - | - | - | - | 未自动命中英雄形态或模式按钮。 |
+
+### 英雄相关等级解锁
+
+| 等级 | 名称 | 升级 | AbilityCmd | 说明 |
+|---|---|---|---|---|
+| - | - | - | - | 未自动命中英雄相关等级解锁；需要从 CASC 或实机日志补。 |
+
+口径：利维坦/终极进化类英雄单位应归英雄模块，生物质成长仍归特殊机制模块。
+
+待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 
 ## 03. 普通单位技能及其进化功能
 
@@ -127,8 +145,6 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 守护者阿巴瑟 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 守护者阿巴瑟 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 守护者阿巴瑟 | `GuardianAttackRangeIncrease` | 加长散射 | `-` | HaveGuardianAttackRangeIncrease | 守护者的攻击射程提高{Upgrade,GuardianAttackRangeIncrease,EffectArray[0].Value}。 |
 | 守护者阿巴瑟 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 | 守护者阿巴瑟 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
@@ -136,14 +152,10 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 吞噬者 | `CorrosiveAcidDevourer` | 腐蚀强酸 | `CorrosiveAcid,Execute` | - | 对目标区域内的所有敌方单位发射强酸，降低他们的攻击速度和护甲。叠加3次。 |
 | 吞噬者 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 | 吞噬者 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
-| 异龙 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 异龙 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 异龙 | `StukovInfestedWildMutation` | 斯托科夫 感染体 野性突变 | `StukovInfestedWildMutation,Execute` | - | 异龙的最大生命值提高{Behavior,WildMutation,Modification.VitalMaxArray[1]}点，攻击速度提高{(Beha... |
 | 异龙 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 | 异龙 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 异龙 | `MorphtoDevourer` | MorphtoDevourer | `MutaliskMorphToDevourer,Train1` | - | 强大的对空飞行单位。可以使用腐蚀强酸。 / 可以对空。 |
-| 蟑螂 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 蟑螂 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 蟑螂 | `GlialReconstitutionPassive` | 神经胶原重组 | `-` | HaveGlialReconstitution | 移动速度提高。 |
 | 蟑螂 | `ZerglingBurrowMove` | ZerglingBurrowMove | `-` | HaveOrganicCarapace | - |
 | 蟑螂 | `HotSRoachDamage` | HotSRoachDamage | `-` | HaveHotSRoachDamage | - |
@@ -152,8 +164,6 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 蟑螂 | `DeepTunnelLocked` | 深槽虫道 | `-` | AbathurLevel09DeepTunnelImproved | 该技能将在指挥官等级9时解锁。 |
 | 蟑螂 | `EvolveToBrutaliskLocked` | 进化为莽兽 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 | 蟑螂 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
-| 虫后 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 虫后 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 虫后 | `BioMechanicalTransfusionPassive` | 生物机械哺液 | `-` | HaveBioMechanicalTransfusionPassive | 速效哺液的治疗量提高10点，现在可以对机械单位和建筑使用。 |
 | 虫后 | `BuildCreepTumor` | 产下菌毯肿瘤 | `QueenBuild,Build1` | - | 一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。 / 效果加成：异虫单位在菌毯上的移动速度更快 |
 | 虫后 | `BioMechanicalTransfusion` | 速效哺液 | `BioMechanicalTransfusion,Execute` | - | 为一个单位或建筑进行持续的治疗，共恢复{Effect,QueenBurstHeal,VitalArray[Life].Change*(Behavior,Q... |
@@ -172,12 +182,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 蟑螂 | `EvolveToBrutaliskLocked` | 进化为莽兽 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 | 蟑螂 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 蟑螂 | `BrutaliskDeepTunnel` | 深槽虫道 | `AbathurDeepTunnelImproved,Execute` | - | 快速潜地前往目标位置。 |
-| 破坏者 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 破坏者 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 破坏者 | `RavagerCorrosiveBile` | 腐蚀胆汁 | `RavagerCorrosiveBile,Execute` | - | 朝目标位置发射一枚飞弹，撞击后对该范围内的所有单位造成{Effect,RavagerCorrosiveBileDamage,Amount}点伤害。 / 可... |
-| 飞蛇 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 飞蛇 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 飞蛇 | `AcquireMove` | 搜索移动 | `move,AcquireMove` | - | 命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。 |
 | 飞蛇 | `ViperImprovedCastRangePassive` | 剧毒细菌 | `-` | HaveViperImprovedCastRange | 所有飞蛇技能获得+{Upgrade,ViperImprovedCastRange,EffectArray[0].Value}的施法范围。 |
 | 飞蛇 | `ViperAbductImprovedStunPassive` | 麻痹勾刺 | `-` | HaveViperAbductImprovedStun | 绑架使单位昏迷额外{Upgrade,ViperAbductImprovedStun,EffectArray[0].Value}秒。 |
 | 飞蛇 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
@@ -186,9 +191,10 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 飞蛇 | `CommanderPrestigeAbathurLeviathanLocked` | 进化为利维坦 | `-` | CommanderPrestigeAbathurBiomass | 该技能被指挥官威望锁定。 |
 | 飞蛇 | `ParasiticBomb` | 寄生弹 | `ParasiticBomb,Execute` | - | 生成一团寄生云，在{Behavior,ParasiticBomb,Duration}秒内对目标和附近的敌方空中单位造成{Behavior,Parasiti... |
 | 飞蛇 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
-| 飞蛇 | `AttackGhost` | AttackGhost | `-` | - | - |
-| ... | ... | ... | ... | ... | 还有 7 项，后续从 command_cards.json 继续展开 |
+| ... | ... | ... | ... | ... | 还有 4 项，后续从 command_cards.json 继续展开 |
 
+
+备注：已过滤 14 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ### 进化/形态/切换候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
@@ -217,7 +223,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 飞蛇 | `CommanderPrestigeAbathurLeviathanLocked` | 进化为利维坦 | `-` | CommanderPrestigeAbathurBiomass | 该技能被指挥官威望锁定。 |
 | 飞蛇 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 
-实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。
+实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。英雄单位已从本模块候选中排除，统一归 `02. 英雄单位及其技能`。
 
 ## 04. 初始化基地与特殊建筑
 
@@ -227,7 +233,7 @@ Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpeci
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 虫群宿主 | `SwarmHost` | `InfestationPit, SwarmHost, SwarmHostMP` | Ground; Armored/Biological/Structure | 矿:150 气:100 人口字段:- 生命:850 | 孵化2只蝗虫。蝗虫有{Behavior,LocustMPTimedLife,Duration}秒的限时生命。 / 可以对地。 |
+| 虫群宿主 | `SwarmHost` | `InfestationPit, SwarmHost, SwarmHostMP` | Ground; Armored/Biological/Structure | 矿:150 气:100 人口字段:- 生命:850 护盾:- 能量:- | 孵化2只蝗虫。蝗虫有{Behavior,LocustMPTimedLife,Duration}秒的限时生命。 / 可以对地。 |
 
 ### 特殊建筑候选
 
@@ -235,26 +241,26 @@ Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpeci
 |---|---|---|---|---|---|
 | - | - | - | - | - | 官方 buildings.json 未自动命中特殊建筑；特殊结构可能由触发器或隐藏 caster 创建。 |
 
-实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster 和特殊建筑。
+实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster、英雄初始单位和特殊建筑。
 
 ## 05. 指挥官兵种
 
 Owner：`CommanderRosterProfile`、`CommanderUnitProfile`、`CommanderUnitTrainProfile`、`CommanderUnitStageProfile`、`CommanderUnitRequirementProfile`。
 
-来源：官方提取 `units.json`。这里列的是当前已提取 Catalog 对象；满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
+来源：官方提取 `units.json`。这里列的是当前已提取普通/生产单位 Catalog 对象；英雄单位单独在 `02. 英雄单位及其技能` 中维护。满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 虫后 | `SwarmQueen` | `Queen, QueenCoop, SwarmQueen` | Ground; Biological/Psionic | 矿:175 气:- 人口字段:-2 生命:175 | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 蟑螂 | `RoachCorpser` | `RoachCorpser, RoachWarren` | -; - | 矿:- 气:- 人口字段:- 生命:145 | 蟑螂所伤的敌人若被迅速消灭后，会生成两只小蟑螂。 |
-| 蟑螂 | `RoachVile` | `RoachVile, RoachWarren` | -; - | 矿:- 气:- 人口字段:- 生命:145 | 攻击能使敌人的移动和攻击速度降低{(1 - Behavior,VileAcidSlowFlatAmount,Modification.MoveSpee... |
-| 破坏者 | `Ravager` | `Ravager` | Ground; Biological | 矿:100 气:0 人口字段:-3 生命:120 | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
-| 飞蛇 | `Viper` | `Viper` | Air; Psionic | 矿:100 气:200 人口字段:-3 生命:150 | 飞行的施法者，战地的控场大师。可使用寄生弹、吞噬、蔽目毒云和绑架技能。 |
-| 莽兽 | `Brutalisk` | `Brutalisk` | -; - | 矿:500 气:300 人口字段:- 生命:- | 重型突击巨兽，其体型和力量均远超雷兽。 / 可以对地和对空 |
-| 守护者阿巴瑟 | `AbathurGuardian` | `GuardianMP` | Air; Armored/Biological/Massive | 矿:150 气:200 人口字段:-2 生命:150 | 超远距离对地空军。 / 可以对地。 |
-| 吞噬者 | `Devourer` | `Devourer` | -; - | 矿:- 气:- 人口字段:- 生命:- | 强大的对空飞行单位。可以使用腐蚀强酸。 / 可以对空。 |
-| 异龙 | `Mutalisk` | `Mutalisk, Spire` | Air; Biological/Light | 矿:100 气:100 人口字段:-2 生命:120 | 飞行生物。能够利用弹射攻击同时伤害多个目标。 / 可以对地和对空。 |
-| 蟑螂 | `Roach` | `Roach, RoachWarren` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-2 生命:145 | 突击单位。潜地后能快速恢复生命值。可以变异为破坏者。 / 可以对地。 |
+| 虫后 | `SwarmQueen` | `Queen, QueenCoop, SwarmQueen` | Ground; Biological/Psionic | 矿:175 气:- 人口字段:-2 生命:175 护盾:- 能量:200 | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
+| 蟑螂 | `RoachCorpser` | `RoachCorpser, RoachWarren` | -; - | 矿:- 气:- 人口字段:- 生命:145 护盾:- 能量:- | 蟑螂所伤的敌人若被迅速消灭后，会生成两只小蟑螂。 |
+| 蟑螂 | `RoachVile` | `RoachVile, RoachWarren` | -; - | 矿:- 气:- 人口字段:- 生命:145 护盾:- 能量:- | 攻击能使敌人的移动和攻击速度降低{(1 - Behavior,VileAcidSlowFlatAmount,Modification.MoveSpee... |
+| 破坏者 | `Ravager` | `Ravager` | Ground; Biological | 矿:100 气:0 人口字段:-3 生命:120 护盾:- 能量:- | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
+| 飞蛇 | `Viper` | `Viper` | Air; Psionic | 矿:100 气:200 人口字段:-3 生命:150 护盾:- 能量:200 | 飞行的施法者，战地的控场大师。可使用寄生弹、吞噬、蔽目毒云和绑架技能。 |
+| 莽兽 | `Brutalisk` | `Brutalisk` | -; - | 矿:500 气:300 人口字段:- 生命:- 护盾:- 能量:- | 重型突击巨兽，其体型和力量均远超雷兽。 / 可以对地和对空 |
+| 守护者阿巴瑟 | `AbathurGuardian` | `GuardianMP` | Air; Armored/Biological/Massive | 矿:150 气:200 人口字段:-2 生命:150 护盾:- 能量:- | 超远距离对地空军。 / 可以对地。 |
+| 吞噬者 | `Devourer` | `Devourer` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 强大的对空飞行单位。可以使用腐蚀强酸。 / 可以对空。 |
+| 异龙 | `Mutalisk` | `Mutalisk, Spire` | Air; Biological/Light | 矿:100 气:100 人口字段:-2 生命:120 护盾:- 能量:- | 飞行生物。能够利用弹射攻击同时伤害多个目标。 / 可以对地和对空。 |
+| 蟑螂 | `Roach` | `Roach, RoachWarren` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-2 生命:145 护盾:- 能量:- | 突击单位。潜地后能快速恢复生命值。可以变异为破坏者。 / 可以对地。 |
 
 三阶段口径：`initial` 只做审计，`level15` 表示满级解锁，`power_fusion` 表示 15 级 + 六精通全满 + 威望正向收益后的默认运行清单。
 
@@ -281,10 +287,10 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 孢子爬虫 | `SporeCrawler` | `SporeCrawler` | Ground; Armored/Biological/Structure | 矿:125 气:- 人口字段:- 生命:300 | 防空建筑。 / 可以对空 / 侦测单位 |
-| 虫道网络 | `NydusNetwork` | `NydusNetwork` | Ground; Armored/Biological/Structure | 矿:200 气:150 人口字段:- 生命:850 | 友方地面部队可以迅速在玩家拥有的虫道网络和坑道虫之间穿梭。 / 开启： / - 坑道虫 |
-| 虫群宿主 | `SwarmHost` | `InfestationPit, SwarmHost, SwarmHostMP` | Ground; Armored/Biological/Structure | 矿:150 气:100 人口字段:- 生命:850 | 孵化2只蝗虫。蝗虫有{Behavior,LocustMPTimedLife,Duration}秒的限时生命。 / 可以对地。 |
-| 脊针爬虫 | `SpineCrawler` | `SpineCrawler` | Ground; Armored/Biological/Structure | 矿:150 气:- 人口字段:- 生命:300 | 对地防御建筑。 / 可以对地。 |
+| 孢子爬虫 | `SporeCrawler` | `SporeCrawler` | Ground; Armored/Biological/Structure | 矿:125 气:- 人口字段:- 生命:300 护盾:- 能量:- | 防空建筑。 / 可以对空 / 侦测单位 |
+| 虫道网络 | `NydusNetwork` | `NydusNetwork` | Ground; Armored/Biological/Structure | 矿:200 气:150 人口字段:- 生命:850 护盾:- 能量:- | 友方地面部队可以迅速在玩家拥有的虫道网络和坑道虫之间穿梭。 / 开启： / - 坑道虫 |
+| 虫群宿主 | `SwarmHost` | `InfestationPit, SwarmHost, SwarmHostMP` | Ground; Armored/Biological/Structure | 矿:150 气:100 人口字段:- 生命:850 护盾:- 能量:- | 孵化2只蝗虫。蝗虫有{Behavior,LocustMPTimedLife,Duration}秒的限时生命。 / 可以对地。 |
+| 脊针爬虫 | `SpineCrawler` | `SpineCrawler` | Ground; Armored/Biological/Structure | 矿:150 气:- 人口字段:- 生命:300 护盾:- 能量:- | 对地防御建筑。 / 可以对地。 |
 
 ### 建筑按钮候选
 
@@ -297,16 +303,11 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 虫道网络 | `SummonNydusWorm` | 召唤坑道虫 | `BuildNydusCanal,Build1` | - | 在目标地点召唤一条坑道虫。友方地面单位可借助虫道网络在任何该玩家拥有的坑道虫或虫道网络间穿梭。生成菌毯，可满足附近异虫建筑的存活需求。 / 效果加成：异虫... |
 | 虫道网络 | `NydusCanalLoad` | 装载 | `NydusCanalTransport,Load` | - | 将单位装载进虫道网络。 |
 | 虫道网络 | `NydusWormIncreasedArmorPassive` | 钻地鳞片 | `-` | - | 坑道虫在从地面钻出时拥有{Behavior,NydusWormArmor,Modification.LifeArmorBonus+1}点护甲。 |
-| 虫道网络 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 虫道网络 | `-` | - | `RallyNydus,Rally1` | - | - |
 | 虫道网络 | `ZagaraVoidCoopNydusWorm` | 召唤坑道虫 | `-` | - | 在目标位置召唤一只坑道虫。 / 友方地面单位可借助虫道网络在任何该玩家拥有的坑道虫或虫道网络间穿梭。生成菌毯，可满足附近异虫建筑的存活需求。 / 效果加成... |
-| 脊针爬虫 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
 | 脊针爬虫 | `SpineCrawlerUproot` | 站起 | `SpineCrawlerUproot,Execute` | - | 使脊针爬虫站起。站起的脊针爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
-| 脊针爬虫 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
-| 孢子爬虫 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
 | 孢子爬虫 | `SporeCrawlerUproot` | 站起 | `SporeCrawlerUproot,Execute` | - | 使孢子爬虫站起。站起的孢子爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
 | 孢子爬虫 | `Detector` | 侦测单位 | `-` | NotUnderConstruction | 该单位能够侦测到隐形、潜地和幻像单位。 |
-| 孢子爬虫 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 虫群宿主 | `HotSPressurizedGlands` | HotSPressurizedGlands | `InfestationPitResearch,Research8` | - | - |
 | 虫群宿主 | `EvolveViperImprovedCastRangeLocked` | 进化剧毒细菌 | `-` | AbathurLevel08 | 该科技将在指挥官等级8时解锁。 |
 | 虫群宿主 | `EvolveDeepTunnelLocked` | 进化深槽虫道 | `-` | AbathurLevel09 | 该科技将在指挥官等级9时解锁。 |
@@ -314,7 +315,6 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 虫群宿主 | `EvolveViperImprovedCastRange` | 剧毒细菌 | `InfestationPitResearch,Research9` | - | 所有飞蛇技能获得+{Upgrade,ViperImprovedCastRange,EffectArray[0].Value}的施法范围。 |
 | 虫群宿主 | `ViperPassive` | ViperPassive | `-` | HotSHaveViper | - |
 | 虫群宿主 | `InfestorPassive` | InfestorPassive | `-` | HotSHaveInfestor | - |
-| 虫群宿主 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 虫群宿主 | `SwarmHostPassive` | SwarmHostPassive | `-` | HotSHaveSwarmHost | - |
 | 虫群宿主 | `ResearchNeuralParasite` | 进化神经寄生 | `InfestationPitResearch,Research4` | - | 使感染者能够使用神经寄生技能。 |
 | 虫群宿主 | `AmorphousArmorcloud` | 微生物环绕云 | `InfestationPitResearch,Research6` | - | 制造一团遮蔽物，掩护下方的地面单位，使其受到远程单位的伤害降低{Behavior,AmorphousArmorcloud,DamageResponse.M... |
@@ -322,6 +322,8 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 
 实现备注：建筑声明自身生产、研究、行为和阶段；训练单位的最终可用性由兵种/科技/精通/威望共同裁决。
 
+
+备注：已过滤 6 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ## 08. 科技建筑及其升级选项
 
 Owner：`CommanderTechBuildingProfile`、`CommanderUnitTechProfile`、`CommanderUpgradeProfile`、`CommanderUpgradeRequirementProfile`、`CommanderUpgradeEffectProfile`。
@@ -405,18 +407,18 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 虫后 | `SwarmQueen` | `Queen, QueenCoop, SwarmQueen` | Ground; Biological/Psionic | 矿:175 气:- 人口字段:-2 生命:175 | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 蟑螂 | `RoachCorpser` | `RoachCorpser, RoachWarren` | -; - | 矿:- 气:- 人口字段:- 生命:145 | 蟑螂所伤的敌人若被迅速消灭后，会生成两只小蟑螂。 |
-| 蟑螂 | `RoachVile` | `RoachVile, RoachWarren` | -; - | 矿:- 气:- 人口字段:- 生命:145 | 攻击能使敌人的移动和攻击速度降低{(1 - Behavior,VileAcidSlowFlatAmount,Modification.MoveSpee... |
-| 破坏者 | `Ravager` | `Ravager` | Ground; Biological | 矿:100 气:0 人口字段:-3 生命:120 | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
-| 飞蛇 | `Viper` | `Viper` | Air; Psionic | 矿:100 气:200 人口字段:-3 生命:150 | 飞行的施法者，战地的控场大师。可使用寄生弹、吞噬、蔽目毒云和绑架技能。 |
-| 莽兽 | `Brutalisk` | `Brutalisk` | -; - | 矿:500 气:300 人口字段:- 生命:- | 重型突击巨兽，其体型和力量均远超雷兽。 / 可以对地和对空 |
-| 守护者阿巴瑟 | `AbathurGuardian` | `GuardianMP` | Air; Armored/Biological/Massive | 矿:150 气:200 人口字段:-2 生命:150 | 超远距离对地空军。 / 可以对地。 |
-| 吞噬者 | `Devourer` | `Devourer` | -; - | 矿:- 气:- 人口字段:- 生命:- | 强大的对空飞行单位。可以使用腐蚀强酸。 / 可以对空。 |
-| 异龙 | `Mutalisk` | `Mutalisk, Spire` | Air; Biological/Light | 矿:100 气:100 人口字段:-2 生命:120 | 飞行生物。能够利用弹射攻击同时伤害多个目标。 / 可以对地和对空。 |
-| 蟑螂 | `Roach` | `Roach, RoachWarren` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-2 生命:145 | 突击单位。潜地后能快速恢复生命值。可以变异为破坏者。 / 可以对地。 |
+| 虫后 | `SwarmQueen` | `Queen, QueenCoop, SwarmQueen` | Ground; Biological/Psionic | 矿:175 气:- 人口字段:-2 生命:175 护盾:- 能量:200 | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
+| 蟑螂 | `RoachCorpser` | `RoachCorpser, RoachWarren` | -; - | 矿:- 气:- 人口字段:- 生命:145 护盾:- 能量:- | 蟑螂所伤的敌人若被迅速消灭后，会生成两只小蟑螂。 |
+| 蟑螂 | `RoachVile` | `RoachVile, RoachWarren` | -; - | 矿:- 气:- 人口字段:- 生命:145 护盾:- 能量:- | 攻击能使敌人的移动和攻击速度降低{(1 - Behavior,VileAcidSlowFlatAmount,Modification.MoveSpee... |
+| 破坏者 | `Ravager` | `Ravager` | Ground; Biological | 矿:100 气:0 人口字段:-3 生命:120 护盾:- 能量:- | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
+| 飞蛇 | `Viper` | `Viper` | Air; Psionic | 矿:100 气:200 人口字段:-3 生命:150 护盾:- 能量:200 | 飞行的施法者，战地的控场大师。可使用寄生弹、吞噬、蔽目毒云和绑架技能。 |
+| 莽兽 | `Brutalisk` | `Brutalisk` | -; - | 矿:500 气:300 人口字段:- 生命:- 护盾:- 能量:- | 重型突击巨兽，其体型和力量均远超雷兽。 / 可以对地和对空 |
+| 守护者阿巴瑟 | `AbathurGuardian` | `GuardianMP` | Air; Armored/Biological/Massive | 矿:150 气:200 人口字段:-2 生命:150 护盾:- 能量:- | 超远距离对地空军。 / 可以对地。 |
+| 吞噬者 | `Devourer` | `Devourer` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 强大的对空飞行单位。可以使用腐蚀强酸。 / 可以对空。 |
+| 异龙 | `Mutalisk` | `Mutalisk, Spire` | Air; Biological/Light | 矿:100 气:100 人口字段:-2 生命:120 护盾:- 能量:- | 飞行生物。能够利用弹射攻击同时伤害多个目标。 / 可以对地和对空。 |
+| 蟑螂 | `Roach` | `Roach, RoachWarren` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-2 生命:145 护盾:- 能量:- | 突击单位。潜地后能快速恢复生命值。可以变异为破坏者。 / 可以对地。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则。
+实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
 
 ## 10. 指挥官特殊机制
 
@@ -431,6 +433,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 - 剧毒巢穴 (`AbathurImprovedToxicNests`)
 - 生物质恢复 (`AbathurBiomassRefund`)
 - 感染深渊升级包 (`AbathurInfestationPitUpgrades`)
+- 共生体 (`AbathurUnlockSymbiote`)
 - 生质汲取 (`AbathurBiomassLifeLeech`)
 
 ### 特殊机制 Upgrade 候选
@@ -439,20 +442,28 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 - 阿巴瑟生物质返还 (`AbathurBiomassRefund`)
 - 阿巴瑟 剧毒巢穴 增加生物质 (`AbathurToxicNestIcreasedBiomass`)
 - CommanderPrestigeAbathurBiomass (`CommanderPrestigeAbathurBiomass`)
+- CommanderPrestigeAbathurDeepTunnel (`CommanderPrestigeAbathurDeepTunnel`)
 - 精通 阿巴瑟 双倍生物质 (`MasteryAbathurDoubleBiomass`)
 
 ### 特殊机制按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
+| 守护者阿巴瑟 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 守护者阿巴瑟 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 守护者阿巴瑟 | `GuardianAttackRangeIncrease` | 加长散射 | `-` | HaveGuardianAttackRangeIncrease | 守护者的攻击射程提高{Upgrade,GuardianAttackRangeIncrease,EffectArray[0].Value}。 |
+| 守护者阿巴瑟 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 | 守护者阿巴瑟 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
+| 吞噬者 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 | 吞噬者 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 异龙 | `StukovInfestedWildMutation` | 斯托科夫 感染体 野性突变 | `StukovInfestedWildMutation,Execute` | - | 异龙的最大生命值提高{Behavior,WildMutation,Modification.VitalMaxArray[1]}点，攻击速度提高{(Beha... |
+| 异龙 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
 | 异龙 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 虫道网络 | `SummonNydusCanalCreeper` | 召唤菌塔 | `BuildNydusCanal,Build3` | - | 在目标位置召唤菌塔。菌塔可以向选中的方向发射菌毯。 / 额外加成：异虫单位在菌毯上移动速度更快。 |
+| 蟑螂 | `DeepTunnelLocked` | 深槽虫道 | `-` | AbathurLevel09DeepTunnelImproved | 该技能将在指挥官等级9时解锁。 |
 | 蟑螂 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 虫群宿主 | `HotSPressurizedGlands` | HotSPressurizedGlands | `InfestationPitResearch,Research8` | - | - |
+| 虫群宿主 | `EvolveDeepTunnelLocked` | 进化深槽虫道 | `-` | AbathurLevel09 | 该科技将在指挥官等级9时解锁。 |
 | 虫群宿主 | `EvolveViperImprovedCastRange` | 剧毒细菌 | `InfestationPitResearch,Research9` | - | 所有飞蛇技能获得+{Upgrade,ViperImprovedCastRange,EffectArray[0].Value}的施法范围。 |
 | 虫群宿主 | `InfestorPassive` | InfestorPassive | `-` | HotSHaveInfestor | - |
 | 虫群宿主 | `ResearchNeuralParasite` | 进化神经寄生 | `InfestationPitResearch,Research4` | - | 使感染者能够使用神经寄生技能。 |
@@ -460,11 +471,19 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 虫后 | `BuildCreepTumor` | 产下菌毯肿瘤 | `QueenBuild,Build1` | - | 一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。 / 效果加成：异虫单位在菌毯上的移动速度更快 |
 | 虫后 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 虫后 | `BuildCreepTumor` | 产下菌毯肿瘤 | `QueenBuild,Build3` | - | 一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。 / 效果加成：异虫单位在菌毯上的移动速度更快 |
+| 蟑螂 | `DeepTunnelLocked` | 深槽虫道 | `-` | AbathurLevel09DeepTunnelImproved | 该技能将在指挥官等级9时解锁。 |
 | 蟑螂 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
+| 蟑螂 | `BrutaliskDeepTunnel` | 深槽虫道 | `AbathurDeepTunnelImproved,Execute` | - | 快速潜地前往目标位置。 |
 | 飞蛇 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 飞蛇 | `CommanderPrestigeAbathurLeviathanLocked` | 进化为利维坦 | `-` | CommanderPrestigeAbathurBiomass | 该技能被指挥官威望锁定。 |
+| 飞蛇 | `EvolveToLeviathanLocked` | 进化为利维坦 | `-` | AbathurLevel02 | 该技能将在指挥官等级2时解锁。 |
+| 莽兽 | `AbathurBrutaliskLeviathanSymbioteLocked` | 共生体 | `-` | AbathurLevel10 | 该技能将在指挥官等级10时解锁。 |
+| 莽兽 | `BrutaliskDeepTunnel` | 深槽虫道 | `BrutaliskDeepTunnel,Execute` | - | 快速潜地前往目标位置。 |
+| 利维坦 | `SymbioteCarapace` | 甲壳 | `SymbioteCarapace,Execute` | - | 为自己添加护盾{Behavior,SymbioteCarapace,Modification.VitalMaxArray[Shields]}，持续8秒。 |
+| 利维坦 | `AbathurBrutaliskLeviathanSymbioteLocked` | 共生体 | `-` | AbathurLevel10 | 该技能将在指挥官等级10时解锁。 |
+| 利维坦 | `AbathurBrutaliskLeviathanSymbiote` | 共生体 | `-` | HaveBrutaliskLeviathanSymbiote | 获得一个拥有下列技能的共生体： / 刺击：每{Abil,SymbioteStab,Cost[0].Cooldown.TimeUse}秒攻击周围的敌人，造成... |
 
-实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster 的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
+实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
 ## 11. 指挥官个性化机制
 
@@ -499,6 +518,8 @@ level15_units
 fusion_final_units
 panel_smoke
 hero_smoke
+hero_ability_smoke
+hero_mode_smoke
 unit_ability_smoke
 tech_smoke
 cargo_smoke
@@ -506,14 +527,15 @@ special_mechanic_smoke
 personal_mechanic_smoke
 ```
 
-补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。
+补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。英雄指挥官还要单独验证 `hero_smoke`、`hero_ability_smoke`、`hero_mode_smoke`。
 
 ## `[XM_DBG]` 日志建议
 
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Abathur levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Abathur levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Abathur stage=power_fusion units=10 buildings=4 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Abathur stage=power_fusion units=10 buildings=4 heroes=1 result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Abathur heroes=1 result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Abathur module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Abathur module=<module> object=<object> result=needs-casc-audit
 ```
@@ -521,9 +543,9 @@ personal_mechanic_smoke
 ## 第一轮待审计项
 
 - 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
-- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound 闭包。
+- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包。
 - `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
 - 6 项精通的真实作用对象和最终数值。
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
-- 特殊机制和个性化机制是否需要 runtime hook。
+- 特殊机制、英雄成长和个性化机制是否需要 runtime hook。

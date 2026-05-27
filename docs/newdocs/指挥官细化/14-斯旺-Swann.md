@@ -99,17 +99,33 @@ Owner：`CommanderPanelProfile`、`CommanderPanelAbilityProfile`、`CommanderPan
 
 Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbilityProfile`、`CommanderHeroSkillTreeProfile`、`CommanderHeroReviveProfile`、`CommanderHeroModifierProfile`。
 
+### 英雄单位清单
+
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
 | - | - | - | - | - | 官方 heroes.json 未列出英雄条目；召唤物/形态/特殊英雄需从 progression、command_cards 或 CASC 继续追 |
 
-### 英雄/形态候选
+### 英雄技能按钮候选
 
-- 暂无自动命中项，需 CASC/实机日志补充。
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| - | - | - | - | - | command_cards.json 未命中英雄对象按钮；英雄技能需从 CASC 或实机日志补。 |
 
-口径：钻机是特殊建筑/全局武器，建筑灭火和自动修理类行为归个性化机制。
+### 英雄形态/模式候选
 
-待审计：Hero Unit、技能按钮、复活、形态切换、武器/Actor/Sound 闭包。
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| - | - | - | - | - | 未自动命中英雄形态或模式按钮。 |
+
+### 英雄相关等级解锁
+
+| 等级 | 名称 | 升级 | AbilityCmd | 说明 |
+|---|---|---|---|---|
+| - | - | - | - | 未自动命中英雄相关等级解锁；需要从 CASC 或实机日志补。 |
+
+口径：无常规英雄；钻机不按英雄单位处理。
+
+待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 
 ## 03. 普通单位技能及其进化功能
 
@@ -119,8 +135,6 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 飓风 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 飓风 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 飓风 | `CycloneLockOnDamageUpgrade` | 电磁力场加速器 | `-` | HaveCycloneLockOnDamageUpgrade | 提高飓风的锁定伤害。 |
 | 飓风 | `LockOn` | 锁定 | `LockOn,Execute` | - | 使飓风的武器锁定目标单位，将飓风的射程提升至{Validator,LockOnCasterNearTargetUpgraded,Range}，且可以在开火... |
 | 飓风 | `LockOnRangeUpgrade` | 瞄准光学镜 | `-` | HaveCycloneLockOnRangeUpgrade2 | 飓风的锁定范围增加3。 |
@@ -128,8 +142,6 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 飓风 | `LockOn` | 锁定 | `LockOn,Execute` | - | 使飓风的武器锁定目标单位，将飓风的射程提升至{Validator,LockOnCasterNearTargetUpgraded,Range}，且可以在开火... |
 | 飓风 | `CycloneLockOnDamageUpgrade` | 电磁力场加速器 | `-` | HaveCycloneLockOnDamageUpgrade | 提高飓风的锁定伤害。 |
 | 飓风 | `LockOnCancel` | 取消 | `LockOnCancel,Execute` | - | 取消当前的锁定，使你可以选择一个新的目标。 |
-| 恶蝠 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 恶蝠 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 恶蝠 | `ResearchHighCapacityBarrels` | 研究地狱火预燃器 | `-` | HaveInfernalPreigniter | 强化恶火的地狱火喷射器，使其对轻甲单位造成额外{$UpgradeEffectArrayValue:HighCapacityBarrels:Effect,I... |
 | 恶蝠 | `MorphToHellion` | 恶火模式 | `MorphToHellion,Execute` | - | 快速的侦察者，可对一条直线上的所有敌方单位造成火焰伤害。可变形为近距离战斗单位。 / 可以对地。 |
 | 恶蝠 | `PassiveInfernalPreIgniter` | 地狱火预燃器 | `-` | HaveInfernalPreigniter | 恶蝠在两种模式下对轻甲单位造成的伤害提高15点。 |
@@ -140,23 +152,14 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 科学船 | `NanoRepair` | NanoRepair | `NanoRepair,Execute` | - | - |
 | 科学船 | `DefensiveMatrixTarget` | 防御矩阵 | `DefensiveMatrixTarget,Execute` | - | 在目标四周生成一道屏障，吸收{Behavior,DefensiveMatrix,Modification.VitalMaxArray[1]}点伤害。效果持... |
 | 科学船 | `ImprovedNanoRepair` | 强化纳米修复 | `-` | HaveScienceVesselFreeRepair | 科学船的纳米修复不再消耗能量。 |
-| 科学船 | `MoveChampions` | MoveChampions | `-` | - | - |
-| 科学船 | `AttackChampions` | AttackChampions | `-` | - | - |
 | 科学船 | `-` | - | `ScienceVesselNanoRepairDouble,Execute` | - | - |
 | 科学船 | `-` | - | `VoidScienceVesselNanoRepair,Execute` | - | - |
-| 恶火 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 恶火 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 恶火 | `ResearchHighCapacityBarrels` | 研究地狱火预燃器 | `-` | HaveInfernalPreigniter | 强化恶火的地狱火喷射器，使其对轻甲单位造成额外{$UpgradeEffectArrayValue:HighCapacityBarrels:Effect,I... |
 | 恶火 | `MorphToHellionTank` | 恶蝠模式 | `MorphToHellionTank,Execute` | - | 近距离战斗单位，对前方小范围锥形区域造成伤害。可变形为快速侦察单位。 / 可以对地。 |
 | 恶火 | `PassiveInfernalPreIgniter` | 地狱火预燃器 | `-` | HaveInfernalPreigniter | 恶蝠在两种模式下对轻甲单位造成的伤害提高15点。 |
 | 恶火 | `HellArmor` | 地狱火装甲 | `-` | HaveHellbatHellArmor | 恶蝠和恶火的护甲提高2点。 |
 | 怨灵战机 | `ImprovedBurstLaser` | 脉冲增幅器 | `-` | HaveWraithImprovedBurstLaser | 怨灵战机移动时，双子飞弹的伤害提高{(Behavior,SwannGeminiMissileMovementBuff,DamageResponse.Mod... |
-| 怨灵战机 | `-` | - | `255,255` | - | - |
-| 怨灵战机 | `-` | - | `255,255` | - | - |
 | SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
-| SCV | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| SCV | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| SCV | `AttackWorker` | AttackWorker | `attack,Execute` | - | - |
 | SCV | `SwannBarracks` | 兵营已禁用 | `-` | HaveSwannCommander | 斯旺的基础生产建筑是重工厂而不是兵营。 / 重工厂可以在SCV的高级建筑菜单中找到。 |
 | SCV | `AdvancedConstructionAuto` | 高级建造 | `AdvancedConstructionAuto,Execute` | - | 多台SCV可同时建造同一个建筑，缩短其建造时间。修理不消耗资源。 |
 | SCV | `AdvancedConstructionLocked` | 高级建造 | `-` | SwannLevel08 | 该技能将在指挥官等级8时解锁。 |
@@ -178,9 +181,10 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | SCV | `Armory` | 建造军械库 | `TerranBuild,Build14` | - | 为重工厂和星港制造的单位提供武器和护甲升级方案。 / 开启： / - 可以在重工厂中制造恶蝠 / - 可以在重工厂中制造雷神 |
 | SCV | `Starport` | 建造星港 | `TerranBuild,Build12` | - | 空中单位生产设施。 / 开启： / - 维京战机 / - 医疗运输机 / - 解放者 |
 | SCV | `FusionCore` | 建造聚变芯体 | `TerranBuild,Build16` | - | 为医疗运输机、解放者、战列巡航舰提供升级方案。 / 开启： / - 可在星港中建造战列巡航舰 |
-| 歌利亚武装机器人 | `-` | - | `255,255` | - | - |
 | ... | ... | ... | ... | ... | 还有 7 项，后续从 command_cards.json 继续展开 |
 
+
+备注：已过滤 14 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ### 进化/形态/切换候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
@@ -193,11 +197,14 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | SCV | `EngineeringBay` | 建造工程站 | `TerranBuild,Build5` | - | 为人类步兵单位和建筑提供升级方案。 / 开启： / - 使SCV可以建造导弹塔 / - 使SCV可以建造感应塔 / - 使指挥中心可升级为行星要塞 |
 | 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
 | 指挥中心 | `UpgradeToPlanetaryFortress` | 升级为行星要塞 | `UpgradeToPlanetaryFortress,Execute` | - | 添置一个强力炮塔，并且提高护甲。 / 可以对地。 |
+| 攻城坦克 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 攻城坦克 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 攻城坦克 | `CommanderSwannImmortalityProtocol` | 永生程序 | `-` | HaveSwannCommanderImmortalityProtocol | 解锁重建能力。使被摧毁的雷神和攻城坦克能在战场上重建。 |
 | 攻城坦克 | `SiegeMode` | 攻城模式 | `SiegeMode,Execute` | - | 部署为攻城模式。在该模式下，攻城坦克的射程极大提高，并可造成范围伤害，但无法移动和攻击近距离目标。 |
+| 攻城坦克 | `AfterburnersLocked` | 后燃推进系统 | `-` | RaynorLevel11 | 该技能将在指挥官等级11时解锁。 |
 | 攻城坦克 | `MaelstromRounds` | MaelstromRounds | `-` | HaveMaelstromRounds | 攻城坦克在攻城模式下的攻击力提高40点。溅射伤害保持不变。 |
 
-实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。
+实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。英雄单位已从本模块候选中排除，统一归 `02. 英雄单位及其技能`。
 
 ## 04. 初始化基地与特殊建筑
 
@@ -207,34 +214,34 @@ Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpeci
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 指挥中心 | `CommandCenter` | `CommandCenter` | Ground; Armored/Mechanical/Structure | 矿:400 气:- 人口字段:15 生命:1500 | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
-| 补给站 | `SupplyDepot` | `SupplyDepot` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:8 生命:400 | 为人类部队提供补给， / 提高本方单位数量上限。 / 补给站可以降下，允许地面单位出入。 |
+| 指挥中心 | `CommandCenter` | `CommandCenter` | Ground; Armored/Mechanical/Structure | 矿:400 气:- 人口字段:15 生命:1500 护盾:- 能量:- | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
+| 补给站 | `SupplyDepot` | `SupplyDepot` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:8 生命:400 护盾:- 能量:- | 为人类部队提供补给， / 提高本方单位数量上限。 / 补给站可以降下，允许地面单位出入。 |
 
 ### 特殊建筑候选
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 迷你德拉肯激光钻机 | `MiniDrakkenLaserDrill` | `DrakkenLaserDrillCoop` | Ground; Armored/Heroic/Mechanical/Structure | 矿:- 气:- 人口字段:- 生命:3000 | 17.4万兆瓦激光钻头。太阳的力量就在你的指间。 / 可以对地和对空。 |
+| 迷你德拉肯激光钻机 | `MiniDrakkenLaserDrill` | `DrakkenLaserDrillCoop` | Ground; Armored/Heroic/Mechanical/Structure | 矿:- 气:- 人口字段:- 生命:3000 护盾:- 能量:- | 17.4万兆瓦激光钻头。太阳的力量就在你的指间。 / 可以对地和对空。 |
 
-实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster 和特殊建筑。
+实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster、英雄初始单位和特殊建筑。
 
 ## 05. 指挥官兵种
 
 Owner：`CommanderRosterProfile`、`CommanderUnitProfile`、`CommanderUnitTrainProfile`、`CommanderUnitStageProfile`、`CommanderUnitRequirementProfile`。
 
-来源：官方提取 `units.json`。这里列的是当前已提取 Catalog 对象；满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
+来源：官方提取 `units.json`。这里列的是当前已提取普通/生产单位 Catalog 对象；英雄单位单独在 `02. 英雄单位及其技能` 中维护。满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 恶火 | `Hellion` | `Hellion` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 | 快速的侦察者，可对一条直线上的所有敌方单位造成火焰伤害。可变形为近距离战斗单位。 / 可以对地。 |
-| 怨灵战机 | `Wraith` | `Wraith` | -; - | 矿:- 气:- 人口字段:- 生命:- | 高度机动性空中单位。擅长突袭打击。 / 可以对地和对空。 |
-| SCV | `SCV` | `SCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
-| 歌利亚武装机器人 | `Goliath` | `Goliath` | -; - | 矿:- 气:- 人口字段:- 生命:- | 重火力支援单位。 / 可以对地和对空。 |
-| 攻城坦克 | `Siege Tank` | `SiegeTank` | Ground; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:175 | 重型坦克。可切换至攻城模式来提供远程炮火。 / 可以对地。 |
-| 大力神 | `Hercules` | `Hercules` | -; - | 矿:100 气:50 人口字段:-3 生命:- | 巨型运输机。可以进行战术跳跃。 |
-| 恶蝠 | `Hellbat` | `HellionTank` | Ground; Biological | 矿:100 气:- 人口字段:-2 生命:135 | 近距离作战单位。对前方小范围锥形区域造成伤害。可以变形为快速侦察单位。 / 可以对地。 |
-| 飓风 | `Cyclone` | `Cyclone` | Ground; Armored/Mechanical | 矿:150 气:100 人口字段:-3 生命:120 | 机动突击型载具。可以使用锁定技能在移动状态下快速开火。 / 可以对地。 |
-| 科学船 | `ScienceVessel` | `ScienceVessel` | -; Psionic | 矿:- 气:- 人口字段:- 生命:- | 空中支援单位。能够使用辐照和纳米修复技能。 / 侦测单位 |
+| 恶火 | `Hellion` | `Hellion` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 护盾:- 能量:- | 快速的侦察者，可对一条直线上的所有敌方单位造成火焰伤害。可变形为近距离战斗单位。 / 可以对地。 |
+| 怨灵战机 | `Wraith` | `Wraith` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 高度机动性空中单位。擅长突袭打击。 / 可以对地和对空。 |
+| SCV | `SCV` | `SCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 护盾:- 能量:- | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
+| 歌利亚武装机器人 | `Goliath` | `Goliath` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 重火力支援单位。 / 可以对地和对空。 |
+| 攻城坦克 | `Siege Tank` | `SiegeTank` | Ground; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:175 护盾:- 能量:- | 重型坦克。可切换至攻城模式来提供远程炮火。 / 可以对地。 |
+| 大力神 | `Hercules` | `Hercules` | -; - | 矿:100 气:50 人口字段:-3 生命:- 护盾:- 能量:- | 巨型运输机。可以进行战术跳跃。 |
+| 恶蝠 | `Hellbat` | `HellionTank` | Ground; Biological | 矿:100 气:- 人口字段:-2 生命:135 护盾:- 能量:- | 近距离作战单位。对前方小范围锥形区域造成伤害。可以变形为快速侦察单位。 / 可以对地。 |
+| 飓风 | `Cyclone` | `Cyclone` | Ground; Armored/Mechanical | 矿:150 气:100 人口字段:-3 生命:120 护盾:- 能量:- | 机动突击型载具。可以使用锁定技能在移动状态下快速开火。 / 可以对地。 |
+| 科学船 | `ScienceVessel` | `ScienceVessel` | -; Psionic | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 空中支援单位。能够使用辐照和纳米修复技能。 / 侦测单位 |
 
 三阶段口径：`initial` 只做审计，`level15` 表示满级解锁，`power_fusion` 表示 15 级 + 六精通全满 + 威望正向收益后的默认运行清单。
 
@@ -261,38 +268,32 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 迷你德拉肯激光钻机 | `MiniDrakkenLaserDrill` | `DrakkenLaserDrillCoop` | Ground; Armored/Heroic/Mechanical/Structure | 矿:- 气:- 人口字段:- 生命:3000 | 17.4万兆瓦激光钻头。太阳的力量就在你的指间。 / 可以对地和对空。 |
-| 导弹塔 | `MissileTurret` | `MissileTurret` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:- 生命:250 | 防空建筑。 / 可以对空 / 侦测单位 |
-| 毁灭炮塔 | `KelMorianGrenadeTurret` | `KelMorianGrenadeTurret` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:300 | 对重甲单位造成额外伤害。攻击会使敌人减速。 / 可以对地。 |
-| 末日炮塔 | `PerditionTurret` | `PerditionTurret` | -; - | 矿:- 气:- 人口字段:- 生命:- | 自动化防御建筑，当附近无敌人时潜地。 / 可以对地 |
-| 指挥中心 | `CommandCenter` | `CommandCenter` | Ground; Armored/Mechanical/Structure | 矿:400 气:- 人口字段:15 生命:1500 | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
-| 补给站 | `SupplyDepot` | `SupplyDepot` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:8 生命:400 | 为人类部队提供补给， / 提高本方单位数量上限。 / 补给站可以降下，允许地面单位出入。 |
+| 迷你德拉肯激光钻机 | `MiniDrakkenLaserDrill` | `DrakkenLaserDrillCoop` | Ground; Armored/Heroic/Mechanical/Structure | 矿:- 气:- 人口字段:- 生命:3000 护盾:- 能量:- | 17.4万兆瓦激光钻头。太阳的力量就在你的指间。 / 可以对地和对空。 |
+| 导弹塔 | `MissileTurret` | `MissileTurret` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:- 生命:250 护盾:- 能量:- | 防空建筑。 / 可以对空 / 侦测单位 |
+| 毁灭炮塔 | `KelMorianGrenadeTurret` | `KelMorianGrenadeTurret` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:300 护盾:- 能量:- | 对重甲单位造成额外伤害。攻击会使敌人减速。 / 可以对地。 |
+| 末日炮塔 | `PerditionTurret` | `PerditionTurret` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 自动化防御建筑，当附近无敌人时潜地。 / 可以对地 |
+| 指挥中心 | `CommandCenter` | `CommandCenter` | Ground; Armored/Mechanical/Structure | 矿:400 气:- 人口字段:15 生命:1500 护盾:- 能量:- | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
+| 补给站 | `SupplyDepot` | `SupplyDepot` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:8 生命:400 护盾:- 能量:- | 为人类部队提供补给， / 提高本方单位数量上限。 / 补给站可以降下，允许地面单位出入。 |
 
 ### 建筑按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
 | 补给站 | `Lower` | 降下 | `SupplyDepotLower,Execute` | - | 降下建筑，允许地面单位出入。 |
-| 补给站 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 迷你德拉肯激光钻机 | `BrokenDrakkenLaserDrill` | 损坏的德拉肯激光钻机 | `BrokenDrakkenLaserDrill,Execute` | - | - |
 | 迷你德拉肯激光钻机 | `ResearchDrakkenLaserDrillNuke` | 升级2级激光钻机 | `DrakkenLaserDrillResearch,Research2` | - | 启用脉冲炮技能，并使德拉肯激光钻机的攻击力+20。 |
 | 毁灭炮塔 | `KelMorianGrenadeTurretConcussiveGrenades` | 震荡榴弹 | `-` | HaveSwannKelMorianGrenadeTurretUpgrade | 被爆弹比利攻击的单位会被暂时减速。 / 重型单位对此免疫。 |
 | 毁灭炮塔 | `Salvage` | 回收 | `SalvageShared,On` | - | 回收该建筑，将其移除并返还75%建造所花费的晶体矿及高能瓦斯数量。回收过程需要{time:5}。警告：回收过程一旦开始便无法取消。 |
 | 毁灭炮塔 | `HaveHiSecAutoTracking` | 瞬时自动追踪 | `-` | HaveTerranDefenseRangeBonus | 所有炮台射程+1。 |
 | 毁灭炮塔 | `HaveImprovedTurretAttackSpeed` | KMC自动填弹装置 | `-` | HaveSwannTurretIncreasedAttackSpeed | 所有炮台的攻击速度提高25%。 |
-| 毁灭炮塔 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
-| 导弹塔 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
 | 导弹塔 | `HellstormMissileBatteries` | HellstormMissileBatteries | `-` | HailstormMissilePods | - |
 | 导弹塔 | `Salvage` | 回收 | `SalvageShared,On` | - | 回收该建筑，将其移除并返还75%建造所花费的晶体矿及高能瓦斯数量。回收过程需要{time:5}。警告：回收过程一旦开始便无法取消。 |
 | 导弹塔 | `HaveHiSecAutoTracking` | 瞬时自动追踪 | `-` | HaveTerranDefenseRangeBonus | 所有炮台射程+1。 |
 | 导弹塔 | `HaveImprovedTurretAttackSpeed` | KMC自动填弹装置 | `-` | HaveSwannTurretIncreasedAttackSpeed | 所有炮台的攻击速度提高25%。 |
 | 导弹塔 | `Detector` | 侦测单位 | `-` | NotUnderConstruction | 该单位能够侦测到隐形、潜地和幻像单位。 |
-| 导弹塔 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
-| 导弹塔 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
 | 末日炮塔 | `Salvage` | 回收 | `SalvageShared,On` | - | 回收该建筑，将其移除并返还75%建造所花费的晶体矿及高能瓦斯数量。回收过程需要{time:5}。警告：回收过程一旦开始便无法取消。 |
 | 末日炮塔 | `HaveHiSecAutoTracking` | 瞬时自动追踪 | `-` | HaveTerranDefenseRangeBonus | 所有炮台射程+1。 |
 | 末日炮塔 | `HaveImprovedTurretAttackSpeed` | KMC自动填弹装置 | `-` | HaveSwannTurretIncreasedAttackSpeed | 所有炮台的攻击速度提高25%。 |
-| 末日炮塔 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 末日炮塔 | `Detector` | 侦测单位 | `-` | - | 该单位能够侦测到隐形、潜地和幻像单位。 |
 | 指挥中心 | `SCV` | 制造SCV | `CommandCenterTrain,Train1` | - | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
 | 指挥中心 | `VespeneDrone` | 瓦斯采集器 | `VespeneDroneCast,Execute` | - | 空投一名自动采集单位，从任何友方瓦斯采集建筑中为你和你的盟友采集更多的高能瓦斯。 / 瞄准一个友方瓦斯采集建筑。 |
@@ -302,10 +303,11 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 指挥中心 | `CommandCenterLoad` | 装载 | `CommandCenterTransport,LoadAll` | - | 将附近的SCV装载进指挥中心。 |
 | 指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `CommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
 | 指挥中心 | `NeoSteelFrameCommandCenter` | 精钢指挥中心 | `-` | HaveNeosteelFrame | 指挥中心的舱位增加5。 |
-| 指挥中心 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 
 实现备注：建筑声明自身生产、研究、行为和阶段；训练单位的最终可用性由兵种/科技/精通/威望共同裁决。
 
+
+备注：已过滤 7 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ## 08. 科技建筑及其升级选项
 
 Owner：`CommanderTechBuildingProfile`、`CommanderUnitTechProfile`、`CommanderUpgradeProfile`、`CommanderUpgradeRequirementProfile`、`CommanderUpgradeEffectProfile`。
@@ -406,17 +408,17 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 恶火 | `Hellion` | `Hellion` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 | 快速的侦察者，可对一条直线上的所有敌方单位造成火焰伤害。可变形为近距离战斗单位。 / 可以对地。 |
-| 怨灵战机 | `Wraith` | `Wraith` | -; - | 矿:- 气:- 人口字段:- 生命:- | 高度机动性空中单位。擅长突袭打击。 / 可以对地和对空。 |
-| SCV | `SCV` | `SCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
-| 歌利亚武装机器人 | `Goliath` | `Goliath` | -; - | 矿:- 气:- 人口字段:- 生命:- | 重火力支援单位。 / 可以对地和对空。 |
-| 攻城坦克 | `Siege Tank` | `SiegeTank` | Ground; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:175 | 重型坦克。可切换至攻城模式来提供远程炮火。 / 可以对地。 |
-| 大力神 | `Hercules` | `Hercules` | -; - | 矿:100 气:50 人口字段:-3 生命:- | 巨型运输机。可以进行战术跳跃。 |
-| 恶蝠 | `Hellbat` | `HellionTank` | Ground; Biological | 矿:100 气:- 人口字段:-2 生命:135 | 近距离作战单位。对前方小范围锥形区域造成伤害。可以变形为快速侦察单位。 / 可以对地。 |
-| 飓风 | `Cyclone` | `Cyclone` | Ground; Armored/Mechanical | 矿:150 气:100 人口字段:-3 生命:120 | 机动突击型载具。可以使用锁定技能在移动状态下快速开火。 / 可以对地。 |
-| 科学船 | `ScienceVessel` | `ScienceVessel` | -; Psionic | 矿:- 气:- 人口字段:- 生命:- | 空中支援单位。能够使用辐照和纳米修复技能。 / 侦测单位 |
+| 恶火 | `Hellion` | `Hellion` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 护盾:- 能量:- | 快速的侦察者，可对一条直线上的所有敌方单位造成火焰伤害。可变形为近距离战斗单位。 / 可以对地。 |
+| 怨灵战机 | `Wraith` | `Wraith` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 高度机动性空中单位。擅长突袭打击。 / 可以对地和对空。 |
+| SCV | `SCV` | `SCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 护盾:- 能量:- | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
+| 歌利亚武装机器人 | `Goliath` | `Goliath` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 重火力支援单位。 / 可以对地和对空。 |
+| 攻城坦克 | `Siege Tank` | `SiegeTank` | Ground; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:175 护盾:- 能量:- | 重型坦克。可切换至攻城模式来提供远程炮火。 / 可以对地。 |
+| 大力神 | `Hercules` | `Hercules` | -; - | 矿:100 气:50 人口字段:-3 生命:- 护盾:- 能量:- | 巨型运输机。可以进行战术跳跃。 |
+| 恶蝠 | `Hellbat` | `HellionTank` | Ground; Biological | 矿:100 气:- 人口字段:-2 生命:135 护盾:- 能量:- | 近距离作战单位。对前方小范围锥形区域造成伤害。可以变形为快速侦察单位。 / 可以对地。 |
+| 飓风 | `Cyclone` | `Cyclone` | Ground; Armored/Mechanical | 矿:150 气:100 人口字段:-3 生命:120 护盾:- 能量:- | 机动突击型载具。可以使用锁定技能在移动状态下快速开火。 / 可以对地。 |
+| 科学船 | `ScienceVessel` | `ScienceVessel` | -; Psionic | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 空中支援单位。能够使用辐照和纳米修复技能。 / 侦测单位 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则。
+实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
 
 ## 10. 指挥官特殊机制
 
@@ -449,7 +451,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 迷你德拉肯激光钻机 | `ResearchDrakkenLaserDrillNuke` | 升级2级激光钻机 | `DrakkenLaserDrillResearch,Research2` | - | 启用脉冲炮技能，并使德拉肯激光钻机的攻击力+20。 |
 | 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
 
-实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster 的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
+实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
 ## 11. 指挥官个性化机制
 
@@ -484,6 +486,8 @@ level15_units
 fusion_final_units
 panel_smoke
 hero_smoke
+hero_ability_smoke
+hero_mode_smoke
 unit_ability_smoke
 tech_smoke
 cargo_smoke
@@ -491,14 +495,15 @@ special_mechanic_smoke
 personal_mechanic_smoke
 ```
 
-补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。
+补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。英雄指挥官还要单独验证 `hero_smoke`、`hero_ability_smoke`、`hero_mode_smoke`。
 
 ## `[XM_DBG]` 日志建议
 
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Swann levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Swann levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Swann stage=power_fusion units=9 buildings=6 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Swann stage=power_fusion units=9 buildings=6 heroes=0 result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Swann heroes=0 result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Swann module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Swann module=<module> object=<object> result=needs-casc-audit
 ```
@@ -506,9 +511,9 @@ personal_mechanic_smoke
 ## 第一轮待审计项
 
 - 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
-- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound 闭包。
+- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包。
 - `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
 - 6 项精通的真实作用对象和最终数值。
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
-- 特殊机制和个性化机制是否需要 runtime hook。
+- 特殊机制、英雄成长和个性化机制是否需要 runtime hook。

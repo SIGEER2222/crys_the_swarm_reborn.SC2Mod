@@ -79,23 +79,9 @@ Owner：`CommanderPanelProfile`、`CommanderPanelAbilityProfile`、`CommanderPan
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 泰凯斯·芬利 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
 | 枪王藏身处 | `TychusReaperBombDamageLearn` | 购买拉尔斯科技G7型炸弹 | `TychusHeroResearch2,Research17` | - | “老油条”萨姆的爆破炸弹的伤害提高100%。 |
 | 枪王藏身处 | `TychusReaperBombStunLearn` | 购买莫比斯拘束矩阵 | `TychusHeroResearch2,Research19` | - | 击晕被“老油条”萨姆的爆破炸弹击中的单位，并解除其侦测能力。 |
 | 枪王藏身处 | `TychusReaperBombChargesLearn` | 购买强化版爆破套件 | `TychusHeroResearch2,Research18` | - | “老油条”萨姆每攻击一次，爆破炸弹的充能时间便缩短{-2*Effect,TychusReaperBombChargeAttackAdd,Cost[0].C... |
-| 维嘉 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
-| 莱纳·尼卡拉中尉 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
-| 迈尔斯“布雷泽”刘易斯 | `TychusFirebatOilBomb` | 浮油 | `TychusFirebatOilBomb,Execute` | - | 给敌方地面单位浇上浮油，使其攻击和移动速度降低{(1 - Behavior,TychusFirebatOilBombed,Modification.Mov... |
-| 迈尔斯“布雷泽”刘易斯 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
-| 罗布“弹头哥”博斯韦尔 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
-| 纳克斯 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
-| 詹姆斯“天狼星”赛克斯 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
-| “老油条”萨姆 | `TychusReaperBomb` | 爆破炸弹 | `TychusReaperBomb,Execute` | - | 标记一个目标单位，在{Behavior,TychusReaperBomb,Duration}秒后造成{Effect,TychusReaperBombU,A... |
-| “老油条”萨姆 | `TychusReaperBombDamage` | 拉尔斯科技G7型炸弹 | `TychusReaperBombDamage,Off` | HaveTychusReaperBombDamage | 爆破炸弹的伤害提高100%。 |
-| “老油条”萨姆 | `TychusReaperBombStun` | 莫比斯拘束矩阵 | `TychusReaperBombStun,Off` | HaveTychusReaperBombStun | 击晕被爆破炸弹击中的单位，并解除其侦测能力。 |
-| “老油条”萨姆 | `TychusReaperBombCharges` | 强化版爆破套件 | `TychusReaperBombCharges,Off` | HaveTychusReaperBombCharges | “老油条”萨姆每攻击一次，爆破炸弹的充能时间便缩短{-2*Effect,TychusReaperBombChargeAttackAdd,Cost[0].C... |
-| “老油条”萨姆 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
-| 凯文“响尾蛇”韦斯特 | `TychusOdinNuclearStrike` | 红色按钮 | `TychusOdinNuclearStrike,Execute` | - | 朝目标位置呼叫一次聚变打击。聚变打击需要{Effect,OdinNukePersistent,InitialDelay+Effect,OdinNukePe... |
 | SCV | `BuildTychusMedivacPlatform` | 建造医疗运输机平台 | `TychusTerranBuild,Build14` | - | 运输平台。可以立即将目标区域内的泰凯斯作战单位运送至目标位置，空降时对其进行治疗并使其隐形。 |
 
 实现备注：面板只注册 profile 和转发 caster，地图不得按 commander 写 if/else。精通和威望影响面板冷却/充能/费用时，由本模块接收最终 modifier。
@@ -104,56 +90,25 @@ Owner：`CommanderPanelProfile`、`CommanderPanelAbilityProfile`、`CommanderPan
 
 Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbilityProfile`、`CommanderHeroSkillTreeProfile`、`CommanderHeroReviveProfile`、`CommanderHeroModifierProfile`。
 
+### 英雄单位清单
+
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 泰凯斯·芬利 | `TychusCoop` | `TychusCoop` | Ground; Biological | 矿:0 气:0 人口字段:0 生命:600 | - |
-| 维嘉 | `TychusGhost` | `TychusGhost` | Ground; Biological/Psionic | 矿:500 气:100 人口字段:-10 生命:500 | 鬼手之一，擅长控制敌方单位。可以使用支配。可以升级成侦测单位。 / 可以对空和对地。 |
-| 莱纳·尼卡拉中尉 | `TychusMedic` | `TychusMedic` | Ground; Biological/Light | 矿:500 气:100 人口字段:-10 生命:450 | 鬼手之一，擅长治疗友方单位与阻止伤害。可以使用活力喷发。可以升级成侦测单位。 |
-| 迈尔斯“布雷泽”刘易斯 | `TychusFirebat` | `TychusFirebat` | Ground; Armored/Biological | 矿:500 气:100 人口字段:-10 生命:1000 | 猛男之一，擅长对付大群弱小的地面单位。可以使用浮油。 / 可以对地。 |
-| 罗布“弹头哥”博斯韦尔 | `TychusHERC` | `TychusHERC` | Ground; Biological | 矿:500 气:100 人口字段:-10 生命:1000 | 猛男之一，擅长承受伤害并将其返还。可以使用猛烈撞击。 / 可以对地。 |
-| 纳克斯 | `TychusSpectre` | `TychusSpectre` | Ground; Biological/Psionic | 矿:500 气:100 人口字段:-10 生命:500 | 鬼手之一，擅长对付大群敌人。可以使用超声波脉冲。可以升级成侦测单位。 / 可以对空和对地。 |
-| 詹姆斯“天狼星”赛克斯 | `TychusWarhound` | `TychusWarhound` | Ground; Armored/Mechanical | 矿:500 气:100 人口字段:-10 生命:650 | 枪王之一，擅长部署炮台并为自己及炮台注入特殊技能。可以使用部署战狼炮台。 / 可以对空和对地。 |
-| “老油条”萨姆 | `TychusReaper` | `TychusReaper` | Ground; Biological/Light | 矿:500 气:100 人口字段:-10 生命:375 | 枪王之一，擅长对单体目标造成大量伤害。可以使用爆破炸弹。 / 可以对空和对地。 |
-| 凯文“响尾蛇”韦斯特 | `TychusMarauder` | `TychusMarauder` | Ground; Armored/Biological | 矿:500 气:100 人口字段:-10 生命:625 | 猛男之一，擅长支援友方单位和对付地面重甲单位。可以使用部署恢复器。 / 可以对地。 |
+| 泰凯斯·芬利 | `TychusCoop` | `TychusCoop` | Ground; Biological | 矿:0 气:0 人口字段:0 生命:600 护盾:- 能量:- | - |
+| 维嘉 | `TychusGhost` | `TychusGhost` | Ground; Biological/Psionic | 矿:500 气:100 人口字段:-10 生命:500 护盾:- 能量:- | 鬼手之一，擅长控制敌方单位。可以使用支配。可以升级成侦测单位。 / 可以对空和对地。 |
+| 莱纳·尼卡拉中尉 | `TychusMedic` | `TychusMedic` | Ground; Biological/Light | 矿:500 气:100 人口字段:-10 生命:450 护盾:- 能量:- | 鬼手之一，擅长治疗友方单位与阻止伤害。可以使用活力喷发。可以升级成侦测单位。 |
+| 迈尔斯“布雷泽”刘易斯 | `TychusFirebat` | `TychusFirebat` | Ground; Armored/Biological | 矿:500 气:100 人口字段:-10 生命:1000 护盾:- 能量:- | 猛男之一，擅长对付大群弱小的地面单位。可以使用浮油。 / 可以对地。 |
+| 罗布“弹头哥”博斯韦尔 | `TychusHERC` | `TychusHERC` | Ground; Biological | 矿:500 气:100 人口字段:-10 生命:1000 护盾:- 能量:- | 猛男之一，擅长承受伤害并将其返还。可以使用猛烈撞击。 / 可以对地。 |
+| 纳克斯 | `TychusSpectre` | `TychusSpectre` | Ground; Biological/Psionic | 矿:500 气:100 人口字段:-10 生命:500 护盾:- 能量:- | 鬼手之一，擅长对付大群敌人。可以使用超声波脉冲。可以升级成侦测单位。 / 可以对空和对地。 |
+| 詹姆斯“天狼星”赛克斯 | `TychusWarhound` | `TychusWarhound` | Ground; Armored/Mechanical | 矿:500 气:100 人口字段:-10 生命:650 护盾:- 能量:- | 枪王之一，擅长部署炮台并为自己及炮台注入特殊技能。可以使用部署战狼炮台。 / 可以对空和对地。 |
+| “老油条”萨姆 | `TychusReaper` | `TychusReaper` | Ground; Biological/Light | 矿:500 气:100 人口字段:-10 生命:375 护盾:- 能量:- | 枪王之一，擅长对单体目标造成大量伤害。可以使用爆破炸弹。 / 可以对空和对地。 |
+| 凯文“响尾蛇”韦斯特 | `TychusMarauder` | `TychusMarauder` | Ground; Armored/Biological | 矿:500 气:100 人口字段:-10 生命:625 护盾:- 能量:- | 猛男之一，擅长支援友方单位和对付地面重甲单位。可以使用部署恢复器。 / 可以对地。 |
 
-### 英雄/形态候选
-
-- 有点过去的意思 (`TychusPHLevel1`)
-- 兄弟越多越好 (`TychusPHLevel2`)
-- 奥丁降世 (`TychusPHLevel3`)
-- 新不法之徒：凯文“响尾蛇”韦斯特 (`TychusPHLevel4`)
-- 工程站升级包 (`TychusPHLevel5`)
-- 新不法之徒：詹姆斯“天狼星”赛克斯 (`TychusPHLevel6`)
-- 闪亮登场第一人 (`TychusPHLevel7`)
-- 新不法之徒：罗布“弹头哥”博斯韦尔 (`TychusPHLevel8`)
-- 要搭飞的吗？ (`TychusPHLevel9`)
-- 新不法之徒：维嘉 (`TychusPHLevel10`)
-- 顺手牵羊 (`TychusPHLevel11`)
-- 初级终极装备包 (`TychusPHLevel12`)
-- 全副武装 (`TychusPHLevel13`)
-- 高级终极装备包 (`TychusPHLevel14`)
-- 红色按钮 (`TychusPHLevel15`)
-
-口径：每个不法之徒等价英雄单位，装备购买和队伍上限必须模块化。
-
-待审计：Hero Unit、技能按钮、复活、形态切换、武器/Actor/Sound 闭包。
-
-## 03. 普通单位技能及其进化功能
-
-Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderUnitEvolutionProfile`、`CommanderUnitBehaviorProfile`、`CommanderUnitWeaponProfile`。
-
-### 单位技能按钮候选
+### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 劫掠者 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 劫掠者 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 劫掠者 | `StimMarauder` | 使用强化剂 | `StimpackMarauder,Execute` | - | 给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,S... |
-| 劫掠者 | `ConcussiveGrenade` | 震荡弹 | `255` | UsePunisherGrenades | 被劫掠者击中的目标会暂时减速。 / 重型单位对该效果免疫 |
 | 泰凯斯·芬利 | `TychusShredderGrenade` | 粉碎者手雷 | `TychusShredderGrenade,Execute` | - | 对目标区域内的敌方单位造成{Effect,TychusShredderGrenadeDamage,Amount}点伤害。 |
-| 泰凯斯·芬利 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 泰凯斯·芬利 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 泰凯斯·芬利 | `AttackChampions` | AttackChampions | `attack,Execute` | - | - |
 | 泰凯斯·芬利 | `TychusACImplosionGrenades` | KD9a型聚爆核心 | `TychusACImplosionGrenades,Off` | HaveTychusACImplosionGrenades | 粉碎者手雷将被影响的单位拖拽至效果范围中心，使其昏迷{Behavior,TychusShredderGrenadeStun,Duration}秒。 |
 | 泰凯斯·芬利 | `TychusACRageGrenades` | 钒钢弹壳 | `TychusACRageGrenades,Off` | HaveTychusACRageGrenades | 泰凯斯的粉碎者手雷的伤害提高{$UpgradeEffectArrayValue:TychusACRageGrenades:Effect,TychusShr... |
 | 泰凯斯·芬利 | `TychusACPiercingRounds` | 凯莫瑞安碎甲弹 | `TychusACPiercingRounds,Off` | HaveTychusACPiercingRounds | 泰凯斯的攻击使目标的护甲降低{-1*Behavior,TychusACArmorDebuff,Modification.LifeArmorBonus}点，... |
@@ -164,9 +119,6 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 泰凯斯·芬利 | `TychusHeroCommonAbil4` | 泰凯斯不法之徒普通技能4 | `TychusHeroCommonAbil4,Execute` | - | - |
 | 泰凯斯·芬利 | `TychusHeroCommonAbil5` | 泰凯斯不法之徒普通技能5 | `TychusHeroCommonAbil5,Execute` | - | - |
 | 维嘉 | `TychusGhostDominate` | 支配 | `TychusGhostDominate,Execute` | - | 短时间内控制目标敌方单位，使其伤害提高{Behavior,TychusGhostDominate,Modification.DamageDealtFrac... |
-| 维嘉 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 维嘉 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 维嘉 | `AttackChampions` | AttackChampions | `attack,Execute` | - | - |
 | 维嘉 | `TychusGhostDominateBuff` | 莫比斯灵能激发器 | `TychusGhostDominateBuff,Off` | HaveTychusGhostDominateBuff | 支配完全恢复被支配单位的生命值、护盾值以及能量值，并使被支配单位的攻击速度提高{Behavior,TychusGhostDominateUpgraded,... |
 | 维嘉 | `TychusGhostConfusingDomination` | 神经干扰器 | `TychusGhostDominatingDomination,Off` | HaveTychusGhostConfusingDomination | 位于被支配单位周围的敌人将会互相攻击，持续{Behavior,TychusGhostConfusion,Duration}秒。 |
 | 维嘉 | `TychusGhostPsychicSnare` | 灵能投射器 | `TychusGhostPsychicSnare,Execute` | HaveTychusGhostPsychicSnare | 将最多{Abil,TychusGhostPsychicSnare,Cost[0].Charge.CountMax}名敌方空中单位困在地面，让友方单位可以视... |
@@ -177,9 +129,6 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 维嘉 | `TychusHeroCommonAbil4` | 泰凯斯不法之徒普通技能4 | `TychusHeroCommonAbil4,Execute` | - | - |
 | 维嘉 | `TychusHeroCommonAbil5` | 泰凯斯不法之徒普通技能5 | `TychusHeroCommonAbil5,Execute` | - | - |
 | 莱纳·尼卡拉中尉 | `TychusMedicAoE` | 活力喷发 | `TychusMedicAoE,Execute` | - | 立即治疗尼卡拉中尉周围区域内的友方单位{Effect,TychusMedicAoESearchAlliance,VitalArray[Life].Chan... |
-| 莱纳·尼卡拉中尉 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 莱纳·尼卡拉中尉 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 莱纳·尼卡拉中尉 | `AcquireMove` | 搜索移动 | `move,AcquireMove` | - | 命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。 |
 | 莱纳·尼卡拉中尉 | `TychusMedicHealingSprayUpgradePassive` | 尤摩扬纳米修复机器人 | `-` | HaveTychusMedicAdvancedHealingSpray | 使活力喷发的直接治疗和周期性治疗效果提高100%。 |
 | 莱纳·尼卡拉中尉 | `TychusMedicHealUpgradeLevels` | 普罗希昂血清 | `-` | HaveTychusMedicSuperHealing | 使超级治疗的治疗速度提高100%。 |
 | 莱纳·尼卡拉中尉 | `TychusMedicDoubleHeal` | 普罗希昂双管治疗射线护手 | `-` | HaveTychusMedicDoubleBeam | 超级治疗可以同时对两名目标施放。 |
@@ -191,9 +140,6 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 莱纳·尼卡拉中尉 | `TychusHeroCommonAbil4` | 泰凯斯不法之徒普通技能4 | `TychusHeroCommonAbil4,Execute` | - | - |
 | 莱纳·尼卡拉中尉 | `TychusHeroCommonAbil5` | 泰凯斯不法之徒普通技能5 | `TychusHeroCommonAbil5,Execute` | - | - |
 | 迈尔斯“布雷泽”刘易斯 | `TychusFirebatOilBomb` | 浮油 | `TychusFirebatOilBomb,Execute` | - | 给敌方地面单位浇上浮油，使其攻击和移动速度降低{(1 - Behavior,TychusFirebatOilBombed,Modification.Mov... |
-| 迈尔斯“布雷泽”刘易斯 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 迈尔斯“布雷泽”刘易斯 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 迈尔斯“布雷泽”刘易斯 | `AttackChampions` | AttackChampions | `attack,Execute` | - | - |
 | 迈尔斯“布雷泽”刘易斯 | `TychusFirebatPremiumPetroleum` | 高容积储油罐 | `TychusFirebatPremiumPetroleum,Off` | HaveTychusFirebatPremiumPetroleum | 使浮油的范围扩大100%。 |
 | 迈尔斯“布雷泽”刘易斯 | `TychusFirebatBlueFlameOil` | 哈迪斯浮油 | `TychusFirebatBlueFlameOil,Off` | HaveTychusFirebatBlueFlameOil | 提高燃油的点燃效果所造成的伤害，每秒对轻甲单位造成+{($UpgradeEffectArrayValue:TychusFirebatBlueFlameOi... |
 | 迈尔斯“布雷泽”刘易斯 | `TychusFirebatIncendiaryPetroleum` | 狂焰牌燃料添加剂 | `TychusFirebatIncendiaryPetroleum,Off` | HaveTychusFirebatIncendiaryPetroleum | 被点燃的单位死亡时，他们将爆炸，将被点燃的状态扩散到区域内的敌方单位身上。 |
@@ -204,17 +150,72 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 迈尔斯“布雷泽”刘易斯 | `TychusHeroCommonAbil4` | 泰凯斯不法之徒普通技能4 | `TychusHeroCommonAbil4,Execute` | - | - |
 | 迈尔斯“布雷泽”刘易斯 | `TychusHeroCommonAbil5` | 泰凯斯不法之徒普通技能5 | `TychusHeroCommonAbil5,Execute` | - | - |
 | 罗布“弹头哥”博斯韦尔 | `TychusHercGrapple` | 猛烈撞击 | `TychusHercGrapple,Execute` | - | “弹头哥”将自己拉向目标位置，撞击时造成{Effect,TychusHercGrappleLaunchCasterImpactDamage,Amount}... |
-| 罗布“弹头哥”博斯韦尔 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 罗布“弹头哥”博斯韦尔 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| ... | ... | ... | ... | ... | 还有 78 项，后续从 command_cards.json 继续展开 |
+| 罗布“弹头哥”博斯韦尔 | `TychusHercGrappleImpactsLevels` | X-71型震击靴 | `TychusHercGrappleStun,Off` | HaveTychusHercGrappleImpacts | 猛烈撞击的范围以及昏迷时间提高100%。 |
+| 罗布“弹头哥”博斯韦尔 | `TychusHercGrappleArmorLevels` | 临界响应系统 | `-` | - | 当“弹头哥”受到致命伤害时，他在{Behavior,TychusHERCShield,Duration}秒内对伤害免疫，并且恢复所有生命值。该效果每{Be... |
+| 罗布“弹头哥”博斯韦尔 | `TychusHercRage` | 红线能量电池 | `TychusHercRage,Off` | HaveTychusHercRage | “弹头哥”的攻击速度每一击提高{Behavior,TychusHercRageDamageBuff,Modification.DamageDealtUns... |
+| ... | ... | ... | ... | ... | 还有 58 项，后续从 command_cards.json 继续展开 |
 
+
+备注：已过滤 15 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
+### 英雄形态/模式候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| - | - | - | - | - | 未自动命中英雄形态或模式按钮。 |
+
+### 英雄相关等级解锁
+
+| 等级 | 名称 | 升级 | AbilityCmd | 说明 |
+|---|---|---|---|---|
+| Lv1 | 有点过去的意思 | `-` | `-` | 泰凯斯有100单位的最大补给上限，可以从乔伊·雷酒吧中招募个个都是传奇人物的不法之徒。英雄单位。当一名不法之徒被击杀时，他们会逃离死亡并且可以在酒吧中重新招募。 |
+| Lv2 | 兄弟越多越好 | `TychusCoopFifthHeroUpgrade` | `-` | 解锁可以招募泰凯斯战斗天团第5人。 |
+| Lv3 | 奥丁降世 | `-` | `TychusCalldownOdinTargeted:` | 解锁可以在目标位置空投奥丁，搭乘泰凯斯并让其成为驾驶员，落地时造成150点伤害。奥丁可以操控并战斗60秒。呼叫奥丁请使用顶部控制面板技能。 |
+| Lv4 | 新不法之徒：凯文“响尾蛇”韦斯特 | `-` | `TychusBarracksTrain:4` | 猛男之一，擅长支援友方单位和对付地面重甲单位。可以使用部署恢复器。在乔伊·雷酒吧中招募。 / 可以对地。 |
+| Lv5 | 工程站升级包 | `-` | `TychusEngineeringBayResearch:, TychusEngineeringBayResearch:1` | 在工程站中解锁以下升级： / 使泰凯斯、“老油条”萨姆、“天狼星”的攻击速度提高25%。使“布雷泽”、“弹头哥”、“响尾蛇”的生命值提高25%。 |
+| Lv6 | 新不法之徒：詹姆斯“天狼星”赛克斯 | `-` | `TychusFactoryTrain:3` | 枪王之一，擅长部署炮台并为自己及炮台注入特殊技能。可以使用部署战狼炮台。在乔伊·雷酒吧中招募。 / 可以对空和对地。 |
+| Lv7 | 闪亮登场第一人 | `TychusCoopHeroHalfCostUpgrade` | `-` | 使泰凯斯招募第一个不法之徒的晶体矿和瓦斯气费用减少50%。 |
+| Lv8 | 新不法之徒：罗布“弹头哥”博斯韦尔 | `-` | `TychusFactoryTrain:1` | 猛男之一，擅长承受伤害并将其返还。可以使用猛烈撞击。招募于乔伊·雷酒吧。 / 可以对地。 |
+| Lv9 | 要搭飞的吗？ | `TychusCoopMedivacChargesUpgrade` | `-` | 使医疗运输机平台的最大数量从1个提高至3个。 |
+| Lv10 | 新不法之徒：维嘉 | `-` | `TychusBarracksTrain:2` | 鬼手之一，擅长控制敌方单位。可以使用支配。可以升级成侦测单位。在乔伊·雷酒吧中招募。 / 可以对空和对地。 |
+| Lv11 | 顺手牵羊 | `TychusCoopEquipmentCostUpgrade` | `-` | 使所有装备费用减少100晶体矿和100瓦斯气。 |
+| Lv12 | 初级终极装备包 | `-` | `TychusHeroResearch2:15, TychusHeroResearch2:17, TychusHeroResearch:11, TychusHeroResearch2:7, TychusHeroResearch2:11` | 解锁以下升级： / 泰凯斯获得受战场上不法之徒数量影响的武器伤害(在枪王藏身处中购买)。“老油条”萨姆获得一项能力，每次攻击可以缩短爆破炸弹的充能时间(在枪王藏身处中... |
+| Lv13 | 全副武装 | `-` | `TychusEngineeringBayResearch:11, TychusEngineeringBayResearch:12, TychusEngineeringBayResearch:6, TychusEngineeringBayResearch:7` | 在工程站中解锁以下升级： / 4级与5级的不法之徒武器研究升级。4级与5级的不法之徒护甲研究升级。 |
+| Lv14 | 高级终极装备包 | `-` | `TychusHeroResearch:3, TychusHeroResearch2:20, TychusHeroResearch:7, TychusHeroResearch2:2` | 解锁以下升级： / 提高“天狼星”的战狼炮台的生命值与攻击伤害(在枪王藏身处中购买)。“响尾蛇”获得可以造成范围性伤害的技能(在猛男军械库中购买)。“弹头哥”获得每次... |
+| Lv15 | 红色按钮 | `-` | `TychusOdinPlatformResearch:1` | 在工程站中解锁以下升级： / 将奥丁的巨炮乱射技能替换成红色按钮技能，使奥丁可以进行聚变打击。 |
+
+口径：泰凯斯和不法之徒全部按英雄单位处理；酒馆招募、装备和队伍上限归个性化机制。
+
+待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
+
+## 03. 普通单位技能及其进化功能
+
+Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderUnitEvolutionProfile`、`CommanderUnitBehaviorProfile`、`CommanderUnitWeaponProfile`。
+
+### 单位技能按钮候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 劫掠者 | `StimMarauder` | 使用强化剂 | `StimpackMarauder,Execute` | - | 给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,S... |
+| 劫掠者 | `ConcussiveGrenade` | 震荡弹 | `255` | UsePunisherGrenades | 被劫掠者击中的目标会暂时减速。 / 重型单位对该效果免疫 |
+| SCV | `TychusCommandCenter` | 建造指挥中心 | `TychusTerranBuild,Build6` | - | 基础建筑。用来接收采集到的资源。可以使用升空技能。 / 开启： / - SCV |
+| SCV | `TychusRefinery` | 建造精炼厂 | `TychusTerranBuild,Build3` | - | 建造在瓦斯气泉上，用于采集高能瓦斯。 |
+| SCV | `BuildTychusBar` | 建造乔伊·雷酒吧 | `TychusTerranBuild,Build13` | - | 头号不法之徒的藏匿点。 / 开启： / - 招募不法之徒 / - 复活不法之徒 |
+| SCV | `TychusEngineeringBay` | 建造工程站 | `TychusTerranBuild,Build7` | - | 为泰凯斯、不法之徒、奥丁提供升级方案。 / 开启： / - SCV可以建造自动炮塔 |
+| SCV | `TychusSCVAutoTurret` | 制造自动机炮 | `TychusTerranBuild,Build5` | - | 自动防御建筑。自动机炮可以被回收。 / 可以对空和对地。 / 侦测单位 |
+| SCV | `TychusMercCompound` | 建造枪王藏身处 | `TychusTerranBuild,Build18` | - | 为几大枪王(泰凯斯、“老油条”萨姆、“天狼星”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“老油条”萨姆 / - 乔伊·雷酒吧的“天狼星” |
+| SCV | `TychusArmory` | 建造猛男军械库 | `TychusTerranBuild,Build16` | - | 为几大猛男(“布雷泽”、“弹头哥”、“响尾蛇”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“布雷泽” / - 乔伊·雷酒吧的“弹头哥” / - 乔... |
+| SCV | `TychusGhostAcademy` | 建造鬼手安全屋 | `TychusTerranBuild,Build17` | - | 为几大鬼手(维嘉、纳克斯、尼卡拉中尉)提供装备升级。 / 开启： / - 乔伊·雷酒吧的维嘉 / - 乔伊·雷酒吧的纳克斯 / - 乔伊·雷酒吧的尼卡拉中尉 |
+| SCV | `BuildTychusMedivacPlatform` | 建造医疗运输机平台 | `TychusTerranBuild,Build14` | - | 运输平台。可以立即将目标区域内的泰凯斯作战单位运送至目标位置，空降时对其进行治疗并使其隐形。 |
+
+
+备注：已过滤 9 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ### 进化/形态/切换候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
 | - | - | - | - | - | 未自动命中进化或形态切换；后续按 Unit/Ability/Behavior 闭包审计。 |
 
-实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。
+实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。英雄单位已从本模块候选中排除，统一归 `02. 英雄单位及其技能`。
 
 ## 04. 初始化基地与特殊建筑
 
@@ -230,22 +231,22 @@ Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpeci
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 枪王藏身处 | `TychusMercCompound` | `TychusMercCompound` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 | 为几大枪王(泰凯斯、“老油条”萨姆、“天狼星”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“老油条”萨姆 / - 乔伊·雷酒吧的“天狼星” |
-| 鬼手安全屋 | `TychusGhostAcademy` | `TychusGhostAcademy` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 | 为几大鬼手(维嘉、纳克斯、尼卡拉中尉)提供装备升级。 / 开启： / - 乔伊·雷酒吧的维嘉 / - 乔伊·雷酒吧的纳克斯 / - 乔伊·雷酒吧的尼卡拉中尉 |
-| 猛男军械库 | `TychusArmory` | `TychusArmory` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 | 为几大猛男(“布雷泽”、“弹头哥”、“响尾蛇”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“布雷泽” / - 乔伊·雷酒吧的“弹头哥” / -... |
+| 枪王藏身处 | `TychusMercCompound` | `TychusMercCompound` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 护盾:- 能量:- | 为几大枪王(泰凯斯、“老油条”萨姆、“天狼星”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“老油条”萨姆 / - 乔伊·雷酒吧的“天狼星” |
+| 鬼手安全屋 | `TychusGhostAcademy` | `TychusGhostAcademy` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 护盾:- 能量:- | 为几大鬼手(维嘉、纳克斯、尼卡拉中尉)提供装备升级。 / 开启： / - 乔伊·雷酒吧的维嘉 / - 乔伊·雷酒吧的纳克斯 / - 乔伊·雷酒吧的尼卡拉中尉 |
+| 猛男军械库 | `TychusArmory` | `TychusArmory` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 护盾:- 能量:- | 为几大猛男(“布雷泽”、“弹头哥”、“响尾蛇”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“布雷泽” / - 乔伊·雷酒吧的“弹头哥” / -... |
 
-实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster 和特殊建筑。
+实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster、英雄初始单位和特殊建筑。
 
 ## 05. 指挥官兵种
 
 Owner：`CommanderRosterProfile`、`CommanderUnitProfile`、`CommanderUnitTrainProfile`、`CommanderUnitStageProfile`、`CommanderUnitRequirementProfile`。
 
-来源：官方提取 `units.json`。这里列的是当前已提取 Catalog 对象；满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
+来源：官方提取 `units.json`。这里列的是当前已提取普通/生产单位 Catalog 对象；英雄单位单独在 `02. 英雄单位及其技能` 中维护。满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 劫掠者 | `Marauder` | `Marauder` | Ground; Armored/Biological | 矿:100 气:25 人口字段:-2 生命:125 | 重型突击步兵。 / 可以对地。 |
-| SCV | `TychusSCV` | `TychusSCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地 |
+| 劫掠者 | `Marauder` | `Marauder` | Ground; Armored/Biological | 矿:100 气:25 人口字段:-2 生命:125 护盾:- 能量:- | 重型突击步兵。 / 可以对地。 |
+| SCV | `TychusSCV` | `TychusSCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 护盾:- 能量:- | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地 |
 
 三阶段口径：`initial` 只做审计，`level15` 表示满级解锁，`power_fusion` 表示 15 级 + 六精通全满 + 威望正向收益后的默认运行清单。
 
@@ -272,9 +273,9 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 枪王藏身处 | `TychusMercCompound` | `TychusMercCompound` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 | 为几大枪王(泰凯斯、“老油条”萨姆、“天狼星”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“老油条”萨姆 / - 乔伊·雷酒吧的“天狼星” |
-| 鬼手安全屋 | `TychusGhostAcademy` | `TychusGhostAcademy` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 | 为几大鬼手(维嘉、纳克斯、尼卡拉中尉)提供装备升级。 / 开启： / - 乔伊·雷酒吧的维嘉 / - 乔伊·雷酒吧的纳克斯 / - 乔伊·雷酒吧的尼卡拉中尉 |
-| 猛男军械库 | `TychusArmory` | `TychusArmory` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 | 为几大猛男(“布雷泽”、“弹头哥”、“响尾蛇”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“布雷泽” / - 乔伊·雷酒吧的“弹头哥” / -... |
+| 枪王藏身处 | `TychusMercCompound` | `TychusMercCompound` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 护盾:- 能量:- | 为几大枪王(泰凯斯、“老油条”萨姆、“天狼星”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“老油条”萨姆 / - 乔伊·雷酒吧的“天狼星” |
+| 鬼手安全屋 | `TychusGhostAcademy` | `TychusGhostAcademy` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 护盾:- 能量:- | 为几大鬼手(维嘉、纳克斯、尼卡拉中尉)提供装备升级。 / 开启： / - 乔伊·雷酒吧的维嘉 / - 乔伊·雷酒吧的纳克斯 / - 乔伊·雷酒吧的尼卡拉中尉 |
+| 猛男军械库 | `TychusArmory` | `TychusArmory` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:750 护盾:- 能量:- | 为几大猛男(“布雷泽”、“弹头哥”、“响尾蛇”)提供装备升级。 / 开启： / - 乔伊·雷酒吧的“布雷泽” / - 乔伊·雷酒吧的“弹头哥” / -... |
 
 ### 建筑按钮候选
 
@@ -292,7 +293,6 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 枪王藏身处 | `TychusWarhoundDesc` | 詹姆斯“天狼星”赛克斯 | `-` | TychusPassiveWarhound | 干了一辈子雇佣兵的“天狼星”很少有美好的回忆，伴随他更多的是噩梦。年少的时候，他和一支专业的佣兵队伍一起共事，也是在那时候他和“弹头哥”还有艾尔姆斯成了朋... |
 | 枪王藏身处 | `TychusWarhoundHaywireMissilesUpgrade` | 购买SA-55型霹雳飞弹 | `TychusHeroResearch2,Research23` | - | 给“天狼星”装备飞弹，可对{Effect,TychusWarhoundTornadoMissileCP,PeriodCount}名空中目标造成{Effec... |
 | 枪王藏身处 | `TychusWarhoundFearUpgrade` | 购买莫比斯M34型恐惧弹 | `TychusHeroResearch2,Research22` | - | 使“天狼星”的每次攻击有{Effect,TychusWarhoundFearSearch,Chance*100}%几率在一个小区域内施放恐惧。区域内的敌方... |
-| 枪王藏身处 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 鬼手安全屋 | `TychusGhostDesc` | 维嘉 | `-` | TychusPassiveGhost | 性格嚣张且下手狠毒的维嘉声称，她是通过伪造自己的死亡而成功逃离了帝国幽灵军校。然而，没有哪个雇佣兵有机会近距离接触到官方记录，来证实她的说辞。但有一点可以... |
 | 鬼手安全屋 | `TychusGhostDominateBuffLearn` | 购买莫比斯灵能激发器 | `TychusHeroResearch2,Research2` | - | 维嘉的支配技能可以完全恢复被支配单位的生命值、护盾值以及能量值，并使被支配单位的攻击速度提高{Behavior,TychusGhostDominateUp... |
 | 鬼手安全屋 | `TychusGhostConfusingDominationLearn` | 购买神经干扰器 | `TychusHeroResearch2,Research1` | - | 维嘉的支配技能使被支配单位周围的敌人陷入混乱，迫使他们互相攻击，持续{Behavior,TychusGhostConfusion,Duration}秒。 |
@@ -305,7 +305,6 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 鬼手安全屋 | `TychusMedicDesc` | 莱纳·尼卡拉中尉 | `-` | TychusPassiveMedic | 尼卡拉苦学医术多年，为的就是有朝一日能够出人头地。后来她无意中得知了死水移民地的医师薪水，再后来她也干起了雇佣兵这一行，名和利她全都要。 |
 | 鬼手安全屋 | `TychusMedicHealingSprayUpgrade` | 购买尤摩扬纳米修复机器人 | `TychusHeroResearch2,Research9` | - | 使尼卡拉中尉的活力喷发的直接治疗和周期性治疗效果提高100%。 |
 | 鬼手安全屋 | `TychusMedicHealUpgrade` | 购买普罗希昂血清 | `TychusHeroResearch2,Research11` | - | 使尼卡拉中尉超级治疗的治疗速度提高100%。 |
-| 鬼手安全屋 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 猛男军械库 | `TychusFirebatDesc` | 迈尔斯“布雷泽”刘易斯 | `-` | TychusPassiveFirebat | 布雷泽从小就对火焰痴迷，对能成为“雷诺的游骑兵”旗下的火蝠兵更是激动万分。除了喜欢在做好事的时候放几把火过过瘾，他没什么别的爱好，不过他还是愿意三天两头地... |
 | 猛男军械库 | `TychusFirebatPremiumPetroleumLearn` | 购买高容积储油罐 | `TychusHeroResearch,Research9` | - | 使布雷泽的浮油范围扩大100%。 |
 | 猛男军械库 | `TychusFirebatBlueFlameOilLearn` | 购买哈迪斯浮油 | `TychusHeroResearch,Research10` | - | 提高布雷泽的燃油的点燃效果所造成的伤害，每秒对轻甲单位造成+{($UpgradeEffectArrayValue:TychusFirebatBlueFla... |
@@ -318,10 +317,11 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 猛男军械库 | `TychusMarauderDesc` | 凯文“响尾蛇”韦斯特 | `-` | TychusPassiveMarauder | “响尾蛇”是少数几个从帝国武装部队中荣誉退伍的雇佣兵之一，他也是一个严格坚持自己准则的男人。尽管他会拒绝任何可能伤害无辜的工作，不过“响尾蛇”在做事上绝对... |
 | 猛男军械库 | `TychusMarauderHealingWardBuffLearn` | 购买尤摩扬信号调制器 | `TychusHeroResearch,Research2` | - | 使“响尾蛇”的恢复器的治疗速度提高100%。 |
 | 猛男军械库 | `TychusMarauderHealingWardSpeedBuffLearn` | 购买莫比斯攻击性合剂 | `TychusHeroResearch,Research3` | - | 在“响尾蛇”的恢复器效果范围内的单位获得{Behavior,TychusMarauderHealingWardTargetUpgrade,Modifica... |
-| 猛男军械库 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 
 实现备注：建筑声明自身生产、研究、行为和阶段；训练单位的最终可用性由兵种/科技/精通/威望共同裁决。
 
+
+备注：已过滤 3 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ## 08. 科技建筑及其升级选项
 
 Owner：`CommanderTechBuildingProfile`、`CommanderUnitTechProfile`、`CommanderUpgradeProfile`、`CommanderUpgradeRequirementProfile`、`CommanderUpgradeEffectProfile`。
@@ -436,10 +436,10 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 劫掠者 | `Marauder` | `Marauder` | Ground; Armored/Biological | 矿:100 气:25 人口字段:-2 生命:125 | 重型突击步兵。 / 可以对地。 |
-| SCV | `TychusSCV` | `TychusSCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地 |
+| 劫掠者 | `Marauder` | `Marauder` | Ground; Armored/Biological | 矿:100 气:25 人口字段:-2 生命:125 护盾:- 能量:- | 重型突击步兵。 / 可以对地。 |
+| SCV | `TychusSCV` | `TychusSCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 护盾:- 能量:- | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则。
+实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
 
 ## 10. 指挥官特殊机制
 
@@ -512,7 +512,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 詹姆斯“天狼星”赛克斯 | `AttackChampions` | AttackChampions | `attack,Execute` | - | - |
 | ... | ... | ... | ... | ... | 还有 19 项，后续从 command_cards.json 继续展开 |
 
-实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster 的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
+实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
 ## 11. 指挥官个性化机制
 
@@ -547,6 +547,8 @@ level15_units
 fusion_final_units
 panel_smoke
 hero_smoke
+hero_ability_smoke
+hero_mode_smoke
 unit_ability_smoke
 tech_smoke
 cargo_smoke
@@ -554,14 +556,15 @@ special_mechanic_smoke
 personal_mechanic_smoke
 ```
 
-补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。
+补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。英雄指挥官还要单独验证 `hero_smoke`、`hero_ability_smoke`、`hero_mode_smoke`。
 
 ## `[XM_DBG]` 日志建议
 
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Tychus levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Tychus levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Tychus stage=power_fusion units=2 buildings=3 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Tychus stage=power_fusion units=2 buildings=3 heroes=9 result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Tychus heroes=9 result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Tychus module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Tychus module=<module> object=<object> result=needs-casc-audit
 ```
@@ -569,9 +572,9 @@ personal_mechanic_smoke
 ## 第一轮待审计项
 
 - 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
-- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound 闭包。
+- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包。
 - `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
 - 6 项精通的真实作用对象和最终数值。
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
-- 特殊机制和个性化机制是否需要 runtime hook。
+- 特殊机制、英雄成长和个性化机制是否需要 runtime hook。
