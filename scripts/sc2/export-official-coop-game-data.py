@@ -168,6 +168,7 @@ CURATED_COMMANDER_UNIT_IDS = {
 TECH_UNIT_UNIT_OVERRIDES = {
     "Abathur": {
         "Devourer": "DevourerMP",
+        "Ravager": "RavagerAbathur",
         "SwarmHost": "SwarmHost",
     },
     "Nova": {
@@ -189,6 +190,67 @@ TECH_UNIT_UNIT_OVERRIDES = {
         "WarpPrismZeratul": "ZeratulWarpPrism",
         "ZealotZeratul": "ZeratulSummonZealot",
     }
+}
+
+TECH_PRODUCTION_COMMAND_OVERRIDES = {
+    "Abathur": {
+        "Ravager": [
+            {
+                "producer_unit_id": "Roach",
+                "button_face": "Ravager",
+                "abil_cmd": "MorphRoachToRavager,Train1",
+            },
+            {
+                "producer_unit_id": "RoachVile",
+                "button_face": "Ravager",
+                "abil_cmd": "MorphRoachVileToRavager,Train1",
+            },
+        ],
+    },
+    "Raynor": {
+        "OrbitalCommand": [
+            {
+                "producer_unit_id": "CommandCenter",
+                "button_face": "OrbitalCommand",
+                "abil_cmd": "UpgradeToOrbitalCoop,Execute",
+            },
+        ],
+    },
+    "Kerrigan": {
+        "Broodlord": [
+            {
+                "producer_unit_id": "Mutalisk",
+                "button_face": "BroodLord",
+                "abil_cmd": "MutaliskMorphToBroodLord,Train1",
+            },
+        ],
+    },
+    "Stukov": {
+        "StukovInfestedSupplyDepot": [
+            {
+                "producer_unit_id": "SISCV",
+                "button_face": "SISupplyDepot",
+                "abil_cmd": "SIAdvancedBuild,Build2",
+            },
+        ],
+    },
+    "Zeratul": {
+        "ZealotZeratul": [
+            {
+                "producer_unit_id": "ZeratulGateway",
+                "button_face": "ZealotZeratul",
+                "abil_cmd": "ZeratulGatewayTrain,Train18",
+            },
+        ],
+    },
+}
+
+TECH_PRODUCTION_FIELD_OVERRIDES = {
+    "Stukov": {
+        "StukovInfestedSupplyDepot": {
+            "time": "30",
+        },
+    },
 }
 
 COMMANDER_TECH_ENTRY_EXCLUDES = {
@@ -717,6 +779,31 @@ def info_chain_resource_value(nodes: list[ET.Element], index_name: str) -> str:
     return ""
 
 
+def info_chain_charge_links(nodes: list[ET.Element]) -> list[str]:
+    result: list[str] = []
+    for node in nodes:
+        charge = node.find("./Charge")
+        if charge is None:
+            continue
+        link = charge.get("Link") or child_value(charge, "Link")
+        if link and link not in result:
+            result.append(link)
+    return result
+
+
+def info_chain_section_time(nodes: list[ET.Element]) -> str:
+    values: list[float] = []
+    for node in nodes:
+        for duration_node in node.findall("./SectionArray/DurationArray"):
+            raw = duration_node.get("value") or ""
+            parsed = parse_numeric_string(raw)
+            if parsed is not None:
+                values.append(parsed)
+    if not values:
+        return ""
+    return format_numeric_string(max(values))
+
+
 def parse_numeric_string(raw: object) -> float | None:
     value = str(raw or "").strip()
     if not value:
@@ -796,6 +883,7 @@ class CatalogResolver:
         self.unit_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.upgrade_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.ability_catalogs: dict[str, dict[str, ET.Element]] = {}
+        self.effect_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.button_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.produced_unit_button_faces: dict[str, dict[str, set[str]]] = {}
         self.produced_unit_commands: dict[str, dict[str, list[dict[str, str]]]] = {}
@@ -813,6 +901,7 @@ class CatalogResolver:
             gamedata_dir = mod_root / "base.sc2data" / "gamedata"
             self.unit_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CUnit"})
             self.ability_catalogs[label] = self._load_ability_catalog_dir(gamedata_dir)
+            self.effect_catalogs[label] = self._load_effect_catalog_dir(gamedata_dir)
             self.button_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CButton"})
             (
                 self.army_category_units[label],
@@ -864,6 +953,21 @@ class CatalogResolver:
                     result[item_id] = child
         return result
 
+    @staticmethod
+    def _load_effect_catalog_dir(gamedata_dir: Path) -> dict[str, ET.Element]:
+        if not gamedata_dir.exists():
+            return {}
+        result: dict[str, ET.Element] = {}
+        for path in sorted(gamedata_dir.rglob("*.xml")):
+            root = ET.parse(path).getroot()
+            for child in root:
+                if not child.tag.startswith("CEffect"):
+                    continue
+                item_id = child.get("id")
+                if item_id and item_id not in result:
+                    result[item_id] = child
+        return result
+
     def _lookup(self, catalogs: dict[str, dict[str, ET.Element]], source: str, item_id: str) -> tuple[str, ET.Element] | tuple[None, None]:
         search_order = self.search_order(source)
         for label in search_order:
@@ -898,6 +1002,9 @@ class CatalogResolver:
 
     def ability_node(self, source: str, ability_id: str) -> tuple[str, ET.Element] | tuple[None, None]:
         return self._lookup(self.ability_catalogs, source, ability_id)
+
+    def effect_node(self, source: str, effect_id: str) -> tuple[str, ET.Element] | tuple[None, None]:
+        return self._lookup(self.effect_catalogs, source, effect_id)
 
     def unit_chain(self, source: str, unit_id: str) -> list[tuple[str, ET.Element]]:
         chain: list[tuple[str, ET.Element]] = []
@@ -965,6 +1072,34 @@ class CatalogResolver:
             nodes_for_id: list[tuple[str, ET.Element]] = []
             for label in self.search_order(source):
                 node = self.ability_catalogs.get(label, {}).get(current_id)
+                if node is None:
+                    continue
+                pair = (label, current_id)
+                if pair in seen_pairs:
+                    continue
+                seen_pairs.add(pair)
+                nodes_for_id.append((label, node))
+            if not nodes_for_id:
+                break
+            chain.extend(nodes_for_id)
+            parent_id = ""
+            for _, node in nodes_for_id:
+                parent_id = node.get("parent", "")
+                if parent_id:
+                    break
+            current_id = parent_id
+        return chain
+
+    def effect_chain(self, source: str, effect_id: str) -> list[tuple[str, ET.Element]]:
+        chain: list[tuple[str, ET.Element]] = []
+        seen_pairs: set[tuple[str, str]] = set()
+        seen_ids: set[str] = set()
+        current_id = effect_id
+        while current_id and current_id not in seen_ids:
+            seen_ids.add(current_id)
+            nodes_for_id: list[tuple[str, ET.Element]] = []
+            for label in self.search_order(source):
+                node = self.effect_catalogs.get(label, {}).get(current_id)
                 if node is None:
                     continue
                 pair = (label, current_id)
@@ -1161,6 +1296,29 @@ class CatalogResolver:
                 break
         return resolved_units
 
+    def _resolve_units_for_button_face(self, source: str, face: str) -> set[str]:
+        if not face:
+            return set()
+
+        candidate_ids: list[str] = [face]
+        for prefix in ("Train", "Build", "MorphTo", "Morphto", "UpgradeTo", "EvolveTo"):
+            if face.startswith(prefix):
+                suffix = face[len(prefix):]
+                if suffix and suffix not in candidate_ids:
+                    candidate_ids.append(suffix)
+
+        resolved_units: set[str] = set()
+        for candidate_id in candidate_ids:
+            resolved_units.update(self._resolve_unit_or_spawn(source, candidate_id))
+        if resolved_units:
+            return resolved_units
+
+        button_chain = self.button_chain(source, face)
+        hotkey_alias = chain_value(button_chain, "HotkeyAlias")
+        if hotkey_alias:
+            resolved_units.update(self._resolve_unit_or_spawn(source, hotkey_alias))
+        return resolved_units
+
     def _build_produced_unit_button_faces(
         self,
         source: str,
@@ -1174,7 +1332,11 @@ class CatalogResolver:
                     abil_cmd = node_value(layout_button, "AbilCmd")
                     if not face or not abil_cmd:
                         continue
-                    for resolved_unit in self._resolve_command_units_for_face(source, abil_cmd):
+                    resolved_units = self._resolve_command_units_for_face(source, abil_cmd)
+                    ability_id, _, _ = abil_cmd.partition(",")
+                    if re.search(r"(Train|Build|Morph|Merge|Warp|Evolve|Upgrade)", ability_id):
+                        resolved_units.update(self._resolve_units_for_button_face(source, face))
+                    for resolved_unit in resolved_units:
                         result.setdefault(resolved_unit, set()).add(face)
         return result
 
@@ -1192,7 +1354,11 @@ class CatalogResolver:
                     abil_cmd = node_value(layout_button, "AbilCmd")
                     if not abil_cmd:
                         continue
-                    for resolved_unit in self._resolve_command_units_for_face(source, abil_cmd):
+                    resolved_units = self._resolve_command_units_for_face(source, abil_cmd)
+                    ability_id, _, _ = abil_cmd.partition(",")
+                    if face and re.search(r"(Train|Build|Morph|Merge|Warp|Evolve|Upgrade)", ability_id):
+                        resolved_units.update(self._resolve_units_for_button_face(source, face))
+                    for resolved_unit in resolved_units:
                         entries = result.setdefault(resolved_unit, [])
                         item = {
                             "producer_unit_id": producer_unit_id,
@@ -1217,6 +1383,19 @@ class CatalogResolver:
             for item in self.produced_unit_commands.get(label, {}).get(unit_id, []):
                 if item not in result:
                     result.append(item)
+        return result
+
+    def army_category_command_entries(self, source: str, category_ids: list[str]) -> list[str]:
+        result: list[str] = []
+        for category_id in category_ids:
+            if not category_id:
+                continue
+            for command_id in sorted(self._lookup_many(self.army_category_commands, source, category_id)):
+                ability_id, _, _ = command_id.partition(",")
+                if not re.search(r"(Train|Build|Morph|Merge|Warp|Evolve)", ability_id):
+                    continue
+                if command_id not in result:
+                    result.append(command_id)
         return result
 
     def _order_resolved_unit_ids(self, source: str, unit_ids: list[str], tech_id: str = "", fallback_unit_id: str = "") -> list[str]:
@@ -1359,6 +1538,9 @@ def resolve_production_metadata(
     unit_id: str,
     preferred_face: str,
     commander_unit_ids: set[str] | None = None,
+    candidate_unit_ids: list[str] | None = None,
+    candidate_commands: list[str] | None = None,
+    explicit_entries: list[dict[str, str]] | None = None,
 ) -> tuple[dict[str, object], list[dict[str, object]]]:
     def infer_morph_delta_cost(
         result: dict[str, object],
@@ -1370,6 +1552,7 @@ def resolve_production_metadata(
         if not producer_unit_id:
             return {}
         has_morph_semantics = False
+        ability_id = str(result.get("ability_id") or "")
         for _, ability_node in ability_chain:
             if ability_node.tag == "CAbilMorph":
                 has_morph_semantics = True
@@ -1384,6 +1567,8 @@ def resolve_production_metadata(
             if kill_on_finish is not None and (kill_on_finish.get("value") or "") == "1":
                 has_morph_semantics = True
                 break
+        if not has_morph_semantics and re.search(r"(Morph|Evolve|Merge)", ability_id):
+            has_morph_semantics = True
         if not has_morph_semantics:
             return {}
 
@@ -1471,8 +1656,17 @@ def resolve_production_metadata(
             for info_node in ability_node.findall("./InfoArray"):
                 if (info_node.get("index") or "") == command_index:
                     info_nodes.append(info_node)
-        if not info_nodes:
-            return {}
+            if info_nodes:
+                continue
+            cmd_matches = any((cmd_node.get("index") or "") == command_index for cmd_node in ability_node.findall("./CmdButtonArray"))
+            if cmd_matches:
+                info_node = ability_node.find("./Info")
+                if info_node is not None:
+                    info_nodes.append(info_node)
+                else:
+                    fallback_infos = ability_node.findall("./InfoArray")
+                    if fallback_infos:
+                        info_nodes.extend(fallback_infos)
         ability_cost_nodes = [ability_node for _, ability_node in ability_chain]
         result = {
             "producer_unit_id": producer_unit_id,
@@ -1490,6 +1684,34 @@ def resolve_production_metadata(
             "cost_mode": "",
             "base_unit_id": "",
         }
+        if (
+            not result["unit"]
+            or result["unit"] in candidate_unit_id_set
+            or str(result["unit"]).endswith("SpawnerUnit")
+            or NON_PRIMARY_UNIT_PATTERN.search(str(result["unit"]))
+        ):
+            result["unit"] = unit_id
+        if not result["time"]:
+            for info_node in info_nodes:
+                charge = info_node.find("./Charge")
+                if charge is None:
+                    continue
+                charge_time = (
+                    charge.get("TimeUse")
+                    or charge.get("TimeStart")
+                    or node_value(charge, "TimeUse")
+                    or node_value(charge, "TimeStart")
+                )
+                if charge_time:
+                    result["time"] = charge_time
+                    break
+        if not result["time"]:
+            result["time"] = info_chain_section_time(info_nodes)
+        if not result["time"]:
+            charge_links = info_chain_charge_links(info_nodes)
+            if "Abil/TychusTrain" in charge_links:
+                outlaw_unlock_effect = resolver.effect_chain(source_name, "TychusOutlawUnlockDurationDummy")
+                result["time"] = chain_value(outlaw_unlock_effect, "Amount")
         resource_index_map = {
             "minerals": "Minerals",
             "vespene": "Vespene",
@@ -1555,17 +1777,42 @@ def resolve_production_metadata(
         canonical_bonus = 1 if face == unit_id or ability_id.endswith(unit_id) or unit_id in ability_id else 0
         return (
             negative_resource_penalty,
+            -time_bonus,
             -commander_producer_bonus,
             -positive_resource_bonus,
             -explicit_resource_count,
             -exact_unit_bonus,
             -canonical_bonus,
-            -time_bonus - preferred_face_bonus,
+            -preferred_face_bonus,
             ability_id,
             face,
         )
 
-    candidates = resolver.unit_production_entries(source_name, unit_id)
+    candidate_unit_id_set: set[str] = set()
+    ordered_candidate_unit_ids: list[str] = []
+    for candidate in [unit_id, *(candidate_unit_ids or [])]:
+        if candidate and candidate not in candidate_unit_id_set:
+            candidate_unit_id_set.add(candidate)
+            ordered_candidate_unit_ids.append(candidate)
+
+    candidates: list[dict[str, str]] = []
+    for candidate in ordered_candidate_unit_ids:
+        for item in resolver.unit_production_entries(source_name, candidate):
+            if item not in candidates:
+                candidates.append(item)
+    for command_id in candidate_commands or []:
+        if any(item.get("abil_cmd", "") == command_id for item in candidates):
+            continue
+        item = {
+            "producer_unit_id": "",
+            "button_face": "",
+            "abil_cmd": command_id,
+        }
+        if item not in candidates:
+            candidates.append(item)
+    for item in explicit_entries or []:
+        if item not in candidates:
+            candidates.append(item)
     if not candidates:
         return {}, []
     parsed_candidates: list[dict[str, object]] = []
@@ -1576,7 +1823,18 @@ def resolve_production_metadata(
     if not parsed_candidates:
         return {}, []
     ordered_candidates = sorted(parsed_candidates, key=production_score)
-    return ordered_candidates[0], ordered_candidates
+    best_candidate = dict(ordered_candidates[0])
+    if not str(best_candidate.get("time") or ""):
+        for candidate in ordered_candidates[1:]:
+            if not str(candidate.get("time") or ""):
+                continue
+            if candidate.get("unit") != best_candidate.get("unit"):
+                continue
+            if candidate.get("producer_unit_id") != best_candidate.get("producer_unit_id"):
+                continue
+            best_candidate["time"] = candidate.get("time")
+            break
+    return best_candidate, ordered_candidates
 
 
 def button_candidates(entry_id: str, resolved_unit_id: str, army_categories: list[str]) -> list[str]:
@@ -2091,6 +2349,8 @@ def build_commander_payload(
         tech_entries.extend(build_supplemental_roster_entries(export_root, short_id, commander_id, source_name, zh, en))
 
         overrides = TECH_UNIT_UNIT_OVERRIDES.get(short_id, {})
+        production_overrides = TECH_PRODUCTION_COMMAND_OVERRIDES.get(short_id, {})
+        production_field_overrides = TECH_PRODUCTION_FIELD_OVERRIDES.get(short_id, {})
         normalized_tech_entries: list[dict[str, object]] = []
         for entry in tech_entries:
             normalized_entry = dict(entry)
@@ -2234,7 +2494,23 @@ def build_commander_payload(
                 str(entry["unit_id"]),
                 str(entry["icon_button"]),
                 commander_entry_unit_ids,
+                [
+                    *list(entry.get("resolved_unit_ids", [])),
+                    *list(entry.get("army_categories", [])),
+                ],
+                resolver.army_category_command_entries(
+                    str(entry["source_name"]),
+                    list(entry.get("army_categories", [])),
+                ),
+                list(production_overrides.get(str(entry["id"]), [])),
             )
+            field_override = production_field_overrides.get(str(entry["id"]), {})
+            if production and field_override:
+                production.update(field_override)
+            if production_options and field_override:
+                for option in production_options:
+                    if option.get("abil_cmd") == production.get("abil_cmd"):
+                        option.update(field_override)
             item = {
                 **entry,
                 "unit": unit_meta,

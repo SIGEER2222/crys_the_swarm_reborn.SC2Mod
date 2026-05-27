@@ -1606,7 +1606,7 @@
   },
   {
     "id": "Ravager",
-    "unit_id": "Ravager",
+    "unit_id": "RavagerAbathur",
     "name": "破坏者",
     "object_type": "Unit",
     "icon_button": "Ravager",
@@ -1728,9 +1728,53 @@
             }
           },
           {
-            "face": "RavagerCorrosiveBile",
+            "face": "CorrosiveBileRadiusIncrease",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveCorrosiveBileRadiusIncrease",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CorrosiveBileRadiusIncrease",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "肿胀胆管",
+              "name_key": "Button/Name/CorrosiveBileRadiusIncrease",
+              "tooltip": "破坏者的腐蚀胆汁的范围增大{($UpgradeEffectArrayValue:RavagerCorrosiveBileRadiusIncrease:Effect,RavagerCorrosiveBileAoeSearch,AreaArray[0].Radius$/Effect,RavagerCorrosiveBileAoeSearch,AreaArray[0].Radius-1)*100}%。",
+              "tooltip_key": "Button/Tooltip/CorrosiveBileRadiusIncrease",
+              "icon": "Assets\\Textures\\btn-ability-zerg-abathur-corrosivebilelarge.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-abathur-corrosivebilelarge.dds"
+            }
+          },
+          {
+            "face": "CorrosiveBileDamageIncrease",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveCorrosiveBileDamageIncrease",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CorrosiveBileDamageIncrease",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "强酸胆汁",
+              "name_key": "Button/Name/CorrosiveBileDamageIncrease",
+              "tooltip": "破坏者的腐蚀胆汁的伤害提高{Upgrade,RavagerCorrosiveBileDamageIncrease,EffectArray[0].Value}点。",
+              "tooltip_key": "Button/Tooltip/CorrosiveBileDamageIncrease",
+              "icon": "Assets\\Textures\\potentbile_coop.dds",
+              "alert_icon": "Assets\\Textures\\potentbile_coop.dds"
+            }
+          },
+          {
+            "face": "RavagerAbathurCorrosiveBile",
             "type": "AbilCmd",
-            "abil_cmd": "RavagerCorrosiveBile,Execute",
+            "abil_cmd": "RavagerAbathurCorrosiveBile,Execute",
             "requirements": "",
             "row": 2,
             "column": 0,
@@ -1738,24 +1782,90 @@
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "RavagerCorrosiveBile",
-              "source_catalog": "void",
+              "id": "RavagerAbathurCorrosiveBile",
+              "source_catalog": "starcoop",
               "parent": "",
               "name": "腐蚀胆汁",
-              "name_key": "Button/Name/RavagerCorrosiveBile",
-              "tooltip": "朝目标位置发射一枚飞弹，撞击后对该范围内的所有单位造成{Effect,RavagerCorrosiveBileDamage,Amount}点伤害。\n可以摧毁星灵力场。",
-              "tooltip_key": "Button/Tooltip/RavagerCorrosiveBile",
+              "name_key": "Button/Name/RavagerAbathurCorrosiveBile",
+              "tooltip": "朝目标位置发射一枚飞弹，撞击后对该范围内的敌方单位造成{Effect,RavagerCorrosiveBileAoeDamage,Amount}点伤害。\n可以摧毁星灵力场。",
+              "tooltip_key": "Button/Tooltip/RavagerAbathurCorrosiveBile",
               "icon": "Assets\\Textures\\btn-ability-zerg-corrosivebile.dds",
               "alert_icon": "Assets\\Textures\\btn-ability-zerg-corrosivebile.dds"
             }
           },
           {
-            "face": "BurrowDown",
-            "type": "AbilCmd",
-            "abil_cmd": "BurrowUltraliskDown,Execute",
-            "requirements": "",
+            "face": "DeepTunnelLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "AbathurLevel09DeepTunnelImproved",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DeepTunnelLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "深槽虫道",
+              "name_key": "Button/Name/DeepTunnelLocked",
+              "tooltip": "该技能将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel09",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "EvolveToBrutaliskLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "AbathurLevel02",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveToBrutaliskLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "进化为莽兽",
+              "name_key": "Button/Name/EvolveToBrutaliskLocked",
+              "tooltip": "该技能将在指挥官等级2时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel02",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "BiomassPassiveEmpty",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "BiomassBuffEmptyVisible",
             "row": 2,
             "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "BiomassPassiveEmpty",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "生物质搜集",
+              "name_key": "Button/Name/BiomassPassiveEmpty",
+              "tooltip": "该单位可以通过击杀敌方单位搜集生物质来获得能量。",
+              "tooltip_key": "Button/Tooltip/BiomassPassiveEmpty",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-biomass.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-biomass.dds"
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowRavagerAbathurDown,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
@@ -1770,40 +1880,6 @@
               "icon": "Assets\\Textures\\btn-ability-zerg-burrow-color.dds",
               "alert_icon": "Assets\\Textures\\btn-ability-zerg-burrow-color.dds"
             }
-          },
-          {
-            "face": "BurrowUp",
-            "type": "AbilCmd",
-            "abil_cmd": "BurrowUltraliskUp,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "BurrowUp",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "出地",
-              "name_key": "Button/Name/BurrowUp",
-              "tooltip": "命令单位钻回地表。",
-              "tooltip_key": "Button/Tooltip/BurrowUp",
-              "icon": "Assets\\Textures\\btn-ability-zerg-upburrow-color.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-zerg-upburrow-color.dds"
-            }
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": "",
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
           }
         ]
       }

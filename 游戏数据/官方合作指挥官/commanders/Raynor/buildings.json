@@ -136,6 +136,22 @@
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "",
+        "button_face": "",
+        "abil_cmd": "KelMorianWorkerBuild,Build4",
+        "ability_id": "KelMorianWorkerBuild",
+        "command_index": "Build4",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "48.75",
+        "unit": "Barracks",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
       }
     ]
   },
@@ -337,9 +353,9 @@
     "resolved_unit_ids": [
       "Bunker"
     ],
-    "icon_button": "Bunker",
-    "icon": "Assets\\Textures\\btn-building-terran-bunker.dds",
-    "alert_icon": "Assets\\Textures\\btn-building-terran-bunker.dds",
+    "icon_button": "BuildLaserTurret",
+    "icon": "Assets\\Textures\\btn-unit-terran-autoturretblackops.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-autoturretblackops.dds",
     "unit": {
       "id": "Bunker",
       "source_catalog": "starcoop",
@@ -446,6 +462,54 @@
         "unit": "Bunker",
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "SCV",
+        "button_face": "BuildLaserTurret",
+        "abil_cmd": "TerranBuildFullRefund,Build1",
+        "ability_id": "TerranBuildFullRefund",
+        "command_index": "Build1",
+        "minerals": "50",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "25",
+        "unit": "NovaACLaserTurret",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "SCV"
+      },
+      {
+        "producer_unit_id": "KelMorianWorker",
+        "button_face": "BuildLaserTurret",
+        "abil_cmd": "KelMorianWorkerBuild,Build17",
+        "ability_id": "KelMorianWorkerBuild",
+        "command_index": "Build17",
+        "minerals": "100",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "22.5",
+        "unit": "KelMorianAutoTurret",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "",
+        "button_face": "",
+        "abil_cmd": "KelMorianWorkerBuild,Build7",
+        "ability_id": "KelMorianWorkerBuild",
+        "command_index": "Build7",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "30",
+        "unit": "Bunker",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
         "base_unit_id": ""
       }
     ]
@@ -748,6 +812,22 @@
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "HHSCV",
+        "button_face": "CommandCenter",
+        "abil_cmd": "HHBuild,Build1",
+        "ability_id": "HHBuild",
+        "command_index": "Build1",
+        "minerals": "400",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "100",
+        "unit": "HHCommandCenter",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
       }
     ]
   },
@@ -847,6 +927,56 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "CommandCenter",
+      "button_face": "OrbitalCommand",
+      "abil_cmd": "UpgradeToOrbital,Execute",
+      "ability_id": "UpgradeToOrbital",
+      "command_index": "Execute",
+      "minerals": "150",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "0",
+      "unit": "OrbitalCommand",
+      "source_catalog": "starcoop",
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "CommandCenter"
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "CommandCenter",
+        "button_face": "OrbitalCommand",
+        "abil_cmd": "UpgradeToOrbital,Execute",
+        "ability_id": "UpgradeToOrbital",
+        "command_index": "Execute",
+        "minerals": "150",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "",
+        "unit": "OrbitalCommand",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "CommandCenter"
+      },
+      {
+        "producer_unit_id": "CommandCenter",
+        "button_face": "OrbitalCommand",
+        "abil_cmd": "UpgradeToOrbitalCoop,Execute",
+        "ability_id": "UpgradeToOrbitalCoop",
+        "command_index": "Execute",
+        "minerals": "-150",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "0",
+        "unit": "OrbitalCommand",
+        "source_catalog": "starcoop",
+        "cost_mode": "direct",
+        "base_unit_id": ""
+      }
+    ]
   }
 ]

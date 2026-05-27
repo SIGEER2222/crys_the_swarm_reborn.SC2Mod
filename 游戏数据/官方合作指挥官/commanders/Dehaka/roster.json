@@ -152,22 +152,38 @@
       ]
     },
     "production": {
-      "producer_unit_id": "DehakaTrainEggDrone",
+      "producer_unit_id": "DehakaHatchery",
       "button_face": "DehakaDrone",
-      "abil_cmd": "DehakaTrainEggMorphToDrone,Train1",
-      "ability_id": "DehakaTrainEggMorphToDrone",
+      "abil_cmd": "DehakaHatcheryTrainEgg,Train1",
+      "ability_id": "DehakaHatcheryTrainEgg",
       "command_index": "Train1",
       "minerals": "50",
       "vespene": "",
       "terrazine": "",
       "custom": "",
-      "time": "17",
+      "time": "16",
       "unit": "DehakaDrone",
       "source_catalog": "starcoop",
-      "cost_mode": "direct",
+      "cost_mode": "unit_total_inferred",
       "base_unit_id": ""
     },
     "production_options": [
+      {
+        "producer_unit_id": "DehakaHatchery",
+        "button_face": "DehakaDrone",
+        "abil_cmd": "DehakaHatcheryTrainEgg,Train1",
+        "ability_id": "DehakaHatcheryTrainEgg",
+        "command_index": "Train1",
+        "minerals": "50",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "16",
+        "unit": "DehakaDrone",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
       {
         "producer_unit_id": "DehakaTrainEggDrone",
         "button_face": "DehakaDrone",
@@ -273,15 +289,15 @@
       "abil_cmd": "DehakaDroneMorph,Build1",
       "ability_id": "DehakaDroneMorph",
       "command_index": "Build1",
-      "minerals": "",
+      "minerals": "400",
       "vespene": "",
       "terrazine": "",
       "custom": "",
       "time": "100",
       "unit": "DehakaHatchery",
       "source_catalog": "starcoop",
-      "cost_mode": "",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "DehakaDrone"
     },
     "production_options": [
       {
@@ -290,15 +306,15 @@
         "abil_cmd": "DehakaDroneMorph,Build1",
         "ability_id": "DehakaDroneMorph",
         "command_index": "Build1",
-        "minerals": "",
+        "minerals": "400",
         "vespene": "",
         "terrazine": "",
         "custom": "",
         "time": "100",
         "unit": "DehakaHatchery",
         "source_catalog": "starcoop",
-        "cost_mode": "",
-        "base_unit_id": ""
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "DehakaDrone"
       }
     ]
   },
@@ -465,15 +481,15 @@
       "abil_cmd": "DehakaDroneMorph,Build2",
       "ability_id": "DehakaDroneMorph",
       "command_index": "Build2",
-      "minerals": "",
+      "minerals": "200",
       "vespene": "",
       "terrazine": "",
       "custom": "",
       "time": "60",
       "unit": "DehakaBarracks",
       "source_catalog": "starcoop",
-      "cost_mode": "",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "DehakaDrone"
     },
     "production_options": [
       {
@@ -482,15 +498,15 @@
         "abil_cmd": "DehakaDroneMorph,Build2",
         "ability_id": "DehakaDroneMorph",
         "command_index": "Build2",
-        "minerals": "",
+        "minerals": "200",
         "vespene": "",
         "terrazine": "",
         "custom": "",
         "time": "60",
         "unit": "DehakaBarracks",
         "source_catalog": "starcoop",
-        "cost_mode": "",
-        "base_unit_id": ""
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "DehakaDrone"
       }
     ]
   },
@@ -845,15 +861,15 @@
       "abil_cmd": "DehakaDroneMorph,Build3",
       "ability_id": "DehakaDroneMorph",
       "command_index": "Build3",
-      "minerals": "",
+      "minerals": "200",
       "vespene": "",
       "terrazine": "",
       "custom": "",
       "time": "90",
       "unit": "DehakaGlevigStructure",
       "source_catalog": "starcoop",
-      "cost_mode": "",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "DehakaDrone"
     },
     "production_options": [
       {
@@ -862,15 +878,15 @@
         "abil_cmd": "DehakaDroneMorph,Build3",
         "ability_id": "DehakaDroneMorph",
         "command_index": "Build3",
-        "minerals": "",
+        "minerals": "200",
         "vespene": "",
         "terrazine": "",
         "custom": "",
         "time": "90",
         "unit": "DehakaGlevigStructure",
         "source_catalog": "starcoop",
-        "cost_mode": "",
-        "base_unit_id": ""
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "DehakaDrone"
       }
     ]
   },
@@ -1035,15 +1051,15 @@
       "abil_cmd": "DehakaDroneMorph,Build4",
       "ability_id": "DehakaDroneMorph",
       "command_index": "Build4",
-      "minerals": "",
+      "minerals": "200",
       "vespene": "",
       "terrazine": "",
       "custom": "",
       "time": "120",
       "unit": "DehakaMurvarStructure",
       "source_catalog": "starcoop",
-      "cost_mode": "",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "DehakaDrone"
     },
     "production_options": [
       {
@@ -1052,15 +1068,15 @@
         "abil_cmd": "DehakaDroneMorph,Build4",
         "ability_id": "DehakaDroneMorph",
         "command_index": "Build4",
-        "minerals": "",
+        "minerals": "200",
         "vespene": "",
         "terrazine": "",
         "custom": "",
         "time": "120",
         "unit": "DehakaMurvarStructure",
         "source_catalog": "starcoop",
-        "cost_mode": "",
-        "base_unit_id": ""
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "DehakaDrone"
       }
     ]
   },
@@ -1224,15 +1240,15 @@
       "abil_cmd": "DehakaDroneMorph,Build5",
       "ability_id": "DehakaDroneMorph",
       "command_index": "Build5",
-      "minerals": "",
+      "minerals": "200",
       "vespene": "",
       "terrazine": "",
       "custom": "",
       "time": "120",
       "unit": "DehakaDakrunStructure",
       "source_catalog": "starcoop",
-      "cost_mode": "",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "DehakaDrone"
     },
     "production_options": [
       {
@@ -1241,15 +1257,15 @@
         "abil_cmd": "DehakaDroneMorph,Build5",
         "ability_id": "DehakaDroneMorph",
         "command_index": "Build5",
-        "minerals": "",
+        "minerals": "200",
         "vespene": "",
         "terrazine": "",
         "custom": "",
         "time": "120",
         "unit": "DehakaDakrunStructure",
         "source_catalog": "starcoop",
-        "cost_mode": "",
-        "base_unit_id": ""
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "DehakaDrone"
       }
     ]
   },
@@ -1523,15 +1539,15 @@
       "abil_cmd": "DehakaDroneMorph,Build6",
       "ability_id": "DehakaDroneMorph",
       "command_index": "Build6",
-      "minerals": "",
+      "minerals": "250",
       "vespene": "",
       "terrazine": "",
       "custom": "",
       "time": "40",
       "unit": "DehakaNydusDestroyer",
       "source_catalog": "starcoop",
-      "cost_mode": "",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "DehakaDrone"
     },
     "production_options": [
       {
@@ -1540,15 +1556,15 @@
         "abil_cmd": "DehakaDroneMorph,Build6",
         "ability_id": "DehakaDroneMorph",
         "command_index": "Build6",
-        "minerals": "",
+        "minerals": "250",
         "vespene": "",
         "terrazine": "",
         "custom": "",
         "time": "40",
         "unit": "DehakaNydusDestroyer",
         "source_catalog": "starcoop",
-        "cost_mode": "",
-        "base_unit_id": ""
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "DehakaDrone"
       }
     ]
   },
@@ -1966,22 +1982,38 @@
       ]
     },
     "production": {
-      "producer_unit_id": "DehakaTrainEggSwarmHost",
+      "producer_unit_id": "DehakaBarracks",
       "button_face": "DehakaSwarmHost",
-      "abil_cmd": "DehakaTrainEggMorphToSwarmHost,Train1",
-      "ability_id": "DehakaTrainEggMorphToSwarmHost",
-      "command_index": "Train1",
+      "abil_cmd": "DehakaBarracksTrainEgg,Train4",
+      "ability_id": "DehakaBarracksTrainEgg",
+      "command_index": "Train4",
       "minerals": "100",
       "vespene": "75",
       "terrazine": "",
       "custom": "",
-      "time": "30",
+      "time": "16",
       "unit": "DehakaSwarmHost",
       "source_catalog": "starcoop",
-      "cost_mode": "direct",
+      "cost_mode": "unit_total_inferred",
       "base_unit_id": ""
     },
     "production_options": [
+      {
+        "producer_unit_id": "DehakaBarracks",
+        "button_face": "DehakaSwarmHost",
+        "abil_cmd": "DehakaBarracksTrainEgg,Train4",
+        "ability_id": "DehakaBarracksTrainEgg",
+        "command_index": "Train4",
+        "minerals": "100",
+        "vespene": "75",
+        "terrazine": "",
+        "custom": "",
+        "time": "16",
+        "unit": "DehakaSwarmHost",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
       {
         "producer_unit_id": "DehakaTrainEggSwarmHost",
         "button_face": "DehakaSwarmHost",

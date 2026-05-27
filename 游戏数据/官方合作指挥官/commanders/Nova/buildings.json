@@ -136,6 +136,22 @@
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "",
+        "button_face": "",
+        "abil_cmd": "KelMorianWorkerBuild,Build4",
+        "ability_id": "KelMorianWorkerBuild",
+        "command_index": "Build4",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "48.75",
+        "unit": "Barracks",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
       }
     ]
   },
@@ -279,9 +295,9 @@
       "AutoTurret",
       "NovaACLaserTurret"
     ],
-    "icon_button": "AutoTurret",
-    "icon": "Assets\\Textures\\btn-building-terran-autoturret.dds",
-    "alert_icon": "Assets\\Textures\\btn-building-terran-autoturret.dds",
+    "icon_button": "BuildLaserTurretRaven",
+    "icon": "Assets\\Textures\\btn-unit-terran-autoturretblackops.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-autoturretblackops.dds",
     "unit": {
       "id": "AutoTurret",
       "source_catalog": "starcoop",
@@ -354,7 +370,73 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "SCV",
+      "button_face": "BuildLaserTurret",
+      "abil_cmd": "TerranBuildFullRefund,Build1",
+      "ability_id": "TerranBuildFullRefund",
+      "command_index": "Build1",
+      "minerals": "50",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "25",
+      "unit": "AutoTurret",
+      "source_catalog": "starcoop",
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "SCV"
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "SCV",
+        "button_face": "BuildLaserTurret",
+        "abil_cmd": "TerranBuildFullRefund,Build1",
+        "ability_id": "TerranBuildFullRefund",
+        "command_index": "Build1",
+        "minerals": "50",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "25",
+        "unit": "AutoTurret",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "SCV"
+      },
+      {
+        "producer_unit_id": "Raven_BlackOps",
+        "button_face": "BuildLaserTurretRaven",
+        "abil_cmd": "BuildAutoTurret_BlackOps,Execute",
+        "ability_id": "BuildAutoTurret_BlackOps",
+        "command_index": "Execute",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "",
+        "unit": "AutoTurret",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "Raven",
+        "button_face": "AutoTurret",
+        "abil_cmd": "BuildAutoTurret,Execute",
+        "ability_id": "BuildAutoTurret",
+        "command_index": "Execute",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "",
+        "unit": "AutoTurret",
+        "source_catalog": "voidmulti",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "MissileTurret",
@@ -651,6 +733,22 @@
         "custom": "",
         "time": "100",
         "unit": "CommandCenter",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "HHSCV",
+        "button_face": "CommandCenter",
+        "abil_cmd": "HHBuild,Build1",
+        "ability_id": "HHBuild",
+        "command_index": "Build1",
+        "minerals": "400",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "100",
+        "unit": "HHCommandCenter",
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
