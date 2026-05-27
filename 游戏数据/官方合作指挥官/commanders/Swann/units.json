@@ -212,22 +212,38 @@
       ]
     },
     "production": {
-      "producer_unit_id": "Factory",
-      "button_face": "HellionTank",
-      "abil_cmd": "FactoryTrain,Train7",
-      "ability_id": "FactoryTrain",
-      "command_index": "Train7",
-      "minerals": "100",
+      "producer_unit_id": "Hellion",
+      "button_face": "MorphToHellionTank",
+      "abil_cmd": "MorphToHellionTank,Execute",
+      "ability_id": "MorphToHellionTank",
+      "command_index": "Execute",
+      "minerals": "0",
       "vespene": "",
       "terrazine": "",
       "custom": "",
-      "time": "30",
+      "time": "4",
       "unit": "HellionTank",
       "source_catalog": "starcoop",
-      "cost_mode": "unit_total_inferred",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "Hellion"
     },
     "production_options": [
+      {
+        "producer_unit_id": "Hellion",
+        "button_face": "MorphToHellionTank",
+        "abil_cmd": "MorphToHellionTank,Execute",
+        "ability_id": "MorphToHellionTank",
+        "command_index": "Execute",
+        "minerals": "0",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "4",
+        "unit": "HellionTank",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "Hellion"
+      },
       {
         "producer_unit_id": "Factory",
         "button_face": "HellionTank",
@@ -243,6 +259,38 @@
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "Factory",
+        "button_face": "TrainHellbatNova",
+        "abil_cmd": "FactoryTrainNova,Train3",
+        "ability_id": "FactoryTrainNova",
+        "command_index": "Train3",
+        "minerals": "500",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "300",
+        "unit": "HellionTank",
+        "source_catalog": "starcoop",
+        "cost_mode": "direct",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "HHHellion",
+        "button_face": "MorphToHellionTank",
+        "abil_cmd": "MorphToHHHellionTank,Execute",
+        "ability_id": "MorphToHHHellionTank",
+        "command_index": "Execute",
+        "minerals": "0",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "4",
+        "unit": "HHHellionTank",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "HHHellion"
       }
     ]
   },
@@ -309,7 +357,41 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Starport",
+      "button_face": "BuildHercules",
+      "abil_cmd": "StarportTrain,Train6",
+      "ability_id": "StarportTrain",
+      "command_index": "Train6",
+      "minerals": "100",
+      "vespene": "50",
+      "terrazine": "",
+      "custom": "",
+      "time": "40",
+      "unit": "Hercules",
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Starport",
+        "button_face": "BuildHercules",
+        "abil_cmd": "StarportTrain,Train6",
+        "ability_id": "StarportTrain",
+        "command_index": "Train6",
+        "minerals": "100",
+        "vespene": "50",
+        "terrazine": "",
+        "custom": "",
+        "time": "40",
+        "unit": "Hercules",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "ScienceVessel",
@@ -337,7 +419,7 @@
     "resolved_unit_ids": [
       "ScienceVessel"
     ],
-    "icon_button": "",
+    "icon_button": "BuildScienceVessel",
     "icon": "",
     "alert_icon": "",
     "unit": {
@@ -376,7 +458,41 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Starport",
+      "button_face": "BuildScienceVessel",
+      "abil_cmd": "StarportTrain,Train9",
+      "ability_id": "StarportTrain",
+      "command_index": "Train9",
+      "minerals": "",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "",
+      "unit": "ScienceVessel",
+      "source_catalog": "starcoop",
+      "cost_mode": "",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Starport",
+        "button_face": "BuildScienceVessel",
+        "abil_cmd": "StarportTrain,Train9",
+        "ability_id": "StarportTrain",
+        "command_index": "Train9",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "",
+        "unit": "ScienceVessel",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "Hellion",
@@ -473,22 +589,38 @@
       ]
     },
     "production": {
-      "producer_unit_id": "Factory",
-      "button_face": "Hellion",
-      "abil_cmd": "FactoryTrain,Train6",
-      "ability_id": "FactoryTrain",
-      "command_index": "Train6",
-      "minerals": "100",
+      "producer_unit_id": "HellionTank",
+      "button_face": "MorphToHellion",
+      "abil_cmd": "MorphToHellion,Execute",
+      "ability_id": "MorphToHellion",
+      "command_index": "Execute",
+      "minerals": "0",
       "vespene": "",
       "terrazine": "",
       "custom": "",
-      "time": "30",
+      "time": "4",
       "unit": "Hellion",
       "source_catalog": "starcoop",
-      "cost_mode": "unit_total_inferred",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "HellionTank"
     },
     "production_options": [
+      {
+        "producer_unit_id": "HellionTank",
+        "button_face": "MorphToHellion",
+        "abil_cmd": "MorphToHellion,Execute",
+        "ability_id": "MorphToHellion",
+        "command_index": "Execute",
+        "minerals": "0",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "4",
+        "unit": "Hellion",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "HellionTank"
+      },
       {
         "producer_unit_id": "Factory",
         "button_face": "Hellion",
@@ -570,7 +702,73 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "HHStarport",
+      "button_face": "Wraith",
+      "abil_cmd": "HHStarportTrainHorner,Train1",
+      "ability_id": "HHStarportTrainHorner",
+      "command_index": "Train1",
+      "minerals": "800",
+      "vespene": "400",
+      "terrazine": "",
+      "custom": "",
+      "time": "300",
+      "unit": "Wraith",
+      "source_catalog": "starcoop",
+      "cost_mode": "direct",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "HHStarport",
+        "button_face": "Wraith",
+        "abil_cmd": "HHStarportTrainHorner,Train1",
+        "ability_id": "HHStarportTrainHorner",
+        "command_index": "Train1",
+        "minerals": "800",
+        "vespene": "400",
+        "terrazine": "",
+        "custom": "",
+        "time": "300",
+        "unit": "Wraith",
+        "source_catalog": "starcoop",
+        "cost_mode": "direct",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "SICocoonInfestedWraith",
+        "button_face": "Wraith",
+        "abil_cmd": "SIMorphtoInfestedWraith,Train1",
+        "ability_id": "SIMorphtoInfestedWraith",
+        "command_index": "Train1",
+        "minerals": "150",
+        "vespene": "150",
+        "terrazine": "",
+        "custom": "",
+        "time": "20",
+        "unit": "SIWraith",
+        "source_catalog": "starcoop",
+        "cost_mode": "direct",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "Starport",
+        "button_face": "Wraith",
+        "abil_cmd": "StarportTrain,Train8",
+        "ability_id": "StarportTrain",
+        "command_index": "Train8",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "",
+        "unit": "Wraith",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "SCV",
@@ -602,8 +800,8 @@
     "resolved_unit_ids": [
       "SCV"
     ],
-    "icon_button": "SelectBuilder",
-    "icon": "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds",
+    "icon_button": "SCV",
+    "icon": "Assets\\Textures\\btn-unit-terran-scv.dds",
     "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds",
     "unit": {
       "id": "SCV",
@@ -766,6 +964,22 @@
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "HHCommandCenter",
+        "button_face": "SCV",
+        "abil_cmd": "HHCommandCenterTrain,Train1",
+        "ability_id": "HHCommandCenterTrain",
+        "command_index": "Train1",
+        "minerals": "50",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "17",
+        "unit": "HHSCV",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
       }
     ]
   },
@@ -795,9 +1009,9 @@
     "resolved_unit_ids": [
       "Goliath"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "TrainGoliathNova",
+    "icon": "Assets\\Textures\\btn-unit-terran-goliathblackops.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-goliathblackops.dds",
     "unit": {
       "id": "Goliath",
       "source_catalog": "starcoop",
@@ -832,7 +1046,57 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Factory",
+      "button_face": "TrainGoliathNova",
+      "abil_cmd": "FactoryTrainNova,Train1",
+      "ability_id": "FactoryTrainNova",
+      "command_index": "Train1",
+      "minerals": "750",
+      "vespene": "250",
+      "terrazine": "",
+      "custom": "",
+      "time": "300",
+      "unit": "Goliath",
+      "source_catalog": "starcoop",
+      "cost_mode": "direct",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Factory",
+        "button_face": "TrainGoliathNova",
+        "abil_cmd": "FactoryTrainNova,Train1",
+        "ability_id": "FactoryTrainNova",
+        "command_index": "Train1",
+        "minerals": "750",
+        "vespene": "250",
+        "terrazine": "",
+        "custom": "",
+        "time": "300",
+        "unit": "Goliath",
+        "source_catalog": "starcoop",
+        "cost_mode": "direct",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "Factory",
+        "button_face": "Goliath",
+        "abil_cmd": "FactoryTrain,Train3",
+        "ability_id": "FactoryTrain",
+        "command_index": "Train3",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "",
+        "unit": "Goliath",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "Siege Tank",
@@ -967,6 +1231,22 @@
         "unit": "SiegeTank",
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "Factory",
+        "button_face": "TrainSiegeTankNova",
+        "abil_cmd": "FactoryTrainNova,Train2",
+        "ability_id": "FactoryTrainNova",
+        "command_index": "Train2",
+        "minerals": "800",
+        "vespene": "600",
+        "terrazine": "",
+        "custom": "",
+        "time": "300",
+        "unit": "SiegeTank",
+        "source_catalog": "starcoop",
+        "cost_mode": "direct",
         "base_unit_id": ""
       }
     ]

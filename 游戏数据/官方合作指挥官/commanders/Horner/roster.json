@@ -83,8 +83,8 @@
       "vespene": "800",
       "terrazine": "",
       "custom": "",
-      "time": "",
-      "unit": "HHBattlecruiser_SpawnerUnit",
+      "time": "300",
+      "unit": "HHBattlecruiser",
       "source_catalog": "starcoop",
       "cost_mode": "direct",
       "base_unit_id": ""
@@ -100,8 +100,8 @@
         "vespene": "800",
         "terrazine": "",
         "custom": "",
-        "time": "",
-        "unit": "HHBattlecruiser_SpawnerUnit",
+        "time": "300",
+        "unit": "HHBattlecruiser",
         "source_catalog": "starcoop",
         "cost_mode": "direct",
         "base_unit_id": ""
@@ -183,22 +183,38 @@
       ]
     },
     "production": {
-      "producer_unit_id": "HHMercStarportUpgraded",
-      "button_face": "HHHellion",
-      "abil_cmd": "SummonHornerMercenaries,Train5",
-      "ability_id": "SummonHornerMercenaries",
-      "command_index": "Train5",
-      "minerals": "",
+      "producer_unit_id": "HHHellionTank",
+      "button_face": "MorphToHHHellion",
+      "abil_cmd": "MorphToHHHellion,Execute",
+      "ability_id": "MorphToHHHellion",
+      "command_index": "Execute",
+      "minerals": "0",
       "vespene": "",
       "terrazine": "",
       "custom": "",
-      "time": "14",
+      "time": "4",
       "unit": "HHHellion",
       "source_catalog": "starcoop",
-      "cost_mode": "",
-      "base_unit_id": ""
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "HHHellionTank"
     },
     "production_options": [
+      {
+        "producer_unit_id": "HHHellionTank",
+        "button_face": "MorphToHHHellion",
+        "abil_cmd": "MorphToHHHellion,Execute",
+        "ability_id": "MorphToHHHellion",
+        "command_index": "Execute",
+        "minerals": "0",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "4",
+        "unit": "HHHellion",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "HHHellionTank"
+      },
       {
         "producer_unit_id": "HHMercStarportUpgraded",
         "button_face": "HHHellion",
@@ -415,8 +431,8 @@
       "vespene": "200",
       "terrazine": "",
       "custom": "",
-      "time": "",
-      "unit": "HHRaven_SpawnerUnit",
+      "time": "180",
+      "unit": "HHRaven",
       "source_catalog": "starcoop",
       "cost_mode": "direct",
       "base_unit_id": ""
@@ -432,11 +448,27 @@
         "vespene": "200",
         "terrazine": "",
         "custom": "",
-        "time": "",
-        "unit": "HHRaven_SpawnerUnit",
+        "time": "180",
+        "unit": "HHRaven",
         "source_catalog": "starcoop",
         "cost_mode": "direct",
         "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "HHRavenSiegeMode",
+        "button_face": "MorphtoHHRaven",
+        "abil_cmd": "HHRavenSiegeMorphtoHHRaven,Execute",
+        "ability_id": "HHRavenSiegeMorphtoHHRaven",
+        "command_index": "Execute",
+        "minerals": "0",
+        "vespene": "0",
+        "terrazine": "",
+        "custom": "",
+        "time": "0.75",
+        "unit": "HHRaven",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "HHRavenSiegeMode"
       }
     ]
   },
@@ -634,8 +666,8 @@
       "vespene": "500",
       "terrazine": "",
       "custom": "",
-      "time": "",
-      "unit": "HHViking_SpawnerUnit",
+      "time": "300",
+      "unit": "HHVikingFighter",
       "source_catalog": "starcoop",
       "cost_mode": "direct",
       "base_unit_id": ""
@@ -651,8 +683,8 @@
         "vespene": "500",
         "terrazine": "",
         "custom": "",
-        "time": "",
-        "unit": "HHViking_SpawnerUnit",
+        "time": "300",
+        "unit": "HHVikingFighter",
         "source_catalog": "starcoop",
         "cost_mode": "direct",
         "base_unit_id": ""
@@ -870,8 +902,8 @@
       "vespene": "400",
       "terrazine": "",
       "custom": "",
-      "time": "",
-      "unit": "HHWraith_SpawnerUnit",
+      "time": "300",
+      "unit": "HHWraith",
       "source_catalog": "starcoop",
       "cost_mode": "direct",
       "base_unit_id": ""
@@ -887,8 +919,8 @@
         "vespene": "400",
         "terrazine": "",
         "custom": "",
-        "time": "",
-        "unit": "HHWraith_SpawnerUnit",
+        "time": "300",
+        "unit": "HHWraith",
         "source_catalog": "starcoop",
         "cost_mode": "direct",
         "base_unit_id": ""
@@ -1037,9 +1069,9 @@
     "resolved_unit_ids": [
       "Liberator"
     ],
-    "icon_button": "Liberator",
-    "icon": "Assets\\Textures\\btn-unit-terran-liberator.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-terran-liberator.dds",
+    "icon_button": "TrainLiberatorNova",
+    "icon": "Assets\\Textures\\btn-unit-terran-liberatorblackops.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-liberatorblackops.dds",
     "unit": {
       "id": "Liberator",
       "source_catalog": "starcoop",
@@ -1127,6 +1159,22 @@
         "unit": "Liberator",
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "Starport",
+        "button_face": "TrainLiberatorNova",
+        "abil_cmd": "StarportTrainNova,Train3",
+        "ability_id": "StarportTrainNova",
+        "command_index": "Train3",
+        "minerals": "750",
+        "vespene": "750",
+        "terrazine": "",
+        "custom": "",
+        "time": "300",
+        "unit": "Liberator",
+        "source_catalog": "starcoop",
+        "cost_mode": "direct",
         "base_unit_id": ""
       }
     ]
