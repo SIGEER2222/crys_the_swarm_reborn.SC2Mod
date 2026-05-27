@@ -1,0 +1,499 @@
+{
+  "perks": [
+    {
+      "id": "Swann",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel01",
+      "level": 1,
+      "ui_slot": 1,
+      "button": "CommanderSwannVehicleSpecialist",
+      "name": "载具专家",
+      "name_key": "Button/Name/CommanderSwannVehicleSpecialist",
+      "tooltip": "斯旺建造SCV、战车和星舰的速度比其他指挥官快20%。建造重工厂和军械库不消耗高能瓦斯。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannVehicleSpecialist",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannSpecialDelivery",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel02",
+      "level": 2,
+      "ui_slot": 1,
+      "button": "CommanderSwannCombatDrop",
+      "name": "战斗空投",
+      "name_key": "Button/Name/CommanderSwannCombatDrop",
+      "tooltip": "空投4台武装机器人，将着陆地点的敌方地面单位击晕。武装机器人可被控制，持续{Behavior,ARESTimedLife,Duration}秒。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannCombatDrop",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SwannSpecialDelivery"
+      ],
+      "ability_commands": [
+        {
+          "abil": "SpecialDelivery",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannImprovedTurrets",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel03",
+      "level": 3,
+      "ui_slot": 1,
+      "button": "CommanderSwannImprovedTurrets",
+      "name": "贝蒂家族",
+      "name_key": "Button/Name/CommanderSwannImprovedTurrets",
+      "tooltip": "毁灭炮塔的射程由6提高到至9，它们的攻击可使敌人减速30%。\n导弹塔的生命值由250提高至325，它们的攻击能造成范围伤害。\n末日炮塔的消耗降低50%。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannImprovedTurrets",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SwannKelMorianTurretUpgrades"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannLaserDrillUpgrades",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel04",
+      "level": 4,
+      "ui_slot": 1,
+      "button": "CommanderSwannImprovedLaserDrill",
+      "name": "德拉肯激光钻机：脉冲炮",
+      "name_key": "Button/Name/CommanderSwannImprovedLaserDrill",
+      "tooltip": "使德拉肯激光钻机能进行二次升级，将它的攻击伤害由30提高到50，\n并解锁脉冲炮技能，对目标区域内的敌方单位和建筑造成600点伤害。通过顶部面板来激活脉冲炮。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannImprovedLaserDrill",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "DrakkenLaserDrillNuke",
+          "cmd": ""
+        },
+        {
+          "abil": "DrakkenLaserDrillResearch",
+          "cmd": "1"
+        },
+        {
+          "abil": "DrakkenLaserDrillPulseCannonIssueOrder",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannUnlockVespeneDrone",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel05",
+      "level": 5,
+      "ui_slot": 1,
+      "button": "CommanderSwannVespeneDrone",
+      "name": "瓦斯采集器",
+      "name_key": "Button/Name/CommanderSwannVespeneDrone",
+      "tooltip": "解锁指挥中心的一项技能，可空投自动化采集器，从你的精炼厂和任何友方瓦斯采集建筑上收集额外的高能瓦斯。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannVespeneDrone",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "VespeneDroneCast",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannUnlockThor",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel06",
+      "level": 6,
+      "ui_slot": 1,
+      "button": "CommanderSwannUnlockThor",
+      "name": "新单位：雷神",
+      "name_key": "Button/Name/CommanderSwannUnlockThor",
+      "tooltip": "重型突击机甲，可在重工厂中制造。\n可以对地和对空。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannUnlockThor",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SwannUnlockThor"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannFactoryUpgrades",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel07",
+      "level": 7,
+      "ui_slot": 1,
+      "button": "CommanderSwannFactoryUpgradesPack",
+      "name": "重工厂升级包",
+      "name_key": "Button/Name/CommanderSwannFactoryUpgradesPack",
+      "tooltip": "在重工厂的科技实验室中解锁以下升级：\n使歌利亚武装机器人可以同时对地和对空。飓风的锁定技能伤害提高100%。解锁雷神的330毫米口径弹幕火炮技能，可对一个目标区域内的敌人造成伤害并将其击晕。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannFactoryUpgradesPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "FactoryTechLabResearch",
+          "cmd": "11"
+        },
+        {
+          "abil": "FactoryTechLabResearch",
+          "cmd": "16"
+        },
+        {
+          "abil": "FactoryTechLabResearch",
+          "cmd": "2"
+        },
+        {
+          "abil": "330mmBarrageCannons",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannImprovedSCV",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel08",
+      "level": 8,
+      "ui_slot": 1,
+      "button": "CommanderSwannImprovedSCVs",
+      "name": "高级建造",
+      "name_key": "Button/Name/CommanderSwannImprovedSCVs",
+      "tooltip": "多台SCV可同时建造同一个建筑，缩短其建造时间。修理不消耗资源。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannImprovedSCVs",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "AdvancedConstruction",
+        "SwannCommanderWorkerFreeRepairs"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannArmoryUpgrades",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel09",
+      "level": 9,
+      "ui_slot": 1,
+      "button": "CommanderSwannArmoryUpgradePack",
+      "name": "军械库升级包",
+      "name_key": "Button/Name/CommanderSwannArmoryUpgradePack",
+      "tooltip": "在军械库中解锁以下升级：\n所有载具和飞船的射程提高1。所有载具和飞船会自动地缓慢恢复生命值。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannArmoryUpgradePack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "ArmoryResearchVoidCoop",
+          "cmd": "9"
+        },
+        {
+          "abil": "ArmoryResearchVoidCoop",
+          "cmd": "10"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannTechReactor",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel10",
+      "level": 10,
+      "ui_slot": 1,
+      "button": "CommanderSwannTechReactors",
+      "name": "科技反应堆",
+      "name_key": "Button/Name/CommanderSwannTechReactors",
+      "tooltip": "整合科技实验室和反应堆，包含针对单位的升级，并使主建筑能同时建造两个单位。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannTechReactors",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "TechReactor"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannEngineeringBayUpgrades",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel11",
+      "level": 11,
+      "ui_slot": 1,
+      "button": "CommanderSwannEngineeringBayUpgradesPack",
+      "name": "工程站升级包",
+      "name_key": "Button/Name/CommanderSwannEngineeringBayUpgradesPack",
+      "tooltip": "在工程站中解锁以下升级：\n所有建筑会自动灭火，并将自身修理至50%的最大生命值。所有炮台的攻击速度提高25%。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannEngineeringBayUpgradesPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "EngineeringBayResearch",
+          "cmd": "20"
+        },
+        {
+          "abil": "EngineeringBayResearch",
+          "cmd": "22"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannImmortalityProtocol",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel12",
+      "level": 12,
+      "ui_slot": 1,
+      "button": "CommanderSwannImmortalityProtocol",
+      "name": "永生程序",
+      "name_key": "Button/Name/CommanderSwannImmortalityProtocol",
+      "tooltip": "解锁重建能力。使被摧毁的雷神和攻城坦克能在战场上重建。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannImmortalityProtocol",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SwannCommanderImmortalityProtocol"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannStarportUpgrades",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel13",
+      "level": 13,
+      "ui_slot": 1,
+      "button": "CommanderSwannUnlockAdditionalStarportTechLabUpgrades",
+      "name": "星港升级包",
+      "name_key": "Button/Name/CommanderSwannUnlockAdditionalStarportTechLabUpgrades",
+      "tooltip": "在星港的科技实验室中解锁以下升级：\n使怨灵战机的隐形可以闪避所受20%的伤害。解锁科学船的防御矩阵技能，可将目标包围在一个护盾中。护盾持续20秒，并能吸收200点伤害。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannUnlockAdditionalStarportTechLabUpgrades",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "StarportTechLabResearch",
+          "cmd": "12"
+        },
+        {
+          "abil": "StarportTechLabResearch",
+          "cmd": "14"
+        },
+        {
+          "abil": "DefensiveMatrixTarget",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannImprovedSpecialDelivery",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel14",
+      "level": 14,
+      "ui_slot": 1,
+      "button": "CommanderSwannImprovedCombatDrop",
+      "name": "加量不加价",
+      "name_key": "Button/Name/CommanderSwannImprovedCombatDrop",
+      "tooltip": "提高战斗空投所投放的武装机器人数量，由4台提升至6台。通过顶部面板来召唤战斗空投。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannImprovedCombatDrop",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SwannImprovedSpecialDelivery"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannVehicleHealth",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "level_id": "SwannLevel15",
+      "level": 15,
+      "ui_slot": 1,
+      "button": "CommanderSwannIncreasedVehicleHealth",
+      "name": "机械专业",
+      "name_key": "Button/Name/CommanderSwannIncreasedVehicleHealth",
+      "tooltip": "斯旺的SCV、战车以及星舰的生命值提高20%。",
+      "tooltip_key": "Button/Tooltip/CommanderSwannIncreasedVehicleHealth",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SwannCommanderVehicleHealth"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    }
+  ],
+  "masteries": [
+    {
+      "id": "SwannMastery1",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "category": 1,
+      "name": "汇聚射线的伤害和宽度",
+      "name_key": "UserData/MasteryUpgrades/SwannMastery1_Name",
+      "upgrade": "MasterySwannConcentratedBeam",
+      "talent_data": "MasterySwannConcentratedBeam",
+      "point_increments": [
+        "2",
+        "8"
+      ],
+      "value_format": "+~B~点伤害 +~A~%宽度",
+      "value_format_key": "UserData/MasteryUpgrades/SwannMastery1_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannMastery2",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "category": 1,
+      "name": "战斗空投的持续时间和生命值",
+      "name_key": "UserData/MasteryUpgrades/SwannMastery2_Name",
+      "upgrade": "MasterySwannCombatDrop",
+      "talent_data": "MasterySwannCombatDrop",
+      "point_increments": [
+        "2",
+        "2"
+      ],
+      "value_format": "+~A~%持续时间 +~B~%生命值",
+      "value_format_key": "UserData/MasteryUpgrades/SwannMastery2_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannMastery3",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "category": 2,
+      "name": "永生程序的消耗与用时",
+      "name_key": "UserData/MasteryUpgrades/SwannMastery3_Name",
+      "upgrade": "MasterySwannImmortalityProtocol",
+      "talent_data": "MasterySwannImmortalityProtocol",
+      "point_increments": [
+        "2"
+      ],
+      "value_format": "-~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/SwannMastery3_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannMastery4",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "category": 2,
+      "name": "建筑生命值",
+      "name_key": "UserData/MasteryUpgrades/SwannMastery4_Name",
+      "upgrade": "MasterySwannBuildingHealth",
+      "talent_data": "MasterySwannBuildingHealth",
+      "point_increments": [
+        "2"
+      ],
+      "value_format": "+~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/SwannMastery4_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannMastery5",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "category": 3,
+      "name": "减少瓦斯采集器消耗",
+      "name_key": "UserData/MasteryUpgrades/SwannMastery5_Name",
+      "upgrade": "MasterySwannVespeneHarvesterCost",
+      "talent_data": "MasterySwannVespeneDroneCost",
+      "point_increments": [
+        "3"
+      ],
+      "value_format": "-~A~%消耗",
+      "value_format_key": "UserData/MasteryUpgrades/SwannMastery5_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "SwannMastery6",
+      "commander_id": "TerranSwann",
+      "commander": "Swann",
+      "category": 3,
+      "name": "激光钻机建造时间、升级时间以及升级费用",
+      "name_key": "UserData/MasteryUpgrades/SwannMastery6_Name",
+      "upgrade": "MasterySwannLaserDrillBuildTime",
+      "talent_data": "MasterySwannLaserDrillBuildTime",
+      "point_increments": [
+        "1.5",
+        "1"
+      ],
+      "value_format": "-~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/SwannMastery6_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    }
+  ]
+}

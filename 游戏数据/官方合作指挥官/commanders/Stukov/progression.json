@@ -1,0 +1,507 @@
+{
+  "perks": [
+    {
+      "id": "CommanderStukovAutoCreep",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel01",
+      "level": 1,
+      "ui_slot": 1,
+      "button": "CommanderStukovAutoCreep",
+      "name": "感染",
+      "name_key": "Button/Name/CommanderStukovAutoCreep",
+      "tooltip": "斯托科夫开局即拥有一个被感染的移民营，每60秒无消耗自动生成被感染的步兵单位。斯托科夫的基础建筑能以更快的速度生成菌毯，并且拥有无限范围。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovAutoCreep",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH1"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovImprovedInfestStructure",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel02",
+      "level": 2,
+      "ui_slot": 1,
+      "button": "CommanderStukovImprovedInfestStructure",
+      "name": "恶意繁殖",
+      "name_key": "Button/Name/CommanderStukovImprovedInfestStructure",
+      "tooltip": "感染建筑现在可以储存额外2次使用次数，并且可以选择敌方建筑，使其在孵化巢虫的同时还会丧失功能。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovImprovedInfestStructure",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH2"
+      ],
+      "ability_commands": [
+        {
+          "abil": "SIStukovInfestStructureUpgraded",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovExtraInfestedCivilians",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel03",
+      "level": 3,
+      "ui_slot": 1,
+      "button": "CommanderStukovExtraInfestedCivilians",
+      "name": "传染病",
+      "name_key": "Button/Name/CommanderStukovExtraInfestedCivilians",
+      "tooltip": "解锁被感染的移民营额外一级感染。还会解锁一项被感染的指挥中心升级，使感染建筑孵化的巢虫数量提高50%。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovExtraInfestedCivilians",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH3"
+      ],
+      "ability_commands": [
+        {
+          "abil": "SIInfestedCivilianStructureResearch",
+          "cmd": "2"
+        },
+        {
+          "abil": "SICommandCenterResearch",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovApocalisk",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel04",
+      "level": 4,
+      "ui_slot": 1,
+      "button": "CommanderStukovApocalisk",
+      "name": "末日巨兽",
+      "name_key": "Button/Name/CommanderStukovApocalisk",
+      "tooltip": "解锁在目标位置孵化末日巨兽的能力。末日巨兽可以被控制，能持续作战60秒。通过顶部面板来孵化末日巨兽。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovApocalisk",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH4"
+      ],
+      "ability_commands": [
+        {
+          "abil": "StukovSummonApocalisk",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovBunkerResearch",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel05",
+      "level": 5,
+      "ui_slot": 1,
+      "button": "CommanderStukovBunkerResearch",
+      "name": "被感染的工程站升级包",
+      "name_key": "Button/Name/CommanderStukovBunkerResearch",
+      "tooltip": "在被感染的工程站中解锁以下升级：\n提高被感染的地堡的护甲。提高被感染的地堡在扎根状态下的生命恢复速度。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovBunkerResearch",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH6"
+      ],
+      "ability_commands": [
+        {
+          "abil": "SIEngineeringBayResearch",
+          "cmd": "12"
+        },
+        {
+          "abil": "SIEngineeringBayResearch",
+          "cmd": "11"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovImprovedMarineSpawning",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel06",
+      "level": 6,
+      "ui_slot": 1,
+      "button": "CommanderStukovImprovedMarineSpawning",
+      "name": "腐化征用",
+      "name_key": "Button/Name/CommanderStukovImprovedMarineSpawning",
+      "tooltip": "孵化被感染的陆战队员现在可以储存额外10次使用次数，并且被感染的陆战队员的孵化速度加快100%。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovImprovedMarineSpawning",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SIImprovedMarineSpawning"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovInfestedCivilianResearch",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel07",
+      "level": 7,
+      "ui_slot": 1,
+      "button": "CommanderStukovInfestedCivilianResearch",
+      "name": "被感染的步兵升级包",
+      "name_key": "Button/Name/CommanderStukovInfestedCivilianResearch",
+      "tooltip": "在被感染的移民营中解锁被感染的平民死亡时可孵化巢虫的升级。在被感染的兵营科技实验室中解锁升级，允许被感染的陆战队员和被感染的士兵对其攻击的单位造成额外的持续性伤害。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovInfestedCivilianResearch",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH8"
+      ],
+      "ability_commands": [
+        {
+          "abil": "SIInfestedCivilianStructureResearch",
+          "cmd": "9"
+        },
+        {
+          "abil": "SIBarracksResearch",
+          "cmd": "8"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovUnlockQueenClassic",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel08",
+      "level": 8,
+      "ui_slot": 1,
+      "button": "CommanderStukovQueenClassic",
+      "name": "新单位：虫巢女王",
+      "name_key": "Button/Name/CommanderStukovQueenClassic",
+      "tooltip": "空中支援单位。可以使用视觉共生体和孵化巢虫。\n可以对空。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovQueenClassic",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH9"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovInfestedFactoryResearchPack",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel09",
+      "level": 9,
+      "ui_slot": 1,
+      "button": "CommanderStukovInfestedFactoryResearchPack",
+      "name": "被感染的重工厂升级包",
+      "name_key": "Button/Name/CommanderStukovInfestedFactoryResearchPack",
+      "tooltip": "在被感染的重工厂科技实验室中解锁以下升级：\n提高被感染的攻城坦克对重甲目标造成的伤害。使被感染的响尾蛇战车在移动时会留下黏液尾迹，减速敌方地面单位并对其造成伤害。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovInfestedFactoryResearchPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH10"
+      ],
+      "ability_commands": [
+        {
+          "abil": "SIFactoryResearch",
+          "cmd": "3"
+        },
+        {
+          "abil": "SIFactoryResearch",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovAleksander",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel10",
+      "level": 10,
+      "ui_slot": 1,
+      "button": "CommanderStukovAleksander",
+      "name": "亚历山大号",
+      "name_key": "Button/Name/CommanderStukovAleksander",
+      "tooltip": "解锁在目标位置呼叫亚历山大号的能力。亚历山大号可以被控制，能持续作战60秒。通过顶部面板来呼叫亚历山大号。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovAleksander",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH5"
+      ],
+      "ability_commands": [
+        {
+          "abil": "StukovSummonAleksander",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovInfestedStarportResearchPack",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel11",
+      "level": 11,
+      "ui_slot": 1,
+      "button": "CommanderStukovInfestedStarportResearchPack",
+      "name": "被感染的星港升级包",
+      "name_key": "Button/Name/CommanderStukovInfestedStarportResearchPack",
+      "tooltip": "在被感染的星港科技实验室中解锁以下升级：\n提高被感染的女妖的生命值。降低被感染的解放者在攻击时所受到的伤害。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovInfestedStarportResearchPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH12"
+      ],
+      "ability_commands": [
+        {
+          "abil": "SIStarportResearch",
+          "cmd": "3"
+        },
+        {
+          "abil": "SIStarportResearch",
+          "cmd": "1"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovApocaliskUpgrades",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel12",
+      "level": 12,
+      "ui_slot": 1,
+      "button": "CommanderStukovApocaliskUpgraded",
+      "name": "易燃外肢",
+      "name_key": "Button/Name/CommanderStukovApocaliskUpgraded",
+      "tooltip": "使末日巨兽的攻击及其初次孵化时所造成的范围伤害提高100%。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovApocaliskUpgraded",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "StukovApocaliskUpgrades"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovQueenClassicResearchPack",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel13",
+      "level": 13,
+      "ui_slot": 1,
+      "button": "CommanderStukovQueenClassicUpgradeCache",
+      "name": "虫巢女王升级包",
+      "name_key": "Button/Name/CommanderStukovQueenClassicUpgradeCache",
+      "tooltip": "在被感染的星港科技实验室中解锁以下升级：\n虫巢女王的能量恢复速度提高100%，并且孵化时获得满能量。使虫巢女王可以困住和暴露敌方单位，对其持续造成伤害。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovQueenClassicUpgradeCache",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "CommanderStukovPH13"
+      ],
+      "ability_commands": [
+        {
+          "abil": "SIStarportResearch",
+          "cmd": "4"
+        },
+        {
+          "abil": "SIStarportResearch",
+          "cmd": "5"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovBunkerBonuses",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel14",
+      "level": 14,
+      "ui_slot": 1,
+      "button": "CommanderStukovBunkerBonuses",
+      "name": "增生地堡",
+      "name_key": "Button/Name/CommanderStukovBunkerBonuses",
+      "tooltip": "使被感染的地堡可容纳的单位数增加2，被感染的士兵孵化速度提高20%。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovBunkerBonuses",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SIInfestedBunkerUpgraded"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "CommanderStukovAleksanderMindControl",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "level_id": "StukovLevel15",
+      "level": 15,
+      "ui_slot": 1,
+      "button": "CommanderStukovAleksanderMindControl",
+      "name": "神经感染",
+      "name_key": "Button/Name/CommanderStukovAleksanderMindControl",
+      "tooltip": "斯托科夫可以控制被亚历山大号触手攻击的敌方单位。",
+      "tooltip_key": "Button/Tooltip/CommanderStukovAleksanderMindControl",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "StukovAleksanderMindControl"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    }
+  ],
+  "masteries": [
+    {
+      "id": "StukovMastery1",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "category": 1,
+      "name": "平民孵化易爆感染体的几率",
+      "name_key": "UserData/MasteryUpgrades/StukovMastery1_Name",
+      "upgrade": "MasteryStukovVolatileChance",
+      "talent_data": "MasteryStukovVolatileChance",
+      "point_increments": [
+        "0.5"
+      ],
+      "value_format": "~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/StukovMastery1_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "StukovMastery2",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "category": 1,
+      "name": "感染建筑冷却时间缩短",
+      "name_key": "UserData/MasteryUpgrades/StukovMastery2_Name",
+      "upgrade": "MasteryStukovInfestStructureCDR",
+      "talent_data": "MasteryStukovInfestStructureCDR",
+      "point_increments": [
+        "1.5"
+      ],
+      "value_format": "-~A~秒",
+      "value_format_key": "UserData/MasteryUpgrades/StukovMastery2_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "StukovMastery3",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "category": 2,
+      "name": "亚历山大号冷却时间缩短",
+      "name_key": "UserData/MasteryUpgrades/StukovMastery3_Name",
+      "upgrade": "MasteryStukovAleksanderCDR",
+      "talent_data": "MasteryStukovAleksanderCDR",
+      "point_increments": [
+        "3"
+      ],
+      "value_format": "-~A~秒",
+      "value_format_key": "UserData/MasteryUpgrades/StukovMastery3_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "StukovMastery4",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "category": 2,
+      "name": "末日巨兽冷却时间缩短",
+      "name_key": "UserData/MasteryUpgrades/StukovMastery4_Name",
+      "upgrade": "MasteryStukovApocaliskCDR",
+      "talent_data": "MasteryStukovApocaliskCDR",
+      "point_increments": [
+        "3"
+      ],
+      "value_format": "-~A~秒",
+      "value_format_key": "UserData/MasteryUpgrades/StukovMastery4_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "StukovMastery5",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "category": 3,
+      "name": "Extend infested civ/marine timed life",
+      "name_key": "UserData/MasteryUpgrades/StukovMastery5_Name",
+      "upgrade": "MasteryStukovTimedLife",
+      "talent_data": "MasteryStukovTimedLife",
+      "point_increments": [
+        "1"
+      ],
+      "value_format": "+~A~秒",
+      "value_format_key": "UserData/MasteryUpgrades/StukovMastery5_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "StukovMastery6",
+      "commander_id": "ZergStukov",
+      "commander": "Stukov",
+      "category": 3,
+      "name": "重工厂和星港单位的攻击速度加快",
+      "name_key": "UserData/MasteryUpgrades/StukovMastery6_Name",
+      "upgrade": "MasteryStukovMechAttackSpeed",
+      "talent_data": "MasteryStukovMechAttackSpeed",
+      "point_increments": [
+        "1"
+      ],
+      "value_format": "+~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/StukovMastery6_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    }
+  ]
+}
