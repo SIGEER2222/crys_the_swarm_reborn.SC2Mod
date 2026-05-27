@@ -63,6 +63,10 @@ function Get-Sc2Process {
     return $proc
 }
 
+function Try-GetSc2Process {
+    return Get-Process SC2_x64 -ErrorAction SilentlyContinue | Select-Object -First 1
+}
+
 function Start-LauncherGame {
     if ($RestartExisting) {
         Get-Process | Where-Object { $_.ProcessName -match 'SC2|StarCraft' } | Stop-Process -Force -ErrorAction SilentlyContinue
@@ -137,11 +141,30 @@ function Save-Screenshot {
     )
 
     if ($Sc2Window) {
-        $shotRect = Focus-Sc2Window -Process (Get-Sc2Process)
-        $width = $shotRect.Right - $shotRect.Left
-        $height = $shotRect.Bottom - $shotRect.Top
-        $sourcePoint = New-Object System.Drawing.Point $shotRect.Left, $shotRect.Top
-        $size = New-Object System.Drawing.Size $width, $height
+        $usePrimaryScreen = $false
+        try {
+            $shotRect = Focus-Sc2Window -Process (Get-Sc2Process)
+            $width = $shotRect.Right - $shotRect.Left
+            $height = $shotRect.Bottom - $shotRect.Top
+            if ($width -le 0 -or $height -le 0) {
+                $usePrimaryScreen = $true
+            }
+            else {
+                $sourcePoint = New-Object System.Drawing.Point $shotRect.Left, $shotRect.Top
+                $size = New-Object System.Drawing.Size $width, $height
+            }
+        }
+        catch {
+            $usePrimaryScreen = $true
+        }
+
+        if ($usePrimaryScreen) {
+            $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+            $width = $bounds.Width
+            $height = $bounds.Height
+            $sourcePoint = $bounds.Location
+            $size = $bounds.Size
+        }
     }
     else {
         $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
@@ -228,13 +251,22 @@ function Get-CommanderButtonPoint {
         [int]$Index
     )
 
-    $commanderXs = @(168, 266, 364, 462, 560, 658, 756, 854, 952)
-    # 指挥官按钮的有效点击区更靠上，避开下方文字与边缘。
-    $commanderYs = @(278, 377)
+    # 当前 launcher 为 15 + 4 的两排 portrait，而不是旧版 9 + 9。
+    $commanderXs = @(133, 235, 337, 439, 541, 643, 745, 847, 949, 1051, 1153, 1255, 1357, 1459, 1561)
+    $commanderYs = @(126, 220)
 
-    $col = $Index % 9
-    $row = [math]::Floor($Index / 9)
-    if ($row -ge $commanderYs.Count) {
+    if ($Index -lt 15) {
+        $col = $Index
+        $row = 0
+    }
+    else {
+        $col = $Index - 15
+        $row = 1
+    }
+    if ($col -lt 0 -or $col -ge $commanderXs.Count) {
+        throw "Commander column out of range: $col"
+    }
+    if ($row -lt 0 -or $row -ge $commanderYs.Count) {
         throw "Commander row out of range: $row"
     }
 
@@ -633,12 +665,19 @@ if (-not [string]::IsNullOrWhiteSpace($ProbeCommandCardSlots)) {
 
 # 7) 连续按 Esc：这里是退出当前局面或回到安全状态。
 for ($i = 0; $i -lt $EscapeCount; $i++) {
-    $proc = Get-Sc2Process
+    $proc = Try-GetSc2Process
+    if (-not $proc) {
+        break
+    }
     Focus-Sc2Window -Process $proc | Out-Null
     Send-Escape -DelayMs 900
 }
 
-$after = Save-Screenshot -Name $afterName -Sc2Window
+$after = ""
+$proc = Try-GetSc2Process
+if ($proc) {
+    $after = Save-Screenshot -Name $afterName -Sc2Window
+}
 
 Write-Output "PID=$($proc.Id)"
 Write-Output "WINDOW_RECT=$($rect.Left),$($rect.Top),$($rect.Right - $rect.Left),$($rect.Bottom - $rect.Top)"
