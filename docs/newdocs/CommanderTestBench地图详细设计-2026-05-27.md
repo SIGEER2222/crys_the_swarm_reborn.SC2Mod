@@ -17,22 +17,31 @@ docs/newdocs/测试台资源/CommanderTestBench布局蓝图-2026-05-27.svg
 实际可加载地图包骨架：
 
 ```text
-runtime/testbench/CommanderTestBench.SC2Map/
+references/testbench/CommanderTestBench.SC2Map/
+原始mod/Maps/XM/CommanderTestBench.SC2Map/
 ```
 
-注意：SVG 只是说明图，SC2 不能加载 SVG。SC2 实际加载的是 `.SC2Map` 地图包目录。当前地图包已经用真实 `.SC2Map` 模板生成，并替换了 `MapScript.galaxy` 为测试台 stub；仍需用 SC2 Editor 打开确认编译和运行。
+注意：SVG 只是说明图，SC2 不能加载 SVG。SC2 实际加载的是 `.SC2Map` 地图包目录。当前地图包已经用真实 `.SC2Map` 模板生成，并且 `MapScript.galaxy` 已改成调用 `XMFinal` 的 `XMTestBench_*` runtime API；仍需用 SC2 Editor 打开确认编译和运行。
 
-当前 `runtime/*` 被 `.gitignore` 忽略，所以这个地图包是本机生成资产，不会默认进入 Git。要跨机器保留时，需要把 `runtime/testbench/` 加入白名单，或移动到一个明确追踪的测试资产目录。
+当前优先打开 `原始mod/Maps/XM/CommanderTestBench.SC2Map/`。这份地图沿用现有战役地图的目录结构，`DocumentInfo` 中的 `file:Mods\XM\XMFinal.SC2Mod` 可以解析到 `原始mod/Mods/XM/XMFinal.SC2Mod`。`references/testbench/CommanderTestBench.SC2Map/` 保留为资料副本；直接从 `references/testbench` 打开时，依赖路径可能找不到 `XMFinal.SC2Mod`。
 
 ## 放置建议
 
 推荐先作为独立测试资产，不放在失败半成品目录里：
 
 ```text
-runtime/testbench/CommanderTestBench.SC2Map/
+references/testbench/CommanderTestBench.SC2Map/
 ```
 
 后续如果需要打包到游戏内，可以再复制或发布到正式 `Maps/XM/`。测试设计和实现不要以 `合作指挥官版起义狂潮/` 为权威来源。
+
+当前已经同步一份直接加载副本：
+
+```text
+原始mod/Maps/XM/CommanderTestBench.SC2Map/
+```
+
+后续如果 SC2 Editor 重新生成触发器或脚本，优先以这份可加载副本为准，再把必要脚本同步回 `references/testbench`。
 
 依赖：
 
@@ -214,6 +223,16 @@ XMTestBench_Clear(1)
 XMTestBench_RunScenario(1, scenarioKind)
 XMTestBench_WriteSummary(1)
 ```
+
+当前 Raynor 试点状态：
+
+| 场景 | 当前行为 |
+|---|---|
+| `full_units` / `level15_units` / `fusion_final_units` | 通过 `XMFinal` 的 Raynor profile 生成 Marine、Medic、Firebat、Marauder、Vulture、SiegeTank、Viking、Banshee、Battlecruiser、SCV |
+| `full_buildings` | 通过 Raynor profile 生成 CommandCenter、OrbitalCommand、SupplyDepot、Barracks、Bunker、MissileTurret，并补充 EngineeringBay、Factory、Armory、Starport、TechLab/Reactor 等测试用科技支撑建筑 |
+| `panel_cost_smoke` | 命中 Raynor 面板 profile，默认解析到 `VoidCoopSummonHyperion`，记录资源快照和 catalog 冷却字段；因官方 `CoopCasterRaynor` 尚未导入 `XMFinal` 依赖链，暂不实放技能 |
+
+地图初始化会给玩家 1 充足矿物和瓦斯，但不会开启矿物/瓦斯费用忽略。这样 `panel_cost_smoke` 后续接入真实施放时，资源变化仍然可信。全单位展示所需的补给压力由 `c_playerStateFoodIgnored` 处理。
 
 ### 右侧摘要面板
 
@@ -431,11 +450,9 @@ standard_base
 panel_cost_smoke
 full_buildings
 full_units
-hero_modes
-unit_ability_smoke
-tech_smoke
-special_smoke
 ```
+
+当前实现先限定为当前 commander 的 5 个基础场景，不循环 18 个 commander。每个场景前调用 `Clear`，每个场景后输出 `TEST_RUN_ALL_STEP`，最后按累计 warnings/errors 输出 `TEST_RUN_ALL_DONE result=ok|warning|error`，避免 UI 最终只显示最后一个场景却误报整体通过。
 
 `panel_cost_smoke` 进入第一版全量冒烟。`panel_effect_smoke` 先保留手动按钮或安全白名单，等目标、清理和日志稳定后再加入全量。运输机和个性机制先保留手动按钮，等基础闭环稳定后再加入全量。
 
@@ -809,7 +826,7 @@ XMDebug.SC2Bank
 用编辑器新建空白地图，保存为：
 
 ```text
-runtime/testbench/CommanderTestBench.SC2Map
+references/testbench/CommanderTestBench.SC2Map
 ```
 
 设置依赖：
