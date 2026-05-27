@@ -1,0 +1,47 @@
+// XMFinal split module: commander panel ability test profiles.
+
+bool libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke (int lp_player, string lp_panelAbilityId, point lp_targetPoint) {
+    string lv_ability;
+    string lv_cooldown;
+    int lv_mineralsBefore;
+    int lv_vespeneBefore;
+
+    lv_ability = lp_panelAbilityId;
+    if ((lv_ability == "") || (lv_ability == "default") || (lv_ability == "hyperion")) {
+        lv_ability = "VoidCoopSummonHyperion";
+    }
+    else if ((lv_ability == "banshee") || (lv_ability == "banshee_airstrike")) {
+        lv_ability = "BansheeAirstrike";
+    }
+
+    lv_mineralsBefore = PlayerGetPropertyInt(lp_player, c_playerPropMinerals);
+    lv_vespeneBefore = PlayerGetPropertyInt(lp_player, c_playerPropVespene);
+    lv_cooldown = CatalogFieldValueGet(c_gameCatalogAbil, lv_ability, "Cost[0].Cooldown.TimeUse", lp_player);
+    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_RAYNOR_PROFILE_HIT");
+    libE0EAE146_gf_XMDbgLog("WARN", "PANEL_RAYNOR_PROFILE_HIT", "ability=" + lv_ability + " trigger=command target=point mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " catalogCooldown=" + lv_cooldown + " caster=CoopCasterRaynor result=profile_metadata_only reason=official_caster_not_imported_to_XMFinal");
+    return false;
+}
+
+bool libE0EAE146_gf_XM_InvokeCommanderPanelAbility (int lp_player, string lp_commander, string lp_panelAbilityId, point lp_targetPoint) {
+    string lv_commander;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        libE0EAE146_gf_XMDbgLog("ERROR", "PANEL_TEST_PLAYER_INVALID", "player=" + IntToString(lp_player));
+        return false;
+    }
+
+    lv_commander = libE0EAE146_gf_NormalizeCommanderId(lp_commander);
+    if (lv_commander == "Raynor") {
+        return libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke(lp_player, lp_panelAbilityId, lp_targetPoint);
+    }
+
+    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_TEST_INVOKE");
+    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_TEST_INVOKE", "commander=" + lp_commander + " normalized=" + libE0EAE146_gf_NormalizeCommanderId(lp_commander) + " ability=" + lp_panelAbilityId + " trigger=command target=point result=stub");
+    return false;
+}
+
+bool XM_InvokeCommanderPanelAbility (int lp_player, string lp_commander, string lp_panelAbilityId, point lp_targetPoint) {
+    return libE0EAE146_gf_XM_InvokeCommanderPanelAbility(lp_player, lp_commander, lp_panelAbilityId, lp_targetPoint);
+}

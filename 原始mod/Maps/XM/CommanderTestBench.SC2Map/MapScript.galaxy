@@ -45,8 +45,8 @@ void InitLibs () {
 //--------------------------------------------------------------------------------------------------
 // Constants
 //--------------------------------------------------------------------------------------------------
-const int gv_xmTbCommanderNum = 18;
-const int gv_xmTbScenarioNum = 18;
+const int gv_xmTbCommanderNum = 19;
+const int gv_xmTbScenarioNum = 22;
 
 //--------------------------------------------------------------------------------------------------
 // Global Variables
@@ -135,6 +135,7 @@ string gf_XMTB_GetCommanderByIndex (int lp_index) {
     if (lp_index == 16) { return "Zeratul"; }
     if (lp_index == 17) { return "Stetmann"; }
     if (lp_index == 18) { return "Mengsk"; }
+    if (lp_index == 19) { return "AbathurCustom"; }
     return "Raynor";
 }
 
@@ -161,6 +162,10 @@ string gf_XMTB_GetScenarioByIndex (int lp_index) {
     if (lp_index == 16) { return "cargo_air"; }
     if (lp_index == 17) { return "special_smoke"; }
     if (lp_index == 18) { return "personal_smoke"; }
+    if (lp_index == 19) { return "extra_abathur_init"; }
+    if (lp_index == 20) { return "extra_abathur_zergling_to_pygalisk"; }
+    if (lp_index == 21) { return "extra_abathur_purchase"; }
+    if (lp_index == 22) { return "extra_abathur_crawler"; }
     return "standard_base";
 }
 
