@@ -166,6 +166,9 @@ CURATED_COMMANDER_UNIT_IDS = {
 }
 
 TECH_UNIT_UNIT_OVERRIDES = {
+    "Abathur": {
+        "SwarmHost": "SwarmHost",
+    },
     "Nova": {
         "ReaperNova": "MercReaper",
     },
@@ -182,6 +185,12 @@ TECH_UNIT_UNIT_OVERRIDES = {
         "WarpPrismZeratul": "ZeratulWarpPrism",
         "ZealotZeratul": "ZeratulSummonZealot",
     }
+}
+
+COMMANDER_TECH_ENTRY_EXCLUDES = {
+    "Abathur": {
+        "NydusNetwork",
+    },
 }
 
 TECH_DISPLAY_KEY_OVERRIDES = {
@@ -928,7 +937,7 @@ class CatalogResolver:
         if not resolved:
             for unit_id in self._lookup_many(self.unit_name_refs, source, tech_id):
                 resolved.update(self._resolve_unit_or_spawn(source, unit_id))
-        return self._order_resolved_unit_ids(source, list(resolved))
+        return self._order_resolved_unit_ids(source, list(resolved), tech_id, fallback_unit_id)
 
     def _resolve_command_units_for_face(self, source: str, abil_cmd: str) -> set[str]:
         resolved_units: set[str] = set()
@@ -990,14 +999,15 @@ class CatalogResolver:
                     result.append(face)
         return result
 
-    def _order_resolved_unit_ids(self, source: str, unit_ids: list[str]) -> list[str]:
+    def _order_resolved_unit_ids(self, source: str, unit_ids: list[str], tech_id: str = "", fallback_unit_id: str = "") -> list[str]:
         def score(unit_id: str) -> tuple[int, int, str]:
             chain = self.unit_chain(source, unit_id)
             object_type = str(parse_unit(chain, unit_id, chain[0][0] if chain else "").get("object_type") or "Unknown")
+            exact_penalty = 0 if unit_id in {tech_id, fallback_unit_id} else 1
             non_primary_penalty = 1 if NON_PRIMARY_UNIT_PATTERN.search(unit_id) else 0
             secondary_penalty = 1 if SECONDARY_MODE_UNIT_PATTERN.search(unit_id) else 0
             unknown_penalty = 1 if object_type == "Unknown" else 0
-            return (unknown_penalty, non_primary_penalty + secondary_penalty, unit_id)
+            return (exact_penalty, unknown_penalty, non_primary_penalty + secondary_penalty, unit_id)
 
         return sorted(set(unit_ids), key=score)
 
@@ -1612,6 +1622,7 @@ def build_commander_payload(
 
     for commander_id, short_id in COMMANDERS:
         source_name = SOURCE_BY_COMMANDER.get(short_id, "starcoop")
+        excluded_entry_ids = COMMANDER_TECH_ENTRY_EXCLUDES.get(short_id, set())
         commander_info: dict[str, object] = {}
         perks: list[dict[str, object]] = []
         masteries: list[dict[str, object]] = []
@@ -1717,6 +1728,8 @@ def build_commander_payload(
         command_cards: list[dict[str, object]] = []
         seen_roster_keys: set[tuple[str, str]] = set()
         for entry in tech_entries:
+            if str(entry["id"]) in excluded_entry_ids:
+                continue
             roster_key = (str(entry["id"]), str(entry["unit_id"]))
             if roster_key in seen_roster_keys:
                 continue

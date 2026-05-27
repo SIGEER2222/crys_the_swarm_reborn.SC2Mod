@@ -1212,12 +1212,12 @@
   },
   {
     "id": "ObserverZeratul",
-    "unit_id": "Observer",
-    "name": "侦测器",
+    "unit_id": "ZeratulObserver",
+    "name": "萨尔纳加观察者",
     "object_type": "Unit",
-    "icon_button": "Observer",
-    "icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
+    "icon_button": "ZeratulObserver",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver.dds",
     "cards": [
       {
         "card_id": "",
@@ -1334,9 +1334,53 @@
             }
           },
           {
-            "face": "MorphtoObserverSiege",
-            "type": "AbilCmd",
-            "abil_cmd": "ObserverMorphtoObserverSiege,Execute",
+            "face": "ZeratulGraviticBoostersPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier2AndRoboticsBay",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulGraviticBoostersPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "重力加速器",
+              "name_key": "Button/Name/ZeratulGraviticBoostersPassive",
+              "tooltip": "萨尔纳加观察者的移动速度提高{$UpgradeEffectArrayValue:ZeratulArtifactTier2_RoboticsBay:Unit,ZeratulObserver,Speed$/Unit,ZeratulObserver,Speed*100}%",
+              "tooltip_key": "Button/Tooltip/ZeratulHaveGraviticBooster",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds"
+            }
+          },
+          {
+            "face": "ZeratulObserverSightRange",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier3AndRoboticsBay",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulObserverSightRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "感应器阵列",
+              "name_key": "Button/Name/ZeratulObserverSightRange",
+              "tooltip": "萨尔纳加观察者的视野范围扩大{$UpgradeEffectArrayValue:ZeratulArtifactTier3_RoboticsBay:Unit,ZeratulObserver,Sight$/Unit,ZeratulObserver,Sight*100}%。",
+              "tooltip_key": "Button/Tooltip/ZeratulObserverSightRange",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-observer-sensorarray.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-observer-sensorarray.dds"
+            }
+          },
+          {
+            "face": "PermanentlyCloakedZeratulObserver",
+            "type": "Passive",
+            "abil_cmd": "",
             "requirements": "",
             "row": 2,
             "column": 0,
@@ -1344,21 +1388,21 @@
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "MorphtoObserverSiege",
+              "id": "PermanentlyCloakedZeratulObserver",
               "source_catalog": "starcoop",
               "parent": "",
-              "name": "监察模式",
-              "name_key": "Button/Name/MorphtoObserverSiege",
-              "tooltip": "把侦测器变形为监察模式。视野提高{(Unit,ObserverSiegeMode,Sight/Unit,Observer,Sight-1)*100}%，但无法移动且不再隐形。",
-              "tooltip_key": "Button/Tooltip/MorphtoObserverSiege",
-              "icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds",
-              "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds"
+              "name": "永久隐形",
+              "name_key": "Button/Name/PermanentlyCloakedZeratulObserver",
+              "tooltip": "该萨尔纳加观察者处于永久隐形状态。",
+              "tooltip_key": "Button/Tooltip/PermanentlyCloakedZeratulObserver",
+              "icon": "Assets\\Textures\\BTN-ability-Protoss-permanentlycloaked-Observer-color.dds",
+              "alert_icon": "Assets\\Textures\\BTN-ability-Protoss-permanentlycloaked-Observer-color.dds"
             }
           },
           {
-            "face": "MorphtoObserverSiege",
+            "face": "MorphtoZeratulObserverSiege",
             "type": "AbilCmd",
-            "abil_cmd": "ObserverMorphtoObserverSiege,Execute",
+            "abil_cmd": "ZeratulObserverMorphtoZeratulObserverSiege,Execute",
             "requirements": "",
             "row": 2,
             "column": 2,
@@ -1366,37 +1410,15 @@
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "MorphtoObserverSiege",
+              "id": "MorphtoZeratulObserverSiege",
               "source_catalog": "starcoop",
               "parent": "",
               "name": "监察模式",
-              "name_key": "Button/Name/MorphtoObserverSiege",
-              "tooltip": "把侦测器变形为监察模式。视野提高{(Unit,ObserverSiegeMode,Sight/Unit,Observer,Sight-1)*100}%，但无法移动且不再隐形。",
-              "tooltip_key": "Button/Tooltip/MorphtoObserverSiege",
-              "icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds",
-              "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds"
-            }
-          },
-          {
-            "face": "Detector",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": 2,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Detector",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "侦测单位",
-              "name_key": "Button/Name/Detector",
-              "tooltip": "该单位能够侦测到隐形、潜地和幻像单位。",
-              "tooltip_key": "Button/Tooltip/Detector",
-              "icon": "Assets\\Textures\\BTN-Status-Detector.dds",
-              "alert_icon": "Assets\\Textures\\BTN-Status-Detector.dds"
+              "name_key": "Button/Name/MorphtoZeratulObserverSiege",
+              "tooltip": "使萨尔纳加观察者变形，进入监察模式。观察者的视野扩大{Unit,ZeratulObserverSiegeMode,Sight/Unit,ZeratulObserver,Sight-1*100}%，但失去移动能力。",
+              "tooltip_key": "Button/Tooltip/MorphtoZeratulObserverSiege",
+              "icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver-surveillance.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver-surveillance.dds"
             }
           },
           {
@@ -1420,40 +1442,6 @@
               "icon": "Assets\\Textures\\BTN-Status-Detector.dds",
               "alert_icon": "Assets\\Textures\\BTN-Status-Detector.dds"
             }
-          },
-          {
-            "face": "HaveGraviticBoosters",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "HaveGraviticBoosters",
-            "row": "",
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HaveGraviticBoosters",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "重力加速器",
-              "name_key": "Button/Name/HaveGraviticBoosters",
-              "tooltip": "提高侦测器的移动速度50%。",
-              "tooltip_key": "Button/Tooltip/HaveGraviticBooster",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds"
-            }
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": "",
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
           }
         ]
       }
@@ -1610,21 +1598,65 @@
   },
   {
     "id": "RoboticsWarp",
-    "unit_id": "RoboticsFacilityWarp",
+    "unit_id": "ZeratulRoboticsFacility",
     "name": "折跃机械台",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "ZeratulRoboticsFacility",
+    "icon": "Assets\\Textures\\btn-building-protoss-zeratulroboticsfacility.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-zeratulroboticsfacility.dds",
     "cards": [
       {
         "card_id": "",
         "is_default_card": true,
         "buttons": [
           {
-            "face": "Observer",
+            "face": "ImmortalZeratul",
             "type": "AbilCmd",
-            "abil_cmd": "RoboticsFacilityWarpTrain,Train2",
+            "abil_cmd": "ZeratulRoboticsFacilityTrain,Train6",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ImmortalZeratul",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃萨尔纳加执行者",
+              "name_key": "Button/Name/ImmortalZeratul",
+              "tooltip": "步战机甲。可以使用屏障吸收伤害并击退敌方空中单位。\n可以对空和对地。",
+              "tooltip_key": "Button/Tooltip/ImmortalZeratul",
+              "icon": "Assets\\Textures\\btn-unit-protoss-zeratulimmortal.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulimmortal.dds"
+            }
+          },
+          {
+            "face": "ZeratulWarpinDisruptor",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulRoboticsFacilityTrain,Train7",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulWarpinDisruptor",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃萨尔纳加禁绝者",
+              "name_key": "Button/Name/ZeratulWarpinDisruptor",
+              "tooltip": "机械干扰型单位。可以使用净化新星造成大量范围伤害。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/ZeratulWarpinDisruptor",
+              "icon": "Assets\\Textures\\Btn-unit-protoss-zeratuldisruptor.dds",
+              "alert_icon": "Assets\\Textures\\Btn-unit-protoss-zeratuldisruptor.dds"
+            }
+          },
+          {
+            "face": "WarpInZeratulWarpPrism",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulRoboticsFacilityTrain,Train5",
             "requirements": "",
             "row": 0,
             "column": 2,
@@ -1632,50 +1664,126 @@
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "Observer",
-              "source_catalog": "liberty",
+              "id": "WarpInZeratulWarpPrism",
+              "source_catalog": "starcoop",
               "parent": "",
-              "name": "折跃侦测器",
-              "name_key": "Button/Name/Observer",
-              "tooltip": "间谍型空中单位。拥有永久隐形的能力。\n侦测单位",
-              "tooltip_key": "Button/Tooltip/Observer",
-              "icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
-              "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer.dds"
+              "name": "折跃萨尔纳加虚空阵列船",
+              "name_key": "Button/Name/WarpInZeratulWarpPrism",
+              "tooltip": "飞行虫洞发生器。同一时间建造两个。可以部署后在萨尔纳加虚空阵列船之间生成数据链。",
+              "tooltip_key": "Button/Tooltip/WarpInZeratulWarpPrism",
+              "icon": "Assets\\Textures\\btn-unit-protoss-zeratulwarpprism.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulwarpprism.dds"
             }
           },
           {
-            "face": "SuperiorWarpRoboticsFacilities",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HaveSuperiorWarpGates",
-            "row": 2,
-            "column": 2,
+            "face": "ZeratulObserver",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulRoboticsFacilityTrain,Train2",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "SuperiorWarpRoboticsFacilities",
+              "id": "ZeratulObserver",
               "source_catalog": "starcoop",
               "parent": "",
-              "name": "超级机械折跃台",
-              "name_key": "Button/Name/SuperiorWarpRoboticsFacilities",
-              "tooltip": "机械折跃台最多能拥有3次充能。",
-              "tooltip_key": "Button/Tooltip/SuperiorWarpRoboticsFacilities",
-              "icon": "Assets\\Textures\\talent-artanis-level03-warpgatecharges.dds",
-              "alert_icon": "Assets\\Textures\\talent-artanis-level03-warpgatecharges.dds"
+              "name": "折跃萨尔纳加观察者",
+              "name_key": "Button/Name/ZeratulObserver",
+              "tooltip": "间谍型空中单位。敌人没有侦测手段将无法看到隐形单位。\n侦测单位",
+              "tooltip_key": "Button/Tooltip/ZeratulObserver",
+              "icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver.dds"
             }
           },
           {
-            "face": "MorphBackToRoboticsFacility",
-            "type": "AbilCmd",
-            "abil_cmd": "MorphBackToRoboticsFacility,Execute",
+            "face": "ZeratulChronometry",
+            "type": "Passive",
+            "abil_cmd": "",
             "requirements": "",
-            "row": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulChronometry",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "时空理论",
+              "name_key": "Button/Name/ZeratulChronometry",
+              "tooltip": "被该建筑折跃的单位其建造时间缩短了。",
+              "tooltip_key": "Button/Tooltip/ZeratulChronometry",
+              "icon": "Assets\\Textures\\btn-progression-zeratul-10-chronometry.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-zeratul-10-chronometry.dds"
+            }
+          },
+          {
+            "face": "ZeratulMasteryCombatMastery",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryZeratulCombatUnitAttackSpeed",
+            "row": 1,
             "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "ZeratulMasteryCombatMastery",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "战斗精通",
+              "name_key": "Button/Name/ZeratulMasteryCombatMastery",
+              "tooltip": "精通：通过该建筑部署的单位获得{Effect,MasteryZeratulCombatUnitAttackSpeedDisplayDummy,Amount}%攻击速度。",
+              "tooltip_key": "Button/Tooltip/ZeratulMasteryCombatMastery",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-combatmastery.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-combatmastery.dds"
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "Rally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           }
         ]
       }
