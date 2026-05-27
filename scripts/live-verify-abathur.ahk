@@ -343,11 +343,18 @@ GetCommanderIndex(name) {
 }
 
 GetCommanderButtonPoint(rect, index) {
-    commanderXs := [168, 266, 364, 462, 560, 658, 756, 854, 952]
-    commanderYs := [278, 377]
-    col := Mod(index, 9)
-    row := Floor(index / 9)
+    commanderXs := [133, 235, 337, 439, 541, 643, 745, 847, 949, 1051, 1153, 1255, 1357, 1459, 1561]
+    commanderYs := [126, 220]
+    if (index < 15) {
+        col := index
+        row := 0
+    } else {
+        col := index - 15
+        row := 1
+    }
 
+    if (col < 0 || col >= commanderXs.Length)
+        throw Error("Commander column out of range: " col)
     if (row >= commanderYs.Length)
         throw Error("Commander row out of range: " row)
 
