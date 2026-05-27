@@ -731,6 +731,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
 
     }
     else if (auto09490B45_val == "Kerrigan") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterKerrigan", "Kerrigan");
         TechTreeUpgradeAddLevel(1, "CommanderLevel", 15);
         TechTreeUpgradeAddLevel(1, "KerriganCommander", 1);
         TechTreeUpgradeAddLevel(1, "KerriganInfestedCosmetic", 1);
@@ -918,16 +919,10 @@ void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, p
     string lv_leviathan;
 
     lv_kind = lp_kind;
-    lv_ravager = "Ravager";
-    lv_swarmHost = "SwarmHostMP";
-    lv_queen = "Queen";
-    lv_leviathan = "Leviathan";
-    if ((libE0EAE146_gv_commander == "AbathurReborn")) {
-        lv_ravager = "RavagerAbathurReborn";
-        lv_swarmHost = "SwarmHost";
-        lv_queen = "QueenCoop";
-        lv_leviathan = "HotSLeviathan";
-    }
+    lv_ravager = "RavagerAbathur";
+    lv_swarmHost = "SwarmHost";
+    lv_queen = "QueenCoop";
+    lv_leviathan = "HotSLeviathan";
     if ((lv_kind == "light")) {
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "RoachVile", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
@@ -972,14 +967,9 @@ void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) 
     string lv_queen;
 
     lv_kind = lp_kind;
-    lv_ravager = "Ravager";
-    lv_swarmHost = "SwarmHostMP";
-    lv_queen = "Queen";
-    if ((libE0EAE146_gv_commander == "AbathurReborn")) {
-        lv_ravager = "RavagerAbathurReborn";
-        lv_swarmHost = "SwarmHost";
-        lv_queen = "QueenCoop";
-    }
+    lv_ravager = "RavagerAbathur";
+    lv_swarmHost = "SwarmHost";
+    lv_queen = "QueenCoop";
     if ((lv_kind == "light")) {
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 3);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
@@ -1196,10 +1186,10 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
     lv_kind = lp_kind;
     if ((lv_kind == "light")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "heavy")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
     }
@@ -1210,7 +1200,7 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSRaptor", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "ultimate")) {
@@ -1231,10 +1221,10 @@ void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind)
     lv_kind = lp_kind;
     if ((lv_kind == "light")) {
         UnitCargoCreate(lp_container, "HotSRaptor", 4);
-        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
     }
     else if ((lv_kind == "heavy")) {
-        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
         UnitCargoCreate(lp_container, "QueenCoop", 1);
         UnitCargoCreate(lp_container, "Ultralisk", 1);
     }
@@ -1245,7 +1235,7 @@ void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind)
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "K5Kerrigan", 1);
         UnitCargoCreate(lp_container, "HotSRaptor", 3);
-        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
         UnitCargoCreate(lp_container, "QueenCoop", 1);
     }
     else {
