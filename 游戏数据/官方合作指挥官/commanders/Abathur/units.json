@@ -82,13 +82,15 @@
       "abil_cmd": "MutaliskMorphToGuardian,Train1",
       "ability_id": "MutaliskMorphToGuardian",
       "command_index": "Train1",
-      "minerals": "",
-      "vespene": "",
+      "minerals": "50",
+      "vespene": "100",
       "terrazine": "",
       "custom": "",
       "time": "15",
       "unit": "GuardianMP",
-      "source_catalog": "starcoop"
+      "source_catalog": "starcoop",
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "Mutalisk"
     },
     "production_options": [
       {
@@ -97,19 +99,21 @@
         "abil_cmd": "MutaliskMorphToGuardian,Train1",
         "ability_id": "MutaliskMorphToGuardian",
         "command_index": "Train1",
-        "minerals": "",
-        "vespene": "",
+        "minerals": "50",
+        "vespene": "100",
         "terrazine": "",
         "custom": "",
         "time": "15",
         "unit": "GuardianMP",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "Mutalisk"
       }
     ]
   },
   {
     "id": "Devourer",
-    "unit_id": "Devourer",
+    "unit_id": "DevourerMP",
     "army_categories": [
       "Devourer"
     ],
@@ -131,76 +135,61 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "Devourer"
+      "Devourer",
+      "DevourerMP"
     ],
-    "icon_button": "MorphtoDevourer",
-    "icon": "Assets\\Textures\\BTN-Unit-Zerg-DevourerEx3.dds",
-    "alert_icon": "Assets\\Textures\\BTN-Unit-Zerg-DevourerEx3.dds",
+    "icon_button": "MorphToDevourerMP",
+    "icon": "Assets\\Textures\\btn-unit-zerg-primalguardian.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-primalguardian.dds",
     "unit": {
-      "id": "Devourer",
+      "id": "DevourerMP",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionEvolved",
-      "race": "",
+      "object_family": "Campaign",
+      "race": "Zerg",
       "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "planes": [
+        "Air"
+      ],
+      "attributes": [
+        "Armored",
+        "Biological",
+        "Massive"
+      ],
+      "flags": [
+        "ArmySelect",
+        "UseLineOfSight"
+      ],
+      "minerals": "250",
+      "vespene": "150",
       "terrazine": "",
-      "supply": "",
-      "supply_raw": "",
-      "supply_cost": "",
+      "supply": "-2",
+      "supply_raw": "-2",
+      "supply_cost": "2",
       "supply_provided": "",
       "build_time": "",
-      "life": "",
+      "life": "250",
       "shields": "",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionEvolved"
+        "ObjectFamily": "Campaign"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "Devourer",
+          "id": "DevourerMP",
+          "parent": ""
+        },
+        {
+          "source": "void",
+          "id": "DevourerMP",
           "parent": ""
         }
       ]
-    },
-    "production": {
-      "producer_unit_id": "Mutalisk",
-      "button_face": "MorphtoDevourer",
-      "abil_cmd": "MutaliskMorphToDevourer,Train1",
-      "ability_id": "MutaliskMorphToDevourer",
-      "command_index": "Train1",
-      "minerals": "",
-      "vespene": "",
-      "terrazine": "",
-      "custom": "",
-      "time": "15",
-      "unit": "Devourer",
-      "source_catalog": "starcoop"
-    },
-    "production_options": [
-      {
-        "producer_unit_id": "Mutalisk",
-        "button_face": "MorphtoDevourer",
-        "abil_cmd": "MutaliskMorphToDevourer,Train1",
-        "ability_id": "MutaliskMorphToDevourer",
-        "command_index": "Train1",
-        "minerals": "",
-        "vespene": "",
-        "terrazine": "",
-        "custom": "",
-        "time": "15",
-        "unit": "Devourer",
-        "source_catalog": "starcoop"
-      }
-    ]
+    }
   },
   {
     "id": "Mutalisk",
@@ -312,13 +301,15 @@
       "abil_cmd": "LarvaTrain,Train5",
       "ability_id": "LarvaTrain",
       "command_index": "Train5",
-      "minerals": "",
-      "vespene": "",
+      "minerals": "100",
+      "vespene": "100",
       "terrazine": "",
       "custom": "",
       "time": "33",
       "unit": "Mutalisk",
-      "source_catalog": "starcoop"
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
     },
     "production_options": [
       {
@@ -327,13 +318,15 @@
         "abil_cmd": "LarvaTrain,Train5",
         "ability_id": "LarvaTrain",
         "command_index": "Train5",
-        "minerals": "",
-        "vespene": "",
+        "minerals": "100",
+        "vespene": "100",
         "terrazine": "",
         "custom": "",
         "time": "33",
         "unit": "Mutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
       }
     ]
   },
@@ -442,13 +435,15 @@
       "abil_cmd": "LarvaTrain,Train10",
       "ability_id": "LarvaTrain",
       "command_index": "Train10",
-      "minerals": "",
-      "vespene": "",
+      "minerals": "75",
+      "vespene": "25",
       "terrazine": "",
       "custom": "",
       "time": "27",
       "unit": "Roach",
-      "source_catalog": "starcoop"
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
     },
     "production_options": [
       {
@@ -457,13 +452,15 @@
         "abil_cmd": "LarvaTrain,Train10",
         "ability_id": "LarvaTrain",
         "command_index": "Train10",
-        "minerals": "",
-        "vespene": "",
+        "minerals": "75",
+        "vespene": "25",
         "terrazine": "",
         "custom": "",
         "time": "27",
         "unit": "Roach",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
       }
     ]
   },
@@ -903,13 +900,15 @@
       "abil_cmd": "LarvaTrain,Train13",
       "ability_id": "LarvaTrain",
       "command_index": "Train13",
-      "minerals": "",
-      "vespene": "",
+      "minerals": "100",
+      "vespene": "200",
       "terrazine": "",
       "custom": "",
       "time": "29",
       "unit": "Viper",
-      "source_catalog": "starcoop"
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
     },
     "production_options": [
       {
@@ -918,13 +917,15 @@
         "abil_cmd": "LarvaTrain,Train13",
         "ability_id": "LarvaTrain",
         "command_index": "Train13",
-        "minerals": "",
-        "vespene": "",
+        "minerals": "100",
+        "vespene": "200",
         "terrazine": "",
         "custom": "",
         "time": "29",
         "unit": "Viper",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
       }
     ]
   },
@@ -998,13 +999,15 @@
       "abil_cmd": "EvolveToBrutaliskRoach,Train1",
       "ability_id": "EvolveToBrutaliskRoach",
       "command_index": "Train1",
-      "minerals": "",
-      "vespene": "",
+      "minerals": "425",
+      "vespene": "275",
       "terrazine": "",
       "custom": "",
       "time": "5",
       "unit": "Brutalisk",
-      "source_catalog": "starcoop"
+      "source_catalog": "starcoop",
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "Roach"
     },
     "production_options": [
       {
@@ -1013,13 +1016,15 @@
         "abil_cmd": "EvolveToBrutaliskRoach,Train1",
         "ability_id": "EvolveToBrutaliskRoach",
         "command_index": "Train1",
-        "minerals": "",
-        "vespene": "",
+        "minerals": "425",
+        "vespene": "275",
         "terrazine": "",
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "Roach"
       },
       {
         "producer_unit_id": "RoachVile",
@@ -1033,7 +1038,9 @@
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
       },
       {
         "producer_unit_id": "SwarmHost",
@@ -1047,7 +1054,9 @@
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
       },
       {
         "producer_unit_id": "DefilerMP",
@@ -1055,41 +1064,15 @@
         "abil_cmd": "EvolveToBrutaliskDefiler,Train1",
         "ability_id": "EvolveToBrutaliskDefiler",
         "command_index": "Train1",
-        "minerals": "",
-        "vespene": "",
+        "minerals": "450",
+        "vespene": "150",
         "terrazine": "",
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
-      },
-      {
-        "producer_unit_id": "Queen",
-        "button_face": "EvolveToBrutalisk",
-        "abil_cmd": "EvolveToBrutaliskQueen,Train1",
-        "ability_id": "EvolveToBrutaliskQueen",
-        "command_index": "Train1",
-        "minerals": "",
-        "vespene": "",
-        "terrazine": "",
-        "custom": "",
-        "time": "5",
-        "unit": "Brutalisk",
-        "source_catalog": "starcoop"
-      },
-      {
-        "producer_unit_id": "QueenBurrowed",
-        "button_face": "EvolveToBrutalisk",
-        "abil_cmd": "EvolveToBrutaliskQueen,Train1",
-        "ability_id": "EvolveToBrutaliskQueen",
-        "command_index": "Train1",
-        "minerals": "",
-        "vespene": "",
-        "terrazine": "",
-        "custom": "",
-        "time": "5",
-        "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "DefilerMP"
       },
       {
         "producer_unit_id": "RavagerAbathur",
@@ -1097,13 +1080,15 @@
         "abil_cmd": "EvolveToBrutaliskRavager,Train1",
         "ability_id": "EvolveToBrutaliskRavager",
         "command_index": "Train1",
-        "minerals": "",
-        "vespene": "",
+        "minerals": "375",
+        "vespene": "225",
         "terrazine": "",
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "RavagerAbathur"
       },
       {
         "producer_unit_id": "RavagerAbathurBurrowed",
@@ -1111,13 +1096,63 @@
         "abil_cmd": "EvolveToBrutaliskRavager,Train1",
         "ability_id": "EvolveToBrutaliskRavager",
         "command_index": "Train1",
-        "minerals": "",
+        "minerals": "375",
+        "vespene": "225",
+        "terrazine": "",
+        "custom": "",
+        "time": "5",
+        "unit": "Brutalisk",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "RavagerAbathurBurrowed"
+      },
+      {
+        "producer_unit_id": "RoachBurrowed",
+        "button_face": "EvolveToBrutalisk",
+        "abil_cmd": "EvolveToBrutaliskRoach,Train1",
+        "ability_id": "EvolveToBrutaliskRoach",
+        "command_index": "Train1",
+        "minerals": "425",
+        "vespene": "275",
+        "terrazine": "",
+        "custom": "",
+        "time": "5",
+        "unit": "Brutalisk",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "RoachBurrowed"
+      },
+      {
+        "producer_unit_id": "Queen",
+        "button_face": "EvolveToBrutalisk",
+        "abil_cmd": "EvolveToBrutaliskQueen,Train1",
+        "ability_id": "EvolveToBrutaliskQueen",
+        "command_index": "Train1",
+        "minerals": "325",
         "vespene": "",
         "terrazine": "",
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "Queen"
+      },
+      {
+        "producer_unit_id": "QueenBurrowed",
+        "button_face": "EvolveToBrutalisk",
+        "abil_cmd": "EvolveToBrutaliskQueen,Train1",
+        "ability_id": "EvolveToBrutaliskQueen",
+        "command_index": "Train1",
+        "minerals": "325",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "5",
+        "unit": "Brutalisk",
+        "source_catalog": "starcoop",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "QueenBurrowed"
       },
       {
         "producer_unit_id": "RavagerAbathurCocoon",
@@ -1131,21 +1166,9 @@
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
-      },
-      {
-        "producer_unit_id": "RoachBurrowed",
-        "button_face": "EvolveToBrutalisk",
-        "abil_cmd": "EvolveToBrutaliskRoach,Train1",
-        "ability_id": "EvolveToBrutaliskRoach",
-        "command_index": "Train1",
-        "minerals": "",
-        "vespene": "",
-        "terrazine": "",
-        "custom": "",
-        "time": "5",
-        "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
       },
       {
         "producer_unit_id": "RavagerVileAbathurCocoon",
@@ -1159,7 +1182,9 @@
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
       },
       {
         "producer_unit_id": "RoachVileBurrowed",
@@ -1173,7 +1198,9 @@
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
       },
       {
         "producer_unit_id": "SwarmHostBurrowed",
@@ -1187,7 +1214,9 @@
         "custom": "",
         "time": "5",
         "unit": "Brutalisk",
-        "source_catalog": "starcoop"
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
       }
     ]
   },

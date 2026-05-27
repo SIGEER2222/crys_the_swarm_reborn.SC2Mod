@@ -167,6 +167,7 @@ CURATED_COMMANDER_UNIT_IDS = {
 
 TECH_UNIT_UNIT_OVERRIDES = {
     "Abathur": {
+        "Devourer": "DevourerMP",
         "SwarmHost": "SwarmHost",
     },
     "Nova": {
@@ -714,6 +715,24 @@ def info_chain_resource_value(nodes: list[ET.Element], index_name: str) -> str:
         if child is not None and child.get("value"):
             return child.get("value") or ""
     return ""
+
+
+def parse_numeric_string(raw: object) -> float | None:
+    value = str(raw or "").strip()
+    if not value:
+        return None
+    try:
+        return float(value)
+    except ValueError:
+        return None
+
+
+def format_numeric_string(value: float | None) -> str:
+    if value is None:
+        return ""
+    if value.is_integer():
+        return str(int(value))
+    return f"{value:.6f}".rstrip("0").rstrip(".")
 
 
 def parse_supply_fields(raw: str) -> dict[str, str]:
@@ -1341,6 +1360,102 @@ def resolve_production_metadata(
     preferred_face: str,
     commander_unit_ids: set[str] | None = None,
 ) -> tuple[dict[str, object], list[dict[str, object]]]:
+    def infer_morph_delta_cost(
+        result: dict[str, object],
+        ability_chain: list[tuple[str, ET.Element]],
+    ) -> dict[str, str]:
+        if any(str(result.get(key) or "") for key in ("minerals", "vespene", "terrazine", "custom")):
+            return {}
+        producer_unit_id = str(result.get("producer_unit_id") or "")
+        if not producer_unit_id:
+            return {}
+        has_morph_semantics = False
+        for _, ability_node in ability_chain:
+            if ability_node.tag == "CAbilMorph":
+                has_morph_semantics = True
+                break
+            if ability_node.find("./RefundFraction") is not None:
+                has_morph_semantics = True
+                break
+            if ability_node.find("./MorphUnit") is not None:
+                has_morph_semantics = True
+                break
+            kill_on_finish = ability_node.find("./Flags[@index='KillOnFinish']")
+            if kill_on_finish is not None and (kill_on_finish.get("value") or "") == "1":
+                has_morph_semantics = True
+                break
+        if not has_morph_semantics:
+            return {}
+
+        producer_chain = resolver.unit_chain(source_name, producer_unit_id)
+        target_chain = resolver.unit_chain(source_name, unit_id)
+        if not producer_chain or not target_chain:
+            return {}
+
+        inferred: dict[str, str] = {}
+        for resource_key, resource_index in (
+            ("minerals", "Minerals"),
+            ("vespene", "Vespene"),
+            ("terrazine", "Terrazine"),
+            ("custom", "Custom"),
+        ):
+            producer_value = parse_numeric_string(chain_cost_value(producer_chain, resource_index))
+            target_value = parse_numeric_string(chain_cost_value(target_chain, resource_index))
+            if producer_value is None or target_value is None:
+                continue
+            delta_value = target_value - producer_value
+            if delta_value < 0:
+                continue
+            inferred[resource_key] = format_numeric_string(delta_value)
+        return inferred
+
+    def infer_unit_total_cost(
+        result: dict[str, object],
+        ability_chain: list[tuple[str, ET.Element]],
+    ) -> dict[str, str]:
+        if any(str(result.get(key) or "") for key in ("minerals", "vespene", "terrazine", "custom")):
+            return {}
+        ability_id = str(result.get("ability_id") or "")
+        if not re.search(r"(Train|Build)", ability_id):
+            return {}
+        if re.search(r"(Morph|Evolve|Merge)", ability_id):
+            return {}
+
+        producer_unit_id = str(result.get("producer_unit_id") or "")
+        producer_chain = resolver.unit_chain(source_name, producer_unit_id) if producer_unit_id else []
+        producer_meta = parse_unit(producer_chain, producer_unit_id, producer_chain[0][0] if producer_chain else "")
+        standard_worker_ids = {
+            "Larva",
+            "Drone",
+            "SCV",
+            "Probe",
+            "SISCV",
+            "TychusSCV",
+            "HHSCV",
+            "DehakaDrone",
+            "DehakaPrimalDrone",
+            "KelMorianWorker",
+        }
+        if producer_unit_id not in standard_worker_ids and str(producer_meta.get("object_type") or "") != "Structure":
+            return {}
+
+        target_chain = resolver.unit_chain(source_name, unit_id)
+        if not target_chain:
+            return {}
+
+        inferred: dict[str, str] = {}
+        for resource_key, resource_index in (
+            ("minerals", "Minerals"),
+            ("vespene", "Vespene"),
+            ("terrazine", "Terrazine"),
+            ("custom", "Custom"),
+        ):
+            target_value = parse_numeric_string(chain_cost_value(target_chain, resource_index))
+            if target_value is None:
+                continue
+            inferred[resource_key] = format_numeric_string(target_value)
+        return inferred
+
     def parse_command(entry: dict[str, str]) -> dict[str, object]:
         abil_cmd = entry.get("abil_cmd", "")
         face = entry.get("button_face", "")
@@ -1372,6 +1487,8 @@ def resolve_production_metadata(
             "time": info_chain_value(info_nodes, "Time"),
             "unit": info_chain_value(info_nodes, "Unit"),
             "source_catalog": ability_chain[0][0],
+            "cost_mode": "",
+            "base_unit_id": "",
         }
         resource_index_map = {
             "minerals": "Minerals",
@@ -1387,6 +1504,21 @@ def resolve_production_metadata(
                 if child is not None and child.get("value"):
                     result[resource_key] = child.get("value") or ""
                     break
+        if any(str(result.get(key) or "") for key in ("minerals", "vespene", "terrazine", "custom")):
+            result["cost_mode"] = "direct"
+        else:
+            inferred_delta = infer_morph_delta_cost(result, ability_chain)
+            if inferred_delta:
+                for resource_key, value in inferred_delta.items():
+                    result[resource_key] = value
+                result["cost_mode"] = "delta_inferred"
+                result["base_unit_id"] = producer_unit_id
+            else:
+                inferred_total = infer_unit_total_cost(result, ability_chain)
+                if inferred_total:
+                    for resource_key, value in inferred_total.items():
+                        result[resource_key] = value
+                    result["cost_mode"] = "unit_total_inferred"
         return result
 
     def production_score(item: dict[str, object]) -> tuple[int, int, int, int, int, int, str, str]:
@@ -1974,6 +2106,11 @@ def build_commander_payload(
             if resolved_unit_ids:
                 normalized_entry["unit_id"] = resolved_unit_ids[0]
                 normalized_entry["resolved_unit_ids"] = resolved_unit_ids
+            if override_unit_id:
+                normalized_entry["unit_id"] = override_unit_id
+                resolved_unit_ids = list(normalized_entry.get("resolved_unit_ids", []))
+                if override_unit_id not in resolved_unit_ids:
+                    normalized_entry["resolved_unit_ids"] = [override_unit_id, *resolved_unit_ids]
             resolved_unit_id = str(normalized_entry["unit_id"])
             fallback_name_key, fallback_name, fallback_tooltip_key, fallback_tooltip = tech_display_fallback(
                 str(normalized_entry["id"]),
