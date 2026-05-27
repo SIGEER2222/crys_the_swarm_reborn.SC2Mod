@@ -1,0 +1,1944 @@
+[
+  {
+    "id": "DarkShrine",
+    "unit_id": "DarkShrine",
+    "name": "黑暗圣坛",
+    "object_type": "Structure",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "ResearchShadowFury",
+            "type": "AbilCmd",
+            "abil_cmd": "DarkShrineResearch,Research1",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchShadowFury",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究暗影之怒",
+              "name_key": "Button/Name/ResearchShadowFury",
+              "tooltip": "使黑暗圣堂武士在目标之间腾跃，每次腾跃造成{Effect,DarkTemplarShadowFuryDamage,Amount} (+{Effect,DarkTemplarShadowFuryDamage,AttributeBonus[Light]} 对轻甲)点伤害。攻击{1+Effect,ShadowGuardShadowFuryPersistent,PeriodCount}次。",
+              "tooltip_key": "Button/Tooltip/ResearchShadowFury",
+              "icon": "Assets\\Textures\\btn-ability-protoss-shadowfury.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-shadowfury.dds"
+            }
+          },
+          {
+            "face": "ResearchShadowDashLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel06",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchShadowDashLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究闪现",
+              "name_key": "Button/Name/ResearchShadowDashLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "ResearchVoidStasisLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel06",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchVoidStasisLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究虚空静滞",
+              "name_key": "Button/Name/ResearchVoidStasisLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "ResearchDarkArchonFullStartingEnergyLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel09",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchDarkArchonFullStartingEnergyLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究阿古斯水晶",
+              "name_key": "Button/Name/ResearchDarkArchonFullStartingEnergyLocked",
+              "tooltip": "该科技将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "ResearchMindControlLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel09",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchMindControlLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究精神控制",
+              "name_key": "Button/Name/ResearchMindControlLocked",
+              "tooltip": "该科技将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "DarkTemplarPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DarkArchonPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveVorazunCommander",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZeratulDarkTemplarBlink",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier1AndDarkShine",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulDarkTemplarBlink",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "闪现",
+              "name_key": "Button/Name/ZeratulDarkTemplarBlink",
+              "tooltip": "使虚空圣堂武士可以传送至附近一处目标位置。",
+              "tooltip_key": "Button/Tooltip/ZeratulDarkTemplarBlink",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-darktemplar-blink.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-darktemplar-blink.dds"
+            }
+          },
+          {
+            "face": "ResearchZeratulZealotBlinkHeal",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier2AndDarkShine",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchZeratulZealotBlinkHeal",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/ResearchZeratulZealotBlinkHeal",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/ResearchZeratulZealotBlinkHeal",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-nova-healingmastery.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-nova-healingmastery.dds"
+            }
+          },
+          {
+            "face": "ResearchZeratulDarkTemplarShadowFury",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier3AndDarkShine",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchZeratulDarkTemplarShadowFury",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/ResearchZeratulDarkTemplarShadowFury",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/ResearchZeratulDarkTemplarShadowFury",
+              "icon": "Assets\\Textures\\BTN-Ability-Protoss-ShadowFury.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Protoss-ShadowFury.dds"
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "que5,CancelLast",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Cancel",
+            "type": "",
+            "abil_cmd": "que5,CancelLast",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DisruptorZeratul",
+    "unit_id": "ZeratulDisruptor",
+    "name": "干扰者",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZeratulPurificationNovaBattery",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier2AndRoboticsBay",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulPurificationNovaBattery",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "新星电池",
+              "name_key": "Button/Name/ZeratulPurificationNovaBattery",
+              "tooltip": "净化新星的冷却时间缩短{(Abil,ZeratulPurificationNovaTargeted,Cost[0].Cooldown.TimeUse-$UpgradeEffectArrayValue:ZeratulArtifactTier2_RoboticsBay:Weapon,ZeratulDisruptorWeapon,Period$)/Abil,ZeratulPurificationNovaTargeted,Cost[0].Cooldown.TimeUse*100}%。",
+              "tooltip_key": "Button/Tooltip/ZeratulPurificationNovaBattery",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-disruptor-novabattery.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-disruptor-novabattery.dds"
+            }
+          },
+          {
+            "face": "ZeratulPurificationNovaSplit",
+            "type": "Passive",
+            "abil_cmd": "ZeratulPurificationNovaTargeted,Execute",
+            "requirements": "HaveZeratulArtifactTier3AndRoboticsBay",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulPurificationNovaSplit",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "集束新星",
+              "name_key": "Button/Name/ZeratulPurificationNovaSplit",
+              "tooltip": "当净化新星爆炸时，它会产生三个更小的新星，每一个对沿途的敌人造成{Effect,ZeratulPurificationNovaSmallOrbSearchImpactDamage,Amount}点伤害。",
+              "tooltip_key": "Button/Tooltip/ZeratulPurificationNovaSplit",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-disruptor-clusternova.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-disruptor-clusternova.dds"
+            }
+          },
+          {
+            "face": "ZeratulPurificationNovaTargeted",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Barrage",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulPurificationNovaTargeted",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "净化新星",
+              "name_key": "Button/Name/ZeratulPurificationNovaTargeted",
+              "tooltip": "发射一团球形能量，触碰敌方单位时或在{Behavior,PurificationNovaTargettedTarget,Duration}秒后引爆，对附近的地面单位和建筑造成{Effect,ZeratulPurificationNovaDamage,Amount}点溅射伤害。萨尔纳加禁绝者在此期间无法移动。",
+              "tooltip_key": "Button/Tooltip/ZeratulPurificationNovaTargeted",
+              "icon": "Assets\\Textures\\BTN-Ability-Zeratul-Disruptor-PurificationNova.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Zeratul-Disruptor-PurificationNova.dds"
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Gateway",
+    "unit_id": "Gateway",
+    "name": "传送门",
+    "object_type": "Structure",
+    "icon_button": "Gateway",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "WarpInSupplicant",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train11",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WarpInSupplicant",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃死徒",
+              "name_key": "Button/Name/WarpInSupplicant",
+              "tooltip": "近战战士。在阿拉纳克濒临死亡时牺牲自己来为他治疗。死徒可以同时折跃两个。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/WarpInSupplicant",
+              "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-supplicant.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-supplicant.dds"
+            }
+          },
+          {
+            "face": "SentryFenix",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train15",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SentryFenix",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃保护者",
+              "name_key": "Button/Name/SentryFenix",
+              "tooltip": "净化者阵营\n机械支援单位。可以使用防护场和相位模式。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/SentryFenix",
+              "icon": "Assets\\Textures\\btn-unit-collection-purifier-sentry.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-purifier-sentry.dds"
+            }
+          },
+          {
+            "face": "Stalker",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train2",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "WarpInAdept",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train7",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WarpInAdept",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃使徒",
+              "name_key": "Button/Name/WarpInAdept",
+              "tooltip": "远程特种单位。可以使用灵能传送。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/WarpInAdept",
+              "icon": "Assets\\Textures\\btn-unit-protoss-adeptfenix-purifier.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-adeptfenix-purifier.dds"
+            }
+          },
+          {
+            "face": "WarpinAscendentLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "AlarakLevel08",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WarpinAscendentLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "折跃晋升者",
+              "name_key": "Button/Name/WarpinAscendentLocked",
+              "tooltip": "该单位将在指挥官等级8时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel08",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "DarkTemplar",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train5",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "WarpInDarkArchonLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel05",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WarpInDarkArchonLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "折跃黑暗执政官",
+              "name_key": "Button/Name/WarpInDarkArchonLocked",
+              "tooltip": "该技能将在指挥官等级5时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel05",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "Rally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "UpgradeToWarpGate",
+            "type": "AbilCmd",
+            "abil_cmd": "UpgradeToWarpGate,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AlarakMasteryUnitAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryAlarakUnitAttackSpeed",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakMasteryUnitAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "战斗精通",
+              "name_key": "Button/Name/AlarakMasteryUnitAttackSpeed",
+              "tooltip": "精通：折跃在该建筑旁边的单位获得{Effect,MasteryAlarakUnitAttackSpeedDisplayDummy,Amount}%攻击速度。",
+              "tooltip_key": "Button/Tooltip/AlarakMasteryUnitAttackSpeedAppend",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-Alarak-CombatMastery.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-Alarak-CombatMastery.dds"
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "UpgradeToWarpGate,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "que5notPassive,CancelLast",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ImmortalZeratul",
+    "unit_id": "ZeratulImmortal",
+    "name": "不朽者",
+    "object_type": "Unit",
+    "icon_button": "ImmortalZeratul",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zeratulimmortal.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulimmortal.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZeratulImmortalBarrierPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier1AndRoboticsBay",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulImmortalBarrierPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "屏障",
+              "name_key": "Button/Name/ZeratulImmortalBarrierPassive",
+              "tooltip": "使该单位可以吸收{Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit}点伤害。持续{Behavior,ImmortalBarrierBase,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/ZeratulImmortalBarrierPassive",
+              "icon": "Assets\\Textures\\btn-ability-protoss-invulnerabilityshield.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-invulnerabilityshield.dds"
+            }
+          },
+          {
+            "face": "HaveZeratulImmortalRange",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier2AndRoboticsBay",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HaveZeratulImmortalRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原力炮",
+              "name_key": "Button/Name/HaveZeratulImmortalRange",
+              "tooltip": "该单位的对空武器可以击退敌方空中单位，并且对轰击路线沿途的单位造成{Effect,ZeratulPhaseDisruptorsAir,AreaArray[0].Fraction*100}%伤害。",
+              "tooltip_key": "Button/Tooltip/HaveZeratulImmortalRange",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-immortal-forcecannon.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-immortal-forcecannon.dds"
+            }
+          },
+          {
+            "face": "HaveZeratulImmortalImprovedBarrier",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier3AndRoboticsBay",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HaveZeratulImmortalImprovedBarrier",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "永恒屏障",
+              "name_key": "Button/Name/HaveZeratulImmortalImprovedBarrier",
+              "tooltip": "萨尔纳加执行者屏障吸收的伤害量提高{$UpgradeEffectArrayValue:ZeratulArtifactTier3_RoboticsBay:Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit$/Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit*100}%，并且完全修复其破损的机体外壳。",
+              "tooltip_key": "Button/Tooltip/HaveZeratulImmortalImprovedBarrier",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-immortal-enternitybarrier.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-immortal-enternitybarrier.dds"
+            }
+          },
+          {
+            "face": "ImmortalBarrierBase",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulImmortalBarrierBase,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ImmortalBarrierBase",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/ImmortalBarrierBase",
+              "tooltip": "最多可吸收{Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit}点伤害，持续{Behavior,ImmortalBarrierBase,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/ImmortalBarrierBase",
+              "icon": "",
+              "alert_icon": ""
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Observer",
+    "unit_id": "Observer",
+    "name": "侦测器",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MorphtoObserverSiege",
+            "type": "AbilCmd",
+            "abil_cmd": "ObserverMorphtoObserverSiege,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MorphtoObserverSiege",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "监察模式",
+              "name_key": "Button/Name/MorphtoObserverSiege",
+              "tooltip": "把侦测器变形为监察模式。视野提高{(Unit,ObserverSiegeMode,Sight/Unit,Observer,Sight-1)*100}%，但无法移动且不再隐形。",
+              "tooltip_key": "Button/Tooltip/MorphtoObserverSiege",
+              "icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds"
+            }
+          },
+          {
+            "face": "MorphtoObserverSiege",
+            "type": "AbilCmd",
+            "abil_cmd": "ObserverMorphtoObserverSiege,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MorphtoObserverSiege",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "监察模式",
+              "name_key": "Button/Name/MorphtoObserverSiege",
+              "tooltip": "把侦测器变形为监察模式。视野提高{(Unit,ObserverSiegeMode,Sight/Unit,Observer,Sight-1)*100}%，但无法移动且不再隐形。",
+              "tooltip_key": "Button/Tooltip/MorphtoObserverSiege",
+              "icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds"
+            }
+          },
+          {
+            "face": "Detector",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Detector",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HaveGraviticBoosters",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "HaveGraviticBoosters",
+            "row": "",
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HaveGraviticBoosters",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "重力加速器",
+              "name_key": "Button/Name/HaveGraviticBoosters",
+              "tooltip": "提高侦测器的移动速度50%。",
+              "tooltip_key": "Button/Tooltip/HaveGraviticBooster",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds"
+            }
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ObserverZeratul",
+    "unit_id": "ZeratulObserver",
+    "name": "萨尔纳加观察者",
+    "object_type": "Unit",
+    "icon_button": "ZeratulObserver",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZeratulGraviticBoostersPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier2AndRoboticsBay",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulGraviticBoostersPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "重力加速器",
+              "name_key": "Button/Name/ZeratulGraviticBoostersPassive",
+              "tooltip": "萨尔纳加观察者的移动速度提高{$UpgradeEffectArrayValue:ZeratulArtifactTier2_RoboticsBay:Unit,ZeratulObserver,Speed$/Unit,ZeratulObserver,Speed*100}%",
+              "tooltip_key": "Button/Tooltip/ZeratulHaveGraviticBooster",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds"
+            }
+          },
+          {
+            "face": "ZeratulObserverSightRange",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier3AndRoboticsBay",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulObserverSightRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "感应器阵列",
+              "name_key": "Button/Name/ZeratulObserverSightRange",
+              "tooltip": "萨尔纳加观察者的视野范围扩大{$UpgradeEffectArrayValue:ZeratulArtifactTier3_RoboticsBay:Unit,ZeratulObserver,Sight$/Unit,ZeratulObserver,Sight*100}%。",
+              "tooltip_key": "Button/Tooltip/ZeratulObserverSightRange",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-observer-sensorarray.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-observer-sensorarray.dds"
+            }
+          },
+          {
+            "face": "PermanentlyCloakedZeratulObserver",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PermanentlyCloakedZeratulObserver",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "永久隐形",
+              "name_key": "Button/Name/PermanentlyCloakedZeratulObserver",
+              "tooltip": "该萨尔纳加观察者处于永久隐形状态。",
+              "tooltip_key": "Button/Tooltip/PermanentlyCloakedZeratulObserver",
+              "icon": "Assets\\Textures\\BTN-ability-Protoss-permanentlycloaked-Observer-color.dds",
+              "alert_icon": "Assets\\Textures\\BTN-ability-Protoss-permanentlycloaked-Observer-color.dds"
+            }
+          },
+          {
+            "face": "MorphtoZeratulObserverSiege",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulObserverMorphtoZeratulObserverSiege,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MorphtoZeratulObserverSiege",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "监察模式",
+              "name_key": "Button/Name/MorphtoZeratulObserverSiege",
+              "tooltip": "使萨尔纳加观察者变形，进入监察模式。观察者的视野扩大{Unit,ZeratulObserverSiegeMode,Sight/Unit,ZeratulObserver,Sight-1*100}%，但失去移动能力。",
+              "tooltip_key": "Button/Tooltip/MorphtoZeratulObserverSiege",
+              "icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver-surveillance.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver-surveillance.dds"
+            }
+          },
+          {
+            "face": "Detector",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PhotonCannon",
+    "unit_id": "PhotonCannon",
+    "name": "光子炮台",
+    "object_type": "Structure",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AttackBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "KaraxTurretRange",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveKaraxTurretRange",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "KaraxTurretRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "强化瞄准",
+              "name_key": "Button/Name/KaraxTurretRange",
+              "tooltip": "防御性建筑的射程提高2。",
+              "tooltip_key": "Button/Tooltip/KaraxTurretRange",
+              "icon": "Assets\\Textures\\btn-upgrade-karax-turretrange.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-karax-turretrange.dds"
+            }
+          },
+          {
+            "face": "KaraxTurretAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveKaraxTurretAttackSpeed",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "KaraxTurretAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "军械优化",
+              "name_key": "Button/Name/KaraxTurretAttackSpeed",
+              "tooltip": "防御性建筑的攻击速度提高25%。",
+              "tooltip_key": "Button/Tooltip/KaraxTurretAttackSpeed",
+              "icon": "Assets\\Textures\\btn-upgrade-karax-turretattackspeed.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-karax-turretattackspeed.dds"
+            }
+          },
+          {
+            "face": "Detector",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "NotUnderConstruction",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "PhaseCannonProjection,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "RoboticsWarp",
+    "unit_id": "RoboticsFacilityWarp",
+    "name": "折跃机械台",
+    "object_type": "Structure",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Observer",
+            "type": "AbilCmd",
+            "abil_cmd": "RoboticsFacilityWarpTrain,Train2",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SuperiorWarpRoboticsFacilities",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveSuperiorWarpGates",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SuperiorWarpRoboticsFacilities",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "超级机械折跃台",
+              "name_key": "Button/Name/SuperiorWarpRoboticsFacilities",
+              "tooltip": "机械折跃台最多能拥有3次充能。",
+              "tooltip_key": "Button/Tooltip/SuperiorWarpRoboticsFacilities",
+              "icon": "Assets\\Textures\\talent-artanis-level03-warpgatecharges.dds",
+              "alert_icon": "Assets\\Textures\\talent-artanis-level03-warpgatecharges.dds"
+            }
+          },
+          {
+            "face": "MorphBackToRoboticsFacility",
+            "type": "AbilCmd",
+            "abil_cmd": "MorphBackToRoboticsFacility,Execute",
+            "requirements": "",
+            "row": "",
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SentryZeratul",
+    "unit_id": "ZeratulSentry",
+    "name": "机械哨兵",
+    "object_type": "Unit",
+    "icon_button": "SentryZeratul",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zeratulsentry.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulsentry.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZeratulShieldRechargePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier1AndCyberCore",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulShieldRechargePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "护盾充能",
+              "name_key": "Button/Name/ZeratulShieldRechargePassive",
+              "tooltip": "使该单位可以给友方星灵单位的护盾进行充能。",
+              "tooltip_key": "Button/Tooltip/ZeratulShieldRechargePassive",
+              "icon": "Assets\\Textures\\BTN-Ability-Protoss-ShieldRecharge.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Protoss-ShieldRecharge.dds"
+            }
+          },
+          {
+            "face": "ZeratulSentryEnergyRegen",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier2AndCyberCore",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulSentryEnergyRegen",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "星蚀协议",
+              "name_key": "Button/Name/ZeratulSentryEnergyRegen",
+              "tooltip": "该单位的能量恢复提高{$UpgradeEffectArrayValue:ZeratulArtifactTier2_CyberneticsCore:Unit,ZeratulSentry,EnergyRegenRate$/Unit,ZeratulSentry,EnergyRegenRate}00%。",
+              "tooltip_key": "Button/Tooltip/ZeratulSentryEnergyRegen",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-sentry-eclipseprotocol.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-sentry-eclipseprotocol.dds"
+            }
+          },
+          {
+            "face": "ZeratulReflectionShieldPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier3AndCyberCore",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulReflectionShieldPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "反射护盾",
+              "name_key": "Button/Name/ZeratulReflectionShieldPassive",
+              "tooltip": "使该单位可以制造一道光环，将{Effect,ZeratulReflectionShieldApplyBehavior,Chance*100}%投射物反射给敌方攻击者。",
+              "tooltip_key": "Button/Tooltip/ZeratulReflectionShieldPassive",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-sentry-reflectionshield.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-sentry-reflectionshield.dds"
+            }
+          },
+          {
+            "face": "VoidSentryShieldRepair",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulSentryShieldRepair,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZeratulReflectionShield",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulReflectionShield,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulReflectionShield",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "反射护盾",
+              "name_key": "Button/Name/ZeratulReflectionShield",
+              "tooltip": "制造一道光环，将{Effect,ZeratulReflectionShieldApplyBehavior,Chance*100}%的投射物反射给敌方攻击者。持续{Effect,ZeratulReflectionShieldCP,PeriodicPeriodArray[0]*Effect,ZeratulReflectionShieldCP,PeriodCount}。",
+              "tooltip_key": "Button/Tooltip/ZeratulReflectionShield",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-sentry-reflectionshield.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-sentry-reflectionshield.dds"
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StalkerZeratul",
+    "unit_id": "ZeratulStalker",
+    "name": "追猎者",
+    "object_type": "Unit",
+    "icon_button": "StalkerZeratul",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zeratulstalker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulstalker.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "PredictiveBlinkPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier1AndCyberCore",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PredictiveBlinkPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "预判闪现",
+              "name_key": "Button/Name/PredictiveBlinkPassive",
+              "tooltip": "使该单位可以传送到附近一处目标点。萨尔纳加伏击者一旦机体受到损坏就会自动闪现至安全位置。",
+              "tooltip_key": "Button/Tooltip/PredictiveBlinkPassive",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-stalker-predectiveblink.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-stalker-predectiveblink.dds"
+            }
+          },
+          {
+            "face": "ZeratulStalkerGhost",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier2AndCyberCore",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulStalkerGhost",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "虚空复仇",
+              "name_key": "Button/Name/ZeratulStalkerGhost",
+              "tooltip": "闪现后会留下一个虚空恶灵，制造一次攻击，造成该单位{Effect,ZeratulStalkerGhostDamage,Amount/Effect,ZeratulParticleDisruptorsU,Amount*100}%武器伤害。该效果每{Behavior,ZeratulStalkerGhostCooldown,Duration}秒只能生效一次。",
+              "tooltip_key": "Button/Tooltip/ZeratulStalkerGhost",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-stalker-vengeanceofthevoid.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-stalker-vengeanceofthevoid.dds"
+            }
+          },
+          {
+            "face": "ZeratulStalkerBlinkCharges",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier3AndCyberCore",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulStalkerBlinkCharges",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "相位电池",
+              "name_key": "Button/Name/ZeratulStalkerBlinkCharges",
+              "tooltip": "该单位现在可以储存最多{$UpgradeEffectArrayValue:ZeratulArtifactTier3_CyberneticsCore:Abil,ZeratulStalkerBlink,Cost[0].Charge.CountStart$}层预判闪现充能，并且每{Abil,ZeratulStalkerBlink,Cost[0].Charge.TimeUse}秒重新获得一层充能。",
+              "tooltip_key": "Button/Tooltip/ZeratulStalkerBlinkCharges",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-stalker-phasebattery.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-stalker-phasebattery.dds"
+            }
+          },
+          {
+            "face": "ZeratulStalkerShadowBlink",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulStalkerBlink,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulStalkerShadowBlink",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "预判闪现",
+              "name_key": "Button/Name/ZeratulStalkerShadowBlink",
+              "tooltip": "将该单位传送到附近一处位置。",
+              "tooltip_key": "Button/Tooltip/ZeratulStalkerShadowBlink",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-stalker-predectiveblink.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-stalker-predectiveblink.dds"
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "WarpPrismZeratul",
+    "unit_id": "ZeratulWarpPrism",
+    "name": "泽拉图 折跃棱镜",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZeratulWarpPrismWormholeMode",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulPhasingMode,Execute",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulWarpPrismWormholeMode",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "虫洞模式",
+              "name_key": "Button/Name/ZeratulWarpPrismWormholeMode",
+              "tooltip": "命令萨尔纳加虚空阵列船变形成虫洞模式，使其可以在不同的虚空阵列船之间传输单位。该单位在该模式下无法移动。",
+              "tooltip_key": "Button/Tooltip/ZeratulWarpPrismWormholeMode",
+              "icon": "Assets\\Textures\\btn-unit-protoss-zeratulwarpprismstation.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulwarpprismstation.dds"
+            }
+          },
+          {
+            "face": "ZeratulWarpPrismSelectVoidRift",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulWarpPrismSelectVoidRift,Execute",
+            "requirements": "",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulWarpPrismSelectVoidRift",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "选择虫洞出口",
+              "name_key": "Button/Name/ZeratulWarpPrismSelectVoidRift",
+              "tooltip": "选中当前处于自动卸载模式中的虚空阵列船。",
+              "tooltip_key": "Button/Tooltip/ZeratulWarpPrismSelectVoidRift",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-warpprism-transferlink.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-warpprism-transferlink.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ZealotZeratul",
+    "unit_id": "ZeratulSummonZealot",
+    "name": "狂热者",
+    "object_type": "Unit",
+    "icon_button": "ZealotZeratul",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "RallyZeratulTopBar,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Charge",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulCharge,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Charge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "冲锋",
+              "name_key": "Button/Name/Charge",
+              "tooltip": "允许狂热者能拦截附近的敌人。同时还会提高狂热者的移动速度。该技能每{Abil,Charge,Cost.Cooldown.TimeUse}秒最多只能使用一次。",
+              "tooltip_key": "Button/Tooltip/Charge",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "VoidZealotWhirlwind",
+            "type": "AbilCmd",
+            "abil_cmd": "ZeratulZealotWhirlwind,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "VoidZealotWhirlwind",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/VoidZealotWhirlwind",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/VoidZealotWhirlwind",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "WarpableZeratul,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  }
+]
