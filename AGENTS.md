@@ -89,10 +89,13 @@
 - 新指挥官或新机制优先接到统一框架，不要把通用逻辑散到每张地图。
 - `crys_the_swarm_reborn.SC2Mod` 只可作参考，不可直接当来源。
 - Launcher 能显示，不代表玩法已完成。
+- `合作指挥官版起义狂潮/` 是此前尚未成功的半成品测试实现，不要把其中的文件当作官方数据、最终设计依据或已验证 runtime 行为；只有在单独标注“半成品实现线索”时才可参考。
 - 官方原始合作指挥官数据以 `references/sc2-build-96883-casc-export` 为准；该目录来自 SC2 Build 96883 CASC 导出。
+- 指挥官等级、精通、威望设计优先读取 `游戏数据/官方合作指挥官/commanders/<Commander>/`，再用 `references/sc2-build-96883-casc-export/` 追完整 Catalog / UserData / 触发器闭包；`原始mod/` 只能作为人工拼装参考。
 - 提取官方等级加点/精通时，读取 `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` 里的 `CampaignPerk` / `MasteryUpgrades`，并补读 `mods/starcoop/commanders/egonstetmann.sc2mod` 与 `mods/starcoop/commanders/arcturusmengsk.sc2mod` 的 `userdata.xml`。
 - 不要把 `合作指挥官版起义狂潮/Mods/XM/**/CommanderAch` 当作官方原始数据源；它是当前 Mod 的 runtime/custom 映射。
 - 当前官方合作指挥官加点/精通提取脚本：`scripts/sc2/export-official-coop-progression.py`；当前输出目录：`docs/每日进度/2026-05-26官方合作指挥官原始精通加点/`。
+- 雷诺强度融合当前以 `docs/指挥官威望/雷诺精通威望加点融合设计-2026-05-27.md` 为准：等级 15 全解锁、6 项精通全满；威望只取选定收益，不直接启用官方三个 `PlayerPrestige`。
 
 ### 文档
 
