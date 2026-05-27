@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
+import shutil
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
@@ -238,6 +240,126 @@ NON_PRIMARY_UNIT_PATTERN = re.compile(r"(_SpawnerUnit|SpawnerUnit$|Cocoon|Egg|Mi
 SECONDARY_MODE_UNIT_PATTERN = re.compile(r"(Burrowed$|Rooted$|Sieged$|Flying$|Assault$|Phasing$)")
 STRUCTURE_ID_PATTERN = re.compile(r"(CommandCenter|Orbital|Hatchery|Lair|Hive|Gateway|Barracks|Factory|Starport|Depot|Bunker|Turret|Cannon|Crawler|Bay|Forge|Council|Core|Armory|Academy|Refinery|Extractor|Nest|Den|Cavern|Spire|Pit|Pool|Battery|Monolith|Tower|Structure|Facility|Shrine|Beacon|Archive|Nexus|Pylon|StarGate|Stargate)")
 OTHER_ID_PATTERN = re.compile(r"(Weapon|Missile|Projectile|Dummy|Placeholder|Cocoon|Egg)")
+
+DEFAULT_STORAGE_CANDIDATES = [
+    Path(r"E:\SC2\SC2new\StarCraft II\SC2Data"),
+    Path(r"C:\Program Files (x86)\StarCraft II\SC2Data"),
+    Path(r"C:\Program Files\StarCraft II\SC2Data"),
+]
+
+LIVE_EXPORT_RELATIVE_PATH = Path("游戏数据/官方合作指挥官/_source-cache/live-casc-export")
+
+
+def detect_storage_path() -> Path:
+    for candidate in DEFAULT_STORAGE_CANDIDATES:
+        if candidate.exists():
+            return candidate
+    raise FileNotFoundError("No SC2Data CASC storage found in default locations.")
+
+
+def casc_dump_command(repo_root: Path) -> list[str]:
+    exe_path = repo_root / "tools" / "casc" / "CascDump" / "bin" / "Debug" / "net9.0" / "CascDump.exe"
+    dll_path = repo_root / "tools" / "casc" / "CascDump" / "bin" / "Debug" / "net9.0" / "CascDump.dll"
+    if exe_path.exists():
+        return [str(exe_path)]
+    if dll_path.exists():
+        return ["dotnet", str(dll_path)]
+    raise FileNotFoundError("CascDump executable not found. Build tools/casc/CascDump first.")
+
+
+def required_live_export_prefixes() -> list[str]:
+    prefixes: list[str] = []
+    for relative, _ in MOD_SOURCES + DEPENDENCY_UNIT_SOURCES:
+        relative_lower = relative.lower()
+        prefixes.append(f"{relative_lower}/base.sc2data/gamedata/")
+        prefixes.append(f"{relative_lower}/enus.sc2data/")
+        prefixes.append(f"{relative_lower}/zhcn.sc2data/")
+    return prefixes
+
+
+def build_live_export_file_list(
+    casc_cmd: list[str],
+    storage_path: Path,
+    required_prefixes: list[str],
+) -> list[str]:
+    process = subprocess.Popen(
+        [*casc_cmd, "list", str(storage_path), "1000000"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        encoding="utf-8",
+        errors="ignore",
+    )
+    assert process.stdout is not None
+    assert process.stderr is not None
+
+    results: list[str] = []
+    for raw_line in process.stdout:
+        line = raw_line.rstrip("\r\n")
+        if not line or "\t" not in line:
+            continue
+        storage_rel, _, _, _ = line.split("\t", 3)
+        normalized = storage_rel.replace("\\", "/")
+        lowered = normalized.lower()
+        if not lowered.endswith((".xml", ".txt")):
+            continue
+        if any(lowered.startswith(prefix) for prefix in required_prefixes):
+            results.append(normalized)
+
+    stderr_output = process.stderr.read()
+    return_code = process.wait()
+    if return_code != 0:
+        raise RuntimeError(f"CascDump list failed: {stderr_output.strip()}")
+    return sorted(set(results))
+
+
+def ensure_live_export(
+    repo_root: Path,
+    storage_path: Path,
+    export_root: Path,
+    force_refresh: bool,
+) -> Path:
+    required_paths = [
+        export_root / "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+        export_root / "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/unitdata.xml",
+        export_root / "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/buttondata.xml",
+        export_root / "mods/starcoop/starcoop.sc2mod/zhcn.sc2data/localizeddata/gamestrings.txt",
+        export_root / "mods/starcoop/starcoop.sc2mod/enus.sc2data/localizeddata/gamestrings.txt",
+    ]
+    manifest_path = export_root / "LIVE-MANIFEST.json"
+    if not force_refresh and all(path.exists() for path in required_paths) and manifest_path.exists():
+        return export_root
+
+    casc_cmd = casc_dump_command(repo_root)
+    required_prefixes = required_live_export_prefixes()
+    file_list = build_live_export_file_list(casc_cmd, storage_path, required_prefixes)
+    if not file_list:
+        raise RuntimeError(f"No matching coop export files found in {storage_path}")
+
+    if export_root.exists():
+        shutil.rmtree(export_root)
+    export_root.mkdir(parents=True, exist_ok=True)
+
+    file_list_path = export_root / "casc-export-file-list.txt"
+    file_list_path.write_text("\n".join(file_list) + "\n", encoding="utf-8", newline="\n")
+    extract_run = subprocess.run(
+        [*casc_cmd, "extract", str(storage_path), str(export_root), str(file_list_path)],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        encoding="utf-8",
+        errors="ignore",
+    )
+    manifest = {
+        "storage_path": str(storage_path),
+        "export_root": str(export_root),
+        "file_count": len(file_list),
+        "extract_stdout_tail": extract_run.stdout.strip().splitlines()[-3:],
+        "extract_stderr_tail": extract_run.stderr.strip().splitlines()[-3:],
+    }
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
+    return export_root
 
 
 def field_id(element: ET.Element) -> str | None:
@@ -476,7 +598,9 @@ class CatalogResolver:
         self.export_root = export_root
         self.unit_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.upgrade_catalogs: dict[str, dict[str, ET.Element]] = {}
+        self.ability_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.button_catalogs: dict[str, dict[str, ET.Element]] = {}
+        self.produced_unit_button_faces: dict[str, dict[str, set[str]]] = {}
         self.army_category_units: dict[str, dict[str, set[str]]] = {}
         self.army_category_commands: dict[str, dict[str, set[str]]] = {}
         self.abil_command_units: dict[str, dict[str, set[str]]] = {}
@@ -490,6 +614,7 @@ class CatalogResolver:
             self.source_roots[label] = mod_root
             gamedata_dir = mod_root / "base.sc2data" / "gamedata"
             self.unit_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CUnit"})
+            self.ability_catalogs[label] = self._load_ability_catalog_dir(gamedata_dir)
             self.button_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CButton"})
             (
                 self.army_category_units[label],
@@ -501,6 +626,11 @@ class CatalogResolver:
             ) = self._load_resolution_maps(gamedata_dir)
             if label in mod_labels:
                 self.upgrade_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CUpgrade"})
+        for label, unit_catalog in self.unit_catalogs.items():
+            self.produced_unit_button_faces[label] = self._build_produced_unit_button_faces(
+                label,
+                unit_catalog,
+            )
 
     @staticmethod
     def _load_catalog_dir(gamedata_dir: Path, element_tags: set[str]) -> dict[str, ET.Element]:
@@ -511,6 +641,21 @@ class CatalogResolver:
             root = ET.parse(path).getroot()
             for child in root:
                 if child.tag not in element_tags:
+                    continue
+                item_id = child.get("id")
+                if item_id and item_id not in result:
+                    result[item_id] = child
+        return result
+
+    @staticmethod
+    def _load_ability_catalog_dir(gamedata_dir: Path) -> dict[str, ET.Element]:
+        if not gamedata_dir.exists():
+            return {}
+        result: dict[str, ET.Element] = {}
+        for path in sorted(gamedata_dir.rglob("*.xml")):
+            root = ET.parse(path).getroot()
+            for child in root:
+                if not child.tag.startswith("CAbil"):
                     continue
                 item_id = child.get("id")
                 if item_id and item_id not in result:
@@ -548,6 +693,9 @@ class CatalogResolver:
 
     def button_node(self, source: str, button_id: str) -> tuple[str, ET.Element] | tuple[None, None]:
         return self._lookup(self.button_catalogs, source, button_id)
+
+    def ability_node(self, source: str, ability_id: str) -> tuple[str, ET.Element] | tuple[None, None]:
+        return self._lookup(self.ability_catalogs, source, ability_id)
 
     def unit_chain(self, source: str, unit_id: str) -> list[tuple[str, ET.Element]]:
         chain: list[tuple[str, ET.Element]] = []
@@ -587,6 +735,34 @@ class CatalogResolver:
             nodes_for_id: list[tuple[str, ET.Element]] = []
             for label in self.search_order(source):
                 node = self.button_catalogs.get(label, {}).get(current_id)
+                if node is None:
+                    continue
+                pair = (label, current_id)
+                if pair in seen_pairs:
+                    continue
+                seen_pairs.add(pair)
+                nodes_for_id.append((label, node))
+            if not nodes_for_id:
+                break
+            chain.extend(nodes_for_id)
+            parent_id = ""
+            for _, node in nodes_for_id:
+                parent_id = node.get("parent", "")
+                if parent_id:
+                    break
+            current_id = parent_id
+        return chain
+
+    def ability_chain(self, source: str, ability_id: str) -> list[tuple[str, ET.Element]]:
+        chain: list[tuple[str, ET.Element]] = []
+        seen_pairs: set[tuple[str, str]] = set()
+        seen_ids: set[str] = set()
+        current_id = ability_id
+        while current_id and current_id not in seen_ids:
+            seen_ids.add(current_id)
+            nodes_for_id: list[tuple[str, ET.Element]] = []
+            for label in self.search_order(source):
+                node = self.ability_catalogs.get(label, {}).get(current_id)
                 if node is None:
                     continue
                 pair = (label, current_id)
@@ -748,6 +924,66 @@ class CatalogResolver:
                 resolved.update(self._resolve_unit_or_spawn(source, unit_id))
         return self._order_resolved_unit_ids(source, list(resolved))
 
+    def _resolve_command_units_for_face(self, source: str, abil_cmd: str) -> set[str]:
+        resolved_units: set[str] = set()
+        for candidate in self._lookup_many(self.abil_command_units, source, abil_cmd):
+            spawned = self._lookup_many(self.resolved_spawner_units, source, candidate)
+            if spawned:
+                resolved_units.update(spawned)
+            else:
+                resolved_units.add(candidate)
+        if resolved_units:
+            return resolved_units
+        ability_id, _, command_index = abil_cmd.partition(",")
+        if not ability_id or not command_index:
+            return resolved_units
+        for _, ability_node in self.ability_chain(source, ability_id):
+            for info_node in ability_node.findall("./InfoArray"):
+                if (info_node.get("index") or "") != command_index:
+                    continue
+                candidates: set[str] = set()
+                direct_unit = info_node.get("Unit") or ""
+                if direct_unit:
+                    candidates.add(direct_unit)
+                for unit_node in info_node.findall("./Unit"):
+                    unit_value = unit_node.get("value") or unit_node.get("Unit") or ""
+                    if unit_value:
+                        candidates.add(unit_value)
+                for candidate in candidates:
+                    spawned = self._lookup_many(self.resolved_spawner_units, source, candidate)
+                    if spawned:
+                        resolved_units.update(spawned)
+                    else:
+                        resolved_units.add(candidate)
+            if resolved_units:
+                break
+        return resolved_units
+
+    def _build_produced_unit_button_faces(
+        self,
+        source: str,
+        unit_catalog: dict[str, ET.Element],
+    ) -> dict[str, set[str]]:
+        result: dict[str, set[str]] = {}
+        for unit_node in unit_catalog.values():
+            for card_layout in unit_node.findall("./CardLayouts"):
+                for layout_button in card_layout.findall("./LayoutButtons"):
+                    face = node_value(layout_button, "Face")
+                    abil_cmd = node_value(layout_button, "AbilCmd")
+                    if not face or not abil_cmd:
+                        continue
+                    for resolved_unit in self._resolve_command_units_for_face(source, abil_cmd):
+                        result.setdefault(resolved_unit, set()).add(face)
+        return result
+
+    def unit_button_faces(self, source: str, unit_id: str) -> list[str]:
+        result: list[str] = []
+        for label in self.search_order(source):
+            for face in sorted(self.produced_unit_button_faces.get(label, {}).get(unit_id, set())):
+                if face not in result:
+                    result.append(face)
+        return result
+
     def _order_resolved_unit_ids(self, source: str, unit_ids: list[str]) -> list[str]:
         def score(unit_id: str) -> tuple[int, int, str]:
             chain = self.unit_chain(source, unit_id)
@@ -881,6 +1117,23 @@ def button_candidates(entry_id: str, resolved_unit_id: str, army_categories: lis
         for button_id in [candidate, f"Train{candidate}", f"MorphTo{candidate}"]:
             if button_id not in candidates:
                 candidates.append(button_id)
+    return candidates
+
+
+def icon_button_candidates(
+    resolver: CatalogResolver,
+    source_name: str,
+    entry_id: str,
+    resolved_unit_id: str,
+    army_categories: list[str],
+) -> list[str]:
+    candidates: list[str] = []
+    for face in resolver.unit_button_faces(source_name, resolved_unit_id):
+        if face not in candidates:
+            candidates.append(face)
+    for face in button_candidates(entry_id, resolved_unit_id, army_categories):
+        if face not in candidates:
+            candidates.append(face)
     return candidates
 
 
@@ -1468,7 +1721,13 @@ def build_commander_payload(
             icon_button = resolve_button_metadata(
                 resolver,
                 str(entry["source_name"]),
-                button_candidates(str(entry["id"]), str(entry["unit_id"]), list(entry.get("army_categories", []))),
+                icon_button_candidates(
+                    resolver,
+                    str(entry["source_name"]),
+                    str(entry["id"]),
+                    str(entry["unit_id"]),
+                    list(entry.get("army_categories", [])),
+                ),
                 zh,
                 en,
             )
@@ -1654,13 +1913,31 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default=".", help="Repository root")
     parser.add_argument("--export-root", default="references/sc2-build-96883-casc-export", help="Official CASC export root")
+    parser.add_argument("--storage-path", default="", help="SC2Data CASC storage root; used when export-root is missing")
+    parser.add_argument(
+        "--live-export-dir",
+        default=str(LIVE_EXPORT_RELATIVE_PATH).replace("\\", "/"),
+        help="Cache directory for live-exported XML/TXT when export-root is missing",
+    )
+    parser.add_argument("--force-live-refresh", action="store_true", help="Re-extract live XML/TXT cache from SC2Data")
     parser.add_argument("--output-dir", default="游戏数据/官方合作指挥官", help="Output directory")
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()
-    export_root = (repo_root / args.export_root).resolve()
     output_dir = (repo_root / args.output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
+    requested_export_root = (repo_root / args.export_root).resolve()
+    if requested_export_root.exists():
+        export_root = requested_export_root
+    else:
+        storage_path = Path(args.storage_path).resolve() if args.storage_path else detect_storage_path()
+        live_export_dir = (repo_root / args.live_export_dir).resolve()
+        export_root = ensure_live_export(
+            repo_root,
+            storage_path,
+            live_export_dir,
+            args.force_live_refresh,
+        )
 
     zh = load_strings(export_root, "zhcn")
     en = load_strings(export_root, "enus")
