@@ -1235,6 +1235,8 @@
   <CEffectDamage id="MasteryZagaraAutoAttackDamageDisplayDummy" />
   <CEffectDamage id="MasteryZagaraCocoonTimerDisplayDummy" />
   <CEffectDamage id="MasteryZagaraHealthAndEnergyRegenDisplayDummy" />
+  <CEffectDamage id="MasteryZagaraBanelingsDamageDisplayDummy" />
+  <CEffectDamage id="MasteryZagaraMassFrenzySpeedBoostDisplayDummy" />
   <CEffectEnumArea id="MedicHealACSearch">
     <SearchFilters value="Biological,Structure,Visible;Enemy,Missile,Stasis,Dead,Hidden,Invulnerable" />
     <AreaArray Radius="0.5" Effect="RaynorMedicSafeguard" />
@@ -2207,6 +2209,30 @@
     <EffectArray value="ZagaraVoidCoopBanelingBarrageExplodeSearchStructure" />
     <EffectArray value="Suicide" />
   </CEffectSet>
+  <CEffectDamage id="ZagaraVoidCoopBanelingBarrageExplodeSearchStructure" parent="DU_WEAP">
+    <EditorCategories value="Race:Zerg" />
+    <Amount value="80" />
+    <SearchFilters value="Ground,Structure;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <AreaArray Radius="2.2" Fraction="1" />
+    <ExcludeArray Value="Outer" />
+    <ImpactLocation Value="SourceUnit" />
+    <Kind value="Splash" />
+    <KindSplash value="Splash" />
+    <Death value="Disintegrate" />
+    <AINotifyFlags index="HurtEnemy" value="1" />
+  </CEffectDamage>
+  <CEffectDamage id="ZagaraVoidCoopBanelingBarrageExplodeSearchUnit" parent="DU_WEAP">
+    <EditorCategories value="Race:Zerg" />
+    <Amount value="40" />
+    <SearchFilters value="Ground;Player,Ally,Structure,Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <AreaArray Radius="2.2" Fraction="1" />
+    <ExcludeArray Value="Outer" />
+    <ImpactLocation Value="SourceUnit" />
+    <Kind value="Splash" />
+    <KindSplash value="Splash" />
+    <Death value="Disintegrate" />
+    <AINotifyFlags index="HurtEnemy" value="1" />
+  </CEffectDamage>
   <CEffectSet id="ZagaraVoidCoopBanelingBarrageForceFieldExplodeSearchSet">
     <ValidatorArray value="TargetIsForceField" />
     <EffectArray value="ZagaraVoidCoopBanelingBarrageForceFieldScanPersistentDestroy" />
