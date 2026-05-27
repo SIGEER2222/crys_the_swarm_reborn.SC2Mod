@@ -109,6 +109,7 @@ void libE0EAE146_gf_InitializeAbathurBiomass (int lp_player, string lp_collectEf
     libE0EAE146_gv_abathurBiomassEffect = lp_collectEffect;
     libE0EAE146_gv_abathurBiomassEnabled = true;
     libE0EAE146_gf_EnableAbathurBiomassTriggers();
+    libE0EAE146_gf_EnableAbathurToxicNestTriggers();
     if ((libE0EAE146_gv_abathurBiomassTestPickupCreated == false)) {
         libE0EAE146_gv_abathurBiomassTestPickupCreated = libE0EAE146_gf_CreateAbathurBiomassTestPickup(PointWithOffsetPolar(PlayerStartLocation(lp_player), 4.0, 0.0), libE0EAE146_gf_AbathurBiomassMaxStacks());
     }
@@ -121,6 +122,9 @@ void libE0EAE146_gf_EnableAbathurBiomassTriggers () {
     if ((libE0EAE146_gt_AbathurBiomassPickup != null)) {
         TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, true);
     }
+}
+
+void libE0EAE146_gf_EnableAbathurToxicNestTriggers () {
 }
 
 bool libE0EAE146_gf_CreateAbathurBiomassPickup (point lp_point, int lp_stack) {
@@ -340,6 +344,9 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     GameSetSpeedValue(c_gameSpeedFaster);
     BankLoad("CampaignXCore", 1);
     libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+    if ((libE0EAE146_gv_commander == "AbathurReborn")) {
+        libE0EAE146_gv_commander = "Abathur";
+    }
     autoC0933116_val = libE0EAE146_gv_commander;
     if (autoC0933116_val == "Stukov") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Classic");
@@ -1722,6 +1729,59 @@ void libE0EAE146_gt_AbathurBiomassPickup_Init () {
     libE0EAE146_gt_AbathurBiomassPickup = TriggerCreate("libE0EAE146_gt_AbathurBiomassPickup_Func");
     TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, false);
     TriggerAddEventTimePeriodic(libE0EAE146_gt_AbathurBiomassPickup, 0.5, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbathurToxicNest
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_AbathurToxicNest_Func (bool testConds, bool runActions) {
+    int lv_casterPlayer;
+
+    if (testConds) {
+        if (!(((libE0EAE146_gv_commander == "Abathur") || (libE0EAE146_gv_commander == "AbathurReborn")))) {
+            return false;
+        }
+    }
+    if (!runActions) {
+        return true;
+    }
+
+    lv_casterPlayer = UnitGetOwner(EventUnit());
+    if ((UnitAbilityChargeInfo(EventUnit(), EventUnitAbility(), c_unitAbilChargeCountLeft) > 0.0)) {
+        UISetTargetingOrder(PlayerGroupSingle(lv_casterPlayer), lib67C0F0E7_gv_cU_GPCasterGroup[lv_casterPlayer], OrderTargetingPoint(EventUnitAbility(), UnitGetPosition(EventUnit())), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_AbathurToxicNest_Init () {
+    libE0EAE146_gt_AbathurToxicNest = TriggerCreate("libE0EAE146_gt_AbathurToxicNest_Func");
+    TriggerEnable(libE0EAE146_gt_AbathurToxicNest, false);
+    TriggerAddEventUnitAbility(libE0EAE146_gt_AbathurToxicNest, null, AbilityCommand("SpawnToxicNest", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbathurToxicNestDeathFailsafe
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_AbathurToxicNestDeathFailsafe_Func (bool testConds, bool runActions) {
+    unit lv_target;
+
+    if (!runActions) {
+        return true;
+    }
+
+    lv_target = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    if ((lv_target != null)) {
+        UnitKill(lv_target);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_AbathurToxicNestDeathFailsafe_Init () {
+    libE0EAE146_gt_AbathurToxicNestDeathFailsafe = TriggerCreate("libE0EAE146_gt_AbathurToxicNestDeathFailsafe_Func");
+    TriggerEnable(libE0EAE146_gt_AbathurToxicNestDeathFailsafe, false);
+    TriggerAddEventPlayerEffectUsed(libE0EAE146_gt_AbathurToxicNestDeathFailsafe, c_playerAny, "ToxicNestKillCaster");
 }
 
 //--------------------------------------------------------------------------------------------------
