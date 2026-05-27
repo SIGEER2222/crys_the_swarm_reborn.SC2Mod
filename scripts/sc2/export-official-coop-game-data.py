@@ -191,6 +191,18 @@ TECH_UNIT_UNIT_OVERRIDES = {
     }
 }
 
+TECH_PRODUCTION_COMMAND_OVERRIDES = {
+    "Kerrigan": {
+        "Broodlord": [
+            {
+                "producer_unit_id": "Mutalisk",
+                "button_face": "BroodLord",
+                "abil_cmd": "MutaliskMorphToBroodLord,Train1",
+            },
+        ],
+    },
+}
+
 COMMANDER_TECH_ENTRY_EXCLUDES = {
     "Abathur": {
         "NydusNetwork",
@@ -1359,6 +1371,8 @@ def resolve_production_metadata(
     unit_id: str,
     preferred_face: str,
     commander_unit_ids: set[str] | None = None,
+    candidate_unit_ids: list[str] | None = None,
+    explicit_entries: list[dict[str, str]] | None = None,
 ) -> tuple[dict[str, object], list[dict[str, object]]]:
     def infer_morph_delta_cost(
         result: dict[str, object],
@@ -1370,6 +1384,7 @@ def resolve_production_metadata(
         if not producer_unit_id:
             return {}
         has_morph_semantics = False
+        ability_id = str(result.get("ability_id") or "")
         for _, ability_node in ability_chain:
             if ability_node.tag == "CAbilMorph":
                 has_morph_semantics = True
@@ -1384,6 +1399,8 @@ def resolve_production_metadata(
             if kill_on_finish is not None and (kill_on_finish.get("value") or "") == "1":
                 has_morph_semantics = True
                 break
+        if not has_morph_semantics and re.search(r"(Morph|Evolve|Merge)", ability_id):
+            has_morph_semantics = True
         if not has_morph_semantics:
             return {}
 
@@ -1490,6 +1507,8 @@ def resolve_production_metadata(
             "cost_mode": "",
             "base_unit_id": "",
         }
+        if not result["unit"] or result["unit"] in candidate_unit_id_set:
+            result["unit"] = unit_id
         resource_index_map = {
             "minerals": "Minerals",
             "vespene": "Vespene",
@@ -1565,7 +1584,21 @@ def resolve_production_metadata(
             face,
         )
 
-    candidates = resolver.unit_production_entries(source_name, unit_id)
+    candidate_unit_id_set: set[str] = set()
+    ordered_candidate_unit_ids: list[str] = []
+    for candidate in [unit_id, *(candidate_unit_ids or [])]:
+        if candidate and candidate not in candidate_unit_id_set:
+            candidate_unit_id_set.add(candidate)
+            ordered_candidate_unit_ids.append(candidate)
+
+    candidates: list[dict[str, str]] = []
+    for candidate in ordered_candidate_unit_ids:
+        for item in resolver.unit_production_entries(source_name, candidate):
+            if item not in candidates:
+                candidates.append(item)
+    for item in explicit_entries or []:
+        if item not in candidates:
+            candidates.append(item)
     if not candidates:
         return {}, []
     parsed_candidates: list[dict[str, object]] = []
@@ -2091,6 +2124,7 @@ def build_commander_payload(
         tech_entries.extend(build_supplemental_roster_entries(export_root, short_id, commander_id, source_name, zh, en))
 
         overrides = TECH_UNIT_UNIT_OVERRIDES.get(short_id, {})
+        production_overrides = TECH_PRODUCTION_COMMAND_OVERRIDES.get(short_id, {})
         normalized_tech_entries: list[dict[str, object]] = []
         for entry in tech_entries:
             normalized_entry = dict(entry)
@@ -2234,6 +2268,11 @@ def build_commander_payload(
                 str(entry["unit_id"]),
                 str(entry["icon_button"]),
                 commander_entry_unit_ids,
+                [
+                    *list(entry.get("resolved_unit_ids", [])),
+                    *list(entry.get("army_categories", [])),
+                ],
+                list(production_overrides.get(str(entry["id"]), [])),
             )
             item = {
                 **entry,
