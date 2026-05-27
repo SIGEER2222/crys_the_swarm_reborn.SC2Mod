@@ -238,149 +238,17 @@
   },
   {
     "id": "ColossusPurifier",
-    "unit_id": "Colossus",
+    "unit_id": "ColossusPurifier",
     "name": "巨像",
     "object_type": "Unit",
-    "icon_button": "Colossus",
-    "icon": "Assets\\Textures\\btn-unit-protoss-colossus.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-protoss-colossus.dds",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
     "cards": [
       {
         "card_id": "",
         "is_default_card": true,
         "buttons": [
-          {
-            "face": "Move",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Move",
-            "requirements": "",
-            "row": 0,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Move",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "移动",
-              "name_key": "Button/Name/Move",
-              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
-              "tooltip_key": "Button/Tooltip/Move",
-              "icon": "Assets\\Textures\\btn-command-move.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
-            }
-          },
-          {
-            "face": "Stop",
-            "type": "AbilCmd",
-            "abil_cmd": "stop,Stop",
-            "requirements": "",
-            "row": 0,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Stop",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "停止",
-              "name_key": "Button/Name/Stop",
-              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
-              "tooltip_key": "Button/Tooltip/Stop",
-              "icon": "Assets\\Textures\\btn-command-stop.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
-            }
-          },
-          {
-            "face": "MoveHoldPosition",
-            "type": "AbilCmd",
-            "abil_cmd": "move,HoldPos",
-            "requirements": "",
-            "row": 0,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MoveHoldPosition",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "原地防御",
-              "name_key": "Button/Name/MoveHoldPosition",
-              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
-              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
-            }
-          },
-          {
-            "face": "MovePatrol",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Patrol",
-            "requirements": "",
-            "row": 0,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MovePatrol",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "巡逻",
-              "name_key": "Button/Name/MovePatrol",
-              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MovePatrol",
-              "icon": "Assets\\Textures\\btn-command-patrol.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
-            }
-          },
-          {
-            "face": "Attack",
-            "type": "AbilCmd",
-            "abil_cmd": "attack,Execute",
-            "requirements": "",
-            "row": 0,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Attack",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "攻击",
-              "name_key": "Button/Name/Attack",
-              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
-              "tooltip_key": "Button/Tooltip/Attack",
-              "icon": "Assets\\Textures\\btn-command-attack.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
-            }
-          },
-          {
-            "face": "CliffWalk",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": 2,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "CliffWalk",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "悬崖攀越",
-              "name_key": "Button/Name/CliffWalk",
-              "tooltip": "巨像能够攀越悬崖。",
-              "tooltip_key": "Button/Tooltip/CliffWalk",
-              "icon": "Assets\\Textures\\BTN-ability-Protoss-cliffwalk-color.dds",
-              "alert_icon": "Assets\\Textures\\BTN-ability-Protoss-cliffwalk-color.dds"
-            }
-          },
           {
             "face": "ExtendedThermalLance",
             "type": "Passive",
@@ -402,6 +270,18 @@
               "icon": "Assets\\Textures\\BTN-Upgrade-Protoss-ExtendedThermalLance.dds",
               "alert_icon": "Assets\\Textures\\BTN-Upgrade-Protoss-ExtendedThermalLance.dds"
             }
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "HaveFireBeam",
+            "row": "",
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
           }
         ]
       }
@@ -1808,165 +1688,33 @@
   },
   {
     "id": "ZealotPurifier",
-    "unit_id": "Zealot",
+    "unit_id": "ZealotPurifier",
     "name": "哨兵",
     "object_type": "Unit",
-    "icon_button": "Zealot",
-    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
     "cards": [
       {
         "card_id": "",
         "is_default_card": true,
         "buttons": [
           {
-            "face": "Move",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Move",
-            "requirements": "",
-            "row": 0,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Move",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "移动",
-              "name_key": "Button/Name/Move",
-              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
-              "tooltip_key": "Button/Tooltip/Move",
-              "icon": "Assets\\Textures\\btn-command-move.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
-            }
-          },
-          {
-            "face": "Stop",
-            "type": "AbilCmd",
-            "abil_cmd": "stop,Stop",
-            "requirements": "",
-            "row": 0,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Stop",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "停止",
-              "name_key": "Button/Name/Stop",
-              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
-              "tooltip_key": "Button/Tooltip/Stop",
-              "icon": "Assets\\Textures\\btn-command-stop.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
-            }
-          },
-          {
-            "face": "MoveHoldPosition",
-            "type": "AbilCmd",
-            "abil_cmd": "move,HoldPos",
-            "requirements": "",
-            "row": 0,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MoveHoldPosition",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "原地防御",
-              "name_key": "Button/Name/MoveHoldPosition",
-              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
-              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
-            }
-          },
-          {
-            "face": "MovePatrol",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Patrol",
-            "requirements": "",
-            "row": 0,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MovePatrol",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "巡逻",
-              "name_key": "Button/Name/MovePatrol",
-              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MovePatrol",
-              "icon": "Assets\\Textures\\btn-command-patrol.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
-            }
-          },
-          {
-            "face": "Attack",
-            "type": "AbilCmd",
-            "abil_cmd": "attack,Execute",
-            "requirements": "",
-            "row": 0,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Attack",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "攻击",
-              "name_key": "Button/Name/Attack",
-              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
-              "tooltip_key": "Button/Tooltip/Attack",
-              "icon": "Assets\\Textures\\btn-command-attack.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
-            }
-          },
-          {
-            "face": "Charge",
-            "type": "AbilCmd",
-            "abil_cmd": "Charge,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Charge",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "冲锋",
-              "name_key": "Button/Name/Charge",
-              "tooltip": "允许狂热者能拦截附近的敌人。同时还会提高狂热者的移动速度。该技能每{Abil,Charge,Cost.Cooldown.TimeUse}秒最多只能使用一次。",
-              "tooltip_key": "Button/Tooltip/Charge",
-              "icon": "Assets\\Textures\\btn-ability-protoss-charge-color.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-protoss-charge-color.dds"
-            }
-          },
-          {
-            "face": "WhirlwindLocked",
+            "face": "ReconstructionLocked",
             "type": "Passive",
             "abil_cmd": "",
-            "requirements": "ArtanisLevel04",
+            "requirements": "KaraxLevel04",
             "row": 2,
             "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "WhirlwindLocked",
+              "id": "ReconstructionLocked",
               "source_catalog": "starcoop",
               "parent": "AbilLocked",
-              "name": "旋风斩",
-              "name_key": "Button/Name/WhirlwindLocked",
+              "name": "重构",
+              "name_key": "Button/Name/ReconstructionLocked",
               "tooltip": "该技能将在指挥官等级4时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel04",
               "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
@@ -1974,26 +1722,16 @@
             }
           },
           {
-            "face": "Rally",
-            "type": "AbilCmd",
-            "abil_cmd": "ProgressRally,Rally1",
-            "requirements": "",
-            "row": 2,
-            "column": 4,
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "ZealotPurifierReviveKaraxHide",
+            "row": "",
+            "column": "",
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {
-              "id": "Rally",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "设定集结点",
-              "name_key": "Button/Name/Rally",
-              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
-              "tooltip_key": "Button/Tooltip/Rally",
-              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
-            }
+            "button": {}
           }
         ]
       }

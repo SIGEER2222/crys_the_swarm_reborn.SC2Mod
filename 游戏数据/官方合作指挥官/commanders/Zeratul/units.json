@@ -239,7 +239,7 @@
   },
   {
     "id": "ObserverZeratul",
-    "unit_id": "Observer",
+    "unit_id": "ZeratulObserver",
     "army_categories": [
       "ObserverZeratul"
     ],
@@ -254,25 +254,25 @@
     "prefix_key": "UserData/TechUnit/ObserverZeratul_Prefix",
     "suffix": "",
     "suffix_key": "",
-    "name": "侦测器",
-    "name_key": "Unit/Name/Observer",
-    "tooltip": "间谍型空中单位。拥有永久隐形的能力。\n侦测单位",
-    "tooltip_key": "Button/Tooltip/Observer",
+    "name": "萨尔纳加观察者",
+    "name_key": "Unit/Name/ZeratulObserver",
+    "tooltip": "间谍型空中单位。敌人没有侦测手段将无法看到隐形单位。\n侦测单位",
+    "tooltip_key": "Button/Tooltip/ZeratulObserver",
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "Observer",
-      "ZeratulObserver"
+      "ZeratulObserver",
+      "Observer"
     ],
-    "icon_button": "Observer",
-    "icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
+    "icon_button": "ZeratulObserver",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zeratulobserver.dds",
     "unit": {
-      "id": "Observer",
+      "id": "ZeratulObserver",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "Melee",
+      "object_family": "FactionXelNaga",
       "race": "Prot",
       "mob": "Multiplayer",
       "planes": [
@@ -283,7 +283,10 @@
         "Mechanical"
       ],
       "flags": [
-        "ArmySelect"
+        "AISupport",
+        "ArmySelect",
+        "Cloaked",
+        "PreventDestroy"
       ],
       "minerals": "25",
       "vespene": "75",
@@ -291,37 +294,17 @@
       "supply": "-1",
       "build_time": "",
       "life": "40",
-      "shields": "30",
+      "shields": "20",
       "energy": "",
       "sight": "11",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "Melee"
+        "ObjectFamily": "FactionXelNaga"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "Observer",
-          "parent": ""
-        },
-        {
-          "source": "voidmulti",
-          "id": "Observer",
-          "parent": ""
-        },
-        {
-          "source": "swarm",
-          "id": "Observer",
-          "parent": ""
-        },
-        {
-          "source": "libertymulti",
-          "id": "Observer",
-          "parent": ""
-        },
-        {
-          "source": "liberty",
-          "id": "Observer",
+          "id": "ZeratulObserver",
           "parent": ""
         }
       ]
