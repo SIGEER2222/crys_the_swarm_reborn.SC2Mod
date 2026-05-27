@@ -245,7 +245,7 @@
     </InfoArray>
     <AutoCastValidatorArray value="TargetNotChangeling" />
   </CAbilMorph>
-  <CAbilMorph id="BurrowImpalerAbathurRebornUp">
+  <CAbilMorph id="BurrowImpalerAbathurUp">
     <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
     <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
       <Flags index="ToSelection" value="1" />
@@ -254,13 +254,13 @@
     <AbilSetId value="BrwUb" />
     <Flags index="IgnoreFacing" value="1" />
     <Flags index="SuppressMovement" value="1" />
-    <InfoArray Unit="ImpalerAbathurReborn" RandomDelayMax="0.5">
+    <InfoArray Unit="ImpalerAbathur" RandomDelayMax="0.5">
       <SectionArray index="Actor">
         <DurationArray index="Duration" value="1" />
       </SectionArray>
     </InfoArray>
   </CAbilMorph>
-  <CAbilMorph id="BurrowRavagerAbathurRebornUp">
+  <CAbilMorph id="BurrowRavagerAbathurUp">
     <AbilSetId value="BrwU" />
     <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
     <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
@@ -270,7 +270,7 @@
     <Flags index="AutoCast" value="1" />
     <Flags index="IgnoreFacing" value="1" />
     <Flags index="SuppressMovement" value="1" />
-    <InfoArray Unit="RavagerAbathurReborn" RandomDelayMax="0.1">
+    <InfoArray Unit="RavagerAbathur" RandomDelayMax="0.1">
       <SectionArray index="Actor">
         <DurationArray index="Duration" value="0.4443" />
       </SectionArray>
@@ -553,10 +553,10 @@
     <MorphUnit value="Egg" />
   </CAbilTrain>
   <CAbilTrain id="MorphRoachToImpaler">
-    <MorphUnit value="ImpalerAbathurRebornEgg" />
+    <MorphUnit value="ImpalerAbathurEgg" />
     <InfoArray index="Train1">
       <Button Requirements="HaveLair" />
-      <Unit index="0" value="ImpalerAbathurReborn" />
+      <Unit index="0" value="ImpalerAbathur" />
     </InfoArray>
   </CAbilTrain>
   <CAbilMorph id="MorphToOverseer">
@@ -619,7 +619,7 @@
   <CAbilEffectTarget id="QueenBurstHeal">
     <CmdButtonArray index="Execute" Requirements="NotHaveBioMechanicalTransfusion" />
   </CAbilEffectTarget>
-  <CAbilEffectTarget id="RavagerAbathurRebornCorrosiveBile">
+  <CAbilEffectTarget id="RavagerAbathurCorrosiveBile">
     <Alignment value="Negative" />
     <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
     <Effect index="0" value="RavagerCorrosiveBileAoeLaunchSet" />
@@ -628,7 +628,7 @@
     </Cost>
     <Range value="12" />
     <CursorEffect value="RavagerCorrosiveBileAoeCursorDummy" />
-    <CmdButtonArray index="Execute" DefaultButtonFace="RavagerAbathurRebornCorrosiveBile" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="RavagerAbathurCorrosiveBile" />
   </CAbilEffectTarget>
   <CAbilEffectTarget id="RavagerCorrosiveBile">
     <Effect index="0" value="RavagerCorrosiveBileAoeLaunchSet" />
@@ -2384,10 +2384,10 @@
     <Flags index="KillOnFinish" value="1" />
     <Flags index="Select" value="1" />
     <Flags index="WaitForFood" value="0" />
-    <MorphUnit value="RavagerAbathurRebornCocoon" />
+    <MorphUnit value="RavagerAbathurCocoon" />
     <InfoArray index="Train1" Time="9" Alert="MorphComplete_Zerg" Effect="CopyOrdersRavagerMorph">
       <Button DefaultButtonFace="Ravager" State="Restricted" Requirements="HaveLair" />
-      <Unit value="RavagerAbathurReborn" />
+      <Unit value="RavagerAbathur" />
       <Flags index="IgnorePlacement" value="1" />
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />
@@ -2407,7 +2407,7 @@
     <MorphUnit value="RavagerVileAbathurRebornCocoon" />
     <InfoArray index="Train1" Time="9" Alert="MorphComplete_Zerg" Effect="CopyOrdersRavagerMorph">
       <Button DefaultButtonFace="Ravager" State="Restricted" Requirements="HaveLair" />
-      <Unit value="RavagerAbathurReborn" />
+      <Unit value="RavagerAbathur" />
       <Flags index="IgnorePlacement" value="1" />
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />

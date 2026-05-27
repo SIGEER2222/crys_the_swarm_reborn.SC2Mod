@@ -1929,6 +1929,53 @@ def collect_command_cards(
     return result
 
 
+def summarize_command_card_buttons(cards: list[dict[str, object]]) -> list[dict[str, object]]:
+    result: list[dict[str, object]] = []
+    for card in cards:
+        card_id = str(card.get("card_id") or "")
+        is_default_card = bool(card.get("is_default_card"))
+        for button in card.get("buttons", []):
+            if not isinstance(button, dict):
+                continue
+            face = str(button.get("face") or "")
+            abil_cmd = str(button.get("abil_cmd") or "")
+            button_meta = button.get("button") if isinstance(button.get("button"), dict) else {}
+            if not face and not abil_cmd and not button_meta:
+                continue
+            result.append(
+                {
+                    "card_id": card_id,
+                    "is_default_card": is_default_card,
+                    "face": face,
+                    "type": str(button.get("type") or ""),
+                    "abil_cmd": abil_cmd,
+                    "requirements": str(button.get("requirements") or ""),
+                    "row": button.get("row"),
+                    "column": button.get("column"),
+                    "submenu_card_id": str(button.get("submenu_card_id") or ""),
+                    "name": str(button_meta.get("name") or ""),
+                    "tooltip": str(button_meta.get("tooltip") or ""),
+                    "icon": str(button_meta.get("icon") or ""),
+                    "alert_icon": str(button_meta.get("alert_icon") or ""),
+                }
+            )
+    return result
+
+
+def first_button_media(cards: list[dict[str, object]]) -> tuple[str, str, str, str]:
+    for ability in summarize_command_card_buttons(cards):
+        icon = str(ability.get("icon") or "")
+        if not icon:
+            continue
+        return (
+            str(ability.get("face") or ""),
+            icon,
+            str(ability.get("alert_icon") or icon),
+            str(ability.get("tooltip") or ""),
+        )
+    return "", "", "", ""
+
+
 def build_supplemental_roster_entries(
     export_root: Path,
     short_id: str,
@@ -2511,6 +2558,35 @@ def build_commander_payload(
                 for option in production_options:
                     if option.get("abil_cmd") == production.get("abil_cmd"):
                         option.update(field_override)
+            production_button: dict[str, object] = {}
+            if production and not entry["icon"]:
+                production_button = resolve_button_metadata(
+                    resolver,
+                    str(entry["source_name"]),
+                    [
+                        str(production.get("button_face") or ""),
+                        str(production.get("ability_id") or ""),
+                    ],
+                    zh,
+                    en,
+                )
+                if production_button.get("icon"):
+                    entry["icon_button"] = entry["icon_button"] or str(production_button.get("id") or production.get("button_face") or "")
+                    entry["icon"] = str(production_button.get("icon") or "")
+                    entry["alert_icon"] = str(production_button.get("alert_icon") or production_button.get("icon") or "")
+            elif production:
+                production_button = resolve_button_metadata(
+                    resolver,
+                    str(entry["source_name"]),
+                    [
+                        str(production.get("button_face") or ""),
+                        str(production.get("ability_id") or ""),
+                    ],
+                    zh,
+                    en,
+                )
+            if production_button.get("tooltip") and not entry["tooltip"]:
+                entry["tooltip"] = str(production_button.get("tooltip") or "")
             item = {
                 **entry,
                 "unit": unit_meta,
@@ -2522,6 +2598,39 @@ def build_commander_payload(
             roster.append(item)
             object_type = str(unit_meta.get("object_type") or "Unknown")
             cards = collect_command_cards(unit_chain, str(entry["source_name"]), resolver, zh, en)
+            ability_summaries = summarize_command_card_buttons(cards) if cards else []
+            if not ability_summaries and production:
+                ability_summaries = [
+                    {
+                        "card_id": "",
+                        "is_default_card": True,
+                        "face": str(production.get("button_face") or ""),
+                        "type": "AbilCmd",
+                        "abil_cmd": str(production.get("abil_cmd") or ""),
+                        "requirements": "",
+                        "row": None,
+                        "column": None,
+                        "submenu_card_id": "",
+                        "name": str(production_button.get("name") or ""),
+                        "tooltip": str(production_button.get("tooltip") or ""),
+                        "icon": str(production_button.get("icon") or ""),
+                        "alert_icon": str(production_button.get("alert_icon") or production_button.get("icon") or ""),
+                    }
+                ]
+            if ability_summaries:
+                item["abilities"] = ability_summaries
+            if cards and (not entry["icon"] or not entry["tooltip"]):
+                fallback_face, fallback_icon, fallback_alert_icon, fallback_tooltip = first_button_media(cards)
+                if fallback_icon and not entry["icon"]:
+                    entry["icon_button"] = entry["icon_button"] or fallback_face
+                    entry["icon"] = fallback_icon
+                    entry["alert_icon"] = fallback_alert_icon
+                if fallback_tooltip and not entry["tooltip"]:
+                    entry["tooltip"] = fallback_tooltip
+            item["icon_button"] = entry["icon_button"]
+            item["icon"] = entry["icon"]
+            item["alert_icon"] = entry["alert_icon"]
+            item["tooltip"] = entry["tooltip"]
             if cards:
                 command_cards.append(
                     {
@@ -2677,7 +2786,7 @@ def render_summary_markdown(export_root: Path, output_dir: Path, commanders: dic
     lines.append("")
     lines.append("- `commanders/<Commander>/commander.json`：指挥官基础信息、默认升级、默认能力命令。")
     lines.append("- `commanders/<Commander>/roster.json`：官方 TechUnit 全量名册，含单位分类与单位元数据。")
-    lines.append("- `commanders/<Commander>/units.json` / `buildings.json` / `heroes.json`：按 `UnitData.EditorCategories.ObjectType` 切分，附带入口按钮、图标引用，以及 `production` 代表入口与 `production_options` 全部候选面板费用/耗时；`unit` 内补充 `supply_raw` / `supply_cost` / `supply_provided`。")
+    lines.append("- `commanders/<Commander>/units.json` / `buildings.json` / `heroes.json`：按 `UnitData.EditorCategories.ObjectType` 切分，附带入口按钮、图标引用、`abilities` 技能/面板按钮摘要，以及 `production` 代表入口与 `production_options` 全部候选面板费用/耗时；`unit` 内补充 `supply_raw` / `supply_cost` / `supply_provided`。")
     lines.append("- `commanders/<Commander>/command_cards.json`：单位/建筑/英雄的 `CardLayouts` 面板按钮，含按钮图标引用。")
     lines.append("- `commanders/<Commander>/progression.json`：15 级加点与 6 组精通。")
     lines.append("- `commanders/<Commander>/prestiges.json`：3 个威望及其主升级、补充升级、禁用单位/技能。")

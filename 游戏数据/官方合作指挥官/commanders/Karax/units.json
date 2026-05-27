@@ -29,9 +29,9 @@
       "Immortal",
       "RoboticsFacility"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "RoboticsFacility",
+    "icon": "Assets\\Textures\\btn-building-protoss-roboticsfacility.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-roboticsfacility.dds",
     "unit": {
       "id": "ImmortalAiur",
       "source_catalog": "starcoop",
@@ -131,6 +131,68 @@
         "source_catalog": "starcoop",
         "cost_mode": "",
         "base_unit_id": ""
+      }
+    ],
+    "abilities": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "HaveBarrier",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "HaveBarrier",
+        "row": 1,
+        "column": 0,
+        "submenu_card_id": "",
+        "name": "强化屏障",
+        "tooltip": "使不朽者的屏障能吸收的伤害总量增加100%。",
+        "icon": "",
+        "alert_icon": ""
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "ShadowCannonLocked",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "KaraxLevel09",
+        "row": 2,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "暗影光炮",
+        "tooltip": "该技能将在指挥官等级9时解锁。",
+        "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+        "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "ImmortalBarrierBase",
+        "type": "",
+        "abil_cmd": "ImmortalBarrierBase,Execute",
+        "requirements": "",
+        "row": "",
+        "column": "",
+        "submenu_card_id": "",
+        "name": "",
+        "tooltip": "最多可吸收{Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit}点伤害，持续{Behavior,ImmortalBarrierBase,Duration}秒。",
+        "icon": "",
+        "alert_icon": ""
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "ImmortalShakurasShadowCannon",
+        "type": "AbilCmd",
+        "abil_cmd": "ImmortalShakurasShadowCannon,Execute",
+        "requirements": "",
+        "row": "",
+        "column": "",
+        "submenu_card_id": "",
+        "name": "",
+        "tooltip": "",
+        "icon": "",
+        "alert_icon": ""
       }
     ]
   },
@@ -296,6 +358,158 @@
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
       }
+    ],
+    "abilities": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Move",
+        "type": "AbilCmd",
+        "abil_cmd": "move,Move",
+        "requirements": "",
+        "row": 0,
+        "column": 0,
+        "submenu_card_id": "",
+        "name": "移动",
+        "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+        "icon": "Assets\\Textures\\btn-command-move.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Stop",
+        "type": "AbilCmd",
+        "abil_cmd": "stop,Stop",
+        "requirements": "",
+        "row": 0,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "停止",
+        "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+        "icon": "Assets\\Textures\\btn-command-stop.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "MoveHoldPosition",
+        "type": "AbilCmd",
+        "abil_cmd": "move,HoldPos",
+        "requirements": "",
+        "row": 0,
+        "column": 2,
+        "submenu_card_id": "",
+        "name": "原地防御",
+        "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+        "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "MovePatrol",
+        "type": "AbilCmd",
+        "abil_cmd": "move,Patrol",
+        "requirements": "",
+        "row": 0,
+        "column": 3,
+        "submenu_card_id": "",
+        "name": "巡逻",
+        "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+        "icon": "Assets\\Textures\\btn-command-patrol.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "AcquireMove",
+        "type": "AbilCmd",
+        "abil_cmd": "move,AcquireMove",
+        "requirements": "",
+        "row": 0,
+        "column": 4,
+        "submenu_card_id": "",
+        "name": "搜索移动",
+        "tooltip": "命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。",
+        "icon": "Assets\\Textures\\btn-command-attack.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "MorphtoObserverSiege",
+        "type": "AbilCmd",
+        "abil_cmd": "ObserverMorphtoObserverSiege,Execute",
+        "requirements": "",
+        "row": 2,
+        "column": 0,
+        "submenu_card_id": "",
+        "name": "监察模式",
+        "tooltip": "把侦测器变形为监察模式。视野提高{(Unit,ObserverSiegeMode,Sight/Unit,Observer,Sight-1)*100}%，但无法移动且不再隐形。",
+        "icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds",
+        "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "MorphtoObserverSiege",
+        "type": "AbilCmd",
+        "abil_cmd": "ObserverMorphtoObserverSiege,Execute",
+        "requirements": "",
+        "row": 2,
+        "column": 2,
+        "submenu_card_id": "",
+        "name": "监察模式",
+        "tooltip": "把侦测器变形为监察模式。视野提高{(Unit,ObserverSiegeMode,Sight/Unit,Observer,Sight-1)*100}%，但无法移动且不再隐形。",
+        "icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds",
+        "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer-Surveillance.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Detector",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "",
+        "row": 2,
+        "column": 3,
+        "submenu_card_id": "",
+        "name": "侦测单位",
+        "tooltip": "该单位能够侦测到隐形、潜地和幻像单位。",
+        "icon": "Assets\\Textures\\BTN-Status-Detector.dds",
+        "alert_icon": "Assets\\Textures\\BTN-Status-Detector.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Detector",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "",
+        "row": 2,
+        "column": 4,
+        "submenu_card_id": "",
+        "name": "侦测单位",
+        "tooltip": "该单位能够侦测到隐形、潜地和幻像单位。",
+        "icon": "Assets\\Textures\\BTN-Status-Detector.dds",
+        "alert_icon": "Assets\\Textures\\BTN-Status-Detector.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "HaveGraviticBoosters",
+        "type": "",
+        "abil_cmd": "",
+        "requirements": "HaveGraviticBoosters",
+        "row": "",
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "重力加速器",
+        "tooltip": "提高侦测器的移动速度50%。",
+        "icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds",
+        "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-graviticbooster.dds"
+      }
     ]
   },
   {
@@ -327,9 +541,9 @@
       "Phoenix",
       "Stargate"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "FleetBeacon",
+    "icon": "Assets\\Textures\\btn-building-protoss-fleetbeacon.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-fleetbeacon.dds",
     "unit": {
       "id": "PhoenixPurifier",
       "source_catalog": "starcoop",
@@ -445,6 +659,53 @@
         "source_catalog": "starcoop",
         "cost_mode": "",
         "base_unit_id": ""
+      }
+    ],
+    "abilities": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "AnionPulseCrystal",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "HaveKaraxPhoenixRangeUpgrade",
+        "row": 2,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "阴离子脉冲水晶",
+        "tooltip": "使幻影战机的射程提高2。",
+        "icon": "Assets\\Textures\\btn-upgrade-protoss-phoenixrange.dds",
+        "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-phoenixrange.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "GravitonBeam",
+        "type": "",
+        "abil_cmd": "MirageGravitonBeamVoidCampaign,Execute",
+        "requirements": "",
+        "row": "",
+        "column": "",
+        "submenu_card_id": "",
+        "name": "引力光束",
+        "tooltip": "使目标单位浮空并无法使用技能。效果最多持续{time:10}。\n重型单位对此免疫。",
+        "icon": "Assets\\Textures\\btn-ability-protoss-gravitonbeam-color.dds",
+        "alert_icon": "Assets\\Textures\\btn-ability-protoss-gravitonbeam-color.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "GravitonBeamVoidCampaign",
+        "type": "",
+        "abil_cmd": "GravitonBeamVoidCampaign,Execute",
+        "requirements": "",
+        "row": "",
+        "column": "",
+        "submenu_card_id": "",
+        "name": "",
+        "tooltip": "",
+        "icon": "",
+        "alert_icon": ""
       }
     ]
   },
@@ -580,6 +841,23 @@
         "cost_mode": "",
         "base_unit_id": ""
       }
+    ],
+    "abilities": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "HaveFenixScoutWeaponRange",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "HaveFenixScoutWeaponRange",
+        "row": 2,
+        "column": 0,
+        "submenu_card_id": "",
+        "name": "战斗感应器阵列",
+        "tooltip": "侦察机获得+3对空攻击射程和+1对地攻击射程。",
+        "icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-scoutchampionrange.dds",
+        "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-scoutchampionrange.dds"
+      }
     ]
   },
   {
@@ -609,9 +887,9 @@
       "SentryPurifier",
       "Sentry"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Sentry",
+    "icon": "Assets\\Textures\\btn-unit-protoss-sentry.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-sentry.dds",
     "unit": {
       "id": "SentryPurifier",
       "source_catalog": "starcoop",
@@ -696,6 +974,38 @@
         "cost_mode": "",
         "base_unit_id": ""
       }
+    ],
+    "abilities": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "ReclamationLocked",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "KaraxLevel04",
+        "row": 2,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "回收",
+        "tooltip": "该技能将在指挥官等级4时解锁。",
+        "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+        "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "KaraxEnergyRegenUpgrade",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "HaveKaraxEnergyRegenUpgrade",
+        "row": 2,
+        "column": 4,
+        "submenu_card_id": "",
+        "name": "快速恢复",
+        "tooltip": "能量恢复速度提高200%。",
+        "icon": "Assets\\Textures\\btn-upgrade-karax-energyregen200.dds",
+        "alert_icon": "Assets\\Textures\\btn-upgrade-karax-energyregen200.dds"
+      }
     ]
   },
   {
@@ -727,9 +1037,9 @@
       "ZealotPurifier",
       "Zealot"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Zealot",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
     "unit": {
       "id": "ZealotPurifier",
       "source_catalog": "starcoop",
@@ -877,6 +1187,23 @@
         "source_catalog": "starcoop",
         "cost_mode": "",
         "base_unit_id": ""
+      }
+    ],
+    "abilities": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "ReconstructionLocked",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "KaraxLevel04",
+        "row": 2,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "重构",
+        "tooltip": "该技能将在指挥官等级4时解锁。",
+        "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+        "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
       }
     ]
   },
@@ -1068,6 +1395,113 @@
         "source_catalog": "starcoop",
         "cost_mode": "",
         "base_unit_id": ""
+      }
+    ],
+    "abilities": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Move",
+        "type": "AbilCmd",
+        "abil_cmd": "move,Move",
+        "requirements": "",
+        "row": 0,
+        "column": 0,
+        "submenu_card_id": "",
+        "name": "移动",
+        "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+        "icon": "Assets\\Textures\\btn-command-move.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Stop",
+        "type": "AbilCmd",
+        "abil_cmd": "stop,Stop",
+        "requirements": "",
+        "row": 0,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "停止",
+        "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+        "icon": "Assets\\Textures\\btn-command-stop.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "MoveHoldPosition",
+        "type": "AbilCmd",
+        "abil_cmd": "move,HoldPos",
+        "requirements": "",
+        "row": 0,
+        "column": 2,
+        "submenu_card_id": "",
+        "name": "原地防御",
+        "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+        "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "MovePatrol",
+        "type": "AbilCmd",
+        "abil_cmd": "move,Patrol",
+        "requirements": "",
+        "row": 0,
+        "column": 3,
+        "submenu_card_id": "",
+        "name": "巡逻",
+        "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+        "icon": "Assets\\Textures\\btn-command-patrol.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Attack",
+        "type": "AbilCmd",
+        "abil_cmd": "attack,Execute",
+        "requirements": "",
+        "row": 0,
+        "column": 4,
+        "submenu_card_id": "",
+        "name": "攻击",
+        "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+        "icon": "Assets\\Textures\\btn-command-attack.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "CliffWalk",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "",
+        "row": 2,
+        "column": 0,
+        "submenu_card_id": "",
+        "name": "悬崖攀越",
+        "tooltip": "巨像能够攀越悬崖。",
+        "icon": "Assets\\Textures\\BTN-ability-Protoss-cliffwalk-color.dds",
+        "alert_icon": "Assets\\Textures\\BTN-ability-Protoss-cliffwalk-color.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "ExtendedThermalLance",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "HaveKaraxExtendedThermalLance",
+        "row": 2,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "加长热能射线枪",
+        "tooltip": "使巨像的射程提高3。",
+        "icon": "Assets\\Textures\\BTN-Upgrade-Protoss-ExtendedThermalLance.dds",
+        "alert_icon": "Assets\\Textures\\BTN-Upgrade-Protoss-ExtendedThermalLance.dds"
       }
     ]
   },
@@ -1277,6 +1711,128 @@
         "source_catalog": "starcoop",
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
+      }
+    ],
+    "abilities": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Move",
+        "type": "AbilCmd",
+        "abil_cmd": "move,Move",
+        "requirements": "",
+        "row": 0,
+        "column": 0,
+        "submenu_card_id": "",
+        "name": "移动",
+        "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+        "icon": "Assets\\Textures\\btn-command-move.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Stop",
+        "type": "AbilCmd",
+        "abil_cmd": "stop,Stop",
+        "requirements": "",
+        "row": 0,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "停止",
+        "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+        "icon": "Assets\\Textures\\btn-command-stop.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "MoveHoldPosition",
+        "type": "AbilCmd",
+        "abil_cmd": "move,HoldPos",
+        "requirements": "",
+        "row": 0,
+        "column": 2,
+        "submenu_card_id": "",
+        "name": "原地防御",
+        "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+        "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "MovePatrol",
+        "type": "AbilCmd",
+        "abil_cmd": "move,Patrol",
+        "requirements": "",
+        "row": 0,
+        "column": 3,
+        "submenu_card_id": "",
+        "name": "巡逻",
+        "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+        "icon": "Assets\\Textures\\btn-command-patrol.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Attack",
+        "type": "AbilCmd",
+        "abil_cmd": "attack,Execute",
+        "requirements": "",
+        "row": 0,
+        "column": 4,
+        "submenu_card_id": "",
+        "name": "攻击",
+        "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+        "icon": "Assets\\Textures\\btn-command-attack.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Interceptor",
+        "type": "AbilCmd",
+        "abil_cmd": "CarrierHangar,Ammo1",
+        "requirements": "",
+        "row": 2,
+        "column": 0,
+        "submenu_card_id": "",
+        "name": "制造拦截机",
+        "tooltip": "制造拦截机。拦截机能够自动攻击航母的目标，是航母唯一的武器。\n可以对地和对空。",
+        "icon": "Assets\\Textures\\btn-unit-protoss-interceptor.dds",
+        "alert_icon": "Assets\\Textures\\btn-unit-protoss-interceptor.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "GravitonCatapult",
+        "type": "Passive",
+        "abil_cmd": "",
+        "requirements": "UseGravitonCatapult",
+        "row": 2,
+        "column": 1,
+        "submenu_card_id": "",
+        "name": "引力弹射",
+        "tooltip": "使航母发射拦截机的速度更快。",
+        "icon": "Assets\\Textures\\BTN-Upgrade-Protoss-GravitonCatapult.dds",
+        "alert_icon": "Assets\\Textures\\BTN-Upgrade-Protoss-GravitonCatapult.dds"
+      },
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "face": "Cancel",
+        "type": "AbilCmd",
+        "abil_cmd": "HangarQueue5,CancelLast",
+        "requirements": "",
+        "row": 2,
+        "column": 4,
+        "submenu_card_id": "",
+        "name": "取消",
+        "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+        "icon": "Assets\\Textures\\btn-command-cancel.dds",
+        "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
       }
     ]
   }

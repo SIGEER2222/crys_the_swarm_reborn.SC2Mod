@@ -103,10 +103,10 @@
     <EffectArray Operation="Subtract" Reference="Abil,MorphRoachToRavager,InfoArray[Train1].Time" Value="4.5" />
     <EffectArray Operation="Subtract" Reference="Abil,MutaliskMorphToDevourer,InfoArray[Train1].Time" Value="7.5" />
     <EffectArray Operation="Subtract" Reference="Abil,MutaliskMorphToGuardian,InfoArray[Train1].Time" Value="7.5" />
-    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurReborn,CostResource[Minerals]" Value="12" />
-    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurReborn,CostResource[Vespene]" Value="37" />
-    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurRebornBurrowed,CostResource[Minerals]" Value="12" />
-    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurRebornBurrowed,CostResource[Vespene]" Value="37" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathur,CostResource[Minerals]" Value="12" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="37" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Minerals]" Value="12" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="37" />
     <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Minerals]" Value="75" />
     <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Vespene]" Value="25" />
     <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Minerals]" Value="25" />
@@ -313,8 +313,8 @@
     <AffectedUnitArray value="HydraliskLurkerBurrowed" />
   </CUpgrade>
   <CUpgrade id="ImpalerGenerateCreep">
-    <AffectedUnitArray value="ImpalerAbathurReborn" />
-    <AffectedUnitArray value="ImpalerAbathurRebornBurrowed" />
+    <AffectedUnitArray value="ImpalerAbathur" />
+    <AffectedUnitArray value="ImpalerAbathurBurrowed" />
   </CUpgrade>
   <CUpgrade id="K5ChainLightning">
     <Icon value="Assets\Textures\BTN-Ability-Swarm-Kerrigan-ChainReaction.dds" />
@@ -624,8 +624,8 @@
   </CUpgrade>
   <CUpgrade id="RavagerCorrosiveBileDamageIncrease">
     <EffectArray Reference="Effect,RavagerCorrosiveBileAoeDamage,Amount" Value="40" />
-    <AffectedUnitArray value="RavagerAbathurReborn" />
-    <AffectedUnitArray value="RavagerAbathurRebornBurrowed" />
+    <AffectedUnitArray value="RavagerAbathur" />
+    <AffectedUnitArray value="RavagerAbathurBurrowed" />
     <EditorCategories value="Race:Zerg" />
     <Icon value="Assets\Textures\potentbile_coop.dds" />
   </CUpgrade>
@@ -634,8 +634,8 @@
     <EffectArray Operation="Set" Reference="Effect,RavagerCorrosiveBileAoeSearch,AreaArray[0].Radius" Value="1.5" />
     <EffectArray Operation="Set" Reference="Actor,RavagerCorrosiveBileAoePrecursor,Scale" Value="2" />
     <EffectArray Operation="Set" Reference="Actor,RavagerCorrosiveBileMissile,Scale" Value="2" />
-    <AffectedUnitArray value="RavagerAbathurReborn" />
-    <AffectedUnitArray value="RavagerAbathurRebornBurrowed" />
+    <AffectedUnitArray value="RavagerAbathur" />
+    <AffectedUnitArray value="RavagerAbathurBurrowed" />
     <EditorCategories value="Race:Zerg" />
     <Icon value="Assets\Textures\btn-ability-zerg-abathur-corrosivebilelarge.dds" />
   </CUpgrade>
@@ -993,8 +993,8 @@
         <EffectArray Operation="Set" Reference="Actor,DefilerMP,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
         <EffectArray Operation="Set" Reference="Actor,Mutalisk,CustomUnitStatusAttachment" Value="Ref_Origin"/>
         <EffectArray Operation="Set" Reference="Actor,Mutalisk,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,RavagerAbathurReborn,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,RavagerAbathurReborn,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,RavagerAbathur,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,RavagerAbathur,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
         <EffectArray Operation="Set" Reference="Actor,GuardianMP,CustomUnitStatusAttachment" Value="Ref_Origin"/>
         <EffectArray Operation="Set" Reference="Actor,GuardianMP,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
         <EffectArray Operation="Set" Reference="Actor,Devourer,CustomUnitStatusAttachment" Value="Ref_Origin"/>
@@ -1212,8 +1212,8 @@
     <EffectArray Reference="Unit,Mutalisk,CostResource[Vespene]" Value="25" />
     <EffectArray Reference="Unit,Queen,CostResource[Vespene]" Value="13" />
     <EffectArray Reference="Unit,QueenBurrowed,CostResource[Vespene]" Value="13" />
-    <EffectArray Reference="Unit,RavagerAbathurReborn,CostResource[Vespene]" Value="19" />
-    <EffectArray Reference="Unit,RavagerAbathurRebornBurrowed,CostResource[Vespene]" Value="19" />
+    <EffectArray Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="19" />
+    <EffectArray Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="19" />
     <EffectArray Reference="Unit,SwarmHost,CostResource[Vespene]" Value="25" />
     <EffectArray Reference="Unit,SwarmHostBurrowed,CostResource[Vespene]" Value="25" />
     <EffectArray Reference="Unit,Viper,CostResource[Vespene]" Value="50" />
