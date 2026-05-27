@@ -1,0 +1,541 @@
+# 雷诺（Raynor）指挥官细化
+
+日期：2026-05-27
+
+## 当前口径
+
+当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
+
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 雷诺。依据 `游戏数据/官方合作指挥官/commanders/Raynor/` 的 JSON 摘要生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+
+## 官方数据摘要
+
+| 项 | 值 |
+|---|---|
+| CommanderId | `TerranRaynor` |
+| 中文名 | 雷诺 |
+| 默认升级 | `RaynorCommander` |
+| 默认能力命令 | `EngineeringBayResearch:5, CalldownMULE:, ArmoryResearchVoidCoop:3, ArmoryResearchVoidCoop:4, ArmoryResearchVoidCoop:5, ArmoryResearchVoidCoop:, ArmoryResearchVoidCoop:1, ArmoryResearchVoidCoop:2` |
+| 威望 ID | `CommanderPrestigeRaynorBio, CommanderPrestigeRaynorMechAfterburners, CommanderPrestigeRaynorAir` |
+| heroes 数量 | 0 |
+| roster 数量 | 16 |
+| units 数量 | 10 |
+| buildings 数量 | 6 |
+| command card 对象数 | 15 |
+| upgrades 数量 | 33 |
+| source | `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` |
+
+roster 样例：
+
+```text
+Bunker, Marine, MissileTurret, Vulture, Medic, Firebat, Viking, SCV, OrbitalCommand, Marauder, Banshee, CommandCenter, Siege Tank, Battlecruiser, Barracks, SupplyDepot
+```
+
+## 15 级解锁摘要
+
+- 1: 快速招募
+- 2: 女妖空袭
+- 3: 纳米投射器
+- 4: 步兵升级包
+- 5: 休伯利安号：定点防御无人机
+- 6: 新单位：战列巡航舰
+- 7: 战斗地堡
+- 8: 轨道空投
+- 9: 重工厂升级包
+- 10: 钒合金板
+- 11: 军械库升级包
+- 12: 轨道空投补给站
+- 13: 星港升级包
+- 14: 休伯利安号：高级瞄准系统
+- 15: 佣兵军火
+
+## 模块索引
+
+| 序号 | 模块 | 本文件章节 |
+|---|---|---|
+| 01 | 顶部技能栏 | `01. 顶部技能栏` |
+| 02 | 英雄单位及其技能 | `02. 英雄单位及其技能` |
+| 03 | 普通单位技能及其进化功能 | `03. 普通单位技能及其进化功能` |
+| 04 | 初始化基地与特殊建筑 | `04. 初始化基地与特殊建筑` |
+| 05 | 指挥官兵种 | `05. 指挥官兵种` |
+| 06 | 指挥官精通 | `06. 指挥官精通` |
+| 07 | 指挥官建筑 | `07. 指挥官建筑` |
+| 08 | 科技建筑及其升级选项 | `08. 科技建筑及其升级选项` |
+| 09 | 特定地图运输机空投单位 | `09. 特定地图运输机空投单位` |
+| 10 | 指挥官特殊机制 | `10. 指挥官特殊机制` |
+| 11 | 指挥官个性化机制 | `11. 指挥官个性化机制` |
+
+## 01. 顶部技能栏
+
+Owner：`CommanderPanelProfile`、`CommanderPanelAbilityProfile`、`CommanderPanelCooldownProfile`、`CommanderPanelChargeProfile`、`CommanderPanelTargetingProfile`、`CommanderPanelModifierProfile`。
+
+### 面板/全局能力候选
+
+| 来源 | 等级 | AbilityCmd | 关联升级 | 说明 |
+|---|---|---|---|---|
+| Lv2 女妖空袭 | 2 | `BansheeAirstrike:` | `RaynorBansheeAirstrike` | 解锁召唤拥有限时生命的隐形黄昏之翼，降临后对目标区域造成伤害。通过顶部面板来召唤女妖空袭。 |
+| Lv5 休伯利安号：定点防御无人机 | 5 | `HyperionAdvancedPDD:` | `-` | 使休伯利安号能部署防御性无人机，这些无人机可以拦截敌方的导弹。通过顶部面板来召唤休伯利安号。 |
+| Lv13 星港升级包 | 13 | `StarportTechLabResearch:9` | `-` | 在星港的科技实验室中解锁以下升级： / 升级女妖的攻击，使其可以沿直线射出多枚飞弹。升级维京战机的飞弹，使其能造成范围伤害。 |
+| Lv13 星港升级包 | 13 | `StarportTechLabResearch:18` | `-` | 在星港的科技实验室中解锁以下升级： / 升级女妖的攻击，使其可以沿直线射出多枚飞弹。升级维京战机的飞弹，使其能造成范围伤害。 |
+
+### command card 命中
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 兵营 | `OrbitalDropPodsPassive` | 轨道空投 | `-` | HaveOrbitalDropPods | 兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。 |
+| 地堡 | `BunkerLoad` | 装载 | `BunkerTransport,Load` | - | 将步兵装载进地堡。 |
+| 地堡 | `BunkerUnloadAll` | 全部卸载 | `BunkerTransport,UnloadAll` | - | 卸载所有单位。 |
+| SCV | `CommandCenter` | 建造指挥中心 | `TerranBuild,Build1` | - | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
+| SCV | `Barracks` | 建造兵营 | `TerranBuild,Build4` | - | 步兵训练设施。 / 开启： / - 陆战队员 / - 收割者 / - 使SCV可以建造地堡 / - 使指挥中心可以升级为轨道控制基地 |
+| SCV | `Starport` | 建造星港 | `TerranBuild,Build12` | - | 空中单位生产设施。 / 开启： / - 维京战机 / - 医疗运输机 / - 解放者 |
+| SCV | `FusionCore` | 建造聚变芯体 | `TerranBuild,Build16` | - | 为医疗运输机、解放者、战列巡航舰提供升级方案。 / 开启： / - 可在星港中建造战列巡航舰 |
+| 女妖 | `CloakOnBanshee` | 隐形 | `BansheeCloak,On` | - | 使该单位隐形，防止敌方发现或攻击该单位。隐形后的单位只会被侦测单位或侦测效果发现。 / 每秒消耗{-1 * (Behavior,BansheeCloak,... |
+| 女妖 | `CloakOff` | 取消隐形 | `BansheeCloak,Off` | - | 取消所选单位的隐形效果，使其现形。 |
+| 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+| 指挥中心 | `CommandCenterLoad` | 装载 | `CommandCenterTransport,LoadAll` | - | 将附近的SCV装载进指挥中心。 |
+| 指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `CommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
+| 轨道控制基地 | `CommanderPrestigeRaynorMULELocked` | 轨道空投：矿骡 | `-` | CommanderPrestigeRaynorBio | 该技能被指挥官威望锁定。 |
+| 轨道控制基地 | `SupplyDrop` | 轨道空投：额外补给 | `SupplyDrop,Execute` | - | 投放额外补给，使目标补给站提供的补给数量永久性增加{Behavior,SupplyDrop,Modification.Food}，并立即将其生命值提高至500。 |
+| 轨道控制基地 | `OrbitalCommandCalldownSupplyDepot` | 空投：补给站 | `OrbitalCommandSupplyDepotDrop,Build1` | - | 改良版补给站。可以无需使用SCV直接从高空轨道空投部署。 |
+
+实现备注：面板只注册 profile 和转发 caster，地图不得按 commander 写 if/else。精通和威望影响面板冷却/充能/费用时，由本模块接收最终 modifier。
+
+## 02. 英雄单位及其技能
+
+Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbilityProfile`、`CommanderHeroSkillTreeProfile`、`CommanderHeroReviveProfile`、`CommanderHeroModifierProfile`。
+
+| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
+|---|---|---|---|---|---|
+| - | - | - | - | - | 官方 heroes.json 未列出英雄条目；召唤物/形态/特殊英雄需从 progression、command_cards 或 CASC 继续追 |
+
+### 英雄/形态候选
+
+- 暂无自动命中项，需 CASC/实机日志补充。
+
+口径：矿骡、轨道空投、星港/空军威望正向收益需要面板、建筑和 cargo 联动。
+
+待审计：Hero Unit、技能按钮、复活、形态切换、武器/Actor/Sound 闭包。
+
+## 03. 普通单位技能及其进化功能
+
+Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderUnitEvolutionProfile`、`CommanderUnitBehaviorProfile`、`CommanderUnitWeaponProfile`。
+
+### 单位技能按钮候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 陆战队员 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 陆战队员 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
+| 陆战队员 | `Stim` | 使用强化剂 | `Stimpack,Execute` | - | 给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,S... |
+| 陆战队员 | `HaveShieldWall` | 防暴护盾 | `-` | HaveShieldWall | - |
+| 医疗兵 | `MedicHealPlusMech` | 治疗 | `HealPlusMech,Execute` | - | 治疗一个友方生物单位。 / 每消耗{Effect,heal,RechargeVitalRate * Effect,heal,DrainVitalCostF... |
+| 秃鹫 | `AfterburnersLocked` | 后燃推进系统 | `-` | RaynorLevel11 | 该技能将在指挥官等级11时解锁。 |
+| 秃鹫 | `-` | - | `255,255` | - | - |
+| 火蝠 | `StimMarauder` | 使用强化剂 | `StimpackMarauder,Execute` | - | 给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,S... |
+| SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
+| SCV | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| SCV | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
+| SCV | `AttackWorker` | AttackWorker | `attack,Execute` | - | - |
+| SCV | `SwannBarracks` | 兵营已禁用 | `-` | HaveSwannCommander | 斯旺的基础生产建筑是重工厂而不是兵营。 / 重工厂可以在SCV的高级建筑菜单中找到。 |
+| SCV | `AdvancedConstructionAuto` | 高级建造 | `AdvancedConstructionAuto,Execute` | - | 多台SCV可同时建造同一个建筑，缩短其建造时间。修理不消耗资源。 |
+| SCV | `AdvancedConstructionLocked` | 高级建造 | `-` | SwannLevel08 | 该技能将在指挥官等级8时解锁。 |
+| SCV | `BuildLaserTurret` | 建造磁轨炮塔 | `TerranBuildFullRefund,Build1` | - | 自动化防御炮塔。对一条直线上的所有敌方地面单位造成伤害。 / 可以对地。 |
+| SCV | `BuildFusionCoreLocked` | 建造聚变芯体 | `-` | RaynorLevel06 | 该单位将在指挥官等级6时解锁。 |
+| SCV | `SensorTower` | 建造感应塔 | `TerranBuild,Build9` | - | 在大范围内显示敌方单位的位置。敌方单位可以看到感应塔的侦测范围。 |
+| SCV | `PsiDisruptor` | PsiDisruptor | `TerranBuild,Build8` | - | - |
+| SCV | `BuildKelMorianRocketTurret` | 建造毁灭炮塔 | `TerranBuild,Build27` | - | 对重甲单位造成额外伤害。攻击会使敌人减速。 / 可以对地。 |
+| SCV | `CommandCenter` | 建造指挥中心 | `TerranBuild,Build1` | - | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
+| SCV | `Refinery` | 建造精炼厂 | `TerranBuild,Build3` | - | 建造在瓦斯气泉上，用于采集高能瓦斯。 |
+| SCV | `SupplyDepot` | 建造补给站 | `TerranBuild,Build2` | - | 为人类部队提供补给， / 提高本方单位数量上限。 / 补给站可以降下，允许地面单位出入。 |
+| SCV | `Barracks` | 建造兵营 | `TerranBuild,Build4` | - | 步兵训练设施。 / 开启： / - 陆战队员 / - 收割者 / - 使SCV可以建造地堡 / - 使指挥中心可以升级为轨道控制基地 |
+| SCV | `EngineeringBay` | 建造工程站 | `TerranBuild,Build5` | - | 为人类步兵单位和建筑提供升级方案。 / 开启： / - 使SCV可以建造导弹塔 / - 使SCV可以建造感应塔 / - 使指挥中心可升级为行星要塞 |
+| SCV | `Bunker` | 建造地堡 | `TerranBuild,Build7` | - | 防御工事。 / 步兵单位在地堡内作战。 / 效果加成：舱载单位射程增加1。 |
+| SCV | `MissileTurret` | 建造导弹塔 | `TerranBuild,Build6` | - | 防空建筑。 / 可以对空 / 侦测单位 |
+| SCV | `SensorTower` | 建造感应塔 | `TerranBuild,Build9` | - | 在大范围内显示敌方单位的位置。敌方单位可以看到感应塔的侦测范围。 |
+| SCV | `GhostAcademy` | 建造幽灵军校 | `TerranBuild,Build10` | - | 能够制造供幽灵使用的聚变弹头，并为幽灵提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 |
+| SCV | `Factory` | 建造重工厂 | `TerranBuild,Build11` | - | 战车生产设施。 / 开启： / - 恶火 / - 寡妇雷 / - 飓风 |
+| SCV | `Armory` | 建造军械库 | `TerranBuild,Build14` | - | 为重工厂和星港制造的单位提供武器和护甲升级方案。 / 开启： / - 可以在重工厂中制造恶蝠 / - 可以在重工厂中制造雷神 |
+| SCV | `Starport` | 建造星港 | `TerranBuild,Build12` | - | 空中单位生产设施。 / 开启： / - 维京战机 / - 医疗运输机 / - 解放者 |
+| SCV | `FusionCore` | 建造聚变芯体 | `TerranBuild,Build16` | - | 为医疗运输机、解放者、战列巡航舰提供升级方案。 / 开启： / - 可在星港中建造战列巡航舰 |
+| 女妖 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 女妖 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
+| 女妖 | `CloakOnBanshee` | 隐形 | `BansheeCloak,On` | - | 使该单位隐形，防止敌方发现或攻击该单位。隐形后的单位只会被侦测单位或侦测效果发现。 / 每秒消耗{-1 * (Behavior,BansheeCloak,... |
+| 女妖 | `CloakOff` | 取消隐形 | `BansheeCloak,Off` | - | 取消所选单位的隐形效果，使其现形。 |
+| 女妖 | `AfterburnersLocked` | 后燃推进系统 | `-` | RaynorLevel11 | 该技能将在指挥官等级11时解锁。 |
+| 劫掠者 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 劫掠者 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
+| 劫掠者 | `StimMarauder` | 使用强化剂 | `StimpackMarauder,Execute` | - | 给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,S... |
+| 劫掠者 | `ConcussiveGrenade` | 震荡弹 | `255` | UsePunisherGrenades | 被劫掠者击中的目标会暂时减速。 / 重型单位对该效果免疫 |
+| 战列巡航舰 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 战列巡航舰 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
+| 战列巡航舰 | `YamatoGun` | 大和炮 | `Yamato,Execute` | - | 使用一门毁灭性的等离子火炮轰击目标，造成{Effect,YamatoU,Amount}点伤害。 |
+| 战列巡航舰 | `Hyperjump` | 战术跳跃 | `Hyperjump,Execute` | - | {time:6}后折跃至目标位置。战列巡航舰在折跃时处于无敌状态。 / 不需要视野。 |
+| 战列巡航舰 | `AfterburnersLocked` | 后燃推进系统 | `-` | RaynorLevel11 | 该技能将在指挥官等级11时解锁。 |
+| 战列巡航舰 | `-` | - | `HyperjumpNoVision,Execute` | - | - |
+| 战列巡航舰 | `-` | - | `BattlecruiserStop,Stop` | - | - |
+| 战列巡航舰 | `-` | - | `BattlecruiserMove,HoldPos` | - | - |
+| 战列巡航舰 | `-` | - | `BattlecruiserMove,Patrol` | - | - |
+| 战列巡航舰 | `-` | - | `BattlecruiserAttack,Execute` | - | - |
+| 攻城坦克 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 攻城坦克 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
+| 攻城坦克 | `CommanderSwannImmortalityProtocol` | 永生程序 | `-` | HaveSwannCommanderImmortalityProtocol | 解锁重建能力。使被摧毁的雷神和攻城坦克能在战场上重建。 |
+| 攻城坦克 | `SiegeMode` | 攻城模式 | `SiegeMode,Execute` | - | 部署为攻城模式。在该模式下，攻城坦克的射程极大提高，并可造成范围伤害，但无法移动和攻击近距离目标。 |
+| 攻城坦克 | `AfterburnersLocked` | 后燃推进系统 | `-` | RaynorLevel11 | 该技能将在指挥官等级11时解锁。 |
+| 攻城坦克 | `MaelstromRounds` | MaelstromRounds | `-` | HaveMaelstromRounds | 攻城坦克在攻城模式下的攻击力提高40点。溅射伤害保持不变。 |
+
+### 进化/形态/切换候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 兵营 | `Lift` | 升空 | `BarracksLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
+| SCV | `Barracks` | 建造兵营 | `TerranBuild,Build4` | - | 步兵训练设施。 / 开启： / - 陆战队员 / - 收割者 / - 使SCV可以建造地堡 / - 使指挥中心可以升级为轨道控制基地 |
+| SCV | `EngineeringBay` | 建造工程站 | `TerranBuild,Build5` | - | 为人类步兵单位和建筑提供升级方案。 / 开启： / - 使SCV可以建造导弹塔 / - 使SCV可以建造感应塔 / - 使指挥中心可升级为行星要塞 |
+| 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+| 指挥中心 | `UpgradeToPlanetaryFortress` | 升级为行星要塞 | `UpgradeToPlanetaryFortress,Execute` | - | 添置一个强力炮塔，并且提高护甲。 / 可以对地。 |
+| 轨道控制基地 | `Lift` | 升空 | `OrbitalLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
+| 攻城坦克 | `CommanderSwannImmortalityProtocol` | 永生程序 | `-` | HaveSwannCommanderImmortalityProtocol | 解锁重建能力。使被摧毁的雷神和攻城坦克能在战场上重建。 |
+| 攻城坦克 | `SiegeMode` | 攻城模式 | `SiegeMode,Execute` | - | 部署为攻城模式。在该模式下，攻城坦克的射程极大提高，并可造成范围伤害，但无法移动和攻击近距离目标。 |
+| 攻城坦克 | `MaelstromRounds` | MaelstromRounds | `-` | HaveMaelstromRounds | 攻城坦克在攻城模式下的攻击力提高40点。溅射伤害保持不变。 |
+
+实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。
+
+## 04. 初始化基地与特殊建筑
+
+Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpecialStructureProfile`、`CommanderInitialCasterProfile`。
+
+### 初始化建筑候选
+
+| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
+|---|---|---|---|---|---|
+| 轨道控制基地 | `OrbitalCommand` | `OrbitalCommand` | Ground; Armored/Mechanical/Structure | 矿:550 气:- 人口字段:15 生命:1500 | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+| 指挥中心 | `CommandCenter` | `CommandCenter` | Ground; Armored/Mechanical/Structure | 矿:400 气:- 人口字段:15 生命:1500 | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
+| 兵营 | `Barracks` | `Barracks` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:1000 | 步兵训练设施。 / 开启： / - 陆战队员 / - 收割者 / - 使SCV可以建造地堡 / - 使指挥中心可以升级为轨道控制基地 |
+| 补给站 | `SupplyDepot` | `SupplyDepot` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:8 生命:400 | 为人类部队提供补给， / 提高本方单位数量上限。 / 补给站可以降下，允许地面单位出入。 |
+
+### 特殊建筑候选
+
+| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
+|---|---|---|---|---|---|
+| 轨道控制基地 | `OrbitalCommand` | `OrbitalCommand` | Ground; Armored/Mechanical/Structure | 矿:550 气:- 人口字段:15 生命:1500 | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+
+实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster 和特殊建筑。
+
+## 05. 指挥官兵种
+
+Owner：`CommanderRosterProfile`、`CommanderUnitProfile`、`CommanderUnitTrainProfile`、`CommanderUnitStageProfile`、`CommanderUnitRequirementProfile`。
+
+来源：官方提取 `units.json`。这里列的是当前已提取 Catalog 对象；满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
+
+| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
+|---|---|---|---|---|---|
+| 陆战队员 | `Marine` | `Marine` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:45 | 通用型步兵。 / 可以对地和对空。 |
+| 秃鹫 | `Vulture` | `Vulture` | -; - | 矿:- 气:- 人口字段:- 生命:- | 动作迅捷的作战单位。能够部署蜘蛛雷。 / 可以对地。 |
+| 医疗兵 | `Medic` | `Medic` | -; - | 矿:- 气:- 人口字段:- 生命:- | 支援型单位。治疗附近的生物单位。 |
+| 火蝠 | `Firebat` | `Firebat` | -; - | 矿:- 气:- 人口字段:- 生命:- | 专业反步兵作战单位。 / 可以对地。 |
+| 维京战机 | `Viking` | `Viking, VikingFighter` | -; - | 矿:- 气:- 人口字段:- 生命:- | 坚固的火力支援型空中单位，配备有强大的反主力舰飞弹。进入机甲模式后可攻击地面单位。 / 可以对空 |
+| SCV | `SCV` | `SCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
+| 劫掠者 | `Marauder` | `Marauder` | Ground; Armored/Biological | 矿:100 气:25 人口字段:-2 生命:125 | 重型突击步兵。 / 可以对地。 |
+| 女妖 | `Banshee` | `Banshee` | Air; Light/Mechanical | 矿:150 气:100 人口字段:-3 生命:140 | 战术打击飞行器。可升级隐形技能。 / 可以对地。 |
+| 攻城坦克 | `Siege Tank` | `SiegeTank` | Ground; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:175 | 重型坦克。可切换至攻城模式来提供远程炮火。 / 可以对地。 |
+| 战列巡航舰 | `Battlecruiser` | `Battlecruiser, FusionCore` | Air; Armored/Massive/Mechanical | 矿:400 气:300 人口字段:-6 生命:550 | 强大的战舰。可以使用大和炮和战术跳跃。 / 可以对地和对空。 |
+
+三阶段口径：`initial` 只做审计，`level15` 表示满级解锁，`power_fusion` 表示 15 级 + 六精通全满 + 威望正向收益后的默认运行清单。
+
+## 06. 指挥官精通
+
+Owner：`CommanderMasteryProfile`、`CommanderMasteryEffectProfile`、`CommanderMasteryModifierProfile`。
+
+| 组 | 名称 | Upgrade | 每点 | 30点口径 |
+|---|---|---|---|---|
+| 1 | 资源费用 | `MasteryRaynorResearchCost` | 2 | -60% |
+| 1 | 空投舱急速 | `MasteryRaynorDropPodHaste` | 2 | +60%急速 |
+| 2 | 休伯利安号冷却时间 | `MasteryRaynorHyperionCooldown` | 4 | -120秒 |
+| 2 | 女妖冷却时间 | `MasteryRaynorDuskWingCooldown` | 4 | -120秒 |
+| 3 | 医疗兵额外目标治疗 | `MasteryRaynorMedicSecondaryHeal` | 3 | 90%基础治疗百分比 |
+| 3 | 机械部队攻击速度 | `MasteryRaynorMechAttackSpeed` | 1 | +30%百分比 |
+
+实现备注：当前默认六项全部 30 点。表里的 30 点口径由 `point_increments * 30` 推导，最终数值仍需以 Upgrade Effect 闭包验证。
+
+## 07. 指挥官建筑
+
+Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`CommanderBuildingTrainProfile`、`CommanderBuildingStageProfile`、`CommanderBuildingBehaviorProfile`。
+
+来源：官方提取 `buildings.json`。
+
+| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
+|---|---|---|---|---|---|
+| 地堡 | `Bunker` | `Bunker` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:- 生命:400 | 防御工事。 / 步兵单位在地堡内作战。 / 效果加成：舱载单位射程增加1。 |
+| 导弹塔 | `MissileTurret` | `MissileTurret` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:- 生命:250 | 防空建筑。 / 可以对空 / 侦测单位 |
+| 轨道控制基地 | `OrbitalCommand` | `OrbitalCommand` | Ground; Armored/Mechanical/Structure | 矿:550 气:- 人口字段:15 生命:1500 | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+| 指挥中心 | `CommandCenter` | `CommandCenter` | Ground; Armored/Mechanical/Structure | 矿:400 气:- 人口字段:15 生命:1500 | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
+| 兵营 | `Barracks` | `Barracks` | Ground; Armored/Mechanical/Structure | 矿:150 气:- 人口字段:- 生命:1000 | 步兵训练设施。 / 开启： / - 陆战队员 / - 收割者 / - 使SCV可以建造地堡 / - 使指挥中心可以升级为轨道控制基地 |
+| 补给站 | `SupplyDepot` | `SupplyDepot` | Ground; Armored/Mechanical/Structure | 矿:100 气:- 人口字段:8 生命:400 | 为人类部队提供补给， / 提高本方单位数量上限。 / 补给站可以降下，允许地面单位出入。 |
+
+### 建筑按钮候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 兵营 | `TrainMarineNova` | 部署精英陆战队员 | `BarracksTrainNova,Train1` | - | 部署{Effect,MarineBlackOpsSpawnerCreateUnit,SpawnCount}名精英陆战队员。精英通用型步兵。 / 可以对地和对空。 |
+| 兵营 | `TrainMarauderNova` | 部署劫掠者突击手 | `BarracksTrainNova,Train2` | - | 部署{Effect,MarauderBlackOpsSpawnerCreateUnit,SpawnCount}名劫掠者突击手。精英重型突击步兵。 / 可以对地。 |
+| 兵营 | `TrainGhostNova` | 部署特战幽灵 | `BarracksTrainNova,Train3` | - | 部署{Effect,GhostBlackOpsSpawnerCreateUnit,SpawnCount+Effect,GhostBlackOpsSpawn... |
+| 兵营 | `Medic` | Medic | `BarracksTrain,Train5` | - | - |
+| 兵营 | `MasteryNovaArmyAttackSpeedAppend` | 战斗精通 | `-` | HaveMasteryNovaArmyAttackSpeed | 精通：从这座建筑部署的单位获得{Effect,MasteryNovaArmyAttackSpeedDisplayDummy,Amount}%攻击速度。 |
+| 兵营 | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | `-` | HaveMasteryNovaArmyOOCRegenSpeed | 精通：从这座建筑部署的单位脱离战斗后每秒恢复{Effect,MasteryNovaArmyOOCRegenSpeedDisplayDummy,Amount... |
+| 兵营 | `Ghost` | 训练幽灵 | `BarracksTrain,Train3` | - | 狙击手。能够使用稳定瞄准、EMP弹并且升级后可以使用隐形技能。能够对幽灵军校发动的聚变打击进行制导。 / 可以对地和对空。 |
+| 兵营 | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | - |
+| 兵营 | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | - |
+| 兵营 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
+| 兵营 | `Lift` | 升空 | `BarracksLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
+| 兵营 | `OrbitalDropPodsPassive` | 轨道空投 | `-` | HaveOrbitalDropPods | 兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。 |
+| 兵营 | `Reactor` | 建造反应堆 | `BarracksAddOns,Build2` | - | 使该建筑能够同步生产两个单位。 |
+| 兵营 | `MengskUnits` | MengskUnits | `-` | - | - |
+| 兵营 | `Marauder` | 训练劫掠者 | `BarracksTrain,Train4` | - | 重型突击步兵。 / 可以对地。 |
+| 兵营 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
+| 补给站 | `Lower` | 降下 | `SupplyDepotLower,Execute` | - | 降下建筑，允许地面单位出入。 |
+| 补给站 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
+| 地堡 | `NeoSteelFrame` | NeoSteelFrame | `-` | UseNeoSteelFrame | - |
+| 地堡 | `FortifiedBunker` | FortifiedBunker | `-` | HaveFortifiedBunkerCarapace | - |
+| 地堡 | `SetBunkerRallyPoint` | 设定地堡集结点 | `Rally,Rally1` | - | 将卸载的步兵单位派往指定地点。 |
+| 地堡 | `StimRedirect` | 使用强化剂 | `StimpackMarauderRedirect,Execute` | - | 命令地堡内的陆战队员、劫掠者和火蝠使用强化剂。同往常一样，使用强化剂的单位会受到伤害，但攻击速度会提高。 |
+| 地堡 | `BunkerLoad` | 装载 | `BunkerTransport,Load` | - | 将步兵装载进地堡。 |
+| 地堡 | `BunkerUnloadAll` | 全部卸载 | `BunkerTransport,UnloadAll` | - | 卸载所有单位。 |
+| 地堡 | `-` | - | `SalvageEffect,Execute` | - | - |
+| 导弹塔 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
+| 导弹塔 | `HellstormMissileBatteries` | HellstormMissileBatteries | `-` | HailstormMissilePods | - |
+| 导弹塔 | `Salvage` | 回收 | `SalvageShared,On` | - | 回收该建筑，将其移除并返还75%建造所花费的晶体矿及高能瓦斯数量。回收过程需要{time:5}。警告：回收过程一旦开始便无法取消。 |
+| 导弹塔 | `HaveHiSecAutoTracking` | 瞬时自动追踪 | `-` | HaveTerranDefenseRangeBonus | 所有炮台射程+1。 |
+| 导弹塔 | `HaveImprovedTurretAttackSpeed` | KMC自动填弹装置 | `-` | HaveSwannTurretIncreasedAttackSpeed | 所有炮台的攻击速度提高25%。 |
+| 导弹塔 | `Detector` | 侦测单位 | `-` | NotUnderConstruction | 该单位能够侦测到隐形、潜地和幻像单位。 |
+| 导弹塔 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
+| 导弹塔 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
+| 指挥中心 | `SCV` | 制造SCV | `CommandCenterTrain,Train1` | - | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
+| 指挥中心 | `VespeneDrone` | 瓦斯采集器 | `VespeneDroneCast,Execute` | - | 空投一名自动采集单位，从任何友方瓦斯采集建筑中为你和你的盟友采集更多的高能瓦斯。 / 瞄准一个友方瓦斯采集建筑。 |
+| 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+| 指挥中心 | `UpgradeToPlanetaryFortress` | 升级为行星要塞 | `UpgradeToPlanetaryFortress,Execute` | - | 添置一个强力炮塔，并且提高护甲。 / 可以对地。 |
+| 指挥中心 | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | `-` | HaveMasteryNovaArmyOOCRegenSpeed | 精通：从这座建筑部署的单位脱离战斗后每秒恢复{Effect,MasteryNovaArmyOOCRegenSpeedDisplayDummy,Amount... |
+| 指挥中心 | `CommandCenterLoad` | 装载 | `CommandCenterTransport,LoadAll` | - | 将附近的SCV装载进指挥中心。 |
+| 指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `CommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
+| 指挥中心 | `NeoSteelFrameCommandCenter` | 精钢指挥中心 | `-` | HaveNeosteelFrame | 指挥中心的舱位增加5。 |
+| 指挥中心 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
+| 轨道控制基地 | `SCV` | 制造SCV | `CommandCenterTrain,Train1` | - | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
+| 轨道控制基地 | `CommanderPrestigeRaynorMULELocked` | 轨道空投：矿骡 | `-` | CommanderPrestigeRaynorBio | 该技能被指挥官威望锁定。 |
+| 轨道控制基地 | `SupplyDrop` | 轨道空投：额外补给 | `SupplyDrop,Execute` | - | 投放额外补给，使目标补给站提供的补给数量永久性增加{Behavior,SupplyDrop,Modification.Food}，并立即将其生命值提高至500。 |
+| 轨道控制基地 | `Scan` | 析象扫描 | `ScannerSweep,Execute` | - | 显示地图的一个区域。侦测隐形或潜地的单位。持续{time:12}。 |
+| 轨道控制基地 | `Lift` | 升空 | `OrbitalLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
+| 轨道控制基地 | `OrbitalCommandCalldownSupplyDepot` | 空投：补给站 | `OrbitalCommandSupplyDepotDrop,Build1` | - | 改良版补给站。可以无需使用SCV直接从高空轨道空投部署。 |
+
+实现备注：建筑声明自身生产、研究、行为和阶段；训练单位的最终可用性由兵种/科技/精通/威望共同裁决。
+
+## 08. 科技建筑及其升级选项
+
+Owner：`CommanderTechBuildingProfile`、`CommanderUnitTechProfile`、`CommanderUpgradeProfile`、`CommanderUpgradeRequirementProfile`、`CommanderUpgradeEffectProfile`。
+
+### 15 级解锁与研究命令
+
+| 等级 | 名称 | 解锁升级 | 解锁 AbilityCmd | 说明 |
+|---|---|---|---|---|
+| 1 | 快速招募 | `RaynorCommanderStimUpgrade, Stimpack, RaynorCommanderMechCostReduction` | `-` | 雷诺训练作战单位以及建造兵营的速度加快50%。 / 机械单位消耗的高能瓦斯降低20%。 / 强化剂的加成效果提高，损失的生命值减少，且不需要研究。 |
+| 2 | 女妖空袭 | `RaynorBansheeAirstrike` | `BansheeAirstrike:` | 解锁召唤拥有限时生命的隐形黄昏之翼，降临后对目标区域造成伤害。通过顶部面板来召唤女妖空袭。 |
+| 3 | 纳米投射器 | `RaynorFirebatMedicRange` | `-` | 火蝠的射程和医疗兵的治疗距离由2提高到4。 |
+| 4 | 步兵升级包 | `-` | `BarracksTechLabResearch:3, BarracksTechLabResearch:5, BarracksTechLabResearch:6` | 在兵营的科技实验室中解锁以下升级： / 火蝠的伤害范围提高40%。火蝠的生命值由100提高到200，护甲由1提高到到3。提高医疗兵的治疗速度，使其可以治疗机械单位，并降低正在... |
+| 5 | 休伯利安号：定点防御无人机 | `-` | `HyperionAdvancedPDD:` | 使休伯利安号能部署防御性无人机，这些无人机可以拦截敌方的导弹。通过顶部面板来召唤休伯利安号。 |
+| 6 | 新单位：战列巡航舰 | `RaynorUnlockBattlecruiser` | `-` | 强大的战舰。可以使用大和炮和战术跳跃。可在星港中制造。 / 可以对地和对空。 |
+| 7 | 战斗地堡 | `ShrikeTurret, FortifiedBunkerCarapace` | `-` | 用自动炮台装备地堡，可以对空和对地。地堡的生命值从400提高到550。 |
+| 8 | 轨道空投 | `OrbitalStrike` | `-` | 兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。 |
+| 9 | 重工厂升级包 | `-` | `FactoryTechLabResearch:15, FactoryTechLabResearch:10` | 在重工厂的科技实验室中解锁以下升级： / 秃鹫车的蜘蛛雷的爆炸和触发范围提高33%。减少攻城坦克的变形时间，并使它们在攻城模式下的护甲由1提高到3。 |
+| 10 | 钒合金板 | `RaynorCommanderArmorVanadium` | `-` | 军械库和工程站中的护甲升级除了会增加受影响单位的护甲值，还会提高他们的生命值。 |
+| 11 | 军械库升级包 | `-` | `ArmoryResearchVoidCoop:9, ArmoryResearchVoidCoop:11, VehicleAfterburners:` | 在军械库中解锁以下升级： / 所有战车和飞船的射程提高1。所有战车和飞船能使自身的移动速度提高100%，持续8秒。 |
+| 12 | 轨道空投补给站 | `SupplyDepotDrop` | `-` | 使SCV可瞬间从太空轨道部署补给站，去除建造时间。 |
+| 13 | 星港升级包 | `-` | `StarportTechLabResearch:9, StarportTechLabResearch:18` | 在星港的科技实验室中解锁以下升级： / 升级女妖的攻击，使其可以沿直线射出多枚飞弹。升级维京战机的飞弹，使其能造成范围伤害。 |
+| 14 | 休伯利安号：高级瞄准系统 | `RaynorCommanderHyperionAdvancedTargetingSystems` | `-` | 休伯利安号附近的所有友方单位的伤害输出+2。通过顶部面板来召唤休伯利安号。 |
+| 15 | 佣兵军火 | `RaynorCommanderTerranWeaponAttackSpeed` | `-` | 使雷诺的作战单位与空投单位的攻击速度提高15%。 |
+
+### Upgrade 摘要
+
+| Upgrade | 父级 | 显示名 | Effect数 | 说明 |
+|---|---|---|---|---|
+| `CommanderPrestigeRaynorAir` | `CommanderPrestige` | - | 19 | - |
+| `CommanderPrestigeRaynorBio` | `CommanderPrestige` | - | 16 | - |
+| `CommanderPrestigeRaynorBioFirebatUpgrade` | `CommanderPrestige` | - | 2 | - |
+| `CommanderPrestigeRaynorBioMarineUpgrade` | `CommanderPrestige` | - | 2 | - |
+| `CommanderPrestigeRaynorBioUpgradeTerranInfantryArmorLevel1` | `CommanderPrestige` | CommanderPrestigeRaynorBioUpgradeTerranInfantryArmorLevel1 | 8 | - |
+| `CommanderPrestigeRaynorBioUpgradeTerranInfantryArmorLevel2` | `CommanderPrestige` | - | 8 | - |
+| `CommanderPrestigeRaynorBioUpgradeTerranInfantryArmorLevel3` | `CommanderPrestige` | - | 8 | - |
+| `CommanderPrestigeRaynorMechAfterburners` | `CommanderPrestige` | - | 4 | - |
+| `FirebatJuggernautPlating` | `-` | - | 2 | - |
+| `FortifiedBunkerCarapace` | `-` | - | 5 | - |
+| `MasteryRaynorDropPodHaste` | `-` | 精通 雷诺 空投舱急速 | 6 | 雷诺的战斗单位在首次训练后，其攻击速度、移动速度、能量恢复以及冷却时间缩短获得暂时性提高。 |
+| `MasteryRaynorDuskWingCooldown` | `-` | 精通 雷诺 黄昏之翼冷却时间 | 2 | 缩短女妖空袭技能的冷却时间。不会影响任务刚开始时的初始冷却时间。 |
+| `MasteryRaynorHyperionCooldown` | `-` | 精通 雷诺 休伯利安号冷却时间 | 2 | 缩短休伯利安号技能的冷却时间。不会影响任务刚开始时的初始冷却时间。 |
+| `MasteryRaynorMechAttackSpeed` | `-` | 精通 雷诺 机械部队攻击速度 | 12 | 提高雷诺的重工厂和星港单位的攻击速度。 |
+| `MasteryRaynorMedicSecondaryHeal` | `-` | 精通 雷诺 医疗兵次级治疗 | 2 | 医疗兵可以为附近额外一名目标提供主治疗量的一部分。 |
+| `MasteryRaynorResearchCost` | `-` | 研究资源费用 | 1 | 减少雷诺的研究的资源费用。 |
+| `OrbitalStrike` | `-` | - | 15 | - |
+| `RaynorBansheeAirstrike` | `-` | Raynor Banshee Airstrike | 0 | - |
+| `RaynorCommander` | `-` | 雷诺 | 54 | - |
+| `RaynorCommanderArmorVanadium` | `-` | Raynor Commander Armor Vanadium | 12 | - |
+| `RaynorCommanderHyperionAdvancedTargetingSystems` | `-` | Raynor Commander Hyperion Advanced Targeting Systems | 0 | - |
+| `RaynorCommanderMechCostReduction` | `-` | - | 6 | - |
+| `RaynorCommanderStimUpgrade` | `-` | Raynor Commander Stim Upgrade | 5 | - |
+| `RaynorCommanderTerranWeaponAttackSpeed` | `-` | Raynor Commander Terran Weapon Attack Speed | 17 | - |
+| `RaynorFirebatMedicRange` | `-` | Raynor Firebat Medic Range | 5 | - |
+| `RaynorTalentedTerranInfantryArmorLevel1` | `-` | Raynor Talented Terran Infantry Armor Level 1 | 135 | - |
+| `RaynorTalentedTerranInfantryArmorLevel2` | `-` | Raynor Talented Terran Infantry Armor Level 2 | 135 | - |
+| `RaynorTalentedTerranInfantryArmorLevel3` | `-` | Raynor Talented Terran Infantry Armor Level 3 | 135 | - |
+| `RaynorUnlockBattlecruiser` | `-` | Raynor Unlock Battlecruiser | 2 | - |
+| `ShieldWall` | `-` | 防暴护盾 | 0 | - |
+| `ShrikeTurret` | `-` | - | 0 | - |
+| `Stimpack` | `-` | 强化剂 | 0 | 使陆战队员, 劫掠者, 以及火蝠能够使用强化剂。强化剂会对使用者造成伤害，但能暂时提高攻击速度和移动速度。 |
+| `SupplyDepotDrop` | `-` | - | 0 | - |
+
+### 研究/升级按钮候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 兵营 | `TrainGhostNova` | 部署特战幽灵 | `BarracksTrainNova,Train3` | - | 部署{Effect,GhostBlackOpsSpawnerCreateUnit,SpawnCount+Effect,GhostBlackOpsSpawn... |
+| 兵营 | `Ghost` | 训练幽灵 | `BarracksTrain,Train3` | - | 狙击手。能够使用稳定瞄准、EMP弹并且升级后可以使用隐形技能。能够对幽灵军校发动的聚变打击进行制导。 / 可以对地和对空。 |
+| 兵营 | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | - |
+| 兵营 | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | - |
+| 兵营 | `Lift` | 升空 | `BarracksLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
+| SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
+| SCV | `CommandCenter` | 建造指挥中心 | `TerranBuild,Build1` | - | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
+| SCV | `Barracks` | 建造兵营 | `TerranBuild,Build4` | - | 步兵训练设施。 / 开启： / - 陆战队员 / - 收割者 / - 使SCV可以建造地堡 / - 使指挥中心可以升级为轨道控制基地 |
+| SCV | `EngineeringBay` | 建造工程站 | `TerranBuild,Build5` | - | 为人类步兵单位和建筑提供升级方案。 / 开启： / - 使SCV可以建造导弹塔 / - 使SCV可以建造感应塔 / - 使指挥中心可升级为行星要塞 |
+| SCV | `GhostAcademy` | 建造幽灵军校 | `TerranBuild,Build10` | - | 能够制造供幽灵使用的聚变弹头，并为幽灵提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 |
+| SCV | `Armory` | 建造军械库 | `TerranBuild,Build14` | - | 为重工厂和星港制造的单位提供武器和护甲升级方案。 / 开启： / - 可以在重工厂中制造恶蝠 / - 可以在重工厂中制造雷神 |
+| SCV | `FusionCore` | 建造聚变芯体 | `TerranBuild,Build16` | - | 为医疗运输机、解放者、战列巡航舰提供升级方案。 / 开启： / - 可在星港中建造战列巡航舰 |
+| 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+| 指挥中心 | `UpgradeToPlanetaryFortress` | 升级为行星要塞 | `UpgradeToPlanetaryFortress,Execute` | - | 添置一个强力炮塔，并且提高护甲。 / 可以对地。 |
+| 轨道控制基地 | `Lift` | 升空 | `OrbitalLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
+
+实现备注：科技建筑只负责展示/触发研究；每个单位升级效果由对应 `CommanderUnitTechProfile` 或 `CommanderUpgradeEffectProfile` 声明。
+
+## 09. 特定地图运输机空投单位
+
+Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
+
+### 运输/空投能力候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 兵营 | `OrbitalDropPodsPassive` | 轨道空投 | `-` | HaveOrbitalDropPods | 兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。 |
+| 地堡 | `SetBunkerRallyPoint` | 设定地堡集结点 | `Rally,Rally1` | - | 将卸载的步兵单位派往指定地点。 |
+| 地堡 | `BunkerLoad` | 装载 | `BunkerTransport,Load` | - | 将步兵装载进地堡。 |
+| 地堡 | `BunkerUnloadAll` | 全部卸载 | `BunkerTransport,UnloadAll` | - | 卸载所有单位。 |
+| SCV | `Starport` | 建造星港 | `TerranBuild,Build12` | - | 空中单位生产设施。 / 开启： / - 维京战机 / - 医疗运输机 / - 解放者 |
+| SCV | `FusionCore` | 建造聚变芯体 | `TerranBuild,Build16` | - | 为医疗运输机、解放者、战列巡航舰提供升级方案。 / 开启： / - 可在星港中建造战列巡航舰 |
+| 指挥中心 | `VespeneDrone` | 瓦斯采集器 | `VespeneDroneCast,Execute` | - | 空投一名自动采集单位，从任何友方瓦斯采集建筑中为你和你的盟友采集更多的高能瓦斯。 / 瞄准一个友方瓦斯采集建筑。 |
+| 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+| 指挥中心 | `CommandCenterLoad` | 装载 | `CommandCenterTransport,LoadAll` | - | 将附近的SCV装载进指挥中心。 |
+| 指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `CommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
+| 轨道控制基地 | `CommanderPrestigeRaynorMULELocked` | 轨道空投：矿骡 | `-` | CommanderPrestigeRaynorBio | 该技能被指挥官威望锁定。 |
+| 轨道控制基地 | `SupplyDrop` | 轨道空投：额外补给 | `SupplyDrop,Execute` | - | 投放额外补给，使目标补给站提供的补给数量永久性增加{Behavior,SupplyDrop,Modification.Food}，并立即将其生命值提高至500。 |
+| 轨道控制基地 | `OrbitalCommandCalldownSupplyDepot` | 空投：补给站 | `OrbitalCommandSupplyDepotDrop,Build1` | - | 改良版补给站。可以无需使用SCV直接从高空轨道空投部署。 |
+| 战列巡航舰 | `Hyperjump` | 战术跳跃 | `Hyperjump,Execute` | - | {time:6}后折跃至目标位置。战列巡航舰在折跃时处于无敌状态。 / 不需要视野。 |
+
+### 可投放单位候选
+
+| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
+|---|---|---|---|---|---|
+| 陆战队员 | `Marine` | `Marine` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:45 | 通用型步兵。 / 可以对地和对空。 |
+| 秃鹫 | `Vulture` | `Vulture` | -; - | 矿:- 气:- 人口字段:- 生命:- | 动作迅捷的作战单位。能够部署蜘蛛雷。 / 可以对地。 |
+| 医疗兵 | `Medic` | `Medic` | -; - | 矿:- 气:- 人口字段:- 生命:- | 支援型单位。治疗附近的生物单位。 |
+| 火蝠 | `Firebat` | `Firebat` | -; - | 矿:- 气:- 人口字段:- 生命:- | 专业反步兵作战单位。 / 可以对地。 |
+| 维京战机 | `Viking` | `Viking, VikingFighter` | -; - | 矿:- 气:- 人口字段:- 生命:- | 坚固的火力支援型空中单位，配备有强大的反主力舰飞弹。进入机甲模式后可攻击地面单位。 / 可以对空 |
+| SCV | `SCV` | `SCV` | Ground; Biological/Light/Mechanical | 矿:50 气:- 人口字段:-1 生命:45 | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
+| 劫掠者 | `Marauder` | `Marauder` | Ground; Armored/Biological | 矿:100 气:25 人口字段:-2 生命:125 | 重型突击步兵。 / 可以对地。 |
+| 女妖 | `Banshee` | `Banshee` | Air; Light/Mechanical | 矿:150 气:100 人口字段:-3 生命:140 | 战术打击飞行器。可升级隐形技能。 / 可以对地。 |
+| 攻城坦克 | `Siege Tank` | `SiegeTank` | Ground; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:175 | 重型坦克。可切换至攻城模式来提供远程炮火。 / 可以对地。 |
+| 战列巡航舰 | `Battlecruiser` | `Battlecruiser, FusionCore` | Air; Armored/Massive/Mechanical | 矿:400 气:300 人口字段:-6 生命:550 | 强大的战舰。可以使用大和炮和战术跳跃。 / 可以对地和对空。 |
+
+实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则。
+
+## 10. 指挥官特殊机制
+
+Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、`CommanderSpecialMechanicHookProfile`、`CommanderSpecialMechanicUnitProfile`。
+
+本指挥官重点：轨道空投、矿骡、休伯利安/女妖召唤是主特殊机制。
+
+### 特殊机制命中项
+
+- 战斗地堡 (`RaynorEngineeringBayUpgrades`)
+- 轨道空投 (`RaynorOrbitalDropPods`)
+- 轨道空投补给站 (`RaynorOrbitalDepots`)
+
+### 特殊机制 Upgrade 候选
+
+- 暂无自动命中项，需 CASC/实机日志补充。
+
+### 特殊机制按钮候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 兵营 | `OrbitalDropPodsPassive` | 轨道空投 | `-` | HaveOrbitalDropPods | 兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。 |
+| 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
+| 轨道控制基地 | `CommanderPrestigeRaynorMULELocked` | 轨道空投：矿骡 | `-` | CommanderPrestigeRaynorBio | 该技能被指挥官威望锁定。 |
+| 轨道控制基地 | `SupplyDrop` | 轨道空投：额外补给 | `SupplyDrop,Execute` | - | 投放额外补给，使目标补给站提供的补给数量永久性增加{Behavior,SupplyDrop,Modification.Food}，并立即将其生命值提高至500。 |
+| 轨道控制基地 | `OrbitalCommandCalldownSupplyDepot` | 空投：补给站 | `OrbitalCommandSupplyDepotDrop,Build1` | - | 改良版补给站。可以无需使用SCV直接从高空轨道空投部署。 |
+
+实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster 的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
+
+## 11. 指挥官个性化机制
+
+Owner：`CommanderPersonalMechanicProfile`、`CommanderPersonalMechanicEffectProfile`、`CommanderPersonalMechanicHookProfile`、`CommanderPersonalMechanicRequirementProfile`。
+
+本指挥官重点：矿骡、轨道空投、星港/空军威望正向收益需要面板、建筑和 cargo 联动。
+
+### 威望正向融合输入
+
+| 威望 ID | Primary Upgrade | 禁用单位 | 启用单位 | 禁用 Ability | 补充 Upgrade |
+|---|---|---|---|---|---|
+| `CommanderPrestigeRaynorBio` | `CommanderPrestigeRaynorBio` | `-` | `-` | `CalldownMULE:` | `RaynorBio1, RaynorBio2, RaynorBio3ArmorLevel1, RaynorBio3ArmorLevel2, RaynorBio3ArmorLevel3` |
+| `CommanderPrestigeRaynorMechAfterburners` | `CommanderPrestigeRaynorMechAfterburners` | `-` | `-` | `-` | `-` |
+| `CommanderPrestigeRaynorAir` | `CommanderPrestigeRaynorAir` | `-` | `-` | `-` | `-` |
+
+融合规则：只取正面收益，跳过负面代价、禁用项、费用/冷却/上限惩罚；不能直接启用官方 `PlayerPrestige`。禁用项在本表中保留是为了审计，不代表最终要执行。
+
+## 强度融合规则
+
+1. `XM_ApplyCommanderFullLevel`：应用 15 级全部解锁，补齐升级、能力命令、研究按钮和 roster 变化。
+2. `XM_ApplyCommanderAllMasteries`：6 项精通全部按 30 点应用。
+3. `XM_ApplyCommanderPrestigeEffects`：只取威望正面收益，跳过负面代价、禁用项、费用/冷却/上限惩罚。
+4. `XM_RunCommanderPowerFusionHook`：只处理无法静态声明的行为，例如特殊资源、英雄形态、顶部技能联动。
+5. `XM_VerifyCommanderPowerFusion`：输出 `[XM_DBG]` 验证日志。
+
+## 测试台优先场景
+
+```text
+standard_base
+full_buildings
+level15_units
+fusion_final_units
+panel_smoke
+hero_smoke
+unit_ability_smoke
+tech_smoke
+cargo_smoke
+special_mechanic_smoke
+personal_mechanic_smoke
+```
+
+补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。
+
+## `[XM_DBG]` 日志建议
+
+```text
+[XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Raynor levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
+[XM_DBG][INFO][POWER_FUSION_APPLY] commander=Raynor levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Raynor stage=power_fusion units=10 buildings=6 result=ok
+[XM_DBG][INFO][MODULE_VERIFY] commander=Raynor module=<01-11> profile=<profile> result=ok
+[XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Raynor module=<module> object=<object> result=needs-casc-audit
+```
+
+## 第一轮待审计项
+
+- 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
+- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound 闭包。
+- `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
+- 6 项精通的真实作用对象和最终数值。
+- 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
+- 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
+- 特殊机制和个性化机制是否需要 runtime hook。
