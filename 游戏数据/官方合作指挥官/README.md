@@ -35,7 +35,7 @@
 
 - `commanders/<Commander>/commander.json`：指挥官基础信息、默认升级、默认能力命令。
 - `commanders/<Commander>/roster.json`：官方 TechUnit 全量名册，含单位分类与单位元数据。
-- `commanders/<Commander>/units.json` / `buildings.json` / `heroes.json`：按 `UnitData.EditorCategories.ObjectType` 切分，附带入口按钮与图标引用。
+- `commanders/<Commander>/units.json` / `buildings.json` / `heroes.json`：按 `UnitData.EditorCategories.ObjectType` 切分，附带入口按钮、图标引用，以及 `production` 代表入口与 `production_options` 全部候选面板费用/耗时；`unit` 内补充 `supply_raw` / `supply_cost` / `supply_provided`。
 - `commanders/<Commander>/command_cards.json`：单位/建筑/英雄的 `CardLayouts` 面板按钮，含按钮图标引用。
 - `commanders/<Commander>/progression.json`：15 级加点与 6 组精通。
 - `commanders/<Commander>/prestiges.json`：3 个威望及其主升级、补充升级、禁用单位/技能。
