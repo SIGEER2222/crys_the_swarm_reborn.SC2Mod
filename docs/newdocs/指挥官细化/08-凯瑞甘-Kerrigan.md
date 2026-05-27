@@ -389,34 +389,34 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 虫道网络 | `SummonNydusWorm` | 召唤坑道虫 | `BuildNydusCanal,Build1` | - | 在目标地点召唤一条坑道虫。友方地面单位可借助虫道网络在任何该玩家拥有的坑道虫或虫道网络间穿梭。生成菌毯，可满足附近异虫建筑的存活需求。 / 效果加成：异虫单位在菌毯上的移动速度更快 |
-| 虫道网络 | `SummonNydusCanalAttacker` | 召唤虫道毁灭者 | `BuildNydusCanal,Build2` | - | 在目标位置召唤虫道毁灭者。 / 只能攻击建筑。 |
-| 虫道网络 | `SummonNydusCanalCreeper` | 召唤菌塔 | `BuildNydusCanal,Build3` | - | 在目标位置召唤菌塔。菌塔可以向选中的方向发射菌毯。 / 额外加成：异虫单位在菌毯上移动速度更快。 |
-| 虫道网络 | `SetRallyPoint` | 设定集结点 | `Rally,Rally1` | - | 将单位派往指定地点，派往资源点的工作单位会自动开始采集。 |
-| 虫道网络 | `NydusCanalLoad` | 装载 | `NydusCanalTransport,Load` | - | 将单位装载进虫道网络。 |
-| 虫道网络 | `NydusWormIncreasedArmorPassive` | 钻地鳞片 | - | - | 坑道虫在从地面钻出时拥有{Behavior,NydusWormArmor,Modification.LifeArmorBonus+1}点护甲。 |
-| 虫道网络 | `-` | - | - | - | - |
-| 虫道网络 | `-` | - | `RallyNydus,Rally1` | - | - |
-| 虫道网络 | `ZagaraVoidCoopNydusWorm` | 召唤坑道虫 | - | - | 在目标位置召唤一只坑道虫。 / 友方地面单位可借助虫道网络在任何该玩家拥有的坑道虫或虫道网络间穿梭。生成菌毯，可满足附近异虫建筑的存活需求。 / 效果加成：异虫在菌毯上的移动速度更快。 |
-| 凯瑞甘 | `K5DropPods` | K5DropPods | `K5DropPods,Execute` | - | - |
-| 凯瑞甘 | `KerriganVoidCoopEconDrop` | 吸收光环 | `KerriganVoidCoopEconDrop,Execute` | - | 附近所有被消灭的敌人掉落资源。效果持续{Behavior,KerriganVoidCoopEconDropCaster,Duration}秒。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 巢虫领主 | `Broodlord` | `BroodLord` | Air; Armored/Biological/Massive; Unit; Melee | 矿:300 气:250 人口:-4 生命:225 护盾:- 能量:- | 大型飞行作战生物。通过投射出的巢虫来攻击目标。巢虫是一种可以对地的小型生物。 / 可以对地。 |
-| 刺蛇 | `Hydralisk` | `Hydralisk, HydraliskDen` | Ground; Biological/Light; Unit; Melee | 矿:100 气:50 人口:-2 生命:90 护盾:- 能量:- | 远程攻击单位。可以变异为潜伏者。 / 可以对地和对空。 |
-| 异龙 | `MutaliskBroodlord` | `MutaliskBroodlord, Spire` | Unit; FactionEvolved | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 能变异为巢虫领主： / 对地面单位进行远程攻击。孵化巢虫进行攻击。 |
-| 虫后 | `SwarmQueen` | `SwarmQueen, Queen, QueenCoop` | Unit | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 雷兽 | `Ultralisk` | `Ultralisk, UltraliskCavern` | Ground; Armored/Biological/Massive; Unit; Melee | 矿:275 气:200 人口:-6 生命:500 护盾:- 能量:- | 重型攻击猛兽，可造成范围伤害。 / 可以对地。 |
-| 跳虫 | `Zergling` | `Zergling, SpawningPool` | Ground; Biological/Light; Unit; Melee | 矿:25 气:- 人口:-0.5 生命:35 护盾:- 能量:- | 迅捷的肉搏型生物。可以变异为爆虫。 / 可以对地。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | Zergling x10, Hydralisk x4 | 虫群救援 | 跳虫包围，刺蛇补输出。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_heavy` | Ultralisk x2, Hydralisk x6, SwarmQueen x1 | 虫群攻坚 | 雷兽和刺蛇推进，虫后补支援。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_air` | MutaliskBroodlord x6, Broodlord x2 | 空中虫群 | 异龙先行，巢虫领主只给后期空中支援。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `bonus_reward` | K5Kerrigan x1, Ultralisk x2 | 英雄奖励 | 只有地图允许英雄参战时使用。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `replacement_squad` | Zergling x16, Hydralisk x4 | 同化光环测试 | 大量低成本单位便于验证资源收益。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

@@ -520,34 +520,38 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 原始工蜂 | `DehakaNydusDestroyer` | 召唤原始蠕虫 | `DehakaDroneMorph,Build6` | - | 强力防御建筑。 / 可以对地和对空。 / 侦测单位 |
-| 原始蠕虫 | `Detector` | 侦测单位 | - | - | 该单位能够侦测到隐形、潜地和幻像单位。 |
-| 原始蠕虫 | `BileStreamLocked` | 胆汁喷流 | - | `DehakaLevel10` | 该技能将在指挥官等级10时解锁。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| Dehaka | `原始mod/Maps/XM/traynor01.SC2Map/MapScript.galaxy` | 开场 SpecialOpsDropship 按 libE0EAE146_gv_commander 塞不同货舱；Dehaka/Gary 改为地面生成 | 已有按指挥官替换开场运输/救援小队的地图素材。 | 应迁移为 map=traynor01 的 cargo_light 或 opening_rescue profile。 |
+| Dehaka | `原始mod/Maps/XM/thanson01.SC2Map/MapScript.galaxy` | Firebat dropship 按 commander 替换货舱，默认 Firebat + Medic | 已有轻型救援运输机的 commander 分支。 | 应迁移为 cargo_light profile，并保留地图卸载/返航点。 |
+| Dehaka | `原始mod/Maps/XM/ttychus02.SC2Map/MapScript.galaxy` | Siege tank dropship 按 commander 替换货舱，卸载后 DropCargoAndExit | 已有重型支援运输机的 commander 分支。 | 应迁移为 cargo_heavy profile，并保留 Stukov/Mengsk 等后置 hook。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| Dehaka | `原始mod/Mods/XM/XMDehaka.SC2Mod/Base.SC2Data/GameData` | NydusDestroyerDeepTunnel、GreaterNydusDestroyerDeepTunnel、DehakaNydusDestroyerTopBar | 德哈卡已有坑道/深挖移动和顶部召唤链。 | 这是投送/位移机制线索，不等同于普通货舱。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 原始工蜂 | `DehakaDrone` | `DehakaDrone` | Ground; Biological/Light; Unit; FactionPrimal | 矿:50 气:- 人口:-1 生命:40 护盾:- 能量:- | 基础工作单位。用于采集晶体矿和高能瓦斯。可以召唤建筑。 / 可以对地。 |
-| 掘地虫 | `DehakaCreeper` | `DehakaCreeper` | Ground; Biological/Light; Unit; Campaign | 矿:- 气:- 人口:- 生命:130 护盾:- 能量:- | - |
-| 爆裂掘地虫 | `DehakaCreeperFlying` | `DehakaCreeperFlying` | Air; Biological/Light; Unit; FactionPrimal | 矿:- 气:- 人口:- 生命:130 护盾:- 能量:- | 孵化自掘地虫宿主。爆裂掘地虫持续{Behavior,DehakaCreeperTimedLife,Duration}秒。 / 可以对地。 |
-| 原始刺蛇 | `DehakaHydraliskLevel2` | `DehakaHydraliskLevel2` | Ground; Biological/Light; Unit; FactionPrimal | 矿:100 气:50 人口:-2 生命:100 护盾:- 能量:- | - |
-| 原始异龙 | `DehakaMutaliskLevel3` | `DehakaMutaliskLevel3` | Air; Biological/Light; Unit; FactionPrimal | 矿:100 气:100 人口:-3 生命:200 护盾:- 能量:- | - |
-| 掘地虫宿主 | `DehakaPrimalSwarmHost` | `DehakaPrimalSwarmHost` | Ground; Armored/Biological; Unit; FactionPrimal | 矿:100 气:75 人口:-5 生命:160 护盾:- 能量:- | 通过孵化掘地虫进行攻击的攻城单位。 / 掘地虫可以对地。 |
-| 掠食龙 | `DehakaRavasaur` | `DehakaRavasaur` | Ground; Armored/Biological; Unit; FactionPrimal | 矿:150 气:50 人口:-2 生命:90 护盾:- 能量:- | 远程单位。可以远距离发射大量酸性液体。 / 可以对地。 |
-| 原始蟑螂 | `DehakaRoachLevel2` | `DehakaRoachLevel2` | Ground; Armored/Biological; Unit; FactionPrimal | 矿:75 气:25 人口:-2 生命:175 护盾:- 能量:- | - |
-| 原始点火虫 | `DehakaRoachLevel3` | `DehakaRoachLevel3` | Ground; Armored/Biological; Unit; FactionPrimal | 矿:75 气:25 人口:-3 生命:350 护盾:- 能量:- | 突击单位。可造成范围伤害。潜地时能快速恢复生命值。 / 可以对地。 |
-| 原始宿主 | `DehakaSwarmHost` | `DehakaSwarmHost` | Ground; Armored/Biological; Unit; FactionPrimal | 矿:100 气:75 人口:-3 生命:160 护盾:- 能量:- | 通过孵化蝗虫进行攻击的攻城单位。 / 蝗虫可以对地。 |
-| 原始雷兽 | `DehakaUltraliskLevel2` | `DehakaUltraliskLevel2` | Ground; Armored/Biological/Massive; Unit; FactionPrimal | 矿:300 气:200 人口:-6 生命:625 护盾:- 能量:- | - |
-| 暴龙兽 | `DehakaUltraliskLevel3` | `DehakaUltraliskLevel3` | Ground; Armored/Biological/Massive; Unit; FactionPrimal | 矿:450 气:300 人口:-9 生命:1000 护盾:- 能量:- | 重型攻击猛兽。可造成地面范围伤害。 / 可以对地和对空。 |
-| 原始跳虫 | `DehakaZerglingLevel2` | `DehakaZerglingLevel2` | Ground; Biological/Light; Unit; FactionPrimal | 矿:50 气:- 人口:-1 生命:90 护盾:- 能量:- | - |
-| 穿刺者 | `ImpalerDehaka` | `ImpalerDehaka` | Ground; Armored/Biological; Unit; FactionPrimal | 矿:200 气:100 人口:-3 生命:200 护盾:- 能量:- | 远程反重甲伏击单位。必须潜地后才能发动攻击。 / 可以对地。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | DehakaZerglingLevel2 x8, DehakaRavasaur x3 | 原始前锋 | 低成本原始单位，便于测试精华获取。 | 已有 Dehaka 坑道/深挖和多张地图 commander 分支；此处是场景小队设计，不把坑道当普通货舱。 |
+| `cargo_heavy` | DehakaRoachLevel3 x4, DehakaUltraliskLevel2 x2, ImpalerDehaka x2 | 原始攻坚 | 点火虫、雷兽和穿刺者组成地面破阵。 | 已有 Dehaka 坑道/深挖和多张地图 commander 分支；此处是场景小队设计，不把坑道当普通货舱。 |
+| `cargo_air` | DehakaMutaliskLevel3 x6 | 空中突袭 | 原始异龙作为空中支援；不默认带首领。 | 已有 Dehaka 坑道/深挖和多张地图 commander 分支；此处是场景小队设计，不把坑道当普通货舱。 |
+| `bonus_reward` | DehakaCoop x1, DehakaGlevig x1 | 英雄/族群奖励 | 只在允许英雄或首领加入的地图使用。 | 已有 Dehaka 坑道/深挖和多张地图 commander 分支；此处是场景小队设计，不把坑道当普通货舱。 |
+| `replacement_squad` | DehakaPrimalSwarmHost x2, DehakaCreeper x4 | 原始孵化小队 | 用于测试原始生成链。 | 已有 Dehaka 坑道/深挖和多张地图 commander 分支；此处是场景小队设计，不把坑道当普通货舱。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

@@ -419,26 +419,34 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 萨尔纳加虚空阵列船 | `ZeratulWarpPrismWormholeMode` | 虫洞模式 | `ZeratulPhasingMode,Execute` | - | 命令萨尔纳加虚空阵列船变形成虫洞模式，使其可以在不同的虚空阵列船之间传输单位。该单位在该模式下无法移动。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 萨尔纳加禁绝者 | `DisruptorZeratul` | `ZeratulDisruptor` | Ground; Armored/Mechanical; Unit; FactionXelNaga | 矿:450 气:450 人口:-3 生命:200 护盾:200 能量:- | 机械干扰型单位。可以使用净化新星造成大量范围性伤害。 / 可以对地。 |
-| 萨尔纳加执行者 | `ImmortalZeratul` | `ZeratulImmortal` | Ground; Armored/Mechanical; Unit; FactionXelNaga | 矿:750 气:300 人口:-4 生命:400 护盾:200 能量:- | 步战机甲。可以使用屏障吸收伤害并击退敌方空中单位。 / 可以对空和对地。 |
-| 侦测器 | `Observer` | `Observer` | Air; Light/Mechanical; Unit; Melee | 矿:25 气:75 人口:-1 生命:40 护盾:30 能量:- | 间谍型空中单位。拥有永久隐形的能力。 / 侦测单位 |
-| 萨尔纳加观察者 | `ObserverZeratul` | `ZeratulObserver, Observer` | Air; Light/Mechanical; Unit; FactionXelNaga | 矿:25 气:75 人口:-1 生命:40 护盾:20 能量:- | 间谍型空中单位。敌人没有侦测手段将无法看到隐形单位。 / 侦测单位 |
-| 萨尔纳加光盾卫士 | `SentryZeratul` | `ZeratulSentry` | Ground; Light/Mechanical/Psionic; Unit; FactionXelNaga | 矿:75 气:150 人口:-2 生命:120 护盾:120 能量:200 | 机械支援单位。可以使用护盾充能与反射护盾。 / 可以对空和对地。 |
-| 萨尔纳加伏击者 | `StalkerZeratul` | `ZeratulStalker` | Ground; Armored/Mechanical; Unit; FactionXelNaga | 矿:300 气:50 人口:-2 生命:100 护盾:100 能量:- | 远程支援型步战机甲。受到威胁时会自动使用预判闪现。 / 可以对空和对地。 |
-| 萨尔纳加虚空阵列船 | `WarpPrismZeratul` | `ZeratulWarpPrism` | Air; Armored/Mechanical/Psionic; Unit; FactionXelNaga | 矿:150 气:- 人口:-1 生命:200 护盾:200 能量:- | 飞行虫洞发生器。同一时间建造两个。可以部署后在萨尔纳加虚空阵列船之间生成数据链。 |
-| 狂热者 | `ZealotZeratul` | `ZeratulSummonZealot` | Ground; Biological/Light; Unit; FactionXelNaga | 矿:100 气:- 人口:- 生命:100 护盾:50 能量:- | - |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | ZealotZeratul x6, StalkerZeratul x3 | 萨尔纳加前锋 | 狂热者和伏击者。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_heavy` | ImmortalZeratul x2, DisruptorZeratul x2, SentryZeratul x2 | 神器科技攻坚 | 执行者、禁绝者和光盾卫士。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_air` | WarpPrismZeratul x1, ObserverZeratul x1, StalkerZeratul x4 | 虚空阵列投送 | 泽拉图空中场景以虚空阵列船投送地面单位。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `bonus_reward` | ImmortalZeratul x3, DisruptorZeratul x2 | 神器奖励 | 高科技单位只在奖励节点出现。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `replacement_squad` | ZealotZeratul x8, SentryZeratul x2 | 神器阶段测试 | 用于验证神器碎片后的单位替换。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

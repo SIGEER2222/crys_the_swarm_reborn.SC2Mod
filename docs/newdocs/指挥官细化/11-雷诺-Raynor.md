@@ -435,41 +435,35 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 兵营 | `OrbitalDropPodsPassive` | 轨道空投 | - | `HaveOrbitalDropPods` | 兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。 |
-| 地堡 | `NeoSteelFrame` | - | - | `UseNeoSteelFrame` | - |
-| 地堡 | `FortifiedBunker` | - | - | `HaveFortifiedBunkerCarapace` | - |
-| 地堡 | `SetBunkerRallyPoint` | 设定地堡集结点 | `Rally,Rally1` | - | 将卸载的步兵单位派往指定地点。 |
-| 地堡 | `StimRedirect` | 使用强化剂 | `StimpackMarauderRedirect,Execute` | - | 命令地堡内的陆战队员、劫掠者和火蝠使用强化剂。同往常一样，使用强化剂的单位会受到伤害，但攻击速度会提高。 |
-| 地堡 | `BunkerLoad` | 装载 | `BunkerTransport,Load` | - | 将步兵装载进地堡。 |
-| 地堡 | `BunkerUnloadAll` | 全部卸载 | `BunkerTransport,UnloadAll` | - | 卸载所有单位。 |
-| 地堡 | `-` | - | - | - | - |
-| 地堡 | `-` | - | `SalvageEffect,Execute` | - | - |
-| SCV | `Bunker` | 建造地堡 | `TerranBuild,Build7` | - | 防御工事。 / 步兵单位在地堡内作战。 / 效果加成：舱载单位射程增加1。 |
-| 指挥中心 | `CommandCenterLoad` | 装载 | `CommandCenterTransport,LoadAll` | - | 将附近的SCV装载进指挥中心。 |
-| 指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `CommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
-| 轨道控制基地 | `SupplyDrop` | 轨道空投：额外补给 | `SupplyDrop,Execute` | - | 投放额外补给，使目标补给站提供的补给数量永久性增加{Behavior,SupplyDrop,Modification.Food}，并立即将其生命值提高至500。 |
-| 轨道控制基地 | `OrbitalCommandCalldownSupplyDepot` | 空投：补给站 | `OrbitalCommandSupplyDepotDrop,Build1` | - | 改良版补给站。可以无需使用SCV直接从高空轨道空投部署。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| Raynor | `原始mod/Maps/XM/ttychus04.SC2Map/MapScript.galaxy` | UnitCargoCreate(lv_dropship, "Marine", 8) + SpecOpsDropshipTransport | 已有陆战队货舱装载并由运输机卸载的地图实现。 | 应改成 Raynor cargo_light profile，而不是硬编码 Marine x8。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 陆战队员 | `Marine` | `Marine` | Ground; Biological/Light; Unit; Melee | 矿:50 气:- 人口:-1 生命:45 护盾:- 能量:- | 通用型步兵。 / 可以对地和对空。 |
-| 医疗兵 | `Medic` | `Medic` | Unit; FactionRaider | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 支援型单位。治疗附近的生物单位。 |
-| 秃鹫 | `Vulture` | `Vulture` | Unit; FactionRaider | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 动作迅捷的作战单位。能够部署蜘蛛雷。 / 可以对地。 |
-| 火蝠 | `Firebat` | `Firebat` | Unit; FactionRaider | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 专业反步兵作战单位。 / 可以对地。 |
-| SCV | `SCV` | `SCV` | Ground; Biological/Light/Mechanical; Unit; Melee | 矿:50 气:- 人口:-1 生命:45 护盾:- 能量:- | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
-| 维京战机 | `Viking` | `Viking, VikingFighter` | Unit; Melee | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 坚固的火力支援型空中单位，配备有强大的反主力舰飞弹。进入机甲模式后可攻击地面单位。 / 可以对空 |
-| 女妖 | `Banshee` | `Banshee` | Air; Light/Mechanical; Unit; Melee | 矿:150 气:100 人口:-3 生命:140 护盾:- 能量:200 | 战术打击飞行器。可升级隐形技能。 / 可以对地。 |
-| 劫掠者 | `Marauder` | `Marauder` | Ground; Armored/Biological; Unit; Melee | 矿:100 气:25 人口:-2 生命:125 护盾:- 能量:- | 重型突击步兵。 / 可以对地。 |
-| 战列巡航舰 | `Battlecruiser` | `Battlecruiser, FusionCore` | Air; Armored/Massive/Mechanical; Unit; Melee | 矿:400 气:300 人口:-6 生命:550 护盾:- 能量:0 | 强大的战舰。可以使用大和炮和战术跳跃。 / 可以对地和对空。 |
-| 攻城坦克 | `Siege Tank` | `SiegeTank` | Ground; Armored/Mechanical; Unit; Melee | 矿:150 气:125 人口:-3 生命:175 护盾:- 能量:- | 重型坦克。可切换至攻城模式来提供远程炮火。 / 可以对地。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | Marine x8, Medic x2, Firebat x2 | 生化救援 | 陆战队、医疗兵、火蝠，适合早期地图救援。 | 已有 ttychus04 Marine 货舱地图例子；此处将硬编码 Marine x8 泛化成 Raynor profile。 |
+| `cargo_heavy` | Marauder x4, Siege Tank x2, Medic x2 | 地面攻坚 | 劫掠者和攻城坦克推进。 | 已有 ttychus04 Marine 货舱地图例子；此处将硬编码 Marine x8 泛化成 Raynor profile。 |
+| `cargo_air` | Viking x4, Banshee x2 | 空中支援 | 维京制空，女妖对地。 | 已有 ttychus04 Marine 货舱地图例子；此处将硬编码 Marine x8 泛化成 Raynor profile。 |
+| `bonus_reward` | Battlecruiser x1, Siege Tank x2 | 后期奖励 | 战列巡航舰只用于高强度奖励。 | 已有 ttychus04 Marine 货舱地图例子；此处将硬编码 Marine x8 泛化成 Raynor profile。 |
+| `replacement_squad` | Marine x12, Medic x3 | 轨道空投测试 | 用于测试生化空投和治疗链。 | 已有 ttychus04 Marine 货舱地图例子；此处将硬编码 Marine x8 泛化成 Raynor profile。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

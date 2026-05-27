@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820">
+  <defs>
+    <style>
+      .bg { fill: #151a1f; }
+      .map { fill: #202933; stroke: #d8dee9; stroke-width: 2; }
+      .grid { stroke: #3a4652; stroke-width: 1; }
+      .label { fill: #eef2f7; font-family: Arial, "Microsoft YaHei", sans-serif; font-size: 16px; }
+      .small { fill: #d7dde5; font-family: Arial, "Microsoft YaHei", sans-serif; font-size: 13px; }
+      .tiny { fill: #bac4cf; font-family: Arial, "Microsoft YaHei", sans-serif; font-size: 11px; }
+      .title { fill: #ffffff; font-family: Arial, "Microsoft YaHei", sans-serif; font-size: 24px; font-weight: 700; }
+      .zone { stroke: #f2f6fb; stroke-width: 2; rx: 4; ry: 4; }
+      .base { fill: #2e7d6d; fill-opacity: .82; }
+      .roster { fill: #5479b8; fill-opacity: .82; }
+      .hero { fill: #8d64b0; fill-opacity: .82; }
+      .tech { fill: #b48746; fill-opacity: .82; }
+      .cargo { fill: #7d8b3d; fill-opacity: .82; }
+      .enemy { fill: #a84848; fill-opacity: .82; }
+      .panel { fill: #3a9eb7; fill-opacity: .9; }
+      .summary { fill: #707984; fill-opacity: .9; }
+      .ui { fill: #242c35; stroke: #9aa7b5; stroke-width: 2; rx: 6; ry: 6; }
+      .button { fill: #334150; stroke: #b5c0cc; stroke-width: 1.5; rx: 5; ry: 5; }
+      .buttonHot { fill: #44627b; stroke: #e8eef5; stroke-width: 2; rx: 5; ry: 5; }
+      .point { fill: #fff1a8; stroke: #161a1d; stroke-width: 2; }
+      .arrow { fill: none; stroke: #ffdc7a; stroke-width: 3; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ffdc7a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="820" />
+  <text class="title" x="40" y="42">CommanderTestBench.SC2Map 布局蓝图</text>
+  <text class="small" x="40" y="68">地图坐标 160 x 160；左侧为地形/区域，右侧为测试 UI 草图。区域名应在编辑器中保持一致。</text>
+
+  <g transform="translate(40,90)">
+    <rect class="map" x="0" y="0" width="640" height="640" />
+    <text class="small" x="0" y="-12">地图区域坐标视图</text>
+
+    <g opacity=".9">
+      <line class="grid" x1="0" y1="160" x2="640" y2="160" />
+      <line class="grid" x1="0" y1="320" x2="640" y2="320" />
+      <line class="grid" x1="0" y1="480" x2="640" y2="480" />
+      <line class="grid" x1="160" y1="0" x2="160" y2="640" />
+      <line class="grid" x1="320" y1="0" x2="320" y2="640" />
+      <line class="grid" x1="480" y1="0" x2="480" y2="640" />
+    </g>
+
+    <text class="tiny" x="4" y="636">(0,0)</text>
+    <text class="tiny" x="594" y="636">(160,0)</text>
+    <text class="tiny" x="4" y="14">(0,160)</text>
+    <text class="tiny" x="580" y="14">(160,160)</text>
+
+    <rect class="zone base" x="64" y="56" width="128" height="112" />
+    <text class="label" x="77" y="92">BaseZone</text>
+    <text class="small" x="77" y="116">基地 / 工人</text>
+    <text class="tiny" x="77" y="140">center (32,118)</text>
+
+    <rect class="zone roster" x="240" y="56" width="256" height="112" />
+    <text class="label" x="258" y="92">RosterZone</text>
+    <text class="small" x="258" y="116">全单位 / 全建筑</text>
+    <text class="tiny" x="258" y="140">center (92,118)</text>
+
+    <rect class="zone hero" x="64" y="232" width="128" height="112" />
+    <text class="label" x="78" y="268">HeroZone</text>
+    <text class="small" x="78" y="292">英雄 / 形态</text>
+    <text class="tiny" x="78" y="316">center (32,74)</text>
+
+    <rect class="zone tech" x="240" y="232" width="256" height="112" />
+    <text class="label" x="258" y="268">TechZone</text>
+    <text class="small" x="258" y="292">科技 / 研究</text>
+    <text class="tiny" x="258" y="316">center (92,74)</text>
+
+    <rect class="zone cargo" x="64" y="464" width="128" height="96" />
+    <text class="label" x="77" y="500">CargoZone</text>
+    <text class="small" x="77" y="524">运输机 / 空投</text>
+    <text class="tiny" x="77" y="546">center (32,32)</text>
+
+    <rect class="zone enemy" x="240" y="464" width="256" height="96" />
+    <text class="label" x="258" y="500">EnemyZone</text>
+    <text class="small" x="258" y="524">轻甲 / 重甲 / 空中 / 建筑目标</text>
+    <text class="tiny" x="258" y="546">center (92,32)</text>
+
+    <circle class="point" cx="528" cy="344" r="10" />
+    <text class="small" x="544" y="340">PanelPoint</text>
+    <text class="tiny" x="544" y="358">(132,74)</text>
+
+    <circle class="point" cx="528" cy="168" r="10" />
+    <text class="small" x="544" y="164">SummaryPoint</text>
+    <text class="tiny" x="544" y="182">(132,118)</text>
+
+    <path class="arrow" d="M528 344 C498 410 470 452 420 486" />
+    <text class="tiny" x="438" y="424">面板指向性技能</text>
+    <path class="arrow" d="M496 112 C540 150 552 210 532 330" />
+    <text class="tiny" x="522" y="228">摘要 / 日志视角</text>
+  </g>
+
+  <g transform="translate(730,90)">
+    <text class="small" x="0" y="-12">测试台 UI 草图</text>
+    <rect class="ui" x="0" y="0" width="500" height="640" />
+
+    <text class="label" x="18" y="32">顶部指挥官条</text>
+    <rect class="ui" x="16" y="46" width="468" height="118" />
+    <g transform="translate(28,62)">
+      <rect class="buttonHot" x="0" y="0" width="56" height="42" />
+      <rect class="button" x="64" y="0" width="56" height="42" />
+      <rect class="button" x="128" y="0" width="56" height="42" />
+      <rect class="button" x="192" y="0" width="56" height="42" />
+      <rect class="button" x="256" y="0" width="56" height="42" />
+      <rect class="button" x="320" y="0" width="56" height="42" />
+      <rect class="button" x="384" y="0" width="56" height="42" />
+      <rect class="button" x="0" y="54" width="56" height="42" />
+      <rect class="button" x="64" y="54" width="56" height="42" />
+      <rect class="button" x="128" y="54" width="56" height="42" />
+      <rect class="button" x="192" y="54" width="56" height="42" />
+      <rect class="button" x="256" y="54" width="56" height="42" />
+      <rect class="button" x="320" y="54" width="56" height="42" />
+      <rect class="button" x="384" y="54" width="56" height="42" />
+      <text class="tiny" x="8" y="27">Raynor</text>
+      <text class="tiny" x="73" y="27">Nova</text>
+      <text class="tiny" x="134" y="27">...</text>
+      <text class="tiny" x="8" y="82">18 portraits</text>
+    </g>
+
+    <text class="label" x="18" y="198">左侧场景按钮</text>
+    <rect class="ui" x="16" y="212" width="212" height="330" />
+    <g transform="translate(28,232)">
+      <rect class="buttonHot" x="0" y="0" width="86" height="30" />
+      <text class="tiny" x="13" y="20">标准基地</text>
+      <rect class="button" x="98" y="0" width="86" height="30" />
+      <text class="tiny" x="113" y="20">应用融合</text>
+      <rect class="buttonHot" x="0" y="42" width="86" height="30" />
+      <text class="tiny" x="12" y="62">面板扣费</text>
+      <rect class="button" x="98" y="42" width="86" height="30" />
+      <text class="tiny" x="113" y="62">面板效果</text>
+      <rect class="button" x="0" y="84" width="86" height="30" />
+      <text class="tiny" x="17" y="104">全建筑</text>
+      <rect class="button" x="98" y="84" width="86" height="30" />
+      <text class="tiny" x="115" y="104">全单位</text>
+      <rect class="button" x="0" y="126" width="86" height="30" />
+      <text class="tiny" x="12" y="146">英雄形态</text>
+      <rect class="button" x="98" y="126" width="86" height="30" />
+      <text class="tiny" x="113" y="146">单位技能</text>
+      <rect class="button" x="0" y="168" width="86" height="30" />
+      <text class="tiny" x="29" y="188">科技</text>
+      <rect class="button" x="98" y="168" width="86" height="30" />
+      <text class="tiny" x="113" y="188">特殊机制</text>
+      <text class="tiny" x="0" y="232">共 18 个 scenario 按钮</text>
+    </g>
+
+    <text class="label" x="252" y="198">右侧摘要</text>
+    <rect class="ui" x="244" y="212" width="240" height="330" />
+    <text class="small" x="262" y="248">Commander: Raynor</text>
+    <text class="small" x="262" y="278">Scenario: panel_cost_smoke</text>
+    <text class="small" x="262" y="308">Created: 12</text>
+    <text class="small" x="262" y="338">Missing: 0</text>
+    <text class="small" x="262" y="368">Warnings: 1</text>
+    <text class="small" x="262" y="398">Errors: 0</text>
+    <text class="small" x="262" y="428">Last: PANEL_COST_AFTER</text>
+
+    <text class="label" x="18" y="582">底部操作条</text>
+    <rect class="ui" x="16" y="596" width="468" height="36" />
+    <rect class="button" x="28" y="602" width="72" height="24" />
+    <text class="tiny" x="51" y="619">清理</text>
+    <rect class="button" x="112" y="602" width="72" height="24" />
+    <text class="tiny" x="130" y="619">重跑</text>
+    <rect class="button" x="196" y="602" width="96" height="24" />
+    <text class="tiny" x="216" y="619">下一个</text>
+    <rect class="buttonHot" x="304" y="602" width="116" height="24" />
+    <text class="tiny" x="326" y="619">Run All</text>
+  </g>
+
+  <g transform="translate(40,760)">
+    <text class="small" x="0" y="0">触发原则：自动测试走命令触发 XM_InvokeCommanderPanelAbility，不模拟鼠标点击；真实 UI 点击只验证按钮到 panelAbilityId 的接线。</text>
+    <text class="small" x="0" y="24">第一版：Raynor / Nova / Abathur 最小闭环；panel_cost_smoke 进入 Run All，panel_effect_smoke 先白名单。</text>
+  </g>
+</svg>

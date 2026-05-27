@@ -371,30 +371,34 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| - | - | - | - | - | 未自动命中运输或空投按钮。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 守护者 | `AbathurGuardian` | `GuardianMP` | Air; Armored/Biological/Massive; Unit; FactionEvolved | 矿:150 气:200 人口:-2 生命:150 护盾:- 能量:- | 超远距离对地空军。 / 可以对地。 |
-| 吞噬者 | `Devourer` | `Devourer` | Unit; FactionEvolved | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 强大的对空飞行单位。可以使用腐蚀强酸。 / 可以对空。 |
-| 异龙 | `Mutalisk` | `Mutalisk, Spire` | Air; Biological/Light; Unit; Melee | 矿:100 气:100 人口:-2 生命:120 护盾:- 能量:- | 飞行生物。能够利用弹射攻击同时伤害多个目标。 / 可以对地和对空。 |
-| 蟑螂 | `Roach` | `Roach, RoachWarren` | Ground; Armored/Biological; Unit; Melee | 矿:75 气:25 人口:-2 生命:145 护盾:- 能量:- | 突击单位。潜地后能快速恢复生命值。可以变异为破坏者。 / 可以对地。 |
-| 虫群宿主 | `SwarmHost` | `SwarmHost, InfestationPit, SwarmHostMP` | Unit | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 孵化2只蝗虫。蝗虫有{Behavior,LocustMPTimedLife,Duration}秒的限时生命。 / 可以对地。 |
-| 虫后 | `SwarmQueen` | `SwarmQueen, Queen, QueenCoop` | Unit | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 蟑螂 | `RoachCorpser` | `RoachCorpser, RoachWarren` | Unit | 矿:- 气:- 人口:- 生命:145 护盾:- 能量:- | 蟑螂所伤的敌人若被迅速消灭后，会生成两只小蟑螂。 |
-| 蟑螂 | `RoachVile` | `RoachVile, RoachWarren` | Unit; FactionEvolved | 矿:- 气:- 人口:- 生命:145 护盾:- 能量:- | 攻击能使敌人的移动和攻击速度降低{(1 - Behavior,VileAcidSlowFlatAmount,Modification.MoveSpeedMultiplier) * 100}%。英雄单位的移动和攻击速度降低{(1 - Behavior,VileAcidSlow... |
-| 破坏者 | `Ravager` | `Ravager` | Ground; Biological; Unit; Melee | 矿:100 气:0 人口:-3 生命:120 护盾:- 能量:- | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
-| 飞蛇 | `Viper` | `Viper` | Air; Psionic; Unit; Melee | 矿:100 气:200 人口:-3 生命:150 护盾:- 能量:200 | 飞行的施法者，战地的控场大师。可使用寄生弹、吞噬、蔽目毒云和绑架技能。 |
-| 莽兽 | `Brutalisk` | `Brutalisk` | Unit; FactionEvolved | 矿:500 气:300 人口:- 生命:- 护盾:- 能量:- | 重型突击巨兽，其体型和力量均远超雷兽。 / 可以对地和对空 |
-| 利维坦 | `Leviathan` | `Leviathan, HotSLeviathan` | Unit | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 统治天空的巨型飞行怪兽。 / 可以对空和对地。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | Roach x4, SwarmQueen x1 | 救援/早期运输 | 蟑螂抗线，虫后补治疗，不提前给终极进化。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_heavy` | Ravager x3, SwarmHost x2, SwarmQueen x1 | 阵地突破 | 用腐蚀胆汁和虫群宿主压阵；Brutalisk 只放 bonus，避免剧情初段过强。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_air` | Mutalisk x6, Viper x1 | 空中支援 | 异龙负责清杂，飞蛇用于控制；Leviathan 不作为普通空投。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `bonus_reward` | Brutalisk x1 或 Leviathan x1 | 奖励/高潮战斗 | 只能在高强度奖励或终局事件使用，并输出特殊机制日志。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `replacement_squad` | RoachVile x4, Ravager x2 | 满级替换 | 体现 15 级蟑螂变种和破坏者链。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

@@ -405,25 +405,38 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 被感染的指挥中心 | `SICommandCenterLoad` | 装载 | `SICommandCenterTransport,LoadAll` | - | 将附近被感染的SCV装载进被感染的指挥中心。 |
-| 被感染的指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `SICommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| Stukov | `原始mod/Maps/XM/traynor01.SC2Map/MapScript.galaxy` | 开场 SpecialOpsDropship 按 libE0EAE146_gv_commander 塞不同货舱；Dehaka/Gary 改为地面生成 | 已有按指挥官替换开场运输/救援小队的地图素材。 | 应迁移为 map=traynor01 的 cargo_light 或 opening_rescue profile。 |
+| Stukov | `原始mod/Maps/XM/ttychus02.SC2Map/MapScript.galaxy` | Siege tank dropship 按 commander 替换货舱，卸载后 DropCargoAndExit | 已有重型支援运输机的 commander 分支。 | 应迁移为 cargo_heavy profile，并保留 Stukov/Mengsk 等后置 hook。 |
+| Stukov | `原始mod/Maps/XM/thorner02.SC2Map/MapScript.galaxy` | 按 commander 决定运输单位或货舱，例如 Stukov HerculesSCV、Nova SiegeTank_BlackOps、Swann HerculesSwann | 已有运输单位本身也可由 commander 替换的地图素材。 | 应迁移为 CommanderMapDropProfile 的 TransportUnit/TransportAbility 字段。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| Stukov | `原始mod/Mods/XM/XMStukov.SC2Mod/Base.SC2Data/GameData` | OverlordTransportStukov、StukovBansheeTransport、SIInfestedBunkerTransport | 斯托科夫已有王虫、女妖、感染地堡等运输能力。 | 应保留感染单位生命周期和运输容器规则。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 被感染的平民 | `StukovInfestedCivilian` | `SIInfestedCivilian, SICocoonInfestedSCV` | Ground; Biological/Light; Unit; FactionInfested | 矿:- 气:- 人口:-0.5 生命:35 护盾:- 能量:- | 通用型被感染的步兵。 / 可以对地。 |
-| 被感染的陆战队员 | `StukovInfestedMarine` | `SIInfestedMarine, SICocoonInfestedMarine` | Ground; Biological/Light; Unit; FactionInfested | 矿:15 气:- 人口:-1 生命:50 护盾:- 能量:- | 通用型被感染的步兵。 / 可以对地和对空。 |
-| 被感染的攻城坦克 | `StukovInfestedSiegeTank` | `StukovInfestedSiegeTank, SICocoonInfestedSiegeTank` | Ground; Armored/Biological/Mechanical; Unit; FactionInfested | 矿:200 气:100 人口:-3 生命:200 护盾:- 能量:- | 重型坦克。让自己站起后可提供机动的坦克火力支援。可以使用深槽虫道技能快速移动至任何有菌毯的可见位置。 / 可以对地。 |
-| 被感染的怨灵战机 | `StukovInfestedWraith` | `SIWraith, SICocoonInfestedLiberator` | Air; Armored/Mechanical; Unit; Campaign | 矿:150 气:150 人口:-2 生命:140 护盾:- 能量:200 | 高度机动性空中单位。擅长突袭打击。 / 可以对空和对地 |
-| 虫后 | `SwarmQueen` | `SwarmQueen, Queen, QueenCoop` | Unit | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 跳虫 | `Zergling` | `Zergling, SpawningPool` | Ground; Biological/Light; Unit; Melee | 矿:25 气:- 人口:-0.5 生命:35 护盾:- 能量:- | 迅捷的肉搏型生物。可以变异为爆虫。 / 可以对地。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | StukovInfestedMarine x10, StukovInfestedCivilian x8 | 感染潮 | 大量感染步兵作为救援消耗单位。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
+| `cargo_heavy` | StukovInfestedSiegeTank x2, SwarmQueen x2 | 阵地支援 | 感染攻城坦克和虫后控制。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
+| `cargo_air` | StukovInfestedWraith x4, SwarmQueen x1 | 空中感染支援 | 感染怨灵配虫后。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
+| `bonus_reward` | StukovInfestedSiegeTank x3, StukovInfestedMarine x12 | 防守奖励 | 适合防守地图的增援潮。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
+| `replacement_squad` | StukovInfestedCivilian x16, StukovInfestedMarine x8 | 感染生成测试 | 用于验证感染体生命周期。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

@@ -414,26 +414,34 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| - | - | - | - | - | 未自动命中运输或空投按钮。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 不朽者 | `ImmortalAiur` | `ImmortalAiur, Immortal, RoboticsFacility` | Unit; FactionKhalai | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 攻击型步战机甲。可以使用屏障吸收伤害。 / 可以对地。 |
-| 侦测器 | `Observer` | `Observer` | Air; Light/Mechanical; Unit; Melee | 矿:25 气:75 人口:-1 生命:40 护盾:30 能量:- | 间谍型空中单位。拥有永久隐形的能力。 / 侦测单位 |
-| 侦察机 | `PhoenixPurifier` | `PhoenixPurifier, FleetBeacon, Phoenix, Stargate` | Unit; FactionPurifier | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 空中优势战机。可使用引力光束，升级后还可使用相位护甲技能。 / 可以对空。 |
-| 折跃侦察机 | `Scout` | `Scout, Stargate` | Unit; FactionPurifier | 矿:250 气:75 人口:- 生命:150 护盾:100 能量:- | 多功能高速战机。 / 可以对地和对空。 |
-| 激励者 | `SentryPurifier` | `SentryPurifier, Sentry` | Unit; FactionPurifier | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 机械支援单位。能够使用时空光束和相位模式技能。升级后可获得回收技能。 / 可以对地和对空。 |
-| 哨兵 | `ZealotPurifier` | `ZealotPurifier, Zealot` | Unit; FactionPurifier | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 强大的近战战士。升级后可使用冲锋和重构技能。 / 可以对地。 |
-| 巨像 | `Colossus` | `Colossus, RoboticsBay, RoboticsFacility` | Air/Ground; Armored/Massive/Mechanical; Unit; Melee | 矿:300 气:200 人口:-6 生命:250 护盾:100 能量:- | 步战机器人，装备强大的范围攻击武器。能够攀越悬崖。对空武器可以对其进行攻击。 / 可以对地。 |
-| 航母 | `Carrier` | `Carrier, FleetBeacon, Stargate` | Air; Armored/Massive/Mechanical; Unit; Melee | 矿:350 气:250 人口:-6 生命:300 护盾:150 能量:- | 星灵的主力战舰。能够制造并发射拦截机攻击敌人。 / 可以对地和对空。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | ZealotPurifier x6, SentryPurifier x2 | 机械前锋 | 哨兵抗线，激励者补增益。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_heavy` | ImmortalAiur x2, Colossus x2, SentryPurifier x2 | 机械攻坚 | 不朽者/巨像配激励者。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_air` | PhoenixPurifier x4, Observer x1 | 空中支援 | 侦察机和侦测器，避免常规给航母。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `bonus_reward` | Carrier x1, Colossus x2 | 后期奖励 | 高价值机械单位用于奖励节点。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `replacement_squad` | ZealotPurifier x8, ImmortalAiur x2 | 自动维修测试 | 适合验证建筑/机械维修光环。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 
