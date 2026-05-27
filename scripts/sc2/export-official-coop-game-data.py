@@ -56,6 +56,9 @@ SOURCE_BY_COMMANDER = {
 }
 
 CURATED_COMMANDER_UNIT_IDS = {
+    "Kerrigan": [
+        "K5Kerrigan",
+    ],
     "Abathur": [
         "SwarmQueen",
         "RoachCorpser",
@@ -91,6 +94,9 @@ CURATED_COMMANDER_UNIT_IDS = {
         "DehakaUltraliskLevel3",
         "DehakaZerglingLevel2",
         "ImpalerDehaka",
+    ],
+    "Zagara": [
+        "ZagaraVoidCoop",
     ],
     "Mengsk": [
         "SCVMengsk",
@@ -1912,7 +1918,7 @@ def render_summary_markdown(export_root: Path, output_dir: Path, commanders: dic
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default=".", help="Repository root")
-    parser.add_argument("--export-root", default="references/sc2-build-96883-casc-export", help="Official CASC export root")
+    parser.add_argument("--export-root", default="", help="Explicit official CASC export root; empty means use live cache / SC2Data")
     parser.add_argument("--storage-path", default="", help="SC2Data CASC storage root; used when export-root is missing")
     parser.add_argument(
         "--live-export-dir",
@@ -1926,8 +1932,8 @@ def main() -> int:
     repo_root = Path(args.repo_root).resolve()
     output_dir = (repo_root / args.output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
-    requested_export_root = (repo_root / args.export_root).resolve()
-    if requested_export_root.exists():
+    requested_export_root = (repo_root / args.export_root).resolve() if args.export_root else None
+    if requested_export_root is not None and requested_export_root.exists():
         export_root = requested_export_root
     else:
         storage_path = Path(args.storage_path).resolve() if args.storage_path else detect_storage_path()
