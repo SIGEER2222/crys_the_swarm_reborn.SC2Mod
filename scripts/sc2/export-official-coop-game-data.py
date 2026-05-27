@@ -225,6 +225,32 @@ TECH_PRODUCTION_COMMAND_OVERRIDES = {
             },
         ],
     },
+    "Stukov": {
+        "StukovInfestedSupplyDepot": [
+            {
+                "producer_unit_id": "SISCV",
+                "button_face": "SISupplyDepot",
+                "abil_cmd": "SIAdvancedBuild,Build2",
+            },
+        ],
+    },
+    "Zeratul": {
+        "ZealotZeratul": [
+            {
+                "producer_unit_id": "ZeratulGateway",
+                "button_face": "ZealotZeratul",
+                "abil_cmd": "ZeratulGatewayTrain,Train18",
+            },
+        ],
+    },
+}
+
+TECH_PRODUCTION_FIELD_OVERRIDES = {
+    "Stukov": {
+        "StukovInfestedSupplyDepot": {
+            "time": "30",
+        },
+    },
 }
 
 COMMANDER_TECH_ENTRY_EXCLUDES = {
@@ -1638,11 +1664,9 @@ def resolve_production_metadata(
                 if info_node is not None:
                     info_nodes.append(info_node)
                 else:
-                    fallback_info = ability_node.find("./InfoArray[@index='0']")
-                    if fallback_info is None:
-                        fallback_info = ability_node.find("./InfoArray")
-                    if fallback_info is not None:
-                        info_nodes.append(fallback_info)
+                    fallback_infos = ability_node.findall("./InfoArray")
+                    if fallback_infos:
+                        info_nodes.extend(fallback_infos)
         ability_cost_nodes = [ability_node for _, ability_node in ability_chain]
         result = {
             "producer_unit_id": producer_unit_id,
@@ -1664,6 +1688,7 @@ def resolve_production_metadata(
             not result["unit"]
             or result["unit"] in candidate_unit_id_set
             or str(result["unit"]).endswith("SpawnerUnit")
+            or NON_PRIMARY_UNIT_PATTERN.search(str(result["unit"]))
         ):
             result["unit"] = unit_id
         if not result["time"]:
@@ -1752,12 +1777,13 @@ def resolve_production_metadata(
         canonical_bonus = 1 if face == unit_id or ability_id.endswith(unit_id) or unit_id in ability_id else 0
         return (
             negative_resource_penalty,
+            -time_bonus,
             -commander_producer_bonus,
             -positive_resource_bonus,
             -explicit_resource_count,
             -exact_unit_bonus,
             -canonical_bonus,
-            -time_bonus - preferred_face_bonus,
+            -preferred_face_bonus,
             ability_id,
             face,
         )
@@ -1797,7 +1823,18 @@ def resolve_production_metadata(
     if not parsed_candidates:
         return {}, []
     ordered_candidates = sorted(parsed_candidates, key=production_score)
-    return ordered_candidates[0], ordered_candidates
+    best_candidate = dict(ordered_candidates[0])
+    if not str(best_candidate.get("time") or ""):
+        for candidate in ordered_candidates[1:]:
+            if not str(candidate.get("time") or ""):
+                continue
+            if candidate.get("unit") != best_candidate.get("unit"):
+                continue
+            if candidate.get("producer_unit_id") != best_candidate.get("producer_unit_id"):
+                continue
+            best_candidate["time"] = candidate.get("time")
+            break
+    return best_candidate, ordered_candidates
 
 
 def button_candidates(entry_id: str, resolved_unit_id: str, army_categories: list[str]) -> list[str]:
@@ -2313,6 +2350,7 @@ def build_commander_payload(
 
         overrides = TECH_UNIT_UNIT_OVERRIDES.get(short_id, {})
         production_overrides = TECH_PRODUCTION_COMMAND_OVERRIDES.get(short_id, {})
+        production_field_overrides = TECH_PRODUCTION_FIELD_OVERRIDES.get(short_id, {})
         normalized_tech_entries: list[dict[str, object]] = []
         for entry in tech_entries:
             normalized_entry = dict(entry)
@@ -2466,6 +2504,13 @@ def build_commander_payload(
                 ),
                 list(production_overrides.get(str(entry["id"]), [])),
             )
+            field_override = production_field_overrides.get(str(entry["id"]), {})
+            if production and field_override:
+                production.update(field_override)
+            if production_options and field_override:
+                for option in production_options:
+                    if option.get("abil_cmd") == production.get("abil_cmd"):
+                        option.update(field_override)
             item = {
                 **entry,
                 "unit": unit_meta,
