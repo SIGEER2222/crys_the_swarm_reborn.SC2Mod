@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CEffectSet id="AlarakBaneBladesAoeSSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AlarakBaneBladesAoED"/>
+        <EffectArray value="AlarakBaneBladesSW"/>
+    </CEffectSet>
+    <CEffectSwitch id="AlarakBaneBladesSW">
+        <ValidatorArray value="NotStructure"/>
+        <ValidatorArray value="NotFrenzied"/>
+        <EditorCategories value=""/>
+        <Chance value="0"/>
+        <CaseArray Validator="IsHeroic" Effect="AlarakBaneBladesDamageSlow"/>
+        <CaseArray Validator="IsMassive" Effect="AlarakBaneBladesDamageSlow"/>
+        <CaseDefault value="AlarakBaneBladesDamageStun"/>
+    </CEffectSwitch>
+    <CEffectApplyForce id="AlarakKnockbackAF">
+        <EditorCategories value=""/>
+        <WhichLocation Effect="AlarakKnockbackSCP" Value="TargetPoint"/>
+        <Amount value="10"/>
+    </CEffectApplyForce>
+    <CEffectApplyBehavior id="AlarakKnockbackG">
+        <EditorCategories value=""/>
+        <Behavior value="AlarakKnockback"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AlarakKnockbackM">
+        <EditorCategories value=""/>
+        <Behavior value="AlarakKnockback"/>
+        <Flags index="UseDuration" value="1"/>
+        <Duration value="1"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="AlarakKnockbackICP">
+        <EditorCategories value="Race:Protoss"/>
+        <Marker>
+            <MatchFlags index="Id" value="1"/>
+        </Marker>
+        <WhichLocation Value="SourcePoint"/>
+        <InitialEffect value="AlarakKnockbackSCP"/>
+        <InitialOffset value="0,3,0"/>
+        <PeriodCount value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="AlarakKnockbackModelEndP"/>
+    <CEffectDamage id="AlarakKnockbackModelStartP"/>
+    <CEffectEnumArea id="AlarakKnockbackS">
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden"/>
+        <AreaArray RectangleWidth="6" RectangleHeight="1" Effect="AlarakKnockbackSW"/>
+        <LaunchLocation Value="OriginPoint"/>
+    </CEffectEnumArea>
+    <CEffectSwitch id="AlarakKnockbackSW">
+        <EditorCategories value="Race:Protoss"/>
+        <CaseArray Validator="TargetNoAbilMove" Effect="AlarakKnockbackD"/>
+        <CaseArray Validator="IsMassive" Effect="AlarakKnockbackM"/>
+        <CaseDefault value="AlarakKnockbackG"/>
+        <ValidatorArray value="noMarkers"/>
+    </CEffectSwitch>
+    <CEffectCreatePersistent id="AlarakKnockbackSCP">
+        <EditorCategories value="Race:Protoss"/>
+        <PeriodCount value="16"/>
+        <PeriodicEffectArray value="AlarakKnockbackModelStartP"/>
+        <PeriodicEffectArray value="AlarakKnockbackModelEndP"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicEffectArray value="AlarakKnockbackS"/>
+        <PeriodicOffsetArray value="0,0,0"/>
+        <PeriodicOffsetArray value="0,11.5,0"/>
+        <PeriodicOffsetArray value="0,0.5,0"/>
+        <PeriodicOffsetArray value="0,1.5,0"/>
+        <PeriodicOffsetArray value="0,2.5,0"/>
+        <PeriodicOffsetArray value="0,3.5,0"/>
+        <PeriodicOffsetArray value="0,4.5,0"/>
+        <PeriodicOffsetArray value="0,5.5,0"/>
+        <PeriodicOffsetArray value="0,6.5,0"/>
+        <PeriodicOffsetArray value="0,7.5,0"/>
+        <PeriodicOffsetArray value="0,8.5,0"/>
+        <PeriodicOffsetArray value="0,9.5,0"/>
+        <PeriodicOffsetArray value="0,10.5,0"/>
+        <PeriodicOffsetArray value="0,11.5,0"/>
+        <PeriodicOffsetArray value="0,12.5,0"/>
+        <PeriodicOffsetArray value="0,13.5,0"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="AlarakKnockbackD">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="AlarakBaneBladesD" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="30"/>
+        <Death value="Eviscerate"/>
+    </CEffectDamage>
+    <CEffectDamage id="AlarakAADamage" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="30"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="AlarakBaneBladesDamageSlow">
+        <ValidatorArray index="0" value="NotStructureTarget"/>
+        <ValidatorArray value="NotFrenzied"/>
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AlarakBaneBladesSlow"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AlarakBaneBladesDamageStun">
+        <ValidatorArray index="0" value="NotHeroic"/>
+        <ValidatorArray value="NotMassive"/>
+        <ValidatorArray value="NotStructureTarget"/>
+        <EditorCategories value="Race:Protoss"/>
+        <Behavior value="AlarakBaneBladesStun"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="AlarakBaneBladesAoED" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="30"/>
+        <Death value="Eviscerate"/>
+    </CEffectDamage>
+    <CEffectSet id="AlarakPsionicLightningSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AlarakAADamage"/>
+        <EffectArray value="AlarakBaneBladesSW"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="AlarakBaneBladesHoldPosition">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="AlarakBaneBladesSet"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.28"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="AlarakBaneBladesAoeS">
+        <EditorCategories value="Race:Protoss"/>
+        <ExcludeArray Effect="AlarakBaneBladesAoeS" Value="Target"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable,Unstoppable"/>
+        <AreaArray Arc="180" Radius="2" Effect="AlarakBaneBladesAoeSSet"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AlarakBaneBladesSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AlarakBaneBladesD"/>
+        <EffectArray value="AlarakBaneBladesSW"/>
+        <EffectArray value="AlarakBaneBladesAoeS"/>
+    </CEffectSet>
+    <CEffectSet id="AlarakACDeadlyChargeImpactSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="AlarakACDeadlyChargeDamage"/>
+        <EffectArray value="PrimalSlashAttackOrder"/>
+        <EffectArray value="AlarakLightningStrikesSet"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="AlarakACDeadlyChargeRushOnly">
+        <ValidatorArray value="Pathable"/>
+        <EditorCategories value="Race:Protoss"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactLocation Value="TargetUnitOrPoint"/>
+        <FinishEffect value="AlarakACDeadlyChargePointSearchImpactSet"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="Placement" value="1"/>
+        <PlacementRange value="15"/>
+        <Movers Link="AlarakACDeadlyCharge"/>
+        <DeathType value="Unknown"/>
+        <PlaceholderUnit value="AlarakRushPlaceholder"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="AlarakACDeadlyChargeRushOnlyUnit">
+        <EditorCategories value="Race:Protoss"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactLocation Value="TargetUnitOrPoint"/>
+        <FinishEffect value="AlarakACDeadlyChargePointSearchImpactSet"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="Placement" value="1"/>
+        <PlacementRange value="15"/>
+        <Movers Link="AlarakACDeadlyCharge"/>
+        <DeathType value="Unknown"/>
+        <PlaceholderUnit value="AlarakRushPlaceholder"/>
+    </CEffectLaunchMissile>
+    <CEffectEnumArea id="AlarakACDeadlyChargePointSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="Ground,Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1.5" Effect="AlarakACDeadlyChargePointSearchSet"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AlarakACDeadlyChargePointSearchImpactSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AlarakACDeadlyChargePointSearch"/>
+        <EffectArray value="AlarakLightningStrikesSet"/>
+    </CEffectSet>
+    <CEffectSet id="AlarakACDeadlyChargePointSearchSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AlarakACDeadlyChargeDamage"/>
+    </CEffectSet>
+    <CEffectSwitch id="AlarakACDeadlyCharge">
+        <EditorCategories value="Race:Protoss"/>
+        <CaseArray Validator="PrimalSlashTargetChecksClose" Effect="AlarakACDeadlyChargeImpactSet"/>
+        <CaseArray Validator="PrimalSlashTargetFilters" Effect="AlarakACDeadlyChargeLMTarget"/>
+        <CaseArray Validator="PrimalSlashTargetFiltersFriendly" Effect="AlarakACDeadlyChargeRushOnlyUnit"/>
+        <CaseDefault value="AlarakACDeadlyChargeRushOnly"/>
+        <TargetLocationType value="UnitOrPoint"/>
+    </CEffectSwitch>
+    <CEffectLaunchMissile id="AlarakACDeadlyChargeLMTarget">
+        <EditorCategories value="Race:Protoss"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <FinishEffect value="AlarakACDeadlyChargeImpactSet"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="Placement" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+        <PlacementRange value="15"/>
+        <Movers Link="AlarakACDeadlyCharge"/>
+        <DeathType value="Unknown"/>
+        <PlaceholderUnit value="AlarakRushPlaceholder"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="AlarakACDeadlyChargeDamage">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="200"/>
+        <Death value="Eviscerate"/>
+    </CEffectDamage>
+    <CEffectSet id="AlarakLightningStrikesSet">
+        <EditorCategories value="Race:Protoss"/>
+        <EffectArray value="AlarakLightningStrikesSearch"/>
+        <EffectArray value="AlarakLightningStrikesRB"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectEnumArea id="AlarakLightningStrikesSearch">
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray MaxCount="4" Radius="6" Effect="AlarakLightningStrikesDamage"/>
+        <MaxCount value="4"/>
+        <ExcludeArray Effect="AlarakACDeadlyChargeDamage" Value="Target"/>
+        <TargetSorts>
+            <SortArray value="TSRandom"/>
+        </TargetSorts>
+    </CEffectEnumArea>
+    <CEffectDamage id="AlarakLightningStrikesDamage">
+        <EditorCategories value="Race:Protoss"/>
+        <Amount value="50"/>
+        <Death value="Electrocute"/>
+    </CEffectDamage>
+    <CEffectRemoveBehavior id="AlarakLightningStrikesRB">
+        <EditorCategories value="Race:Terran"/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="AlarakLightningStrikes"/>
+    </CEffectRemoveBehavior>
+</Catalog>
