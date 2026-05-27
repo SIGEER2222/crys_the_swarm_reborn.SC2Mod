@@ -72,7 +72,7 @@ crys_the_swarm_reborn.SC2Mod/zhCN.SC2Data/LocalizedData/ObjectStrings.txt
 
 | Train | 单位 | 需求 |
 |---|---|---|
-| `Train1` | `Pygalisk` | `HaveSpawningPool` |
+| `Train1` | `Pygalisk`（幼雷兽） | `HaveSpawningPool` |
 | `Train2` | `ZerglingToxic` | `HaveSpawningPool` |
 | `Train3` | `FrostFiend` | `HaveBanelingNest` |
 | `Train4` | `BileTitan` | `HaveBanelingNest` |
@@ -93,6 +93,39 @@ crys_the_swarm_reborn.SC2Mod/zhCN.SC2Data/LocalizedData/ObjectStrings.txt
 | `Train28` | `Omegalisk` | 无显式需求 |
 | `Train29` | `Brutalisk` | 无显式需求 |
 | `Train30` | `Leviathan` | 无显式需求 |
+
+### 跳虫进化为幼雷兽
+
+`Pygalisk` 是“幼雷兽”，属于跳虫系的高成本精英变体，不应只当作普通训练单位处理。
+
+| 项 | 值 |
+|---|---|
+| 单位 ID | `Pygalisk` |
+| 中文按钮 | `MorphtoPygalisk = 进化为幼雷兽` |
+| 中文说明 | 幼雷兽耐久度远超其他跳虫变种，但伤害较低且成本高昂 |
+| 资源成本 | `75` 矿、`25` 气 |
+| 补给 | `2` |
+| 生命 | `150` |
+| 需求 | `HaveSpawningPool` |
+| 阿巴瑟/虫群入口 | `LarvaTrainSwarm2,Train1`，时间 `27` |
+| 其他共享入口 | `NaktulZerglingTrain,Train5`，时间 `24` |
+
+接入时建议把它建成 `CustomCommanderEvolutionProfile`：
+
+```text
+Commander=AbathurCustom
+UnitFamily=Zergling
+SourceUnit=Zergling/Larva
+TargetUnit=Pygalisk
+Button=MorphtoPygalisk
+AbilityCommand=LarvaTrainSwarm2,Train1
+Requirement=HaveSpawningPool
+CostMinerals=75
+CostVespene=25
+EvolutionKind=trainMorph
+```
+
+测试台需要额外验证 `extra_abathur_zergling_to_pygalisk`：资源足够时按钮可用、扣费正确、生成 `Pygalisk`，并确认幼雷兽保留跳虫系初始化追加能力。
 
 ## 指挥官建筑
 
