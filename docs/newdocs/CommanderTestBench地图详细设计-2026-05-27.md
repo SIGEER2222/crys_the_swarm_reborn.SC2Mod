@@ -224,6 +224,16 @@ XMTestBench_RunScenario(1, scenarioKind)
 XMTestBench_WriteSummary(1)
 ```
 
+当前 Raynor 试点状态：
+
+| 场景 | 当前行为 |
+|---|---|
+| `full_units` / `level15_units` / `fusion_final_units` | 通过 `XMFinal` 的 Raynor profile 生成 Marine、Medic、Firebat、Marauder、Vulture、SiegeTank、Viking、Banshee、Battlecruiser、SCV |
+| `full_buildings` | 通过 Raynor profile 生成 CommandCenter、OrbitalCommand、SupplyDepot、Barracks、Bunker、MissileTurret，并补充 EngineeringBay、Factory、Armory、Starport、TechLab/Reactor 等测试用科技支撑建筑 |
+| `panel_cost_smoke` | 命中 Raynor 面板 profile，默认解析到 `VoidCoopSummonHyperion`，记录资源快照和 catalog 冷却字段；因官方 `CoopCasterRaynor` 尚未导入 `XMFinal` 依赖链，暂不实放技能 |
+
+地图初始化会给玩家 1 充足矿物和瓦斯，但不会开启矿物/瓦斯费用忽略。这样 `panel_cost_smoke` 后续接入真实施放时，资源变化仍然可信。全单位展示所需的补给压力由 `c_playerStateFoodIgnored` 处理。
+
 ### 右侧摘要面板
 
 位置：
@@ -440,11 +450,9 @@ standard_base
 panel_cost_smoke
 full_buildings
 full_units
-hero_modes
-unit_ability_smoke
-tech_smoke
-special_smoke
 ```
+
+当前实现先限定为当前 commander 的 5 个基础场景，不循环 18 个 commander。每个场景前调用 `Clear`，每个场景后输出 `TEST_RUN_ALL_STEP`，最后按累计 warnings/errors 输出 `TEST_RUN_ALL_DONE result=ok|warning|error`，避免 UI 最终只显示最后一个场景却误报整体通过。
 
 `panel_cost_smoke` 进入第一版全量冒烟。`panel_effect_smoke` 先保留手动按钮或安全白名单，等目标、清理和日志稳定后再加入全量。运输机和个性机制先保留手动按钮，等基础闭环稳定后再加入全量。
 

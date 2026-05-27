@@ -165,6 +165,9 @@ void gf_XMTB_UpdateSummary () {
     lv_text = lv_text + " | Map: CommanderTestBench";
     lv_text = lv_text + " | Trigger: button -> XMTestBench_*";
     lv_text = lv_text + " | Panel: command invoke, not mouse simulation.";
+    lv_text = lv_text + " | MapWarnings: " + IntToString(gv_xmTbWarnings);
+    lv_text = lv_text + " | MapErrors: " + IntToString(gv_xmTbErrors);
+    lv_text = lv_text + " | MapLast: " + gv_xmTbLastEvent;
 
     libNtve_gf_SetDialogItemText(gv_xmTbSummaryLabel, StringToText(lv_text), PlayerGroupAll());
 }
@@ -204,12 +207,59 @@ void gf_XMTB_RunCurrentScenario () {
 }
 
 void gf_XMTB_RunAllSmoke () {
-    gf_XMTB_Log("INFO", "TEST_RUN_ALL_START", "mode=runtime_api scenarios=power_fusion,standard_base,panel_cost_smoke,full_units");
+    int lv_totalWarnings;
+    int lv_totalErrors;
+    string lv_result;
+
+    lv_totalWarnings = 0;
+    lv_totalErrors = 0;
+
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_START", "mode=runtime_api scenarios=power_fusion,standard_base,panel_cost_smoke,full_buildings,full_units");
+
+    gf_XMTB_Clear();
     gf_XMTB_RunScenario("power_fusion");
+    lv_totalWarnings += XMTestBench_GetWarningCount(1);
+    lv_totalErrors += XMTestBench_GetErrorCount(1);
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=power_fusion warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+
+    gf_XMTB_Clear();
     gf_XMTB_RunScenario("standard_base");
+    lv_totalWarnings += XMTestBench_GetWarningCount(1);
+    lv_totalErrors += XMTestBench_GetErrorCount(1);
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=standard_base warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+
+    gf_XMTB_Clear();
     gf_XMTB_RunScenario("panel_cost_smoke");
+    lv_totalWarnings += XMTestBench_GetWarningCount(1);
+    lv_totalErrors += XMTestBench_GetErrorCount(1);
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=panel_cost_smoke warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+
+    gf_XMTB_Clear();
+    gf_XMTB_RunScenario("full_buildings");
+    lv_totalWarnings += XMTestBench_GetWarningCount(1);
+    lv_totalErrors += XMTestBench_GetErrorCount(1);
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=full_buildings warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+
+    gf_XMTB_Clear();
     gf_XMTB_RunScenario("full_units");
-    gf_XMTB_Log("INFO", "TEST_RUN_ALL_DONE", "mode=runtime_api result=ok");
+    lv_totalWarnings += XMTestBench_GetWarningCount(1);
+    lv_totalErrors += XMTestBench_GetErrorCount(1);
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=full_units warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+
+    if (lv_totalErrors > 0) {
+        lv_result = "error";
+    }
+    else if (lv_totalWarnings > 0) {
+        lv_result = "warning";
+    }
+    else {
+        lv_result = "ok";
+    }
+
+    gv_xmTbWarnings = lv_totalWarnings;
+    gv_xmTbErrors = lv_totalErrors;
+    gv_xmTbLastEvent = "TEST_RUN_ALL_DONE";
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_DONE", "mode=runtime_api result=" + lv_result + " totalWarnings=" + IntToString(lv_totalWarnings) + " totalErrors=" + IntToString(lv_totalErrors));
     gf_XMTB_UpdateSummary();
 }
 
@@ -321,8 +371,8 @@ bool gt_XMTB_Init_Func (bool testConds, bool runActions) {
     PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperSetTo, 100000);
     PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperSetTo, 100000);
     PlayerModifyPropertyInt(1, c_playerPropSuppliesMade, c_playerPropOperSetTo, 200);
-    PlayerSetState(1, c_playerStateMineralCostIgnored, true);
-    PlayerSetState(1, c_playerStateVespeneCostIgnored, true);
+    PlayerSetState(1, c_playerStateMineralCostIgnored, false);
+    PlayerSetState(1, c_playerStateVespeneCostIgnored, false);
     PlayerSetState(1, c_playerStateFoodIgnored, true);
 
     gf_XMTB_BuildUI();
