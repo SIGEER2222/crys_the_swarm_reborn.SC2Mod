@@ -71,7 +71,7 @@
   },
   {
     "id": "GhostNova",
-    "unit_id": "GhostFemale_BlackOps",
+    "unit_id": "GhostNova",
     "army_categories": [
       "GhostNova"
     ],
@@ -93,50 +93,94 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "GhostFemale_BlackOps",
       "GhostNova",
+      "GhostFemale_BlackOps",
       "Ghost_BlackOps"
     ],
     "icon_button": "TrainGhostNova",
     "icon": "Assets\\Textures\\btn-unit-terran-blackops-femaleghost.dds",
     "alert_icon": "Assets\\Textures\\btn-unit-terran-blackops-femaleghost.dds",
     "unit": {
-      "id": "GhostFemale_BlackOps",
+      "id": "GhostNova",
       "source_catalog": "starcoop",
-      "parent": "",
+      "parent": "Ghost",
       "object_type": "Unit",
-      "object_family": "FactionCovertOps",
+      "object_family": "Campaign",
       "race": "Terr",
       "mob": "Multiplayer",
       "planes": [
         "Ground"
       ],
       "attributes": [
-        "Biological",
-        "Psionic"
+        "Light"
       ],
       "flags": [
         "ArmySelect",
         "PreventDestroy",
         "UseLineOfSight"
       ],
-      "minerals": "500",
-      "vespene": "250",
+      "minerals": "150",
+      "vespene": "125",
       "terrazine": "",
       "supply": "-2",
       "build_time": "",
-      "life": "250",
+      "life": "125",
       "shields": "",
-      "energy": "",
+      "energy": "0",
       "sight": "11",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionCovertOps"
+        "ObjectFamily": "Campaign"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "GhostFemale_BlackOps",
+          "id": "GhostNova",
+          "parent": "Ghost"
+        },
+        {
+          "source": "voidmulti",
+          "id": "GhostNova",
+          "parent": "Ghost"
+        },
+        {
+          "source": "swarmmulti",
+          "id": "GhostNova",
+          "parent": "Ghost"
+        },
+        {
+          "source": "libertymulti",
+          "id": "GhostNova",
+          "parent": "Ghost"
+        },
+        {
+          "source": "starcoop",
+          "id": "Ghost",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "Ghost",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "Ghost",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "Ghost",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "Ghost",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "Ghost",
           "parent": ""
         }
       ]

@@ -549,279 +549,6 @@
     ]
   },
   {
-    "id": "NydusNetwork",
-    "unit_id": "NydusNetwork",
-    "name": "虫道网络",
-    "object_type": "Structure",
-    "icon_button": "NydusNetwork",
-    "icon": "Assets\\Textures\\btn-building-zerg-nydusnetwork.dds",
-    "alert_icon": "Assets\\Textures\\btn-building-zerg-nydusnetwork.dds",
-    "cards": [
-      {
-        "card_id": "",
-        "is_default_card": true,
-        "buttons": [
-          {
-            "face": "Stop",
-            "type": "AbilCmd",
-            "abil_cmd": "stop,Stop",
-            "requirements": "",
-            "row": 0,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Stop",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "停止",
-              "name_key": "Button/Name/Stop",
-              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
-              "tooltip_key": "Button/Tooltip/Stop",
-              "icon": "Assets\\Textures\\btn-command-stop.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
-            }
-          },
-          {
-            "face": "SummonNydusWorm",
-            "type": "AbilCmd",
-            "abil_cmd": "BuildNydusCanal,Build1",
-            "requirements": "",
-            "row": 1,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "SummonNydusWorm",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "召唤坑道虫",
-              "name_key": "Button/Name/SummonNydusWorm",
-              "tooltip": "在目标地点召唤一条坑道虫。友方地面单位可借助虫道网络在任何该玩家拥有的坑道虫或虫道网络间穿梭。生成菌毯，可满足附近异虫建筑的存活需求。\n效果加成：异虫单位在菌毯上的移动速度更快",
-              "tooltip_key": "Button/Tooltip/SummonNydusWorm",
-              "icon": "Assets\\Textures\\btn-building-zerg-nydusworm.dds",
-              "alert_icon": "Assets\\Textures\\btn-building-zerg-nydusworm.dds"
-            }
-          },
-          {
-            "face": "SummonNydusCanalAttacker",
-            "type": "AbilCmd",
-            "abil_cmd": "BuildNydusCanal,Build2",
-            "requirements": "",
-            "row": 1,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "SummonNydusCanalAttacker",
-              "source_catalog": "swarm",
-              "parent": "",
-              "name": "召唤虫道毁灭者",
-              "name_key": "Button/Name/SummonNydusCanalAttacker",
-              "tooltip": "在目标位置召唤虫道毁灭者。\n只能攻击建筑。",
-              "tooltip_key": "Button/Tooltip/SummonNydusCanalAttacker",
-              "icon": "Assets\\Textures\\btn-building-zerg-sporecrawler.dds",
-              "alert_icon": "Assets\\Textures\\btn-building-zerg-sporecrawler.dds"
-            }
-          },
-          {
-            "face": "SummonNydusCanalCreeper",
-            "type": "AbilCmd",
-            "abil_cmd": "BuildNydusCanal,Build3",
-            "requirements": "",
-            "row": 1,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "SummonNydusCanalCreeper",
-              "source_catalog": "swarm",
-              "parent": "",
-              "name": "召唤菌塔",
-              "name_key": "Button/Name/SummonNydusCanalCreeper",
-              "tooltip": "在目标位置召唤菌塔。菌塔可以向选中的方向发射菌毯。\n额外加成：异虫单位在菌毯上移动速度更快。",
-              "tooltip_key": "Button/Tooltip/SummonNydusCanalCreeper",
-              "icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds",
-              "alert_icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds"
-            }
-          },
-          {
-            "face": "SetRallyPoint",
-            "type": "AbilCmd",
-            "abil_cmd": "Rally,Rally1",
-            "requirements": "",
-            "row": 1,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "SetRallyPoint",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "设定集结点",
-              "name_key": "Button/Name/SetRallyPoint",
-              "tooltip": "将单位派往指定地点，派往资源点的工作单位会自动开始采集。",
-              "tooltip_key": "Button/Tooltip/SetRallyPoint",
-              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
-            }
-          },
-          {
-            "face": "SummonNydusWorm",
-            "type": "AbilCmd",
-            "abil_cmd": "BuildNydusCanal,Build1",
-            "requirements": "",
-            "row": 2,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "SummonNydusWorm",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "召唤坑道虫",
-              "name_key": "Button/Name/SummonNydusWorm",
-              "tooltip": "在目标地点召唤一条坑道虫。友方地面单位可借助虫道网络在任何该玩家拥有的坑道虫或虫道网络间穿梭。生成菌毯，可满足附近异虫建筑的存活需求。\n效果加成：异虫单位在菌毯上的移动速度更快",
-              "tooltip_key": "Button/Tooltip/SummonNydusWorm",
-              "icon": "Assets\\Textures\\btn-building-zerg-nydusworm.dds",
-              "alert_icon": "Assets\\Textures\\btn-building-zerg-nydusworm.dds"
-            }
-          },
-          {
-            "face": "NydusCanalLoad",
-            "type": "AbilCmd",
-            "abil_cmd": "NydusCanalTransport,Load",
-            "requirements": "",
-            "row": 2,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "NydusCanalLoad",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "装载",
-              "name_key": "Button/Name/NydusCanalLoad",
-              "tooltip": "将单位装载进虫道网络。",
-              "tooltip_key": "Button/Tooltip/NydusCanalLoad",
-              "icon": "Assets\\Textures\\btn-ability-terran-load.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-terran-load.dds"
-            }
-          },
-          {
-            "face": "NydusWormIncreasedArmorPassive",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": 2,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "NydusWormIncreasedArmorPassive",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "钻地鳞片",
-              "name_key": "Button/Name/NydusWormIncreasedArmorPassive",
-              "tooltip": "坑道虫在从地面钻出时拥有{Behavior,NydusWormArmor,Modification.LifeArmorBonus+1}点护甲。",
-              "tooltip_key": "Button/Tooltip/NydusWormIncreasedArmorPassive",
-              "icon": "Assets\\Textures\\btn-ability-zerg-armoraura.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-zerg-armoraura.dds"
-            }
-          },
-          {
-            "face": "CancelBuilding",
-            "type": "AbilCmd",
-            "abil_cmd": "BuildInProgress,Cancel",
-            "requirements": "",
-            "row": 2,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "CancelBuilding",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "取消",
-              "name_key": "Button/Name/CancelBuilding",
-              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
-              "tooltip_key": "Button/Tooltip/CancelBuilding",
-              "icon": "Assets\\Textures\\btn-command-cancel.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
-            }
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": "",
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": "",
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "RallyNydus,Rally1",
-            "requirements": "",
-            "row": "",
-            "column": "",
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "ZagaraVoidCoopNydusWorm",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": "",
-            "column": "",
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "ZagaraVoidCoopNydusWorm",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "召唤坑道虫",
-              "name_key": "Button/Name/ZagaraVoidCoopNydusWorm",
-              "tooltip": "在目标位置召唤一只坑道虫。\n友方地面单位可借助虫道网络在任何该玩家拥有的坑道虫或虫道网络间穿梭。生成菌毯，可满足附近异虫建筑的存活需求。\n效果加成：异虫在菌毯上的移动速度更快。",
-              "tooltip_key": "Button/Tooltip/ZagaraVoidCoopNydusWorm",
-              "icon": "",
-              "alert_icon": ""
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "Roach",
     "unit_id": "Roach",
     "name": "蟑螂",
@@ -1410,169 +1137,23 @@
   },
   {
     "id": "SwarmHost",
-    "unit_id": "InfestationPit",
+    "unit_id": "SwarmHost",
     "name": "虫群宿主",
-    "object_type": "Structure",
-    "icon_button": "InfestationPit",
-    "icon": "Assets\\Textures\\btn-building-zerg-infestationpit.dds",
-    "alert_icon": "Assets\\Textures\\btn-building-zerg-infestationpit.dds",
+    "object_type": "Unit",
+    "icon_button": "SwarmHost",
+    "icon": "Assets\\Textures\\btn-unit-zerg-locust.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-locust.dds",
     "cards": [
       {
         "card_id": "",
         "is_default_card": true,
         "buttons": [
           {
-            "face": "HotSPressurizedGlands",
-            "type": "AbilCmd",
-            "abil_cmd": "InfestationPitResearch,Research8",
-            "requirements": "",
-            "row": 0,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "EvolveViperImprovedCastRangeLocked",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "AbathurLevel08",
-            "row": 0,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "EvolveViperImprovedCastRangeLocked",
-              "source_catalog": "starcoop",
-              "parent": "ResearchLocked",
-              "name": "进化剧毒细菌",
-              "name_key": "Button/Name/EvolveViperImprovedCastRangeLocked",
-              "tooltip": "该科技将在指挥官等级8时解锁。",
-              "tooltip_key": "Button/Tooltip/ResearchLockedLevel08",
-              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
-              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
-            }
-          },
-          {
-            "face": "EvolveDeepTunnelLocked",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "AbathurLevel09",
-            "row": 0,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "EvolveDeepTunnelLocked",
-              "source_catalog": "starcoop",
-              "parent": "ResearchLocked",
-              "name": "进化深槽虫道",
-              "name_key": "Button/Name/EvolveDeepTunnelLocked",
-              "tooltip": "该科技将在指挥官等级9时解锁。",
-              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
-              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
-              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
-            }
-          },
-          {
-            "face": "EvolveViperAbductImprovedStunLocked",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "AbathurLevel09",
-            "row": 0,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "EvolveViperAbductImprovedStunLocked",
-              "source_catalog": "starcoop",
-              "parent": "ResearchLocked",
-              "name": "进化麻痹勾刺",
-              "name_key": "Button/Name/EvolveViperAbductImprovedStunLocked",
-              "tooltip": "该科技将在指挥官等级9时解锁。",
-              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
-              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
-              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
-            }
-          },
-          {
-            "face": "EvolveViperImprovedCastRange",
-            "type": "AbilCmd",
-            "abil_cmd": "InfestationPitResearch,Research9",
-            "requirements": "",
-            "row": 0,
-            "column": "",
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "EvolveViperImprovedCastRange",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "剧毒细菌",
-              "name_key": "Button/Name/EvolveViperImprovedCastRange",
-              "tooltip": "所有飞蛇技能获得+{Upgrade,ViperImprovedCastRange,EffectArray[0].Value}的施法范围。",
-              "tooltip_key": "Button/Tooltip/EvolveViperImprovedCastRange",
-              "icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-castrange.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-castrange.dds"
-            }
-          },
-          {
-            "face": "ViperPassive",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HotSHaveViper",
-            "row": 1,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "InfestorPassive",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HotSHaveInfestor",
-            "row": 1,
-            "column": "",
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "CancelBuilding",
-            "type": "AbilCmd",
-            "abil_cmd": "BuildInProgress,Cancel",
-            "requirements": "",
-            "row": 2,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "CancelBuilding",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "取消",
-              "name_key": "Button/Name/CancelBuilding",
-              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
-              "tooltip_key": "Button/Tooltip/CancelBuilding",
-              "icon": "Assets\\Textures\\btn-command-cancel.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
-            }
-          },
-          {
-            "face": "SwarmHostPassive",
+            "face": "",
             "type": "",
             "abil_cmd": "",
-            "requirements": "HotSHaveSwarmHost",
-            "row": "",
+            "requirements": "",
+            "row": 1,
             "column": 0,
             "submenu_abil_state": "",
             "submenu_card_id": "",
@@ -1584,260 +1165,55 @@
             "type": "",
             "abil_cmd": "",
             "requirements": "",
-            "row": "",
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "ResearchNeuralParasite",
-            "type": "",
-            "abil_cmd": "InfestationPitResearch,Research4",
-            "requirements": "",
-            "row": "",
-            "column": "",
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "ResearchNeuralParasite",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "进化神经寄生",
-              "name_key": "Button/Name/ResearchNeuralParasite",
-              "tooltip": "使感染者能够使用神经寄生技能。",
-              "tooltip_key": "Button/Tooltip/ResearchNeuralParasite",
-              "icon": "Assets\\Textures\\btn-ability-zerg-neuralparasite-color.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-zerg-neuralparasite-color.dds"
-            }
-          },
-          {
-            "face": "AmorphousArmorcloud",
-            "type": "",
-            "abil_cmd": "InfestationPitResearch,Research6",
-            "requirements": "",
-            "row": "",
-            "column": "",
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "AmorphousArmorcloud",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "微生物环绕云",
-              "name_key": "Button/Name/AmorphousArmorcloud",
-              "tooltip": "制造一团遮蔽物，掩护下方的地面单位，使其受到远程单位的伤害降低{Behavior,AmorphousArmorcloud,DamageResponse.ModifyFraction*100}%。持续{Effect,AmorphousArmorcloudCP,PeriodCount*Effect,AmorphousArmorcloudCP,PeriodicPeriodArray[0]}秒。",
-              "tooltip_key": "Button/Tooltip/AmorphousArmorcloud",
-              "icon": "Assets\\Textures\\btn-ability-zerg-darkswarm.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-zerg-darkswarm.dds"
-            }
-          },
-          {
-            "face": "SwarmHostCarrionPassive",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "HotSHaveSwarmHostSplitA",
-            "row": "",
+            "row": 1,
             "column": "",
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {}
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "SwarmQueen",
-    "unit_id": "Queen",
-    "name": "虫后",
-    "object_type": "Unit",
-    "icon_button": "Queen",
-    "icon": "Assets\\Textures\\btn-unit-zerg-broodqueen.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-zerg-broodqueen.dds",
-    "cards": [
-      {
-        "card_id": "",
-        "is_default_card": true,
-        "buttons": [
+          },
           {
-            "face": "Move",
+            "face": "LocustLaunch",
             "type": "AbilCmd",
-            "abil_cmd": "move,Move",
+            "abil_cmd": "LocustLaunch,Execute",
             "requirements": "",
-            "row": 0,
+            "row": 2,
             "column": 0,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "Move",
-              "source_catalog": "liberty",
+              "id": "LocustLaunch",
+              "source_catalog": "starcoop",
               "parent": "",
-              "name": "移动",
-              "name_key": "Button/Name/Move",
-              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
-              "tooltip_key": "Button/Tooltip/Move",
-              "icon": "Assets\\Textures\\btn-command-move.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+              "name": "",
+              "name_key": "Button/Name/LocustLaunch",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/LocustLaunch",
+              "icon": "",
+              "alert_icon": ""
             }
           },
           {
-            "face": "Stop",
-            "type": "AbilCmd",
-            "abil_cmd": "stop,Stop",
-            "requirements": "",
-            "row": 0,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Stop",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "停止",
-              "name_key": "Button/Name/Stop",
-              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
-              "tooltip_key": "Button/Tooltip/Stop",
-              "icon": "Assets\\Textures\\btn-command-stop.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
-            }
-          },
-          {
-            "face": "MoveHoldPosition",
-            "type": "AbilCmd",
-            "abil_cmd": "move,HoldPos",
-            "requirements": "",
-            "row": 0,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MoveHoldPosition",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "原地防御",
-              "name_key": "Button/Name/MoveHoldPosition",
-              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
-              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
-            }
-          },
-          {
-            "face": "MovePatrol",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Patrol",
-            "requirements": "",
-            "row": 0,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MovePatrol",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "巡逻",
-              "name_key": "Button/Name/MovePatrol",
-              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MovePatrol",
-              "icon": "Assets\\Textures\\btn-command-patrol.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
-            }
-          },
-          {
-            "face": "Attack",
-            "type": "AbilCmd",
-            "abil_cmd": "attack,Execute",
-            "requirements": "",
-            "row": 0,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Attack",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "攻击",
-              "name_key": "Button/Name/Attack",
-              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
-              "tooltip_key": "Button/Tooltip/Attack",
-              "icon": "Assets\\Textures\\btn-command-attack.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
-            }
-          },
-          {
-            "face": "BioMechanicalTransfusionPassive",
+            "face": "DeepTunnelLocked",
             "type": "Passive",
             "abil_cmd": "",
-            "requirements": "HaveBioMechanicalTransfusionPassive",
-            "row": 1,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "BioMechanicalTransfusionPassive",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "生物机械哺液",
-              "name_key": "Button/Name/BioMechanicalTransfusionPassive",
-              "tooltip": "速效哺液的治疗量提高10点，现在可以对机械单位和建筑使用。",
-              "tooltip_key": "Button/Tooltip/BioMechanicalTransfusionPassive",
-              "icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-biomechanicaltransfusion.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-biomechanicaltransfusion.dds"
-            }
-          },
-          {
-            "face": "BuildCreepTumor",
-            "type": "AbilCmd",
-            "abil_cmd": "QueenBuild,Build1",
-            "requirements": "",
-            "row": 2,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "BuildCreepTumor",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "产下菌毯肿瘤",
-              "name_key": "Button/Name/BuildCreepTumor",
-              "tooltip": "一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。\n效果加成：异虫单位在菌毯上的移动速度更快",
-              "tooltip_key": "Button/Tooltip/BuildCreepTumor",
-              "icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds",
-              "alert_icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds"
-            }
-          },
-          {
-            "face": "BioMechanicalTransfusion",
-            "type": "AbilCmd",
-            "abil_cmd": "BioMechanicalTransfusion,Execute",
-            "requirements": "",
+            "requirements": "AbathurLevel09",
             "row": 2,
             "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "BioMechanicalTransfusion",
+              "id": "DeepTunnelLocked",
               "source_catalog": "starcoop",
-              "parent": "",
-              "name": "速效哺液",
-              "name_key": "Button/Name/BioMechanicalTransfusion",
-              "tooltip": "为一个单位或建筑进行持续的治疗，共恢复{Effect,QueenBurstHeal,VitalArray[Life].Change*(Behavior,QueenBurstHeal,Duration +.07)/Behavior,QueenBurstHeal,Period}点生命值。",
-              "tooltip_key": "Button/Tooltip/BioMechanicalTransfusion",
-              "icon": "Assets\\Textures\\btn-ability-zerg-transfusion-color.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-zerg-transfusion-color.dds"
+              "parent": "AbilLocked",
+              "name": "深槽虫道",
+              "name_key": "Button/Name/DeepTunnelLocked",
+              "tooltip": "该技能将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel09",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -1885,94 +1261,38 @@
             }
           },
           {
-            "face": "BurrowUp",
-            "type": "AbilCmd",
-            "abil_cmd": "BurrowUltraliskUp,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "BurrowUp",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "出地",
-              "name_key": "Button/Name/BurrowUp",
-              "tooltip": "命令单位钻回地表。",
-              "tooltip_key": "Button/Tooltip/BurrowUp",
-              "icon": "Assets\\Textures\\btn-ability-zerg-upburrow-color.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-zerg-upburrow-color.dds"
-            }
-          },
-          {
-            "face": "BuildCreepTumor",
+            "face": "AbathurDeepTunnel",
             "type": "",
-            "abil_cmd": "QueenBuild,Build3",
-            "requirements": "",
-            "row": "",
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "BuildCreepTumor",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "产下菌毯肿瘤",
-              "name_key": "Button/Name/BuildCreepTumor",
-              "tooltip": "一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。\n效果加成：异虫单位在菌毯上的移动速度更快",
-              "tooltip_key": "Button/Tooltip/BuildCreepTumor",
-              "icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds",
-              "alert_icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds"
-            }
-          },
-          {
-            "face": "QueenBurstHeal",
-            "type": "",
-            "abil_cmd": "QueenBurstHeal,Execute",
+            "abil_cmd": "AbathurDeepTunnel,Execute",
             "requirements": "",
             "row": "",
             "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "DeepTunnel",
-            "type": "",
-            "abil_cmd": "DeepTunnel,Execute",
-            "requirements": "",
-            "row": "",
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "Cancel",
-            "type": "",
-            "abil_cmd": "KerriganEnhance,Off",
-            "requirements": "",
-            "row": "",
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
             "button": {
-              "id": "Cancel",
-              "source_catalog": "core",
+              "id": "AbathurDeepTunnel",
+              "source_catalog": "starcoop",
               "parent": "",
-              "name": "取消",
-              "name_key": "Button/Name/Cancel",
-              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
-              "tooltip_key": "Button/Tooltip/Cancel",
-              "icon": "Assets\\Textures\\btn-command-cancel.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+              "name": "深槽虫道",
+              "name_key": "Button/Name/AbathurDeepTunnel",
+              "tooltip": "快速潜地前往可见目标位置。",
+              "tooltip_key": "Button/Tooltip/AbathurDeepTunnel",
+              "icon": "Assets\\Textures\\btn-ability-zerg-deeptunnel.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-deeptunnel.dds"
             }
+          },
+          {
+            "face": "SwarmHostRootBurrow",
+            "type": "",
+            "abil_cmd": "MorphToSwarmHostBurrowed,Execute",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
           }
         ]
       }
@@ -2903,89 +2223,6 @@
               "tooltip_key": "Button/Tooltip/BurrowDown",
               "icon": "Assets\\Textures\\btn-ability-zerg-burrow-color.dds",
               "alert_icon": "Assets\\Textures\\btn-ability-zerg-burrow-color.dds"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "Leviathan",
-    "unit_id": "HotSLeviathan",
-    "name": "利维坦",
-    "object_type": "Hero",
-    "icon_button": "EvolveToLeviathan",
-    "icon": "Assets\\Textures\\btn-unit-zerg-leviathan.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-zerg-leviathan.dds",
-    "cards": [
-      {
-        "card_id": "",
-        "is_default_card": true,
-        "buttons": [
-          {
-            "face": "SymbioteCarapace",
-            "type": "",
-            "abil_cmd": "SymbioteCarapace,Execute",
-            "requirements": "",
-            "row": 0,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "SymbioteCarapace",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "甲壳",
-              "name_key": "Button/Name/SymbioteCarapace",
-              "tooltip": "为自己添加护盾{Behavior,SymbioteCarapace,Modification.VitalMaxArray[Shields]}，持续8秒。",
-              "tooltip_key": "Button/Tooltip/SymbioteCarapace",
-              "icon": "Assets\\Textures\\btn-upgrade-zerg-adaptivecarapace.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-adaptivecarapace.dds"
-            }
-          },
-          {
-            "face": "AbathurBrutaliskLeviathanSymbioteLocked",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "AbathurLevel10",
-            "row": 2,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "AbathurBrutaliskLeviathanSymbioteLocked",
-              "source_catalog": "starcoop",
-              "parent": "AbilLocked",
-              "name": "共生体",
-              "name_key": "Button/Name/AbathurBrutaliskLeviathanSymbioteLocked",
-              "tooltip": "该技能将在指挥官等级10时解锁。",
-              "tooltip_key": "Button/Tooltip/AbilLockedLevel10",
-              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
-              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
-            }
-          },
-          {
-            "face": "AbathurBrutaliskLeviathanSymbiote",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HaveBrutaliskLeviathanSymbiote",
-            "row": "",
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "AbathurBrutaliskLeviathanSymbiote",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "共生体",
-              "name_key": "Button/Name/AbathurBrutaliskLeviathanSymbiote",
-              "tooltip": "获得一个拥有下列技能的共生体：\n刺击：每{Abil,SymbioteStab,Cost[0].Cooldown.TimeUse}秒攻击周围的敌人，造成{Effect,SymbioteStabDamage,Amount}点伤害。\n甲壳：每{Abil,SymbioteCarapace,Cost[0].Cooldown.TimeUse}秒为宿主吸收{Behavior,SymbioteCarapace,Modification.VitalMaxArray[Shields]}点伤害。",
-              "tooltip_key": "Button/Tooltip/AbathurBrutaliskLeviathanSymbiote",
-              "icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-symbiote.dds",
-              "alert_icon": "Assets\\Textures\\btn-unit-zerg-symbiote.dds"
             }
           }
         ]
