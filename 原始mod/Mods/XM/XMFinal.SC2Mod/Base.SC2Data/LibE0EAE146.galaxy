@@ -29,6 +29,8 @@ void libE0EAE146_InitLibraries () {
 bool libE0EAE146_InitVariables_completed = false;
 
 void libE0EAE146_InitVariables () {
+    int init_i;
+
     if (libE0EAE146_InitVariables_completed) {
         return;
     }
@@ -36,6 +38,20 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_InitVariables_completed = true;
 
     libE0EAE146_gv_commander = "";
+    libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled = false;
+    libE0EAE146_gv_xmRuntimeCommanderOverride = "";
+    init_i = 1;
+    for (; init_i <= libE0EAE146_gv_xmTestBenchMaxPlayers; init_i += 1) {
+        libE0EAE146_gv_xmTestBenchCommander[init_i] = "Raynor";
+        libE0EAE146_gv_xmTestBenchScenario[init_i] = "standard_base";
+        libE0EAE146_gv_xmTestBenchLastEvent[init_i] = "INIT";
+        libE0EAE146_gv_xmTestBenchSummary[init_i] = "CommanderTestBench initialized.";
+        libE0EAE146_gv_xmTestBenchCreated[init_i] = 0;
+        libE0EAE146_gv_xmTestBenchMissing[init_i] = 0;
+        libE0EAE146_gv_xmTestBenchWarnings[init_i] = 0;
+        libE0EAE146_gv_xmTestBenchErrors[init_i] = 0;
+        libE0EAE146_gv_xmTestBenchUnits[init_i] = UnitGroupEmpty();
+    }
 }
 
 // Functions
@@ -93,14 +109,19 @@ void libE0EAE146_gf_FinishLevel () {
     GameSetNextMap(("XM/" + ("Launcher")));
 }
 
-void libE0EAE146_gf_Initialize (bool lp_rpg) {
+void libE0EAE146_gf_Initialize_Legacy (bool lp_rpg) {
     // Automatic Variable Declarations
     string autoC0933116_val;
 
     // Implementation
     GameSetSpeedValue(c_gameSpeedFaster);
-    BankLoad("CampaignXCore", 1);
-    libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == true)) {
+        libE0EAE146_gv_commander = libE0EAE146_gv_xmRuntimeCommanderOverride;
+    }
+    else {
+        BankLoad("CampaignXCore", 1);
+        libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+    }
     autoC0933116_val = libE0EAE146_gv_commander;
     if (autoC0933116_val == "Stukov") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Classic");
@@ -141,46 +162,79 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     }
 }
 
-void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp_secondBase, bool lp_createHero) {
+void libE0EAE146_gf_XMRuntime_PrepareCommanderFromBank (int lp_player) {
+    string lv_commander;
+    string lv_normalized;
+
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == true)) {
+        libE0EAE146_gv_commander = libE0EAE146_gv_xmRuntimeCommanderOverride;
+        libE0EAE146_gf_XMDbgLog("INFO", "COMMANDER_OVERRIDE_USED", "player=" + IntToString(lp_player) + " commander=" + libE0EAE146_gv_commander);
+        return;
+    }
+
+    BankLoad("CampaignXCore", lp_player);
+    lv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+    if (lv_commander == "") {
+        libE0EAE146_gv_commander = "";
+        libE0EAE146_gf_XMDbgLog("WARN", "COMMANDER_BANK_EMPTY", "player=" + IntToString(lp_player) + " result=legacy_blank");
+        return;
+    }
+
+    lv_normalized = libE0EAE146_gf_NormalizeCommanderId(lv_commander);
+    libE0EAE146_gv_commander = lv_normalized;
+}
+
+void libE0EAE146_gf_Initialize (bool lp_rpg) {
+    libE0EAE146_gf_XMRuntime_PrepareCommanderFromBank(1);
+    libE0EAE146_gf_XMDbgLog("INFO", "COMMANDER_INIT_DISPATCH", "commander=" + libE0EAE146_gv_commander + " phase=map_init mode=legacy_adapter");
+    libE0EAE146_gf_Initialize_Legacy(lp_rpg);
+}
+
+string libE0EAE146_gf_XMRuntime_CommanderInstance () {
+    return lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander);
+}
+
+void libE0EAE146_gf_XMRuntime_ApplyCommanderProgression (int lp_player) {
     // Variable Declarations
-    unit lv_u;
-    unitgroup lv_uG;
     int lv_i;
     int lv_j;
     int lv_ach;
     text lv_tooltip;
-
-    // Automatic Variable Declarations
-    unitgroup auto93C1ECD3_g;
-    int auto93C1ECD3_u;
-    string auto09490B45_val;
+    bool lv_usingOverride;
 
     // Variable Initialization
-    lv_uG = UnitGroupEmpty();
     lv_tooltip = StringExternal("Param/Value/lib_E0EAE146_4A6D72C1");
+    lv_usingOverride = libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled;
 
     // Implementation
-    BankLoad("CampaignXCore", 1);
-    lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+    if ((lv_usingOverride == false)) {
+        BankLoad("CampaignXCore", lp_player);
+    }
+    lv_ach = 255;
+    if ((lv_usingOverride == false)) {
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+    }
     lv_i = 0;
     for ( ; ( lv_i <= 7 ) ; lv_i += 1 ) {
         if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, lv_i) == true)) {
             lv_j = (lv_i+1);
-            TechTreeUpgradeAddLevel(1, UserDataGetUpgrade("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Upg", lv_j), 1);
-            lv_tooltip = libE0EAE146_gf_UpdateTooltip(lv_tooltip, UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "TitU", lv_j));
+            TechTreeUpgradeAddLevel(lp_player, UserDataGetUpgrade("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Upg", lv_j), 1);
+            lv_tooltip = libE0EAE146_gf_UpdateTooltip(lv_tooltip, UserDataGetText("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "TitU", lv_j));
         }
-
     }
     lv_j = 0;
     lv_i = 0;
     for ( ; ( lv_i <= 5 ) ; lv_i += 1 ) {
-        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(lv_i));
+        lv_ach = 30;
+        if ((lv_usingOverride == false)) {
+            lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(lv_i));
+        }
         if ((lv_ach == 0)) {
         }
         else {
             lv_j = (lv_i+1);
-            TechTreeUpgradeAddLevel(1, UserDataGetUpgrade("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Poi", lv_j), lv_ach);
-            TextExpressionSetToken("Param/Expression/lib_E0EAE146_2000967E", "A", UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "TitP", lv_j));
+            TechTreeUpgradeAddLevel(lp_player, UserDataGetUpgrade("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Poi", lv_j), lv_ach);
+            TextExpressionSetToken("Param/Expression/lib_E0EAE146_2000967E", "A", UserDataGetText("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "TitP", lv_j));
             TextExpressionSetToken("Param/Expression/lib_E0EAE146_2000967E", "B", IntToText(lv_ach));
             lv_tooltip = libE0EAE146_gf_UpdateTooltip(lv_tooltip, TextExpressionAssemble("Param/Expression/lib_E0EAE146_2000967E"));
         }
@@ -189,157 +243,661 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), true);
     libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), lv_tooltip, PlayerGroupAll());
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "CommanderIcon");
-    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommanderIcon", 1), PlayerGroupAll());
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, PlayerStartLocation(1));
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommanderIcon", 1), PlayerGroupAll());
+}
+
+void libE0EAE146_gf_XMRuntime_CreateBaseStructures (int lp_player, point lp_secondBase) {
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommandCenter", 1), 0, 1, PlayerStartLocation(lp_player));
     if ((lp_secondBase == null)) {
     }
     else {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, lp_secondBase);
+        libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommandCenter", 1), 0, 1, lp_secondBase);
     }
-    auto93C1ECD3_g = UnitGroup(null, c_playerAny, RegionCircle(PlayerStartLocation(1), 8.0), UnitFilter((1 << c_targetFilterHarvestableResource), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+}
+
+void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worker) {
+    // Variable Declarations
+    unit lv_u;
+    unitgroup lv_uG;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    unitgroup auto93C1ECD3_g;
+    int auto93C1ECD3_u;
+
+    // Variable Initialization
+    lv_uG = UnitGroupEmpty();
+
+    // Implementation
+    auto93C1ECD3_g = UnitGroup(null, c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 8.0), UnitFilter((1 << c_targetFilterHarvestableResource), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto93C1ECD3_u = UnitGroupCount(auto93C1ECD3_g, c_unitCountAll);
     for (;; auto93C1ECD3_u -= 1) {
         lv_u = UnitGroupUnitFromEnd(auto93C1ECD3_g, auto93C1ECD3_u);
         if (lv_u == null) { break; }
-        if (((UnitGetOwner(lv_u) == 0) || (UnitGetOwner(lv_u) == 1))) {
+        if (((UnitGetOwner(lv_u) == 0) || (UnitGetOwner(lv_u) == lp_player))) {
             UnitGroupAdd(lv_uG, lv_u);
         }
-
     }
     if ((UnitGroupCount(lv_uG, c_unitCountAlive) > 0)) {
         lv_i = 0;
         for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1), 0, 1, PointWithOffsetPolar(PlayerStartLocation(1), 2.0, (lv_i*10)));
+            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Worker", 1), 0, 1, PointWithOffsetPolar(PlayerStartLocation(lp_player), 2.0, (lv_i*10)));
             UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(null, UnitGroupRandomUnit(lv_uG, c_unitCountAlive)), c_orderQueueReplace);
         }
     }
     else {
         lv_i = 0;
         for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1), 0, 1, PointWithOffsetPolar(PlayerStartLocation(1), 2.0, (lv_i*10)));
+            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Worker", 1), 0, 1, PointWithOffsetPolar(PlayerStartLocation(lp_player), 2.0, (lv_i*10)));
         }
     }
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1), 0, 1, lp_secondUnit);
-    auto09490B45_val = libE0EAE146_gv_commander;
-    if (auto09490B45_val == "Stukov") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterStukov", 0, 1, RegionGetCenter(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Stukov", UnitLastCreated(), null);
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
-        lib67C0F0E7_gf_ShowChooseButton();
-        libBE3BBD9F_gf_StukovCreepEntireMap(1);
-    }
-    else if (auto09490B45_val == "Dehaka") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CasterDehaka", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Dehaka", UnitLastCreated(), null);
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
-        lib67C0F0E7_gf_ShowChooseButton();
-        if ((lp_createHero == true)) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "DehakaCoop", 0, 1, lp_secondUnit);
-            libDF8E6945_gf_InitializeDehakaEvent(1, UnitLastCreated());
-            if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit"), 0) == true)) {
-                libDF8E6945_gf_DehakaBroodbrother();
-            }
+}
 
+void libE0EAE146_gf_XMRuntime_CreateSecondUnit (int lp_player, point lp_secondUnit) {
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "SecondUnit", 1), 0, 1, lp_secondUnit);
+}
+
+void libE0EAE146_gf_XMRuntime_InitStukovBaseHook (int lp_player) {
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CoopCasterStukov", 0, 1, RegionGetCenter(RegionEntireMap()));
+    lib67C0F0E7_gf_CU_GPInit(lp_player, "Stukov", UnitLastCreated(), null);
+    lib67C0F0E7_gf_CU_GPShowHide(true, lp_player, c_transitionDurationDefault);
+    lib67C0F0E7_gf_ShowChooseButton();
+    libBE3BBD9F_gf_StukovCreepEntireMap(lp_player);
+}
+
+void libE0EAE146_gf_XMRuntime_InitDehakaBaseHook (int lp_player, point lp_secondUnit, bool lp_createHero) {
+    int lv_achBit;
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CasterDehaka", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+    lib67C0F0E7_gf_CU_GPInit(lp_player, "Dehaka", UnitLastCreated(), null);
+    lib67C0F0E7_gf_CU_GPShowHide(true, lp_player, c_transitionDurationDefault);
+    lib67C0F0E7_gf_ShowChooseButton();
+    if ((lp_createHero == true)) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "DehakaCoop", 0, 1, lp_secondUnit);
+        libDF8E6945_gf_InitializeDehakaEvent(lp_player, UnitLastCreated());
+        lv_achBit = 255;
+        if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
+            lv_achBit = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
         }
-
+        if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_achBit, 0) == true)) {
+            libDF8E6945_gf_DehakaBroodbrother();
+        }
     }
-    else if (auto09490B45_val == "Tychus") {
-        lib67C0F0E7_gv_tychusSquadMainBuilding = UnitLastCreated();
-        lib81FF3B49_gf_InitializeTychusEvent();
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+}
+
+void libE0EAE146_gf_XMRuntime_InitTychusBaseHook (int lp_player, bool lp_createHero) {
+    int lv_ach;
+
+    lib67C0F0E7_gv_tychusSquadMainBuilding = UnitLastCreated();
+    lib81FF3B49_gf_InitializeTychusEvent();
+    lib67C0F0E7_gf_CU_GPShowHide(true, lp_player, c_transitionDurationDefault);
+    lv_ach = 30;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
         lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(3));
-        lv_ach *= 3;
-        if ((lp_createHero == true)) {
-            lib67C0F0E7_gf_TychusSquadStartCharge((90-lv_ach), (240-lv_ach));
-        }
-        else {
-            lib67C0F0E7_gf_TychusSquadStartCharge((240-lv_ach), (240-lv_ach));
-        }
     }
-    else if (auto09490B45_val == "Mira") {
-        libDA886FA0_gf_InitlizeMira(1);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CasterMira", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Horner", UnitLastCreated(), null);
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
-        lib67C0F0E7_gf_ShowChooseButton();
+    lv_ach *= 3;
+    if ((lp_createHero == true)) {
+        lib67C0F0E7_gf_TychusSquadStartCharge((90-lv_ach), (240-lv_ach));
     }
-    else if (auto09490B45_val == "Nova") {
-        lib0940FFB7_gf_NovaCaster();
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterNova", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Nova", UnitLastCreated(), null);
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
-        lib67C0F0E7_gf_ShowChooseButton();
+    else {
+        lib67C0F0E7_gf_TychusSquadStartCharge((240-lv_ach), (240-lv_ach));
+    }
+}
+
+void libE0EAE146_gf_XMRuntime_InitMiraBaseHook (int lp_player) {
+    libDA886FA0_gf_InitlizeMira(lp_player);
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CasterMira", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+    lib67C0F0E7_gf_CU_GPInit(lp_player, "Horner", UnitLastCreated(), null);
+    lib67C0F0E7_gf_CU_GPShowHide(true, lp_player, c_transitionDurationDefault);
+    lib67C0F0E7_gf_ShowChooseButton();
+}
+
+void libE0EAE146_gf_XMRuntime_InitNovaBaseHook (int lp_player, bool lp_createHero) {
+    int lv_ach;
+
+    lib0940FFB7_gf_NovaCaster();
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CoopCasterNova", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+    lib67C0F0E7_gf_CU_GPInit(lp_player, "Nova", UnitLastCreated(), null);
+    lib67C0F0E7_gf_CU_GPShowHide(true, lp_player, c_transitionDurationDefault);
+    lib67C0F0E7_gf_ShowChooseButton();
+    lv_ach = 30;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
         lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(1));
-        if ((lv_ach == 0)) {
-        }
-        else {
-            lib67C0F0E7_gf_SOAStickyLineUpg(1, lv_ach);
-        }
-        if ((lp_createHero == true)) {
-            lib0940FFB7_gf_InitlizeNova(1);
-        }
-
     }
-    else if (auto09490B45_val == "Mengsk") {
-        lv_j = 0;
-        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
-        if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, 5) == true)) {
-            lv_j += 50;
-        }
+    if ((lv_ach == 0)) {
+    }
+    else {
+        lib67C0F0E7_gf_SOAStickyLineUpg(lp_player, lv_ach);
+    }
+    if ((lp_createHero == true)) {
+        lib0940FFB7_gf_InitlizeNova(lp_player);
+    }
+}
 
+void libE0EAE146_gf_XMRuntime_InitMengskBaseHook (int lp_player) {
+    int lv_j;
+    int lv_ach;
+
+    lv_j = 0;
+    lv_ach = 255;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+    }
+    if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, 5) == true)) {
+        lv_j += 50;
+    }
+    lv_ach = 30;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
         lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(0));
-        if ((lv_ach == 0)) {
-        }
-        else {
-            libC0F50AA6_gv_trooperRate += (lv_ach*0.01);
-        }
+    }
+    if ((lv_ach == 0)) {
+    }
+    else {
+        libC0F50AA6_gv_trooperRate += (lv_ach*0.01);
+    }
+    lv_ach = 30;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
         lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(1));
-        if ((lv_ach == 0)) {
-        }
-        else {
-            libC0F50AA6_gv_royalGuardRate += (lv_ach*0.01);
-        }
+    }
+    if ((lv_ach == 0)) {
+    }
+    else {
+        libC0F50AA6_gv_royalGuardRate += (lv_ach*0.01);
+    }
+    lv_ach = 30;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
         lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(5));
-        if ((lv_ach == 0)) {
-            libC0F50AA6_gv_mengskVeterancyExp += lv_j;
-        }
-        else {
-            libC0F50AA6_gv_mengskVeterancyExp += (lv_j+(lv_ach*0.5));
-        }
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterMengsk", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+    }
+    if ((lv_ach == 0)) {
+        libC0F50AA6_gv_mengskVeterancyExp += lv_j;
+    }
+    else {
+        libC0F50AA6_gv_mengskVeterancyExp += (lv_j+(lv_ach*0.5));
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CoopCasterMengsk", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+    lv_ach = 30;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
         lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(4));
-        if ((lv_ach == 0)) {
-        }
-        else {
-            lib67C0F0E7_gf_UnitAddProperty(UnitLastCreated(), c_unitPropEnergy, (lv_ach*2));
-        }
-        lib67C0F0E7_gf_CU_GPInit(1, "Mengsk", UnitLastCreated(), null);
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
-        lib67C0F0E7_gf_ShowChooseButton();
-        libC0F50AA6_gf_InitlizeMengsk();
     }
-    else if (auto09490B45_val == "Swann") {
-        lib4B62E36B_gf_DrakkenLaserDrillUnit(UnitLastCreated(), 1);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CasterSwann", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Swann", UnitLastCreated(), null);
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
-        lib4B62E36B_gf_DrakkenLaserDrillAddCasterGroup(1);
-        lib67C0F0E7_gf_ShowChooseButton();
+    if ((lv_ach == 0)) {
     }
-    else if (auto09490B45_val == "Stetmann") {
-        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
-        if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, 7) == true)) {
-            PlayerAddResponse(1, "SuperGaryStetmannTheBestOil");
-        }
+    else {
+        lib67C0F0E7_gf_UnitAddProperty(UnitLastCreated(), c_unitPropEnergy, (lv_ach*2));
+    }
+    lib67C0F0E7_gf_CU_GPInit(lp_player, "Mengsk", UnitLastCreated(), null);
+    lib67C0F0E7_gf_CU_GPShowHide(true, lp_player, c_transitionDurationDefault);
+    lib67C0F0E7_gf_ShowChooseButton();
+    libC0F50AA6_gf_InitlizeMengsk();
+}
 
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterStetmann", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
-        lib67C0F0E7_gf_CU_GPInit(1, "Stetmann", UnitLastCreated(), null);
-        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
-        lib975E2FE9_gf_PowerFieldTrigger(1, BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(2)));
-        lib67C0F0E7_gf_ShowChooseButton();
+void libE0EAE146_gf_XMRuntime_InitSwannBaseHook (int lp_player) {
+    lib4B62E36B_gf_DrakkenLaserDrillUnit(UnitLastCreated(), lp_player);
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CasterSwann", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+    lib67C0F0E7_gf_CU_GPInit(lp_player, "Swann", UnitLastCreated(), null);
+    lib67C0F0E7_gf_CU_GPShowHide(true, lp_player, c_transitionDurationDefault);
+    lib4B62E36B_gf_DrakkenLaserDrillAddCasterGroup(lp_player);
+    lib67C0F0E7_gf_ShowChooseButton();
+}
+
+void libE0EAE146_gf_XMRuntime_InitStetmannBaseHook (int lp_player) {
+    int lv_ach;
+
+    lv_ach = 255;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+    }
+    if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, 7) == true)) {
+        PlayerAddResponse(lp_player, "SuperGaryStetmannTheBestOil");
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CoopCasterStetmann", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+    lib67C0F0E7_gf_CU_GPInit(lp_player, "Stetmann", UnitLastCreated(), null);
+    lib67C0F0E7_gf_CU_GPShowHide(true, lp_player, c_transitionDurationDefault);
+    lv_ach = 30;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == false)) {
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(2));
+    }
+    lib975E2FE9_gf_PowerFieldTrigger(lp_player, lv_ach);
+    lib67C0F0E7_gf_ShowChooseButton();
+}
+
+void libE0EAE146_gf_XMRuntime_RunCommanderBaseHook (int lp_player, point lp_secondUnit, bool lp_createHero) {
+    string lv_commander;
+
+    lv_commander = libE0EAE146_gv_commander;
+    if (lv_commander == "Stukov") {
+        libE0EAE146_gf_XMRuntime_InitStukovBaseHook(lp_player);
+    }
+    else if (lv_commander == "Dehaka") {
+        libE0EAE146_gf_XMRuntime_InitDehakaBaseHook(lp_player, lp_secondUnit, lp_createHero);
+    }
+    else if (lv_commander == "Tychus") {
+        libE0EAE146_gf_XMRuntime_InitTychusBaseHook(lp_player, lp_createHero);
+    }
+    else if (lv_commander == "Mira") {
+        libE0EAE146_gf_XMRuntime_InitMiraBaseHook(lp_player);
+    }
+    else if (lv_commander == "Nova") {
+        libE0EAE146_gf_XMRuntime_InitNovaBaseHook(lp_player, lp_createHero);
+    }
+    else if (lv_commander == "Mengsk") {
+        libE0EAE146_gf_XMRuntime_InitMengskBaseHook(lp_player);
+    }
+    else if (lv_commander == "Swann") {
+        libE0EAE146_gf_XMRuntime_InitSwannBaseHook(lp_player);
+    }
+    else if (lv_commander == "Stetmann") {
+        libE0EAE146_gf_XMRuntime_InitStetmannBaseHook(lp_player);
     }
     else {
     }
+}
+
+void libE0EAE146_gf_InitializeBase_Legacy (point lp_secondUnit, int lp_worker, point lp_secondBase, bool lp_createHero) {
+    string lv_createHeroText;
+
+    if ((lp_createHero == true)) {
+        lv_createHeroText = "true";
+    }
+    else {
+        lv_createHeroText = "false";
+    }
+
+    libE0EAE146_gf_XMDbgLog("INFO", "BASE_INIT_PHASE", "phase=progression commander=" + libE0EAE146_gv_commander);
+    libE0EAE146_gf_XMRuntime_ApplyCommanderProgression(1);
+    libE0EAE146_gf_XMDbgLog("INFO", "BASE_INIT_PHASE", "phase=base_structures commander=" + libE0EAE146_gv_commander);
+    libE0EAE146_gf_XMRuntime_CreateBaseStructures(1, lp_secondBase);
+    libE0EAE146_gf_XMDbgLog("INFO", "BASE_INIT_PHASE", "phase=workers commander=" + libE0EAE146_gv_commander + " workerArg=" + IntToString(lp_worker));
+    libE0EAE146_gf_XMRuntime_CreateStartingWorkers(1, lp_worker);
+    libE0EAE146_gf_XMDbgLog("INFO", "BASE_INIT_PHASE", "phase=second_unit commander=" + libE0EAE146_gv_commander);
+    libE0EAE146_gf_XMRuntime_CreateSecondUnit(1, lp_secondUnit);
+    libE0EAE146_gf_XMDbgLog("INFO", "BASE_INIT_PHASE", "phase=commander_hook commander=" + libE0EAE146_gv_commander + " createHero=" + lv_createHeroText);
+    libE0EAE146_gf_XMRuntime_RunCommanderBaseHook(1, lp_secondUnit, lp_createHero);
+}
+
+void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp_secondBase, bool lp_createHero) {
+    if (libE0EAE146_gv_commander == "") {
+        libE0EAE146_gf_XMRuntime_PrepareCommanderFromBank(1);
+    }
+    libE0EAE146_gf_XMDbgLog("INFO", "COMMANDER_INIT_DISPATCH", "commander=" + libE0EAE146_gv_commander + " phase=base_init mode=legacy_adapter");
+    libE0EAE146_gf_InitializeBase_Legacy(lp_secondUnit, lp_worker, lp_secondBase, lp_createHero);
+}
+
+bool libE0EAE146_gf_XMTestBench_PlayerValid (int lp_player) {
+    if ((lp_player < 1) || (lp_player > libE0EAE146_gv_xmTestBenchMaxPlayers)) {
+        return false;
+    }
+    return true;
+}
+
+void libE0EAE146_gf_XMTestBench_ResetCounters (int lp_player) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+    libE0EAE146_gv_xmTestBenchCreated[lp_player] = 0;
+    libE0EAE146_gv_xmTestBenchMissing[lp_player] = 0;
+    libE0EAE146_gv_xmTestBenchWarnings[lp_player] = 0;
+    libE0EAE146_gv_xmTestBenchErrors[lp_player] = 0;
+}
+
+void libE0EAE146_gf_XMTestBench_SetLastEvent (int lp_player, string lp_event) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+    libE0EAE146_gv_xmTestBenchLastEvent[lp_player] = lp_event;
+}
+
+void libE0EAE146_gf_XMTestBench_AddWarning (int lp_player) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+    libE0EAE146_gv_xmTestBenchWarnings[lp_player] += 1;
+}
+
+void libE0EAE146_gf_XMTestBench_AddError (int lp_player) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+    libE0EAE146_gv_xmTestBenchErrors[lp_player] += 1;
+}
+
+int libE0EAE146_gf_XMTestBench_CountPlayerUnits (int lp_player) {
+    unitgroup lv_units;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return 0;
+    }
+    lv_units = UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    return UnitGroupCount(lv_units, c_unitCountAlive);
+}
+
+void libE0EAE146_gf_XMTestBench_RemovePlayerUnits (int lp_player) {
+    unit lv_unit;
+    unitgroup lv_units;
+    int lv_count;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+
+    lv_units = UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    lv_count = UnitGroupCount(lv_units, c_unitCountAll);
+    for (;; lv_count -= 1) {
+        lv_unit = UnitGroupUnitFromEnd(lv_units, lv_count);
+        if (lv_unit == null) { break; }
+        UnitRemove(lv_unit);
+    }
+}
+
+void libE0EAE146_gf_XMTestBench_SeedCommanderBank (int lp_player, string lp_commander) {
+    string lv_normalized;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+
+    lv_normalized = libE0EAE146_gf_NormalizeCommanderId(lp_commander);
+    libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled = true;
+    libE0EAE146_gv_xmRuntimeCommanderOverride = lv_normalized;
+    libE0EAE146_gv_commander = lv_normalized;
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_COMMANDER_OVERRIDE", "player=" + IntToString(lp_player) + " commander=" + lv_normalized + " achBit=255 mastery=30 bank=not_saved");
+}
+
+void libE0EAE146_gf_XMTestBench_LogScenarioStub (int lp_player, string lp_scenarioKind, string lp_reason) {
+    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_SCENARIO_STUB");
+    libE0EAE146_gf_XMDbgLog("WARN", "TEST_SCENARIO_STUB", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_scenarioKind + " reason=" + lp_reason);
+}
+
+void libE0EAE146_gf_XMTestBench_RunStandardBase (int lp_player) {
+    int lv_before;
+    int lv_after;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        libE0EAE146_gf_XMDbgLog("ERROR", "TEST_PLAYER_INVALID", "player=" + IntToString(lp_player));
+        return;
+    }
+
+    if (lp_player != 1) {
+        libE0EAE146_gf_XMTestBench_AddError(lp_player);
+        libE0EAE146_gf_XMDbgLog("ERROR", "TEST_PLAYER_UNSUPPORTED", "player=" + IntToString(lp_player) + " reason=legacy_initialize_hardcodes_player1");
+        return;
+    }
+
+    lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
+    libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    libE0EAE146_gf_Initialize(false);
+    libE0EAE146_gf_InitializeBase(PointWithOffsetPolar(PlayerStartLocation(lp_player), 8.0, 0.0), 5, null, true);
+    lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
+    libE0EAE146_gv_xmTestBenchCreated[lp_player] = MaxI(0, (lv_after - lv_before));
+    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+    libE0EAE146_gf_XMDbgLog("WARN", "TEST_SCENARIO_ADAPTER", "scenario=standard_base reason=legacy_initializebase_adapter cleanup=manual");
+}
+
+string libE0EAE146_gf_NormalizeCommanderId (string lp_commander) {
+    if (lp_commander == "") {
+        return "Raynor";
+    }
+    if ((lp_commander == "Horner") || (lp_commander == "HanHorner") || (lp_commander == "HanAndHorner")) {
+        return "Mira";
+    }
+    return lp_commander;
+}
+
+void libE0EAE146_gf_XMDbgLog (string lp_level, string lp_event, string lp_message) {
+    TriggerDebugOutput(1, StringToText("[XM_DBG][" + lp_level + "][" + lp_event + "] " + lp_message), false);
+}
+
+void libE0EAE146_gf_XMTestBench_SetCommander (int lp_player, string lp_commander) {
+    string lv_normalized;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        libE0EAE146_gf_XMDbgLog("ERROR", "TEST_PLAYER_INVALID", "player=" + IntToString(lp_player));
+        return;
+    }
+
+    lv_normalized = libE0EAE146_gf_NormalizeCommanderId(lp_commander);
+    libE0EAE146_gv_xmTestBenchCommander[lp_player] = lp_commander;
+    libE0EAE146_gv_xmTestBenchLastEvent[lp_player] = "TEST_COMMANDER_SET";
+    libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, lp_commander);
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_COMMANDER_SET", "commander=" + lp_commander + " normalized=" + lv_normalized + " player=" + IntToString(lp_player) + " result=ok");
+    libE0EAE146_gf_XMTestBench_WriteSummary(lp_player);
+}
+
+void libE0EAE146_gf_XMTestBench_Clear (int lp_player) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        libE0EAE146_gf_XMDbgLog("ERROR", "TEST_PLAYER_INVALID", "player=" + IntToString(lp_player));
+        return;
+    }
+
+    libE0EAE146_gf_XMTestBench_ResetCounters(lp_player);
+    libE0EAE146_gf_XMTestBench_RemovePlayerUnits(lp_player);
+    libE0EAE146_gv_xmTestBenchLastEvent[lp_player] = "TEST_CLEAR";
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_CLEAR", "player=" + IntToString(lp_player) + " result=ok cleanup=player_units");
+    libE0EAE146_gf_XMTestBench_WriteSummary(lp_player);
+}
+
+void libE0EAE146_gf_XMTestBench_RunScenario (int lp_player, string lp_scenarioKind) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        libE0EAE146_gf_XMDbgLog("ERROR", "TEST_PLAYER_INVALID", "player=" + IntToString(lp_player));
+        return;
+    }
+
+    libE0EAE146_gf_XMTestBench_ResetCounters(lp_player);
+    libE0EAE146_gv_xmTestBenchScenario[lp_player] = lp_scenarioKind;
+    libE0EAE146_gv_xmTestBenchLastEvent[lp_player] = "TEST_SCENARIO_START";
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_SCENARIO_START", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " normalized=" + libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]) + " scenario=" + lp_scenarioKind);
+
+    if (lp_scenarioKind == "standard_base") {
+        libE0EAE146_gf_XMTestBench_RunStandardBase(lp_player);
+    }
+    else if (lp_scenarioKind == "power_fusion") {
+        libE0EAE146_gf_XMTestBench_RunPowerFusion(lp_player);
+    }
+    else if (lp_scenarioKind == "panel_cost_smoke") {
+        libE0EAE146_gf_XMTestBench_RunPanelCostSmoke(lp_player);
+    }
+    else if (lp_scenarioKind == "panel_effect_smoke") {
+        libE0EAE146_gf_XMTestBench_RunPanelEffectSmoke(lp_player);
+    }
+    else if ((lp_scenarioKind == "full_buildings") || (lp_scenarioKind == "full_units") || (lp_scenarioKind == "initial_units") || (lp_scenarioKind == "level15_units") || (lp_scenarioKind == "fusion_final_units")) {
+        libE0EAE146_gf_XMTestBench_RunRoster(lp_player, lp_scenarioKind);
+    }
+    else if (lp_scenarioKind == "hero_modes") {
+        libE0EAE146_gf_XMTestBench_RunHeroSmoke(lp_player);
+    }
+    else if ((lp_scenarioKind == "unit_ability_smoke") || (lp_scenarioKind == "unit_evolution_smoke")) {
+        libE0EAE146_gf_XMTestBench_RunUnitAbilitySmoke(lp_player);
+    }
+    else if (lp_scenarioKind == "tech_smoke") {
+        libE0EAE146_gf_XMTestBench_RunTechSmoke(lp_player);
+    }
+    else if ((lp_scenarioKind == "cargo_light") || (lp_scenarioKind == "cargo_heavy") || (lp_scenarioKind == "cargo_air")) {
+        libE0EAE146_gf_XMTestBench_RunTransportSmoke(lp_player, lp_scenarioKind);
+    }
+    else if (lp_scenarioKind == "special_smoke") {
+        libE0EAE146_gf_XMTestBench_RunSpecialSmoke(lp_player);
+    }
+    else if (lp_scenarioKind == "personal_smoke") {
+        libE0EAE146_gf_XMTestBench_RunPersonalSmoke(lp_player);
+    }
+    else {
+        libE0EAE146_gf_XMTestBench_AddError(lp_player);
+        libE0EAE146_gf_XMDbgLog("ERROR", "TEST_SCENARIO_UNKNOWN", "scenario=" + lp_scenarioKind);
+    }
+
+    libE0EAE146_gf_XMTestBench_WriteSummary(lp_player);
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_SCENARIO_DONE", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_scenarioKind + " created=" + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]) + " missing=" + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]) + " warnings=" + IntToString(libE0EAE146_gv_xmTestBenchWarnings[lp_player]) + " errors=" + IntToString(libE0EAE146_gv_xmTestBenchErrors[lp_player]));
+}
+
+void libE0EAE146_gf_XMTestBench_RunRoster (int lp_player, string lp_rosterKind) {
+    libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, lp_rosterKind, "commander_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunPowerFusion (int lp_player) {
+    libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    libE0EAE146_gf_CommanderUpgrade();
+    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_POWER_FUSION");
+    libE0EAE146_gf_XMDbgLog("WARN", "TEST_POWER_FUSION", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " result=override_seeded reason=profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunHeroSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "hero_modes", "hero_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunUnitAbilitySmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, libE0EAE146_gv_xmTestBenchScenario[lp_player], "unit_ability_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunPanelCostSmoke (int lp_player) {
+    XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(PlayerStartLocation(lp_player), 18.0, 0.0));
+    libE0EAE146_gf_XMDbgLog("WARN", "PANEL_COST_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " reason=panel_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunPanelEffectSmoke (int lp_player) {
+    XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(PlayerStartLocation(lp_player), 18.0, 0.0));
+    libE0EAE146_gf_XMDbgLog("WARN", "PANEL_EFFECT_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " reason=panel_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunTechSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "tech_smoke", "tech_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunTransportSmoke (int lp_player, string lp_cargoKind) {
+    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, lp_cargoKind, "cargo_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunSpecialSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "special_smoke", "special_mechanic_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_RunPersonalSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "personal_smoke", "personal_mechanic_profile_not_wired");
+}
+
+void libE0EAE146_gf_XMTestBench_WriteSummary (int lp_player) {
+    string lv_summary;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+
+    lv_summary = "Commander: " + libE0EAE146_gv_xmTestBenchCommander[lp_player];
+    lv_summary = lv_summary + " | Normalized: " + libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    lv_summary = lv_summary + " | Scenario: " + libE0EAE146_gv_xmTestBenchScenario[lp_player];
+    lv_summary = lv_summary + " | Created: " + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]);
+    lv_summary = lv_summary + " | Missing: " + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]);
+    lv_summary = lv_summary + " | Warnings: " + IntToString(libE0EAE146_gv_xmTestBenchWarnings[lp_player]);
+    lv_summary = lv_summary + " | Errors: " + IntToString(libE0EAE146_gv_xmTestBenchErrors[lp_player]);
+    lv_summary = lv_summary + " | Last: " + libE0EAE146_gv_xmTestBenchLastEvent[lp_player];
+    libE0EAE146_gv_xmTestBenchSummary[lp_player] = lv_summary;
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_SUMMARY", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + libE0EAE146_gv_xmTestBenchScenario[lp_player] + " created=" + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]) + " missing=" + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]) + " warnings=" + IntToString(libE0EAE146_gv_xmTestBenchWarnings[lp_player]) + " errors=" + IntToString(libE0EAE146_gv_xmTestBenchErrors[lp_player]));
+}
+
+string libE0EAE146_gf_XMTestBench_GetSummaryText (int lp_player) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return "Invalid testbench player.";
+    }
+    return libE0EAE146_gv_xmTestBenchSummary[lp_player];
+}
+
+int libE0EAE146_gf_XMTestBench_GetWarningCount (int lp_player) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return 0;
+    }
+    return libE0EAE146_gv_xmTestBenchWarnings[lp_player];
+}
+
+int libE0EAE146_gf_XMTestBench_GetErrorCount (int lp_player) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return 0;
+    }
+    return libE0EAE146_gv_xmTestBenchErrors[lp_player];
+}
+
+bool libE0EAE146_gf_XM_InvokeCommanderPanelAbility (int lp_player, string lp_commander, string lp_panelAbilityId, point lp_targetPoint) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        libE0EAE146_gf_XMDbgLog("ERROR", "PANEL_TEST_PLAYER_INVALID", "player=" + IntToString(lp_player));
+        return false;
+    }
+
+    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_TEST_INVOKE");
+    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_TEST_INVOKE", "commander=" + lp_commander + " normalized=" + libE0EAE146_gf_NormalizeCommanderId(lp_commander) + " ability=" + lp_panelAbilityId + " trigger=command target=point result=stub");
+    return false;
+}
+
+void XMTestBench_SetCommander (int lp_player, string lp_commander) {
+    libE0EAE146_gf_XMTestBench_SetCommander(lp_player, lp_commander);
+}
+
+void XMTestBench_Clear (int lp_player) {
+    libE0EAE146_gf_XMTestBench_Clear(lp_player);
+}
+
+void XMTestBench_RunScenario (int lp_player, string lp_scenarioKind) {
+    libE0EAE146_gf_XMTestBench_RunScenario(lp_player, lp_scenarioKind);
+}
+
+void XMTestBench_RunRoster (int lp_player, string lp_rosterKind) {
+    libE0EAE146_gf_XMTestBench_RunRoster(lp_player, lp_rosterKind);
+}
+
+void XMTestBench_RunPowerFusion (int lp_player) {
+    libE0EAE146_gf_XMTestBench_RunPowerFusion(lp_player);
+}
+
+void XMTestBench_RunHeroSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_RunHeroSmoke(lp_player);
+}
+
+void XMTestBench_RunUnitAbilitySmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_RunUnitAbilitySmoke(lp_player);
+}
+
+void XMTestBench_RunPanelCostSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_RunPanelCostSmoke(lp_player);
+}
+
+void XMTestBench_RunPanelEffectSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_RunPanelEffectSmoke(lp_player);
+}
+
+void XMTestBench_RunTechSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_RunTechSmoke(lp_player);
+}
+
+void XMTestBench_RunTransportSmoke (int lp_player, string lp_cargoKind) {
+    libE0EAE146_gf_XMTestBench_RunTransportSmoke(lp_player, lp_cargoKind);
+}
+
+void XMTestBench_RunSpecialSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_RunSpecialSmoke(lp_player);
+}
+
+void XMTestBench_RunPersonalSmoke (int lp_player) {
+    libE0EAE146_gf_XMTestBench_RunPersonalSmoke(lp_player);
+}
+
+void XMTestBench_WriteSummary (int lp_player) {
+    libE0EAE146_gf_XMTestBench_WriteSummary(lp_player);
+}
+
+string XMTestBench_GetSummaryText (int lp_player) {
+    return libE0EAE146_gf_XMTestBench_GetSummaryText(lp_player);
+}
+
+int XMTestBench_GetWarningCount (int lp_player) {
+    return libE0EAE146_gf_XMTestBench_GetWarningCount(lp_player);
+}
+
+int XMTestBench_GetErrorCount (int lp_player) {
+    return libE0EAE146_gf_XMTestBench_GetErrorCount(lp_player);
+}
+
+bool XM_InvokeCommanderPanelAbility (int lp_player, string lp_commander, string lp_panelAbilityId, point lp_targetPoint) {
+    return libE0EAE146_gf_XM_InvokeCommanderPanelAbility(lp_player, lp_commander, lp_panelAbilityId, lp_targetPoint);
 }
 
 void libE0EAE146_gf_CommanderUpgrade () {
@@ -348,14 +906,21 @@ void libE0EAE146_gf_CommanderUpgrade () {
     int lv_j;
     int lv_ach;
     text lv_tooltip;
+    bool lv_usingOverride;
 
     // Automatic Variable Declarations
     // Variable Initialization
     lv_tooltip = StringExternal("Param/Value/lib_E0EAE146_CFEF7FBA");
+    lv_usingOverride = libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled;
 
     // Implementation
-    BankLoad("CampaignXCore", 1);
-    lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+    if ((lv_usingOverride == false)) {
+        BankLoad("CampaignXCore", 1);
+    }
+    lv_ach = 255;
+    if ((lv_usingOverride == false)) {
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+    }
     lv_i = 0;
     for ( ; ( lv_i <= 7 ) ; lv_i += 1 ) {
         if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, lv_i) == true)) {
@@ -368,7 +933,10 @@ void libE0EAE146_gf_CommanderUpgrade () {
     lv_j = 0;
     lv_i = 0;
     for ( ; ( lv_i <= 5 ) ; lv_i += 1 ) {
-        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(lv_i));
+        lv_ach = 30;
+        if ((lv_usingOverride == false)) {
+            lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(lv_i));
+        }
         if ((lv_ach == 0)) {
         }
         else {

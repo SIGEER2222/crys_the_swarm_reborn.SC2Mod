@@ -17,22 +17,31 @@ docs/newdocs/测试台资源/CommanderTestBench布局蓝图-2026-05-27.svg
 实际可加载地图包骨架：
 
 ```text
-runtime/testbench/CommanderTestBench.SC2Map/
+references/testbench/CommanderTestBench.SC2Map/
+原始mod/Maps/XM/CommanderTestBench.SC2Map/
 ```
 
-注意：SVG 只是说明图，SC2 不能加载 SVG。SC2 实际加载的是 `.SC2Map` 地图包目录。当前地图包已经用真实 `.SC2Map` 模板生成，并替换了 `MapScript.galaxy` 为测试台 stub；仍需用 SC2 Editor 打开确认编译和运行。
+注意：SVG 只是说明图，SC2 不能加载 SVG。SC2 实际加载的是 `.SC2Map` 地图包目录。当前地图包已经用真实 `.SC2Map` 模板生成，并且 `MapScript.galaxy` 已改成调用 `XMFinal` 的 `XMTestBench_*` runtime API；仍需用 SC2 Editor 打开确认编译和运行。
 
-当前 `runtime/*` 被 `.gitignore` 忽略，所以这个地图包是本机生成资产，不会默认进入 Git。要跨机器保留时，需要把 `runtime/testbench/` 加入白名单，或移动到一个明确追踪的测试资产目录。
+当前优先打开 `原始mod/Maps/XM/CommanderTestBench.SC2Map/`。这份地图沿用现有战役地图的目录结构，`DocumentInfo` 中的 `file:Mods\XM\XMFinal.SC2Mod` 可以解析到 `原始mod/Mods/XM/XMFinal.SC2Mod`。`references/testbench/CommanderTestBench.SC2Map/` 保留为资料副本；直接从 `references/testbench` 打开时，依赖路径可能找不到 `XMFinal.SC2Mod`。
 
 ## 放置建议
 
 推荐先作为独立测试资产，不放在失败半成品目录里：
 
 ```text
-runtime/testbench/CommanderTestBench.SC2Map/
+references/testbench/CommanderTestBench.SC2Map/
 ```
 
 后续如果需要打包到游戏内，可以再复制或发布到正式 `Maps/XM/`。测试设计和实现不要以 `合作指挥官版起义狂潮/` 为权威来源。
+
+当前已经同步一份直接加载副本：
+
+```text
+原始mod/Maps/XM/CommanderTestBench.SC2Map/
+```
+
+后续如果 SC2 Editor 重新生成触发器或脚本，优先以这份可加载副本为准，再把必要脚本同步回 `references/testbench`。
 
 依赖：
 
@@ -809,7 +818,7 @@ XMDebug.SC2Bank
 用编辑器新建空白地图，保存为：
 
 ```text
-runtime/testbench/CommanderTestBench.SC2Map
+references/testbench/CommanderTestBench.SC2Map
 ```
 
 设置依赖：
