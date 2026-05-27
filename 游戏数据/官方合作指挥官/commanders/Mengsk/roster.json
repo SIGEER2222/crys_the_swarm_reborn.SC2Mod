@@ -2837,9 +2837,9 @@
     "resolved_unit_ids": [
       "RavenMengsk"
     ],
-    "icon_button": "RavenMengsk",
-    "icon": "Assets\\Textures\\btn-unit-terran-blimpmengsk.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-terran-blimpmengsk.dds",
+    "icon_button": "MorphtoRavenMengsk",
+    "icon": "Assets\\Textures\\btn-ability-mengsk-blimp-movementmode.dds",
+    "alert_icon": "Assets\\Textures\\btn-ability-mengsk-blimp-movementmode.dds",
     "unit": {
       "id": "RavenMengsk",
       "source_catalog": "mengsk",
@@ -2920,6 +2920,22 @@
         "source_catalog": "mengsk",
         "cost_mode": "unit_total_inferred",
         "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "RavenMengskSieged",
+        "button_face": "MorphtoRavenMengsk",
+        "abil_cmd": "RavenMengskSiegedMorphtoRavenMengsk,Execute",
+        "ability_id": "RavenMengskSiegedMorphtoRavenMengsk",
+        "command_index": "Execute",
+        "minerals": "0",
+        "vespene": "0",
+        "terrazine": "",
+        "custom": "",
+        "time": "0.75",
+        "unit": "RavenMengsk",
+        "source_catalog": "mengsk",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "RavenMengskSieged"
       }
     ]
   },
@@ -2949,9 +2965,9 @@
     "resolved_unit_ids": [
       "RavenMengskSieged"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "MorphtoRavenMengskSieged",
+    "icon": "Assets\\Textures\\btn-ability-mengsk-blimp-propagandamode.dds",
+    "alert_icon": "Assets\\Textures\\btn-ability-mengsk-blimp-propagandamode.dds",
     "unit": {
       "id": "RavenMengskSieged",
       "source_catalog": "mengsk",
@@ -2998,6 +3014,40 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "RavenMengsk",
+      "button_face": "MorphtoRavenMengskSieged",
+      "abil_cmd": "RavenMengskMorphtoRavenMengskSieged,Execute",
+      "ability_id": "RavenMengskMorphtoRavenMengskSieged",
+      "command_index": "Execute",
+      "minerals": "0",
+      "vespene": "0",
+      "terrazine": "",
+      "custom": "",
+      "time": "0.75",
+      "unit": "RavenMengskSieged",
+      "source_catalog": "mengsk",
+      "cost_mode": "delta_inferred",
+      "base_unit_id": "RavenMengsk"
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "RavenMengsk",
+        "button_face": "MorphtoRavenMengskSieged",
+        "abil_cmd": "RavenMengskMorphtoRavenMengskSieged,Execute",
+        "ability_id": "RavenMengskMorphtoRavenMengskSieged",
+        "command_index": "Execute",
+        "minerals": "0",
+        "vespene": "0",
+        "terrazine": "",
+        "custom": "",
+        "time": "0.75",
+        "unit": "RavenMengskSieged",
+        "source_catalog": "mengsk",
+        "cost_mode": "delta_inferred",
+        "base_unit_id": "RavenMengsk"
+      }
+    ]
   }
 ]
