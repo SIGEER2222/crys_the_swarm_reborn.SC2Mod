@@ -84,8 +84,6 @@ CURATED_COMMANDER_UNIT_IDS = {
     "Mengsk": [
         "SCVMengsk",
         "CommandCenterMengsk",
-        "OrbitalCommandMengsk",
-        "SupplyDepotMengsk",
         "BunkerDepotMengsk",
         "MissileTurretMengsk",
         "BarracksMengsk",
@@ -140,7 +138,7 @@ CURATED_COMMANDER_UNIT_IDS = {
         "RavagerStetmann",
         "HydraliskStetmann",
         "LurkerStetmann",
-        "LurkerBurrowedStetmann",
+        "LurkerStetmannBurrowed",
         "InfestorStetmann",
         "UltraliskStetmann",
         "CorruptorStetmann",
@@ -151,6 +149,12 @@ CURATED_COMMANDER_UNIT_IDS = {
 }
 
 TECH_UNIT_UNIT_OVERRIDES = {
+    "Nova": {
+        "ReaperNova": "MercReaper",
+    },
+    "Stukov": {
+        "StukovInfestedWraith": "SIWraith",
+    },
     "Zeratul": {
         "DisruptorZeratul": "ZeratulDisruptor",
         "ImmortalZeratul": "ZeratulImmortal",
@@ -164,6 +168,10 @@ TECH_UNIT_UNIT_OVERRIDES = {
 }
 
 TYCHUS_IGNORE_PATTERN = re.compile(r"(Missile|Weapon|Beacon|Placement|Dummy)")
+NON_PRIMARY_UNIT_PATTERN = re.compile(r"(_SpawnerUnit|SpawnerUnit$|Cocoon|Egg|Missile|Weapon|Placeholder|Dummy)")
+SECONDARY_MODE_UNIT_PATTERN = re.compile(r"(Burrowed$|Rooted$|Sieged$|Flying$|Assault$|Phasing$)")
+STRUCTURE_ID_PATTERN = re.compile(r"(CommandCenter|Orbital|Hatchery|Lair|Hive|Gateway|Barracks|Factory|Starport|Depot|Bunker|Turret|Cannon|Crawler|Bay|Forge|Council|Core|Armory|Academy|Refinery|Extractor|Nest|Den|Cavern|Spire|Pit|Pool|Battery|Monolith|Tower|Structure|Facility|Shrine|Beacon|Archive|Nexus|Pylon|StarGate|Stargate)")
+OTHER_ID_PATTERN = re.compile(r"(Weapon|Missile|Projectile|Dummy|Placeholder|Cocoon|Egg)")
 
 
 def field_id(element: ET.Element) -> str | None:
@@ -318,11 +326,29 @@ def chain_array_values(chain: list[tuple[str, ET.Element]], tag: str) -> list[st
     return []
 
 
+def infer_object_type(unit_id: str, chain: list[tuple[str, ET.Element]]) -> str:
+    ids = [unit_id]
+    ids.extend(item_node.get("id", "") for _, item_node in chain)
+    ids.extend(item_node.get("parent", "") for _, item_node in chain)
+    joined = " ".join(item for item in ids if item)
+    if STRUCTURE_ID_PATTERN.search(joined):
+        return "Structure"
+    if OTHER_ID_PATTERN.search(joined):
+        return "Other"
+    return "Unit"
+
+
 class CatalogResolver:
     def __init__(self, export_root: Path):
         self.export_root = export_root
         self.unit_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.upgrade_catalogs: dict[str, dict[str, ET.Element]] = {}
+        self.army_category_units: dict[str, dict[str, set[str]]] = {}
+        self.army_category_commands: dict[str, dict[str, set[str]]] = {}
+        self.abil_command_units: dict[str, dict[str, set[str]]] = {}
+        self.tech_unit_categories: dict[str, dict[str, set[str]]] = {}
+        self.unit_name_refs: dict[str, dict[str, set[str]]] = {}
+        self.resolved_spawner_units: dict[str, dict[str, set[str]]] = {}
         self.source_roots: dict[str, Path] = {}
         mod_labels = {label for _, label in MOD_SOURCES}
         for relative, label in MOD_SOURCES + DEPENDENCY_UNIT_SOURCES:
@@ -330,6 +356,14 @@ class CatalogResolver:
             self.source_roots[label] = mod_root
             gamedata_dir = mod_root / "base.sc2data" / "gamedata"
             self.unit_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CUnit"})
+            (
+                self.army_category_units[label],
+                self.army_category_commands[label],
+                self.abil_command_units[label],
+                self.tech_unit_categories[label],
+                self.unit_name_refs[label],
+                self.resolved_spawner_units[label],
+            ) = self._load_resolution_maps(gamedata_dir)
             if label in mod_labels:
                 self.upgrade_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CUpgrade"})
 
@@ -405,6 +439,160 @@ class CatalogResolver:
             current_id = parent_id
         return chain
 
+    @staticmethod
+    def _add_map_value(target: dict[str, set[str]], key: str, value: str) -> None:
+        if not key or not value:
+            return
+        target.setdefault(key, set()).add(value)
+
+    @staticmethod
+    def _child_link_value(node: ET.Element, child_tag: str) -> list[str]:
+        values: list[str] = []
+        for child in node.findall(child_tag):
+            value = child.get("value") or child.get("Link") or child.get("Unit") or child.get("GameLink") or ""
+            if value:
+                values.append(value)
+        return values
+
+    def _load_resolution_maps(
+        self,
+        gamedata_dir: Path,
+    ) -> tuple[dict[str, set[str]], dict[str, set[str]], dict[str, set[str]], dict[str, set[str]], dict[str, set[str]], dict[str, set[str]]]:
+        army_category_units: dict[str, set[str]] = {}
+        army_category_commands: dict[str, set[str]] = {}
+        abil_command_units: dict[str, set[str]] = {}
+        tech_unit_categories: dict[str, set[str]] = {}
+        unit_name_refs: dict[str, set[str]] = {}
+        unit_behaviors: dict[str, set[str]] = {}
+        behavior_initial_effects: dict[str, set[str]] = {}
+        effect_children: dict[str, set[str]] = {}
+        effect_spawn_units: dict[str, set[str]] = {}
+
+        if not gamedata_dir.exists():
+            return army_category_units, army_category_commands, abil_command_units, tech_unit_categories, unit_name_refs, {}
+
+        for path in sorted(gamedata_dir.rglob("*.xml")):
+            raw = path.read_text(encoding="utf-8", errors="ignore")
+            for unit_id, name_id in re.findall(r'Reference="Unit,([^,"]+),Name"\s+Value="Unit/Name/([^"]+)"', raw):
+                self._add_map_value(unit_name_refs, name_id, unit_id)
+
+            root = ET.fromstring(raw)
+            for child in root:
+                item_id = child.get("id") or ""
+                if child.tag == "CArmyCategory" and item_id:
+                    for reference_node in child.findall("./UserReference"):
+                        reference_value = reference_node.get("value") or ""
+                        if reference_value.startswith("TechUnit;"):
+                            self._add_map_value(tech_unit_categories, reference_value.split(";", 1)[1], item_id)
+                    for unit_node in child.findall("./Unit"):
+                        candidate = unit_node.get("value") or unit_node.get("Unit") or ""
+                        self._add_map_value(army_category_units, item_id, candidate)
+                    for command_node in child.findall("./AbilCommandArray"):
+                        candidate = command_node.get("value") or ""
+                        self._add_map_value(army_category_commands, item_id, candidate)
+                elif child.tag.startswith("CAbil") and item_id:
+                    for info_node in child.findall("./InfoArray"):
+                        index_name = info_node.get("index") or ""
+                        if not index_name:
+                            continue
+                        command_id = f"{item_id},{index_name}"
+                        self._add_map_value(abil_command_units, command_id, info_node.get("Unit") or "")
+                        for unit_node in info_node.findall("./Unit"):
+                            candidate = unit_node.get("value") or unit_node.get("Unit") or ""
+                            self._add_map_value(abil_command_units, command_id, candidate)
+                    for info_node in child.findall("./Info"):
+                        command_id = f"{item_id},Info"
+                        self._add_map_value(abil_command_units, command_id, info_node.get("Unit") or "")
+                elif child.tag == "CUnit" and item_id:
+                    for behavior in self._child_link_value(child, "./BehaviorArray"):
+                        self._add_map_value(unit_behaviors, item_id, behavior)
+                elif child.tag.startswith("CBehavior") and item_id:
+                    for effect_id in self._child_link_value(child, "./InitialEffect"):
+                        self._add_map_value(behavior_initial_effects, item_id, effect_id)
+                elif child.tag.startswith("CEffect") and item_id:
+                    for effect_id in self._child_link_value(child, "./EffectArray"):
+                        self._add_map_value(effect_children, item_id, effect_id)
+                    for unit_id in self._child_link_value(child, "./SpawnUnit"):
+                        self._add_map_value(effect_spawn_units, item_id, unit_id)
+
+        resolved_spawner_units: dict[str, set[str]] = {}
+        for unit_id, behaviors in unit_behaviors.items():
+            pending = list(behaviors)
+            visited_behaviors: set[str] = set()
+            visited_effects: set[str] = set()
+            queue: list[str] = []
+            for behavior in pending:
+                if behavior in visited_behaviors:
+                    continue
+                visited_behaviors.add(behavior)
+                queue.extend(sorted(behavior_initial_effects.get(behavior, set())))
+            spawned: set[str] = set()
+            while queue:
+                effect_id = queue.pop(0)
+                if effect_id in visited_effects:
+                    continue
+                visited_effects.add(effect_id)
+                spawned.update(effect_spawn_units.get(effect_id, set()))
+                queue.extend(sorted(effect_children.get(effect_id, set())))
+            if spawned:
+                resolved_spawner_units[unit_id] = spawned
+
+        return army_category_units, army_category_commands, abil_command_units, tech_unit_categories, unit_name_refs, resolved_spawner_units
+
+    def _lookup_many(self, catalogs: dict[str, dict[str, set[str]]], source: str, item_id: str) -> set[str]:
+        result: set[str] = set()
+        for label in self.search_order(source):
+            result.update(catalogs.get(label, {}).get(item_id, set()))
+        return result
+
+    def _resolve_unit_or_spawn(self, source: str, unit_id: str) -> list[str]:
+        if not unit_id:
+            return []
+        resolved: set[str] = set()
+        for label in self.search_order(source):
+            spawned = self.resolved_spawner_units.get(label, {}).get(unit_id, set())
+            if spawned:
+                resolved.update(spawned)
+        if resolved:
+            return sorted(resolved)
+        source_label, node = self.unit_node(source, unit_id)
+        if node is not None and source_label:
+            return [unit_id]
+        return []
+
+    def resolve_tech_unit_ids(self, source: str, tech_id: str, army_categories: list[str], fallback_unit_id: str) -> list[str]:
+        resolved: set[str] = set()
+        expanded_army_categories: list[str] = []
+        for category_id in army_categories or [tech_id]:
+            if category_id not in expanded_army_categories:
+                expanded_army_categories.append(category_id)
+        for category_id in self._lookup_many(self.tech_unit_categories, source, tech_id):
+            if category_id not in expanded_army_categories:
+                expanded_army_categories.append(category_id)
+        for candidate in [fallback_unit_id, tech_id]:
+            resolved.update(self._resolve_unit_or_spawn(source, candidate))
+        for category_id in expanded_army_categories:
+            for unit_id in self._lookup_many(self.army_category_units, source, category_id):
+                resolved.update(self._resolve_unit_or_spawn(source, unit_id))
+            for command_id in self._lookup_many(self.army_category_commands, source, category_id):
+                for unit_id in self._lookup_many(self.abil_command_units, source, command_id):
+                    resolved.update(self._resolve_unit_or_spawn(source, unit_id))
+        if not resolved:
+            for unit_id in self._lookup_many(self.unit_name_refs, source, tech_id):
+                resolved.update(self._resolve_unit_or_spawn(source, unit_id))
+        return self._order_resolved_unit_ids(source, list(resolved))
+
+    def _order_resolved_unit_ids(self, source: str, unit_ids: list[str]) -> list[str]:
+        def score(unit_id: str) -> tuple[int, int, str]:
+            chain = self.unit_chain(source, unit_id)
+            object_type = str(parse_unit(chain, unit_id, chain[0][0] if chain else "").get("object_type") or "Unknown")
+            non_primary_penalty = 1 if NON_PRIMARY_UNIT_PATTERN.search(unit_id) else 0
+            secondary_penalty = 1 if SECONDARY_MODE_UNIT_PATTERN.search(unit_id) else 0
+            unknown_penalty = 1 if object_type == "Unknown" else 0
+            return (unknown_penalty, non_primary_penalty + secondary_penalty, unit_id)
+
+        return sorted(set(unit_ids), key=score)
+
 
 def parse_unit(chain: list[tuple[str, ET.Element]], unit_id: str, source: str) -> dict[str, object]:
     if not chain:
@@ -433,7 +621,7 @@ def parse_unit(chain: list[tuple[str, ET.Element]], unit_id: str, source: str) -
         }
     node = chain[0][1]
     editor_categories = parse_editor_categories(chain_value(chain, "EditorCategories"))
-    object_type = editor_categories.get("ObjectType", "Unknown")
+    object_type = editor_categories.get("ObjectType") or infer_object_type(unit_id, chain)
     return {
         "id": unit_id,
         "source_catalog": source or chain[0][0],
@@ -739,14 +927,22 @@ def parse_userdata_file(path: Path, export_root: Path, source_name: str, zh: dic
             name_key, name = collect_text_by_field(instance, "Name", zh, en)
             tooltip_key, tooltip = collect_text_by_field(instance, "TechnologyTooltip", zh, en)
             unit_ref = instance_id
+            army_categories = [instance_id]
             for child in instance.findall("Unit"):
                 if field_id(child) in {"Unit", "HeroUnit"}:
                     unit_ref = child.get("Unit") or unit_ref
                     break
+            for child in instance.findall("GameLink"):
+                if field_id(child) not in {"ArmyCategoryOn", "ArmyCategoryOff"}:
+                    continue
+                category_id = child.get("GameLink") or ""
+                if category_id and category_id not in army_categories:
+                    army_categories.append(category_id)
             tech_units.append(
                 {
                     "id": instance_id,
                     "unit_id": unit_ref,
+                    "army_categories": army_categories,
                     "commanders": [COMMANDER_ALIAS[item] for item in commander_ids],
                     "commander_ids": commander_ids,
                     "ui_order": ui_order,
@@ -875,6 +1071,15 @@ def build_commander_payload(
             override_unit_id = overrides.get(str(normalized_entry["id"]))
             if override_unit_id:
                 normalized_entry["unit_id"] = override_unit_id
+            resolved_unit_ids = resolver.resolve_tech_unit_ids(
+                source_name,
+                str(normalized_entry["id"]),
+                list(normalized_entry.get("army_categories", [])),
+                str(normalized_entry["unit_id"]),
+            )
+            if resolved_unit_ids:
+                normalized_entry["unit_id"] = resolved_unit_ids[0]
+                normalized_entry["resolved_unit_ids"] = resolved_unit_ids
             normalized_tech_entries.append(normalized_entry)
         tech_entries = normalized_tech_entries
         tech_entries.extend(build_supplemental_roster_entries(export_root, short_id, commander_id, source_name, zh, en))

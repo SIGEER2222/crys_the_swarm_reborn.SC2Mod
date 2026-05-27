@@ -1,0 +1,477 @@
+{
+  "perks": [
+    {
+      "id": "Kerrigan",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel01",
+      "level": 1,
+      "ui_slot": 1,
+      "button": "CommanderKerriganMutatingCarapace",
+      "name": "变异甲壳",
+      "name_key": "Button/Name/CommanderKerriganMutatingCarapace",
+      "tooltip": "凯瑞甘在造成伤害时可暂时获得额外的生命值。凯瑞甘若被消灭，则能快速在孵化场处复活。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganMutatingCarapace",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganUnlockCrushingGripWave",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel02",
+      "level": 2,
+      "ui_slot": 1,
+      "button": "CommanderKerriganCrushingGripWave",
+      "name": "定身波",
+      "name_key": "Button/Name/CommanderKerriganCrushingGripWave",
+      "tooltip": "解锁凯瑞甘的定身波技能，对位于其周围的一个大范围内的敌人造成伤害并陷入昏迷。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganCrushingGripWave",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "KerriganVoidCoopCrushingGripWave",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganImprovedLeapingStrike",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel03",
+      "level": 3,
+      "ui_slot": 1,
+      "button": "CommanderKerriganImprovedLeapingStrike",
+      "name": "残酷无情",
+      "name_key": "Button/Name/CommanderKerriganImprovedLeapingStrike",
+      "tooltip": "凯瑞甘的跳击的伤害由150提高到300，施法距离由6提高到12。凯瑞甘的灵能位移的伤害由50提高至100。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganImprovedLeapingStrike",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "KerriganVoidCoopImprovedLeapingStrike"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganZerglingUpgrades",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel04",
+      "level": 4,
+      "ui_slot": 1,
+      "button": "CommanderZagaraZerglingUpgradesPack",
+      "name": "跳虫升级包",
+      "name_key": "Button/Name/CommanderZagaraZerglingUpgradesPack",
+      "tooltip": "在分裂池中解锁新的研究项目：\n跳虫最大生命值提高10点。跳虫的攻击会使目标的护甲值降低到0，持续10秒。",
+      "tooltip_key": "Button/Tooltip/CommanderZagaraZerglingUpgradesPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "SpawningPoolResearch",
+          "cmd": "2"
+        },
+        {
+          "abil": "SpawningPoolResearch",
+          "cmd": "3"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganUnlockLurker",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel05",
+      "level": 5,
+      "ui_slot": 1,
+      "button": "CommanderKerriganUnlockLurker",
+      "name": "新单位：潜伏者",
+      "name_key": "Button/Name/CommanderKerriganUnlockLurker",
+      "tooltip": "范围伤害伏击单位。必须潜地后才能发动攻击。由刺蛇变异而来。\n可以对地。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganUnlockLurker",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganHydraLurkerUpgrades",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel06",
+      "level": 6,
+      "ui_slot": 1,
+      "button": "CommanderKerriganHydraliskandLurkerUpgradesPack",
+      "name": "刺蛇与潜伏者升级包",
+      "name_key": "Button/Name/CommanderKerriganHydraliskandLurkerUpgradesPack",
+      "tooltip": "在刺蛇巢和潜伏者巢穴中解锁以下升级：\n刺蛇的生命值由80提高到100。解锁刺蛇的狂暴技能，可使其在15秒内的攻击速度提高50%。潜伏者的射程由9提高到12。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganHydraliskandLurkerUpgradesPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "HydraliskDenResearch",
+          "cmd": "4"
+        },
+        {
+          "abil": "HydraliskDenResearch",
+          "cmd": "5"
+        },
+        {
+          "abil": "LurkerDenResearch",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganMalignantCreep",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel07",
+      "level": 7,
+      "ui_slot": 1,
+      "button": "CommanderKerriganMalignantCreep",
+      "name": "恶变菌毯",
+      "name_key": "Button/Name/CommanderKerriganMalignantCreep",
+      "tooltip": "当处于菌毯上时，所有友方地面单位的攻击速度和生命恢复速度提高。提高菌毯肿瘤散布菌毯的速度和范围。\n被动技能。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganMalignantCreep",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "K5CreepBonuses",
+        "KerriganCreepBonusesCoop"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganUnlockGreaterNydusWorm",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel08",
+      "level": 8,
+      "ui_slot": 1,
+      "button": "CommanderKerriganGreaterNydusWorm",
+      "name": "坑道虫欧米茄",
+      "name_key": "Button/Name/CommanderKerriganGreaterNydusWorm",
+      "tooltip": "将虫道网络升级为虫道网络欧米茄，可召唤坑道虫欧米茄。坑道虫欧米茄无需消耗资源，能立即部署单位，且能被你的盟友使用。\n被动技能。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganGreaterNydusWorm",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "VoidCoopGreaterNydusWorm"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganEvoUpgrades",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel09",
+      "level": 9,
+      "ui_slot": 1,
+      "button": "CommanderKerriganKerriganUpgradesPack",
+      "name": "凯瑞甘升级包",
+      "name_key": "Button/Name/CommanderKerriganKerriganUpgradesPack",
+      "tooltip": "在进化腔中解锁以下升级：\n使凯瑞甘的攻击除了能对她的目标造成普通伤害外，还会跳跃到附近一个敌人身上。凯瑞甘的技能消耗和冷却时间降低20%。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganKerriganUpgradesPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "evolutionchamberresearch",
+          "cmd": "20"
+        },
+        {
+          "abil": "evolutionchamberresearch",
+          "cmd": "21"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganUnlockFury",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel10",
+      "level": 10,
+      "ui_slot": 1,
+      "button": "CommanderKerriganKerrigansFury",
+      "name": "狂怒",
+      "name_key": "Button/Name/CommanderKerriganKerrigansFury",
+      "tooltip": "凯瑞甘的每次攻击都能提高自身10%的攻击速度，最多叠加到50%。\n被动技能。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganKerrigansFury",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "K5Fury"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganSpireUpgrades",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel11",
+      "level": 11,
+      "ui_slot": 1,
+      "button": "CommanderKerriganSpireUpgradesPack",
+      "name": "尖塔升级包",
+      "name_key": "Button/Name/CommanderKerriganSpireUpgradesPack",
+      "tooltip": "在尖塔和巨型尖塔中解锁以下升级：\n异龙的每次后续弹射攻击不再降低伤害。巢虫领主的移动速度提高75%，生命值提高+100点。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganSpireUpgradesPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "SpireResearch",
+          "cmd": "7"
+        },
+        {
+          "abil": "SpireResearch",
+          "cmd": "14"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganZerglingEvo",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel12",
+      "level": 12,
+      "ui_slot": 1,
+      "button": "CommanderKerriganZerglingEvolutionRaptor",
+      "name": "跳虫进化：腾跃虫",
+      "name_key": "Button/Name/CommanderKerriganZerglingEvolutionRaptor",
+      "tooltip": "将凯瑞甘的跳虫升级为腾跃虫变种。\n迅捷的肉搏型生物，可以越过障碍物迅速接近目标。造成更高的伤害。\n可以对地。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganZerglingEvolutionRaptor",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganUltraUpgrades",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel13",
+      "level": 13,
+      "ui_slot": 1,
+      "button": "CommanderKerriganUltraliskUpgradesPack",
+      "name": "雷兽升级包",
+      "name_key": "Button/Name/CommanderKerriganUltraliskUpgradesPack",
+      "tooltip": "在雷兽窟中解锁以下升级：\n解锁雷兽的潜地冲锋技能。雷兽会潜入地下并冲向一个敌方单位。升级雷兽的普通攻击，使其能将所造成伤害的40%转化为自身的治疗量。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganUltraliskUpgradesPack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "UltraliskCavernResearch",
+          "cmd": "3"
+        },
+        {
+          "abil": "UltraliskCavernResearch",
+          "cmd": "4"
+        },
+        {
+          "abil": "UltraliskBurrowCharge",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganUltraEvo",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel14",
+      "level": 14,
+      "ui_slot": 1,
+      "button": "CommanderKerriganUltraliskEvolutionTorrasque",
+      "name": "雷兽进化：暴龙兽",
+      "name_key": "Button/Name/CommanderKerriganUltraliskEvolutionTorrasque",
+      "tooltip": "将凯瑞甘的雷兽升级为暴龙兽变种。\n重型攻击猛兽，可造成范围顺劈伤害。死亡后可以复活。\n可以对地。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganUltraliskEvolutionTorrasque",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganImprovedEnergyRegen",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "level_id": "KerriganLevel15",
+      "level": 15,
+      "ui_slot": 1,
+      "button": "CommanderKerriganKerriganEnergyRegeneration",
+      "name": "刀锋女王",
+      "name_key": "Button/Name/CommanderKerriganKerriganEnergyRegeneration",
+      "tooltip": "凯瑞甘的能量恢复速度提高50%。",
+      "tooltip_key": "Button/Tooltip/CommanderKerriganKerriganEnergyRegeneration",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "KerriganVoidCoopEnergyRegen"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    }
+  ],
+  "masteries": [
+    {
+      "id": "KerriganMastery1",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "category": 1,
+      "name": "能量恢复",
+      "name_key": "UserData/MasteryUpgrades/KerriganMastery1_Name",
+      "upgrade": "MasteryKerriganEnergyRegen",
+      "talent_data": "MasteryKerriganEnergyRegen",
+      "point_increments": [
+        "1.5"
+      ],
+      "value_format": "+~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/KerriganMastery1_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganMastery2",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "category": 1,
+      "name": "自动攻击伤害",
+      "name_key": "UserData/MasteryUpgrades/KerriganMastery2_Name",
+      "upgrade": "MasteryKerriganAutoAttackDamage",
+      "talent_data": "MasteryKerriganAutoAttackDamage",
+      "point_increments": [
+        "1"
+      ],
+      "value_format": "+~A~伤害",
+      "value_format_key": "UserData/MasteryUpgrades/KerriganMastery2_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganMastery3",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "category": 2,
+      "name": "部队瓦斯消耗",
+      "name_key": "UserData/MasteryUpgrades/KerriganMastery3_Name",
+      "upgrade": "MasteryKerriganArmyGasCost",
+      "talent_data": "MasteryKerriganArmyGasCost",
+      "point_increments": [
+        "1"
+      ],
+      "value_format": "-~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/KerriganMastery3_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganMastery4",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "category": 2,
+      "name": "定身波伤害",
+      "name_key": "UserData/MasteryUpgrades/KerriganMastery4_Name",
+      "upgrade": "MasteryKerriganImmobilizationWaveDamage",
+      "talent_data": "MasteryKerriganImmobilizationDamage",
+      "point_increments": [
+        "3.3332"
+      ],
+      "value_format": "+~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/KerriganMastery4_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganMastery5",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "category": 3,
+      "name": "研究速度和消耗降低",
+      "name_key": "UserData/MasteryUpgrades/KerriganMastery5_Name",
+      "upgrade": "MasteryKerriganResearchSpeedandCost",
+      "talent_data": "MasteryKerriganResearchSpeedandCost",
+      "point_increments": [
+        "2"
+      ],
+      "value_format": "-~A~%消耗",
+      "value_format_key": "UserData/MasteryUpgrades/KerriganMastery5_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "KerriganMastery6",
+      "commander_id": "ZergKerrigan",
+      "commander": "Kerrigan",
+      "category": 3,
+      "name": "主要技能伤害和攻击速度",
+      "name_key": "UserData/MasteryUpgrades/KerriganMastery6_Name",
+      "upgrade": "MasteryKerriganPrimarySpeedDamage",
+      "talent_data": "MasteryKerriganPrimarySpeedDamage",
+      "point_increments": [
+        "1"
+      ],
+      "value_format": "~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/KerriganMastery6_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    }
+  ]
+}

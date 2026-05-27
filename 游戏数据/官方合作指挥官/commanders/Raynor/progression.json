@@ -1,0 +1,485 @@
+{
+  "perks": [
+    {
+      "id": "Raynor",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel01",
+      "level": 1,
+      "ui_slot": 1,
+      "button": "CommanderRaynorInfantrySpecialist",
+      "name": "快速招募",
+      "name_key": "Button/Name/CommanderRaynorInfantrySpecialist",
+      "tooltip": "雷诺训练作战单位以及建造兵营的速度加快50%。\n机械单位消耗的高能瓦斯降低20%。\n强化剂的加成效果提高，损失的生命值减少，且不需要研究。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorInfantrySpecialist",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "RaynorCommanderStimUpgrade",
+        "Stimpack",
+        "RaynorCommanderMechCostReduction"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorBansheeAirstrike",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel02",
+      "level": 2,
+      "ui_slot": 1,
+      "button": "CommanderRaynorBansheeAirStrike",
+      "name": "女妖空袭",
+      "name_key": "Button/Name/CommanderRaynorBansheeAirStrike",
+      "tooltip": "解锁召唤拥有限时生命的隐形黄昏之翼，降临后对目标区域造成伤害。通过顶部面板来召唤女妖空袭。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorBansheeAirStrike",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "RaynorBansheeAirstrike"
+      ],
+      "ability_commands": [
+        {
+          "abil": "BansheeAirstrike",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorUnlockFirebat",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel03",
+      "level": 3,
+      "ui_slot": 1,
+      "button": "CommanderRaynorFirebatandMedicRange",
+      "name": "纳米投射器",
+      "name_key": "Button/Name/CommanderRaynorFirebatandMedicRange",
+      "tooltip": "火蝠的射程和医疗兵的治疗距离由2提高到4。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorFirebatandMedicRange",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "RaynorFirebatMedicRange"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorBarracksUpgrades",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel04",
+      "level": 4,
+      "ui_slot": 1,
+      "button": "CommanderRaynorInfantryUpgradePack",
+      "name": "步兵升级包",
+      "name_key": "Button/Name/CommanderRaynorInfantryUpgradePack",
+      "tooltip": "在兵营的科技实验室中解锁以下升级：\n火蝠的伤害范围提高40%。火蝠的生命值由100提高到200，护甲由1提高到到3。提高医疗兵的治疗速度，使其可以治疗机械单位，并降低正在接受治疗的单位所受到的伤害。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorInfantryUpgradePack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "BarracksTechLabResearch",
+          "cmd": "3"
+        },
+        {
+          "abil": "BarracksTechLabResearch",
+          "cmd": "5"
+        },
+        {
+          "abil": "BarracksTechLabResearch",
+          "cmd": "6"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorHyperionAdvancedPDDDrone",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel05",
+      "level": 5,
+      "ui_slot": 1,
+      "button": "CommanderRaynorHyperionAbility",
+      "name": "休伯利安号：定点防御无人机",
+      "name_key": "Button/Name/CommanderRaynorHyperionAbility",
+      "tooltip": "使休伯利安号能部署防御性无人机，这些无人机可以拦截敌方的导弹。通过顶部面板来召唤休伯利安号。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorHyperionAbility",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "HyperionAdvancedPDD",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorUnlockBattlecruiser",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel06",
+      "level": 6,
+      "ui_slot": 1,
+      "button": "CommanderRaynorUnlockBattlecruiser",
+      "name": "新单位：战列巡航舰",
+      "name_key": "Button/Name/CommanderRaynorUnlockBattlecruiser",
+      "tooltip": "强大的战舰。可以使用大和炮和战术跳跃。可在星港中制造。\n可以对地和对空。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorUnlockBattlecruiser",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "RaynorUnlockBattlecruiser"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorEngineeringBayUpgrades",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel07",
+      "level": 7,
+      "ui_slot": 1,
+      "button": "CommanderRaynorEngineeringBayUpgradePack",
+      "name": "战斗地堡",
+      "name_key": "Button/Name/CommanderRaynorEngineeringBayUpgradePack",
+      "tooltip": "用自动炮台装备地堡，可以对空和对地。地堡的生命值从400提高到550。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorEngineeringBayUpgradePack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "ShrikeTurret",
+        "FortifiedBunkerCarapace"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorOrbitalDropPods",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel08",
+      "level": 8,
+      "ui_slot": 1,
+      "button": "CommanderRaynorOrbitalDropPods",
+      "name": "轨道空投",
+      "name_key": "Button/Name/CommanderRaynorOrbitalDropPods",
+      "tooltip": "兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorOrbitalDropPods",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "OrbitalStrike"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorFactoryUpgrades",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel09",
+      "level": 9,
+      "ui_slot": 1,
+      "button": "CommanderRaynorFactoryUpgradePack",
+      "name": "重工厂升级包",
+      "name_key": "Button/Name/CommanderRaynorFactoryUpgradePack",
+      "tooltip": "在重工厂的科技实验室中解锁以下升级：\n秃鹫车的蜘蛛雷的爆炸和触发范围提高33%。减少攻城坦克的变形时间，并使它们在攻城模式下的护甲由1提高到3。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorFactoryUpgradePack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "FactoryTechLabResearch",
+          "cmd": "15"
+        },
+        {
+          "abil": "FactoryTechLabResearch",
+          "cmd": "10"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorArmorVanadium",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel10",
+      "level": 10,
+      "ui_slot": 1,
+      "button": "CommanderRaynorArmorVanadiumPH",
+      "name": "钒合金板",
+      "name_key": "Button/Name/CommanderRaynorArmorVanadiumPH",
+      "tooltip": "军械库和工程站中的护甲升级除了会增加受影响单位的护甲值，还会提高他们的生命值。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorArmorVanadiumPH",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "RaynorCommanderArmorVanadium"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorArmoryUpgrades",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel11",
+      "level": 11,
+      "ui_slot": 1,
+      "button": "CommanderRaynorAdditionalArmoryUpgrades",
+      "name": "军械库升级包",
+      "name_key": "Button/Name/CommanderRaynorAdditionalArmoryUpgrades",
+      "tooltip": "在军械库中解锁以下升级：\n所有战车和飞船的射程提高1。所有战车和飞船能使自身的移动速度提高100%，持续8秒。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorAdditionalArmoryUpgrades",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "ArmoryResearchVoidCoop",
+          "cmd": "9"
+        },
+        {
+          "abil": "ArmoryResearchVoidCoop",
+          "cmd": "11"
+        },
+        {
+          "abil": "VehicleAfterburners",
+          "cmd": ""
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorOrbitalDepots",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel12",
+      "level": 12,
+      "ui_slot": 1,
+      "button": "CommanderRaynorOrbitalDepots",
+      "name": "轨道空投补给站",
+      "name_key": "Button/Name/CommanderRaynorOrbitalDepots",
+      "tooltip": "使SCV可瞬间从太空轨道部署补给站，去除建造时间。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorOrbitalDepots",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "SupplyDepotDrop"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorStarportUpgrades",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel13",
+      "level": 13,
+      "ui_slot": 1,
+      "button": "CommanderRaynorStarportUpgradePack",
+      "name": "星港升级包",
+      "name_key": "Button/Name/CommanderRaynorStarportUpgradePack",
+      "tooltip": "在星港的科技实验室中解锁以下升级：\n升级女妖的攻击，使其可以沿直线射出多枚飞弹。升级维京战机的飞弹，使其能造成范围伤害。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorStarportUpgradePack",
+      "description": "",
+      "description_key": "",
+      "upgrades": [],
+      "ability_commands": [
+        {
+          "abil": "StarportTechLabResearch",
+          "cmd": "9"
+        },
+        {
+          "abil": "StarportTechLabResearch",
+          "cmd": "18"
+        }
+      ],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorHyperionAdvancedTargetingAura",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel14",
+      "level": 14,
+      "ui_slot": 1,
+      "button": "CommanderRaynorHyperionAdvancedTargetingSystems",
+      "name": "休伯利安号：高级瞄准系统",
+      "name_key": "Button/Name/CommanderRaynorHyperionAdvancedTargetingSystems",
+      "tooltip": "休伯利安号附近的所有友方单位的伤害输出+2。通过顶部面板来召唤休伯利安号。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorHyperionAdvancedTargetingSystems",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "RaynorCommanderHyperionAdvancedTargetingSystems"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorImprovedInfantryAttackSpeed",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "level_id": "RaynorLevel15",
+      "level": 15,
+      "ui_slot": 1,
+      "button": "CommanderRaynorImprovedInfantryWeapons",
+      "name": "佣兵军火",
+      "name_key": "Button/Name/CommanderRaynorImprovedInfantryWeapons",
+      "tooltip": "使雷诺的作战单位与空投单位的攻击速度提高15%。",
+      "tooltip_key": "Button/Tooltip/CommanderRaynorImprovedInfantryWeapons",
+      "description": "",
+      "description_key": "",
+      "upgrades": [
+        "RaynorCommanderTerranWeaponAttackSpeed"
+      ],
+      "ability_commands": [],
+      "effects": [],
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    }
+  ],
+  "masteries": [
+    {
+      "id": "RaynorMastery1",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "category": 1,
+      "name": "资源费用",
+      "name_key": "UserData/MasteryUpgrades/RaynorMastery1_Name",
+      "upgrade": "MasteryRaynorResearchCost",
+      "talent_data": "MasteryRaynorResearchCost",
+      "point_increments": [
+        "2"
+      ],
+      "value_format": "-~A~%",
+      "value_format_key": "UserData/MasteryUpgrades/RaynorMastery1_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorMastery2",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "category": 1,
+      "name": "空投舱急速",
+      "name_key": "UserData/MasteryUpgrades/RaynorMastery2_Name",
+      "upgrade": "MasteryRaynorDropPodHaste",
+      "talent_data": "MasteryRaynorDropPodHaste",
+      "point_increments": [
+        "2"
+      ],
+      "value_format": "+~A~%急速",
+      "value_format_key": "UserData/MasteryUpgrades/RaynorMastery2_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorMastery3",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "category": 2,
+      "name": "休伯利安号冷却时间",
+      "name_key": "UserData/MasteryUpgrades/RaynorMastery3_Name",
+      "upgrade": "MasteryRaynorHyperionCooldown",
+      "talent_data": "MasteryRaynorHyperionCooldown",
+      "point_increments": [
+        "4"
+      ],
+      "value_format": "-~A~秒",
+      "value_format_key": "UserData/MasteryUpgrades/RaynorMastery3_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorMastery4",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "category": 2,
+      "name": "女妖冷却时间",
+      "name_key": "UserData/MasteryUpgrades/RaynorMastery4_Name",
+      "upgrade": "MasteryRaynorDuskWingCooldown",
+      "talent_data": "MasteryRaynorDuskWingCooldown",
+      "point_increments": [
+        "4"
+      ],
+      "value_format": "-~A~秒",
+      "value_format_key": "UserData/MasteryUpgrades/RaynorMastery4_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorMastery5",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "category": 3,
+      "name": "医疗兵额外目标治疗",
+      "name_key": "UserData/MasteryUpgrades/RaynorMastery5_Name",
+      "upgrade": "MasteryRaynorMedicSecondaryHeal",
+      "talent_data": "MasteryRaynorMedicSecondaryHeal",
+      "point_increments": [
+        "3"
+      ],
+      "value_format": "~A~%基础治疗百分比",
+      "value_format_key": "UserData/MasteryUpgrades/RaynorMastery5_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    },
+    {
+      "id": "RaynorMastery6",
+      "commander_id": "TerranRaynor",
+      "commander": "Raynor",
+      "category": 3,
+      "name": "机械部队攻击速度",
+      "name_key": "UserData/MasteryUpgrades/RaynorMastery6_Name",
+      "upgrade": "MasteryRaynorMechAttackSpeed",
+      "talent_data": "MasteryRaynorMechAttackSpeed",
+      "point_increments": [
+        "1"
+      ],
+      "value_format": "+~A~%百分比",
+      "value_format_key": "UserData/MasteryUpgrades/RaynorMastery6_ValueFormat",
+      "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+      "source_name": "starcoop"
+    }
+  ]
+}
