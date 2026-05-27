@@ -25,9 +25,9 @@
     "resolved_unit_ids": [
       "Archon"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Archon",
+    "icon": "Assets\\Textures\\btn-unit-protoss-archon.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-archon.dds",
     "unit": {
       "id": "Archon",
       "source_catalog": "starcoop",
@@ -101,7 +101,7 @@
   },
   {
     "id": "ImmortalAiur",
-    "unit_id": "ImmortalAiur",
+    "unit_id": "Immortal",
     "army_categories": [
       "ImmortalAiur"
     ],
@@ -125,39 +125,75 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "ImmortalAiur"
+      "Immortal",
+      "ImmortalAiur",
+      "RoboticsFacility"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Immortal",
+    "icon": "Assets\\Textures\\BTN-Unit-Protoss-Immortal.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Unit-Protoss-Immortal.dds",
     "unit": {
-      "id": "ImmortalAiur",
+      "id": "Immortal",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionKhalai",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Armored",
+        "Mechanical"
+      ],
+      "flags": [
+        "ArmySelect",
+        "PreventDestroy",
+        "UseLineOfSight"
+      ],
+      "minerals": "250",
+      "vespene": "100",
       "terrazine": "",
-      "supply": "",
+      "supply": "-4",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "200",
+      "shields": "100",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionKhalai"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "ImmortalAiur",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "Immortal",
           "parent": ""
         }
       ]
@@ -195,9 +231,9 @@
     "resolved_unit_ids": [
       "Observer"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Observer",
+    "icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
     "unit": {
       "id": "Observer",
       "source_catalog": "starcoop",
@@ -259,65 +295,6 @@
     }
   },
   {
-    "id": "PhoenixAiur",
-    "unit_id": "PhoenixAiur",
-    "army_categories": [
-      "PhoenixAiur"
-    ],
-    "commanders": [
-      "Artanis"
-    ],
-    "commander_ids": [
-      "ProtossArtanis"
-    ],
-    "ui_order": null,
-    "prefix": "星灵 —",
-    "prefix_key": "UserData/TechUnit/PhoenixAiur_Prefix",
-    "suffix": "",
-    "suffix_key": "UserData/TechUnit/PhoenixAiur_Suffix",
-    "name": "凤凰",
-    "name_key": "UserData/TechUnit/PhoenixAiur_Name",
-    "tooltip": "空中优势战机。能够同时对两个敌人使用引力光束。\n可以对空。",
-    "tooltip_key": "Button/Tooltip/PhoenixAiur",
-    "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
-    "source_name": "starcoop",
-    "resolved_unit_ids": [
-      "PhoenixAiur"
-    ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
-    "unit": {
-      "id": "PhoenixAiur",
-      "source_catalog": "starcoop",
-      "parent": "",
-      "object_type": "Unit",
-      "object_family": "",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
-      "terrazine": "",
-      "supply": "",
-      "build_time": "",
-      "life": "",
-      "shields": "",
-      "energy": "",
-      "sight": "",
-      "editor_categories": {},
-      "inheritance": [
-        {
-          "source": "starcoop",
-          "id": "PhoenixAiur",
-          "parent": ""
-        }
-      ]
-    }
-  },
-  {
     "id": "StalkerAiur",
     "unit_id": "Dragoon",
     "army_categories": [
@@ -341,7 +318,8 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "Dragoon"
+      "Dragoon",
+      "Stalker"
     ],
     "icon_button": "",
     "icon": "",
@@ -407,9 +385,9 @@
     "resolved_unit_ids": [
       "Zealot"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Zealot",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
     "unit": {
       "id": "Zealot",
       "source_catalog": "starcoop",
@@ -501,11 +479,12 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "HighTemplar"
+      "HighTemplar",
+      "TemplarArchive"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "HighTemplar",
+    "icon": "Assets\\Textures\\btn-unit-protoss-hightemplar.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-hightemplar.dds",
     "unit": {
       "id": "HighTemplar",
       "source_catalog": "starcoop",

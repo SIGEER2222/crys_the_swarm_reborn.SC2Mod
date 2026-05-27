@@ -25,9 +25,9 @@
     "resolved_unit_ids": [
       "GuardianMP"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "MorphToGuardian",
+    "icon": "Assets\\Textures\\btn-unit-zerg-primalguardian.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-primalguardian.dds",
     "unit": {
       "id": "GuardianMP",
       "source_catalog": "starcoop",
@@ -100,9 +100,9 @@
     "resolved_unit_ids": [
       "Devourer"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "MorphtoDevourer",
+    "icon": "Assets\\Textures\\BTN-Unit-Zerg-DevourerEx3.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Unit-Zerg-DevourerEx3.dds",
     "unit": {
       "id": "Devourer",
       "source_catalog": "starcoop",
@@ -160,11 +160,12 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "Mutalisk"
+      "Mutalisk",
+      "Spire"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Mutalisk",
+    "icon": "Assets\\Textures\\btn-unit-zerg-mutalisk.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-mutalisk.dds",
     "unit": {
       "id": "Mutalisk",
       "source_catalog": "starcoop",
@@ -265,9 +266,9 @@
     "resolved_unit_ids": [
       "NydusNetwork"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "NydusNetwork",
+    "icon": "Assets\\Textures\\btn-building-zerg-nydusnetwork.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-nydusnetwork.dds",
     "unit": {
       "id": "NydusNetwork",
       "source_catalog": "starcoop",
@@ -370,11 +371,12 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "Roach"
+      "Roach",
+      "RoachWarren"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Roach",
+    "icon": "Assets\\Textures\\btn-unit-zerg-roach.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-roach.dds",
     "unit": {
       "id": "Roach",
       "source_catalog": "starcoop",
@@ -472,9 +474,9 @@
     "resolved_unit_ids": [
       "SpineCrawler"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "SpineCrawler",
+    "icon": "Assets\\Textures\\btn-building-zerg-spinecrawler.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-spinecrawler.dds",
     "unit": {
       "id": "SpineCrawler",
       "source_catalog": "starcoop",
@@ -580,9 +582,9 @@
     "resolved_unit_ids": [
       "SporeCrawler"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "SporeCrawler",
+    "icon": "Assets\\Textures\\btn-building-zerg-sporecrawler.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-sporecrawler.dds",
     "unit": {
       "id": "SporeCrawler",
       "source_catalog": "starcoop",
@@ -660,7 +662,7 @@
   },
   {
     "id": "SwarmHost",
-    "unit_id": "SwarmHost",
+    "unit_id": "InfestationPit",
     "army_categories": [
       "SwarmHost"
     ],
@@ -682,36 +684,80 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "SwarmHost"
+      "InfestationPit",
+      "SwarmHost",
+      "SwarmHostMP"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "InfestationPit",
+    "icon": "Assets\\Textures\\btn-building-zerg-infestationpit.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-infestationpit.dds",
     "unit": {
-      "id": "SwarmHost",
+      "id": "InfestationPit",
       "source_catalog": "starcoop",
       "parent": "",
-      "object_type": "Unit",
-      "object_family": "",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_type": "Structure",
+      "object_family": "Melee",
+      "race": "Zerg",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Armored",
+        "Biological",
+        "Structure"
+      ],
+      "flags": [
+        "ArmorDisabledWhileConstructing",
+        "NoPortraitTalk",
+        "PenaltyRevealed",
+        "PreventDefeat",
+        "PreventDestroy",
+        "TownAlert",
+        "UseLineOfSight"
+      ],
+      "minerals": "150",
+      "vespene": "100",
       "terrazine": "",
       "supply": "",
       "build_time": "",
-      "life": "",
+      "life": "850",
       "shields": "",
       "energy": "",
-      "sight": "",
-      "editor_categories": {},
+      "sight": "9",
+      "editor_categories": {
+        "ObjectType": "Structure",
+        "ObjectFamily": "Melee"
+      },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "SwarmHost",
+          "id": "InfestationPit",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "InfestationPit",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "InfestationPit",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "InfestationPit",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "InfestationPit",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "InfestationPit",
           "parent": ""
         }
       ]
@@ -841,7 +887,8 @@
     "source": "supplemental curated roster",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "RoachCorpser"
+      "RoachCorpser",
+      "RoachWarren"
     ],
     "icon_button": "",
     "icon": "",
@@ -900,7 +947,8 @@
     "source": "supplemental curated roster",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "RoachVile"
+      "RoachVile",
+      "RoachWarren"
     ],
     "icon_button": "",
     "icon": "",
@@ -964,9 +1012,9 @@
     "resolved_unit_ids": [
       "Ravager"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Ravager",
+    "icon": "Assets\\Textures\\btn-unit-zerg-ravager.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-ravager.dds",
     "unit": {
       "id": "Ravager",
       "source_catalog": "starcoop",
@@ -1044,9 +1092,9 @@
     "resolved_unit_ids": [
       "Viper"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Viper",
+    "icon": "Assets\\Textures\\btn-unit-zerg-viper.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-viper.dds",
     "unit": {
       "id": "Viper",
       "source_catalog": "starcoop",
@@ -1132,9 +1180,9 @@
     "resolved_unit_ids": [
       "Brutalisk"
     ],
-    "icon_button": "Brutalisk",
-    "icon": "Assets\\Textures\\btn-unit-zerg-brutalisk.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-zerg-brutalisk.dds",
+    "icon_button": "EvolveToBrutalisk",
+    "icon": "Assets\\Textures\\btn-ability-zerg-spawnbrutaliskex3.dds",
+    "alert_icon": "Assets\\Textures\\btn-ability-zerg-spawnbrutaliskex3.dds",
     "unit": {
       "id": "Brutalisk",
       "source_catalog": "starcoop",
@@ -1195,9 +1243,9 @@
       "HotSLeviathan",
       "Leviathan"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "EvolveToLeviathan",
+    "icon": "Assets\\Textures\\btn-unit-zerg-leviathan.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-leviathan.dds",
     "unit": {
       "id": "HotSLeviathan",
       "source_catalog": "starcoop",

@@ -36,8 +36,8 @@
       "Gateway"
     ],
     "icon_button": "Gateway",
-    "icon": "",
-    "alert_icon": "",
+    "icon": "Assets\\Textures\\btn-building-protoss-gateway.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-gateway.dds",
     "unit": {
       "id": "Gateway",
       "source_catalog": "starcoop",
@@ -115,7 +115,7 @@
   },
   {
     "id": "ImmortalAiur",
-    "unit_id": "ImmortalAiur",
+    "unit_id": "Immortal",
     "army_categories": [
       "ImmortalAiur"
     ],
@@ -139,39 +139,75 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "ImmortalAiur"
+      "Immortal",
+      "ImmortalAiur",
+      "RoboticsFacility"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Immortal",
+    "icon": "Assets\\Textures\\BTN-Unit-Protoss-Immortal.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Unit-Protoss-Immortal.dds",
     "unit": {
-      "id": "ImmortalAiur",
+      "id": "Immortal",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionKhalai",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Armored",
+        "Mechanical"
+      ],
+      "flags": [
+        "ArmySelect",
+        "PreventDestroy",
+        "UseLineOfSight"
+      ],
+      "minerals": "250",
+      "vespene": "100",
       "terrazine": "",
-      "supply": "",
+      "supply": "-4",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "200",
+      "shields": "100",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionKhalai"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "ImmortalAiur",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "Immortal",
           "parent": ""
         }
       ]
@@ -209,9 +245,9 @@
     "resolved_unit_ids": [
       "Observer"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Observer",
+    "icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-observer.dds",
     "unit": {
       "id": "Observer",
       "source_catalog": "starcoop",
@@ -274,7 +310,7 @@
   },
   {
     "id": "PhoenixPurifier",
-    "unit_id": "PhoenixPurifier",
+    "unit_id": "FleetBeacon",
     "army_categories": [
       "PhoenixPurifier"
     ],
@@ -296,39 +332,84 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "PhoenixPurifier"
+      "FleetBeacon",
+      "Phoenix",
+      "PhoenixPurifier",
+      "Stargate"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "FleetBeacon",
+    "icon": "Assets\\Textures\\btn-building-protoss-fleetbeacon.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-fleetbeacon.dds",
     "unit": {
-      "id": "PhoenixPurifier",
+      "id": "FleetBeacon",
       "source_catalog": "starcoop",
       "parent": "",
-      "object_type": "Unit",
-      "object_family": "FactionPurifier",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_type": "Structure",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Mechanical"
+      ],
+      "flags": [
+        "ArmorDisabledWhileConstructing",
+        "NoPortraitTalk",
+        "PenaltyRevealed",
+        "PreventDefeat",
+        "PreventDestroy",
+        "TownAlert",
+        "UseLineOfSight"
+      ],
+      "minerals": "300",
+      "vespene": "200",
       "terrazine": "",
       "supply": "",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "500",
+      "shields": "500",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
-        "ObjectType": "Unit",
-        "ObjectFamily": "FactionPurifier"
+        "ObjectType": "Structure",
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "PhoenixPurifier",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "void",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "FleetBeacon",
           "parent": ""
         }
       ]
@@ -368,11 +449,12 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "PhotonCannon"
+      "PhotonCannon",
+      "Zealot"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "PhotonCannon",
+    "icon": "Assets\\Textures\\btn-building-protoss-photoncannon.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-photoncannon.dds",
     "unit": {
       "id": "PhotonCannon",
       "source_catalog": "starcoop",
@@ -470,11 +552,12 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "Scout"
+      "Scout",
+      "Stargate"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Scout",
+    "icon": "Assets\\Textures\\btn-missing-kaeo.dds",
+    "alert_icon": "Assets\\Textures\\btn-missing-kaeo.dds",
     "unit": {
       "id": "Scout",
       "source_catalog": "starcoop",
@@ -510,7 +593,7 @@
   },
   {
     "id": "SentryPurifier",
-    "unit_id": "SentryPurifier",
+    "unit_id": "Sentry",
     "army_categories": [
       "SentryPurifier"
     ],
@@ -532,39 +615,80 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
+      "Sentry",
       "SentryPurifier"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Sentry",
+    "icon": "Assets\\Textures\\btn-unit-protoss-sentry.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-sentry.dds",
     "unit": {
-      "id": "SentryPurifier",
+      "id": "Sentry",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionPurifier",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Light",
+        "Mechanical",
+        "Psionic"
+      ],
+      "flags": [
+        "ArmySelect",
+        "PreventDestroy",
+        "UseLineOfSight"
+      ],
+      "minerals": "50",
+      "vespene": "100",
       "terrazine": "",
-      "supply": "",
+      "supply": "-2",
       "build_time": "",
-      "life": "",
-      "shields": "",
-      "energy": "",
-      "sight": "",
+      "life": "40",
+      "shields": "40",
+      "energy": "200",
+      "sight": "10",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionPurifier"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "SentryPurifier",
+          "id": "Sentry",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "Sentry",
+          "parent": ""
+        },
+        {
+          "source": "void",
+          "id": "Sentry",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "Sentry",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "Sentry",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "Sentry",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "Sentry",
           "parent": ""
         }
       ]
@@ -596,9 +720,9 @@
     "resolved_unit_ids": [
       "ShieldBattery"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "ShieldBattery",
+    "icon": "Assets\\Textures\\btn-building-protoss-shieldbattery.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-shieldbattery.dds",
     "unit": {
       "id": "ShieldBattery",
       "source_catalog": "starcoop",
@@ -764,9 +888,9 @@
     "resolved_unit_ids": [
       "TwilightCouncil"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "TwilightCouncil",
+    "icon": "Assets\\Textures\\btn-building-protoss-twilightcouncil.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-twilightcouncil.dds",
     "unit": {
       "id": "TwilightCouncil",
       "source_catalog": "starcoop",
@@ -844,7 +968,7 @@
   },
   {
     "id": "ZealotPurifier",
-    "unit_id": "ZealotPurifier",
+    "unit_id": "Zealot",
     "army_categories": [
       "ZealotPurifier"
     ],
@@ -868,39 +992,74 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
+      "Zealot",
       "ZealotPurifier"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Zealot",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
     "unit": {
-      "id": "ZealotPurifier",
+      "id": "Zealot",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionPurifier",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Biological",
+        "Light"
+      ],
+      "flags": [
+        "ArmySelect",
+        "PreventDestroy",
+        "UseLineOfSight"
+      ],
+      "minerals": "100",
       "vespene": "",
       "terrazine": "",
-      "supply": "",
+      "supply": "-2",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "100",
+      "shields": "50",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionPurifier"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "ZealotPurifier",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "Zealot",
           "parent": ""
         }
       ]
@@ -930,11 +1089,13 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "Colossus"
+      "Colossus",
+      "RoboticsBay",
+      "RoboticsFacility"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Colossus",
+    "icon": "Assets\\Textures\\btn-unit-protoss-colossus.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-colossus.dds",
     "unit": {
       "id": "Colossus",
       "source_catalog": "starcoop",
@@ -1036,11 +1197,13 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "Carrier"
+      "Carrier",
+      "FleetBeacon",
+      "Stargate"
     ],
     "icon_button": "Carrier",
-    "icon": "",
-    "alert_icon": "",
+    "icon": "Assets\\Textures\\btn-unit-protoss-carrier.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-carrier.dds",
     "unit": {
       "id": "Carrier",
       "source_catalog": "starcoop",

@@ -1088,7 +1088,7 @@
   },
   {
     "id": "Zergling",
-    "unit_id": "Zergling",
+    "unit_id": "SpawningPool",
     "army_categories": [
       "Zergling"
     ],
@@ -1114,16 +1114,17 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
+      "SpawningPool",
       "Zergling"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "SpawningPool",
+    "icon": "Assets\\Textures\\btn-building-zerg-spawningpool.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-spawningpool.dds",
     "unit": {
-      "id": "Zergling",
+      "id": "SpawningPool",
       "source_catalog": "starcoop",
       "parent": "",
-      "object_type": "Unit",
+      "object_type": "Structure",
       "object_family": "Melee",
       "race": "Zerg",
       "mob": "Multiplayer",
@@ -1131,56 +1132,61 @@
         "Ground"
       ],
       "attributes": [
+        "Armored",
         "Biological",
-        "Light"
+        "Structure"
       ],
       "flags": [
-        "ArmySelect",
+        "ArmorDisabledWhileConstructing",
+        "NoPortraitTalk",
+        "PenaltyRevealed",
+        "PreventDefeat",
         "PreventDestroy",
+        "TownAlert",
         "UseLineOfSight"
       ],
-      "minerals": "25",
+      "minerals": "250",
       "vespene": "",
       "terrazine": "",
-      "supply": "-0.5",
+      "supply": "",
       "build_time": "",
-      "life": "35",
+      "life": "1000",
       "shields": "",
       "energy": "",
-      "sight": "8",
+      "sight": "9",
       "editor_categories": {
-        "ObjectType": "Unit",
+        "ObjectType": "Structure",
         "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "Zergling",
+          "id": "SpawningPool",
           "parent": ""
         },
         {
           "source": "voidmulti",
-          "id": "Zergling",
+          "id": "SpawningPool",
           "parent": ""
         },
         {
           "source": "swarmmulti",
-          "id": "Zergling",
+          "id": "SpawningPool",
           "parent": ""
         },
         {
           "source": "swarm",
-          "id": "Zergling",
+          "id": "SpawningPool",
           "parent": ""
         },
         {
           "source": "libertymulti",
-          "id": "Zergling",
+          "id": "SpawningPool",
           "parent": ""
         },
         {
           "source": "liberty",
-          "id": "Zergling",
+          "id": "SpawningPool",
           "parent": ""
         }
       ]

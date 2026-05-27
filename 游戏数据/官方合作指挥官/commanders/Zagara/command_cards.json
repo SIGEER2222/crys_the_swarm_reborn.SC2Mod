@@ -52,8 +52,8 @@
               "name_key": "Button/Name/AberrationBanelingIncubationLocked",
               "tooltip": "该技能将在指挥官等级8时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel08",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           }
         ]
@@ -65,9 +65,9 @@
     "unit_id": "Baneling",
     "name": "爆虫",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "ZagaraVoidCoopBanelingSpawner",
+    "icon": "Assets\\Textures\\talent-zagara-level07-volatilebanelingnest.dds",
+    "alert_icon": "Assets\\Textures\\talent-zagara-level07-volatilebanelingnest.dds",
     "cards": [
       {
         "card_id": "",
@@ -95,7 +95,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -107,7 +117,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -119,7 +139,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -131,7 +161,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "",
@@ -187,8 +227,8 @@
               "name_key": "Button/Name/Explode",
               "tooltip": "使爆虫在原地自爆，对附近的敌方单位和建筑造成伤害。",
               "tooltip_key": "Button/Tooltip/Explode",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-ability-zerg-explode-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-explode-color.dds"
             }
           },
           {
@@ -201,7 +241,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "EnableBuildingAttack",
+              "source_catalog": "swarm",
+              "parent": "",
+              "name": "开启对建筑攻击",
+              "name_key": "Button/Name/EnableBuildingAttack",
+              "tooltip": "允许爆虫自动将建筑视为攻击目标。\n爆虫可对建筑造成{Effect,VolatileBurstU2,Amount}点伤害值。",
+              "tooltip_key": "Button/Tooltip/EnableBuildingAttack",
+              "icon": "Assets\\Textures\\btn-ability-zerg-attackstructure-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-attackstructure-color.dds"
+            }
           },
           {
             "face": "HaveCentrificalHooks",
@@ -235,7 +285,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BurrowDown",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "潜地",
+              "name_key": "Button/Name/BurrowDown",
+              "tooltip": "命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。",
+              "tooltip_key": "Button/Tooltip/BurrowDown",
+              "icon": "Assets\\Textures\\btn-ability-zerg-burrow-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-burrow-color.dds"
+            }
           },
           {
             "face": "BurrowUp",
@@ -247,7 +307,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BurrowUp",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "出地",
+              "name_key": "Button/Name/BurrowUp",
+              "tooltip": "命令单位钻回地表。",
+              "tooltip_key": "Button/Tooltip/BurrowUp",
+              "icon": "Assets\\Textures\\btn-ability-zerg-upburrow-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-upburrow-color.dds"
+            }
           },
           {
             "face": "",
@@ -283,8 +353,8 @@
     "name": "腐化者",
     "object_type": "Unit",
     "icon_button": "Corruptor",
-    "icon": "",
-    "alert_icon": "",
+    "icon": "Assets\\Textures\\btn-unit-zerg-corruptor.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-corruptor.dds",
     "cards": [
       {
         "card_id": "",
@@ -300,7 +370,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -312,7 +392,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -324,7 +414,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -336,7 +436,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -348,7 +458,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "CorruptionAbility",
@@ -360,7 +480,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CorruptionAbility",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "腐化",
+              "name_key": "Button/Name/CorruptionAbility",
+              "tooltip": "用异虫黏液覆盖目标敌方单位，使其受到的伤害提高{Behavior,Corruption,DamageResponse.ModifyFraction*100-100}%，持续{Behavior,Corruption,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/CorruptionAbility",
+              "icon": "Assets\\Textures\\btn-ability-zerg-corruption-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-corruption-color.dds"
+            }
           },
           {
             "face": "BroodLord",
@@ -372,7 +502,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BroodLord",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "变异为巢虫领主",
+              "name_key": "Button/Name/BroodLord",
+              "tooltip": "大型飞行作战生物。通过投射出的巢虫来攻击目标。巢虫是一种可以对地的小型生物。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/BroodLord",
+              "icon": "Assets\\Textures\\btn-unit-zerg-broodlord.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-broodlord.dds"
+            }
           },
           {
             "face": "CausticSpray",
@@ -384,7 +524,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CausticSpray",
+              "source_catalog": "void",
+              "parent": "",
+              "name": "腐蚀喷液",
+              "name_key": "Button/Name/CausticSpray",
+              "tooltip": "喷出一股强酸，每秒造成{Effect,CausticLevel1Damage,Amount/Effect,CausticSprayLevel1Persistent,PeriodicPeriodArray[0]}点伤害，持续{Effect,CausticSprayLevel1Persistent,PeriodCount*Effect,CausticSprayLevel1Persistent,PeriodicPeriodArray[0]}秒，然后每秒造成的伤害提高至{Effect,CausticLevel2Damage,Amount/Effect,CausticSprayLevel2Persistent,PeriodicPeriodArray[0]}。\n该技能需要引导。只能瞄准敌方建筑。",
+              "tooltip_key": "Button/Tooltip/CausticSpray",
+              "icon": "Assets\\Textures\\btn-ability-zerg-causticspray.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-causticspray.dds"
+            }
           },
           {
             "face": "Cancel",
@@ -396,7 +546,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "CausticSpray",
@@ -408,7 +568,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CausticSpray",
+              "source_catalog": "void",
+              "parent": "",
+              "name": "腐蚀喷液",
+              "name_key": "Button/Name/CausticSpray",
+              "tooltip": "喷出一股强酸，每秒造成{Effect,CausticLevel1Damage,Amount/Effect,CausticSprayLevel1Persistent,PeriodicPeriodArray[0]}点伤害，持续{Effect,CausticSprayLevel1Persistent,PeriodCount*Effect,CausticSprayLevel1Persistent,PeriodicPeriodArray[0]}秒，然后每秒造成的伤害提高至{Effect,CausticLevel2Damage,Amount/Effect,CausticSprayLevel2Persistent,PeriodicPeriodArray[0]}。\n该技能需要引导。只能瞄准敌方建筑。",
+              "tooltip_key": "Button/Tooltip/CausticSpray",
+              "icon": "Assets\\Textures\\btn-ability-zerg-causticspray.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-causticspray.dds"
+            }
           }
         ]
       }
@@ -419,9 +589,9 @@
     "unit_id": "Scourge",
     "name": "爆蚊",
     "object_type": "Unit",
-    "icon_button": "Scourge",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "CommanderPrestigeZagaraMaxSupplyScourgeSpawn",
+    "icon": "Assets\\Textures\\talent-zagara-level04-scourgeresearchbundle.dds",
+    "alert_icon": "Assets\\Textures\\talent-zagara-level04-scourgeresearchbundle.dds",
     "cards": [
       {
         "card_id": "",
@@ -524,9 +694,9 @@
     "unit_id": "SpineCrawler",
     "name": "脊针爬虫",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "SpineCrawler",
+    "icon": "Assets\\Textures\\btn-building-zerg-spinecrawler.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-spinecrawler.dds",
     "cards": [
       {
         "card_id": "",
@@ -542,7 +712,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "AttackBuilding",
@@ -554,7 +734,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AttackBuilding",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/AttackBuilding",
+              "tooltip": "锁定并且攻击目标，直到超出射程或对方被摧毁。",
+              "tooltip_key": "Button/Tooltip/AttackBuilding",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "SpineCrawlerUproot",
@@ -566,7 +756,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SpineCrawlerUproot",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "站起",
+              "name_key": "Button/Name/SpineCrawlerUproot",
+              "tooltip": "使脊针爬虫站起。站起的脊针爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。",
+              "tooltip_key": "Button/Tooltip/SpineCrawlerUproot",
+              "icon": "Assets\\Textures\\btn-ability-zerg-uproot-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-uproot-color.dds"
+            }
           },
           {
             "face": "CancelBuilding",
@@ -578,7 +778,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "",
@@ -601,9 +811,9 @@
     "unit_id": "SporeCrawler",
     "name": "孢子爬虫",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "SporeCrawler",
+    "icon": "Assets\\Textures\\btn-building-zerg-sporecrawler.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-sporecrawler.dds",
     "cards": [
       {
         "card_id": "",
@@ -619,7 +829,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "AttackBuilding",
@@ -631,7 +851,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AttackBuilding",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/AttackBuilding",
+              "tooltip": "锁定并且攻击目标，直到超出射程或对方被摧毁。",
+              "tooltip_key": "Button/Tooltip/AttackBuilding",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "SporeCrawlerUproot",
@@ -643,7 +873,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SporeCrawlerUproot",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "站起",
+              "name_key": "Button/Name/SporeCrawlerUproot",
+              "tooltip": "使孢子爬虫站起。站起的孢子爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。",
+              "tooltip_key": "Button/Tooltip/SporeCrawlerUproot",
+              "icon": "Assets\\Textures\\btn-ability-zerg-uproot-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-uproot-color.dds"
+            }
           },
           {
             "face": "Detector",
@@ -655,7 +895,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Detector",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "侦测单位",
+              "name_key": "Button/Name/Detector",
+              "tooltip": "该单位能够侦测到隐形、潜地和幻像单位。",
+              "tooltip_key": "Button/Tooltip/Detector",
+              "icon": "Assets\\Textures\\BTN-Status-Detector.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Status-Detector.dds"
+            }
           },
           {
             "face": "CancelBuilding",
@@ -667,7 +917,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "",
@@ -708,7 +968,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -720,7 +990,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -732,7 +1012,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -744,7 +1034,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -756,7 +1056,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "BioMechanicalTransfusionPassive",
@@ -790,7 +1100,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BuildCreepTumor",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "产下菌毯肿瘤",
+              "name_key": "Button/Name/BuildCreepTumor",
+              "tooltip": "一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。\n效果加成：异虫单位在菌毯上的移动速度更快",
+              "tooltip_key": "Button/Tooltip/BuildCreepTumor",
+              "icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds"
+            }
           },
           {
             "face": "BioMechanicalTransfusion",
@@ -832,8 +1152,8 @@
               "name_key": "Button/Name/EvolveToBrutaliskLocked",
               "tooltip": "该技能将在指挥官等级2时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel02",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -868,7 +1188,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BurrowUp",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "出地",
+              "name_key": "Button/Name/BurrowUp",
+              "tooltip": "命令单位钻回地表。",
+              "tooltip_key": "Button/Tooltip/BurrowUp",
+              "icon": "Assets\\Textures\\btn-ability-zerg-upburrow-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-upburrow-color.dds"
+            }
           },
           {
             "face": "BuildCreepTumor",
@@ -880,7 +1210,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BuildCreepTumor",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "产下菌毯肿瘤",
+              "name_key": "Button/Name/BuildCreepTumor",
+              "tooltip": "一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。\n效果加成：异虫单位在菌毯上的移动速度更快",
+              "tooltip_key": "Button/Tooltip/BuildCreepTumor",
+              "icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-zerg-creeptumor.dds"
+            }
           },
           {
             "face": "QueenBurstHeal",
@@ -916,7 +1256,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           }
         ]
       }
@@ -924,47 +1274,177 @@
   },
   {
     "id": "Zergling",
-    "unit_id": "Zergling",
+    "unit_id": "SpawningPool",
     "name": "跳虫",
-    "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "object_type": "Structure",
+    "icon_button": "SpawningPool",
+    "icon": "Assets\\Textures\\btn-building-zerg-spawningpool.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-spawningpool.dds",
     "cards": [
       {
         "card_id": "",
         "is_default_card": true,
         "buttons": [
           {
-            "face": "Move",
+            "face": "zerglingmovementspeed",
             "type": "AbilCmd",
-            "abil_cmd": "move,Move",
+            "abil_cmd": "SpawningPoolResearch,Research2",
             "requirements": "",
             "row": 0,
             "column": 0,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "zerglingmovementspeed",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "进化代谢加速",
+              "name_key": "Button/Name/zerglingmovementspeed",
+              "tooltip": "提高跳虫的移动速度。",
+              "tooltip_key": "Button/Tooltip/zerglingmovementspeed",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-metabolicboost.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-metabolicboost.dds"
+            }
           },
           {
-            "face": "Stop",
-            "type": "AbilCmd",
-            "abil_cmd": "stop,Stop",
-            "requirements": "",
+            "face": "EvolveHardenedCarapaceZagaraLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ZagaraLevel06",
             "row": 0,
             "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "EvolveHardenedCarapaceZagaraLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化硬化甲壳",
+              "name_key": "Button/Name/EvolveHardenedCarapaceZagaraLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
           },
           {
-            "face": "MoveHoldPosition",
-            "type": "AbilCmd",
-            "abil_cmd": "move,HoldPos",
-            "requirements": "",
+            "face": "EvolveZerglingArmorShredZagaraLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ZagaraLevel06",
             "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveZerglingArmorShredZagaraLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化切割利爪",
+              "name_key": "Button/Name/EvolveZerglingArmorShredZagaraLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "PassiveBileLauncherLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ZagaraLevel05",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PassiveBileLauncherLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "胆汁喷射体",
+              "name_key": "Button/Name/PassiveBileLauncherLocked",
+              "tooltip": "该单位将在指挥官等级5时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel05",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "EvolveBileLauncherIncreasedRangeLocked",
+            "type": "Passive",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "ZagaraLevel13",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveBileLauncherIncreasedRangeLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化炮击导管",
+              "name_key": "Button/Name/EvolveBileLauncherIncreasedRangeLocked",
+              "tooltip": "该科技将在指挥官等级13时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel13",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "EvolveBileLauncherBombardmentCooldownLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ZagaraLevel13",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveBileLauncherBombardmentCooldownLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化快速轰炸",
+              "name_key": "Button/Name/EvolveBileLauncherBombardmentCooldownLocked",
+              "tooltip": "该科技将在指挥官等级13时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel13",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "HotSHaveSporeCrawler",
+            "row": "",
             "column": 2,
             "submenu_abil_state": "",
             "submenu_card_id": "",
@@ -972,164 +1452,12 @@
             "button": {}
           },
           {
-            "face": "MovePatrol",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Patrol",
-            "requirements": "",
-            "row": 0,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "Attack",
-            "type": "AbilCmd",
-            "abil_cmd": "attack,Execute",
-            "requirements": "",
-            "row": 0,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
             "face": "",
             "type": "",
             "abil_cmd": "",
-            "requirements": "HaveMPMetabolicBoost",
-            "row": 1,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": 1,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "ZerglingArmorShred",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HaveZerglingArmorShred",
-            "row": 1,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "ZerglingArmorShred",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "切割利爪",
-              "name_key": "Button/Name/ZerglingArmorShred",
-              "tooltip": "跳虫的攻击会使目标的护甲降低到0，持续{Behavior,ZerglingArmorShredTarget,Duration}秒。",
-              "tooltip_key": "Button/Tooltip/ZerglingArmorShred",
-              "icon": "Assets\\Textures\\btn-upgrade-zergling-armorshredding.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-zergling-armorshredding.dds"
-            }
-          },
-          {
-            "face": "ZagaraVoidCoopZerglingDodge",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HaveMasteryZagaraZerglingDodgeChance",
-            "row": 1,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "ZagaraVoidCoopZerglingDodge",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "闪避",
-              "name_key": "Button/Name/ZagaraVoidCoopZerglingDodge",
-              "tooltip": "跳虫有{Effect,MasteryZagaraZerglingDodgeChanceDisplayDummy,Amount}%的几率躲避一次攻击。",
-              "tooltip_key": "Button/Tooltip/ZagaraVoidCoopZerglingDodge",
-              "icon": "Assets\\Textures\\btn-upgrade-zerg-zagara-zerglingdodge.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-zagara-zerglingdodge.dds"
-            }
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "HaveMPAdrenalGlands",
-            "row": 1,
-            "column": "",
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "Baneling",
-            "type": "AbilCmd",
-            "abil_cmd": "MorphZerglingToBaneling,Train1",
-            "requirements": "",
-            "row": 2,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "BurrowDown",
-            "type": "AbilCmd",
-            "abil_cmd": "BurrowUltraliskDown,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "BurrowUp",
-            "type": "AbilCmd",
-            "abil_cmd": "BurrowUltraliskUp,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "",
-            "requirements": "",
+            "requirements": "HotSHaveSpineCrawler",
             "row": "",
             "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {}
-          },
-          {
-            "face": "",
-            "type": "",
-            "abil_cmd": "MorphToBaneling,Execute",
-            "requirements": "",
-            "row": "",
-            "column": "",
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",

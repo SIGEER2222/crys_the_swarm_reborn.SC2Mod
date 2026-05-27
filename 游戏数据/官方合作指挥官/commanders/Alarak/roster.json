@@ -1,7 +1,7 @@
 [
   {
     "id": "ColossusTaldarim",
-    "unit_id": "ColossusTaldarim",
+    "unit_id": "Colossus",
     "army_categories": [
       "ColossusTaldarim"
     ],
@@ -23,39 +23,84 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "ColossusTaldarim"
+      "Colossus",
+      "ColossusTaldarim",
+      "RoboticsBay",
+      "RoboticsFacility"
     ],
-    "icon_button": "ColossusTaldarim",
-    "icon": "Assets\\Textures\\btn-unit-protoss-colossus-taldarimex3.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-protoss-colossus-taldarimex3.dds",
+    "icon_button": "Colossus",
+    "icon": "Assets\\Textures\\btn-unit-protoss-colossus.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-colossus.dds",
     "unit": {
-      "id": "ColossusTaldarim",
+      "id": "Colossus",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionTaldarim",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Air",
+        "Ground"
+      ],
+      "attributes": [
+        "Armored",
+        "Massive",
+        "Mechanical"
+      ],
+      "flags": [
+        "AISplash",
+        "ArmySelect",
+        "PreventDestroy",
+        "UseLineOfSight"
+      ],
+      "minerals": "300",
+      "vespene": "200",
       "terrazine": "",
-      "supply": "",
+      "supply": "-6",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "250",
+      "shields": "100",
       "energy": "",
-      "sight": "",
+      "sight": "10",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionTaldarim"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "ColossusTaldarim",
+          "id": "Colossus",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "Colossus",
+          "parent": ""
+        },
+        {
+          "source": "void",
+          "id": "Colossus",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "Colossus",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "Colossus",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "Colossus",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "Colossus",
           "parent": ""
         }
       ]
@@ -98,8 +143,8 @@
       "Gateway"
     ],
     "icon_button": "Gateway",
-    "icon": "",
-    "alert_icon": "",
+    "icon": "Assets\\Textures\\btn-building-protoss-gateway.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-gateway.dds",
     "unit": {
       "id": "Gateway",
       "source_catalog": "starcoop",
@@ -177,7 +222,7 @@
   },
   {
     "id": "HighTemplarTaldarim",
-    "unit_id": "HighTemplarTaldarim",
+    "unit_id": "HighTemplar",
     "army_categories": [
       "HighTemplarTaldarim"
     ],
@@ -199,39 +244,83 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "HighTemplarTaldarim"
+      "HighTemplar",
+      "HighTemplarTaldarim",
+      "TemplarArchive"
     ],
-    "icon_button": "HighTemplarTaldarim",
-    "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-hightemplar.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-hightemplar.dds",
+    "icon_button": "HighTemplar",
+    "icon": "Assets\\Textures\\btn-unit-protoss-hightemplar.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-hightemplar.dds",
     "unit": {
-      "id": "HighTemplarTaldarim",
+      "id": "HighTemplar",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionTaldarim",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Biological",
+        "Light",
+        "Psionic"
+      ],
+      "flags": [
+        "AICaster",
+        "AIHighPrioTarget",
+        "AIPressForwardDisabled",
+        "AISplash",
+        "AIThreatAir",
+        "AIThreatGround",
+        "AlwaysThreatens",
+        "ArmySelect",
+        "PreventDestroy",
+        "UseLineOfSight"
+      ],
+      "minerals": "50",
+      "vespene": "150",
       "terrazine": "",
-      "supply": "",
+      "supply": "-2",
       "build_time": "",
-      "life": "",
-      "shields": "",
-      "energy": "",
-      "sight": "",
+      "life": "40",
+      "shields": "40",
+      "energy": "200",
+      "sight": "10",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionTaldarim"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "HighTemplarTaldarim",
+          "id": "HighTemplar",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "HighTemplar",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "HighTemplar",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "HighTemplar",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "HighTemplar",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "HighTemplar",
           "parent": ""
         }
       ]
@@ -239,7 +328,7 @@
   },
   {
     "id": "ImmortalTaldarim",
-    "unit_id": "ImmortalTaldarim",
+    "unit_id": "Immortal",
     "army_categories": [
       "ImmortalTaldarim"
     ],
@@ -261,39 +350,75 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "ImmortalTaldarim"
+      "Immortal",
+      "ImmortalTaldarim",
+      "RoboticsFacility"
     ],
-    "icon_button": "ImmortalTaldarim",
-    "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-immortal.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-immortal.dds",
+    "icon_button": "Immortal",
+    "icon": "Assets\\Textures\\BTN-Unit-Protoss-Immortal.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Unit-Protoss-Immortal.dds",
     "unit": {
-      "id": "ImmortalTaldarim",
+      "id": "Immortal",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionTaldarim",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Armored",
+        "Mechanical"
+      ],
+      "flags": [
+        "ArmySelect",
+        "PreventDestroy",
+        "UseLineOfSight"
+      ],
+      "minerals": "250",
+      "vespene": "100",
       "terrazine": "",
-      "supply": "",
+      "supply": "-4",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "200",
+      "shields": "100",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionTaldarim"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "ImmortalTaldarim",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "Immortal",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "Immortal",
           "parent": ""
         }
       ]
@@ -333,11 +458,12 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "PhotonCannon"
+      "PhotonCannon",
+      "Zealot"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "PhotonCannon",
+    "icon": "Assets\\Textures\\btn-building-protoss-photoncannon.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-photoncannon.dds",
     "unit": {
       "id": "PhotonCannon",
       "source_catalog": "starcoop",
@@ -498,9 +624,9 @@
       "Supplicant",
       "AlarakSupplicantWarpTrainDummy"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "WarpInSupplicant",
+    "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-supplicant.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-supplicant.dds",
     "unit": {
       "id": "Supplicant",
       "source_catalog": "starcoop",
@@ -577,9 +703,9 @@
     "resolved_unit_ids": [
       "TwilightCouncil"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "TwilightCouncil",
+    "icon": "Assets\\Textures\\btn-building-protoss-twilightcouncil.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-twilightcouncil.dds",
     "unit": {
       "id": "TwilightCouncil",
       "source_catalog": "starcoop",
@@ -681,9 +807,9 @@
     "resolved_unit_ids": [
       "WarpPrismTaldarim"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "WarpInWarPrism",
+    "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-warpprism.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-warpprism.dds",
     "unit": {
       "id": "WarpPrismTaldarim",
       "source_catalog": "starcoop",
@@ -756,9 +882,9 @@
     "resolved_unit_ids": [
       "Stalker"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Stalker",
+    "icon": "Assets\\Textures\\btn-unit-protoss-stalker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-stalker.dds",
     "unit": {
       "id": "Stalker",
       "source_catalog": "starcoop",
