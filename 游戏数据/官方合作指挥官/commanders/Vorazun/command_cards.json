@@ -1,21 +1,131 @@
 [
   {
     "id": "DarkTemplarShakuras",
-    "unit_id": "DarkTemplarShakuras",
+    "unit_id": "DarkShrine",
     "name": "黑暗圣堂武士",
-    "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "object_type": "Structure",
+    "icon_button": "DarkShrine",
+    "icon": "Assets\\Textures\\btn-building-protoss-darkshrine.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-darkshrine.dds",
     "cards": [
       {
         "card_id": "",
         "is_default_card": true,
         "buttons": [
           {
-            "face": "",
-            "type": "",
-            "abil_cmd": "DarkTemplarShadowFury,Execute",
+            "face": "ResearchShadowFury",
+            "type": "AbilCmd",
+            "abil_cmd": "DarkShrineResearch,Research1",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchShadowFury",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究暗影之怒",
+              "name_key": "Button/Name/ResearchShadowFury",
+              "tooltip": "使黑暗圣堂武士在目标之间腾跃，每次腾跃造成{Effect,DarkTemplarShadowFuryDamage,Amount} (+{Effect,DarkTemplarShadowFuryDamage,AttributeBonus[Light]} 对轻甲)点伤害。攻击{1+Effect,ShadowGuardShadowFuryPersistent,PeriodCount}次。",
+              "tooltip_key": "Button/Tooltip/ResearchShadowFury",
+              "icon": "Assets\\Textures\\btn-ability-protoss-shadowfury.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-shadowfury.dds"
+            }
+          },
+          {
+            "face": "ResearchShadowDashLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel06",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchShadowDashLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究闪现",
+              "name_key": "Button/Name/ResearchShadowDashLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "ResearchVoidStasisLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel06",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchVoidStasisLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究虚空静滞",
+              "name_key": "Button/Name/ResearchVoidStasisLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "ResearchDarkArchonFullStartingEnergyLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel09",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchDarkArchonFullStartingEnergyLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究阿古斯水晶",
+              "name_key": "Button/Name/ResearchDarkArchonFullStartingEnergyLocked",
+              "tooltip": "该科技将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "ResearchMindControlLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel09",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchMindControlLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究精神控制",
+              "name_key": "Button/Name/ResearchMindControlLocked",
+              "tooltip": "该科技将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "DarkTemplarPassive",
+            "type": "Passive",
+            "abil_cmd": "",
             "requirements": "",
             "row": 1,
             "column": 0,
@@ -25,81 +135,125 @@
             "button": {}
           },
           {
-            "face": "VoidDarkTemplarShadowFury",
-            "type": "AbilCmd",
-            "abil_cmd": "DarkTemplarShadowFury,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 0,
+            "face": "DarkArchonPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveVorazunCommander",
+            "row": 1,
+            "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {}
           },
           {
-            "face": "ShadowDashLocked",
+            "face": "ZeratulDarkTemplarBlink",
             "type": "Passive",
             "abil_cmd": "",
-            "requirements": "VorazunLevel06",
+            "requirements": "HaveZeratulArtifactTier1AndDarkShine",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZeratulDarkTemplarBlink",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "闪现",
+              "name_key": "Button/Name/ZeratulDarkTemplarBlink",
+              "tooltip": "使虚空圣堂武士可以传送至附近一处目标位置。",
+              "tooltip_key": "Button/Tooltip/ZeratulDarkTemplarBlink",
+              "icon": "Assets\\Textures\\btn-ability-zeratul-darktemplar-blink.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zeratul-darktemplar-blink.dds"
+            }
+          },
+          {
+            "face": "ResearchZeratulZealotBlinkHeal",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZeratulArtifactTier2AndDarkShine",
             "row": 2,
             "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "ShadowDashLocked",
+              "id": "ResearchZeratulZealotBlinkHeal",
               "source_catalog": "starcoop",
-              "parent": "AbilLocked",
-              "name": "闪现",
-              "name_key": "Button/Name/ShadowDashLocked",
-              "tooltip": "该技能将在指挥官等级6时解锁。",
-              "tooltip_key": "Button/Tooltip/AbilLockedLevel06",
-              "icon": "",
-              "alert_icon": ""
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/ResearchZeratulZealotBlinkHeal",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/ResearchZeratulZealotBlinkHeal",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-nova-healingmastery.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-nova-healingmastery.dds"
             }
           },
           {
-            "face": "VoidStasisLocked",
+            "face": "ResearchZeratulDarkTemplarShadowFury",
             "type": "Passive",
             "abil_cmd": "",
-            "requirements": "VorazunLevel06",
+            "requirements": "HaveZeratulArtifactTier3AndDarkShine",
             "row": 2,
             "column": 2,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "VoidStasisLocked",
+              "id": "ResearchZeratulDarkTemplarShadowFury",
               "source_catalog": "starcoop",
-              "parent": "AbilLocked",
-              "name": "虚空静滞",
-              "name_key": "Button/Name/VoidStasisLocked",
-              "tooltip": "该技能将在指挥官等级6时解锁。",
-              "tooltip_key": "Button/Tooltip/AbilLockedLevel06",
-              "icon": "",
-              "alert_icon": ""
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/ResearchZeratulDarkTemplarShadowFury",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/ResearchZeratulDarkTemplarShadowFury",
+              "icon": "Assets\\Textures\\BTN-Ability-Protoss-ShadowFury.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Protoss-ShadowFury.dds"
             }
           },
           {
-            "face": "DarkTemplarShadowDash",
-            "type": "",
-            "abil_cmd": "DarkTemplarShadowDash,Execute",
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "que5,CancelLast",
             "requirements": "",
-            "row": "",
-            "column": 1,
+            "row": 2,
+            "column": 4,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "DarkTemplarShadowDash",
-              "source_catalog": "starcoop",
+              "id": "Cancel",
+              "source_catalog": "core",
               "parent": "",
-              "name": "闪现",
-              "name_key": "Button/Name/DarkTemplarShadowDash",
-              "tooltip": "传送到附近的目标区域。",
-              "tooltip_key": "Button/Tooltip/DarkTemplarShadowDash",
-              "icon": "Assets\\Textures\\btn-ability-protoss-shadowdash.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-protoss-shadowdash.dds"
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "",
+            "abil_cmd": "que5,CancelLast",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
             }
           }
         ]
@@ -112,8 +266,8 @@
     "name": "传送门",
     "object_type": "Structure",
     "icon_button": "Gateway",
-    "icon": "",
-    "alert_icon": "",
+    "icon": "Assets\\Textures\\btn-building-protoss-gateway.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-gateway.dds",
     "cards": [
       {
         "card_id": "",
@@ -173,7 +327,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stalker",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "折跃追猎者",
+              "name_key": "Button/Name/Stalker",
+              "tooltip": "远程支援型步战机甲。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/Stalker",
+              "icon": "Assets\\Textures\\btn-unit-protoss-stalker.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-stalker.dds"
+            }
           },
           {
             "face": "WarpInAdept",
@@ -215,8 +379,8 @@
               "name_key": "Button/Name/WarpinAscendentLocked",
               "tooltip": "该单位将在指挥官等级8时解锁。",
               "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel08",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -229,7 +393,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "DarkTemplar",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "折跃黑暗圣堂武士",
+              "name_key": "Button/Name/DarkTemplar",
+              "tooltip": "致命的近战杀手，该单位永远处于隐形状态，敌人在不借助侦测单位帮助的情况下无法发现他。可以融合为执政官。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/DarkTemplar",
+              "icon": "Assets\\Textures\\btn-unit-protoss-darktemplar.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-darktemplar.dds"
+            }
           },
           {
             "face": "WarpInDarkArchonLocked",
@@ -249,8 +423,8 @@
               "name_key": "Button/Name/WarpInDarkArchonLocked",
               "tooltip": "该技能将在指挥官等级5时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel05",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -263,7 +437,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
           },
           {
             "face": "UpgradeToWarpGate",
@@ -275,7 +459,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "UpgradeToWarpGate",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "变形为折跃门",
+              "name_key": "Button/Name/UpgradeToWarpGate",
+              "tooltip": "将传送门升级为折跃门，使星灵可以利用折跃技术将地面单位召集到任何有水晶塔或折跃棱镜能量覆盖的区域。",
+              "tooltip_key": "Button/Tooltip/UpgradeToWarpGate",
+              "icon": "Assets\\Textures\\BTN-Building-Protoss-WarpGate.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Building-Protoss-WarpGate.dds"
+            }
           },
           {
             "face": "AlarakMasteryUnitAttackSpeed",
@@ -309,7 +503,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "",
@@ -332,9 +536,9 @@
     "unit_id": "Oracle",
     "name": "先知",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Oracle",
+    "icon": "Assets\\Textures\\btn-unit-protoss-oracle.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-oracle.dds",
     "cards": [
       {
         "card_id": "",
@@ -350,7 +554,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -362,7 +576,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -374,7 +598,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -386,7 +620,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "AcquireMove",
@@ -398,7 +642,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AcquireMove",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "搜索移动",
+              "name_key": "Button/Name/AcquireMove",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/AcquireMove",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "OracleRevelation",
@@ -410,7 +664,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "OracleRevelation",
+              "source_catalog": "swarm",
+              "parent": "",
+              "name": "天启",
+              "name_key": "Button/Name/OracleRevelation",
+              "tooltip": "使目标区域内的单位和建筑获得视野，持续{Behavior,OracleRevelation,Duration}秒。显示隐形或潜地的单位和建筑。",
+              "tooltip_key": "Button/Tooltip/OracleRevelation",
+              "icon": "Assets\\Textures\\btn-ability-protoss-preordain.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-preordain.dds"
+            }
           },
           {
             "face": "OracleBuildStasisTrap",
@@ -430,8 +694,8 @@
               "name_key": "Button/Name/OracleBuildStasisTrap",
               "tooltip": "在目标位置放置一个持续{Behavior,StasisWardTimedLife,Duration}秒的隐形静滞结界。一旦被敌方地面单位触发后，该结界将使附近的敌人陷入静滞，持续{Behavior,OracleStasisTrapTarget,Duration}秒。被困单位无法被攻击，也不会受到技能影响。",
               "tooltip_key": "Button/Tooltip/OracleBuildStasisTrap",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-ability-protoss-oracle-stasisward.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-oracle-stasisward.dds"
             }
           },
           {
@@ -444,7 +708,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "OracleWeaponOn",
+              "source_catalog": "void",
+              "parent": "",
+              "name": "激活脉冲光线",
+              "name_key": "Button/Name/OracleWeaponOn",
+              "tooltip": "为先知的脉冲光线充能，使其能够攻击敌方地面单位。\n每秒消耗{-1 * (Behavior,OracleWeapon,Modification.VitalRegenArray[2] + Unit,Oracle,EnergyRegenRate)}点能量值。",
+              "tooltip_key": "Button/Tooltip/OracleWeaponOn",
+              "icon": "Assets\\Textures\\BTN-Ability-Protoss-OraclePulsarCannonOn.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Protoss-OraclePulsarCannonOn.dds"
+            }
           },
           {
             "face": "HaveOracleStasisWardUpgrade",
@@ -500,7 +774,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "OracleRevelation",
+              "source_catalog": "swarm",
+              "parent": "",
+              "name": "天启",
+              "name_key": "Button/Name/OracleRevelation",
+              "tooltip": "使目标区域内的单位和建筑获得视野，持续{Behavior,OracleRevelation,Duration}秒。显示隐形或潜地的单位和建筑。",
+              "tooltip_key": "Button/Tooltip/OracleRevelation",
+              "icon": "Assets\\Textures\\btn-ability-protoss-preordain.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-preordain.dds"
+            }
           },
           {
             "face": "",
@@ -536,7 +820,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "OracleWeaponOn",
+              "source_catalog": "void",
+              "parent": "",
+              "name": "激活脉冲光线",
+              "name_key": "Button/Name/OracleWeaponOn",
+              "tooltip": "为先知的脉冲光线充能，使其能够攻击敌方地面单位。\n每秒消耗{-1 * (Behavior,OracleWeapon,Modification.VitalRegenArray[2] + Unit,Oracle,EnergyRegenRate)}点能量值。",
+              "tooltip_key": "Button/Tooltip/OracleWeaponOn",
+              "icon": "Assets\\Textures\\BTN-Ability-Protoss-OraclePulsarCannonOn.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Protoss-OraclePulsarCannonOn.dds"
+            }
           }
         ]
       }
@@ -544,34 +838,200 @@
   },
   {
     "id": "PhoenixShakuras",
-    "unit_id": "PhoenixAiur",
+    "unit_id": "FleetBeacon",
     "name": "海盗船",
-    "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "object_type": "Structure",
+    "icon_button": "FleetBeacon",
+    "icon": "Assets\\Textures\\btn-building-protoss-fleetbeacon.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-fleetbeacon.dds",
     "cards": [
       {
         "card_id": "",
         "is_default_card": true,
         "buttons": [
           {
-            "face": "HaveAnionPulseCrystals",
+            "face": "ResearchFenixScoutWeaponRange",
+            "type": "AbilCmd",
+            "abil_cmd": "FleetBeaconResearch,Research22",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchFenixScoutWeaponRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究战斗感应器阵列",
+              "name_key": "Button/Name/ResearchFenixScoutWeaponRange",
+              "tooltip": "侦察机获得+3对空攻击射程和+1对地攻击射程。",
+              "tooltip_key": "Button/Tooltip/ResearchFenixScoutWeaponRange",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-scoutchampionrange.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-scoutchampionrange.dds"
+            }
+          },
+          {
+            "face": "ResearchCorsairPermanentCloakLocked",
             "type": "Passive",
             "abil_cmd": "",
-            "requirements": "HavePhoenixRangeUpgrade",
-            "row": 2,
+            "requirements": "VorazunLevel12",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchCorsairPermanentCloakLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究潜行驾驶",
+              "name_key": "Button/Name/ResearchCorsairPermanentCloakLocked",
+              "tooltip": "该科技将在指挥官等级12时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel12",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "ResearchFenixChampionScoutAOEMissilesLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "FenixLevel12",
+            "row": 0,
             "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchFenixChampionScoutAOEMissilesLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究压制程序",
+              "name_key": "Button/Name/ResearchFenixChampionScoutAOEMissilesLocked",
+              "tooltip": "该科技将在指挥官等级12时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel12",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "ResearchKaraxCarrerInterceptorLaunchSpeed",
+            "type": "AbilCmd",
+            "abil_cmd": "FleetBeaconResearch,Research18",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchKaraxCarrerInterceptorLaunchSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究引力跃迁弹射器",
+              "name_key": "Button/Name/ResearchKaraxCarrerInterceptorLaunchSpeed",
+              "tooltip": "使航空母舰发射拦截机的速度变快，并且使拦截机的攻击速度提高{(Weapon,InterceptorBeam,Period-$UpgradeEffectArrayValue:KaraxCarrierInterceptorLaunchSpeed:Weapon,InterceptorBeam,Period$)/$UpgradeEffectArrayValue:KaraxCarrierInterceptorLaunchSpeed:Weapon,InterceptorBeam,Period$*100}%。",
+              "tooltip_key": "Button/Tooltip/ResearchKaraxCarrerInterceptorLaunchSpeed",
+              "icon": "Assets\\Textures\\BTN-Upgrade-Protoss-GravitonCatapult.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-phasingarmor.dds"
+            }
+          },
+          {
+            "face": "TempestPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveVoidTempest",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "TempestPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/TempestPassive",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/TempestPassive",
+              "icon": "Assets\\Textures\\btn-unit-protoss-tempest.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-tempest.dds"
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
+          },
+          {
+            "face": "ResearchVoidRaySpeedUpgrade",
+            "type": "",
+            "abil_cmd": "FleetBeaconResearch,Research5",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchVoidRaySpeedUpgrade",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "研发熔流旋叶",
+              "name_key": "Button/Name/ResearchVoidRaySpeedUpgrade",
+              "tooltip": "提高虚空辉光舰的移动速度和移动加速度。",
+              "tooltip_key": "Button/Tooltip/ResearchVoidRaySpeedUpgrade",
+              "icon": "Assets\\Textures\\BTN-Upgrade-Protoss-FluxVanes.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Upgrade-Protoss-FluxVanes.dds"
+            }
+          },
+          {
+            "face": "CarrierPassive",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {}
           },
           {
-            "face": "",
+            "face": "MothershipPassive",
             "type": "",
             "abil_cmd": "",
-            "requirements": "HaveResearchDoubleGravitonBeamPassive",
+            "requirements": "HaveVoidMothership",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CarrierPassive",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "HaveCarrier",
             "row": "",
             "column": "",
             "submenu_abil_state": "",
@@ -588,9 +1048,9 @@
     "unit_id": "PhotonCannon",
     "name": "光子炮台",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "PhotonCannon",
+    "icon": "Assets\\Textures\\btn-building-protoss-photoncannon.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-photoncannon.dds",
     "cards": [
       {
         "card_id": "",
@@ -606,7 +1066,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "AttackBuilding",
@@ -618,7 +1088,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AttackBuilding",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/AttackBuilding",
+              "tooltip": "锁定并且攻击目标，直到超出射程或对方被摧毁。",
+              "tooltip_key": "Button/Tooltip/AttackBuilding",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "KaraxTurretRange",
@@ -674,7 +1154,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Detector",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "侦测单位",
+              "name_key": "Button/Name/Detector",
+              "tooltip": "该单位能够侦测到隐形、潜地和幻像单位。",
+              "tooltip_key": "Button/Tooltip/Detector",
+              "icon": "Assets\\Textures\\BTN-Status-Detector.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Status-Detector.dds"
+            }
           },
           {
             "face": "Cancel",
@@ -686,7 +1176,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           }
         ]
       }
@@ -697,9 +1197,9 @@
     "unit_id": "TwilightCouncil",
     "name": "光影议会",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "TwilightCouncil",
+    "icon": "Assets\\Textures\\btn-building-protoss-twilightcouncil.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-twilightcouncil.dds",
     "cards": [
       {
         "card_id": "",
@@ -745,8 +1245,8 @@
               "name_key": "Button/Name/ResearchReconstructionLocked",
               "tooltip": "该科技将在指挥官等级4时解锁。",
               "tooltip_key": "Button/Tooltip/ResearchLockedLevel04",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -767,8 +1267,8 @@
               "name_key": "Button/Name/ResearchFenixKaldalisZealotCleaveLocked",
               "tooltip": "该科技将在指挥官等级4时解锁。",
               "tooltip_key": "Button/Tooltip/ResearchLockedLevel04",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -789,8 +1289,8 @@
               "name_key": "Button/Name/FenixTalisAdeptLearnBounceShotUpgradeLocked",
               "tooltip": "该科技将在指挥官等级4时解锁。",
               "tooltip_key": "Button/Tooltip/ResearchLockedLevel04",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -803,7 +1303,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "ResearchDragoonRange",
@@ -867,8 +1377,8 @@
               "name_key": "Button/Name/ResearchReclamationLocked",
               "tooltip": "该科技将在指挥官等级4时解锁。",
               "tooltip_key": "Button/Tooltip/ResearchLockedLevel04",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -881,7 +1391,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AdeptResearchPiercingUpgrade",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "研究共鸣之刃",
+              "name_key": "Button/Name/AdeptResearchPiercingUpgrade",
+              "tooltip": "使徒的攻击速度提高45%。",
+              "tooltip_key": "Button/Tooltip/AdeptResearchPiercingUpgrade",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-resonatingglaives-orange.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-resonatingglaives-orange.dds"
+            }
           },
           {
             "face": "ResearchShadowStun",
@@ -914,9 +1434,9 @@
     "unit_id": "Zealot",
     "name": "狂热者",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Zealot",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
     "cards": [
       {
         "card_id": "",
@@ -932,7 +1452,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -944,7 +1474,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -956,7 +1496,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -968,7 +1518,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -980,7 +1540,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "Charge",
@@ -1000,8 +1570,8 @@
               "name_key": "Button/Name/Charge",
               "tooltip": "允许狂热者能拦截附近的敌人。同时还会提高狂热者的移动速度。该技能每{Abil,Charge,Cost.Cooldown.TimeUse}秒最多只能使用一次。",
               "tooltip_key": "Button/Tooltip/Charge",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-ability-protoss-charge-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-charge-color.dds"
             }
           },
           {
@@ -1022,8 +1592,8 @@
               "name_key": "Button/Name/WhirlwindLocked",
               "tooltip": "该技能将在指挥官等级4时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel04",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -1036,20 +1606,30 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
           }
         ]
       }
     ]
   },
   {
-    "id": "Stalker",
-    "unit_id": "Stalker",
-    "name": "追猎者",
+    "id": "ZealotShakuras",
+    "unit_id": "Zealot",
+    "name": "百夫长",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Zealot",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
     "cards": [
       {
         "card_id": "",
@@ -1065,7 +1645,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -1077,7 +1667,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -1089,7 +1689,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -1101,7 +1711,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -1113,7 +1733,210 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
+          },
+          {
+            "face": "Charge",
+            "type": "AbilCmd",
+            "abil_cmd": "Charge,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Charge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "冲锋",
+              "name_key": "Button/Name/Charge",
+              "tooltip": "允许狂热者能拦截附近的敌人。同时还会提高狂热者的移动速度。该技能每{Abil,Charge,Cost.Cooldown.TimeUse}秒最多只能使用一次。",
+              "tooltip_key": "Button/Tooltip/Charge",
+              "icon": "Assets\\Textures\\btn-ability-protoss-charge-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-charge-color.dds"
+            }
+          },
+          {
+            "face": "WhirlwindLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ArtanisLevel04",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WhirlwindLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "旋风斩",
+              "name_key": "Button/Name/WhirlwindLocked",
+              "tooltip": "该技能将在指挥官等级4时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel04",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Stalker",
+    "unit_id": "Stalker",
+    "name": "追猎者",
+    "object_type": "Unit",
+    "icon_button": "Stalker",
+    "icon": "Assets\\Textures\\btn-unit-protoss-stalker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-stalker.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "CommanderPrestigeAlarakMechBuff",
@@ -1147,7 +1970,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Blink",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "闪现",
+              "name_key": "Button/Name/Blink",
+              "tooltip": "使追猎者能够闪现到附近的目标位置。该技能{Abil,Blink,Cost[0].Cooldown.TimeUse}秒内只能使用1次。",
+              "tooltip_key": "Button/Tooltip/Blink",
+              "icon": "Assets\\Textures\\btn-ability-protoss-blink-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-blink-color.dds"
+            }
           },
           {
             "face": "AlarakStalkerPhasingArmor",
@@ -1181,7 +2014,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
           },
           {
             "face": "",
@@ -1201,21 +2044,21 @@
   },
   {
     "id": "VoidRay",
-    "unit_id": "VoidRay",
+    "unit_id": "Stargate",
     "name": "虚空辉光舰",
-    "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "object_type": "Structure",
+    "icon_button": "Stargate",
+    "icon": "Assets\\Textures\\btn-building-protoss-stargate.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-stargate.dds",
     "cards": [
       {
         "card_id": "",
         "is_default_card": true,
         "buttons": [
           {
-            "face": "Move",
+            "face": "WarpInScout",
             "type": "AbilCmd",
-            "abil_cmd": "move,Move",
+            "abil_cmd": "StargateTrain,Train6",
             "requirements": "",
             "row": 0,
             "column": 0,
@@ -1225,23 +2068,187 @@
             "button": {}
           },
           {
-            "face": "Stop",
-            "type": "AbilCmd",
-            "abil_cmd": "stop,Stop",
-            "requirements": "",
+            "face": "BuildTempestLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ArtanisLevel11",
             "row": 0,
             "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BuildTempestLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "折跃风暴战舰",
+              "name_key": "Button/Name/BuildTempestLocked",
+              "tooltip": "该单位将在指挥官等级11时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel11",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
           },
           {
-            "face": "MoveHoldPosition",
+            "face": "VoidRay",
             "type": "AbilCmd",
-            "abil_cmd": "move,HoldPos",
+            "abil_cmd": "StargateTrain,Train5",
             "requirements": "",
             "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "VoidRay",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "折跃虚空辉光舰",
+              "name_key": "Button/Name/VoidRay",
+              "tooltip": "精确打击舰船。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/VoidRay",
+              "icon": "Assets\\Textures\\btn-unit-protoss-warpray.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-warpray.dds"
+            }
+          },
+          {
+            "face": "CarrierTaldarimMothership",
+            "type": "AbilCmd",
+            "abil_cmd": "StargateTrain,Train14",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CarrierTaldarimMothership",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃母舰",
+              "name_key": "Button/Name/CarrierTaldarimMothership",
+              "tooltip": "终极星灵战舰。能够使用群体传送和热能射线枪。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/CarrierTaldarim",
+              "icon": "Assets\\Textures\\btn-unit-protoss-mothership.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-mothership.dds"
+            }
+          },
+          {
+            "face": "Carrier",
+            "type": "AbilCmd",
+            "abil_cmd": "StargateTrain,Train2",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Carrier",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃航母",
+              "name_key": "Button/Name/Carrier",
+              "tooltip": "星灵的主力战舰。能够制造并发射拦截机攻击敌人。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/Carrier",
+              "icon": "Assets\\Textures\\btn-unit-protoss-carrier.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-carrier.dds"
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "Rally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
+          },
+          {
+            "face": "TransformToStarWarpGateLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "ArtanisLevel08",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "TransformToStarWarpGateLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "变形为折跃星门",
+              "name_key": "Button/Name/TransformToStarWarpGateLocked",
+              "tooltip": "该技能将在指挥官等级8时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel08",
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
+          },
+          {
+            "face": "VoidRay",
+            "type": "",
+            "abil_cmd": "StargateTrain,Train5",
+            "requirements": "",
+            "row": "",
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "VoidRay",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "折跃虚空辉光舰",
+              "name_key": "Button/Name/VoidRay",
+              "tooltip": "精确打击舰船。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/VoidRay",
+              "icon": "Assets\\Textures\\btn-unit-protoss-warpray.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-warpray.dds"
+            }
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
             "column": 2,
             "submenu_abil_state": "",
             "submenu_card_id": "",
@@ -1249,23 +2256,33 @@
             "button": {}
           },
           {
-            "face": "MovePatrol",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Patrol",
+            "face": "Arbiter",
+            "type": "",
+            "abil_cmd": "StargateTrain,Train12",
             "requirements": "",
-            "row": 0,
+            "row": "",
             "column": 3,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Arbiter",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃仲裁者",
+              "name_key": "Button/Name/Arbiter",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/Arbiter",
+              "icon": "Assets\\Textures\\btn-unit-protoss-frigate.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-frigate.dds"
+            }
           },
           {
-            "face": "Attack",
-            "type": "AbilCmd",
-            "abil_cmd": "attack,Execute",
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
             "requirements": "",
-            "row": 0,
+            "row": "",
             "column": 4,
             "submenu_abil_state": "",
             "submenu_card_id": "",
@@ -1273,24 +2290,144 @@
             "button": {}
           },
           {
-            "face": "VoidRaySwarmDamageBoost",
-            "type": "AbilCmd",
-            "abil_cmd": "VoidRaySwarmDamageBoost,Execute",
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
             "requirements": "",
-            "row": 2,
-            "column": 0,
+            "row": "",
+            "column": "",
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {}
           },
           {
-            "face": "Cancel",
-            "type": "AbilCmd",
-            "abil_cmd": "VoidRaySwarmDamageBoostCancel,Execute",
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
             "requirements": "",
-            "row": 2,
-            "column": 4,
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",

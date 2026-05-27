@@ -1,7 +1,7 @@
 [
   {
     "id": "DarkTemplarShakuras",
-    "unit_id": "DarkTemplarShakuras",
+    "unit_id": "DarkShrine",
     "army_categories": [
       "DarkTemplarShakuras"
     ],
@@ -23,39 +23,83 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
+      "DarkShrine",
+      "DarkTemplar",
       "DarkTemplarShakuras"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "DarkShrine",
+    "icon": "Assets\\Textures\\btn-building-protoss-darkshrine.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-darkshrine.dds",
     "unit": {
-      "id": "DarkTemplarShakuras",
+      "id": "DarkShrine",
       "source_catalog": "starcoop",
       "parent": "",
-      "object_type": "Unit",
+      "object_type": "Structure",
       "object_family": "FactionNerazim",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "75",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Mechanical"
+      ],
+      "flags": [
+        "ArmorDisabledWhileConstructing",
+        "NoPortraitTalk",
+        "PenaltyRevealed",
+        "PreventDefeat",
+        "PreventDestroy",
+        "TownAlert",
+        "UseLineOfSight"
+      ],
+      "minerals": "150",
+      "vespene": "150",
       "terrazine": "",
       "supply": "",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "500",
+      "shields": "500",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
-        "ObjectType": "Unit",
+        "ObjectType": "Structure",
         "ObjectFamily": "FactionNerazim"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "DarkTemplarShakuras",
+          "id": "DarkShrine",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "DarkShrine",
+          "parent": ""
+        },
+        {
+          "source": "void",
+          "id": "DarkShrine",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "DarkShrine",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "DarkShrine",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "DarkShrine",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "DarkShrine",
           "parent": ""
         }
       ]
@@ -98,8 +142,8 @@
       "Gateway"
     ],
     "icon_button": "Gateway",
-    "icon": "",
-    "alert_icon": "",
+    "icon": "Assets\\Textures\\btn-building-protoss-gateway.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-gateway.dds",
     "unit": {
       "id": "Gateway",
       "source_catalog": "starcoop",
@@ -201,9 +245,9 @@
     "resolved_unit_ids": [
       "Oracle"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Oracle",
+    "icon": "Assets\\Textures\\btn-unit-protoss-oracle.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-oracle.dds",
     "unit": {
       "id": "Oracle",
       "source_catalog": "starcoop",
@@ -272,7 +316,7 @@
   },
   {
     "id": "PhoenixShakuras",
-    "unit_id": "PhoenixAiur",
+    "unit_id": "FleetBeacon",
     "army_categories": [
       "PhoenixShakuras"
     ],
@@ -289,41 +333,89 @@
     "suffix_key": "UserData/TechUnit/PhoenixShakuras_Suffix",
     "name": "海盗船",
     "name_key": "UserData/TechUnit/PhoenixShakuras_Name",
-    "tooltip": "空中优势战机。能够同时对两个敌人使用引力光束。\n可以对空。",
-    "tooltip_key": "Button/Tooltip/PhoenixAiur",
+    "tooltip": "为凤凰和虚空辉光舰提供升级方案。\n开启：\n- 可以从星门折跃风暴战舰- 可以从星门折跃航母\n- 可以从星灵枢纽折跃母舰",
+    "tooltip_key": "Button/Tooltip/FleetBeacon",
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "PhoenixAiur"
+      "FleetBeacon",
+      "Phoenix",
+      "PhoenixAiur",
+      "Stargate"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "FleetBeacon",
+    "icon": "Assets\\Textures\\btn-building-protoss-fleetbeacon.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-fleetbeacon.dds",
     "unit": {
-      "id": "PhoenixAiur",
+      "id": "FleetBeacon",
       "source_catalog": "starcoop",
       "parent": "",
-      "object_type": "Unit",
-      "object_family": "",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "object_type": "Structure",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Mechanical"
+      ],
+      "flags": [
+        "ArmorDisabledWhileConstructing",
+        "NoPortraitTalk",
+        "PenaltyRevealed",
+        "PreventDefeat",
+        "PreventDestroy",
+        "TownAlert",
+        "UseLineOfSight"
+      ],
+      "minerals": "300",
+      "vespene": "200",
       "terrazine": "",
       "supply": "",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "500",
+      "shields": "500",
       "energy": "",
-      "sight": "",
-      "editor_categories": {},
+      "sight": "9",
+      "editor_categories": {
+        "ObjectType": "Structure",
+        "ObjectFamily": "Melee"
+      },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "PhoenixAiur",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "void",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "FleetBeacon",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "FleetBeacon",
           "parent": ""
         }
       ]
@@ -363,11 +455,12 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "PhotonCannon"
+      "PhotonCannon",
+      "Zealot"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "PhotonCannon",
+    "icon": "Assets\\Textures\\btn-building-protoss-photoncannon.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-photoncannon.dds",
     "unit": {
       "id": "PhotonCannon",
       "source_catalog": "starcoop",
@@ -473,9 +566,9 @@
     "resolved_unit_ids": [
       "TwilightCouncil"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "TwilightCouncil",
+    "icon": "Assets\\Textures\\btn-building-protoss-twilightcouncil.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-twilightcouncil.dds",
     "unit": {
       "id": "TwilightCouncil",
       "source_catalog": "starcoop",
@@ -579,9 +672,9 @@
     "resolved_unit_ids": [
       "Zealot"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Zealot",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
     "unit": {
       "id": "Zealot",
       "source_catalog": "starcoop",
@@ -651,7 +744,7 @@
   },
   {
     "id": "ZealotShakuras",
-    "unit_id": "ZealotShakuras",
+    "unit_id": "Zealot",
     "army_categories": [
       "ZealotShakuras"
     ],
@@ -673,39 +766,74 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
+      "Zealot",
       "ZealotShakuras"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Zealot",
+    "icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-zealot.dds",
     "unit": {
-      "id": "ZealotShakuras",
+      "id": "Zealot",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionNerazim",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [],
-      "flags": [],
-      "minerals": "",
+      "object_family": "Melee",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
+      ],
+      "attributes": [
+        "Biological",
+        "Light"
+      ],
+      "flags": [
+        "ArmySelect",
+        "PreventDestroy",
+        "UseLineOfSight"
+      ],
+      "minerals": "100",
       "vespene": "",
       "terrazine": "",
-      "supply": "",
+      "supply": "-2",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "100",
+      "shields": "50",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionNerazim"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "ZealotShakuras",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "voidmulti",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "swarmmulti",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "swarm",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "libertymulti",
+          "id": "Zealot",
+          "parent": ""
+        },
+        {
+          "source": "liberty",
+          "id": "Zealot",
           "parent": ""
         }
       ]
@@ -739,9 +867,9 @@
     "resolved_unit_ids": [
       "Stalker"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Stalker",
+    "icon": "Assets\\Textures\\btn-unit-protoss-stalker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-stalker.dds",
     "unit": {
       "id": "Stalker",
       "source_catalog": "starcoop",
@@ -811,7 +939,7 @@
   },
   {
     "id": "VoidRay",
-    "unit_id": "VoidRay",
+    "unit_id": "Stargate",
     "army_categories": [
       "VoidRay"
     ],
@@ -833,78 +961,77 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
+      "Stargate",
       "VoidRay"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Stargate",
+    "icon": "Assets\\Textures\\btn-building-protoss-stargate.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-stargate.dds",
     "unit": {
-      "id": "VoidRay",
+      "id": "Stargate",
       "source_catalog": "starcoop",
       "parent": "",
-      "object_type": "Unit",
+      "object_type": "Structure",
       "object_family": "Melee",
       "race": "Prot",
       "mob": "Multiplayer",
       "planes": [
-        "Air"
+        "Ground"
       ],
       "attributes": [
-        "Armored",
         "Mechanical"
       ],
       "flags": [
-        "ArmySelect",
+        "ArmorDisabledWhileConstructing",
+        "NoPortraitTalk",
+        "PenaltyRevealed",
+        "PreventDefeat",
         "PreventDestroy",
+        "TownAlert",
         "UseLineOfSight"
       ],
-      "minerals": "250",
+      "minerals": "150",
       "vespene": "150",
       "terrazine": "",
-      "supply": "-4",
+      "supply": "",
       "build_time": "",
-      "life": "150",
-      "shields": "100",
+      "life": "600",
+      "shields": "600",
       "energy": "",
-      "sight": "10",
+      "sight": "9",
       "editor_categories": {
-        "ObjectType": "Unit",
+        "ObjectType": "Structure",
         "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "VoidRay",
+          "id": "Stargate",
           "parent": ""
         },
         {
           "source": "voidmulti",
-          "id": "VoidRay",
-          "parent": ""
-        },
-        {
-          "source": "void",
-          "id": "VoidRay",
+          "id": "Stargate",
           "parent": ""
         },
         {
           "source": "swarmmulti",
-          "id": "VoidRay",
+          "id": "Stargate",
           "parent": ""
         },
         {
           "source": "swarm",
-          "id": "VoidRay",
+          "id": "Stargate",
           "parent": ""
         },
         {
           "source": "libertymulti",
-          "id": "VoidRay",
+          "id": "Stargate",
           "parent": ""
         },
         {
           "source": "liberty",
-          "id": "VoidRay",
+          "id": "Stargate",
           "parent": ""
         }
       ]

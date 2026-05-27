@@ -4,9 +4,9 @@
     "unit_id": "Barracks",
     "name": "兵营",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Barracks",
+    "icon": "Assets\\Textures\\btn-building-terran-barracks.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-terran-barracks.dds",
     "cards": [
       {
         "card_id": "",
@@ -144,7 +144,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SelectBuilder",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "选择建造单位",
+              "name_key": "Button/Name/SelectBuilder",
+              "tooltip": "选中正在建造该建筑的单位。",
+              "tooltip_key": "Button/Tooltip/SelectBuilder",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds"
+            }
           },
           {
             "face": "Rally",
@@ -156,7 +166,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
           },
           {
             "face": "Ghost",
@@ -168,7 +188,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Ghost",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "训练幽灵",
+              "name_key": "Button/Name/Ghost",
+              "tooltip": "狙击手。能够使用稳定瞄准、EMP弹并且升级后可以使用隐形技能。能够对幽灵军校发动的聚变打击进行制导。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/Ghost",
+              "icon": "Assets\\Textures\\btn-unit-terran-ghost.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-ghost.dds"
+            }
           },
           {
             "face": "TechReactorAI",
@@ -204,7 +234,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Halt",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "暂停",
+              "name_key": "Button/Name/Halt",
+              "tooltip": "暂停建造，保留尚未建造完成的建筑。",
+              "tooltip_key": "Button/Tooltip/Halt",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "CancelBuilding",
@@ -216,7 +256,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "Lift",
@@ -228,7 +278,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Lift",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "升空",
+              "name_key": "Button/Name/Lift",
+              "tooltip": "将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。",
+              "tooltip_key": "Button/Tooltip/Lift",
+              "icon": "Assets\\Textures\\btn-ability-terran-liftoff.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-liftoff.dds"
+            }
           },
           {
             "face": "OrbitalDropPodsPassive",
@@ -262,7 +322,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Reactor",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造反应堆",
+              "name_key": "Button/Name/Reactor",
+              "tooltip": "使该建筑能够同步生产两个单位。",
+              "tooltip_key": "Button/Tooltip/Reactor",
+              "icon": "Assets\\Textures\\btn-building-terran-reactor.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-reactor.dds"
+            }
           },
           {
             "face": "MengskUnits",
@@ -286,7 +356,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "Marauder",
@@ -298,7 +378,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Marauder",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "训练劫掠者",
+              "name_key": "Button/Name/Marauder",
+              "tooltip": "重型突击步兵。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/Marauder",
+              "icon": "Assets\\Textures\\btn-unit-terran-marauder.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-marauder.dds"
+            }
           },
           {
             "face": "CancelBuilding",
@@ -310,7 +400,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           }
         ]
       }
@@ -321,9 +421,9 @@
     "unit_id": "SupplyDepot",
     "name": "补给站",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "OrbitalCommandCalldownSupplyDepot",
+    "icon": "Assets\\Textures\\btn-building-terran-supplydepot.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-terran-supplydepot.dds",
     "cards": [
       {
         "card_id": "",
@@ -339,7 +439,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SelectBuilder",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "选择建造单位",
+              "name_key": "Button/Name/SelectBuilder",
+              "tooltip": "选中正在建造该建筑的单位。",
+              "tooltip_key": "Button/Tooltip/SelectBuilder",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds"
+            }
           },
           {
             "face": "Lower",
@@ -351,7 +461,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Lower",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "降下",
+              "name_key": "Button/Name/Lower",
+              "tooltip": "降下建筑，允许地面单位出入。",
+              "tooltip_key": "Button/Tooltip/Lower",
+              "icon": "Assets\\Textures\\btn-building-terran-supplydepotlowered.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-supplydepotlowered.dds"
+            }
           },
           {
             "face": "Halt",
@@ -363,7 +483,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Halt",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "暂停",
+              "name_key": "Button/Name/Halt",
+              "tooltip": "暂停建造，保留尚未建造完成的建筑。",
+              "tooltip_key": "Button/Tooltip/Halt",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "CancelBuilding",
@@ -375,7 +505,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           }
         ]
       }
@@ -386,9 +526,9 @@
     "unit_id": "Bunker",
     "name": "地堡",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Bunker",
+    "icon": "Assets\\Textures\\btn-building-terran-bunker.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-terran-bunker.dds",
     "cards": [
       {
         "card_id": "",
@@ -404,7 +544,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "AttackRedirect",
@@ -416,7 +566,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AttackRedirect",
+              "source_catalog": "liberty",
+              "parent": "AttackBuilding",
+              "name": "攻击",
+              "name_key": "Button/Name/AttackRedirect",
+              "tooltip": "锁定并且攻击目标，直到超出射程或对方被摧毁。",
+              "tooltip_key": "Button/Tooltip/AttackRedirect",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "NeoSteelFrame",
@@ -472,7 +632,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SelectBuilder",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "选择建造单位",
+              "name_key": "Button/Name/SelectBuilder",
+              "tooltip": "选中正在建造该建筑的单位。",
+              "tooltip_key": "Button/Tooltip/SelectBuilder",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds"
+            }
           },
           {
             "face": "SetBunkerRallyPoint",
@@ -484,7 +654,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SetBunkerRallyPoint",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定地堡集结点",
+              "name_key": "Button/Name/SetBunkerRallyPoint",
+              "tooltip": "将卸载的步兵单位派往指定地点。",
+              "tooltip_key": "Button/Tooltip/SetBunkerRallyPoint",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
           },
           {
             "face": "StimRedirect",
@@ -504,8 +684,8 @@
               "name_key": "Button/Name/StimRedirect",
               "tooltip": "命令地堡内的陆战队员、劫掠者和火蝠使用强化剂。同往常一样，使用强化剂的单位会受到伤害，但攻击速度会提高。",
               "tooltip_key": "Button/Tooltip/StimRedirect",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-ability-terran-stimpack-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-stimpack-color.dds"
             }
           },
           {
@@ -518,7 +698,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BunkerLoad",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "装载",
+              "name_key": "Button/Name/BunkerLoad",
+              "tooltip": "将步兵装载进地堡。",
+              "tooltip_key": "Button/Tooltip/BunkerLoad",
+              "icon": "Assets\\Textures\\btn-ability-terran-load.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-load.dds"
+            }
           },
           {
             "face": "BunkerUnloadAll",
@@ -530,7 +720,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "BunkerUnloadAll",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "全部卸载",
+              "name_key": "Button/Name/BunkerUnloadAll",
+              "tooltip": "卸载所有单位。",
+              "tooltip_key": "Button/Tooltip/BunkerUnloadAll",
+              "icon": "Assets\\Textures\\btn-ability-terran-unloadall.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-unloadall.dds"
+            }
           },
           {
             "face": "Halt",
@@ -542,7 +742,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Halt",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "暂停",
+              "name_key": "Button/Name/Halt",
+              "tooltip": "暂停建造，保留尚未建造完成的建筑。",
+              "tooltip_key": "Button/Tooltip/Halt",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "Cancel",
@@ -554,7 +764,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "",
@@ -589,9 +809,9 @@
     "unit_id": "Marine",
     "name": "陆战队员",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Marine",
+    "icon": "Assets\\Textures\\btn-unit-terran-marine.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-marine.dds",
     "cards": [
       {
         "card_id": "",
@@ -607,7 +827,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -619,7 +849,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -631,7 +871,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -643,7 +893,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -655,7 +915,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "Stim",
@@ -675,8 +945,8 @@
               "name_key": "Button/Name/Stim",
               "tooltip": "给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,Stimpack,Cost[0].Vital[Life]}的伤害。",
               "tooltip_key": "Button/Tooltip/Stim",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-ability-terran-stimpack-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-stimpack-color.dds"
             }
           },
           {
@@ -749,9 +1019,9 @@
     "unit_id": "MissileTurret",
     "name": "导弹塔",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "MissileTurret",
+    "icon": "Assets\\Textures\\btn-building-terran-missileturret.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-terran-missileturret.dds",
     "cards": [
       {
         "card_id": "",
@@ -767,7 +1037,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "AttackBuilding",
@@ -779,7 +1059,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AttackBuilding",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/AttackBuilding",
+              "tooltip": "锁定并且攻击目标，直到超出射程或对方被摧毁。",
+              "tooltip_key": "Button/Tooltip/AttackBuilding",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "HellstormMissileBatteries",
@@ -803,7 +1093,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SelectBuilder",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "选择建造单位",
+              "name_key": "Button/Name/SelectBuilder",
+              "tooltip": "选中正在建造该建筑的单位。",
+              "tooltip_key": "Button/Tooltip/SelectBuilder",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds"
+            }
           },
           {
             "face": "SelectBuilder",
@@ -815,7 +1115,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SelectBuilder",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "选择建造单位",
+              "name_key": "Button/Name/SelectBuilder",
+              "tooltip": "选中正在建造该建筑的单位。",
+              "tooltip_key": "Button/Tooltip/SelectBuilder",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds"
+            }
           },
           {
             "face": "Salvage",
@@ -827,7 +1137,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Salvage",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "回收",
+              "name_key": "Button/Name/Salvage",
+              "tooltip": "回收该建筑，将其移除并返还75%建造所花费的晶体矿及高能瓦斯数量。回收过程需要{time:5}。警告：回收过程一旦开始便无法取消。",
+              "tooltip_key": "Button/Tooltip/Salvage",
+              "icon": "Assets\\Textures\\btn-ability-terran-salvage.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-salvage.dds"
+            }
           },
           {
             "face": "HaveHiSecAutoTracking",
@@ -883,7 +1203,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Detector",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "侦测单位",
+              "name_key": "Button/Name/Detector",
+              "tooltip": "该单位能够侦测到隐形、潜地和幻像单位。",
+              "tooltip_key": "Button/Tooltip/Detector",
+              "icon": "Assets\\Textures\\BTN-Status-Detector.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Status-Detector.dds"
+            }
           },
           {
             "face": "CancelBuilding",
@@ -895,7 +1225,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "Halt",
@@ -907,7 +1247,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Halt",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "暂停",
+              "name_key": "Button/Name/Halt",
+              "tooltip": "暂停建造，保留尚未建造完成的建筑。",
+              "tooltip_key": "Button/Tooltip/Halt",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "AttackBuilding",
@@ -919,7 +1269,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AttackBuilding",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/AttackBuilding",
+              "tooltip": "锁定并且攻击目标，直到超出射程或对方被摧毁。",
+              "tooltip_key": "Button/Tooltip/AttackBuilding",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           }
         ]
       }
@@ -956,8 +1316,8 @@
               "name_key": "Button/Name/AfterburnersLocked",
               "tooltip": "该技能将在指挥官等级11时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel11",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -1007,8 +1367,8 @@
               "name_key": "Button/Name/StimMarauder",
               "tooltip": "给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,StimpackMarauder,Cost[0].Vital[Life]}的伤害。",
               "tooltip_key": "Button/Tooltip/StimMarauder",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-ability-terran-stimpack-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-stimpack-color.dds"
             }
           },
           {
@@ -1044,9 +1404,9 @@
     "unit_id": "SCV",
     "name": "SCV",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "SelectBuilder",
+    "icon": "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds",
     "cards": [
       {
         "card_id": "",
@@ -1084,7 +1444,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -1096,7 +1466,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -1108,7 +1488,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "AttackWorker",
@@ -1120,7 +1510,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "AttackWorker",
+              "source_catalog": "liberty",
+              "parent": "Attack",
+              "name": "",
+              "name_key": "Button/Name/AttackWorker",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/AttackWorker",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "SwannBarracks",
@@ -1154,7 +1554,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "ReturnCargo",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "返还资源",
+              "name_key": "Button/Name/ReturnCargo",
+              "tooltip": "将携带的资源送往最近的卸载点。",
+              "tooltip_key": "Button/Tooltip/ReturnCargo",
+              "icon": "Assets\\Textures\\btn-command-returncargo.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-returncargo.dds"
+            }
           },
           {
             "face": "AdvancedConstructionAuto",
@@ -1196,8 +1606,8 @@
               "name_key": "Button/Name/AdvancedConstructionLocked",
               "tooltip": "该技能将在指挥官等级8时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel08",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -1240,8 +1650,8 @@
               "name_key": "Button/Name/BuildFusionCoreLocked",
               "tooltip": "该单位将在指挥官等级6时解锁。",
               "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel06",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -1262,8 +1672,8 @@
               "name_key": "Button/Name/SensorTower",
               "tooltip": "在大范围内显示敌方单位的位置。敌方单位可以看到感应塔的侦测范围。",
               "tooltip_key": "Button/Tooltip/SensorTower",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-building-terran-sensordome.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-sensordome.dds"
             }
           },
           {
@@ -1288,7 +1698,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Halt",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "暂停",
+              "name_key": "Button/Name/Halt",
+              "tooltip": "暂停建造，保留尚未建造完成的建筑。",
+              "tooltip_key": "Button/Tooltip/Halt",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "BuildKelMorianRocketTurret",
@@ -1328,7 +1748,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CommandCenter",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造指挥中心",
+              "name_key": "Button/Name/CommandCenter",
+              "tooltip": "基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。\n开启：\n- SCV",
+              "tooltip_key": "Button/Tooltip/CommandCenter",
+              "icon": "Assets\\Textures\\btn-building-terran-commandcenter.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-commandcenter.dds"
+            }
           },
           {
             "face": "Refinery",
@@ -1340,7 +1770,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Refinery",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造精炼厂",
+              "name_key": "Button/Name/Refinery",
+              "tooltip": "建造在瓦斯气泉上，用于采集高能瓦斯。",
+              "tooltip_key": "Button/Tooltip/Refinery",
+              "icon": "Assets\\Textures\\btn-building-terran-refinery.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-refinery.dds"
+            }
           },
           {
             "face": "SupplyDepot",
@@ -1352,7 +1792,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SupplyDepot",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造补给站",
+              "name_key": "Button/Name/SupplyDepot",
+              "tooltip": "为人类部队提供补给，\n提高本方单位数量上限。\n补给站可以降下，允许地面单位出入。",
+              "tooltip_key": "Button/Tooltip/SupplyDepot",
+              "icon": "Assets\\Textures\\btn-building-terran-supplydepot.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-supplydepot.dds"
+            }
           },
           {
             "face": "Barracks",
@@ -1364,7 +1814,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Barracks",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造兵营",
+              "name_key": "Button/Name/Barracks",
+              "tooltip": "步兵训练设施。\n开启：\n- 陆战队员\n- 收割者\n- 使SCV可以建造地堡\n- 使指挥中心可以升级为轨道控制基地",
+              "tooltip_key": "Button/Tooltip/Barracks",
+              "icon": "Assets\\Textures\\btn-building-terran-barracks.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-barracks.dds"
+            }
           },
           {
             "face": "EngineeringBay",
@@ -1376,7 +1836,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "EngineeringBay",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造工程站",
+              "name_key": "Button/Name/EngineeringBay",
+              "tooltip": "为人类步兵单位和建筑提供升级方案。\n开启：\n- 使SCV可以建造导弹塔\n- 使SCV可以建造感应塔\n- 使指挥中心可升级为行星要塞",
+              "tooltip_key": "Button/Tooltip/EngineeringBay",
+              "icon": "Assets\\Textures\\btn-building-terran-engineeringbay.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-engineeringbay.dds"
+            }
           },
           {
             "face": "Bunker",
@@ -1388,7 +1858,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Bunker",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造地堡",
+              "name_key": "Button/Name/Bunker",
+              "tooltip": "防御工事。\n步兵单位在地堡内作战。\n效果加成：舱载单位射程增加1。",
+              "tooltip_key": "Button/Tooltip/Bunker",
+              "icon": "Assets\\Textures\\btn-building-terran-bunker.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-bunker.dds"
+            }
           },
           {
             "face": "MissileTurret",
@@ -1400,7 +1880,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MissileTurret",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造导弹塔",
+              "name_key": "Button/Name/MissileTurret",
+              "tooltip": "防空建筑。\n可以对空\n侦测单位",
+              "tooltip_key": "Button/Tooltip/MissileTurret",
+              "icon": "Assets\\Textures\\btn-building-terran-missileturret.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-missileturret.dds"
+            }
           },
           {
             "face": "SensorTower",
@@ -1420,8 +1910,8 @@
               "name_key": "Button/Name/SensorTower",
               "tooltip": "在大范围内显示敌方单位的位置。敌方单位可以看到感应塔的侦测范围。",
               "tooltip_key": "Button/Tooltip/SensorTower",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-building-terran-sensordome.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-sensordome.dds"
             }
           },
           {
@@ -1434,7 +1924,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           }
         ]
       },
@@ -1452,7 +1952,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "GhostAcademy",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造幽灵军校",
+              "name_key": "Button/Name/GhostAcademy",
+              "tooltip": "能够制造供幽灵使用的聚变弹头，并为幽灵提供升级方案。\n开启：\n- 可以在兵营中训练幽灵",
+              "tooltip_key": "Button/Tooltip/GhostAcademy",
+              "icon": "Assets\\Textures\\btn-building-terran-ghostacademy.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-ghostacademy.dds"
+            }
           },
           {
             "face": "Factory",
@@ -1464,7 +1974,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Factory",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造重工厂",
+              "name_key": "Button/Name/Factory",
+              "tooltip": "战车生产设施。\n开启：\n- 恶火\n- 寡妇雷\n- 飓风",
+              "tooltip_key": "Button/Tooltip/Factory",
+              "icon": "Assets\\Textures\\btn-building-terran-factory.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-factory.dds"
+            }
           },
           {
             "face": "Armory",
@@ -1476,7 +1996,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Armory",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造军械库",
+              "name_key": "Button/Name/Armory",
+              "tooltip": "为重工厂和星港制造的单位提供武器和护甲升级方案。\n开启：\n- 可以在重工厂中制造恶蝠\n- 可以在重工厂中制造雷神",
+              "tooltip_key": "Button/Tooltip/Armory",
+              "icon": "Assets\\Textures\\btn-building-terran-armory.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-armory.dds"
+            }
           },
           {
             "face": "Starport",
@@ -1488,7 +2018,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Starport",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造星港",
+              "name_key": "Button/Name/Starport",
+              "tooltip": "空中单位生产设施。\n开启：\n- 维京战机\n- 医疗运输机\n- 解放者",
+              "tooltip_key": "Button/Tooltip/Starport",
+              "icon": "Assets\\Textures\\btn-building-terran-starport.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-starport.dds"
+            }
           },
           {
             "face": "FusionCore",
@@ -1500,7 +2040,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "FusionCore",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "建造聚变芯体",
+              "name_key": "Button/Name/FusionCore",
+              "tooltip": "为医疗运输机、解放者、战列巡航舰提供升级方案。\n开启：\n- 可在星港中建造战列巡航舰",
+              "tooltip_key": "Button/Tooltip/FusionCore",
+              "icon": "Assets\\Textures\\btn-building-terran-fusioncore.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-fusioncore.dds"
+            }
           },
           {
             "face": "Cancel",
@@ -1512,7 +2062,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           }
         ]
       }
@@ -1523,9 +2083,9 @@
     "unit_id": "Banshee",
     "name": "女妖",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Banshee",
+    "icon": "Assets\\Textures\\btn-unit-terran-banshee.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-banshee.dds",
     "cards": [
       {
         "card_id": "",
@@ -1541,7 +2101,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -1553,7 +2123,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -1565,7 +2145,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -1577,7 +2167,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -1589,7 +2189,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "CloakOnBanshee",
@@ -1601,7 +2211,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CloakOnBanshee",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "隐形",
+              "name_key": "Button/Name/CloakOnBanshee",
+              "tooltip": "使该单位隐形，防止敌方发现或攻击该单位。隐形后的单位只会被侦测单位或侦测效果发现。\n每秒消耗{-1 * (Behavior,BansheeCloak,Modification.VitalRegenArray[2] + Unit,Banshee,EnergyRegenRate)}点能量。",
+              "tooltip_key": "Button/Tooltip/CloakOnBanshee",
+              "icon": "Assets\\Textures\\btn-ability-terran-cloak-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-cloak-color.dds"
+            }
           },
           {
             "face": "CloakOff",
@@ -1613,7 +2233,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CloakOff",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "取消隐形",
+              "name_key": "Button/Name/CloakOff",
+              "tooltip": "取消所选单位的隐形效果，使其现形。",
+              "tooltip_key": "Button/Tooltip/CloakOff",
+              "icon": "Assets\\Textures\\BTN-Ability-Terran-Decloak-color.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Terran-Decloak-color.dds"
+            }
           },
           {
             "face": "AfterburnersLocked",
@@ -1633,8 +2263,8 @@
               "name_key": "Button/Name/AfterburnersLocked",
               "tooltip": "该技能将在指挥官等级11时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel11",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -1670,9 +2300,9 @@
     "unit_id": "CommandCenter",
     "name": "指挥中心",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "CommandCenter",
+    "icon": "Assets\\Textures\\btn-building-terran-commandcenter.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-terran-commandcenter.dds",
     "cards": [
       {
         "card_id": "",
@@ -1688,7 +2318,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SCV",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "制造SCV",
+              "name_key": "Button/Name/SCV",
+              "tooltip": "基础工作单位。用于采集资源、建造人类建筑和修理。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/SCV",
+              "icon": "Assets\\Textures\\btn-unit-terran-scv.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds"
+            }
           },
           {
             "face": "VespeneDrone",
@@ -1722,7 +2362,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "OrbitalCommand",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "升级为轨道控制基地",
+              "name_key": "Button/Name/OrbitalCommand",
+              "tooltip": "使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。",
+              "tooltip_key": "Button/Tooltip/OrbitalCommand",
+              "icon": "Assets\\Textures\\BTN-Building-Terran-SurveillanceStation.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Building-Terran-SurveillanceStation.dds"
+            }
           },
           {
             "face": "UpgradeToPlanetaryFortress",
@@ -1734,7 +2384,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "UpgradeToPlanetaryFortress",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "升级为行星要塞",
+              "name_key": "Button/Name/UpgradeToPlanetaryFortress",
+              "tooltip": "添置一个强力炮塔，并且提高护甲。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/UpgradeToPlanetaryFortress",
+              "icon": "Assets\\Textures\\btn-building-terran-planetaryfortress.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-terran-planetaryfortress.dds"
+            }
           },
           {
             "face": "MasteryNovaArmyOOCRegenSpeedAppend",
@@ -1768,7 +2428,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SelectBuilder",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "选择建造单位",
+              "name_key": "Button/Name/SelectBuilder",
+              "tooltip": "选中正在建造该建筑的单位。",
+              "tooltip_key": "Button/Tooltip/SelectBuilder",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds"
+            }
           },
           {
             "face": "Rally",
@@ -1780,7 +2450,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
           },
           {
             "face": "CommandCenterLoad",
@@ -1792,7 +2472,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CommandCenterLoad",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "装载",
+              "name_key": "Button/Name/CommandCenterLoad",
+              "tooltip": "将附近的SCV装载进指挥中心。",
+              "tooltip_key": "Button/Tooltip/CommandCenterLoad",
+              "icon": "Assets\\Textures\\btn-ability-terran-load.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-load.dds"
+            }
           },
           {
             "face": "CommandCenterUnloadAll",
@@ -1804,7 +2494,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CommandCenterUnloadAll",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "全部卸载",
+              "name_key": "Button/Name/CommandCenterUnloadAll",
+              "tooltip": "卸载所有单位。",
+              "tooltip_key": "Button/Tooltip/CommandCenterUnloadAll",
+              "icon": "Assets\\Textures\\btn-ability-terran-unloadall.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-unloadall.dds"
+            }
           },
           {
             "face": "NeoSteelFrameCommandCenter",
@@ -1838,7 +2538,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Halt",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "暂停",
+              "name_key": "Button/Name/Halt",
+              "tooltip": "暂停建造，保留尚未建造完成的建筑。",
+              "tooltip_key": "Button/Tooltip/Halt",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "CancelBuilding",
@@ -1850,7 +2560,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "CancelBuilding",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/CancelBuilding",
+              "tooltip": "取消建造，摧毁尚未建造完成的建筑并返还部分资源。",
+              "tooltip_key": "Button/Tooltip/CancelBuilding",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "",
@@ -1873,9 +2593,9 @@
     "unit_id": "Marauder",
     "name": "劫掠者",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Marauder",
+    "icon": "Assets\\Textures\\btn-unit-terran-marauder.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-marauder.dds",
     "cards": [
       {
         "card_id": "",
@@ -1891,7 +2611,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -1903,7 +2633,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -1915,7 +2655,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -1927,7 +2677,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -1939,7 +2699,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "StimMarauder",
@@ -1959,8 +2729,8 @@
               "name_key": "Button/Name/StimMarauder",
               "tooltip": "给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,StimpackMarauder,Cost[0].Vital[Life]}的伤害。",
               "tooltip_key": "Button/Tooltip/StimMarauder",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\btn-ability-terran-stimpack-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-stimpack-color.dds"
             }
           },
           {
@@ -1973,7 +2743,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "ConcussiveGrenade",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "震荡弹",
+              "name_key": "Button/Name/ConcussiveGrenade",
+              "tooltip": "被劫掠者击中的目标会暂时减速。\n重型单位对该效果免疫",
+              "tooltip_key": "Button/Tooltip/ConcussiveGrenade",
+              "icon": "Assets\\Textures\\btn-ability-terran-punishergrenade-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-punishergrenade-color.dds"
+            }
           }
         ]
       }
@@ -1984,9 +2764,9 @@
     "unit_id": "OrbitalCommand",
     "name": "轨道控制基地",
     "object_type": "Structure",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "OrbitalCommand",
+    "icon": "Assets\\Textures\\BTN-Building-Terran-SurveillanceStation.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Building-Terran-SurveillanceStation.dds",
     "cards": [
       {
         "card_id": "",
@@ -2002,7 +2782,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SCV",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "制造SCV",
+              "name_key": "Button/Name/SCV",
+              "tooltip": "基础工作单位。用于采集资源、建造人类建筑和修理。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/SCV",
+              "icon": "Assets\\Textures\\btn-unit-terran-scv.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-scv.dds"
+            }
           },
           {
             "face": "Rally",
@@ -2014,7 +2804,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Rally",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "设定集结点",
+              "name_key": "Button/Name/Rally",
+              "tooltip": "将生成的单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/Rally",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
           },
           {
             "face": "CommanderPrestigeRaynorMULELocked",
@@ -2034,8 +2834,8 @@
               "name_key": "Button/Name/CommanderPrestigeRaynorMULELocked",
               "tooltip": "该技能被指挥官威望锁定。",
               "tooltip_key": "Button/Tooltip/PrestigeAbilLocked",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -2048,7 +2848,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SupplyDrop",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "轨道空投：额外补给",
+              "name_key": "Button/Name/SupplyDrop",
+              "tooltip": "投放额外补给，使目标补给站提供的补给数量永久性增加{Behavior,SupplyDrop,Modification.Food}，并立即将其生命值提高至500。",
+              "tooltip_key": "Button/Tooltip/SupplyDrop",
+              "icon": "Assets\\Textures\\BTN-Ability-Terran-CalldownExtraSupplies-color.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Terran-CalldownExtraSupplies-color.dds"
+            }
           },
           {
             "face": "Scan",
@@ -2060,7 +2870,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Scan",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "析象扫描",
+              "name_key": "Button/Name/Scan",
+              "tooltip": "显示地图的一个区域。侦测隐形或潜地的单位。持续{time:12}。",
+              "tooltip_key": "Button/Tooltip/Scan",
+              "icon": "Assets\\Textures\\btn-ability-terran-scannersweep-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-scannersweep-color.dds"
+            }
           },
           {
             "face": "Lift",
@@ -2072,7 +2892,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Lift",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "升空",
+              "name_key": "Button/Name/Lift",
+              "tooltip": "将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。",
+              "tooltip_key": "Button/Tooltip/Lift",
+              "icon": "Assets\\Textures\\btn-ability-terran-liftoff.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-liftoff.dds"
+            }
           },
           {
             "face": "Cancel",
@@ -2084,7 +2914,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Cancel",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "取消",
+              "name_key": "Button/Name/Cancel",
+              "tooltip": "直接取消当前命令，让您可以选择其它命令。",
+              "tooltip_key": "Button/Tooltip/Cancel",
+              "icon": "Assets\\Textures\\btn-command-cancel.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
+            }
           },
           {
             "face": "OrbitalCommandCalldownSupplyDepot",
@@ -2117,9 +2957,9 @@
     "unit_id": "Battlecruiser",
     "name": "战列巡航舰",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "Battlecruiser",
+    "icon": "Assets\\Textures\\btn-unit-terran-battlecruiser.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-battlecruiser.dds",
     "cards": [
       {
         "card_id": "",
@@ -2135,7 +2975,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -2147,7 +2997,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -2159,7 +3019,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -2171,7 +3041,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -2183,7 +3063,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "YamatoGun",
@@ -2195,7 +3085,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "YamatoGun",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "大和炮",
+              "name_key": "Button/Name/YamatoGun",
+              "tooltip": "使用一门毁灭性的等离子火炮轰击目标，造成{Effect,YamatoU,Amount}点伤害。",
+              "tooltip_key": "Button/Tooltip/YamatoGun",
+              "icon": "Assets\\Textures\\btn-ability-terran-yamatogun-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-yamatogun-color.dds"
+            }
           },
           {
             "face": "Hyperjump",
@@ -2207,7 +3107,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Hyperjump",
+              "source_catalog": "void",
+              "parent": "",
+              "name": "战术跳跃",
+              "name_key": "Button/Name/Hyperjump",
+              "tooltip": "{time:6}后折跃至目标位置。战列巡航舰在折跃时处于无敌状态。\n不需要视野。",
+              "tooltip_key": "Button/Tooltip/Hyperjump",
+              "icon": "Assets\\Textures\\btn-ability-terran-warpjump.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-warpjump.dds"
+            }
           },
           {
             "face": "AfterburnersLocked",
@@ -2227,8 +3137,8 @@
               "name_key": "Button/Name/AfterburnersLocked",
               "tooltip": "该技能将在指挥官等级11时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel11",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
@@ -2300,9 +3210,9 @@
     "unit_id": "SiegeTank",
     "name": "攻城坦克",
     "object_type": "Unit",
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "SiegeTank",
+    "icon": "Assets\\Textures\\btn-unit-terran-siegetank.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-siegetank.dds",
     "cards": [
       {
         "card_id": "",
@@ -2318,7 +3228,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
           },
           {
             "face": "Stop",
@@ -2330,7 +3250,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
           },
           {
             "face": "MoveHoldPosition",
@@ -2342,7 +3272,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
           },
           {
             "face": "MovePatrol",
@@ -2354,7 +3294,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
           },
           {
             "face": "Attack",
@@ -2366,7 +3316,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
           },
           {
             "face": "CommanderSwannImmortalityProtocol",
@@ -2386,8 +3346,8 @@
               "name_key": "Button/Name/CommanderSwannImmortalityProtocol",
               "tooltip": "解锁重建能力。使被摧毁的雷神和攻城坦克能在战场上重建。",
               "tooltip_key": "Button/Tooltip/CommanderSwannImmortalityProtocol",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\Talent-Swann-Level12-ImmortalityProtocol.dds",
+              "alert_icon": "Assets\\Textures\\Talent-Swann-Level12-ImmortalityProtocol.dds"
             }
           },
           {
@@ -2400,7 +3360,17 @@
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {}
+            "button": {
+              "id": "SiegeMode",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻城模式",
+              "name_key": "Button/Name/SiegeMode",
+              "tooltip": "部署为攻城模式。在该模式下，攻城坦克的射程极大提高，并可造成范围伤害，但无法移动和攻击近距离目标。",
+              "tooltip_key": "Button/Tooltip/SiegeMode",
+              "icon": "Assets\\Textures\\btn-unit-terran-siegetanksiegemode.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-siegetanksiegemode.dds"
+            }
           },
           {
             "face": "AfterburnersLocked",
@@ -2420,8 +3390,8 @@
               "name_key": "Button/Name/AfterburnersLocked",
               "tooltip": "该技能将在指挥官等级11时解锁。",
               "tooltip_key": "Button/Tooltip/AbilLockedLevel11",
-              "icon": "",
-              "alert_icon": ""
+              "icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds",
+              "alert_icon": "Assets\\Textures\\sc2_ui_ingame_storymode_panel_faction_lock.dds"
             }
           },
           {
