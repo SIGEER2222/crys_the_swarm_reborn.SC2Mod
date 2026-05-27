@@ -330,7 +330,7 @@
   },
   {
     "id": "RoboticsWarp",
-    "unit_id": "RoboticsFacilityWarp",
+    "unit_id": "ZeratulRoboticsFacility",
     "army_categories": [
       "RoboticsWarp"
     ],
@@ -347,47 +347,59 @@
     "suffix_key": "",
     "name": "折跃机械台",
     "name_key": "ArmyCategory/Name/RoboticsFacilityWarp",
-    "tooltip": "允许折跃星灵机械单位。\n开启：\n- 不朽者\n- 侦测器",
-    "tooltip_key": "Button/Tooltip/RoboticsFacilityWarp",
+    "tooltip": "建造萨尔纳加机械构造体。\n开启：\n- 萨尔纳加执行者\n- 萨尔纳加虚空阵列船\n- 萨尔纳加观察者",
+    "tooltip_key": "Button/Tooltip/ZeratulRoboticsFacility",
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
-      "RoboticsFacilityWarp",
-      "ZeratulRoboticsFacility"
+      "ZeratulRoboticsFacility",
+      "RoboticsFacilityWarp"
     ],
-    "icon_button": "",
-    "icon": "",
-    "alert_icon": "",
+    "icon_button": "ZeratulRoboticsFacility",
+    "icon": "Assets\\Textures\\btn-building-protoss-zeratulroboticsfacility.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-protoss-zeratulroboticsfacility.dds",
     "unit": {
-      "id": "RoboticsFacilityWarp",
+      "id": "ZeratulRoboticsFacility",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Structure",
-      "object_family": "FactionKhalai",
-      "race": "",
-      "mob": "",
-      "planes": [],
-      "attributes": [
-        "Mechanical"
+      "object_family": "FactionXelNaga",
+      "race": "Prot",
+      "mob": "Multiplayer",
+      "planes": [
+        "Ground"
       ],
-      "flags": [],
-      "minerals": "",
-      "vespene": "",
+      "attributes": [
+        "Armored",
+        "Mechanical",
+        "Structure"
+      ],
+      "flags": [
+        "ArmorDisabledWhileConstructing",
+        "NoPortraitTalk",
+        "PenaltyRevealed",
+        "PreventDefeat",
+        "PreventDestroy",
+        "TownAlert",
+        "UseLineOfSight"
+      ],
+      "minerals": "200",
+      "vespene": "100",
       "terrazine": "",
       "supply": "",
       "build_time": "",
-      "life": "",
-      "shields": "",
+      "life": "450",
+      "shields": "450",
       "energy": "",
-      "sight": "",
+      "sight": "9",
       "editor_categories": {
         "ObjectType": "Structure",
-        "ObjectFamily": "FactionKhalai"
+        "ObjectFamily": "FactionXelNaga"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "RoboticsFacilityWarp",
+          "id": "ZeratulRoboticsFacility",
           "parent": ""
         }
       ]

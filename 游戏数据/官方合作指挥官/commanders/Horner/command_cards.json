@@ -1479,526 +1479,8 @@
   },
   {
     "id": "HHWidowMine",
-    "unit_id": "HHReaper",
-    "name": "霍纳寡妇雷",
-    "object_type": "Unit",
-    "icon_button": "HHReaper",
-    "icon": "Assets\\Textures\\btn-unit-collection-reaper-junker.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-collection-reaper-junker.dds",
-    "cards": [
-      {
-        "card_id": "",
-        "is_default_card": true,
-        "buttons": [
-          {
-            "face": "Move",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Move",
-            "requirements": "",
-            "row": 0,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Move",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "移动",
-              "name_key": "Button/Name/Move",
-              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
-              "tooltip_key": "Button/Tooltip/Move",
-              "icon": "Assets\\Textures\\btn-command-move.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
-            }
-          },
-          {
-            "face": "Stop",
-            "type": "AbilCmd",
-            "abil_cmd": "stop,Stop",
-            "requirements": "",
-            "row": 0,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Stop",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "停止",
-              "name_key": "Button/Name/Stop",
-              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
-              "tooltip_key": "Button/Tooltip/Stop",
-              "icon": "Assets\\Textures\\btn-command-stop.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
-            }
-          },
-          {
-            "face": "MoveHoldPosition",
-            "type": "AbilCmd",
-            "abil_cmd": "move,HoldPos",
-            "requirements": "",
-            "row": 0,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MoveHoldPosition",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "原地防御",
-              "name_key": "Button/Name/MoveHoldPosition",
-              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
-              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
-            }
-          },
-          {
-            "face": "MovePatrol",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Patrol",
-            "requirements": "",
-            "row": 0,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MovePatrol",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "巡逻",
-              "name_key": "Button/Name/MovePatrol",
-              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MovePatrol",
-              "icon": "Assets\\Textures\\btn-command-patrol.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
-            }
-          },
-          {
-            "face": "Attack",
-            "type": "AbilCmd",
-            "abil_cmd": "attack,Execute",
-            "requirements": "",
-            "row": 0,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Attack",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "攻击",
-              "name_key": "Button/Name/Attack",
-              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
-              "tooltip_key": "Button/Tooltip/Attack",
-              "icon": "Assets\\Textures\\btn-command-attack.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
-            }
-          },
-          {
-            "face": "HHMSOAttackSpeed",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HaveHHSOBuff",
-            "row": 1,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HHMSOAttackSpeed",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "我的另一半",
-              "name_key": "Button/Name/HHMSOAttackSpeed",
-              "tooltip": "霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。",
-              "tooltip_key": "Button/Tooltip/HHMSOAttackSpeed",
-              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
-              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds"
-            }
-          },
-          {
-            "face": "HHKD8Charge",
-            "type": "AbilCmd",
-            "abil_cmd": "HHD8SingleCharge,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HHKD8Charge",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "KD8型炸弹",
-              "name_key": "Button/Name/HHKD8Charge",
-              "tooltip": "短暂延迟后发生爆炸，造成{Effect,HHD8ChargeExplodeDamage,Amount}点范围伤害并击退附近的单位。",
-              "tooltip_key": "Button/Tooltip/HHKD8Charge",
-              "icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds"
-            }
-          },
-          {
-            "face": "HHReaperFly",
-            "type": "AbilCmd",
-            "abil_cmd": "HHReaperFly,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HHReaperFly",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "喷气背包加力",
-              "name_key": "Button/Name/HHReaperFly",
-              "tooltip": "使收割者飞行{Behavior,HHReaperFlyingDuration,Duration}秒。飞行时，收割者可以对空。",
-              "tooltip_key": "Button/Tooltip/HHReaperFly",
-              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds"
-            }
-          },
-          {
-            "face": "JetPack",
-            "type": "Passive",
-            "abil_cmd": "255,255",
-            "requirements": "",
-            "row": 2,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "JetPack",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "喷气背包",
-              "name_key": "Button/Name/JetPack",
-              "tooltip": "使收割者能够翻越悬崖。",
-              "tooltip_key": "Button/Tooltip/JetPack",
-              "icon": "Assets\\Textures\\BTN-Ability-Terran-JetPack-color.dds",
-              "alert_icon": "Assets\\Textures\\BTN-Ability-Terran-JetPack-color.dds"
-            }
-          },
-          {
-            "face": "CombatDrugs",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": 2,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "CombatDrugs",
-              "source_catalog": "swarm",
-              "parent": "",
-              "name": "战斗药剂",
-              "name_key": "Button/Name/CombatDrugs",
-              "tooltip": "脱离战斗后能够迅速恢复生命值。",
-              "tooltip_key": "Button/Tooltip/CombatDrugs",
-              "icon": "Assets\\Textures\\btn-upgrade-terran-reapercombatdrugs.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-reapercombatdrugs.dds"
-            }
-          },
-          {
-            "face": "HHReaperClusterBombs",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HaveHHReaperClusterBomb",
-            "row": 2,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HHReaperClusterBombs",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "LE9型集束炸弹",
-              "name_key": "Button/Name/HHReaperClusterBombs",
-              "tooltip": "使KD8炸弹的冷却时间缩短{time:10}。被杀死时，收割者会向击杀他的单位投掷多枚手雷。",
-              "tooltip_key": "Button/Tooltip/HHReaperClusterBombs",
-              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "HHWraith",
-    "unit_id": "HHReaper",
-    "name": "霍纳怨灵战机",
-    "object_type": "Unit",
-    "icon_button": "HHReaper",
-    "icon": "Assets\\Textures\\btn-unit-collection-reaper-junker.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-collection-reaper-junker.dds",
-    "cards": [
-      {
-        "card_id": "",
-        "is_default_card": true,
-        "buttons": [
-          {
-            "face": "Move",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Move",
-            "requirements": "",
-            "row": 0,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Move",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "移动",
-              "name_key": "Button/Name/Move",
-              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
-              "tooltip_key": "Button/Tooltip/Move",
-              "icon": "Assets\\Textures\\btn-command-move.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
-            }
-          },
-          {
-            "face": "Stop",
-            "type": "AbilCmd",
-            "abil_cmd": "stop,Stop",
-            "requirements": "",
-            "row": 0,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Stop",
-              "source_catalog": "voidmulti",
-              "parent": "",
-              "name": "停止",
-              "name_key": "Button/Name/Stop",
-              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
-              "tooltip_key": "Button/Tooltip/Stop",
-              "icon": "Assets\\Textures\\btn-command-stop.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
-            }
-          },
-          {
-            "face": "MoveHoldPosition",
-            "type": "AbilCmd",
-            "abil_cmd": "move,HoldPos",
-            "requirements": "",
-            "row": 0,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MoveHoldPosition",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "原地防御",
-              "name_key": "Button/Name/MoveHoldPosition",
-              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
-              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
-            }
-          },
-          {
-            "face": "MovePatrol",
-            "type": "AbilCmd",
-            "abil_cmd": "move,Patrol",
-            "requirements": "",
-            "row": 0,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "MovePatrol",
-              "source_catalog": "core",
-              "parent": "",
-              "name": "巡逻",
-              "name_key": "Button/Name/MovePatrol",
-              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
-              "tooltip_key": "Button/Tooltip/MovePatrol",
-              "icon": "Assets\\Textures\\btn-command-patrol.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
-            }
-          },
-          {
-            "face": "Attack",
-            "type": "AbilCmd",
-            "abil_cmd": "attack,Execute",
-            "requirements": "",
-            "row": 0,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "Attack",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "攻击",
-              "name_key": "Button/Name/Attack",
-              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
-              "tooltip_key": "Button/Tooltip/Attack",
-              "icon": "Assets\\Textures\\btn-command-attack.dds",
-              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
-            }
-          },
-          {
-            "face": "HHMSOAttackSpeed",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HaveHHSOBuff",
-            "row": 1,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HHMSOAttackSpeed",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "我的另一半",
-              "name_key": "Button/Name/HHMSOAttackSpeed",
-              "tooltip": "霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。",
-              "tooltip_key": "Button/Tooltip/HHMSOAttackSpeed",
-              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
-              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds"
-            }
-          },
-          {
-            "face": "HHKD8Charge",
-            "type": "AbilCmd",
-            "abil_cmd": "HHD8SingleCharge,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 0,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HHKD8Charge",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "KD8型炸弹",
-              "name_key": "Button/Name/HHKD8Charge",
-              "tooltip": "短暂延迟后发生爆炸，造成{Effect,HHD8ChargeExplodeDamage,Amount}点范围伤害并击退附近的单位。",
-              "tooltip_key": "Button/Tooltip/HHKD8Charge",
-              "icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds"
-            }
-          },
-          {
-            "face": "HHReaperFly",
-            "type": "AbilCmd",
-            "abil_cmd": "HHReaperFly,Execute",
-            "requirements": "",
-            "row": 2,
-            "column": 1,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HHReaperFly",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "喷气背包加力",
-              "name_key": "Button/Name/HHReaperFly",
-              "tooltip": "使收割者飞行{Behavior,HHReaperFlyingDuration,Duration}秒。飞行时，收割者可以对空。",
-              "tooltip_key": "Button/Tooltip/HHReaperFly",
-              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds"
-            }
-          },
-          {
-            "face": "JetPack",
-            "type": "Passive",
-            "abil_cmd": "255,255",
-            "requirements": "",
-            "row": 2,
-            "column": 2,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "JetPack",
-              "source_catalog": "liberty",
-              "parent": "",
-              "name": "喷气背包",
-              "name_key": "Button/Name/JetPack",
-              "tooltip": "使收割者能够翻越悬崖。",
-              "tooltip_key": "Button/Tooltip/JetPack",
-              "icon": "Assets\\Textures\\BTN-Ability-Terran-JetPack-color.dds",
-              "alert_icon": "Assets\\Textures\\BTN-Ability-Terran-JetPack-color.dds"
-            }
-          },
-          {
-            "face": "CombatDrugs",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "",
-            "row": 2,
-            "column": 3,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "CombatDrugs",
-              "source_catalog": "swarm",
-              "parent": "",
-              "name": "战斗药剂",
-              "name_key": "Button/Name/CombatDrugs",
-              "tooltip": "脱离战斗后能够迅速恢复生命值。",
-              "tooltip_key": "Button/Tooltip/CombatDrugs",
-              "icon": "Assets\\Textures\\btn-upgrade-terran-reapercombatdrugs.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-reapercombatdrugs.dds"
-            }
-          },
-          {
-            "face": "HHReaperClusterBombs",
-            "type": "Passive",
-            "abil_cmd": "",
-            "requirements": "HaveHHReaperClusterBomb",
-            "row": 2,
-            "column": 4,
-            "submenu_abil_state": "",
-            "submenu_card_id": "",
-            "submenu_is_sticky": "",
-            "button": {
-              "id": "HHReaperClusterBombs",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "LE9型集束炸弹",
-              "name_key": "Button/Name/HHReaperClusterBombs",
-              "tooltip": "使KD8炸弹的冷却时间缩短{time:10}。被杀死时，收割者会向击杀他的单位投掷多枚手雷。",
-              "tooltip_key": "Button/Tooltip/HHReaperClusterBombs",
-              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds",
-              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "Predator",
     "unit_id": "HHWidowMine",
-    "name": "掠食者",
+    "name": "霍纳寡妇雷",
     "object_type": "Unit",
     "icon_button": "HHWidowMine",
     "icon": "Assets\\Textures\\btn-unit-collection-widowmine-junker.dds",
@@ -2226,6 +1708,265 @@
               "tooltip_key": "Button/Tooltip/HHWidowMineRangeAttack",
               "icon": "Assets\\Textures\\btn-ability-hornerhan-widowmine-attackrange.dds",
               "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-widowmine-attackrange.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HHWraith",
+    "unit_id": "HHWraith",
+    "name": "霍纳怨灵战机",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Move",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "移动",
+              "name_key": "Button/Name/Move",
+              "tooltip": "命令选中的单位移至目标区域或跟随目标单位。正在移动的单位不会与敌人交战。",
+              "tooltip_key": "Button/Tooltip/Move",
+              "icon": "Assets\\Textures\\btn-command-move.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-move.dds"
+            }
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Stop",
+              "source_catalog": "voidmulti",
+              "parent": "",
+              "name": "停止",
+              "name_key": "Button/Name/Stop",
+              "tooltip": "命令选中的单位不再执行任何命令并停止移动。",
+              "tooltip_key": "Button/Tooltip/Stop",
+              "icon": "Assets\\Textures\\btn-command-stop.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-stop.dds"
+            }
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MoveHoldPosition",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "原地防御",
+              "name_key": "Button/Name/MoveHoldPosition",
+              "tooltip": "命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MoveHoldPosition",
+              "icon": "Assets\\Textures\\btn-command-holdposition.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-holdposition.dds"
+            }
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MovePatrol",
+              "source_catalog": "core",
+              "parent": "",
+              "name": "巡逻",
+              "name_key": "Button/Name/MovePatrol",
+              "tooltip": "命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。",
+              "tooltip_key": "Button/Tooltip/MovePatrol",
+              "icon": "Assets\\Textures\\btn-command-patrol.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-patrol.dds"
+            }
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Attack",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "攻击",
+              "name_key": "Button/Name/Attack",
+              "tooltip": "命令选中的单位移动到目标地点，并对沿途遭遇的敌人发起攻击。收到攻击一个目标的命令后，单位会持续攻击该目标，直到对方被消灭。",
+              "tooltip_key": "Button/Tooltip/Attack",
+              "icon": "Assets\\Textures\\btn-command-attack.dds",
+              "alert_icon": "Assets\\Textures\\btn-command-attack.dds"
+            }
+          },
+          {
+            "face": "HHMSOHealth",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOHealth",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOHealth",
+              "tooltip": "汉的战斗单位使霍纳的单位的生命值提高{Effect,HornerMSOHealthDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOHealth",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds"
+            }
+          },
+          {
+            "face": "FleetwideJump",
+            "type": "AbilCmd",
+            "abil_cmd": "FleetwideJump,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "FleetwideJump",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "战术跳跃",
+              "name_key": "Button/Name/FleetwideJump",
+              "tooltip": "折跃到目标位置。飞行器折跃期间处于无敌状态。",
+              "tooltip_key": "Button/Tooltip/FleetwideJump",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-fleethyperjump.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-fleethyperjump.dds"
+            }
+          },
+          {
+            "face": "HHWraithPermaCloak",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHWraithPermaCloak",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHWraithPermaCloak",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "未登记的隐形系统",
+              "name_key": "Button/Name/HHWraithPermaCloak",
+              "tooltip": "怨灵战机永久隐形。",
+              "tooltip_key": "Button/Tooltip/HHWraithPermaCloak",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-wraith-permanentcloak.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-wraith-permanentcloak.dds"
+            }
+          },
+          {
+            "face": "WraithCloakOff",
+            "type": "AbilCmd",
+            "abil_cmd": "HHWraithCloak,Off",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WraithCloakOff",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/WraithCloakOff",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/WraithCloakOff",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "HHWraithFury",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHWraithFury",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHWraithFury",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "火控复检",
+              "name_key": "Button/Name/HHWraithFury",
+              "tooltip": "怨灵战机的每次攻击都能提高自身10%的攻击速度，最多叠加到100%。\n被动技能。",
+              "tooltip_key": "Button/Tooltip/HHWraithFury",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-wraith-attackspeed.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-wraith-attackspeed.dds"
+            }
+          },
+          {
+            "face": "HHArmyOOCRegen",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHArmyOOCRegen",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHArmyOOCRegen",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "耐力训练",
+              "name_key": "Button/Name/HHArmyOOCRegen",
+              "tooltip": "该单位脱离战斗后每秒回复{Behavior,HHArmyOOCRegenSpeed,Modification.VitalRegenArray[Life]}点生命值。",
+              "tooltip_key": "Button/Tooltip/HHArmyOOCRegen",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds"
             }
           }
         ]

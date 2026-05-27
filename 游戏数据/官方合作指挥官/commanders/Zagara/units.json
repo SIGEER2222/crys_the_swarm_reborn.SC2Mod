@@ -317,7 +317,7 @@
   },
   {
     "id": "SwarmQueen",
-    "unit_id": "Queen",
+    "unit_id": "SwarmQueen",
     "army_categories": [
       "SwarmQueen"
     ],
@@ -343,19 +343,83 @@
     "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
     "source_name": "starcoop",
     "resolved_unit_ids": [
+      "SwarmQueen",
       "Queen",
-      "QueenCoop",
-      "SwarmQueen"
+      "QueenCoop"
     ],
-    "icon_button": "Queen",
-    "icon": "Assets\\Textures\\btn-unit-zerg-broodqueen.dds",
-    "alert_icon": "Assets\\Textures\\btn-unit-zerg-broodqueen.dds",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
     "unit": {
-      "id": "Queen",
+      "id": "SwarmQueen",
       "source_catalog": "starcoop",
       "parent": "",
       "object_type": "Unit",
-      "object_family": "FactionPrimal",
+      "object_family": "",
+      "race": "",
+      "mob": "",
+      "planes": [],
+      "attributes": [],
+      "flags": [],
+      "minerals": "",
+      "vespene": "",
+      "terrazine": "",
+      "supply": "",
+      "build_time": "",
+      "life": "",
+      "shields": "",
+      "energy": "",
+      "sight": "",
+      "editor_categories": {},
+      "inheritance": [
+        {
+          "source": "starcoop",
+          "id": "SwarmQueen",
+          "parent": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": "Zergling",
+    "unit_id": "Zergling",
+    "army_categories": [
+      "Zergling"
+    ],
+    "commanders": [
+      "Kerrigan",
+      "Zagara",
+      "Stukov"
+    ],
+    "commander_ids": [
+      "ZergKerrigan",
+      "ZergZagara",
+      "ZergStukov"
+    ],
+    "ui_order": null,
+    "prefix": "异虫 —",
+    "prefix_key": "UserData/TechUnit/Zergling_Prefix",
+    "suffix": "(Stock)",
+    "suffix_key": "UserData/TechUnit/Zergling_Suffix",
+    "name": "跳虫",
+    "name_key": "UserData/TechUnit/Zergling_Name",
+    "tooltip": "迅捷的肉搏型生物。可以变异为爆虫。\n可以对地。",
+    "tooltip_key": "Button/Tooltip/Zergling",
+    "source": "mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml",
+    "source_name": "starcoop",
+    "resolved_unit_ids": [
+      "Zergling",
+      "SpawningPool"
+    ],
+    "icon_button": "Zergling",
+    "icon": "Assets\\Textures\\btn-unit-zerg-zergling.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-zergling.dds",
+    "unit": {
+      "id": "Zergling",
+      "source_catalog": "starcoop",
+      "parent": "",
+      "object_type": "Unit",
+      "object_family": "Melee",
       "race": "Zerg",
       "mob": "Multiplayer",
       "planes": [
@@ -363,57 +427,55 @@
       ],
       "attributes": [
         "Biological",
-        "Psionic"
+        "Light"
       ],
       "flags": [
-        "AIDefense",
-        "AIPressForwardDisabled",
-        "AISupport",
+        "ArmySelect",
         "PreventDestroy",
         "UseLineOfSight"
       ],
-      "minerals": "175",
+      "minerals": "25",
       "vespene": "",
       "terrazine": "",
-      "supply": "-2",
+      "supply": "-0.5",
       "build_time": "",
-      "life": "175",
+      "life": "35",
       "shields": "",
-      "energy": "200",
-      "sight": "9",
+      "energy": "",
+      "sight": "8",
       "editor_categories": {
         "ObjectType": "Unit",
-        "ObjectFamily": "FactionPrimal"
+        "ObjectFamily": "Melee"
       },
       "inheritance": [
         {
           "source": "starcoop",
-          "id": "Queen",
+          "id": "Zergling",
           "parent": ""
         },
         {
           "source": "voidmulti",
-          "id": "Queen",
+          "id": "Zergling",
           "parent": ""
         },
         {
           "source": "swarmmulti",
-          "id": "Queen",
+          "id": "Zergling",
           "parent": ""
         },
         {
           "source": "swarm",
-          "id": "Queen",
+          "id": "Zergling",
           "parent": ""
         },
         {
           "source": "libertymulti",
-          "id": "Queen",
+          "id": "Zergling",
           "parent": ""
         },
         {
           "source": "liberty",
-          "id": "Queen",
+          "id": "Zergling",
           "parent": ""
         }
       ]

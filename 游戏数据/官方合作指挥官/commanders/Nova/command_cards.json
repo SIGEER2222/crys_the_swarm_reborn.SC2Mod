@@ -760,7 +760,7 @@
   },
   {
     "id": "GhostNova",
-    "unit_id": "GhostFemale_BlackOps",
+    "unit_id": "GhostNova",
     "name": "幽灵",
     "object_type": "Unit",
     "icon_button": "TrainGhostNova",
@@ -894,26 +894,16 @@
             "button": {}
           },
           {
-            "face": "GhostBlackOpsTripleTapPassive",
-            "type": "Passive",
+            "face": "",
+            "type": "",
             "abil_cmd": "",
-            "requirements": "HaveGhostBlackOpsTripleTap",
+            "requirements": "",
             "row": 1,
             "column": 1,
             "submenu_abil_state": "",
             "submenu_card_id": "",
             "submenu_is_sticky": "",
-            "button": {
-              "id": "GhostBlackOpsTripleTapPassive",
-              "source_catalog": "starcoop",
-              "parent": "",
-              "name": "三连击",
-              "name_key": "Button/Name/GhostBlackOpsTripleTapPassive",
-              "tooltip": "狙击进行2次额外射击，每一击造成{Effect,Snipe_BlackOpsTripleTapDamage,Amount}点伤害。",
-              "tooltip_key": "Button/Tooltip/GhostBlackOpsTripleTapPassive",
-              "icon": "Assets\\Textures\\btn-upgrade-terran-nova-snipetripletap.dds",
-              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-nova-snipetripletap.dds"
-            }
+            "button": {}
           },
           {
             "face": "GhostHoldFire",
@@ -939,7 +929,7 @@
           },
           {
             "face": "WeaponsFree",
-            "type": "AbilCmd",
+            "type": "",
             "abil_cmd": "GhostWeaponsFree,Execute",
             "requirements": "",
             "row": 1,
@@ -960,9 +950,31 @@
             }
           },
           {
-            "face": "Snipe_BlackOps",
+            "face": "NukeCalldown",
+            "type": "",
+            "abil_cmd": "TacNukeStrike,Execute",
+            "requirements": "",
+            "row": 1,
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "NukeCalldown",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "战术聚变打击",
+              "name_key": "Button/Name/NukeCalldown",
+              "tooltip": "通过空投对目标区域进行聚变打击。聚变打击需要{Effect,NukePersistent,PeriodCount * Effect,NukePersistent,PeriodicPeriodArray[0]}秒才能生效，但可对大范围内的目标造成最多300 (+200对建筑) 点伤害。\n在幽灵军校中购买弹头。",
+              "tooltip_key": "Button/Tooltip/NukeCalldown",
+              "icon": "Assets\\Textures\\btn-ability-terran-nuclearstrike-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-nuclearstrike-color.dds"
+            }
+          },
+          {
+            "face": "ChannelSnipe",
             "type": "AbilCmd",
-            "abil_cmd": "Snipe_BlackOps,Execute",
+            "abil_cmd": "ChannelSnipe,Execute",
             "requirements": "",
             "row": 2,
             "column": 0,
@@ -970,13 +982,13 @@
             "submenu_card_id": "",
             "submenu_is_sticky": "",
             "button": {
-              "id": "Snipe_BlackOps",
-              "source_catalog": "starcoop",
+              "id": "ChannelSnipe",
+              "source_catalog": "void",
               "parent": "",
-              "name": "狙杀",
-              "name_key": "Button/Name/Snipe_BlackOps",
-              "tooltip": "对目标敌方生物单位造成{Effect,Snipe_BlackOpsDamage,Amount}点伤害。机械单位免疫。",
-              "tooltip_key": "Button/Tooltip/Snipe_BlackOps",
+              "name": "稳定瞄准",
+              "name_key": "Button/Name/ChannelSnipe",
+              "tooltip": "专心瞄准{Effect,ChannelSnipeCreatePersistent,PeriodCount*Effect,ChannelSnipeCreatePersistent,PeriodicPeriodArray[0]}秒后，若幽灵在此期间内没有受到任何伤害，那么他将发射一枚拥有{Effect,ChannelSnipeDamage,Amount}点（对灵能单位额外造成{Effect,ChannelSnipeDamage,AttributeBonus[Psionic]}点）伤害的狙击弹。伤害无视护甲。\n只能对生物单位使用。",
+              "tooltip_key": "Button/Tooltip/ChannelSnipe",
               "icon": "Assets\\Textures\\btn-ability-terran-snipe-color.dds",
               "alert_icon": "Assets\\Textures\\btn-ability-terran-snipe-color.dds"
             }
@@ -984,7 +996,7 @@
           {
             "face": "EMP",
             "type": "AbilCmd",
-            "abil_cmd": "EMPBlackOps,Execute",
+            "abil_cmd": "EMP,Execute",
             "requirements": "",
             "row": 2,
             "column": 1,
@@ -1004,9 +1016,43 @@
             }
           },
           {
+            "face": "CloakOnGhost",
+            "type": "",
+            "abil_cmd": "GhostCloak,On",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CloakOnGhost",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "隐形",
+              "name_key": "Button/Name/CloakOnGhost",
+              "tooltip": "使该单位隐形，防止敌方发现或攻击该单位。隐形后的单位只会被侦测单位或侦测效果发现。\n每秒消耗{-1 * (Behavior,GhostCloak,Modification.VitalRegenArray[2] + Unit,Ghost,EnergyRegenRate)}点能量。",
+              "tooltip_key": "Button/Tooltip/CloakOnGhost",
+              "icon": "Assets\\Textures\\btn-ability-terran-cloak-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-cloak-color.dds"
+            }
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
             "face": "Cancel",
-            "type": "AbilCmd",
-            "abil_cmd": "TacNukeStrike,Cancel",
+            "type": "",
+            "abil_cmd": "ChannelSnipe,Cancel",
             "requirements": "",
             "row": 2,
             "column": 4,
@@ -1024,6 +1070,110 @@
               "icon": "Assets\\Textures\\btn-command-cancel.dds",
               "alert_icon": "Assets\\Textures\\btn-command-cancel.dds"
             }
+          },
+          {
+            "face": "EMP",
+            "type": "",
+            "abil_cmd": "EMP,Execute",
+            "requirements": "",
+            "row": "",
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EMP",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "EMP弹",
+              "name_key": "Button/Name/EMP",
+              "tooltip": "发射一股电磁脉冲，对目标区域内单位的护盾造成100点伤害值并消耗100点能量值。被EMP击中的隐形单位会暂时现形。",
+              "tooltip_key": "Button/Tooltip/EMP",
+              "icon": "Assets\\Textures\\btn-ability-terran-emp-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-emp-color.dds"
+            }
+          },
+          {
+            "face": "CloakOff",
+            "type": "",
+            "abil_cmd": "GhostCloak,Off",
+            "requirements": "",
+            "row": "",
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CloakOff",
+              "source_catalog": "liberty",
+              "parent": "",
+              "name": "取消隐形",
+              "name_key": "Button/Name/CloakOff",
+              "tooltip": "取消所选单位的隐形效果，使其现形。",
+              "tooltip_key": "Button/Tooltip/CloakOff",
+              "icon": "Assets\\Textures\\BTN-Ability-Terran-Decloak-color.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Terran-Decloak-color.dds"
+            }
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "Snipe_BlackOps,255",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
           }
         ]
       }
