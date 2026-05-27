@@ -93,6 +93,269 @@ const personalFocus = {
   Zeratul: "神器碎片会动态改写单位、建筑和技能，需要分阶段 profile 和日志。",
 };
 
+const cargoLoadouts = {
+  Abathur: [
+    ["cargo_light", "Roach x4, SwarmQueen x1", "救援/早期运输", "蟑螂抗线，虫后补治疗，不提前给终极进化。"],
+    ["cargo_heavy", "Ravager x3, SwarmHost x2, SwarmQueen x1", "阵地突破", "用腐蚀胆汁和虫群宿主压阵；Brutalisk 只放 bonus，避免剧情初段过强。"],
+    ["cargo_air", "Mutalisk x6, Viper x1", "空中支援", "异龙负责清杂，飞蛇用于控制；Leviathan 不作为普通空投。"],
+    ["bonus_reward", "Brutalisk x1 或 Leviathan x1", "奖励/高潮战斗", "只能在高强度奖励或终局事件使用，并输出特殊机制日志。"],
+    ["replacement_squad", "RoachVile x4, Ravager x2", "满级替换", "体现 15 级蟑螂变种和破坏者链。"],
+  ],
+  Alarak: [
+    ["cargo_light", "Supplicant x6, Stalker x2", "救援/前锋", "死徒作为消耗前排，追猎者补机动火力。"],
+    ["cargo_heavy", "Supplicant x4, ImmortalTaldarim x2, HighTemplarTaldarim x2", "重型推进", "无情先锋抗重甲，晋升者作为高价值施法位。"],
+    ["cargo_air", "WarpPrismTaldarim x1, Stalker x4", "折跃支援", "阿拉纳克没有标准空军，空中场景用战争棱镜投送地面单位。"],
+    ["bonus_reward", "ColossusTaldarim x2, HighTemplarTaldarim x2", "奖励火力", "天罚行者和晋升者用于奖励支援，不做常规轻型运输。"],
+    ["replacement_squad", "Supplicant x8, HighTemplarTaldarim x2", "牺牲链小队", "为献祭/晋升者机制留空间。"],
+  ],
+  Artanis: [
+    ["cargo_light", "Zealot x6, StalkerAiur x2", "标准救援", "狂热者前排，龙骑士补远程。"],
+    ["cargo_heavy", "ImmortalAiur x2, Archon x2, HighTemplar x2", "重甲突破", "不朽者打重甲，执政官/高阶补范围和能量体系。"],
+    ["cargo_air", "PhoenixAiur x4, Observer x1", "空中支援", "凤凰机动控场，侦测器补视野。"],
+    ["bonus_reward", "Archon x3, ImmortalAiur x2", "奖励部队", "适合防守反推，不直接给黄金舰队。"],
+    ["replacement_squad", "Zealot x8, StalkerAiur x4", "能量场折跃小队", "测试能量场/守护之壳覆盖。"],
+  ],
+  Dehaka: [
+    ["cargo_light", "DehakaZerglingLevel2 x8, DehakaRavasaur x3", "原始前锋", "低成本原始单位，便于测试精华获取。"],
+    ["cargo_heavy", "DehakaRoachLevel3 x4, DehakaUltraliskLevel2 x2, ImpalerDehaka x2", "原始攻坚", "点火虫、雷兽和穿刺者组成地面破阵。"],
+    ["cargo_air", "DehakaMutaliskLevel3 x6", "空中突袭", "原始异龙作为空中支援；不默认带首领。"],
+    ["bonus_reward", "DehakaCoop x1, DehakaGlevig x1", "英雄/族群奖励", "只在允许英雄或首领加入的地图使用。"],
+    ["replacement_squad", "DehakaPrimalSwarmHost x2, DehakaCreeper x4", "原始孵化小队", "用于测试原始生成链。"],
+  ],
+  Fenix: [
+    ["cargo_light", "ZealotPurifier x6, Adept x3", "净化者前锋", "轻型步兵和使徒机动补伤害。"],
+    ["cargo_heavy", "Immortal x2, ColossusPurifier x2, SentryFenix x2", "机械推进", "重甲、范围和保护者支援。"],
+    ["cargo_air", "Scout x4, Observer x1", "空中支援", "折跃侦察机为主，侦测器补视野。"],
+    ["bonus_reward", "Carrier x1, ColossusPurifier x2", "奖励火力", "航母只作为奖励/后期支援。"],
+    ["replacement_squad", "ZealotPurifier x4, Adept x4, SentryFenix x2", "保存数据网测试", "为人格载体/净化者机制预留验证空间。"],
+  ],
+  Horner: [
+    ["cargo_light", "HHReaper x6, HHHellion x2", "雇佣军突袭", "收割者和恶火体现米拉轻型部队。"],
+    ["cargo_heavy", "HHHellionTank x4, Predator x2, HHWidowMine x4", "地面伏击", "恶蝠、掠食者和寡妇雷构成防守支援。"],
+    ["cargo_air", "HHWraith x4, HHViking x2, HHRaven x1", "霍纳空军", "怨灵/维京提供制空，铁鸦补支援。"],
+    ["bonus_reward", "HHBattlecruiser x1, Liberator x2", "舰队奖励", "至尊战列巡航舰只在高强度场景出现。"],
+    ["replacement_squad", "HHReaper x8, HHWidowMine x4", "雇佣军投放", "用于测试死亡效果和快速空投节奏。"],
+  ],
+  Karax: [
+    ["cargo_light", "ZealotPurifier x6, SentryPurifier x2", "机械前锋", "哨兵抗线，激励者补增益。"],
+    ["cargo_heavy", "ImmortalAiur x2, Colossus x2, SentryPurifier x2", "机械攻坚", "不朽者/巨像配激励者。"],
+    ["cargo_air", "PhoenixPurifier x4, Observer x1", "空中支援", "侦察机和侦测器，避免常规给航母。"],
+    ["bonus_reward", "Carrier x1, Colossus x2", "后期奖励", "高价值机械单位用于奖励节点。"],
+    ["replacement_squad", "ZealotPurifier x8, ImmortalAiur x2", "自动维修测试", "适合验证建筑/机械维修光环。"],
+  ],
+  Kerrigan: [
+    ["cargo_light", "Zergling x10, Hydralisk x4", "虫群救援", "跳虫包围，刺蛇补输出。"],
+    ["cargo_heavy", "Ultralisk x2, Hydralisk x6, SwarmQueen x1", "虫群攻坚", "雷兽和刺蛇推进，虫后补支援。"],
+    ["cargo_air", "MutaliskBroodlord x6, Broodlord x2", "空中虫群", "异龙先行，巢虫领主只给后期空中支援。"],
+    ["bonus_reward", "K5Kerrigan x1, Ultralisk x2", "英雄奖励", "只有地图允许英雄参战时使用。"],
+    ["replacement_squad", "Zergling x16, Hydralisk x4", "同化光环测试", "大量低成本单位便于验证资源收益。"],
+  ],
+  Mengsk: [
+    ["cargo_light", "TrooperMengsk x8, TrooperMengskAA x2", "帝国步兵", "基础冲锋队和防空火箭筒。"],
+    ["cargo_heavy", "MarauderMengsk x3, SiegeTankMengsk x2, RavenMengsk x1", "皇家支援", "壁垒卫士、冲击分队和见证者。"],
+    ["cargo_air", "VikingMengskFighter x4, MedivacMengsk x1", "帝国空军", "天空之怒和仲裁机支援。"],
+    ["bonus_reward", "BattlecruiserMengsk x1, ThorMengsk x1", "皇家奖励", "高价值皇家卫队只在奖励或终局投放。"],
+    ["replacement_squad", "SCVMengsk x4, TrooperMengskImproved x6", "劳工/武装切换测试", "用于验证劳工和冲锋队切换链。"],
+  ],
+  Nova: [
+    ["cargo_light", "MarineNova x4, MarauderNova x2", "精英步兵", "低数量高质量，符合诺娃精英部队。"],
+    ["cargo_heavy", "GoliathNova x2, SiegeTankNova x1, RavenNova x1", "机械支援", "强击歌利亚、重型坦克和铁鸦。"],
+    ["cargo_air", "BansheeNova x2, LiberatorNova x1, RavenNova x1", "狮鹫空投支援", "女妖/解放者空中支援。"],
+    ["bonus_reward", "GhostNova x2, RavenNova x1", "隐秘奖励", "特战幽灵只在隐秘/奖励目标中投放。"],
+    ["replacement_squad", "HellbatNova x2, MarineNova x4, RavenNova x1", "战术空运测试", "用于验证精英单位低数量空运。"],
+  ],
+  Raynor: [
+    ["cargo_light", "Marine x8, Medic x2, Firebat x2", "生化救援", "陆战队、医疗兵、火蝠，适合早期地图救援。"],
+    ["cargo_heavy", "Marauder x4, Siege Tank x2, Medic x2", "地面攻坚", "劫掠者和攻城坦克推进。"],
+    ["cargo_air", "Viking x4, Banshee x2", "空中支援", "维京制空，女妖对地。"],
+    ["bonus_reward", "Battlecruiser x1, Siege Tank x2", "后期奖励", "战列巡航舰只用于高强度奖励。"],
+    ["replacement_squad", "Marine x12, Medic x3", "轨道空投测试", "用于测试生化空投和治疗链。"],
+  ],
+  Stetmann: [
+    ["cargo_light", "ZerglingStetmann x10, HydraliskStetmann x4", "机械虫群", "轻型机械虫群，依赖斯台特区。"],
+    ["cargo_heavy", "UltraliskStetmann x2, LurkerStetmann x2, InfestorStetmann x1", "重型机械虫群", "雷兽、潜伏者和感染者组合。"],
+    ["cargo_air", "CorruptorStetmann x4, BroodLordStetmann x2, OverseerStetmann x1", "空中机械虫群", "腐化者、巢式战列空母和眼虫。"],
+    ["bonus_reward", "SuperGaryStetmann x1, HydraliskStetmann x4", "超级盖瑞奖励", "只在允许特殊英雄时使用。"],
+    ["replacement_squad", "RoachStetmann x4, RavagerStetmann x3", "机油/能量测试", "用于验证机械蟑螂和破坏者链。"],
+  ],
+  Stukov: [
+    ["cargo_light", "StukovInfestedMarine x10, StukovInfestedCivilian x8", "感染潮", "大量感染步兵作为救援消耗单位。"],
+    ["cargo_heavy", "StukovInfestedSiegeTank x2, SwarmQueen x2", "阵地支援", "感染攻城坦克和虫后控制。"],
+    ["cargo_air", "StukovInfestedWraith x4, SwarmQueen x1", "空中感染支援", "感染怨灵配虫后。"],
+    ["bonus_reward", "StukovInfestedSiegeTank x3, StukovInfestedMarine x12", "防守奖励", "适合防守地图的增援潮。"],
+    ["replacement_squad", "StukovInfestedCivilian x16, StukovInfestedMarine x8", "感染生成测试", "用于验证感染体生命周期。"],
+  ],
+  Swann: [
+    ["cargo_light", "Hellbat x4, Goliath x2", "机械救援", "恶蝠抗线，歌利亚补对空。"],
+    ["cargo_heavy", "Siege Tank x2, Goliath x4, ScienceVessel x1", "重型机械支援", "攻城坦克、歌利亚和科学船。"],
+    ["cargo_air", "Wraith x4, ScienceVessel x1", "空中机械支援", "怨灵和科学船。"],
+    ["bonus_reward", "Hercules x1, Siege Tank x2", "运输机战术奖励", "大力神只作为战术运输/奖励场景。"],
+    ["replacement_squad", "SCV x4, Goliath x4", "修理/协同建造测试", "用于验证维修和建筑灭火链。"],
+  ],
+  Tychus: [
+    ["cargo_light", "TychusCoop x1, TychusMedic x1", "不法之徒救援", "泰凯斯和尼卡拉组成最小英雄小队。"],
+    ["cargo_heavy", "TychusCoop x1, TychusFirebat x1, TychusMarauder x1, TychusMedic x1", "正面推进", "猛男前排加治疗。"],
+    ["cargo_air", "TychusWarhound x1, TychusReaper x1, TychusMedic x1", "机动支援", "泰凯斯无常规空军，空中场景用医疗运输机投送不法之徒。"],
+    ["bonus_reward", "TychusCoop x1, TychusSpectre x1, TychusGhost x1", "鬼手奖励", "高价值施法不法之徒只在奖励场景使用。"],
+    ["replacement_squad", "TychusCoop x1, TychusHERC x1, TychusMedic x1", "队伍上限测试", "用于验证不法之徒招募、复活和装备。"],
+  ],
+  Vorazun: [
+    ["cargo_light", "ZealotShakuras x6, Stalker x3", "暗影前锋", "百夫长抗线，追猎者远程支援。"],
+    ["cargo_heavy", "DarkTemplarShakuras x4, Stalker x4, Oracle x1", "隐秘突袭", "黑暗圣堂武士作为核心，但不在早期轻型场景滥用。"],
+    ["cargo_air", "PhoenixShakuras x4, VoidRay x2", "空中暗影支援", "海盗船和虚空辉光舰。"],
+    ["bonus_reward", "DarkTemplarShakuras x6, Oracle x2", "隐形奖励", "适合隐秘地图或时间停止联动。"],
+    ["replacement_squad", "ZealotShakuras x8, DarkTemplarShakuras x2", "隐形/召回测试", "用于验证黑暗水晶塔和隐形加成。"],
+  ],
+  Zagara: [
+    ["cargo_light", "Zergling x12, Baneling x6", "虫群突袭", "跳虫和爆虫快速清场。"],
+    ["cargo_heavy", "Aberration x3, SwarmQueen x2, Baneling x8", "重型虫群", "畸变体抗线，虫后支援。"],
+    ["cargo_air", "Corruptor x4, Scourge x8", "空中虫群", "腐化者和爆蚊制空。"],
+    ["bonus_reward", "ZagaraVoidCoop x1, Aberration x3", "英雄奖励", "只有允许英雄时投放扎加拉。"],
+    ["replacement_squad", "Zergling x20, Baneling x10", "数量上限测试", "用于验证虫群数量和免费爆虫。"],
+  ],
+  Zeratul: [
+    ["cargo_light", "ZealotZeratul x6, StalkerZeratul x3", "萨尔纳加前锋", "狂热者和伏击者。"],
+    ["cargo_heavy", "ImmortalZeratul x2, DisruptorZeratul x2, SentryZeratul x2", "神器科技攻坚", "执行者、禁绝者和光盾卫士。"],
+    ["cargo_air", "WarpPrismZeratul x1, ObserverZeratul x1, StalkerZeratul x4", "虚空阵列投送", "泽拉图空中场景以虚空阵列船投送地面单位。"],
+    ["bonus_reward", "ImmortalZeratul x3, DisruptorZeratul x2", "神器奖励", "高科技单位只在奖励节点出现。"],
+    ["replacement_squad", "ZealotZeratul x8, SentryZeratul x2", "神器阶段测试", "用于验证神器碎片后的单位替换。"],
+  ],
+};
+
+const originalModCargoEvidence = [
+  {
+    commanders: ["All"],
+    source: "原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy",
+    implementation: "SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit",
+    meaning: "已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。",
+    status: "应抽成 XMFinal 的通用投送 primitive。",
+  },
+  {
+    commanders: ["All"],
+    source: "原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml",
+    implementation: "SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit",
+    meaning: "顶栏点目标技能已经有数据驱动配置位。",
+    status: "可复用为运输/空投顶部技能的配置入口。",
+  },
+  {
+    commanders: ["All"],
+    source: "原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+    implementation: "SpecOpsDropshipTransport",
+    meaning: "XMFinal 已经持有特种运输机运输能力定义。",
+    status: "运行时 owner 优先沿用并参数化。",
+  },
+  {
+    commanders: ["All"],
+    source: "原始mod/Maps/XM/thanson01、ttychus01、ttychus04",
+    implementation: "ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失",
+    meaning: "地图侧已有运输机货舱、卸载、返航和剧情运输模式。",
+    status: "地图保留场景语义，单位组合改由 profile 解析。",
+  },
+  {
+    commanders: ["Dehaka", "Horner", "Mengsk", "Nova", "Stetmann", "Stukov", "Swann", "Tychus"],
+    source: "原始mod/Maps/XM/traynor01.SC2Map/MapScript.galaxy",
+    implementation: "开场 SpecialOpsDropship 按 libE0EAE146_gv_commander 塞不同货舱；Dehaka/Gary 改为地面生成",
+    meaning: "已有按指挥官替换开场运输/救援小队的地图素材。",
+    status: "应迁移为 map=traynor01 的 cargo_light 或 opening_rescue profile。",
+  },
+  {
+    commanders: ["Dehaka", "Horner", "Mengsk", "Nova", "Stetmann", "Swann", "Tychus"],
+    source: "原始mod/Maps/XM/thanson01.SC2Map/MapScript.galaxy",
+    implementation: "Firebat dropship 按 commander 替换货舱，默认 Firebat + Medic",
+    meaning: "已有轻型救援运输机的 commander 分支。",
+    status: "应迁移为 cargo_light profile，并保留地图卸载/返航点。",
+  },
+  {
+    commanders: ["Dehaka", "Horner", "Mengsk", "Nova", "Stetmann", "Stukov", "Swann"],
+    source: "原始mod/Maps/XM/ttychus02.SC2Map/MapScript.galaxy",
+    implementation: "Siege tank dropship 按 commander 替换货舱，卸载后 DropCargoAndExit",
+    meaning: "已有重型支援运输机的 commander 分支。",
+    status: "应迁移为 cargo_heavy profile，并保留 Stukov/Mengsk 等后置 hook。",
+  },
+  {
+    commanders: ["Horner", "Nova", "Stukov", "Swann"],
+    source: "原始mod/Maps/XM/thorner02.SC2Map/MapScript.galaxy",
+    implementation: "按 commander 决定运输单位或货舱，例如 Stukov HerculesSCV、Nova SiegeTank_BlackOps、Swann HerculesSwann",
+    meaning: "已有运输单位本身也可由 commander 替换的地图素材。",
+    status: "应迁移为 CommanderMapDropProfile 的 TransportUnit/TransportAbility 字段。",
+  },
+  {
+    commanders: ["All"],
+    source: "原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy",
+    implementation: "gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击",
+    meaning: "已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。",
+    status: "可参考执行流程；不能直接当玩家指挥官 loadout 来源。",
+  },
+  {
+    commanders: ["Tychus"],
+    source: "原始mod/Mods/XM/XMTychus.SC2Mod/Base.SC2Data/Lib81FF3B49.galaxy",
+    implementation: "InitializeTychusEvent -> SOAStickyPoint(1, \"TychusMedicTransport\")",
+    meaning: "泰凯斯医疗运输机已经接入顶部技能点选和施法者注册。",
+    status: "可作为泰凯斯投送技能接入口；货舱组合仍由本 profile 设计。",
+  },
+  {
+    commanders: ["Nova"],
+    source: "原始mod/Mods/XM/XMNova.SC2Mod/Base.SC2Data/Lib0940FFB7.galaxy",
+    implementation: "NovaCaster -> SOAStickyPoint(1, \"NovaGriffinTransport\")",
+    meaning: "诺娃狮鹫运输已经接入顶部技能点选。",
+    status: "可作为诺娃战术空运接入口；单位组合需按精英部队低数量设计。",
+  },
+  {
+    commanders: ["Horner"],
+    source: "原始mod/Mods/XM/XMMira.SC2Mod/Base.SC2Data/GameData",
+    implementation: "MercAirDrop、MedivacMira、CommandCenterTransportMira",
+    meaning: "米拉/霍纳已有雇佣军空投、医疗运输机和基地运输相关数据。",
+    status: "可参考空降表现和运输按钮；场景 loadout 仍需显式配置。",
+  },
+  {
+    commanders: ["Stukov"],
+    source: "原始mod/Mods/XM/XMStukov.SC2Mod/Base.SC2Data/GameData",
+    implementation: "OverlordTransportStukov、StukovBansheeTransport、SIInfestedBunkerTransport",
+    meaning: "斯托科夫已有王虫、女妖、感染地堡等运输能力。",
+    status: "应保留感染单位生命周期和运输容器规则。",
+  },
+  {
+    commanders: ["Dehaka"],
+    source: "原始mod/Mods/XM/XMDehaka.SC2Mod/Base.SC2Data/GameData",
+    implementation: "NydusDestroyerDeepTunnel、GreaterNydusDestroyerDeepTunnel、DehakaNydusDestroyerTopBar",
+    meaning: "德哈卡已有坑道/深挖移动和顶部召唤链。",
+    status: "这是投送/位移机制线索，不等同于普通货舱。",
+  },
+  {
+    commanders: ["Swann"],
+    source: "原始mod/Maps/XM/ttychus01.SC2Map/MapScript.galaxy",
+    implementation: "swannDropship 使用 SpecialOpsDropship + SpecOpsDropshipTransport",
+    meaning: "已有斯旺剧情运输机卸载后返航模式。",
+    status: "可作为地图运输机流程模板，单位组合改为 Swann loadout。",
+  },
+  {
+    commanders: ["Raynor"],
+    source: "原始mod/Maps/XM/ttychus04.SC2Map/MapScript.galaxy",
+    implementation: "UnitCargoCreate(lv_dropship, \"Marine\", 8) + SpecOpsDropshipTransport",
+    meaning: "已有陆战队货舱装载并由运输机卸载的地图实现。",
+    status: "应改成 Raynor cargo_light profile，而不是硬编码 Marine x8。",
+  },
+  {
+    commanders: ["All"],
+    source: "原始mod 全局搜索",
+    implementation: "未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile",
+    meaning: "原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。",
+    status: "本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。",
+  },
+];
+
+const cargoSourceStatusByCommander = {
+  Dehaka: "已有 Dehaka 坑道/深挖和多张地图 commander 分支；此处是场景小队设计，不把坑道当普通货舱。",
+  Horner: "已有 XMMira 雇佣军空投/医疗运输机与地图货舱分支可参考；此处是霍纳场景 loadout 草案。",
+  Mengsk: "已有多张地图为 Mengsk 配置货舱并调用皇家卫队 hook；此处需保留后置 hook。",
+  Nova: "已有 NovaGriffinTransport 顶部技能点选链和多张地图货舱分支；此处只规定狮鹫/运输机落地单位组合。",
+  Raynor: "已有 ttychus04 Marine 货舱地图例子；此处将硬编码 Marine x8 泛化成 Raynor profile。",
+  Stetmann: "已有多张地图为 Stetmann 配置货舱；此处需与斯台特区/盖瑞机制分开审计。",
+  Stukov: "已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。",
+  Swann: "已有 ttychus01/多张地图 Swann dropship 分支；此处将流程参数化为 Swann loadout。",
+  Tychus: "已有 TychusMedicTransport 顶部技能点选链和地图不法之徒货舱分支；此处只规定不法之徒投送组合。",
+};
+
 const specialTerms = {
   Abathur: ["biomass", "toxic", "brutalisk", "leviathan", "symbiote", "ultimate"],
   Alarak: ["alarak", "ascendant", "sacrifice", "deathfleet", "empower", "mothership"],
@@ -139,7 +402,6 @@ const genericFaces = new Set([
 
 const techWords = ["research", "upgrade", "learn", "techlab", "armory", "engineering", "forge", "cybernetics", "evolution", "spire", "academy", "bay", "core"];
 const modeWords = ["morph", "mode", "stance", "kit", "swap", "transform", "burrow", "uproot", "siege", "unsiege", "evolve", "lift", "land", "deploy"];
-const cargoWords = ["load", "unload", "transport", "medivac", "drop", "airlift", "nydus", "canal", "worm", "bunker", "pickup"];
 const panelWords = ["calldown", "call", "topbar", "global", "griffin", "hyperion", "banshee", "strike", "nuke", "mend", "toxic", "solar", "chrono", "overcharge", "beam", "time", "odin", "airstrike", "summon", "deploy", "fleet", "drill"];
 const baseBuildingWords = ["commandcenter", "nexus", "hatchery", "lair", "hive", "orbital", "planetary", "townhall", "refinery", "extractor", "assimilator", "pylon", "depot", "drill", "platform", "bar", "compound", "bunker", "omega", "nydus"];
 
@@ -455,6 +717,28 @@ function upgradeRows(upgrades, limit = 30) {
   return rows;
 }
 
+function originalCargoEvidenceRows(en) {
+  return originalModCargoEvidence
+    .filter((item) => item.commanders.includes("All") || item.commanders.includes(en))
+    .map((item) => [
+      item.commanders.includes("All") ? "通用" : en,
+      `\`${item.source}\``,
+      item.implementation,
+      item.meaning,
+      item.status,
+    ]);
+}
+
+function cargoLoadoutRows(en) {
+  return asArray(cargoLoadouts[en]).map(([scenarioKind, loadout, purpose, note]) => [
+    `\`${scenarioKind}\``,
+    loadout,
+    purpose,
+    note,
+    cargoSourceStatusByCommander[en] ?? "设计草案；需按原始mod地图流程和实机日志继续校验。",
+  ]);
+}
+
 function fileName(index, en, zh) {
   return `${String(index + 1).padStart(2, "0")}-${zh}-${en}.md`;
 }
@@ -493,7 +777,6 @@ function writeCommanderDoc(index, en, zh, allSummaries) {
   });
   const modeButtons = nonGenericButtons.filter((b) => hasAny(b, modeWords));
   const techButtons = nonGenericButtons.filter((b) => hasAny(b, techWords));
-  const cargoButtons = nonGenericButtons.filter((b) => hasAny(b, cargoWords));
   const panelButtons = nonGenericButtons.filter((b) => hasAny(b, panelWords));
   const specialButtons = nonGenericButtons.filter((b) => hasAny(b, specialTerms[en] ?? []));
   const baseBuildings = buildings.filter((b) => {
@@ -689,13 +972,19 @@ function writeCommanderDoc(index, en, zh, allSummaries) {
   lines.push("");
   lines.push("Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。");
   lines.push("");
-  lines.push("### 运输/空投能力候选");
+  lines.push("### 原始mod 已有实现线索");
   lines.push("");
-  lines.push(...table(["对象", "按钮/Face", "显示名", "AbilityCmd", "Requirement", "说明"], buttonRows(cargoButtons, 30), "未自动命中运输或空投按钮。"));
-  lines.push("### 可投放单位候选");
+  lines.push(...table(["范围", "文件", "已有实现", "含义", "迁移状态"], originalCargoEvidenceRows(en), "原始mod 暂未发现可复用运输/空投线索。"));
+  lines.push("### 场景 loadout 设计草案");
   lines.push("");
-  lines.push(...table(["名称", "Catalog ID", "解析 Unit", "属性", "费用/人口/生命", "备注"], unitRows(units), "当前 units.json 暂无可投放单位候选。"));
-  lines.push("实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。");
+  lines.push(...table(["ScenarioKind", "推荐单位", "用途", "设计说明", "来源状态"], cargoLoadoutRows(en), "当前指挥官暂无场景 loadout 草案。"));
+  lines.push("### 接入规则");
+  lines.push("");
+  lines.push("- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。");
+  lines.push("- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。");
+  lines.push("- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。");
+  lines.push("- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。");
+  lines.push("实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。");
   lines.push("");
 
   lines.push("## 10. 指挥官特殊机制");

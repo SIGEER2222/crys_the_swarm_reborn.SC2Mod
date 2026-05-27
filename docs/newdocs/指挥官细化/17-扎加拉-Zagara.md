@@ -355,24 +355,34 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 扎加拉 | `ZagaraVoidCoopMassRoachDropLocked` | 感染空投 | - | `ZagaraLevel02` | 该技能将在指挥官等级2时解锁。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 畸变体 | `Aberration` | `InfestedAbomination` | Unit; FactionEvolved | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 畸变体可以造成很高的伤害，同时也可以承受大量的伤害。 / 可以对地。 |
-| 爆虫 | `Baneling` | `Baneling, BanelingNest` | Ground; Biological; Unit; Melee | 矿:50 气:25 人口:-0.5 生命:30 护盾:- 能量:- | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
-| 腐化者 | `Corruptor` | `Corruptor` | Air; Armored/Biological; Unit; Melee | 矿:150 气:100 人口:-2 生命:200 护盾:- 能量:0 | 对空型飞行生物。可以使用腐蚀喷液。能够变异为巢虫领主。 / 可以对空。 |
-| 爆蚊 | `Scourge` | `Scourge` | Unit; FactionEvolved | 矿:12 气:37 人口:- 生命:- 护盾:- 能量:- | 自毁式飞行单位。一只幼虫可变异为两只爆蚊。 / 可以对空。 |
-| 虫后 | `SwarmQueen` | `SwarmQueen, Queen, QueenCoop` | Unit | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 跳虫 | `Zergling` | `Zergling, SpawningPool` | Ground; Biological/Light; Unit; Melee | 矿:25 气:- 人口:-0.5 生命:35 护盾:- 能量:- | 迅捷的肉搏型生物。可以变异为爆虫。 / 可以对地。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | Zergling x12, Baneling x6 | 虫群突袭 | 跳虫和爆虫快速清场。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_heavy` | Aberration x3, SwarmQueen x2, Baneling x8 | 重型虫群 | 畸变体抗线，虫后支援。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_air` | Corruptor x4, Scourge x8 | 空中虫群 | 腐化者和爆蚊制空。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `bonus_reward` | ZagaraVoidCoop x1, Aberration x3 | 英雄奖励 | 只有允许英雄时投放扎加拉。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `replacement_squad` | Zergling x20, Baneling x10 | 数量上限测试 | 用于验证虫群数量和免费爆虫。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

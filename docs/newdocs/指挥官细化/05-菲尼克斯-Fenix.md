@@ -406,26 +406,34 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 不朽者 | `ImmortalOverload` | 屏障 | `ImmortalOverload,Execute` | - | 吸收最多{Behavior,ImmortalOverload,DamageResponse.ModifyLimit}点伤害，持续{Behavior,TakenDamage,Duration}秒。该效果每{Abil,ImmortalOverload,Cost[0].Coold... |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 使徒 | `Adept` | `Adept` | Ground; Biological/Light; Unit; Melee | 矿:125 气:25 人口:-2 生命:70 护盾:70 能量:- | - |
-| 巨像 | `ColossusPurifier` | `ColossusPurifier, Colossus, RoboticsBay, RoboticsFacility` | Unit; FactionPurifier | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 步战机器人，装备强大的范围攻击武器。能够攀越悬崖。可升级武器使其攻击能在地面上留下火焰，对敌人造成持续性伤害。 / 可以对地。 |
-| 侦测器 | `Observer` | `Observer` | Air; Light/Mechanical; Unit; Melee | 矿:25 气:75 人口:-1 生命:40 护盾:30 能量:- | 间谍型空中单位。拥有永久隐形的能力。 / 侦测单位 |
-| 折跃侦察机 | `Scout` | `Scout, Stargate` | Unit; FactionPurifier | 矿:250 气:75 人口:- 生命:150 护盾:100 能量:- | 多功能高速战机。 / 可以对地和对空。 |
-| 保护者 | `SentryFenix` | `SentryFenix` | Ground; Light/Mechanical/Psionic; Unit; FactionPurifier | 矿:50 气:100 人口:-2 生命:40 护盾:40 能量:- | 净化者阵营 / 机械支援单位。可以使用防护场和相位模式。 / 可以对地和对空。 |
-| 哨兵 | `ZealotPurifier` | `ZealotPurifier, Zealot` | Unit; FactionPurifier | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 强大的近战战士。升级后可使用冲锋和重构技能。 / 可以对地。 |
-| 不朽者 | `Immortal` | `Immortal, RoboticsBay, RoboticsFacility` | Ground; Armored/Mechanical; Unit; Melee | 矿:250 气:100 人口:-4 生命:200 护盾:100 能量:- | 攻击型步战机甲。可以使用屏障吸收伤害。 / 可以对地。 |
-| 航母 | `Carrier` | `Carrier, FleetBeacon, Stargate` | Air; Armored/Massive/Mechanical; Unit; Melee | 矿:350 气:250 人口:-6 生命:300 护盾:150 能量:- | 星灵的主力战舰。能够制造并发射拦截机攻击敌人。 / 可以对地和对空。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | ZealotPurifier x6, Adept x3 | 净化者前锋 | 轻型步兵和使徒机动补伤害。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_heavy` | Immortal x2, ColossusPurifier x2, SentryFenix x2 | 机械推进 | 重甲、范围和保护者支援。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_air` | Scout x4, Observer x1 | 空中支援 | 折跃侦察机为主，侦测器补视野。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `bonus_reward` | Carrier x1, ColossusPurifier x2 | 奖励火力 | 航母只作为奖励/后期支援。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `replacement_squad` | ZealotPurifier x4, Adept x4, SentryFenix x2 | 保存数据网测试 | 为人格载体/净化者机制预留验证空间。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

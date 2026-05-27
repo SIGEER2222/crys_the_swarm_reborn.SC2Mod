@@ -408,29 +408,39 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| SCV | `Bunker` | 建造地堡 | `TerranBuild,Build7` | - | 防御工事。 / 步兵单位在地堡内作战。 / 效果加成：舱载单位射程增加1。 |
-| 指挥中心 | `CommandCenterLoad` | 装载 | `CommandCenterTransport,LoadAll` | - | 将附近的SCV装载进指挥中心。 |
-| 指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `CommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| Swann | `原始mod/Maps/XM/traynor01.SC2Map/MapScript.galaxy` | 开场 SpecialOpsDropship 按 libE0EAE146_gv_commander 塞不同货舱；Dehaka/Gary 改为地面生成 | 已有按指挥官替换开场运输/救援小队的地图素材。 | 应迁移为 map=traynor01 的 cargo_light 或 opening_rescue profile。 |
+| Swann | `原始mod/Maps/XM/thanson01.SC2Map/MapScript.galaxy` | Firebat dropship 按 commander 替换货舱，默认 Firebat + Medic | 已有轻型救援运输机的 commander 分支。 | 应迁移为 cargo_light profile，并保留地图卸载/返航点。 |
+| Swann | `原始mod/Maps/XM/ttychus02.SC2Map/MapScript.galaxy` | Siege tank dropship 按 commander 替换货舱，卸载后 DropCargoAndExit | 已有重型支援运输机的 commander 分支。 | 应迁移为 cargo_heavy profile，并保留 Stukov/Mengsk 等后置 hook。 |
+| Swann | `原始mod/Maps/XM/thorner02.SC2Map/MapScript.galaxy` | 按 commander 决定运输单位或货舱，例如 Stukov HerculesSCV、Nova SiegeTank_BlackOps、Swann HerculesSwann | 已有运输单位本身也可由 commander 替换的地图素材。 | 应迁移为 CommanderMapDropProfile 的 TransportUnit/TransportAbility 字段。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| Swann | `原始mod/Maps/XM/ttychus01.SC2Map/MapScript.galaxy` | swannDropship 使用 SpecialOpsDropship + SpecOpsDropshipTransport | 已有斯旺剧情运输机卸载后返航模式。 | 可作为地图运输机流程模板，单位组合改为 Swann loadout。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 飓风 | `Cyclone` | `Cyclone` | Ground; Armored/Mechanical; Unit; Melee | 矿:150 气:100 人口:-3 生命:120 护盾:- 能量:- | 机动突击型载具。可以使用锁定技能在移动状态下快速开火。 / 可以对地。 |
-| 恶蝠 | `Hellbat` | `HellionTank` | Ground; Biological; Unit; Melee | 矿:100 气:- 人口:-2 生命:135 护盾:- 能量:- | 近距离作战单位。对前方小范围锥形区域造成伤害。可以变形为快速侦察单位。 / 可以对地。 |
-| 大力神 | `Hercules` | `Hercules` | Unit; FactionRaider | 矿:100 气:50 人口:-3 生命:- 护盾:- 能量:- | 巨型运输机。可以进行战术跳跃。 |
-| 科学船 | `ScienceVessel` | `ScienceVessel` | Psionic; Unit; FactionRaider | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 空中支援单位。能够使用辐照和纳米修复技能。 / 侦测单位 |
-| 恶火 | `Hellion` | `Hellion` | Ground; Light/Mechanical; Unit; Melee | 矿:100 气:- 人口:-2 生命:90 护盾:- 能量:- | 快速的侦察者，可对一条直线上的所有敌方单位造成火焰伤害。可变形为近距离战斗单位。 / 可以对地。 |
-| 怨灵战机 | `Wraith` | `Wraith` | Unit; FactionRaider | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 高度机动性空中单位。擅长突袭打击。 / 可以对地和对空。 |
-| SCV | `SCV` | `SCV` | Ground; Biological/Light/Mechanical; Unit; Melee | 矿:50 气:- 人口:-1 生命:45 护盾:- 能量:- | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
-| 歌利亚武装机器人 | `Goliath` | `Goliath` | Unit; FactionRaider | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 重火力支援单位。 / 可以对地和对空。 |
-| 攻城坦克 | `Siege Tank` | `SiegeTank` | Ground; Armored/Mechanical; Unit; Melee | 矿:150 气:125 人口:-3 生命:175 护盾:- 能量:- | 重型坦克。可切换至攻城模式来提供远程炮火。 / 可以对地。 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | Hellbat x4, Goliath x2 | 机械救援 | 恶蝠抗线，歌利亚补对空。 | 已有 ttychus01/多张地图 Swann dropship 分支；此处将流程参数化为 Swann loadout。 |
+| `cargo_heavy` | Siege Tank x2, Goliath x4, ScienceVessel x1 | 重型机械支援 | 攻城坦克、歌利亚和科学船。 | 已有 ttychus01/多张地图 Swann dropship 分支；此处将流程参数化为 Swann loadout。 |
+| `cargo_air` | Wraith x4, ScienceVessel x1 | 空中机械支援 | 怨灵和科学船。 | 已有 ttychus01/多张地图 Swann dropship 分支；此处将流程参数化为 Swann loadout。 |
+| `bonus_reward` | Hercules x1, Siege Tank x2 | 运输机战术奖励 | 大力神只作为战术运输/奖励场景。 | 已有 ttychus01/多张地图 Swann dropship 分支；此处将流程参数化为 Swann loadout。 |
+| `replacement_squad` | SCV x4, Goliath x4 | 修理/协同建造测试 | 用于验证维修和建筑灭火链。 | 已有 ttychus01/多张地图 Swann dropship 分支；此处将流程参数化为 Swann loadout。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

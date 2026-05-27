@@ -465,64 +465,37 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 帝国劳工 | `BunkerMengsk` | 建造补给地堡 | `TrooperMengskBuild,Build3` | - | 可以提供补给的防御性建筑。 / 充足的补给可以让你制造更多的单位。 / 冲锋队员可在地堡内战斗。 / 加成：地堡内的单位射程+1。 |
-| 征兵中心 | `TrooperMengskDropTrain` | 冲锋队高空轨道空投舱 | - | `HaveTrooperMengskDropTrain` | 劳工和冲锋队员会被直接输送至该建筑的集结点所在处。 |
-| 补给地堡 | `SCVMengskEnlistCC` | 工地召唤 | `TrooperMengskEnlistNearby,Execute` | - | 命令附近的冲锋队在征兵中心或者补给地堡处换上一身劳工服。 |
-| 补给地堡 | `TrooperMengskEnlistCC` | 战斗召唤 | `SCVMengskEnlistNearby,Execute` | - | 命令附近的劳工在征兵中心或者补给地堡处换上一身冲锋队军服。 |
-| 补给地堡 | `StructureArmorMengsk` | 精钢强化装甲 | - | `HaveMengskStructureArmor` | 提高该建筑的生命值与护甲。 |
-| 补给地堡 | `BunkerDepotMengskRange` | 瞄准辅助射击孔 | - | `HaveBunkerDepotMengskRange` | 使补给地堡中的单位的射程进一步增加+{$UpgradeEffectArrayValue:BunkerDepotMengskRange:Behavior,BunkerMengskWeaponRangeBonus,Modification.WeaponRange$}。 |
-| 补给地堡 | `SetSupplyBunkerRallyPoint` | 设置补给地堡集结点 | `Rally,Rally1` | - | 派遣未被装载的劳工和冲锋队员前往指定点。 |
-| 补给地堡 | `BunkerDepotMengskLoad` | 装载 | `BunkerMengskTransport,Load` | - | 将劳工和冲锋队员载入补给地堡。 |
-| 补给地堡 | `BunkerDepotMengskUnloadAll` | 全部卸载 | `BunkerMengskTransport,UnloadAll` | - | 卸载所有单位。 |
-| 星港 | `MedivacMengsk` | 建造帝国仲裁机 | `StarportMengskTrain,Train1` | - | 空中运输单位。治疗附近的生物单位。可以使用后燃推进系统。 |
-| 工程站 | `TrooperMengskDropTrainResearch` | 研究冲锋队高空轨道空投舱 | `EngineeringBayMengskResearch,Research7` | - | 允许帝国劳工和帝国冲锋队可以被直接输送至征兵中心的集结点所在处。 |
-| 工程站 | `BunkerDepotMengskRangeResearch` | 研究瞄准辅助射击孔 | `EngineeringBayMengskResearch,Research10` | - | 使补给地堡内单位的射程进一步增加+{$UpgradeEffectArrayValue:BunkerDepotMengskRange:Behavior,BunkerMengskWeaponRangeBonus,Modification.WeaponRange$}。 |
-| 军械库 | `MedivacMengskSiegeTankAirliftResearch` | 研究火炮稳定器 | `ArmoryMengskResearch,Research1` | - | 允许攻城模式下的冲击分队在被帝国仲裁机吊挂时可以朝空中目标开火，只是开火间隔较长。 |
-| 聚变芯体 | `MedivacMengskDoubleHealBeamResearch` | 研究双通道复苏器 | `FusionCoreMengskResearch,Research1` | - | 允许帝国仲裁机可以同时治疗两个目标。 |
-| 聚变芯体 | `MedivacMengskPermanentCloakResearch` | 研究散点帷幕 | `FusionCoreMengskResearch,Research2` | - | 允许帝国仲裁机永久隐形，并且可以为自身提供一个护盾，吸收{$UpgradeEffectArrayValue:MedivacMengskPermanentCloak:Unit,MedivacMengsk,ShieldsMax$}点伤害。 |
-| 大地碎裂炮 | `ArtilleryMengskLoad` | 装载 | `ArtilleryMengskTransport,Load` | - | 将劳工和冲锋队员装载进大地碎裂炮。每装载一名额外的劳工就会使大地碎裂炮的轰炸频率变得更快一些。 |
-| 大地碎裂炮 | `ArtilleryMengskUnloadAll` | 全部卸载 | `ArtilleryMengskTransport,UnloadAll` | - | 卸载所有单位。 |
-| 帝国冲锋队 | `BunkerMengsk` | 建造补给地堡 | `TrooperMengskBuild,Build3` | - | 可以提供补给的防御性建筑。 / 充足的补给可以让你制造更多的单位。 / 冲锋队员可在地堡内战斗。 / 加成：地堡内的单位射程+1。 |
-| 帝国 火箭筒 冲锋队 | `BunkerMengsk` | 建造补给地堡 | `TrooperMengskBuild,Build3` | - | 可以提供补给的防御性建筑。 / 充足的补给可以让你制造更多的单位。 / 冲锋队员可在地堡内战斗。 / 加成：地堡内的单位射程+1。 |
-| 帝国 火焰器 冲锋队 | `BunkerMengsk` | 建造补给地堡 | `TrooperMengskBuild,Build3` | - | 可以提供补给的防御性建筑。 / 充足的补给可以让你制造更多的单位。 / 冲锋队员可在地堡内战斗。 / 加成：地堡内的单位射程+1。 |
-| 帝国 突击手 冲锋队 | `BunkerMengsk` | 建造补给地堡 | `TrooperMengskBuild,Build3` | - | 可以提供补给的防御性建筑。 / 充足的补给可以让你制造更多的单位。 / 冲锋队员可在地堡内战斗。 / 加成：地堡内的单位射程+1。 |
-| 帝国仲裁机 | `AcquireMove` | 搜索移动 | `move,AcquireMove` | - | 命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。 |
-| 帝国仲裁机 | `MedivacMengskDoubleHealBeam` | 双通道复苏器 | - | `HaveMedivacMengskDoubleHealBeam` | 允许帝国仲裁机可以同时治疗两个目标。 |
-| 帝国仲裁机 | `MedivacMengskPermanentCloak` | 散点帷幕 | - | `HaveMedivacMengskPermanentCloak` | 允许帝国仲裁机永久隐形，并且可以为自身提供一个护盾，吸收{$UpgradeEffectArrayValue:MedivacMengskPermanentCloak:Unit,MedivacMengsk,ShieldsMax$}点伤害。 |
-| 帝国仲裁机 | `MedivacMengskSiegeTankAirlift` | 火炮稳定器 | - | `HaveMedivacMengskSiegeTankAirlift` | 允许攻城模式下的冲击分队在被帝国仲裁机吊挂时可以朝空中目标开火，只是开火间隔较长。 |
-| 帝国仲裁机 | `HealMengsk` | 治疗 | `MedivacMengskDoubleBeamHeal,Execute` | - | 治疗一名友方生物目标。 / 每{1/Effect,MedivacMengskHealLevel1,DrainVitalCostFactor}点能量治疗{Effect,MedivacMengskHealLevel1,RechargeVitalRate[0]}点生命值。 |
-| 帝国仲裁机 | `IgniteAfterburnersMengsk` | 后燃推进系统 | `MedivacMengskSpeedBoost,Execute` | - | 该单位的移动速度提高{(Behavior,MedivacMengskSpeedBoost,Modification.MoveSpeedMultiplier-1)*100}%，持续{Behavior,MedivacMengskSpeedBoost,Duration}秒。 |
-| 帝国仲裁机 | `MedivacLoad` | 装载 | `MedivacMengskTransport,Load` | - | 将单位装载进医疗运输机。 |
-| 帝国仲裁机 | `MedivacUnloadAll` | 全部卸载 | `MedivacMengskTransport,UnloadAt` | - | 卸载所有单位。 |
-| 冲击分队 | `SiegeTankMengskAirlift` | 火炮稳定器 | - | `HaveMedivacMengskSiegeTankAirlift` | 允许攻城模式下的冲击分队在被帝国仲裁机吊挂时可以攻击空中单位。 |
-| ... | ... | ... | ... | ... | 还有 1 项，后续从 command_cards.json 继续展开。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| Mengsk | `原始mod/Maps/XM/traynor01.SC2Map/MapScript.galaxy` | 开场 SpecialOpsDropship 按 libE0EAE146_gv_commander 塞不同货舱；Dehaka/Gary 改为地面生成 | 已有按指挥官替换开场运输/救援小队的地图素材。 | 应迁移为 map=traynor01 的 cargo_light 或 opening_rescue profile。 |
+| Mengsk | `原始mod/Maps/XM/thanson01.SC2Map/MapScript.galaxy` | Firebat dropship 按 commander 替换货舱，默认 Firebat + Medic | 已有轻型救援运输机的 commander 分支。 | 应迁移为 cargo_light profile，并保留地图卸载/返航点。 |
+| Mengsk | `原始mod/Maps/XM/ttychus02.SC2Map/MapScript.galaxy` | Siege tank dropship 按 commander 替换货舱，卸载后 DropCargoAndExit | 已有重型支援运输机的 commander 分支。 | 应迁移为 cargo_heavy profile，并保留 Stukov/Mengsk 等后置 hook。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 帝国劳工 | `SCVMengsk` | `SCVMengsk` | Ground; Biological/Light/Mechanical; Unit; Melee | 矿:40 气:- 人口:-1 生命:45 护盾:- 能量:- | 基础工作单位。用于采集资源、建造人类建筑和修理。可以切换成冲锋队员。 / 可以对地。 |
-| 帝国冲锋队 | `TrooperMengsk` | `TrooperMengsk` | Ground; Biological/Light; Unit; Melee | 矿:40 气:- 人口:-1 生命:45 护盾:- 能量:- | 通用型步兵。可以装备多种武器以应对不同战况。可以切换成一身劳工服。 / 可以对地和对空。 |
-| 帝国 火箭筒 冲锋队 | `TrooperMengskAA` | `TrooperMengskAA` | Ground; Biological/Light; Unit; Melee | 矿:200 气:- 人口:-1 生命:45 护盾:- 能量:- | 专业对空攻击手。可以切换为劳工。 / 可以对地和对空。 |
-| 帝国 火焰器 冲锋队 | `TrooperMengskFlamethrower` | `TrooperMengskFlamethrower` | Ground; Armored/Biological; Unit; FactionRaider | 矿:200 气:- 人口:-1 生命:145 护盾:- 能量:- | 专业对空攻击手。可以切换为劳工。 / 可以对地和对空。 |
-| 帝国 突击手 冲锋队 | `TrooperMengskImproved` | `TrooperMengskImproved` | Ground; Biological/Light; Unit; Melee | 矿:200 气:- 人口:-1 生命:45 护盾:- 能量:- | 升级后的通用型步兵。可以切换为劳工。 / 可以对地和对空。 |
-| 壁垒卫士 | `MarauderMengsk` | `MarauderMengsk` | Ground; Armored/Biological; Unit; Melee | 矿:125 气:350 人口:-4 生命:300 护盾:- 能量:- | 皇家卫队重型突击步兵。 / 可以对地。 |
-| 元首鬼影 | `GhostMengsk` | `GhostMengsk` | Ground; Biological/Psionic; Unit; Melee | 矿:200 气:500 人口:-4 生命:200 护盾:- 能量:200 | 皇家卫队特工。可以使用“焰能爆燃”和“EMP震爆”。可以对“皇家军校”中建造并发射的战术飞弹进行制导。 / 可以对空和对地。 |
-| 帝国仲裁机 | `MedivacMengsk` | `MedivacMengsk` | Air; Armored/Mechanical; Unit; Melee | 矿:100 气:50 人口:-2 生命:150 护盾:- 能量:200 | 空中运输单位。治疗附近的生物单位。可以使用后燃推进系统。 |
-| 冲击分队 | `SiegeTankMengsk` | `SiegeTankMengsk` | Ground; Armored/Mechanical; Unit; Melee | 矿:150 气:425 人口:-6 生命:350 护盾:- 能量:- | 皇家卫队重型坦克。可以切换成攻城模式，提供远程火力支援。 / 可以对地。 |
-| 攻城坦克 | `SiegeTankMengskSieged` | `SiegeTankMengskSieged` | Ground; Armored/Mechanical; Unit; Melee | 矿:150 气:425 人口:-6 生命:350 护盾:- 能量:- | 皇家卫队重型坦克。可切换成坦克模式，提供机动坦克火力支援。 / 可以对地。 |
-| 黑色战锤 | `ThorMengsk` | `ThorMengsk` | Ground; Armored/Massive/Mechanical; Unit; Melee | 矿:300 气:600 人口:-8 生命:600 护盾:- 能量:- | 皇家卫队重型攻击机甲。可以使用“掩护射击模式”。 / 可以对空和对地。 |
-| 天空之怒 | `VikingMengskFighter` | `VikingMengskFighter` | Air; Armored/Mechanical; Unit; Melee | 矿:150 气:375 人口:-4 生命:270 护盾:- 能量:- | 坚固的皇家卫队支援型飞行器。装填了威力强大的反主力舰对空飞弹。可以切换至突击模式来攻击地面单位。 / 可以对空。 |
-| 天空之怒 | `VikingMengskAssault` | `VikingMengskAssault` | Ground; Armored/Mechanical; Unit; Melee | 矿:150 气:375 人口:-4 生命:270 护盾:- 能量:- | 坚固的火力支援单位。进入战机模式后可攻击空中单位。 / 可以对地。 |
-| 奥古斯特格勒的骄傲 | `BattlecruiserMengsk` | `BattlecruiserMengsk` | Air; Armored/Massive/Mechanical; Unit; Melee | 矿:400 气:900 人口:-10 生命:800 护盾:- 能量:- | 强大的皇家卫队战舰。可以使用大和炮与战术跳跃。在星港中建造。 / 可以对地和对空。 |
-| 帝国见证者 | `RavenMengsk` | `RavenMengsk` | Air; Mechanical; Unit; Melee | 矿:100 气:100 人口:-2 生命:350 护盾:- 能量:- | 空中支援单位。可以使用“爱国者模式”，教导附近的盟友。 / 侦测单位 |
-| 帝国见证者 | `RavenMengskSieged` | `RavenMengskSieged` | Air; Mechanical; Unit; Melee | 矿:100 气:100 人口:-2 生命:350 护盾:- 能量:- | 空中支援单位。 / 侦测单位 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | TrooperMengsk x8, TrooperMengskAA x2 | 帝国步兵 | 基础冲锋队和防空火箭筒。 | 已有多张地图为 Mengsk 配置货舱并调用皇家卫队 hook；此处需保留后置 hook。 |
+| `cargo_heavy` | MarauderMengsk x3, SiegeTankMengsk x2, RavenMengsk x1 | 皇家支援 | 壁垒卫士、冲击分队和见证者。 | 已有多张地图为 Mengsk 配置货舱并调用皇家卫队 hook；此处需保留后置 hook。 |
+| `cargo_air` | VikingMengskFighter x4, MedivacMengsk x1 | 帝国空军 | 天空之怒和仲裁机支援。 | 已有多张地图为 Mengsk 配置货舱并调用皇家卫队 hook；此处需保留后置 hook。 |
+| `bonus_reward` | BattlecruiserMengsk x1, ThorMengsk x1 | 皇家奖励 | 高价值皇家卫队只在奖励或终局投放。 | 已有多张地图为 Mengsk 配置货舱并调用皇家卫队 hook；此处需保留后置 hook。 |
+| `replacement_squad` | SCVMengsk x4, TrooperMengskImproved x6 | 劳工/武装切换测试 | 用于验证劳工和冲锋队切换链。 | 已有多张地图为 Mengsk 配置货舱并调用皇家卫队 hook；此处需保留后置 hook。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 

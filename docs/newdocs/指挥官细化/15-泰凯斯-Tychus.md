@@ -478,21 +478,37 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderScenarioFallbackProfile`。
 
-### 运输/空投能力候选
+### 原始mod 已有实现线索
 
-| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
-|---|---|---|---|---|---|
-| 莱纳·尼卡拉中尉 | `TychusMedicHeal` | 超级治疗 | `TychusMedivacDoubleHealPlusMech,Execute` | - | 每秒治疗{Effect,TychusMedicHeal,RechargeVitalRate}点生命。 |
-| SCV | `BuildTychusMedivacPlatform` | 建造医疗运输机平台 | `TychusTerranBuild,Build14` | - | 运输平台。可以立即将目标区域内的泰凯斯作战单位运送至目标位置，空降时对其进行治疗并使其隐形。 |
+| 范围 | 文件 | 已有实现 | 含义 | 迁移状态 |
+|---|---|---|---|---|
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/Lib67C0F0E7.galaxy` | SOAStickyPoint、SOAStickyLine、AddCasterGroup、DropPodT、DropPodZ、DropCargoAndExit | 已有顶部技能点选、隐藏施法者分组、空投舱视觉和卸载后撤离的通用基础。 | 应抽成 XMFinal 的通用投送 primitive。 |
+| 通用 | `原始mod/Mods/XM/XMCore.SC2Mod/Base.SC2Data/GameData/UserData.xml` | SOAStickyPoint UserData: AbilityPre、AbilityFin、CasterUnit | 顶栏点目标技能已经有数据驱动配置位。 | 可复用为运输/空投顶部技能的配置入口。 |
+| 通用 | `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml` | SpecOpsDropshipTransport | XMFinal 已经持有特种运输机运输能力定义。 | 运行时 owner 优先沿用并参数化。 |
+| 通用 | `原始mod/Maps/XM/thanson01、ttychus01、ttychus04` | ColonyShipTransport、SpecialOpsDropship、UnitCargoCreate、卸载后返航/消失 | 地图侧已有运输机货舱、卸载、返航和剧情运输模式。 | 地图保留场景语义，单位组合改由 profile 解析。 |
+| Tychus | `原始mod/Maps/XM/traynor01.SC2Map/MapScript.galaxy` | 开场 SpecialOpsDropship 按 libE0EAE146_gv_commander 塞不同货舱；Dehaka/Gary 改为地面生成 | 已有按指挥官替换开场运输/救援小队的地图素材。 | 应迁移为 map=traynor01 的 cargo_light 或 opening_rescue profile。 |
+| Tychus | `原始mod/Maps/XM/thanson01.SC2Map/MapScript.galaxy` | Firebat dropship 按 commander 替换货舱，默认 Firebat + Medic | 已有轻型救援运输机的 commander 分支。 | 应迁移为 cargo_light profile，并保留地图卸载/返航点。 |
+| 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
+| Tychus | `原始mod/Mods/XM/XMTychus.SC2Mod/Base.SC2Data/Lib81FF3B49.galaxy` | InitializeTychusEvent -> SOAStickyPoint(1, "TychusMedicTransport") | 泰凯斯医疗运输机已经接入顶部技能点选和施法者注册。 | 可作为泰凯斯投送技能接入口；货舱组合仍由本 profile 设计。 |
+| 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 可投放单位候选
+### 场景 loadout 设计草案
 
-| 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
-|---|---|---|---|---|---|
-| 劫掠者 | `Marauder` | `Marauder` | Ground; Armored/Biological; Unit; Melee | 矿:100 气:25 人口:-2 生命:125 护盾:- 能量:- | 重型突击步兵。 / 可以对地。 |
-| SCV | `TychusSCV` | `TychusSCV` | Ground; Biological/Light/Mechanical; Unit; FactionOutlaw | 矿:50 气:- 人口:-1 生命:45 护盾:- 能量:- | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地 |
+| ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
+|---|---|---|---|---|
+| `cargo_light` | TychusCoop x1, TychusMedic x1 | 不法之徒救援 | 泰凯斯和尼卡拉组成最小英雄小队。 | 已有 TychusMedicTransport 顶部技能点选链和地图不法之徒货舱分支；此处只规定不法之徒投送组合。 |
+| `cargo_heavy` | TychusCoop x1, TychusFirebat x1, TychusMarauder x1, TychusMedic x1 | 正面推进 | 猛男前排加治疗。 | 已有 TychusMedicTransport 顶部技能点选链和地图不法之徒货舱分支；此处只规定不法之徒投送组合。 |
+| `cargo_air` | TychusWarhound x1, TychusReaper x1, TychusMedic x1 | 机动支援 | 泰凯斯无常规空军，空中场景用医疗运输机投送不法之徒。 | 已有 TychusMedicTransport 顶部技能点选链和地图不法之徒货舱分支；此处只规定不法之徒投送组合。 |
+| `bonus_reward` | TychusCoop x1, TychusSpectre x1, TychusGhost x1 | 鬼手奖励 | 高价值施法不法之徒只在奖励场景使用。 | 已有 TychusMedicTransport 顶部技能点选链和地图不法之徒货舱分支；此处只规定不法之徒投送组合。 |
+| `replacement_squad` | TychusCoop x1, TychusHERC x1, TychusMedic x1 | 队伍上限测试 | 用于验证不法之徒招募、复活和装备。 | 已有 TychusMedicTransport 顶部技能点选链和地图不法之徒货舱分支；此处只规定不法之徒投送组合。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
+### 接入规则
+
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
+- `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
+- 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
+实现备注：`CommanderMapDropProfile` 负责把地图事件映射为 `scenarioKind`；`CommanderScenarioFallbackProfile` 负责缺项降级并输出 `[XM_DBG][WARN][CARGO_FALLBACK]`。
 
 ## 10. 指挥官特殊机制
 
