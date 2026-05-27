@@ -420,6 +420,178 @@
     <MaxLevel value="30" />
     <LeaderAlias value="" />
   </CUpgrade>
+  <CUpgrade id="MasteryAbathurToxicNestDamageAndRespawn">
+      <Flags index="UpgradeCheat" value="0" />
+      <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+      <EffectArray Reference="Effect,MasteryAbathurToxicNestRespawnChangeDisplayDummy,Amount" Value="2" />
+      <!--EffectArray Reference="Effect,MasteryAbathurToxicNestRespawn,Chance" Value="0.02"/-->
+      <EffectArray Reference="Effect,ToxicNestExplodeDamage,Amount" Value="2.5" />
+      <EditorCategories value="Race:Zerg" />
+      <MaxLevel value="30" />
+      <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAbathurMendHeal">
+      <Flags index="UpgradeCheat" value="0" />
+      <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+      <EffectArray Reference="Effect,MasteryAbathurMendHealDurationDisplayDummy,Amount" Value="1" />
+      <EffectArray Reference="Behavior,AbathurMendPeriodicHeal,Duration" Value="1.000000" />
+      <EffectArray Reference="Behavior,AbathurMendPeriodicHeal,PeriodCount" Value="1" />
+      <EditorCategories value="Race:Zerg" />
+      <MaxLevel value="30" />
+      <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAbathurToxicNestCharge">
+      <Flags index="UpgradeCheat" value="0" />
+      <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+      <EffectArray Reference="Effect,MasteryAbathurToxicNestChargeCountDisplayDummy,Amount" Value="1" />
+      <EffectArray Reference="Effect,MasteryAbathurToxicNestCooldownDisplayDummy,Amount" Value="0.2" />
+      <EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountMax" Value="1" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeUse" Value="0.200000" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeStart" Value="0.200000" />
+      <!--EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountStart" Value="1"/-->
+      <EditorCategories value="Race:Zerg" />
+      <MaxLevel value="30" />
+      <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAbathurTechFastBuild">
+      <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+      <EffectArray Reference="Effect,MasteryAbathurBuildingMorphandResearchSpeedDisplayDummy,Amount" Value="2" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[0].DurationArray[0]" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[1].DurationArray[1]" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[5].DurationArray[0]" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[0].DurationArray[0]" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[1].DurationArray[1]" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[5].DurationArray[0]" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[0].DurationArray[0]" Value="2.002" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[1].DurationArray[1]" Value="2.002" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[5].DurationArray[0]" Value="2.002" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.5605" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[0].DurationArray[0]" Value="2.002" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[1].DurationArray[1]" Value="2.002" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.2002" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[5].DurationArray[0]" Value="2.000000" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.2002" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
+      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[1].Time" Value="2.2021" />
+      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[2].Time" Value="2.2021" />
+      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[3].Time" Value="2.6025" />
+      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[4].Time" Value="2.2021" />
+      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[5].Time" Value="2.2021" />
+      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[6].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[7].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[9].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[2].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[3].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[4].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[5].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[0].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[1].Time" Value="0.3003" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[2].Time" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[3].Time" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[4].Time" Value="0.8008" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[5].Time" Value="0.8008" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[6].Time" Value="0.8008" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[7].Time" Value="1.001" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[8].Time" Value="0.8008" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[9].Time" Value="1.001" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[10].Time" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[12].Time" Value="1.4014" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[13].Time" Value="0.8008" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[14].Time" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[15].Time" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[16].Time" Value="0.8008" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[17].Time" Value="0.3003" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[18].Time" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[19].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[20].Time" Value="0.6006" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[24].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[25].Time" Value="0.4004" />
+      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[26].Time" Value="0.8008" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[0].Time" Value="3.2031" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[1].Time" Value="3.8037" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[2].Time" Value="4.4043" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[3].Time" Value="3.2031" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[4].Time" Value="3.8037" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[5].Time" Value="4.4043" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[6].Time" Value="3.2031" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[7].Time" Value="3.8037" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[8].Time" Value="4.4043" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[9].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[10].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[11].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[19].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[20].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[21].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[22].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[0].Time" Value="1.4014" />
+      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[1].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[2].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[3].Time" Value="2.002" />
+      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[4].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[5].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[0].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[1].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[2].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[3].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[4].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[5].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[2].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[3].Time" Value="2.002" />
+      <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[4].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[5].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[0].Time" Value="3.2031" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[1].Time" Value="3.8037" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[2].Time" Value="4.4043" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[3].Time" Value="3.2031" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[4].Time" Value="3.8037" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[5].Time" Value="4.4043" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[6].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[7].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[8].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[9].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[10].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[11].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[12].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[2].Time" Value="1.6016" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[3].Time" Value="2.2021" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[4].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[5].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[6].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[7].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[8].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[9].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[10].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[11].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[0].Time" Value="1.2012" />
+      <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[2].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[3].Time" Value="1.8018" />
+      <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[4].Time" Value="2.4023" />
+      <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="0.300000" />
+      <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="0.300000" />
+      <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="0.300000" />
+      <Flags index="UpgradeCheat" value="0" />
+      <EditorCategories value="Race:Zerg" />
+      <MaxLevel value="30" />
+      <LeaderAlias value="" />
+  </CUpgrade>
   <CUpgrade id="MasteryKerriganArmyGasCost">
     <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
     <EffectArray Reference="Effect,MasteryKerriganArmyGasCostDisplayDummy,Amount" Value="1" />
