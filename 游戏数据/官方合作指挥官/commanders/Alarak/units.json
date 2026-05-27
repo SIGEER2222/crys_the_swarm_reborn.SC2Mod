@@ -46,6 +46,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "",
+      "supply_raw": "",
+      "supply_cost": "",
+      "supply_provided": "",
       "build_time": "",
       "life": "",
       "shields": "",
@@ -110,6 +113,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "",
+      "supply_raw": "",
+      "supply_cost": "",
+      "supply_provided": "",
       "build_time": "",
       "life": "",
       "shields": "",
@@ -174,6 +180,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "",
+      "supply_raw": "",
+      "supply_cost": "",
+      "supply_provided": "",
       "build_time": "",
       "life": "",
       "shields": "",
@@ -236,6 +245,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "",
+      "supply_raw": "",
+      "supply_cost": "",
+      "supply_provided": "",
       "build_time": "",
       "life": "",
       "shields": "",
@@ -252,7 +264,57 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Gateway",
+      "button_face": "Monitor",
+      "abil_cmd": "GatewayTrain,Train10",
+      "ability_id": "GatewayTrain",
+      "command_index": "Train10",
+      "minerals": "",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "37",
+      "unit": "Monitor",
+      "source_catalog": "starcoop",
+      "cost_mode": "",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Gateway",
+        "button_face": "Monitor",
+        "abil_cmd": "GatewayTrain,Train10",
+        "ability_id": "GatewayTrain",
+        "command_index": "Train10",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "37",
+        "unit": "Monitor",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "WarpGate",
+        "button_face": "Monitor",
+        "abil_cmd": "WarpGateTrain,Train10",
+        "ability_id": "WarpGateTrain",
+        "command_index": "Train10",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "5",
+        "unit": "Monitor",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "Supplicant",
@@ -308,6 +370,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "-2",
+      "supply_raw": "-2",
+      "supply_cost": "2",
+      "supply_provided": "",
       "build_time": "",
       "life": "75",
       "shields": "125",
@@ -324,7 +389,57 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Gateway",
+      "button_face": "WarpInSupplicant",
+      "abil_cmd": "GatewayTrain,Train11",
+      "ability_id": "GatewayTrain",
+      "command_index": "Train11",
+      "minerals": "75",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "28",
+      "unit": "Supplicant",
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Gateway",
+        "button_face": "WarpInSupplicant",
+        "abil_cmd": "GatewayTrain,Train11",
+        "ability_id": "GatewayTrain",
+        "command_index": "Train11",
+        "minerals": "75",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "28",
+        "unit": "Supplicant",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "AlarakSupplicantWarpTrainCreator",
+        "button_face": "WarpInSupplicant",
+        "abil_cmd": "WarpGateTrainSupplicantTrue,Train12",
+        "ability_id": "WarpGateTrainSupplicantTrue",
+        "command_index": "Train12",
+        "minerals": "",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "5",
+        "unit": "Supplicant",
+        "source_catalog": "starcoop",
+        "cost_mode": "",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "WarpPrismTaldarim",
@@ -381,6 +496,9 @@
       "vespene": "",
       "terrazine": "",
       "supply": "-2",
+      "supply_raw": "-2",
+      "supply_cost": "2",
+      "supply_provided": "",
       "build_time": "",
       "life": "100",
       "shields": "100",
@@ -397,7 +515,41 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "RoboticsFacility",
+      "button_face": "WarpInWarPrism",
+      "abil_cmd": "RoboticsFacilityTrain,Train30",
+      "ability_id": "RoboticsFacilityTrain",
+      "command_index": "Train30",
+      "minerals": "200",
+      "vespene": "",
+      "terrazine": "",
+      "custom": "",
+      "time": "50",
+      "unit": "WarpPrismTaldarim",
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "RoboticsFacility",
+        "button_face": "WarpInWarPrism",
+        "abil_cmd": "RoboticsFacilityTrain,Train30",
+        "ability_id": "RoboticsFacilityTrain",
+        "command_index": "Train30",
+        "minerals": "200",
+        "vespene": "",
+        "terrazine": "",
+        "custom": "",
+        "time": "50",
+        "unit": "WarpPrismTaldarim",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      }
+    ]
   },
   {
     "id": "Stalker",
@@ -454,6 +606,9 @@
       "vespene": "50",
       "terrazine": "",
       "supply": "-2",
+      "supply_raw": "-2",
+      "supply_cost": "2",
+      "supply_provided": "",
       "build_time": "",
       "life": "80",
       "shields": "80",
@@ -495,6 +650,56 @@
           "parent": ""
         }
       ]
-    }
+    },
+    "production": {
+      "producer_unit_id": "Gateway",
+      "button_face": "Stalker",
+      "abil_cmd": "GatewayTrain,Train2",
+      "ability_id": "GatewayTrain",
+      "command_index": "Train2",
+      "minerals": "125",
+      "vespene": "50",
+      "terrazine": "",
+      "custom": "",
+      "time": "38",
+      "unit": "Stalker",
+      "source_catalog": "starcoop",
+      "cost_mode": "unit_total_inferred",
+      "base_unit_id": ""
+    },
+    "production_options": [
+      {
+        "producer_unit_id": "Gateway",
+        "button_face": "Stalker",
+        "abil_cmd": "GatewayTrain,Train2",
+        "ability_id": "GatewayTrain",
+        "command_index": "Train2",
+        "minerals": "125",
+        "vespene": "50",
+        "terrazine": "",
+        "custom": "",
+        "time": "38",
+        "unit": "Stalker",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      },
+      {
+        "producer_unit_id": "WarpGate",
+        "button_face": "Stalker",
+        "abil_cmd": "WarpGateTrain,Train2",
+        "ability_id": "WarpGateTrain",
+        "command_index": "Train2",
+        "minerals": "125",
+        "vespene": "50",
+        "terrazine": "",
+        "custom": "",
+        "time": "16",
+        "unit": "Stalker",
+        "source_catalog": "starcoop",
+        "cost_mode": "unit_total_inferred",
+        "base_unit_id": ""
+      }
+    ]
   }
 ]
