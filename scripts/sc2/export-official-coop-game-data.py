@@ -175,6 +175,9 @@ TECH_UNIT_UNIT_OVERRIDES = {
     "Stukov": {
         "StukovInfestedWraith": "SIWraith",
     },
+    "Vorazun": {
+        "PhoenixShakuras": "CorsairMP",
+    },
     "Zeratul": {
         "DisruptorZeratul": "ZeratulDisruptor",
         "ImmortalZeratul": "ZeratulImmortal",
@@ -194,6 +197,115 @@ COMMANDER_TECH_ENTRY_EXCLUDES = {
 }
 
 TECH_DISPLAY_KEY_OVERRIDES = {
+    "AbathurGuardian": {
+        "name_keys": [
+            "Unit/Name/GuardianMP",
+            "Button/Name/MorphToGuardian",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/GuardianMP",
+        ],
+    },
+    "HHBattlecruiser": {
+        "name_keys": [
+            "Unit/Name/HHBattlecruiser",
+            "Button/Name/HHBattlecruiser",
+        ],
+    },
+    "HHRaven": {
+        "name_keys": [
+            "Unit/Name/HHRaven",
+            "Button/Name/HHRaven",
+        ],
+    },
+    "HHReaper": {
+        "name_keys": [
+            "Unit/Name/HHReaper",
+            "Button/Name/HHReaper",
+        ],
+    },
+    "HHViking": {
+        "name_keys": [
+            "Unit/Name/HHVikingFighter",
+            "Button/Name/HHVikingFighter",
+        ],
+    },
+    "HHWidowMine": {
+        "name_keys": [
+            "Unit/Name/HHWidowMine",
+            "Button/Name/HHWidowMine",
+        ],
+    },
+    "HHWraith": {
+        "name_keys": [
+            "Unit/Name/HHWraith",
+            "Button/Name/HHWraith",
+        ],
+    },
+    "DisruptorZeratul": {
+        "name_keys": [
+            "Unit/Name/ZeratulDisruptor",
+        ],
+    },
+    "ImmortalZeratul": {
+        "name_keys": [
+            "Unit/Name/ZeratulImmortal",
+            "Button/Name/ImmortalZeratul",
+        ],
+    },
+    "SentryZeratul": {
+        "name_keys": [
+            "Unit/Name/ZeratulSentry",
+            "Button/Name/SentryZeratul",
+        ],
+    },
+    "StalkerZeratul": {
+        "name_keys": [
+            "Unit/Name/ZeratulStalker",
+            "Button/Name/StalkerZeratul",
+        ],
+    },
+    "WarpPrismZeratul": {
+        "name_keys": [
+            "Unit/Name/ZeratulWarpPrism",
+        ],
+    },
+    "WarpPrismTaldarim": {
+        "name_keys": [
+            "Unit/Name/WarpPrismTaldarim",
+            "ArmyCategory/Name/WarpPrismTaldarim",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/WarpPrismTaldarim",
+        ],
+    },
+    "StukovEvolutionChamber": {
+        "name_keys": [
+            "Unit/Name/SIEngineeringBay",
+            "Button/Name/SIEngineeringBay",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/SIEngineeringBay",
+        ],
+    },
+    "StukovInfestedCivilianStructure": {
+        "name_keys": [
+            "Unit/Name/SICivilianStructure",
+            "Button/Name/SICivilianStructure",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/SICivilianStructure",
+        ],
+    },
+    "MiniDrakkenLaserDrill": {
+        "name_keys": [
+            "Unit/Name/DrakkenLaserDrillCoop",
+            "ArmyCategory/Name/MiniDrakkenLaserDrill",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/DrakkenLaserDrillCoop",
+        ],
+    },
     "DehakaAirTownHall": {
         "name_keys": [
             "Unit/Name/DehakaHatchery",
@@ -1664,6 +1776,13 @@ def build_commander_payload(
                 normalized_entry["name"] = fallback_name
                 normalized_entry["name_key"] = fallback_name_key
             if fallback_tooltip and not normalized_entry.get("tooltip"):
+                normalized_entry["tooltip"] = fallback_tooltip
+                normalized_entry["tooltip_key"] = fallback_tooltip_key
+            display_override = TECH_DISPLAY_KEY_OVERRIDES.get(str(normalized_entry["id"]), {})
+            if fallback_name and display_override.get("name_keys"):
+                normalized_entry["name"] = fallback_name
+                normalized_entry["name_key"] = fallback_name_key
+            if fallback_tooltip and display_override.get("tooltip_keys"):
                 normalized_entry["tooltip"] = fallback_tooltip
                 normalized_entry["tooltip_key"] = fallback_tooltip_key
             normalized_tech_entries.append(normalized_entry)
