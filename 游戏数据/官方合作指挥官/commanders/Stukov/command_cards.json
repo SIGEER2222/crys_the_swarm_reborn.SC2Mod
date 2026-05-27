@@ -1,0 +1,2309 @@
+[
+  {
+    "id": "StukovEvolutionChamber",
+    "unit_id": "SIEngineeringBay",
+    "name": "进化腔",
+    "object_type": "Structure",
+    "icon_button": "SIEngineeringBay",
+    "icon": "Assets\\Textures\\btn-building-stukov-infestedengineeringbay.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedengineeringbay.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "TerranInfantryWeaponsLevel3",
+            "type": "AbilCmd",
+            "abil_cmd": "SIEngineeringBayResearch,Research3",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "TerranInfantryArmorLevel3",
+            "type": "AbilCmd",
+            "abil_cmd": "SIEngineeringBayResearch,Research6",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SelectBuilder",
+            "type": "SelectBuilder",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ResearchRegenerativePlatingLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "StukovLevel05",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchRegenerativePlatingLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究再生型钢板",
+              "name_key": "Button/Name/ResearchRegenerativePlatingLocked",
+              "tooltip": "该科技将在指挥官等级5时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel05",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveCalcifiedArmorLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "StukovLevel05",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveCalcifiedArmorLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化钙化装甲",
+              "name_key": "Button/Name/EvolveCalcifiedArmorLocked",
+              "tooltip": "该科技将在指挥官等级5时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel05",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "SIMissileTurretPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIMissileTurretPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "被感染的导弹塔",
+              "name_key": "Button/Name/SIMissileTurretPassive",
+              "tooltip": "被感染的工程站允许你建造被感染的导弹塔。",
+              "tooltip_key": "Button/Tooltip/SIMissileTurretPassive",
+              "icon": "Assets\\Textures\\BTN-Building-Stukov-InfestedTurret.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Building-Stukov-InfestedTurret.dds"
+            }
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedArmory",
+    "unit_id": "SIArmory",
+    "name": "被感染的军械库",
+    "object_type": "Structure",
+    "icon_button": "SIArmory",
+    "icon": "Assets\\Textures\\btn-building-stukov-infestedarmory.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedarmory.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "TerranVehicleAndShipWeaponsLevel3",
+            "type": "AbilCmd",
+            "abil_cmd": "SIArmoryResearch,Research8",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "TerranVehicleAndShipPlatingLevel3",
+            "type": "AbilCmd",
+            "abil_cmd": "SIArmoryResearch,Research5",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SelectBuilder",
+            "type": "SelectBuilder",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedBarracks",
+    "unit_id": "SIBarracks",
+    "name": "被感染的兵营",
+    "object_type": "Structure",
+    "icon_button": "SIBarracks",
+    "icon": "Assets\\Textures\\btn-building-stukov-infestedbarracks.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedbarracks.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "SIInfestedMarine",
+            "type": "AbilCmd",
+            "abil_cmd": "SIBarracksTrain,Train1",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIInfestedMarine",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化被感染的陆战队员",
+              "name_key": "Button/Name/SIInfestedMarine",
+              "tooltip": "通用型被感染的步兵，持续存在{Behavior,SIBarracksTrainTimedLife,Duration}秒。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/SIInfestedMarine",
+              "icon": "Assets\\Textures\\btn-unit-zerg-infestedmarine.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-marine.dds"
+            }
+          },
+          {
+            "face": "MasteryStukovUnitRegenSpeedAppend",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryStukovUnitRegenSpeed",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MasteryStukovUnitRegenSpeedAppend",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "肌理重构",
+              "name_key": "Button/Name/MasteryStukovUnitRegenSpeedAppend",
+              "tooltip": "精通：从这座建筑孵化的单位每秒恢复{Effect,MasteryStukovUnitRegenSpeedDisplayDummy,Amount}点生命值。",
+              "tooltip_key": "Button/Tooltip/MasteryStukovUnitRegenSpeedAppend",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds"
+            }
+          },
+          {
+            "face": "SelectBuilder",
+            "type": "SelectBuilder",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SIStukovPlaceHordeRally",
+            "type": "AbilCmd",
+            "abil_cmd": "SIStukovPlaceHordeRally,Execute",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIStukovPlaceHordeRally",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "部署灵能发射器",
+              "name_key": "Button/Name/SIStukovPlaceHordeRally",
+              "tooltip": "将当前已有和后续新造的被感染的步兵单位派往指定地点。",
+              "tooltip_key": "Button/Tooltip/SIStukovPlaceHordeRally",
+              "icon": "Assets\\Textures\\btn-ability-zerg-stukov-summonpsiemitter.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-stukov-summonpsiemitter.dds"
+            }
+          },
+          {
+            "face": "SITechLabBarracks",
+            "type": "AbilCmd",
+            "abil_cmd": "SIBarracksAddOns,Build1",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SITechLabBarracks",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "建造被感染的科技实验室",
+              "name_key": "Button/Name/SITechLabBarracks",
+              "tooltip": "步兵研发建筑。科技实验室可以同任何生产建筑相组合。",
+              "tooltip_key": "Button/Tooltip/SITechLabBarracks",
+              "icon": "Assets\\Textures\\btn-building-stukov-infestedtechlab.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedtechlab.dds"
+            }
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "SIBarracksAddOns,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedCivilian",
+    "unit_id": "SIInfestedCivilian",
+    "name": "被感染的平民",
+    "object_type": "Unit",
+    "icon_button": "SIInfestedCivilian",
+    "icon": "Assets\\Textures\\btn-unit-zerg-infestedcolonist.dds",
+    "alert_icon": "Assets\\Textures\\btn-ability-zerg-neuralparasite-color.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AttackWorker",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "StukovInfestedInfestedCivilianLeap",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveStukovInfestedInfestedCivilianLeapAttack",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "StukovInfestedInfestedCivilianLeap",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "厌氧强化",
+              "name_key": "Button/Name/StukovInfestedInfestedCivilianLeap",
+              "tooltip": "允许被感染的平民快速扑向附近的敌方地面单位。",
+              "tooltip_key": "Button/Tooltip/StukovInfestedInfestedCivilianLeap",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-infestedciviliansleap.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-infestedciviliansleap.dds"
+            }
+          },
+          {
+            "face": "StukovInfestedCivilianSpawnBroodlingsOnDeath",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveStukovInfestedCivilianSpawnBroodlingOnDeath",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "StukovInfestedCivilianSpawnBroodlingsOnDeath",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "巢虫育生",
+              "name_key": "Button/Name/StukovInfestedCivilianSpawnBroodlingsOnDeath",
+              "tooltip": "被感染的平民死亡时孵化一只巢虫。",
+              "tooltip_key": "Button/Tooltip/StukovInfestedCivilianSpawnBroodlingsOnDeath",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-infestedspawnbroodling.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-infestedspawnbroodling.dds"
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowSIInfestedCivilianDown,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedCivilianStructure",
+    "unit_id": "SICivilianStructure",
+    "name": "被感染的平民建筑",
+    "object_type": "Structure",
+    "icon_button": "SICivilianStructure",
+    "icon": "Assets\\Textures\\btn-building-stukov-infestedcolonisthut.dds",
+    "alert_icon": "Assets\\Textures\\btn-missing-kaeo.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "EvolveInfestationLevel3Locked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "StukovLevel03",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveInfestationLevel3Locked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化3级感染",
+              "name_key": "Button/Name/EvolveInfestationLevel3Locked",
+              "tooltip": "该科技将在指挥官等级3时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel03",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveStukovInfestedInfestedCivilianLeap",
+            "type": "AbilCmd",
+            "abil_cmd": "SIInfestedCivilianStructureResearch,Research11",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveStukovInfestedInfestedCivilianLeap",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究厌氧强化",
+              "name_key": "Button/Name/EvolveStukovInfestedInfestedCivilianLeap",
+              "tooltip": "允许被感染的平民快速扑向附近的敌方地面单位。",
+              "tooltip_key": "Button/Tooltip/EvolveStukovInfestedInfestedCivilianLeap",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-infestedciviliansleap.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-infestedciviliansleap.dds"
+            }
+          },
+          {
+            "face": "EvolveBroodlingGestationLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "StukovLevel07",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveBroodlingGestationLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化巢虫育生",
+              "name_key": "Button/Name/EvolveBroodlingGestationLocked",
+              "tooltip": "该科技将在指挥官等级7时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel07",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "MasteryStukovUnitRegenSpeedAppend",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryStukovUnitRegenSpeed",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MasteryStukovUnitRegenSpeedAppend",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "肌理重构",
+              "name_key": "Button/Name/MasteryStukovUnitRegenSpeedAppend",
+              "tooltip": "精通：从这座建筑孵化的单位每秒恢复{Effect,MasteryStukovUnitRegenSpeedDisplayDummy,Amount}点生命值。",
+              "tooltip_key": "Button/Tooltip/MasteryStukovUnitRegenSpeedAppend",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds"
+            }
+          },
+          {
+            "face": "SelectBuilder",
+            "type": "SelectBuilder",
+            "abil_cmd": "SICommandCenterTrain,Train1",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SIStukovPlaceHordeRally",
+            "type": "AbilCmd",
+            "abil_cmd": "SIStukovPlaceHordeRally,Execute",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIStukovPlaceHordeRally",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "部署灵能发射器",
+              "name_key": "Button/Name/SIStukovPlaceHordeRally",
+              "tooltip": "将当前已有和后续新造的被感染的步兵单位派往指定地点。",
+              "tooltip_key": "Button/Tooltip/SIStukovPlaceHordeRally",
+              "icon": "Assets\\Textures\\btn-ability-zerg-stukov-summonpsiemitter.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-stukov-summonpsiemitter.dds"
+            }
+          },
+          {
+            "face": "SIInfestedCivilian",
+            "type": "AbilCmd",
+            "abil_cmd": "SICivilianStructureSpawnCivilian,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIInfestedCivilian",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化被感染的平民",
+              "name_key": "Button/Name/SIInfestedCivilian",
+              "tooltip": "通用型被感染的步兵，持续存在{Behavior,SIBarracksTrainTimedLife,Duration}秒。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/SIInfestedCivilian",
+              "icon": "Assets\\Textures\\btn-unit-zerg-infestedcolonist.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-neuralparasite-color.dds"
+            }
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedCommandCenter",
+    "unit_id": "SICommandCenter",
+    "name": "被感染的指挥中心",
+    "object_type": "Structure",
+    "icon_button": "SICommandCenter",
+    "icon": "Assets\\Textures\\btn-building-stukov-infestedcommandcenter.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedcommandcenter.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "SISCV",
+            "type": "AbilCmd",
+            "abil_cmd": "SICommandCenterTrain,Train1",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SISCV",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化被感染的SCV",
+              "name_key": "Button/Name/SISCV",
+              "tooltip": "基础工作单位。用于采集资源、建造被感染的建筑和修理。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/SISCV",
+              "icon": "Assets\\Textures\\btn-unit-zerg-infestedscv.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-infestedscv.dds"
+            }
+          },
+          {
+            "face": "SIOverlord",
+            "type": "AbilCmd",
+            "abil_cmd": "SICommandCenterTrain,Train3",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIOverlord",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化王虫",
+              "name_key": "Button/Name/SIOverlord",
+              "tooltip": "提供补给。提高本方单位数量上限。\n无法攻击。",
+              "tooltip_key": "Button/Tooltip/SIOverlord",
+              "icon": "Assets\\Textures\\btn-unit-zerg-overlord.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-overlord.dds"
+            }
+          },
+          {
+            "face": "EvolveAggressiveIncubationLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "StukovLevel03",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveAggressiveIncubationLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化入侵繁殖",
+              "name_key": "Button/Name/EvolveAggressiveIncubationLocked",
+              "tooltip": "该科技将在指挥官等级3时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel03",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "overlordspeed",
+            "type": "AbilCmd",
+            "abil_cmd": "SICommandCenterResearch,Research2",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MasteryStukovUnitRegenSpeedAppend",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryStukovUnitRegenSpeed",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MasteryStukovUnitRegenSpeedAppend",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "肌理重构",
+              "name_key": "Button/Name/MasteryStukovUnitRegenSpeedAppend",
+              "tooltip": "精通：从这座建筑孵化的单位每秒恢复{Effect,MasteryStukovUnitRegenSpeedDisplayDummy,Amount}点生命值。",
+              "tooltip_key": "Button/Tooltip/MasteryStukovUnitRegenSpeedAppend",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds"
+            }
+          },
+          {
+            "face": "SISpreadingCreep",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SISpreadingCreep",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "增殖菌毯",
+              "name_key": "Button/Name/SISpreadingCreep",
+              "tooltip": "被感染的指挥中心能以更快的速度扩散菌毯，并且拥有无限范围。",
+              "tooltip_key": "Button/Tooltip/SISpreadingCreep",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-creepspread.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-creepspread.dds"
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "RallyCommand,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SICommandCenterLoad",
+            "type": "AbilCmd",
+            "abil_cmd": "SICommandCenterTransport,LoadAll",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SICommandCenterLoad",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "装载",
+              "name_key": "Button/Name/SICommandCenterLoad",
+              "tooltip": "将附近被感染的SCV装载进被感染的指挥中心。",
+              "tooltip_key": "Button/Tooltip/SICommandCenterLoad",
+              "icon": "Assets\\Textures\\btn-ability-terran-load.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-load.dds"
+            }
+          },
+          {
+            "face": "CommandCenterUnloadAll",
+            "type": "AbilCmd",
+            "abil_cmd": "SICommandCenterTransport,UnloadAll",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedFactory",
+    "unit_id": "SIFactory",
+    "name": "被感染的重工厂",
+    "object_type": "Structure",
+    "icon_button": "SIFactory",
+    "icon": "Assets\\Textures\\btn-building-stukov-infestedfactory.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedfactory.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "SIDiamondBack",
+            "type": "AbilCmd",
+            "abil_cmd": "SIFactoryTrain,Train3",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIDiamondBack",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化被感染的响尾蛇战车",
+              "name_key": "Button/Name/SIDiamondBack",
+              "tooltip": "快速、高伤害的悬浮式坦克。可以移动攻击，还可以将飞行单位拖至地面。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/SIDiamondBack",
+              "icon": "Assets\\Textures\\btn-unit-zerg-infesteddiamondback.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-infesteddiamondback.dds"
+            }
+          },
+          {
+            "face": "SISiegeTank",
+            "type": "AbilCmd",
+            "abil_cmd": "SIFactoryTrain,Train2",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SISiegeTank",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化被感染的攻城坦克",
+              "name_key": "Button/Name/SISiegeTank",
+              "tooltip": "重型坦克。可以在扎根后通过吞噬被感染的步兵单位来提供远程炮火支援。可以使用深槽虫道技能快速移动至任何有菌毯的可见位置。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/SISiegeTank",
+              "icon": "Assets\\Textures\\btn-unit-zerg-infestedsiegetank.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-infestedsiegetank.dds"
+            }
+          },
+          {
+            "face": "StukovMasteryMechAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryStukovMechAttackSpeed",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "StukovMasteryMechAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "机械部队攻击速度",
+              "name_key": "Button/Name/StukovMasteryMechAttackSpeed",
+              "tooltip": "精通：攻击速度提高{Effect,MasteryStukovMechAttackSpeedDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/StukovMasteryMechAttackSpeed",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-attackspeedmastery.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-attackspeedmastery.dds"
+            }
+          },
+          {
+            "face": "MasteryStukovUnitRegenSpeedAppend",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryStukovUnitRegenSpeed",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MasteryStukovUnitRegenSpeedAppend",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "肌理重构",
+              "name_key": "Button/Name/MasteryStukovUnitRegenSpeedAppend",
+              "tooltip": "精通：从这座建筑孵化的单位每秒恢复{Effect,MasteryStukovUnitRegenSpeedDisplayDummy,Amount}点生命值。",
+              "tooltip_key": "Button/Tooltip/MasteryStukovUnitRegenSpeedAppend",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds"
+            }
+          },
+          {
+            "face": "SelectBuilder",
+            "type": "SelectBuilder",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "Rally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SITechLabFactory",
+            "type": "AbilCmd",
+            "abil_cmd": "SIFactoryAddOns,Build1",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SITechLabFactory",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "建造被感染的科技实验室",
+              "name_key": "Button/Name/SITechLabFactory",
+              "tooltip": "战车研发建筑。科技实验室可以同任何生产建筑相组合。\n开启：\n- 被感染的攻城坦克",
+              "tooltip_key": "Button/Tooltip/SITechLabFactory",
+              "icon": "Assets\\Textures\\btn-building-stukov-infestedtechlab.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedtechlab.dds"
+            }
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedMarine",
+    "unit_id": "SIInfestedMarine",
+    "name": "被感染的陆战队员",
+    "object_type": "Unit",
+    "icon_button": "SIInfestedMarine",
+    "icon": "Assets\\Textures\\btn-unit-zerg-infestedmarine.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-terran-marine.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SIMarineTrooperImprovedRange",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveSIMarineTrooperRange",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIMarineTrooperImprovedRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "视网增强",
+              "name_key": "Button/Name/SIMarineTrooperImprovedRange",
+              "tooltip": "被感染的陆战队员和被感染的士兵获得+1攻击射程。",
+              "tooltip_key": "Button/Tooltip/SIMarineTrooperImprovedRange",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-infestedmarinerangeupgrade.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-infestedmarinerangeupgrade.dds"
+            }
+          },
+          {
+            "face": "SIPlaguedMunitions",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveSIPlaguedMunitions",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIPlaguedMunitions",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "染疫弹药",
+              "name_key": "Button/Name/SIPlaguedMunitions",
+              "tooltip": "被感染的陆战队员和被感染的士兵在{Behavior,SIInfestedTrooperMarinePlaguedMunitions,Duration}秒内对其攻击的单位造成额外{Behavior,SIInfestedTrooperMarinePlaguedMunitions,Duration/Behavior,SIInfestedTrooperMarinePlaguedMunitions,Period/Effect,SIInfestedTrooperMarinePlaguedMunitionsDamage,Amount}点伤害。",
+              "tooltip_key": "Button/Tooltip/SIPlaguedMunitions",
+              "icon": "Assets\\Textures\\btn-ability-stukov-plaugedmunitions.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-stukov-plaugedmunitions.dds"
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowSIInfestedMarineDown,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedRefinery",
+    "unit_id": "SIRefinery",
+    "name": "被感染的精炼厂",
+    "object_type": "Structure",
+    "icon_button": "SIRefinery",
+    "icon": "Assets\\Textures\\btn-building-stukov-infestedrefinery.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedrefinery.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "SelectBuilder",
+            "type": "SelectBuilder",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedSiegeTank",
+    "unit_id": "StukovInfestedSiegeTank",
+    "name": "被感染的攻城坦克",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AttackBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AutoCreateInfestedCivilianAmmo",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveInfestedSiegeTankAmmo",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AutoCreateInfestedCivilianAmmo",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "自行裂生",
+              "name_key": "Button/Name/AutoCreateInfestedCivilianAmmo",
+              "tooltip": "被感染的攻城坦克每{Behavior,InfestedSiegeTankAmmoAuto,Period}秒自动孵化一枚烈性生质。",
+              "tooltip_key": "Button/Tooltip/AutoCreateInfestedCivilianAmmo",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-siegetankammoregen.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-siegetankammoregen.dds"
+            }
+          },
+          {
+            "face": "InfestedSiegeTankArmoredDamage",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "UseInfestedSiegeTankArmoredDamage",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "InfestedSiegeTankArmoredDamage",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "酸性酶",
+              "name_key": "Button/Name/InfestedSiegeTankArmoredDamage",
+              "tooltip": "被感染的攻城坦克在两种模式下对重甲单位和建筑造成额外15点伤害。",
+              "tooltip_key": "Button/Tooltip/InfestedSiegeTankArmoredDamage",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-siegetankbonusdamage.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-siegetankbonusdamage.dds"
+            }
+          },
+          {
+            "face": "StukovInfestedSiegeTankUproot",
+            "type": "AbilCmd",
+            "abil_cmd": "StukovInfestedSiegeTankUproot,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "StukovInfestedSiegeTankUproot",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "站起",
+              "name_key": "Button/Name/StukovInfestedSiegeTankUproot",
+              "tooltip": "使被感染的攻城坦克站起。站起后的被感染的攻城坦克拥有移动的能力，但无法攻击。在菌毯上的移动速度加快。",
+              "tooltip_key": "Button/Tooltip/StukovInfestedSiegeTankUproot",
+              "icon": "Assets\\Textures\\btn-ability-zerg-uproot-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-uproot-color.dds"
+            }
+          },
+          {
+            "face": "StukovInfestedSiegeTankDeepTunnel",
+            "type": "AbilCmd",
+            "abil_cmd": "StukovInfestedSiegeTankDeepTunnel,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "StukovInfestedSiegeTankDeepTunnel",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "深槽虫道",
+              "name_key": "Button/Name/StukovInfestedSiegeTankDeepTunnel",
+              "tooltip": "可以快速移动至任何有菌毯的可见位置。",
+              "tooltip_key": "Button/Tooltip/StukovInfestedSiegeTankDeepTunnel",
+              "icon": "Assets\\Textures\\btn-ability-zerg-deeptunnel.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-deeptunnel.dds"
+            }
+          },
+          {
+            "face": "StukovInfestedSiegeTankAmmo",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "StukovInfestedSiegeTankAmmo",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "烈性生质",
+              "name_key": "Button/Name/StukovInfestedSiegeTankAmmo",
+              "tooltip": "吞噬周围被感染的平民和被感染的士兵来恢复20点生命值，并为被感染的攻城坦克的烈性爆弹武器提供弹药。最多可储存8枚炮弹。",
+              "tooltip_key": "Button/Tooltip/StukovInfestedSiegeTankAmmo",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-siegetankvolatileammo.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-explode-color.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedStarport",
+    "unit_id": "SIStarport",
+    "name": "被感染的星港",
+    "object_type": "Structure",
+    "icon_button": "SIStarport",
+    "icon": "Assets\\Textures\\btn-building-stukov-infestedstarport.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedstarport.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "SILiberator",
+            "type": "AbilCmd",
+            "abil_cmd": "SIStarportTrain,Train2",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SILiberator",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化被感染的解放者",
+              "name_key": "Button/Name/SILiberator",
+              "tooltip": "重型火炮战机。攻击对敌方空中单位造成范围伤害。\n可以对空。",
+              "tooltip_key": "Button/Tooltip/SILiberator",
+              "icon": "Assets\\Textures\\btn-unit-zerg-infestedliberator.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-infestedliberator.dds"
+            }
+          },
+          {
+            "face": "SIBanshee",
+            "type": "AbilCmd",
+            "abil_cmd": "SIStarportTrain,Train1",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SIBanshee",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化被感染的女妖",
+              "name_key": "Button/Name/SIBanshee",
+              "tooltip": "战术打击飞行器。可以隐形，还可以升级潜地技能。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/SIBanshee",
+              "icon": "Assets\\Textures\\btn-unit-zerg-infestedbanshee.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-infestedbanshee.dds"
+            }
+          },
+          {
+            "face": "SpawnBroodQueenLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "StukovLevel08",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SpawnBroodQueenLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "孵化虫巢女王",
+              "name_key": "Button/Name/SpawnBroodQueenLocked",
+              "tooltip": "该单位将在指挥官等级8时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel08",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "StukovMasteryMechAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryStukovMechAttackSpeed",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "StukovMasteryMechAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "机械部队攻击速度",
+              "name_key": "Button/Name/StukovMasteryMechAttackSpeed",
+              "tooltip": "精通：攻击速度提高{Effect,MasteryStukovMechAttackSpeedDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/StukovMasteryMechAttackSpeed",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-attackspeedmastery.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-attackspeedmastery.dds"
+            }
+          },
+          {
+            "face": "MasteryStukovUnitRegenSpeedAppend",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryStukovUnitRegenSpeed",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MasteryStukovUnitRegenSpeedAppend",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "肌理重构",
+              "name_key": "Button/Name/MasteryStukovUnitRegenSpeedAppend",
+              "tooltip": "精通：从这座建筑孵化的单位每秒恢复{Effect,MasteryStukovUnitRegenSpeedDisplayDummy,Amount}点生命值。",
+              "tooltip_key": "Button/Tooltip/MasteryStukovUnitRegenSpeedAppend",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-stukov-regenrate.dds"
+            }
+          },
+          {
+            "face": "SelectBuilder",
+            "type": "SelectBuilder",
+            "abil_cmd": "StarportTrain,Train5",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "Rally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "SITechLabStarport",
+            "type": "AbilCmd",
+            "abil_cmd": "SIStarportAddOns,Build1",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SITechLabStarport",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "建造被感染的科技实验室",
+              "name_key": "Button/Name/SITechLabStarport",
+              "tooltip": "空中单位研发建筑。科技实验室可以同任何生产建筑相组合。\n开启：\n- 被感染的女妖\n- 虫巢女王",
+              "tooltip_key": "Button/Tooltip/SITechLabStarport",
+              "icon": "Assets\\Textures\\btn-building-stukov-infestedtechlab.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-stukov-infestedtechlab.dds"
+            }
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "SIStarportAddOns,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedSupplyDepot",
+    "unit_id": "SISupplyDepot",
+    "name": "被感染的补给站",
+    "object_type": "Structure",
+    "icon_button": "SISupplyDepot",
+    "icon": "Assets\\Textures\\btn-building-terran-supplydepot.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-terran-supplydepot.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "SelectBuilder",
+            "type": "SelectBuilder",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Lower",
+            "type": "AbilCmd",
+            "abil_cmd": "SISupplyDepotLower,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Halt",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Halt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "StukovInfestedWraith",
+    "unit_id": "SIWraith",
+    "name": "被感染的怨灵战机",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "WraithCloakOn",
+            "type": "AbilCmd",
+            "abil_cmd": "WraithCloak,On",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WraithCloakOn",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/WraithCloakOn",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/WraithCloakOn",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "WraithCloakOff",
+            "type": "AbilCmd",
+            "abil_cmd": "WraithCloak,Off",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WraithCloakOff",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/WraithCloakOff",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/WraithCloakOff",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "ImprovedBurstLaser",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveWraithImprovedBurstLaser",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ImprovedBurstLaser",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "脉冲增幅器",
+              "name_key": "Button/Name/ImprovedBurstLaser",
+              "tooltip": "怨灵战机移动时，双子飞弹的伤害提高{(Behavior,SwannGeminiMissileMovementBuff,DamageResponse.ModifyFraction-1)*100}%，脉冲激光炮的伤害提高{(Behavior,SwannBurstLaserMovementBuff,DamageResponse.ModifyFraction-1)*100}%。",
+              "tooltip_key": "Button/Tooltip/ImprovedBurstLaser",
+              "icon": "Assets\\Textures\\btn-upgrade-swann-improvedburstlaser.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-swann-improvedburstlaser.dds"
+            }
+          },
+          {
+            "face": "SingularityAnchor",
+            "type": "Passive",
+            "abil_cmd": "255,255",
+            "requirements": "DynamicPowerRoutingResearched",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SwarmQueen",
+    "unit_id": "Queen",
+    "name": "虫后",
+    "object_type": "Unit",
+    "icon_button": "Queen",
+    "icon": "Assets\\Textures\\btn-unit-zerg-broodqueen.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-zerg-broodqueen.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "BioMechanicalTransfusionPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveBioMechanicalTransfusionPassive",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "BioMechanicalTransfusionPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "生物机械哺液",
+              "name_key": "Button/Name/BioMechanicalTransfusionPassive",
+              "tooltip": "速效哺液的治疗量提高10点，现在可以对机械单位和建筑使用。",
+              "tooltip_key": "Button/Tooltip/BioMechanicalTransfusionPassive",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-biomechanicaltransfusion.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-biomechanicaltransfusion.dds"
+            }
+          },
+          {
+            "face": "BuildCreepTumor",
+            "type": "AbilCmd",
+            "abil_cmd": "QueenBuild,Build1",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "BioMechanicalTransfusion",
+            "type": "AbilCmd",
+            "abil_cmd": "BioMechanicalTransfusion,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "BioMechanicalTransfusion",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "速效哺液",
+              "name_key": "Button/Name/BioMechanicalTransfusion",
+              "tooltip": "为一个单位或建筑进行持续的治疗，共恢复{Effect,QueenBurstHeal,VitalArray[Life].Change*(Behavior,QueenBurstHeal,Duration +.07)/Behavior,QueenBurstHeal,Period}点生命值。",
+              "tooltip_key": "Button/Tooltip/BioMechanicalTransfusion",
+              "icon": "Assets\\Textures\\btn-ability-zerg-transfusion-color.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-transfusion-color.dds"
+            }
+          },
+          {
+            "face": "EvolveToBrutaliskLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "AbathurLevel02",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveToBrutaliskLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "进化为莽兽",
+              "name_key": "Button/Name/EvolveToBrutaliskLocked",
+              "tooltip": "该技能将在指挥官等级2时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel02",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "BiomassPassiveEmpty",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "BiomassBuffEmptyVisible",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "BiomassPassiveEmpty",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "生物质搜集",
+              "name_key": "Button/Name/BiomassPassiveEmpty",
+              "tooltip": "该单位可以通过击杀敌方单位搜集生物质来获得能量。",
+              "tooltip_key": "Button/Tooltip/BiomassPassiveEmpty",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-biomass.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-abathur-biomass.dds"
+            }
+          },
+          {
+            "face": "BurrowUp",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowUltraliskUp,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "BuildCreepTumor",
+            "type": "",
+            "abil_cmd": "QueenBuild,Build3",
+            "requirements": "",
+            "row": "",
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "QueenBurstHeal",
+            "type": "",
+            "abil_cmd": "QueenBurstHeal,Execute",
+            "requirements": "",
+            "row": "",
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DeepTunnel",
+            "type": "",
+            "abil_cmd": "DeepTunnel,Execute",
+            "requirements": "",
+            "row": "",
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Cancel",
+            "type": "",
+            "abil_cmd": "KerriganEnhance,Off",
+            "requirements": "",
+            "row": "",
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Zergling",
+    "unit_id": "Zergling",
+    "name": "跳虫",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "HaveMPMetabolicBoost",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ZerglingArmorShred",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveZerglingArmorShred",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZerglingArmorShred",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "切割利爪",
+              "name_key": "Button/Name/ZerglingArmorShred",
+              "tooltip": "跳虫的攻击会使目标的护甲降低到0，持续{Behavior,ZerglingArmorShredTarget,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/ZerglingArmorShred",
+              "icon": "Assets\\Textures\\btn-upgrade-zergling-armorshredding.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zergling-armorshredding.dds"
+            }
+          },
+          {
+            "face": "ZagaraVoidCoopZerglingDodge",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryZagaraZerglingDodgeChance",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ZagaraVoidCoopZerglingDodge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "闪避",
+              "name_key": "Button/Name/ZagaraVoidCoopZerglingDodge",
+              "tooltip": "跳虫有{Effect,MasteryZagaraZerglingDodgeChanceDisplayDummy,Amount}%的几率躲避一次攻击。",
+              "tooltip_key": "Button/Tooltip/ZagaraVoidCoopZerglingDodge",
+              "icon": "Assets\\Textures\\btn-upgrade-zerg-zagara-zerglingdodge.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-zerg-zagara-zerglingdodge.dds"
+            }
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "HaveMPAdrenalGlands",
+            "row": 1,
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Baneling",
+            "type": "AbilCmd",
+            "abil_cmd": "MorphZerglingToBaneling,Train1",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowUltraliskDown,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "BurrowUp",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowUltraliskUp,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "MorphToBaneling,Execute",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  }
+]

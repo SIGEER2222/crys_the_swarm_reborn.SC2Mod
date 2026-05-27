@@ -1,0 +1,1384 @@
+[
+  {
+    "id": "ColossusTaldarim",
+    "unit_id": "ColossusTaldarim",
+    "name": "天罚行者",
+    "object_type": "Unit",
+    "icon_button": "ColossusTaldarim",
+    "icon": "Assets\\Textures\\btn-unit-protoss-colossus-taldarimex3.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-colossus-taldarimex3.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "CommanderPrestigeAlarakMechBuff",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "CommanderPrestigeAlarakMech",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CommanderPrestigeAlarakMechBuff",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "灵魂之匣",
+              "name_key": "Button/Name/CommanderPrestigeAlarakMechBuff",
+              "tooltip": "该单位可以最多收集{Behavior,CommanderPrestigeAlarakMechBuff,MaxPoints} 个死徒灵魂，每收集一个灵魂可以使攻击速度提高{Behavior,CommanderPrestigeAlarakMechBuff,Modification.UnifiedAttackSpeedFactor*100}%，伤害提高{Behavior,CommanderPrestigeAlarakMechBuff,Modification.UnifiedDamageDealtFraction[Melee]*100}%。",
+              "tooltip_key": "Button/Tooltip/CommanderPrestigeAlarakMechBuff",
+              "icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds"
+            }
+          },
+          {
+            "face": "AlarakColossusAerialTracking",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveColossusChargedBlastAirAttack",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakColossusAerialTracking",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "空域追踪",
+              "name_key": "Button/Name/AlarakColossusAerialTracking",
+              "tooltip": "允许天罚行者攻击空中单位。",
+              "tooltip_key": "Button/Tooltip/AlarakColossusAerialTracking",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-wrathwalker-cantargetairunits.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-wrathwalker-cantargetairunits.dds"
+            }
+          },
+          {
+            "face": "AlarakColossusChargedBlastChargeTime",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveColossusChargedBlastChargeTime",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakColossusChargedBlastChargeTime",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "快速能量循环",
+              "name_key": "Button/Name/AlarakColossusChargedBlastChargeTime",
+              "tooltip": "缩短天罚行者充能爆裂弹的充能时间与武器攻击速度。",
+              "tooltip_key": "Button/Tooltip/AlarakColossusChargedBlastChargeTime",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-wrathwalker-chargetimeimproved.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-wrathwalker-chargetimeimproved.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Gateway",
+    "unit_id": "Gateway",
+    "name": "传送门",
+    "object_type": "Structure",
+    "icon_button": "Gateway",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "WarpInSupplicant",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train11",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WarpInSupplicant",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃死徒",
+              "name_key": "Button/Name/WarpInSupplicant",
+              "tooltip": "近战战士。在阿拉纳克濒临死亡时牺牲自己来为他治疗。死徒可以同时折跃两个。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/WarpInSupplicant",
+              "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-supplicant.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-supplicant.dds"
+            }
+          },
+          {
+            "face": "SentryFenix",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train15",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SentryFenix",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃保护者",
+              "name_key": "Button/Name/SentryFenix",
+              "tooltip": "净化者阵营\n机械支援单位。可以使用防护场和相位模式。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/SentryFenix",
+              "icon": "Assets\\Textures\\btn-unit-collection-purifier-sentry.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-purifier-sentry.dds"
+            }
+          },
+          {
+            "face": "Stalker",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train2",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "WarpInAdept",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train7",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WarpInAdept",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "折跃使徒",
+              "name_key": "Button/Name/WarpInAdept",
+              "tooltip": "远程特种单位。可以使用灵能传送。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/WarpInAdept",
+              "icon": "Assets\\Textures\\btn-unit-protoss-adeptfenix-purifier.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-adeptfenix-purifier.dds"
+            }
+          },
+          {
+            "face": "WarpinAscendentLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "AlarakLevel08",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WarpinAscendentLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "折跃晋升者",
+              "name_key": "Button/Name/WarpinAscendentLocked",
+              "tooltip": "该单位将在指挥官等级8时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel08",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "DarkTemplar",
+            "type": "AbilCmd",
+            "abil_cmd": "GatewayTrain,Train5",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "WarpInDarkArchonLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "VorazunLevel05",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "WarpInDarkArchonLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "折跃黑暗执政官",
+              "name_key": "Button/Name/WarpInDarkArchonLocked",
+              "tooltip": "该技能将在指挥官等级5时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel05",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "Rally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "UpgradeToWarpGate",
+            "type": "AbilCmd",
+            "abil_cmd": "UpgradeToWarpGate,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AlarakMasteryUnitAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveMasteryAlarakUnitAttackSpeed",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakMasteryUnitAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "战斗精通",
+              "name_key": "Button/Name/AlarakMasteryUnitAttackSpeed",
+              "tooltip": "精通：折跃在该建筑旁边的单位获得{Effect,MasteryAlarakUnitAttackSpeedDisplayDummy,Amount}%攻击速度。",
+              "tooltip_key": "Button/Tooltip/AlarakMasteryUnitAttackSpeedAppend",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-Alarak-CombatMastery.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-Alarak-CombatMastery.dds"
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "UpgradeToWarpGate,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "que5notPassive,CancelLast",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HighTemplarTaldarim",
+    "unit_id": "HighTemplarTaldarim",
+    "name": "晋升者",
+    "object_type": "Unit",
+    "icon_button": "HighTemplarTaldarim",
+    "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-hightemplar.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-hightemplar.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "ResearchAlarakHighTemplarPsionicOrbTravelDistancePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHighTemplarPsionicOrbTravelDistance",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchAlarakHighTemplarPsionicOrbTravelDistancePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "混乱调和",
+              "name_key": "Button/Name/ResearchAlarakHighTemplarPsionicOrbTravelDistancePassive",
+              "tooltip": "灵能球的飞行距离提高25%。",
+              "tooltip_key": "Button/Tooltip/ResearchAlarakHighTemplarPsionicOrbTravelDistancePassive",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-ascendant'spsiorbtravelsfurther.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-ascendant'spsiorbtravelsfurther.dds"
+            }
+          },
+          {
+            "face": "AlarakHighTemplarImprovedSacrifice",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHighTemplarImprovedSacrifice",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakHighTemplarImprovedSacrifice",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "势不可挡",
+              "name_key": "Button/Name/AlarakHighTemplarImprovedSacrifice",
+              "tooltip": "晋升者的技能伤害永久提高{Behavior,AscendantSacrificeSelfBuff,Modification.DamageDealtFraction[Spell]*100}%，每次使用献祭时其护盾增加{Behavior,AscendantSacrificeSelfBuff,Modification.VitalMaxArray[Shields]}点。\n该效果最多可以叠加{Behavior,AscendantSacrificeSelfBuff,MaxStackCount}次。",
+              "tooltip_key": "Button/Tooltip/AlarakHighTemplarImprovedSacrifice",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-ascendantspermanentlybetter.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-ascendantspermanentlybetter.dds"
+            }
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "AscendantSacrificeInstant,Execute",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ImmortalTaldarim",
+    "unit_id": "ImmortalTaldarim",
+    "name": "无情先锋",
+    "object_type": "Unit",
+    "icon_button": "ImmortalTaldarim",
+    "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-immortal.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-immortal.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "CommanderPrestigeAlarakMechBuff",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "CommanderPrestigeAlarakMech",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CommanderPrestigeAlarakMechBuff",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "灵魂之匣",
+              "name_key": "Button/Name/CommanderPrestigeAlarakMechBuff",
+              "tooltip": "该单位可以最多收集{Behavior,CommanderPrestigeAlarakMechBuff,MaxPoints} 个死徒灵魂，每收集一个灵魂可以使攻击速度提高{Behavior,CommanderPrestigeAlarakMechBuff,Modification.UnifiedAttackSpeedFactor*100}%，伤害提高{Behavior,CommanderPrestigeAlarakMechBuff,Modification.UnifiedDamageDealtFraction[Melee]*100}%。",
+              "tooltip_key": "Button/Tooltip/CommanderPrestigeAlarakMechBuff",
+              "icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds"
+            }
+          },
+          {
+            "face": "VanguardArmoredDamage",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveVanguardArmoredDamage",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "VanguardArmoredDamage",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "聚变迫击炮",
+              "name_key": "Button/Name/VanguardArmoredDamage",
+              "tooltip": "提高对重甲单位造成的伤害。",
+              "tooltip_key": "Button/Tooltip/VanguardArmoredDamage",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-vanguard-increasedarmordamage.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-vanguard-increasedarmordamage.dds"
+            }
+          },
+          {
+            "face": "AlarakVanguardIncreaseSplashArea",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveAlarakVanguardIncreaseSplashArea",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakVanguardIncreaseSplashArea",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "物质散化",
+              "name_key": "Button/Name/AlarakVanguardIncreaseSplashArea",
+              "tooltip": "离散光炮的溅射伤害范围扩大{($UpgradeEffectArrayValue:AlarakVanguardIncreaseSplashArea:Effect,ImmortalTaldarimWeaponSearch,AreaArray[0].Radius$/Effect,ImmortalTaldarimWeaponSearch,AreaArray[0].Radius-1)*100}%。",
+              "tooltip_key": "Button/Tooltip/AlarakVanguardIncreaseSplashArea",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-vanguard-aoeradiusincreased.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-vanguard-aoeradiusincreased.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PhotonCannon",
+    "unit_id": "PhotonCannon",
+    "name": "光子炮台",
+    "object_type": "Structure",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AttackBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "KaraxTurretRange",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveKaraxTurretRange",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "KaraxTurretRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "强化瞄准",
+              "name_key": "Button/Name/KaraxTurretRange",
+              "tooltip": "防御性建筑的射程提高2。",
+              "tooltip_key": "Button/Tooltip/KaraxTurretRange",
+              "icon": "Assets\\Textures\\btn-upgrade-karax-turretrange.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-karax-turretrange.dds"
+            }
+          },
+          {
+            "face": "KaraxTurretAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveKaraxTurretAttackSpeed",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "KaraxTurretAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "军械优化",
+              "name_key": "Button/Name/KaraxTurretAttackSpeed",
+              "tooltip": "防御性建筑的攻击速度提高25%。",
+              "tooltip_key": "Button/Tooltip/KaraxTurretAttackSpeed",
+              "icon": "Assets\\Textures\\btn-upgrade-karax-turretattackspeed.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-karax-turretattackspeed.dds"
+            }
+          },
+          {
+            "face": "Detector",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "NotUnderConstruction",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "PhaseCannonProjection,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SentryTaldarim",
+    "unit_id": "Monitor",
+    "name": "浩劫",
+    "object_type": "Unit",
+    "icon_button": "Monitor",
+    "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-sentry.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-sentry.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "HavocPermanentCloak",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveAlarakHavocPermanentCloak",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HavocPermanentCloak",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "隐身模块",
+              "name_key": "Button/Name/HavocPermanentCloak",
+              "tooltip": "使浩劫永久隐形。",
+              "tooltip_key": "Button/Tooltip/HavocPermanentCloak",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-permanentcloak.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-permanentcloak.dds"
+            }
+          },
+          {
+            "face": "AlarakTargetLockBuff",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveAlarakHavocTargetLockBuff",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakTargetLockBuff",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "侦测弱点",
+              "name_key": "Button/Name/AlarakTargetLockBuff",
+              "tooltip": "目标锁定的伤害加成额外提高15%。",
+              "tooltip_key": "Button/Tooltip/AlarakTargetLockBuff",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-havoctargetlockbuffed.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-havoctargetlockbuffed.dds"
+            }
+          },
+          {
+            "face": "AlarakHavocAbilityRange",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveAlarakHavocAbilityRange",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakHavocAbilityRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "血水晶共鸣",
+              "name_key": "Button/Name/AlarakHavocAbilityRange",
+              "tooltip": "扩大小队视野的范围以及锁定目标和力场的射程。",
+              "tooltip_key": "Button/Tooltip/AlarakHavocAbilityRange",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-rangeincrease.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-rangeincrease.dds"
+            }
+          },
+          {
+            "face": "Detector",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Supplicant",
+    "unit_id": "Supplicant",
+    "name": "死徒",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AlarakACMyLifefortheHighlord",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakACMyLifefortheHighlord",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "献身",
+              "name_key": "Button/Name/AlarakACMyLifefortheHighlord",
+              "tooltip": "死徒是阿拉纳克濒死时首先牺牲自己来为其恢复生命值的单位。",
+              "tooltip_key": "Button/Tooltip/AlarakACMyLifefortheHighlord",
+              "icon": "Assets\\Textures\\btn-ability-protoss-soulabsorbtion.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-soulabsorbtion.dds"
+            }
+          },
+          {
+            "face": "PHSupplicantShieldArmor",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveSupplicantShieldArmor",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PHSupplicantShieldArmor",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "鲜血护盾",
+              "name_key": "Button/Name/PHSupplicantShieldArmor",
+              "tooltip": "降低敌人对死徒护盾造成的伤害。",
+              "tooltip_key": "Button/Tooltip/PHSupplicantShieldArmor",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantarmor.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantarmor.dds"
+            }
+          },
+          {
+            "face": "AlarakSupplicantMaxShields",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveAlarakSupplicantMaxShields",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakSupplicantMaxShields",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "灵魂强化",
+              "name_key": "Button/Name/AlarakSupplicantMaxShields",
+              "tooltip": "死徒获得+{Effect,AlarakSupplicantMaxShieldsDisplayDummy,Amount}护盾。",
+              "tooltip_key": "Button/Tooltip/AlarakSupplicantMaxShields",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantextrashields.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantextrashields.dds"
+            }
+          },
+          {
+            "face": "SupplicantSacrificeCDRLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "AlarakLevel15",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SupplicantSacrificeCDRLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "高阶领主之怒",
+              "name_key": "Button/Name/SupplicantSacrificeCDRLocked",
+              "tooltip": "该技能将在指挥官等级15时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel15",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "AdeptPhaseShiftCancel,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TwilightCouncil",
+    "unit_id": "TwilightCouncil",
+    "name": "光影议会",
+    "object_type": "Structure",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "ArmorResearchSupplicantShieldArmor",
+            "type": "AbilCmd",
+            "abil_cmd": "TwilightCouncilResearch,Research25",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ArmorResearchSupplicantShieldArmor",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究鲜血护盾",
+              "name_key": "Button/Name/ArmorResearchSupplicantShieldArmor",
+              "tooltip": "降低敌人对死徒的护盾造成的伤害。",
+              "tooltip_key": "Button/Tooltip/ArmorResearchSupplicantShieldArmor",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantarmor.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantarmor.dds"
+            }
+          },
+          {
+            "face": "ResearchReconstructionLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "KaraxLevel04",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchReconstructionLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究重构",
+              "name_key": "Button/Name/ResearchReconstructionLocked",
+              "tooltip": "该科技将在指挥官等级4时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel04",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "ResearchFenixKaldalisZealotCleaveLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "FenixLevel04",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchFenixKaldalisZealotCleaveLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究充能利刃",
+              "name_key": "Button/Name/ResearchFenixKaldalisZealotCleaveLocked",
+              "tooltip": "该科技将在指挥官等级4时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel04",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "FenixTalisAdeptLearnBounceShotUpgradeLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "FenixLevel04",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "FenixTalisAdeptLearnBounceShotUpgradeLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究衰弱系统",
+              "name_key": "Button/Name/FenixTalisAdeptLearnBounceShotUpgradeLocked",
+              "tooltip": "该科技将在指挥官等级4时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel04",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ResearchDragoonRange",
+            "type": "",
+            "abil_cmd": "TwilightCouncilResearch,Research6",
+            "requirements": "",
+            "row": "",
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchDragoonRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究奇点充能",
+              "name_key": "Button/Name/ResearchDragoonRange",
+              "tooltip": "龙骑士的射程+2。",
+              "tooltip_key": "Button/Tooltip/ResearchDragoonRange",
+              "icon": "Assets\\Textures\\BTN-Upgrade-Artanis-SingularityCharge.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Upgrade-Artanis-SingularityCharge.dds"
+            }
+          },
+          {
+            "face": "ResearchWhirlwind",
+            "type": "",
+            "abil_cmd": "TwilightCouncilResearch,Research3",
+            "requirements": "",
+            "row": "",
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchWhirlwind",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究旋风斩",
+              "name_key": "Button/Name/ResearchWhirlwind",
+              "tooltip": "使狂热者可以使用旋风斩技能。旋风斩在激活时会对附近所有敌人造成伤害。",
+              "tooltip_key": "Button/Tooltip/ResearchWhirlwind",
+              "icon": "Assets\\Textures\\btn-ability-protoss-whirlwind.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-protoss-whirlwind.dds"
+            }
+          },
+          {
+            "face": "ResearchReclamationLocked",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "KaraxLevel04",
+            "row": "",
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchReclamationLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "研究回收",
+              "name_key": "Button/Name/ResearchReclamationLocked",
+              "tooltip": "该科技将在指挥官等级4时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel04",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "AdeptResearchPiercingUpgrade",
+            "type": "",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ResearchShadowStun",
+            "type": "AbilCmd",
+            "abil_cmd": "TwilightCouncilResearch,Research9",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchShadowStun",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "研究黑暗缠绕",
+              "name_key": "Button/Name/ResearchShadowStun",
+              "tooltip": "使百夫长能击晕附近的敌人，并使他们的护盾值在一小段时间内提高{Behavior,VoidZealotShadowChargeSelfBuff,Modification.VitalMaxArray[Shields]}点。重型单位则会被减速。",
+              "tooltip_key": "Button/Tooltip/ResearchShadowStun",
+              "icon": "Assets\\Textures\\btn-upgrade-vorazun-shadowstun.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-vorazun-shadowstun.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "WarpPrismTaldarim",
+    "unit_id": "WarpPrismTaldarim",
+    "name": "折跃棱镜 (塔达林)",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "TaldarimWarpConduit",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "TaldarimWarpConduit",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "战争配置",
+              "name_key": "Button/Name/TaldarimWarpConduit",
+              "tooltip": "加快战争棱镜的变形速度并扩大供能范围。使战争棱镜在运输模式下可以攻击地面和空中单位。",
+              "tooltip_key": "Button/Tooltip/TaldarimWarpConduit",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-graviticdrive.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-graviticdrive.dds"
+            }
+          },
+          {
+            "face": "CommanderPrestigeAlarakMechBuff",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "CommanderPrestigeAlarakMech",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CommanderPrestigeAlarakMechBuff",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "灵魂之匣",
+              "name_key": "Button/Name/CommanderPrestigeAlarakMechBuff",
+              "tooltip": "该单位可以最多收集{Behavior,CommanderPrestigeAlarakMechBuff,MaxPoints} 个死徒灵魂，每收集一个灵魂可以使攻击速度提高{Behavior,CommanderPrestigeAlarakMechBuff,Modification.UnifiedAttackSpeedFactor*100}%，伤害提高{Behavior,CommanderPrestigeAlarakMechBuff,Modification.UnifiedDamageDealtFraction[Melee]*100}%。",
+              "tooltip_key": "Button/Tooltip/CommanderPrestigeAlarakMechBuff",
+              "icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds"
+            }
+          },
+          {
+            "face": "ACAlarakPhasingMode",
+            "type": "AbilCmd",
+            "abil_cmd": "PhasingModeTaldarim,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ACAlarakPhasingMode",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "相位模式",
+              "name_key": "Button/Name/ACAlarakPhasingMode",
+              "tooltip": "战争棱镜变形为相位模式，生成一圈类似于水晶塔的能量场。战争棱镜在该模式下不能移动或攻击。",
+              "tooltip_key": "Button/Tooltip/ACAlarakPhasingMode",
+              "icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-warpprismstationary.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-protoss-alarak-taldarim-warpprismstationary.dds"
+            }
+          },
+          {
+            "face": "WarpPrismLoad",
+            "type": "AbilCmd",
+            "abil_cmd": "WarpPrismTransport,Load",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "WarpPrismUnloadAll",
+            "type": "AbilCmd",
+            "abil_cmd": "WarpPrismTransport,UnloadAt",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Stalker",
+    "unit_id": "Stalker",
+    "name": "追猎者",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CommanderPrestigeAlarakMechBuff",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "CommanderPrestigeAlarakMech",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CommanderPrestigeAlarakMechBuff",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "灵魂之匣",
+              "name_key": "Button/Name/CommanderPrestigeAlarakMechBuff",
+              "tooltip": "该单位可以最多收集{Behavior,CommanderPrestigeAlarakMechBuff,MaxPoints} 个死徒灵魂，每收集一个灵魂可以使攻击速度提高{Behavior,CommanderPrestigeAlarakMechBuff,Modification.UnifiedAttackSpeedFactor*100}%，伤害提高{Behavior,CommanderPrestigeAlarakMechBuff,Modification.UnifiedDamageDealtFraction[Melee]*100}%。",
+              "tooltip_key": "Button/Tooltip/CommanderPrestigeAlarakMechBuff",
+              "icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds"
+            }
+          },
+          {
+            "face": "Blink",
+            "type": "AbilCmd",
+            "abil_cmd": "Blink,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AlarakStalkerPhasingArmor",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveAlarakStalkerPhasingArmor",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "AlarakStalkerPhasingArmor",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "相位护甲",
+              "name_key": "Button/Name/AlarakStalkerPhasingArmor",
+              "tooltip": "使杀戮者在受到攻击后的{Behavior,AlarakStalkerPhasingArmorBuff,Duration}秒内不会再受到伤害。该效果每{Behavior,AlarakStalkerPhasingArmor,DamageResponse.Cost.Cooldown.TimeUse}秒最多触发一次。",
+              "tooltip_key": "Button/Tooltip/AlarakStalkerPhasingArmor",
+              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-stalkerphasingarmor.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-stalkerphasingarmor.dds"
+            }
+          },
+          {
+            "face": "Rally",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "",
+            "type": "",
+            "abil_cmd": "BlinkSlayer,Execute",
+            "requirements": "",
+            "row": "",
+            "column": "",
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  }
+]

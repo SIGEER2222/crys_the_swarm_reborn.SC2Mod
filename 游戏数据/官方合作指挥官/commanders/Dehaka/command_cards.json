@@ -1,0 +1,4771 @@
+[
+  {
+    "id": "DehakaCoop",
+    "unit_id": "DehakaCoop",
+    "name": "德哈卡",
+    "object_type": "Hero",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "MoveChampions",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AttackChampions",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaMendingAura",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaMendingAura,Off",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaMendingAura",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始恢复",
+              "name_key": "Button/Name/DehakaMendingAura",
+              "tooltip": "德哈卡附近的友方单位每秒恢复{Effect,DehakaMendingAuraHealA,VitalArray[Life].Change * 2}点生命值。",
+              "tooltip_key": "Button/Tooltip/DehakaMendingAura",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-healingaura.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-healingaura.dds"
+            }
+          },
+          {
+            "face": "DehakaDetector",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDetector,Off",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaDetector",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "敏锐感官",
+              "name_key": "Button/Name/DehakaDetector",
+              "tooltip": "侦测隐形、潜地和幻像单位。",
+              "tooltip_key": "Button/Tooltip/DehakaDetector",
+              "icon": "Assets\\Textures\\btn-ability-dehaka-detector.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-dehaka-detector.dds"
+            }
+          },
+          {
+            "face": "DehakaArmorUpgrade",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaArmorUpgrade,Off",
+            "requirements": "",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaArmorUpgrade",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "骨板",
+              "name_key": "Button/Name/DehakaArmorUpgrade",
+              "tooltip": "护甲提高{Behavior,DehakaArmorUpgrade1,Modification.LifeArmorBonus}点。",
+              "tooltip_key": "Button/Tooltip/DehakaArmorUpgrade",
+              "icon": "Assets\\Textures\\btn-upgrade-dehaka-groundcarapace-level3.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-dehaka-groundcarapace-level3.dds"
+            }
+          },
+          {
+            "face": "DehakaAirAttack",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaAirAttackUpgrade,Off",
+            "requirements": "",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaAirAttack",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "致命触击",
+              "name_key": "Button/Name/DehakaAirAttack",
+              "tooltip": "允许德哈卡攻击空中单位。",
+              "tooltip_key": "Button/Tooltip/DehakaAirAttack",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-attackair.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-attackair.dds"
+            }
+          },
+          {
+            "face": "DehakaLearnAbilities",
+            "type": "Submenu",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "DehakaLearn",
+            "submenu_card_id": "Lear",
+            "submenu_is_sticky": "1",
+            "button": {
+              "id": "DehakaLearnAbilities",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化突变",
+              "name_key": "Button/Name/DehakaLearnAbilities",
+              "tooltip": "你有尚未分配的突变点数。点击此处进行分配。",
+              "tooltip_key": "Button/Tooltip/DehakaLearnAbilities",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-levelup.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-levelup.dds"
+            }
+          },
+          {
+            "face": "DehakaLeapStomp",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaLeapStomp,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaLeapStomp",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "跳跃",
+              "name_key": "Button/Name/DehakaLeapStomp",
+              "tooltip": "德哈卡跳向目标位置，对附近的敌方地面单位造成{$AccumulatedValue:Effect,DehakaStompDamageC,Amount$}点伤害。",
+              "tooltip_key": "Button/Tooltip/DehakaLeapStomp",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-leapattack.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-leapattack.dds"
+            }
+          },
+          {
+            "face": "DehakaIntimidatingRoar",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaIntimidatingRoar,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaIntimidatingRoar",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "破胆咆哮",
+              "name_key": "Button/Name/DehakaIntimidatingRoar",
+              "tooltip": "德哈卡恐吓附近的敌人，使其移动速度降低{Behavior,DehakaIntimidatingRoar,Modification.AdditiveMoveSpeedFactor * (-1 ) * 100}% ，攻击速度降低{Behavior,DehakaIntimidatingRoar,Modification.AdditiveAttackSpeedFactor * (-1 ) * 100}%，持续{Behavior,DehakaIntimidatingRoar,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/DehakaIntimidatingRoar",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-intimidatingroar.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-intimidatingroar.dds"
+            }
+          },
+          {
+            "face": "DehakaConsume",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaConsume,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaConsume",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "吞食",
+              "name_key": "Button/Name/DehakaConsume",
+              "tooltip": "立刻杀死目标敌方单位，恢复{Effect,DehakaConsumeEffectHealOther,VitalArray[Life].ChangeFraction*100}%生命值，并根据敌人种类的不同获得被动技能，持续{Behavior,DehakaConsumeEffectAir,Duration}秒。冷却时间取决于敌人被杀死时的生命值。\n空中：获得远程攻击重甲：攻击重甲敌人时获得伤害加成生物：恢复{Effect,DehakaConsumeEffectHealBiological,VitalArray[Life].ChangeFraction*100}%生命值轻甲：获得移动速度巨型：获得护甲并向攻击者反弹伤害机械：获得攻击速度灵能：发出灵能爆炸并使技能冷却速度加快50%",
+              "tooltip_key": "Button/Tooltip/DehakaConsume",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-consume.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-consume.dds"
+            }
+          },
+          {
+            "face": "MammothBreath",
+            "type": "AbilCmd",
+            "abil_cmd": "MammothBreath,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MammothBreath",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "灼热吐息",
+              "name_key": "Button/Name/MammothBreath",
+              "tooltip": "德哈卡的灼热气息烧焦了土地，对沿途所有敌方地面单位造成武器伤害（{$AccumulatedValue:Effect,MammothBreathDamage,Amount$}）。",
+              "tooltip_key": "Button/Tooltip/MammothBreath",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-mammothbreath.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-mammothbreath.dds"
+            }
+          },
+          {
+            "face": "DehakaDeepTunnelLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel04",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaDeepTunnelLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "深槽虫道",
+              "name_key": "Button/Name/DehakaDeepTunnelLocked",
+              "tooltip": "该技能将在指挥官等级4时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel04",
+              "icon": "",
+              "alert_icon": ""
+            }
+          }
+        ]
+      },
+      {
+        "card_id": "Lear",
+        "is_default_card": false,
+        "buttons": [
+          {
+            "face": "EvolveDehakaPrimalRegenerationLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel12",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveDehakaPrimalRegenerationLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "进化原始恢复",
+              "name_key": "Button/Name/EvolveDehakaPrimalRegenerationLocked",
+              "tooltip": "该技能将在指挥官等级12时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel12",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveDehakaKeenSensesLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel05",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveDehakaKeenSensesLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "进化敏锐感官",
+              "name_key": "Button/Name/EvolveDehakaKeenSensesLocked",
+              "tooltip": "该技能将在指挥官等级5时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel05",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveDehakaChitinousPlatingLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel05",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveDehakaChitinousPlatingLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "进化骨板",
+              "name_key": "Button/Name/EvolveDehakaChitinousPlatingLocked",
+              "tooltip": "该技能将在指挥官等级5时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel05",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveDehakaReachingtheSkyLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel12",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveDehakaReachingtheSkyLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "进化致命触击",
+              "name_key": "Button/Name/EvolveDehakaReachingtheSkyLocked",
+              "tooltip": "该技能将在指挥官等级12时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel12",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "LearnDehakaLeapStomp",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaLearn,Learn2",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "LearnDehakaLeapStomp",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化跳跃",
+              "name_key": "Button/Name/LearnDehakaLeapStomp",
+              "tooltip": "德哈卡跳向目标位置，对范围内的所有敌方地面单位造成25+50%武器伤害。\n2级 - 跳跃范围提高6码，伤害提高至25+75%武器伤害。\n3级 - 每击中一个敌人使德哈卡获得{Behavior,DehakaLeapStompArmor,Modification.LifeArmorBonus}点护甲，持续{Behavior,DehakaLeapStompArmor,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/LearnDehakaLeapStomp",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-leapattack.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-leapattack.dds"
+            }
+          },
+          {
+            "face": "LearnDehakaIntimidatingRoar",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaLearn,Learn8",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "LearnDehakaIntimidatingRoar",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化破胆咆哮",
+              "name_key": "Button/Name/LearnDehakaIntimidatingRoar",
+              "tooltip": "德哈卡威慑附近的敌人，使他们的移动速度降低75%，攻击速度降低25%，持续{Behavior,DehakaIntimidatingRoar,Duration} 秒。\n2级 - 受到破胆咆哮影响的敌人也不能使用消耗能量的技能。\n3级 - 受到破胆咆哮影响的敌人的护甲降低{Behavior,DehakaIntimidatingRoarLv3,Modification.LifeArmorBonus * (-1)}点。",
+              "tooltip_key": "Button/Tooltip/LearnDehakaIntimidatingRoar",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-intimidatingroar.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-intimidatingroar.dds"
+            }
+          },
+          {
+            "face": "LearnDehakaConsume",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaLearn,Learn3",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "LearnDehakaConsume",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化吞食",
+              "name_key": "Button/Name/LearnDehakaConsume",
+              "tooltip": "德哈卡立刻杀死目标敌人，恢复{Effect,DehakaConsumeEffectHealOther,VitalArray[Life].ChangeFraction*100}%的生命值，并根据敌人类型获得被动技能，持续{Behavior,DehakaConsumeEffectBiological,Duration}秒。冷却时间根据敌人被杀死时的生命值决定。 \n2级 - 被动加成持续{Behavior,DehakaConsumeEffectBiological,Duration * 1.667}秒。范围扩大3码。\n3级 - 冷却时间缩短20%。范围扩大3码。",
+              "tooltip_key": "Button/Tooltip/LearnDehakaConsume",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-consume.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-consume.dds"
+            }
+          },
+          {
+            "face": "LearnDehakaMammothBreath",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaLearn,Learn4",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "LearnDehakaMammothBreath",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化灼热吐息",
+              "name_key": "Button/Name/LearnDehakaMammothBreath",
+              "tooltip": "德哈卡的灼热气息烧焦了土地，对沿途所有敌方地面单位造成武器伤害（{$AccumulatedValue:Effect,MammothBreathDamage,Amount$}）。",
+              "tooltip_key": "Button/Tooltip/LearnDehakaMammothBreath",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-mammothbreath.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-mammothbreath.dds"
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "CancelSubmenu",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaDrone",
+    "unit_id": "DehakaDrone",
+    "name": "原始工蜂",
+    "object_type": "Unit",
+    "icon_button": "DehakaDrone",
+    "icon": "Assets\\Textures\\btn-unit-collection-primal-Drone.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Drone.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "MapObjectInteract",
+            "type": "AbilCmd",
+            "abil_cmd": "MapObjectInteract,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MapObjectInteract",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "MapObjectInteract",
+              "name_key": "Button/Name/MapObjectInteract",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/MapObjectInteract",
+              "icon": "Assets\\Textures\\btn-missing-kaeo.dds",
+              "alert_icon": "Assets\\Textures\\btn-missing-kaeo.dds"
+            }
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AttackWorker",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "GatherZerg",
+            "type": "AbilCmd",
+            "abil_cmd": "DroneHarvest,Gather",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "ReturnCargo",
+            "type": "AbilCmd",
+            "abil_cmd": "DroneHarvest,Return",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaBuild",
+            "type": "Submenu",
+            "abil_cmd": "255,255",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "ZBl1",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaBuild",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "召唤建筑",
+              "name_key": "Button/Name/DehakaBuild",
+              "tooltip": "可以召唤的建筑列表。",
+              "tooltip_key": "Button/Tooltip/DehakaBuild",
+              "icon": "Assets\\Textures\\btn-ability-zerg-basicmutation.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-basicmutation.dds"
+            }
+          },
+          {
+            "face": "Spray",
+            "type": "AbilCmd",
+            "abil_cmd": "SprayZerg,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "Spray",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "喷漆",
+              "name_key": "Button/Name/Spray",
+              "tooltip": "命令单位将你当前所选喷漆图案喷绘在目标位置的地表上。",
+              "tooltip_key": "Button/Tooltip/Spray",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "AbilCmd",
+            "abil_cmd": "DroneCarcassHarvest,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      },
+      {
+        "card_id": "ZBl1",
+        "is_default_card": false,
+        "buttons": [
+          {
+            "face": "DehakaHatchery",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDroneMorph,Build1",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaHatchery",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "召唤原始主巢",
+              "name_key": "Button/Name/DehakaHatchery",
+              "tooltip": "基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。\n开启：\n- 原始工蜂",
+              "tooltip_key": "Button/Tooltip/DehakaHatchery",
+              "icon": "Assets\\Textures\\btn-building-dehaka-primalhatchery.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-dehaka-primalhatchery.dds"
+            }
+          },
+          {
+            "face": "DehakaBarracks",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDroneMorph,Build2",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaBarracks",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "召唤原始战争之巢",
+              "name_key": "Button/Name/DehakaBarracks",
+              "tooltip": "原始异虫生产建筑。\n开启：\n- 原始跳虫",
+              "tooltip_key": "Button/Tooltip/DehakaBarracks",
+              "icon": "Assets\\Textures\\btn-building-dehaka-primalBarracks.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-dehaka-primalBarracks.dds"
+            }
+          },
+          {
+            "face": "DehakaGlevigStructure",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDroneMorph,Build3",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGlevigStructure",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "召唤格里维格的巢穴",
+              "name_key": "Button/Name/DehakaGlevigStructure",
+              "tooltip": "为原始蟑螂、原始刺蛇、穿刺者和掠食龙提供升级方案。\n开启：\n- 使原始战争之巢可以孵化原始蟑螂\n- 使原始战争之巢可以孵化原始刺蛇\n- 使原始工蜂可以孵化为原始蠕虫",
+              "tooltip_key": "Button/Tooltip/DehakaGlevigStructure",
+              "icon": "Assets\\Textures\\BTN-Building-Dehaka-GlevigNest.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Building-Dehaka-GlevigNest.dds"
+            }
+          },
+          {
+            "face": "DehakaMurvarStructure",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDroneMorph,Build4",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaMurvarStructure",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "召唤穆尔瓦的巢穴",
+              "name_key": "Button/Name/DehakaMurvarStructure",
+              "tooltip": "为原始异龙、原始守护者和掘地虫宿主提供升级方案。\n开启：\n- 可以在原始战争之巢中孵化原始宿主。",
+              "tooltip_key": "Button/Tooltip/DehakaMurvarStructure",
+              "icon": "Assets\\Textures\\BTN-Building-Dehaka-MurvarNest.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Building-Dehaka-MurvarNest.dds"
+            }
+          },
+          {
+            "face": "DehakaDakrunStructure",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDroneMorph,Build5",
+            "requirements": "",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaDakrunStructure",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "召唤达克伦的巢穴",
+              "name_key": "Button/Name/DehakaDakrunStructure",
+              "tooltip": "为原始雷兽和暴龙兽提供升级方案。\n开启：\n- 使原始战争之巢可以孵化原始雷兽。",
+              "tooltip_key": "Button/Tooltip/DehakaDakrunStructure",
+              "icon": "Assets\\Textures\\BTN-Building-Dehaka-DakrunNest.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Building-Dehaka-DakrunNest.dds"
+            }
+          },
+          {
+            "face": "DehakaNydusDestroyer",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDroneMorph,Build6",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaNydusDestroyer",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "召唤原始蠕虫",
+              "name_key": "Button/Name/DehakaNydusDestroyer",
+              "tooltip": "强力防御建筑。\n可以对地和对空。\n侦测单位",
+              "tooltip_key": "Button/Tooltip/DehakaNydusDestroyer",
+              "icon": "Assets\\Textures\\btn-building-dehaka-primalwurm.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-dehaka-primalwurm.dds"
+            }
+          },
+          {
+            "face": "Cancel",
+            "type": "CancelSubmenu",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaHatchery",
+    "unit_id": "DehakaHatchery",
+    "name": "原始主巢",
+    "object_type": "Structure",
+    "icon_button": "DehakaHatchery",
+    "icon": "Assets\\Textures\\btn-building-dehaka-primalhatchery.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-dehaka-primalhatchery.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "DehakaDrone",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaHatcheryTrainEgg,Train1",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaDrone",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化原始工蜂",
+              "name_key": "Button/Name/DehakaDrone",
+              "tooltip": "基础工作单位。用于采集晶体矿和高能瓦斯。可以召唤建筑。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/DehakaDrone",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Drone.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Drone.dds"
+            }
+          },
+          {
+            "face": "BuildDehakaExtractor",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaHatcheryBuild,Build1",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "BuildDehakaExtractor",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "变异萃取房",
+              "name_key": "Button/Name/BuildDehakaExtractor",
+              "tooltip": "建造在瓦斯气泉上，用于采集高能瓦斯。",
+              "tooltip_key": "Button/Tooltip/BuildDehakaExtractor",
+              "icon": "Assets\\Textures\\btn-building-dehaka-extractor.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-dehaka-extractor.dds"
+            }
+          },
+          {
+            "face": "RallySCV",
+            "type": "AbilCmd",
+            "abil_cmd": "RallyCommand,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "RallySCV",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "设定工蜂集结点",
+              "name_key": "Button/Name/RallySCV",
+              "tooltip": "将工作单位派往指定地点。派往资源点的工作单位会自动开始采集。",
+              "tooltip_key": "Button/Tooltip/RallySCV",
+              "icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-terran-setrallypoint.dds"
+            }
+          },
+          {
+            "face": "DehakaLearnPrimalWeaponsLevel3",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaHatcheryResearch,Research3",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaLearnPrimalWeaponsLevel3",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化原始攻击等级3",
+              "name_key": "Button/Name/DehakaLearnPrimalWeaponsLevel3",
+              "tooltip": "使所有原始异虫的攻击力最大化。",
+              "tooltip_key": "Button/Tooltip/DehakaLearnPrimalWeaponsLevel3",
+              "icon": "Assets\\Textures\\BTN-Upgrade-Dehaka-BothAttacks-Level3.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Upgrade-Dehaka-BothAttacks-Level3.dds"
+            }
+          },
+          {
+            "face": "DehakaLearnPrimalArmorLevel3",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaHatcheryResearch,Research6",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaLearnPrimalArmorLevel3",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化原始甲壳等级3",
+              "name_key": "Button/Name/DehakaLearnPrimalArmorLevel3",
+              "tooltip": "使所有原始异虫的护甲最大化。",
+              "tooltip_key": "Button/Tooltip/DehakaLearnPrimalArmorLevel3",
+              "icon": "Assets\\Textures\\btn-upgrade-dehaka-groundcarapace-level3.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-dehaka-groundcarapace-level3.dds"
+            }
+          },
+          {
+            "face": "PrimalBuildingUproot",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaHatcheryUproot,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "PrimalBuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaAirTownHall",
+    "unit_id": "DehakaAirTownHall",
+    "name": "原始主巢",
+    "object_type": "Structure",
+    "icon_button": "DehakaAirTownHall",
+    "icon": "Assets\\Textures\\btn-building-zerg-primalhive.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-zerg-primalhive.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AttackBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaMutalisk",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaTownHallTrain,Train7",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaMutalisk",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/DehakaMutalisk",
+              "tooltip": "飞行生物。能够利用弹射攻击对多个目标造成伤害。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/DehakaMutalisk",
+              "icon": "Assets\\Textures\\btn-unit-zerg-primalmutalisk.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-primalmutalisk.dds"
+            }
+          },
+          {
+            "face": "DehakaGuardian",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaTownHallTrain,Train8",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGuardian",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/DehakaGuardian",
+              "tooltip": "远程对地飞行单位。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/DehakaGuardian",
+              "icon": "Assets\\Textures\\btn-missing-kaeo.dds",
+              "alert_icon": "Assets\\Textures\\btn-missing-kaeo.dds"
+            }
+          },
+          {
+            "face": "DehakaViper",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaTownHallTrain,Train9",
+            "requirements": "",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaViper",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "",
+              "name_key": "Button/Name/DehakaViper",
+              "tooltip": "",
+              "tooltip_key": "Button/Tooltip/DehakaViper",
+              "icon": "Assets\\Textures\\btn-unit-zerg-viper.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-viper.dds"
+            }
+          },
+          {
+            "face": "SetRallyPoint2",
+            "type": "AbilCmd",
+            "abil_cmd": "Rally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "PrimalBuildingUproot",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaAirTownHallUproot,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaBarracks",
+    "unit_id": "DehakaBarracks",
+    "name": "原始战争之巢",
+    "object_type": "Structure",
+    "icon_button": "DehakaBarracks",
+    "icon": "Assets\\Textures\\btn-building-dehaka-primalBarracks.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-dehaka-primalBarracks.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "DehakaZergling",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaBarracksTrainEgg,Train1",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaZergling",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化原始跳虫",
+              "name_key": "Button/Name/DehakaZergling",
+              "tooltip": "迅捷的肉搏型生物。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/DehakaZergling",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Zergling.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Zergling.dds"
+            }
+          },
+          {
+            "face": "DehakaRoach",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaBarracksTrainEgg,Train2",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaRoach",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化原始蟑螂",
+              "name_key": "Button/Name/DehakaRoach",
+              "tooltip": "突击单位。潜地时能快速恢复生命值。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/DehakaRoach",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Roach.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Roach.dds"
+            }
+          },
+          {
+            "face": "DehakaHydralisk",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaBarracksTrainEgg,Train3",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaHydralisk",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化原始刺蛇",
+              "name_key": "Button/Name/DehakaHydralisk",
+              "tooltip": "远程攻击单位。\n可以对地和对空。",
+              "tooltip_key": "Button/Tooltip/DehakaHydralisk",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Hydralisk.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Hydralisk.dds"
+            }
+          },
+          {
+            "face": "DehakaSwarmHost",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaBarracksTrainEgg,Train4",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaSwarmHost",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化原始宿主",
+              "name_key": "Button/Name/DehakaSwarmHost",
+              "tooltip": "通过孵化蝗虫进行攻击的攻城单位。\n蝗虫可以对地。",
+              "tooltip_key": "Button/Tooltip/DehakaSwarmHost",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-creeperhost.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-creeperhost.dds"
+            }
+          },
+          {
+            "face": "DehakaUltralisk",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaBarracksTrainEgg,Train5",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaUltralisk",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化原始雷兽",
+              "name_key": "Button/Name/DehakaUltralisk",
+              "tooltip": "重型攻击猛兽。可以向一个目标冲锋，造成范围伤害并击退敌方单位。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/DehakaUltralisk",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Ultralisk.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Ultralisk.dds"
+            }
+          },
+          {
+            "face": "SetRallyPoint2",
+            "type": "AbilCmd",
+            "abil_cmd": "Rally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "PrimalBuildingUproot",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaBarracksUproot,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "PrimalBuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaCreeper",
+    "unit_id": "DehakaCreeper",
+    "name": "掘地虫",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaCreeperFlying",
+    "unit_id": "DehakaCreeperFlying",
+    "name": "爆裂掘地虫",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaLocustFlyingSwoop",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaLocustFlyingSwoop,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaGlevig",
+    "unit_id": "DehakaGlevig",
+    "name": "格里维格",
+    "object_type": "Hero",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "GlevigFireBreathLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel10",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "GlevigFireBreathLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "易燃酸液",
+              "name_key": "Button/Name/GlevigFireBreathLocked",
+              "tooltip": "该技能将在指挥官等级10时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel10",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "GlevigSpitfirePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "GlevigSpitfirePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "助燃腺体",
+              "name_key": "Button/Name/GlevigSpitfirePassive",
+              "tooltip": "格里维格的普通攻击造成范围伤害。",
+              "tooltip_key": "Button/Tooltip/GlevigSpitfirePassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-yagdra-aoe.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-yagdra-aoe.dds"
+            }
+          },
+          {
+            "face": "CommanderPrestigeDehakaPackLeadersRetreat",
+            "type": "AbilCmd",
+            "abil_cmd": "CommanderPrestigeDehakaPackLeadersRetreat,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CommanderPrestigeDehakaPackLeadersRetreat",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "为陛下让路",
+              "name_key": "Button/Name/CommanderPrestigeDehakaPackLeadersRetreat",
+              "tooltip": "强迫这个虫群首领撤退，并让德哈卡返回战场。",
+              "tooltip_key": "Button/Tooltip/CommanderPrestigeDehakaPackLeadersRetreat",
+              "icon": "Assets\\Textures\\btn-progression-zerg-dehaka-1-dehakaunlock.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-zerg-dehaka-1-dehakaunlock.dds"
+            }
+          },
+          {
+            "face": "GlevigTunnel",
+            "type": "AbilCmd",
+            "abil_cmd": "GlevigDeepTunnel,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "GlevigTunnel",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "深槽虫道",
+              "name_key": "Button/Name/GlevigTunnel",
+              "tooltip": "格里维格潜地后到达目标位置并喷发，震退范围内的单位并造成伤害。",
+              "tooltip_key": "Button/Tooltip/GlevigTunnel",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-deeptunnelunlocked.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-deeptunnelunlocked.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaGlevigStructure",
+    "unit_id": "DehakaGlevigStructure",
+    "name": "格里维格的巢穴",
+    "object_type": "Structure",
+    "icon_button": "DehakaGlevigStructure",
+    "icon": "Assets\\Textures\\BTN-Building-Dehaka-GlevigNest.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Building-Dehaka-GlevigNest.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "EvolveDissolvingAcidLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel03",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveDissolvingAcidLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化溶解强酸",
+              "name_key": "Button/Name/EvolveDissolvingAcidLocked",
+              "tooltip": "该科技将在指挥官等级3时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel03",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveEnlargedParotidGlandsLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel03",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveEnlargedParotidGlandsLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化膨胀腮腺",
+              "name_key": "Button/Name/EvolveEnlargedParotidGlandsLocked",
+              "tooltip": "该科技将在指挥官等级3时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel03",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "DehakaRoachMoveSpeed",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaGlevigResearch,Research7",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaRoachMoveSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化神经胶原重组",
+              "name_key": "Button/Name/DehakaRoachMoveSpeed",
+              "tooltip": "使原始蟑螂和原始点火虫的移动速度提高。",
+              "tooltip_key": "Button/Tooltip/DehakaRoachMoveSpeed",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-roach-glialreconstruction.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-roach-glialreconstruction.dds"
+            }
+          },
+          {
+            "face": "EvolveConcentratedFireLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel09",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveConcentratedFireLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化汇聚烈焰",
+              "name_key": "Button/Name/EvolveConcentratedFireLocked",
+              "tooltip": "该科技将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "ResearchDehakaHydraliskSpeed",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaGlevigResearch,Research8",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchDehakaHydraliskSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化肌腱扩增",
+              "name_key": "Button/Name/ResearchDehakaHydraliskSpeed",
+              "tooltip": "提高原始刺蛇的移动速度和攻击射程。",
+              "tooltip_key": "Button/Tooltip/ResearchDehakaHydraliskSpeed",
+              "icon": "Assets\\Textures\\BTN-Ability-Zerg-Dehaka-Hydralisk-MuscularAugments.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Zerg-Dehaka-Hydralisk-MuscularAugments.dds"
+            }
+          },
+          {
+            "face": "EvolveTenderizeLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel09",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveTenderizeLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化暴捶",
+              "name_key": "Button/Name/EvolveTenderizeLocked",
+              "tooltip": "该科技将在指挥官等级9时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel09",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "PrimalWurmPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalWurmPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始蠕虫",
+              "name_key": "Button/Name/PrimalWurmPassive",
+              "tooltip": "格里维格的巢穴使你可以召唤原始蠕虫。",
+              "tooltip_key": "Button/Tooltip/PrimalWurmPassive",
+              "icon": "Assets\\Textures\\btn-building-dehaka-primalwurm.dds",
+              "alert_icon": "Assets\\Textures\\btn-building-dehaka-primalwurm.dds"
+            }
+          },
+          {
+            "face": "DehakaRoachPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaRoachPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始蟑螂",
+              "name_key": "Button/Name/DehakaRoachPassive",
+              "tooltip": "格里维格的巢穴使你可以孵化原始蟑螂。",
+              "tooltip_key": "Button/Tooltip/DehakaRoachPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Roach.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Roach.dds"
+            }
+          },
+          {
+            "face": "PrimalIgniterPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "PrimalIgniterPassive",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalIgniterPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始点火虫",
+              "name_key": "Button/Name/PrimalIgniterPassive",
+              "tooltip": "格里维格的巢穴使你可以进化原始点火虫。",
+              "tooltip_key": "Button/Tooltip/PrimalIgniterPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-RoachUpgrade.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-RoachUpgrade.dds"
+            }
+          },
+          {
+            "face": "PrimalHydraliskPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalHydraliskPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始刺蛇",
+              "name_key": "Button/Name/PrimalHydraliskPassive",
+              "tooltip": "格里维格的巢穴使你可以孵化原始刺蛇。",
+              "tooltip_key": "Button/Tooltip/PrimalHydraliskPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Hydralisk.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Hydralisk.dds"
+            }
+          },
+          {
+            "face": "PrimalImpalerPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "PrimalImpalerPassive",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalImpalerPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始穿刺者",
+              "name_key": "Button/Name/PrimalImpalerPassive",
+              "tooltip": "格里维格的巢穴使你可以进化原始穿刺者。",
+              "tooltip_key": "Button/Tooltip/PrimalImpalerPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Lurker.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Lurker.dds"
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "PrimalBuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaMurvar",
+    "unit_id": "DehakaMurvar",
+    "name": "穆尔瓦",
+    "object_type": "Hero",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CoopMurvarSpawnCreepers",
+            "type": "AbilCmd",
+            "abil_cmd": "CoopMurvarSpawnCreepers,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CoopMurvarSpawnCreepers",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化虫群",
+              "name_key": "Button/Name/CoopMurvarSpawnCreepers",
+              "tooltip": "孵化6只原始蝗虫进行战斗，持续{Behavior,DehakaLocustTimedLife,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/CoopMurvarSpawnCreepers",
+              "icon": "Assets\\Textures\\btn-ability-zerg-slivan-spawncreepers.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-zerg-locust.dds"
+            }
+          },
+          {
+            "face": "MurvarPukeCoop",
+            "type": "AbilCmd",
+            "abil_cmd": "MurvarCoopPuke,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MurvarPukeCoop",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "压制恶臭",
+              "name_key": "Button/Name/MurvarPukeCoop",
+              "tooltip": "制造一团云雾，减速敌方单位和建筑，并使其无法攻击和使用能量技能，持续{(Effect,CoopMurvarPukeCP,PeriodCount) * Effect,CoopMurvarPukeCP,PeriodicPeriodArray[0]}秒。",
+              "tooltip_key": "Button/Tooltip/MurvarPukeCoop",
+              "icon": "Assets\\Textures\\btn-ability-zerg-slivan-disablingcloud.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-slivan-disablingcloud.dds"
+            }
+          },
+          {
+            "face": "CommanderPrestigeDehakaPackLeadersRetreat",
+            "type": "AbilCmd",
+            "abil_cmd": "CommanderPrestigeDehakaPackLeadersRetreat,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CommanderPrestigeDehakaPackLeadersRetreat",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "为陛下让路",
+              "name_key": "Button/Name/CommanderPrestigeDehakaPackLeadersRetreat",
+              "tooltip": "强迫这个虫群首领撤退，并让德哈卡返回战场。",
+              "tooltip_key": "Button/Tooltip/CommanderPrestigeDehakaPackLeadersRetreat",
+              "icon": "Assets\\Textures\\btn-progression-zerg-dehaka-1-dehakaunlock.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-zerg-dehaka-1-dehakaunlock.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaMurvarStructure",
+    "unit_id": "DehakaMurvarStructure",
+    "name": "穆尔瓦的巢穴",
+    "object_type": "Structure",
+    "icon_button": "DehakaMurvarStructure",
+    "icon": "Assets\\Textures\\BTN-Building-Dehaka-MurvarNest.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Building-Dehaka-MurvarNest.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "EvolveSlicingGlaveLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel06",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveSlicingGlaveLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "切割之爪",
+              "name_key": "Button/Name/EvolveSlicingGlaveLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveShiftingCarapaceLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel06",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveShiftingCarapaceLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化变换甲壳",
+              "name_key": "Button/Name/EvolveShiftingCarapaceLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolvePrimalReconstitutionLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel07",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolvePrimalReconstitutionLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化原始重组",
+              "name_key": "Button/Name/EvolvePrimalReconstitutionLocked",
+              "tooltip": "该科技将在指挥官等级7时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel07",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveExplosiveSporesLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel07",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveExplosiveSporesLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化爆裂孢子",
+              "name_key": "Button/Name/EvolveExplosiveSporesLocked",
+              "tooltip": "该科技将在指挥官等级7时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel07",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolvePrimordialFuryLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel06",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolvePrimordialFuryLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化原始狂怒",
+              "name_key": "Button/Name/EvolvePrimordialFuryLocked",
+              "tooltip": "该科技将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel06",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveAerialBurstSacsLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel13",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveAerialBurstSacsLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化空中爆囊",
+              "name_key": "Button/Name/EvolveAerialBurstSacsLocked",
+              "tooltip": "该科技将在指挥官等级13时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel13",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "PrimalHostPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalHostPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始宿主",
+              "name_key": "Button/Name/PrimalHostPassive",
+              "tooltip": "穆尔瓦的巢穴使你可以孵化原始宿主。",
+              "tooltip_key": "Button/Tooltip/PrimalHostPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-creeperhost.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-creeperhost.dds"
+            }
+          },
+          {
+            "face": "CreeperHostPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "CreeperHostPassive",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CreeperHostPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "掘地虫宿主",
+              "name_key": "Button/Name/CreeperHostPassive",
+              "tooltip": "穆尔瓦的巢穴使你可以进化掘地虫宿主。",
+              "tooltip_key": "Button/Tooltip/CreeperHostPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-swarmhost.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-swarmhost.dds"
+            }
+          },
+          {
+            "face": "PrimalMutaliskPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "PrimalMutaliskPassive",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalMutaliskPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始异龙",
+              "name_key": "Button/Name/PrimalMutaliskPassive",
+              "tooltip": "穆尔瓦的巢穴使你可以进化原始异龙。",
+              "tooltip_key": "Button/Tooltip/PrimalMutaliskPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Mutalisk.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Mutalisk.dds"
+            }
+          },
+          {
+            "face": "PrimalGuardianPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "PrimalGuardianPassive",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalGuardianPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始守护者",
+              "name_key": "Button/Name/PrimalGuardianPassive",
+              "tooltip": "穆尔瓦的巢穴使你可以进化原始守护者。",
+              "tooltip_key": "Button/Tooltip/PrimalGuardianPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Guardian.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Guardian.dds"
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "PrimalBuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaDakrun",
+    "unit_id": "DehakaDakrun",
+    "name": "达克伦",
+    "object_type": "Hero",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DakrunCrashingCharge",
+            "type": "AbilCmd",
+            "abil_cmd": "KraithCrashingCharge,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DakrunCrashingCharge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "野蛮冲锋",
+              "name_key": "Button/Name/DakrunCrashingCharge",
+              "tooltip": "向目标位置冲锋，击退该位置的单位并造成{Effect,DehakaDakrunCrashingChargeDamage,Amount}点伤害。",
+              "tooltip_key": "Button/Tooltip/DakrunCrashingCharge",
+              "icon": "Assets\\Textures\\btn-ability-zerg-kraith-chargingcrash.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-kraith-chargingcrash.dds"
+            }
+          },
+          {
+            "face": "DakrunGreaterSpikedHideLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel10",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DakrunGreaterSpikedHideLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "大型尖刺厚皮",
+              "name_key": "Button/Name/DakrunGreaterSpikedHideLocked",
+              "tooltip": "该技能将在指挥官等级10时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel10",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "CommanderPrestigeDehakaPackLeadersRetreat",
+            "type": "AbilCmd",
+            "abil_cmd": "CommanderPrestigeDehakaPackLeadersRetreat,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "CommanderPrestigeDehakaPackLeadersRetreat",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "为陛下让路",
+              "name_key": "Button/Name/CommanderPrestigeDehakaPackLeadersRetreat",
+              "tooltip": "强迫这个虫群首领撤退，并让德哈卡返回战场。",
+              "tooltip_key": "Button/Tooltip/CommanderPrestigeDehakaPackLeadersRetreat",
+              "icon": "Assets\\Textures\\btn-progression-zerg-dehaka-1-dehakaunlock.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-zerg-dehaka-1-dehakaunlock.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaDakrunStructure",
+    "unit_id": "DehakaDakrunStructure",
+    "name": "达克伦的巢穴",
+    "object_type": "Structure",
+    "icon_button": "DehakaDakrunStructure",
+    "icon": "Assets\\Textures\\BTN-Building-Dehaka-DakrunNest.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Building-Dehaka-DakrunNest.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "ResearchDehakaUltraliskCrashingCharge",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDakrunResearch,Research1",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchDehakaUltraliskCrashingCharge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化野蛮冲锋",
+              "name_key": "Button/Name/ResearchDehakaUltraliskCrashingCharge",
+              "tooltip": "原始雷兽可以向目标位置冲锋，击退范围内的单位并造成{Effect,DehakaUltraliskCrashingChargeDamage,Amount}点伤害。",
+              "tooltip_key": "Button/Tooltip/ResearchDehakaUltraliskCrashingCharge",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-brutalcharge.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-brutalcharge.dds"
+            }
+          },
+          {
+            "face": "ResearchDehakaUltraliskRegen",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaDakrunResearch,Research2",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "ResearchDehakaUltraliskRegen",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化治疗适性",
+              "name_key": "Button/Name/ResearchDehakaUltraliskRegen",
+              "tooltip": "原始雷兽和暴龙兽在脱离战斗后可快速恢复生命值。",
+              "tooltip_key": "Button/Tooltip/ResearchDehakaUltraliskRegen",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"
+            }
+          },
+          {
+            "face": "EvolveImpalingStrikeLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel13",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveImpalingStrikeLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化穿刺打击",
+              "name_key": "Button/Name/EvolveImpalingStrikeLocked",
+              "tooltip": "该科技将在指挥官等级13时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel13",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveBarrageofSpikesLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel11",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveBarrageofSpikesLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化尖刺弹幕",
+              "name_key": "Button/Name/EvolveBarrageofSpikesLocked",
+              "tooltip": "该科技将在指挥官等级11时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel11",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "EvolveTyrantsProtectionLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel13",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "EvolveTyrantsProtectionLocked",
+              "source_catalog": "starcoop",
+              "parent": "ResearchLocked",
+              "name": "进化暴龙的保护",
+              "name_key": "Button/Name/EvolveTyrantsProtectionLocked",
+              "tooltip": "该科技将在指挥官等级13时解锁。",
+              "tooltip_key": "Button/Tooltip/ResearchLockedLevel13",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "PrimalUltraliskPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalUltraliskPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始雷兽",
+              "name_key": "Button/Name/PrimalUltraliskPassive",
+              "tooltip": "达克伦的巢穴使你可以孵化原始雷兽。",
+              "tooltip_key": "Button/Tooltip/PrimalUltraliskPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Ultralisk.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Ultralisk.dds"
+            }
+          },
+          {
+            "face": "TyrannozorPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "TyrannozorPassive",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "TyrannozorPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "暴龙兽",
+              "name_key": "Button/Name/TyrannozorPassive",
+              "tooltip": "达克伦的巢穴使你可以进化暴龙兽。",
+              "tooltip_key": "Button/Tooltip/TyrannozorPassive",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-Tyrannozor.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-Tyrannozor.dds"
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "PrimalBuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaHydraliskLevel2",
+    "unit_id": "DehakaHydraliskLevel2",
+    "name": "原始刺蛇",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaHydraliskSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaHydraliskSpeed",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaHydraliskSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "肌腱扩增",
+              "name_key": "Button/Name/DehakaHydraliskSpeed",
+              "tooltip": "提高移动速度和攻击射程。",
+              "tooltip_key": "Button/Tooltip/DehakaHydraliskSpeed",
+              "icon": "Assets\\Textures\\BTN-Ability-Zerg-Dehaka-Hydralisk-MuscularAugments.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Zerg-Dehaka-Hydralisk-MuscularAugments.dds"
+            }
+          },
+          {
+            "face": "PrimalCombatPrimalMutaliskLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel06",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalCombatPrimalMutaliskLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "原始战斗",
+              "name_key": "Button/Name/PrimalCombatPrimalMutaliskLocked",
+              "tooltip": "该单位将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel06",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "PrimalCombatPrimalImpalerLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel08",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalCombatPrimalImpalerLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "原始战斗",
+              "name_key": "Button/Name/PrimalCombatPrimalImpalerLocked",
+              "tooltip": "该单位将在指挥官等级8时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel08",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowDehakaHydraliskLevel2Down,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaMutaliskLevel3",
+    "unit_id": "DehakaMutaliskLevel3",
+    "name": "原始异龙",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaGeneCarapacePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneCarapace",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneCarapacePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化甲壳",
+              "name_key": "Button/Name/DehakaGeneCarapacePassive",
+              "tooltip": "该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplierArray[Life]*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneCarapacePassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneAttackSpeedPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneAttackSpeed",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneAttackSpeedPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化肾上腺体",
+              "name_key": "Button/Name/DehakaGeneAttackSpeedPassive",
+              "tooltip": "该单位的攻击速度提高{Behavior,DehakaGeneAttackSpeed,Modification.AttackSpeedMultiplier-1*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneAttackSpeedPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneLifeLeechPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneLifeLeech",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneLifeLeechPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化吸血",
+              "name_key": "Button/Name/DehakaGeneLifeLeechPassive",
+              "tooltip": "该单位会把造成伤害的{Behavior,DehakaGeneLifeLeech,Modification.VitalDamageLeechArray[Life].KindArray[Melee]*100}%转化为治疗。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneLifeLeechPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds"
+            }
+          },
+          {
+            "face": "SlicingGlave",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "UseDehakaMutaliskAirDoubleDamage",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "SlicingGlave",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "切割之爪",
+              "name_key": "Button/Name/SlicingGlave",
+              "tooltip": "对空中单位造成的伤害提高{(Effect,DehakaMutaliskAirLevel3GlaiveWurmDamage,Amount-Effect,DehakaMutaliskLevel3GlaiveWurmDamage,Amount)*100/Effect,DehakaMutaliskLevel3GlaiveWurmDamage,Amount}%。",
+              "tooltip_key": "Button/Tooltip/SlicingGlave",
+              "icon": "Assets\\Textures\\btn-ability-dehaka-airbonusdamage.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-dehaka-airbonusdamage.dds"
+            }
+          },
+          {
+            "face": "DehakaMutaliskDamageReduction",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaMutaliskDamageReduction",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaMutaliskDamageReduction",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "变换甲壳",
+              "name_key": "Button/Name/DehakaMutaliskDamageReduction",
+              "tooltip": "原始异龙在移动时受到的伤害降低{Behavior,DehakaMutaliskDamageReduction,Modification.DamageTakenFraction[Melee]*(-100)}%。",
+              "tooltip_key": "Button/Tooltip/DehakaMutaliskDamageReduction",
+              "icon": "Assets\\Textures\\btn-ability-dehaka-damagereductionwhilemoving.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-dehaka-damagereductionwhilemoving.dds"
+            }
+          },
+          {
+            "face": "DehakaMutaliskRespawnOnDeath",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaMutaliskRespawnOnDeath",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaMutaliskRespawnOnDeath",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "原始重组",
+              "name_key": "Button/Name/DehakaMutaliskRespawnOnDeath",
+              "tooltip": "原始异龙在死亡后很快会复活。该效果每{Behavior,DehakaMutaliskTimerBehavior,Cost.Cooldown.TimeStart}秒最多触发一次。",
+              "tooltip_key": "Button/Tooltip/DehakaMutaliskRespawnOnDeath",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-mutalisk-primalreconstitution.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-mutalisk-primalreconstitution.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaNydusDestroyer",
+    "unit_id": "DehakaNydusDestroyer",
+    "name": "原始蠕虫",
+    "object_type": "Structure",
+    "icon_button": "DehakaNydusDestroyer",
+    "icon": "Assets\\Textures\\btn-building-dehaka-primalwurm.dds",
+    "alert_icon": "Assets\\Textures\\btn-building-dehaka-primalwurm.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AttackBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Detector",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "BileStreamLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel10",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "BileStreamLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "胆汁喷流",
+              "name_key": "Button/Name/BileStreamLocked",
+              "tooltip": "该技能将在指挥官等级10时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel10",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "CancelBuilding",
+            "type": "AbilCmd",
+            "abil_cmd": "BuildInProgress,Cancel",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaPrimalSwarmHost",
+    "unit_id": "DehakaPrimalSwarmHost",
+    "name": "掘地虫宿主",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaGeneCarapacePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneCarapace",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneCarapacePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化甲壳",
+              "name_key": "Button/Name/DehakaGeneCarapacePassive",
+              "tooltip": "该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplierArray[Life]*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneCarapacePassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneCreepersPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneCreepers",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneCreepersPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化孵化囊",
+              "name_key": "Button/Name/DehakaGeneCreepersPassive",
+              "tooltip": "该掘地虫宿主孵化的掘地虫数量翻倍。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneCreepersPassive",
+              "icon": "Assets\\Textures\\BTN-Unit-Collection-Primal-DoubleCreeperGene.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Unit-Collection-Primal-DoubleCreeperGene.dds"
+            }
+          },
+          {
+            "face": "SetRallyPoint2",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaSpawnLocustsBomb",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaSpawnCreeperTargeted,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaSpawnLocustsBomb",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化爆裂掘地虫",
+              "name_key": "Button/Name/DehakaSpawnLocustsBomb",
+              "tooltip": "通过孵化爆裂掘地虫进行攻击的攻城单位。掘地虫持续{Behavior,DehakaLocustTimedLife,Duration}秒。\n掘地虫可以对地。",
+              "tooltip_key": "Button/Tooltip/DehakaSpawnLocustsBomb",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-SwarmHostSpawn.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-SwarmHostSpawn.dds"
+            }
+          },
+          {
+            "face": "DehakaFlyingCreeperLocusts",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaFlyingCreeperLocusts",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "飞行爆裂掘地虫",
+              "name_key": "Button/Name/DehakaFlyingCreeperLocusts",
+              "tooltip": "掘地虫宿主孵化的掘地虫可以飞行。掘地虫可以俯冲轰炸地面目标。",
+              "tooltip_key": "Button/Tooltip/DehakaFlyingCreeperLocusts",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-SwarmHostSpawnFlyer.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-SwarmHostSpawnFlyer.dds"
+            }
+          },
+          {
+            "face": "DehakaCreeperAirSuicide",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaSwarmHostCreepers",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaCreeperAirSuicide",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "空中爆囊",
+              "name_key": "Button/Name/DehakaCreeperAirSuicide",
+              "tooltip": "掘地虫可以对空，并提高他们的移动速度。",
+              "tooltip_key": "Button/Tooltip/DehakaCreeperAirSuicide",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-creeperhost-spawncreepers.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-creeperhost-spawncreepers.dds"
+            }
+          },
+          {
+            "face": "SwarmHostBurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaMorphToPrimalSwarmHostBurrowed,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaRavasaur",
+    "unit_id": "DehakaRavasaur",
+    "name": "掠食龙",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaGeneCarapacePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneCarapace",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneCarapacePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化甲壳",
+              "name_key": "Button/Name/DehakaGeneCarapacePassive",
+              "tooltip": "该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplierArray[Life]*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneCarapacePassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneAttackSpeedPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneAttackSpeed",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneAttackSpeedPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化肾上腺体",
+              "name_key": "Button/Name/DehakaGeneAttackSpeedPassive",
+              "tooltip": "该单位的攻击速度提高{Behavior,DehakaGeneAttackSpeed,Modification.AttackSpeedMultiplier-1*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneAttackSpeedPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneLifeLeechPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneLifeLeech",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneLifeLeechPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化吸血",
+              "name_key": "Button/Name/DehakaGeneLifeLeechPassive",
+              "tooltip": "该单位会把造成伤害的{Behavior,DehakaGeneLifeLeech,Modification.VitalDamageLeechArray[Life].KindArray[Melee]*100}%转化为治疗。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneLifeLeechPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds"
+            }
+          },
+          {
+            "face": "SetRallyPoint2",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaRavasaurVSArmor",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaRavasaurVSArmor",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaRavasaurVSArmor",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "溶解强酸",
+              "name_key": "Button/Name/DehakaRavasaurVSArmor",
+              "tooltip": "对重甲目标造成+{$UpgradeEffectArrayValue:DehakaRavasaurVSArmor:Effect,DehakaRavasaurDamage,AttributeBonus[Armored]$}点伤害。",
+              "tooltip_key": "Button/Tooltip/DehakaRavasaurVSArmor",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ravasaur-dissolvingacid.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ravasaur-dissolvingacid.dds"
+            }
+          },
+          {
+            "face": "DehakaRavasaurRange",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaRavasaurRange",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaRavasaurRange",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "膨胀腮腺",
+              "name_key": "Button/Name/DehakaRavasaurRange",
+              "tooltip": "提高移动速度和攻击射程。",
+              "tooltip_key": "Button/Tooltip/DehakaRavasaurRange",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ravasaur-englargedparotidglands.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ravasaur-englargedparotidglands.dds"
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowDehakaRavasaurDown,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaRoachLevel2",
+    "unit_id": "DehakaRoachLevel2",
+    "name": "原始蟑螂",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "RapidRegeneration",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaGlialReconstitution",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaRoachMoveSpeed",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGlialReconstitution",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "神经胶原重组",
+              "name_key": "Button/Name/DehakaGlialReconstitution",
+              "tooltip": "移动速度提高。",
+              "tooltip_key": "Button/Tooltip/DehakaGlialReconstitution",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-roach-glialreconstruction.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-roach-glialreconstruction.dds"
+            }
+          },
+          {
+            "face": "PrimalCombatPrimalIgniterLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel02",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalCombatPrimalIgniterLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "原始战斗",
+              "name_key": "Button/Name/PrimalCombatPrimalIgniterLocked",
+              "tooltip": "该单位将在指挥官等级2时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel02",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "PrimalCombatPrimalGuardianLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel06",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalCombatPrimalGuardianLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "原始战斗",
+              "name_key": "Button/Name/PrimalCombatPrimalGuardianLocked",
+              "tooltip": "该单位将在指挥官等级6时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel06",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowDehakaRoachLevel2Down,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaRoachLevel3",
+    "unit_id": "DehakaRoachLevel3",
+    "name": "原始点火虫",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaGeneCarapacePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneCarapace",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneCarapacePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化甲壳",
+              "name_key": "Button/Name/DehakaGeneCarapacePassive",
+              "tooltip": "该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplierArray[Life]*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneCarapacePassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneAttackSpeedPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneAttackSpeed",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneAttackSpeedPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化肾上腺体",
+              "name_key": "Button/Name/DehakaGeneAttackSpeedPassive",
+              "tooltip": "该单位的攻击速度提高{Behavior,DehakaGeneAttackSpeed,Modification.AttackSpeedMultiplier-1*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneAttackSpeedPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneLifeLeechPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneLifeLeech",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneLifeLeechPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化吸血",
+              "name_key": "Button/Name/DehakaGeneLifeLeechPassive",
+              "tooltip": "该单位会把造成伤害的{Behavior,DehakaGeneLifeLeech,Modification.VitalDamageLeechArray[Life].KindArray[Melee]*100}%转化为治疗。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneLifeLeechPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds"
+            }
+          },
+          {
+            "face": "SetRallyPoint2",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "RapidRegeneration",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaGlialReconstitution",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaRoachMoveSpeed",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGlialReconstitution",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "神经胶原重组",
+              "name_key": "Button/Name/DehakaGlialReconstitution",
+              "tooltip": "移动速度提高。",
+              "tooltip_key": "Button/Tooltip/DehakaGlialReconstitution",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-roach-glialreconstruction.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-roach-glialreconstruction.dds"
+            }
+          },
+          {
+            "face": "DehakaGlevigHaveRoachFireBreath",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGlevigRoachFireBreath",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGlevigHaveRoachFireBreath",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "汇聚烈焰",
+              "name_key": "Button/Name/DehakaGlevigHaveRoachFireBreath",
+              "tooltip": "提高原始点火虫对轻甲敌人的伤害。",
+              "tooltip_key": "Button/Tooltip/DehakaGlevigHaveRoachFireBreath",
+              "icon": "Assets\\Textures\\btn-ability-zerg-fireroach-increasefiredamage.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-fireroach-increasefiredamage.dds"
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowDehakaRoachLevel3Down,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaSwarmHost",
+    "unit_id": "DehakaSwarmHost",
+    "name": "原始宿主",
+    "object_type": "Unit",
+    "icon_button": "DehakaSwarmHost",
+    "icon": "Assets\\Textures\\btn-unit-collection-primal-creeperhost.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-creeperhost.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaSpawnLocusts",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaSpawnLocustsTargeted,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaSpawnLocusts",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "孵化原始蝗虫",
+              "name_key": "Button/Name/DehakaSpawnLocusts",
+              "tooltip": "通过孵化原始蝗虫进行攻击的攻城单位。原始蝗虫持续{Behavior,DehakaLocustTimedLife,Duration}秒。\n原始蝗虫可以对地。",
+              "tooltip_key": "Button/Tooltip/DehakaSpawnLocusts",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-CreeperHostSpawn.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-CreeperHostSpawn.dds"
+            }
+          },
+          {
+            "face": "DehakaFlyingLocusts",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaFlyingLocusts",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "飞行原始蝗虫",
+              "name_key": "Button/Name/DehakaFlyingLocusts",
+              "tooltip": "原始宿主孵化的原始蝗虫可以飞行。飞行原始蝗虫可以使用飞扑降落至地面进行攻击。",
+              "tooltip_key": "Button/Tooltip/DehakaFlyingLocusts",
+              "icon": "Assets\\Textures\\btn-unit-collection-primal-CreeperHostSpawnFlyer.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-primal-CreeperHostSpawnFlyer.dds"
+            }
+          },
+          {
+            "face": "PrimalCombatPrimalCreeperHostLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel08",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalCombatPrimalCreeperHostLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "原始战斗",
+              "name_key": "Button/Name/PrimalCombatPrimalCreeperHostLocked",
+              "tooltip": "该单位将在指挥官等级8时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel08",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "SwarmHostBurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaMorphToSwarmHostBurrowed,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaUltraliskLevel2",
+    "unit_id": "DehakaUltraliskLevel2",
+    "name": "原始雷兽",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Frenzied",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaUltraliskCrashingCharge",
+            "type": "AbilCmd",
+            "abil_cmd": "DehakaUltraliskCrashingCharge,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaUltraliskCrashingCharge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "野蛮冲锋",
+              "name_key": "Button/Name/DehakaUltraliskCrashingCharge",
+              "tooltip": "向目标位置冲锋，击退范围内的单位并造成{Effect,DehakaUltraliskCrashingChargeDamage,Amount}点伤害。",
+              "tooltip_key": "Button/Tooltip/DehakaUltraliskCrashingCharge",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-brutalcharge.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-brutalcharge.dds"
+            }
+          },
+          {
+            "face": "DehakaUltraliskRegen",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaUltraliskRegen",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaUltraliskRegen",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "治疗适性",
+              "name_key": "Button/Name/DehakaUltraliskRegen",
+              "tooltip": "该单位在脱离战斗后可快速恢复生命值。",
+              "tooltip_key": "Button/Tooltip/DehakaUltraliskRegen",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"
+            }
+          },
+          {
+            "face": "DehakaUltraliskBash",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaUltraliskBash",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaUltraliskBash",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "穿刺打击",
+              "name_key": "Button/Name/DehakaUltraliskBash",
+              "tooltip": "近战攻击有{Behavior,DehakaUltraliskBash,DamageResponse.Chance*100}%几率使目标昏迷。",
+              "tooltip_key": "Button/Tooltip/DehakaUltraliskBash",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-impalingstrike.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-impalingstrike.dds"
+            }
+          },
+          {
+            "face": "PrimalCombatTyrannozorLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel11",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalCombatTyrannozorLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "原始战斗",
+              "name_key": "Button/Name/PrimalCombatTyrannozorLocked",
+              "tooltip": "该单位将在指挥官等级11时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel11",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowDehakaUltraliskLevel2Down,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaUltraliskLevel3",
+    "unit_id": "DehakaUltraliskLevel3",
+    "name": "暴龙兽",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaGeneCarapacePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneCarapace",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneCarapacePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化甲壳",
+              "name_key": "Button/Name/DehakaGeneCarapacePassive",
+              "tooltip": "该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplierArray[Life]*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneCarapacePassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneAttackSpeedPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneAttackSpeed",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneAttackSpeedPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化肾上腺体",
+              "name_key": "Button/Name/DehakaGeneAttackSpeedPassive",
+              "tooltip": "该单位的攻击速度提高{Behavior,DehakaGeneAttackSpeed,Modification.AttackSpeedMultiplier-1*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneAttackSpeedPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneLifeLeechPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneLifeLeech",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneLifeLeechPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化吸血",
+              "name_key": "Button/Name/DehakaGeneLifeLeechPassive",
+              "tooltip": "该单位会把造成伤害的{Behavior,DehakaGeneLifeLeech,Modification.VitalDamageLeechArray[Life].KindArray[Melee]*100}%转化为治疗。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneLifeLeechPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneThornsPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneThorns",
+            "row": 1,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneThornsPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "尖刺厚皮",
+              "name_key": "Button/Name/DehakaGeneThornsPassive",
+              "tooltip": "该单位每次受到伤害，都会向攻击者发射一枚脊刺，造成{Effect,DehakaGeneThornsDamage,Amount}点伤害。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneThornsPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-thornsaura.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-thornsaura.dds"
+            }
+          },
+          {
+            "face": "Frenzied",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "BarrageofSpikesLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel11",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "BarrageofSpikesLocked",
+              "source_catalog": "starcoop",
+              "parent": "AbilLocked",
+              "name": "尖刺弹幕",
+              "name_key": "Button/Name/BarrageofSpikesLocked",
+              "tooltip": "该技能将在指挥官等级11时解锁。",
+              "tooltip_key": "Button/Tooltip/AbilLockedLevel11",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "DehakaUltraliskRegen",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaUltraliskRegen",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaUltraliskRegen",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "治疗适性",
+              "name_key": "Button/Name/DehakaUltraliskRegen",
+              "tooltip": "该单位在脱离战斗后可快速恢复生命值。",
+              "tooltip_key": "Button/Tooltip/DehakaUltraliskRegen",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-healingadaptation.dds"
+            }
+          },
+          {
+            "face": "DehakaTyrannozorArmorAura",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaTyrannozorArmorAura",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaTyrannozorArmorAura",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "暴龙的保护",
+              "name_key": "Button/Name/DehakaTyrannozorArmorAura",
+              "tooltip": "使附近友方单位获得{Behavior,DehakaTyrannozorArmorAuraTarget,Modification.LifeArmorBonus}点护甲。",
+              "tooltip_key": "Button/Tooltip/DehakaTyrannozorArmorAura",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-tyrannozor-tyrantprotection.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-tyrannozor-tyrantprotection.dds"
+            }
+          },
+          {
+            "face": "DehakaUltraliskBash",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaUltraliskBash",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaUltraliskBash",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "穿刺打击",
+              "name_key": "Button/Name/DehakaUltraliskBash",
+              "tooltip": "近战攻击有{Behavior,DehakaUltraliskBash,DamageResponse.Chance*100}%几率使目标昏迷。",
+              "tooltip_key": "Button/Tooltip/DehakaUltraliskBash",
+              "icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-impalingstrike.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-dehaka-ultralisk-impalingstrike.dds"
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowDehakaUltraliskLevel3Down,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DehakaZerglingLevel2",
+    "unit_id": "DehakaZerglingLevel2",
+    "name": "原始跳虫",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "PrimalCombatRavasaurLocked",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "DehakaLevel02",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "PrimalCombatRavasaurLocked",
+              "source_catalog": "starcoop",
+              "parent": "BuildUnitLocked",
+              "name": "原始战斗",
+              "name_key": "Button/Name/PrimalCombatRavasaurLocked",
+              "tooltip": "该单位将在指挥官等级2时解锁。",
+              "tooltip_key": "Button/Tooltip/BuildUnitLockedLevel02",
+              "icon": "",
+              "alert_icon": ""
+            }
+          },
+          {
+            "face": "BurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowDehakaZerglingLevel2Down,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ImpalerDehaka",
+    "unit_id": "ImpalerDehaka",
+    "name": "穿刺者",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaGeneCarapacePassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneCarapace",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneCarapacePassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化甲壳",
+              "name_key": "Button/Name/DehakaGeneCarapacePassive",
+              "tooltip": "该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplierArray[Life]*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneCarapacePassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-carapace.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneAttackSpeedPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneAttackSpeed",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneAttackSpeedPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化肾上腺体",
+              "name_key": "Button/Name/DehakaGeneAttackSpeedPassive",
+              "tooltip": "该单位的攻击速度提高{Behavior,DehakaGeneAttackSpeed,Modification.AttackSpeedMultiplier-1*100}%。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneAttackSpeedPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-attackspeed.dds"
+            }
+          },
+          {
+            "face": "DehakaGeneLifeLeechPassive",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaGeneLifeLeech",
+            "row": 1,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaGeneLifeLeechPassive",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "进化吸血",
+              "name_key": "Button/Name/DehakaGeneLifeLeechPassive",
+              "tooltip": "该单位会把造成伤害的{Behavior,DehakaGeneLifeLeech,Modification.VitalDamageLeechArray[Life].KindArray[Melee]*100}%转化为治疗。",
+              "tooltip_key": "Button/Tooltip/DehakaGeneLifeLeechPassive",
+              "icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds"
+            }
+          },
+          {
+            "face": "SetRallyPoint2",
+            "type": "AbilCmd",
+            "abil_cmd": "ProgressRally,Rally1",
+            "requirements": "",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "DehakaImpalerTenderize",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveDehakaImpalerTenderize",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "DehakaImpalerTenderize",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "暴捶",
+              "name_key": "Button/Name/DehakaImpalerTenderize",
+              "tooltip": "被暴捶的单位会在{Behavior,ImpalerDehakaTenderize,Duration}秒内受到{(Effect,ImpalerDehakaTenderizeDamage,Amount*Behavior,ImpalerDehakaTenderize,PeriodCount)}点伤害。被暴捶的单位如果被德哈卡吞噬会使正常的冷却时间减少25%。",
+              "tooltip_key": "Button/Tooltip/DehakaImpalerTenderize",
+              "icon": "Assets\\Textures\\BTN-Ability-Zerg-Dehaka-Impaler-Tenderize.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Ability-Zerg-Dehaka-Impaler-Tenderize.dds"
+            }
+          },
+          {
+            "face": "ImpalerBurrowDown",
+            "type": "AbilCmd",
+            "abil_cmd": "BurrowImpalerDehakaDown,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          }
+        ]
+      }
+    ]
+  }
+]

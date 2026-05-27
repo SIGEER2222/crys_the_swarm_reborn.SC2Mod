@@ -1,0 +1,1788 @@
+[
+  {
+    "id": "HHBattlecruiser",
+    "unit_id": "HHBattlecruiser",
+    "name": "霍纳的战列巡航舰",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHMSOHealth",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOHealth",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOHealth",
+              "tooltip": "汉的战斗单位使霍纳的单位的生命值提高{Effect,HornerMSOHealthDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOHealth",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds"
+            }
+          },
+          {
+            "face": "Hyperjump",
+            "type": "AbilCmd",
+            "abil_cmd": "HHBattlecruiserHyperjump,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHYamatoShots",
+            "type": "AbilCmd",
+            "abil_cmd": "HHYamatoShots,On",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHYamatoShots",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "超载反应堆",
+              "name_key": "Button/Name/HHYamatoShots",
+              "tooltip": "武器系统升级为强大的粒子光炮，每次攻击造成{Effect,HHLaserBatteryU,Amount}点伤害。",
+              "tooltip_key": "Button/Tooltip/HHYamatoShots",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-battlecruiser-yamato.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-battlecruiser-yamato.dds"
+            }
+          },
+          {
+            "face": "HHBattlecruiserShots",
+            "type": "AbilCmd",
+            "abil_cmd": "HHYamatoShots,Off",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHBattlecruiserShots",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "变回ATX激光炮组",
+              "name_key": "Button/Name/HHBattlecruiserShots",
+              "tooltip": "使用战列巡航舰的标准ATX激光炮组。",
+              "tooltip_key": "Button/Tooltip/HHBattlecruiserShots",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-battlecruiser-laser.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-battlecruiser-laser.dds"
+            }
+          },
+          {
+            "face": "HHArmyOOCRegen",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHArmyOOCRegen",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHArmyOOCRegen",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "耐力训练",
+              "name_key": "Button/Name/HHArmyOOCRegen",
+              "tooltip": "该单位脱离战斗后每秒回复{Behavior,HHArmyOOCRegenSpeed,Modification.VitalRegenArray[Life]}点生命值。",
+              "tooltip_key": "Button/Tooltip/HHArmyOOCRegen",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HHHellion",
+    "unit_id": "HHHellion",
+    "name": "恶火",
+    "object_type": "Unit",
+    "icon_button": "HHHellion",
+    "icon": "Assets\\Textures\\btn-unit-collection-hellion-junker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-collection-hellion-junker.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHMSOAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOAttackSpeed",
+              "tooltip": "霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOAttackSpeed",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds"
+            }
+          },
+          {
+            "face": "MorphToHellionTank",
+            "type": "AbilCmd",
+            "abil_cmd": "MorphToHHHellionTank,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHHellionBomb",
+            "type": "AbilCmd",
+            "abil_cmd": "HHHellionBomb,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHHellionBomb",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "焦油炸弹",
+              "name_key": "Button/Name/HHHellionBomb",
+              "tooltip": "发射一枚焦油炸弹，对目标单位造成{Effect,HHHellionBombDamage,Amount}点伤害。附近的敌人移动速度降低{(1 - Behavior,HHHellionBombSlow,Modification.MoveSpeedMultiplier) *100}%，攻击射程缩短{-(Behavior,HHHellionBombSlow,Modification.WeaponRange)}码，持续{Behavior,HHHellionBombSlow,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/HHHellionBomb",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-hellion-slowbomb.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-hellion-slowbomb.dds"
+            }
+          },
+          {
+            "face": "HHHellionDeathStim",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHHellionStimDeath",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHHellionDeathStim",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "喷雾刺激发射器",
+              "name_key": "Button/Name/HHHellionDeathStim",
+              "tooltip": "恶火和恶蝠变形速度提高75%。恶火被杀死时，附近的友方单位的移动速度提高{(Behavior,HHHellionStimDeath,Modification.MoveSpeedMultiplier - 1) * 100}%，攻击速度提高{(Behavior,HHHellionStimDeath,Modification.AttackSpeedMultiplier - 1) * 100}% ，持续{Behavior,HHHellionStimDeath,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/HHHellionDeathStim",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-hellion-stim.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-hellion-stim.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HHHellionTank",
+    "unit_id": "HHHellionTank",
+    "name": "恶蝠",
+    "object_type": "Unit",
+    "icon_button": "HHHellionTank",
+    "icon": "Assets\\Textures\\btn-unit-collection-hellbat-junker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-collection-hellbat-junker.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHMSOAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOAttackSpeed",
+              "tooltip": "霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOAttackSpeed",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds"
+            }
+          },
+          {
+            "face": "MorphToHHHellion",
+            "type": "AbilCmd",
+            "abil_cmd": "MorphToHHHellion,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MorphToHHHellion",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "恶火模式",
+              "name_key": "Button/Name/MorphToHHHellion",
+              "tooltip": "快速的侦察者，发射榴弹来减速敌方单位。可变形为近距离战斗单位。\n可以对地。",
+              "tooltip_key": "Button/Tooltip/MorphToHHHellion",
+              "icon": "Assets\\Textures\\btn-unit-collection-hellion-junker.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-collection-hellion-junker.dds"
+            }
+          },
+          {
+            "face": "HHHellionDeathFear",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHHellionFearDeath",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHHellionDeathFear",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "狂火炸药",
+              "name_key": "Button/Name/HHHellionDeathFear",
+              "tooltip": "移动速度提高{$UpgradeEffectArrayValue:HHHellionFearDeath:Unit,HHHellionTank,Speed$/Unit,HHHellionTank,Speed*100}%。恶蝠被杀死时会点燃周围区域。火中的敌人会在恐惧中乱跑，持续{Behavior,HHHellionTankFear,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/HHHellionDeathFear",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-hellbat-fear.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-hellbat-fear.dds"
+            }
+          },
+          {
+            "face": "HHHellionAttackDoT",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHHellionAttackDoT",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHHellionAttackDoT",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "爆燃液体",
+              "name_key": "Button/Name/HHHellionAttackDoT",
+              "tooltip": "攻击会使敌人在{Behavior,HHHellionDoT,Duration}秒内受到{Effect,HHHellionDoTDamage,Amount * Behavior,HHHellionDoT,Period * Behavior,HHHellionDoT,Duration}点额外伤害。",
+              "tooltip_key": "Button/Tooltip/HHHellionAttackDoT",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-hellbat-dot.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-hellbat-dot.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HHRaven",
+    "unit_id": "HHRaven",
+    "name": "霍纳铁鸦",
+    "object_type": "Unit",
+    "icon_button": "HHRaven",
+    "icon": "Assets\\Textures\\BTN-Unit-Collection-Raven-covertops.dds",
+    "alert_icon": "Assets\\Textures\\BTN-Unit-Collection-Raven-covertops.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Detector",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHSuperRadar",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHSuperRadar",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "成像雷达",
+              "name_key": "Button/Name/HHSuperRadar",
+              "tooltip": "远距离显示敌方单位的位置。",
+              "tooltip_key": "Button/Tooltip/HHSuperRadar",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-raven-radar.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-raven-radar.dds"
+            }
+          },
+          {
+            "face": "HHMSOHealth",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOHealth",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOHealth",
+              "tooltip": "汉的战斗单位使霍纳的单位的生命值提高{Effect,HornerMSOHealthDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOHealth",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds"
+            }
+          },
+          {
+            "face": "FleetwideJump",
+            "type": "AbilCmd",
+            "abil_cmd": "FleetwideJump,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "FleetwideJump",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "战术跳跃",
+              "name_key": "Button/Name/FleetwideJump",
+              "tooltip": "折跃到目标位置。飞行器折跃期间处于无敌状态。",
+              "tooltip_key": "Button/Tooltip/FleetwideJump",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-fleethyperjump.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-fleethyperjump.dds"
+            }
+          },
+          {
+            "face": "HHNomadTargetLock",
+            "type": "AbilCmd",
+            "abil_cmd": "RavenTargetLock,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHNomadTargetLock",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "分析弱点",
+              "name_key": "Button/Name/HHNomadTargetLock",
+              "tooltip": "对被分析的单位进行的所有近战和远程攻击都会有3点伤害加成。只要铁鸦锁定目标，效果就会一直存在。",
+              "tooltip_key": "Button/Tooltip/HHNomadTargetLock",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-raven-analyzetarget.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-raven-analyzetarget.dds"
+            }
+          },
+          {
+            "face": "MorphtoHHRavenSiege",
+            "type": "AbilCmd",
+            "abil_cmd": "HHRavenMorphtoHHRavenSiege,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "MorphtoHHRavenSiege",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "启动消音模式",
+              "name_key": "Button/Name/MorphtoHHRavenSiege",
+              "tooltip": "铁鸦获得隐形效果但是无法移动和使用主动技能。此技能激活后可以取消。",
+              "tooltip_key": "Button/Tooltip/MorphtoHHRavenSiege",
+              "icon": "Assets\\Textures\\btn-unit-terran-ravenblackops.dds",
+              "alert_icon": "Assets\\Textures\\btn-unit-terran-ravenblackops.dds"
+            }
+          },
+          {
+            "face": "HHArmyOOCRegen",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHArmyOOCRegen",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHArmyOOCRegen",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "耐力训练",
+              "name_key": "Button/Name/HHArmyOOCRegen",
+              "tooltip": "该单位脱离战斗后每秒回复{Behavior,HHArmyOOCRegenSpeed,Modification.VitalRegenArray[Life]}点生命值。",
+              "tooltip_key": "Button/Tooltip/HHArmyOOCRegen",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HHReaper",
+    "unit_id": "HHReaper",
+    "name": "霍纳收割者",
+    "object_type": "Unit",
+    "icon_button": "HHReaper",
+    "icon": "Assets\\Textures\\btn-unit-collection-reaper-junker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-collection-reaper-junker.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHMSOAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOAttackSpeed",
+              "tooltip": "霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOAttackSpeed",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds"
+            }
+          },
+          {
+            "face": "HHKD8Charge",
+            "type": "AbilCmd",
+            "abil_cmd": "HHD8SingleCharge,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHKD8Charge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "KD8型炸弹",
+              "name_key": "Button/Name/HHKD8Charge",
+              "tooltip": "短暂延迟后发生爆炸，造成{Effect,HHD8ChargeExplodeDamage,Amount}点范围伤害并击退附近的单位。",
+              "tooltip_key": "Button/Tooltip/HHKD8Charge",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds"
+            }
+          },
+          {
+            "face": "HHReaperFly",
+            "type": "AbilCmd",
+            "abil_cmd": "HHReaperFly,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHReaperFly",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "喷气背包加力",
+              "name_key": "Button/Name/HHReaperFly",
+              "tooltip": "使收割者飞行{Behavior,HHReaperFlyingDuration,Duration}秒。飞行时，收割者可以对空。",
+              "tooltip_key": "Button/Tooltip/HHReaperFly",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds"
+            }
+          },
+          {
+            "face": "JetPack",
+            "type": "Passive",
+            "abil_cmd": "255,255",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CombatDrugs",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHReaperClusterBombs",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHReaperClusterBomb",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHReaperClusterBombs",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "LE9型集束炸弹",
+              "name_key": "Button/Name/HHReaperClusterBombs",
+              "tooltip": "使KD8炸弹的冷却时间缩短{time:10}。被杀死时，收割者会向击杀他的单位投掷多枚手雷。",
+              "tooltip_key": "Button/Tooltip/HHReaperClusterBombs",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HHViking",
+    "unit_id": "HHVikingFighter",
+    "name": "霍纳维京战机",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHVikingPiercingAttacks",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHVikingPiercingAttack",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHVikingPiercingAttacks",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "撕裂弹",
+              "name_key": "Button/Name/HHVikingPiercingAttacks",
+              "tooltip": "机甲模式的攻击有穿透效果，对目标后面的敌方单位造成伤害。变形时间缩短75%。",
+              "tooltip_key": "Button/Tooltip/HHVikingPiercingAttacks",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-viking-piercingattacks.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-viking-piercingattacks.dds"
+            }
+          },
+          {
+            "face": "HHVikingMorphSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHVikingMorph",
+            "row": 1,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHMSOHealth",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOHealth",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOHealth",
+              "tooltip": "汉的战斗单位使霍纳的单位的生命值提高{Effect,HornerMSOHealthDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOHealth",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds"
+            }
+          },
+          {
+            "face": "FleetwideJump",
+            "type": "AbilCmd",
+            "abil_cmd": "FleetwideJump,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "FleetwideJump",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "战术跳跃",
+              "name_key": "Button/Name/FleetwideJump",
+              "tooltip": "折跃到目标位置。飞行器折跃期间处于无敌状态。",
+              "tooltip_key": "Button/Tooltip/FleetwideJump",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-fleethyperjump.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-fleethyperjump.dds"
+            }
+          },
+          {
+            "face": "HHVikingRockets",
+            "type": "AbilCmd",
+            "abil_cmd": "HHVikingRockets,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHVikingRockets",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "狂暴飞弹",
+              "name_key": "Button/Name/HHVikingRockets",
+              "tooltip": "对目标单位发射{Effect,HHVikingRocketsBurstPersistent,PeriodCount}枚火箭，每枚火箭造成{Effect,HHVikingRocketsDamage,Amount} ({Effect,HHVikingRocketsDamage,Amount+Effect,HHVikingRocketsDamage,AttributeBonus[Armored]}对重甲)点伤害。",
+              "tooltip_key": "Button/Tooltip/HHVikingRockets",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-viking-missileupgrade.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-viking-missileupgrade.dds"
+            }
+          },
+          {
+            "face": "AssaultMode",
+            "type": "AbilCmd",
+            "abil_cmd": "HHAssaultMode,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHArmyOOCRegen",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHArmyOOCRegen",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHArmyOOCRegen",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "耐力训练",
+              "name_key": "Button/Name/HHArmyOOCRegen",
+              "tooltip": "该单位脱离战斗后每秒回复{Behavior,HHArmyOOCRegenSpeed,Modification.VitalRegenArray[Life]}点生命值。",
+              "tooltip_key": "Button/Tooltip/HHArmyOOCRegen",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-11-mechhealing.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HHWidowMine",
+    "unit_id": "HHReaper",
+    "name": "霍纳寡妇雷",
+    "object_type": "Unit",
+    "icon_button": "HHWidowMine",
+    "icon": "Assets\\Textures\\btn-unit-collection-widowmine-junker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-collection-widowmine-junker.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHMSOAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOAttackSpeed",
+              "tooltip": "霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOAttackSpeed",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds"
+            }
+          },
+          {
+            "face": "HHKD8Charge",
+            "type": "AbilCmd",
+            "abil_cmd": "HHD8SingleCharge,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHKD8Charge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "KD8型炸弹",
+              "name_key": "Button/Name/HHKD8Charge",
+              "tooltip": "短暂延迟后发生爆炸，造成{Effect,HHD8ChargeExplodeDamage,Amount}点范围伤害并击退附近的单位。",
+              "tooltip_key": "Button/Tooltip/HHKD8Charge",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds"
+            }
+          },
+          {
+            "face": "HHReaperFly",
+            "type": "AbilCmd",
+            "abil_cmd": "HHReaperFly,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHReaperFly",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "喷气背包加力",
+              "name_key": "Button/Name/HHReaperFly",
+              "tooltip": "使收割者飞行{Behavior,HHReaperFlyingDuration,Duration}秒。飞行时，收割者可以对空。",
+              "tooltip_key": "Button/Tooltip/HHReaperFly",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds"
+            }
+          },
+          {
+            "face": "JetPack",
+            "type": "Passive",
+            "abil_cmd": "255,255",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CombatDrugs",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHReaperClusterBombs",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHReaperClusterBomb",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHReaperClusterBombs",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "LE9型集束炸弹",
+              "name_key": "Button/Name/HHReaperClusterBombs",
+              "tooltip": "使KD8炸弹的冷却时间缩短{time:10}。被杀死时，收割者会向击杀他的单位投掷多枚手雷。",
+              "tooltip_key": "Button/Tooltip/HHReaperClusterBombs",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HHWraith",
+    "unit_id": "HHReaper",
+    "name": "霍纳怨灵战机",
+    "object_type": "Unit",
+    "icon_button": "HHReaper",
+    "icon": "Assets\\Textures\\btn-unit-collection-reaper-junker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-collection-reaper-junker.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHMSOAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOAttackSpeed",
+              "tooltip": "霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOAttackSpeed",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds"
+            }
+          },
+          {
+            "face": "HHKD8Charge",
+            "type": "AbilCmd",
+            "abil_cmd": "HHD8SingleCharge,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHKD8Charge",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "KD8型炸弹",
+              "name_key": "Button/Name/HHKD8Charge",
+              "tooltip": "短暂延迟后发生爆炸，造成{Effect,HHD8ChargeExplodeDamage,Amount}点范围伤害并击退附近的单位。",
+              "tooltip_key": "Button/Tooltip/HHKD8Charge",
+              "icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds",
+              "alert_icon": "Assets\\Textures\\btn-upgrade-terran-kd8chargeex3.dds"
+            }
+          },
+          {
+            "face": "HHReaperFly",
+            "type": "AbilCmd",
+            "abil_cmd": "HHReaperFly,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHReaperFly",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "喷气背包加力",
+              "name_key": "Button/Name/HHReaperFly",
+              "tooltip": "使收割者飞行{Behavior,HHReaperFlyingDuration,Duration}秒。飞行时，收割者可以对空。",
+              "tooltip_key": "Button/Tooltip/HHReaperFly",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-flightmode.dds"
+            }
+          },
+          {
+            "face": "JetPack",
+            "type": "Passive",
+            "abil_cmd": "255,255",
+            "requirements": "",
+            "row": 2,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "CombatDrugs",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHReaperClusterBombs",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHReaperClusterBomb",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHReaperClusterBombs",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "LE9型集束炸弹",
+              "name_key": "Button/Name/HHReaperClusterBombs",
+              "tooltip": "使KD8炸弹的冷却时间缩短{time:10}。被杀死时，收割者会向击杀他的单位投掷多枚手雷。",
+              "tooltip_key": "Button/Tooltip/HHReaperClusterBombs",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-reaper-deaththrows.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Predator",
+    "unit_id": "HHWidowMine",
+    "name": "掠食者",
+    "object_type": "Unit",
+    "icon_button": "HHWidowMine",
+    "icon": "Assets\\Textures\\btn-unit-collection-widowmine-junker.dds",
+    "alert_icon": "Assets\\Textures\\btn-unit-collection-widowmine-junker.dds",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "AcquireMove",
+            "type": "AbilCmd",
+            "abil_cmd": "move,AcquireMove",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHMSOAttackSpeed",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHSOBuff",
+            "row": 1,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHMSOAttackSpeed",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "我的另一半",
+              "name_key": "Button/Name/HHMSOAttackSpeed",
+              "tooltip": "霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。",
+              "tooltip_key": "Button/Tooltip/HHMSOAttackSpeed",
+              "icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds",
+              "alert_icon": "Assets\\Textures\\btn-progression-hornerhan-15-mysignificantother.dds"
+            }
+          },
+          {
+            "face": "WidowMineAttack",
+            "type": "AbilCmd",
+            "abil_cmd": "HHWidowMineAttack,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "WidowMineBurrow",
+            "type": "AbilCmd",
+            "abil_cmd": "HHWidowMineBurrow,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "HHWidowMineDeathBlossom",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveHHWidowMineDeathBlossom",
+            "row": 2,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHWidowMineDeathBlossom",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "处决飞弹",
+              "name_key": "Button/Name/HHWidowMineDeathBlossom",
+              "tooltip": "哨兵导弹冷却时间降低{time:20}。被杀死时，寡妇雷会向附近的随机目标发射5枚哨兵导弹，造成{Effect,HHWidowMineBlossomExplodeSplash,Amount}(+{Effect,HHWidowMineBlossomExplodeSplash,ShieldBonus}对护盾)点范围伤害。",
+              "tooltip_key": "Button/Tooltip/HHWidowMineDeathBlossom",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-widowmine-deathblossom.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-widowmine-deathblossom.dds"
+            }
+          },
+          {
+            "face": "HHWidowMineRangeAttack",
+            "type": "Passive",
+            "abil_cmd": "HHWidowMineAttack,Execute",
+            "requirements": "HaveHHWidowMineAttackRange",
+            "row": 2,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "HHWidowMineRangeAttack",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "黑市发射器",
+              "name_key": "Button/Name/HHWidowMineRangeAttack",
+              "tooltip": "哨兵导弹范围提高50%，潜地和出地速度变快。",
+              "tooltip_key": "Button/Tooltip/HHWidowMineRangeAttack",
+              "icon": "Assets\\Textures\\btn-ability-hornerhan-widowmine-attackrange.dds",
+              "alert_icon": "Assets\\Textures\\btn-ability-hornerhan-widowmine-attackrange.dds"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Liberator",
+    "unit_id": "Liberator",
+    "name": "解放者",
+    "object_type": "Unit",
+    "icon_button": "",
+    "icon": "",
+    "alert_icon": "",
+    "cards": [
+      {
+        "card_id": "",
+        "is_default_card": true,
+        "buttons": [
+          {
+            "face": "Move",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Move",
+            "requirements": "",
+            "row": 0,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Stop",
+            "type": "AbilCmd",
+            "abil_cmd": "stop,Stop",
+            "requirements": "",
+            "row": 0,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MoveHoldPosition",
+            "type": "AbilCmd",
+            "abil_cmd": "move,HoldPos",
+            "requirements": "",
+            "row": 0,
+            "column": 2,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "MovePatrol",
+            "type": "AbilCmd",
+            "abil_cmd": "move,Patrol",
+            "requirements": "",
+            "row": 0,
+            "column": 3,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "Attack",
+            "type": "AbilCmd",
+            "abil_cmd": "attack,Execute",
+            "requirements": "",
+            "row": 0,
+            "column": 4,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "LiberatorAGRangeUpgrade",
+            "type": "Passive",
+            "abil_cmd": "",
+            "requirements": "HaveLiberatorRange",
+            "row": 1,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "LiberatorAGMode",
+            "type": "AbilCmd",
+            "abil_cmd": "LiberatorAGTarget,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 0,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {}
+          },
+          {
+            "face": "IgniteAfterburners",
+            "type": "AbilCmd",
+            "abil_cmd": "VehicleAfterburners,Execute",
+            "requirements": "",
+            "row": 2,
+            "column": 1,
+            "submenu_abil_state": "",
+            "submenu_card_id": "",
+            "submenu_is_sticky": "",
+            "button": {
+              "id": "IgniteAfterburners",
+              "source_catalog": "starcoop",
+              "parent": "",
+              "name": "后燃推进系统",
+              "name_key": "Button/Name/IgniteAfterburners",
+              "tooltip": "该单位的移动速度提高{(Behavior,VehicleAfterburners,Modification.MoveSpeedMultiplier - 1) * 100}%，持续{Behavior,VehicleAfterburners,Duration}秒。",
+              "tooltip_key": "Button/Tooltip/IgniteAfterburners",
+              "icon": "Assets\\Textures\\BTN-Upgrade-Terran-MedivacEmergencyThrusters.dds",
+              "alert_icon": "Assets\\Textures\\BTN-Upgrade-Terran-MedivacEmergencyThrusters.dds"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

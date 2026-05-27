@@ -54,6 +54,15 @@ SOURCE_BY_COMMANDER = {
 }
 
 CURATED_COMMANDER_UNIT_IDS = {
+    "Abathur": [
+        "SwarmQueen",
+        "RoachCorpser",
+        "RoachVile",
+        "Ravager",
+        "Viper",
+        "Brutalisk",
+        "Leviathan",
+    ],
     "Dehaka": [
         "DehakaCoop",
         "DehakaDrone",
@@ -167,6 +176,63 @@ TECH_UNIT_UNIT_OVERRIDES = {
     }
 }
 
+TECH_DISPLAY_KEY_OVERRIDES = {
+    "DehakaAirTownHall": {
+        "name_keys": [
+            "Unit/Name/DehakaHatchery",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/DehakaHatchery",
+            "Button/Tooltip/PrimalTownHall",
+        ],
+    },
+    "LurkerStetmannBurrowed": {
+        "name_keys": [
+            "Unit/Name/LurkerStetmann",
+            "Card/Name/LurkerStetmannBurrowed",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/LurkerStetmann",
+        ],
+    },
+    "RavenMengskSieged": {
+        "name_keys": [
+            "Unit/Name/RavenMengsk",
+            "Button/Name/RavenMengsk",
+            "Button/Name/MorphtoRavenMengskSieged",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/RavenMengskSieged",
+            "Button/Tooltip/RavenMengsk",
+        ],
+    },
+    "ReaperNova": {
+        "name_keys": [
+            "Button/Name/TrainReaperNova",
+        ],
+    },
+    "RoboticsWarp": {
+        "name_keys": [
+            "ArmyCategory/Name/RoboticsFacilityWarp",
+        ],
+    },
+    "RoboticsWarpandStarWarpGate": {
+        "name_keys": [
+            "ArmyCategory/Name/RoboticsFacilityWarp",
+        ],
+    },
+    "VikingMengskAssault": {
+        "name_keys": [
+            "Unit/Name/VikingMengskFighter",
+            "Button/Name/VikingMengskFighter",
+        ],
+        "tooltip_keys": [
+            "Button/Tooltip/VikingMengskAssault",
+            "Button/Tooltip/VikingMengskFighter",
+        ],
+    },
+}
+
 TYCHUS_IGNORE_PATTERN = re.compile(r"(Missile|Weapon|Beacon|Placement|Dummy)")
 NON_PRIMARY_UNIT_PATTERN = re.compile(r"(_SpawnerUnit|SpawnerUnit$|Cocoon|Egg|Missile|Weapon|Placeholder|Dummy)")
 SECONDARY_MODE_UNIT_PATTERN = re.compile(r"(Burrowed$|Rooted$|Sieged$|Flying$|Assault$|Phasing$)")
@@ -254,6 +320,62 @@ def localize(key: str | None, zh: dict[str, str], en: dict[str, str]) -> str:
     return clean_markup(value) if value else ""
 
 
+def localize_first(keys: list[str], zh: dict[str, str], en: dict[str, str]) -> tuple[str, str]:
+    seen: set[str] = set()
+    for key in keys:
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        value = localize(key, zh, en)
+        if value:
+            return key, value
+    return "", ""
+
+
+def tech_display_fallback(
+    entry_id: str,
+    resolved_unit_id: str,
+    army_categories: list[str],
+    zh: dict[str, str],
+    en: dict[str, str],
+) -> tuple[str, str, str, str]:
+    candidate_ids: list[str] = []
+    for candidate in [entry_id, resolved_unit_id, *army_categories]:
+        if candidate and candidate not in candidate_ids:
+            candidate_ids.append(candidate)
+
+    override = TECH_DISPLAY_KEY_OVERRIDES.get(entry_id, {})
+    name_keys: list[str] = list(override.get("name_keys", []))
+    tooltip_keys: list[str] = list(override.get("tooltip_keys", []))
+    for candidate in candidate_ids:
+        name_keys.extend(
+            [
+                f"UserData/TechUnit/{candidate}_Name",
+                f"Unit/Name/{candidate}",
+                f"Button/Name/{candidate}",
+                f"Button/Name/Train{candidate}",
+                f"ArmyCategory/Name/{candidate}",
+                f"Card/Name/{candidate}",
+                f"Unit/Name/{candidate}ACGluescreenDummy",
+                f"Button/Name/{candidate}ACGluescreenDummy",
+            ]
+        )
+        tooltip_keys.extend(
+            [
+                f"UserData/TechUnit/{candidate}_TechnologyTooltip",
+                f"Unit/Tooltip/{candidate}",
+                f"Button/Tooltip/{candidate}",
+                f"Button/Tooltip/Train{candidate}",
+                f"Button/Tooltip/{candidate}ACGluescreenDummy",
+                f"Unit/Tooltip/{candidate}ACGluescreenDummy",
+            ]
+        )
+
+    name_key, name = localize_first(name_keys, zh, en)
+    tooltip_key, tooltip = localize_first(tooltip_keys, zh, en)
+    return name_key, name, tooltip_key, tooltip
+
+
 def collect_indexed_values(instance: ET.Element, tag: str, attr: str, expected_field: str) -> list[str]:
     values: list[tuple[int, str]] = []
     for child in instance.findall(tag):
@@ -302,9 +424,20 @@ def child_value(node: ET.Element, tag: str) -> str:
     return child.get("value") or ""
 
 
+def node_value(node: ET.Element, tag: str) -> str:
+    return node.get(tag) or child_value(node, tag)
+
+
+def node_int_value(node: ET.Element, tag: str) -> int | str:
+    raw = node_value(node, tag)
+    if raw.isdigit():
+        return int(raw)
+    return raw
+
+
 def chain_value(chain: list[tuple[str, ET.Element]], tag: str) -> str:
     for _, node in chain:
-        value = child_value(node, tag)
+        value = node_value(node, tag)
         if value:
             return value
     return ""
@@ -343,6 +476,7 @@ class CatalogResolver:
         self.export_root = export_root
         self.unit_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.upgrade_catalogs: dict[str, dict[str, ET.Element]] = {}
+        self.button_catalogs: dict[str, dict[str, ET.Element]] = {}
         self.army_category_units: dict[str, dict[str, set[str]]] = {}
         self.army_category_commands: dict[str, dict[str, set[str]]] = {}
         self.abil_command_units: dict[str, dict[str, set[str]]] = {}
@@ -356,6 +490,7 @@ class CatalogResolver:
             self.source_roots[label] = mod_root
             gamedata_dir = mod_root / "base.sc2data" / "gamedata"
             self.unit_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CUnit"})
+            self.button_catalogs[label] = self._load_catalog_dir(gamedata_dir, {"CButton"})
             (
                 self.army_category_units[label],
                 self.army_category_commands[label],
@@ -411,6 +546,9 @@ class CatalogResolver:
     def upgrade_node(self, source: str, upgrade_id: str) -> tuple[str, ET.Element] | tuple[None, None]:
         return self._lookup(self.upgrade_catalogs, source, upgrade_id)
 
+    def button_node(self, source: str, button_id: str) -> tuple[str, ET.Element] | tuple[None, None]:
+        return self._lookup(self.button_catalogs, source, button_id)
+
     def unit_chain(self, source: str, unit_id: str) -> list[tuple[str, ET.Element]]:
         chain: list[tuple[str, ET.Element]] = []
         seen_pairs: set[tuple[str, str]] = set()
@@ -421,6 +559,34 @@ class CatalogResolver:
             nodes_for_id: list[tuple[str, ET.Element]] = []
             for label in self.search_order(source):
                 node = self.unit_catalogs.get(label, {}).get(current_id)
+                if node is None:
+                    continue
+                pair = (label, current_id)
+                if pair in seen_pairs:
+                    continue
+                seen_pairs.add(pair)
+                nodes_for_id.append((label, node))
+            if not nodes_for_id:
+                break
+            chain.extend(nodes_for_id)
+            parent_id = ""
+            for _, node in nodes_for_id:
+                parent_id = node.get("parent", "")
+                if parent_id:
+                    break
+            current_id = parent_id
+        return chain
+
+    def button_chain(self, source: str, button_id: str) -> list[tuple[str, ET.Element]]:
+        chain: list[tuple[str, ET.Element]] = []
+        seen_pairs: set[tuple[str, str]] = set()
+        seen_ids: set[str] = set()
+        current_id = button_id
+        while current_id and current_id not in seen_ids:
+            seen_ids.add(current_id)
+            nodes_for_id: list[tuple[str, ET.Element]] = []
+            for label in self.search_order(source):
+                node = self.button_catalogs.get(label, {}).get(current_id)
                 if node is None:
                     continue
                 pair = (label, current_id)
@@ -659,6 +825,129 @@ def parse_upgrade(node: ET.Element, upgrade_id: str, source: str, zh: dict[str, 
     }
 
 
+def parse_button(chain: list[tuple[str, ET.Element]], button_id: str, source: str, zh: dict[str, str], en: dict[str, str]) -> dict[str, object]:
+    if not chain:
+        return {
+            "id": button_id,
+            "source_catalog": "",
+            "parent": "",
+            "name": localize(f"Button/Name/{button_id}", zh, en),
+            "name_key": f"Button/Name/{button_id}",
+            "tooltip": localize(f"Button/Tooltip/{button_id}", zh, en),
+            "tooltip_key": f"Button/Tooltip/{button_id}",
+            "icon": "",
+            "alert_icon": "",
+        }
+
+    node = chain[0][1]
+    name_key = chain_value(chain, "Name") or f"Button/Name/{button_id}"
+    tooltip_key = chain_value(chain, "Tooltip") or chain_value(chain, "AlertTooltip") or f"Button/Tooltip/{button_id}"
+    return {
+        "id": button_id,
+        "source_catalog": source or chain[0][0],
+        "parent": node.get("parent", ""),
+        "name": localize(name_key, zh, en),
+        "name_key": name_key,
+        "tooltip": localize(tooltip_key, zh, en),
+        "tooltip_key": tooltip_key,
+        "icon": chain_value(chain, "Icon"),
+        "alert_icon": chain_value(chain, "AlertIcon") or chain_value(chain, "Icon"),
+    }
+
+
+def resolve_button_metadata(
+    resolver: CatalogResolver,
+    source_name: str,
+    candidate_ids: list[str],
+    zh: dict[str, str],
+    en: dict[str, str],
+) -> dict[str, object]:
+    seen: set[str] = set()
+    for candidate in candidate_ids:
+        if not candidate or candidate in seen:
+            continue
+        seen.add(candidate)
+        button_chain = resolver.button_chain(source_name, candidate)
+        if button_chain:
+            return parse_button(button_chain, candidate, button_chain[0][0], zh, en)
+    return {}
+
+
+def button_candidates(entry_id: str, resolved_unit_id: str, army_categories: list[str]) -> list[str]:
+    candidates: list[str] = []
+    for candidate in [entry_id, resolved_unit_id, *army_categories]:
+        if not candidate:
+            continue
+        for button_id in [candidate, f"Train{candidate}", f"MorphTo{candidate}"]:
+            if button_id not in candidates:
+                candidates.append(button_id)
+    return candidates
+
+
+def collect_command_cards(
+    chain: list[tuple[str, ET.Element]],
+    source_name: str,
+    resolver: CatalogResolver,
+    zh: dict[str, str],
+    en: dict[str, str],
+) -> list[dict[str, object]]:
+    cards: dict[str, dict[str, object]] = {}
+    button_maps: dict[str, dict[tuple[str, str, int], dict[str, object]]] = {}
+
+    for _, unit_node in reversed(chain):
+        for card_order, card_layout in enumerate(unit_node.findall("./CardLayouts")):
+            card_id = node_value(card_layout, "CardId")
+            card_key = card_id or "__default__"
+            if card_key not in cards:
+                cards[card_key] = {
+                    "card_id": card_id,
+                    "is_default_card": not bool(card_id),
+                }
+                button_maps[card_key] = {}
+            for button_order, layout_button in enumerate(card_layout.findall("./LayoutButtons")):
+                row = node_int_value(layout_button, "Row")
+                column = node_int_value(layout_button, "Column")
+                face = node_value(layout_button, "Face")
+                button_meta = resolve_button_metadata(resolver, source_name, [face], zh, en) if face else {}
+                parsed_button = {
+                    "face": face,
+                    "type": node_value(layout_button, "Type"),
+                    "abil_cmd": node_value(layout_button, "AbilCmd"),
+                    "requirements": node_value(layout_button, "Requirements"),
+                    "row": row,
+                    "column": column,
+                    "submenu_abil_state": node_value(layout_button, "SubmenuAbilState"),
+                    "submenu_card_id": node_value(layout_button, "SubmenuCardId"),
+                    "submenu_is_sticky": node_value(layout_button, "SubmenuIsSticky"),
+                    "button": button_meta,
+                    "_order": button_order,
+                }
+                slot_key = (str(row), str(column), button_order if row == "" and column == "" else 0)
+                button_maps[card_key][slot_key] = parsed_button
+
+    result: list[dict[str, object]] = []
+    for card_key, card in cards.items():
+        buttons = list(button_maps[card_key].values())
+        buttons.sort(
+            key=lambda item: (
+                item["row"] if isinstance(item["row"], int) else 99,
+                item["column"] if isinstance(item["column"], int) else 99,
+                int(item["_order"]),
+                str(item.get("face") or ""),
+            )
+        )
+        for button in buttons:
+            button.pop("_order", None)
+        result.append(
+            {
+                **card,
+                "buttons": buttons,
+            }
+        )
+    result.sort(key=lambda item: (0 if item["is_default_card"] else 1, str(item["card_id"] or "")))
+    return result
+
+
 def build_supplemental_roster_entries(
     export_root: Path,
     short_id: str,
@@ -670,21 +959,32 @@ def build_supplemental_roster_entries(
     entries: list[dict[str, object]] = []
 
     for unit_id in CURATED_COMMANDER_UNIT_IDS.get(short_id, []):
+        tech_prefix_key = f"UserData/TechUnit/{unit_id}_Prefix"
+        tech_suffix_key = f"UserData/TechUnit/{unit_id}_Suffix"
+        tech_name_key = f"UserData/TechUnit/{unit_id}_Name"
+        tech_tooltip_key = f"UserData/TechUnit/{unit_id}_TechnologyTooltip"
+        unit_name_key = f"Unit/Name/{unit_id}"
+        unit_tooltip_key = f"Unit/Tooltip/{unit_id}"
+        prefix = localize(tech_prefix_key, zh, en)
+        suffix = localize(tech_suffix_key, zh, en)
+        name = localize(tech_name_key, zh, en) or localize(unit_name_key, zh, en)
+        tooltip = localize(tech_tooltip_key, zh, en) or localize(unit_tooltip_key, zh, en)
         entries.append(
             {
                 "id": unit_id,
                 "unit_id": unit_id,
+                "army_categories": [unit_id],
                 "commanders": [short_id],
                 "commander_ids": [commander_id],
                 "ui_order": 1000 + len(entries),
-                "prefix": "",
-                "prefix_key": "",
-                "suffix": "",
-                "suffix_key": "",
-                "name": localize(f"Unit/Name/{unit_id}", zh, en),
-                "name_key": f"Unit/Name/{unit_id}",
-                "tooltip": localize(f"Unit/Tooltip/{unit_id}", zh, en),
-                "tooltip_key": f"Unit/Tooltip/{unit_id}",
+                "prefix": prefix,
+                "prefix_key": tech_prefix_key if prefix else "",
+                "suffix": suffix,
+                "suffix_key": tech_suffix_key if suffix else "",
+                "name": name,
+                "name_key": tech_name_key if localize(tech_name_key, zh, en) else unit_name_key,
+                "tooltip": tooltip,
+                "tooltip_key": tech_tooltip_key if localize(tech_tooltip_key, zh, en) else unit_tooltip_key,
                 "source": "supplemental curated roster",
                 "source_name": source_name,
             }
@@ -1064,6 +1364,8 @@ def build_commander_payload(
             masteries.extend([item for item in parsed["masteries"] if item["commander_id"] == commander_id])  # type: ignore[index]
             tech_entries.extend([item for item in parsed["tech_units"] if commander_id in item["commander_ids"]])  # type: ignore[index]
 
+        tech_entries.extend(build_supplemental_roster_entries(export_root, short_id, commander_id, source_name, zh, en))
+
         overrides = TECH_UNIT_UNIT_OVERRIDES.get(short_id, {})
         normalized_tech_entries: list[dict[str, object]] = []
         for entry in tech_entries:
@@ -1080,9 +1382,22 @@ def build_commander_payload(
             if resolved_unit_ids:
                 normalized_entry["unit_id"] = resolved_unit_ids[0]
                 normalized_entry["resolved_unit_ids"] = resolved_unit_ids
+            resolved_unit_id = str(normalized_entry["unit_id"])
+            fallback_name_key, fallback_name, fallback_tooltip_key, fallback_tooltip = tech_display_fallback(
+                str(normalized_entry["id"]),
+                resolved_unit_id,
+                list(normalized_entry.get("army_categories", [])),
+                zh,
+                en,
+            )
+            if fallback_name and not normalized_entry.get("name"):
+                normalized_entry["name"] = fallback_name
+                normalized_entry["name_key"] = fallback_name_key
+            if fallback_tooltip and not normalized_entry.get("tooltip"):
+                normalized_entry["tooltip"] = fallback_tooltip
+                normalized_entry["tooltip_key"] = fallback_tooltip_key
             normalized_tech_entries.append(normalized_entry)
         tech_entries = normalized_tech_entries
-        tech_entries.extend(build_supplemental_roster_entries(export_root, short_id, commander_id, source_name, zh, en))
 
         perks.sort(key=lambda item: ((item.get("level") or 0), (item.get("ui_slot") or 0), str(item.get("id"))))
         masteries.sort(key=lambda item: ((item.get("category") or 0), str(item.get("id"))))
@@ -1140,6 +1455,7 @@ def build_commander_payload(
         buildings: list[dict[str, object]] = []
         heroes: list[dict[str, object]] = []
         other_entries: list[dict[str, object]] = []
+        command_cards: list[dict[str, object]] = []
         seen_roster_keys: set[tuple[str, str]] = set()
         for entry in tech_entries:
             roster_key = (str(entry["id"]), str(entry["unit_id"]))
@@ -1149,16 +1465,40 @@ def build_commander_payload(
             unit_chain = resolver.unit_chain(entry["source_name"], str(entry["unit_id"]))
             catalog_source = unit_chain[0][0] if unit_chain else ""
             unit_meta = parse_unit(unit_chain, str(entry["unit_id"]), catalog_source)
+            icon_button = resolve_button_metadata(
+                resolver,
+                str(entry["source_name"]),
+                button_candidates(str(entry["id"]), str(entry["unit_id"]), list(entry.get("army_categories", []))),
+                zh,
+                en,
+            )
             if not entry.get("name"):
                 entry["name"] = localize(f"Unit/Name/{entry['unit_id']}", zh, en)
             if not entry.get("tooltip"):
                 entry["tooltip"] = localize(f"Unit/Tooltip/{entry['unit_id']}", zh, en)
+            entry["icon_button"] = icon_button.get("id", "")
+            entry["icon"] = icon_button.get("icon", "")
+            entry["alert_icon"] = icon_button.get("alert_icon", "")
             item = {
                 **entry,
                 "unit": unit_meta,
             }
             roster.append(item)
             object_type = str(unit_meta.get("object_type") or "Unknown")
+            cards = collect_command_cards(unit_chain, str(entry["source_name"]), resolver, zh, en)
+            if cards:
+                command_cards.append(
+                    {
+                        "id": str(entry["id"]),
+                        "unit_id": str(entry["unit_id"]),
+                        "name": str(entry.get("name") or ""),
+                        "object_type": object_type,
+                        "icon_button": entry["icon_button"],
+                        "icon": entry["icon"],
+                        "alert_icon": entry["alert_icon"],
+                        "cards": cards,
+                    }
+                )
             if object_type == "Structure":
                 buildings.append(item)
             elif object_type == "Hero":
@@ -1202,6 +1542,7 @@ def build_commander_payload(
             "buildings": buildings,
             "heroes": heroes,
             "other_entries": other_entries,
+            "command_cards": command_cards,
             "progression": {
                 "perks": perks,
                 "masteries": masteries,
@@ -1249,6 +1590,11 @@ def write_commander_files(output_dir: Path, commanders: dict[str, dict[str, obje
             encoding="utf-8",
             newline="\n",
         )
+        (target / "command_cards.json").write_text(
+            json.dumps(data["command_cards"], ensure_ascii=False, indent=2),
+            encoding="utf-8",
+            newline="\n",
+        )
         (target / "progression.json").write_text(
             json.dumps(data["progression"], ensure_ascii=False, indent=2),
             encoding="utf-8",
@@ -1275,7 +1621,7 @@ def render_summary_markdown(export_root: Path, output_dir: Path, commanders: dic
     lines.append(f"- 官方源：`{export_root.as_posix()}`")
     lines.append(f"- 输出目录：`{output_dir.as_posix()}`")
     lines.append("- 指挥官范围：18 个官方合作指挥官。")
-    lines.append("- 包含：科技面板兵种/建筑、英雄条目、等级加点、威望、精通、关联升级。")
+    lines.append("- 包含：科技面板兵种/建筑、英雄条目、命令面板按钮、图标引用、等级加点、威望、精通、关联升级。")
     lines.append("- 中文文本优先读取 `zhCN`，缺失时回退 `enUS`。")
     lines.append("")
     lines.append("## 总览")
@@ -1295,7 +1641,8 @@ def render_summary_markdown(export_root: Path, output_dir: Path, commanders: dic
     lines.append("")
     lines.append("- `commanders/<Commander>/commander.json`：指挥官基础信息、默认升级、默认能力命令。")
     lines.append("- `commanders/<Commander>/roster.json`：官方 TechUnit 全量名册，含单位分类与单位元数据。")
-    lines.append("- `commanders/<Commander>/units.json` / `buildings.json` / `heroes.json`：按 `UnitData.EditorCategories.ObjectType` 切分。")
+    lines.append("- `commanders/<Commander>/units.json` / `buildings.json` / `heroes.json`：按 `UnitData.EditorCategories.ObjectType` 切分，附带入口按钮与图标引用。")
+    lines.append("- `commanders/<Commander>/command_cards.json`：单位/建筑/英雄的 `CardLayouts` 面板按钮，含按钮图标引用。")
     lines.append("- `commanders/<Commander>/progression.json`：15 级加点与 6 组精通。")
     lines.append("- `commanders/<Commander>/prestiges.json`：3 个威望及其主升级、补充升级、禁用单位/技能。")
     lines.append("- `commanders/<Commander>/upgrades.json`：默认升级、加点、精通、威望引用到的升级详情。")
@@ -1339,6 +1686,8 @@ def main() -> int:
                     "buildings": len(data["buildings"]),
                     "heroes": len(data["heroes"]),
                     "other_entries": len(data["other_entries"]),
+                    "command_card_units": len(data["command_cards"]),
+                    "command_card_buttons": sum(len(card["buttons"]) for item in data["command_cards"] for card in item["cards"]),
                     "perks": len(data["progression"]["perks"]),
                     "prestiges": len(data["prestiges"]),
                     "masteries": len(data["progression"]["masteries"]),
@@ -1367,6 +1716,8 @@ def main() -> int:
             f"units={len(data['units'])}, "
             f"buildings={len(data['buildings'])}, "
             f"heroes={len(data['heroes'])}, "
+            f"command_card_units={len(data['command_cards'])}, "
+            f"command_card_buttons={sum(len(card['buttons']) for item in data['command_cards'] for card in item['cards'])}, "
             f"perks={len(data['progression']['perks'])}, "
             f"prestiges={len(data['prestiges'])}, "
             f"masteries={len(data['progression']['masteries'])}, "
