@@ -784,6 +784,131 @@
     <Image value="Assets\Textures\colossus_purifier_collection_warbringer_static.dds" />
     <Lighting value="FenixWarbringerColossusPortrait" />
   </CModel>
+  <CModel id="CommandCenter_Stukov_COOP" parent="Building" Race="Zerg">
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraHigher16" />
+    <Radius value="2.000000" />
+    <ScaleMax value="0.800000,0.800000,0.800000" />
+    <ScaleMin value="0.800000,0.800000,0.800000" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="3.125000" />
+    <ShadowRadius value="3.125000" />
+    <SquibTypeDefault value="Flesh" />
+    <TechPurchaseCamera value="TechPurchaseCommandCenter" />
+    <UnitGlossaryCamera value="Star2CameraHigher16" />
+  </CModel>
+  <CModel id="CommandCenter_Stukov_COOP_Death" parent="BuildingDeath" Race="Zerg">
+    <LowQualityModel value="CommandCenterDeathLow" />
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_PreExplosionSmall" />
+      <Type value="Sound" />
+      <Time value="0.170000" />
+      <Payload value="SIBuilding_PreExplosionSmall" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_PreExplosionSmall" />
+      <Type value="Sound" />
+      <Time value="0.220000" />
+      <Payload value="SIBuilding_PreExplosionSmall" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_PreExplosionSmall" />
+      <Type value="Sound" />
+      <Time value="0.370000" />
+      <Payload value="SIBuilding_PreExplosionSmall" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_PreExplosionSmall" />
+      <Type value="Sound" />
+      <Time value="0.520000" />
+      <Payload value="SIBuilding_PreExplosionSmall" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_ExplosionMedium" />
+      <Type value="Sound" />
+      <Time value="0.770000" />
+      <Payload value="SIBuilding_ExplosionMedium" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SICommandCenter_DeathExplosion" />
+      <Type value="Sound" />
+      <Time value="1.800000" />
+      <Payload value="SICommandCenter_DeathExplosion" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="Zerg_ExplosionMedium" />
+      <Type value="Sound" />
+      <Time value="1.800000" />
+      <Payload value="Zerg_ExplosionMedium" />
+    </Events>
+  </CModel>
+  <CModel id="CommandCenter_Stukov_COOP_FlyDeath" parent="BuildingDeath" Race="Zerg">
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_PreExplosionSmall" />
+      <Type value="Sound" />
+      <Time value="0.170000" />
+      <Payload value="SIBuilding_PreExplosionSmall" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_PreExplosionSmall" />
+      <Type value="Sound" />
+      <Time value="0.220000" />
+      <Payload value="SIBuilding_PreExplosionSmall" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_PreExplosionSmall" />
+      <Type value="Sound" />
+      <Time value="0.370000" />
+      <Payload value="SIBuilding_PreExplosionSmall" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_PreExplosionSmall" />
+      <Type value="Sound" />
+      <Time value="0.520000" />
+      <Payload value="SIBuilding_PreExplosionSmall" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SIBuilding_ExplosionMedium" />
+      <Type value="Sound" />
+      <Time value="0.770000" />
+      <Payload value="SIBuilding_ExplosionMedium" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="SICommandCenter_DeathExplosion" />
+      <Type value="Sound" />
+      <Time value="1.800000" />
+      <Payload value="SICommandCenter_DeathExplosion" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="Zerg_ExplosionMedium" />
+      <Type value="Sound" />
+      <Time value="1.800000" />
+      <Payload value="Zerg_ExplosionMedium" />
+    </Events>
+    <Flags index="TeenSafe" value="1" />
+    <LowQualityModel value="TerranFlyingBuildingDeathLow" />
+  </CModel>
+  <CModel id="CommandCenter_Stukov_COOP_Placement" parent="Placement" Race="Zerg">
+    <Radius value="-1.000000" />
+    <ScaleMax value="0.800000,0.800000,0.800000" />
+    <ScaleMin value="0.800000,0.800000,0.800000" />
+    <SelectionRadius value="0.000000" />
+    <ShadowRadius value="0.000000" />
+  </CModel>
   <CModel id="CommanderPrestigeTychusLoneWolf" parent="OneShotSpellFX">
     <Model value="Assets\COOP\Tychus\Effects\LoneWolf_Tychus_COOP\LoneWolf_Tychus_COOP.m3" />
     <EditorCategories value="Race:Terran" />
@@ -2603,6 +2728,10 @@
     <ScaleMin value="0.700000,0.700000,0.700000" />
     <SelectionLayer value="2" />
   </CModel>
+  <CModel id="Dehaka_Primal_Hatchery_Coop_Placement" parent="Placement" Race="Zerg">
+    <ScaleMax value="1.500000,1.500000,1.500000" />
+    <ScaleMin value="1.500000,1.500000,1.500000" />
+  </CModel>
   <CModel id="DehakaConsumeEffectPsionic" parent="RaceImpactFX" Race="Zerg">
     <Model value="Assets\Effects\Zerg\HybridPlasmaMissileImpact\HybridPlasmaMissileImpact.m3" />
   </CModel>
@@ -2611,6 +2740,150 @@
     <Image value="Assets\Textures\SMX1_PrimalZergCommanderT1Portrait_Static.dds" />
     <FacialController value="LocalizedData\Facial\SMX1_Dehaka.fxa" />
     <Flags index="Download" value="1" />
+  </CModel>
+  <CModel id="DehakaHatchery" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\Dehaka_Primal_Hatchery_Coop\Dehaka_Primal_Hatchery_Coop.m3" />
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraHigher16" />
+    <Radius value="1.000000" />
+    <ScaleMax value="1.500000,1.500000,1.500000" />
+    <ScaleMin value="1.500000,1.500000,1.500000" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="1.500000" />
+    <ShadowRadius value="2.940600" />
+    <SquibTypeDefault value="Metal" />
+    <TechPurchaseCamera value="TechPurchaseCommandCenter" />
+    <UnitGlossaryCamera value="Star2CameraHigher16" />
+    <Events>
+      <Anim value="Spell,Alternate" />
+      <Name value="PrimalZergSpit" />
+      <Type value="Custom" />
+      <Time value="0.062500" />
+    </Events>
+  </CModel>
+  <CModel id="DehakaHatcheryBuild" parent="PrimalZergBuildingBuild" />
+  <CModel id="DehakaHatcheryDeath" parent="DehakaHatchery" />
+  <CModel id="DehakaHatcheryUprooted" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\Dehaka_Primal_Hatchery_Coop\Dehaka_Primal_Hatchery_Coop.m3" />
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraHigher16" />
+    <Radius value="1.000000" />
+    <ScaleMax value="1.500000,1.500000,1.500000" />
+    <ScaleMin value="1.500000,1.500000,1.500000" />
+    <SelectionRadius value="1.500000" />
+    <ShadowRadius value="2.940600" />
+    <SquibTypeDefault value="Metal" />
+    <TechPurchaseCamera value="TechPurchaseCommandCenter" />
+    <UnitGlossaryCamera value="Star2CameraHigher16" />
+    <Events>
+      <Anim value="Attack" />
+      <Name value="PrimalZergSpit" />
+      <Type value="Custom" />
+      <Time value="0.500000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Alternate,End,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.919000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Alternate,End,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="1.077000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Alternate,End,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="1.852000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Alternate,End,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="1.167000" />
+    </Events>
+    <Events Anim="Walk,00" Name="Footstep" Type="Sound" />
+    <Events>
+      <Anim value="Walk,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.999000" />
+    </Events>
+    <Events>
+      <Anim value="Walk,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.501000" />
+    </Events>
+    <Events>
+      <Anim value="Walk,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="1.497000" />
+    </Events>
+    <Events>
+      <Anim value="Walk,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.465000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.637000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="1.495000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="1.627000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.754000" />
+    </Events>
+    <Events>
+      <Anim value="Build,D,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.462000" />
+    </Events>
+    <Events>
+      <Anim value="Build,D,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.945000" />
+    </Events>
+    <Events>
+      <Anim value="Build,D,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="2.339000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Alternate,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.124000" />
+    </Events>
+    <Events>
+      <Anim value="Stand,Alternate,Start,00" />
+      <Name value="Footstep" />
+      <Type value="Sound" />
+      <Time value="0.256000" />
+    </Events>
   </CModel>
   <CModel id="DehakaModelSwapStunEggModel">
     <Model value="Assets\Units\Zerg\DehakaEgg_Coop\DehakaEgg_Coop.m3" />
@@ -2631,6 +2904,9 @@
       <Payload value="DehakaEgg_ExplodeSweetener" />
     </Events>
     <LowQualityModel value="ZergSmallUnitDeathLow" />
+  </CModel>
+  <CModel id="DehakaPrimalBuildingDeath" parent="BuildingDeath" Race="Zerg">
+    <Model value="Assets\Effects\Zerg\Primal_ZergBuilding_Death_Coop\Primal_ZergBuilding_Death_Coop.m3" />
   </CModel>
   <CModel id="DehakaPrimalExtractor" parent="Extractor">
     <Model value="Assets\Buildings\Zerg\Primal_Extractor_Coop\Primal_Extractor_Coop.m3" />
@@ -2780,6 +3056,57 @@
     </Events>
     <ScaleMax value="0.600000,0.600000,0.600000" />
     <ScaleMin value="0.600000,0.600000,0.600000" />
+  </CModel>
+  <CModel id="Drone_Primal_Collection" parent="Unit" Race="Zerg">
+    <RequiredAnims value="Assets\Units\Zerg\Drone_SwarmAnims\Drone_SwarmAnims.m3a" />
+    <AttachProps Id="Ref_Weapon Left">
+      <Keys index="Work" value="0" />
+    </AttachProps>
+    <Lighting value="Drone" />
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraMid04" />
+    <Radius value="0.400000" />
+    <ScaleMax value="0.900000,0.900000,0.900000" />
+    <ScaleMin value="0.900000,0.900000,0.900000" />
+    <SelectionRadius value="0.555400" />
+    <ShadowRadius value="0.555400" />
+    <SquibTypeDefault value="Flesh" />
+    <TechPurchaseCamera value="Star2CameraMid04" />
+    <Tipability value="0.750000" />
+    <TipabilityLength value="0.400000" />
+    <TipabilityWidth value="0.400000" />
+    <UnitGlossaryCamera value="Star2CameraMid04" />
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Drone_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.114000" />
+      <Payload value="Drone_AttackImpact" />
+    </Events>
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Drone_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.763000" />
+      <Payload value="Drone_AttackImpact" />
+    </Events>
+  </CModel>
+  <CModel id="Drone_Primal_Collection_Death" parent="UnitDeath" Race="Zerg">
+    <LowQualityModel value="ZergSmallUnitDeathLow" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="Drone_Primal_Collection_DeathAcid" parent="UnitDeath" Race="Zerg">
+    <LowQualityModel value="ZergSmallUnitDeathLow" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="Drone_Primal_Collection_DeathFire" parent="UnitDeath" Race="Zerg">
+    <LowQualityModel value="ZergSmallUnitDeathLow" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="Drone_Primal_Collection_DeathRagdoll" parent="UnitDeathRagdoll" Race="Zerg">
+    <VariationCount value="2" />
+    <Variations Number="0" Probability="1" />
+    <Variations Number="1" Probability="1" />
   </CModel>
   <CModel id="DropPodFalling">
     <!--Events>
@@ -5565,6 +5892,10 @@
     <SquibTypeDefault value="Flesh" />
   </CModel>
   <CModel id="InfestedColonist_StructureUpgraded3_Stukov_Coop_Placement" parent="Placement" Race="Zerg" />
+  <CModel id="InfestedGenericUnit_Portrait_Stukov" parent="Portrait" Race="Zerg">
+    <Flags index="Download" value="1" />
+    <Image value="Assets\Textures\infectedgenericunit_portrait_static.dds" />
+  </CModel>
   <CModel id="Interceptor_Purifier_Collection" parent="Unit" Race="Protoss">
     <Occlusion value="Show" />
     <SelectionRadius value="0.294000" />
@@ -6703,6 +7034,10 @@
     <SelectionRadius value="0.000000" />
     <ShadowRadius value="0.000000" />
   </CModel>
+  <CModel id="Primal_Zerg_Spit" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Zerg\Primal_Zerg_Spit\Primal_Zerg_Spit.m3" />
+    <EditorCategories value="Race:Zerg" />
+  </CModel>
   <CModel id="Probe_Taldarim_Alarak" parent="ProbeBase">
     <Model value="Assets\Units\Protoss\Probe_Taldarim\Probe_Taldarim.m3" />
   </CModel>
@@ -7048,6 +7383,29 @@
   </CModel>
   <CModel id="SCV_HornerHan_Portrait" parent="FXAPortrait" Race="Terran">
     <FacialController value="LocalizedData\Facial\SCVPortrait.fxa" />
+  </CModel>
+  <CModel id="SCV_Stukov_Coop" parent="Unit" Race="Zerg">
+    <RequiredAnims value="Assets\Units\Terran\SCV_SwarmAnims\SCV_SwarmAnims.m3a" />
+    <AttachProps Id="Ref_Weapon">
+      <Keys index="Work" value="0" />
+    </AttachProps>
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraMid05" />
+    <Radius value="0.450000" />
+    <ScaleMax value="0.800000,0.800000,0.800000" />
+    <ScaleMin value="0.800000,0.800000,0.800000" />
+    <SelectionRadius value="0.468700" />
+    <ShadowRadius value="0.468700" />
+    <SquibTypeDefault value="Flesh" />
+    <TechPurchaseCamera value="TechPurchaseSCV" />
+    <Tipability value="0.750000" />
+    <TipabilityLength value="0.400000" />
+    <TipabilityWidth value="0.400000" />
+    <UnitGlossaryCamera value="Star2CameraMid05" />
+  </CModel>
+  <CModel id="SCV_Stukov_Coop_Death" parent="UnitDeath" Race="Zerg">
+    <LowQualityModel value="TerranSmallUnitDeathLow" />
+    <Occlusion value="Show" />
   </CModel>
   <CModel id="SCVBlackOpsPortrait" parent="SCV_CovertOps_Collection_Portrait" />
   <CModel id="ShieldBatteryStructureBarrier">
@@ -7874,1320 +8232,6 @@
       <Type value="Sound" />
       <Time value="0.970000" />
       <Payload value="Zagara_footstep2" />
-    </Events>
-  </CModel>
-  <CModel id="CommanderPrestigeZeratulTornadoesTornado" parent="Unit">
-    <Model value="Assets\COOP\Zeratul\Effects\EnergyTornado_Zeratul_COOP\EnergyTornado_Zeratul_COOP.m3" />
-    <EditorCategories value="" />
-  </CModel>
-  <CModel id="CommanderPrestigeZeratulVoidSeekerCloakingField" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Protoss\XelNagaShieldDome\XelNagaShieldDome.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <ScaleMax value="2.800000,2.800000,2.800000" />
-    <ScaleMin value="2.800000,2.800000,2.800000" />
-  </CModel>
-  <CModel id="DarkPylonCloakingField" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Protoss\XelNagaShieldDome\XelNagaShieldDome.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <ScaleMax value="1.200000,1.200000,1.200000" />
-    <ScaleMin value="1.200000,1.200000,1.200000" />
-  </CModel>
-  <CModel id="DarkPylonPowerPowerVisual" parent="UI">
-    <Model value="Assets/UI/Feedback/PylonRadius_X1/PylonRadius_X1.m3" />
-    <ScaleMax value="0.900000,0.900000,0.900000" />
-    <ScaleMin value="0.900000,0.900000,0.900000" />
-  </CModel>
-  <CModel id="DarkPylonUnpoweredVisual" parent="UI">
-    <Model value="Assets/UI/Feedback/PylonRadiusUnpowered/PylonRadiusUnpowered.m3" />
-    <ScaleMax value="0.900000,0.900000,0.900000" />
-    <ScaleMin value="0.900000,0.900000,0.900000" />
-  </CModel>
-  <CModel id="DarkPylonWarpInSplat" parent="UI">
-    <Model value="Assets/Effects/Protoss/SOA_MatrixOverload/SOA_MatrixOverload.m3" />
-    <ScaleMax value="0.900000,0.900000,0.100000" />
-    <ScaleMin value="0.900000,0.900000,0.100000" />
-  </CModel>
-  <CModel id="MoebiusSeeker" parent="Unit" Race="Protoss">
-    <Model value="Assets\Effects\Terran\Hybrid_ProtossAdvanced_Experimented_MoebiusSeeker\Hybrid_ProtossAdvanced_Experimented_MoebiusSeeker.m3" />
-  </CModel>
-  <CModel id="MutatorAmonZeratul" parent="Unit" Race="Protoss">
-    <Model value="Assets\Units\Protoss\Zeratul\Zeratul.m3" />
-    <PlanetPanelCamera value="Star2CameraMid05" />
-    <ScaleMax value="1.200000,1.200000,1.200000" />
-    <ScaleMin value="1.200000,1.200000,1.200000" />
-    <TechPurchaseCamera value="Star2CameraMid05" />
-    <UnitGlossaryCamera value="Star2CameraMid05" />
-  </CModel>
-  <CModel id="MutatorAmonZeratulPortrait" parent="Portrait" Race="Protoss">
-    <RequiredAnims value="Assets\Portraits\Protoss\ZeratulPortrait_RequiredAnims\ZeratulPortrait_RequiredAnims.m3a" />
-    <FacialController value="LocalizedData\Facial\ZeratulPortrait.fxa" />
-    <Model value="Assets\Portraits\Protoss\ZeratulPortrait\ZeratulPortrait.m3" />
-    <Image value="Assets\Textures\zeratul_amon_mutator_portrait_static.dds" />
-  </CModel>
-  <CModel id="SiegeTankWreckage">
-    <Model value="Assets\Units\Terran\SiegeTankEx2_Wrecked\SiegeTankEx2_Wrecked.m3" />
-    <Occlusion value="Show" />
-    <ScaleMax value="0.800000,0.800000,0.800000" />
-    <ScaleMin value="0.800000,0.800000,0.800000" />
-    <SelectionRadius value="1.250000" />
-    <Tipability value="0.750000" />
-    <TipabilityWidth value="0.400000" />
-    <TipabilityLength value="0.800000" />
-    <SquibTypeDefault value="Metal" />
-    <Radius value="1.000000" />
-    <TechPurchaseCamera value="TechPurchaseSiegeTank" />
-    <UnitGlossaryCamera value="Star2CameraMid08" />
-    <PlanetPanelCamera value="Star2CameraMid08" />
-    <ShadowRadius value="1.250000" />
-    <Events>
-      <Anim value="Birth,00" />
-      <Name value="Terran_ExplosionMedium" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="Terran_ExplosionMedium" />
-    </Events>
-  </CModel>
-  <CModel id="SlaynElementalGrabAOEWeapon" parent="MissileFX">
-    <Model value="Assets\Effects\Protoss\AmonShards_Orange_AnimaShower_Missile\AmonShards_Orange_AnimaShower_Missile.m3" />
-  </CModel>
-  <CModel id="StukovAleksanderCrashed" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Aleksander_Stukov_Coop_Spawn\Aleksander_Stukov_Coop_Spawn.m3" />
-    <Radius value="2.000000" />
-    <ScaleMax value="1.500000,1.500000,1.500000" />
-    <ScaleMin value="1.500000,1.500000,1.500000" />
-    <SelectionOffset value="0.000000,0.000000,-0.950000" />
-    <SelectionRadius value="1.666200" />
-    <ShadowRadius value="1.666200" />
-    <SquibTypeDefault value="Flesh" />
-    <Events>
-      <Anim value="Stand,Work,Start,00" />
-      <Name value="SMModelEventSound" />
-      <Type value="Sound" />
-      <Time value="0.150000" />
-      <Payload value="StukovAleksanderCrash_Explosion_Small" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,Start,00" />
-      <Name value="SMModelEventSound" />
-      <Type value="Sound" />
-      <Time value="0.620000" />
-      <Payload value="StukovAleksanderCrash_Explosion_Small" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,Start,00" />
-      <Name value="SMModelEventSound" />
-      <Type value="Sound" />
-      <Time value="1.000000" />
-      <Payload value="StukovAleksanderCrash_Explosion_Medium" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,Start,00" />
-      <Name value="SMModelEventSound" />
-      <Type value="Sound" />
-      <Time value="1.330000" />
-      <Payload value="StukovAleksanderCrash_Explosion_Large" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,Start,00" />
-      <Name value="SMModelEventSound" />
-      <Type value="Sound" />
-      <Time value="1.920000" />
-      <Payload value="StukovAleksanderCrash_Explosion_Small" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,End,00" />
-      <Name value="SMModelEventSound" />
-      <Type value="Sound" />
-      <Payload value="StukovAleksanderCrash_Explosion_Large" />
-    </Events>
-  </CModel>
-  <CModel id="ThorWreckage">
-    <ScaleMax value="0.500000,0.500000,0.500000" />
-    <ScaleMin value="0.500000,0.500000,0.500000" />
-  </CModel>
-  <CModel id="XelNaga_Amon_Temple">
-    <Events index="0" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="1" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="2" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="3" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="4" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="5" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="6" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="7" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="8" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="9" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-    <Events index="10" Name="Amb_AmonTemple_ElectricArc" Payload="Amb_AmonTemple_ElectricArc" />
-  </CModel>
-  <CModel id="XelNagaShrine">
-    <Events>
-      <Anim value="Stand,Work,00" />
-      <Name value="XelNagaShrine_Awake" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="XelNagaShrine_Awake" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,00" />
-      <Name value="XelNagaShrine_StandWork" />
-      <Type value="Sound" />
-      <Time value="0.005000" />
-      <Payload value="XelNagaShrine_StandWork" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,End,00" />
-      <Name value="XelNagaShrine_StandWorkEnd" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="XelNagaShrine_StandWorkEnd" />
-    </Events>
-  </CModel>
-  <CModel id="ZeratulXelNagaConstructPsiBlastAttackImpact" parent="RaceImpactFX" Race="Protoss">
-    <Model value="Assets\Effects\Zerg\HybridPlasmaMissileImpact\HybridPlasmaMissileImpact.m3" />
-  </CModel>
-  <CModel id="ZeratulXelNagaConstructPsiBlastWeapon" parent="MissileFX">
-    <Model value="Assets\Effects\Zerg\HybridPlasmaMissile\HybridPlasmaMissile.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <ScaleMax value="2.000000,2.000000,2.000000" />
-    <ScaleMin value="2.000000,2.000000,2.000000" />
-  </CModel>
-  <CModel id="AbathurSymbiote" parent="PersistentSpellFX">
-    <Model value="Assets\Units\Zerg\Symbiote_Ex3\Symbiote_Ex3.m3" />
-    <EditorCategories value="Race:Zerg" />
-    <ScaleMax value="0.850000,0.850000,0.850000" />
-    <ScaleMin value="0.850000,0.850000,0.850000" />
-  </CModel>
-  <CModel id="AdeptPsionicTransferDamageDebuff">
-    <Model value="Assets\Effects\Protoss\Adept_Collection_Purifier_RicochetGlaive_Debuff\Adept_Collection_Purifier_RicochetGlaive_Debuff.m3" />
-  </CModel>
-  <CModel id="AlarakStructureOverchargeWeapon" parent="MissileFX">
-    <Model value="Assets\Effects\Protoss\MothershipPurifyMissile\MothershipPurifyMissile.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <Events>
-      <Anim value="Stand,00" />
-      <Name value="MotherShip_Purify_AttackLaunch" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="MotherShip_Purify_AttackLaunch" />
-    </Events>
-  </CModel>
-  <CModel id="AscendantSacrificeEffect" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Protoss\Colossus_FireBeam_Unit_Impact\Colossus_FireBeam_Unit_Impact.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <ScaleMax value="1.000000,1.000000,0.500000" />
-    <ScaleMin value="1.000000,1.000000,0.500000" />
-  </CModel>
-  <CModel id="BrutaliskCocoon" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Generic_Morph_Egg\Generic_Morph_Egg.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.600000" />
-    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
-        <ScaleMin value="1.300000,1.300000,1.300000"/-->
-    <SelectionRadius value="0.625000" />
-    <ShadowRadius value="0.625000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="BrutaliskCocoonDeath" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Generic_Morph_Egg\Generic_Morph_Egg.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.600000" />
-    <ScaleMax value="1.740000,1.740000,1.740000" />
-    <ScaleMin value="1.740000,1.740000,1.740000" />
-    <SelectionRadius value="0.625000" />
-    <ShadowRadius value="0.625000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="ChargedBuster" parent="MissileFX">
-    <Model value="Assets\Effects\Protoss\Dragoon_Purifier_Coop_BusterShot\Dragoon_Purifier_Coop_BusterShot.m3" />
-  </CModel>
-  <CModel id="Colossus_Purifier_Coop_Missile_PowerUp" parent="RaceOneShotSpellFX" Race="Protoss">
-    <Events>
-      <Anim value="Birth,00" />
-      <Name value="Warbringer_Missile_PowerUp" />
-      <Type value="Actor" />
-      <Time value="0.019000" />
-      <Payload value="Warbringer_Missile_PowerUp" />
-    </Events>
-  </CModel>
-  <CModel id="Construct_Essence_Zeratul_COOP_Portrait" parent="Portrait_COOP" COOP="Zeratul" Race="Protoss" />
-  <CModel id="CreateSymbiotesCarapace">
-    <Model value="Assets\Effects\Protoss\SOA_GuardianShell\SOA_GuardianShell.m3" />
-  </CModel>
-  <CModel id="DisruptorWeapon" parent="MissileFX">
-    <Model value="Assets\Effects\Protoss\AdeptSoulMissile\AdeptSoulMissile.m3" />
-    <EditorCategories value="Race:Protoss" />
-  </CModel>
-  <CModel id="FenixArbiter" parent="Unit" Race="Protoss">
-    <Occlusion value="Show" />
-    <Model value="Assets\Units\Protoss\Arbiter_Purifier_Coop\Arbiter_Purifier_Coop.m3" />
-    <Radius value="1.000000" />
-    <SelectionRadius value="1.000000" />
-    <ShadowRadius value="1.000000" />
-    <ScaleMax value="1.200000,1.200000,1.200000" />
-    <ScaleMin value="1.200000,1.200000,1.200000" />
-  </CModel>
-  <CModel id="FenixArbiterDeath" parent="UnitDeath" Race="Protoss">
-    <Occlusion value="Show" />
-    <LowQualityModel value="ProtossMediumUnitDeathLow" />
-    <Model value="Assets\Units\Protoss\Arbiter_Purifier_Coop_Death\Arbiter_Purifier_Coop_Death.m3" />
-    <Radius value="0.750000" />
-    <SelectionRadius value="0.750000" />
-    <ShadowRadius value="0.750000" />
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Fenix_Dragoon_DeathExp" />
-      <Type value="Sound" />
-      <Time value="0.107000" />
-      <Payload value="Fenix_Dragoon_DeathExp" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Fenix_Zealot_Purifier_Death_Fx" />
-      <Type value="Sound" />
-      <Time value="0.048000" />
-      <Payload value="Fenix_Zealot_Purifier_Death_Fx" />
-    </Events>
-    <Events>
-      <Anim value="Death,01" />
-      <Name value="Fenix_Dragoon_DeathExp" />
-      <Type value="Sound" />
-      <Time value="0.062000" />
-      <Payload value="Fenix_Dragoon_DeathExp" />
-    </Events>
-    <Events>
-      <Anim value="Death,01" />
-      <Name value="Fenix_Dragoon_Death_Fx" />
-      <Type value="Sound" />
-      <Time value="0.027000" />
-      <Payload value="Fenix_Dragoon_Death_Fx" />
-    </Events>
-    <Events>
-      <Anim value="Death,02" />
-      <Name value="Fenix_Dragoon_DeathExp" />
-      <Type value="Sound" />
-      <Time value="0.046000" />
-      <Payload value="Fenix_Dragoon_DeathExp" />
-    </Events>
-    <Events>
-      <Anim value="Death,02" />
-      <Name value="Fenix_Dragoon_Death_Fx" />
-      <Type value="Sound" />
-      <Time value="0.147000" />
-      <Payload value="Fenix_Dragoon_Death_Fx" />
-    </Events>
-  </CModel>
-  <CModel id="FenixArbiterPlacementModel" parent="Placement" Race="Protoss">
-    <Model value="Assets\Effects\Protoss\Arbiter_Purifier_Coop_PlacementModel\Arbiter_Purifier_Coop_PlacementModel.m3" />
-    <ScaleMax value="1.200000,1.200000,1.200000" />
-    <ScaleMin value="1.200000,1.200000,1.200000" />
-  </CModel>
-  <CModel id="FenixArbiterWarpIn" parent="Unit" Race="Protoss">
-    <Model value="Assets\Effects\Protoss\Arbiter_Purifier_Coop_WarpIn\Arbiter_Purifier_Coop_WarpIn.m3" />
-    <Occlusion value="Show" />
-    <SelectionRadius value="1.000000" />
-  </CModel>
-  <CModel id="FenixChampion">
-    <ScaleMax value="1.200000,1.200000,1.200000" />
-    <ScaleMin value="1.200000,1.200000,1.200000" />
-    <Events>
-      <Anim value="Spell,A,00" />
-      <Name value="Fenix_ThunderousCharge_Fire" />
-      <Type value="Sound" />
-      <Time value="0.003000" />
-      <Payload value="Fenix_ThunderousCharge_Fire" />
-    </Events>
-  </CModel>
-  <CModel id="FenixCharging" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\Void_Kerrigan_QuantumRay_Charge\Void_Kerrigan_QuantumRay_Charge.m3" />
-    <ScaleMax value="0.250000,0.250000,0.250000" />
-    <ScaleMin value="0.250000,0.250000,0.250000" />
-  </CModel>
-  <CModel id="FenixClolarionBomber" parent="Unit" Race="Protoss">
-    <Model value="Assets\Units\Protoss\Bomber_Purifier_Collection\Bomber_Purifier_Collection.m3" />
-    <Occlusion value="Show" />
-    <SelectionRadius value="0.294000" />
-    <SquibTypeDefault value="Metal" />
-    <Radius value="0.250000" />
-    <TechPurchaseCamera value="Star2CameraLow03" />
-    <UnitGlossaryCamera value="Star2CameraLow03" />
-    <PlanetPanelCamera value="Star2CameraLow03" />
-    <!--ScaleMax value="1.850000,1.850000,1.850000"/>
-        <ScaleMin value="1.850000,1.850000,1.850000"/-->
-    <ShadowRadius value="0.294000" />
-  </CModel>
-  <CModel id="FenixClolarionBomberCarryWeapon" parent="MissileFX">
-    <Model value="Assets\Effects\Protoss\Carrier_Purifier_Coop_Bomber_Missile\Carrier_Purifier_Coop_Bomber_Missile.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <!--Events>
-            <Anim value="Birth,00"/>
-            <Name value="FC_Bomber_MissileLaunch"/>
-            <Type value="Sound"/>
-            <Time value="0.016000"/>
-            <Payload value="FC_Bomber_MissileLaunch"/>
-        </Events>-->
-  </CModel>
-  <CModel id="FenixClolarionBomberDeath" parent="UnitDeath" Race="Protoss">
-    <Model value="Assets\Units\Protoss\Bomber_Purifier_Collection_Death\Bomber_Purifier_Collection_Death.m3" />
-    <LowQualityModel value="ProtossSmallUnitDeathLow" />
-    <Occlusion value="Show" />
-    <Radius value="0.250000" />
-    <VariationCount value="2" />
-    <SelectionRadius value="0.588100" />
-    <ShadowRadius value="0.588100" />
-  </CModel>
-  <CModel id="FenixClolarionBomberDeathRagdoll" parent="UnitDeathRagdoll" Race="Protoss">
-    <PhysicsDeathMotionFactor value="1.300000,0.700000" />
-    <VariationCount value="2" />
-    <Model value="Assets\Units\Protoss\Bomber_Purifier_Collection_DeathRagdoll\Bomber_Purifier_Collection_DeathRagdoll.m3" />
-  </CModel>
-  <CModel id="FenixClolarionBomberWeapon" parent="MissileFX">
-    <Model value="Assets\Effects\Protoss\Carrier_Purifier_Coop_Bomber_Missile\Carrier_Purifier_Coop_Bomber_Missile.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <!--Events>
-            <Anim value="Birth,00"/>
-            <Name value="FC_Bomber_MissileLaunch"/>
-            <Type value="Sound"/>
-            <Time value="0.016000"/>
-            <Payload value="FC_Bomber_MissileLaunch"/>
-        </Events>-->
-  </CModel>
-  <CModel id="FenixClolarionCarrierDeathLow" parent="ProtossLargeUnitDeathLowAndSound" />
-  <CModel id="FenixClolarionInterceptorDeath" parent="UnitDeath" Race="Protoss">
-    <Model value="Assets\Units\Protoss\Interceptor_Purifier_Collection_Death\Interceptor_Purifier_Collection_Death.m3" />
-    <LowQualityModel value="ProtossSmallUnitDeathLow" />
-    <Occlusion value="Show" />
-    <Radius value="0.250000" />
-    <VariationCount value="2" />
-    <SelectionRadius value="0.588100" />
-    <ShadowRadius value="0.588100" />
-  </CModel>
-  <CModel id="FenixClolarionInterceptorDeathRagdoll" parent="UnitDeathRagdoll" Race="Protoss">
-    <PhysicsDeathMotionFactor value="1.300000,0.700000" />
-    <VariationCount value="2" />
-    <Model value="Assets\Units\Protoss\Interceptor_Purifier_Collection_DeathRagdoll\Interceptor_Purifier_Collection_DeathRagdoll.m3" />
-  </CModel>
-  <CModel id="FenixCOOPRoboticUnitDeath" parent="OneShotSpellFX" Race="Protoss">
-    <Model value="Assets\Effects\Protoss\ProtossSmallUnitDeath\ProtossSmallUnitDeath.m3" />
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="ProtossExplosionSmall" />
-      <Type value="Sound" />
-      <Payload value="Protoss_ExplosionSmall" />
-    </Events>
-    <Occlusion value="Show" />
-    <LowQualityModel value="ProtossSmallUnitDeathLow" />
-  </CModel>
-  <CModel id="FenixDragoon" parent="Unit" Race="Protoss">
-    <Occlusion value="Show" />
-    <Tipability value="0.750000" />
-    <TipabilityWidth value="0.800000" />
-    <TipabilityLength value="0.800000" />
-    <SelectionRadius value="0.650000" />
-    <SquibTypeDefault value="Metal" />
-    <Radius value="0.650000" />
-    <TechPurchaseCamera value="Star2CameraHigh08" />
-    <UnitGlossaryCamera value="Star2CameraHigh08" />
-    <PlanetPanelCamera value="Star2CameraHigh08" />
-    <ShadowRadius value="0.866400" />
-    <Model value="Assets\Units\Protoss\Dragoon_Purifier_Coop\Dragoon_Purifier_Coop.m3" />
-    <ScaleMax value="1.600000,1.600000,1.600000" />
-    <ScaleMin value="1.600000,1.600000,1.600000" />
-    <Events>
-      <Anim value="Walk,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.794000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,A,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,A,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.753000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,B,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,B,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.753000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,C,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,C,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.753000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,D,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,D,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.494000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,D,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.802000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,E,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,E,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.498000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,E,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.795000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,F,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,F,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.464000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,F,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.749000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,G,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,G,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.453000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,G,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.749000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,H,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.226000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,H,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.453000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,H,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,I,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.208000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,I,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.432000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,I,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,J,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.208000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,J,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.432000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,J,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,K,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.208000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,K,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.432000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,K,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,L,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.208000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,L,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.432000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,L,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,M,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.208000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,M,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.432000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,M,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,N,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.208000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,N,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.432000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,N,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,O,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.208000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,O,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.432000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,O,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,P,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.208000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,P,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.432000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Walk,P,00" />
-      <Name value="Fenix_Dragoon_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Fenix_Dragoon_Footsteps" />
-    </Events>
-  </CModel>
-  <CModel id="FenixDragoonAirBombCursor" parent="UI">
-    <Model value="Assets\UI\Cursors\ProtossCursor_Purifier_Small\ProtossCursor_Purifier_Small.m3" />
-  </CModel>
-  <CModel id="FenixDragoonDeath" parent="UnitDeath" Race="Protoss">
-    <Model value="Assets\Units\Protoss\Dragoon_Purifier_Coop_Death\Dragoon_Purifier_Coop_Death.m3" />
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Fenix_Dragoon_DeathExp" />
-      <Type value="Sound" />
-      <Time value="0.515000" />
-      <Payload value="Fenix_Dragoon_DeathExp" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Fenix_Dragoon_Death_Fx" />
-      <Type value="Sound" />
-      <Time value="0.218000" />
-      <Payload value="Fenix_Dragoon_Death_Fx" />
-    </Events>
-    <Events>
-      <Anim value="Death,01" />
-      <Name value="Fenix_Dragoon_DeathExp" />
-      <Type value="Sound" />
-      <Time value="0.214000" />
-      <Payload value="Fenix_Dragoon_DeathExp" />
-    </Events>
-    <Events>
-      <Anim value="Death,01" />
-      <Name value="Fenix_Dragoon_Death_Fx" />
-      <Type value="Sound" />
-      <Time value="0.379000" />
-      <Payload value="Fenix_Dragoon_Death_Fx" />
-    </Events>
-    <LowQualityModel value="ProtossLargeUnitDeathLow" />
-  </CModel>
-  <CModel id="FenixDragoonWarpIn" parent="Unit" Race="Protoss">
-    <Model value="Assets\Units\Protoss\Dragoon_Purifier_Coop_WarpIn\Dragoon_Purifier_Coop_WarpIn.m3" />
-    <Occlusion value="Show" />
-    <SelectionRadius value="0.650000" />
-  </CModel>
-  <CModel id="FenixMojoScoutAirWeaponLeft" parent="RaceMissileFX" Race="Protoss">
-    <Model value="Assets\Effects\Protoss\Scout_Purifier_AirMissile\Scout_Purifier_AirMissile.m3" />
-  </CModel>
-  <CModel id="FenixMojoScoutAirWeaponRight" parent="RaceMissileFX" Race="Protoss">
-    <Model value="Assets\Effects\Protoss\Scout_Purifier_AirMissile\Scout_Purifier_AirMissile.m3" />
-  </CModel>
-  <CModel id="FenixProbiusPortrait" parent="Portrait" Race="Protoss">
-    <Model value="Assets\Portraits\Protoss\Probe_Purifier_Collection_Probius_Portrait\Probe_Purifier_Collection_Probius_Portrait.m3" />
-    <Image value="Assets\Textures\Probe_Purifier_Collection_Probius_Portrait_Static.dds" />
-  </CModel>
-  <CModel id="FenixWarbringerColossusSlowAttackBeam" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Protoss\Colossus_Purifier_Coop_TimeBeam\Colossus_Purifier_Coop_TimeBeam.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <RadiusLoose value="1.000000" />
-  </CModel>
-  <CModel id="FenixWarpIn" parent="Unit" Race="Protoss">
-    <Model value="Assets\Units\Protoss\Fenix_Coop_WarpIn\Fenix_Coop_WarpIn.m3" />
-    <Occlusion value="Show" />
-    <SelectionRadius value="0.750000" />
-  </CModel>
-  <CModel id="FuelCellPickupUnit" parent="Unit" Race="Terran">
-    <ScaleMax value="1.150000,1.150000,1.150000" />
-    <ScaleMin value="1.150000,1.150000,1.150000" />
-    <Model value="Assets\Units\Neutral\Pickup_XenonCrystal\Pickup_XenonCrystal.m3" />
-    <SelectionOffset value="0.000000,0.000000,0.100000" />
-  </CModel>
-  <CModel id="Generic_UI_AOEStretchLine_End" parent="UI">
-    <Model value="Assets\UI\Cursors\Generic_UI_AOEStretchLine_End\Generic_UI_AOEStretchLine_End.m3" />
-    <EditorCategories value="Race:Neutral" />
-    <Lighting value="Generic_UI_AOEStretchLine_Start" />
-  </CModel>
-  <CModel id="Generic_UI_AOEStretchLine_Mid" parent="UI">
-    <Model value="Assets\UI\Cursors\Generic_UI_AOEStretchLine_Mid\Generic_UI_AOEStretchLine_Mid.m3" />
-    <EditorCategories value="Race:Neutral" />
-    <Lighting value="Generic_UI_AOEStretchLine_Start" />
-  </CModel>
-  <CModel id="Generic_UI_AOEStretchLine_NoAnimation_End" parent="UI">
-    <Model value="Assets\UI\Cursors\Generic_UI_AOEStretchLine_NoAnimation_End\Generic_UI_AOEStretchLine_NoAnimation_End.m3" />
-    <EditorCategories value="Race:Neutral" />
-  </CModel>
-  <CModel id="Generic_UI_AOEStretchLine_NoAnimation_Mid" parent="UI">
-    <Model value="Assets\UI\Cursors\Generic_UI_AOEStretchLine_NoAnimation_Mid\Generic_UI_AOEStretchLine_NoAnimation_Mid.m3" />
-    <EditorCategories value="Race:Neutral" />
-  </CModel>
-  <CModel id="Generic_UI_AOEStretchLine_NoAnimation_Start" parent="UI">
-    <Model value="Assets\UI\Cursors\Generic_UI_AOEStretchLine_NoAnimation_Start\Generic_UI_AOEStretchLine_NoAnimation_Start.m3" />
-    <EditorCategories value="Race:Neutral" />
-  </CModel>
-  <CModel id="Generic_UI_AOEStretchLine_Start" parent="UI">
-    <Model value="Assets\UI\Cursors\Generic_UI_AOEStretchLine_Start\Generic_UI_AOEStretchLine_Start.m3" />
-    <EditorCategories value="Race:Neutral" />
-  </CModel>
-  <CModel id="GlazeFenixChampion" parent="PersistentSpellFX">
-    <!--Model value="Assets\Effects\Glaze\Glaze_AmonShards_Orange_AnimaShower\Glaze_AmonShards_Orange_AnimaShower.m3"/-->
-    <Model value="Assets\Effects\Glaze\Glaze_Fenix_AI_Champion\Glaze_Fenix_AI_Champion.m3" />
-    <EditorCategories value="Race:Terran" />
-  </CModel>
-  <CModel id="InfestedBunker_COOP_Placement" parent="Unit" Race="Zerg" />
-  <CModel id="InfestedBunker_Coop_Structure" parent="Unit" Race="Zerg">
-    <Occlusion value="Show" />
-    <Radius value="1.250000" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="1.500000" />
-    <ShadowRadius value="1.500000" />
-    <SquibTypeDefault value="Flesh" />
-    <Events>
-      <Anim value="Stand,Work,Start,00" />
-      <Name value="InfestedBunker_Morph_Mech_Start" />
-      <Type value="Sound" />
-      <Time value="0.592000" />
-      <Payload value="InfestedBunker_Morph_Mech_Start" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,Start,00" />
-      <Name value="Infested_Bunker_Mech_Latch" />
-      <Type value="Sound" />
-      <Time value="1.521000" />
-      <Payload value="Infested_Bunker_Mech_Latch" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,Start,00" />
-      <Name value="Korhal_Metal_VentDoor_SteamChuf" />
-      <Type value="Sound" />
-      <Time value="0.007000" />
-      <Payload value="Korhal_Metal_VentDoor_SteamChuf" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,End,00" />
-      <Name value="InfestedBunker_Morph_Mech_Start" />
-      <Type value="Sound" />
-      <Time value="0.164000" />
-      <Payload value="InfestedBunker_Morph_Mech_Start" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,End,00" />
-      <Name value="Infested_Bunker_Mech_Latch" />
-      <Type value="Sound" />
-      <Time value="0.628000" />
-      <Payload value="Infested_Bunker_Mech_Latch" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,End,00" />
-      <Name value="Korhal_Metal_VentDoor_SteamChuf" />
-      <Type value="Sound" />
-      <Time value="0.164000" />
-      <Payload value="Korhal_Metal_VentDoor_SteamChuf" />
-    </Events>
-    <Events>
-      <Anim value="Build,D,Start,00" />
-      <Name value="InfestedBunker_Morph_Mech_Start" />
-      <Type value="Sound" />
-      <Time value="1.331000" />
-      <Payload value="InfestedBunker_Morph_Mech_Start" />
-    </Events>
-    <Events>
-      <Anim value="Build,D,Start,00" />
-      <Name value="Infested_Bunker_Mech_Latch" />
-      <Type value="Sound" />
-      <Time value="1.605000" />
-      <Payload value="Infested_Bunker_Mech_Latch" />
-    </Events>
-  </CModel>
-  <CModel id="Kasai_Harness_Death_D">
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Harness_AC_Kasai_Death_C_Base" />
-      <Type value="Sound" />
-      <Time value="0.013000" />
-      <Payload value="Harness_AC_Kasai_Death_C_Base" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Harness_AC_Kasai_Death_C_Blast" />
-      <Type value="Sound" />
-      <Time value="4.230000" />
-      <Payload value="Harness_AC_Kasai_Death_C_Blast" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Harness_Thrash_Rattle" />
-      <Type value="Sound" />
-      <Payload value="Harness_Thrash_Rattle" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Harness_Impact_Rattle" />
-      <Type value="Sound" />
-      <Time value="4.584000" />
-      <Payload value="Harness_Impact_Rattle" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Harness_Defib" />
-      <Type value="Sound" />
-      <Time value="0.140000" />
-      <Payload value="Harness_Defib" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Harness_Bolt_Explosion" />
-      <Type value="Sound" />
-      <Time value="4.310000" />
-      <Payload value="Harness_Bolt_Explosion" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Harness_Release_Steam" />
-      <Type value="Sound" />
-      <Time value="4.584000" />
-      <Payload value="Harness_Release_Steam" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="TerrazineNode_StandAngry_Electric" />
-      <Type value="Sound" />
-      <Time value="1.015000" />
-      <Payload value="TerrazineNode_StandAngry_Electric" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Harness_Dead_Steam_Loops" />
-      <Type value="Sound" />
-      <Time value="5.180000" />
-      <Payload value="Harness_Dead_Steam_Loops" />
-    </Events>
-  </CModel>
-  <CModel id="KhaydarinMonolithPlacement">
-    <ScaleMax value="0.900000,0.900000,0.900000" />
-    <ScaleMin value="0.900000,0.900000,0.900000" />
-  </CModel>
-  <CModel id="SIInfestedBunker" parent="Building" Race="Zerg">
-    <Model value="Assets\Units\Zerg\InfestedBunker_Coop\InfestedBunker_Coop.m3" />
-    <Radius value="1.250000" />
-    <SelectionRadius value="1.500000" />
-    <ShadowRadius value="1.500000" />
-    <Events>
-      <Anim value="Stand,00" />
-      <Name value="InfestedBunker_Ronk_VxFx" />
-      <Type value="Sound" />
-      <Time value="0.320000" />
-      <Payload value="InfestedBunker_Ronk_VxFx" />
-    </Events>
-    <Events>
-      <Anim value="Stand,01" />
-      <Name value="InfestedBunker_Stand01_VxFx" />
-      <Type value="Sound" />
-      <Time value="0.013000" />
-      <Payload value="InfestedBunker_Stand01_VxFx" />
-    </Events>
-    <Events>
-      <Anim value="Stand,02" />
-      <Name value="InfestedBunker_Stand02_VxFx_A" />
-      <Type value="Sound" />
-      <Time value="0.011000" />
-      <Payload value="InfestedBunker_Stand02_VxFx_A" />
-    </Events>
-    <Events>
-      <Anim value="Stand,02" />
-      <Name value="InfestedBunker_Stand02_VxFx_B" />
-      <Type value="Sound" />
-      <Time value="0.956000" />
-      <Payload value="InfestedBunker_Stand02_VxFx_B" />
-    </Events>
-    <Events>
-      <Anim value="Stand,02" />
-      <Name value="InfestedBunker_Stand02_VxFx_C" />
-      <Type value="Sound" />
-      <Time value="1.456000" />
-      <Payload value="InfestedBunker_Stand02_VxFx_C" />
-    </Events>
-    <Events>
-      <Anim value="Walk,00" />
-      <Name value="InfestedBunker_Walk_VxFx" />
-      <Type value="Sound" />
-      <Time value="0.008000" />
-      <Payload value="InfestedBunker_Walk_VxFx" />
-    </Events>
-    <Events>
-      <Anim value="Walk,00" />
-      <Name value="InfestedBunker_Walk_Fs" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="InfestedBunker_Walk_Fs" />
-    </Events>
-    <Events>
-      <Anim value="Walk,00" />
-      <Name value="InfestedBunker_Walk_Fs" />
-      <Type value="Sound" />
-      <Time value="0.516000" />
-      <Payload value="InfestedBunker_Walk_Fs" />
-    </Events>
-    <Events>
-      <Anim value="Walk,Fast,00" />
-      <Name value="InfestedBunker_Walk_Fs" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="InfestedBunker_Walk_Fs" />
-    </Events>
-    <Events>
-      <Anim value="Walk,Fast,00" />
-      <Name value="InfestedBunker_Walk_Fs" />
-      <Type value="Sound" />
-      <Time value="0.313000" />
-      <Payload value="InfestedBunker_Walk_Fs" />
-    </Events>
-    <Events>
-      <Anim value="Walk,00" />
-      <Name value="InfestedBunker_Walk_VxFx" />
-      <Type value="Sound" />
-      <Time value="1.197000" />
-      <Payload value="InfestedBunker_Walk_VxFx" />
-    </Events>
-    <Events>
-      <Anim value="Attack,02" />
-      <Name value="InfestedBunker_SwipeAttack_Launch" />
-      <Type value="Sound" />
-      <Time value="0.012000" />
-      <Payload value="InfestedBunker_SwipeAttack_Launch" />
-    </Events>
-    <Events>
-      <Anim value="Attack,02" />
-      <Name value="InfestedBunker_SwipeAttack_Impact" />
-      <Type value="Sound" />
-      <Time value="0.216000" />
-      <Payload value="InfestedBunker_SwipeAttack_Impact" />
-    </Events>
-    <Events>
-      <Anim value="Attack,02" />
-      <Name value="InfestedBunker_SwipeAttack_VxFx" />
-      <Type value="Sound" />
-      <Time value="0.035000" />
-      <Payload value="InfestedBunker_SwipeAttack_VxFx" />
-    </Events>
-    <Events>
-      <Anim value="Attack,02" />
-      <Name value="InfestedBunker_Ronk_VxFx" />
-      <Type value="Sound" />
-      <Time value="0.867000" />
-      <Payload value="InfestedBunker_Ronk_VxFx" />
-    </Events>
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="SIInfestedBunkerDeath" parent="ZergLargeUnitDeath">
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Zerg_ExplosionMedium" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="Zerg_ExplosionMedium" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Moebius02_Reactor_Metal_Impact" />
-      <Type value="Sound" />
-      <Time value="0.021000" />
-      <Payload value="Moebius02_Reactor_Metal_Impact" />
-    </Events>
-  </CModel>
-  <CModel id="SIInfestedBunkerUprootedDeath" parent="ZergLargeUnitDeath">
-    <!-- <Events>
-            <Anim value="Death,00"/>
-            <Name value="Zerg_ExplosionMedium"/>
-            <Type value="Sound"/>
-            <Time value="0.010000"/>
-            <Payload value="Zerg_ExplosionMedium"/>
-        </Events> -->
-  </CModel>
-  <CModel id="SOAWarpInReinforcementsBeam">
-    <SelectionRadius value="0.750000" />
-  </CModel>
-  <CModel id="Supplicant_Death" parent="UnitDeath" Race="Protoss">
-    <Occlusion value="Show" />
-    <LowQualityModel value="ProtossSpiritDeathLow" />
-  </CModel>
-  <CModel id="Supplicant_PlacementModel" parent="Placement">
-    <Model value="Assets\Units\Protoss\Supplicant_PlacementModel\Supplicant_PlacementModel.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <ScaleMax value="0.850000,0.850000,0.850000" />
-    <ScaleMin value="0.850000,0.850000,0.850000" />
-  </CModel>
-  <CModel id="Supplicant_Portrait" parent="Portrait" Race="Protoss">
-    <Image value="Assets\Textures\supplicantportrait_static.dds" />
-    <Lighting value="UnknownLight" />
-  </CModel>
-  <CModel id="Supplicant_Sacrifice_Death" parent="UnitDeath" Race="Protoss">
-    <Occlusion value="Show" />
-    <LowQualityModel value="ProtossSpiritDeathLow" />
-  </CModel>
-  <CModel id="Supplicant_WarpIn" parent="OneShotSpellFX">
-    <Model value="Assets\Units\Protoss\Supplicant_WarpIn\Supplicant_WarpIn.m3" />
-    <EditorCategories value="Race:Protoss" />
-    <LowQualityModel value="ProtossUnitBirth" />
-    <Occlusion value="Show" />
-    <PlanetPanelCamera value="Star2CameraMid05" />
-    <TechPurchaseCamera value="Star2CameraMid05" />
-    <UnitGlossaryCamera value="Star2CameraMid05" />
-    <ScaleMax value="0.850000,0.850000,0.850000" />
-    <ScaleMin value="0.850000,0.850000,0.850000" />
-  </CModel>
-  <CModel id="SupplicantWeapon" parent="MissileFX">
-    <Model value="Assets\Effects\Protoss\Supplicant_COOP_Missile\Supplicant_COOP_Missile.m3" />
-    <EditorCategories value="Race:Protoss" />
-  </CModel>
-  <CModel id="TerrazineHarvester" parent="Unit" Race="Terran">
-    <Occlusion value="Show" />
-    <SelectionRadius value="1.000000" />
-    <Radius value="1.000000" />
-    <ShadowRadius value="1.000000" />
-    <TechPurchaseCamera value="Star2CameraMid05" />
-    <UnitGlossaryCamera value="Star2CameraMid05" />
-    <PlanetPanelCamera value="Star2CameraMid05" />
-    <ScaleMax value="1.500000,1.500000,1.500000" />
-    <ScaleMin value="1.500000,1.500000,1.500000" />
-    <Events>
-      <Anim value="Birth,00" />
-      <Name value="TerrazineHarvester_Beam_On" />
-      <Type value="Sound" />
-      <Time value="0.006000" />
-      <Payload value="TerrazineHarvester_Beam_On" />
-    </Events>
-    <Events>
-      <Anim value="Walk,00" />
-      <Name value="TerrazineHarvester_Movement" />
-      <Type value="Sound" />
-      <Time value="0.011000" />
-      <Payload value="TerrazineHarvester_Movement" />
-    </Events>
-    <Events>
-      <Anim value="Walk,00" />
-      <Name value="TerrazineHarvester_ServoMvs" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="TerrazineHarvester_ServoMvs" />
-    </Events>
-    <Events>
-      <Anim value="Stand,00" />
-      <Name value="TerrazineHarvester_ServoMvs" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="TerrazineHarvester_ServoMvs" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,00" />
-      <Name value="TerrazineHarvester_ServoMvs" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="TerrazineHarvester_ServoMvs" />
-    </Events>
-    <Events>
-      <Anim value="Stand,Work,End,00" />
-      <Name value="TerrazineHarvester_ServoMvs" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="TerrazineHarvester_ServoMvs" />
-    </Events>
-    <Events>
-      <Anim value="Spell,00" />
-      <Name value="Korhal_Large_Metal_Door_Close" />
-      <Type value="Sound" />
-      <Time value="0.018000" />
-      <Payload value="Korhal_Large_Metal_Door_Close" />
-    </Events>
-    <Events>
-      <Anim value="GLstand,A,00" />
-      <Name value="TerrazineHarvester_EngineFire_NonLoop" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="TerrazineHarvester_EngineFire_NonLoop" />
-    </Events>
-    <Events>
-      <Anim value="GLstand,00" />
-      <Name value="TerrazineHarvester_EngineFire_NonLoop" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="TerrazineHarvester_EngineFire_NonLoop" />
-    </Events>
-  </CModel>
-  <CModel id="TerrazineHarvester_Death" parent="UnitDeath" Race="Terran">
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="General_Explosion_Mech" />
-      <Type value="Sound" />
-      <Time value="0.940000" />
-      <Payload value="General_Explosion_Mech" />
-    </Events>
-    <Occlusion value="Show" />
-    <LowQualityModel value="TerranMediumUnitDeathLow" />
-  </CModel>
-  <CModel id="TerrazineHarvesterPortrait" parent="Portrait" Race="Terran">
-    <Model value="Assets\Portraits\Terran\AdjutantPortrait\AdjutantPortrait.m3" />
-    <FacialController value="LocalizedData\Facial\AdjutantPortrait.fxa" />
-    <Flags index="Facial" value="1" />
-    <Image value="Assets\Textures\AdjutantPortrait_Static.dds" />
-    <Lighting value="AdjutantPortrait" />
-    <PausedParticleSystemBehavior value="Automatic" />
-  </CModel>
-  <CModel id="VorazunShadowGuard" parent="Unit" Race="Protoss">
-    <Model value="Assets\Units\Protoss\DarkTemplar\DarkTemplar_00.m3" />
-    <RequiredAnims value="Assets\Units\Protoss\DarkTemplar_01_SwarmAnims\DarkTemplar_01_SwarmAnims.m3a" />
-    <Occlusion value="Show" />
-    <PlanetPanelCamera value="Star2CameraMid05" />
-    <Radius value="0.400000" />
-    <ScaleMax value="0.850000,0.850000,0.850000" />
-    <ScaleMin value="0.850000,0.850000,0.850000" />
-    <SelectionRadius value="0.375000" />
-    <ShadowRadius value="0.375000" />
-    <SquibTypeDefault value="LightArmor" />
-    <TechPurchaseCamera value="Star2CameraMid05" />
-    <UnitGlossaryCamera value="Star2CameraMid05" />
-  </CModel>
-  <CModel id="VorazunShadowGuardDeath" parent="UnitDeath" Race="Protoss">
-    <Model value="Assets\Units\Protoss\DarkTemplarDeath\DarkTemplarDeath_00.m3" />
-    <LowQualityModel value="ProtossSpiritDeathLow" />
-  </CModel>
-  <CModel id="VorazunShadowGuardPlacement" parent="Placement" Race="Protoss">
-    <Model value="Assets\Units\Protoss\DarkTemplarPlacement\DarkTemplarPlacement.m3" />
-    <Occlusion value="Show" />
-    <Radius value="-1.000000" />
-    <!--ScaleMax value="0.850000,0.850000,0.850000"/>
-        <ScaleMin value="0.850000,0.850000,0.850000"/-->
-    <SelectionRadius value="0.588100" />
-    <ShadowRadius value="0.588100" />
-  </CModel>
-  <CModel id="VorazunShadowGuardWarpIn" parent="OneShotSpellFX">
-    <Model value="Assets\Units\Protoss\DarkTemplarWarpIn\DarkTemplarWarpIn_00.m3" />
-    <LowQualityModel value="DarkTemplarWarpInLow" />
-    <EditorCategories value="Race:Protoss" />
-    <Occlusion value="Show" />
-    <!--ScaleMax value="0.850000,0.850000,0.850000"/>
-        <ScaleMin value="0.850000,0.850000,0.850000"/-->
-    <SelectionRadius value="0.588100" />
-    <ShadowRadius value="0.588100" />
-  </CModel>
-  <CModel id="Zealot_Purifier_Collection_Cleave" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Protoss\Zealot_Purifier_Collection_Cleave\Zealot_Purifier_Collection_Cleave.m3" />
-    <EditorCategories value="Race:Terran" />
-  </CModel>
-  <CModel id="Zealot_Purifier_Collection_Cleave_Swipe" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Protoss\Zealot_Purifier_Collection_Cleave_Swipe\Zealot_Purifier_Collection_Cleave_Swipe.m3" />
-    <EditorCategories value="Race:Terran" />
-    <Events>
-      <Anim value="Birth,00" />
-      <Name value="FenixKaldalisZealot_CleaveSwipe" />
-      <Type value="Sound" />
-      <Time value="0.019000" />
-      <Payload value="FenixKaldalisZealot_CleaveSwipe" />
-    </Events>
-    <Events>
-      <Anim value="Birth,00" />
-      <Name value="FenixKaldalisZealot_CleaveSwipe" />
-      <Type value="Sound" />
-      <Time value="0.420000" />
-      <Payload value="FenixKaldalisZealot_CleaveSwipe" />
-    </Events>
-    <Events>
-      <Anim value="Birth,01" />
-      <Name value="FenixKaldalisZealot_CleaveSwipe" />
-      <Type value="Sound" />
-      <Time value="0.012000" />
-      <Payload value="FenixKaldalisZealot_CleaveSwipe" />
-    </Events>
-    <Events>
-      <Anim value="Birth,01" />
-      <Name value="FenixKaldalisZealot_CleaveSwipe" />
-      <Type value="Sound" />
-      <Time value="0.435000" />
-      <Payload value="FenixKaldalisZealot_CleaveSwipe" />
     </Events>
   </CModel>
 </Catalog>

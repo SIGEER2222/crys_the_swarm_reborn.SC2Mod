@@ -73,6 +73,20 @@ bool libE0EAE146_gf_XMTestBench_ArtanisRoster (int lp_player, string lp_rosterKi
 }
 
 bool libE0EAE146_gf_XMTestBench_DehakaRoster (int lp_player, string lp_rosterKind) {
+    if (lp_rosterKind == "full_buildings") {
+        PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSetTo, 10000);
+        PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSetTo, 10000);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "DehakaHatchery", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 1, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "DehakaAirTownHall", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 2, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "DehakaBarracks", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 3, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "DehakaGlevigStructure", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 4, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "DehakaMurvarStructure", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 5, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "DehakaDakrunStructure", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 6, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "DehakaNydusDestroyer", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 7, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_DEHAKA_ROSTER_BUILDINGS");
+        libE0EAE146_gf_XMDbgLog("INFO", "TEST_DEHAKA_ROSTER_DONE", "scenario=" + lp_rosterKind + " expected=7 created=" + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]) + " missing=" + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]));
+        return true;
+    }
     if (!libE0EAE146_gf_XMTestBench_UnitRosterKindSupported(lp_rosterKind)) {
         return false;
     }
@@ -194,22 +208,33 @@ bool libE0EAE146_gf_XMTestBench_MengskRoster (int lp_player, string lp_rosterKin
 }
 
 bool libE0EAE146_gf_XMTestBench_NovaRoster (int lp_player, string lp_rosterKind) {
+    if (lp_rosterKind == "full_buildings") {
+        PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSetTo, 10000);
+        PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSetTo, 10000);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "CommandCenter", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 1, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "Barracks", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 2, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "MissileTurret", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 3, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "GhostAcademyNova", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 4, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, "AutoTurret", libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, 5, 20.0, 6.0), lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_NOVA_ROSTER_BUILDINGS");
+        libE0EAE146_gf_XMDbgLog("INFO", "TEST_NOVA_ROSTER_DONE", "scenario=" + lp_rosterKind + " expected=5 created=" + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]) + " missing=" + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]));
+        return true;
+    }
     if (!libE0EAE146_gf_XMTestBench_UnitRosterKindSupported(lp_rosterKind)) {
         return false;
     }
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Banshee_BlackOps", 1, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "GhostNova", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Goliath_BlackOps", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HellbatBlackOps", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Liberator_BlackOps", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Marauder_BlackOps", 6, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Marine_BlackOps", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Raven_BlackOps", 8, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "MercReaper", 9, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SiegeTank_BlackOps", 10, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SCV", 11, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Nova", lp_rosterKind, 11);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Goliath_BlackOps", 2, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HellbatBlackOps", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Liberator_BlackOps", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Marauder_BlackOps", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Marine_BlackOps", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Raven_BlackOps", 7, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "MercReaper", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SiegeTank_BlackOps", 9, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SCV", 10, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Nova", lp_rosterKind, 10);
     return true;
 }
 

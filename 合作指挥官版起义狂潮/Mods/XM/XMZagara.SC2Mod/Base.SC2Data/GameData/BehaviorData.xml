@@ -58,6 +58,36 @@
     <DisplayDuration index="Self" value="1" />
     <DisplayDuration index="Ally" value="1" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakInitialReviveTimer">
+    <InfoFlags index="Hidden" value="1" />
+    <Alignment value="Positive" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="240" />
+    <Modification>
+      <AbilLinkDisableArray value="AlarakKnockback" />
+      <AbilLinkDisableArray value="AlarakACDeadlyCharge" />
+      <AbilLinkDisableArray value="AlarakEmpower" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakReviveTimer">
+    <InfoFlags index="Hidden" value="1" />
+    <Alignment value="Positive" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="60" />
+    <Modification>
+      <AbilLinkDisableArray value="AlarakKnockback" />
+      <AbilLinkDisableArray value="AlarakACDeadlyCharge" />
+      <AbilLinkDisableArray value="AlarakEmpower" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="AlarakReviveWarpIn">
     <InfoFlags index="Hidden" value="1" />
     <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
@@ -86,6 +116,23 @@
     </DamageResponse>
     <DisableValidatorArray value="HaveAlarakStalkerPhasingArmor" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="AlarakStructureOvercharge">
+    <Alignment value="Positive" />
+    <InfoIcon value="Assets\Textures\btn-upgrade-protoss-structureovercharge.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="45" />
+    <Period value="0.64" />
+    <PeriodicEffect value="AlarakStructureOverchargeSearch" />
+    <BuffFlags index="RemoveDamageResponseExhausted" value="0" />
+    <BuffFlags index="UpdateDurationWhileDisabled" value="1" />
+    <RefreshEffect value="AlarakStructureOverchargeRefresh" />
+    <Modification>
+      <StateFlags index="GenerateThreat" value="1" />
+      <WeaponArray Link="AlarakStructureOvercharge" />
+    </Modification>
+    <TimeScaleSource Value="Global" />
+    <DisableValidatorArray value="IsStructureorWarpPrismPhasing" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="AlarakZealotFrenziedOverload">
     <InfoIcon value="Assets\Textures\btn-ability-protoss-voidarmor.dds" />
     <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
@@ -95,6 +142,11 @@
     <DisableValidatorArray value="HaveAlarakZealotFrenziedOverload" />
     <BehaviorCategories index="Fast" value="1" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="AllUnitBehaviorController">
+    <InitialEffect value="AllUnitBehaviorControllerSet" />
+    <InfoFlags index="Hidden" value="1" />
+    <Duration value="1" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="ARESTimedLife">
     <InfoFlags index="Hidden" value="1" />
     <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
@@ -102,6 +154,17 @@
     <DisplayDuration index="Ally" value="1" />
     <Duration value="60" />
     <ExpireEffect value="TimedLifeFate" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="AscendantSacrificeSelfBuff">
+    <BehaviorFlags index="Permanent" value="1" />
+    <InfoIcon value="Assets\Textures\tip_rakshir.dds" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <MaxStackCount value="10" />
+    <Modification>
+      <DamageDealtFraction index="Spell" value="0.25" />
+      <DamageDealtFraction index="Splash" value="0.25" />
+      <VitalMaxArray index="Shields" value="100" />
+    </Modification>
   </CBehaviorBuff>
   <CBehaviorBuff id="BansheeAirstrikeTimedLife">
     <InfoFlags index="Hidden" value="1" />
@@ -136,8 +199,34 @@
       <VitalRegenArray index="Energy" value="-1.4765" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="BiomassPassive">
+    <BehaviorFlags index="Permanent" value="1" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Period value="6" />
+    <PeriodicEffect value="GrantBiomass" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ButtonDisablerDummy">
+    <EditorCategories value="AbilityorEffectType:Units" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="CarryHarvestableVespeneGeyserGas">
     <BehaviorCategories index="User6" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ChronoBoostTarget">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <InitialEffect value="SOAMapWideChronoPassiveTarget" />
+    <RemoveValidatorArray value="DoesNotHaveSOAMapWideChronoPassiveTarget" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeArtanisPowerField">
+    <InfoFlags index="Hidden" value="1" />
+    <FinalEffect value="CommanderPrestigeArtanisPowerFieldFindNewField" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeDehakaPackLeaders">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <InitialEffect value="CommanderPrestigeDehakaPackLeadersSet" />
+    <FinalEffect value="CommanderPrestigeDehakaPackLeadersTrackIterate" />
   </CBehaviorBuff>
   <CBehaviorBuff id="CommanderPrestigeDehakaPackLeadersExitGame">
     <InfoFlags index="Hidden" value="1" />
@@ -160,6 +249,11 @@
     <Birth value="Footprint4x4CreepSourceStart" />
     <Grown value="Footprint4x4CreepSourceGrownUpgradedDouble" />
   </CBehaviorCreepSource>
+  <CBehaviorBuff id="CommanderPrestigeNovaSuperCloak">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <RemoveValidatorArray value="CommanderPrestigeNovaSuperCloak" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="CommanderPrestigeNovaSuperCloakCombat">
     <InfoFlags index="Hidden" value="1" />
     <EditorCategories value="AbilityorEffectType:Units" />
@@ -169,6 +263,29 @@
       <WeaponArray Link="NovaWeaponImprovedCanisterRifle" />
     </Modification>
     <BehaviorFlags index="Permanent" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeRaynorAir">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeTychusLoneWolf">
+    <Alignment value="Positive" />
+    <BehaviorFlags index="Permanent" value="1" />
+    <InfoIcon value="Assets\Textures\btn-ability-mengsk-royalguard-mightoftheempire.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <DisableValidatorArray value="CommanderPrestigeTychusLoneWolf" />
+    <DamageResponse ModifyFraction="0.5">
+      <Chance value="1" />
+    </DamageResponse>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CommanderPrestigeZeratulTornadoes">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="5" />
+    <Period value="0.25" />
+    <InitialEffect value="CommanderPrestigeZeratulTornadoesSearch" />
+    <PeriodicEffect value="CommanderPrestigeZeratulTornadoesSearch" />
+    <ExpireEffect value="Suicide" />
   </CBehaviorBuff>
   <CBehaviorBuff id="CorsairPermanentCloak">
     <InfoFlags index="Hidden" value="1" />
@@ -189,6 +306,15 @@
     </DamageResponse>
     <BehaviorCategories index="Fast" value="1" />
     <InfoIcon value="Assets\Textures\btn-unit-zerg-overseer.dds" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="DehakaConsume">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:PrimalZerg,AbilityorEffectType:Units" />
+    <Duration value="2" />
+    <Modification>
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="SuppressCollision" value="1" />
+    </Modification>
   </CBehaviorBuff>
   <CBehaviorBuff id="DehakaConsumeEffectArmored" parent="DehakaConsumeEffectBase">
     <Modification>
@@ -242,6 +368,18 @@
       <AbilLinkDisableArray value="DehakaCoopReviveEat" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="DehakaFirstReviveTimer">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="60" />
+    <Period value="5.5" />
+    <PeriodicEffect value="DehakaDenDevourDroneDisabler" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="DehakaIntimidatingRoar">
     <Alignment value="Negative" />
     <InfoIcon value="Assets\Textures\fear_coop.dds" />
@@ -261,6 +399,19 @@
       <StateFlags index="Stun" value="1" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="DehakaNormalReviveTimer">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="90" />
+    <Modification>
+      <AbilLinkEnableArray value="DehakaCoopReviveEat" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="DehakaPrimalMutation">
     <InfoIcon value="Assets\Textures\btn-ability-kerrigan-wildmutation.dds" />
     <EditorCategories value="Race:PrimalZerg,AbilityorEffectType:Units" />
@@ -269,14 +420,6 @@
       <VitalMaxFractionArray index="Life" value="1" />
     </Modification>
     <DisplayDuration index="Self" value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="DrakkenLaserDrillBirth">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Duration value="1" />
-    <Modification>
-      <StateFlags index="NoDraw" value="1" />
-    </Modification>
   </CBehaviorBuff>
   <CBehaviorBuff id="DropPodHaste">
     <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
@@ -301,6 +444,14 @@
     <Period value="1.2" />
     <PeriodCount value="1" />
     <ExpireEffect value="RemovePrecursorMerc" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="EvolveBrutaliskTimedLife">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <Duration value="120" />
+    <ExpireEffect value="TimedLifeFate" />
   </CBehaviorBuff>
   <CBehaviorBuff id="FungalGrowth">
     <RemoveValidatorArray index="1" value="NotOracleStasisTrappedCombine" />
@@ -382,6 +533,19 @@
     <ExpireEffect value="HHHyperjumpTeleportInAB" />
     <InfoFlags index="Hidden" value="1" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="HHHyperjumpTeleportOut">
+    <EditorCategories value="AbilityorEffectType:Units,Race:Terran" />
+    <Duration value="0.6" />
+    <Modification>
+      <ModifyFlags index="SuppressMoving" value="1" />
+      <ModifyFlags index="SuppressTurning" value="1" />
+      <StateFlags index="Invulnerable" value="1" />
+      <StateFlags index="SuppressCloak" value="1" />
+      <StateFlags index="Untargetable" value="1" />
+    </Modification>
+    <ExpireEffect value="HHHyperjumpTeleportSet" />
+    <InfoFlags index="Hidden" value="1" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="HHMercStarportCargoInstalled">
     <BehaviorFlags index="Permanent" value="1" />
     <InfoFlags index="Hidden" value="1" />
@@ -395,12 +559,32 @@
       <StateFlags index="Cloak" value="1" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="HHReaperFlyingDuration">
+    <Duration value="10" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Neutral" value="1" />
+    <ExpireEffect value="HHReaperLandIssueLandRetryAB" />
+    <InfoFlags index="Hidden" value="1" />
+    <FinalEffect value="HHReaperLandIssueLandRetryAB" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="HHReaperLandIssueLandRetry">
     <InfoFlags index="Hidden" value="1" />
     <InitialEffect value="HHReaperLandCreatePrecursor" />
     <Period value="0.5" />
     <PeriodicEffect value="HHReaperLandCreatePrecursor" />
     <RemoveValidatorArray value="NotMoverHHReaperLand" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="HHWidowMineAnimationController">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="40" />
+    <DisableValidatorArray value="NotStasis" />
+    <DisableValidatorArray value="NotVortexd" />
+    <DisableValidatorArray value="NotGravitonBeamd" />
+    <DisableValidatorArray value="NotThunderCannond" />
+    <InfoFlags index="Hidden" value="1" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
   </CBehaviorBuff>
   <CBehaviorBuff id="HHWidowMineArmed">
     <EditorCategories value="AbilityorEffectType:Units" />
@@ -417,6 +601,23 @@
       <DeathResponse Chance="1" Effect="HHWidowMineBlossomIssueOrderSet" />
     </Modification>
     <DisableValidatorArray value="HHWidowMineBlossomNotOnCooldown" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="HHWraithFury10">
+    <InfoIcon value="Assets\Textures\btn-ability-hornerhan-wraith-attackspeed.dds" />
+    <BehaviorCategories index="Fast" value="1" />
+    <Duration value="5" />
+    <Modification AttackSpeedMultiplier="2" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="HHYamatoShots">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <InfoIcon value="Assets\Textures\btn-ability-hornerhan-battlecruiser-yamato.dds" />
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <Modification>
+      <WeaponEnableArray value="HHLaserBattery" />
+      <WeaponDisableArray value="HHATALaserBattery" />
+      <WeaponDisableArray value="HHATSLaserBattery" />
+    </Modification>
   </CBehaviorBuff>
   <CBehaviorBuff id="HornerStunResistance">
     <InfoIcon value="Assets\Textures\stimboltgreen.dds" />
@@ -488,6 +689,22 @@
       <WeaponDisableArray value="HyperionVoidCoopGround" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="HyperjumpTeleport">
+    <Modification>
+      <StateFlags index="Stasis" value="0" />
+    </Modification>
+    <Duration value="0.0625" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="HyperjumpTeleportIn">
+    <Modification>
+      <StateFlags index="Stasis" value="0" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="HyperjumpTeleportOut">
+    <Modification>
+      <StateFlags index="Stasis" value="0" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="K5KerriganBurrowedDisabler">
     <Modification>
       <AbilLinkDisableArray value="KerriganMaelstrom" />
@@ -548,6 +765,22 @@
     </Modification>
     <InfoFlags index="Hidden" value="1" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="KerriganFirstReviveTimer">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="240" />
+    <Modification>
+      <AbilLinkDisableArray value="PrimalSlash" />
+      <AbilLinkDisableArray value="PsiStrikeWalk" />
+      <AbilLinkDisableArray value="KerriganVoidCoopEconDrop" />
+      <AbilLinkDisableArray value="KerriganVoidCoopCrushingGripWave" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="KerriganMaelstrom">
     <Duration value="9" />
     <DisplayDuration index="Self" value="1" />
@@ -557,6 +790,25 @@
     <TimeScaleSource Value="Caster" />
     <Period value="0.5" />
     <PeriodicEffect value="KerriganMaelstromSearch" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="KerriganNormalReviveTimer">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <BuffFlags index="Countdown" value="0" />
+    <Duration value="60" />
+    <Period value="1" />
+    <PeriodCount value="1" />
+    <PeriodicEffect value="MasteryKerriganInstantReviveChanced" />
+    <Modification>
+      <AbilLinkDisableArray value="PrimalSlash" />
+      <AbilLinkDisableArray value="PsiStrikeWalk" />
+      <AbilLinkDisableArray value="KerriganVoidCoopEconDrop" />
+      <AbilLinkDisableArray value="KerriganVoidCoopCrushingGripWave" />
+    </Modification>
   </CBehaviorBuff>
   <CBehaviorBuff id="KerriganVoidCoopCrushingGripWaveStun">
     <InfoFlags index="Hidden" value="1" />
@@ -576,6 +828,14 @@
     <Alignment value="Negative" />
     <BehaviorFlags index="Permanent" value="1" />
     <BehaviorFlags index="EnabledWhileDead" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="KerriganVoidCoopEconDropCaster">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Duration value="15" />
+    <Period value="0.25" />
+    <PeriodicEffect value="KerriganVoidCoopEconDropSearch" />
+    <InfoIcon value="Assets\Textures\btn-upgrade-kerrigan-assimilationaura.dds" />
+    <Alignment value="Positive" />
   </CBehaviorBuff>
   <CBehaviorBuff id="Landing">
     <InfoFlags index="Hidden" value="1" />
@@ -623,6 +883,15 @@
     <ExpireEffect value="RemovePrecursorMerc" />
     <!--DurationRandomMin value="1"/-->
   </CBehaviorBuff>
+  <CBehaviorBuff id="MutatorWorkerSleep">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Modification>
+      <ModifyFlags index="DisableAbils" value="1" />
+      <ModifyFlags index="DisableWeapons" value="1" />
+      <ModifyFlags index="SuppressMoving" value="1" />
+      <AbilLinkEnableArray value="MutatorRemoveWorkerSleep" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="NoScrapDrop">
     <InfoFlags index="Hidden" value="1" />
     <BehaviorFlags index="Permanent" value="1" />
@@ -656,6 +925,13 @@
     <InitialEffect value="NovaCombatSuitInitialSet" />
     <FinalEffect value="NovaStealthSuitInitialSet" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="NovaCoopGhostAcademyLandingIntro">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <Duration value="0.0625" />
+    <Modification Height="6">
+      <HeightTime index="Stop" value="2" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="NovaDecoyCooldown">
     <Cost>
       <Cooldown>
@@ -669,6 +945,27 @@
     <InfoFlags index="Hidden" value="1" />
   </CBehaviorBuff>
   <CBehaviorBuff id="NovaGadgetBoombots">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <BehaviorFlags index="Permanent" value="1" />
+    <BehaviorFlags index="EnabledWhileDead" value="1" />
+    <BehaviorCategories index="User10" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaGadgetFlashbangGrenades">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <BehaviorFlags index="Permanent" value="1" />
+    <BehaviorFlags index="EnabledWhileDead" value="1" />
+    <BehaviorCategories index="User10" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaGadgetPulseGrenades">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <BehaviorFlags index="Permanent" value="1" />
+    <BehaviorFlags index="EnabledWhileDead" value="1" />
+    <BehaviorCategories index="User10" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaGadgetSuperStim">
     <InfoFlags index="Hidden" value="1" />
     <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
     <BehaviorFlags index="Permanent" value="1" />
@@ -695,6 +992,12 @@
     </Modification>
     <TimeScaleSource Value="Global" />
     <BehaviorCategories index="User7" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaHelmetGhostVisor">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <DisableValidatorArray value="HaveNovaHelmetGhostVisor" />
+    <Modification Radar="40" RadarFilters="Biological,Psionic;Light,Armored,RawResource,HarvestableResource,Missile,Destructible,Buried" />
   </CBehaviorBuff>
   <CBehaviorBuff id="NovaNukeCooldown">
     <Cost>
@@ -739,6 +1042,62 @@
     </Modification>
     <DisableValidatorArray value="NotHaveNovaCombatSuit" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="NovaReviveTimer">
+    <Alignment value="Positive" />
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <BuffFlags index="Countdown" value="0" />
+    <Duration value="90" />
+    <Modification>
+      <AbilLinkDisableArray value="NovaWeaponImprovedCanisterRifleSnipe" />
+      <AbilLinkDisableArray value="NovaWeaponHellfireShotgunBlast" />
+      <AbilLinkDisableArray value="NovaGadgetBoombots" />
+      <AbilLinkDisableArray value="NovaBlink" />
+      <AbilLinkDisableArray value="NovaWeaponsFree" />
+      <AbilLinkDisableArray value="NovaCoopCasterNuke" />
+      <AbilLinkDisableArray value="NovaNukeTimer" />
+      <AbilLinkDisableArray value="NovaEquipmentSwap" />
+      <AbilLinkDisableArray value="NovaKitSwap" />
+      <AbilLinkDisableArray value="NovaCoopDecoyTarget" />
+      <AbilLinkDisableArray value="NovaCoopDecoyCooldownDummy" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaReviveTimerInitial">
+    <Alignment value="Positive" />
+    <Cost>
+      <Charge Link="Behavior/NovaReviveTimer" />
+      <Cooldown Link="Behavior/NovaReviveTimer" />
+    </Cost>
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <BuffFlags index="Countdown" value="0" />
+    <Duration value="240" />
+    <DamageResponse>
+      <Cost>
+        <Charge Link="Behavior/NovaReviveTimer" />
+        <Cooldown Link="Behavior/NovaReviveTimer" />
+      </Cost>
+    </DamageResponse>
+    <Modification>
+      <AbilLinkDisableArray value="NovaWeaponImprovedCanisterRifleSnipe" />
+      <AbilLinkDisableArray value="NovaWeaponHellfireShotgunBlast" />
+      <AbilLinkDisableArray value="NovaGadgetBoombots" />
+      <AbilLinkDisableArray value="NovaBlink" />
+      <AbilLinkDisableArray value="NovaWeaponsFree" />
+      <AbilLinkDisableArray value="NovaCoopCasterNuke" />
+      <AbilLinkDisableArray value="NovaNukeTimer" />
+      <AbilLinkDisableArray value="NovaEquipmentSwap" />
+      <AbilLinkDisableArray value="NovaKitSwap" />
+      <AbilLinkDisableArray value="NovaCoopDecoyCooldownDummy" />
+      <AbilLinkDisableArray value="NovaCoopDecoyTarget" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="NovaStunResistance">
     <InfoIcon value="Assets\Textures\stimboltgreen.dds" />
     <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
@@ -747,7 +1106,52 @@
     </Modification>
     <InfoFlags index="Hidden" value="1" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="NovaUnitLockdown">
+    <Alignment value="Negative" />
+    <InfoIcon value="Assets\Textures\btn-upgrade-swann-defensivematrix.dds" />
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <Duration value="3" />
+    <Modification>
+      <ModifyFlags index="DisableAbils" value="1" />
+      <ModifyFlags index="Reveal" value="1" />
+      <ModifyFlags index="Detected" value="1" />
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="SuppressDetection" value="1" />
+      <BehaviorLinkDisableArray value="Detector10" />
+      <BehaviorLinkDisableArray value="Detector11" />
+      <BehaviorLinkDisableArray value="Detector12" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaWeaponCanisterRifle">
+    <BehaviorCategories index="User9" value="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaWeaponHellfireShotgun">
+    <BehaviorCategories index="User9" value="1" />
+    <TechAliasArray value="_NovaAdvancedWeapon" />
+    <DisableValidatorArray index="0" value="HaveNovaCombatSuit" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaWeaponImprovedCanisterRifle">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Modification>
+      <WeaponArray Link="NovaWeaponImprovedCanisterRifle" />
+    </Modification>
+    <BehaviorFlags index="Permanent" value="1" />
+    <BehaviorFlags index="EnabledWhileDead" value="1" />
+    <BehaviorCategories index="User9" value="1" />
+    <TechAliasArray value="_NovaAdvancedWeapon" />
+    <DisableValidatorArray value="HaveNovaStealthSuit" />
+    <DamageResponse Handled="CommanderPrestigeNovaSuperCloakCombat" Location="Attacker">
+      <RequireEffectArray value="NovaWeaponImprovedCanisterRifleSnipe" />
+      <RequireEffectArray value="NovaWeaponImprovedCanisterRifleCloaked" />
+      <Chance value="1" />
+    </DamageResponse>
+  </CBehaviorBuff>
   <CBehaviorBuff id="NovaWeaponInvictusLongshot">
+    <BehaviorCategories index="User9" value="1" />
+    <TechAliasArray value="_NovaAdvancedWeapon" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="NovaWeaponPsiBlade">
     <BehaviorCategories index="User9" value="1" />
     <TechAliasArray value="_NovaAdvancedWeapon" />
   </CBehaviorBuff>
@@ -784,6 +1188,23 @@
     <InfoFlags index="Hidden" value="1" />
     <MaxStackCount value="65535" />
     <FinalEffect value="SpawnLarvaDelay" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="QueenSpawnLarvaTimer">
+    <ExpireEffect value="SpawnLarvaExpireSet" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="RavenScramblerMissile">
+    <Alignment value="Negative" />
+    <InfoIcon value="Assets\Textures\btn-tips-terran-psishield.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Duration value="8" />
+    <Modification>
+      <ModifyFlags index="DisableAbils" value="1" />
+      <ModifyFlags index="EnableMove" value="1" />
+      <StateFlags index="SuppressAttack" value="1" />
+      <StateFlags index="SuppressCloak" value="1" />
+      <BehaviorLinkDisableArray value="ImmortalBarrierSupressed" />
+    </Modification>
+    <ExpireEffect value="ImmortalBarrierCDFix" />
   </CBehaviorBuff>
   <CBehaviorBuff id="RaynorMedicSafeguard">
     <InfoIcon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds" />
@@ -872,6 +1293,32 @@
     </Modification>
     <TimeScaleSource Value="Global" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="SOAMapWideChrono">
+    <Alignment value="Positive" />
+    <InfoIcon value="Assets\Textures\btn-upgrade-karax-chronowave.dds" />
+    <BehaviorCategories index="Fast" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
+    <TimeScaleSource Value="Global" />
+    <Duration value="20" />
+    <InitialEffect value="SOAMapWideChronoBlackOpsSet" />
+    <ExpireEffect value="ChronoBoostAlert" />
+    <!--Modification TimeScale="2" AttackSpeedMultiplier="0.66">
+            <VitalRegenArray index="Energy" value="-0.2812"/>
+        </Modification-->
+    <RemoveValidatorArray value="NotOverseer" />
+    <RemoveValidatorArray value="IsNotDehakaHatcheryUprooted" />
+    <RemoveValidatorArray value="IsNotDehakaBarracksUprooted" />
+    <!--BehaviorLinkDisableArray value="SOAMapWideChronoPassiveTarget"/-->
+    <Modification MoveSpeedMultiplier="2">
+      <RateMultiplierArray index="Charge" value="2" />
+      <RateMultiplierArray index="Cooldown" value="2" />
+      <RateMultiplierArray index="Morph" value="2" />
+      <RateMultiplierArray index="Progress" value="2" />
+      <RateMultiplierArray index="Queueable" value="2" />
+      <RateMultiplierArray index="Spawn" value="2" />
+      <RateMultiplierArray index="Creep" value="2" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="SOAMapWideChronoPassiveTarget">
     <Alignment value="Positive" />
     <InfoIcon value="Assets\Textures\btn-upgrade-karax-chronofield.dds" />
@@ -892,6 +1339,29 @@
       <RateMultiplierArray index="Creep" value="1.15" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="SOARepairBeam">
+    <RemoveValidatorArray value="NotUnfinishedDrakkenLaserDrill" />
+    <RemoveValidatorArray value="NotDamagedDrakkenLaserDrill" />
+    <RemoveValidatorArray value="NotUnrepairable" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SOASuperShield">
+    <DamageResponse ModifyLimit="100" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SOAThermalLanceActivate">
+    <InitialEffect value="KaraxVoidCoopSOAEnergyRechargeTargetingDummy" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SolarForgeBeam">
+    <InfoFlags index="Hidden" value="1" />
+    <Period value="6.3" />
+    <PeriodicEffect value="SolarForgeBeamImpactDummyMU" />
+    <DisableValidatorArray value="IsSolarForge" />
+    <TimeScaleSource Value="Global" />
+    <!--InfoFlags index="Hidden" value="1"/>
+        <Period value="0.5"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffect value="SolarForgeBeamCP"/>
+        <DisableValidatorArray value="IsSolarForge"/-->
+  </CBehaviorBuff>
   <CBehaviorBuff id="SoulAbsorption">
     <BehaviorFlags index="Permanent" value="1" />
   </CBehaviorBuff>
@@ -910,6 +1380,42 @@
   </CBehaviorBuff>
   <CBehaviorBuff id="SquadSightPersistentBehavior">
     <Period value="0.5" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="StukovFirstReviveTimer">
+    <InfoFlags index="Hidden" value="1" />
+    <Alignment value="Positive" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="240" />
+    <Modification>
+      <StateFlags index="Benign" value="1" />
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="Untargetable" value="1" />
+      <AbilLinkDisableArray value="InfestedStukovCoopDevastatingShot" />
+      <AbilLinkDisableArray value="InfestedStukovCoopInfestedTerrans" />
+      <AbilLinkDisableArray value="InfestedStukovCoopBurrow" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="StukovNormalReviveTimer">
+    <InfoFlags index="Hidden" value="1" />
+    <Alignment value="Positive" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="120" />
+    <Modification>
+      <StateFlags index="Benign" value="1" />
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="Untargetable" value="1" />
+      <AbilLinkDisableArray value="InfestedStukovCoopDevastatingShot" />
+      <AbilLinkDisableArray value="InfestedStukovCoopInfestedTerrans" />
+      <AbilLinkDisableArray value="InfestedStukovCoopBurrow" />
+    </Modification>
   </CBehaviorBuff>
   <CBehaviorBuff id="SuicideBuilding">
     <InfoFlags index="Hidden" value="1" />
@@ -952,6 +1458,13 @@
     <Modification>
       <VitalMaxArray index="Shields" value="200" />
     </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SymbioteRecall">
+    <BehaviorFlags index="Permanent" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Period value="0.25" />
+    <PeriodicEffect value="SymbioteRecallSet" />
+    <InfoFlags index="Hidden" value="1" />
   </CBehaviorBuff>
   <CBehaviorBuff id="TimeStopHaste">
     <InfoIcon value="Assets\Textures\btn-ability-spearofadun-timestop.dds" />
@@ -1059,10 +1572,53 @@
   <CBehaviorBuff id="WarbotC">
     <InitialEffect value="WarbotCInitialSet" />
   </CBehaviorBuff>
+  <CBehaviorBuff id="ZagaraFirstReviveTimer">
+    <InfoFlags index="Hidden" value="1" />
+    <Alignment value="Positive" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="240" />
+    <Modification>
+      <AbilLinkDisableArray value="ZagaraVoidCoopBanelingBarrage" />
+      <AbilLinkDisableArray value="ZagaraVoidCoopSpawnHunterKillers" />
+      <AbilLinkDisableArray value="ZagaraVoidCoopMassFrenzy" />
+      <AbilLinkDisableArray value="ZagaraVoidCoopMassRoachDrop" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ZagaraNormalReviveTimer">
+    <InfoFlags index="Hidden" value="1" />
+    <Alignment value="Positive" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <BuffFlags index="Countdown" value="0" />
+    <DisplayDuration index="Self" value="1" />
+    <DisplayDuration index="Ally" value="1" />
+    <DisplayDuration index="Enemy" value="1" />
+    <Duration value="60" />
+    <Modification>
+      <AbilLinkDisableArray value="ZagaraVoidCoopBanelingBarrage" />
+      <AbilLinkDisableArray value="ZagaraVoidCoopSpawnHunterKillers" />
+      <AbilLinkDisableArray value="ZagaraVoidCoopMassFrenzy" />
+      <AbilLinkDisableArray value="ZagaraVoidCoopMassRoachDrop" />
+    </Modification>
+  </CBehaviorBuff>
   <CBehaviorBuff id="ZagaraOwned">
     <InfoFlags index="Hidden" value="1" />
     <Duration value="0.0625" />
     <RemoveValidatorArray value="IsZagaraCoopCommander" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ZagaraVoidCoopAberrationBanelingIncubationBirthHeight">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Duration value="0.625" />
+    <Modification Height="1.5">
+      <StateFlags index="Invulnerable" value="1" />
+      <StateFlags index="Stun" value="1" />
+      <HeightTime index="Start" value="0.25" />
+      <HeightTime index="Stop" value="0.25" />
+    </Modification>
   </CBehaviorBuff>
   <CBehaviorBuff id="ZagaraVoidCoopBurrowedDisabler">
     <Modification>
@@ -1107,585 +1663,5 @@
     <Duration value="10" />
     <Modification LifeArmorMultiplier="0" />
     <InfoIcon value="Assets\Textures\btn-upgrade-zerg-tunnelingclaws.dds" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="AlarakInitialReviveTimer">
-    <InfoFlags index="Hidden" value="1" />
-    <Alignment value="Positive" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="240" />
-    <Modification>
-      <AbilLinkDisableArray value="AlarakKnockback" />
-      <AbilLinkDisableArray value="AlarakACDeadlyCharge" />
-      <AbilLinkDisableArray value="AlarakEmpower" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="AlarakReviveTimer">
-    <InfoFlags index="Hidden" value="1" />
-    <Alignment value="Positive" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="60" />
-    <Modification>
-      <AbilLinkDisableArray value="AlarakKnockback" />
-      <AbilLinkDisableArray value="AlarakACDeadlyCharge" />
-      <AbilLinkDisableArray value="AlarakEmpower" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="AlarakStructureOvercharge">
-    <Alignment value="Positive" />
-    <InfoIcon value="Assets\Textures\btn-upgrade-protoss-structureovercharge.dds" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Duration value="45" />
-    <Period value="0.64" />
-    <PeriodicEffect value="AlarakStructureOverchargeSearch" />
-    <BuffFlags index="RemoveDamageResponseExhausted" value="0" />
-    <BuffFlags index="UpdateDurationWhileDisabled" value="1" />
-    <RefreshEffect value="AlarakStructureOverchargeRefresh" />
-    <Modification>
-      <StateFlags index="GenerateThreat" value="1" />
-      <WeaponArray Link="AlarakStructureOvercharge" />
-    </Modification>
-    <TimeScaleSource Value="Global" />
-    <DisableValidatorArray value="IsStructureorWarpPrismPhasing" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="AllUnitBehaviorController">
-    <InitialEffect value="AllUnitBehaviorControllerSet" />
-    <InfoFlags index="Hidden" value="1" />
-    <Duration value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="AscendantSacrificeSelfBuff">
-    <BehaviorFlags index="Permanent" value="1" />
-    <InfoIcon value="Assets\Textures\tip_rakshir.dds" />
-    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
-    <MaxStackCount value="10" />
-    <Modification>
-      <DamageDealtFraction index="Spell" value="0.25" />
-      <DamageDealtFraction index="Splash" value="0.25" />
-      <VitalMaxArray index="Shields" value="100" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="ButtonDisablerDummy">
-    <EditorCategories value="AbilityorEffectType:Units" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="ChronoBoostTarget">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <InitialEffect value="SOAMapWideChronoPassiveTarget" />
-    <RemoveValidatorArray value="DoesNotHaveSOAMapWideChronoPassiveTarget" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="CommanderPrestigeArtanisPowerField">
-    <InfoFlags index="Hidden" value="1" />
-    <FinalEffect value="CommanderPrestigeArtanisPowerFieldFindNewField" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="CommanderPrestigeDehakaPackLeaders">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <InitialEffect value="CommanderPrestigeDehakaPackLeadersSet" />
-    <FinalEffect value="CommanderPrestigeDehakaPackLeadersTrackIterate" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="CommanderPrestigeNovaSuperCloak">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <RemoveValidatorArray value="CommanderPrestigeNovaSuperCloak" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="CommanderPrestigeRaynorAir">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="CommanderPrestigeTychusLoneWolf">
-    <Alignment value="Positive" />
-    <BehaviorFlags index="Permanent" value="1" />
-    <InfoIcon value="Assets\Textures\btn-ability-mengsk-royalguard-mightoftheempire.dds" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <DisableValidatorArray value="CommanderPrestigeTychusLoneWolf" />
-    <DamageResponse ModifyFraction="0.5">
-      <Chance value="1" />
-    </DamageResponse>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="CommanderPrestigeZeratulTornadoes">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Duration value="5" />
-    <Period value="0.25" />
-    <InitialEffect value="CommanderPrestigeZeratulTornadoesSearch" />
-    <PeriodicEffect value="CommanderPrestigeZeratulTornadoesSearch" />
-    <ExpireEffect value="Suicide" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="DehakaConsume">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:PrimalZerg,AbilityorEffectType:Units" />
-    <Duration value="2" />
-    <Modification>
-      <StateFlags index="Stun" value="1" />
-      <StateFlags index="SuppressCollision" value="1" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="DehakaFirstReviveTimer">
-    <Alignment value="Positive" />
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="60" />
-    <Period value="5.5" />
-    <PeriodicEffect value="DehakaDenDevourDroneDisabler" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="DehakaNormalReviveTimer">
-    <Alignment value="Positive" />
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="90" />
-    <Modification>
-      <AbilLinkEnableArray value="DehakaCoopReviveEat" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="EvolveBrutaliskTimedLife">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <Duration value="120" />
-    <ExpireEffect value="TimedLifeFate" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="FenixSentryGuardianZone">
-    <Alignment value="Positive" />
-    <InfoIcon value="Assets\Textures\btn-ability-protoss-shieldbattery.dds" />
-    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
-    <Duration value="0.6" />
-    <Modification>
-      <DamageTakenFraction index="Spell" value="-0.35" />
-      <DamageTakenFraction index="Melee" value="-0.35" />
-      <DamageTakenFraction index="Ranged" value="-0.35" />
-      <DamageTakenFraction index="Splash" value="-0.35" />
-      <DamageTakenFraction index="NoProc" value="-0.35" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="HHHyperjumpTeleportOut">
-    <EditorCategories value="AbilityorEffectType:Units,Race:Terran" />
-    <Duration value="0.6" />
-    <Modification>
-      <ModifyFlags index="SuppressMoving" value="1" />
-      <ModifyFlags index="SuppressTurning" value="1" />
-      <StateFlags index="Invulnerable" value="1" />
-      <StateFlags index="SuppressCloak" value="1" />
-      <StateFlags index="Untargetable" value="1" />
-    </Modification>
-    <ExpireEffect value="HHHyperjumpTeleportSet" />
-    <InfoFlags index="Hidden" value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="HHReaperFlyingDuration">
-    <Duration value="10" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Neutral" value="1" />
-    <ExpireEffect value="HHReaperLandIssueLandRetryAB" />
-    <InfoFlags index="Hidden" value="1" />
-    <FinalEffect value="HHReaperLandIssueLandRetryAB" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="HHWidowMineAnimationController">
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Duration value="40" />
-    <DisableValidatorArray value="NotStasis" />
-    <DisableValidatorArray value="NotVortexd" />
-    <DisableValidatorArray value="NotGravitonBeamd" />
-    <DisableValidatorArray value="NotThunderCannond" />
-    <InfoFlags index="Hidden" value="1" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="HHWraithFury10">
-    <InfoIcon value="Assets\Textures\btn-ability-hornerhan-wraith-attackspeed.dds" />
-    <BehaviorCategories index="Fast" value="1" />
-    <Duration value="5" />
-    <Modification AttackSpeedMultiplier="2" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="HHYamatoShots">
-    <Alignment value="Positive" />
-    <InfoFlags index="Hidden" value="1" />
-    <InfoIcon value="Assets\Textures\btn-ability-hornerhan-battlecruiser-yamato.dds" />
-    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
-    <Modification>
-      <WeaponEnableArray value="HHLaserBattery" />
-      <WeaponDisableArray value="HHATALaserBattery" />
-      <WeaponDisableArray value="HHATSLaserBattery" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="HyperjumpTeleport">
-    <Modification>
-      <StateFlags index="Stasis" value="0" />
-    </Modification>
-    <Duration value="0.0625" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="HyperjumpTeleportIn">
-    <Modification>
-      <StateFlags index="Stasis" value="0" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="HyperjumpTeleportOut">
-    <Modification>
-      <StateFlags index="Stasis" value="0" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="KerriganFirstReviveTimer">
-    <Alignment value="Positive" />
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="240" />
-    <Modification>
-      <AbilLinkDisableArray value="PrimalSlash" />
-      <AbilLinkDisableArray value="PsiStrikeWalk" />
-      <AbilLinkDisableArray value="KerriganVoidCoopEconDrop" />
-      <AbilLinkDisableArray value="KerriganVoidCoopCrushingGripWave" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="KerriganNormalReviveTimer">
-    <Alignment value="Positive" />
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <BuffFlags index="Countdown" value="0" />
-    <Duration value="60" />
-    <Period value="1" />
-    <PeriodCount value="1" />
-    <PeriodicEffect value="MasteryKerriganInstantReviveChanced" />
-    <Modification>
-      <AbilLinkDisableArray value="PrimalSlash" />
-      <AbilLinkDisableArray value="PsiStrikeWalk" />
-      <AbilLinkDisableArray value="KerriganVoidCoopEconDrop" />
-      <AbilLinkDisableArray value="KerriganVoidCoopCrushingGripWave" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="MutatorAmonPhaseCannonInitialStun">
-    <InfoFlags index="Hidden" value="1" />
-    <BehaviorCategories index="Invulnerable" value="1" />
-    <BehaviorCategories index="Stun" value="1" />
-    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
-    <Duration value="1.5" />
-    <ExpireEffect value="MutatorAmonPhaseCannonTimedLife" />
-    <Modification>
-      <ModifyFlags index="DisableWeapons" value="1" />
-      <StateFlags index="Invulnerable" value="1" />
-      <StateFlags index="Stun" value="1" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="MutatorWorkerSleep">
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Modification>
-      <ModifyFlags index="DisableAbils" value="1" />
-      <ModifyFlags index="DisableWeapons" value="1" />
-      <ModifyFlags index="SuppressMoving" value="1" />
-      <AbilLinkEnableArray value="MutatorRemoveWorkerSleep" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaCoopGhostAcademyLandingIntro">
-    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
-    <Duration value="0.0625" />
-    <Modification Height="6">
-      <HeightTime index="Stop" value="2" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaGadgetFlashbangGrenades">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
-    <BehaviorFlags index="Permanent" value="1" />
-    <BehaviorFlags index="EnabledWhileDead" value="1" />
-    <BehaviorCategories index="User10" value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaGadgetPulseGrenades">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
-    <BehaviorFlags index="Permanent" value="1" />
-    <BehaviorFlags index="EnabledWhileDead" value="1" />
-    <BehaviorCategories index="User10" value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaGadgetSuperStim">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
-    <BehaviorFlags index="Permanent" value="1" />
-    <BehaviorFlags index="EnabledWhileDead" value="1" />
-    <BehaviorCategories index="User10" value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaHelmetGhostVisor">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
-    <DisableValidatorArray value="HaveNovaHelmetGhostVisor" />
-    <Modification Radar="40" RadarFilters="Biological,Psionic;Light,Armored,RawResource,HarvestableResource,Missile,Destructible,Buried" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaReviveTimer">
-    <Alignment value="Positive" />
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <BuffFlags index="Countdown" value="0" />
-    <Duration value="90" />
-    <Modification>
-      <AbilLinkDisableArray value="NovaWeaponImprovedCanisterRifleSnipe" />
-      <AbilLinkDisableArray value="NovaWeaponHellfireShotgunBlast" />
-      <AbilLinkDisableArray value="NovaGadgetBoombots" />
-      <AbilLinkDisableArray value="NovaBlink" />
-      <AbilLinkDisableArray value="NovaWeaponsFree" />
-      <AbilLinkDisableArray value="NovaCoopCasterNuke" />
-      <AbilLinkDisableArray value="NovaNukeTimer" />
-      <AbilLinkDisableArray value="NovaEquipmentSwap" />
-      <AbilLinkDisableArray value="NovaKitSwap" />
-      <AbilLinkDisableArray value="NovaCoopDecoyTarget" />
-      <AbilLinkDisableArray value="NovaCoopDecoyCooldownDummy" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaReviveTimerInitial">
-    <Alignment value="Positive" />
-    <Cost>
-      <Charge Link="Behavior/NovaReviveTimer" />
-      <Cooldown Link="Behavior/NovaReviveTimer" />
-    </Cost>
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <BuffFlags index="Countdown" value="0" />
-    <Duration value="240" />
-    <DamageResponse>
-      <Cost>
-        <Charge Link="Behavior/NovaReviveTimer" />
-        <Cooldown Link="Behavior/NovaReviveTimer" />
-      </Cost>
-    </DamageResponse>
-    <Modification>
-      <AbilLinkDisableArray value="NovaWeaponImprovedCanisterRifleSnipe" />
-      <AbilLinkDisableArray value="NovaWeaponHellfireShotgunBlast" />
-      <AbilLinkDisableArray value="NovaGadgetBoombots" />
-      <AbilLinkDisableArray value="NovaBlink" />
-      <AbilLinkDisableArray value="NovaWeaponsFree" />
-      <AbilLinkDisableArray value="NovaCoopCasterNuke" />
-      <AbilLinkDisableArray value="NovaNukeTimer" />
-      <AbilLinkDisableArray value="NovaEquipmentSwap" />
-      <AbilLinkDisableArray value="NovaKitSwap" />
-      <AbilLinkDisableArray value="NovaCoopDecoyCooldownDummy" />
-      <AbilLinkDisableArray value="NovaCoopDecoyTarget" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaUnitLockdown">
-    <Alignment value="Negative" />
-    <InfoIcon value="Assets\Textures\btn-upgrade-swann-defensivematrix.dds" />
-    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
-    <Duration value="3" />
-    <Modification>
-      <ModifyFlags index="DisableAbils" value="1" />
-      <ModifyFlags index="Reveal" value="1" />
-      <ModifyFlags index="Detected" value="1" />
-      <StateFlags index="Stun" value="1" />
-      <StateFlags index="SuppressDetection" value="1" />
-      <BehaviorLinkDisableArray value="Detector10" />
-      <BehaviorLinkDisableArray value="Detector11" />
-      <BehaviorLinkDisableArray value="Detector12" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaWeaponCanisterRifle">
-    <BehaviorCategories index="User9" value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaWeaponHellfireShotgun">
-    <BehaviorCategories index="User9" value="1" />
-    <TechAliasArray value="_NovaAdvancedWeapon" />
-    <DisableValidatorArray index="0" value="HaveNovaCombatSuit" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaWeaponImprovedCanisterRifle">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
-    <Modification>
-      <WeaponArray Link="NovaWeaponImprovedCanisterRifle" />
-    </Modification>
-    <BehaviorFlags index="Permanent" value="1" />
-    <BehaviorFlags index="EnabledWhileDead" value="1" />
-    <BehaviorCategories index="User9" value="1" />
-    <TechAliasArray value="_NovaAdvancedWeapon" />
-    <DisableValidatorArray value="HaveNovaStealthSuit" />
-    <DamageResponse Handled="CommanderPrestigeNovaSuperCloakCombat" Location="Attacker">
-      <RequireEffectArray value="NovaWeaponImprovedCanisterRifleSnipe" />
-      <RequireEffectArray value="NovaWeaponImprovedCanisterRifleCloaked" />
-      <Chance value="1" />
-    </DamageResponse>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="NovaWeaponPsiBlade">
-    <BehaviorCategories index="User9" value="1" />
-    <TechAliasArray value="_NovaAdvancedWeapon" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="RavenScramblerMissile">
-    <Alignment value="Negative" />
-    <InfoIcon value="Assets\Textures\btn-tips-terran-psishield.dds" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Duration value="8" />
-    <Modification>
-      <ModifyFlags index="DisableAbils" value="1" />
-      <ModifyFlags index="EnableMove" value="1" />
-      <StateFlags index="SuppressAttack" value="1" />
-      <StateFlags index="SuppressCloak" value="1" />
-      <BehaviorLinkDisableArray value="ImmortalBarrierSupressed" />
-    </Modification>
-    <ExpireEffect value="ImmortalBarrierCDFix" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="SOAMapWideChrono">
-    <Alignment value="Positive" />
-    <InfoIcon value="Assets\Textures\btn-upgrade-karax-chronowave.dds" />
-    <BehaviorCategories index="Fast" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units,Race:Protoss" />
-    <TimeScaleSource Value="Global" />
-    <Duration value="20" />
-    <InitialEffect value="SOAMapWideChronoBlackOpsSet" />
-    <ExpireEffect value="ChronoBoostAlert" />
-    <!--Modification TimeScale="2" AttackSpeedMultiplier="0.66">
-            <VitalRegenArray index="Energy" value="-0.2812"/>
-        </Modification-->
-    <RemoveValidatorArray value="NotOverseer" />
-    <RemoveValidatorArray value="IsNotDehakaHatcheryUprooted" />
-    <RemoveValidatorArray value="IsNotDehakaBarracksUprooted" />
-    <!--BehaviorLinkDisableArray value="SOAMapWideChronoPassiveTarget"/-->
-    <Modification MoveSpeedMultiplier="2">
-      <RateMultiplierArray index="Charge" value="2" />
-      <RateMultiplierArray index="Cooldown" value="2" />
-      <RateMultiplierArray index="Morph" value="2" />
-      <RateMultiplierArray index="Progress" value="2" />
-      <RateMultiplierArray index="Queueable" value="2" />
-      <RateMultiplierArray index="Spawn" value="2" />
-      <RateMultiplierArray index="Creep" value="2" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="SOARepairBeam">
-    <RemoveValidatorArray value="NotUnfinishedDrakkenLaserDrill" />
-    <RemoveValidatorArray value="NotDamagedDrakkenLaserDrill" />
-    <RemoveValidatorArray value="NotUnrepairable" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="SOASuperShield">
-    <DamageResponse ModifyLimit="100" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="SOAThermalLanceActivate">
-    <InitialEffect value="KaraxVoidCoopSOAEnergyRechargeTargetingDummy" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="SolarForgeBeam">
-    <InfoFlags index="Hidden" value="1" />
-    <Period value="6.3" />
-    <PeriodicEffect value="SolarForgeBeamImpactDummyMU" />
-    <DisableValidatorArray value="IsSolarForge" />
-    <TimeScaleSource Value="Global" />
-    <!--InfoFlags index="Hidden" value="1"/>
-        <Period value="0.5"/>
-        <PeriodCount value="1"/>
-        <PeriodicEffect value="SolarForgeBeamCP"/>
-        <DisableValidatorArray value="IsSolarForge"/-->
-  </CBehaviorBuff>
-  <CBehaviorBuff id="StukovFirstReviveTimer">
-    <InfoFlags index="Hidden" value="1" />
-    <Alignment value="Positive" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="240" />
-    <Modification>
-      <StateFlags index="Benign" value="1" />
-      <StateFlags index="Stun" value="1" />
-      <StateFlags index="Untargetable" value="1" />
-      <AbilLinkDisableArray value="InfestedStukovCoopDevastatingShot" />
-      <AbilLinkDisableArray value="InfestedStukovCoopInfestedTerrans" />
-      <AbilLinkDisableArray value="InfestedStukovCoopBurrow" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="StukovNormalReviveTimer">
-    <InfoFlags index="Hidden" value="1" />
-    <Alignment value="Positive" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="120" />
-    <Modification>
-      <StateFlags index="Benign" value="1" />
-      <StateFlags index="Stun" value="1" />
-      <StateFlags index="Untargetable" value="1" />
-      <AbilLinkDisableArray value="InfestedStukovCoopDevastatingShot" />
-      <AbilLinkDisableArray value="InfestedStukovCoopInfestedTerrans" />
-      <AbilLinkDisableArray value="InfestedStukovCoopBurrow" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="SymbioteRecall">
-    <BehaviorFlags index="Permanent" value="1" />
-    <EditorCategories value="AbilityorEffectType:Units" />
-    <Period value="0.25" />
-    <PeriodicEffect value="SymbioteRecallSet" />
-    <InfoFlags index="Hidden" value="1" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="VoidPhoenixPhasingArmor">
-    <DisableValidatorArray value="HaveMiragePhaseArmor" />
-  </CBehaviorBuff>
-  <CBehaviorBuff id="VoidStalkerBlinkShieldRestore">
-    <Modification>
-      <StateFlags index="Cloak" value="1" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="ZagaraFirstReviveTimer">
-    <InfoFlags index="Hidden" value="1" />
-    <Alignment value="Positive" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="240" />
-    <Modification>
-      <AbilLinkDisableArray value="ZagaraVoidCoopBanelingBarrage" />
-      <AbilLinkDisableArray value="ZagaraVoidCoopSpawnHunterKillers" />
-      <AbilLinkDisableArray value="ZagaraVoidCoopMassFrenzy" />
-      <AbilLinkDisableArray value="ZagaraVoidCoopMassRoachDrop" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="ZagaraNormalReviveTimer">
-    <InfoFlags index="Hidden" value="1" />
-    <Alignment value="Positive" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <BuffFlags index="Countdown" value="0" />
-    <DisplayDuration index="Self" value="1" />
-    <DisplayDuration index="Ally" value="1" />
-    <DisplayDuration index="Enemy" value="1" />
-    <Duration value="60" />
-    <Modification>
-      <AbilLinkDisableArray value="ZagaraVoidCoopBanelingBarrage" />
-      <AbilLinkDisableArray value="ZagaraVoidCoopSpawnHunterKillers" />
-      <AbilLinkDisableArray value="ZagaraVoidCoopMassFrenzy" />
-      <AbilLinkDisableArray value="ZagaraVoidCoopMassRoachDrop" />
-    </Modification>
-  </CBehaviorBuff>
-  <CBehaviorBuff id="ZagaraVoidCoopAberrationBanelingIncubationBirthHeight">
-    <InfoFlags index="Hidden" value="1" />
-    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <Duration value="0.625" />
-    <Modification Height="1.5">
-      <StateFlags index="Invulnerable" value="1" />
-      <StateFlags index="Stun" value="1" />
-      <HeightTime index="Start" value="0.25" />
-      <HeightTime index="Stop" value="0.25" />
-    </Modification>
   </CBehaviorBuff>
 </Catalog>

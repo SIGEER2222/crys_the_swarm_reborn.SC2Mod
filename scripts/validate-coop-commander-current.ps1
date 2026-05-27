@@ -76,6 +76,32 @@ $commanderConfigs = @{
             'Unit/Name/ImpalerAbathur=',
             'Unit/Name/RavagerAbathur='
         )
+    "Alarak" = New-CommanderConfig `
+        -Module "XMAlarak.SC2Mod" `
+        -OfficialDir "Alarak" `
+        -SkipLauncher `
+        -RuntimePatterns @(
+            'else if (auto09490B45_val == "Alarak")',
+            'libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAlarak"',
+            'lib67C0F0E7_gf_CU_GPInit(1, "Alarak"',
+            'libNtve_gf_CreateUnitsWithDefaultFacing(1, "AlarakCoop"',
+            'libE0EAE146_gf_AlarakCreateMapStartSquad',
+            'libE0EAE146_gf_AlarakCreateCargoSquad'
+        ) `
+        -ModulePatterns @(
+            'CoopCasterAlarak',
+            'AlarakCoop',
+            'Supplicant',
+            'Monitor',
+            'HighTemplarTaldarim',
+            'ImmortalTaldarim'
+        ) `
+        -CorePatterns @(
+            '<Instances Id="Alarak">'
+        ) `
+        -LocalizedPatterns @(
+            'UserData/CommanderAch/Alarak_TitU='
+        )
     "Artanis" = New-CommanderConfig `
         -Module "XMArtanis.SC2Mod" `
         -OfficialDir "Artanis" `
