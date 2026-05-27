@@ -95,17 +95,33 @@ Owner：`CommanderPanelProfile`、`CommanderPanelAbilityProfile`、`CommanderPan
 
 Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbilityProfile`、`CommanderHeroSkillTreeProfile`、`CommanderHeroReviveProfile`、`CommanderHeroModifierProfile`。
 
+### 英雄单位清单
+
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
 | - | - | - | - | - | 官方 heroes.json 未列出英雄条目；召唤物/形态/特殊英雄需从 progression、command_cards 或 CASC 继续追 |
 
-### 英雄/形态候选
+### 英雄技能按钮候选
 
-- 空间站调度 (`HornerPHLevel10`)
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| - | - | - | - | - | command_cards.json 未命中英雄对象按钮；英雄技能需从 CASC 或实机日志补。 |
 
-口径：地面消耗型部队与空军精英舰队分层，需要 cargo 和面板同时验证。
+### 英雄形态/模式候选
 
-待审计：Hero Unit、技能按钮、复活、形态切换、武器/Actor/Sound 闭包。
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| - | - | - | - | - | 未自动命中英雄形态或模式按钮。 |
+
+### 英雄相关等级解锁
+
+| 等级 | 名称 | 升级 | AbilityCmd | 说明 |
+|---|---|---|---|---|
+| Lv10 | 空间站调度 | `-` | `HHSummonMercenarySpaceStation:` | 解锁使用空间站调度技能。空间站撞击时对英雄目标造成500点伤害，撞击范围内的其它一切存在都将被立即摧毁。攻击型无人机会攻击附近的目标。 |
+
+口径：无常规英雄；舰队召唤按顶部技能和特殊机制处理。
+
+待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 
 ## 03. 普通单位技能及其进化功能
 
@@ -115,28 +131,19 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 霍纳的战列巡航舰 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 霍纳的战列巡航舰 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 霍纳的战列巡航舰 | `HHMSOHealth` | 我的另一半 | `-` | HaveHHSOBuff | 汉的战斗单位使霍纳的单位的生命值提高{Effect,HornerMSOHealthDisplayDummy,Amount}%。 |
 | 霍纳的战列巡航舰 | `Hyperjump` | 战术跳跃 | `HHBattlecruiserHyperjump,Execute` | - | {time:6}后折跃至目标位置。战列巡航舰在折跃时处于无敌状态。 / 不需要视野。 |
 | 霍纳的战列巡航舰 | `HHYamatoShots` | 超载反应堆 | `HHYamatoShots,On` | - | 武器系统升级为强大的粒子光炮，每次攻击造成{Effect,HHLaserBatteryU,Amount}点伤害。 |
 | 霍纳的战列巡航舰 | `HHBattlecruiserShots` | 变回ATX激光炮组 | `HHYamatoShots,Off` | - | 使用战列巡航舰的标准ATX激光炮组。 |
 | 霍纳的战列巡航舰 | `HHArmyOOCRegen` | 耐力训练 | `-` | HaveHHArmyOOCRegen | 该单位脱离战斗后每秒回复{Behavior,HHArmyOOCRegenSpeed,Modification.VitalRegenArray[Life]}... |
-| 恶火 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 恶火 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 恶火 | `HHMSOAttackSpeed` | 我的另一半 | `-` | HaveHHSOBuff | 霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。 |
 | 恶火 | `MorphToHellionTank` | 恶蝠模式 | `MorphToHHHellionTank,Execute` | - | 近距离战斗单位，对前方小范围锥形区域造成伤害。可变形为快速侦察单位。 / 可以对地。 |
 | 恶火 | `HHHellionBomb` | 焦油炸弹 | `HHHellionBomb,Execute` | - | 发射一枚焦油炸弹，对目标单位造成{Effect,HHHellionBombDamage,Amount}点伤害。附近的敌人移动速度降低{(1 - Behav... |
 | 恶火 | `HHHellionDeathStim` | 喷雾刺激发射器 | `-` | HaveHHHellionStimDeath | 恶火和恶蝠变形速度提高75%。恶火被杀死时，附近的友方单位的移动速度提高{(Behavior,HHHellionStimDeath,Modificatio... |
-| 恶蝠 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 恶蝠 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 恶蝠 | `HHMSOAttackSpeed` | 我的另一半 | `-` | HaveHHSOBuff | 霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。 |
 | 恶蝠 | `MorphToHHHellion` | 恶火模式 | `MorphToHHHellion,Execute` | - | 快速的侦察者，发射榴弹来减速敌方单位。可变形为近距离战斗单位。 / 可以对地。 |
 | 恶蝠 | `HHHellionDeathFear` | 狂火炸药 | `-` | HaveHHHellionFearDeath | 移动速度提高{$UpgradeEffectArrayValue:HHHellionFearDeath:Unit,HHHellionTank,Speed$/... |
 | 恶蝠 | `HHHellionAttackDoT` | 爆燃液体 | `-` | HaveHHHellionAttackDoT | 攻击会使敌人在{Behavior,HHHellionDoT,Duration}秒内受到{Effect,HHHellionDoTDamage,Amount ... |
-| 霍纳铁鸦 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 霍纳铁鸦 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 霍纳铁鸦 | `AcquireMove` | 搜索移动 | `move,AcquireMove` | - | 命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。 |
 | 霍纳铁鸦 | `Detector` | 侦测单位 | `-` | - | 该单位能够侦测到隐形、潜地和幻像单位。 |
 | 霍纳铁鸦 | `HHSuperRadar` | 成像雷达 | `-` | - | 远距离显示敌方单位的位置。 |
 | 霍纳铁鸦 | `HHMSOHealth` | 我的另一半 | `-` | HaveHHSOBuff | 汉的战斗单位使霍纳的单位的生命值提高{Effect,HornerMSOHealthDisplayDummy,Amount}%。 |
@@ -144,16 +151,12 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 霍纳铁鸦 | `HHNomadTargetLock` | 分析弱点 | `RavenTargetLock,Execute` | - | 对被分析的单位进行的所有近战和远程攻击都会有3点伤害加成。只要铁鸦锁定目标，效果就会一直存在。 |
 | 霍纳铁鸦 | `MorphtoHHRavenSiege` | 启动消音模式 | `HHRavenMorphtoHHRavenSiege,Execute` | - | 铁鸦获得隐形效果但是无法移动和使用主动技能。此技能激活后可以取消。 |
 | 霍纳铁鸦 | `HHArmyOOCRegen` | 耐力训练 | `-` | HaveHHArmyOOCRegen | 该单位脱离战斗后每秒回复{Behavior,HHArmyOOCRegenSpeed,Modification.VitalRegenArray[Life]}... |
-| 霍纳收割者 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 霍纳收割者 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 霍纳收割者 | `HHMSOAttackSpeed` | 我的另一半 | `-` | HaveHHSOBuff | 霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。 |
 | 霍纳收割者 | `HHKD8Charge` | KD8型炸弹 | `HHD8SingleCharge,Execute` | - | 短暂延迟后发生爆炸，造成{Effect,HHD8ChargeExplodeDamage,Amount}点范围伤害并击退附近的单位。 |
 | 霍纳收割者 | `HHReaperFly` | 喷气背包加力 | `HHReaperFly,Execute` | - | 使收割者飞行{Behavior,HHReaperFlyingDuration,Duration}秒。飞行时，收割者可以对空。 |
 | 霍纳收割者 | `JetPack` | 喷气背包 | `255,255` | - | 使收割者能够翻越悬崖。 |
 | 霍纳收割者 | `CombatDrugs` | 战斗药剂 | `-` | - | 脱离战斗后能够迅速恢复生命值。 |
 | 霍纳收割者 | `HHReaperClusterBombs` | LE9型集束炸弹 | `-` | HaveHHReaperClusterBomb | 使KD8炸弹的冷却时间缩短{time:10}。被杀死时，收割者会向击杀他的单位投掷多枚手雷。 |
-| 霍纳维京战机 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 霍纳维京战机 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 霍纳维京战机 | `HHVikingPiercingAttacks` | 撕裂弹 | `-` | HaveHHVikingPiercingAttack | 机甲模式的攻击有穿透效果，对目标后面的敌方单位造成伤害。变形时间缩短75%。 |
 | 霍纳维京战机 | `HHVikingMorphSpeed` | HHVikingMorphSpeed | `-` | HaveHHVikingMorph | - |
 | 霍纳维京战机 | `HHMSOHealth` | 我的另一半 | `-` | HaveHHSOBuff | 汉的战斗单位使霍纳的单位的生命值提高{Effect,HornerMSOHealthDisplayDummy,Amount}%。 |
@@ -161,22 +164,20 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 霍纳维京战机 | `HHVikingRockets` | 狂暴飞弹 | `HHVikingRockets,Execute` | - | 对目标单位发射{Effect,HHVikingRocketsBurstPersistent,PeriodCount}枚火箭，每枚火箭造成{Effect,H... |
 | 霍纳维京战机 | `AssaultMode` | 机甲模式 | `HHAssaultMode,Execute` | - | 将维京战机变形为机甲模式。该模式下的维京战机可以行走，但只能攻击地面单位。 |
 | 霍纳维京战机 | `HHArmyOOCRegen` | 耐力训练 | `-` | HaveHHArmyOOCRegen | 该单位脱离战斗后每秒回复{Behavior,HHArmyOOCRegenSpeed,Modification.VitalRegenArray[Life]}... |
-| 霍纳寡妇雷 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 霍纳寡妇雷 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 霍纳寡妇雷 | `HHMSOAttackSpeed` | 我的另一半 | `-` | HaveHHSOBuff | 霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。 |
 | 霍纳寡妇雷 | `HHKD8Charge` | KD8型炸弹 | `HHD8SingleCharge,Execute` | - | 短暂延迟后发生爆炸，造成{Effect,HHD8ChargeExplodeDamage,Amount}点范围伤害并击退附近的单位。 |
 | 霍纳寡妇雷 | `HHReaperFly` | 喷气背包加力 | `HHReaperFly,Execute` | - | 使收割者飞行{Behavior,HHReaperFlyingDuration,Duration}秒。飞行时，收割者可以对空。 |
 | 霍纳寡妇雷 | `JetPack` | 喷气背包 | `255,255` | - | 使收割者能够翻越悬崖。 |
 | 霍纳寡妇雷 | `CombatDrugs` | 战斗药剂 | `-` | - | 脱离战斗后能够迅速恢复生命值。 |
 | 霍纳寡妇雷 | `HHReaperClusterBombs` | LE9型集束炸弹 | `-` | HaveHHReaperClusterBomb | 使KD8炸弹的冷却时间缩短{time:10}。被杀死时，收割者会向击杀他的单位投掷多枚手雷。 |
-| 霍纳怨灵战机 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 霍纳怨灵战机 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 霍纳怨灵战机 | `HHMSOAttackSpeed` | 我的另一半 | `-` | HaveHHSOBuff | 霍纳的战斗单位使汉的单位的攻击速度提高{Effect,HornerMSOAttackSpeedDisplayDummy,Amount}%。 |
 | 霍纳怨灵战机 | `HHKD8Charge` | KD8型炸弹 | `HHD8SingleCharge,Execute` | - | 短暂延迟后发生爆炸，造成{Effect,HHD8ChargeExplodeDamage,Amount}点范围伤害并击退附近的单位。 |
 | 霍纳怨灵战机 | `HHReaperFly` | 喷气背包加力 | `HHReaperFly,Execute` | - | 使收割者飞行{Behavior,HHReaperFlyingDuration,Duration}秒。飞行时，收割者可以对空。 |
 | 霍纳怨灵战机 | `JetPack` | 喷气背包 | `255,255` | - | 使收割者能够翻越悬崖。 |
 | ... | ... | ... | ... | ... | 还有 15 项，后续从 command_cards.json 继续展开 |
 
+
+备注：已过滤 17 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ### 进化/形态/切换候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
@@ -193,7 +194,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 解放者 | `LiberatorAGRangeUpgrade` | 强化弹道 | `-` | HaveLiberatorRange | 解放者在防卫模式下的射程提高{$UpgradeEffectArrayValue:LiberatorAGRangeUpgrade:Weapon,Libera... |
 | 解放者 | `LiberatorAGMode` | 防卫模式 | `LiberatorAGTarget,Execute` | - | 部署为防卫模式。在此模式下解放者可对地面单位造成大量单体伤害。在此模式下解放者无法移动。 |
 
-实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。
+实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。英雄单位已从本模块候选中排除，统一归 `02. 英雄单位及其技能`。
 
 ## 04. 初始化基地与特殊建筑
 
@@ -211,26 +212,26 @@ Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpeci
 |---|---|---|---|---|---|
 | - | - | - | - | - | 官方 buildings.json 未自动命中特殊建筑；特殊结构可能由触发器或隐藏 caster 创建。 |
 
-实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster 和特殊建筑。
+实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster、英雄初始单位和特殊建筑。
 
 ## 05. 指挥官兵种
 
 Owner：`CommanderRosterProfile`、`CommanderUnitProfile`、`CommanderUnitTrainProfile`、`CommanderUnitStageProfile`、`CommanderUnitRequirementProfile`。
 
-来源：官方提取 `units.json`。这里列的是当前已提取 Catalog 对象；满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
+来源：官方提取 `units.json`。这里列的是当前已提取普通/生产单位 Catalog 对象；英雄单位单独在 `02. 英雄单位及其技能` 中维护。满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 解放者 | `Liberator` | `Liberator` | Air; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:180 | 重型火炮战机。装载有能对敌方空中单位造成范围伤害的飞弹。可以切换为防卫模式以提供攻城火力。 / 可以对空。 |
-| 恶蝠 | `HHHellionTank` | `HHHellionTank` | Ground; Biological/Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:235 | 近距离战斗单位，对前方小范围锥形区域造成伤害。可变形为快速侦察单位。 / 可以对地。 |
-| 恶火 | `HHHellion` | `HHHellion` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 | 快速的侦察者，可发射榴弹减慢敌方单位速度。可变形为近距离战斗单位。 / 可以对地。 |
-| 霍纳的战列巡航舰 | `HHBattlecruiser` | `HHBattlecruiser` | Air; Armored/Massive/Mechanical | 矿:1000 气:800 人口字段:-10 生命:900 | 强大的战舰。可以使用战术跳跃。 |
-| 霍纳寡妇雷 | `HHWidowMine` | `HHReaper, HHWidowMine` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 | 机械地雷。在潜地状态下可向附近的敌方目标发射导弹，在目标周围的小范围区域内造成伤害。 / 可以对地和对空。 |
-| 霍纳收割者 | `HHReaper` | `HHReaper` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 | 游击单位。可以投掷击退手雷和跳跃悬崖。 / 可以对地。 |
-| 霍纳铁鸦 | `HHRaven` | `HHRaven` | Air; Light/Mechanical/Psionic | 矿:100 气:200 人口字段:-2 生命:140 | 空中支援单位。能够使用分析弱点，有雷达传感器。 / 侦测单位 |
-| 霍纳维京战机 | `HHViking` | `HHVikingFighter` | Air; Armored/Mechanical | 矿:400 气:250 人口字段:-4 生命:350 | 坚固的火力支援单位。进入机甲模式后可以对地。 / 可以对空。 |
-| 霍纳怨灵战机 | `HHWraith` | `HHReaper, HHWraith` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 | 高度机动性空中单位。擅长突袭打击。 |
-| 掠食者 | `Predator` | `HHWidowMine, Predator` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 | 机械地雷。在潜地状态下可向附近的敌方目标发射导弹，在目标周围的小范围区域内造成伤害。 / 可以对地和对空。 |
+| 解放者 | `Liberator` | `Liberator` | Air; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:180 护盾:- 能量:- | 重型火炮战机。装载有能对敌方空中单位造成范围伤害的飞弹。可以切换为防卫模式以提供攻城火力。 / 可以对空。 |
+| 恶蝠 | `HHHellionTank` | `HHHellionTank` | Ground; Biological/Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:235 护盾:- 能量:- | 近距离战斗单位，对前方小范围锥形区域造成伤害。可变形为快速侦察单位。 / 可以对地。 |
+| 恶火 | `HHHellion` | `HHHellion` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 护盾:- 能量:- | 快速的侦察者，可发射榴弹减慢敌方单位速度。可变形为近距离战斗单位。 / 可以对地。 |
+| 霍纳的战列巡航舰 | `HHBattlecruiser` | `HHBattlecruiser` | Air; Armored/Massive/Mechanical | 矿:1000 气:800 人口字段:-10 生命:900 护盾:- 能量:- | 强大的战舰。可以使用战术跳跃。 |
+| 霍纳寡妇雷 | `HHWidowMine` | `HHReaper, HHWidowMine` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 护盾:- 能量:- | 机械地雷。在潜地状态下可向附近的敌方目标发射导弹，在目标周围的小范围区域内造成伤害。 / 可以对地和对空。 |
+| 霍纳收割者 | `HHReaper` | `HHReaper` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 护盾:- 能量:- | 游击单位。可以投掷击退手雷和跳跃悬崖。 / 可以对地。 |
+| 霍纳铁鸦 | `HHRaven` | `HHRaven` | Air; Light/Mechanical/Psionic | 矿:100 气:200 人口字段:-2 生命:140 护盾:- 能量:- | 空中支援单位。能够使用分析弱点，有雷达传感器。 / 侦测单位 |
+| 霍纳维京战机 | `HHViking` | `HHVikingFighter` | Air; Armored/Mechanical | 矿:400 气:250 人口字段:-4 生命:350 护盾:- 能量:- | 坚固的火力支援单位。进入机甲模式后可以对地。 / 可以对空。 |
+| 霍纳怨灵战机 | `HHWraith` | `HHReaper, HHWraith` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 护盾:- 能量:- | 高度机动性空中单位。擅长突袭打击。 |
+| 掠食者 | `Predator` | `HHWidowMine, Predator` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 护盾:- 能量:- | 机械地雷。在潜地状态下可向附近的敌方目标发射导弹，在目标周围的小范围区域内造成伤害。 / 可以对地和对空。 |
 
 三阶段口径：`initial` 只做审计，`level15` 表示满级解锁，`power_fusion` 表示 15 级 + 六精通全满 + 威望正向收益后的默认运行清单。
 
@@ -343,18 +344,18 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 解放者 | `Liberator` | `Liberator` | Air; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:180 | 重型火炮战机。装载有能对敌方空中单位造成范围伤害的飞弹。可以切换为防卫模式以提供攻城火力。 / 可以对空。 |
-| 恶蝠 | `HHHellionTank` | `HHHellionTank` | Ground; Biological/Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:235 | 近距离战斗单位，对前方小范围锥形区域造成伤害。可变形为快速侦察单位。 / 可以对地。 |
-| 恶火 | `HHHellion` | `HHHellion` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 | 快速的侦察者，可发射榴弹减慢敌方单位速度。可变形为近距离战斗单位。 / 可以对地。 |
-| 霍纳的战列巡航舰 | `HHBattlecruiser` | `HHBattlecruiser` | Air; Armored/Massive/Mechanical | 矿:1000 气:800 人口字段:-10 生命:900 | 强大的战舰。可以使用战术跳跃。 |
-| 霍纳寡妇雷 | `HHWidowMine` | `HHReaper, HHWidowMine` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 | 机械地雷。在潜地状态下可向附近的敌方目标发射导弹，在目标周围的小范围区域内造成伤害。 / 可以对地和对空。 |
-| 霍纳收割者 | `HHReaper` | `HHReaper` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 | 游击单位。可以投掷击退手雷和跳跃悬崖。 / 可以对地。 |
-| 霍纳铁鸦 | `HHRaven` | `HHRaven` | Air; Light/Mechanical/Psionic | 矿:100 气:200 人口字段:-2 生命:140 | 空中支援单位。能够使用分析弱点，有雷达传感器。 / 侦测单位 |
-| 霍纳维京战机 | `HHViking` | `HHVikingFighter` | Air; Armored/Mechanical | 矿:400 气:250 人口字段:-4 生命:350 | 坚固的火力支援单位。进入机甲模式后可以对地。 / 可以对空。 |
-| 霍纳怨灵战机 | `HHWraith` | `HHReaper, HHWraith` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 | 高度机动性空中单位。擅长突袭打击。 |
-| 掠食者 | `Predator` | `HHWidowMine, Predator` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 | 机械地雷。在潜地状态下可向附近的敌方目标发射导弹，在目标周围的小范围区域内造成伤害。 / 可以对地和对空。 |
+| 解放者 | `Liberator` | `Liberator` | Air; Armored/Mechanical | 矿:150 气:125 人口字段:-3 生命:180 护盾:- 能量:- | 重型火炮战机。装载有能对敌方空中单位造成范围伤害的飞弹。可以切换为防卫模式以提供攻城火力。 / 可以对空。 |
+| 恶蝠 | `HHHellionTank` | `HHHellionTank` | Ground; Biological/Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:235 护盾:- 能量:- | 近距离战斗单位，对前方小范围锥形区域造成伤害。可变形为快速侦察单位。 / 可以对地。 |
+| 恶火 | `HHHellion` | `HHHellion` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 护盾:- 能量:- | 快速的侦察者，可发射榴弹减慢敌方单位速度。可变形为近距离战斗单位。 / 可以对地。 |
+| 霍纳的战列巡航舰 | `HHBattlecruiser` | `HHBattlecruiser` | Air; Armored/Massive/Mechanical | 矿:1000 气:800 人口字段:-10 生命:900 护盾:- 能量:- | 强大的战舰。可以使用战术跳跃。 |
+| 霍纳寡妇雷 | `HHWidowMine` | `HHReaper, HHWidowMine` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 护盾:- 能量:- | 机械地雷。在潜地状态下可向附近的敌方目标发射导弹，在目标周围的小范围区域内造成伤害。 / 可以对地和对空。 |
+| 霍纳收割者 | `HHReaper` | `HHReaper` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 护盾:- 能量:- | 游击单位。可以投掷击退手雷和跳跃悬崖。 / 可以对地。 |
+| 霍纳铁鸦 | `HHRaven` | `HHRaven` | Air; Light/Mechanical/Psionic | 矿:100 气:200 人口字段:-2 生命:140 护盾:- 能量:- | 空中支援单位。能够使用分析弱点，有雷达传感器。 / 侦测单位 |
+| 霍纳维京战机 | `HHViking` | `HHVikingFighter` | Air; Armored/Mechanical | 矿:400 气:250 人口字段:-4 生命:350 护盾:- 能量:- | 坚固的火力支援单位。进入机甲模式后可以对地。 / 可以对空。 |
+| 霍纳怨灵战机 | `HHWraith` | `HHReaper, HHWraith` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:60 护盾:- 能量:- | 高度机动性空中单位。擅长突袭打击。 |
+| 掠食者 | `Predator` | `HHWidowMine, Predator` | Ground; Light/Mechanical | 矿:100 气:- 人口字段:-2 生命:90 护盾:- 能量:- | 机械地雷。在潜地状态下可向附近的敌方目标发射导弹，在目标周围的小范围区域内造成伤害。 / 可以对地和对空。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则。
+实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
 
 ## 10. 指挥官特殊机制
 
@@ -377,7 +378,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 |---|---|---|---|---|---|
 | - | - | - | - | - | command_cards.json 未自动命中特殊机制按钮。 |
 
-实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster 的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
+实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
 ## 11. 指挥官个性化机制
 
@@ -412,6 +413,8 @@ level15_units
 fusion_final_units
 panel_smoke
 hero_smoke
+hero_ability_smoke
+hero_mode_smoke
 unit_ability_smoke
 tech_smoke
 cargo_smoke
@@ -419,14 +422,15 @@ special_mechanic_smoke
 personal_mechanic_smoke
 ```
 
-补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。
+补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。英雄指挥官还要单独验证 `hero_smoke`、`hero_ability_smoke`、`hero_mode_smoke`。
 
 ## `[XM_DBG]` 日志建议
 
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Horner levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Horner levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Horner stage=power_fusion units=10 buildings=0 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Horner stage=power_fusion units=10 buildings=0 heroes=0 result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Horner heroes=0 result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Horner module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Horner module=<module> object=<object> result=needs-casc-audit
 ```
@@ -434,9 +438,9 @@ personal_mechanic_smoke
 ## 第一轮待审计项
 
 - 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
-- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound 闭包。
+- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包。
 - `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
 - 6 项精通的真实作用对象和最终数值。
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
-- 特殊机制和个性化机制是否需要 runtime hook。
+- 特殊机制、英雄成长和个性化机制是否需要 runtime hook。

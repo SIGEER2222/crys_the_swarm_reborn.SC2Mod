@@ -126,46 +126,19 @@ Owner：`CommanderPanelProfile`、`CommanderPanelAbilityProfile`、`CommanderPan
 
 Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbilityProfile`、`CommanderHeroSkillTreeProfile`、`CommanderHeroReviveProfile`、`CommanderHeroModifierProfile`。
 
+### 英雄单位清单
+
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 德哈卡 | `DehakaCoop` | `DehakaCoop` | Ground; Biological/Heroic | 矿:- 气:- 人口字段:- 生命:600 | 原始虫群首领。可以从死亡的敌人身上收集精华，用以进化和增强力量。 / 可以对地。 |
-| 格里维格 | `DehakaGlevig` | `DehakaGlevig` | Ground; Armored/Biological/Heroic/MapBoss/Massive/User1 | 矿:- 气:- 人口字段:- 生命:1500 | 邪恶危险的虫群首领，能够喷吐酸液、钻入地下并且孵化虫卵。 |
-| 穆尔瓦 | `DehakaMurvar` | `DehakaMurvar` | Ground; Armored/Biological/Heroic/MapBoss/Massive | 矿:500 气:- 人口字段:- 生命:2500 | 永恒的虫母。孵化掘地虫并吐出酸液来减缓对手的移动速度。 |
-| 达克伦 | `DehakaDakrun` | `DehakaDakrun` | Ground; Armored/Biological/Heroic/MapBoss/Massive | 矿:- 气:- 人口字段:- 生命:4000 | 体型巨大的虫群首领，擅长向敌人冲锋，能够对缺乏警觉的猎物射出一阵脊针箭雨。 |
+| 德哈卡 | `DehakaCoop` | `DehakaCoop` | Ground; Biological/Heroic | 矿:- 气:- 人口字段:- 生命:600 护盾:- 能量:- | 原始虫群首领。可以从死亡的敌人身上收集精华，用以进化和增强力量。 / 可以对地。 |
+| 格里维格 | `DehakaGlevig` | `DehakaGlevig` | Ground; Armored/Biological/Heroic/MapBoss/Massive/User1 | 矿:- 气:- 人口字段:- 生命:1500 护盾:- 能量:- | 邪恶危险的虫群首领，能够喷吐酸液、钻入地下并且孵化虫卵。 |
+| 穆尔瓦 | `DehakaMurvar` | `DehakaMurvar` | Ground; Armored/Biological/Heroic/MapBoss/Massive | 矿:500 气:- 人口字段:- 生命:2500 护盾:- 能量:- | 永恒的虫母。孵化掘地虫并吐出酸液来减缓对手的移动速度。 |
+| 达克伦 | `DehakaDakrun` | `DehakaDakrun` | Ground; Armored/Biological/Heroic/MapBoss/Massive | 矿:- 气:- 人口字段:- 生命:4000 护盾:- 能量:- | 体型巨大的虫群首领，擅长向敌人冲锋，能够对缺乏警觉的猎物射出一阵脊针箭雨。 |
 
-### 英雄/形态候选
-
-- 精华收集者 (`DehakaPHLevel01`)
-- 新单位：掠食龙和原始点火虫 (`DehakaPHLevel02`)
-- 掠食龙升级包 (`DehakaPHLevel03`)
-- 深槽虫道 (`DehakaPHLevel04`)
-- 原始洞察 (`DehakaPHLevel05`)
-- 新单位：原始异龙和原始守护者 (`DehakaPHLevel06`)
-- 原始异龙和原始守护者升级包 (`DehakaPHLevel07`)
-- 新单位：掘地虫宿主和原始穿刺者 (`DehakaPHLevel08`)
-- 原始点火虫和原始穿刺者升级包 (`DehakaPHLevel09`)
-- 进化的虫群首领 (`DehakaPHLevel10`)
-- 新单位：暴龙兽 (`DehakaPHLevel11`)
-- 生存本能 (`DehakaPHLevel12`)
-- 精英原始异虫升级包 (`DehakaPHLevel13`)
-- 泽鲁斯的狡诈 (`DehakaPHLevel14`)
-
-口径：德哈卡吞噬/精华/突变成长需要 runtime hook 记录资源、等级和技能解锁。
-
-待审计：Hero Unit、技能按钮、复活、形态切换、武器/Actor/Sound 闭包。
-
-## 03. 普通单位技能及其进化功能
-
-Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderUnitEvolutionProfile`、`CommanderUnitBehaviorProfile`、`CommanderUnitWeaponProfile`。
-
-### 单位技能按钮候选
+### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 德哈卡 | `MoveChampions` | MoveChampions | `move,Move` | - | - |
-| 德哈卡 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 德哈卡 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 德哈卡 | `AttackChampions` | AttackChampions | `attack,Execute` | - | - |
 | 德哈卡 | `DehakaMendingAura` | 原始恢复 | `DehakaMendingAura,Off` | - | 德哈卡附近的友方单位每秒恢复{Effect,DehakaMendingAuraHealA,VitalArray[Life].Change * 2}点生命值。 |
 | 德哈卡 | `DehakaDetector` | 敏锐感官 | `DehakaDetector,Off` | - | 侦测隐形、潜地和幻像单位。 |
 | 德哈卡 | `DehakaArmorUpgrade` | 骨板 | `DehakaArmorUpgrade,Off` | - | 护甲提高{Behavior,DehakaArmorUpgrade1,Modification.LifeArmorBonus}点。 |
@@ -184,51 +157,26 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 德哈卡 | `LearnDehakaIntimidatingRoar` | 进化破胆咆哮 | `DehakaLearn,Learn8` | - | 德哈卡威慑附近的敌人，使他们的移动速度降低75%，攻击速度降低25%，持续{Behavior,DehakaIntimidatingRoar,Duratio... |
 | 德哈卡 | `LearnDehakaConsume` | 进化吞食 | `DehakaLearn,Learn3` | - | 德哈卡立刻杀死目标敌人，恢复{Effect,DehakaConsumeEffectHealOther,VitalArray[Life].ChangeFra... |
 | 德哈卡 | `LearnDehakaMammothBreath` | 进化灼热吐息 | `DehakaLearn,Learn4` | - | 德哈卡的灼热气息烧焦了土地，对沿途所有敌方地面单位造成武器伤害（{$AccumulatedValue:Effect,MammothBreathDamage... |
-| 原始工蜂 | `MapObjectInteract` | MapObjectInteract | `MapObjectInteract,Execute` | - | - |
-| 原始工蜂 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 原始工蜂 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 原始工蜂 | `AttackWorker` | AttackWorker | `attack,Execute` | - | - |
-| 原始工蜂 | `GatherZerg` | 采集 | `DroneHarvest,Gather` | - | 命令工蜂从选中的矿脉或瓦斯气泉采集资源。 |
-| 原始工蜂 | `DehakaBuild` | 召唤建筑 | `255,255` | - | 可以召唤的建筑列表。 |
-| 原始工蜂 | `Spray` | 喷漆 | `SprayZerg,Execute` | - | 命令单位将你当前所选喷漆图案喷绘在目标位置的地表上。 |
-| 原始工蜂 | `DehakaHatchery` | 召唤原始主巢 | `DehakaDroneMorph,Build1` | - | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
-| 原始工蜂 | `DehakaBarracks` | 召唤原始战争之巢 | `DehakaDroneMorph,Build2` | - | 原始异虫生产建筑。 / 开启： / - 原始跳虫 |
-| 原始工蜂 | `DehakaGlevigStructure` | 召唤格里维格的巢穴 | `DehakaDroneMorph,Build3` | - | 为原始蟑螂、原始刺蛇、穿刺者和掠食龙提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始蟑螂 / - 使原始战争之巢可以孵化原始刺蛇 / - 使... |
-| 原始工蜂 | `DehakaMurvarStructure` | 召唤穆尔瓦的巢穴 | `DehakaDroneMorph,Build4` | - | 为原始异龙、原始守护者和掘地虫宿主提供升级方案。 / 开启： / - 可以在原始战争之巢中孵化原始宿主。 |
-| 原始工蜂 | `DehakaDakrunStructure` | 召唤达克伦的巢穴 | `DehakaDroneMorph,Build5` | - | 为原始雷兽和暴龙兽提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始雷兽。 |
-| 原始工蜂 | `DehakaNydusDestroyer` | 召唤原始蠕虫 | `DehakaDroneMorph,Build6` | - | 强力防御建筑。 / 可以对地和对空。 / 侦测单位 |
-| 掘地虫 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 掘地虫 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 爆裂掘地虫 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 爆裂掘地虫 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 爆裂掘地虫 | `DehakaLocustFlyingSwoop` | DehakaLocustFlyingSwoop | `DehakaLocustFlyingSwoop,Execute` | - | - |
-| 格里维格 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 格里维格 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 格里维格 | `GlevigFireBreathLocked` | 易燃酸液 | `-` | DehakaLevel10 | 该技能将在指挥官等级10时解锁。 |
 | 格里维格 | `GlevigSpitfirePassive` | 助燃腺体 | `-` | - | 格里维格的普通攻击造成范围伤害。 |
 | 格里维格 | `CommanderPrestigeDehakaPackLeadersRetreat` | 为陛下让路 | `CommanderPrestigeDehakaPackLeadersRetreat,Execute` | - | 强迫这个虫群首领撤退，并让德哈卡返回战场。 |
 | 格里维格 | `GlevigTunnel` | 深槽虫道 | `GlevigDeepTunnel,Execute` | - | 格里维格潜地后到达目标位置并喷发，震退范围内的单位并造成伤害。 |
-| 穆尔瓦 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 穆尔瓦 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 穆尔瓦 | `CoopMurvarSpawnCreepers` | 孵化虫群 | `CoopMurvarSpawnCreepers,Execute` | - | 孵化6只原始蝗虫进行战斗，持续{Behavior,DehakaLocustTimedLife,Duration}秒。 |
 | 穆尔瓦 | `MurvarPukeCoop` | 压制恶臭 | `MurvarCoopPuke,Execute` | - | 制造一团云雾，减速敌方单位和建筑，并使其无法攻击和使用能量技能，持续{(Effect,CoopMurvarPukeCP,PeriodCount) * Ef... |
 | 穆尔瓦 | `CommanderPrestigeDehakaPackLeadersRetreat` | 为陛下让路 | `CommanderPrestigeDehakaPackLeadersRetreat,Execute` | - | 强迫这个虫群首领撤退，并让德哈卡返回战场。 |
-| 达克伦 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 达克伦 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 达克伦 | `DakrunCrashingCharge` | 野蛮冲锋 | `KraithCrashingCharge,Execute` | - | 向目标位置冲锋，击退该位置的单位并造成{Effect,DehakaDakrunCrashingChargeDamage,Amount}点伤害。 |
 | 达克伦 | `DakrunGreaterSpikedHideLocked` | 大型尖刺厚皮 | `-` | DehakaLevel10 | 该技能将在指挥官等级10时解锁。 |
 | 达克伦 | `CommanderPrestigeDehakaPackLeadersRetreat` | 为陛下让路 | `CommanderPrestigeDehakaPackLeadersRetreat,Execute` | - | 强迫这个虫群首领撤退，并让德哈卡返回战场。 |
-| 原始刺蛇 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 原始刺蛇 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
-| 原始刺蛇 | `DehakaHydraliskSpeed` | 肌腱扩增 | `-` | HaveDehakaHydraliskSpeed | 提高移动速度和攻击射程。 |
-| 原始刺蛇 | `PrimalCombatPrimalMutaliskLocked` | 原始战斗 | `-` | DehakaLevel06 | 该单位将在指挥官等级6时解锁。 |
-| ... | ... | ... | ... | ... | 还有 79 项，后续从 command_cards.json 继续展开 |
 
-### 进化/形态/切换候选
+
+备注：已过滤 10 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
+### 英雄形态/模式候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
+| 德哈卡 | `DehakaDetector` | 敏锐感官 | `DehakaDetector,Off` | - | 侦测隐形、潜地和幻像单位。 |
 | 德哈卡 | `DehakaLearnAbilities` | 进化突变 | `-` | - | 你有尚未分配的突变点数。点击此处进行分配。 |
+| 德哈卡 | `DehakaDeepTunnelLocked` | 深槽虫道 | `-` | DehakaLevel04 | 该技能将在指挥官等级4时解锁。 |
 | 德哈卡 | `EvolveDehakaPrimalRegenerationLocked` | 进化原始恢复 | `-` | DehakaLevel12 | 该技能将在指挥官等级12时解锁。 |
 | 德哈卡 | `EvolveDehakaKeenSensesLocked` | 进化敏锐感官 | `-` | DehakaLevel05 | 该技能将在指挥官等级5时解锁。 |
 | 德哈卡 | `EvolveDehakaChitinousPlatingLocked` | 进化骨板 | `-` | DehakaLevel05 | 该技能将在指挥官等级5时解锁。 |
@@ -237,6 +185,86 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 德哈卡 | `LearnDehakaIntimidatingRoar` | 进化破胆咆哮 | `DehakaLearn,Learn8` | - | 德哈卡威慑附近的敌人，使他们的移动速度降低75%，攻击速度降低25%，持续{Behavior,DehakaIntimidatingRoar,Duratio... |
 | 德哈卡 | `LearnDehakaConsume` | 进化吞食 | `DehakaLearn,Learn3` | - | 德哈卡立刻杀死目标敌人，恢复{Effect,DehakaConsumeEffectHealOther,VitalArray[Life].ChangeFra... |
 | 德哈卡 | `LearnDehakaMammothBreath` | 进化灼热吐息 | `DehakaLearn,Learn4` | - | 德哈卡的灼热气息烧焦了土地，对沿途所有敌方地面单位造成武器伤害（{$AccumulatedValue:Effect,MammothBreathDamage... |
+| 格里维格 | `GlevigTunnel` | 深槽虫道 | `GlevigDeepTunnel,Execute` | - | 格里维格潜地后到达目标位置并喷发，震退范围内的单位并造成伤害。 |
+| 穆尔瓦 | `CoopMurvarSpawnCreepers` | 孵化虫群 | `CoopMurvarSpawnCreepers,Execute` | - | 孵化6只原始蝗虫进行战斗，持续{Behavior,DehakaLocustTimedLife,Duration}秒。 |
+
+### 英雄相关等级解锁
+
+| 等级 | 名称 | 升级 | AbilityCmd | 说明 |
+|---|---|---|---|---|
+| Lv1 | 精华收集者 | `-` | `-` | 德哈卡可以收集精华、变强和选择突变。德哈卡孵化速度比其他英雄单位都要快，而且可以吞食原始工蜂来缩短复活时间。 |
+| Lv2 | 新单位：掠食龙和原始点火虫 | `DehakaLevel02Tooltips` | `PrimalZerglingRavasaurMerge:, PrimalZerglingRavasaurMerge:1, PrimalRoachLevel2Merge:, PrimalRoachLevel2Merge:1` | 可以指挥单位进行原始战斗，强迫进化。解锁以下新进化： / 原始跳虫可以进化为掠食龙。原始蟑螂可以进化为原始点火虫。 |
+| Lv3 | 掠食龙升级包 | `-` | `DehakaGlevigResearch:8, DehakaGlevigResearch:9` | 在格里维格的巢穴中解锁以下升级： / 掠食龙的移动速度和攻击射程提高。掠食龙对重甲敌人的伤害提高15点。 |
+| Lv4 | 深槽虫道 | `-` | `DehakaDeepTunnel:, NydusDestroyerDeepTunnel:, GreaterNydusDestroyerDeepTunnel:` | 德哈卡、原始蠕虫和大型原始蠕虫获得深槽虫道技能。 |
+| Lv5 | 原始洞察 | `-` | `DehakaLearn:5, DehakaLearn:8` | 德哈卡的等级上限从10级提高至12级，并解锁以下突变选择： / 获得侦测隐形和潜地单位的技能。提高护甲。 |
+| Lv6 | 新单位：原始异龙和原始守护者 | `DehakaLevel06Tooltips` | `PrimalRoachGuardianMerge:, PrimalRoachGuardianMerge:1, PrimalHydraliskToMutalisk:, PrimalHydraliskToMutalisk:1, DehakaMurvarResearch:7, DehakaMurvarResearch:9, DehakaMurvarResearch:12` | 可以指挥单位进行原始战斗，强迫进化。解锁以下新进化： / 原始刺蛇可以进化为原始异龙。原始蟑螂可以进化为原始守护者。 |
+| Lv7 | 原始异龙和原始守护者升级包 | `-` | `DehakaMurvarResearch:8, DehakaMurvarResearch:10, DehakaGuardianMineCharge:` | 在穆尔瓦的巢穴中解锁以下升级： / 原始异龙死亡后会很快复活。原始守护者可以对敌方地面单位发射范围伤害孢子。 |
+| Lv8 | 新单位：掘地虫宿主和原始穿刺者 | `DehakaLevel08Tooltips` | `PrimalSwarmHostMerge:, PrimalSwarmHostMerge:1, PrimalHydraliskImpalerMerge:, PrimalHydraliskImpalerMerge:1` | 可以指挥单位进行原始战斗，强迫进化。解锁以下新进化： / 原始刺蛇可以进化为穿刺者。原始宿主可以进化为掘地虫宿主。 |
+| Lv9 | 原始点火虫和原始穿刺者升级包 | `-` | `DehakaGlevigResearch:2, DehakaGlevigResearch:10` | 在格里维格的巢穴中解锁以下升级： / 原始点火虫对轻甲单位造成额外伤害。穿刺者的攻击对敌人造成暴捶效果，使其受到持续伤害。德哈卡吞食被暴捶的敌人后产生的冷却时间是通常... |
+| Lv10 | 进化的虫群首领 | `DehakaPrimalBossUpgrades` | `DehakaGlevigFirebreath:, NydusDestroyerBeam:, DehakaNydusDestroyerTimedNoFoodBeam:` | 虫群首领和原始蠕虫获得新技能： / 格里维格获得火焰吐息，可以造成范围伤害。穆尔瓦还会孵化爆裂掘地虫。达克伦可以把伤害反弹给敌方攻击单位。原始蠕虫和大型原始蠕虫获得发... |
+| Lv11 | 新单位：暴龙兽 | `DehakaLevel11Tooltips` | `PrimalUltraliskLevel2Merge:, PrimalUltraliskLevel2Merge:1, DehakaDakrunResearch:4` | 可以指挥单位进行原始战斗，强迫进化。解锁以下新进化： / 原始雷兽可以进化为暴龙兽。暴龙兽获得范围性伤害技能。 |
+| Lv12 | 生存本能 | `-` | `DehakaLearn:4, DehakaLearn:10` | 德哈卡的等级上限从12级提高至14级，并解锁以下突变选择： / 被动治疗附近的友方单位。可以对空。 |
+| Lv13 | 精英原始异虫升级包 | `-` | `DehakaDakrunResearch:2, DehakaDakrunResearch:3, DehakaMurvarResearch:11` | 在穆尔瓦和达克伦的巢穴中解锁以下升级： / 原始雷兽和暴龙兽的攻击有几率击晕敌人。暴龙兽使附近友方单位获得额外护甲。掘地虫宿主的掘地虫的移动速度提高，而且可以对空。 |
+| Lv14 | 泽鲁斯的狡诈 | `DehakaBonusSkillPoint` | `-` | 德哈卡的等级上限从14级提高至15级，并且一开始就有额外的突变点数。 |
+
+口径：德哈卡本体和三原始首领都按英雄/特殊英雄处理；德哈卡成长与精华状态由特殊机制模块补状态机。
+
+待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
+
+## 03. 普通单位技能及其进化功能
+
+Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderUnitEvolutionProfile`、`CommanderUnitBehaviorProfile`、`CommanderUnitWeaponProfile`。
+
+### 单位技能按钮候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 原始工蜂 | `GatherZerg` | 采集 | `DroneHarvest,Gather` | - | 命令工蜂从选中的矿脉或瓦斯气泉采集资源。 |
+| 原始工蜂 | `DehakaBuild` | 召唤建筑 | `255,255` | - | 可以召唤的建筑列表。 |
+| 原始工蜂 | `DehakaHatchery` | 召唤原始主巢 | `DehakaDroneMorph,Build1` | - | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
+| 原始工蜂 | `DehakaBarracks` | 召唤原始战争之巢 | `DehakaDroneMorph,Build2` | - | 原始异虫生产建筑。 / 开启： / - 原始跳虫 |
+| 原始工蜂 | `DehakaGlevigStructure` | 召唤格里维格的巢穴 | `DehakaDroneMorph,Build3` | - | 为原始蟑螂、原始刺蛇、穿刺者和掠食龙提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始蟑螂 / - 使原始战争之巢可以孵化原始刺蛇 / - 使... |
+| 原始工蜂 | `DehakaMurvarStructure` | 召唤穆尔瓦的巢穴 | `DehakaDroneMorph,Build4` | - | 为原始异龙、原始守护者和掘地虫宿主提供升级方案。 / 开启： / - 可以在原始战争之巢中孵化原始宿主。 |
+| 原始工蜂 | `DehakaDakrunStructure` | 召唤达克伦的巢穴 | `DehakaDroneMorph,Build5` | - | 为原始雷兽和暴龙兽提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始雷兽。 |
+| 原始工蜂 | `DehakaNydusDestroyer` | 召唤原始蠕虫 | `DehakaDroneMorph,Build6` | - | 强力防御建筑。 / 可以对地和对空。 / 侦测单位 |
+| 爆裂掘地虫 | `DehakaLocustFlyingSwoop` | DehakaLocustFlyingSwoop | `DehakaLocustFlyingSwoop,Execute` | - | - |
+| 原始刺蛇 | `DehakaHydraliskSpeed` | 肌腱扩增 | `-` | HaveDehakaHydraliskSpeed | 提高移动速度和攻击射程。 |
+| 原始刺蛇 | `PrimalCombatPrimalMutaliskLocked` | 原始战斗 | `-` | DehakaLevel06 | 该单位将在指挥官等级6时解锁。 |
+| 原始刺蛇 | `PrimalCombatPrimalImpalerLocked` | 原始战斗 | `-` | DehakaLevel08 | 该单位将在指挥官等级8时解锁。 |
+| 原始异龙 | `DehakaGeneCarapacePassive` | 进化甲壳 | `-` | HaveDehakaGeneCarapace | 该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplier... |
+| 原始异龙 | `DehakaGeneAttackSpeedPassive` | 进化肾上腺体 | `-` | HaveDehakaGeneAttackSpeed | 该单位的攻击速度提高{Behavior,DehakaGeneAttackSpeed,Modification.AttackSpeedMultiplier-... |
+| 原始异龙 | `DehakaGeneLifeLeechPassive` | 进化吸血 | `-` | HaveDehakaGeneLifeLeech | 该单位会把造成伤害的{Behavior,DehakaGeneLifeLeech,Modification.VitalDamageLeechArray[Li... |
+| 原始异龙 | `SlicingGlave` | 切割之爪 | `-` | UseDehakaMutaliskAirDoubleDamage | 对空中单位造成的伤害提高{(Effect,DehakaMutaliskAirLevel3GlaiveWurmDamage,Amount-Effect,De... |
+| 原始异龙 | `DehakaMutaliskDamageReduction` | 变换甲壳 | `-` | HaveDehakaMutaliskDamageReduction | 原始异龙在移动时受到的伤害降低{Behavior,DehakaMutaliskDamageReduction,Modification.DamageTak... |
+| 原始异龙 | `DehakaMutaliskRespawnOnDeath` | 原始重组 | `-` | HaveDehakaMutaliskRespawnOnDeath | 原始异龙在死亡后很快会复活。该效果每{Behavior,DehakaMutaliskTimerBehavior,Cost.Cooldown.TimeSta... |
+| 掘地虫宿主 | `DehakaGeneCarapacePassive` | 进化甲壳 | `-` | HaveDehakaGeneCarapace | 该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplier... |
+| 掘地虫宿主 | `DehakaGeneCreepersPassive` | 进化孵化囊 | `-` | HaveDehakaGeneCreepers | 该掘地虫宿主孵化的掘地虫数量翻倍。 |
+| 掘地虫宿主 | `SetRallyPoint2` | 设定集结点 | `ProgressRally,Rally1` | - | 将生成的单位派往指定地点。 |
+| 掘地虫宿主 | `DehakaSpawnLocustsBomb` | 孵化爆裂掘地虫 | `DehakaSpawnCreeperTargeted,Execute` | - | 通过孵化爆裂掘地虫进行攻击的攻城单位。掘地虫持续{Behavior,DehakaLocustTimedLife,Duration}秒。 / 掘地虫可以对地。 |
+| 掘地虫宿主 | `DehakaFlyingCreeperLocusts` | 飞行爆裂掘地虫 | `-` | - | 掘地虫宿主孵化的掘地虫可以飞行。掘地虫可以俯冲轰炸地面目标。 |
+| 掘地虫宿主 | `DehakaCreeperAirSuicide` | 空中爆囊 | `-` | HaveDehakaSwarmHostCreepers | 掘地虫可以对空，并提高他们的移动速度。 |
+| 掘地虫宿主 | `SwarmHostBurrowDown` | 潜地 | `DehakaMorphToPrimalSwarmHostBurrowed,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
+| 掠食龙 | `DehakaGeneCarapacePassive` | 进化甲壳 | `-` | HaveDehakaGeneCarapace | 该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplier... |
+| 掠食龙 | `DehakaGeneAttackSpeedPassive` | 进化肾上腺体 | `-` | HaveDehakaGeneAttackSpeed | 该单位的攻击速度提高{Behavior,DehakaGeneAttackSpeed,Modification.AttackSpeedMultiplier-... |
+| 掠食龙 | `DehakaGeneLifeLeechPassive` | 进化吸血 | `-` | HaveDehakaGeneLifeLeech | 该单位会把造成伤害的{Behavior,DehakaGeneLifeLeech,Modification.VitalDamageLeechArray[Li... |
+| 掠食龙 | `SetRallyPoint2` | 设定集结点 | `ProgressRally,Rally1` | - | 将生成的单位派往指定地点。 |
+| 掠食龙 | `DehakaRavasaurVSArmor` | 溶解强酸 | `-` | HaveDehakaRavasaurVSArmor | 对重甲目标造成+{$UpgradeEffectArrayValue:DehakaRavasaurVSArmor:Effect,DehakaRavasaur... |
+| 掠食龙 | `DehakaRavasaurRange` | 膨胀腮腺 | `-` | HaveDehakaRavasaurRange | 提高移动速度和攻击射程。 |
+| 原始蟑螂 | `RapidRegeneration` | 极速再生 | `-` | - | 蟑螂在潜地时能够以极快的速度恢复生命值。 |
+| 原始蟑螂 | `DehakaGlialReconstitution` | 神经胶原重组 | `-` | HaveDehakaRoachMoveSpeed | 移动速度提高。 |
+| 原始蟑螂 | `PrimalCombatPrimalIgniterLocked` | 原始战斗 | `-` | DehakaLevel02 | 该单位将在指挥官等级2时解锁。 |
+| 原始蟑螂 | `PrimalCombatPrimalGuardianLocked` | 原始战斗 | `-` | DehakaLevel06 | 该单位将在指挥官等级6时解锁。 |
+| 原始点火虫 | `DehakaGeneCarapacePassive` | 进化甲壳 | `-` | HaveDehakaGeneCarapace | 该单位的生命值提高{Behavior,DehakaGeneCarapace,Modification.VitalMaxAdditiveMultiplier... |
+| 原始点火虫 | `DehakaGeneAttackSpeedPassive` | 进化肾上腺体 | `-` | HaveDehakaGeneAttackSpeed | 该单位的攻击速度提高{Behavior,DehakaGeneAttackSpeed,Modification.AttackSpeedMultiplier-... |
+| 原始点火虫 | `DehakaGeneLifeLeechPassive` | 进化吸血 | `-` | HaveDehakaGeneLifeLeech | 该单位会把造成伤害的{Behavior,DehakaGeneLifeLeech,Modification.VitalDamageLeechArray[Li... |
+| ... | ... | ... | ... | ... | 还有 41 项，后续从 command_cards.json 继续展开 |
+
+
+备注：已过滤 22 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
+### 进化/形态/切换候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
 | 原始工蜂 | `DehakaHatchery` | 召唤原始主巢 | `DehakaDroneMorph,Build1` | - | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
 | 原始工蜂 | `DehakaBarracks` | 召唤原始战争之巢 | `DehakaDroneMorph,Build2` | - | 原始异虫生产建筑。 / 开启： / - 原始跳虫 |
 | 原始工蜂 | `DehakaGlevigStructure` | 召唤格里维格的巢穴 | `DehakaDroneMorph,Build3` | - | 为原始蟑螂、原始刺蛇、穿刺者和掠食龙提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始蟑螂 / - 使原始战争之巢可以孵化原始刺蛇 / - 使... |
@@ -258,9 +286,18 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 格里维格的巢穴 | `EvolveEnlargedParotidGlandsLocked` | 进化膨胀腮腺 | `-` | DehakaLevel03 | 该科技将在指挥官等级3时解锁。 |
 | 格里维格的巢穴 | `DehakaRoachMoveSpeed` | 进化神经胶原重组 | `DehakaGlevigResearch,Research7` | - | 使原始蟑螂和原始点火虫的移动速度提高。 |
 | 格里维格的巢穴 | `EvolveConcentratedFireLocked` | 进化汇聚烈焰 | `-` | DehakaLevel09 | 该科技将在指挥官等级9时解锁。 |
-| ... | ... | ... | ... | ... | 还有 48 项，后续从 command_cards.json 继续展开 |
+| 格里维格的巢穴 | `ResearchDehakaHydraliskSpeed` | 进化肌腱扩增 | `DehakaGlevigResearch,Research8` | - | 提高原始刺蛇的移动速度和攻击射程。 |
+| 格里维格的巢穴 | `EvolveTenderizeLocked` | 进化暴捶 | `-` | DehakaLevel09 | 该科技将在指挥官等级9时解锁。 |
+| 格里维格的巢穴 | `DehakaRoachPassive` | 原始蟑螂 | `-` | - | 格里维格的巢穴使你可以孵化原始蟑螂。 |
+| 格里维格的巢穴 | `PrimalIgniterPassive` | 原始点火虫 | `-` | PrimalIgniterPassive | 格里维格的巢穴使你可以进化原始点火虫。 |
+| 格里维格的巢穴 | `PrimalHydraliskPassive` | 原始刺蛇 | `-` | - | 格里维格的巢穴使你可以孵化原始刺蛇。 |
+| 格里维格的巢穴 | `PrimalImpalerPassive` | 原始穿刺者 | `-` | PrimalImpalerPassive | 格里维格的巢穴使你可以进化原始穿刺者。 |
+| 穆尔瓦的巢穴 | `EvolveSlicingGlaveLocked` | 切割之爪 | `-` | DehakaLevel06 | 该科技将在指挥官等级6时解锁。 |
+| 穆尔瓦的巢穴 | `EvolveShiftingCarapaceLocked` | 进化变换甲壳 | `-` | DehakaLevel06 | 该科技将在指挥官等级6时解锁。 |
+| 穆尔瓦的巢穴 | `EvolvePrimalReconstitutionLocked` | 进化原始重组 | `-` | DehakaLevel07 | 该科技将在指挥官等级7时解锁。 |
+| ... | ... | ... | ... | ... | 还有 38 项，后续从 command_cards.json 继续展开 |
 
-实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。
+实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。英雄单位已从本模块候选中排除，统一归 `02. 英雄单位及其技能`。
 
 ## 04. 初始化基地与特殊建筑
 
@@ -270,11 +307,11 @@ Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpeci
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 原始主巢 | `DehakaHatchery` | `DehakaHatchery` | Ground; Armored/Biological/Structure | 矿:450 气:- 人口字段:-6 生命:1500 | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
-| 原始主巢 | `DehakaAirTownHall` | `DehakaAirTownHall` | Ground; Armored/Biological/Structure | 矿:450 气:- 人口字段:24 生命:1500 | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
-| 格里维格的巢穴 | `DehakaGlevigStructure` | `DehakaGlevigStructure` | Ground; Armored/Biological/Structure | 矿:250 气:100 人口字段:- 生命:1500 | 为原始蟑螂、原始刺蛇、穿刺者和掠食龙提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始蟑螂 / - 使原始战争之巢可以孵化原始刺蛇 / -... |
-| 穆尔瓦的巢穴 | `DehakaMurvarStructure` | `DehakaMurvarStructure` | Ground; Armored/Biological/Structure | 矿:250 气:200 人口字段:- 生命:1500 | 为原始异龙、原始守护者和掘地虫宿主提供升级方案。 / 开启： / - 可以在原始战争之巢中孵化原始宿主。 |
-| 达克伦的巢穴 | `DehakaDakrunStructure` | `DehakaDakrunStructure` | Ground; Armored/Biological/Structure | 矿:250 气:200 人口字段:- 生命:1500 | 为原始雷兽和暴龙兽提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始雷兽。 |
+| 原始主巢 | `DehakaHatchery` | `DehakaHatchery` | Ground; Armored/Biological/Structure | 矿:450 气:- 人口字段:-6 生命:1500 护盾:- 能量:- | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
+| 原始主巢 | `DehakaAirTownHall` | `DehakaAirTownHall` | Ground; Armored/Biological/Structure | 矿:450 气:- 人口字段:24 生命:1500 护盾:- 能量:- | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
+| 格里维格的巢穴 | `DehakaGlevigStructure` | `DehakaGlevigStructure` | Ground; Armored/Biological/Structure | 矿:250 气:100 人口字段:- 生命:1500 护盾:- 能量:- | 为原始蟑螂、原始刺蛇、穿刺者和掠食龙提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始蟑螂 / - 使原始战争之巢可以孵化原始刺蛇 / -... |
+| 穆尔瓦的巢穴 | `DehakaMurvarStructure` | `DehakaMurvarStructure` | Ground; Armored/Biological/Structure | 矿:250 气:200 人口字段:- 生命:1500 护盾:- 能量:- | 为原始异龙、原始守护者和掘地虫宿主提供升级方案。 / 开启： / - 可以在原始战争之巢中孵化原始宿主。 |
+| 达克伦的巢穴 | `DehakaDakrunStructure` | `DehakaDakrunStructure` | Ground; Armored/Biological/Structure | 矿:250 气:200 人口字段:- 生命:1500 护盾:- 能量:- | 为原始雷兽和暴龙兽提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始雷兽。 |
 
 ### 特殊建筑候选
 
@@ -282,30 +319,30 @@ Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpeci
 |---|---|---|---|---|---|
 | - | - | - | - | - | 官方 buildings.json 未自动命中特殊建筑；特殊结构可能由触发器或隐藏 caster 创建。 |
 
-实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster 和特殊建筑。
+实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster、英雄初始单位和特殊建筑。
 
 ## 05. 指挥官兵种
 
 Owner：`CommanderRosterProfile`、`CommanderUnitProfile`、`CommanderUnitTrainProfile`、`CommanderUnitStageProfile`、`CommanderUnitRequirementProfile`。
 
-来源：官方提取 `units.json`。这里列的是当前已提取 Catalog 对象；满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
+来源：官方提取 `units.json`。这里列的是当前已提取普通/生产单位 Catalog 对象；英雄单位单独在 `02. 英雄单位及其技能` 中维护。满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 原始工蜂 | `DehakaDrone` | `DehakaDrone` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:40 | 基础工作单位。用于采集晶体矿和高能瓦斯。可以召唤建筑。 / 可以对地。 |
-| 掘地虫 | `DehakaCreeper` | `DehakaCreeper` | Ground; Biological/Light | 矿:- 气:- 人口字段:- 生命:130 | - |
-| 爆裂掘地虫 | `DehakaCreeperFlying` | `DehakaCreeperFlying` | Air; Biological/Light | 矿:- 气:- 人口字段:- 生命:130 | 孵化自掘地虫宿主。爆裂掘地虫持续{Behavior,DehakaCreeperTimedLife,Duration}秒。 / 可以对地。 |
-| 原始刺蛇 | `DehakaHydraliskLevel2` | `DehakaHydraliskLevel2` | Ground; Biological/Light | 矿:100 气:50 人口字段:-2 生命:100 | - |
-| 原始异龙 | `DehakaMutaliskLevel3` | `DehakaMutaliskLevel3` | Air; Biological/Light | 矿:100 气:100 人口字段:-3 生命:200 | - |
-| 掘地虫宿主 | `DehakaPrimalSwarmHost` | `DehakaPrimalSwarmHost` | Ground; Armored/Biological | 矿:100 气:75 人口字段:-5 生命:160 | 通过孵化掘地虫进行攻击的攻城单位。 / 掘地虫可以对地。 |
-| 掠食龙 | `DehakaRavasaur` | `DehakaRavasaur` | Ground; Armored/Biological | 矿:150 气:50 人口字段:-2 生命:90 | 远程单位。可以远距离发射大量酸性液体。 / 可以对地。 |
-| 原始蟑螂 | `DehakaRoachLevel2` | `DehakaRoachLevel2` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-2 生命:175 | - |
-| 原始点火虫 | `DehakaRoachLevel3` | `DehakaRoachLevel3` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-3 生命:350 | 突击单位。可造成范围伤害。潜地时能快速恢复生命值。 / 可以对地。 |
-| 原始宿主 | `DehakaSwarmHost` | `DehakaSwarmHost` | Ground; Armored/Biological | 矿:100 气:75 人口字段:-3 生命:160 | 通过孵化蝗虫进行攻击的攻城单位。 / 蝗虫可以对地。 |
-| 原始雷兽 | `DehakaUltraliskLevel2` | `DehakaUltraliskLevel2` | Ground; Armored/Biological/Massive | 矿:300 气:200 人口字段:-6 生命:625 | - |
-| 暴龙兽 | `DehakaUltraliskLevel3` | `DehakaUltraliskLevel3` | Ground; Armored/Biological/Massive | 矿:450 气:300 人口字段:-9 生命:1000 | 重型攻击猛兽。可造成地面范围伤害。 / 可以对地和对空。 |
-| 原始跳虫 | `DehakaZerglingLevel2` | `DehakaZerglingLevel2` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:90 | - |
-| 穿刺者 | `ImpalerDehaka` | `ImpalerDehaka` | Ground; Armored/Biological | 矿:200 气:100 人口字段:-3 生命:200 | 远程反重甲伏击单位。必须潜地后才能发动攻击。 / 可以对地。 |
+| 原始工蜂 | `DehakaDrone` | `DehakaDrone` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:40 护盾:- 能量:- | 基础工作单位。用于采集晶体矿和高能瓦斯。可以召唤建筑。 / 可以对地。 |
+| 掘地虫 | `DehakaCreeper` | `DehakaCreeper` | Ground; Biological/Light | 矿:- 气:- 人口字段:- 生命:130 护盾:- 能量:- | - |
+| 爆裂掘地虫 | `DehakaCreeperFlying` | `DehakaCreeperFlying` | Air; Biological/Light | 矿:- 气:- 人口字段:- 生命:130 护盾:- 能量:- | 孵化自掘地虫宿主。爆裂掘地虫持续{Behavior,DehakaCreeperTimedLife,Duration}秒。 / 可以对地。 |
+| 原始刺蛇 | `DehakaHydraliskLevel2` | `DehakaHydraliskLevel2` | Ground; Biological/Light | 矿:100 气:50 人口字段:-2 生命:100 护盾:- 能量:- | - |
+| 原始异龙 | `DehakaMutaliskLevel3` | `DehakaMutaliskLevel3` | Air; Biological/Light | 矿:100 气:100 人口字段:-3 生命:200 护盾:- 能量:- | - |
+| 掘地虫宿主 | `DehakaPrimalSwarmHost` | `DehakaPrimalSwarmHost` | Ground; Armored/Biological | 矿:100 气:75 人口字段:-5 生命:160 护盾:- 能量:- | 通过孵化掘地虫进行攻击的攻城单位。 / 掘地虫可以对地。 |
+| 掠食龙 | `DehakaRavasaur` | `DehakaRavasaur` | Ground; Armored/Biological | 矿:150 气:50 人口字段:-2 生命:90 护盾:- 能量:- | 远程单位。可以远距离发射大量酸性液体。 / 可以对地。 |
+| 原始蟑螂 | `DehakaRoachLevel2` | `DehakaRoachLevel2` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-2 生命:175 护盾:- 能量:- | - |
+| 原始点火虫 | `DehakaRoachLevel3` | `DehakaRoachLevel3` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-3 生命:350 护盾:- 能量:- | 突击单位。可造成范围伤害。潜地时能快速恢复生命值。 / 可以对地。 |
+| 原始宿主 | `DehakaSwarmHost` | `DehakaSwarmHost` | Ground; Armored/Biological | 矿:100 气:75 人口字段:-3 生命:160 护盾:- 能量:- | 通过孵化蝗虫进行攻击的攻城单位。 / 蝗虫可以对地。 |
+| 原始雷兽 | `DehakaUltraliskLevel2` | `DehakaUltraliskLevel2` | Ground; Armored/Biological/Massive | 矿:300 气:200 人口字段:-6 生命:625 护盾:- 能量:- | - |
+| 暴龙兽 | `DehakaUltraliskLevel3` | `DehakaUltraliskLevel3` | Ground; Armored/Biological/Massive | 矿:450 气:300 人口字段:-9 生命:1000 护盾:- 能量:- | 重型攻击猛兽。可造成地面范围伤害。 / 可以对地和对空。 |
+| 原始跳虫 | `DehakaZerglingLevel2` | `DehakaZerglingLevel2` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:90 护盾:- 能量:- | - |
+| 穿刺者 | `ImpalerDehaka` | `ImpalerDehaka` | Ground; Armored/Biological | 矿:200 气:100 人口字段:-3 生命:200 护盾:- 能量:- | 远程反重甲伏击单位。必须潜地后才能发动攻击。 / 可以对地。 |
 
 三阶段口径：`initial` 只做审计，`level15` 表示满级解锁，`power_fusion` 表示 15 级 + 六精通全满 + 威望正向收益后的默认运行清单。
 
@@ -332,13 +369,13 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 原始主巢 | `DehakaHatchery` | `DehakaHatchery` | Ground; Armored/Biological/Structure | 矿:450 气:- 人口字段:-6 生命:1500 | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
-| 原始主巢 | `DehakaAirTownHall` | `DehakaAirTownHall` | Ground; Armored/Biological/Structure | 矿:450 气:- 人口字段:24 生命:1500 | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
-| 原始战争之巢 | `DehakaBarracks` | `DehakaBarracks` | Ground; Armored/Biological/Structure | 矿:250 气:- 人口字段:-2 生命:400 | 原始异虫生产建筑。 / 开启： / - 原始跳虫 |
-| 格里维格的巢穴 | `DehakaGlevigStructure` | `DehakaGlevigStructure` | Ground; Armored/Biological/Structure | 矿:250 气:100 人口字段:- 生命:1500 | 为原始蟑螂、原始刺蛇、穿刺者和掠食龙提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始蟑螂 / - 使原始战争之巢可以孵化原始刺蛇 / -... |
-| 穆尔瓦的巢穴 | `DehakaMurvarStructure` | `DehakaMurvarStructure` | Ground; Armored/Biological/Structure | 矿:250 气:200 人口字段:- 生命:1500 | 为原始异龙、原始守护者和掘地虫宿主提供升级方案。 / 开启： / - 可以在原始战争之巢中孵化原始宿主。 |
-| 达克伦的巢穴 | `DehakaDakrunStructure` | `DehakaDakrunStructure` | Ground; Armored/Biological/Structure | 矿:250 气:200 人口字段:- 生命:1500 | 为原始雷兽和暴龙兽提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始雷兽。 |
-| 原始蠕虫 | `DehakaNydusDestroyer` | `DehakaNydusDestroyer` | Ground; Armored/Biological/Structure/User1 | 矿:300 气:- 人口字段:-2 生命:500 | 强力防御建筑。 / 可以对地和对空。 / 侦测单位 |
+| 原始主巢 | `DehakaHatchery` | `DehakaHatchery` | Ground; Armored/Biological/Structure | 矿:450 气:- 人口字段:-6 生命:1500 护盾:- 能量:- | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
+| 原始主巢 | `DehakaAirTownHall` | `DehakaAirTownHall` | Ground; Armored/Biological/Structure | 矿:450 气:- 人口字段:24 生命:1500 护盾:- 能量:- | 基础建筑。用于孵化原始工蜂和接收采集到的资源。为原始异虫提供升级方案。 / 开启： / - 原始工蜂 |
+| 原始战争之巢 | `DehakaBarracks` | `DehakaBarracks` | Ground; Armored/Biological/Structure | 矿:250 气:- 人口字段:-2 生命:400 护盾:- 能量:- | 原始异虫生产建筑。 / 开启： / - 原始跳虫 |
+| 格里维格的巢穴 | `DehakaGlevigStructure` | `DehakaGlevigStructure` | Ground; Armored/Biological/Structure | 矿:250 气:100 人口字段:- 生命:1500 护盾:- 能量:- | 为原始蟑螂、原始刺蛇、穿刺者和掠食龙提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始蟑螂 / - 使原始战争之巢可以孵化原始刺蛇 / -... |
+| 穆尔瓦的巢穴 | `DehakaMurvarStructure` | `DehakaMurvarStructure` | Ground; Armored/Biological/Structure | 矿:250 气:200 人口字段:- 生命:1500 护盾:- 能量:- | 为原始异龙、原始守护者和掘地虫宿主提供升级方案。 / 开启： / - 可以在原始战争之巢中孵化原始宿主。 |
+| 达克伦的巢穴 | `DehakaDakrunStructure` | `DehakaDakrunStructure` | Ground; Armored/Biological/Structure | 矿:250 气:200 人口字段:- 生命:1500 护盾:- 能量:- | 为原始雷兽和暴龙兽提供升级方案。 / 开启： / - 使原始战争之巢可以孵化原始雷兽。 |
+| 原始蠕虫 | `DehakaNydusDestroyer` | `DehakaNydusDestroyer` | Ground; Armored/Biological/Structure/User1 | 矿:300 气:- 人口字段:-2 生命:500 护盾:- 能量:- | 强力防御建筑。 / 可以对地和对空。 / 侦测单位 |
 
 ### 建筑按钮候选
 
@@ -350,14 +387,11 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 原始主巢 | `DehakaLearnPrimalWeaponsLevel3` | 进化原始攻击等级3 | `DehakaHatcheryResearch,Research3` | - | 使所有原始异虫的攻击力最大化。 |
 | 原始主巢 | `DehakaLearnPrimalArmorLevel3` | 进化原始甲壳等级3 | `DehakaHatcheryResearch,Research6` | - | 使所有原始异虫的护甲最大化。 |
 | 原始主巢 | `PrimalBuildingUproot` | PrimalBuildingUproot | `DehakaHatcheryUproot,Execute` | - | - |
-| 原始主巢 | `CancelBuilding` | 取消 | `PrimalBuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
-| 原始主巢 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
 | 原始主巢 | `DehakaMutalisk` | DehakaMutalisk | `DehakaTownHallTrain,Train7` | - | 飞行生物。能够利用弹射攻击对多个目标造成伤害。 / 可以对地和对空。 |
 | 原始主巢 | `DehakaGuardian` | DehakaGuardian | `DehakaTownHallTrain,Train8` | - | 远程对地飞行单位。 / 可以对地。 |
 | 原始主巢 | `DehakaViper` | DehakaViper | `DehakaTownHallTrain,Train9` | - | - |
 | 原始主巢 | `SetRallyPoint2` | 设定集结点 | `Rally,Rally1` | - | 将生成的单位派往指定地点。 |
 | 原始主巢 | `PrimalBuildingUproot` | PrimalBuildingUproot | `DehakaAirTownHallUproot,Execute` | - | - |
-| 原始主巢 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 原始战争之巢 | `DehakaZergling` | 孵化原始跳虫 | `DehakaBarracksTrainEgg,Train1` | - | 迅捷的肉搏型生物。 / 可以对地。 |
 | 原始战争之巢 | `DehakaRoach` | 孵化原始蟑螂 | `DehakaBarracksTrainEgg,Train2` | - | 突击单位。潜地时能快速恢复生命值。 / 可以对地。 |
 | 原始战争之巢 | `DehakaHydralisk` | 孵化原始刺蛇 | `DehakaBarracksTrainEgg,Train3` | - | 远程攻击单位。 / 可以对地和对空。 |
@@ -365,7 +399,6 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 原始战争之巢 | `DehakaUltralisk` | 孵化原始雷兽 | `DehakaBarracksTrainEgg,Train5` | - | 重型攻击猛兽。可以向一个目标冲锋，造成范围伤害并击退敌方单位。 / 可以对地。 |
 | 原始战争之巢 | `SetRallyPoint2` | 设定集结点 | `Rally,Rally1` | - | 将生成的单位派往指定地点。 |
 | 原始战争之巢 | `PrimalBuildingUproot` | PrimalBuildingUproot | `DehakaBarracksUproot,Execute` | - | - |
-| 原始战争之巢 | `CancelBuilding` | 取消 | `PrimalBuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 格里维格的巢穴 | `EvolveDissolvingAcidLocked` | 进化溶解强酸 | `-` | DehakaLevel03 | 该科技将在指挥官等级3时解锁。 |
 | 格里维格的巢穴 | `EvolveEnlargedParotidGlandsLocked` | 进化膨胀腮腺 | `-` | DehakaLevel03 | 该科技将在指挥官等级3时解锁。 |
 | 格里维格的巢穴 | `DehakaRoachMoveSpeed` | 进化神经胶原重组 | `DehakaGlevigResearch,Research7` | - | 使原始蟑螂和原始点火虫的移动速度提高。 |
@@ -377,7 +410,6 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 格里维格的巢穴 | `PrimalIgniterPassive` | 原始点火虫 | `-` | PrimalIgniterPassive | 格里维格的巢穴使你可以进化原始点火虫。 |
 | 格里维格的巢穴 | `PrimalHydraliskPassive` | 原始刺蛇 | `-` | - | 格里维格的巢穴使你可以孵化原始刺蛇。 |
 | 格里维格的巢穴 | `PrimalImpalerPassive` | 原始穿刺者 | `-` | PrimalImpalerPassive | 格里维格的巢穴使你可以进化原始穿刺者。 |
-| 格里维格的巢穴 | `CancelBuilding` | 取消 | `PrimalBuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 穆尔瓦的巢穴 | `EvolveSlicingGlaveLocked` | 切割之爪 | `-` | DehakaLevel06 | 该科技将在指挥官等级6时解锁。 |
 | 穆尔瓦的巢穴 | `EvolveShiftingCarapaceLocked` | 进化变换甲壳 | `-` | DehakaLevel06 | 该科技将在指挥官等级6时解锁。 |
 | 穆尔瓦的巢穴 | `EvolvePrimalReconstitutionLocked` | 进化原始重组 | `-` | DehakaLevel07 | 该科技将在指挥官等级7时解锁。 |
@@ -388,7 +420,6 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 穆尔瓦的巢穴 | `CreeperHostPassive` | 掘地虫宿主 | `-` | CreeperHostPassive | 穆尔瓦的巢穴使你可以进化掘地虫宿主。 |
 | 穆尔瓦的巢穴 | `PrimalMutaliskPassive` | 原始异龙 | `-` | PrimalMutaliskPassive | 穆尔瓦的巢穴使你可以进化原始异龙。 |
 | 穆尔瓦的巢穴 | `PrimalGuardianPassive` | 原始守护者 | `-` | PrimalGuardianPassive | 穆尔瓦的巢穴使你可以进化原始守护者。 |
-| 穆尔瓦的巢穴 | `CancelBuilding` | 取消 | `PrimalBuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 达克伦的巢穴 | `ResearchDehakaUltraliskCrashingCharge` | 进化野蛮冲锋 | `DehakaDakrunResearch,Research1` | - | 原始雷兽可以向目标位置冲锋，击退范围内的单位并造成{Effect,DehakaUltraliskCrashingChargeDamage,Amount}点伤害。 |
 | 达克伦的巢穴 | `ResearchDehakaUltraliskRegen` | 进化治疗适性 | `DehakaDakrunResearch,Research2` | - | 原始雷兽和暴龙兽在脱离战斗后可快速恢复生命值。 |
 | 达克伦的巢穴 | `EvolveImpalingStrikeLocked` | 进化穿刺打击 | `-` | DehakaLevel13 | 该科技将在指挥官等级13时解锁。 |
@@ -396,14 +427,13 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 达克伦的巢穴 | `EvolveTyrantsProtectionLocked` | 进化暴龙的保护 | `-` | DehakaLevel13 | 该科技将在指挥官等级13时解锁。 |
 | 达克伦的巢穴 | `PrimalUltraliskPassive` | 原始雷兽 | `-` | - | 达克伦的巢穴使你可以孵化原始雷兽。 |
 | 达克伦的巢穴 | `TyrannozorPassive` | 暴龙兽 | `-` | TyrannozorPassive | 达克伦的巢穴使你可以进化暴龙兽。 |
-| 达克伦的巢穴 | `CancelBuilding` | 取消 | `PrimalBuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
-| 原始蠕虫 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
 | 原始蠕虫 | `Detector` | 侦测单位 | `-` | - | 该单位能够侦测到隐形、潜地和幻像单位。 |
 | 原始蠕虫 | `BileStreamLocked` | 胆汁喷流 | `-` | DehakaLevel10 | 该技能将在指挥官等级10时解锁。 |
-| 原始蠕虫 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 
 实现备注：建筑声明自身生产、研究、行为和阶段；训练单位的最终可用性由兵种/科技/精通/威望共同裁决。
 
+
+备注：已过滤 9 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ## 08. 科技建筑及其升级选项
 
 Owner：`CommanderTechBuildingProfile`、`CommanderUnitTechProfile`、`CommanderUpgradeProfile`、`CommanderUpgradeRequirementProfile`、`CommanderUpgradeEffectProfile`。
@@ -497,22 +527,22 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 原始工蜂 | `DehakaDrone` | `DehakaDrone` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:40 | 基础工作单位。用于采集晶体矿和高能瓦斯。可以召唤建筑。 / 可以对地。 |
-| 掘地虫 | `DehakaCreeper` | `DehakaCreeper` | Ground; Biological/Light | 矿:- 气:- 人口字段:- 生命:130 | - |
-| 爆裂掘地虫 | `DehakaCreeperFlying` | `DehakaCreeperFlying` | Air; Biological/Light | 矿:- 气:- 人口字段:- 生命:130 | 孵化自掘地虫宿主。爆裂掘地虫持续{Behavior,DehakaCreeperTimedLife,Duration}秒。 / 可以对地。 |
-| 原始刺蛇 | `DehakaHydraliskLevel2` | `DehakaHydraliskLevel2` | Ground; Biological/Light | 矿:100 气:50 人口字段:-2 生命:100 | - |
-| 原始异龙 | `DehakaMutaliskLevel3` | `DehakaMutaliskLevel3` | Air; Biological/Light | 矿:100 气:100 人口字段:-3 生命:200 | - |
-| 掘地虫宿主 | `DehakaPrimalSwarmHost` | `DehakaPrimalSwarmHost` | Ground; Armored/Biological | 矿:100 气:75 人口字段:-5 生命:160 | 通过孵化掘地虫进行攻击的攻城单位。 / 掘地虫可以对地。 |
-| 掠食龙 | `DehakaRavasaur` | `DehakaRavasaur` | Ground; Armored/Biological | 矿:150 气:50 人口字段:-2 生命:90 | 远程单位。可以远距离发射大量酸性液体。 / 可以对地。 |
-| 原始蟑螂 | `DehakaRoachLevel2` | `DehakaRoachLevel2` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-2 生命:175 | - |
-| 原始点火虫 | `DehakaRoachLevel3` | `DehakaRoachLevel3` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-3 生命:350 | 突击单位。可造成范围伤害。潜地时能快速恢复生命值。 / 可以对地。 |
-| 原始宿主 | `DehakaSwarmHost` | `DehakaSwarmHost` | Ground; Armored/Biological | 矿:100 气:75 人口字段:-3 生命:160 | 通过孵化蝗虫进行攻击的攻城单位。 / 蝗虫可以对地。 |
-| 原始雷兽 | `DehakaUltraliskLevel2` | `DehakaUltraliskLevel2` | Ground; Armored/Biological/Massive | 矿:300 气:200 人口字段:-6 生命:625 | - |
-| 暴龙兽 | `DehakaUltraliskLevel3` | `DehakaUltraliskLevel3` | Ground; Armored/Biological/Massive | 矿:450 气:300 人口字段:-9 生命:1000 | 重型攻击猛兽。可造成地面范围伤害。 / 可以对地和对空。 |
-| 原始跳虫 | `DehakaZerglingLevel2` | `DehakaZerglingLevel2` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:90 | - |
-| 穿刺者 | `ImpalerDehaka` | `ImpalerDehaka` | Ground; Armored/Biological | 矿:200 气:100 人口字段:-3 生命:200 | 远程反重甲伏击单位。必须潜地后才能发动攻击。 / 可以对地。 |
+| 原始工蜂 | `DehakaDrone` | `DehakaDrone` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:40 护盾:- 能量:- | 基础工作单位。用于采集晶体矿和高能瓦斯。可以召唤建筑。 / 可以对地。 |
+| 掘地虫 | `DehakaCreeper` | `DehakaCreeper` | Ground; Biological/Light | 矿:- 气:- 人口字段:- 生命:130 护盾:- 能量:- | - |
+| 爆裂掘地虫 | `DehakaCreeperFlying` | `DehakaCreeperFlying` | Air; Biological/Light | 矿:- 气:- 人口字段:- 生命:130 护盾:- 能量:- | 孵化自掘地虫宿主。爆裂掘地虫持续{Behavior,DehakaCreeperTimedLife,Duration}秒。 / 可以对地。 |
+| 原始刺蛇 | `DehakaHydraliskLevel2` | `DehakaHydraliskLevel2` | Ground; Biological/Light | 矿:100 气:50 人口字段:-2 生命:100 护盾:- 能量:- | - |
+| 原始异龙 | `DehakaMutaliskLevel3` | `DehakaMutaliskLevel3` | Air; Biological/Light | 矿:100 气:100 人口字段:-3 生命:200 护盾:- 能量:- | - |
+| 掘地虫宿主 | `DehakaPrimalSwarmHost` | `DehakaPrimalSwarmHost` | Ground; Armored/Biological | 矿:100 气:75 人口字段:-5 生命:160 护盾:- 能量:- | 通过孵化掘地虫进行攻击的攻城单位。 / 掘地虫可以对地。 |
+| 掠食龙 | `DehakaRavasaur` | `DehakaRavasaur` | Ground; Armored/Biological | 矿:150 气:50 人口字段:-2 生命:90 护盾:- 能量:- | 远程单位。可以远距离发射大量酸性液体。 / 可以对地。 |
+| 原始蟑螂 | `DehakaRoachLevel2` | `DehakaRoachLevel2` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-2 生命:175 护盾:- 能量:- | - |
+| 原始点火虫 | `DehakaRoachLevel3` | `DehakaRoachLevel3` | Ground; Armored/Biological | 矿:75 气:25 人口字段:-3 生命:350 护盾:- 能量:- | 突击单位。可造成范围伤害。潜地时能快速恢复生命值。 / 可以对地。 |
+| 原始宿主 | `DehakaSwarmHost` | `DehakaSwarmHost` | Ground; Armored/Biological | 矿:100 气:75 人口字段:-3 生命:160 护盾:- 能量:- | 通过孵化蝗虫进行攻击的攻城单位。 / 蝗虫可以对地。 |
+| 原始雷兽 | `DehakaUltraliskLevel2` | `DehakaUltraliskLevel2` | Ground; Armored/Biological/Massive | 矿:300 气:200 人口字段:-6 生命:625 护盾:- 能量:- | - |
+| 暴龙兽 | `DehakaUltraliskLevel3` | `DehakaUltraliskLevel3` | Ground; Armored/Biological/Massive | 矿:450 气:300 人口字段:-9 生命:1000 护盾:- 能量:- | 重型攻击猛兽。可造成地面范围伤害。 / 可以对地和对空。 |
+| 原始跳虫 | `DehakaZerglingLevel2` | `DehakaZerglingLevel2` | Ground; Biological/Light | 矿:50 气:- 人口字段:-1 生命:90 护盾:- 能量:- | - |
+| 穿刺者 | `ImpalerDehaka` | `ImpalerDehaka` | Ground; Armored/Biological | 矿:200 气:100 人口字段:-3 生命:200 护盾:- 能量:- | 远程反重甲伏击单位。必须潜地后才能发动攻击。 / 可以对地。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则。
+实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
 
 ## 10. 指挥官特殊机制
 
@@ -523,6 +553,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 ### 特殊机制命中项
 
 - 精华收集者 (`DehakaPHLevel01`)
+- 深槽虫道 (`DehakaPHLevel04`)
 - 新单位：原始异龙和原始守护者 (`DehakaPHLevel06`)
 - 原始异龙和原始守护者升级包 (`DehakaPHLevel07`)
 
@@ -536,7 +567,14 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 |---|---|---|---|---|---|
 | 德哈卡 | `MoveChampions` | MoveChampions | `move,Move` | - | - |
 | 德哈卡 | `AttackChampions` | AttackChampions | `attack,Execute` | - | - |
+| 德哈卡 | `DehakaDeepTunnelLocked` | 深槽虫道 | `-` | DehakaLevel04 | 该技能将在指挥官等级4时解锁。 |
 | 原始主巢 | `DehakaGuardian` | DehakaGuardian | `DehakaTownHallTrain,Train8` | - | 远程对地飞行单位。 / 可以对地。 |
+| 掘地虫 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 掘地虫 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
+| 爆裂掘地虫 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
+| 爆裂掘地虫 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
+| 爆裂掘地虫 | `DehakaLocustFlyingSwoop` | DehakaLocustFlyingSwoop | `DehakaLocustFlyingSwoop,Execute` | - | - |
+| 格里维格 | `GlevigTunnel` | 深槽虫道 | `GlevigDeepTunnel,Execute` | - | 格里维格潜地后到达目标位置并喷发，震退范围内的单位并造成伤害。 |
 | 穆尔瓦 | `CoopMurvarSpawnCreepers` | 孵化虫群 | `CoopMurvarSpawnCreepers,Execute` | - | 孵化6只原始蝗虫进行战斗，持续{Behavior,DehakaLocustTimedLife,Duration}秒。 |
 | 穆尔瓦的巢穴 | `CreeperHostPassive` | 掘地虫宿主 | `-` | CreeperHostPassive | 穆尔瓦的巢穴使你可以进化掘地虫宿主。 |
 | 穆尔瓦的巢穴 | `PrimalGuardianPassive` | 原始守护者 | `-` | PrimalGuardianPassive | 穆尔瓦的巢穴使你可以进化原始守护者。 |
@@ -547,7 +585,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 原始蟑螂 | `PrimalCombatPrimalGuardianLocked` | 原始战斗 | `-` | DehakaLevel06 | 该单位将在指挥官等级6时解锁。 |
 | 原始宿主 | `PrimalCombatPrimalCreeperHostLocked` | 原始战斗 | `-` | DehakaLevel08 | 该单位将在指挥官等级8时解锁。 |
 
-实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster 的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
+实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
 ## 11. 指挥官个性化机制
 
@@ -582,6 +620,8 @@ level15_units
 fusion_final_units
 panel_smoke
 hero_smoke
+hero_ability_smoke
+hero_mode_smoke
 unit_ability_smoke
 tech_smoke
 cargo_smoke
@@ -589,14 +629,15 @@ special_mechanic_smoke
 personal_mechanic_smoke
 ```
 
-补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。
+补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。英雄指挥官还要单独验证 `hero_smoke`、`hero_ability_smoke`、`hero_mode_smoke`。
 
 ## `[XM_DBG]` 日志建议
 
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Dehaka levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Dehaka levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Dehaka stage=power_fusion units=14 buildings=7 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Dehaka stage=power_fusion units=14 buildings=7 heroes=4 result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Dehaka heroes=4 result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Dehaka module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Dehaka module=<module> object=<object> result=needs-casc-audit
 ```
@@ -604,9 +645,9 @@ personal_mechanic_smoke
 ## 第一轮待审计项
 
 - 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
-- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound 闭包。
+- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包。
 - `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
 - 6 项精通的真实作用对象和最终数值。
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
-- 特殊机制和个性化机制是否需要 runtime hook。
+- 特殊机制、英雄成长和个性化机制是否需要 runtime hook。

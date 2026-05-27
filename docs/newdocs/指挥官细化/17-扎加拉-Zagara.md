@@ -17,18 +17,18 @@
 | 默认升级 | `ZagaraCommander, K5TwoDrones, MasteryZagaraLarvaRatePassive` |
 | 默认能力命令 | `ZagaraVoidCoopBanelingBarrage:, ZagaraVoidCoopMassFrenzy:, ZagaraVoidCoopSpawnHunterKillers:, ZergBuild:24, evolutionchamberresearch:19, evolutionchamberresearch:12, evolutionchamberresearch:13, evolutionchamberresearch:14` |
 | 威望 ID | `CommanderPrestigeZagaraMaxSupply, CommanderPrestigeZagaraCorruptorsAberrations, CommanderPrestigeZagaraZagara` |
-| heroes 数量 | 0 |
-| roster 数量 | 8 |
+| heroes 数量 | 1 |
+| roster 数量 | 9 |
 | units 数量 | 5 |
 | buildings 数量 | 3 |
-| command card 对象数 | 8 |
+| command card 对象数 | 9 |
 | upgrades 数量 | 23 |
 | source | `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` |
 
 roster 样例：
 
 ```text
-SporeCrawler, Baneling, Scourge, SwarmQueen, Corruptor, Aberration, SpineCrawler, Zergling
+ZagaraVoidCoop, SporeCrawler, Baneling, Scourge, SwarmQueen, Corruptor, Aberration, SpineCrawler, Zergling
 ```
 
 ## 15 级解锁摘要
@@ -89,26 +89,51 @@ Owner：`CommanderPanelProfile`、`CommanderPanelAbilityProfile`、`CommanderPan
 
 Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbilityProfile`、`CommanderHeroSkillTreeProfile`、`CommanderHeroReviveProfile`、`CommanderHeroModifierProfile`。
 
+### 英雄单位清单
+
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 未列出英雄条目；召唤物/形态/特殊英雄需从 progression、command_cards 或 CASC 继续追 |
+| 扎加拉 | `ZagaraVoidCoop` | `ZagaraVoidCoop` | Ground; Biological/Heroic/Psionic | 矿:- 气:- 人口字段:- 生命:600 护盾:- 能量:200 | 扎加拉是凯瑞甘手下的第一批虫母之一。她拥有大量的能量，可以孵化特殊的异虫单位来攻击她的敌人。 |
 
-### 英雄/形态候选
+### 英雄技能按钮候选
 
-- 无尽虫群 (`Zagara`)
-- 感染空投 (`ZagaraUnlockMassRoachDrop`)
-- 新单位：胆汁喷射体 (`ZagaraUnlockBileLaunchers`)
-- 爆虫巢穴：哺育腔 (`ZagaraBanelingNestSpawner`)
-- 孕育爆虫和爆蚊 (`ZagaraBanelingIncubation`)
-- 进化腔升级包 (`ZagaraAberrationUpgrades`)
-- 遮天蔽日 (`ZagaraImprovedMassRoachDrop`)
-- 跳虫进化：裂变虫 (`ZagaraZerglingEvo`)
-- 爆虫进化：分裂虫 (`ZagaraBanelingEvo`)
-- 虫母 (`ZagaraImprovedAbilities`)
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 扎加拉 | `ZagaraVoidCoopRelentlessSwarmer` | ZagaraVoidCoopRelentlessSwarmer | `-` | - | - |
+| 扎加拉 | `VolatileNestLocked` | 哺育腔 | `-` | ZagaraLevel07 | 该技能将在指挥官等级7时解锁。 |
+| 扎加拉 | `MedusasBladesLocked` | 美杜莎之刃 | `-` | ZagaraLevel09 | 该科技将在指挥官等级9时解锁。 |
+| 扎加拉 | `CommanderPrestigeZagaraZagaraDeepTunnel` | 深槽虫道 | `CommanderPrestigeZagaraZagaraDeepTunnel,Execute` | - | 快速潜地前往目标位置。 |
+| 扎加拉 | `ZagaraVoidCoopBanelingBarrage` | ZagaraVoidCoopBanelingBarrage | `ZagaraVoidCoopBanelingBarrage,Execute` | - | - |
+| 扎加拉 | `ZagaraVoidCoopSpawnHunterKillers` | ZagaraVoidCoopSpawnHunterKillers | `ZagaraVoidCoopSpawnHunterKillers,Execute` | - | - |
+| 扎加拉 | `ZagaraVoidCoopMassFrenzy` | 群体狂暴 | `ZagaraVoidCoopMassFrenzy,Execute` | - | 使地图上所有友方单位的攻击速度提高{(Behavior,ZagaraVoidCoopMassFrenzyTarget,Modification.Attac... |
+| 扎加拉 | `ZagaraVoidCoopMassRoachDropLocked` | 感染空投 | `-` | ZagaraLevel02 | 该技能将在指挥官等级2时解锁。 |
 
-口径：虫族小单位数量强化、免费/快速孵化和英雄光环需要单位与特殊机制协作。
 
-待审计：Hero Unit、技能按钮、复活、形态切换、武器/Actor/Sound 闭包。
+备注：已过滤 4 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
+### 英雄形态/模式候选
+
+| 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
+|---|---|---|---|---|---|
+| 扎加拉 | `CommanderPrestigeZagaraZagaraDeepTunnel` | 深槽虫道 | `CommanderPrestigeZagaraZagaraDeepTunnel,Execute` | - | 快速潜地前往目标位置。 |
+
+### 英雄相关等级解锁
+
+| 等级 | 名称 | 升级 | AbilityCmd | 说明 |
+|---|---|---|---|---|
+| Lv1 | 无尽虫群 | `-` | `-` | 扎加拉的补给上限为100，但她的作战单位消耗更少的资源并可更快孵化。一次可孵化两只工蜂。虫后只占用1点人口补给。幼虫孵化速度提高。 |
+| Lv2 | 感染空投 | `-` | `ZagaraVoidCoopMassRoachDrop:` | 扎加拉可以在地图上的任何位置空投有限时生命的蟑螂。空投囊在着陆时会造成伤害。 |
+| Lv5 | 新单位：胆汁喷射体 | `ZagaraBileLaunchers` | `-` | 解锁将工蜂变异为胆汁喷射体的能力，这是一种可对地面和空中目标造成范围伤害的防御建筑。 |
+| Lv7 | 爆虫巢穴：哺育腔 | `ZagaraVoidCoopBanelingSpawner` | `-` | 爆虫巢穴会周期性地孵化免费的爆虫。 |
+| Lv8 | 孕育爆虫和爆蚊 | `ZagaraVoidCoopAberrationBanelingIncubation` | `-` | 畸变体死亡时，它们的尸体上会孵化出2只爆虫。腐化者死亡时会孵化2只爆蚊。 |
+| Lv9 | 进化腔升级包 | `-` | `evolutionchamberresearch:22, evolutionchamberresearch:9` | 在进化腔中解锁新的研究项目： / 扎加拉的攻击可造成范围伤害。溅射主目标附近的敌人。畸变体使位于他们下方的单位获得50%伤害减免。 |
+| Lv10 | 遮天蔽日 | `ZagaraVoidCoopImprovedMassRoachDrop` | `-` | 感染空投所空投的蟑螂总量由10个提高到20个。 |
+| Lv12 | 跳虫进化：裂变虫 | `CoopZerglingSwarmling` | `-` | 将扎加拉的跳虫升级为裂变虫变种。 / 迅捷的肉搏型生物。一次可孵化三个。几乎立即变异。可变异为爆虫。 / 可以对地。 |
+| Lv14 | 爆虫进化：分裂虫 | `CoopBanelingSplitterling` | `-` | 将扎加拉的爆虫进化为分裂虫变种。 / 自毁型单位。死亡时能够造成小范围的伤害。在其死后分裂成若干个小单位。 / 可以对地。 |
+| Lv15 | 虫母 | `ZagaraVoidCoopImprovedAbilities` | `-` | 扎加拉的爆虫冲锋和召唤屠猎者技能的能量消耗降低50%。 / 爆虫冲锋和召唤屠猎者的单位数量提高50%。 |
+
+口径：扎加拉本体按英雄单位接入，爆虫弹幕、猎杀者、群体狂暴、深槽虫道等按钮归英雄技能或威望英雄技能。
+
+待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 
 ## 03. 普通单位技能及其进化功能
 
@@ -120,14 +145,10 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 |---|---|---|---|---|---|
 | 畸变体 | `AberrationProtectiveCover` | 肉身掩体 | `-` | HaveAberrationArmorAura | 使身下的单位获得{Behavior,AberrationArmorAuraTarget,DamageResponse.ModifyFraction*100... |
 | 畸变体 | `AberrationBanelingIncubationLocked` | 爆虫孕育 | `-` | ZagaraLevel08 | 该技能将在指挥官等级8时解锁。 |
-| 爆虫 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 爆虫 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 爆虫 | `Explode` | 爆炸 | `Explode,Execute` | - | 使爆虫在原地自爆，对附近的敌方单位和建筑造成伤害。 |
 | 爆虫 | `EnableBuildingAttack` | 开启对建筑攻击 | `VolatileBurstBuilding,On` | - | 允许爆虫自动将建筑视为攻击目标。 / 爆虫可对建筑造成{Effect,VolatileBurstU2,Amount}点伤害值。 |
 | 爆虫 | `HaveCentrificalHooks` | 环心镰钩 | `-` | ZagaraHaveCentrificalHooks | 提高爆虫的移动速度。 |
 | 爆虫 | `-` | - | `Explode,Execute` | - | - |
-| 腐化者 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 腐化者 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 腐化者 | `CorruptionAbility` | 腐化 | `Corruption,Execute` | - | 用异虫黏液覆盖目标敌方单位，使其受到的伤害提高{Behavior,Corruption,DamageResponse.ModifyFraction*100... |
 | 腐化者 | `BroodLord` | 变异为巢虫领主 | `MorphToBroodLord,Execute` | - | 大型飞行作战生物。通过投射出的巢虫来攻击目标。巢虫是一种可以对地的小型生物。 / 可以对地。 |
 | 腐化者 | `CausticSpray` | 腐蚀喷液 | `CausticSpray,Execute` | - | 喷出一股强酸，每秒造成{Effect,CausticLevel1Damage,Amount/Effect,CausticSprayLevel1Persis... |
@@ -136,8 +157,6 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 爆蚊 | `DetonateScourge` | 引爆 | `ScourgeDetonate,Execute` | - | 爆蚊轰炸当前区域，并对附近的敌方空军造成伤害。 |
 | 爆蚊 | `DisableBuildingAttackScourge` | 关闭对建筑攻击 | `SuicideBuilding,Off` | - | 阻止爆蚊自动将建筑视为攻击目标。爆蚊仍会接受明确的攻击建筑指令。 |
 | 爆蚊 | `HaveScourgeGasCostReduction` | 简化基因组 | `-` | HaveScourgeGasCostReduction | 变异爆蚊所需消耗的高能瓦斯量减少50。 |
-| 虫后 | `MoveHoldPosition` | 原地防御 | `move,HoldPos` | - | 命令选中的单位待在原地，并攻击射程内的敌方目标。接受命令的单位不会对敌人进行追击或移向敌人与其交战。 |
-| 虫后 | `MovePatrol` | 巡逻 | `move,Patrol` | - | 命令选中的单位在当前位置与目标区域间进行巡逻。巡逻的单位会对敌人发起攻击或移向附近的敌人与其交战。 |
 | 虫后 | `BioMechanicalTransfusionPassive` | 生物机械哺液 | `-` | HaveBioMechanicalTransfusionPassive | 速效哺液的治疗量提高10点，现在可以对机械单位和建筑使用。 |
 | 虫后 | `BuildCreepTumor` | 产下菌毯肿瘤 | `QueenBuild,Build1` | - | 一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。 / 效果加成：异虫单位在菌毯上的移动速度更快 |
 | 虫后 | `BioMechanicalTransfusion` | 速效哺液 | `BioMechanicalTransfusion,Execute` | - | 为一个单位或建筑进行持续的治疗，共恢复{Effect,QueenBurstHeal,VitalArray[Life].Change*(Behavior,Q... |
@@ -147,6 +166,8 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 虫后 | `QueenBurstHeal` | QueenBurstHeal | `QueenBurstHeal,Execute` | - | - |
 | 虫后 | `DeepTunnel` | DeepTunnel | `DeepTunnel,Execute` | - | - |
 
+
+备注：已过滤 6 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ### 进化/形态/切换候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
@@ -161,7 +182,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 跳虫 | `EvolveBileLauncherIncreasedRangeLocked` | 进化炮击导管 | `BuildInProgress,Cancel` | ZagaraLevel13 | 该科技将在指挥官等级13时解锁。 |
 | 跳虫 | `EvolveBileLauncherBombardmentCooldownLocked` | 进化快速轰炸 | `-` | ZagaraLevel13 | 该科技将在指挥官等级13时解锁。 |
 
-实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。
+实现备注：单位自己声明技能、形态和升级接入口；科技建筑只展示符合条件的研究项，不直接拥有单位升级逻辑。英雄单位已从本模块候选中排除，统一归 `02. 英雄单位及其技能`。
 
 ## 04. 初始化基地与特殊建筑
 
@@ -179,21 +200,21 @@ Owner：`CommanderRuntimeProfile`、`CommanderScenarioLoadout`、`CommanderSpeci
 |---|---|---|---|---|---|
 | - | - | - | - | - | 官方 buildings.json 未自动命中特殊建筑；特殊结构可能由触发器或隐藏 caster 创建。 |
 
-实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster 和特殊建筑。
+实现备注：测试台切换指挥官时调用本指挥官 initializer，负责替换主基地、工人、运输机/投放单位、隐藏 caster、英雄初始单位和特殊建筑。
 
 ## 05. 指挥官兵种
 
 Owner：`CommanderRosterProfile`、`CommanderUnitProfile`、`CommanderUnitTrainProfile`、`CommanderUnitStageProfile`、`CommanderUnitRequirementProfile`。
 
-来源：官方提取 `units.json`。这里列的是当前已提取 Catalog 对象；满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
+来源：官方提取 `units.json`。这里列的是当前已提取普通/生产单位 Catalog 对象；英雄单位单独在 `02. 英雄单位及其技能` 中维护。满级替换、威望正向融合或进化变体仍以 `power_fusion` 审计结果为准。
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 爆虫 | `Baneling` | `Baneling, BanelingNest` | Ground; Biological | 矿:50 气:25 人口字段:-0.5 生命:30 | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
-| 爆蚊 | `Scourge` | `Scourge` | -; - | 矿:12 气:37 人口字段:- 生命:- | 自毁式飞行单位。一只幼虫可变异为两只爆蚊。 / 可以对空。 |
-| 虫后 | `SwarmQueen` | `Queen, QueenCoop, SwarmQueen` | Ground; Biological/Psionic | 矿:175 气:- 人口字段:-2 生命:175 | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 腐化者 | `Corruptor` | `Corruptor` | Air; Armored/Biological | 矿:150 气:100 人口字段:-2 生命:200 | 对空型飞行生物。可以使用腐蚀喷液。能够变异为巢虫领主。 / 可以对空。 |
-| 畸变体 | `Aberration` | `InfestedAbomination` | -; - | 矿:- 气:- 人口字段:- 生命:- | 畸变体可以造成很高的伤害，同时也可以承受大量的伤害。 / 可以对地。 |
+| 爆虫 | `Baneling` | `Baneling, BanelingNest` | Ground; Biological | 矿:50 气:25 人口字段:-0.5 生命:30 护盾:- 能量:- | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
+| 爆蚊 | `Scourge` | `Scourge` | -; - | 矿:12 气:37 人口字段:- 生命:- 护盾:- 能量:- | 自毁式飞行单位。一只幼虫可变异为两只爆蚊。 / 可以对空。 |
+| 虫后 | `SwarmQueen` | `Queen, QueenCoop, SwarmQueen` | Ground; Biological/Psionic | 矿:175 气:- 人口字段:-2 生命:175 护盾:- 能量:200 | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
+| 腐化者 | `Corruptor` | `Corruptor` | Air; Armored/Biological | 矿:150 气:100 人口字段:-2 生命:200 护盾:- 能量:0 | 对空型飞行生物。可以使用腐蚀喷液。能够变异为巢虫领主。 / 可以对空。 |
+| 畸变体 | `Aberration` | `InfestedAbomination` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 畸变体可以造成很高的伤害，同时也可以承受大量的伤害。 / 可以对地。 |
 
 三阶段口径：`initial` 只做审计，`level15` 表示满级解锁，`power_fusion` 表示 15 级 + 六精通全满 + 威望正向收益后的默认运行清单。
 
@@ -220,31 +241,28 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 孢子爬虫 | `SporeCrawler` | `SporeCrawler` | Ground; Armored/Biological/Structure | 矿:125 气:- 人口字段:- 生命:300 | 防空建筑。 / 可以对空 / 侦测单位 |
-| 脊针爬虫 | `SpineCrawler` | `SpineCrawler` | Ground; Armored/Biological/Structure | 矿:150 气:- 人口字段:- 生命:300 | 对地防御建筑。 / 可以对地。 |
-| 跳虫 | `Zergling` | `SpawningPool, Zergling` | Ground; Armored/Biological/Structure | 矿:250 气:- 人口字段:- 生命:1000 | 迅捷的肉搏型生物。可以变异为爆虫。 / 可以对地。 |
+| 孢子爬虫 | `SporeCrawler` | `SporeCrawler` | Ground; Armored/Biological/Structure | 矿:125 气:- 人口字段:- 生命:300 护盾:- 能量:- | 防空建筑。 / 可以对空 / 侦测单位 |
+| 脊针爬虫 | `SpineCrawler` | `SpineCrawler` | Ground; Armored/Biological/Structure | 矿:150 气:- 人口字段:- 生命:300 护盾:- 能量:- | 对地防御建筑。 / 可以对地。 |
+| 跳虫 | `Zergling` | `SpawningPool, Zergling` | Ground; Armored/Biological/Structure | 矿:250 气:- 人口字段:- 生命:1000 护盾:- 能量:- | 迅捷的肉搏型生物。可以变异为爆虫。 / 可以对地。 |
 
 ### 建筑按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 脊针爬虫 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
 | 脊针爬虫 | `SpineCrawlerUproot` | 站起 | `SpineCrawlerUproot,Execute` | - | 使脊针爬虫站起。站起的脊针爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
-| 脊针爬虫 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
-| 孢子爬虫 | `AttackBuilding` | 攻击 | `attack,Execute` | - | 锁定并且攻击目标，直到超出射程或对方被摧毁。 |
 | 孢子爬虫 | `SporeCrawlerUproot` | 站起 | `SporeCrawlerUproot,Execute` | - | 使孢子爬虫站起。站起的孢子爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
 | 孢子爬虫 | `Detector` | 侦测单位 | `-` | NotUnderConstruction | 该单位能够侦测到隐形、潜地和幻像单位。 |
-| 孢子爬虫 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 | 跳虫 | `zerglingmovementspeed` | 进化代谢加速 | `SpawningPoolResearch,Research2` | - | 提高跳虫的移动速度。 |
 | 跳虫 | `EvolveHardenedCarapaceZagaraLocked` | 进化硬化甲壳 | `-` | ZagaraLevel06 | 该科技将在指挥官等级6时解锁。 |
 | 跳虫 | `EvolveZerglingArmorShredZagaraLocked` | 进化切割利爪 | `-` | ZagaraLevel06 | 该科技将在指挥官等级6时解锁。 |
 | 跳虫 | `PassiveBileLauncherLocked` | 胆汁喷射体 | `-` | ZagaraLevel05 | 该单位将在指挥官等级5时解锁。 |
 | 跳虫 | `EvolveBileLauncherIncreasedRangeLocked` | 进化炮击导管 | `BuildInProgress,Cancel` | ZagaraLevel13 | 该科技将在指挥官等级13时解锁。 |
 | 跳虫 | `EvolveBileLauncherBombardmentCooldownLocked` | 进化快速轰炸 | `-` | ZagaraLevel13 | 该科技将在指挥官等级13时解锁。 |
-| 跳虫 | `CancelBuilding` | 取消 | `BuildInProgress,Cancel` | - | 取消建造，摧毁尚未建造完成的建筑并返还部分资源。 |
 
 实现备注：建筑声明自身生产、研究、行为和阶段；训练单位的最终可用性由兵种/科技/精通/威望共同裁决。
 
+
+备注：已过滤 5 个通用移动/攻击/取消类按钮，保留英雄技能、装备、被动、威望或形态相关候选。
 ## 08. 科技建筑及其升级选项
 
 Owner：`CommanderTechBuildingProfile`、`CommanderUnitTechProfile`、`CommanderUpgradeProfile`、`CommanderUpgradeRequirementProfile`、`CommanderUpgradeEffectProfile`。
@@ -306,6 +324,7 @@ Owner：`CommanderTechBuildingProfile`、`CommanderUnitTechProfile`、`Commander
 | 跳虫 | `EvolveZerglingArmorShredZagaraLocked` | 进化切割利爪 | `-` | ZagaraLevel06 | 该科技将在指挥官等级6时解锁。 |
 | 跳虫 | `EvolveBileLauncherIncreasedRangeLocked` | 进化炮击导管 | `BuildInProgress,Cancel` | ZagaraLevel13 | 该科技将在指挥官等级13时解锁。 |
 | 跳虫 | `EvolveBileLauncherBombardmentCooldownLocked` | 进化快速轰炸 | `-` | ZagaraLevel13 | 该科技将在指挥官等级13时解锁。 |
+| 扎加拉 | `MedusasBladesLocked` | 美杜莎之刃 | `-` | ZagaraLevel09 | 该科技将在指挥官等级9时解锁。 |
 
 实现备注：科技建筑只负责展示/触发研究；每个单位升级效果由对应 `CommanderUnitTechProfile` 或 `CommanderUpgradeEffectProfile` 声明。
 
@@ -317,19 +336,19 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 未自动命中运输/空投命令；地图运输机清单需使用 power_fusion roster 生成。 |
+| 扎加拉 | `ZagaraVoidCoopMassRoachDropLocked` | 感染空投 | `-` | ZagaraLevel02 | 该技能将在指挥官等级2时解锁。 |
 
 ### 可投放单位候选
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| 爆虫 | `Baneling` | `Baneling, BanelingNest` | Ground; Biological | 矿:50 气:25 人口字段:-0.5 生命:30 | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
-| 爆蚊 | `Scourge` | `Scourge` | -; - | 矿:12 气:37 人口字段:- 生命:- | 自毁式飞行单位。一只幼虫可变异为两只爆蚊。 / 可以对空。 |
-| 虫后 | `SwarmQueen` | `Queen, QueenCoop, SwarmQueen` | Ground; Biological/Psionic | 矿:175 气:- 人口字段:-2 生命:175 | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 腐化者 | `Corruptor` | `Corruptor` | Air; Armored/Biological | 矿:150 气:100 人口字段:-2 生命:200 | 对空型飞行生物。可以使用腐蚀喷液。能够变异为巢虫领主。 / 可以对空。 |
-| 畸变体 | `Aberration` | `InfestedAbomination` | -; - | 矿:- 气:- 人口字段:- 生命:- | 畸变体可以造成很高的伤害，同时也可以承受大量的伤害。 / 可以对地。 |
+| 爆虫 | `Baneling` | `Baneling, BanelingNest` | Ground; Biological | 矿:50 气:25 人口字段:-0.5 生命:30 护盾:- 能量:- | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
+| 爆蚊 | `Scourge` | `Scourge` | -; - | 矿:12 气:37 人口字段:- 生命:- 护盾:- 能量:- | 自毁式飞行单位。一只幼虫可变异为两只爆蚊。 / 可以对空。 |
+| 虫后 | `SwarmQueen` | `Queen, QueenCoop, SwarmQueen` | Ground; Biological/Psionic | 矿:175 气:- 人口字段:-2 生命:175 护盾:- 能量:200 | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
+| 腐化者 | `Corruptor` | `Corruptor` | Air; Armored/Biological | 矿:150 气:100 人口字段:-2 生命:200 护盾:- 能量:0 | 对空型飞行生物。可以使用腐蚀喷液。能够变异为巢虫领主。 / 可以对空。 |
+| 畸变体 | `Aberration` | `InfestedAbomination` | -; - | 矿:- 气:- 人口字段:- 生命:- 护盾:- 能量:- | 畸变体可以造成很高的伤害，同时也可以承受大量的伤害。 / 可以对地。 |
 
-实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则。
+实现备注：运输机空投不要读取地图硬编码单位组，应从 `CommanderCargoLoadoutProfile` 读取当前 commander 的 `power_fusion` 单位清单和场景过滤规则；英雄是否允许投放需要显式声明。
 
 ## 10. 指挥官特殊机制
 
@@ -341,9 +360,11 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 
 - 感染空投 (`ZagaraUnlockMassRoachDrop`)
 - 遮天蔽日 (`ZagaraImprovedMassRoachDrop`)
+- 虫母 (`ZagaraImprovedAbilities`)
 
 ### 特殊机制 Upgrade 候选
 
+- 顶级掠食者 (`CommanderPrestigeZagaraZagara`)
 - 精通 扎加拉 蟑螂空投伤害和生命值 (`MasteryZagaraRoachDropDamageAndHealth`)
 - Zagara Void Coop Improved Infested Drop (`ZagaraVoidCoopImprovedMassRoachDrop`)
 
@@ -354,8 +375,12 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 虫后 | `BuildCreepTumor` | 产下菌毯肿瘤 | `QueenBuild,Build1` | - | 一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。 / 效果加成：异虫单位在菌毯上的移动速度更快 |
 | 虫后 | `BiomassPassiveEmpty` | 生物质搜集 | `-` | BiomassBuffEmptyVisible | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 虫后 | `BuildCreepTumor` | 产下菌毯肿瘤 | `QueenBuild,Build3` | - | 一种潜地的菌毯分泌腺体。菌毯能够为附近的异虫建筑提供给养。一颗菌毯肿瘤能够再分裂出一颗额外的菌毯肿瘤。 / 效果加成：异虫单位在菌毯上的移动速度更快 |
+| 扎加拉 | `MoveChampions` | MoveChampions | `move,Move` | - | - |
+| 扎加拉 | `AttackChampions` | AttackChampions | `attack,Execute` | - | - |
+| 扎加拉 | `CommanderPrestigeZagaraZagaraDeepTunnel` | 深槽虫道 | `CommanderPrestigeZagaraZagaraDeepTunnel,Execute` | - | 快速潜地前往目标位置。 |
+| 扎加拉 | `ZagaraVoidCoopMassRoachDropLocked` | 感染空投 | `-` | ZagaraLevel02 | 该技能将在指挥官等级2时解锁。 |
 
-实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster 的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
+实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
 ## 11. 指挥官个性化机制
 
@@ -390,6 +415,8 @@ level15_units
 fusion_final_units
 panel_smoke
 hero_smoke
+hero_ability_smoke
+hero_mode_smoke
 unit_ability_smoke
 tech_smoke
 cargo_smoke
@@ -397,14 +424,15 @@ special_mechanic_smoke
 personal_mechanic_smoke
 ```
 
-补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。
+补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。英雄指挥官还要单独验证 `hero_smoke`、`hero_ability_smoke`、`hero_mode_smoke`。
 
 ## `[XM_DBG]` 日志建议
 
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Zagara levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Zagara levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Zagara stage=power_fusion units=5 buildings=3 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Zagara stage=power_fusion units=5 buildings=3 heroes=1 result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Zagara heroes=1 result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Zagara module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Zagara module=<module> object=<object> result=needs-casc-audit
 ```
@@ -412,9 +440,9 @@ personal_mechanic_smoke
 ## 第一轮待审计项
 
 - 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
-- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound 闭包。
+- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包。
 - `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
 - 6 项精通的真实作用对象和最终数值。
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
-- 特殊机制和个性化机制是否需要 runtime hook。
+- 特殊机制、英雄成长和个性化机制是否需要 runtime hook。
