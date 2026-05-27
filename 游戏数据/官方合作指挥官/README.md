@@ -40,3 +40,14 @@
 - `commanders/<Commander>/progression.json`：15 级加点与 6 组精通。
 - `commanders/<Commander>/prestiges.json`：3 个威望及其主升级、补充升级、禁用单位/技能。
 - `commanders/<Commander>/upgrades.json`：默认升级、加点、精通、威望引用到的升级详情。
+
+## `production` 字段说明
+
+- `production`：当前首选生产/变异入口。
+- `production_options`：当前所有候选入口，按 exporter 评分排序。
+- `production.cost_mode`：
+  - `direct`：能力节点直接写了资源消耗。
+  - `delta_inferred`：按变异差额推导，通常是 `目标总价 - 底座总价`。
+  - `unit_total_inferred`：能力节点没写资源时，回填目标单位总价。
+- `production.base_unit_id`：
+  - 仅在 `delta_inferred` 下使用，表示差额推导时的底座单位。
