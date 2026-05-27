@@ -16,6 +16,7 @@ void libE0EAE146_gf_FinishLevel ();
 void libE0EAE146_gf_CommanderPanelInit (string lp_casterUnit, string lp_gpCommander);
 void libE0EAE146_gf_InitializeAbathurBiomass (int lp_player, string lp_collectEffect);
 void libE0EAE146_gf_EnableAbathurBiomassTriggers ();
+void libE0EAE146_gf_EnableAbathurToxicNestTriggers ();
 bool libE0EAE146_gf_CreateAbathurBiomassPickup (point lp_point, int lp_stack);
 bool libE0EAE146_gf_CreateAbathurBiomassTestPickup (point lp_point, int lp_stack);
 bool libE0EAE146_gf_AbathurCanDropBiomass (unit lp_unit);
@@ -83,6 +84,8 @@ trigger libE0EAE146_gt_PAttack;
 trigger libE0EAE146_gt_AIAttakcWaveUpgrade2;
 trigger libE0EAE146_gt_AbathurBiomassDrop;
 trigger libE0EAE146_gt_AbathurBiomassPickup;
+trigger libE0EAE146_gt_AbathurToxicNest;
+trigger libE0EAE146_gt_AbathurToxicNestDeathFailsafe;
 
 // Library Initialization
 void libE0EAE146_InitVariables ();
