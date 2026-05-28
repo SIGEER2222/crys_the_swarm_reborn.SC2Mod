@@ -1,6 +1,6 @@
 # 官方指挥官名册一致性审计
 
-- 生成时间：2026/5/28 16:11:12
+- 生成时间：2026/5/28 16:49:17
 - 官方数据：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\游戏数据\官方合作指挥官\commanders`
 - 目的：批量找出类似 Stukov 的错收/漏收候选。该报告是静态审计，不等于进游戏验证。
 
@@ -10,22 +10,22 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Abathur | 14 | 0 | 0 | 0 | 9 | 0 |
 | Alarak | 10 | 4 | 0 | 0 | 4 | 0 |
-| Artanis | 12 | 8 | 0 | 0 | 6 | 0 |
+| Artanis | 12 | 6 | 0 | 0 | 6 | 0 |
 | Dehaka | 25 | 0 | 0 | 0 | 0 | 0 |
-| Fenix | 12 | 5 | 0 | 0 | 5 | 0 |
-| Horner | 10 | 2 | 0 | 0 | 1 | 0 |
-| Karax | 13 | 7 | 0 | 0 | 6 | 0 |
-| Kerrigan | 10 | 4 | 0 | 1 | 8 | 0 |
+| Fenix | 12 | 3 | 0 | 0 | 5 | 0 |
+| Horner | 10 | 0 | 0 | 0 | 1 | 0 |
+| Karax | 13 | 5 | 0 | 0 | 6 | 0 |
+| Kerrigan | 10 | 0 | 0 | 0 | 8 | 0 |
 | Mengsk | 27 | 1 | 0 | 5 | 0 | 0 |
-| Nova | 16 | 17 | 0 | 1 | 0 | 0 |
+| Nova | 16 | 16 | 0 | 1 | 0 | 0 |
 | Raynor | 16 | 13 | 0 | 0 | 3 | 0 |
-| Stetmann | 34 | 2 | 0 | 5 | 0 | 0 |
-| Stukov | 15 | 5 | 0 | 0 | 2 | 0 |
+| Stetmann | 34 | 0 | 0 | 0 | 0 | 0 |
+| Stukov | 15 | 3 | 0 | 0 | 2 | 0 |
 | Swann | 15 | 14 | 0 | 0 | 4 | 0 |
-| Tychus | 14 | 8 | 0 | 0 | 1 | 0 |
-| Vorazun | 10 | 4 | 0 | 0 | 3 | 0 |
-| Zagara | 9 | 2 | 0 | 1 | 5 | 0 |
-| Zeratul | 12 | 8 | 0 | 0 | 3 | 0 |
+| Tychus | 14 | 6 | 0 | 0 | 1 | 0 |
+| Vorazun | 10 | 3 | 0 | 0 | 3 | 0 |
+| Zagara | 9 | 1 | 0 | 0 | 5 | 0 |
+| Zeratul | 12 | 5 | 0 | 0 | 3 | 0 |
 
 ## 说明
 
@@ -110,8 +110,6 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃使徒 (WarpInAdept) | GatewayTrain,Train7 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃黑暗圣堂武士 (DarkTemplar) | GatewayTrain,Train5 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 折跃机械台 (RoboticsFacilityWarp) | MorphBackToRoboticsFacility (MorphBackToRoboticsFacility) | MorphBackToRoboticsFacility,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 高阶圣堂武士 (HighTemplar) | 执政官融合 (AWrp) | ArchonWarp,SelectedUnits |  |
 
@@ -171,8 +169,6 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃追猎者 (Stalker) | GatewayTrain,Train2 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃黑暗圣堂武士 (DarkTemplar) | GatewayTrain,Train5 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
 
 ### 中间链已覆盖
 
@@ -200,10 +196,7 @@
 
 ### 命令卡未覆盖
 
-| 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
-| --- | --- | --- | --- | --- |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 恶火 (HHHellion) | 恶蝠模式 (MorphToHellionTank) | MorphToHHHellionTank,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 忒伊亚铁鸦 (HHRaven) | 启动消音模式 (MorphtoHHRavenSiege) | HHRavenMorphtoHHRavenSiege,Execute |  |
+- 无。
 
 ### 中间链已覆盖
 
@@ -234,8 +227,6 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃使徒 (WarpInAdept) | GatewayTrain,Train7 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃黑暗圣堂武士 (DarkTemplar) | GatewayTrain,Train5 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
 
 ### 中间链已覆盖
 
@@ -264,12 +255,7 @@
 
 ### 命令卡未覆盖
 
-| 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
-| --- | --- | --- | --- | --- |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 虫道网络 (NydusNetwork) | 召唤坑道虫 (SummonNydusWorm) | BuildNydusCanal,Build1 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 虫道网络 (NydusNetwork) | 召唤虫道毁灭者 (SummonNydusCanalAttacker) | BuildNydusCanal,Build2 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 虫道网络 (NydusNetwork) | 召唤菌塔 (SummonNydusCanalCreeper) | BuildNydusCanal,Build3 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 虫道网络 (NydusNetwork) | 召唤坑道虫 (SummonNydusWorm) | BuildNydusCanal,Build1 |  |
+- 无。
 
 ### 中间链已覆盖
 
@@ -277,9 +263,7 @@
 
 ### 名册有但无生产链
 
-| 原因 | 名称 | Tech ID | Unit ID | 来源 |
-| --- | --- | --- | --- | --- |
-| 名册/TechUnit 有归属，但没有生产链 | 凯瑞甘 | K5Kerrigan | K5Kerrigan | supplemental curated roster |
+- 无。
 
 ### 泛用生产链候选
 
@@ -337,7 +321,6 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 兵营 (Barracks) | Medic (Medic) | BarracksTrain,Train5 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 兵营 (Barracks) | 训练幽灵 (Ghost) | BarracksTrain,Train3 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 兵营 (Barracks) | 训练劫掠者 (Marauder) | BarracksTrain,Train4 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 部署恶蝠游骑兵 (HellbatBlackOps) | 恶火模式 (MorphToHellionBlackOps) | MorphToHellionBlackOps,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | 建造感应塔 (SensorTower) | TerranBuild,Build9 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | PsiDisruptor (PsiDisruptor) | TerranBuild,Build8 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | 建造毁灭炮塔 (BuildKelMorianRocketTurret) | TerranBuild,Build27 |  |
@@ -414,10 +397,7 @@
 
 ### 命令卡未覆盖
 
-| 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
-| --- | --- | --- | --- | --- |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 机械眼虫 (OverseerStetmann) | 超距视界 (MorphtoOverseerSiegeStetmann) | OverseerMorphtoOverseerSiegeStetmann,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 机械眼虫 (OverseerStetmannSiegeMode) | 取消超距视界 (MorphtoOverseerNormalStetmann) | OverseerSiegeMorphtoOverseerStetmann,Execute |  |
+- 无。
 
 ### 中间链已覆盖
 
@@ -425,13 +405,7 @@
 
 ### 名册有但无生产链
 
-| 原因 | 名称 | Tech ID | Unit ID | 来源 |
-| --- | --- | --- | --- | --- |
-| 名册/TechUnit 有归属，但没有生产链 | 盖瑞 | GaryStetmann | GaryStetmann | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 机械潜伏者 | LurkerStetmannBurrowed | LurkerStetmannBurrowed | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 机械眼虫 | OverseerStetmannSiegeMode | OverseerStetmannSiegeMode | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 机械脊针爬虫 | SpineCrawlerUprootedStetmann | SpineCrawlerUprootedStetmann | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 机械孢子爬虫 | SporeCrawlerUprootedStetmann | SporeCrawlerUprootedStetmann | supplemental curated roster |
+- 无。
 
 ### 泛用生产链候选
 
@@ -450,8 +424,6 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 被感染的指挥中心 (SICommandCenter) | 孵化王虫 (SIOverlord) | SICommandCenterTrain,Train3 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 被感染的重工厂 (SIFactory) | 孵化被感染的响尾蛇战车 (SIDiamondBack) | SIFactoryTrain,Train3 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 被感染的星港 (SIStarport) | 孵化被感染的女妖 (SIBanshee) | SIStarportTrain,Train1 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 跳虫 (Zergling) | 变异为爆虫 (Baneling) | MorphZerglingToBaneling,Train1 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 跳虫 (Zergling) |  () | MorphToBaneling,Execute |  |
 
 ### 中间链已覆盖
 
@@ -520,8 +492,6 @@
 
 | 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
 | --- | --- | --- | --- | --- |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 詹姆斯“天狼星”赛克斯 (TychusWarhound) | 部署战狼炮台 (TychusWarhoundAutoTurret) | TychusWarhoundBuildAutoTurret,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 凯文“响尾蛇”韦斯特 (TychusMarauder) | 部署恢复器 (TychusMarauderHealingWard) | TychusMarauderBuildHealingWard,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (TychusSCV) | 建造指挥中心 (TychusCommandCenter) | TychusTerranBuild,Build6 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (TychusSCV) | 建造精炼厂 (TychusRefinery) | TychusTerranBuild,Build3 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (TychusSCV) | 建造乔伊·雷酒吧 (BuildTychusBar) | TychusTerranBuild,Build13 |  |
@@ -556,7 +526,6 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃保护者 (SentryFenix) | GatewayTrain,Train15 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃使徒 (WarpInAdept) | GatewayTrain,Train7 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 先知 (Oracle) | 静滞结界 (OracleBuildStasisTrap) | OracleStasisTrapBuild,Build1 |  |
 
 ### 中间链已覆盖
 
@@ -585,7 +554,6 @@
 | 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
 | --- | --- | --- | --- | --- |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 腐化者 (Corruptor) | 变异为巢虫领主 (BroodLord) | MorphToBroodLord,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 跳虫 (Zergling) |  () | MorphToBaneling,Execute |  |
 
 ### 中间链已覆盖
 
@@ -593,9 +561,7 @@
 
 ### 名册有但无生产链
 
-| 原因 | 名称 | Tech ID | Unit ID | 来源 |
-| --- | --- | --- | --- | --- |
-| 名册/TechUnit 有归属，但没有生产链 | 扎加拉 | ZagaraVoidCoop | ZagaraVoidCoop | supplemental curated roster |
+- 无。
 
 ### 泛用生产链候选
 
@@ -622,9 +588,6 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃使徒 (WarpInAdept) | GatewayTrain,Train7 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃黑暗圣堂武士 (DarkTemplar) | GatewayTrain,Train5 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 萨尔纳加观察者 (ZeratulObserver) | 监察模式 (MorphtoZeratulObserverSiege) | ZeratulObserverMorphtoZeratulObserverSiege,Execute |  |
 
 ### 中间链已覆盖
 

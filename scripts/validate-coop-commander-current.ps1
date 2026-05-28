@@ -516,6 +516,15 @@ function Resolve-OfficialCommandersRoot {
         if (Test-Path -LiteralPath $preferred) {
             return $preferred
         }
+
+        $ancestorCandidates = Get-ChildItem -LiteralPath $current.FullName -Directory -Recurse -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -eq "commanders" }
+        foreach ($candidate in $ancestorCandidates) {
+            if (Test-Path -LiteralPath (Join-Path $candidate.FullName "Abathur\progression.json")) {
+                return $candidate.FullName
+            }
+        }
+
         $current = $current.Parent
     }
 
@@ -550,7 +559,7 @@ function Get-OfficialMasteryUpgrades {
     }
 
     try {
-        $progression = Get-Content -LiteralPath $progressionPath -Raw | ConvertFrom-Json
+        $progression = Get-Content -LiteralPath $progressionPath -Raw -Encoding UTF8 | ConvertFrom-Json
     }
     catch {
         Add-Error "Failed to parse official progression JSON: $progressionPath :: $($_.Exception.Message)"

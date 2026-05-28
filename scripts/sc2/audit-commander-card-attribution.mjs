@@ -56,6 +56,16 @@ const explicitOwnerRules = [
       || fields.buttonId === "StukovInfestedWildMutation"
       || fields.abilityId === "StukovInfestedWildMutation",
   },
+  {
+    owner: "Karax",
+    reason: "凯拉克斯不朽者暗影炮不应从共享不朽者命令卡串到其他星灵指挥官",
+    match: (fields) => fields.face === "ShadowCannonLocked"
+      || fields.buttonId === "ShadowCannonLocked"
+      || fields.face === "ImmortalShakurasShadowCannon"
+      || fields.buttonId === "ImmortalShakurasShadowCannon"
+      || fields.abilityId === "ImmortalShakurasShadowCannon"
+      || fields.requirementId === "KaraxLevel09",
+  },
 ];
 
 function parseArgs() {
@@ -405,8 +415,13 @@ function renderMarkdown({ officialRoot, xmfinalRoot, profileFindings, officialFi
   lines.push("- `Kerrigan / Zergling`、`Stukov / Zergling`：过滤扎加拉跳虫闪避和基础跳虫变爆虫链，字段包括 `ZagaraVoidCoopZerglingDodge`、`Baneling`、`MorphZerglingToBaneling`、`MorphToBaneling`、`HaveMasteryZagaraZerglingDodgeChance`。");
   lines.push("- `Abathur / Mutalisk`：过滤斯托科夫感染体野性突变，字段包括 `StukovInfestedWildMutation`。");
   lines.push("- `Raynor / SiegeTank`：过滤斯旺不朽协议，字段包括 `CommanderSwannImmortalityProtocol`、`HaveSwannCommanderImmortalityProtocol`。");
+  lines.push("- `Artanis / ImmortalAiur`：过滤凯拉克斯暗影炮，字段包括 `ShadowCannonLocked`、`ImmortalShakurasShadowCannon`、`KaraxLevel09`。");
+  lines.push("- `Fenix / ColossusPurifier`、`Fenix / ZealotPurifier`：过滤凯拉克斯热能长枪/重构链，字段包括 `ExtendedThermalLance`、`HaveKaraxExtendedThermalLance`、`ReconstructionLocked`、`KaraxLevel04`、`ZealotPurifierReviveKaraxHide`。");
+  lines.push("- `Karax / Scout`：过滤菲尼克斯摩约侦察机射程升级，字段包括 `HaveFenixScoutWeaponRange`。");
+  lines.push("- `Swann / SCV`：过滤雷诺聚变芯体等级锁，字段包括 `BuildFusionCoreLocked`、`RaynorLevel06`。");
   lines.push("- `Swann / SiegeTank`：过滤雷诺推进器等级锁，字段包括 `AfterburnersLocked`、`RaynorLevel11`。");
   lines.push("- `Vorazun / Stalker`：过滤阿拉纳克杀戮者/机械威望按钮，字段包括 `AlarakStalkerPhasingArmor`、`HaveAlarakStalkerPhasingArmor`、`CommanderPrestigeAlarakMechBuff`、`CommanderPrestigeAlarakMech`。");
+  lines.push("- `Vorazun / Zealot`：过滤亚坦尼斯旋风等级锁，字段包括 `WhirlwindLocked`、`ArtanisLevel04`。");
   lines.push("- 规则位置：`scripts/sc2/generate-xmfinal-commander-profiles.mjs` 与 `scripts/sc2/export-official-vs-mod-readable-report.mjs`。审计脚本只负责发现和报告，不修改官方 JSON。");
   lines.push("");
   lines.push("## 当前结论");
