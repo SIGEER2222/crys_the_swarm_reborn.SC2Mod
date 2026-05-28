@@ -3,11 +3,33 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+/**
+ * Compare scraped official coop commander JSON against the current XM mod.
+ *
+ * Inputs:
+ * - Official side: 游戏数据/官方合作指挥官/commanders/<Commander>/*.json
+ * - Mod side: 合作指挥官版起义狂潮/Mods/XM/XM<Commander>.SC2Mod
+ * - Shared mod side: XMCore.SC2Mod and XMFinal.SC2Mod are scanned for every commander.
+ *
+ * Comparison scope:
+ * - Extract official IDs from units, buildings, heroes, upgrades, progression,
+ *   prestiges, and command_cards JSON.
+ * - Check whether those IDs are mentioned in the commander's module plus shared modules.
+ * - Optionally parse mod XML Catalog IDs with --include-catalog-diff.
+ *
+ * Important limitation:
+ * This is an ID coverage/audit tool, not a semantic gameplay equivalence checker.
+ * A missing ID can mean "not implemented", "renamed/mapped manually", or
+ * "implemented through a different runtime path". Use the JSON details as a
+ * triage list before making gameplay conclusions.
+ */
+
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, "../..");
 const today = new Date().toISOString().slice(0, 10);
 
 const commanderModuleOverrides = new Map([
+  // Official Horner data maps to the current XMMira module name in this mod.
   ["Horner", "XMMira.SC2Mod"],
 ]);
 
@@ -70,15 +92,35 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  console.log(`Usage:
+  console.log(`用法：
   node scripts/sc2/compare-official-commanders-vs-mod.mjs [options]
 
-Options:
-  --official-root <path>       Official commander JSON root
-  --mod-root <path>            Mod root containing Mods/XM
-  --output-dir <path>          Output report directory
-  --commanders <A,B,C>         Compare selected commanders only
-  --include-catalog-diff       Also parse mod XML catalog IDs`);
+作用：
+  按指挥官对比官方合作指挥官 JSON 与当前 Mod 的 ID 覆盖差异。
+  默认输出 Markdown 汇总和 JSON 明细。
+
+默认路径：
+  官方数据：游戏数据/官方合作指挥官/commanders
+  Mod 数据：合作指挥官版起义狂潮
+  输出目录：docs/每日进度/<yyyy-MM-dd>-官方指挥官与mod差异对比
+
+对比口径：
+  1. 从官方 units/buildings/heroes/upgrades/progression/prestiges/command_cards 提取 ID。
+  2. 扫描 XM<Commander>.SC2Mod，并合并 XMCore.SC2Mod、XMFinal.SC2Mod。
+  3. 统计官方 ID 在 Mod 文本中未命中的项目。
+  4. --include-catalog-diff 会额外解析 Mod XML Catalog ID。
+
+参数：
+  --official-root <path>       官方指挥官 JSON 根目录
+  --mod-root <path>            包含 Mods/XM 的 Mod 根目录
+  --output-dir <path>          报告输出目录
+  --commanders <A,B,C>         只对比指定指挥官
+  --include-catalog-diff       额外解析 Mod XML Catalog ID
+
+示例：
+  node scripts/sc2/compare-official-commanders-vs-mod.mjs
+  node scripts/sc2/compare-official-commanders-vs-mod.mjs --commanders Abathur,Raynor
+  node scripts/sc2/compare-official-commanders-vs-mod.mjs --commanders Abathur --include-catalog-diff`);
 }
 
 function assertDirectory(dir, label) {
