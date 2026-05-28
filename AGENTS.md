@@ -90,11 +90,12 @@
 - SC2 新增/活跃维护的 runtime 代码文件默认不超过 1000 行；特别是 `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/*.galaxy`，新增逻辑应按职责拆成 include/profile/helper 文件。可用 `scripts/sc2/check-galaxy-line-limit.ps1` 校验。历史地图脚本、`t3Terrain.xml`、官方/原始导出 XML 这类生成或遗留资源不要为满足行数而盲拆。
 - `crys_the_swarm_reborn.SC2Mod` 只可作参考，不可直接当来源。
 - Launcher 能显示，不代表玩法已完成。
-- `合作指挥官版起义狂潮/` 是此前尚未成功的半成品测试实现，不要把其中的文件当作官方数据、最终设计依据或已验证 runtime 行为；只有在单独标注“半成品实现线索”时才可参考。
+- 当前有两条本地工程线：`原始mod/` 是拿原 mod 续上的新项目和当前实现/回归线；`合作指挥官版起义狂潮/` 是此前尚未成功的半成品旧测试实现。
+- `合作指挥官版起义狂潮/` 不要当作官方数据、最终设计依据、当前开发 owner 或已验证 runtime 行为；只有在单独标注“半成品实现线索”时才可参考。
 - 官方原始合作指挥官数据以 `references/sc2-build-96883-casc-export` 为准；该目录来自 SC2 Build 96883 CASC 导出。
-- 指挥官等级、精通、威望设计优先读取 `游戏数据/官方合作指挥官/commanders/<Commander>/`，再用 `references/sc2-build-96883-casc-export/` 追完整 Catalog / UserData / 触发器闭包；`原始mod/` 只能作为人工拼装参考。
+- 指挥官等级、精通、威望设计优先读取 `游戏数据/官方合作指挥官/commanders/<Commander>/`，再用 `references/sc2-build-96883-casc-export/` 追完整 Catalog / UserData / 触发器闭包；`原始mod/` 是当前实现/回归目标，但不能反推官方设计基准。
 - 提取官方等级加点/精通时，读取 `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` 里的 `CampaignPerk` / `MasteryUpgrades`，并补读 `mods/starcoop/commanders/egonstetmann.sc2mod` 与 `mods/starcoop/commanders/arcturusmengsk.sc2mod` 的 `userdata.xml`。
-- 不要把 `合作指挥官版起义狂潮/Mods/XM/**/CommanderAch` 当作官方原始数据源；它是当前 Mod 的 runtime/custom 映射。
+- 不要把 `合作指挥官版起义狂潮/Mods/XM/**/CommanderAch` 当作官方原始数据源；它是半成品旧线里的 runtime/custom 映射。
 - 当前官方合作指挥官加点/精通提取脚本：`scripts/sc2/export-official-coop-progression.py`；当前输出目录：`docs/每日进度/2026-05-26官方合作指挥官原始精通加点/`。
 - 雷诺强度融合当前以 `docs/指挥官威望/雷诺精通威望加点融合设计-2026-05-27.md` 为准：等级 15 全解锁、6 项精通全满；威望只取选定收益，不直接启用官方三个 `PlayerPrestige`。
 
