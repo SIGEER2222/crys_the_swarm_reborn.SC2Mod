@@ -1,5 +1,5 @@
 param(
-    [string]$WorkspaceRoot = (Split-Path -Parent $PSScriptRoot),
+    [string]$WorkspaceRoot = '',
     [Parameter(Mandatory)]
     [string]$Commander,
     [switch]$RequireLauncherCandidate,
@@ -7,6 +7,20 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+
+if ([string]::IsNullOrWhiteSpace($WorkspaceRoot)) {
+    $scriptRoot = $PSScriptRoot
+    if ([string]::IsNullOrWhiteSpace($scriptRoot) -and -not [string]::IsNullOrWhiteSpace($PSCommandPath)) {
+        $scriptRoot = Split-Path -Parent $PSCommandPath
+    }
+    if ([string]::IsNullOrWhiteSpace($scriptRoot) -and $MyInvocation.MyCommand.Path) {
+        $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+    }
+    if ([string]::IsNullOrWhiteSpace($scriptRoot)) {
+        throw "Unable to resolve script root. Pass -WorkspaceRoot explicitly."
+    }
+    $WorkspaceRoot = Split-Path -Parent $scriptRoot
+}
 
 function New-CommanderConfig {
     param(
@@ -305,7 +319,7 @@ function Resolve-ScenarioRoot {
         return $rootItem
     }
 
-    foreach ($preferredName in @("原始mod", "originalmod", "合作指挥官版起义狂潮")) {
+    foreach ($preferredName in @("合作指挥官版起义狂潮", "原始mod", "originalmod")) {
         $preferredRoot = Join-Path $rootItem.FullName $preferredName
         if (Test-Path -LiteralPath (Join-Path $preferredRoot "Mods\XM\XMCore.SC2Mod")) {
             return Get-Item -LiteralPath $preferredRoot
@@ -322,6 +336,14 @@ function Resolve-ScenarioRoot {
     }
 
     if ($candidates.Count -gt 1) {
+        $withoutTestBench = @(
+            $candidates |
+                Where-Object { -not (Test-Path -LiteralPath (Join-Path $_.FullName "Maps\XM\CommanderTestBench.SC2Map")) }
+        )
+        if ($withoutTestBench.Count -eq 1) {
+            return $withoutTestBench[0]
+        }
+
         $candidateList = ($candidates | Select-Object -ExpandProperty FullName) -join "; "
         throw "Multiple scenario roots found under $($rootItem.FullName). Pass a narrower -WorkspaceRoot. Candidates: $candidateList"
     }
@@ -488,9 +510,22 @@ function Test-H2CSDocumentHeaderDependency {
 function Resolve-OfficialCommandersRoot {
     param([string]$Root)
 
-    $preferred = Join-Path $Root "游戏数据\官方合作指挥官\commanders"
-    if (Test-Path -LiteralPath $preferred) {
-        return $preferred
+    $current = Get-Item -LiteralPath $Root
+    while ($current) {
+        $preferred = Join-Path $current.FullName "游戏数据\官方合作指挥官\commanders"
+        if (Test-Path -LiteralPath $preferred) {
+            return $preferred
+        }
+
+        $ancestorCandidates = Get-ChildItem -LiteralPath $current.FullName -Directory -Recurse -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -eq "commanders" }
+        foreach ($candidate in $ancestorCandidates) {
+            if (Test-Path -LiteralPath (Join-Path $candidate.FullName "Abathur\progression.json")) {
+                return $candidate.FullName
+            }
+        }
+
+        $current = $current.Parent
     }
 
     $candidates = Get-ChildItem -LiteralPath $Root -Directory -Recurse -ErrorAction SilentlyContinue |
@@ -524,7 +559,7 @@ function Get-OfficialMasteryUpgrades {
     }
 
     try {
-        $progression = Get-Content -LiteralPath $progressionPath -Raw | ConvertFrom-Json
+        $progression = Get-Content -LiteralPath $progressionPath -Raw -Encoding UTF8 | ConvertFrom-Json
     }
     catch {
         Add-Error "Failed to parse official progression JSON: $progressionPath :: $($_.Exception.Message)"
