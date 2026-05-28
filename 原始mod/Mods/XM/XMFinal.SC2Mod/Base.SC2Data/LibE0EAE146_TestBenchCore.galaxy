@@ -142,6 +142,7 @@ void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unit
     int lv_before;
     int lv_after;
     int lv_created;
+    unitgroup lv_createdGroup;
 
     if (lp_unitType == "") {
         libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
@@ -161,10 +162,14 @@ void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unit
     lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libNtve_gf_CreateUnitsWithDefaultFacing(1, lp_unitType, c_unitCreateIgnorePlacement, lp_player, lp_point);
     lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
-    lv_created = MaxI(0, (lv_after - lv_before));
+    lv_createdGroup = UnitLastCreatedGroup();
+    lv_created = UnitGroupCount(lv_createdGroup, c_unitCountAll);
+    if ((lv_created <= 0) && (lv_after > lv_before)) {
+        lv_created = MaxI(0, (lv_after - lv_before));
+    }
     if (lv_created > 0) {
         libE0EAE146_gv_xmTestBenchCreated[lp_player] += lv_created;
-        UnitGroupAddUnitGroup(libE0EAE146_gv_xmTestBenchUnits[lp_player], UnitLastCreatedGroup());
+        UnitGroupAddUnitGroup(libE0EAE146_gv_xmTestBenchUnits[lp_player], lv_createdGroup);
         libE0EAE146_gf_XMDbgLog("INFO", "TEST_PROFILE_OBJECT_CREATED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=" + lp_unitType + " count=" + IntToString(lv_created));
     }
     else {

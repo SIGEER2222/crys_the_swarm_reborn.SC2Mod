@@ -116,18 +116,44 @@ function Invoke-RobocopySync {
     if ($robocopy) {
         $args = @($Source, $Target, "/E", "/R:1", "/W:1", "/NFL", "/NDL", "/NP", "/MT:8")
         & $robocopy.Source @args | Out-Null
-        if ($LASTEXITCODE -ge 8) {
-            throw "robocopy failed while syncing '$Source' to '$Target' with exit code $LASTEXITCODE"
+        if ($LASTEXITCODE -lt 8) {
+            return
         }
-        return
+        Write-Warning "robocopy failed while syncing '$Source' to '$Target' with exit code $LASTEXITCODE; falling back to Copy-Item."
     }
+
+    Get-ChildItem -LiteralPath $Source -Recurse -File | ForEach-Object {
+        $relative = $_.FullName.Substring($Source.Length).TrimStart('\')
+        if ($relative -ieq "DocumentHeader") {
+            return
+        }
+        $destination = Join-Path $Target $relative
+        $destinationDir = Split-Path -Parent $destination
+        Ensure-Directory -Path $destinationDir
+        Copy-Item -LiteralPath $_.FullName -Destination $destination -Force
+    }
+}
+
+function Invoke-DirectoryContentSync {
+    param(
+        [string]$Source,
+        [string]$Target
+    )
+
+    Assert-Path -Path $Source -Label "Source directory content"
+    Ensure-Directory -Path $Target
 
     Get-ChildItem -LiteralPath $Source -Recurse -File | ForEach-Object {
         $relative = $_.FullName.Substring($Source.Length).TrimStart('\')
         $destination = Join-Path $Target $relative
         $destinationDir = Split-Path -Parent $destination
         Ensure-Directory -Path $destinationDir
-        Copy-Item -LiteralPath $_.FullName -Destination $destination -Force
+        try {
+            Copy-Item -LiteralPath $_.FullName -Destination $destination -Force -ErrorAction Stop
+        }
+        catch {
+            Write-Warning "SKIPPED_COPY=$destination reason=$($_.Exception.Message)"
+        }
     }
 }
 
@@ -198,14 +224,25 @@ Write-Output "DRY_RUN=$([int][bool]$DryRun)"
 foreach ($modName in $modNames) {
     $source = Join-Path $sourceModsRoot $modName
     $target = Join-Path $targetModsRoot $modName
-    Invoke-RobocopySync -Source $source -Target $target
+    if ($modName -eq "XMFinal.SC2Mod") {
+        Invoke-DirectoryContentSync -Source (Join-Path $source "Base.SC2Data") -Target (Join-Path $target "Base.SC2Data")
+        Invoke-DirectoryContentSync -Source (Join-Path $source "zhCN.SC2Data") -Target (Join-Path $target "zhCN.SC2Data")
+    }
+    else {
+        Invoke-RobocopySync -Source $source -Target $target
+    }
     Write-Output "SYNCED_MOD=$modName"
 }
 
 foreach ($mapName in $mapNames) {
     $source = Join-Path $sourceMapsRoot $mapName
     $target = Join-Path $targetMapsRoot $mapName
-    Invoke-RobocopySync -Source $source -Target $target
+    if ($mapName -eq "CommanderTestBench.SC2Map") {
+        Invoke-DirectoryContentSync -Source $source -Target $target
+    }
+    else {
+        Invoke-RobocopySync -Source $source -Target $target
+    }
     Write-Output "SYNCED_MAP=$mapName"
 }
 
