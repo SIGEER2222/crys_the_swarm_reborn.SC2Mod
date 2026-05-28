@@ -32,6 +32,7 @@ void libE0EAE146_gf_XMTestBench_ResetCounters (int lp_player) {
     libE0EAE146_gv_xmTestBenchMissing[lp_player] = 0;
     libE0EAE146_gv_xmTestBenchWarnings[lp_player] = 0;
     libE0EAE146_gv_xmTestBenchErrors[lp_player] = 0;
+    libE0EAE146_gv_xmTestBenchMissingIds[lp_player] = "";
     libE0EAE146_gv_xmTestBenchUnits[lp_player] = UnitGroupEmpty();
 }
 
@@ -104,6 +105,22 @@ void libE0EAE146_gf_XMTestBench_LogScenarioStub (int lp_player, string lp_scenar
     libE0EAE146_gf_XMDbgLog("WARN", "TEST_SCENARIO_STUB", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_scenarioKind + " reason=" + lp_reason);
 }
 
+void libE0EAE146_gf_XMTestBench_LogScenarioSkip (int lp_player, string lp_scenarioKind, string lp_reason) {
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_SCENARIO_SKIPPED");
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_SCENARIO_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_scenarioKind + " reason=" + lp_reason);
+}
+
+void libE0EAE146_gf_XMTestBench_RecordMissingObject (int lp_player, string lp_objectId) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+    if (libE0EAE146_gv_xmTestBenchMissingIds[lp_player] == "") {
+        libE0EAE146_gv_xmTestBenchMissingIds[lp_player] = lp_objectId;
+        return;
+    }
+    libE0EAE146_gv_xmTestBenchMissingIds[lp_player] = libE0EAE146_gv_xmTestBenchMissingIds[lp_player] + "," + lp_objectId;
+}
+
 point libE0EAE146_gf_XMTestBench_SpawnPoint (int lp_player, int lp_index, fixed lp_radius, fixed lp_spacing) {
     int lv_slotsPerRow;
     int lv_row;
@@ -128,12 +145,14 @@ void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unit
 
     if (lp_unitType == "") {
         libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, "blank");
         libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
         libE0EAE146_gf_XMDbgLog("WARN", "TEST_PROFILE_OBJECT_MISSING", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=blank");
         return;
     }
     if (!CatalogEntryIsValid(c_gameCatalogUnit, lp_unitType)) {
         libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, lp_unitType);
         libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
         libE0EAE146_gf_XMDbgLog("WARN", "TEST_PROFILE_OBJECT_INVALID", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=" + lp_unitType + " reason=missing_catalog_entry");
         return;
@@ -150,6 +169,7 @@ void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unit
     }
     else {
         libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, lp_unitType);
         libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
         libE0EAE146_gf_XMDbgLog("WARN", "TEST_PROFILE_OBJECT_NOT_CREATED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=" + lp_unitType + " reason=create_returned_no_count_delta");
     }
