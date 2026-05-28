@@ -77,6 +77,42 @@ const builtinRefs = new Map([
   ])],
 ]);
 
+const probableBaseGameRefs = new Map([
+  ["requirement", new Set([
+    "HaveGreaterSpire",
+    "HaveLair",
+    "HideExtractor",
+    "UseCharge",
+    "UsePsiStorm",
+  ])],
+  ["validator", new Set([
+    "BurrowChargeMinimumRange",
+    "CasterHas10Energy",
+    "CasterInCombat",
+    "CasterIsAttacking",
+    "CasterIsFiringWeapon",
+    "CasterNotHoldingPosition",
+    "CasterShieldsLT1",
+    "HasVespene",
+    "IsNotBuried",
+    "IsNotDisguisedChangeling",
+    "IsNotEgg",
+    "IsNotLarva",
+    "NoMarkers",
+    "NotHallucinationOrNotDetected",
+    "NotInterceptor",
+    "NotMaxHP",
+    "NotStasis",
+    "NotStopping",
+    "NotWarpingIn",
+    "NotWidowMineTarget",
+    "RangeCheckLE6",
+    "TargetInCombat",
+    "TargetNotHarmless",
+    "noMarkers",
+  ])],
+]);
+
 function parseArgs() {
   const args = new Map();
   for (let i = 2; i < process.argv.length; i += 1) {
@@ -273,6 +309,19 @@ function localNode(index, kind, id) {
   return (index.get(`${kind}:${id}`) ?? []).find((node) => node.scope === "xmfinal");
 }
 
+function crossKindNode(index, kind, id) {
+  for (const candidateKind of knownKinds) {
+    if (candidateKind === kind) {
+      continue;
+    }
+    const node = index.get(`${candidateKind}:${id}`)?.[0];
+    if (node) {
+      return node;
+    }
+  }
+  return undefined;
+}
+
 function resolveReference(index, kind, id) {
   if (builtinRefs.get(kind)?.has(id)) {
     return { status: "builtin", node: undefined };
@@ -289,6 +338,13 @@ function resolveReference(index, kind, id) {
   const official = nodes.find((node) => node.scope === "official-reference");
   if (official) {
     return { status: "official-reference", node: official };
+  }
+  const crossKind = crossKindNode(index, kind, id);
+  if (crossKind) {
+    return { status: "cross-kind-reference", node: crossKind };
+  }
+  if (probableBaseGameRefs.get(kind)?.has(id)) {
+    return { status: "probable-base-game", node: undefined };
   }
   return { status: "missing", node: undefined };
 }
