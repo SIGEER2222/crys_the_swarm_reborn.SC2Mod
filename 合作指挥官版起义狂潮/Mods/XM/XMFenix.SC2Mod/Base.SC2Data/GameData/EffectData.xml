@@ -823,6 +823,12 @@
     <EditorCategories value="" />
     <Chance value="0" />
   </CEffectApplyBehavior>
+  <CEffectApplyBehavior id="CommanderPrestigeKaraxStructuresChronoBoostTarget">
+    <ValidatorArray index="0" value="CasterIsStructureWithWeapon" />
+    <EditorCategories value="" />
+    <WhichUnit Value="Caster" />
+    <Behavior value="ChronoBoostTarget" />
+  </CEffectApplyBehavior>
   <CEffectSwitch id="CommanderPrestigeKerriganAbilitiesConvertRage">
     <ValidatorArray value="HaveKerriganRage" />
     <EditorCategories value="" />
@@ -1438,6 +1444,11 @@
     <SearchFlags index="SameCliff" value="1" />
     <ImpactLocation Value="CasterUnit" />
   </CEffectEnumArea>
+  <CEffectSet id="DehakaTrainInitialSet">
+    <EditorCategories value="Race:Zerg" />
+    <EffectArray value="DehakaTrainMakePrecursor" />
+    <EffectArray value="DehakaTrainLM" />
+  </CEffectSet>
   <CEffectCreateUnit id="DeploySpiderMinesCreateUnit">
     <WhichLocation Value="TargetPoint" />
     <SpawnEffect value="DeploySpiderMinesLaunchStartSet" />
@@ -1490,10 +1501,6 @@
     <PeriodicOffsetArray value="0,0,0" />
     <PeriodicPeriodArray value="0" />
   </CEffectCreatePersistent>
-  <CEffectApplyBehavior id="DrakkenLaserDrillBuildAB">
-    <EditorCategories value="Race:Terran" />
-    <Behavior value="DrakkenLaserDrillBuild" />
-  </CEffectApplyBehavior>
   <CEffectRemoveBehavior id="DrakkenLaserDrillDisableAttackRB">
     <EditorCategories value="Race:Terran" />
     <WhichUnit Value="Caster" />

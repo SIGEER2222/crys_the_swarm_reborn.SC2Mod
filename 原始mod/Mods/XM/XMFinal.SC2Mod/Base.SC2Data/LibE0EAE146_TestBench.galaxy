@@ -21,8 +21,7 @@ void libE0EAE146_gf_XMTestBench_RunStandardBase (int lp_player) {
     libE0EAE146_gf_InitializeBase(PointWithOffsetPolar(PlayerStartLocation(lp_player), 8.0, 0.0), 5, null, true);
     lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libE0EAE146_gv_xmTestBenchCreated[lp_player] = MaxI(0, (lv_after - lv_before));
-    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
-    libE0EAE146_gf_XMDbgLog("WARN", "TEST_SCENARIO_ADAPTER", "scenario=standard_base reason=legacy_initializebase_adapter cleanup=manual");
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_SCENARIO_ADAPTER", "scenario=standard_base result=adapter_ok reason=legacy_initializebase_adapter cleanup=manual");
 }
 
 void libE0EAE146_gf_XMTestBench_SetCommander (int lp_player, string lp_commander) {
@@ -190,9 +189,8 @@ void libE0EAE146_gf_XMTestBench_RunRoster (int lp_player, string lp_rosterKind) 
 void libE0EAE146_gf_XMTestBench_RunPowerFusion (int lp_player) {
     libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player]);
     libE0EAE146_gf_CommanderUpgrade();
-    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_POWER_FUSION");
-    libE0EAE146_gf_XMDbgLog("WARN", "TEST_POWER_FUSION", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " result=override_seeded reason=profile_not_wired");
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_POWER_FUSION", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " result=override_seeded reason=smoke_seed_only");
 }
 
 void libE0EAE146_gf_XMTestBench_RunHeroSmoke (int lp_player) {

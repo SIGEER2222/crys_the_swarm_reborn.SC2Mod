@@ -874,7 +874,7 @@
     <GlossaryPriority value="234" />
     <SubgroupPriority value="29" />
   </CUnit>
-  <CUnit id="ImpalerAbathurReborn">
+  <CUnit id="ImpalerAbathur">
     <DeathRevealRadius value="3" />
     <Race value="Zerg" />
     <FlagArray index="PreventDestroy" value="1" />
@@ -911,11 +911,11 @@
     <AbilArray Link="stop" />
     <AbilArray Link="move" />
     <AbilArray Link="attack" />
-    <AbilArray Link="BurrowImpalerAbathurRebornDown" />
+    <AbilArray Link="BurrowImpalerAbathurDown" />
     <AbilArray Link="AbathurRebornDeepTunnel" />
     <BehaviorArray Link="ImpalerWeaponDisabled" />
     <BehaviorArray Link="AllUnitBehaviorController" />
-    <WeaponArray Link="ImpalerAbathurReborn" Turret="FreeRotate" />
+    <WeaponArray Link="ImpalerAbathur" Turret="FreeRotate" />
     <!--EquipmentArray Weapon="Impaler"/-->
     <CardLayouts>
       <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
@@ -923,7 +923,7 @@
       <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
       <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4" />
       <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
-      <LayoutButtons Face="ImpalerBurrowDown" Type="AbilCmd" AbilCmd="BurrowImpalerAbathurRebornDown,Execute" Row="2" Column="4" />
+      <LayoutButtons Face="ImpalerBurrowDown" Type="AbilCmd" AbilCmd="BurrowImpalerAbathurDown,Execute" Row="2" Column="4" />
       <LayoutButtons Face="AbathurRebornDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnel,255" Row="2" Column="0" />
       <LayoutButtons Face="AbathurRebornGenerateCreep" Type="Passive" Requirements="HaveGenerateCreep" Row="2" Column="3" />
     </CardLayouts>
@@ -947,7 +947,7 @@
       <ChanceArray index="Turn" value="33" />
     </Fidget>
   </CUnit>
-  <CUnit id="ImpalerAbathurRebornBurrowed">
+  <CUnit id="ImpalerAbathurBurrowed">
     <DeathRevealRadius value="3" />
     <Race value="Zerg" />
     <Mob value="Multiplayer" />
@@ -986,12 +986,12 @@
     <AbilArray Link="attack" />
     <AbilArray Link="stop" />
     <AbilArray Link="move" />
-    <AbilArray Link="BurrowImpalerAbathurRebornUp" />
+    <AbilArray Link="BurrowImpalerAbathurUp" />
     <AbilArray Link="AbathurRebornDeepTunnel" />
     <BehaviorArray Link="AllUnitBehaviorController" />
     <!--BehaviorArray Link="VorazunCloakDamageBoostPermanent"/-->
     <BehaviorArray Link="ImpalerGenerateCreep" />
-    <WeaponArray Link="ImpalerAbathurReborn" Turret="FreeRotate" />
+    <WeaponArray Link="ImpalerAbathur" Turret="FreeRotate" />
     <CardLayouts>
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
       <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4" />
@@ -1000,7 +1000,7 @@
       <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
       <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
       <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1" />
-      <LayoutButtons Face="ImpalerBurrowUp" Type="AbilCmd" AbilCmd="BurrowImpalerAbathurRebornUp,Execute" Row="2" Column="4" />
+      <LayoutButtons Face="ImpalerBurrowUp" Type="AbilCmd" AbilCmd="BurrowImpalerAbathurUp,Execute" Row="2" Column="4" />
       <LayoutButtons Face="AbathurRebornDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnel,255" Row="2" Column="0" />
       <LayoutButtons Face="AbathurRebornGenerateCreep" Type="Passive" Requirements="HaveGenerateCreep" Row="2" Column="3" />
     </CardLayouts>
@@ -1008,14 +1008,14 @@
     <InnerRadius value="0.625" />
     <SubgroupPriority value="18" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee" />
-    <LeaderAlias value="ImpalerAbathurReborn" />
-    <HotkeyAlias value="ImpalerAbathurReborn" />
-    <TechAliasArray value="Alias_ImpalerAbathurReborn" />
-    <GlossaryAlias value="ImpalerAbathurReborn" />
+    <LeaderAlias value="ImpalerAbathur" />
+    <HotkeyAlias value="ImpalerAbathur" />
+    <TechAliasArray value="Alias_ImpalerAbathur" />
+    <GlossaryAlias value="ImpalerAbathur" />
     <KillDisplay value="Always" />
     <RankDisplay value="Always" />
   </CUnit>
-  <CUnit id="ImpalerAbathurRebornEgg">
+  <CUnit id="ImpalerAbathurEgg">
     <DeathRevealRadius value="3" />
     <Facing value="45" />
     <Race value="Zerg" />
@@ -1692,7 +1692,7 @@
     <TacticalAIThink value="AIThinkRavager" />
     <HotkeyCategory value="" />
   </CUnit>
-  <CUnit id="RavagerAbathurReborn">
+  <CUnit id="RavagerAbathur">
     <DeathRevealRadius value="3" />
     <Race value="Zerg" />
     <Mob value="Multiplayer" />
@@ -1725,8 +1725,8 @@
     <AbilArray Link="attack" />
     <AbilArray Link="move" />
     <AbilArray Link="que1" />
-    <AbilArray Link="BurrowRavagerAbathurRebornDown" />
-    <AbilArray Link="RavagerAbathurRebornCorrosiveBile" />
+    <AbilArray Link="BurrowRavagerAbathurDown" />
+    <AbilArray Link="RavagerAbathurCorrosiveBile" />
     <AbilArray Link="EvolveToBrutaliskRavager" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <BehaviorArray Link="AllUnitBehaviorController" />
@@ -1737,8 +1737,8 @@
       <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
       <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
-      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurRebornDown,Execute" Row="2" Column="4" />
-      <LayoutButtons Face="RavagerAbathurRebornCorrosiveBile" Type="AbilCmd" AbilCmd="RavagerAbathurRebornCorrosiveBile,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurDown,Execute" Row="2" Column="4" />
+      <LayoutButtons Face="RavagerAbathurCorrosiveBile" Type="AbilCmd" AbilCmd="RavagerAbathurCorrosiveBile,Execute" Row="2" Column="0" />
       <LayoutButtons Face="CorrosiveBileRadiusIncrease" Type="Passive" Requirements="HaveCorrosiveBileRadiusIncrease" Row="1" Column="0" />
       <LayoutButtons Face="CorrosiveBileDamageIncrease" Type="Passive" Requirements="HaveCorrosiveBileDamageIncrease" Row="1" Column="1" />
       <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
@@ -1770,7 +1770,7 @@
     <RankDisplay value="Always" />
     <Description value="Button/Tooltip/Ravager" />
   </CUnit>
-  <CUnit id="RavagerAbathurRebornBurrowed">
+  <CUnit id="RavagerAbathurBurrowed">
     <DeathRevealRadius value="3" />
     <Race value="Zerg" />
     <Mob value="Multiplayer" />
@@ -1798,14 +1798,14 @@
     <CostResource index="Minerals" value="125" />
     <CostResource index="Vespene" value="75" />
     <AttackTargetPriority value="20" />
-    <AbilArray Link="BurrowRavagerAbathurRebornUp" />
+    <AbilArray Link="BurrowRavagerAbathurUp" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <AbilArray Link="que1" />
     <BehaviorArray Link="AllUnitBehaviorController" />
     <CardLayouts>
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
       <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4" />
-      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurRebornUp,Execute" Row="2" Column="4" />
+      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurUp,Execute" Row="2" Column="4" />
       <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
       <LayoutButtons>
         <Face value="StopRoachBurrowed" />
@@ -1833,12 +1833,12 @@
     <MinimapRadius value="0.75" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <LeaderAlias value="Ravager" />
-    <HotkeyAlias value="RavagerAbathurReborn" />
+    <HotkeyAlias value="RavagerAbathur" />
     <KillDisplay value="Always" />
     <RankDisplay value="Always" />
     <Description value="Button/Tooltip/Ravager" />
-    <SelectAlias value="RavagerAbathurReborn" />
-    <SubgroupAlias value="RavagerAbathurReborn" />
+    <SelectAlias value="RavagerAbathur" />
+    <SubgroupAlias value="RavagerAbathur" />
     <HotkeyCategory value="Unit/Category/ZergUnits" />
   </CUnit>
   <CUnit id="RavagerCocoon">
@@ -7517,7 +7517,7 @@
     <SubgroupPriority value="113" />
     <Attributes index="Psionic" value="1" />
   </CUnit>
-  <CUnit id="RavagerAbathurRebornCocoon">
+  <CUnit id="RavagerAbathurCocoon">
     <DeathRevealRadius value="3" />
     <Race value="Zerg" />
     <Mob value="Multiplayer" />

@@ -36,6 +36,10 @@
   <CRequirementAnd id="AndCountUnitBanelingNestCompleteOnly">
     <OperandArray value="CountUnitBanelingNestCompleteOnly" />
   </CRequirementAnd>
+  <CRequirementAnd id="AndCountUnitCyberneticsCoreCompleteOnlyTechTreeCheatEq2888706574CountUnitSolarForgeQueuedOrBetter0">
+    <OperandArray value="CountUnitCyberneticsCoreCompleteOnlyTechTreeCheat" />
+    <OperandArray value="Eq2888706574CountUnitSolarForgeQueuedOrBetter0" />
+  </CRequirementAnd>
   <CRequirementAnd id="AndCountUnitDrakkenLaserDrillCoopCompleteOnlyCountUpgradeDrakkenLaserDrillBFGCompleteOnly3853927576">
     <OperandArray value="CountUnitDrakkenLaserDrillCoopCompleteOnly" />
     <OperandArray value="CountUpgradeDrakkenLaserDrillBFGCompleteOnly3853927576" />
@@ -329,6 +333,10 @@
     <OperandArray value="CountUpgradeKaraxCommanderCompleteOnly" />
     <OperandArray value="LTE4CountUpgradeCommanderLevelCompleteOnly" />
   </CRequirementAnd>
+  <CRequirementAnd id="AndCountUpgradeKaraxCommanderCompleteOnlyNotCountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter">
+    <OperandArray value="CountUpgradeKaraxCommanderCompleteOnly" />
+    <OperandArray value="NotCountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter" />
+  </CRequirementAnd>
   <CRequirementAnd id="AndCountUpgradeKaraxCommanderCompleteOnlyNotCountUpgradeSolarEfficiencyLevel1QueuedOrBetter">
     <OperandArray value="CountUpgradeKaraxCommanderCompleteOnly" />
     <OperandArray value="NotCountUpgradeSolarEfficiencyLevel1QueuedOrBetter" />
@@ -432,6 +440,15 @@
     <Tooltip value="" />
     <OperandArray value="CountUpgradeRaynorCommanderCompleteOnly" />
     <OperandArray value="NotCountUpgradeNanoConstructorQueuedOrBetter" />
+  </CRequirementAnd>
+  <CRequirementAnd id="AndCountUpgradeSolarEfficiencyLevel1CompleteOnlyNotCountUpgradeSolarEfficiencyLevel2CompleteOnlyNotCountUpgradeSolarEfficiencyLevel3CompleteOnly">
+    <OperandArray value="CountUpgradeSolarEfficiencyLevel1CompleteOnly" />
+    <OperandArray value="NotCountUpgradeSolarEfficiencyLevel2CompleteOnly" />
+    <OperandArray value="NotCountUpgradeSolarEfficiencyLevel3CompleteOnly" />
+  </CRequirementAnd>
+  <CRequirementAnd id="AndCountUpgradeSolarEfficiencyLevel2CompleteOnlyNotCountUpgradeSolarEfficiencyLevel3CompleteOnly">
+    <OperandArray value="CountUpgradeSolarEfficiencyLevel2CompleteOnly" />
+    <OperandArray value="NotCountUpgradeSolarEfficiencyLevel3CompleteOnly" />
   </CRequirementAnd>
   <CRequirementAnd id="AndCountUpgradeStukovCommanderCompleteOnlyGT10CountUpgradeCommanderLevelCompleteOnlyNot1225867992CountBehaviorUnderConstructionCompleteOnlyAtUnit">
     <OperandArray value="CountUpgradeStukovCommanderCompleteOnly" />
@@ -640,6 +657,10 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="DehakaPrimalMutation" State="CompleteOnlyAtUnit" />
   </CRequirementCountBehavior>
+  <CRequirementCountBehavior id="CountBehaviorMutatorWorkerSleepCompleteOnlyAtUnit">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="MutatorWorkerSleep" State="CompleteOnlyAtUnit" />
+  </CRequirementCountBehavior>
   <CRequirementCountBehavior id="CountBehaviorNovaCombatSuitCompleteOnlyAtUnit">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="NovaCombatSuit" State="CompleteOnlyAtUnit" />
@@ -679,6 +700,10 @@
   <CRequirementCountUnit id="CountUnitFactoryTechLabCompleteOnlyAtUnitTechTreeCheat">
     <Tooltip value="" />
     <Count Link="FactoryTechLab" State="CompleteOnlyAtUnit" />
+  </CRequirementCountUnit>
+  <CRequirementCountUnit id="CountUnitFenixAltarOfPsiStormsQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="FenixAltarOfPsiStorms" State="QueuedOrBetter" />
   </CRequirementCountUnit>
   <CRequirementCountUnit id="CountUnitFleetBeaconCompleteOnly2730708737TechTreeCheat">
     <Count Link="FleetBeacon" State="CompleteOnly" />
@@ -796,6 +821,11 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="Alias_PneumatizedCarapace" State="CompleteOnly" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeArtanisCommanderCompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Tooltip value="" />
+    <Count Link="ArtanisCommander" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeBansheeAirstrikeCompleteOnly2339304443">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="BansheeAirstrike" State="CompleteOnly" />
@@ -815,6 +845,11 @@
   <CRequirementCountUpgrade id="CountUpgradeBlinkTechCompleteOnly296509780TechTreeCheat">
     <Count Link="BlinkTech" State="CompleteOnly" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeCarrierRepairDronesQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Tooltip value="" />
+    <Count Link="CarrierRepairDrones" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeCentrificalHooksCompleteOnly1768418229">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="CentrificalHooks" State="CompleteOnly" />
@@ -833,6 +868,10 @@
   <CRequirementCountUpgrade id="CountUpgradeCommanderPrestigeAbathurBiomassCompleteOnly">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="CommanderPrestigeAbathurBiomass" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeCommanderPrestigeAlarakDeathFleetCompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="CommanderPrestigeAlarakDeathFleet" State="CompleteOnly" />
   </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeCommanderPrestigeAlarakEmpowerMeCompleteOnly">
     <Flags index="TechTreeCheat" value="0" />
@@ -967,6 +1006,18 @@
     <Tooltip value="" />
     <Count Link="CoopZerglingSwarmling" State="CompleteOnly" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeCorsairDisruptionWebQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="CorsairDisruptionWeb" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeCorsairPermanentCloakCompleteOnly88022835">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="CorsairPermanentCloak" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeCorsairPermanentCloakQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="CorsairPermanentCloak" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeCycloneLockOnDamageUpgradeQueuedOrBetter">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="CycloneLockOnDamageUpgrade" State="QueuedOrBetter" />
@@ -1022,9 +1073,25 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="FenixArbiterDetection" State="QueuedOrBetter" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeFenixChampionCarrierBombersQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="FenixChampionCarrierBombers" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeFenixChampionClolarionCarrierCompleteOnly1383360590">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="FenixChampionClolarionCarrier" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeFenixChampionKaldalisZealotCompleteOnly2601893448">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="FenixChampionKaldalisZealot" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeFenixChampionMojoScoutCompleteOnly1277215926">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="FenixChampionMojoScout" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeFenixChampionScoutAOEMissilesQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="FenixChampionScoutAOEMissiles" State="QueuedOrBetter" />
   </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeFenixChampionTaldarinImmortalCompleteOnly2384701585">
     <Flags index="TechTreeCheat" value="0" />
@@ -1038,6 +1105,11 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="FenixChampionWarbringerColossus" State="CompleteOnly" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeFenixCommanderCompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Tooltip value="" />
+    <Count Link="FenixCommander" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeFenixKaldalisCleaveCompleteOnly969976056">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="FenixKaldalisCleave" State="CompleteOnly" />
@@ -1045,6 +1117,10 @@
   <CRequirementCountUpgrade id="CountUpgradeFenixNetworkedSuperiorityCompleteOnly">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="FenixNetworkedSuperiority" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeFenixScoutWeaponRangeQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="FenixScoutWeaponRange" State="QueuedOrBetter" />
   </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeFenixSuitAttackDamageQueuedOrBetter">
     <Flags index="TechTreeCheat" value="0" />
@@ -1193,6 +1269,10 @@
   <CRequirementCountUpgrade id="CountUpgradeK5CooldownsQueuedOrBetter">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="K5Cooldowns" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeKaraxCommanderCompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="KaraxCommander" State="CompleteOnly" />
   </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeKaraxEnergyRegenUpgradeCompleteOnly1995762934">
     <Flags index="TechTreeCheat" value="0" />
@@ -1359,6 +1439,10 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="MasteryZagaraRoachDropDamageAndHealth" State="CompleteOnly" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeMiragePhaseArmorQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="MiragePhaseArmor" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeMultilockTargetingSystemsQueuedOrBetter">
     <Flags index="TechTreeCheat" value="0" />
     <Tooltip value="" />
@@ -1395,6 +1479,14 @@
   <CRequirementCountUpgrade id="CountUpgradeNovaUnitLockdownQueuedOrBetter">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="NovaUnitLockdown" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeOracleStasisWardUpgradeQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="OracleStasisWardUpgrade" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeOracleWormholeQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="OracleWormhole" State="QueuedOrBetter" />
   </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeOrbitalStrikeCompleteOnly">
     <Flags index="TechTreeCheat" value="0" />
@@ -1539,6 +1631,10 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="SolarEfficiencyLevel2" State="QueuedOrBetter" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeSolarEfficiencyLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="SolarEfficiencyLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeSolarEfficiencyLevel3QueuedOrBetter">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="SolarEfficiencyLevel3" State="QueuedOrBetter" />
@@ -1588,6 +1684,10 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="SwannTurretIncreasedAttackSpeed" State="QueuedOrBetter" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeTempestDisintegrationQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TempestDisintegration" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeTerranInfantryArmorsLevel3CompleteOnly">
     <Flags index="TechTreeCheat" value="0" />
     <Tooltip value="" />
@@ -1614,9 +1714,17 @@
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="VoidCoopHeroicFortitude" State="QueuedOrBetter" />
   </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeVoidPhoenixDoubleGravitonQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="VoidPhoenixDoubleGraviton" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeVoidPylonRecallCompleteOnly">
     <Flags index="TechTreeCheat" value="0" />
     <Count Link="VoidPylonRecall" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeVoidRayPrismaticRangeQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="VoidRayPrismaticRange" State="QueuedOrBetter" />
   </CRequirementCountUpgrade>
   <CRequirementCountUpgrade id="CountUpgradeVorazunCommanderCompleteOnly">
     <Flags index="TechTreeCheat" value="0" />
@@ -1729,6 +1837,10 @@
   <CRequirementEq id="Eq2748031295CountUpgradeHHVehicleAndShipWeaponsLevel1CompleteOnly1">
     <OperandArray index="0" value="CountUpgradeHHVehicleAndShipWeaponsLevel1CompleteOnly" />
     <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementEq id="Eq2888706574CountUnitSolarForgeQueuedOrBetter0">
+    <OperandArray index="0" value="CountUnitSolarForgeQueuedOrBetter" />
+    <OperandArray index="1" value="0" />
   </CRequirementEq>
   <CRequirementEq id="Eq3056608045CountUpgradeProtossGroundWeaponsLevel2CompleteOnly1">
     <OperandArray index="0" value="CountUpgradeProtossGroundWeaponsLevel2CompleteOnly" />
@@ -1916,6 +2028,10 @@
     <OperandArray index="0" value="CountBehaviorSOARepairBeamCompleteOnly" />
     <OperandArray index="1" value="CountUpgradeKaraxRepairBeamLimitCompleteOnly" />
   </CRequirementLT>
+  <CRequirementLTE id="LTE12CountUpgradeCommanderLevelCompleteOnly">
+    <OperandArray index="0" value="12" />
+    <OperandArray index="1" value="CountUpgradeCommanderLevelCompleteOnly" />
+  </CRequirementLTE>
   <CRequirementLTE id="LTE3CountUpgradeCommanderLevelCompleteOnly">
     <OperandArray index="0" value="3" />
     <OperandArray index="1" value="CountUpgradeCommanderLevelCompleteOnly" />
@@ -1932,6 +2048,9 @@
     <OperandArray index="0" value="CountUpgradeAbathurMutaliskHealthScalingUpgradeCompleteOnly" />
     <OperandArray index="1" value="10" />
   </CRequirementLTE>
+  <CRequirementNot id="Not2537767773CountUnitFenixAltarOfPsiStormsQueuedOrBetter">
+    <OperandArray index="0" value="CountUnitFenixAltarOfPsiStormsQueuedOrBetter" />
+  </CRequirementNot>
   <CRequirementNot id="Not3804783965CountUnitSOAMothershipv4QueuedOrBetter">
     <OperandArray index="0" value="CountUnitSOAMothershipv4QueuedOrBetter" />
   </CRequirementNot>
@@ -2014,6 +2133,10 @@
   <CRequirementNot id="NotCountUpgradeBansheeAirstrikeQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeBansheeAirstrikeQueuedOrBetter" />
   </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeCarrierRepairDronesQueuedOrBetter">
+    <Tooltip value="" />
+    <OperandArray index="0" value="CountUpgradeCarrierRepairDronesQueuedOrBetter" />
+  </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeCerberusMinesQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeCerberusMinesQueuedOrBetter" />
   </CRequirementNot>
@@ -2023,6 +2146,12 @@
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeCommanderPrestigeAbathurDeepTunnelCompleteOnly">
     <OperandArray index="0" value="CountUpgradeCommanderPrestigeAbathurDeepTunnelCompleteOnly" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeCorsairDisruptionWebQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeCorsairDisruptionWebQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeCorsairPermanentCloakQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeCorsairPermanentCloakQueuedOrBetter" />
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeCycloneLockOnDamageUpgradeQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeCycloneLockOnDamageUpgradeQueuedOrBetter" />
@@ -2051,6 +2180,9 @@
   <CRequirementNot id="NotCountUpgradeFenixArbiterDetectionQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeFenixArbiterDetectionQueuedOrBetter" />
   </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeFenixChampionCarrierBombersQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeFenixChampionCarrierBombersQueuedOrBetter" />
+  </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeFenixChampionClolarionCarrierQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeFenixChampionClolarionCarrierQueuedOrBetter" />
   </CRequirementNot>
@@ -2059,6 +2191,9 @@
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeFenixChampionMojoScoutQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeFenixChampionMojoScoutQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeFenixChampionScoutAOEMissilesQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeFenixChampionScoutAOEMissilesQueuedOrBetter" />
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeFenixChampionTaldarinImmortalQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeFenixChampionTaldarinImmortalQueuedOrBetter" />
@@ -2077,6 +2212,9 @@
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeFenixKaldalisCleaveQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeFenixKaldalisCleaveQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeFenixScoutWeaponRangeQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeFenixScoutWeaponRangeQueuedOrBetter" />
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeFenixSentryGuardianZoneUpgradeQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeFenixSentryGuardianZoneUpgradeQueuedOrBetter" />
@@ -2142,6 +2280,9 @@
   <CRequirementNot id="NotCountUpgradeK5CooldownsQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeK5CooldownsQueuedOrBetter" />
   </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter" />
+  </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeKaraxEnergyRegenUpgradeQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeKaraxEnergyRegenUpgradeQueuedOrBetter" />
   </CRequirementNot>
@@ -2166,6 +2307,9 @@
   <CRequirementNot id="NotCountUpgradeMaelstromRoundsQueuedOrBetter">
     <Tooltip value="" />
     <OperandArray index="0" value="CountUpgradeMaelstromRoundsQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeMiragePhaseArmorQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeMiragePhaseArmorQueuedOrBetter" />
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeMultilockTargetingSystemsQueuedOrBetter">
     <Tooltip value="" />
@@ -2195,6 +2339,12 @@
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeNovaUnitLockdownQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeNovaUnitLockdownQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeOracleStasisWardUpgradeQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeOracleStasisWardUpgradeQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeOracleWormholeQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeOracleWormholeQueuedOrBetter" />
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeRaynorImprovedSiegeModeQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeRaynorImprovedSiegeModeQueuedOrBetter" />
@@ -2278,6 +2428,9 @@
   <CRequirementNot id="NotCountUpgradeSwannTurretIncreasedAttackSpeedQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeSwannTurretIncreasedAttackSpeedQueuedOrBetter" />
   </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeTempestDisintegrationQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeTempestDisintegrationQueuedOrBetter" />
+  </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeTerranInfantryArmorsLevel4QueuedOrBetter">
     <Tooltip value="" />
     <OperandArray index="0" value="CountUpgradeTerranInfantryArmorsLevel4QueuedOrBetter" />
@@ -2298,6 +2451,12 @@
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeVoidCoopHeroicFortitudeQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeVoidCoopHeroicFortitudeQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeVoidPhoenixDoubleGravitonQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeVoidPhoenixDoubleGravitonQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeVoidRayPrismaticRangeQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeVoidRayPrismaticRangeQueuedOrBetter" />
   </CRequirementNot>
   <CRequirementNot id="NotCountUpgradeZagaraVoidCoopAttackUpgradeQueuedOrBetter">
     <OperandArray index="0" value="CountUpgradeZagaraVoidCoopAttackUpgradeQueuedOrBetter" />
@@ -2356,159 +2515,4 @@
     <OperandArray value="GTCountBehaviorBiomassBuff10CompleteOnlyAtUnit0" />
     <OperandArray value="GTCountBehaviorBiomassBuff100CompleteOnlyAtUnit0" />
   </CRequirementOr>
-  <CRequirementAnd id="AndCountUnitCyberneticsCoreCompleteOnlyTechTreeCheatEq2888706574CountUnitSolarForgeQueuedOrBetter0">
-    <OperandArray value="CountUnitCyberneticsCoreCompleteOnlyTechTreeCheat" />
-    <OperandArray value="Eq2888706574CountUnitSolarForgeQueuedOrBetter0" />
-  </CRequirementAnd>
-  <CRequirementAnd id="AndCountUpgradeKaraxCommanderCompleteOnlyNotCountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter">
-    <OperandArray value="CountUpgradeKaraxCommanderCompleteOnly" />
-    <OperandArray value="NotCountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter" />
-  </CRequirementAnd>
-  <CRequirementAnd id="AndCountUpgradeSolarEfficiencyLevel1CompleteOnlyNotCountUpgradeSolarEfficiencyLevel2CompleteOnlyNotCountUpgradeSolarEfficiencyLevel3CompleteOnly">
-    <OperandArray value="CountUpgradeSolarEfficiencyLevel1CompleteOnly" />
-    <OperandArray value="NotCountUpgradeSolarEfficiencyLevel2CompleteOnly" />
-    <OperandArray value="NotCountUpgradeSolarEfficiencyLevel3CompleteOnly" />
-  </CRequirementAnd>
-  <CRequirementAnd id="AndCountUpgradeSolarEfficiencyLevel2CompleteOnlyNotCountUpgradeSolarEfficiencyLevel3CompleteOnly">
-    <OperandArray value="CountUpgradeSolarEfficiencyLevel2CompleteOnly" />
-    <OperandArray value="NotCountUpgradeSolarEfficiencyLevel3CompleteOnly" />
-  </CRequirementAnd>
-  <CRequirementCountUnit id="CountUnitFenixAltarOfPsiStormsQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="FenixAltarOfPsiStorms" State="QueuedOrBetter" />
-  </CRequirementCountUnit>
-  <CRequirementCountUpgrade id="CountUpgradeArtanisCommanderCompleteOnly">
-    <Flags index="TechTreeCheat" value="0" />
-    <Tooltip value="" />
-    <Count Link="ArtanisCommander" State="CompleteOnly" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeCarrierRepairDronesQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Tooltip value="" />
-    <Count Link="CarrierRepairDrones" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeCommanderPrestigeAlarakDeathFleetCompleteOnly">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="CommanderPrestigeAlarakDeathFleet" State="CompleteOnly" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeCorsairDisruptionWebQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="CorsairDisruptionWeb" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeCorsairPermanentCloakCompleteOnly88022835">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="CorsairPermanentCloak" State="CompleteOnly" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeCorsairPermanentCloakQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="CorsairPermanentCloak" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeFenixChampionCarrierBombersQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="FenixChampionCarrierBombers" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeFenixChampionClolarionCarrierCompleteOnly1383360590">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="FenixChampionClolarionCarrier" State="CompleteOnly" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeFenixChampionMojoScoutCompleteOnly1277215926">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="FenixChampionMojoScout" State="CompleteOnly" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeFenixChampionScoutAOEMissilesQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="FenixChampionScoutAOEMissiles" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeFenixCommanderCompleteOnly">
-    <Flags index="TechTreeCheat" value="0" />
-    <Tooltip value="" />
-    <Count Link="FenixCommander" State="CompleteOnly" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeFenixScoutWeaponRangeQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="FenixScoutWeaponRange" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeKaraxCommanderCompleteOnly">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="KaraxCommander" State="CompleteOnly" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeMiragePhaseArmorQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="MiragePhaseArmor" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeOracleStasisWardUpgradeQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="OracleStasisWardUpgrade" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeOracleWormholeQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="OracleWormhole" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeSolarEfficiencyLevel3CompleteOnly">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="SolarEfficiencyLevel3" State="CompleteOnly" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeTempestDisintegrationQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="TempestDisintegration" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeVoidPhoenixDoubleGravitonQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="VoidPhoenixDoubleGraviton" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementCountUpgrade id="CountUpgradeVoidRayPrismaticRangeQueuedOrBetter">
-    <Flags index="TechTreeCheat" value="0" />
-    <Count Link="VoidRayPrismaticRange" State="QueuedOrBetter" />
-  </CRequirementCountUpgrade>
-  <CRequirementEq id="Eq2888706574CountUnitSolarForgeQueuedOrBetter0">
-    <OperandArray index="0" value="CountUnitSolarForgeQueuedOrBetter" />
-    <OperandArray index="1" value="0" />
-  </CRequirementEq>
-  <CRequirementLTE id="LTE12CountUpgradeCommanderLevelCompleteOnly">
-    <OperandArray index="0" value="12" />
-    <OperandArray index="1" value="CountUpgradeCommanderLevelCompleteOnly" />
-  </CRequirementLTE>
-  <CRequirementNot id="Not2537767773CountUnitFenixAltarOfPsiStormsQueuedOrBetter">
-    <OperandArray index="0" value="CountUnitFenixAltarOfPsiStormsQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeCarrierRepairDronesQueuedOrBetter">
-    <Tooltip value="" />
-    <OperandArray index="0" value="CountUpgradeCarrierRepairDronesQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeCorsairDisruptionWebQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeCorsairDisruptionWebQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeCorsairPermanentCloakQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeCorsairPermanentCloakQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeFenixChampionCarrierBombersQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeFenixChampionCarrierBombersQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeFenixChampionScoutAOEMissilesQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeFenixChampionScoutAOEMissilesQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeFenixScoutWeaponRangeQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeFenixScoutWeaponRangeQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeKaraxCarrierInterceptorLaunchSpeedQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeMiragePhaseArmorQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeMiragePhaseArmorQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeOracleStasisWardUpgradeQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeOracleStasisWardUpgradeQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeOracleWormholeQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeOracleWormholeQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeTempestDisintegrationQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeTempestDisintegrationQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeVoidPhoenixDoubleGravitonQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeVoidPhoenixDoubleGravitonQueuedOrBetter" />
-  </CRequirementNot>
-  <CRequirementNot id="NotCountUpgradeVoidRayPrismaticRangeQueuedOrBetter">
-    <OperandArray index="0" value="CountUpgradeVoidRayPrismaticRangeQueuedOrBetter" />
-  </CRequirementNot>
 </Catalog>

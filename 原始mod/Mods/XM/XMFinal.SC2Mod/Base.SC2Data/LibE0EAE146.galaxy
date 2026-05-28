@@ -257,11 +257,18 @@ void libE0EAE146_gf_XMRuntime_ApplyCommanderProgression (int lp_player) {
 }
 
 void libE0EAE146_gf_XMRuntime_CreateBaseStructures (int lp_player, point lp_secondBase) {
-    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommandCenter", 1), 0, 1, PlayerStartLocation(lp_player));
+    string lv_commandCenterUnit;
+
+    lv_commandCenterUnit = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommandCenter", 1);
+    if ((lv_commandCenterUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_commandCenterUnit))) {
+        libE0EAE146_gf_XMDbgLog("WARN", "BASE_STRUCTURE_MISSING", "commander=" + libE0EAE146_gv_commander + " field=CommandCenter unitType=" + lv_commandCenterUnit);
+        return;
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_commandCenterUnit, 0, 1, PlayerStartLocation(lp_player));
     if ((lp_secondBase == null)) {
     }
     else {
-        libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommandCenter", 1), 0, 1, lp_secondBase);
+        libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_commandCenterUnit, 0, 1, lp_secondBase);
     }
 }
 
@@ -270,6 +277,7 @@ void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worke
     unit lv_u;
     unitgroup lv_uG;
     int lv_i;
+    string lv_workerUnit;
 
     // Automatic Variable Declarations
     unitgroup auto93C1ECD3_g;
@@ -279,6 +287,11 @@ void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worke
     lv_uG = UnitGroupEmpty();
 
     // Implementation
+    lv_workerUnit = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Worker", 1);
+    if ((lv_workerUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_workerUnit))) {
+        libE0EAE146_gf_XMDbgLog("WARN", "BASE_WORKER_MISSING", "commander=" + libE0EAE146_gv_commander + " field=Worker unitType=" + lv_workerUnit);
+        return;
+    }
     auto93C1ECD3_g = UnitGroup(null, c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 8.0), UnitFilter((1 << c_targetFilterHarvestableResource), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto93C1ECD3_u = UnitGroupCount(auto93C1ECD3_g, c_unitCountAll);
     for (;; auto93C1ECD3_u -= 1) {
@@ -291,20 +304,27 @@ void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worke
     if ((UnitGroupCount(lv_uG, c_unitCountAlive) > 0)) {
         lv_i = 0;
         for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Worker", 1), 0, 1, PointWithOffsetPolar(PlayerStartLocation(lp_player), 2.0, (lv_i*10)));
+            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_workerUnit, 0, 1, PointWithOffsetPolar(PlayerStartLocation(lp_player), 2.0, (lv_i*10)));
             UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(null, UnitGroupRandomUnit(lv_uG, c_unitCountAlive)), c_orderQueueReplace);
         }
     }
     else {
         lv_i = 0;
         for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Worker", 1), 0, 1, PointWithOffsetPolar(PlayerStartLocation(lp_player), 2.0, (lv_i*10)));
+            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_workerUnit, 0, 1, PointWithOffsetPolar(PlayerStartLocation(lp_player), 2.0, (lv_i*10)));
         }
     }
 }
 
 void libE0EAE146_gf_XMRuntime_CreateSecondUnit (int lp_player, point lp_secondUnit) {
-    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "SecondUnit", 1), 0, 1, lp_secondUnit);
+    string lv_secondUnitType;
+
+    lv_secondUnitType = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "SecondUnit", 1);
+    if ((lv_secondUnitType == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_secondUnitType))) {
+        libE0EAE146_gf_XMDbgLog("WARN", "BASE_SECOND_UNIT_MISSING", "commander=" + libE0EAE146_gv_commander + " field=SecondUnit unitType=" + lv_secondUnitType);
+        return;
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_secondUnitType, 0, 1, lp_secondUnit);
 }
 
 void libE0EAE146_gf_XMRuntime_InitStukovBaseHook (int lp_player) {
@@ -531,7 +551,6 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     libE0EAE146_gf_XMDbgLog("INFO", "COMMANDER_INIT_DISPATCH", "commander=" + libE0EAE146_gv_commander + " phase=base_init mode=legacy_adapter");
     libE0EAE146_gf_InitializeBase_Legacy(lp_secondUnit, lp_worker, lp_secondBase, lp_createHero);
 }
-
 
 void libE0EAE146_gf_CommanderUpgrade () {
     // Variable Declarations

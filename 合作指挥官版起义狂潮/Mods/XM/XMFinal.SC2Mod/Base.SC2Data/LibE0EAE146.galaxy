@@ -731,6 +731,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
 
     }
     else if (auto09490B45_val == "Kerrigan") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterKerrigan", "Kerrigan");
         TechTreeUpgradeAddLevel(1, "CommanderLevel", 15);
         TechTreeUpgradeAddLevel(1, "KerriganCommander", 1);
         TechTreeUpgradeAddLevel(1, "KerriganInfestedCosmetic", 1);
@@ -918,16 +919,10 @@ void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, p
     string lv_leviathan;
 
     lv_kind = lp_kind;
-    lv_ravager = "Ravager";
-    lv_swarmHost = "SwarmHostMP";
-    lv_queen = "Queen";
-    lv_leviathan = "Leviathan";
-    if ((libE0EAE146_gv_commander == "AbathurReborn")) {
-        lv_ravager = "RavagerAbathurReborn";
-        lv_swarmHost = "SwarmHost";
-        lv_queen = "QueenCoop";
-        lv_leviathan = "HotSLeviathan";
-    }
+    lv_ravager = "RavagerAbathur";
+    lv_swarmHost = "SwarmHost";
+    lv_queen = "QueenCoop";
+    lv_leviathan = "HotSLeviathan";
     if ((lv_kind == "light")) {
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "RoachVile", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
@@ -972,14 +967,9 @@ void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) 
     string lv_queen;
 
     lv_kind = lp_kind;
-    lv_ravager = "Ravager";
-    lv_swarmHost = "SwarmHostMP";
-    lv_queen = "Queen";
-    if ((libE0EAE146_gv_commander == "AbathurReborn")) {
-        lv_ravager = "RavagerAbathurReborn";
-        lv_swarmHost = "SwarmHost";
-        lv_queen = "QueenCoop";
-    }
+    lv_ravager = "RavagerAbathur";
+    lv_swarmHost = "SwarmHost";
+    lv_queen = "QueenCoop";
     if ((lv_kind == "light")) {
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 3);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
@@ -1010,22 +1000,23 @@ void libE0EAE146_gf_ZagaraCreateMapStartSquad (string lp_kind, int lp_player, po
     if ((lv_kind == "light")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSSwarmling", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Baneling", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmQueen", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "heavy")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(3, "RoachVile", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Baneling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSSwarmling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Baneling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmQueen", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedAbomination", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "Scourge", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZagaraCorruptor", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSSwarmling", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Baneling", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "RoachVile", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmQueen", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedAbomination", 0, lp_player, lp_point);
     }
     else {
         libE0EAE146_gf_ZagaraCreateMapStartSquad("light", lp_player, lp_point);
@@ -1042,17 +1033,19 @@ void libE0EAE146_gf_ZagaraCreateCargoSquad (unit lp_container, string lp_kind) {
     if ((lv_kind == "light")) {
         UnitCargoCreate(lp_container, "HotSSwarmling", 4);
         UnitCargoCreate(lp_container, "Baneling", 2);
-        UnitCargoCreate(lp_container, "Hydralisk", 1);
+        UnitCargoCreate(lp_container, "SwarmQueen", 1);
     }
     else if ((lv_kind == "heavy")) {
-        UnitCargoCreate(lp_container, "RoachVile", 3);
-        UnitCargoCreate(lp_container, "Hydralisk", 2);
-        UnitCargoCreate(lp_container, "Baneling", 1);
+        UnitCargoCreate(lp_container, "HotSSwarmling", 3);
+        UnitCargoCreate(lp_container, "Baneling", 2);
+        UnitCargoCreate(lp_container, "SwarmQueen", 1);
+        UnitCargoCreate(lp_container, "InfestedAbomination", 1);
     }
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "HotSSwarmling", 3);
-        UnitCargoCreate(lp_container, "RoachVile", 2);
         UnitCargoCreate(lp_container, "Baneling", 2);
+        UnitCargoCreate(lp_container, "SwarmQueen", 1);
+        UnitCargoCreate(lp_container, "InfestedAbomination", 1);
     }
     else {
         libE0EAE146_gf_ZagaraCreateCargoSquad(lp_container, "light");
@@ -1071,17 +1064,19 @@ void libE0EAE146_gf_AlarakCreateMapStartSquad (string lp_kind, int lp_player, po
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Supplicant", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ImmortalTaldarim", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ColossusTaldarim", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplarTaldarim", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "VoidRayTaldarim", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CarrierTaldarim", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Monitor", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "WarpPrismTaldarim", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Supplicant", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Monitor", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ImmortalTaldarim", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplarTaldarim", 0, lp_player, lp_point);
     }
     else {
         libE0EAE146_gf_AlarakCreateMapStartSquad("light", lp_player, lp_point);
@@ -1104,16 +1099,19 @@ void libE0EAE146_gf_AlarakCreateCargoSquad (unit lp_container, string lp_kind) {
         UnitCargoCreate(lp_container, "Supplicant", 2);
         UnitCargoCreate(lp_container, "Stalker", 1);
         UnitCargoCreate(lp_container, "ImmortalTaldarim", 1);
+        UnitCargoCreate(lp_container, "HighTemplarTaldarim", 1);
     }
     else if ((lv_kind == "air")) {
-        UnitCargoCreate(lp_container, "VoidRayTaldarim", 1);
-        UnitCargoCreate(lp_container, "Monitor", 1);
+        UnitCargoCreate(lp_container, "Monitor", 2);
+        UnitCargoCreate(lp_container, "WarpPrismTaldarim", 1);
+        UnitCargoCreate(lp_container, "Stalker", 1);
     }
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "Supplicant", 2);
         UnitCargoCreate(lp_container, "Stalker", 1);
         UnitCargoCreate(lp_container, "Monitor", 1);
         UnitCargoCreate(lp_container, "ImmortalTaldarim", 1);
+        UnitCargoCreate(lp_container, "HighTemplarTaldarim", 1);
     }
     else {
         libE0EAE146_gf_AlarakCreateCargoSquad(lp_container, "light");
@@ -1126,11 +1124,12 @@ void libE0EAE146_gf_RaynorCreateMapStartSquad (string lp_kind, int lp_player, po
     if ((lv_kind == "light")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "Marine", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Medic", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Marauder", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Firebat", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "heavy")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "Marine", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Marauder", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Marauder", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Firebat", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "SiegeTank", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
@@ -1142,7 +1141,7 @@ void libE0EAE146_gf_RaynorCreateMapStartSquad (string lp_kind, int lp_player, po
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "RaynorCommando", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "Marine", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Medic", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Marauder", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Firebat", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "ultimate")) {
         if ((TechTreeUpgradeCount(1, "RaynorUnlockBattlecruiser", c_techCountCompleteOnly) > 0)) {
@@ -1168,11 +1167,12 @@ void libE0EAE146_gf_RaynorCreateCargoSquad (unit lp_container, string lp_kind) {
     if ((lv_kind == "light")) {
         UnitCargoCreate(lp_container, "Marine", 3);
         UnitCargoCreate(lp_container, "Medic", 1);
-        UnitCargoCreate(lp_container, "Marauder", 1);
+        UnitCargoCreate(lp_container, "Firebat", 1);
     }
     else if ((lv_kind == "heavy")) {
         UnitCargoCreate(lp_container, "Marine", 3);
-        UnitCargoCreate(lp_container, "Marauder", 2);
+        UnitCargoCreate(lp_container, "Marauder", 1);
+        UnitCargoCreate(lp_container, "Firebat", 1);
         UnitCargoCreate(lp_container, "SiegeTank", 1);
     }
     else if ((lv_kind == "air")) {
@@ -1184,7 +1184,7 @@ void libE0EAE146_gf_RaynorCreateCargoSquad (unit lp_container, string lp_kind) {
         UnitCargoCreate(lp_container, "RaynorCommando", 1);
         UnitCargoCreate(lp_container, "Marine", 3);
         UnitCargoCreate(lp_container, "Medic", 1);
-        UnitCargoCreate(lp_container, "Marauder", 1);
+        UnitCargoCreate(lp_container, "Firebat", 1);
     }
     else {
         libE0EAE146_gf_RaynorCreateCargoSquad(lp_container, "light");
@@ -1196,10 +1196,10 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
     lv_kind = lp_kind;
     if ((lv_kind == "light")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "heavy")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
     }
@@ -1210,7 +1210,7 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSRaptor", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "ultimate")) {
@@ -1231,10 +1231,10 @@ void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind)
     lv_kind = lp_kind;
     if ((lv_kind == "light")) {
         UnitCargoCreate(lp_container, "HotSRaptor", 4);
-        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
     }
     else if ((lv_kind == "heavy")) {
-        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
         UnitCargoCreate(lp_container, "QueenCoop", 1);
         UnitCargoCreate(lp_container, "Ultralisk", 1);
     }
@@ -1245,7 +1245,7 @@ void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind)
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "K5Kerrigan", 1);
         UnitCargoCreate(lp_container, "HotSRaptor", 3);
-        UnitCargoCreate(lp_container, "Hydralisk", 2);
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
         UnitCargoCreate(lp_container, "QueenCoop", 1);
     }
     else {
@@ -1263,12 +1263,13 @@ void libE0EAE146_gf_FenixCreateMapStartSquad (string lp_kind, int lp_player, poi
     }
     else if ((lv_kind == "heavy")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotPurifier", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "StalkerPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "AdeptFenix", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Immortal", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ColossusPurifier", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Scout", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Carrier", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
@@ -1306,12 +1307,13 @@ void libE0EAE146_gf_FenixCreateCargoSquad (unit lp_container, string lp_kind) {
     }
     else if ((lv_kind == "heavy")) {
         UnitCargoCreate(lp_container, "ZealotPurifier", 2);
-        UnitCargoCreate(lp_container, "StalkerPurifier", 2);
+        UnitCargoCreate(lp_container, "AdeptFenix", 2);
         UnitCargoCreate(lp_container, "Immortal", 1);
         UnitCargoCreate(lp_container, "ColossusPurifier", 1);
     }
     else if ((lv_kind == "air")) {
         UnitCargoCreate(lp_container, "Scout", 2);
+        UnitCargoCreate(lp_container, "Observer", 1);
         UnitCargoCreate(lp_container, "Carrier", 1);
     }
     else if ((lv_kind == "hero")) {
@@ -1329,7 +1331,7 @@ void libE0EAE146_gf_VorazunCreateMapStartSquad (string lp_kind, int lp_player, p
     string lv_kind;
     lv_kind = lp_kind;
     if ((lv_kind == "light")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Zealot", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotShakuras", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "DarkTemplarShakuras", 0, lp_player, lp_point);
     }
@@ -1337,7 +1339,7 @@ void libE0EAE146_gf_VorazunCreateMapStartSquad (string lp_kind, int lp_player, p
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Stalker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "DarkTemplarShakuras", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "CorsairMP", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Immortal", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZealotShakuras", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "CorsairMP", 0, lp_player, lp_point);
@@ -1348,6 +1350,7 @@ void libE0EAE146_gf_VorazunCreateMapStartSquad (string lp_kind, int lp_player, p
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "DarkTemplarShakuras", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Stalker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "CorsairMP", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Oracle", 0, lp_player, lp_point);
     }
     else {
         libE0EAE146_gf_VorazunCreateMapStartSquad("light", lp_player, lp_point);
@@ -1362,14 +1365,14 @@ void libE0EAE146_gf_VorazunCreateCargoSquad (unit lp_container, string lp_kind) 
     string lv_kind;
     lv_kind = lp_kind;
     if ((lv_kind == "light")) {
-        UnitCargoCreate(lp_container, "Zealot", 2);
+        UnitCargoCreate(lp_container, "ZealotShakuras", 2);
         UnitCargoCreate(lp_container, "Stalker", 1);
         UnitCargoCreate(lp_container, "DarkTemplarShakuras", 2);
     }
     else if ((lv_kind == "heavy")) {
         UnitCargoCreate(lp_container, "Stalker", 2);
         UnitCargoCreate(lp_container, "DarkTemplarShakuras", 2);
-        UnitCargoCreate(lp_container, "Immortal", 1);
+        UnitCargoCreate(lp_container, "ZealotShakuras", 1);
     }
     else if ((lv_kind == "air")) {
         UnitCargoCreate(lp_container, "CorsairMP", 2);
@@ -1379,7 +1382,8 @@ void libE0EAE146_gf_VorazunCreateCargoSquad (unit lp_container, string lp_kind) 
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "DarkTemplarShakuras", 2);
         UnitCargoCreate(lp_container, "Stalker", 2);
-        UnitCargoCreate(lp_container, "Immortal", 1);
+        UnitCargoCreate(lp_container, "CorsairMP", 1);
+        UnitCargoCreate(lp_container, "Oracle", 1);
     }
     else {
         libE0EAE146_gf_VorazunCreateCargoSquad(lp_container, "light");
@@ -1388,25 +1392,27 @@ void libE0EAE146_gf_VorazunCreateCargoSquad (unit lp_container, string lp_kind) 
 
 void libE0EAE146_gf_KaraxCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
     if ((lp_kind == "light")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zealot", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPhasing", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPurifier", 0, lp_player, lp_point);
     }
     else if ((lp_kind == "heavy")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Zealot", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPhasing", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Immortal", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ImmortalAiur", 0, lp_player, lp_point);
     }
     else if ((lp_kind == "air")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Carrier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Scout", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Carrier", 0, lp_player, lp_point);
     }
     else if ((lp_kind == "hero")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Zealot", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Immortal", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ImmortalAiur", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Colossus", 0, lp_player, lp_point);
     }
     else {
-        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zealot", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPhasing", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPurifier", 0, lp_player, lp_point);
     }
 }
 
@@ -1416,20 +1422,22 @@ void libE0EAE146_gf_KaraxCreateMapStartSquadInRegion (string lp_kind, int lp_pla
 
 void libE0EAE146_gf_KaraxCreateCargoSquad (unit lp_container, string lp_kind) {
     if ((lp_kind == "light")) {
-        UnitCargoCreate(lp_container, "Zealot", 4);
-        UnitCargoCreate(lp_container, "SentryPhasing", 2);
+        UnitCargoCreate(lp_container, "ZealotPurifier", 4);
+        UnitCargoCreate(lp_container, "SentryPurifier", 2);
     }
     else if ((lp_kind == "heavy")) {
-        UnitCargoCreate(lp_container, "Zealot", 3);
-        UnitCargoCreate(lp_container, "SentryPhasing", 2);
-        UnitCargoCreate(lp_container, "Immortal", 2);
+        UnitCargoCreate(lp_container, "ZealotPurifier", 3);
+        UnitCargoCreate(lp_container, "SentryPurifier", 2);
+        UnitCargoCreate(lp_container, "ImmortalAiur", 2);
     }
     else if ((lp_kind == "air")) {
-        UnitCargoCreate(lp_container, "Carrier", 3);
+        UnitCargoCreate(lp_container, "PhoenixPurifier", 2);
+        UnitCargoCreate(lp_container, "Scout", 1);
+        UnitCargoCreate(lp_container, "Carrier", 1);
     }
     else if ((lp_kind == "hero")) {
-        UnitCargoCreate(lp_container, "Zealot", 3);
-        UnitCargoCreate(lp_container, "Immortal", 2);
+        UnitCargoCreate(lp_container, "ZealotPurifier", 3);
+        UnitCargoCreate(lp_container, "ImmortalAiur", 2);
         UnitCargoCreate(lp_container, "Colossus", 2);
     }
     else {
@@ -1448,11 +1456,11 @@ void libE0EAE146_gf_ArtanisCreateMapStartSquad (string lp_kind, int lp_player, p
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotAiur", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Dragoon", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ImmortalAiur", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Reaver", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixAiur", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Tempest", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ArtanisVoid", 0, lp_player, lp_point);
@@ -1462,8 +1470,9 @@ void libE0EAE146_gf_ArtanisCreateMapStartSquad (string lp_kind, int lp_player, p
     }
     else if ((lv_kind == "ultimate")) {
         if ((TechTreeUpgradeCount(1, "ArtanisUnlockTempest", c_techCountCompleteOnly) > 0)) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CarrierAiur", 0, lp_player, lp_point);
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Tempest", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Archon", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "ImmortalAiur", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixAiur", 0, lp_player, lp_point);
         }
         else {
             libE0EAE146_gf_ArtanisCreateMapStartSquad("heavy", lp_player, lp_point);
@@ -1489,11 +1498,11 @@ void libE0EAE146_gf_ArtanisCreateCargoSquad (unit lp_container, string lp_kind) 
         UnitCargoCreate(lp_container, "ZealotAiur", 2);
         UnitCargoCreate(lp_container, "Dragoon", 2);
         UnitCargoCreate(lp_container, "ImmortalAiur", 1);
-        UnitCargoCreate(lp_container, "Reaver", 1);
+        UnitCargoCreate(lp_container, "HighTemplar", 1);
     }
     else if ((lv_kind == "air")) {
         UnitCargoCreate(lp_container, "PhoenixAiur", 2);
-        UnitCargoCreate(lp_container, "Tempest", 1);
+        UnitCargoCreate(lp_container, "Observer", 1);
     }
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "ArtanisVoid", 1);
@@ -1502,8 +1511,9 @@ void libE0EAE146_gf_ArtanisCreateCargoSquad (unit lp_container, string lp_kind) 
         UnitCargoCreate(lp_container, "HighTemplar", 1);
     }
     else if ((lv_kind == "ultimate")) {
-        UnitCargoCreate(lp_container, "CarrierAiur", 1);
-        UnitCargoCreate(lp_container, "Tempest", 1);
+        UnitCargoCreate(lp_container, "Archon", 1);
+        UnitCargoCreate(lp_container, "ImmortalAiur", 1);
+        UnitCargoCreate(lp_container, "PhoenixAiur", 2);
     }
     else {
         libE0EAE146_gf_ArtanisCreateCargoSquad(lp_container, "light");
@@ -1522,17 +1532,18 @@ void libE0EAE146_gf_ZeratulCreateMapStartSquad (string lp_kind, int lp_player, p
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZeratulStalker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulImmortal", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulDisruptor", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulSummonKarass", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulSentry", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZeratulSummonVoidRay", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Mohandar", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulWarpPrism", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulObserver", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulCoop", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulSummonKarass", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Mohandar", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulHeroDarkArchon", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZeratulStalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulImmortal", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulSentry", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "ultimate")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulXelNagaConstruct", 0, lp_player, lp_point);
@@ -1559,17 +1570,18 @@ void libE0EAE146_gf_ZeratulCreateCargoSquad (unit lp_container, string lp_kind) 
         UnitCargoCreate(lp_container, "ZeratulStalker", 2);
         UnitCargoCreate(lp_container, "ZeratulImmortal", 1);
         UnitCargoCreate(lp_container, "ZeratulDisruptor", 1);
-        UnitCargoCreate(lp_container, "ZeratulSummonKarass", 1);
+        UnitCargoCreate(lp_container, "ZeratulSentry", 1);
     }
     else if ((lv_kind == "air")) {
-        UnitCargoCreate(lp_container, "ZeratulSummonVoidRay", 2);
-        UnitCargoCreate(lp_container, "Mohandar", 1);
+        UnitCargoCreate(lp_container, "ZeratulWarpPrism", 1);
+        UnitCargoCreate(lp_container, "ZeratulObserver", 1);
+        UnitCargoCreate(lp_container, "Observer", 1);
     }
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "ZeratulCoop", 1);
-        UnitCargoCreate(lp_container, "ZeratulSummonKarass", 1);
-        UnitCargoCreate(lp_container, "Mohandar", 1);
-        UnitCargoCreate(lp_container, "ZeratulHeroDarkArchon", 1);
+        UnitCargoCreate(lp_container, "ZeratulStalker", 2);
+        UnitCargoCreate(lp_container, "ZeratulImmortal", 1);
+        UnitCargoCreate(lp_container, "ZeratulSentry", 1);
     }
     else if ((lv_kind == "ultimate")) {
         UnitCargoCreate(lp_container, "ZeratulXelNagaConstruct", 1);

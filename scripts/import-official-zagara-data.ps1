@@ -34,9 +34,12 @@ New-Item -ItemType Directory -Path $TargetGameDataRoot -Force | Out-Null
 $seedIds = @(
     "Zagara", "ZergZagara", "ZagaraCommander",
     "SoACasterZagara",
-    "CommanderPrestigeZagara", "CommanderPrestigeZagaraHyperevolution", "CommanderPrestigeZagaraTidal", "CommanderPrestigeZagaraAggression"
+    "CommanderPrestigeZagara", "CommanderPrestigeZagaraHyperevolution", "CommanderPrestigeZagaraTidal", "CommanderPrestigeZagaraAggression",
+    "MasteryZagaraAutoAttackDamage", "MasteryZagaraBanelingsDamage", "MasteryZagaraHealthAndEnergyRegen",
+    "MasteryZagaraLarvaRatePassive", "MasteryZagaraMassFrenzySpeedBoost",
+    "MasteryZagaraRoachDropDamageAndHealth", "MasteryZagaraZerglingDodgeChance"
 )
-$seedPattern = "^(Zagara|ZagaraVoidCoop|CommanderPrestigeZagara|ZagaraEgg|ZagaraLarva|ZagaraSpawn|ZagaraMorph|ZagaraMastery|ZagaraEvolve|ZagaraCocoon|ZagaraHunter|ZagaraHydralisk|ZagaraInfestedTerran|ZagaraRoach|ZagaraBaneling|ZagaraScourge|ZagaraSwarmHost|ZagaraBroodling)"
+$seedPattern = "^(Zagara|ZagaraVoidCoop|CommanderPrestigeZagara|MasteryZagara|HaveMasteryZagara|ZagaraEgg|ZagaraLarva|ZagaraSpawn|ZagaraMorph|ZagaraMastery|ZagaraEvolve|ZagaraCocoon|ZagaraHunter|ZagaraHydralisk|ZagaraInfestedTerran|ZagaraRoach|ZagaraBaneling|ZagaraScourge|ZagaraSwarmHost|ZagaraBroodling)"
 $seedPatternEnd = "(Zagara|VoidCoop)$"
 $skipFiles = @("armycategorydata.xml", "conversationdata.xml", "soundtrackdata.xml", "voiceoverdata.xml")
 $skipFileSet = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
