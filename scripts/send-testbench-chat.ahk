@@ -27,12 +27,11 @@ Sleep 400
 A_Clipboard := command
 ClipWait(2)
 
-Send "{Esc}"
-Sleep 180
-Send "{Esc}"
-Sleep 180
+; Open the SC2 chat input explicitly, then paste and send the command.
 Send "{Enter}"
-Sleep 180
+Sleep 220
+Send "^a"
+Sleep 80
 Send "^v"
 Sleep 180
 Send "{Enter}"

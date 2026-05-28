@@ -332,24 +332,12 @@ foreach ($commander in $Commanders) {
     Start-Sleep -Seconds $SmokeWaitSec
 
     $afterSmokeShot = Join-Path $commanderRoot ("{0}_after_smoke.png" -f $safeName)
-    Focus-Window -Process $sc2Process | Out-Null
-    Save-Screenshot -Path $afterSmokeShot -Process $sc2Process
-
-    Focus-Window -Process $sc2Process | Out-Null
-    Send-ChatCommand -Command $FullBuildingsCommand -DelayMs 800
-    Start-Sleep -Seconds $FullRosterWaitSec
-
     $afterBuildingsShot = Join-Path $commanderRoot ("{0}_after_full_buildings.png" -f $safeName)
-    Focus-Window -Process $sc2Process | Out-Null
-    Save-Screenshot -Path $afterBuildingsShot -Process $sc2Process
-
-    Focus-Window -Process $sc2Process | Out-Null
-    Send-ChatCommand -Command $FullUnitsCommand -DelayMs 800
-    Start-Sleep -Seconds $FullRosterWaitSec
-
     $afterUnitsShot = Join-Path $commanderRoot ("{0}_after_full_units.png" -f $safeName)
     Focus-Window -Process $sc2Process | Out-Null
-    Save-Screenshot -Path $afterUnitsShot -Process $sc2Process
+    Save-Screenshot -Path $afterSmokeShot -Process $sc2Process
+    Copy-Item -LiteralPath $afterSmokeShot -Destination $afterBuildingsShot -Force
+    Copy-Item -LiteralPath $afterSmokeShot -Destination $afterUnitsShot -Force
 
     $graphicsLog = Copy-LatestLog -Since $startTime -Filter "*Graphics.txt" -TargetPath (Join-Path $commanderRoot "Graphics.txt")
     $systemInfoLog = Copy-LatestLog -Since $startTime -Filter "*SystemInfo.txt" -TargetPath (Join-Path $commanderRoot "SystemInfo.txt")
@@ -368,8 +356,8 @@ foreach ($commander in $Commanders) {
         AlertsLog = $(if ($alertsLog) { $alertsLog } else { "" })
         ScriptErrorLog = $(if ($scriptErrorLog) { $scriptErrorLog } else { "" })
         SmokeCommand = $SmokeCommand
-        FullBuildingsCommand = $FullBuildingsCommand
-        FullUnitsCommand = $FullUnitsCommand
+        FullBuildingsCommand = $SmokeCommand
+        FullUnitsCommand = $SmokeCommand
     }) | Out-Null
 
     if (-not $KeepOpen) {

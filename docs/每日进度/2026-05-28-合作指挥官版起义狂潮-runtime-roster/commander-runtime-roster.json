@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generatedAt": "2026-05-28T07:06:53.296Z",
+    "generatedAt": "2026-05-28T14:45:36.680Z",
     "generatedBy": "scripts/sc2/generate-runtime-commander-roster.mjs",
-    "officialRoot": "D:\\MyWork\\新建文件夹\\mom.report.client\\src\\MyMod\\crys_the_swarm_reborn.SC2Mod\\游戏数据\\官方合作指挥官\\commanders",
-    "modRoot": "D:\\MyWork\\新建文件夹\\mom.report.client\\src\\MyMod\\crys_the_swarm_reborn.SC2Mod\\合作指挥官版起义狂潮",
-    "targetUserData": "D:\\MyWork\\新建文件夹\\mom.report.client\\src\\MyMod\\crys_the_swarm_reborn.SC2Mod\\合作指挥官版起义狂潮\\Mods\\XM\\XMFinal.SC2Mod\\Base.SC2Data\\GameData\\UserData.xml",
+    "officialRoot": "C:\\Users\\22448\\Downloads\\重生虫心0.71汉化版（新）\\reborn_workrepo\\游戏数据\\官方合作指挥官\\commanders",
+    "modRoot": "C:\\Users\\22448\\Downloads\\重生虫心0.71汉化版（新）\\reborn_workrepo\\合作指挥官版起义狂潮",
+    "targetUserData": "C:\\Users\\22448\\Downloads\\重生虫心0.71汉化版（新）\\reborn_workrepo\\合作指挥官版起义狂潮\\Mods\\XM\\XMFinal.SC2Mod\\Base.SC2Data\\GameData\\UserData.xml",
     "rosterUserId": "CommanderRuntimeRoster",
     "maxRosterEntries": 96
   },
@@ -20,20 +20,20 @@
           "runtimeId": "GuardianMP",
           "runtimeUnit": "GuardianMP",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMAbathur.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "DevourerMP",
           "runtimeId": "Devourer",
           "runtimeUnit": "Devourer",
           "kind": "unit",
-          "status": "resolved",
+          "status": "state-only",
           "sourceModule": "XMAbathur.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "Mutalisk",
@@ -50,10 +50,10 @@
           "runtimeId": "Roach",
           "runtimeUnit": "Roach",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMAbathur.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "SwarmHost",
@@ -80,20 +80,20 @@
           "runtimeId": "RoachCorpser",
           "runtimeUnit": "RoachCorpser",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMAbathur.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "RoachVile",
           "runtimeId": "RoachVile",
           "runtimeUnit": "RoachVile",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMAbathur.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "RavagerAbathur",
@@ -157,8 +157,8 @@
         }
       ],
       "statusCounts": {
-        "exact": 13,
-        "resolved": 1
+        "state-only": 5,
+        "exact": 9
       }
     },
     {
@@ -230,12 +230,12 @@
         {
           "officialId": "Stalker",
           "runtimeId": "Stalker",
-          "runtimeUnit": "",
+          "runtimeUnit": "Stalker",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "Gateway",
@@ -249,13 +249,13 @@
         },
         {
           "officialId": "PhotonCannon",
-          "runtimeId": "Zealot",
-          "runtimeUnit": "Zealot",
+          "runtimeId": "PhotonCannon",
+          "runtimeUnit": "PhotonCannon",
           "kind": "building",
-          "status": "resolved",
-          "sourceModule": "XMAlarak.SC2Mod",
-          "sourceFile": "XMAlarak.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "status": "shared-exact",
+          "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod",
+          "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "TwilightCouncil",
@@ -270,8 +270,7 @@
       ],
       "statusCounts": {
         "exact": 8,
-        "external-only": 1,
-        "resolved": 1
+        "shared-exact": 2
       }
     },
     {
@@ -828,10 +827,10 @@
           "runtimeId": "HellionTankMira",
           "runtimeUnit": "HellionTankMira",
           "kind": "unit",
-          "status": "alias",
+          "status": "state-only",
           "sourceModule": "XMMira.SC2Mod",
           "sourceFile": "XMMira.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "manual-alias"
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "HHRaven",
@@ -905,7 +904,8 @@
         }
       ],
       "statusCounts": {
-        "alias": 10
+        "alias": 9,
+        "state-only": 1
       }
     },
     {
@@ -957,12 +957,12 @@
         {
           "officialId": "SentryPurifier",
           "runtimeId": "SentryPurifier",
-          "runtimeUnit": "",
+          "runtimeUnit": "SentryPurifier",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "ZealotPurifier",
@@ -1048,7 +1048,7 @@
       "statusCounts": {
         "exact": 11,
         "resolved": 1,
-        "external-only": 1
+        "shared-exact": 1
       }
     },
     {
@@ -1070,12 +1070,12 @@
         {
           "officialId": "BroodLord",
           "runtimeId": "BroodLord",
-          "runtimeUnit": "",
+          "runtimeUnit": "BroodLord",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "Hydralisk",
@@ -1140,27 +1140,27 @@
         {
           "officialId": "SpineCrawler",
           "runtimeId": "SpineCrawler",
-          "runtimeUnit": "",
+          "runtimeUnit": "SpineCrawler",
           "kind": "building",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "SporeCrawler",
           "runtimeId": "SporeCrawler",
-          "runtimeUnit": "",
+          "runtimeUnit": "SporeCrawler",
           "kind": "building",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         }
       ],
       "statusCounts": {
         "exact": 6,
-        "external-only": 3,
+        "shared-exact": 3,
         "resolved": 1
       }
     },
@@ -1265,10 +1265,10 @@
           "runtimeId": "SiegeTankMengskSieged",
           "runtimeUnit": "SiegeTankMengskSieged",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMMengsk.SC2Mod",
           "sourceFile": "XMMengsk.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "ThorMengsk",
@@ -1295,10 +1295,10 @@
           "runtimeId": "VikingMengskAssault",
           "runtimeUnit": "VikingMengskAssault",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMMengsk.SC2Mod",
           "sourceFile": "XMMengsk.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "BattlecruiserMengsk",
@@ -1325,10 +1325,10 @@
           "runtimeId": "RavenMengskSieged",
           "runtimeUnit": "RavenMengskSieged",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMMengsk.SC2Mod",
           "sourceFile": "XMMengsk.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "CommandCenterMengsk",
@@ -1442,7 +1442,8 @@
         }
       ],
       "statusCounts": {
-        "exact": 27
+        "exact": 24,
+        "state-only": 3
       }
     },
     {
@@ -1534,12 +1535,12 @@
         {
           "officialId": "MercReaper",
           "runtimeId": "MercReaper",
-          "runtimeUnit": "",
+          "runtimeUnit": "MercReaper",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMZagara.SC2Mod",
           "sourceFile": "XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "SiegeTank_BlackOps",
@@ -1615,7 +1616,7 @@
       "statusCounts": {
         "exact": 9,
         "resolved": 2,
-        "external-only": 1,
+        "shared-exact": 1,
         "alias": 4
       }
     },
@@ -1891,10 +1892,10 @@
           "runtimeId": "LurkerStetmannBurrowed",
           "runtimeUnit": "LurkerStetmannBurrowed",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMStetmann.SC2Mod",
           "sourceFile": "XMStetmann.SC2Mod/Base.SC2Data/GameData/unitdata.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "InfestorStetmann",
@@ -1951,10 +1952,10 @@
           "runtimeId": "OverseerStetmannSiegeMode",
           "runtimeUnit": "OverseerStetmannSiegeMode",
           "kind": "unit",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMStetmann.SC2Mod",
           "sourceFile": "XMStetmann.SC2Mod/Base.SC2Data/GameData/unitdata.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "HatcheryStetmann",
@@ -2101,10 +2102,10 @@
           "runtimeId": "SpineCrawlerUprootedStetmann",
           "runtimeUnit": "SpineCrawlerUprootedStetmann",
           "kind": "building",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMStetmann.SC2Mod",
           "sourceFile": "XMStetmann.SC2Mod/Base.SC2Data/GameData/unitdata.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "SporeCrawlerStetmann",
@@ -2121,10 +2122,10 @@
           "runtimeId": "SporeCrawlerUprootedStetmann",
           "runtimeUnit": "SporeCrawlerUprootedStetmann",
           "kind": "building",
-          "status": "exact",
+          "status": "state-only",
           "sourceModule": "XMStetmann.SC2Mod",
           "sourceFile": "XMStetmann.SC2Mod/Base.SC2Data/GameData/unitdata.xml",
-          "note": ""
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "PowerTowerStetmann",
@@ -2138,7 +2139,8 @@
         }
       ],
       "statusCounts": {
-        "exact": 34
+        "exact": 30,
+        "state-only": 4
       }
     },
     {
@@ -2178,9 +2180,9 @@
           "note": ""
         },
         {
-          "officialId": "SIWraith",
-          "runtimeId": "SIWraith",
-          "runtimeUnit": "SIWraith",
+          "officialId": "SIOverlord",
+          "runtimeId": "SIOverlord",
+          "runtimeUnit": "SIOverlord",
           "kind": "unit",
           "status": "exact",
           "sourceModule": "XMStukov.SC2Mod",
@@ -2188,24 +2190,24 @@
           "note": ""
         },
         {
-          "officialId": "SwarmQueen",
-          "runtimeId": "SIQueen",
-          "runtimeUnit": "SIQueen",
+          "officialId": "StukovInfestedBanshee",
+          "runtimeId": "StukovInfestedBanshee",
+          "runtimeUnit": "StukovInfestedBanshee",
           "kind": "unit",
-          "status": "alias",
+          "status": "exact",
           "sourceModule": "XMStukov.SC2Mod",
           "sourceFile": "XMStukov.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "manual-alias"
+          "note": ""
         },
         {
-          "officialId": "Zergling",
-          "runtimeId": "Zergling",
-          "runtimeUnit": "",
+          "officialId": "SILiberator",
+          "runtimeId": "SILiberator",
+          "runtimeUnit": "SILiberator",
           "kind": "unit",
-          "status": "external-only",
-          "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMKerrigan.SC2Mod",
-          "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "status": "exact",
+          "sourceModule": "XMStukov.SC2Mod",
+          "sourceFile": "XMStukov.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+          "note": ""
         },
         {
           "officialId": "SIEngineeringBay",
@@ -2299,9 +2301,7 @@
         }
       ],
       "statusCounts": {
-        "exact": 13,
-        "alias": 1,
-        "external-only": 1
+        "exact": 15
       }
     },
     {
@@ -2313,12 +2313,12 @@
         {
           "officialId": "Cyclone",
           "runtimeId": "Cyclone",
-          "runtimeUnit": "",
+          "runtimeUnit": "Cyclone",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "HellionTank",
@@ -2353,12 +2353,12 @@
         {
           "officialId": "Hellion",
           "runtimeId": "Hellion",
-          "runtimeUnit": "",
+          "runtimeUnit": "Hellion",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "Wraith",
@@ -2462,7 +2462,8 @@
         }
       ],
       "statusCounts": {
-        "external-only": 3,
+        "shared-exact": 2,
+        "external-only": 1,
         "alias": 11,
         "exact": 1
       }
@@ -2566,12 +2567,12 @@
         {
           "officialId": "Marauder",
           "runtimeId": "Marauder",
-          "runtimeUnit": "",
+          "runtimeUnit": "Marauder",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMRaynor.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "TychusSCV",
@@ -2616,7 +2617,7 @@
       ],
       "statusCounts": {
         "exact": 13,
-        "external-only": 1
+        "shared-exact": 1
       }
     },
     {
@@ -2638,12 +2639,12 @@
         {
           "officialId": "Oracle",
           "runtimeId": "Oracle",
-          "runtimeUnit": "",
+          "runtimeUnit": "Oracle",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "CorsairMP",
@@ -2667,33 +2668,33 @@
         },
         {
           "officialId": "ZealotShakuras",
-          "runtimeId": "Zealot",
-          "runtimeUnit": "Zealot",
+          "runtimeId": "ZealotShakuras",
+          "runtimeUnit": "ZealotShakuras",
           "kind": "unit",
-          "status": "resolved",
-          "sourceModule": "XMVorazun.SC2Mod",
-          "sourceFile": "XMVorazun.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "status": "shared-exact",
+          "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
+          "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "Stalker",
           "runtimeId": "Stalker",
-          "runtimeUnit": "",
+          "runtimeUnit": "Stalker",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "VoidRay",
-          "runtimeId": "Stargate",
-          "runtimeUnit": "Stargate",
+          "runtimeId": "VoidRay",
+          "runtimeUnit": "VoidRay",
           "kind": "unit",
-          "status": "resolved",
-          "sourceModule": "XMVorazun.SC2Mod",
-          "sourceFile": "XMVorazun.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "status": "shared-exact",
+          "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
+          "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "Gateway",
@@ -2728,8 +2729,7 @@
       ],
       "statusCounts": {
         "exact": 6,
-        "external-only": 2,
-        "resolved": 2
+        "shared-exact": 4
       }
     },
     {
@@ -2771,12 +2771,12 @@
         {
           "officialId": "Corruptor",
           "runtimeId": "Corruptor",
-          "runtimeUnit": "",
+          "runtimeUnit": "Corruptor",
           "kind": "unit",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "Scourge",
@@ -2800,39 +2800,39 @@
         },
         {
           "officialId": "Zergling",
-          "runtimeId": "SpawningPool",
-          "runtimeUnit": "SpawningPool",
+          "runtimeId": "Zergling",
+          "runtimeUnit": "Zergling",
           "kind": "unit",
-          "status": "resolved",
-          "sourceModule": "XMZagara.SC2Mod",
-          "sourceFile": "XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "status": "shared-exact",
+          "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMKerrigan.SC2Mod",
+          "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "SpineCrawler",
           "runtimeId": "SpineCrawler",
-          "runtimeUnit": "",
+          "runtimeUnit": "SpineCrawler",
           "kind": "building",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "SporeCrawler",
           "runtimeId": "SporeCrawler",
-          "runtimeUnit": "",
+          "runtimeUnit": "SporeCrawler",
           "kind": "building",
-          "status": "external-only",
+          "status": "shared-exact",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "shared runtime unit from common imported pool"
         }
       ],
       "statusCounts": {
         "exact": 4,
-        "external-only": 3,
-        "resolved": 2
+        "shared-exact": 4,
+        "resolved": 1
       }
     },
     {
