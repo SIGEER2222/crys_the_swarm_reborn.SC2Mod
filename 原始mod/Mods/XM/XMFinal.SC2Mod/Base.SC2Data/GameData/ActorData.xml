@@ -520,32 +520,11 @@
             </WireframeShield>
         </CActorUnit>
     <CActorUnit id="SolarForge" parent="ProtossBuilding" unitName="SolarForge">
-            <On Terms="UnitBirth" Send="Create SolarForgeBeam"/>
-            <On Terms="UnitBirth; ValidatePlayer KaraxHaveSolarEfficiencyLevel1" Target="SolarForgeBeam" Send="AnimBracketStart FirstUpgrade Stand,Work,Start Stand,Work"/>
-            <On Terms="UnitBirth; ValidatePlayer KaraxHaveSolarEfficiencyLevel2" Target="SolarForgeBeam" Send="AnimBracketStart SecondUpgrade Stand,Work,Start,A Stand,Work,A"/>
-            <On Terms="UnitBirth; ValidatePlayer KaraxHaveSolarEfficiencyLevel3" Target="SolarForgeBeam" Send="AnimBracketStart ThirdUpgrade Stand,Work,Start,B Stand,Work,B"/>
-            <On Terms="Upgrade.SolarEfficiencyLevel1.Add" Target="SolarForgeBeam" Send="AnimBracketStart FirstUpgrade Stand,Work,Start Stand,Work"/>
-            <On Terms="Upgrade.SolarEfficiencyLevel2.Add" Target="SolarForgeBeam" Send="AnimBracketStart SecondUpgrade Stand,Work,Start,A Stand,Work,A"/>
-            <On Terms="Upgrade.SolarEfficiencyLevel2.Add" Target="SolarForgeBeam" Send="AnimBracketStop FirstUpgrade"/>
-            <On Terms="Upgrade.SolarEfficiencyLevel3.Add" Target="SolarForgeBeam" Send="AnimBracketStart ThirdUpgrade Stand,Work,Start,B Stand,Work,B"/>
-            <On Terms="Upgrade.SolarEfficiencyLevel3.Add" Target="SolarForgeBeam" Send="AnimBracketStop SecondUpgrade"/>
             <On Terms="Abil.que5Passive.Start" Send="StatusIncrement Queuing"/>
             <On Terms="Abil.que5Passive.Stop" Send="StatusDecrement Queuing"/>
             <On Terms="StatusOn.*.Queuing" Send="AnimBracketStart Queuing Work,Start Work Work,End"/>
             <On Terms="StatusOff.*.Queuing" Send="AnimBracketStop Queuing"/>
             <On Terms="AnimBracketState.*.AfterClosing; AnimName Queuing; IsStatus WaitingForAnimBrackets 1" Send="AnimBracketStart StandA Stand,Work,Start,A Stand,Work,A Stand,Work,End,A"/>
-            <On Terms="Effect.BrokenSolarForgeIssueOrder.Start; !IsStatus Queuing 0" Send="StatusSet DiedQueueing 1"/>
-            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge; IsStatus DiedQueueing 0" Send="AnimBracketStart StandA Stand,Work,Start,A Stand,Work,A Stand,Work,End,A"/>
-            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge; IsStatus DiedQueueing 0" Send="StatusSet WaitingForAnimBrackets 0"/>
-            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge; IsStatus DiedQueueing 1" Send="StatusSet WaitingForAnimBrackets 1"/>
-            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge" Target="SolarForgeBeam" Send="Destroy"/>
-            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge" Target="SOARepairBeam" Send="Destroy"/>
-            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge" Target="SOARepairBeamImpact" Send="Destroy"/>
-            <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForge" Send="StatusSet WaitingForAnimBrackets 0"/>
-            <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForge" Send="StatusSet DiedQueueing 0"/>
-            <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForge" Send="AnimBracketStop StandA"/>
-            <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForge" Send="TimerSet 2.000000 CreateBeam"/>
-            <On Terms="TimerExpired; TimerName CreateBeam" Send="Create SolarForgeBeam"/>
             <On Terms="UnitDeathCustomize; CreepEngulfs" Send="CreepEngulfmentStopTransition"/>
             <Macros index="0" value="BuildingFlattenTerrainMacro"/>
             <Macros value="ProtossBuildingPowerUp"/>
