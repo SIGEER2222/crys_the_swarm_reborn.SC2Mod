@@ -98,6 +98,10 @@ CURATED_COMMANDER_UNIT_IDS = {
     "Zagara": [
         "ZagaraVoidCoop",
     ],
+    "Stukov": [
+        "StukovInfestedBanshee",
+        "SILiberator",
+    ],
     "Mengsk": [
         "SCVMengsk",
         "CommandCenterMengsk",
@@ -233,6 +237,20 @@ TECH_PRODUCTION_COMMAND_OVERRIDES = {
                 "abil_cmd": "SIAdvancedBuild,Build2",
             },
         ],
+        "StukovInfestedBanshee": [
+            {
+                "producer_unit_id": "SIStarport",
+                "button_face": "SIBanshee",
+                "abil_cmd": "SIStarportTrain,Train1",
+            },
+        ],
+        "SILiberator": [
+            {
+                "producer_unit_id": "SIStarport",
+                "button_face": "SILiberator",
+                "abil_cmd": "SIStarportTrain,Train2",
+            },
+        ],
     },
     "Zeratul": {
         "ZealotZeratul": [
@@ -256,6 +274,11 @@ TECH_PRODUCTION_FIELD_OVERRIDES = {
 COMMANDER_TECH_ENTRY_EXCLUDES = {
     "Abathur": {
         "NydusNetwork",
+    },
+    "Stukov": {
+        "StukovInfestedWraith",
+        "SwarmQueen",
+        "Zergling",
     },
 }
 
