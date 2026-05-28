@@ -262,9 +262,26 @@ function findButton(cardByUnit, unitId, face, abilCmd) {
   return null;
 }
 
-function renderAbilityRows(hero, cardByUnit, index) {
+function isMisattributedCommanderAbility(commander, unitId, ability) {
+  if (commander !== "Kerrigan" || unitId !== "Zergling") {
+    return false;
+  }
+
+  const face = ability.face ?? "";
+  const abilityId = abilityIdFromCommand(ability.abil_cmd);
+  const requirementId = ability.requirements ?? "";
+  return face === "ZagaraVoidCoopZerglingDodge"
+    || abilityId === "MorphZerglingToBaneling"
+    || abilityId === "MorphToBaneling"
+    || requirementId === "HaveMasteryZagaraZerglingDodgeChance";
+}
+
+function renderAbilityRows(commander, hero, cardByUnit, index) {
   const rows = [];
   for (const ability of asArray(hero.abilities)) {
+    if (isMisattributedCommanderAbility(commander, hero.unit_id, ability)) {
+      continue;
+    }
     const button = findButton(cardByUnit, hero.unit_id, ability.face, ability.abil_cmd);
     const abilityId = abilityIdFromCommand(ability.abil_cmd);
     const name = firstText(ability.name, button?.button?.name, ability.face, abilityId);
@@ -347,7 +364,7 @@ function renderReport(options, commanders, modsXmRoot) {
       lines.push(`- 英雄状态：${heroStatus}`);
       lines.push(`- 生命/护盾：${firstText(hero.unit?.life, "?")} / ${firstText(hero.unit?.shields, "0")}`);
       lines.push("");
-      const abilityRows = renderAbilityRows(hero, data.cardByUnit, modIndex).map((row) => ({
+      const abilityRows = renderAbilityRows(commander, hero, data.cardByUnit, modIndex).map((row) => ({
         "官方技能": row.name,
         "按钮/技能ID": [row.face, row.abilityId].filter(Boolean).join(" / "),
         "类型": row.type,

@@ -375,6 +375,20 @@ function isIgnoredButton(button) {
   return false;
 }
 
+function isMisattributedCommanderButton(commander, unitId, button) {
+  if (commander !== "Kerrigan" || unitId !== "Zergling") {
+    return false;
+  }
+
+  const face = button.face || "";
+  const abilityId = rawAbilityIdFrom(button.abil_cmd || "");
+  const requirementId = button.requirements || "";
+  return face === "ZagaraVoidCoopZerglingDodge"
+    || abilityId === "MorphZerglingToBaneling"
+    || abilityId === "MorphToBaneling"
+    || requirementId === "HaveMasteryZagaraZerglingDodgeChance";
+}
+
 function entryKind(button, abilityId) {
   const type = button.type || "";
   const face = button.face || "";
@@ -414,7 +428,7 @@ function abilityRowsForObject(commander, object) {
   const objectId = resolveAlias(commander, object.unit_id, abilityObjectAliases);
   for (const card of object.cards ?? []) {
     for (const button of card.buttons ?? []) {
-      if (isIgnoredButton(button)) {
+      if (isIgnoredButton(button) || isMisattributedCommanderButton(commander, object.unit_id, button)) {
         continue;
       }
       const buttonId = button.face || "";

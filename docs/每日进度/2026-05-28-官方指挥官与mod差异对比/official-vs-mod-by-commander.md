@@ -1,6 +1,6 @@
 # 官方合作指挥官 vs Mod 差异对比
 
-- 生成时间：2026/5/28 13:52:14
+- 生成时间：2026/5/28 14:51:46
 - 官方数据：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\游戏数据\官方合作指挥官\commanders`
 - Mod 数据：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\合作指挥官版起义狂潮`
 - Catalog ID 对比：false
@@ -9,24 +9,24 @@
 
 | 指挥官 | 模块 | 官方清单缺失 | 单位缺失 | 建筑缺失 | 升级缺失 | 技能缺失 | 按 Catalog 缺失 |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Abathur | `XMAbathur.SC2Mod` | 44 | 2 | 1 | 2 | 2 | 0 |
+| Abathur | `XMAbathur.SC2Mod` | 41 | 2 | 1 | 2 | 0 | 0 |
 | Alarak | `XMAlarak.SC2Mod` | 36 | 0 | 0 | 0 | 2 | 0 |
 | Artanis | `XMArtanis.SC2Mod` | 37 | 1 | 0 | 0 | 1 | 0 |
 | Dehaka | `XMDehaka.SC2Mod` | 75 | 0 | 0 | 5 | 4 | 0 |
-| Fenix | `XMFenix.SC2Mod` | 39 | 1 | 0 | 0 | 1 | 0 |
+| Fenix | `XMFenix.SC2Mod` | 37 | 0 | 0 | 0 | 0 | 0 |
 | Horner | `XMMira.SC2Mod` | 111 | 1 | 0 | 16 | 28 | 0 |
-| Karax | `XMKarax.SC2Mod` | 48 | 1 | 0 | 1 | 4 | 0 |
-| Kerrigan | `XMKerrigan.SC2Mod` | 25 | 1 | 0 | 0 | 6 | 0 |
+| Karax | `XMKarax.SC2Mod` | 46 | 0 | 0 | 1 | 3 | 0 |
+| Kerrigan | `XMKerrigan.SC2Mod` | 24 | 1 | 0 | 0 | 5 | 0 |
 | Mengsk | `XMMengsk.SC2Mod` | 46 | 0 | 0 | 2 | 3 | 0 |
 | Nova | `XMNova.SC2Mod` | 98 | 0 | 0 | 7 | 24 | 0 |
 | Raynor | `XMRaynor.SC2Mod` | 45 | 0 | 0 | 1 | 2 | 0 |
 | Stetmann | `XMStetmann.SC2Mod` | 42 | 0 | 0 | 0 | 3 | 0 |
-| Stukov | `XMStukov.SC2Mod` | 75 | 1 | 0 | 17 | 8 | 0 |
+| Stukov | `XMStukov.SC2Mod` | 66 | 0 | 0 | 17 | 1 | 0 |
 | Swann | `XMSwann.SC2Mod` | 137 | 7 | 1 | 20 | 32 | 0 |
 | Tychus | `XMTychus.SC2Mod` | 52 | 0 | 0 | 3 | 6 | 0 |
 | Vorazun | `XMVorazun.SC2Mod` | 55 | 1 | 0 | 4 | 7 | 0 |
 | Zagara | `XMZagara.SC2Mod` | 51 | 2 | 0 | 0 | 9 | 0 |
-| Zeratul | `XMZeratul.SC2Mod` | 51 | 1 | 0 | 4 | 8 | 0 |
+| Zeratul | `XMZeratul.SC2Mod` | 49 | 0 | 0 | 4 | 7 | 0 |
 
 ## Abathur
 
@@ -36,7 +36,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 2/38
+- `units`: 2/34
   - `DehakaViper`
   - `DevourerMP`
 
@@ -49,11 +49,9 @@
   - `CommanderPrestigeAbathurDeepTunnelLevel12`
   - `CommanderPrestigeAbathurUltEvoLevel15`
 
-- `abilities`: 2/48
-  - `MorphToGuardianMP`
-  - `MorphToRavager`
+- `abilities`: 0/46
 
-- `buttons`: 20/74
+- `buttons`: 19/68
   - `Attack`
   - `CommanderAbathurBaseTrait`
   - `CommanderAbathurBiomassLifesteal`
@@ -70,7 +68,6 @@
   - `CommanderAbathurUnlockInfestationPitUpgrades`
   - `CommanderAbathurUnlockRoachWarrenUpgrades`
   - `CommanderAbathurUnlockViper`
-  - `MorphToDevourerMP`
   - `Move`
   - `Stop`
   - `ViperConsume`
@@ -104,9 +101,9 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 0/20
+- `units`: 0/15
 
-- `buildings`: 0/12
+- `buildings`: 0/10
 
 - `heroes`: 0/0
 
@@ -116,7 +113,7 @@
   - `[object Object]`
   - `PhaseCannonProjection`
 
-- `buttons`: 19/81
+- `buttons`: 19/74
   - `Attack`
   - `AttackBuilding`
   - `CommanderAlarakEmpoweredAOEAttacks`
@@ -164,10 +161,10 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/24
+- `units`: 1/18
   - `AlarakSupplicantWarpTrainCreator`
 
-- `buildings`: 0/15
+- `buildings`: 0/13
 
 - `heroes`: 0/0
 
@@ -176,7 +173,7 @@
 - `abilities`: 1/41
   - `UpgradeToRoboticsFacilityWarp`
 
-- `buttons`: 19/93
+- `buttons`: 19/85
   - `Attack`
   - `AWrp`
   - `CommanderArtanisFleetBeaconUpgradesPack`
@@ -310,19 +307,17 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/24
-  - `AlarakSupplicantWarpTrainCreator`
+- `units`: 0/19
 
-- `buildings`: 0/15
+- `buildings`: 0/12
 
 - `heroes`: 0/0
 
 - `upgrades`: 0/19
 
-- `abilities`: 1/38
-  - `WarpGateTrainSupplicantTrue`
+- `abilities`: 0/37
 
-- `buttons`: 20/83
+- `buttons`: 20/77
   - `AdeptPiercingUpgrade`
   - `Attack`
   - `CommanderFenixBaseTrait`
@@ -496,23 +491,21 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/29
-  - `AlarakSupplicantWarpTrainCreator`
+- `units`: 0/20
 
-- `buildings`: 0/16
+- `buildings`: 0/13
 
 - `heroes`: 0/0
 
 - `upgrades`: 1/26
   - `SOAPurifierBeamUpgrade`
 
-- `abilities`: 4/38
+- `abilities`: 3/37
   - `[object Object]`
   - `MirageGravitonBeamVoidCampaign`
-  - `WarpGateTrainSupplicantTrue`
   - `ZealotPurifierReviveDeath`
 
-- `buttons`: 24/92
+- `buttons`: 24/83
   - `AnionPulseCrystal`
   - `Attack`
   - `CommanderKaraxFleetBeaconUpgradesPack`
@@ -568,7 +561,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/25
+- `units`: 1/20
   - `SILarva`
 
 - `buildings`: 0/10
@@ -577,15 +570,14 @@
 
 - `upgrades`: 0/25
 
-- `abilities`: 6/42
+- `abilities`: 5/41
   - `[object Object]`
-  - `MorphToBroodLord`
   - `MutaliskMorphToBroodLord`
   - `SIBasicBuild`
   - `SpineCrawlerUproot`
   - `SporeCrawlerUproot`
 
-- `buttons`: 12/80
+- `buttons`: 12/76
   - `Attack`
   - `EvolveAnabolicSynthesis2`
   - `Move`
@@ -687,7 +679,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 0/26
+- `units`: 0/25
 
 - `buildings`: 0/18
 
@@ -702,7 +694,7 @@
   - `MasteryNovaGriffinCost`
   - `SuperStimpackNova`
 
-- `abilities`: 24/57
+- `abilities`: 24/56
   - `[object Object]`
   - `255`
   - `AdvancedConstructionAuto`
@@ -728,7 +720,7 @@
   - `UpgradeToPlanetaryFortress`
   - `VespeneDroneCast`
 
-- `buttons`: 45/121
+- `buttons`: 45/120
   - `AdvancedConstructionAuto`
   - `AdvancedConstructionLocked`
   - `Attack`
@@ -795,7 +787,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 0/28
+- `units`: 0/24
 
 - `buildings`: 0/18
 
@@ -930,8 +922,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/34
-  - `SpawningPool`
+- `units`: 0/24
 
 - `buildings`: 0/15
 
@@ -956,18 +947,12 @@
   - `SISiegeTankTentacleWhileSieged`
   - `StukovCommander`
 
-- `abilities`: 8/49
-  - `255`
-  - `BurrowUltraliskDown`
-  - `BurrowUltraliskUp`
-  - `LarvaTrain`
-  - `MorphToBaneling`
-  - `MorphZerglingToBaneling`
+- `abilities`: 1/44
   - `StarportTrain`
-  - `TrainQueen`
 
-- `buttons`: 27/91
+- `buttons`: 26/89
   - `Attack`
+  - `CommanderPrestigeStukovBansheeTransportLoad`
   - `CommanderStukovAleksander`
   - `CommanderStukovAleksanderMindControl`
   - `CommanderStukovApocalisk`
@@ -989,11 +974,9 @@
   - `EvolveInfestationLevel3Locked`
   - `Move`
   - `ResearchRegenerativePlatingLocked`
+  - `SIBansheeUnloadAll`
   - `SpawnBroodQueenLocked`
-  - `SpawningPool`
   - `Stop`
-  - `ZagaraVoidCoopZerglingDodge`
-  - `ZerglingArmorShred`
 
 - `prestiges`: 1/3
   - `CommanderPrestigeStukovBanshees`
@@ -1241,10 +1224,10 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/20
+- `units`: 1/16
   - `AlarakSupplicantWarpTrainCreator`
 
-- `buildings`: 0/11
+- `buildings`: 0/9
 
 - `heroes`: 0/0
 
@@ -1263,7 +1246,7 @@
   - `VoidRaySwarmDamageBoostCancel`
   - `WarpGateTrainSupplicantTrue`
 
-- `buttons`: 25/73
+- `buttons`: 25/69
   - `Attack`
   - `CommanderVorazunDarkArchonUpgradesPack`
   - `CommanderVorazunDarkPylonRecall`
@@ -1320,7 +1303,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 2/22
+- `units`: 2/21
   - `SICocoonInfestedAberration`
   - `SILarva`
 
@@ -1341,7 +1324,7 @@
   - `SpineCrawlerUproot`
   - `SporeCrawlerUproot`
 
-- `buttons`: 20/65
+- `buttons`: 20/63
   - `Attack`
   - `CausticSpray`
   - `CommanderZagaraBanelingNestUpgradesPack`
@@ -1395,10 +1378,9 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/20
-  - `AlarakSupplicantWarpTrainCreator`
+- `units`: 0/18
 
-- `buildings`: 0/16
+- `buildings`: 0/13
 
 - `heroes`: 0/0
 
@@ -1408,8 +1390,7 @@
   - `ZeratulCoopHeroHalfCostUpgrade`
   - `ZeratulCoopMedivacChargesUpgrade`
 
-- `abilities`: 8/44
-  - `WarpGateTrainSupplicantTrue`
+- `abilities`: 7/43
   - `ZeratulBarracksTrain`
   - `ZeratulCalldownOdinTargeted`
   - `ZeratulEngineeringBayResearch`
@@ -1418,7 +1399,7 @@
   - `ZeratulHeroResearch2`
   - `ZeratulOdinPlatformResearch`
 
-- `buttons`: 17/91
+- `buttons`: 17/90
   - `Attack`
   - `CommanderZeratulLevel01`
   - `CommanderZeratulLevel02`
