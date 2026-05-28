@@ -92,10 +92,41 @@ const misattributedCommanderAbilityFilters = [
     abilityIds: ["StukovInfestedWildMutation"],
   },
   {
+    commander: "Artanis",
+    unitId: "ImmortalAiur",
+    faceIds: ["ShadowCannonLocked", "ImmortalShakurasShadowCannon"],
+    abilityIds: ["ImmortalShakurasShadowCannon"],
+    requirementIds: ["KaraxLevel09"],
+  },
+  {
+    commander: "Fenix",
+    unitId: "ColossusPurifier",
+    faceIds: ["ExtendedThermalLance"],
+    requirementIds: ["HaveKaraxExtendedThermalLance"],
+  },
+  {
+    commander: "Fenix",
+    unitId: "ZealotPurifier",
+    faceIds: ["ReconstructionLocked"],
+    requirementIds: ["KaraxLevel04", "ZealotPurifierReviveKaraxHide"],
+  },
+  {
+    commander: "Karax",
+    unitId: "Scout",
+    faceIds: ["HaveFenixScoutWeaponRange"],
+    requirementIds: ["HaveFenixScoutWeaponRange"],
+  },
+  {
     commander: "Raynor",
     unitId: "SiegeTank",
     faceIds: ["CommanderSwannImmortalityProtocol"],
     requirementIds: ["HaveSwannCommanderImmortalityProtocol"],
+  },
+  {
+    commander: "Swann",
+    unitId: "SCV",
+    faceIds: ["BuildFusionCoreLocked"],
+    requirementIds: ["RaynorLevel06"],
   },
   {
     commander: "Swann",
@@ -108,6 +139,12 @@ const misattributedCommanderAbilityFilters = [
     unitId: "Stalker",
     faceIds: ["AlarakStalkerPhasingArmor", "CommanderPrestigeAlarakMechBuff"],
     requirementIds: ["HaveAlarakStalkerPhasingArmor", "CommanderPrestigeAlarakMech"],
+  },
+  {
+    commander: "Vorazun",
+    unitId: "Zealot",
+    faceIds: ["WhirlwindLocked"],
+    requirementIds: ["ArtanisLevel04"],
   },
 ];
 

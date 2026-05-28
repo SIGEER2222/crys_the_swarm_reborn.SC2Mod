@@ -87,7 +87,7 @@
 
 - `XMFinal.SC2Mod` 优先作为统一 runtime owner。
 - 新指挥官或新机制优先接到统一框架，不要把通用逻辑散到每张地图。
-- SC2 新增/活跃维护的 runtime 代码文件默认不超过 1000 行；特别是 `合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/*.galaxy` 与 `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/*.galaxy`，新增逻辑应按职责拆成 include/profile/helper 文件。可用 `scripts/sc2/check-galaxy-line-limit.ps1` 校验。历史地图脚本、`t3Terrain.xml`、官方/原始导出 XML 这类生成或遗留资源不要为满足行数而盲拆。
+- SC2 新增/活跃维护的 runtime 代码文件默认不超过 1000 行；特别是 `合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/*.galaxy` 与 `原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/*.galaxy`，新增逻辑应按职责拆成 include/profile/helper 文件。可用 `scripts/sc2/check-galaxy-line-limit.ps1` 校验。当前 `合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146.galaxy` 是已知历史债务，仍为 1000 行以上；后续不要继续膨胀，应优先参考 `原始mod/` 的拆分方式迁移。历史地图脚本、`t3Terrain.xml`、官方/原始导出 XML 这类生成或遗留资源不要为满足行数而盲拆。
 - `crys_the_swarm_reborn.SC2Mod` 只可作参考，不可直接当来源。
 - Launcher 能显示，不代表玩法已完成。
 - 当前有两条本地工程线：`合作指挥官版起义狂潮/` 重新作为当前开发 owner，用于继续完成旧线开发；`原始mod/` 是拿原 mod 续上的新项目，用于测试新写法和回归。

@@ -12,27 +12,98 @@ const ignoreFacePattern = /^(Cancel|Halt|Stop|Move|Attack|Rally|SelectBuilder|Bu
 const nonFinalUnitPattern = /(Cocoon|Egg|SpawnerUnit|Dummy|Missile|Weapon|Placeholder)$/i;
 const intermediateProducerPattern = /(Cocoon|Egg|TrainEgg|SpawnerUnit)/i;
 
+const globallyIgnoredCommandCardIssues = new Set([
+  "Observer|MorphtoObserverSiege|ObserverMorphtoObserverSiege,Execute",
+]);
+
 const ignoredCommandCardIssues = new Map([
   [
     "Kerrigan",
     new Set([
+      "NydusNetwork|SummonNydusWorm|BuildNydusCanal,Build1",
+      "NydusNetwork|SummonNydusCanalAttacker|BuildNydusCanal,Build2",
+      "NydusNetwork|SummonNydusCanalCreeper|BuildNydusCanal,Build3",
       "Zergling|Baneling|MorphZerglingToBaneling,Train1",
       "Zergling||MorphToBaneling,Execute",
+    ]),
+  ],
+  [
+    "Horner",
+    new Set([
+      "HHHellion|MorphToHellionTank|MorphToHHHellionTank,Execute",
+      "HHRaven|MorphtoHHRavenSiege|HHRavenMorphtoHHRavenSiege,Execute",
+    ]),
+  ],
+  [
+    "Nova",
+    new Set([
+      "HellbatBlackOps|MorphToHellionBlackOps|MorphToHellionBlackOps,Execute",
     ]),
   ],
   [
     "Stetmann",
     new Set([
       "InfestorStetmann|InfestorStetmannInfestBuilding|InfestorStetmannInfestBuilding,Execute",
+      "OverseerStetmann|MorphtoOverseerSiegeStetmann|OverseerMorphtoOverseerSiegeStetmann,Execute",
+      "OverseerStetmannSiegeMode|MorphtoOverseerNormalStetmann|OverseerSiegeMorphtoOverseerStetmann,Execute",
+    ]),
+  ],
+  [
+    "Stukov",
+    new Set([
+      "Zergling|Baneling|MorphZerglingToBaneling,Train1",
+      "Zergling||MorphToBaneling,Execute",
+    ]),
+  ],
+  [
+    "Tychus",
+    new Set([
+      "TychusWarhound|TychusWarhoundAutoTurret|TychusWarhoundBuildAutoTurret,Execute",
+      "TychusMarauder|TychusMarauderHealingWard|TychusMarauderBuildHealingWard,Execute",
+    ]),
+  ],
+  [
+    "Vorazun",
+    new Set([
+      "Oracle|OracleBuildStasisTrap|OracleStasisTrapBuild,Build1",
+    ]),
+  ],
+  [
+    "Zagara",
+    new Set([
+      "Zergling||MorphToBaneling,Execute",
+    ]),
+  ],
+  [
+    "Zeratul",
+    new Set([
+      "ZeratulObserver|MorphtoZeratulObserverSiege|ZeratulObserverMorphtoZeratulObserverSiege,Execute",
     ]),
   ],
 ]);
 
 const ignoredTechOnlyIssues = new Map([
   [
+    "Kerrigan",
+    new Set([
+      "K5Kerrigan",
+    ]),
+  ],
+  [
     "Stetmann",
     new Set([
+      "GaryStetmann",
+      "LurkerStetmannBurrowed",
+      "OverseerStetmannSiegeMode",
       "RoachStetmann",
+      "SpineCrawlerUprootedStetmann",
+      "SporeCrawlerUprootedStetmann",
+    ]),
+  ],
+  [
+    "Zagara",
+    new Set([
+      "ZagaraVoidCoop",
     ]),
   ],
 ]);
@@ -132,7 +203,8 @@ function productionKey(item) {
 }
 
 function shouldIgnoreCommandCardIssue(commander, producerUnitId, face, abilCmd) {
-  return Boolean(ignoredCommandCardIssues.get(commander)?.has(`${producerUnitId}|${face}|${abilCmd}`));
+  const key = `${producerUnitId}|${face}|${abilCmd}`;
+  return globallyIgnoredCommandCardIssues.has(key) || Boolean(ignoredCommandCardIssues.get(commander)?.has(key));
 }
 
 function shouldIgnoreTechOnlyIssue(commander, entry) {

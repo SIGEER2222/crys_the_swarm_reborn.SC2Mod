@@ -1,6 +1,6 @@
 # 指挥官命令卡归属误挂排查与扫描
 
-- 生成时间：2026/5/28 16:26:06
+- 生成时间：2026/5/28 16:45:37
 - 官方 JSON：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\游戏数据\官方合作指挥官\commanders`
 - XMFinal Profile：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\原始mod\Mods\XM\XMFinal.SC2Mod\Base.SC2Data`
 - 目的：复用凯瑞甘跳虫误挂爆虫链的排查路子，批量找出共享命令卡把别的指挥官按钮/技能带进来的候选。
@@ -17,14 +17,19 @@
 - `Kerrigan / Zergling`、`Stukov / Zergling`：过滤扎加拉跳虫闪避和基础跳虫变爆虫链，字段包括 `ZagaraVoidCoopZerglingDodge`、`Baneling`、`MorphZerglingToBaneling`、`MorphToBaneling`、`HaveMasteryZagaraZerglingDodgeChance`。
 - `Abathur / Mutalisk`：过滤斯托科夫感染体野性突变，字段包括 `StukovInfestedWildMutation`。
 - `Raynor / SiegeTank`：过滤斯旺不朽协议，字段包括 `CommanderSwannImmortalityProtocol`、`HaveSwannCommanderImmortalityProtocol`。
+- `Artanis / ImmortalAiur`：过滤凯拉克斯暗影炮，字段包括 `ShadowCannonLocked`、`ImmortalShakurasShadowCannon`、`KaraxLevel09`。
+- `Fenix / ColossusPurifier`、`Fenix / ZealotPurifier`：过滤凯拉克斯热能长枪/重构链，字段包括 `ExtendedThermalLance`、`HaveKaraxExtendedThermalLance`、`ReconstructionLocked`、`KaraxLevel04`、`ZealotPurifierReviveKaraxHide`。
+- `Karax / Scout`：过滤菲尼克斯摩约侦察机射程升级，字段包括 `HaveFenixScoutWeaponRange`。
+- `Swann / SCV`：过滤雷诺聚变芯体等级锁，字段包括 `BuildFusionCoreLocked`、`RaynorLevel06`。
 - `Swann / SiegeTank`：过滤雷诺推进器等级锁，字段包括 `AfterburnersLocked`、`RaynorLevel11`。
 - `Vorazun / Stalker`：过滤阿拉纳克杀戮者/机械威望按钮，字段包括 `AlarakStalkerPhasingArmor`、`HaveAlarakStalkerPhasingArmor`、`CommanderPrestigeAlarakMechBuff`、`CommanderPrestigeAlarakMech`。
+- `Vorazun / Zealot`：过滤亚坦尼斯旋风等级锁，字段包括 `WhirlwindLocked`、`ArtanisLevel04`。
 - 规则位置：`scripts/sc2/generate-xmfinal-commander-profiles.mjs` 与 `scripts/sc2/export-official-vs-mod-readable-report.mjs`。审计脚本只负责发现和报告，不修改官方 JSON。
 
 ## 当前结论
 
-- XMFinalProfile 疑似误挂候选：7 行。
-- OfficialJson 共享命令卡候选：94 行。
+- XMFinalProfile 疑似误挂候选：0 行。
+- OfficialJson 共享命令卡候选：96 行。
 - 凯瑞甘官方 JSON 中仍能看到共享 Zergling 候选：4 行，这是数据源层面的共享命令卡现象。
 - 凯瑞甘 XMFinal Profile 中同类 Zergling 候选：0 行，当前应为 0。
 
@@ -34,41 +39,25 @@
 | --- | --- | --- | --- |
 | Abathur | 0 | 2 | 2 |
 | Alarak | 0 | 8 | 8 |
-| Artanis | 1 | 18 | 19 |
-| Fenix | 3 | 13 | 16 |
-| Karax | 1 | 7 | 8 |
+| Artanis | 0 | 20 | 20 |
+| Fenix | 0 | 13 | 13 |
+| Karax | 0 | 7 | 7 |
 | Kerrigan | 0 | 5 | 5 |
 | Nova | 0 | 5 | 5 |
 | Raynor | 0 | 6 | 6 |
 | Stetmann | 0 | 1 | 1 |
 | Stukov | 0 | 4 | 4 |
-| Swann | 1 | 2 | 3 |
-| Vorazun | 1 | 12 | 13 |
+| Swann | 0 | 2 | 2 |
+| Vorazun | 0 | 12 | 12 |
 | Zeratul | 0 | 11 | 11 |
 
 ## P1：已进入 XMFinal Profile 的候选
 
-| 指挥官 | 对象 | 按钮 | 技能 | 需求 | 疑似归属 | 原因 | 文件 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Artanis | passive ImmortalAiur | ShadowCannonLocked |  | KaraxLevel09 | Karax | 字段 ID/Key 中出现其他指挥官标识 | LibE0EAE146_CommanderUnitAbilities.galaxy |
-| Fenix | passive ColossusPurifier | ExtendedThermalLance |  | HaveKaraxExtendedThermalLance | Karax | 字段 ID/Key 中出现其他指挥官标识 | LibE0EAE146_CommanderUnitAbilities.galaxy |
-| Fenix | ability ZealotPurifier |  |  | ZealotPurifierReviveKaraxHide | Karax | 字段 ID/Key 中出现其他指挥官标识 | LibE0EAE146_CommanderUnitAbilities.galaxy |
-| Fenix | passive ZealotPurifier | ReconstructionLocked |  | KaraxLevel04 | Karax | 字段 ID/Key 中出现其他指挥官标识 | LibE0EAE146_CommanderUnitAbilities.galaxy |
-| Karax | passive Scout | HaveFenixScoutWeaponRange |  | HaveFenixScoutWeaponRange | Fenix | 字段 ID/Key 中出现其他指挥官标识 | LibE0EAE146_CommanderUnitAbilities.galaxy |
-| Swann | passive SCV | BuildFusionCoreLocked |  | RaynorLevel06 | Raynor | 字段 ID/Key 中出现其他指挥官标识 | LibE0EAE146_CommanderUnitAbilities.galaxy |
-| Vorazun | passive Zealot | WhirlwindLocked |  | ArtanisLevel04 | Artanis | 字段 ID/Key 中出现其他指挥官标识 | LibE0EAE146_CommanderUnitAbilities.galaxy |
+- 无。
 
 ## P1 人工复核摘要
 
-| 判断 | 指挥官 | 对象 | 按钮/技能/需求 | 疑似归属 | 建议 |
-| --- | --- | --- | --- | --- | --- |
-| 需复核但偏可疑 | Artanis | ImmortalAiur | ShadowCannonLocked / KaraxLevel09 | Karax | 亚坦尼斯不朽者带凯拉克斯等级锁，先对官方亚坦尼斯不朽者技能表再决定。 |
-| 需复核 | Fenix | ColossusPurifier | ExtendedThermalLance / HaveKaraxExtendedThermalLance | Karax | 菲尼克斯 Purifier 单位与凯拉克斯共享 Purifier 资源较多，先查官方升级是否确属菲尼克斯。 |
-| 需复核 | Fenix | ZealotPurifier | ZealotPurifierReviveKaraxHide | Karax | 菲尼克斯 Purifier 单位与凯拉克斯共享 Purifier 资源较多，先查官方升级是否确属菲尼克斯。 |
-| 需复核 | Fenix | ZealotPurifier | ReconstructionLocked / KaraxLevel04 | Karax | 菲尼克斯 Purifier 单位与凯拉克斯共享 Purifier 资源较多，先查官方升级是否确属菲尼克斯。 |
-| 需复核 | Karax | Scout | HaveFenixScoutWeaponRange / HaveFenixScoutWeaponRange | Fenix | 凯拉克斯侦察机与菲尼克斯侦察机可能共享基础命令卡，先查官方 Karax Scout 升级。 |
-| 需复核但偏可疑 | Swann | SCV | BuildFusionCoreLocked / RaynorLevel06 | Raynor | 先确认斯旺科技树是否真的需要雷诺等级锁；若只是共享 SCV 命令卡残留，建议过滤。 |
-| 需复核但偏可疑 | Vorazun | Zealot | WhirlwindLocked / ArtanisLevel04 | Artanis | 沃拉尊狂热者带亚坦尼斯旋风等级锁，若沃拉尊不应有旋风则过滤。 |
+- 无。
 
 ## P2：官方 JSON 共享命令卡候选
 
@@ -88,6 +77,8 @@
 | Artanis | 传送门 Gateway | SentryFenix | GatewayTrain |  | Fenix | 字段 ID/Key 中出现其他指挥官标识 | Artanis/command_cards.json |
 | Artanis | 传送门 Gateway | WarpinAscendentLocked |  | AlarakLevel08 | Alarak | 字段 ID/Key 中出现其他指挥官标识 | Artanis/command_cards.json |
 | Artanis | 传送门 Gateway | WarpInDarkArchonLocked |  | VorazunLevel05 | Vorazun | 字段 ID/Key 中出现其他指挥官标识 | Artanis/command_cards.json |
+| Artanis | 不朽者 ImmortalAiur | ImmortalShakurasShadowCannon | ImmortalShakurasShadowCannon |  | Karax | 凯拉克斯不朽者暗影炮不应从共享不朽者命令卡串到其他星灵指挥官 | Artanis/command_cards.json |
+| Artanis | 不朽者 ImmortalAiur | ShadowCannonLocked |  | KaraxLevel09 | Karax | 凯拉克斯不朽者暗影炮不应从共享不朽者命令卡串到其他星灵指挥官 | Artanis/command_cards.json |
 | Artanis | 不朽者 ImmortalAiur | ShadowCannonLocked |  | KaraxLevel09 | Karax | 字段 ID/Key 中出现其他指挥官标识 | Artanis/command_cards.json |
 | Artanis | 光子炮台 PhotonCannon | KaraxTurretAttackSpeed |  | HaveKaraxTurretAttackSpeed | Karax | 字段 ID/Key 中出现其他指挥官标识 | Artanis/command_cards.json |
 | Artanis | 光子炮台 PhotonCannon | KaraxTurretRange |  | HaveKaraxTurretRange | Karax | 字段 ID/Key 中出现其他指挥官标识 | Artanis/command_cards.json |
