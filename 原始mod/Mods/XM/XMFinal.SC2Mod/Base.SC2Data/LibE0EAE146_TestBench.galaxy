@@ -183,6 +183,10 @@ void libE0EAE146_gf_XMTestBench_RunRoster (int lp_player, string lp_rosterKind) 
     if ((lv_commander == "Mira") && libE0EAE146_gf_XMTestBench_HornerRoster(lp_player, lp_rosterKind)) {
         return;
     }
+    if (lp_rosterKind == "full_buildings") {
+        libE0EAE146_gf_XMTestBench_LogScenarioSkip(lp_player, lp_rosterKind, "building_profile_not_wired");
+        return;
+    }
     libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, lp_rosterKind, "commander_profile_not_wired");
 }
 
@@ -273,6 +277,9 @@ void libE0EAE146_gf_XMTestBench_WriteSummary (int lp_player) {
     lv_summary = lv_summary + " | Scenario: " + libE0EAE146_gv_xmTestBenchScenario[lp_player];
     lv_summary = lv_summary + " | Created: " + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]);
     lv_summary = lv_summary + " | Missing: " + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]);
+    if (libE0EAE146_gv_xmTestBenchMissingIds[lp_player] != "") {
+        lv_summary = lv_summary + " | MissingIds: " + libE0EAE146_gv_xmTestBenchMissingIds[lp_player];
+    }
     lv_summary = lv_summary + " | Warnings: " + IntToString(libE0EAE146_gv_xmTestBenchWarnings[lp_player]);
     lv_summary = lv_summary + " | Errors: " + IntToString(libE0EAE146_gv_xmTestBenchErrors[lp_player]);
     lv_summary = lv_summary + " | Last: " + libE0EAE146_gv_xmTestBenchLastEvent[lp_player];

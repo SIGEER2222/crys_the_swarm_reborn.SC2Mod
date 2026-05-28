@@ -9,6 +9,7 @@ param(
     [int]$MapLoadWaitSec = 18,
     [int]$CommanderSettleMs = 1800,
     [int]$SmokeWaitSec = 18,
+    [string]$SmokeCommand = "-tbsmoke",
     [switch]$SkipSync,
     [switch]$KeepOpen
 )
@@ -301,7 +302,7 @@ foreach ($commander in $Commanders) {
     Save-Screenshot -Path $selectedShot -Process $sc2Process
 
     Focus-Window -Process $sc2Process | Out-Null
-    Send-ChatCommand -Command "-tbsmoke" -DelayMs 800
+    Send-ChatCommand -Command $SmokeCommand -DelayMs 800
     Start-Sleep -Seconds $SmokeWaitSec
 
     $afterShot = Join-Path $commanderRoot ("{0}_after_smoke.png" -f $safeName)
@@ -322,6 +323,7 @@ foreach ($commander in $Commanders) {
         SystemInfoLog = $(if ($systemInfoLog) { $systemInfoLog } else { "" })
         AlertsLog = $(if ($alertsLog) { $alertsLog } else { "" })
         ScriptErrorLog = $(if ($scriptErrorLog) { $scriptErrorLog } else { "" })
+        SmokeCommand = $SmokeCommand
     }) | Out-Null
 
     if (-not $KeepOpen) {
@@ -331,6 +333,7 @@ foreach ($commander in $Commanders) {
 
 foreach ($result in $results) {
     Write-Output ("SUMMARY commander={0}" -f $result.Commander)
+    Write-Output ("SMOKE_COMMAND={0}" -f $result.SmokeCommand)
     Write-Output ("BEFORE_SCREENSHOT={0}" -f $result.BeforeScreenshot)
     Write-Output ("SELECTED_SCREENSHOT={0}" -f $result.SelectedScreenshot)
     Write-Output ("AFTER_SMOKE_SCREENSHOT={0}" -f $result.AfterSmokeScreenshot)
