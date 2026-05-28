@@ -7,9 +7,39 @@ const repoRoot = path.resolve(scriptDir, "../..");
 const today = new Date().toISOString().slice(0, 10);
 
 const trainLikePattern = /(Train|Build|Morph|Merge|Warp|Evolve)/i;
-const ignoreAbilityPattern = /(Research|AddOn|AddOns|LiftOff|Land|Rally|Halt|Cancel|Stop|Move|Attack|Burrow|Unload|Load|Transport|Behavior|Learn|Select)/i;
-const ignoreFacePattern = /^(Cancel|Halt|Stop|Move|Attack|Rally|SelectBuilder|Burrow|Unload|Load|Research|LiftOff|Land)/i;
+const ignoreAbilityPattern = /(Research|AddOn|AddOns|LiftOff|Land|Rally|Halt|Cancel|Stop|Move|Attack|Burrow|Unload|Load|Transport|Behavior|Learn|Select|Enable|Disable)/i;
+const ignoreFacePattern = /^(Cancel|Halt|Stop|Move|Attack|Rally|SelectBuilder|Burrow|Unload|Load|Research|LiftOff|Land|Enable|Disable)/i;
 const nonFinalUnitPattern = /(Cocoon|Egg|SpawnerUnit|Dummy|Missile|Weapon|Placeholder)$/i;
+const intermediateProducerPattern = /(Cocoon|Egg|TrainEgg|SpawnerUnit)/i;
+
+const ignoredCommandCardIssues = new Map([
+  [
+    "Kerrigan",
+    new Set([
+      "Zergling|Baneling|MorphZerglingToBaneling,Train1",
+      "Zergling||MorphToBaneling,Execute",
+    ]),
+  ],
+  [
+    "Stetmann",
+    new Set([
+      "InfestorStetmann|InfestorStetmannInfestBuilding|InfestorStetmannInfestBuilding,Execute",
+    ]),
+  ],
+]);
+
+const ignoredTechOnlyIssues = new Map([
+  [
+    "Stetmann",
+    new Set([
+      "RoachStetmann",
+    ]),
+  ],
+]);
+
+const skippedCommanders = new Set([
+  "Dehaka",
+]);
 
 function parseArgs(argv) {
   const options = {
@@ -101,6 +131,16 @@ function productionKey(item) {
   return `${item.producer_unit_id || ""}|${item.button_face || ""}|${item.abil_cmd || ""}`;
 }
 
+function shouldIgnoreCommandCardIssue(commander, producerUnitId, face, abilCmd) {
+  return Boolean(ignoredCommandCardIssues.get(commander)?.has(`${producerUnitId}|${face}|${abilCmd}`));
+}
+
+function shouldIgnoreTechOnlyIssue(commander, entry) {
+  const ignored = ignoredTechOnlyIssues.get(commander);
+  if (!ignored) return false;
+  return ignored.has(String(entry.unit_id || "")) || ignored.has(String(entry.id || ""));
+}
+
 function entryDisplay(entry) {
   return {
     name: entry.name || "",
@@ -131,6 +171,7 @@ function commanderNames(officialRoot, selected) {
 
 function auditCommander(officialRoot, commander) {
   const data = loadCommander(officialRoot, commander);
+  const skipped = skippedCommanders.has(commander);
   const combatEntries = [...data.units, ...data.buildings, ...data.heroes];
   const rosterEntries = data.roster.length ? data.roster : combatEntries;
   const rosterUnitIds = new Set();
@@ -139,6 +180,7 @@ function auditCommander(officialRoot, commander) {
   const knownProductionKeys = new Set();
   const knownProductionCommands = new Set();
   const knownProductionFaces = new Set();
+  const knownProductionFaceByIntermediateProducer = new Set();
 
   for (const entry of rosterEntries) {
     if (entry?.unit_id) rosterUnitIds.add(String(entry.unit_id));
@@ -150,6 +192,9 @@ function auditCommander(officialRoot, commander) {
       if (production.abil_cmd) knownProductionCommands.add(String(production.abil_cmd));
       if (production.button_face) knownProductionFaces.add(String(production.button_face));
       if (production.producer_unit_id) producerUnitIds.add(String(production.producer_unit_id));
+      if (production.producer_unit_id && intermediateProducerPattern.test(String(production.producer_unit_id)) && production.button_face) {
+        knownProductionFaceByIntermediateProducer.add(String(production.button_face));
+      }
     }
   }
 
@@ -170,7 +215,7 @@ function auditCommander(officialRoot, commander) {
       });
     }
 
-    if (sourceLooksTech && !production) {
+    if (!skipped && sourceLooksTech && !production && !shouldIgnoreTechOnlyIssue(commander, entry)) {
       techOnlySuspicious.push({
         reason: "名册/TechUnit 有归属，但没有生产链",
         ...entryDisplay(entry),
@@ -178,7 +223,7 @@ function auditCommander(officialRoot, commander) {
       continue;
     }
 
-    if (!production) continue;
+    if (skipped || !production) continue;
     const producer = String(production.producer_unit_id || "");
     const ability = abilityId(production.abil_cmd || production.ability_id);
     const genericProducer = producer && !rosterUnitIds.has(producer) && !rosterEntryIds.has(producer);
@@ -192,7 +237,8 @@ function auditCommander(officialRoot, commander) {
   }
 
   const commandCardOnly = [];
-  for (const cardEntry of data.commandCards) {
+  const intermediateChainOnly = [];
+  for (const cardEntry of skipped ? [] : data.commandCards) {
     const producerUnitId = String(cardEntry.unit_id || "");
     const producerName = String(cardEntry.name || "");
     for (const card of asArray(cardEntry.cards)) {
@@ -200,10 +246,23 @@ function auditCommander(officialRoot, commander) {
         const face = String(button?.face || "");
         const abilCmd = String(button?.abil_cmd || "");
         if (!isTrainLike(abilCmd, face)) continue;
+        if (shouldIgnoreCommandCardIssue(commander, producerUnitId, face, abilCmd)) continue;
         const key = productionKey({ producer_unit_id: producerUnitId, button_face: face, abil_cmd: abilCmd });
         const commandKnown = knownProductionCommands.has(abilCmd);
         const faceKnown = knownProductionFaces.has(face);
         if (knownProductionKeys.has(key) || (commandKnown && faceKnown)) continue;
+        if (knownProductionFaceByIntermediateProducer.has(face)) {
+          intermediateChainOnly.push({
+            reason: "命令卡生产中间蛋/茧，最终单位已通过中间形态生产链覆盖",
+            producer_name: producerName,
+            producer_unit_id: producerUnitId,
+            face,
+            abil_cmd: abilCmd,
+            button_name: button?.button?.name || "",
+            requirements: button?.requirements || "",
+          });
+          continue;
+        }
         commandCardOnly.push({
           reason: "建筑/单位命令卡有生产按钮，但名册生产项未覆盖",
           producer_name: producerName,
@@ -225,14 +284,18 @@ function auditCommander(officialRoot, commander) {
       buildings: data.buildings.length,
       heroes: data.heroes.length,
       command_card_only: commandCardOnly.length,
+      intermediate_chain_only: intermediateChainOnly.length,
       tech_only_suspicious: techOnlySuspicious.length,
       external_producer_suspicious: externalProducerSuspicious.length,
       intermediate_suspicious: intermediateSuspicious.length,
+      skipped,
     },
     command_card_only: commandCardOnly,
+    intermediate_chain_only: intermediateChainOnly,
     tech_only_suspicious: techOnlySuspicious,
     external_producer_suspicious: externalProducerSuspicious,
     intermediate_suspicious: intermediateSuspicious,
+    skipped,
   };
 }
 
@@ -267,6 +330,7 @@ function writeReports(outputDir, officialRoot, results) {
     { title: "指挥官", value: (row) => row.commander },
     { title: "名册", value: (row) => row.counts.roster },
     { title: "命令卡未覆盖", value: (row) => row.counts.command_card_only },
+    { title: "中间链覆盖", value: (row) => row.counts.intermediate_chain_only },
     { title: "无生产链", value: (row) => row.counts.tech_only_suspicious },
     { title: "泛用生产链", value: (row) => row.counts.external_producer_suspicious },
     { title: "中间形态", value: (row) => row.counts.intermediate_suspicious },
@@ -274,17 +338,32 @@ function writeReports(outputDir, officialRoot, results) {
   lines.push("## 说明");
   lines.push("");
   lines.push("- `命令卡未覆盖`：本指挥官建筑/单位命令卡上有训练、建造、变形按钮，但没有被任何名册项的 `production` / `production_options` 覆盖，优先查漏收。");
+  lines.push("- `中间链覆盖`：命令卡生产蛋/茧等中间形态，最终单位已经通过中间形态的生产链覆盖，通常不是漏收。");
   lines.push("- `无生产链`：名册有单位或建筑，但没有提取到生产链，优先查是否只是展示项、召唤项或提取器漏链。");
   lines.push("- `泛用生产链`：单位来自 `TechUnit`，但生产者/技能偏普通基础链，优先查是否像 Stukov 虫后/跳虫一样误收。");
   lines.push("- `中间形态`：名册单位像 Cocoon/Egg/Spawner/Dummy，通常应追到最终单位。");
+  lines.push("- 已按人工确认过滤：Kerrigan 没有爆虫；Stetmann 机械蟑螂按机械感染者技能生成处理；Dehaka 本轮暂不排查。");
   lines.push("");
 
   for (const result of results) {
     lines.push(`## ${result.commander}`);
     lines.push("");
+    if (result.skipped) {
+      lines.push("- 本轮按用户确认暂不排查。");
+      lines.push("");
+    }
     lines.push("### 命令卡未覆盖");
     lines.push("");
     lines.push(markdownTable(result.command_card_only, [
+      { title: "原因", value: (row) => row.reason },
+      { title: "生产者", value: (row) => `${row.producer_name} (${row.producer_unit_id})` },
+      { title: "按钮", value: (row) => `${row.button_name || row.face} (${row.face})` },
+      { title: "技能命令", value: (row) => row.abil_cmd },
+      { title: "需求", value: (row) => row.requirements },
+    ]));
+    lines.push("### 中间链已覆盖");
+    lines.push("");
+    lines.push(markdownTable(result.intermediate_chain_only, [
       { title: "原因", value: (row) => row.reason },
       { title: "生产者", value: (row) => `${row.producer_name} (${row.producer_unit_id})` },
       { title: "按钮", value: (row) => `${row.button_name || row.face} (${row.face})` },

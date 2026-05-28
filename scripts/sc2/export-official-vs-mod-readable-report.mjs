@@ -14,6 +14,47 @@ const runtimeNameOverrides = new Map([
   ["Horner", "Mira"],
 ]);
 
+const misattributedCommanderAbilityFilters = [
+  {
+    commander: "Kerrigan",
+    unitId: "Zergling",
+    faceIds: ["ZagaraVoidCoopZerglingDodge", "Baneling"],
+    abilityIds: ["MorphZerglingToBaneling", "MorphToBaneling"],
+    requirementIds: ["HaveMasteryZagaraZerglingDodgeChance"],
+  },
+  {
+    commander: "Stukov",
+    unitId: "Zergling",
+    faceIds: ["ZagaraVoidCoopZerglingDodge", "Baneling"],
+    abilityIds: ["MorphZerglingToBaneling", "MorphToBaneling"],
+    requirementIds: ["HaveMasteryZagaraZerglingDodgeChance"],
+  },
+  {
+    commander: "Abathur",
+    unitId: "Mutalisk",
+    faceIds: ["StukovInfestedWildMutation"],
+    abilityIds: ["StukovInfestedWildMutation"],
+  },
+  {
+    commander: "Raynor",
+    unitId: "SiegeTank",
+    faceIds: ["CommanderSwannImmortalityProtocol"],
+    requirementIds: ["HaveSwannCommanderImmortalityProtocol"],
+  },
+  {
+    commander: "Swann",
+    unitId: "SiegeTank",
+    faceIds: ["AfterburnersLocked"],
+    requirementIds: ["RaynorLevel11"],
+  },
+  {
+    commander: "Vorazun",
+    unitId: "Stalker",
+    faceIds: ["AlarakStalkerPhasingArmor", "CommanderPrestigeAlarakMechBuff"],
+    requirementIds: ["HaveAlarakStalkerPhasingArmor", "CommanderPrestigeAlarakMech"],
+  },
+];
+
 function parseArgs(argv) {
   const options = {
     officialRoot: path.join(repoRoot, "游戏数据", "官方合作指挥官", "commanders"),
@@ -262,18 +303,22 @@ function findButton(cardByUnit, unitId, face, abilCmd) {
   return null;
 }
 
-function isMisattributedCommanderAbility(commander, unitId, ability) {
-  if (commander !== "Kerrigan" || unitId !== "Zergling") {
-    return false;
-  }
+function matchesAny(values, value) {
+  return Array.isArray(values) && values.includes(value);
+}
 
-  const face = ability.face ?? "";
+function isMisattributedCommanderAbility(commander, unitId, ability) {
+  const face = String(ability.face ?? "");
   const abilityId = abilityIdFromCommand(ability.abil_cmd);
-  const requirementId = ability.requirements ?? "";
-  return face === "ZagaraVoidCoopZerglingDodge"
-    || abilityId === "MorphZerglingToBaneling"
-    || abilityId === "MorphToBaneling"
-    || requirementId === "HaveMasteryZagaraZerglingDodgeChance";
+  const requirementId = String(ability.requirements ?? "");
+  return misattributedCommanderAbilityFilters.some((filter) =>
+    filter.commander === commander
+    && filter.unitId === unitId
+    && (
+      matchesAny(filter.faceIds, face)
+      || matchesAny(filter.abilityIds, abilityId)
+      || matchesAny(filter.requirementIds, requirementId)
+    ));
 }
 
 function renderAbilityRows(commander, hero, cardByUnit, index) {

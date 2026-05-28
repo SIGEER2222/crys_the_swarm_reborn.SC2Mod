@@ -70,6 +70,47 @@ const manualAbilityObjects = {
   },
 };
 
+const misattributedCommanderAbilityFilters = [
+  {
+    commander: "Kerrigan",
+    unitId: "Zergling",
+    faceIds: ["ZagaraVoidCoopZerglingDodge", "Baneling"],
+    abilityIds: ["MorphZerglingToBaneling", "MorphToBaneling"],
+    requirementIds: ["HaveMasteryZagaraZerglingDodgeChance"],
+  },
+  {
+    commander: "Stukov",
+    unitId: "Zergling",
+    faceIds: ["ZagaraVoidCoopZerglingDodge", "Baneling"],
+    abilityIds: ["MorphZerglingToBaneling", "MorphToBaneling"],
+    requirementIds: ["HaveMasteryZagaraZerglingDodgeChance"],
+  },
+  {
+    commander: "Abathur",
+    unitId: "Mutalisk",
+    faceIds: ["StukovInfestedWildMutation"],
+    abilityIds: ["StukovInfestedWildMutation"],
+  },
+  {
+    commander: "Raynor",
+    unitId: "SiegeTank",
+    faceIds: ["CommanderSwannImmortalityProtocol"],
+    requirementIds: ["HaveSwannCommanderImmortalityProtocol"],
+  },
+  {
+    commander: "Swann",
+    unitId: "SiegeTank",
+    faceIds: ["AfterburnersLocked"],
+    requirementIds: ["RaynorLevel11"],
+  },
+  {
+    commander: "Vorazun",
+    unitId: "Stalker",
+    faceIds: ["AlarakStalkerPhasingArmor", "CommanderPrestigeAlarakMechBuff"],
+    requirementIds: ["HaveAlarakStalkerPhasingArmor", "CommanderPrestigeAlarakMech"],
+  },
+];
+
 const ignoredFaces = new Set([
   "AcquireMove",
   "Attack",
@@ -375,18 +416,22 @@ function isIgnoredButton(button) {
   return false;
 }
 
-function isMisattributedCommanderButton(commander, unitId, button) {
-  if (commander !== "Kerrigan" || unitId !== "Zergling") {
-    return false;
-  }
+function matchesAny(values, value) {
+  return Array.isArray(values) && values.includes(value);
+}
 
-  const face = button.face || "";
+function isMisattributedCommanderButton(commander, unitId, button) {
+  const face = String(button.face ?? "");
   const abilityId = rawAbilityIdFrom(button.abil_cmd || "");
-  const requirementId = button.requirements || "";
-  return face === "ZagaraVoidCoopZerglingDodge"
-    || abilityId === "MorphZerglingToBaneling"
-    || abilityId === "MorphToBaneling"
-    || requirementId === "HaveMasteryZagaraZerglingDodgeChance";
+  const requirementId = String(button.requirements ?? "");
+  return misattributedCommanderAbilityFilters.some((filter) =>
+    filter.commander === commander
+    && filter.unitId === unitId
+    && (
+      matchesAny(filter.faceIds, face)
+      || matchesAny(filter.abilityIds, abilityId)
+      || matchesAny(filter.requirementIds, requirementId)
+    ));
 }
 
 function entryKind(button, abilityId) {

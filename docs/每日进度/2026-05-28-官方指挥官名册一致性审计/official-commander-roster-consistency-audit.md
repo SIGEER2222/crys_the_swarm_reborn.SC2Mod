@@ -1,42 +1,48 @@
 # 官方指挥官名册一致性审计
 
-- 生成时间：2026/5/28 15:25:55
+- 生成时间：2026/5/28 16:11:12
 - 官方数据：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\游戏数据\官方合作指挥官\commanders`
 - 目的：批量找出类似 Stukov 的错收/漏收候选。该报告是静态审计，不等于进游戏验证。
 
 ## 汇总
 
-| 指挥官 | 名册 | 命令卡未覆盖 | 无生产链 | 泛用生产链 | 中间形态 |
-| --- | --- | --- | --- | --- | --- |
-| Abathur | 14 | 0 | 0 | 9 | 0 |
-| Alarak | 10 | 4 | 0 | 4 | 0 |
-| Artanis | 12 | 8 | 0 | 6 | 0 |
-| Dehaka | 25 | 8 | 12 | 0 | 0 |
-| Fenix | 12 | 5 | 0 | 5 | 0 |
-| Horner | 10 | 2 | 0 | 1 | 0 |
-| Karax | 13 | 7 | 0 | 6 | 0 |
-| Kerrigan | 10 | 6 | 1 | 8 | 0 |
-| Mengsk | 27 | 1 | 5 | 0 | 0 |
-| Nova | 16 | 17 | 1 | 0 | 0 |
-| Raynor | 16 | 13 | 0 | 3 | 0 |
-| Stetmann | 34 | 4 | 6 | 0 | 0 |
-| Stukov | 15 | 5 | 0 | 2 | 0 |
-| Swann | 15 | 14 | 0 | 4 | 0 |
-| Tychus | 14 | 8 | 0 | 1 | 0 |
-| Vorazun | 10 | 4 | 0 | 3 | 0 |
-| Zagara | 9 | 4 | 1 | 5 | 0 |
-| Zeratul | 12 | 8 | 0 | 3 | 0 |
+| 指挥官 | 名册 | 命令卡未覆盖 | 中间链覆盖 | 无生产链 | 泛用生产链 | 中间形态 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Abathur | 14 | 0 | 0 | 0 | 9 | 0 |
+| Alarak | 10 | 4 | 0 | 0 | 4 | 0 |
+| Artanis | 12 | 8 | 0 | 0 | 6 | 0 |
+| Dehaka | 25 | 0 | 0 | 0 | 0 | 0 |
+| Fenix | 12 | 5 | 0 | 0 | 5 | 0 |
+| Horner | 10 | 2 | 0 | 0 | 1 | 0 |
+| Karax | 13 | 7 | 0 | 0 | 6 | 0 |
+| Kerrigan | 10 | 4 | 0 | 1 | 8 | 0 |
+| Mengsk | 27 | 1 | 0 | 5 | 0 | 0 |
+| Nova | 16 | 17 | 0 | 1 | 0 | 0 |
+| Raynor | 16 | 13 | 0 | 0 | 3 | 0 |
+| Stetmann | 34 | 2 | 0 | 5 | 0 | 0 |
+| Stukov | 15 | 5 | 0 | 0 | 2 | 0 |
+| Swann | 15 | 14 | 0 | 0 | 4 | 0 |
+| Tychus | 14 | 8 | 0 | 0 | 1 | 0 |
+| Vorazun | 10 | 4 | 0 | 0 | 3 | 0 |
+| Zagara | 9 | 2 | 0 | 1 | 5 | 0 |
+| Zeratul | 12 | 8 | 0 | 0 | 3 | 0 |
 
 ## 说明
 
 - `命令卡未覆盖`：本指挥官建筑/单位命令卡上有训练、建造、变形按钮，但没有被任何名册项的 `production` / `production_options` 覆盖，优先查漏收。
+- `中间链覆盖`：命令卡生产蛋/茧等中间形态，最终单位已经通过中间形态的生产链覆盖，通常不是漏收。
 - `无生产链`：名册有单位或建筑，但没有提取到生产链，优先查是否只是展示项、召唤项或提取器漏链。
 - `泛用生产链`：单位来自 `TechUnit`，但生产者/技能偏普通基础链，优先查是否像 Stukov 虫后/跳虫一样误收。
 - `中间形态`：名册单位像 Cocoon/Egg/Spawner/Dummy，通常应追到最终单位。
+- 已按人工确认过滤：Kerrigan 没有爆虫；Stetmann 机械蟑螂按机械感染者技能生成处理；Dehaka 本轮暂不排查。
 
 ## Abathur
 
 ### 命令卡未覆盖
+
+- 无。
+
+### 中间链已覆盖
 
 - 无。
 
@@ -73,6 +79,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 折跃黑暗圣堂武士 (DarkTemplar) | GatewayTrain,Train5 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
 
+### 中间链已覆盖
+
+- 无。
+
 ### 名册有但无生产链
 
 - 无。
@@ -105,6 +115,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 折跃机械台 (RoboticsFacilityWarp) | MorphBackToRoboticsFacility (MorphBackToRoboticsFacility) | MorphBackToRoboticsFacility,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 高阶圣堂武士 (HighTemplar) | 执政官融合 (AWrp) | ArchonWarp,SelectedUnits |  |
 
+### 中间链已覆盖
+
+- 无。
+
 ### 名册有但无生产链
 
 - 无。
@@ -126,35 +140,19 @@
 
 ## Dehaka
 
+- 本轮按用户确认暂不排查。
+
 ### 命令卡未覆盖
 
-| 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
-| --- | --- | --- | --- | --- |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 原始主巢 (DehakaHatchery) | 变异萃取房 (BuildDehakaExtractor) | DehakaHatcheryBuild,Build1 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 原始主巢 (DehakaAirTownHall) | DehakaMutalisk (DehakaMutalisk) | DehakaTownHallTrain,Train7 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 原始主巢 (DehakaAirTownHall) | DehakaGuardian (DehakaGuardian) | DehakaTownHallTrain,Train8 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 原始主巢 (DehakaAirTownHall) | DehakaViper (DehakaViper) | DehakaTownHallTrain,Train9 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 原始战争之巢 (DehakaBarracks) | 孵化原始跳虫 (DehakaZergling) | DehakaBarracksTrainEgg,Train1 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 原始战争之巢 (DehakaBarracks) | 孵化原始蟑螂 (DehakaRoach) | DehakaBarracksTrainEgg,Train2 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 原始战争之巢 (DehakaBarracks) | 孵化原始刺蛇 (DehakaHydralisk) | DehakaBarracksTrainEgg,Train3 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 原始战争之巢 (DehakaBarracks) | 孵化原始雷兽 (DehakaUltralisk) | DehakaBarracksTrainEgg,Train5 |  |
+- 无。
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
-| 原因 | 名称 | Tech ID | Unit ID | 来源 |
-| --- | --- | --- | --- | --- |
-| 名册/TechUnit 有归属，但没有生产链 | 掘地虫 | DehakaCreeper | DehakaCreeper | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 爆裂掘地虫 | DehakaCreeperFlying | DehakaCreeperFlying | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 原始异龙 | DehakaMutaliskLevel3 | DehakaMutaliskLevel3 | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 掘地虫宿主 | DehakaPrimalSwarmHost | DehakaPrimalSwarmHost | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 掠食龙 | DehakaRavasaur | DehakaRavasaur | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 原始点火虫 | DehakaRoachLevel3 | DehakaRoachLevel3 | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 暴龙兽 | DehakaUltraliskLevel3 | DehakaUltraliskLevel3 | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 穿刺者 | ImpalerDehaka | ImpalerDehaka | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 原始主巢 | DehakaAirTownHall | DehakaAirTownHall | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 德哈卡 | DehakaCoop | DehakaCoop | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 穆尔瓦 | DehakaMurvar | DehakaMurvar | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 达克伦 | DehakaDakrun | DehakaDakrun | supplemental curated roster |
+- 无。
 
 ### 泛用生产链候选
 
@@ -175,6 +173,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
@@ -203,6 +205,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 恶火 (HHHellion) | 恶蝠模式 (MorphToHellionTank) | MorphToHHHellionTank,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 忒伊亚铁鸦 (HHRaven) | 启动消音模式 (MorphtoHHRavenSiege) | HHRavenMorphtoHHRavenSiege,Execute |  |
 
+### 中间链已覆盖
+
+- 无。
+
 ### 名册有但无生产链
 
 - 无。
@@ -230,6 +236,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
@@ -260,8 +270,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 虫道网络 (NydusNetwork) | 召唤虫道毁灭者 (SummonNydusCanalAttacker) | BuildNydusCanal,Build2 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 虫道网络 (NydusNetwork) | 召唤菌塔 (SummonNydusCanalCreeper) | BuildNydusCanal,Build3 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 虫道网络 (NydusNetwork) | 召唤坑道虫 (SummonNydusWorm) | BuildNydusCanal,Build1 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 跳虫 (Zergling) | 变异为爆虫 (Baneling) | MorphZerglingToBaneling,Train1 |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 跳虫 (Zergling) |  () | MorphToBaneling,Execute |  |
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
@@ -293,6 +305,10 @@
 | 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
 | --- | --- | --- | --- | --- |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 帝国劳工 (SCVMengsk) | 建造精炼厂 (RefineryMengsk) | TerranBuildMengsk,Build2 |  |
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
@@ -336,6 +352,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | 建造星港 (Starport) | TerranBuild,Build12 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | 建造聚变芯体 (FusionCore) | TerranBuild,Build16 |  |
 
+### 中间链已覆盖
+
+- 无。
+
 ### 名册有但无生产链
 
 | 原因 | 名称 | Tech ID | Unit ID | 来源 |
@@ -370,6 +390,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | 建造军械库 (Armory) | TerranBuild,Build14 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | 建造星港 (Starport) | TerranBuild,Build12 |  |
 
+### 中间链已覆盖
+
+- 无。
+
 ### 名册有但无生产链
 
 - 无。
@@ -392,17 +416,18 @@
 
 | 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
 | --- | --- | --- | --- | --- |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 机械爆虫 (BanelingStetmann) | 关闭对建筑攻击 (DisableBuildingAttack) | VolatileBurstBuilding,Off |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 机械感染者 (InfestorStetmann) | 解构型蟑螂机器人 (InfestorStetmannInfestBuilding) | InfestorStetmannInfestBuilding,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 机械眼虫 (OverseerStetmann) | 超距视界 (MorphtoOverseerSiegeStetmann) | OverseerMorphtoOverseerSiegeStetmann,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 机械眼虫 (OverseerStetmannSiegeMode) | 取消超距视界 (MorphtoOverseerNormalStetmann) | OverseerSiegeMorphtoOverseerStetmann,Execute |  |
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
 | 原因 | 名称 | Tech ID | Unit ID | 来源 |
 | --- | --- | --- | --- | --- |
 | 名册/TechUnit 有归属，但没有生产链 | 盖瑞 | GaryStetmann | GaryStetmann | supplemental curated roster |
-| 名册/TechUnit 有归属，但没有生产链 | 机械蟑螂 | RoachStetmann | RoachStetmann | supplemental curated roster |
 | 名册/TechUnit 有归属，但没有生产链 | 机械潜伏者 | LurkerStetmannBurrowed | LurkerStetmannBurrowed | supplemental curated roster |
 | 名册/TechUnit 有归属，但没有生产链 | 机械眼虫 | OverseerStetmannSiegeMode | OverseerStetmannSiegeMode | supplemental curated roster |
 | 名册/TechUnit 有归属，但没有生产链 | 机械脊针爬虫 | SpineCrawlerUprootedStetmann | SpineCrawlerUprootedStetmann | supplemental curated roster |
@@ -427,6 +452,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 被感染的星港 (SIStarport) | 孵化被感染的女妖 (SIBanshee) | SIStarportTrain,Train1 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 跳虫 (Zergling) | 变异为爆虫 (Baneling) | MorphZerglingToBaneling,Train1 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 跳虫 (Zergling) |  () | MorphToBaneling,Execute |  |
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
@@ -464,6 +493,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | 建造星港 (Starport) | TerranBuild,Build12 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (SCV) | 建造聚变芯体 (FusionCore) | TerranBuild,Build16 |  |
 
+### 中间链已覆盖
+
+- 无。
+
 ### 名册有但无生产链
 
 - 无。
@@ -496,6 +529,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (TychusSCV) | 制造自动机炮 (TychusSCVAutoTurret) | TychusTerranBuild,Build5 |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | SCV (TychusSCV) | 建造医疗运输机平台 (BuildTychusMedivacPlatform) | TychusTerranBuild,Build14 |  |
 
+### 中间链已覆盖
+
+- 无。
+
 ### 名册有但无生产链
 
 - 无。
@@ -521,6 +558,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 传送门 (Gateway) | 变形为折跃门 (UpgradeToWarpGate) | UpgradeToWarpGate,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 先知 (Oracle) | 静滞结界 (OracleBuildStasisTrap) | OracleStasisTrapBuild,Build1 |  |
 
+### 中间链已覆盖
+
+- 无。
+
 ### 名册有但无生产链
 
 - 无。
@@ -543,10 +584,12 @@
 
 | 原因 | 生产者 | 按钮 | 技能命令 | 需求 |
 | --- | --- | --- | --- | --- |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 爆虫 (Baneling) | 开启对建筑攻击 (EnableBuildingAttack) | VolatileBurstBuilding,On |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 腐化者 (Corruptor) | 变异为巢虫领主 (BroodLord) | MorphToBroodLord,Execute |  |
-| 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 爆蚊 (Scourge) | 关闭对建筑攻击 (DisableBuildingAttackScourge) | SuicideBuilding,Off |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 跳虫 (Zergling) |  () | MorphToBaneling,Execute |  |
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
@@ -582,6 +625,10 @@
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 侦测器 (Observer) | 监察模式 (MorphtoObserverSiege) | ObserverMorphtoObserverSiege,Execute |  |
 | 建筑/单位命令卡有生产按钮，但名册生产项未覆盖 | 萨尔纳加观察者 (ZeratulObserver) | 监察模式 (MorphtoZeratulObserverSiege) | ZeratulObserverMorphtoZeratulObserverSiege,Execute |  |
+
+### 中间链已覆盖
+
+- 无。
 
 ### 名册有但无生产链
 
