@@ -661,8 +661,8 @@ foreach ($masteryUpgrade in $officialMasteries) {
 
 if ($RequireLauncherCandidate -and -not $config.SkipLauncher) {
     $launcherRoots = @(
-        Join-Path $projectRoot.FullName "tools\launcher_mpq",
-        Join-Path $scenarioRoot.FullName "Maps\XM\LauncherAuto.SC2Map"
+        (Join-Path $projectRoot.FullName "tools\launcher_mpq"),
+        (Join-Path $scenarioRoot.FullName "Maps\XM\LauncherAuto.SC2Map")
     )
 
     foreach ($launcherRoot in $launcherRoots) {

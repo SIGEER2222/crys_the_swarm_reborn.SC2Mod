@@ -42,6 +42,34 @@ function Get-NodeById {
     return $Doc.Catalog.ChildNodes | Where-Object { $_.NodeType -eq "Element" -and $_.id -eq $Id } | Select-Object -First 1
 }
 
+function Test-NodeReference {
+    param(
+        $Node,
+        [string[]]$AbilityIds = @(),
+        [string[]]$FaceIds = @()
+    )
+
+    if (-not $Node) { return $false }
+
+    foreach ($abilityId in $AbilityIds) {
+        if ($Node.AbilArray | Where-Object { $_.Link -eq $abilityId }) {
+            return $true
+        }
+
+        if ($Node.CardLayouts.LayoutButtons | Where-Object { $_.AbilCmd -like "$abilityId,*" }) {
+            return $true
+        }
+    }
+
+    foreach ($faceId in $FaceIds) {
+        if ($Node.CardLayouts.LayoutButtons | Where-Object { $_.Face -eq $faceId }) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
 $coreUnits = @(
     "K5Kerrigan", "K5KerriganBurrowed", "KerriganReviveCocoon",
     "Drone", "Overlord", "Overseer", "Zergling", "HotSRaptor", "Queen", "Roach", "RoachVile",
@@ -63,12 +91,35 @@ foreach ($id in $coreUnits + $coreBuildings) {
 
 $hero = Get-NodeById $unitDoc "K5Kerrigan"
 if ($hero) {
-    foreach ($abil in @("PrimalSlash", "MindBolt", "PsiStrike", "PsionicLift", "KerriganAssimilation")) {
-        $hasAbil = $hero.AbilArray | Where-Object { $_.Link -eq $abil }
-        $hasButton = $hero.CardLayouts.LayoutButtons | Where-Object { $_.AbilCmd -like "$abil,*" -or $_.Face -eq $abil }
-        if (-not $hasAbil -and -not $hasButton) {
-            Add-Error "K5Kerrigan missing expected hero ability/card reference: $abil"
+    $expectedHeroReferences = @(
+        @{ Name = "PrimalSlash"; AbilityIds = @("PrimalSlash"); FaceIds = @("PrimalSlash") }
+        @{ Name = "MindBolt"; AbilityIds = @("MindBolt"); FaceIds = @("MindBolt") }
+        @{ Name = "PsiStrike"; AbilityIds = @("PsiStrikeWalk"); FaceIds = @("PsiStrike") }
+        @{ Name = "PsionicLift"; AbilityIds = @("PsionicLift"); FaceIds = @("PsionicLift") }
+        @{ Name = "KerriganAssimilation"; AbilityIds = @(); FaceIds = @("KerriganAssimilation") }
+        @{ Name = "KerriganVoidCoopEconDrop"; AbilityIds = @("KerriganVoidCoopEconDrop"); FaceIds = @("KerriganVoidCoopEconDrop") }
+        @{ Name = "PrimalHeal"; AbilityIds = @("PrimalHeal"); FaceIds = @("PrimalHeal") }
+        @{ Name = "WildMutation"; AbilityIds = @("WildMutation"); FaceIds = @("WildMutation") }
+        @{ Name = "KerriganVoidCoopCrushingGripWave"; AbilityIds = @("KerriganVoidCoopCrushingGripWave"); FaceIds = @("KerriganVoidCoopCrushingGripWave") }
+        @{ Name = "SpawnBanelings"; AbilityIds = @("SpawnBanelings"); FaceIds = @("SpawnBanelings") }
+        @{ Name = "Apocalypse"; AbilityIds = @("Apocalypse"); FaceIds = @("Apocalypse") }
+        @{ Name = "K5DropPods"; AbilityIds = @("K5DropPods"); FaceIds = @("K5DropPods") }
+    )
+
+    foreach ($entry in $expectedHeroReferences) {
+        if (-not (Test-NodeReference -Node $hero -AbilityIds $entry.AbilityIds -FaceIds $entry.FaceIds)) {
+            Add-Error "K5Kerrigan missing expected hero ability/card reference: $($entry.Name)"
         }
+    }
+}
+
+$expectedMorphUnits = @("Zergling", "HotSRaptor")
+foreach ($unitId in $expectedMorphUnits) {
+    $unitNode = Get-NodeById $unitDoc $unitId
+    if (-not $unitNode) { continue }
+
+    if (-not (Test-NodeReference -Node $unitNode -AbilityIds @("MorphToBaneling", "MorphZerglingToBaneling") -FaceIds @("Baneling"))) {
+        Add-Error "$unitId missing expected baneling morph chain (MorphToBaneling / MorphZerglingToBaneling / Baneling button)"
     }
 }
 
