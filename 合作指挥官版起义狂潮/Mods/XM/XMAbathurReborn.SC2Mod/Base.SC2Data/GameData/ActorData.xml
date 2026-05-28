@@ -844,7 +844,7 @@
     <On Terms="AbilMorph.*.Start; AbilKey BurrowUpMorph" Send="Create HunterKiller_UnburrowSound" />
     <Macros index="2" removed="1" />
   </CActorUnit>
-  <CActorUnit id="ImpalerAbathurReborn" parent="GenericUnitBase" unitName="ImpalerAbathurReborn">
+  <CActorUnit id="ImpalerAbathur" parent="GenericUnitBase" unitName="ImpalerAbathur">
     <ShieldArmorIcon value="Assets\Textures\btn-upgrade-zerg-swarmfrenzy.dds" />
     <StatusColors index="Shields">
       <ColorArray index="0" value="255,0,128,0" />
@@ -859,15 +859,15 @@
     <DeathArray index="Fire" ModelLink="ImpalerDeathFire" SoundLink="Uni_DeathFXFire" />
     <PortraitModel value="LurkerEx1APortrait" />
     <WalkAnimMoveSpeed value="2.2968" />
-    <On Terms="UnitBirth.ImpalerAbathurRebornBurrowed" Send="Create" />
-    <On Terms="UnitBirth.ImpalerAbathurRebornBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant" />
+    <On Terms="UnitBirth.ImpalerAbathurBurrowed" Send="Create" />
+    <On Terms="UnitBirth.ImpalerAbathurBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant" />
     <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium" />
     <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="AnimClear Fidget" />
-    <On Terms="AbilMorph.MorphRoachToImpaler.Finish; MorphTo ImpalerAbathurReborn; !AbilKey BurrowUp" Send="Create" />
-    <On Terms="AbilMorph.MorphRoachToImpaler.Start; MorphFrom ImpalerAbathurReborn; !AbilKey BurrowDown" Send="Destroy" />
-    <On Terms="AbilMorph.*.Cancel; MorphFrom ImpalerAbathurReborn; MorphTo ImpalerBurrowed" Send="AnimClear Burrow" />
-    <On Terms="AbilMorph.*.Finish; MorphTo ImpalerAbathurReborn; MorphFrom ImpalerBurrowed" Send="AnimBracketStop Burrow" />
-    <On Terms="AbilMorph.*.Finish; MorphTo ImpalerAbathurReborn; MorphFrom ImpalerBurrowed" Send="AnimClear Burrow" />
+    <On Terms="AbilMorph.MorphRoachToImpaler.Finish; MorphTo ImpalerAbathur; !AbilKey BurrowUp" Send="Create" />
+    <On Terms="AbilMorph.MorphRoachToImpaler.Start; MorphFrom ImpalerAbathur; !AbilKey BurrowDown" Send="Destroy" />
+    <On Terms="AbilMorph.*.Cancel; MorphFrom ImpalerAbathur; MorphTo ImpalerBurrowed" Send="AnimClear Burrow" />
+    <On Terms="AbilMorph.*.Finish; MorphTo ImpalerAbathur; MorphFrom ImpalerBurrowed" Send="AnimBracketStop Burrow" />
+    <On Terms="AbilMorph.*.Finish; MorphTo ImpalerAbathur; MorphFrom ImpalerBurrowed" Send="AnimClear Burrow" />
     <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth" />
     <Macros value="ZergBurrowStandardAnimMacro" />
     <Macros value="ZergMediumBurrowEffects" />
@@ -889,7 +889,7 @@
     <SoundArray index="Pissed" value="Lurker_Pissed" />
     <Aliases value="_UnitMedium" />
   </CActorUnit>
-  <CActorUnit id="ImpalerAbathurRebornEgg" parent="GenericUnitMorph" unitName="ImpalerAbathurRebornEgg">
+  <CActorUnit id="ImpalerAbathurEgg" parent="GenericUnitMorph" unitName="ImpalerAbathurEgg">
     <ShieldArmorIcon value="Assets\Textures\btn-upgrade-zerg-swarmfrenzy.dds" />
     <StatusColors index="Shields">
       <ColorArray index="0" value="255,0,128,0" />
@@ -899,8 +899,8 @@
     </VitalColors>
     <VitalNames index="Shields" value="Vital/ZergShields" />
     <WireframeShieldColor value="255,0,128,0" />
-    <On Terms="AbilMorph.*.Finish; MorphTo ImpalerAbathurRebornEgg; MorphFrom HydraliskImpaler" Send="AnimBaselineStop" />
-    <On Terms="AbilMorph.*.Finish; MorphTo ImpalerAbathurRebornEgg; MorphFrom HydraliskImpaler" Send="$Birth 0 0.000000 -1.000000 0.000000" />
+    <On Terms="AbilMorph.*.Finish; MorphTo ImpalerAbathurEgg; MorphFrom HydraliskImpaler" Send="AnimBaselineStop" />
+    <On Terms="AbilMorph.*.Finish; MorphTo ImpalerAbathurEgg; MorphFrom HydraliskImpaler" Send="$Birth 0 0.000000 -1.000000 0.000000" />
     <On Terms="AnimDone; AnimName Birth" Send="AnimBaselineStart" />
     <DeathArray index="Normal" ModelLink="HydraliskLurkerEggDeath" SoundLink="LurkerEgg_Explode" />
     <PortraitModel value="CocoonPortrait" />
@@ -1192,7 +1192,7 @@
     <ModelFlags index="OutlineEmitter" value="1" />
     <Aliases value="_UnitLarge" />
   </CActorUnit>
-  <CActorUnit id="RavagerAbathurReborn" parent="GenericBurrowerStandard" unitName="RavagerAbathurReborn">
+  <CActorUnit id="RavagerAbathur" parent="GenericBurrowerStandard" unitName="RavagerAbathur">
     <Macros value="ZergBurrowStandardAnimMacro" />
     <Macros value="ZergMediumBurrowEffects" />
     <Macros value="UnloadDropAnim" />
@@ -1204,11 +1204,11 @@
     <On Terms="UnitHeightUpdate.*.Land" Send="Create Ravager_Land" />
     <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium" />
     <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="AnimClear Fidget" />
-    <On Terms="AbilMorph.*.Cancel; MorphFrom RavagerAbathurReborn; MorphTo RavagerAbathurRebornBurrowed" Send="AnimClear Burrow" />
-    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathurReborn; MorphFrom RavagerAbathurRebornBurrowed" Send="AnimBracketStop Burrow" />
-    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathurReborn; MorphFrom RavagerCocoon" Send="Create" />
-    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathurReborn; MorphFrom RavagerCocoon" Send="$Birth 0 0.000000" />
-    <On Terms="Abil.RavagerAbathurRebornCorrosiveBile.SourceCastStart" Send="$Spell" />
+    <On Terms="AbilMorph.*.Cancel; MorphFrom RavagerAbathur; MorphTo RavagerAbathurBurrowed" Send="AnimClear Burrow" />
+    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathur; MorphFrom RavagerAbathurBurrowed" Send="AnimBracketStop Burrow" />
+    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathur; MorphFrom RavagerCocoon" Send="Create" />
+    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathur; MorphFrom RavagerCocoon" Send="$Birth 0 0.000000" />
+    <On Terms="Abil.RavagerAbathurCorrosiveBile.SourceCastStart" Send="$Spell" />
     <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell" />
     <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Birth" />
     <On Terms="AbilTrain.EvolveToBrutaliskRavager.Start" Send="Destroy" />
@@ -1280,7 +1280,7 @@
     <Aliases value="_UnitLarge" />
   </CActorUnit>
   <CActorModel id="RavagerCocoonDeath">
-    <On Terms="AbilMorph.*.Start; MorphFrom RavagerAbathurRebornCocoon; ValidateUnit NotDead" Send="Create" />
+    <On Terms="AbilMorph.*.Start; MorphFrom RavagerAbathurCocoon; ValidateUnit NotDead" Send="Create" />
     <On Terms="AbilMorph.*.Start; MorphFrom RavagerVileAbathurRebornCocoon; ValidateUnit NotDead" Send="Create" />
     <On Terms="AnimDone; AnimName Death" Send="Destroy" />
     <On Terms="ActorCreation" Send="$Death" />
@@ -4911,7 +4911,7 @@
     <On Terms="Abil.que5notPassive.Start" Send="StatusIncrement Queuing" />
     <On Terms="Abil.que5notPassive.Stop" Send="StatusDecrement Queuing" />
   </CActorEventMacro>
-  <CActorUnit id="RavagerAbathurRebornCocoon" parent="GenericUnitMorph" unitName="RavagerAbathurRebornCocoon">
+  <CActorUnit id="RavagerAbathurCocoon" parent="GenericUnitMorph" unitName="RavagerAbathurCocoon">
     <On Terms="ActorCreation" Send="Create RavagerCocoonBirthSound" />
     <On Terms="ActorCreation" Send="$Birth 0 0.000000" />
     <ModelFlags index="OutlineEmitter" value="1" />
@@ -4931,7 +4931,7 @@
     <Aliases value="_UnitMedium" />
   </CActorUnit>
   <CActorUnit id="RavagerVileAbathurRebornCocoon" parent="GenericUnitMorph" unitName="RavagerVileAbathurRebornCocoon">
-    <Model value="RavagerAbathurRebornCocoon" />
+    <Model value="RavagerAbathurCocoon" />
     <On Terms="ActorCreation" Send="Create RavagerCocoonBirthSound" />
     <On Terms="ActorCreation" Send="$Birth 0 0.000000" />
     <ModelFlags index="OutlineEmitter" value="1" />
@@ -5010,8 +5010,8 @@
     <AbilSoundArray AbilCmd="D8Charge,Execute" Sound="Reaper_D8ChargeVO" />
   </CActorMissile>
   <CActorUnit id="Roach">
-    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathurRebornCocoon" Send="Destroy" />
-    <On Terms="AbilMorph.*.Finish; MorphFrom RavagerAbathurRebornCocoon; MorphTo Roach" Send="Create" />
+    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathurCocoon" Send="Destroy" />
+    <On Terms="AbilMorph.*.Finish; MorphFrom RavagerAbathurCocoon; MorphTo Roach" Send="Create" />
     <On Terms="AbilTrain.EvolveToBrutaliskRoach.Start" Send="Destroy" />
     <On Terms="AbilTrain.EvolveToBrutaliskRoach.Cancel" Send="Create" />
     <On Terms="WeaponStart.ZagaraAcidSaliva.AttackStart" Send="AnimBracketStart Attack Attack" />
@@ -5022,8 +5022,8 @@
     <Macros value="AbathurRebornDeepTunnelImprovedMacro" />
   </CActorUnit>
   <CActorUnit id="RoachCorpser">
-    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathurRebornCocoon" Send="Destroy" />
-    <On Terms="AbilMorph.*.Finish; MorphFrom RavagerAbathurRebornCocoon; MorphTo RoachCorpser" Send="Create" />
+    <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathurCocoon" Send="Destroy" />
+    <On Terms="AbilMorph.*.Finish; MorphFrom RavagerAbathurCocoon; MorphTo RoachCorpser" Send="Create" />
   </CActorUnit>
   <CActorUnit id="RoachVile">
     <On Terms="AbilMorph.*.Finish; MorphTo RavagerVileAbathurRebornCocoon" Send="Destroy" />

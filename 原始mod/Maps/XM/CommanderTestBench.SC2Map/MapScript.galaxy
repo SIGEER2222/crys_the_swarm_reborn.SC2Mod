@@ -55,6 +55,20 @@ trigger gt_XMTB_Init;
 trigger gt_XMTB_CommanderClick;
 trigger gt_XMTB_ScenarioClick;
 trigger gt_XMTB_ActionClick;
+trigger gt_XMTB_ChatAbathur;
+trigger gt_XMTB_ChatAbathurReborn;
+trigger gt_XMTB_ChatRaynor;
+trigger gt_XMTB_ChatKerrigan;
+trigger gt_XMTB_ChatAlarak;
+trigger gt_XMTB_ChatArtanis;
+trigger gt_XMTB_ChatZagara;
+trigger gt_XMTB_ChatFenix;
+trigger gt_XMTB_ChatVorazun;
+trigger gt_XMTB_ChatKarax;
+trigger gt_XMTB_ChatZeratul;
+trigger gt_XMTB_ChatNova;
+trigger gt_XMTB_ChatDehaka;
+trigger gt_XMTB_ChatSmoke;
 
 int gv_xmTbCommanderDialog;
 int gv_xmTbScenarioDialog;
@@ -89,6 +103,7 @@ void gf_XMTB_Log (string lp_level, string lp_event, string lp_message);
 void gf_XMTB_UpdateSummary ();
 void gf_XMTB_Clear ();
 void gf_XMTB_SetCommander (string lp_commander);
+void gf_XMTB_ChatSelectCommander (int lp_index, string lp_commander);
 void gf_XMTB_RunScenario (string lp_scenario);
 void gf_XMTB_RunCurrentScenario ();
 void gf_XMTB_RunAllSmoke ();
@@ -168,7 +183,7 @@ void gf_XMTB_UpdateSummary () {
 
     lv_text = XMTestBench_GetSummaryText(1);
     lv_text = lv_text + " | Map: CommanderTestBench";
-    lv_text = lv_text + " | Trigger: button -> XMTestBench_*";
+    lv_text = lv_text + " | Trigger: button/chat -> XMTestBench_*";
     lv_text = lv_text + " | Panel: command invoke, not mouse simulation.";
     lv_text = lv_text + " | MapWarnings: " + IntToString(gv_xmTbWarnings);
     lv_text = lv_text + " | MapErrors: " + IntToString(gv_xmTbErrors);
@@ -194,6 +209,12 @@ void gf_XMTB_SetCommander (string lp_commander) {
     gv_xmTbErrors = XMTestBench_GetErrorCount(1);
     gv_xmTbLastEvent = "TEST_COMMANDER_SET";
     gf_XMTB_UpdateSummary();
+}
+
+void gf_XMTB_ChatSelectCommander (int lp_index, string lp_commander) {
+    gv_xmTbCurrentCommanderIndex = lp_index;
+    gf_XMTB_Clear();
+    gf_XMTB_SetCommander(lp_commander);
 }
 
 void gf_XMTB_RunScenario (string lp_scenario) {
@@ -222,30 +243,35 @@ void gf_XMTB_RunAllSmoke () {
     gf_XMTB_Log("INFO", "TEST_RUN_ALL_START", "mode=runtime_api scenarios=power_fusion,standard_base,panel_cost_smoke,full_buildings,full_units");
 
     gf_XMTB_Clear();
+    gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("power_fusion");
     lv_totalWarnings += XMTestBench_GetWarningCount(1);
     lv_totalErrors += XMTestBench_GetErrorCount(1);
     gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=power_fusion warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
 
     gf_XMTB_Clear();
+    gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("standard_base");
     lv_totalWarnings += XMTestBench_GetWarningCount(1);
     lv_totalErrors += XMTestBench_GetErrorCount(1);
     gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=standard_base warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
 
     gf_XMTB_Clear();
+    gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("panel_cost_smoke");
     lv_totalWarnings += XMTestBench_GetWarningCount(1);
     lv_totalErrors += XMTestBench_GetErrorCount(1);
     gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=panel_cost_smoke warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
 
     gf_XMTB_Clear();
+    gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("full_buildings");
     lv_totalWarnings += XMTestBench_GetWarningCount(1);
     lv_totalErrors += XMTestBench_GetErrorCount(1);
     gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=full_buildings warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
 
     gf_XMTB_Clear();
+    gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("full_units");
     lv_totalWarnings += XMTestBench_GetWarningCount(1);
     lv_totalErrors += XMTestBench_GetErrorCount(1);
@@ -459,6 +485,118 @@ bool gt_XMTB_ActionClick_Func (bool testConds, bool runActions) {
     return true;
 }
 
+bool gt_XMTB_ChatNova_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(10, "Nova");
+    return true;
+}
+
+bool gt_XMTB_ChatDehaka_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(13, "Dehaka");
+    return true;
+}
+
+bool gt_XMTB_ChatAbathur_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(8, "Abathur");
+    return true;
+}
+
+bool gt_XMTB_ChatAbathurReborn_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(8, "AbathurReborn");
+    return true;
+}
+
+bool gt_XMTB_ChatRaynor_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(1, "Raynor");
+    return true;
+}
+
+bool gt_XMTB_ChatKerrigan_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(2, "Kerrigan");
+    return true;
+}
+
+bool gt_XMTB_ChatAlarak_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(9, "Alarak");
+    return true;
+}
+
+bool gt_XMTB_ChatArtanis_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(3, "Artanis");
+    return true;
+}
+
+bool gt_XMTB_ChatZagara_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(5, "Zagara");
+    return true;
+}
+
+bool gt_XMTB_ChatFenix_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(12, "Fenix");
+    return true;
+}
+
+bool gt_XMTB_ChatVorazun_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(6, "Vorazun");
+    return true;
+}
+
+bool gt_XMTB_ChatKarax_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(7, "Karax");
+    return true;
+}
+
+bool gt_XMTB_ChatZeratul_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_ChatSelectCommander(16, "Zeratul");
+    return true;
+}
+
+bool gt_XMTB_ChatSmoke_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_RunAllSmoke();
+    return true;
+}
+
 void gt_XMTB_Init_Init () {
     gt_XMTB_Init = TriggerCreate("gt_XMTB_Init_Func");
     TriggerAddEventMapInit(gt_XMTB_Init);
@@ -479,6 +617,76 @@ void gt_XMTB_ActionClick_Init () {
     TriggerAddEventDialogControl(gt_XMTB_ActionClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
+void gt_XMTB_ChatNova_Init () {
+    gt_XMTB_ChatNova = TriggerCreate("gt_XMTB_ChatNova_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatNova, c_playerAny, "-tbnova", true);
+}
+
+void gt_XMTB_ChatAbathur_Init () {
+    gt_XMTB_ChatAbathur = TriggerCreate("gt_XMTB_ChatAbathur_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatAbathur, c_playerAny, "-tbabathur", true);
+}
+
+void gt_XMTB_ChatAbathurReborn_Init () {
+    gt_XMTB_ChatAbathurReborn = TriggerCreate("gt_XMTB_ChatAbathurReborn_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatAbathurReborn, c_playerAny, "-tbabathurreborn", true);
+}
+
+void gt_XMTB_ChatRaynor_Init () {
+    gt_XMTB_ChatRaynor = TriggerCreate("gt_XMTB_ChatRaynor_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatRaynor, c_playerAny, "-tbraynor", true);
+}
+
+void gt_XMTB_ChatKerrigan_Init () {
+    gt_XMTB_ChatKerrigan = TriggerCreate("gt_XMTB_ChatKerrigan_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatKerrigan, c_playerAny, "-tbkerrigan", true);
+}
+
+void gt_XMTB_ChatAlarak_Init () {
+    gt_XMTB_ChatAlarak = TriggerCreate("gt_XMTB_ChatAlarak_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatAlarak, c_playerAny, "-tbalarak", true);
+}
+
+void gt_XMTB_ChatArtanis_Init () {
+    gt_XMTB_ChatArtanis = TriggerCreate("gt_XMTB_ChatArtanis_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatArtanis, c_playerAny, "-tbartanis", true);
+}
+
+void gt_XMTB_ChatZagara_Init () {
+    gt_XMTB_ChatZagara = TriggerCreate("gt_XMTB_ChatZagara_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatZagara, c_playerAny, "-tbzagara", true);
+}
+
+void gt_XMTB_ChatFenix_Init () {
+    gt_XMTB_ChatFenix = TriggerCreate("gt_XMTB_ChatFenix_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatFenix, c_playerAny, "-tbfenix", true);
+}
+
+void gt_XMTB_ChatVorazun_Init () {
+    gt_XMTB_ChatVorazun = TriggerCreate("gt_XMTB_ChatVorazun_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatVorazun, c_playerAny, "-tbvorazun", true);
+}
+
+void gt_XMTB_ChatKarax_Init () {
+    gt_XMTB_ChatKarax = TriggerCreate("gt_XMTB_ChatKarax_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatKarax, c_playerAny, "-tbkarax", true);
+}
+
+void gt_XMTB_ChatZeratul_Init () {
+    gt_XMTB_ChatZeratul = TriggerCreate("gt_XMTB_ChatZeratul_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatZeratul, c_playerAny, "-tbzeratul", true);
+}
+
+void gt_XMTB_ChatDehaka_Init () {
+    gt_XMTB_ChatDehaka = TriggerCreate("gt_XMTB_ChatDehaka_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatDehaka, c_playerAny, "-tbdehaka", true);
+}
+
+void gt_XMTB_ChatSmoke_Init () {
+    gt_XMTB_ChatSmoke = TriggerCreate("gt_XMTB_ChatSmoke_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatSmoke, c_playerAny, "-tbsmoke", true);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
@@ -487,6 +695,20 @@ void InitTriggers () {
     gt_XMTB_CommanderClick_Init();
     gt_XMTB_ScenarioClick_Init();
     gt_XMTB_ActionClick_Init();
+    gt_XMTB_ChatAbathur_Init();
+    gt_XMTB_ChatAbathurReborn_Init();
+    gt_XMTB_ChatRaynor_Init();
+    gt_XMTB_ChatKerrigan_Init();
+    gt_XMTB_ChatAlarak_Init();
+    gt_XMTB_ChatArtanis_Init();
+    gt_XMTB_ChatZagara_Init();
+    gt_XMTB_ChatFenix_Init();
+    gt_XMTB_ChatVorazun_Init();
+    gt_XMTB_ChatKarax_Init();
+    gt_XMTB_ChatZeratul_Init();
+    gt_XMTB_ChatNova_Init();
+    gt_XMTB_ChatDehaka_Init();
+    gt_XMTB_ChatSmoke_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

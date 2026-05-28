@@ -132,6 +132,12 @@ void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unit
         libE0EAE146_gf_XMDbgLog("WARN", "TEST_PROFILE_OBJECT_MISSING", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=blank");
         return;
     }
+    if (!CatalogEntryIsValid(c_gameCatalogUnit, lp_unitType)) {
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_PROFILE_OBJECT_INVALID", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=" + lp_unitType + " reason=missing_catalog_entry");
+        return;
+    }
 
     lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libNtve_gf_CreateUnitsWithDefaultFacing(1, lp_unitType, c_unitCreateIgnorePlacement, lp_player, lp_point);

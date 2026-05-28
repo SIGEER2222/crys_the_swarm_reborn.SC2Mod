@@ -1,456 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-  <CModel id="AbathurCollectBiomassImpactHeal" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3" />
-    <EditorCategories value="Race:Terran" />
-  </CModel>
-  <CModel id="AbathurCollectBiomassTarget" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3" />
-    <ScaleMax value="2.000000,2.000000,2.000000" />
-    <ScaleMin value="2.000000,2.000000,2.000000" />
-  </CModel>
-  <CModel id="AbathurLocustEggAMissileWeapon" parent="MissileFX">
-    <Model value="Assets\Units\Zerg\SwarmHostEgg\SwarmHostEgg.m3" />
-    <Occlusion value="Show" />
-    <SelectionLayer value="3" />
-    <SquibTypeDefault value="Flesh" />
-    <SelectionRadius value="0.666500" />
-    <ShadowRadius value="0.666500" />
-    <Events>
-      <Anim value="Death" />
-      <Name value="EggPop" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="SwarmHost_SpawnLaunch" />
-    </Events>
-  </CModel>
-  <CModel id="AbathurLocustEggAttackLaunchModel" parent="OneShotSpellFX">
-    <Model value="Assets\Effects\Zerg\BurrowFXSmall\BurrowFXSmall.m3" />
-    <EditorCategories value="Race:Zerg" />
-  </CModel>
-  <CModel id="AbathurLocustEggBMissileWeapon" parent="MissileFX">
-    <Model value="Assets\Units\Zerg\SwarmHostEgg\SwarmHostEgg.m3" />
-    <Occlusion value="Show" />
-    <SelectionLayer value="3" />
-    <SquibTypeDefault value="Flesh" />
-    <SelectionRadius value="0.666500" />
-    <ShadowRadius value="0.666500" />
-    <Events>
-      <Anim value="Death" />
-      <Name value="EggPop" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="SwarmHost_SpawnLaunch" />
-    </Events>
-  </CModel>
-  <CModel id="AbathurLocustEggCMissileWeapon" parent="MissileFX">
-    <Model value="Assets\Units\Zerg\SwarmHostEgg\SwarmHostEgg.m3" />
-    <Occlusion value="Show" />
-    <SelectionLayer value="3" />
-    <SquibTypeDefault value="Flesh" />
-    <SelectionRadius value="0.666500" />
-    <ShadowRadius value="0.666500" />
-    <Events>
-      <Anim value="Death" />
-      <Name value="EggPop" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="SwarmHost_SpawnLaunch" />
-    </Events>
-  </CModel>
-  <CModel id="AbathurMendImpactModel" parent="OneShotSpellFX">
-    <Model value="Assets\Effects\Zerg\MendImpact\MendImpact.m3" />
-    <EditorCategories value="Race:Zerg" />
-    <ScaleMax value="1.300000,1.300000,1.300000" />
-    <ScaleMin value="1.300000,1.300000,1.300000" />
-  </CModel>
-  <CModel id="AbathurSymbiote" parent="PersistentSpellFX">
-    <Model value="Assets\Units\Zerg\Symbiote_Ex3\Symbiote_Ex3.m3" />
-    <EditorCategories value="Race:Zerg" />
-    <ScaleMax value="0.850000,0.850000,0.850000" />
-    <ScaleMin value="0.850000,0.850000,0.850000" />
-  </CModel>
-  <CModel id="AbathurSymbioteBuffGlaze">
-    <Model value="Assets\Effects\Glaze\Glaze_VoidShard_VoidZone\Glaze_VoidShard_VoidZone.m3" />
-  </CModel>
-  <CModel id="AbathurUltimateEvolutionDropPod" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\ZergDropPod_AC\ZergDropPod_AC.m3" />
-    <EditorCategories value="Race:Terran" />
-    <!--ScaleMax value="0.500000,0.500000,0.500000"/>
-        <ScaleMin value="0.200000,0.200000,0.200000"/-->
-    <Events>
-      <Anim value="Birth,00" />
-      <Name value="BarracksDropPodLand" />
-      <Type value="Sound" />
-      <Time value="2.200000" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="OrbitalCommandDropPodDeathA" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="OrbitalCommand_DropPodDeathA" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="OrbitalCommandDropPodDeathB" />
-      <Type value="Sound" />
-      <Time value="1.600000" />
-      <Payload value="OrbitalCommand_DropPodDeathB" />
-    </Events>
-  </CModel>
-  <CModel id="AbathurUltimateEvolutionTimedLifeBuffGlaze">
-    <Model value="Assets\Effects\Glaze\Glaze_Corrupted_TangentSpace\Glaze_Corrupted_TangentSpace.m3" />
-  </CModel>
-  <CModel id="BiomassBuffImpact" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\Pickup_BioMass_Impact\Pickup_BioMass_Impact.m3" />
-  </CModel>
-  <CModel id="BiomassBuffPickup">
-    <Model value="Assets\Units\Zerg\PickUp_Biomass\PickUp_Biomass.m3" />
-    <EditorCategories value="Race:Zerg" />
-  </CModel>
-  <CModel id="BiomassBuffTargetHigh" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3" />
-    <ScaleMax value="2.350000,2.350000,2.350000" />
-    <ScaleMin value="2.350000,2.350000,2.350000" />
-  </CModel>
-  <CModel id="BiomassBuffTargetLow" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3" />
-    <ScaleMax value="1.650000,1.650000,1.650000" />
-    <ScaleMin value="1.650000,1.650000,1.650000" />
-  </CModel>
-  <CModel id="BiomassBuffTargetMed" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3" />
-    <ScaleMax value="2.000000,2.000000,2.000000" />
-    <ScaleMin value="2.000000,2.000000,2.000000" />
-  </CModel>
-  <CModel id="BiomassTargetMark">
-    <Model value="Assets\Units\Zerg\PickUp_Biomass\PickUp_Biomass.m3" />
-    <EditorCategories value="Race:Zerg" />
-    <ScaleMax value="0.500000,0.500000,0.500000" />
-    <ScaleMin value="0.500000,0.500000,0.500000" />
-  </CModel>
-  <CModel id="BrutaliskCocoon" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Generic_Morph_Egg\Generic_Morph_Egg.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.600000" />
-    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
-        <ScaleMin value="1.300000,1.300000,1.300000"/-->
-    <SelectionRadius value="0.625000" />
-    <ShadowRadius value="0.625000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="BrutaliskCocoonDeath" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Generic_Morph_Egg\Generic_Morph_Egg.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.600000" />
-    <ScaleMax value="1.740000,1.740000,1.740000" />
-    <ScaleMin value="1.740000,1.740000,1.740000" />
-    <SelectionRadius value="0.625000" />
-    <ShadowRadius value="0.625000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="BrutaliskDeath">
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Brutalisk_Death" />
-      <Type value="Sound" />
-      <Time value="0.014000" />
-      <Payload value="Brutalisk_Death" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Brutalisk_Death_Roar_Vx" />
-      <Type value="Sound" />
-      <Time value="0.037000" />
-      <Payload value="Brutalisk_Death_Roar_Vx" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Brutalisk_Blood_Spary" />
-      <Type value="Sound" />
-      <Time value="0.292000" />
-      <Payload value="Brutalisk_Blood_Spary" />
-    </Events>
-    <Events>
-      <Anim value="Death,01" />
-      <Name value="Brutalisk_Death" />
-      <Type value="Sound" />
-      <Time value="0.014000" />
-      <Payload value="Brutalisk_Death" />
-    </Events>
-    <Events>
-      <Anim value="Death,01" />
-      <Name value="Brutalisk_Death_Roar_Vx" />
-      <Type value="Sound" />
-      <Time value="0.037000" />
-      <Payload value="Brutalisk_Death_Roar_Vx" />
-    </Events>
-    <Events>
-      <Anim value="Death,01" />
-      <Name value="Brutalisk_Blood_Spary" />
-      <Type value="Sound" />
-      <Time value="0.292000" />
-      <Payload value="Brutalisk_Blood_Spary" />
-    </Events>
-    <LowQualityModel value="ZergLargeUnitDeathLow" />
-  </CModel>
-  <CModel id="CorrosiveAcidMissile" parent="MissileFX">
-    <Model value="Assets\Effects\Zerg\Devourer_AcidSpores_Missile\Devourer_AcidSpores_Missile.m3" />
-    <EditorCategories value="Race:Zerg" />
-  </CModel>
-  <CModel id="CreateSymbiotesCarapace">
-    <Model value="Assets\Effects\Protoss\SOA_GuardianShell\SOA_GuardianShell.m3" />
-  </CModel>
-  <CModel id="Drone_Primal_Collection" parent="Unit" Race="Zerg">
-    <RequiredAnims value="Assets\Units\Zerg\Drone_SwarmAnims\Drone_SwarmAnims.m3a" />
-    <AttachProps Id="Ref_Weapon Left">
-      <Keys index="Work" value="0" />
-    </AttachProps>
-    <Lighting value="Drone" />
-    <Occlusion value="Show" />
-    <PlanetPanelCamera value="Star2CameraMid04" />
-    <Radius value="0.400000" />
-    <ScaleMax value="0.900000,0.900000,0.900000" />
-    <ScaleMin value="0.900000,0.900000,0.900000" />
-    <SelectionRadius value="0.555400" />
-    <ShadowRadius value="0.555400" />
-    <SquibTypeDefault value="Flesh" />
-    <TechPurchaseCamera value="Star2CameraMid04" />
-    <Tipability value="0.750000" />
-    <TipabilityLength value="0.400000" />
-    <TipabilityWidth value="0.400000" />
-    <UnitGlossaryCamera value="Star2CameraMid04" />
-    <Events>
-      <Anim value="Attack,00" />
-      <Name value="Drone_AttackImpact" />
-      <Type value="Sound" />
-      <Time value="0.114000" />
-      <Payload value="Drone_AttackImpact" />
-    </Events>
-    <Events>
-      <Anim value="Attack,00" />
-      <Name value="Drone_AttackImpact" />
-      <Type value="Sound" />
-      <Time value="0.763000" />
-      <Payload value="Drone_AttackImpact" />
-    </Events>
-  </CModel>
-  <CModel id="Drone_Primal_Collection_Death" parent="UnitDeath" Race="Zerg">
-    <LowQualityModel value="ZergSmallUnitDeathLow" />
-    <Occlusion value="Show" />
-  </CModel>
-  <CModel id="Drone_Primal_Collection_DeathAcid" parent="UnitDeath" Race="Zerg">
-    <LowQualityModel value="ZergSmallUnitDeathLow" />
-    <Occlusion value="Show" />
-  </CModel>
-  <CModel id="Drone_Primal_Collection_DeathFire" parent="UnitDeath" Race="Zerg">
-    <LowQualityModel value="ZergSmallUnitDeathLow" />
-    <Occlusion value="Show" />
-  </CModel>
-  <CModel id="Drone_Primal_Collection_DeathRagdoll" parent="UnitDeathRagdoll" Race="Zerg">
-    <VariationCount value="2" />
-    <Variations Number="0" Probability="1" />
-    <Variations Number="1" Probability="1" />
-  </CModel>
-  <CModel id="EvolutionPit" parent="Building" Race="Zerg">
-    <Model value="Assets\Buildings\Zerg\Aiur_Temple_Generator_Infestation\Aiur_Temple_Generator_Infestation.m3" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="2.250000" />
-    <ShadowRadius value="2.250000" />
-    <Radius value="1.500000" />
-    <ScaleMax value="0.600000,0.600000,0.600000" />
-    <ScaleMin value="0.600000,0.600000,0.600000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="EvolutionPitPlacement" parent="Building" Race="Zerg">
-    <Model value="Assets\Buildings\Zerg\SpawningPoolPlacement\SpawningPoolPlacement.m3" />
-    <LowQualityModel value="EvolutionPit" />
-  </CModel>
-  <CModel id="GlazeBiomass" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Glaze\Glaze_BioMass\Glaze_BioMass.m3" />
-    <EditorCategories value="Race:Terran" />
-  </CModel>
-  <CModel id="GuardianCocoonDeath" parent="UnitDeath">
-    <Model value="Assets\Units\Zerg\BroodLordEgg\BroodLordEgg.m3" />
-    <LowQualityModel value="ZergMediumUnitDeathLow" />
-    <EditorCategories value="Race:Zerg" />
-    <Occlusion value="Show" />
-    <SelectionOffset value="0.000000,0.000000,-0.400000" />
-    <SelectionRadius value="0.735000" />
-    <ShadowRadius value="0.735000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="Hologram_Skin_Symbiote" parent="Broodling">
-    <Model value="Assets\Units\Zerg\Hologram_Skin_Symbiote\Hologram_Skin_Symbiote.m3" />
-  </CModel>
-  <CModel id="HotSLeviathan">
-    <ScaleMax value="0.600000,0.600000,0.600000" />
-    <ScaleMin value="0.600000,0.600000,0.600000" />
-  </CModel>
-  <CModel id="HotSSplitterlingBig">
-    <RequiredAnims value="Assets\Units\Zerg\Baneling_VoidAnims\Baneling_VoidAnims.m3a" />
-  </CModel>
-  <CModel id="HunterKiller">
-    <Radius value="0.625000" />
-  </CModel>
-  <CModel id="ImpalerAbathur" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\LurkerEx1A\LurkerEx1A.m3" />
-    <Occlusion value="Show" />
-    <SelectionRadius value="0.590500" />
-    <Tipability value="0.750000" />
-    <TipabilityWidth value="0.800000" />
-    <TipabilityLength value="0.800000" />
-    <SquibTypeDefault value="Flesh" />
-    <Radius value="0.700000" />
-    <!--ScaleMax value="1.650000,1.650000,1.650000"/>
-        <ScaleMin value="1.650000,1.650000,1.650000"/-->
-    <TechPurchaseCamera value="Star2CameraMid08" />
-    <UnitGlossaryCamera value="Star2CameraMid08" />
-    <PlanetPanelCamera value="Star2CameraMid08" />
-    <ShadowRadius value="0.900000" />
-  </CModel>
-  <CModel id="ImpalerAbathurEgg" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\LurkerEgg\LurkerEgg.m3" />
-    <Occlusion value="Show" />
-    <SquibTypeDefault value="Flesh" />
-    <!--ScaleMax value="1.275000,1.275000,1.275000"/>
-        <ScaleMin value="1.275000,1.275000,1.275000"/-->
-    <SelectionRadius value="0.764400" />
-    <ShadowRadius value="0.764400" />
-  </CModel>
-  <CModel id="LeviathanCocoon" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Generic_Air_Morph_Egg\Generic_Air_Morph_Egg.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.600000" />
-    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
-        <ScaleMin value="1.300000,1.300000,1.300000"/-->
-    <SelectionRadius value="0.625000" />
-    <ShadowRadius value="0.625000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="LeviathanCocoonDeath" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Generic_Air_Morph_Egg\Generic_Air_Morph_Egg.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.600000" />
-    <ScaleMax value="1.740000,1.740000,1.740000" />
-    <ScaleMin value="1.740000,1.740000,1.740000" />
-    <SelectionRadius value="0.625000" />
-    <ShadowRadius value="0.625000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="LeviathanDeath">
-    <LowQualityModel value="ZergLargeUnitDeathLow" />
-  </CModel>
-  <CModel id="RavagerAbathur" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Ravager\Ravager.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.750000" />
-    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
-        <ScaleMin value="1.300000,1.300000,1.300000"/-->
-    <SelectionRadius value="0.750000" />
-    <ShadowRadius value="0.750000" />
-    <SquibTypeDefault value="Flesh" />
-    <UnitGlossaryCamera value="Star2CameraMid08" />
-  </CModel>
-  <CModel id="RavagerCorrosiveBileAoePrecursor" parent="PersistentSpellFX">
-    <Model value="Assets\Effects\Zerg\Ravager_Artillery_Marker\Ravager_Artillery_Marker.m3" />
-    <EditorCategories value="Race:Zerg" />
-    <RadiusLoose value="0.500000" />
-  </CModel>
-  <CModel id="SymbioteCarapaceAOE">
-    <Model value="Assets\Effects\Protoss\SOA_GuardianShell\SOA_GuardianShell.m3" />
-  </CModel>
-  <CModel id="SymbioteCarapaceBrutalisk">
-    <Model value="Assets\Effects\Zerg\Symbiote_Carapace_Lg\Symbiote_Carapace_Lg.m3" />
-  </CModel>
-  <CModel id="SymbioteCarapaceGlaze">
-    <Model value="Assets\Effects\Glaze\Glaze_Symbiote_Carapace\Glaze_Symbiote_Carapace.m3" />
-  </CModel>
-  <CModel id="SymbioteCarapaceLeviathan">
-    <Model value="Assets\Effects\Zerg\Symbiote_Carapace_Long\Symbiote_Carapace_Long.m3" />
-  </CModel>
-  <CModel id="SymbioteSpikedBurst" parent="MissileFX">
-    <Model value="Assets\Effects\Zerg\Symbiote_SpikeBurst\Symbiote_SpikeBurst.m3" />
-  </CModel>
-  <CModel id="SymbioteStabImpact" parent="OneShotSpellFX">
-    <Model value="Assets\Effects\Zerg\Symbiote_Stab_Impact\Symbiote_Stab_Impact.m3" />
-    <EditorCategories value="Race:Zerg" />
-  </CModel>
-  <CModel id="SymbioteStabWeapon" parent="MissileFX">
-    <Model value="Assets\Effects\Zerg\Symbiote_Stab_Missile\Symbiote_Stab_Missile.m3" />
-    <Events>
-      <Anim value="Birth,00" />
-      <Name value="SymbioteStab_LaunchMissile" />
-      <Type value="Sound" />
-      <Time value="0.007000" />
-      <Payload value="SymbioteStab_LaunchMissile" />
-    </Events>
-  </CModel>
-  <CModel id="ToxicNest" parent="Building" Race="Zerg">
-    <Occlusion value="Show" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="0.650000" />
-    <SquibTypeDefault value="Flesh" />
-    <Tipability value="1.000000" />
-    <TipabilityLength value="0.300000" />
-    <TipabilityWidth value="0.300000" />
-  </CModel>
-  <CModel id="ToxicNestDeath" parent="BuildingDeath" Race="Zerg">
-    <Model value="Assets\Buildings\Zerg\ToxicNest_Death\ToxicNest_Death.m3" />
-    <LowQualityModel value="ZergSmallUnitDeathLow" />
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="ToxicNest_Death" />
-      <Type value="Sound" />
-      <Time value="0.301000" />
-      <Payload value="ToxicNest_Death" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="ToxicNest_Swell" />
-      <Type value="Sound" />
-      <Time value="0.016000" />
-      <Payload value="ToxicNest_Swell" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="ToxicNest_Death_Giz" />
-      <Type value="Sound" />
-      <Time value="0.438000" />
-      <Payload value="ToxicNest_Death_Giz" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="ToxicNest_Spray" />
-      <Type value="Sound" />
-      <Time value="0.845000" />
-      <Payload value="ToxicNest_Spray" />
-    </Events>
-  </CModel>
-  <CModel id="ToxicNestHitTest">
-    <Model value="Assets\Units\Test\HitTestSphere\HitTestSphere.m3" />
-    <Radius value="0.200000" />
-    <ScaleMax value="0.200000,0.200000,0.200000" />
-    <ScaleMin value="0.200000,0.200000,0.200000" />
-    <SelectionLayer value="3" />
-  </CModel>
-  <CModel id="ToxicNestRangeSplat">
-    <Model value="Assets\UI\ZergAOECursorEx2\ZergAOECursorEx2.m3" />
-    <EditorCategories value="Race:Zerg" />
-    <ScaleMax value="0.400000,0.400000,1.000000" />
-    <ScaleMin value="0.400000,0.400000,1.000000" />
-    <SelectionRadius value="2.500000" />
-    <ShadowRadius value="2.500000" />
-  </CModel>
-  <CModel id="AbathurPortraitEx3" parent="FXAPortrait" Race="Zerg">
-    <Image value="Assets\Textures\SMX1_EvolutionMasterPortrait_Static.dds" />
-    <Model value="Assets\Portraits\Zerg\AbathurEx3_Portrait\AbathurEx3_Portrait.m3" />
-    <!--RequiredAnims value="Assets\StoryModeCharacters\Zerg\SMX1_EvolutionMaster_RequiredAnims_Portrait\SMX1_EvolutionMaster_RequiredAnims_Portrait.m3a"/>
-        <RequiredAnims value="Assets\StoryModeCharacters\Zerg\SMX1_EvolutionMaster_FacialAnims\SMX1_EvolutionMaster_FacialAnims.m3a"/-->
-    <!--FacialController value="LocalizedData\Facial\SMX1_EvolutionMaster.fxa"/-->
-    <Flags index="Download" value="1" />
-  </CModel>
   <CModel id="AlarakStructureOvercharge" parent="PersistentSpellFX">
     <Model value="Assets\Effects\Protoss\PurifyLaunch\PurifyLaunch.m3" />
     <EditorCategories value="Race:Protoss" />
@@ -460,9 +9,6 @@
     <EditorCategories value="Race:Protoss" />
     <ScaleMax value="1.000000,1.000000,0.500000" />
     <ScaleMin value="1.000000,1.000000,0.500000" />
-  </CModel>
-  <CModel id="Baneling">
-    <RequiredAnims value="Assets\Units\Zerg\Baneling_VoidAnims\Baneling_VoidAnims.m3a" />
   </CModel>
   <CModel id="Banshee_BlackOps" parent="Unit" Race="Terran">
     <Occlusion value="Show" />
@@ -496,326 +42,11 @@
     <Model value="Assets\Effects\Terran\MiraHorner_Battlecruiser_Coop_Reentry\MiraHorner_Battlecruiser_Coop_Reentry.m3" />
     <EditorCategories value="Race:Terran" />
   </CModel>
-  <CModel id="BileLauncherZagara" parent="Building" Race="Zerg">
-    <Model value="Assets\Buildings\Zerg\BileLauncher_Ex2\BileLauncher_Ex2.m3" />
-    <AttachProps Id="Ref_TurretZ">
-      <Keys index="Turret" value="0" />
-    </AttachProps>
-    <!-- <Events>
-            <Anim value="Attack,00"/>
-            <Name value="BileLauncher_AttackLaunch2"/>
-            <Type value="Sound"/>
-            <Time value="0.010000"/>
-            <Payload value="BileLauncher_AttackLaunch2"/>
-        </Events> -->
-    <Events>
-      <Anim value="Build,D,Start,00" />
-      <Name value="KorhalSporeCannon_Emerge" />
-      <Type value="Sound" />
-      <Time value="0.485000" />
-      <Payload value="KorhalSporeCannon_Emerge" />
-    </Events>
-    <PlanetPanelCamera value="Star2CameraHigher12" />
-    <Radius value="2.000000" />
-    <ScaleMax value="0.666667,0.666667,0.666667" />
-    <ScaleMin value="0.666667,0.666667,0.666667" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="2.000000" />
-    <ShadowRadius value="1.333200" />
-    <SquibTypeDefault value="Flesh" />
-    <TechPurchaseCamera value="Star2CameraHigher12" />
-    <UnitGlossaryCamera value="Star2CameraHigher12" />
-  </CModel>
-  <CModel id="BileLauncherZagaraDeath" parent="Building" Race="Zerg">
-    <Model value="Assets\Units\Zerg\BileLauncherDeath\BileLauncherDeath.m3" />
-    <Events>
-      <Anim value="Death" />
-      <Name value="KorhalSporeCannon_Death" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="KorhalSporeCannon_Death" />
-    </Events>
-    <Events>
-      <Anim value="Death" />
-      <Name value="KorhalSporeCannon_Geyser" />
-      <Type value="Sound" />
-      <Time value="0.850000" />
-      <Payload value="KorhalSporeCannon_Geyser" />
-    </Events>
-    <Radius value="2.000000" />
-    <ScaleMax value="0.666667,0.666667,0.666667" />
-    <ScaleMin value="0.666667,0.666667,0.666667" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="2.000000" />
-    <ShadowRadius value="1.333200" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
-  <CModel id="BileLauncherZagaraPlacement" parent="Placement" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Bilelauncher_Placement\Bilelauncher_Placement.m3" />
-    <LowQualityModel value="BileLauncherZagara" />
-    <Radius value="2.000000" />
-    <ScaleMax value="0.666667,0.666667,0.666667" />
-    <ScaleMin value="0.666667,0.666667,0.666667" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="2.000000" />
-    <ShadowRadius value="1.333200" />
-    <SquibTypeDefault value="Flesh" />
-    <TechPurchaseCamera value="Star2CameraHigher12" />
-    <UnitGlossaryCamera value="Star2CameraHigher12" />
-  </CModel>
-  <CModel id="Brutalisk">
-    <ScaleMax value="2.250000,2.250000,2.250000" />
-    <ScaleMin value="2.250000,2.250000,2.250000" />
-    <Model value="Assets\Units\Zerg\BrutaliskEx3\BrutaliskEx3.m3" />
-    <Events>
-      <Anim value="Burrow,Superior,00" />
-      <Name value="Brutalisk_Dig_Burrow" />
-      <Type value="Sound" />
-      <Time value="0.009000" />
-      <Payload value="Brutalisk_Dig_Burrow" />
-    </Events>
-    <Events>
-      <Anim value="Unburrow,Superior,00" />
-      <Name value="Brutalisk_Dig_UnBurrow" />
-      <Type value="Sound" />
-      <Time value="0.008000" />
-      <Payload value="Brutalisk_Dig_UnBurrow" />
-    </Events>
-    <Events>
-      <Anim value="Unburrow,00" />
-      <Name value="Brutalisk_UnBurrow" />
-      <Type value="Sound" />
-      <Time value="0.006000" />
-      <Payload value="Brutalisk_UnBurrow" />
-    </Events>
-    <Events>
-      <Anim value="Burrow,00" />
-      <Name value="Brutalisk_Burrow" />
-      <Type value="Sound" />
-      <Time value="0.006000" />
-      <Payload value="Brutalisk_Burrow" />
-    </Events>
-    <Events>
-      <Anim value="Spell,00" />
-      <Name value="Brutalisk_Spell_Vx" />
-      <Type value="Sound" />
-      <Time value="0.094000" />
-      <Payload value="Brutalisk_Spell_Vx" />
-    </Events>
-    <Events>
-      <Anim value="Spell,00" />
-      <Name value="Brutalisk_Foot_ClawTip" />
-      <Type value="Sound" />
-      <Time value="0.038000" />
-      <Payload value="Brutalisk_Foot_ClawTip" />
-    </Events>
-    <Events>
-      <Anim value="Spell,00" />
-      <Name value="Brutalisk_Foot_ClawTip" />
-      <Type value="Sound" />
-      <Time value="1.286000" />
-      <Payload value="Brutalisk_Foot_ClawTip" />
-    </Events>
-    <Events>
-      <Anim value="Spell,00" />
-      <Name value="Brutalisk_Footsteps" />
-      <Type value="Sound" />
-      <Time value="1.415000" />
-      <Payload value="Brutalisk_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Spell,A,00" />
-      <Name value="Brutalisk_Foot_ClawTip" />
-      <Type value="Sound" />
-      <Time value="0.016000" />
-      <Payload value="Brutalisk_Foot_ClawTip" />
-    </Events>
-    <Events>
-      <Anim value="Spell,A,00" />
-      <Name value="Brutalisk_Foot_ClawTip" />
-      <Type value="Sound" />
-      <Time value="0.481000" />
-      <Payload value="Brutalisk_Foot_ClawTip" />
-    </Events>
-    <Events>
-      <Anim value="Spell,A,00" />
-      <Name value="Brutalisk_Footsteps" />
-      <Type value="Sound" />
-      <Time value="0.546000" />
-      <Payload value="Brutalisk_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Spell,A,00" />
-      <Name value="Brutalisk_AttackLaunch" />
-      <Type value="Sound" />
-      <Time value="0.548000" />
-      <Payload value="Brutalisk_AttackLaunch" />
-    </Events>
-    <Events>
-      <Anim value="Spell,A,00" />
-      <Name value="Brutalisk_AttackImpact" />
-      <Type value="Sound" />
-      <Time value="0.685000" />
-      <Payload value="Brutalisk_AttackImpact" />
-    </Events>
-    <Events>
-      <Anim value="Spell,A,00" />
-      <Name value="Brutalisk_SpellA_Vx" />
-      <Type value="Sound" />
-      <Time value="0.015000" />
-      <Payload value="Brutalisk_SpellA_Vx" />
-    </Events>
-    <Events>
-      <Anim value="Spell,B,00" />
-      <Name value="Brutalisk_Foot_ClawTip" />
-      <Type value="Sound" />
-      <Time value="0.016000" />
-      <Payload value="Brutalisk_Foot_ClawTip" />
-    </Events>
-    <Events>
-      <Anim value="Spell,B,00" />
-      <Name value="Brutalisk_AttackLaunch" />
-      <Type value="Sound" />
-      <Time value="0.110000" />
-      <Payload value="Brutalisk_AttackLaunch" />
-    </Events>
-    <Events>
-      <Anim value="Spell,B,00" />
-      <Name value="Brutalisk_SpellA_Vx" />
-      <Type value="Sound" />
-      <Time value="0.015000" />
-      <Payload value="Brutalisk_SpellA_Vx" />
-    </Events>
-    <Events>
-      <Anim value="Spell,C,00" />
-      <Name value="Brutalisk_Stand2_Vx" />
-      <Type value="Sound" />
-      <Time value="0.009000" />
-      <Payload value="Brutalisk_Stand2_Vx" />
-    </Events>
-    <Events>
-      <Anim value="Spell,C,00" />
-      <Name value="Brutalisk_Dig" />
-      <Type value="Sound" />
-      <Time value="0.102000" />
-      <Payload value="Brutalisk_Dig" />
-    </Events>
-    <Events>
-      <Anim value="Fidget,00" />
-      <Name value="Brutalisk_Footsteps" />
-      <Type value="Sound" />
-      <Time value="4.837000" />
-      <Payload value="Brutalisk_Footsteps" />
-    </Events>
-    <Events>
-      <Anim value="Fidget,00" />
-      <Name value="Brutalisk_Foot_ClawTip" />
-      <Type value="Sound" />
-      <Time value="4.628000" />
-      <Payload value="Brutalisk_Foot_ClawTip" />
-    </Events>
-    <Events>
-      <Anim value="Fidget,00" />
-      <Name value="Brutalisk_Foot_ClawTip" />
-      <Type value="Sound" />
-      <Time value="0.146000" />
-      <Payload value="Brutalisk_Foot_ClawTip" />
-    </Events>
-    <Events>
-      <Anim value="Attack,00" />
-      <Name value="Brutalisk_AttackLaunch" />
-      <Type value="Sound" />
-      <Time value="0.231000" />
-      <Payload value="Brutalisk_AttackLaunch" />
-    </Events>
-    <Events>
-      <Anim value="Attack,00" />
-      <Name value="Brutalisk_AttackImpact" />
-      <Type value="Sound" />
-      <Time value="0.313000" />
-      <Payload value="Brutalisk_AttackImpact" />
-    </Events>
-    <Events>
-      <Anim value="Attack,00" />
-      <Name value="Brutalisk_AttackLaunch" />
-      <Type value="Sound" />
-      <Time value="0.585000" />
-      <Payload value="Brutalisk_AttackLaunch" />
-    </Events>
-    <Events>
-      <Anim value="Attack,00" />
-      <Name value="Brutalisk_AttackImpact" />
-      <Type value="Sound" />
-      <Time value="0.764000" />
-      <Payload value="Brutalisk_AttackImpact" />
-    </Events>
-    <Events>
-      <Anim value="Attack,03" />
-      <Name value="Brutalisk_AttackLaunch" />
-      <Type value="Sound" />
-      <Time value="0.057000" />
-      <Payload value="Brutalisk_AttackLaunch" />
-    </Events>
-    <Events>
-      <Anim value="Attack,03" />
-      <Name value="Brutalisk_AttackImpact" />
-      <Type value="Sound" />
-      <Time value="0.171000" />
-      <Payload value="Brutalisk_AttackImpact" />
-    </Events>
-    <Events>
-      <Anim value="Attack,03" />
-      <Name value="Brutalisk_AttackLaunch" />
-      <Type value="Sound" />
-      <Time value="0.441000" />
-      <Payload value="Brutalisk_AttackLaunch" />
-    </Events>
-    <Events>
-      <Anim value="Attack,03" />
-      <Name value="Brutalisk_AttackImpact" />
-      <Type value="Sound" />
-      <Time value="0.563000" />
-      <Payload value="Brutalisk_AttackImpact" />
-    </Events>
-    <Events>
-      <Anim value="Attack,04" />
-      <Name value="Brutalisk_AttackLaunch" />
-      <Type value="Sound" />
-      <Time value="0.202000" />
-      <Payload value="Brutalisk_AttackLaunch" />
-    </Events>
-    <Events>
-      <Anim value="Attack,04" />
-      <Name value="Brutalisk_AttackImpact" />
-      <Type value="Sound" />
-      <Time value="0.400000" />
-      <Payload value="Brutalisk_AttackImpact" />
-    </Events>
-    <Radius value="0.500000" />
-  </CModel>
   <CModel id="CommanderPrestigeTychusLoneWolf" parent="OneShotSpellFX">
     <Model value="Assets\COOP\Tychus\Effects\LoneWolf_Tychus_COOP\LoneWolf_Tychus_COOP.m3" />
     <EditorCategories value="Race:Terran" />
     <ScaleMax value="3.000000,3.000000,3.000000" />
     <ScaleMin value="3.000000,3.000000,3.000000" />
-  </CModel>
-  <CModel id="CreepColony" parent="Building" Race="Zerg">
-    <Model value="Assets\Buildings\Zerg\Creep_Colony\Creep_Colony.m3" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="1.333200" />
-    <SquibTypeDefault value="Flesh" />
-    <!--ScaleMin value="0.750000,0.750000,0.750000"/>
-        <ScaleMax value="0.750000,0.750000,0.750000"/-->
-    <Radius value="1.000000" />
-    <ShadowRadius value="1.176200" />
-    <TechPurchaseCamera value="Star2CameraHigh09" />
-    <UnitGlossaryCamera value="Star2CameraHigh09" />
-    <PlanetPanelCamera value="Star2CameraHigh09" />
-  </CModel>
-  <CModel id="CreepColonyDeath" parent="BuildingDeath" Race="Zerg">
-    <Model value="Assets\Doodads\CreepPods_Death\CreepPods_Death.m3" />
-    <SquibTypeDefault value="Flesh" />
-    <LowQualityModel value="ZergBuildingDeathLow" />
   </CModel>
   <CModel id="DarkTemplarShakuras">
     <Model value="Assets\Units\Protoss\DarkTemplar\DarkTemplar_01.m3" />
@@ -1413,17 +644,6 @@
     <UnitGlossaryCamera value="Star2CameraHigh12" />
     <PlanetPanelCamera value="Star2CameraHigh12" />
   </CModel>
-  <CModel id="GuardianCocoon" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\BroodLordEgg\BroodLordEgg.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.625000" />
-    <ScaleMax value="0.850000,0.850000,0.850000" />
-    <ScaleMin value="0.850000,0.850000,0.850000" />
-    <SelectionOffset value="0.000000,0.000000,-0.400000" />
-    <SelectionRadius value="0.735000" />
-    <ShadowRadius value="0.735000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
   <CModel id="Hellion_HornerHan_Portrait" parent="FXAPortrait" Race="Terran">
     <FacialController value="LocalizedData\Facial\HellionPortrait.fxa" />
   </CModel>
@@ -1999,18 +1219,6 @@
     <LowQualityModel value="TerranMediumUnitDeathLow" />
     <Model value="Assets\Units\Terran\WraithDeath\WraithDeath.m3" />
   </CModel>
-  <CModel id="Hologram_Death_Large">
-    <Model value="Assets\Units\Zerg\Generic_Purifier_Hologram_Death\Generic_Purifier_Hologram_Death.m3" />
-    <ScaleMax value="2.000000,2.000000,2.000000" />
-    <ScaleMin value="2.000000,2.000000,2.000000" />
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="Hologram_Death_Large" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-      <Payload value="Hologram_Death_Large" />
-    </Events>
-  </CModel>
   <CModel id="Hologram_Death_Medium">
     <Model value="Assets\Units\Zerg\Generic_Purifier_Hologram_Death\Generic_Purifier_Hologram_Death.m3" />
     <ScaleMax value="1.500000,1.500000,1.500000" />
@@ -2025,22 +1233,6 @@
   </CModel>
   <CModel id="Hologram_Skin_SpineCrawler" parent="SpineCrawler">
     <Model value="Assets\Units\Zerg\Hologram_Skin_SpineCrawler\Hologram_Skin_SpineCrawler.m3" />
-  </CModel>
-  <CModel id="Hologram_Skin_Viper" parent="Unit" Race="Protoss">
-    <Events Anim="Death,00" Name="DeathEvent" Type="Custom" />
-    <Events Anim="Death,01" Name="DeathEvent" Type="Custom" />
-    <Occlusion value="Show" />
-    <PlanetPanelCamera value="Star2CameraMid10" />
-    <Radius value="0.900000" />
-    <ScaleMax value="0.800000,0.800000,0.800000" />
-    <ScaleMin value="0.800000,0.800000,0.800000" />
-    <SelectionOffset value="0.000000,0.000000,-0.700000" />
-    <SelectionRadius value="1.000000" />
-    <ShadowRadius value="1.000000" />
-    <SquibTypeDefault value="Flesh" />
-    <TechPurchaseCamera value="Star2CameraMid10" />
-    <Tipability value="0.050000" />
-    <UnitGlossaryCamera value="Star2CameraMid10" />
   </CModel>
   <CModel id="Immortal">
     <AttachProps Id="Ref_Weapon Right">
@@ -2060,30 +1252,6 @@
   </CModel>
   <CModel id="ImmortalTaldarim">
     <Model value="Assets\Units\Protoss\Immortal_Taldarim_Coop\Immortal_Taldarim_Coop.m3" />
-  </CModel>
-  <CModel id="KelMorianAutoTurret" parent="Building" Race="Terran">
-    <Model value="Assets\Buildings\Terran\AutoTurret\AutoTurret.m3" />
-    <AttachProps Id="Ref_Hardpoint">
-      <Keys index="Turret" value="0" />
-    </AttachProps>
-    <Occlusion value="Show" />
-    <PlanetPanelCamera value="Star2CameraMid05" />
-    <Radius value="0.750000" />
-    <!--ScaleMax value="0.800000,0.800000,0.800000"/>
-        <ScaleMin value="0.800000,0.800000,0.800000"/-->
-    <SelectionLayer value="2" />
-    <SelectionRadius value="0.937500" />
-    <ShadowRadius value="0.937500" />
-    <TechPurchaseCamera value="Star2CameraMid05" />
-    <UnitGlossaryCamera value="Star2CameraMid05" />
-  </CModel>
-  <CModel id="KelMorianAutoTurretPlacement" parent="Placement" Race="Terran">
-    <Model value="Assets\Buildings\Terran\AutoturretPlacement\AutoturretPlacement.m3" />
-    <!--ScaleMax value="0.800000,0.800000,0.800000"/>
-        <ScaleMin value="0.800000,0.800000,0.800000"/-->
-    <LowQualityModel value="KelMorianAutoTurret" />
-    <SelectionRadius value="0.625000" />
-    <ShadowRadius value="0.625000" />
   </CModel>
   <CModel id="KelMorianGrenadeTurret" parent="Building">
     <Model value="Assets\Buildings\Terran\GrenadeTurret\GrenadeTurret.m3" />
@@ -2232,16 +1400,6 @@
       <Payload value="PhaseCannon_PowerOff" />
     </Events>
   </CModel>
-  <CModel id="RavagerAbathurCocoon" parent="Unit" Race="Zerg">
-    <Model value="Assets\Units\Zerg\Ravager_Egg\Ravager_Egg.m3" />
-    <Occlusion value="Show" />
-    <Radius value="0.600000" />
-    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
-        <ScaleMin value="1.300000,1.300000,1.300000"/-->
-    <SelectionRadius value="0.625000" />
-    <ShadowRadius value="0.625000" />
-    <SquibTypeDefault value="Flesh" />
-  </CModel>
   <CModel id="Raven_BlackOps" parent="Unit" Race="Terran">
     <Occlusion value="Show" />
     <ScaleMax value="0.800000,0.800000,0.800000" />
@@ -2262,37 +1420,6 @@
     </Events>
   </CModel>
   <CModel id="Raven_BlackOps_ReEntry" parent="RaceOneShotSpellFX" Race="Terran" />
-  <CModel id="ScourgeNest" parent="Building" Race="Zerg">
-    <Model value="Assets\Buildings\Zerg\Zerg_ScourgeNest\Zerg_ScourgeNest.m3" />
-    <Lighting value="ScourgeNestDeath" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="1.750000" />
-    <ShadowRadius value="1.750000" />
-    <Radius value="1.500000" />
-  </CModel>
-  <CModel id="ScourgeNestDeath" parent="Building" Race="Zerg">
-    <Model value="Assets\Buildings\Zerg\Zerg_ScourgeNest_Death\Zerg_ScourgeNest_Death.m3" />
-    <SelectionLayer value="2" />
-    <SelectionRadius value="0.000000" />
-    <ShadowRadius value="0.000000" />
-    <Radius value="-1.000000" />
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="ZergExplosionMedium" />
-      <Type value="Sound" />
-      <Time value="0.010000" />
-    </Events>
-    <Events>
-      <Anim value="Death,00" />
-      <Name value="ZergExplosionLarge" />
-      <Type value="Sound" />
-      <Time value="0.700000" />
-    </Events>
-  </CModel>
-  <CModel id="ScourgeNestPlacement" parent="Building" Race="Zerg">
-    <Model value="Assets\Buildings\Zerg\Zerg_ScourgeNest_Placement\Zerg_ScourgeNest_Placement.m3" />
-    <LowQualityModel value="ScourgeNest" />
-  </CModel>
   <CModel id="SIBanshee" parent="Unit" Race="Terran">
     <Model value="Assets\Units\Terran\Banshee\Banshee.m3" />
     <AttachProps Id="Ref_Hit 01">
@@ -2325,7 +1452,6 @@
   <CModel id="SIInfestedMarine" parent="InfestedTerranCampaign">
     <SquibTypeDefault value="Flesh" />
   </CModel>
-  <CModel id="SIOverlord" parent="Overlord" />
   <CModel id="SISupplyDepot" parent="SupplyDepot" />
   <CModel id="SOAMapWideChrono" Parent="PersistentSpellFX">
     <Model value="Assets\Effects\Protoss\Karax_MassChronoBoost\Karax_MassChronoBoost.m3" />
@@ -2530,6 +1656,880 @@
     <ShadowRadius value="1.000000" />
     <SquibTypeDefault value="Flesh" />
     <SelectionLayer value="2" />
+  </CModel>
+  <CModel id="AbathurCollectBiomassImpactHeal" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="AbathurCollectBiomassTarget" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3" />
+    <ScaleMax value="2.000000,2.000000,2.000000" />
+    <ScaleMin value="2.000000,2.000000,2.000000" />
+  </CModel>
+  <CModel id="AbathurLocustEggAMissileWeapon" parent="MissileFX">
+    <Model value="Assets\Units\Zerg\SwarmHostEgg\SwarmHostEgg.m3" />
+    <Occlusion value="Show" />
+    <SelectionLayer value="3" />
+    <SquibTypeDefault value="Flesh" />
+    <SelectionRadius value="0.666500" />
+    <ShadowRadius value="0.666500" />
+    <Events>
+      <Anim value="Death" />
+      <Name value="EggPop" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="SwarmHost_SpawnLaunch" />
+    </Events>
+  </CModel>
+  <CModel id="AbathurLocustEggAttackLaunchModel" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Zerg\BurrowFXSmall\BurrowFXSmall.m3" />
+    <EditorCategories value="Race:Zerg" />
+  </CModel>
+  <CModel id="AbathurLocustEggBMissileWeapon" parent="MissileFX">
+    <Model value="Assets\Units\Zerg\SwarmHostEgg\SwarmHostEgg.m3" />
+    <Occlusion value="Show" />
+    <SelectionLayer value="3" />
+    <SquibTypeDefault value="Flesh" />
+    <SelectionRadius value="0.666500" />
+    <ShadowRadius value="0.666500" />
+    <Events>
+      <Anim value="Death" />
+      <Name value="EggPop" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="SwarmHost_SpawnLaunch" />
+    </Events>
+  </CModel>
+  <CModel id="AbathurLocustEggCMissileWeapon" parent="MissileFX">
+    <Model value="Assets\Units\Zerg\SwarmHostEgg\SwarmHostEgg.m3" />
+    <Occlusion value="Show" />
+    <SelectionLayer value="3" />
+    <SquibTypeDefault value="Flesh" />
+    <SelectionRadius value="0.666500" />
+    <ShadowRadius value="0.666500" />
+    <Events>
+      <Anim value="Death" />
+      <Name value="EggPop" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="SwarmHost_SpawnLaunch" />
+    </Events>
+  </CModel>
+  <CModel id="AbathurMendImpactModel" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Zerg\MendImpact\MendImpact.m3" />
+    <EditorCategories value="Race:Zerg" />
+    <ScaleMax value="1.300000,1.300000,1.300000" />
+    <ScaleMin value="1.300000,1.300000,1.300000" />
+  </CModel>
+  <CModel id="AbathurPortraitEx3" parent="FXAPortrait" Race="Zerg">
+    <Image value="Assets\Textures\SMX1_EvolutionMasterPortrait_Static.dds" />
+    <Model value="Assets\Portraits\Zerg\AbathurEx3_Portrait\AbathurEx3_Portrait.m3" />
+    <!--RequiredAnims value="Assets\StoryModeCharacters\Zerg\SMX1_EvolutionMaster_RequiredAnims_Portrait\SMX1_EvolutionMaster_RequiredAnims_Portrait.m3a"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Zerg\SMX1_EvolutionMaster_FacialAnims\SMX1_EvolutionMaster_FacialAnims.m3a"/-->
+    <!--FacialController value="LocalizedData\Facial\SMX1_EvolutionMaster.fxa"/-->
+    <Flags index="Download" value="1" />
+  </CModel>
+  <CModel id="AbathurSymbiote" parent="PersistentSpellFX">
+    <Model value="Assets\Units\Zerg\Symbiote_Ex3\Symbiote_Ex3.m3" />
+    <EditorCategories value="Race:Zerg" />
+    <ScaleMax value="0.850000,0.850000,0.850000" />
+    <ScaleMin value="0.850000,0.850000,0.850000" />
+  </CModel>
+  <CModel id="AbathurSymbioteBuffGlaze">
+    <Model value="Assets\Effects\Glaze\Glaze_VoidShard_VoidZone\Glaze_VoidShard_VoidZone.m3" />
+  </CModel>
+  <CModel id="AbathurUltimateEvolutionDropPod" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\ZergDropPod_AC\ZergDropPod_AC.m3" />
+    <EditorCategories value="Race:Terran" />
+    <!--ScaleMax value="0.500000,0.500000,0.500000"/>
+        <ScaleMin value="0.200000,0.200000,0.200000"/-->
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="BarracksDropPodLand" />
+      <Type value="Sound" />
+      <Time value="2.200000" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="OrbitalCommandDropPodDeathA" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="OrbitalCommand_DropPodDeathA" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="OrbitalCommandDropPodDeathB" />
+      <Type value="Sound" />
+      <Time value="1.600000" />
+      <Payload value="OrbitalCommand_DropPodDeathB" />
+    </Events>
+  </CModel>
+  <CModel id="AbathurUltimateEvolutionTimedLifeBuffGlaze">
+    <Model value="Assets\Effects\Glaze\Glaze_Corrupted_TangentSpace\Glaze_Corrupted_TangentSpace.m3" />
+  </CModel>
+  <CModel id="Baneling">
+    <RequiredAnims value="Assets\Units\Zerg\Baneling_VoidAnims\Baneling_VoidAnims.m3a" />
+  </CModel>
+  <CModel id="BileLauncherZagara" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\BileLauncher_Ex2\BileLauncher_Ex2.m3" />
+    <AttachProps Id="Ref_TurretZ">
+      <Keys index="Turret" value="0" />
+    </AttachProps>
+    <!-- <Events>
+            <Anim value="Attack,00"/>
+            <Name value="BileLauncher_AttackLaunch2"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="BileLauncher_AttackLaunch2"/>
+        </Events> -->
+    <Events>
+      <Anim value="Build,D,Start,00" />
+      <Name value="KorhalSporeCannon_Emerge" />
+      <Type value="Sound" />
+      <Time value="0.485000" />
+      <Payload value="KorhalSporeCannon_Emerge" />
+    </Events>
+    <PlanetPanelCamera value="Star2CameraHigher12" />
+    <Radius value="2.000000" />
+    <ScaleMax value="0.666667,0.666667,0.666667" />
+    <ScaleMin value="0.666667,0.666667,0.666667" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="2.000000" />
+    <ShadowRadius value="1.333200" />
+    <SquibTypeDefault value="Flesh" />
+    <TechPurchaseCamera value="Star2CameraHigher12" />
+    <UnitGlossaryCamera value="Star2CameraHigher12" />
+  </CModel>
+  <CModel id="BileLauncherZagaraDeath" parent="Building" Race="Zerg">
+    <Model value="Assets\Units\Zerg\BileLauncherDeath\BileLauncherDeath.m3" />
+    <Events>
+      <Anim value="Death" />
+      <Name value="KorhalSporeCannon_Death" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="KorhalSporeCannon_Death" />
+    </Events>
+    <Events>
+      <Anim value="Death" />
+      <Name value="KorhalSporeCannon_Geyser" />
+      <Type value="Sound" />
+      <Time value="0.850000" />
+      <Payload value="KorhalSporeCannon_Geyser" />
+    </Events>
+    <Radius value="2.000000" />
+    <ScaleMax value="0.666667,0.666667,0.666667" />
+    <ScaleMin value="0.666667,0.666667,0.666667" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="2.000000" />
+    <ShadowRadius value="1.333200" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="BileLauncherZagaraPlacement" parent="Placement" Race="Zerg">
+    <Model value="Assets\Units\Zerg\Bilelauncher_Placement\Bilelauncher_Placement.m3" />
+    <LowQualityModel value="BileLauncherZagara" />
+    <Radius value="2.000000" />
+    <ScaleMax value="0.666667,0.666667,0.666667" />
+    <ScaleMin value="0.666667,0.666667,0.666667" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="2.000000" />
+    <ShadowRadius value="1.333200" />
+    <SquibTypeDefault value="Flesh" />
+    <TechPurchaseCamera value="Star2CameraHigher12" />
+    <UnitGlossaryCamera value="Star2CameraHigher12" />
+  </CModel>
+  <CModel id="BiomassBuffImpact" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\Pickup_BioMass_Impact\Pickup_BioMass_Impact.m3" />
+  </CModel>
+  <CModel id="BiomassBuffPickup">
+    <Model value="Assets\Units\Zerg\PickUp_Biomass\PickUp_Biomass.m3" />
+    <EditorCategories value="Race:Zerg" />
+  </CModel>
+  <CModel id="BiomassBuffTargetHigh" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3" />
+    <ScaleMax value="2.350000,2.350000,2.350000" />
+    <ScaleMin value="2.350000,2.350000,2.350000" />
+  </CModel>
+  <CModel id="BiomassBuffTargetLow" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3" />
+    <ScaleMax value="1.650000,1.650000,1.650000" />
+    <ScaleMin value="1.650000,1.650000,1.650000" />
+  </CModel>
+  <CModel id="BiomassBuffTargetMed" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3" />
+    <ScaleMax value="2.000000,2.000000,2.000000" />
+    <ScaleMin value="2.000000,2.000000,2.000000" />
+  </CModel>
+  <CModel id="BiomassTargetMark">
+    <Model value="Assets\Units\Zerg\PickUp_Biomass\PickUp_Biomass.m3" />
+    <EditorCategories value="Race:Zerg" />
+    <ScaleMax value="0.500000,0.500000,0.500000" />
+    <ScaleMin value="0.500000,0.500000,0.500000" />
+  </CModel>
+  <CModel id="Brutalisk">
+    <ScaleMax value="2.250000,2.250000,2.250000" />
+    <ScaleMin value="2.250000,2.250000,2.250000" />
+    <Model value="Assets\Units\Zerg\BrutaliskEx3\BrutaliskEx3.m3" />
+    <Events>
+      <Anim value="Burrow,Superior,00" />
+      <Name value="Brutalisk_Dig_Burrow" />
+      <Type value="Sound" />
+      <Time value="0.009000" />
+      <Payload value="Brutalisk_Dig_Burrow" />
+    </Events>
+    <Events>
+      <Anim value="Unburrow,Superior,00" />
+      <Name value="Brutalisk_Dig_UnBurrow" />
+      <Type value="Sound" />
+      <Time value="0.008000" />
+      <Payload value="Brutalisk_Dig_UnBurrow" />
+    </Events>
+    <Events>
+      <Anim value="Unburrow,00" />
+      <Name value="Brutalisk_UnBurrow" />
+      <Type value="Sound" />
+      <Time value="0.006000" />
+      <Payload value="Brutalisk_UnBurrow" />
+    </Events>
+    <Events>
+      <Anim value="Burrow,00" />
+      <Name value="Brutalisk_Burrow" />
+      <Type value="Sound" />
+      <Time value="0.006000" />
+      <Payload value="Brutalisk_Burrow" />
+    </Events>
+    <Events>
+      <Anim value="Spell,00" />
+      <Name value="Brutalisk_Spell_Vx" />
+      <Type value="Sound" />
+      <Time value="0.094000" />
+      <Payload value="Brutalisk_Spell_Vx" />
+    </Events>
+    <Events>
+      <Anim value="Spell,00" />
+      <Name value="Brutalisk_Foot_ClawTip" />
+      <Type value="Sound" />
+      <Time value="0.038000" />
+      <Payload value="Brutalisk_Foot_ClawTip" />
+    </Events>
+    <Events>
+      <Anim value="Spell,00" />
+      <Name value="Brutalisk_Foot_ClawTip" />
+      <Type value="Sound" />
+      <Time value="1.286000" />
+      <Payload value="Brutalisk_Foot_ClawTip" />
+    </Events>
+    <Events>
+      <Anim value="Spell,00" />
+      <Name value="Brutalisk_Footsteps" />
+      <Type value="Sound" />
+      <Time value="1.415000" />
+      <Payload value="Brutalisk_Footsteps" />
+    </Events>
+    <Events>
+      <Anim value="Spell,A,00" />
+      <Name value="Brutalisk_Foot_ClawTip" />
+      <Type value="Sound" />
+      <Time value="0.016000" />
+      <Payload value="Brutalisk_Foot_ClawTip" />
+    </Events>
+    <Events>
+      <Anim value="Spell,A,00" />
+      <Name value="Brutalisk_Foot_ClawTip" />
+      <Type value="Sound" />
+      <Time value="0.481000" />
+      <Payload value="Brutalisk_Foot_ClawTip" />
+    </Events>
+    <Events>
+      <Anim value="Spell,A,00" />
+      <Name value="Brutalisk_Footsteps" />
+      <Type value="Sound" />
+      <Time value="0.546000" />
+      <Payload value="Brutalisk_Footsteps" />
+    </Events>
+    <Events>
+      <Anim value="Spell,A,00" />
+      <Name value="Brutalisk_AttackLaunch" />
+      <Type value="Sound" />
+      <Time value="0.548000" />
+      <Payload value="Brutalisk_AttackLaunch" />
+    </Events>
+    <Events>
+      <Anim value="Spell,A,00" />
+      <Name value="Brutalisk_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.685000" />
+      <Payload value="Brutalisk_AttackImpact" />
+    </Events>
+    <Events>
+      <Anim value="Spell,A,00" />
+      <Name value="Brutalisk_SpellA_Vx" />
+      <Type value="Sound" />
+      <Time value="0.015000" />
+      <Payload value="Brutalisk_SpellA_Vx" />
+    </Events>
+    <Events>
+      <Anim value="Spell,B,00" />
+      <Name value="Brutalisk_Foot_ClawTip" />
+      <Type value="Sound" />
+      <Time value="0.016000" />
+      <Payload value="Brutalisk_Foot_ClawTip" />
+    </Events>
+    <Events>
+      <Anim value="Spell,B,00" />
+      <Name value="Brutalisk_AttackLaunch" />
+      <Type value="Sound" />
+      <Time value="0.110000" />
+      <Payload value="Brutalisk_AttackLaunch" />
+    </Events>
+    <Events>
+      <Anim value="Spell,B,00" />
+      <Name value="Brutalisk_SpellA_Vx" />
+      <Type value="Sound" />
+      <Time value="0.015000" />
+      <Payload value="Brutalisk_SpellA_Vx" />
+    </Events>
+    <Events>
+      <Anim value="Spell,C,00" />
+      <Name value="Brutalisk_Stand2_Vx" />
+      <Type value="Sound" />
+      <Time value="0.009000" />
+      <Payload value="Brutalisk_Stand2_Vx" />
+    </Events>
+    <Events>
+      <Anim value="Spell,C,00" />
+      <Name value="Brutalisk_Dig" />
+      <Type value="Sound" />
+      <Time value="0.102000" />
+      <Payload value="Brutalisk_Dig" />
+    </Events>
+    <Events>
+      <Anim value="Fidget,00" />
+      <Name value="Brutalisk_Footsteps" />
+      <Type value="Sound" />
+      <Time value="4.837000" />
+      <Payload value="Brutalisk_Footsteps" />
+    </Events>
+    <Events>
+      <Anim value="Fidget,00" />
+      <Name value="Brutalisk_Foot_ClawTip" />
+      <Type value="Sound" />
+      <Time value="4.628000" />
+      <Payload value="Brutalisk_Foot_ClawTip" />
+    </Events>
+    <Events>
+      <Anim value="Fidget,00" />
+      <Name value="Brutalisk_Foot_ClawTip" />
+      <Type value="Sound" />
+      <Time value="0.146000" />
+      <Payload value="Brutalisk_Foot_ClawTip" />
+    </Events>
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Brutalisk_AttackLaunch" />
+      <Type value="Sound" />
+      <Time value="0.231000" />
+      <Payload value="Brutalisk_AttackLaunch" />
+    </Events>
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Brutalisk_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.313000" />
+      <Payload value="Brutalisk_AttackImpact" />
+    </Events>
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Brutalisk_AttackLaunch" />
+      <Type value="Sound" />
+      <Time value="0.585000" />
+      <Payload value="Brutalisk_AttackLaunch" />
+    </Events>
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Brutalisk_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.764000" />
+      <Payload value="Brutalisk_AttackImpact" />
+    </Events>
+    <Events>
+      <Anim value="Attack,03" />
+      <Name value="Brutalisk_AttackLaunch" />
+      <Type value="Sound" />
+      <Time value="0.057000" />
+      <Payload value="Brutalisk_AttackLaunch" />
+    </Events>
+    <Events>
+      <Anim value="Attack,03" />
+      <Name value="Brutalisk_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.171000" />
+      <Payload value="Brutalisk_AttackImpact" />
+    </Events>
+    <Events>
+      <Anim value="Attack,03" />
+      <Name value="Brutalisk_AttackLaunch" />
+      <Type value="Sound" />
+      <Time value="0.441000" />
+      <Payload value="Brutalisk_AttackLaunch" />
+    </Events>
+    <Events>
+      <Anim value="Attack,03" />
+      <Name value="Brutalisk_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.563000" />
+      <Payload value="Brutalisk_AttackImpact" />
+    </Events>
+    <Events>
+      <Anim value="Attack,04" />
+      <Name value="Brutalisk_AttackLaunch" />
+      <Type value="Sound" />
+      <Time value="0.202000" />
+      <Payload value="Brutalisk_AttackLaunch" />
+    </Events>
+    <Events>
+      <Anim value="Attack,04" />
+      <Name value="Brutalisk_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.400000" />
+      <Payload value="Brutalisk_AttackImpact" />
+    </Events>
+    <Radius value="0.500000" />
+  </CModel>
+  <CModel id="BrutaliskCocoon" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\Generic_Morph_Egg\Generic_Morph_Egg.m3" />
+    <Occlusion value="Show" />
+    <Radius value="0.600000" />
+    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/-->
+    <SelectionRadius value="0.625000" />
+    <ShadowRadius value="0.625000" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="BrutaliskCocoonDeath" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\Generic_Morph_Egg\Generic_Morph_Egg.m3" />
+    <Occlusion value="Show" />
+    <Radius value="0.600000" />
+    <ScaleMax value="1.740000,1.740000,1.740000" />
+    <ScaleMin value="1.740000,1.740000,1.740000" />
+    <SelectionRadius value="0.625000" />
+    <ShadowRadius value="0.625000" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="BrutaliskDeath">
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="Brutalisk_Death" />
+      <Type value="Sound" />
+      <Time value="0.014000" />
+      <Payload value="Brutalisk_Death" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="Brutalisk_Death_Roar_Vx" />
+      <Type value="Sound" />
+      <Time value="0.037000" />
+      <Payload value="Brutalisk_Death_Roar_Vx" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="Brutalisk_Blood_Spary" />
+      <Type value="Sound" />
+      <Time value="0.292000" />
+      <Payload value="Brutalisk_Blood_Spary" />
+    </Events>
+    <Events>
+      <Anim value="Death,01" />
+      <Name value="Brutalisk_Death" />
+      <Type value="Sound" />
+      <Time value="0.014000" />
+      <Payload value="Brutalisk_Death" />
+    </Events>
+    <Events>
+      <Anim value="Death,01" />
+      <Name value="Brutalisk_Death_Roar_Vx" />
+      <Type value="Sound" />
+      <Time value="0.037000" />
+      <Payload value="Brutalisk_Death_Roar_Vx" />
+    </Events>
+    <Events>
+      <Anim value="Death,01" />
+      <Name value="Brutalisk_Blood_Spary" />
+      <Type value="Sound" />
+      <Time value="0.292000" />
+      <Payload value="Brutalisk_Blood_Spary" />
+    </Events>
+    <LowQualityModel value="ZergLargeUnitDeathLow" />
+  </CModel>
+  <CModel id="CorrosiveAcidMissile" parent="MissileFX">
+    <Model value="Assets\Effects\Zerg\Devourer_AcidSpores_Missile\Devourer_AcidSpores_Missile.m3" />
+    <EditorCategories value="Race:Zerg" />
+  </CModel>
+  <CModel id="CreateSymbiotesCarapace">
+    <Model value="Assets\Effects\Protoss\SOA_GuardianShell\SOA_GuardianShell.m3" />
+  </CModel>
+  <CModel id="CreepColony" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\Creep_Colony\Creep_Colony.m3" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="1.333200" />
+    <SquibTypeDefault value="Flesh" />
+    <!--ScaleMin value="0.750000,0.750000,0.750000"/>
+        <ScaleMax value="0.750000,0.750000,0.750000"/-->
+    <Radius value="1.000000" />
+    <ShadowRadius value="1.176200" />
+    <TechPurchaseCamera value="Star2CameraHigh09" />
+    <UnitGlossaryCamera value="Star2CameraHigh09" />
+    <PlanetPanelCamera value="Star2CameraHigh09" />
+  </CModel>
+  <CModel id="CreepColonyDeath" parent="BuildingDeath" Race="Zerg">
+    <Model value="Assets\Doodads\CreepPods_Death\CreepPods_Death.m3" />
+    <SquibTypeDefault value="Flesh" />
+    <LowQualityModel value="ZergBuildingDeathLow" />
+  </CModel>
+  <CModel id="Drone_Primal_Collection" parent="Unit" Race="Zerg">
+    <RequiredAnims value="Assets\Units\Zerg\Drone_SwarmAnims\Drone_SwarmAnims.m3a" />
+    <AttachProps Id="Ref_Weapon Left">
+      <Keys index="Work" value="0" />
+    </AttachProps>
+    <Lighting value="Drone" />
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraMid04" />
+    <Radius value="0.400000" />
+    <ScaleMax value="0.900000,0.900000,0.900000" />
+    <ScaleMin value="0.900000,0.900000,0.900000" />
+    <SelectionRadius value="0.555400" />
+    <ShadowRadius value="0.555400" />
+    <SquibTypeDefault value="Flesh" />
+    <TechPurchaseCamera value="Star2CameraMid04" />
+    <Tipability value="0.750000" />
+    <TipabilityLength value="0.400000" />
+    <TipabilityWidth value="0.400000" />
+    <UnitGlossaryCamera value="Star2CameraMid04" />
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Drone_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.114000" />
+      <Payload value="Drone_AttackImpact" />
+    </Events>
+    <Events>
+      <Anim value="Attack,00" />
+      <Name value="Drone_AttackImpact" />
+      <Type value="Sound" />
+      <Time value="0.763000" />
+      <Payload value="Drone_AttackImpact" />
+    </Events>
+  </CModel>
+  <CModel id="Drone_Primal_Collection_Death" parent="UnitDeath" Race="Zerg">
+    <LowQualityModel value="ZergSmallUnitDeathLow" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="Drone_Primal_Collection_DeathAcid" parent="UnitDeath" Race="Zerg">
+    <LowQualityModel value="ZergSmallUnitDeathLow" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="Drone_Primal_Collection_DeathFire" parent="UnitDeath" Race="Zerg">
+    <LowQualityModel value="ZergSmallUnitDeathLow" />
+    <Occlusion value="Show" />
+  </CModel>
+  <CModel id="Drone_Primal_Collection_DeathRagdoll" parent="UnitDeathRagdoll" Race="Zerg">
+    <VariationCount value="2" />
+    <Variations Number="0" Probability="1" />
+    <Variations Number="1" Probability="1" />
+  </CModel>
+  <CModel id="EvolutionPit" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\Aiur_Temple_Generator_Infestation\Aiur_Temple_Generator_Infestation.m3" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="2.250000" />
+    <ShadowRadius value="2.250000" />
+    <Radius value="1.500000" />
+    <ScaleMax value="0.600000,0.600000,0.600000" />
+    <ScaleMin value="0.600000,0.600000,0.600000" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="EvolutionPitPlacement" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\SpawningPoolPlacement\SpawningPoolPlacement.m3" />
+    <LowQualityModel value="EvolutionPit" />
+  </CModel>
+  <CModel id="GlazeBiomass" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Glaze\Glaze_BioMass\Glaze_BioMass.m3" />
+    <EditorCategories value="Race:Terran" />
+  </CModel>
+  <CModel id="GuardianCocoon" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\BroodLordEgg\BroodLordEgg.m3" />
+    <Occlusion value="Show" />
+    <Radius value="0.625000" />
+    <ScaleMax value="0.850000,0.850000,0.850000" />
+    <ScaleMin value="0.850000,0.850000,0.850000" />
+    <SelectionOffset value="0.000000,0.000000,-0.400000" />
+    <SelectionRadius value="0.735000" />
+    <ShadowRadius value="0.735000" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="GuardianCocoonDeath" parent="UnitDeath">
+    <Model value="Assets\Units\Zerg\BroodLordEgg\BroodLordEgg.m3" />
+    <LowQualityModel value="ZergMediumUnitDeathLow" />
+    <EditorCategories value="Race:Zerg" />
+    <Occlusion value="Show" />
+    <SelectionOffset value="0.000000,0.000000,-0.400000" />
+    <SelectionRadius value="0.735000" />
+    <ShadowRadius value="0.735000" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="Hologram_Death_Large">
+    <Model value="Assets\Units\Zerg\Generic_Purifier_Hologram_Death\Generic_Purifier_Hologram_Death.m3" />
+    <ScaleMax value="2.000000,2.000000,2.000000" />
+    <ScaleMin value="2.000000,2.000000,2.000000" />
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="Hologram_Death_Large" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+      <Payload value="Hologram_Death_Large" />
+    </Events>
+  </CModel>
+  <CModel id="Hologram_Skin_Symbiote" parent="Broodling">
+    <Model value="Assets\Units\Zerg\Hologram_Skin_Symbiote\Hologram_Skin_Symbiote.m3" />
+  </CModel>
+  <CModel id="Hologram_Skin_Viper" parent="Unit" Race="Protoss">
+    <Events Anim="Death,00" Name="DeathEvent" Type="Custom" />
+    <Events Anim="Death,01" Name="DeathEvent" Type="Custom" />
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraMid10" />
+    <Radius value="0.900000" />
+    <ScaleMax value="0.800000,0.800000,0.800000" />
+    <ScaleMin value="0.800000,0.800000,0.800000" />
+    <SelectionOffset value="0.000000,0.000000,-0.700000" />
+    <SelectionRadius value="1.000000" />
+    <ShadowRadius value="1.000000" />
+    <SquibTypeDefault value="Flesh" />
+    <TechPurchaseCamera value="Star2CameraMid10" />
+    <Tipability value="0.050000" />
+    <UnitGlossaryCamera value="Star2CameraMid10" />
+  </CModel>
+  <CModel id="HotSLeviathan">
+    <ScaleMax value="0.600000,0.600000,0.600000" />
+    <ScaleMin value="0.600000,0.600000,0.600000" />
+  </CModel>
+  <CModel id="HotSSplitterlingBig">
+    <RequiredAnims value="Assets\Units\Zerg\Baneling_VoidAnims\Baneling_VoidAnims.m3a" />
+  </CModel>
+  <CModel id="HunterKiller">
+    <Radius value="0.625000" />
+  </CModel>
+  <CModel id="ImpalerAbathur" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\LurkerEx1A\LurkerEx1A.m3" />
+    <Occlusion value="Show" />
+    <SelectionRadius value="0.590500" />
+    <Tipability value="0.750000" />
+    <TipabilityWidth value="0.800000" />
+    <TipabilityLength value="0.800000" />
+    <SquibTypeDefault value="Flesh" />
+    <Radius value="0.700000" />
+    <!--ScaleMax value="1.650000,1.650000,1.650000"/>
+        <ScaleMin value="1.650000,1.650000,1.650000"/-->
+    <TechPurchaseCamera value="Star2CameraMid08" />
+    <UnitGlossaryCamera value="Star2CameraMid08" />
+    <PlanetPanelCamera value="Star2CameraMid08" />
+    <ShadowRadius value="0.900000" />
+  </CModel>
+  <CModel id="ImpalerAbathurEgg" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\LurkerEgg\LurkerEgg.m3" />
+    <Occlusion value="Show" />
+    <SquibTypeDefault value="Flesh" />
+    <!--ScaleMax value="1.275000,1.275000,1.275000"/>
+        <ScaleMin value="1.275000,1.275000,1.275000"/-->
+    <SelectionRadius value="0.764400" />
+    <ShadowRadius value="0.764400" />
+  </CModel>
+  <CModel id="KelMorianAutoTurret" parent="Building" Race="Terran">
+    <Model value="Assets\Buildings\Terran\AutoTurret\AutoTurret.m3" />
+    <AttachProps Id="Ref_Hardpoint">
+      <Keys index="Turret" value="0" />
+    </AttachProps>
+    <Occlusion value="Show" />
+    <PlanetPanelCamera value="Star2CameraMid05" />
+    <Radius value="0.750000" />
+    <!--ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/-->
+    <SelectionLayer value="2" />
+    <SelectionRadius value="0.937500" />
+    <ShadowRadius value="0.937500" />
+    <TechPurchaseCamera value="Star2CameraMid05" />
+    <UnitGlossaryCamera value="Star2CameraMid05" />
+  </CModel>
+  <CModel id="KelMorianAutoTurretPlacement" parent="Placement" Race="Terran">
+    <Model value="Assets\Buildings\Terran\AutoturretPlacement\AutoturretPlacement.m3" />
+    <!--ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/-->
+    <LowQualityModel value="KelMorianAutoTurret" />
+    <SelectionRadius value="0.625000" />
+    <ShadowRadius value="0.625000" />
+  </CModel>
+  <CModel id="LeviathanCocoon" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\Generic_Air_Morph_Egg\Generic_Air_Morph_Egg.m3" />
+    <Occlusion value="Show" />
+    <Radius value="0.600000" />
+    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/-->
+    <SelectionRadius value="0.625000" />
+    <ShadowRadius value="0.625000" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="LeviathanCocoonDeath" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\Generic_Air_Morph_Egg\Generic_Air_Morph_Egg.m3" />
+    <Occlusion value="Show" />
+    <Radius value="0.600000" />
+    <ScaleMax value="1.740000,1.740000,1.740000" />
+    <ScaleMin value="1.740000,1.740000,1.740000" />
+    <SelectionRadius value="0.625000" />
+    <ShadowRadius value="0.625000" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="LeviathanDeath">
+    <LowQualityModel value="ZergLargeUnitDeathLow" />
+  </CModel>
+  <CModel id="RavagerAbathur" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\Ravager\Ravager.m3" />
+    <Occlusion value="Show" />
+    <Radius value="0.750000" />
+    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/-->
+    <SelectionRadius value="0.750000" />
+    <ShadowRadius value="0.750000" />
+    <SquibTypeDefault value="Flesh" />
+    <UnitGlossaryCamera value="Star2CameraMid08" />
+  </CModel>
+  <CModel id="RavagerAbathurCocoon" parent="Unit" Race="Zerg">
+    <Model value="Assets\Units\Zerg\Ravager_Egg\Ravager_Egg.m3" />
+    <Occlusion value="Show" />
+    <Radius value="0.600000" />
+    <!--ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/-->
+    <SelectionRadius value="0.625000" />
+    <ShadowRadius value="0.625000" />
+    <SquibTypeDefault value="Flesh" />
+  </CModel>
+  <CModel id="RavagerCorrosiveBileAoePrecursor" parent="PersistentSpellFX">
+    <Model value="Assets\Effects\Zerg\Ravager_Artillery_Marker\Ravager_Artillery_Marker.m3" />
+    <EditorCategories value="Race:Zerg" />
+    <RadiusLoose value="0.500000" />
+  </CModel>
+  <CModel id="ScourgeNest" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\Zerg_ScourgeNest\Zerg_ScourgeNest.m3" />
+    <Lighting value="ScourgeNestDeath" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="1.750000" />
+    <ShadowRadius value="1.750000" />
+    <Radius value="1.500000" />
+  </CModel>
+  <CModel id="ScourgeNestDeath" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\Zerg_ScourgeNest_Death\Zerg_ScourgeNest_Death.m3" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="0.000000" />
+    <ShadowRadius value="0.000000" />
+    <Radius value="-1.000000" />
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="ZergExplosionMedium" />
+      <Type value="Sound" />
+      <Time value="0.010000" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="ZergExplosionLarge" />
+      <Type value="Sound" />
+      <Time value="0.700000" />
+    </Events>
+  </CModel>
+  <CModel id="ScourgeNestPlacement" parent="Building" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\Zerg_ScourgeNest_Placement\Zerg_ScourgeNest_Placement.m3" />
+    <LowQualityModel value="ScourgeNest" />
+  </CModel>
+  <CModel id="SIOverlord" parent="Overlord" />
+  <CModel id="SymbioteCarapaceAOE">
+    <Model value="Assets\Effects\Protoss\SOA_GuardianShell\SOA_GuardianShell.m3" />
+  </CModel>
+  <CModel id="SymbioteCarapaceBrutalisk">
+    <Model value="Assets\Effects\Zerg\Symbiote_Carapace_Lg\Symbiote_Carapace_Lg.m3" />
+  </CModel>
+  <CModel id="SymbioteCarapaceGlaze">
+    <Model value="Assets\Effects\Glaze\Glaze_Symbiote_Carapace\Glaze_Symbiote_Carapace.m3" />
+  </CModel>
+  <CModel id="SymbioteCarapaceLeviathan">
+    <Model value="Assets\Effects\Zerg\Symbiote_Carapace_Long\Symbiote_Carapace_Long.m3" />
+  </CModel>
+  <CModel id="SymbioteSpikedBurst" parent="MissileFX">
+    <Model value="Assets\Effects\Zerg\Symbiote_SpikeBurst\Symbiote_SpikeBurst.m3" />
+  </CModel>
+  <CModel id="SymbioteStabImpact" parent="OneShotSpellFX">
+    <Model value="Assets\Effects\Zerg\Symbiote_Stab_Impact\Symbiote_Stab_Impact.m3" />
+    <EditorCategories value="Race:Zerg" />
+  </CModel>
+  <CModel id="SymbioteStabWeapon" parent="MissileFX">
+    <Model value="Assets\Effects\Zerg\Symbiote_Stab_Missile\Symbiote_Stab_Missile.m3" />
+    <Events>
+      <Anim value="Birth,00" />
+      <Name value="SymbioteStab_LaunchMissile" />
+      <Type value="Sound" />
+      <Time value="0.007000" />
+      <Payload value="SymbioteStab_LaunchMissile" />
+    </Events>
+  </CModel>
+  <CModel id="ToxicNest" parent="Building" Race="Zerg">
+    <Occlusion value="Show" />
+    <SelectionLayer value="2" />
+    <SelectionRadius value="0.650000" />
+    <SquibTypeDefault value="Flesh" />
+    <Tipability value="1.000000" />
+    <TipabilityLength value="0.300000" />
+    <TipabilityWidth value="0.300000" />
+  </CModel>
+  <CModel id="ToxicNestDeath" parent="BuildingDeath" Race="Zerg">
+    <Model value="Assets\Buildings\Zerg\ToxicNest_Death\ToxicNest_Death.m3" />
+    <LowQualityModel value="ZergSmallUnitDeathLow" />
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="ToxicNest_Death" />
+      <Type value="Sound" />
+      <Time value="0.301000" />
+      <Payload value="ToxicNest_Death" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="ToxicNest_Swell" />
+      <Type value="Sound" />
+      <Time value="0.016000" />
+      <Payload value="ToxicNest_Swell" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="ToxicNest_Death_Giz" />
+      <Type value="Sound" />
+      <Time value="0.438000" />
+      <Payload value="ToxicNest_Death_Giz" />
+    </Events>
+    <Events>
+      <Anim value="Death,00" />
+      <Name value="ToxicNest_Spray" />
+      <Type value="Sound" />
+      <Time value="0.845000" />
+      <Payload value="ToxicNest_Spray" />
+    </Events>
+  </CModel>
+  <CModel id="ToxicNestHitTest">
+    <Model value="Assets\Units\Test\HitTestSphere\HitTestSphere.m3" />
+    <Radius value="0.200000" />
+    <ScaleMax value="0.200000,0.200000,0.200000" />
+    <ScaleMin value="0.200000,0.200000,0.200000" />
+    <SelectionLayer value="3" />
+  </CModel>
+  <CModel id="ToxicNestRangeSplat">
+    <Model value="Assets\UI\ZergAOECursorEx2\ZergAOECursorEx2.m3" />
+    <EditorCategories value="Race:Zerg" />
+    <ScaleMax value="0.400000,0.400000,1.000000" />
+    <ScaleMin value="0.400000,0.400000,1.000000" />
+    <SelectionRadius value="2.500000" />
+    <ShadowRadius value="2.500000" />
   </CModel>
   <CModel id="ZagaraVoidCoop" parent="Unit" Race="Zerg">
     <Model value="Assets\Units\Zerg\Zagara\Zagara.m3" />

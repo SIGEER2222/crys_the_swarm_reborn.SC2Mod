@@ -213,10 +213,6 @@
     <Find value="1" />
     <Value value="CommanderPrestigeDehakaPackLeaders" />
   </CValidatorPlayerRequirement>
-  <CValidatorUnitCompareBehaviorCount id="CommanderPrestigeDehakaPackLeadersExitGame">
-    <Compare value="GT" />
-    <Behavior value="CommanderPrestigeDehakaPackLeadersExitGame" />
-  </CValidatorUnitCompareBehaviorCount>
   <CValidatorPlayerRequirement id="CommanderPrestigeFenixSuitSwap">
     <WhichPlayer Value="Creator" />
     <Find value="1" />
@@ -289,10 +285,6 @@
     <WhichPlayer Value="Creator" />
     <UnitSelectionNotRequired value="1" />
   </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="CommanderPrestigeVorazunEmergencyRecallSeekPylon">
-    <Find value="1" />
-    <Value value="CommanderPrestigeVorazunEmergencyRecallSeekPylon" />
-  </CValidatorPlayerRequirement>
   <CValidatorPlayerRequirement id="CommanderPrestigeVorazunStasis">
     <Find value="1" />
     <Value value="CommanderPrestigeVorazunStasis" />
@@ -334,36 +326,6 @@
     <LaunchLocation Value="SourcePoint" />
     <SearchFilters value="-;Self,Ally,Neutral,Enemy,Dead,Hidden" />
   </CValidatorLocationEnumArea>
-  <CValidatorPlayerRequirement id="CoopHaveHunter">
-    <Find value="1" />
-    <Value value="CoopHaveHunter" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="CoopHaveSplitterling">
-    <Find value="1" />
-    <Value value="CoopHaveSplitterling" />
-  </CValidatorPlayerRequirement>
-  <CValidatorUnitCompareOrderTargetRange id="DehakaConsumeRangeCheck">
-    <Compare value="GT" />
-    <AbilLink value="DehakaConsume" />
-    <Value value="12" />
-  </CValidatorUnitCompareOrderTargetRange>
-  <CValidatorUnitFilters id="DehakaConsumeTargetNotDead">
-    <WhichUnit Effect="DehakaConsumeLaunchMissile" />
-    <Filters value="-;Dead" />
-  </CValidatorUnitFilters>
-  <CValidatorUnitType id="DehakaCoopReviveEatUnitType">
-    <Value value="DehakaDrone" />
-  </CValidatorUnitType>
-  <CValidatorUnitCompareOrderTargetRange id="DehakaLeapRangeCheck">
-    <Compare value="GT" />
-    <AbilLink value="DehakaLeapStomp" />
-    <Value value="12" />
-  </CValidatorUnitCompareOrderTargetRange>
-  <CValidatorUnitCompareOrderTargetRange id="DisruptorPurificationNovaRangeCheck">
-    <Compare value="GT" />
-    <AbilLink value="FenixPurificationNova" />
-    <Value value="12" />
-  </CValidatorUnitCompareOrderTargetRange>
   <CValidatorUnitCompareBehaviorCount id="DoesNotHaveSOAMapWideChronoPassiveTarget">
     <Behavior value="SOAMapWideChronoPassiveTarget" />
   </CValidatorUnitCompareBehaviorCount>
@@ -399,18 +361,9 @@
   <CValidatorUnitType id="FenixTalisAdept">
     <Value value="FenixTalisAdept" />
   </CValidatorUnitType>
-  <CValidatorUnitCompareBehaviorCount id="HasTargetedRevive">
-    <WhichUnit Value="Caster" />
-    <Behavior value="TargetedRevive" />
-    <Value value="1" />
-  </CValidatorUnitCompareBehaviorCount>
   <CValidatorPlayerRequirement id="HaveAbathurVirulentNest">
     <Find value="1" />
     <Value value="HaveAbathurHiddenToxicNest" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveAberrationArmorAura">
-    <Find value="1" />
-    <Value value="HaveAberrationArmorAura" />
   </CValidatorPlayerRequirement>
   <CValidatorPlayerRequirement id="HaveAlarakAreaDamageUpgrade">
     <Find value="1" />
@@ -487,10 +440,6 @@
     <Behavior value="AlarakZealotFrenziedOverload" />
     <WhichUnit Value="Caster" />
   </CValidatorUnitCompareBehaviorCount>
-  <CValidatorPlayerRequirement id="HaveBlackOps">
-    <Value value="HaveBlackOps" />
-    <Find value="1" />
-  </CValidatorPlayerRequirement>
   <CValidatorPlayerRequirement id="HaveCarrierRepairDrones">
     <Find value="1" />
     <Value value="HaveCarrierRepairDrones" />
@@ -507,21 +456,9 @@
     <Find value="1" />
     <Value value="HaveCorsairPermanentCloak" />
   </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveDehakaCoopStage2">
-    <Find value="1" />
-    <Value value="HaveDehakaCoopStage2" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveDehakaCoopStage3">
-    <Find value="1" />
-    <Value value="HaveDehakaCoopStage3" />
-  </CValidatorPlayerRequirement>
   <CValidatorPlayerRequirement id="HaveFenixKaldalisCleave">
     <Find value="1" />
     <Value value="HaveKaldalisCleave" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveFenixNetworkedSuperiority">
-    <Find value="1" />
-    <Value value="HaveFenixNetworkedSuperiority" />
   </CValidatorPlayerRequirement>
   <CValidatorLocationEnumArea id="HaveGroundEnemiesNearby">
     <WhichLocation Value="CasterUnitOrPoint" />
@@ -532,15 +469,6 @@
   <CValidatorPlayerRequirement id="HaveHavacPermanentCloak">
     <Find value="1" />
     <Value value="HaveAlarakHavocPermanentCloak" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveHHDoubleSupply">
-    <Find value="1" />
-    <Value value="HaveHHDoubleSupply" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveHHTacticalJump">
-    <ResultNoPlayer value="Error" />
-    <Find value="1" />
-    <Value value="HaveHHTacticalJump" />
   </CValidatorPlayerRequirement>
   <CValidatorPlayerRequirement id="HaveHighTemplarImprovedSacrifice">
     <Find value="1" />
@@ -553,14 +481,6 @@
     <CombineArray value="HaveKerriganPrimalRage4" />
     <CombineArray value="HaveKerriganPrimalRage5" />
   </CValidatorCombine>
-  <CValidatorPlayerRequirement id="HaveLaserDrillBFG">
-    <Find value="1" />
-    <Value value="HaveLaserDrillBFG" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveLaserDrillNuke">
-    <Find value="1" />
-    <Value value="HaveLaserDrillNuke" />
-  </CValidatorPlayerRequirement>
   <CValidatorPlayerRequirement id="HaveMasteryAlarakAttackDamage">
     <Find value="1" />
     <Value value="HaveMasteryAlarakAutoAttackDamage" />
@@ -593,119 +513,19 @@
     <Find value="1" />
     <Value value="HaveMasteryAlarakWarpInTime" />
   </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryArtanisGuardianShellHeal">
-    <Find value="1" />
-    <Value value="HaveMasteryArtanisGuardianShellHeal" />
-    <UnitSelectionNotRequired value="1" />
-    <WhichPlayer Value="Creator" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryHornerBomberRadius">
-    <Find value="1" />
-    <Value value="HaveMasteryHornerBomberRadius" />
-    <UnitSelectionNotRequired value="1" />
-    <WhichPlayer Value="Creator" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryNovaArmyAttackSpeed">
-    <Find value="1" />
-    <Value value="HaveMasteryNovaArmyAttackSpeed" />
-    <UnitSelectionNotRequired value="1" />
-    <WhichPlayer Value="Creator" />
-  </CValidatorPlayerRequirement>
   <CValidatorPlayerRequirement id="HaveMasteryNovaArmyOOCRegenSpeed">
     <Find value="1" />
     <Value value="HaveMasteryNovaArmyOOCRegenSpeed" />
     <UnitSelectionNotRequired value="1" />
     <WhichPlayer Value="Creator" />
   </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryNovaEnergyRegen">
-    <Find value="1" />
-    <Value value="HaveMasteryNovaEnergyRegen" />
-    <UnitSelectionNotRequired value="1" />
-    <WhichPlayer Value="Creator" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryNovaNukeAndHoloDecoyCooldown">
-    <Find value="1" />
-    <Value value="HaveMasteryNovaNukeAndHoloDecoyCooldown" />
-    <UnitSelectionNotRequired value="1" />
-    <WhichPlayer Value="Creator" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryNovaPrimaryAbilityImprovement">
-    <WhichPlayer Value="Creator" />
-    <Find value="1" />
-    <UnitSelectionNotRequired value="1" />
-    <Value value="HaveMasteryNovaPrimaryAbilityImprovement" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryNovaWeaponAttackSpeed">
-    <Find value="1" />
-    <Value value="HaveMasteryNovaWeaponAttackSpeed" />
-    <UnitSelectionNotRequired value="1" />
-    <WhichPlayer Value="Creator" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryVorazunChronoBoostSpeed">
-    <Find value="1" />
-    <Value value="HaveMasteryVorazunChronoBoostSpeed" />
-    <WhichPlayer Value="Creator" />
-    <UnitSelectionNotRequired value="1" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryVorazunDarkPylonCloakRadius">
-    <Find value="1" />
-    <Value value="HaveMasteryVorazunDarkPylonCloakRadius" />
-    <WhichPlayer Value="Creator" />
-    <UnitSelectionNotRequired value="1" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveMasteryVorazunTimeStopHaste">
-    <Find value="1" />
-    <Value value="HaveMasteryVorazunTimeStopHaste" />
-    <WhichPlayer Value="Creator" />
-    <UnitSelectionNotRequired value="1" />
-  </CValidatorPlayerRequirement>
   <CValidatorPlayerRequirement id="HaveNoSnapshots">
     <Find value="1" />
     <Value value="HaveNoSnapshots" />
   </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveNovaCombatSuit">
-    <ResultNoPlayer value="Error" />
-    <Find value="1" />
-    <Value value="HaveNovaCombatSuit" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveNovaDetector">
-    <Find value="1" />
-    <Value value="HaveNovaDetector" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveNovaStanceDance">
-    <ResultNoPlayer value="Error" />
-    <Find value="1" />
-    <Value value="HaveNovaStanceDance" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveNovaStealthSuit">
-    <ResultNoPlayer value="Error" />
-    <Find value="1" />
-    <Value value="HaveNovaStealthSuit" />
-  </CValidatorPlayerRequirement>
-  <CValidatorUnitCompareBehaviorCount id="HaveNovaWeaponImprovedCanisterRifleBehavior">
-    <WhichUnit Value="Caster" />
-    <Value value="1" />
-    <Behavior value="NovaWeaponImprovedCanisterRifle" />
-  </CValidatorUnitCompareBehaviorCount>
   <CValidatorPlayerRequirement id="HavePlayerCommander">
     <Find value="1" />
     <Value value="HavePlayerCommander" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveSIBarracksTrainInfestedCivilianLevel2">
-    <Find value="1" />
-    <Value value="HaveSIBarracksTrainInfestedCivilianLevel2" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveSIBarracksTrainInfestedCivilianLevel3">
-    <Find value="1" />
-    <Value value="HaveSIBarracksTrainInfestedCivilianLevel3" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveSIBarracksTrainInfestedCivilianLevel4">
-    <Find value="1" />
-    <Value value="HaveSIBarracksTrainInfestedCivilianLevel4" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveSiegeTankSiegeModeProgressiveRangeIncease">
-    <Find value="1" />
-    <Value value="HaveSiegeTankSiegeModeProgressiveRangeIncease" />
   </CValidatorPlayerRequirement>
   <CValidatorUnitCompareBehaviorCount id="HaveTargetHHMercStarportCargoInstalledBehavior">
     <Behavior value="HHMercStarportCargoInstalled" />
@@ -730,26 +550,6 @@
     <Find value="1" />
     <Value value="HaveVorazunCommander" />
   </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveZagaraVoidCoopAberrationBanelingIncubation">
-    <ResultNoPlayer value="Error" />
-    <Find value="1" />
-    <Value value="HaveZagaraVoidCoopAberrationBanelingIncubation" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HaveZerglingArmorShred">
-    <Find value="1" />
-    <Value value="HaveZerglingArmorShred" />
-  </CValidatorPlayerRequirement>
-  <CValidatorPlayerRequirement id="HHBattlecruiserUpgraded">
-    <ResultNoPlayer value="Error" />
-    <Find value="1" />
-    <Value value="HaveHHBattlecruiserYamatoAttacks" />
-  </CValidatorPlayerRequirement>
-  <CValidatorUnitType id="IsAbathurSwarmHost">
-    <Value value="SwarmHost" />
-  </CValidatorUnitType>
-  <CValidatorUnitType id="IsAbathurSwarmHostBurrowed">
-    <Value value="SwarmHostBurrowed" />
-  </CValidatorUnitType>
   <CValidatorCombine id="IsaConjoinedUnit">
     <CombineArray value="HaveConjoinedTrainCar" />
   </CValidatorCombine>
@@ -785,10 +585,9 @@
   <CValidatorUnitType id="IsDeathFleetMothership">
     <Value value="SOAMothershipv4" />
   </CValidatorUnitType>
-  <CValidatorPlayerRequirement id="IsFenixCoopCommander">
-    <Find value="1" />
-    <Value value="HaveFenixCommander" />
-  </CValidatorPlayerRequirement>
+  <CValidatorUnitType id="IsDeathFleetVoidRay">
+    <Value value="VoidRayTaldarim" />
+  </CValidatorUnitType>
   <CValidatorPlayerRequirement id="IsHornerCoopCommander">
     <Find value="1" />
     <Value value="HaveHornerCommander" />
@@ -808,23 +607,10 @@
     <CombineArray value="IsMassive" />
     <CombineArray value="NotHaveAlarakDestructionWaveDistance" />
   </CValidatorCombine>
-  <CValidatorUnitCompareField id="IsMiraTakeOver">
-    <Field value="TacticalAIChannel" />
-    <Value value="MiraTakeOver" />
-  </CValidatorUnitCompareField>
   <CValidatorPlayerRequirement id="IsNovaCoopCommander">
     <Find value="1" />
     <Value value="HaveNovaCommander" />
   </CValidatorPlayerRequirement>
-  <CValidatorUnitType id="IsSiegeTankSiegedBlackOps">
-    <Value value="SiegeTankSieged_BlackOps" />
-  </CValidatorUnitType>
-  <CValidatorUnitType id="IsSISiegeTank">
-    <Value value="StukovInfestedSiegeTankUprooted" />
-  </CValidatorUnitType>
-  <CValidatorUnitType id="IsSISiegeTankSieged">
-    <Value value="StukovInfestedSiegeTank" />
-  </CValidatorUnitType>
   <CValidatorCombine id="IsStructureorWarpPrismPhasing">
     <CombineArray value="IsStructure" />
     <CombineArray value="IsWarpPrismTaldarimPhasing" />
@@ -917,13 +703,6 @@
     <Behavior value="FenixClolarionChargeBeamPhase3" />
     <Compare value="LE" />
   </CValidatorUnitCompareBehaviorCount>
-  <CValidatorPlayerRequirement id="NoKerriganInstantReviveCooldown">
-    <Find value="1" />
-    <Value value="NoKerriganInstantReviveCooldown" />
-  </CValidatorPlayerRequirement>
-  <CValidatorUnitCompareBehaviorCount id="NoPrecursor">
-    <Behavior value="Precursor" />
-  </CValidatorUnitCompareBehaviorCount>
   <CValidatorUnitCompareBehaviorCount id="NoPreventKnockback">
     <Behavior value="PreventKnockback" />
   </CValidatorUnitCompareBehaviorCount>
@@ -959,17 +738,6 @@
   <CValidatorUnitCompareBehaviorCount id="NotHaveDarkArchonMindControl">
     <Behavior value="DarkArchonMindControl" />
   </CValidatorUnitCompareBehaviorCount>
-  <CValidatorPlayerRequirement id="NotHaveFenixNetworkedSuperiority">
-    <Value value="HaveFenixNetworkedSuperiority" />
-  </CValidatorPlayerRequirement>
-  <CValidatorUnitCompareBehaviorCount id="NotHaveNovaCombatSuit">
-    <Compare value="LT" />
-    <Value value="1" />
-    <Behavior value="NovaCombatSuit" />
-  </CValidatorUnitCompareBehaviorCount>
-  <CValidatorUnitCompareBehaviorCount id="NotHaveNovaUnitLockdownDummy">
-    <Behavior value="NovaUnitLockdownDummy" />
-  </CValidatorUnitCompareBehaviorCount>
   <CValidatorUnitCompareBehaviorCount id="NotHaveVorazunCloakedShieldRegenActive">
     <Behavior value="VorazunCloakedShieldRegen" />
   </CValidatorUnitCompareBehaviorCount>
@@ -1003,33 +771,16 @@
   <CValidatorUnitCompareBehaviorCount id="NotUltraliskFrenzy">
     <Behavior value="Frenzy" />
   </CValidatorUnitCompareBehaviorCount>
-  <CValidatorCombine id="NotUndevourableMapBoss">
-    <ResultFailed value="Error,Error/CantTargetMapBoss" />
-    <CombineArray value="NotMapBoss" />
-    <CombineArray value="IsMutatorAmonDehaka" />
-  </CValidatorCombine>
   <CValidatorUnitCompareBehaviorCount id="NotUnrepairable">
     <ResultFailed value="CantTargetThatUnit,Error/Unrepairable" />
     <Behavior value="Unrepairable" />
   </CValidatorUnitCompareBehaviorCount>
-  <CValidatorUnitCompareOrderTargetRange id="NovaBlinkRangeCheck">
-    <Compare value="GT" />
-    <AbilLink value="NovaBlink" />
-    <Value value="35" />
-  </CValidatorUnitCompareOrderTargetRange>
   <CValidatorCombine id="SelfOrEnemyOrNeutral">
     <CombineArray value="TargetIsSelf" />
     <CombineArray value="TargetIsEnemyOrNeutral" />
   </CValidatorCombine>
-  <CValidatorUnitFilters id="ShadowCannonTargetIsGroundUnitFilter">
-    <Filters value="Ground;-" />
-    <WhichUnit Effect="ImmortalShakurasShadowCannonTargetingCP" />
-  </CValidatorUnitFilters>
   <CValidatorUnitType id="SICivilianStructure">
     <Value value="SICivilianStructure" />
-  </CValidatorUnitType>
-  <CValidatorUnitType id="SICivilianStructureFlying">
-    <Value value="SICivilianStructureFlying" />
   </CValidatorUnitType>
   <CValidatorUnitCompareVital id="SlaynElementalAOEGrabMaxLifeGTE100">
     <WhichUnit Effect="SlaynElementalGrabAOELM" />
@@ -1121,12 +872,6 @@
     <Value value="KhaydarinMonolith" />
     <Type value="SelectAlias" />
   </CValidatorUnitType>
-  <CValidatorPlayerRequirement id="SourceisHornerCoopCommander">
-    <Find value="1" />
-    <Value value="HaveHornerCommander" />
-    <WhichUnit Value="Source" />
-    <WhichPlayer Value="Source" />
-  </CValidatorPlayerRequirement>
   <CValidatorLocationEnumArea id="SupplicantIsInRange">
     <WhichLocation Value="CasterUnit" />
     <AreaArray>
@@ -1176,11 +921,6 @@
     <Value value="Monitor" />
     <Find value="0" />
   </CValidatorUnitType>
-  <CValidatorCombine id="TargetIsNotNonCommanderAlly">
-    <ResultFailed value="CantTargetThatUnit" />
-    <CombineArray value="TargetisAnyCommander" />
-    <CombineArray value="TargetIsEnemyOrNeutral" />
-  </CValidatorCombine>
   <CValidatorUnitFilters id="TargetIsUnderConstruction">
     <Filters value="UnderConstruction;-" />
   </CValidatorUnitFilters>

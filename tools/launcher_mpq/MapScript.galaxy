@@ -22,7 +22,7 @@ void InitLibs () {
 const int gv_commanderNum = 18;
 const int gv_achN = 7;
 const int gv_bonN = 5;
-const int gv_maps = 29;
+const int gv_maps = 30;
 
 //--------------------------------------------------------------------------------------------------
 // Global Structures
@@ -640,6 +640,8 @@ bool gt_CommanderChange_Func (bool testConds, bool runActions) {
             gv_commanderIndex = lv_i;
             DialogControlSetVisible(gv_selectionBorder[lv_i], PlayerGroupAll(), true);
             gv_commander = UserDataGetString("CommanderPreset", "ID", "Commander", lv_j);
+            BankValueSetFromString(BankLastCreated(), "Ach", "Commander", gv_commander);
+            BankSave(BankLastCreated());
             lv_sound = UserDataGetSound("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(gv_commander), "Sound", 1);
             if ((lv_sound != "")) {
                 SoundPlayForPlayer(SoundLink(lv_sound, c_soundIndexAny), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);

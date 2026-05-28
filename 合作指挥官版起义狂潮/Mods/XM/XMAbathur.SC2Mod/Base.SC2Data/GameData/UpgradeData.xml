@@ -1,1013 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
-  <CUpgrade id="AbathurBiomassLifeLeech">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <EffectArray Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="0.01" />
-    <EffectArray Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="0.01" />
-    <EffectArray Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="0.01" />
-    <EffectArray Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="0.01" />
-    <EffectArray Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="0.10" />
-    <EffectArray Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="0.10" />
-    <EffectArray Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="0.10" />
-    <EffectArray Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="0.10" />
-    <EffectArray Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="1.00" />
-    <EffectArray Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="1.00" />
-    <EffectArray Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="1.00" />
-    <EffectArray Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="1.00" />
-    <EffectArray Operation="Set" Reference="Button,BiomassPassive,Tooltip" Value="Button/Tooltip/BiomassPassiveUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,BiomassPassive,AlertTooltip" Value="Button/Tooltip/BiomassPassiveUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,BiomassPassiveRavager,Tooltip" Value="Button/Tooltip/BiomassPassiveRavagerUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,BiomassPassiveRavager,AlertTooltip" Value="Button/Tooltip/BiomassPassiveRavagerUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,BiomassPassiveEnergy,Tooltip" Value="Button/Tooltip/BiomassPassiveEnergyUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,BiomassPassiveEnergy,AlertTooltip" Value="Button/Tooltip/BiomassPassiveEnergyUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,BiomassPassiveArmor,Tooltip" Value="Button/Tooltip/BiomassPassiveArmorUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,BiomassPassiveArmor,AlertTooltip" Value="Button/Tooltip/BiomassPassiveArmorUpgraded" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="AbathurBiomassRefund">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <LeaderAlias value="" />
-    <EffectArray Reference="Effect,AbathurBiomassRefundDummy,Amount" Value="50" />
-  </CUpgrade>
-  <CUpgrade id="AbathurBioMechanicalTransfusion">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-biomechanicaltransfusion.dds" />
-    <EffectArray Operation="Set" Reference="Abil,Transfusion,DebugTrace" Value="0" />
-    <EffectArray Reference="Effect,QueenBurstHeal,VitalArray[Life].Change" Value="2" />
-    <AffectedUnitArray value="Queen" />
-    <AffectedUnitArray value="QueenBurrowed" />
-  </CUpgrade>
-  <CUpgrade id="AbathurCreepTumorEnsnare">
-    <Flags index="UpgradeCheat" value="0" />
-  </CUpgrade>
-  <CUpgrade id="AbathurEnableSymbiote">
-    <EffectArray Reference="Abil,AbathurSymbioteHangerBrutalisk,InfoArray[Ammo1].CountStart" Value="1" />
-    <EffectArray Reference="Abil,AbathurSymbioteHangerLeviathan,InfoArray[Ammo1].CountStart" Value="1" />
-    <AffectedUnitArray value="Brutalisk" />
-    <AffectedUnitArray value="HotSLeviathan" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="AbathurEnemyDeathCreateLocusts">
-    <Flags index="UpgradeCheat" value="0" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="AbathurHatcheryDoubleQueue">
-    <Flags index="UpgradeCheat" value="0" />
-    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-incubationchamber.dds" />
-    <AffectedUnitArray value="Hatchery" />
-    <AffectedUnitArray value="Lair" />
-    <AffectedUnitArray value="Hive" />
-  </CUpgrade>
-  <CUpgrade id="AbathurHiddenToxicNest">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="ToxicNestBurrowed" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="AbathurImprovedMend">
-    <Flags index="UpgradeCheat" value="0" />
-    <EffectArray Reference="Abil,AbathurMend,Cost[0].Charge.TimeUse" Value="120.000000" />
-    <EffectArray Reference="Abil,AbathurMend,Cost[0].Charge.CountUse" Value="1" />
-    <EffectArray Operation="Subtract" Reference="Abil,AbathurMend,Cost[0].Cooldown.TimeUse" Value="150" />
-    <EffectArray Reference="Abil,AbathurMend,Cost[0].Charge.CountStart" Value="1" />
-    <EffectArray Operation="Set" Reference="Button,AbathurMend,Tooltip" Value="Button/Tooltip/AbathurMendUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,AbathurMend,AlertTooltip" Value="Button/Tooltip/AbathurMendUpgraded" />
-    <EffectArray Reference="Abil,AbathurMend,Cost[0].Charge.CountMax" Value="3" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="CoopCasterAbathur" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="AbathurImprovedToxicNest">
-    <Flags index="UpgradeCheat" value="0" />
-    <EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountMax" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeUse" Value="5.000000" />
-    <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeStart" Value="5.000000" />
-    <EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountStart" Value="2" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="ToxicNestBurrowed" />
-  </CUpgrade>
-  <CUpgrade id="AbathurLocustAirAttack">
-    <Flags index="UpgradeCheat" value="0" />
-    <EffectArray Operation="Set" Reference="Weapon,LocustMP,TargetFilters" Value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="AbathurSymbiote" />
-  </CUpgrade>
-  <CUpgrade id="AbathurLocustNest">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <LeaderAlias value="AbathurHiddenToxicNest" />
-  </CUpgrade>
-  <CUpgrade id="AbathurMorphTimeCostReduced">
-    <!-- Train Time Reduction -->
-    <EffectArray Operation="Subtract" Reference="Abil,MorphRoachToRavager,InfoArray[Train1].Time" Value="4.5" />
-    <EffectArray Operation="Subtract" Reference="Abil,MutaliskMorphToDevourer,InfoArray[Train1].Time" Value="7.5" />
-    <EffectArray Operation="Subtract" Reference="Abil,MutaliskMorphToGuardian,InfoArray[Train1].Time" Value="7.5" />
-    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathur,CostResource[Minerals]" Value="12" />
-    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="37" />
-    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Minerals]" Value="12" />
-    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="37" />
-    <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Minerals]" Value="75" />
-    <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Vespene]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Minerals]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Vespene]" Value="50" />
-    <!--EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build1].Time" Value="30"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build2].Time" Value="7.5"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build3].Time" Value="15"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build4].Time" Value="7.5"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build5].Time" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build6].Time" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build7].Time" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build8].Time" Value="25"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build9].Time" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build10].Time" Value="25"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build11].Time" Value="15"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build14].Time" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build15].Time" Value="15"/>
-        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build16].Time" Value="15"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="50.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="50.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="50.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="30.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="30.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="30.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="30.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="30.000000"/>
-        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="30.000000"/-->
-    <AffectedUnitArray value="Roach" />
-    <AffectedUnitArray value="RoachVile" />
-    <AffectedUnitArray value="Mutalisk" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="AbathurMutaliskHealthScalingUpgrade">
-    <EffectArray Reference="Unit,Mutalisk,LifeMax" Value="25" />
-    <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Resource[Minerals]" Value="50" />
-    <EffectArray Reference="Unit,Mutalisk,LifeStart" Value="25" />
-    <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Resource[Vespene]" Value="50" />
-    <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Time" Value="30.000000" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Mutalisk" />
-    <AffectedUnitArray value="MutaliskBroodlord" />
-    <AffectedUnitArray value="MutaliskViper" />
-    <MaxLevel value="10" />
-    <LeaderAlias value="AbathurRoachRangeScalingUpgrade" />
-  </CUpgrade>
-  <CUpgrade id="AbathurNetworkedCarapace">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="AbathurSymbiote" />
-  </CUpgrade>
-  <CUpgrade id="AbathurRoachRangeScalingUpgrade">
-    <EffectArray Reference="Weapon,AcidSaliva,Range" Value="1" />
-    <EffectArray Reference="Weapon,AcidSaliva,MinScanRange" Value="1" />
-    <EffectArray Reference="Weapon,RoachCorpserAcidSaliva,Range" Value="1" />
-    <EffectArray Reference="Weapon,RoachCorpserAcidSaliva,MinScanRange" Value="1" />
-    <EffectArray Reference="Abil,RoachWarrenResearch,InfoArray[Research10].Resource[Minerals]" Value="50" />
-    <EffectArray Reference="Abil,RoachWarrenResearch,InfoArray[Research10].Resource[Vespene]" Value="50" />
-    <EffectArray Reference="Abil,RoachWarrenResearch,InfoArray[Research10].Time" Value="30.000000" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Roach" />
-    <AffectedUnitArray value="RoachBurrowed" />
-    <AffectedUnitArray value="RoachCorpser" />
-    <AffectedUnitArray value="RoachCorpserBurrowed" />
-    <AffectedUnitArray value="RoachVile" />
-    <AffectedUnitArray value="RoachVileBurrowed" />
-    <MaxLevel value="10" />
-  </CUpgrade>
-  <CUpgrade id="AbathurSymbiote">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <MaxLevel value="2" />
-  </CUpgrade>
-  <CUpgrade id="AbathurSymbioteAdrenalineBoost">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-  </CUpgrade>
-  <CUpgrade id="AbathurSymbioteDetection">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-  </CUpgrade>
-  <CUpgrade id="AbathurThornsAura">
-    <Flags index="UpgradeCheat" value="0" />
-  </CUpgrade>
-  <CUpgrade id="AbathurToxicNestIcreasedBiomass">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="ToxicNestBurrowed" />
-    <EffectArray Operation="Set" Reference="Button,SpawnToxicNest,Tooltip" Value="Button/Tooltip/SpawnToxicNestIncreasedBiomass" />
-    <EffectArray Operation="Set" Reference="Button,ToxicNestExplode,Tooltip" Value="Button/Tooltip/ToxicNestExplodeDoubleBiomass" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="AbathurToxicNestRespawnTalent">
-    <Flags index="UpgradeCheat" value="0" />
-    <EffectArray Operation="Set" Reference="Behavior,MasteryAbathurToxicNestRespawn,DamageResponse.Chance" Value="0.6" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="ToxicNestBurrowed" />
-    <AffectedUnitArray value="ToxicNest" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="AberrationArmorAura">
-    <Flags index="UpgradeCheat" value="0" />
-    <Icon value="Assets\Textures\btn-upgrade-zagara-aberrationarmorcover.dds" />
-    <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch" />
-    <AffectedUnitArray value="InfestedAbomination" />
-    <AffectedUnitArray value="InfestedAbominationBurrowed" />
-  </CUpgrade>
-  <CUpgrade id="BileLauncherBombardmentCooldown">
-    <Flags index="TechTreeCheat" value="1" />
-    <Icon value="Assets\Textures\btn-upgrade-zerg-demolition.dds" />
-    <Alert value="ResearchComplete" />
-    <Race value="Zerg" />
-    <ScoreResult value="BuildOrder" />
-    <EffectArray Reference="Weapon,BileLauncherZagaraBombardment,RateMultiplier" Value="0.4" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="BileLauncherZagara" />
-  </CUpgrade>
-  <CUpgrade id="BileLauncherIncreasedRange">
-    <Flags index="TechTreeCheat" value="1" />
-    <Icon value="Assets\Textures\btn-upgrade-zagara-increasebilelauncherrange.dds" />
-    <Alert value="ResearchComplete" />
-    <Race value="Zerg" />
-    <ScoreResult value="BuildOrder" />
-    <EffectArray Reference="Weapon,BileLauncherZagaraBombardment,Range" Value="10" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="BileLauncherZagara" />
-  </CUpgrade>
-  <CUpgrade id="Charge">
-    <ScoreAmount value="0" />
-  </CUpgrade>
-  <CUpgrade default="1" id="CommanderPrestige">
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="CommanderPrestigeAbathurUltEvo" parent="CommanderPrestige">
-    <EffectArray Reference="Effect,AbathurBiomassMaxStacksDummy,Amount" Value="100" />
-    <EffectArray Operation="Subtract" Reference="Behavior,AbathurPropArmor,Modification.LifeArmorBonus" Value=".025" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.AdditiveAttackSpeedFactor" Value=".005" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.VitalMaxAdditiveMultiplierArray[Life]" Value=".015" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.VitalRegenMultiplier[Energy]" Value=".025" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.AdditiveAttackSpeedFactor" Value=".05" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.RadiusMultiplier" Value=".0125" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.VitalMaxAdditiveMultiplierArray[Life]" Value=".15" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.VitalRegenMultiplier[Energy]" Value=".25" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.AdditiveAttackSpeedFactor" Value=".5" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.RadiusMultiplier" Value=".125" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalMaxAdditiveMultiplierArray[Life]" Value="1.5" />
-    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalRegenMultiplier[Energy]" Value="2.5" />
-  </CUpgrade>
-  <CUpgrade id="CoopMutalisk">
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="CreepTumorVisible">
-    <Flags index="UpgradeCheat" value="0" />
-    <AffectedUnitArray value="CreepTumorBurrowed" />
-  </CUpgrade>
-  <CUpgrade id="DevourerAoEDamage">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-devourer-corrosivespray.dds" />
-    <EffectArray Operation="Set" Reference="Effect,DevourerSearchSet,EffectArray[0]" Value="DevourerAoeDamage" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="Devourer" />
-  </CUpgrade>
-  <CUpgrade id="GenerateCreepHealingUpgrade">
-    <AffectedUnitArray value="Overlord" />
-    <EffectArray Operation="Set" Reference="Button,GenerateCreep,Icon" Value="Assets\Textures\btn-ability-zerg-carapace.dds" />
-  </CUpgrade>
-  <CUpgrade id="GuardianAttackRangeIncrease">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-prolongeddispersion.dds" />
-    <EffectArray Reference="Weapon,GuardianMPWeapon,Range" Value="3" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="GuardianMP" />
-  </CUpgrade>
-  <CUpgrade id="HotSHaveDevourer">
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="HotSHaveSpineCrawler">
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="HotSRapidRegeneration">
-    <Icon value="Assets\Textures\BTN-Upgrade-Zerg-RapidRegeneration.dds" />
-  </CUpgrade>
-  <CUpgrade id="HotSRoachDamage">
-    <Icon value="Assets\Textures\BTN-Upgrade-Zerg-HydriaticAcid.dds" />
-  </CUpgrade>
-  <CUpgrade id="HotSRoachShield">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-adaptivecarapace.dds" />
-  </CUpgrade>
-  <CUpgrade id="HotSViciousGlaive">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-viciousglaive.dds" />
-  </CUpgrade>
-  <CUpgrade id="HotSZerglingHealth">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-hardenedcarapace.dds" />
-  </CUpgrade>
-  <CUpgrade id="HydraliskFrenzy">
-    <Flags index="UpgradeCheat" value="0" />
-    <Icon value="Assets\Textures\btn-upgrade-zerg-frenzy.dds" />
-    <Alert value="ResearchComplete" />
-    <Race value="Zerg" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Hydralisk" />
-    <AffectedUnitArray value="HydraliskBurrowed" />
-    <AffectedUnitArray value="HydraliskImpaler" />
-    <AffectedUnitArray value="HydraliskImpalerBurrowed" />
-    <AffectedUnitArray value="HydraliskLurker" />
-    <AffectedUnitArray value="HydraliskLurkerBurrowed" />
-  </CUpgrade>
-  <CUpgrade id="ImpalerGenerateCreep">
-    <AffectedUnitArray value="ImpalerAbathur" />
-    <AffectedUnitArray value="ImpalerAbathurBurrowed" />
-  </CUpgrade>
-  <CUpgrade id="K5ChainLightning">
-    <Icon value="Assets\Textures\BTN-Ability-Swarm-Kerrigan-ChainReaction.dds" />
-  </CUpgrade>
-  <CUpgrade id="K5Cooldowns">
-    <EffectArray index="0" Reference="Abil,PrimalSlash,Cost[0].Vital[Energy]" Value="10" />
-    <EffectArray index="1" Reference="Abil,PsiStrikeWalk,Cost[0].Vital[Energy]" Value="10" />
-    <EffectArray index="2" Reference="Abil,KerriganVoidCoopEconDrop,Cost[0].Cooldown.TimeUse" Value="24.000000" />
-    <EffectArray index="3" Reference="Abil,KerriganVoidCoopCrushingGripWave,Cost[0].Cooldown.TimeUse" Value="36.000000" />
-    <EffectArray index="4" Reference="Abil,MindBolt,Cost[0].Vital[Energy]" Value="10" />
-    <EffectArray index="5" Reference="Abil,PsionicLift,Cost[0].Vital[Energy]" Value="15" />
-    <EffectArray index="6" removed="1" />
-    <EffectArray index="7" removed="1" />
-    <EffectArray index="8" removed="1" />
-    <EffectArray index="9" removed="1" />
-    <EffectArray index="10" removed="1" />
-    <EffectArray index="11" removed="1" />
-    <EffectArray index="12" removed="1" />
-    <EffectArray index="13" removed="1" />
-    <EffectArray index="14" removed="1" />
-    <EffectArray index="15" removed="1" />
-    <EffectArray index="16" removed="1" />
-    <EffectArray index="17" removed="1" />
-  </CUpgrade>
-  <CUpgrade id="KerriganSeveringGlave">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-explosiveglaive.dds" />
-    <!--EffectArray Reference="Effect,CoopGlaiveWurmU1,AttributeFactor[Armored]" Value="1"/>
-        <EffectArray Reference="Effect,CoopGlaiveWurmU2,AttributeFactor[Armored]" Value="1"/>
-        <EffectArray Reference="Effect,CoopGlaiveWurmU3,AttributeFactor[Armored]" Value="1"/>
-        <EffectArray Reference="Effect,CoopGlaiveWurmU4,AttributeFactor[Armored]" Value="1"/>
-        <EffectArray Reference="Effect,CoopGlaiveWurmU5,AttributeFactor[Armored]" Value="1"/>
-        <EffectArray Reference="Effect,CoopGlaiveWurmU6,AttributeFactor[Armored]" Value="1"/-->
-    <EffectArray Reference="Effect,CoopGlaiveWurmU2,Amount" Value="4" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmU3,Amount" Value="6" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmU4,Amount" Value="6" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmU5,Amount" Value="8" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmU6,Amount" Value="8" />
-    <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch" />
-    <AffectedUnitArray value="MutaliskBroodlord" />
-  </CUpgrade>
-  <CUpgrade id="KerriganViciousGlaive">
-    <Flags index="UpgradeCheat" value="0" />
-    <Icon value="Assets\Textures\btn-upgrade-zerg-viciousglaive.dds" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmE1,AreaArray[0].Radius" Value="3" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmE2,AreaArray[0].Radius" Value="3" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmE3,AreaArray[0].Radius" Value="3" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmE4,AreaArray[0].Radius" Value="3" />
-    <EffectArray Reference="Effect,CoopGlaiveWurmE5,AreaArray[0].Radius" Value="3" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="MutaliskBroodlord" />
-    <LeaderAlias value="HotSViciousGlaive" />
-  </CUpgrade>
-  <CUpgrade id="KerriganVoidCoopBroodlordSpeed">
-    <Icon value="Assets\Textures\btn-upgrade-kerrigan-broodlordspeed.dds" />
-    <EffectArray Reference="Unit,BroodLord,Speed" Value="1.406200" />
-    <EffectArray Reference="Unit,BroodLord,Acceleration" Value="0.812500" />
-    <EffectArray Reference="Unit,BroodLord,LifeMax" Value="100" />
-    <EffectArray Reference="Unit,BroodLord,LifeStart" Value="100" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="BroodLord" />
-  </CUpgrade>
-  <CUpgrade id="KerriganVoidCoopEnergyRegen">
-    <EffectArray Reference="Unit,K5Kerrigan,EnergyRegenRate" Value="3.330000" />
-    <EffectArray Reference="Unit,K5KerriganBurrowed,EnergyRegenRate" Value="3.330000" />
-    <EffectArray Reference="Unit,K5KerriganPsiStrike,EnergyRegenRate" Value="3.330000" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="K5Kerrigan" />
-    <AffectedUnitArray value="K5KerriganPsiStrike" />
-    <AffectedUnitArray value="K5KerriganBurrowed" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="MasteryAbathurBiomassRefund">
-    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-    <EffectArray Reference="Effect,MasteryAbathurBiomassRefundonDeathDisplayDummy,Amount" Value="1" />
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <MaxLevel value="30" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="MasteryAbathurDoubleBiomass">
-    <Flags index="UpgradeCheat" value="0" />
-    <EffectArray Reference="Effect,MasteryAbathurDoubleBiomassDisplayDummy,Amount" Value="1.5" />
-    <EditorCategories value="Race:Zerg" />
-    <MaxLevel value="30" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="MasteryAbathurSymbioteCarapace">
-    <Flags index="UpgradeCheat" value="0" />
-    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-    <EffectArray Reference="Effect,MasteryAbathurSymbioteCarapaceAbsorbtionDisplayDummy,Amount" Value="3.3334" />
-    <EffectArray Reference="Behavior,SymbioteCarapace,Modification.VitalMaxArray[Shields]" Value="6.6667" />
-    <EffectArray Reference="Effect,SymbioteStabDamage,Amount" Value="0.6667" />
-    <EditorCategories value="Race:Zerg" />
-    <MaxLevel value="30" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="MasteryAbathurSymbioteCDR">
-    <Flags index="UpgradeCheat" value="0" />
-    <EffectArray Reference="Effect,MasteryAbathurSymbioteCDRDisplayDummy,Amount" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Abil,SymbioteCarapace,Cost[0].Cooldown.TimeUse" Value="0.400000" />
-    <EffectArray Operation="Subtract" Reference="Abil,SymbioteStab,Cost[0].Cooldown.TimeUse" Value="0.020000" />
-    <EditorCategories value="Race:Zerg" />
-    <MaxLevel value="30" />
-    <LeaderAlias value="" />
-  </CUpgrade>
   <CUpgrade id="MasteryAbathurToxicNestDamageAndRespawn">
-      <Flags index="UpgradeCheat" value="0" />
-      <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-      <EffectArray Reference="Effect,MasteryAbathurToxicNestRespawnChangeDisplayDummy,Amount" Value="2" />
-      <!--EffectArray Reference="Effect,MasteryAbathurToxicNestRespawn,Chance" Value="0.02"/-->
-      <EffectArray Reference="Effect,ToxicNestExplodeDamage,Amount" Value="2.5" />
-      <EditorCategories value="Race:Zerg" />
-      <MaxLevel value="30" />
-      <LeaderAlias value="" />
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAbathurToxicNestRespawnChangeDisplayDummy,Amount" Value="2" />
+    <!--EffectArray Reference="Effect,MasteryAbathurToxicNestRespawn,Chance" Value="0.02"/-->
+    <EffectArray Reference="Effect,ToxicNestExplodeDamage,Amount" Value="2.5" />
+    <EditorCategories value="Race:Zerg" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="MasteryAbathurMendHeal">
-      <Flags index="UpgradeCheat" value="0" />
-      <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-      <EffectArray Reference="Effect,MasteryAbathurMendHealDurationDisplayDummy,Amount" Value="1" />
-      <EffectArray Reference="Behavior,AbathurMendPeriodicHeal,Duration" Value="1.000000" />
-      <EffectArray Reference="Behavior,AbathurMendPeriodicHeal,PeriodCount" Value="1" />
-      <EditorCategories value="Race:Zerg" />
-      <MaxLevel value="30" />
-      <LeaderAlias value="" />
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAbathurMendHealDurationDisplayDummy,Amount" Value="1" />
+    <EffectArray Reference="Behavior,AbathurMendPeriodicHeal,Duration" Value="1.000000" />
+    <EffectArray Reference="Behavior,AbathurMendPeriodicHeal,PeriodCount" Value="1" />
+    <EditorCategories value="Race:Zerg" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="MasteryAbathurToxicNestCharge">
-      <Flags index="UpgradeCheat" value="0" />
-      <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-      <EffectArray Reference="Effect,MasteryAbathurToxicNestChargeCountDisplayDummy,Amount" Value="1" />
-      <EffectArray Reference="Effect,MasteryAbathurToxicNestCooldownDisplayDummy,Amount" Value="0.2" />
-      <EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountMax" Value="1" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeUse" Value="0.200000" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeStart" Value="0.200000" />
-      <!--EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountStart" Value="1"/-->
-      <EditorCategories value="Race:Zerg" />
-      <MaxLevel value="30" />
-      <LeaderAlias value="" />
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAbathurToxicNestChargeCountDisplayDummy,Amount" Value="1" />
+    <EffectArray Reference="Effect,MasteryAbathurToxicNestCooldownDisplayDummy,Amount" Value="0.2" />
+    <EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountMax" Value="1" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeUse" Value="0.200000" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeStart" Value="0.200000" />
+    <!--EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountStart" Value="1"/-->
+    <EditorCategories value="Race:Zerg" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="MasteryAbathurTechFastBuild">
-      <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-      <EffectArray Reference="Effect,MasteryAbathurBuildingMorphandResearchSpeedDisplayDummy,Amount" Value="2" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[0].DurationArray[0]" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[1].DurationArray[1]" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[5].DurationArray[0]" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[0].DurationArray[0]" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[1].DurationArray[1]" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[5].DurationArray[0]" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[0].DurationArray[0]" Value="2.002" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[1].DurationArray[1]" Value="2.002" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[5].DurationArray[0]" Value="2.002" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.5605" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[0].DurationArray[0]" Value="2.002" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[1].DurationArray[1]" Value="2.002" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.2002" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[5].DurationArray[0]" Value="2.000000" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.2002" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
-      <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[1].Time" Value="2.2021" />
-      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[2].Time" Value="2.2021" />
-      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[3].Time" Value="2.6025" />
-      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[4].Time" Value="2.2021" />
-      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[5].Time" Value="2.2021" />
-      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[6].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[7].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[9].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[2].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[3].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[4].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[5].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[0].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[1].Time" Value="0.3003" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[2].Time" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[3].Time" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[4].Time" Value="0.8008" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[5].Time" Value="0.8008" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[6].Time" Value="0.8008" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[7].Time" Value="1.001" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[8].Time" Value="0.8008" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[9].Time" Value="1.001" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[10].Time" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[12].Time" Value="1.4014" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[13].Time" Value="0.8008" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[14].Time" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[15].Time" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[16].Time" Value="0.8008" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[17].Time" Value="0.3003" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[18].Time" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[19].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[20].Time" Value="0.6006" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[24].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[25].Time" Value="0.4004" />
-      <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[26].Time" Value="0.8008" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[0].Time" Value="3.2031" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[1].Time" Value="3.8037" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[2].Time" Value="4.4043" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[3].Time" Value="3.2031" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[4].Time" Value="3.8037" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[5].Time" Value="4.4043" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[6].Time" Value="3.2031" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[7].Time" Value="3.8037" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[8].Time" Value="4.4043" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[9].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[10].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[11].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[19].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[20].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[21].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[22].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[0].Time" Value="1.4014" />
-      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[1].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[2].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[3].Time" Value="2.002" />
-      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[4].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[5].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[0].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[1].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[2].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[3].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[4].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[5].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[2].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[3].Time" Value="2.002" />
-      <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[4].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[5].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[0].Time" Value="3.2031" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[1].Time" Value="3.8037" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[2].Time" Value="4.4043" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[3].Time" Value="3.2031" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[4].Time" Value="3.8037" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[5].Time" Value="4.4043" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[6].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[7].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[8].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[9].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[10].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[11].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[12].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[2].Time" Value="1.6016" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[3].Time" Value="2.2021" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[4].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[5].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[6].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[7].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[8].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[9].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[10].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[11].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[0].Time" Value="1.2012" />
-      <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[2].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[3].Time" Value="1.8018" />
-      <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[4].Time" Value="2.4023" />
-      <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="0.300000" />
-      <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="0.300000" />
-      <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="0.300000" />
-      <Flags index="UpgradeCheat" value="0" />
-      <EditorCategories value="Race:Zerg" />
-      <MaxLevel value="30" />
-      <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="MasteryKerriganArmyGasCost">
     <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-    <EffectArray Reference="Effect,MasteryKerriganArmyGasCostDisplayDummy,Amount" Value="1" />
+    <EffectArray Reference="Effect,MasteryAbathurBuildingMorphandResearchSpeedDisplayDummy,Amount" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[0].DurationArray[0]" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[1].DurationArray[1]" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[5].DurationArray[0]" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[0].DurationArray[0]" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[1].DurationArray[1]" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[5].DurationArray[0]" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[0].DurationArray[0]" Value="2.002" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[1].DurationArray[1]" Value="2.002" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[5].DurationArray[0]" Value="2.002" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.5605" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDen,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[0].DurationArray[0]" Value="2.002" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[1].DurationArray[1]" Value="2.002" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.2002" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLurkerDenMP,InfoArray[0].SectionArray[5].DurationArray[0]" Value="2.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.2002" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToImpalerDen,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireBroodlord,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpireViper,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[0].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[1].DurationArray[1]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[3].DurationArray[0]" Value="0.1001" />
+    <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterRoachWarren,InfoArray[0].SectionArray[5].DurationArray[0]" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[1].Time" Value="2.2021" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[2].Time" Value="2.2021" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[3].Time" Value="2.6025" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[4].Time" Value="2.2021" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[5].Time" Value="2.2021" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[6].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[7].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,RoachWarrenResearch,InfoArray[9].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[2].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[3].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[4].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,UltraliskCavernResearch,InfoArray[5].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[0].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[1].Time" Value="0.3003" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[2].Time" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[3].Time" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[4].Time" Value="0.8008" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[5].Time" Value="0.8008" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[6].Time" Value="0.8008" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[7].Time" Value="1.001" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[8].Time" Value="0.8008" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[9].Time" Value="1.001" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[10].Time" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[12].Time" Value="1.4014" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[13].Time" Value="0.8008" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[14].Time" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[15].Time" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[16].Time" Value="0.8008" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[17].Time" Value="0.3003" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[18].Time" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[19].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[20].Time" Value="0.6006" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[24].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[25].Time" Value="0.4004" />
+    <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[26].Time" Value="0.8008" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[0].Time" Value="3.2031" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[1].Time" Value="3.8037" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[2].Time" Value="4.4043" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[3].Time" Value="3.2031" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[4].Time" Value="3.8037" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[5].Time" Value="4.4043" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[6].Time" Value="3.2031" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[7].Time" Value="3.8037" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[8].Time" Value="4.4043" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[9].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[10].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[11].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[19].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[20].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[21].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,evolutionchamberresearch,InfoArray[22].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[0].Time" Value="1.4014" />
+    <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[1].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[2].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[3].Time" Value="2.002" />
+    <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[4].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,LairResearch,InfoArray[5].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[0].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[1].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[2].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[3].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[4].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawningPoolResearch,InfoArray[5].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[2].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[3].Time" Value="2.002" />
+    <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[4].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,HydraliskDenResearch,InfoArray[5].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[0].Time" Value="3.2031" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[1].Time" Value="3.8037" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[2].Time" Value="4.4043" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[3].Time" Value="3.2031" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[4].Time" Value="3.8037" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[5].Time" Value="4.4043" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[6].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[7].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[8].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[9].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[10].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[11].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpireResearch,InfoArray[12].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[2].Time" Value="1.6016" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[3].Time" Value="2.2021" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[4].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[5].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[6].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[7].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[8].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[9].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[10].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,InfestationPitResearch,InfoArray[11].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[0].Time" Value="1.2012" />
+    <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[2].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[3].Time" Value="1.8018" />
+    <EffectArray Operation="Subtract" Reference="Abil,BanelingNestResearch,InfoArray[4].Time" Value="2.4023" />
+    <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="0.300000" />
+    <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="0.300000" />
+    <EffectArray Operation="Subtract" Reference="Abil,BurrowToxicNestDown,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="0.300000" />
     <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Protoss" />
-    <!--This upgrade is controlled in the CM_MasteryKerriganArmyVespeneCostList Trigger function-->
-    <!--called from CM_StartingTechForHumanPlayer This is because data can't reduce a cost by .5-->
+    <EditorCategories value="Race:Zerg" />
     <MaxLevel value="30" />
     <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="MasteryKerriganLarvaRate">
-    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-    <EffectArray Reference="Effect,MasteryKerriganLarvaRateDisplayDummy,Amount" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Behavior,SpawnLarva,InfoArray[0].Delay" Value="0.150000" />
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Protoss" />
-    <MaxLevel value="30" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="MutaliskSunderingGlave">
-    <EffectArray Reference="Effect,GlaiveWurmU1,AttributeFactor[Armored]" Value="1" />
-    <EffectArray Reference="Effect,GlaiveWurmU2,AttributeFactor[Armored]" Value="1" />
-    <EffectArray Reference="Effect,GlaiveWurmU3,AttributeFactor[Armored]" Value="1" />
-    <EffectArray Reference="Effect,GlaiveWurmU4,AttributeFactor[Armored]" Value="1" />
-    <EffectArray Reference="Effect,GlaiveWurmU5,AttributeFactor[Armored]" Value="1" />
-    <EffectArray Reference="Effect,GlaiveWurmU6,AttributeBonus[Armored]" Value="1" />
-    <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch" />
-    <AffectedUnitArray value="MutaliskBroodlord" />
-    <Icon value="Assets\Textures\btn-upgrade-zerg-explosiveglaive.dds" />
-  </CUpgrade>
-  <CUpgrade id="RavagerCorrosiveBileDamageIncrease">
-    <EffectArray Reference="Effect,RavagerCorrosiveBileAoeDamage,Amount" Value="40" />
-    <AffectedUnitArray value="RavagerAbathur" />
-    <AffectedUnitArray value="RavagerAbathurBurrowed" />
-    <EditorCategories value="Race:Zerg" />
-    <Icon value="Assets\Textures\potentbile_coop.dds" />
-  </CUpgrade>
-  <CUpgrade id="RavagerCorrosiveBileRadiusIncrease">
-    <EffectArray Operation="Set" Reference="Effect,RavagerCorrosiveBileAoeCursorDummy,AreaArray[0].Radius" Value="1.5" />
-    <EffectArray Operation="Set" Reference="Effect,RavagerCorrosiveBileAoeSearch,AreaArray[0].Radius" Value="1.5" />
-    <EffectArray Operation="Set" Reference="Actor,RavagerCorrosiveBileAoePrecursor,Scale" Value="2" />
-    <EffectArray Operation="Set" Reference="Actor,RavagerCorrosiveBileMissile,Scale" Value="2" />
-    <AffectedUnitArray value="RavagerAbathur" />
-    <AffectedUnitArray value="RavagerAbathurBurrowed" />
-    <EditorCategories value="Race:Zerg" />
-    <Icon value="Assets\Textures\btn-ability-zerg-abathur-corrosivebilelarge.dds" />
-  </CUpgrade>
-  <CUpgrade id="SeismicSpines">
-    <Flags index="TechTreeCheat" value="1" />
-    <Icon value="Assets\Textures\btn-upgrade-kerrigan-seismicspines.dds" />
-    <Alert value="ResearchComplete" />
-    <Race value="Zerg" />
-    <ScoreResult value="BuildOrder" />
-    <EffectArray Reference="Weapon,Impaler,Range" Value="3" />
-    <EffectArray Reference="Weapon,Impaler,MinScanRange" Value="3" />
-    <EffectArray Reference="Weapon,Lurker,Range" Value="3" />
-    <EffectArray Reference="Weapon,Lurker,MinScanRange" Value="3" />
-    <EffectArray Reference="Effect,Lurker,PeriodCount" Value="3" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Lurker" />
-    <AffectedUnitArray value="LurkerBurrowed" />
-  </CUpgrade>
-  <CUpgrade id="SOATimeFreeze">
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="SymbioteExtraSpawn">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="AbathurSymbiote" />
-  </CUpgrade>
-  <CUpgrade id="SymbioteStabUpgrade">
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="AbathurSymbiote" />
-    <!--EffectArray Reference="Abil,SymbioteStab,Range[0]" Value="1.2"/-->
-    <EffectArray Reference="Abil,SymbioteStab,AutoCastRange" Value="1.2" />
-    <!--EffectArray Reference="Effect,SymbioteStabDamage,Amount" Value="7"/-->
-  </CUpgrade>
-  <CUpgrade id="ToxicNestattackgivesMarkforCollectionPassive">
-    <AffectedUnitArray value="EvolutionPit" />
-  </CUpgrade>
-  <CUpgrade id="ToxicNestDamageDebuff">
-    <EffectArray Operation="Set" Reference="Effect,ToxicNestExplodeSearch,AreaArray[0].Effect" Value="ToxicNestExplodeSearchSet" />
-    <EffectArray Operation="Set" Reference="Button,ToxicNestExplode,Tooltip" Value="Button/Tooltip/ToxicNestExplode" />
-    <EffectArray Operation="Set" Reference="Button,ToxicNestExplode,AlertTooltip" Value="Button/Tooltip/ToxicNestExplode" />
-    <EffectArray Operation="Set" Reference="Button,SpawnToxicNest,AlertTooltip" Value="Button/Tooltip/SpawnToxicNest" />
-    <EffectArray Operation="Set" Reference="Button,SpawnToxicNest,Tooltip" Value="Button/Tooltip/SpawnToxicNest" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-  </CUpgrade>
-  <CUpgrade id="VoidCoopHeroicFortitude">
-    <Icon value="Assets\Textures\btn-ability-kerrigan-heroicfortitude.dds" />
-    <EffectArray Reference="Unit,K5Kerrigan,LifeMax" Value="200" />
-    <EffectArray Reference="Unit,K5Kerrigan,LifeStart" Value="200" />
-    <EffectArray Reference="Unit,K5Kerrigan,LifeRegenRate" Value="5.000000" />
-    <EffectArray Reference="Unit,K5KerriganBurrowed,LifeMax" Value="200" />
-    <EffectArray Reference="Unit,K5KerriganBurrowed,LifeStart" Value="200" />
-    <EffectArray Reference="Unit,K5KerriganBurrowed,LifeRegenRate" Value="5.000000" />
-    <EffectArray Reference="Unit,K5KerriganPsiStrike,LifeMax" Value="200" />
-    <EffectArray Reference="Unit,K5KerriganPsiStrike,LifeStart" Value="200" />
-    <EffectArray Reference="Unit,K5KerriganPsiStrike,LifeRegenRate" Value="5.000000" />
-    <EffectArray Reference="Unit,ZagaraVoidCoop,LifeMax" Value="200" />
-    <EffectArray Reference="Unit,ZagaraVoidCoop,LifeStart" Value="200" />
-    <EffectArray Reference="Unit,ZagaraVoidCoop,LifeRegenRate" Value="5.000000" />
-    <EffectArray Reference="Unit,ZagaraVoidCoopBurrowed,LifeMax" Value="200" />
-    <EffectArray Reference="Unit,ZagaraVoidCoopBurrowed,LifeStart" Value="200" />
-    <EffectArray Reference="Unit,ZagaraVoidCoopBurrowed,LifeRegenRate" Value="5.000000" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="K5Kerrigan" />
-    <AffectedUnitArray value="K5KerriganPsiStrike" />
-    <AffectedUnitArray value="K5KerriganBurrowed" />
-    <AffectedUnitArray value="ZagaraVoidCoop" />
-    <AffectedUnitArray value="ZagaraVoidCoopBurrowed" />
-    <LeaderAlias value="KerriganVoidCoopEnergyRegen" />
-  </CUpgrade>
-  <CUpgrade id="ZagaraBileLaunchers">
-    <Flags index="UpgradeCheat" value="0" />
-    <EffectArray Operation="Set" Reference="Button,SpawningPool,Tooltip" Value="Button/Tooltip/ACZagaraSpawningPoolUpgraded" />
-    <EffectArray Operation="Set" Reference="Button,SpawningPool,AlertTooltip" Value="Button/Tooltip/ACZagaraSpawningPoolUpgraded" />
-    <EffectArray Operation="Set" Reference="Unit,SpawningPool,Description" Value="Button/Tooltip/ACZagaraSpawningPoolUpgraded" />
-    <AffectedUnitArray value="Drone" />
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="ZagaraGroundAttacksLevel1">
-    <Name value="Button/Name/ZergGroundAttacksLevel1" />
-    <WebPriority value="0" />
-    <Race value="Zerg" />
-    <ScoreCount value="WeaponTechnologyCount" />
-    <ScoreValue value="WeaponTechnologyValue" />
-    <ScoreResult value="BuildOrder" />
-    <EffectArray Operation="Set" Reference="Weapon,Claws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
-    <EffectArray Reference="Weapon,Claws,Level" Value="1" />
-    <EffectArray Reference="Effect,Claws,Amount" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,HotSSwarmlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
-    <EffectArray Reference="Weapon,HotSSwarmlingClaws,Level" Value="1" />
-    <EffectArray Reference="Effect,HotSSwarmlingClawsDamage,Amount" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKiller,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKillerMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
-    <EffectArray Reference="Effect,ZagaraHunterKillerMelee,Amount" Value="2.000000" />
-    <EffectArray Reference="Effect,ZagaraHunterKillerU,Amount" Value="2.000000" />
-    <EffectArray Reference="Weapon,ZagaraHunterKillerMelee,Level" Value="1" />
-    <EffectArray Reference="Weapon,ZagaraHunterKiller,Level" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraRoachMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
-    <EffectArray Reference="Effect,ZagaraAcidSalivaU,Amount" Value="2.000000" />
-    <EffectArray Reference="Effect,ZagaraRoachUMelee,Amount" Value="2.000000" />
-    <EffectArray Reference="Weapon,ZagaraRoachMelee,Level" Value="1" />
-    <EffectArray Reference="Weapon,ZagaraAcidSaliva,Level" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,InfestedAbomination,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
-    <EffectArray Reference="Weapon,InfestedAbomination,Level" Value="1" />
-    <EffectArray Reference="Effect,ZagaraInfestedAbomination,Amount" Value="2" />
-    <EffectArray Reference="Effect,ZagaraInfestedAbomination,AttributeBonus[Armored]" Value="2" />
-    <EffectArray Reference="Weapon,HotSBanelingDummy,Level" Value="1" />
-    <EffectArray Reference="Weapon,HotSBanelingDummySmall,Level" Value="1" />
-    <EffectArray Reference="Weapon,VolatileBurstDummy,Level" Value="1" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,Amount" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,AttributeBonus[Structure]" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,Amount" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,AttributeBonus[Structure]" Value="4" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,Amount" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,AttributeBonus[Structure]" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,Amount" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,AttributeBonus[Structure]" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level1.dds" />
-    <EffectArray Reference="Weapon,TalonsMissile,Level" Value="1" />
-    <EffectArray Reference="Weapon,Talons,Level" Value="1" />
-    <EffectArray Reference="Weapon,AcidSpines,Level" Value="1" />
-    <EffectArray Reference="Effect,TalonsMissileDamage,Amount" Value="1.000000" />
-    <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
-    <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
-    <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
-    <AffectedUnitArray value="Zergling" />
-    <AffectedUnitArray value="ZerglingBurrowed" />
-    <AffectedUnitArray value="HotSSwarmling" />
-    <AffectedUnitArray value="HotSSwarmlingBurrowed" />
-    <AffectedUnitArray value="Baneling" />
-    <AffectedUnitArray value="BanelingBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingBig" />
-    <AffectedUnitArray value="HotSSplitterlingMedium" />
-    <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
-    <AffectedUnitArray value="InfestedAbomination" />
-    <AffectedUnitArray value="InfestedAbominationBurrowed" />
-    <AffectedUnitArray value="HunterKiller" />
-    <AffectedUnitArray value="HunterKillerBurrowed" />
-    <AffectedUnitArray value="Roach" />
-    <AffectedUnitArray value="RoachBurrowed" />
-    <AffectedUnitArray value="QueenCoop" />
-    <AffectedUnitArray value="QueenCoopBurrowed" />
-    <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
-    <LeaderLevel value="1" />
-  </CUpgrade>
-  <CUpgrade id="ZagaraGroundAttacksLevel2">
-    <Name value="Button/Name/ZergGroundAttacksLevel2" />
-    <WebPriority value="0" />
-    <Race value="Zerg" />
-    <ScoreCount value="WeaponTechnologyCount" />
-    <ScoreValue value="WeaponTechnologyValue" />
-    <ScoreResult value="BuildOrder" />
-    <EffectArray Operation="Set" Reference="Weapon,Claws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
-    <EffectArray Reference="Weapon,Claws,Level" Value="1" />
-    <EffectArray Reference="Effect,Claws,Amount" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,HotSSwarmlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
-    <EffectArray Reference="Weapon,HotSSwarmlingClaws,Level" Value="1" />
-    <EffectArray Reference="Effect,HotSSwarmlingClawsDamage,Amount" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKiller,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKillerMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
-    <EffectArray Reference="Effect,ZagaraHunterKillerMelee,Amount" Value="2.000000" />
-    <EffectArray Reference="Effect,ZagaraHunterKillerU,Amount" Value="2.000000" />
-    <EffectArray Reference="Weapon,ZagaraHunterKillerMelee,Level" Value="1" />
-    <EffectArray Reference="Weapon,ZagaraHunterKiller,Level" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraRoachMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
-    <EffectArray Reference="Effect,ZagaraAcidSalivaU,Amount" Value="2.000000" />
-    <EffectArray Reference="Effect,ZagaraRoachUMelee,Amount" Value="2.000000" />
-    <EffectArray Reference="Weapon,ZagaraRoachMelee,Level" Value="1" />
-    <EffectArray Reference="Weapon,ZagaraAcidSaliva,Level" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,InfestedAbomination,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
-    <EffectArray Reference="Weapon,InfestedAbomination,Level" Value="1" />
-    <EffectArray Reference="Effect,ZagaraInfestedAbomination,Amount" Value="2" />
-    <EffectArray Reference="Effect,ZagaraInfestedAbomination,AttributeBonus[Armored]" Value="2" />
-    <EffectArray Reference="Weapon,HotSBanelingDummy,Level" Value="1" />
-    <EffectArray Reference="Weapon,HotSBanelingDummySmall,Level" Value="1" />
-    <EffectArray Reference="Weapon,VolatileBurstDummy,Level" Value="1" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,Amount" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,AttributeBonus[Structure]" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,Amount" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,AttributeBonus[Structure]" Value="4" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,Amount" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,AttributeBonus[Structure]" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,Amount" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,AttributeBonus[Structure]" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
-    <EffectArray Reference="Weapon,TalonsMissile,Level" Value="1" />
-    <EffectArray Reference="Weapon,Talons,Level" Value="1" />
-    <EffectArray Reference="Weapon,AcidSpines,Level" Value="1" />
-    <EffectArray Reference="Effect,TalonsMissileDamage,Amount" Value="1.000000" />
-    <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
-    <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
-    <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
-    <AffectedUnitArray value="Zergling" />
-    <AffectedUnitArray value="ZerglingBurrowed" />
-    <AffectedUnitArray value="HotSSwarmling" />
-    <AffectedUnitArray value="HotSSwarmlingBurrowed" />
-    <AffectedUnitArray value="Baneling" />
-    <AffectedUnitArray value="BanelingBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingBig" />
-    <AffectedUnitArray value="HotSSplitterlingMedium" />
-    <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
-    <AffectedUnitArray value="InfestedAbomination" />
-    <AffectedUnitArray value="InfestedAbominationBurrowed" />
-    <AffectedUnitArray value="HunterKiller" />
-    <AffectedUnitArray value="HunterKillerBurrowed" />
-    <AffectedUnitArray value="Roach" />
-    <AffectedUnitArray value="RoachBurrowed" />
-    <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
-    <LeaderAlias value="ZagaraGroundAttacksLevel1" />
-    <LeaderLevel value="2" />
-  </CUpgrade>
-  <CUpgrade id="ZagaraGroundAttacksLevel3">
-    <Name value="Button/Name/ZergGroundAttacksLevel3" />
-    <WebPriority value="0" />
-    <Race value="Zerg" />
-    <ScoreCount value="WeaponTechnologyCount" />
-    <ScoreValue value="WeaponTechnologyValue" />
-    <ScoreResult value="BuildOrder" />
-    <EffectArray Operation="Set" Reference="Weapon,Claws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
-    <EffectArray Reference="Weapon,Claws,Level" Value="1" />
-    <EffectArray Reference="Effect,Claws,Amount" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,HotSSwarmlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
-    <EffectArray Reference="Weapon,HotSSwarmlingClaws,Level" Value="1" />
-    <EffectArray Reference="Effect,HotSSwarmlingClawsDamage,Amount" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKiller,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKillerMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
-    <EffectArray Reference="Effect,ZagaraHunterKillerMelee,Amount" Value="2.000000" />
-    <EffectArray Reference="Effect,ZagaraHunterKillerU,Amount" Value="2.000000" />
-    <EffectArray Reference="Weapon,ZagaraHunterKillerMelee,Level" Value="1" />
-    <EffectArray Reference="Weapon,ZagaraHunterKiller,Level" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,ZagaraRoachMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
-    <EffectArray Reference="Effect,ZagaraAcidSalivaU,Amount" Value="2.000000" />
-    <EffectArray Reference="Effect,ZagaraRoachUMelee,Amount" Value="2.000000" />
-    <EffectArray Reference="Weapon,ZagaraRoachMelee,Level" Value="1" />
-    <EffectArray Reference="Weapon,ZagaraAcidSaliva,Level" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,InfestedAbomination,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
-    <EffectArray Reference="Weapon,InfestedAbomination,Level" Value="1" />
-    <EffectArray Reference="Effect,ZagaraInfestedAbomination,Amount" Value="2" />
-    <EffectArray Reference="Effect,ZagaraInfestedAbomination,AttributeBonus[Armored]" Value="2" />
-    <EffectArray Reference="Weapon,HotSBanelingDummy,Level" Value="1" />
-    <EffectArray Reference="Weapon,HotSBanelingDummySmall,Level" Value="1" />
-    <EffectArray Reference="Weapon,VolatileBurstDummy,Level" Value="1" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,Amount" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,AttributeBonus[Structure]" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,Amount" Value="4" />
-    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,AttributeBonus[Structure]" Value="4" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,Amount" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,AttributeBonus[Structure]" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,Amount" Value="1" />
-    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,AttributeBonus[Structure]" Value="1" />
-    <EffectArray Operation="Set" Reference="Weapon,TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
-    <EffectArray Operation="Set" Reference="Weapon,AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
-    <EffectArray Reference="Weapon,TalonsMissile,Level" Value="1" />
-    <EffectArray Reference="Weapon,Talons,Level" Value="1" />
-    <EffectArray Reference="Weapon,AcidSpines,Level" Value="1" />
-    <EffectArray Reference="Effect,TalonsMissileDamage,Amount" Value="1.000000" />
-    <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
-    <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
-    <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
-    <AffectedUnitArray value="Zergling" />
-    <AffectedUnitArray value="ZerglingBurrowed" />
-    <AffectedUnitArray value="HotSSwarmling" />
-    <AffectedUnitArray value="HotSSwarmlingBurrowed" />
-    <AffectedUnitArray value="Baneling" />
-    <AffectedUnitArray value="BanelingBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingBig" />
-    <AffectedUnitArray value="HotSSplitterlingMedium" />
-    <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
-    <AffectedUnitArray value="InfestedAbomination" />
-    <AffectedUnitArray value="InfestedAbominationBurrowed" />
-    <AffectedUnitArray value="HunterKiller" />
-    <AffectedUnitArray value="HunterKillerBurrowed" />
-    <AffectedUnitArray value="Roach" />
-    <AffectedUnitArray value="RoachBurrowed" />
-    <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
-    <LeaderAlias value="ZagaraGroundAttacksLevel1" />
-    <LeaderLevel value="3" />
-  </CUpgrade>
-  <CUpgrade id="ZagaraVoidCoopAttackUpgrade">
-    <Icon value="Assets\Textures\btn-upgrade-zerg-hotsgroovedspines.dds" />
-  </CUpgrade>
-  <CUpgrade id="ZerglingArmorShred">
-    <Flags index="TechTreeCheat" value="1" />
-    <Icon value="Assets\Textures\btn-upgrade-zergling-armorshredding.dds" />
-    <Alert value="ResearchComplete" />
-    <Race value="Zerg" />
-    <ScoreResult value="BuildOrder" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Zergling" />
-    <AffectedUnitArray value="HotSRaptor" />
-    <AffectedUnitArray value="HotSSwarmling" />
-  </CUpgrade>
-  <CUpgrade id="AbathurCommander">
-    <Flags index="UpgradeCheat" value="0" />
-    <EffectArray Operation="Subtract" Reference="Behavior,SpawnLarva,InfoArray[0].Delay" Value="6" />
-    <EffectArray Reference="Behavior,SpawnLarva,InfoArray[0].MaxCount" Value="3" />
-    <EffectArray Operation="Set" Reference="Abil,ZergBuild,InfoArray[Build14].Button.Requirements" Value="HaveHatchery" />
-    <EffectArray Operation="Set" Reference="Abil,ZergBuild,InfoArray[Build15].Button.Requirements" Value="HaveBanelingNest2" />
-    <EffectArray Operation="Set" Reference="Abil,ZergBuild,InfoArray[Build16].Button.Requirements" Value="HaveBanelingNest2" />
-    <EffectArray Reference="Unit,Roach,CostResource[Minerals]" Value="25" />
-    <EffectArray Reference="Unit,RoachBurrowed,CostResource[Minerals]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,Roach,CostResource[Vespene]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachBurrowed,CostResource[Vespene]" Value="25" />
-    <EffectArray Reference="Unit,RoachCorpser,CostResource[Minerals]" Value="25" />
-    <EffectArray Reference="Unit,RoachCorpserBurrowed,CostResource[Minerals]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Vespene]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Vespene]" Value="25" />
-    <EffectArray Reference="Unit,RoachVile,CostResource[Minerals]" Value="25" />
-    <EffectArray Reference="Unit,RoachVileBurrowed,CostResource[Minerals]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachVile,CostResource[Vespene]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Vespene]" Value="25" />
-    <EffectArray Operation="Set" Reference="Abil,UpgradeToLair,CmdButtonArray[Execute].Requirements" Value="HaveBanelingNest2" />
-    <EffectArray Operation="Set" Reference="Abil,UpgradeToHive,CmdButtonArray[Execute].Requirements" Value="HaveInfestationPit" />
-    <EffectArray Operation="Subtract" Reference="Unit,Brutalisk,CostResource[Minerals]" Value="500" />
-    <EffectArray Operation="Subtract" Reference="Unit,Brutalisk,CostResource[Vespene]" Value="300" />
-    <EffectArray Operation="Subtract" Reference="Unit,BrutaliskBurrowed,CostResource[Minerals]" Value="500" />
-    <EffectArray Operation="Subtract" Reference="Unit,BrutaliskBurrowed,CostResource[Vespene]" Value="300" />
-    <EffectArray Operation="Set" Reference="Unit,Brutalisk,Food" Value="-2" />
-    <EffectArray Operation="Set" Reference="Unit,BrutaliskBurrowed,Food" Value="-2" />
-    <!--EffectArray Operation="Set" Reference="Behavior,AbathurBrutaliskLeviathanFoodUse8,Modification.Food" Value="-8"/-->
-    <EffectArray Operation="Set" Reference="Button,RoachWarren,Tooltip" Value="Button/Tooltip/ACAbathurRoachWarren" />
-    <EffectArray Operation="Set" Reference="Button,EvolutionChamber,Tooltip" Value="Button/Tooltip/ACAbathurEvolutionChamber" />
-    <EffectArray Operation="Set" Reference="Button,InfestationPit,Tooltip" Value="Button/Tooltip/ACAbathurInfestationPit" />
-    <EffectArray Operation="Set" Reference="Button,Spire,Tooltip" Value="Button/Tooltip/ACAbathurSpire" />
-    <EffectArray Operation="Set" Reference="Button,GreaterSpireViper,Tooltip" Value="Button/Tooltip/ACAbathurGreaterSpire" />
-    <EffectArray Operation="Set" Reference="Button,Lair,Tooltip" Value="Button/Tooltip/ACAbathurLair" />
-    <EffectArray Operation="Set" Reference="Button,Hive,Tooltip" Value="Button/Tooltip/ACAbathurHive" />
-    <EffectArray Operation="Set" Reference="Unit,RoachWarren,Description" Value="Button/Tooltip/ACAbathurRoachWarren" />
-    <EffectArray Operation="Set" Reference="Unit,EvolutionChamber,Description" Value="Button/Tooltip/ACAbathurEvolutionChamber" />
-    <EffectArray Operation="Set" Reference="Unit,InfestationPit,Description" Value="Button/Tooltip/ACAbathurInfestationPit" />
-    <EffectArray Operation="Set" Reference="Unit,Spire,Description" Value="Button/Tooltip/ACAbathurSpire" />
-    <EffectArray Operation="Set" Reference="Unit,GreaterSpire,Description" Value="Button/Tooltip/ACAbathurGreaterSpire" />
-    <EffectArray Operation="Set" Reference="Unit,Lair,Description" Value="Button/Tooltip/ACAbathurLair" />
-    <EffectArray Operation="Set" Reference="Unit,Hive,Description" Value="Button/Tooltip/ACAbathurHive" />
-    <EffectArray Operation="Set" Reference="Unit,HotSLeviathan,Food" Value="-2" />
-    <LeaderAlias value="" />
-    <!--EffectArray Operation="Set" Reference="Actor,RoachVile,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,RoachVile,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,Roach,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,Roach,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,SwarmHost,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,SwarmHost,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,DefilerMP,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,DefilerMP,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,Mutalisk,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,Mutalisk,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,RavagerAbathur,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,RavagerAbathur,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,GuardianMP,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,GuardianMP,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,Devourer,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,Devourer,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
-        <EffectArray Operation="Set" Reference="Actor,Queen,CustomUnitStatusAttachment" Value="Ref_Origin"/>
-        <EffectArray Operation="Set" Reference="Actor,Queen,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/-->
-  </CUpgrade>
-  <CUpgrade id="AbathurDeepTunnel">
-    <Flags index="UpgradeCheat" value="0" />
-    <Icon value="Assets\Textures\btn-ability-zerg-deeptunnel.dds" />
-    <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="SwarmHost" />
-    <AffectedUnitArray value="SwarmHostBurrowed" />
   </CUpgrade>
   <CUpgrade id="AlarakCommander">
     <Flags index="UpgradeCheat" value="0" />
@@ -1194,30 +357,6 @@
     <!--EffectArray Operation="Set" Reference="Unit,SoACasterArtanis,Food" Value="200"/>
         <EffectArray Operation="Subtract" Reference="Abil,SOAProxyPylon,InfoArray[Build1].Vital[Energy]" Value="75"/>
         <EffectArray Operation="Subtract" Reference="Abil,SOAProxyPylon,InfoArray[Build1].Cooldown.TimeUse" Value="60.000000"/-->
-  </CUpgrade>
-  <CUpgrade id="Burrow">
-    <ScoreAmount value="0" />
-  </CUpgrade>
-  <CUpgrade id="CommanderPrestigeAbathurBiomass" parent="CommanderPrestige">
-    <EffectArray Reference="Effect,AbathurBiomassMaxStacksDummy,Amount" Value="25" />
-    <EffectArray Reference="Effect,AbathurBiomassRefundDummy,Amount" Value="50" />
-  </CUpgrade>
-  <CUpgrade id="CommanderPrestigeAbathurDeepTunnel" parent="CommanderPrestige">
-    <EffectArray Reference="Unit,Locust,Speed" Value="1.125000" />
-    <EffectArray Reference="Weapon,Locust,Range" Value="1" />
-    <EffectArray Reference="Weapon,LocustPressurizedGlands,Range" Value="1" />
-    <EffectArray Reference="Behavior,LocustTimedLife,Duration" Value="6.000000" />
-    <EffectArray Reference="Unit,Devourer,CostResource[Vespene]" Value="38" />
-    <EffectArray Reference="Unit,GuardianMP,CostResource[Vespene]" Value="50" />
-    <EffectArray Reference="Unit,Mutalisk,CostResource[Vespene]" Value="25" />
-    <EffectArray Reference="Unit,Queen,CostResource[Vespene]" Value="13" />
-    <EffectArray Reference="Unit,QueenBurrowed,CostResource[Vespene]" Value="13" />
-    <EffectArray Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="19" />
-    <EffectArray Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="19" />
-    <EffectArray Reference="Unit,SwarmHost,CostResource[Vespene]" Value="25" />
-    <EffectArray Reference="Unit,SwarmHostBurrowed,CostResource[Vespene]" Value="25" />
-    <EffectArray Reference="Unit,Viper,CostResource[Vespene]" Value="50" />
-    <EffectArray Operation="Set" Reference="Button,SwarmHostDeepBurrow,Tooltip" Value="Button/Tooltip/SwarmHostDeepBurrowPrestige" />
   </CUpgrade>
   <CUpgrade id="CommanderPrestigeAlarakDeathFleet" parent="CommanderPrestige">
     <EffectArray Operation="Subtract" Reference="Effect,SOAMothershipTimedLifeAB,Chance" Value="1" />
@@ -1534,13 +673,6 @@
     <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Splash]" Value=".15" />
   </CUpgrade>
   <CUpgrade id="CommanderPrestigeKerriganAssimilationAura" parent="CommanderPrestige" />
-  <CUpgrade id="CommanderPrestigeKerriganCreep" parent="CommanderPrestige">
-    <EffectArray Reference="Effect,KerriganMalignantCreepAttackSpeedDummy,Amount" Value="0.3" />
-    <EffectArray Reference="Effect,KerriganMalignantCreepLifeRegenDummy,Amount" Value="1" />
-    <EffectArray Operation="Subtract" Reference="Unit,QueenCoop,SpeedMultiplierCreep" Value="1.6665" />
-    <EffectArray Reference="Unit,QueenCoop,Speed" Value="1.5623" />
-    <EffectArray Operation="Set" Reference="Abil,QueenBuild,InfoArray[Build1].Unit" Value="CreepTumorQueenNoCreep" />
-  </CUpgrade>
   <CUpgrade id="CommanderPrestigeNovaAirlift" parent="CommanderPrestige">
     <EffectArray Operation="Subtract" Reference="Abil,NovaGriffinTransportLoadUnits,Cost[0].Cooldown.TimeUse" Value="90.000000" />
     <EffectArray Reference="Abil,NovaGriffinBombingRunActivate,Cost[0].Cooldown.TimeUse" Value="90.000000" />
@@ -1693,9 +825,6 @@
     <EffectArray Operation="Subtract" Reference="Behavior,OracleStasisTrapStunTarget,Duration" Value="11.250000" />
     <EffectArray Reference="Effect,CommanderPrestigeVorazunStasisDoT,Chance" Value="1" />
   </CUpgrade>
-  <CUpgrade id="CommanderPrestigeVorazunTimeStop" parent="CommanderPrestige">
-    <EffectArray Operation="Subtract" Reference="Behavior,ShadowGuardTimedLife,Duration" Value="24.000000" />
-  </CUpgrade>
   <CUpgrade id="CommanderPrestigeZagaraCorruptorsAberrations" parent="CommanderPrestige">
     <EffectArray Operation="Subtract" Reference="Unit,ZagaraCorruptor,CostResource[Minerals]" Value="34" />
     <EffectArray Operation="Subtract" Reference="Unit,ZagaraCorruptor,CostResource[Vespene]" Value="23" />
@@ -1713,16 +842,6 @@
     <EffectArray Reference="Unit,InfestedAbominationBurrowed,LifeMax" Value="138" />
     <EffectArray Reference="Unit,InfestedAbominationBurrowed,LifeStart" Value="138" />
     <EffectArray Reference="Unit,InfestedAbominationBurrowed,LifeRegenRate" Value="3.000000" />
-  </CUpgrade>
-  <CUpgrade id="CommanderPrestigeZagaraMaxSupply" parent="CommanderPrestige">
-    <EffectArray Operation="Set" Reference="Abil,LarvaTrain,InfoArray[Train2].Unit[2]" Value="Zergling" />
-    <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train2].Resource[Minerals]" Value="23" />
-    <EffectArray Operation="Set" Reference="Abil,LarvaTrainSwarmling,InfoArray[Train1].Unit[3]" Value="HotSSwarmling" />
-    <EffectArray Operation="Set" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Unit[2]" Value="Scourge" />
-    <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Minerals]" Value="12" />
-    <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Vespene]" Value="37" />
-    <EffectArray Operation="Set" Reference="Abil,ZagaraVoidCoopBanelingSpawnerTrain,InfoArray[Train1].Unit[1]" Value="Baneling" />
-    <EffectArray Operation="Set" Reference="Abil,ZagaraVoidCoopBanelingSpawnerTrain,InfoArray[Train3].Unit[1]" Value="HotSSplitterlingBig" />
   </CUpgrade>
   <CUpgrade id="CommanderPrestigeZagaraZagara" parent="CommanderPrestige">
     <EffectArray Reference="Unit,ZagaraVoidCoop,EnergyRegenRate" Value="1.000000" />
@@ -1763,9 +882,6 @@
     <EffectArray Reference="Effect,CommanderPrestigeZeratulTornadoesCU,Chance" Value="1" />
   </CUpgrade>
   <CUpgrade id="CommanderPrestigeZeratulVoidSeeker" parent="CommanderPrestige" />
-  <CUpgrade id="DarkProtoss">
-    <LeaderAlias value="" />
-  </CUpgrade>
   <CUpgrade id="DehakaCommander">
     <Flags index="UpgradeCheat" value="0" />
     <LeaderAlias value="" />
@@ -1961,10 +1077,6 @@
     <EffectArray Operation="Subtract" Reference="Abil,RoboticsBayResearch,InfoArray[Research23].Resource[Minerals]" Value="75" />
     <EffectArray Operation="Subtract" Reference="Abil,RoboticsBayResearch,InfoArray[Research23].Resource[Vespene]" Value="75" />
   </CUpgrade>
-  <CUpgrade id="HaveGuardian">
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <LeaderAlias value="" />
-  </CUpgrade>
   <CUpgrade id="HaveVoidCorsair">
     <EffectArray Operation="Set" Reference="Abil,StargateTrain,InfoArray[Train1].Unit[0]" Value="CorsairMP" />
     <EffectArray Operation="Set" Reference="Abil,StargateWarpTrain,InfoArray[Train1].Unit" Value="CorsairMP" />
@@ -2032,9 +1144,6 @@
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="HotSHaveQueen">
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="HotSHaveSporeCrawler">
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="HotSHaveSwarmHost">
@@ -3186,5 +2295,896 @@
     <AffectedUnitArray value="ZagaraVoidCoop" />
     <AffectedUnitArray value="ZagaraVoidCoopBurrowed" />
     <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AbathurBiomassLifeLeech">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <EffectArray Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="0.01" />
+    <EffectArray Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="0.01" />
+    <EffectArray Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="0.01" />
+    <EffectArray Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="0.01" />
+    <EffectArray Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="0.10" />
+    <EffectArray Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="0.10" />
+    <EffectArray Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="0.10" />
+    <EffectArray Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="0.10" />
+    <EffectArray Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="1.00" />
+    <EffectArray Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="1.00" />
+    <EffectArray Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="1.00" />
+    <EffectArray Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="1.00" />
+    <EffectArray Operation="Set" Reference="Button,BiomassPassive,Tooltip" Value="Button/Tooltip/BiomassPassiveUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,BiomassPassive,AlertTooltip" Value="Button/Tooltip/BiomassPassiveUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,BiomassPassiveRavager,Tooltip" Value="Button/Tooltip/BiomassPassiveRavagerUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,BiomassPassiveRavager,AlertTooltip" Value="Button/Tooltip/BiomassPassiveRavagerUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,BiomassPassiveEnergy,Tooltip" Value="Button/Tooltip/BiomassPassiveEnergyUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,BiomassPassiveEnergy,AlertTooltip" Value="Button/Tooltip/BiomassPassiveEnergyUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,BiomassPassiveArmor,Tooltip" Value="Button/Tooltip/BiomassPassiveArmorUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,BiomassPassiveArmor,AlertTooltip" Value="Button/Tooltip/BiomassPassiveArmorUpgraded" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AbathurBiomassRefund">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <LeaderAlias value="" />
+    <EffectArray Reference="Effect,AbathurBiomassRefundDummy,Amount" Value="50" />
+  </CUpgrade>
+  <CUpgrade id="AbathurBioMechanicalTransfusion">
+    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-biomechanicaltransfusion.dds" />
+    <EffectArray Operation="Set" Reference="Abil,Transfusion,DebugTrace" Value="0" />
+    <EffectArray Reference="Effect,QueenBurstHeal,VitalArray[Life].Change" Value="2" />
+    <AffectedUnitArray value="Queen" />
+    <AffectedUnitArray value="QueenBurrowed" />
+  </CUpgrade>
+  <CUpgrade id="AbathurCommander">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Subtract" Reference="Behavior,SpawnLarva,InfoArray[0].Delay" Value="6" />
+    <EffectArray Reference="Behavior,SpawnLarva,InfoArray[0].MaxCount" Value="3" />
+    <EffectArray Operation="Set" Reference="Abil,ZergBuild,InfoArray[Build14].Button.Requirements" Value="HaveHatchery" />
+    <EffectArray Operation="Set" Reference="Abil,ZergBuild,InfoArray[Build15].Button.Requirements" Value="HaveBanelingNest2" />
+    <EffectArray Operation="Set" Reference="Abil,ZergBuild,InfoArray[Build16].Button.Requirements" Value="HaveBanelingNest2" />
+    <EffectArray Reference="Unit,Roach,CostResource[Minerals]" Value="25" />
+    <EffectArray Reference="Unit,RoachBurrowed,CostResource[Minerals]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,Roach,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachBurrowed,CostResource[Vespene]" Value="25" />
+    <EffectArray Reference="Unit,RoachCorpser,CostResource[Minerals]" Value="25" />
+    <EffectArray Reference="Unit,RoachCorpserBurrowed,CostResource[Minerals]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Vespene]" Value="25" />
+    <EffectArray Reference="Unit,RoachVile,CostResource[Minerals]" Value="25" />
+    <EffectArray Reference="Unit,RoachVileBurrowed,CostResource[Minerals]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachVile,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Set" Reference="Abil,UpgradeToLair,CmdButtonArray[Execute].Requirements" Value="HaveBanelingNest2" />
+    <EffectArray Operation="Set" Reference="Abil,UpgradeToHive,CmdButtonArray[Execute].Requirements" Value="HaveInfestationPit" />
+    <EffectArray Operation="Subtract" Reference="Unit,Brutalisk,CostResource[Minerals]" Value="500" />
+    <EffectArray Operation="Subtract" Reference="Unit,Brutalisk,CostResource[Vespene]" Value="300" />
+    <EffectArray Operation="Subtract" Reference="Unit,BrutaliskBurrowed,CostResource[Minerals]" Value="500" />
+    <EffectArray Operation="Subtract" Reference="Unit,BrutaliskBurrowed,CostResource[Vespene]" Value="300" />
+    <EffectArray Operation="Set" Reference="Unit,Brutalisk,Food" Value="-2" />
+    <EffectArray Operation="Set" Reference="Unit,BrutaliskBurrowed,Food" Value="-2" />
+    <!--EffectArray Operation="Set" Reference="Behavior,AbathurBrutaliskLeviathanFoodUse8,Modification.Food" Value="-8"/-->
+    <EffectArray Operation="Set" Reference="Button,RoachWarren,Tooltip" Value="Button/Tooltip/ACAbathurRoachWarren" />
+    <EffectArray Operation="Set" Reference="Button,EvolutionChamber,Tooltip" Value="Button/Tooltip/ACAbathurEvolutionChamber" />
+    <EffectArray Operation="Set" Reference="Button,InfestationPit,Tooltip" Value="Button/Tooltip/ACAbathurInfestationPit" />
+    <EffectArray Operation="Set" Reference="Button,Spire,Tooltip" Value="Button/Tooltip/ACAbathurSpire" />
+    <EffectArray Operation="Set" Reference="Button,GreaterSpireViper,Tooltip" Value="Button/Tooltip/ACAbathurGreaterSpire" />
+    <EffectArray Operation="Set" Reference="Button,Lair,Tooltip" Value="Button/Tooltip/ACAbathurLair" />
+    <EffectArray Operation="Set" Reference="Button,Hive,Tooltip" Value="Button/Tooltip/ACAbathurHive" />
+    <EffectArray Operation="Set" Reference="Unit,RoachWarren,Description" Value="Button/Tooltip/ACAbathurRoachWarren" />
+    <EffectArray Operation="Set" Reference="Unit,EvolutionChamber,Description" Value="Button/Tooltip/ACAbathurEvolutionChamber" />
+    <EffectArray Operation="Set" Reference="Unit,InfestationPit,Description" Value="Button/Tooltip/ACAbathurInfestationPit" />
+    <EffectArray Operation="Set" Reference="Unit,Spire,Description" Value="Button/Tooltip/ACAbathurSpire" />
+    <EffectArray Operation="Set" Reference="Unit,GreaterSpire,Description" Value="Button/Tooltip/ACAbathurGreaterSpire" />
+    <EffectArray Operation="Set" Reference="Unit,Lair,Description" Value="Button/Tooltip/ACAbathurLair" />
+    <EffectArray Operation="Set" Reference="Unit,Hive,Description" Value="Button/Tooltip/ACAbathurHive" />
+    <EffectArray Operation="Set" Reference="Unit,HotSLeviathan,Food" Value="-2" />
+    <LeaderAlias value="" />
+    <!--EffectArray Operation="Set" Reference="Actor,RoachVile,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,RoachVile,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,Roach,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,Roach,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,SwarmHost,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,SwarmHost,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,DefilerMP,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,DefilerMP,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,Mutalisk,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,Mutalisk,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,RavagerAbathur,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,RavagerAbathur,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,GuardianMP,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,GuardianMP,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,Devourer,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,Devourer,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
+        <EffectArray Operation="Set" Reference="Actor,Queen,CustomUnitStatusAttachment" Value="Ref_Origin"/>
+        <EffectArray Operation="Set" Reference="Actor,Queen,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/-->
+  </CUpgrade>
+  <CUpgrade id="AbathurCreepTumorEnsnare">
+    <Flags index="UpgradeCheat" value="0" />
+  </CUpgrade>
+  <CUpgrade id="AbathurDeepTunnel">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-ability-zerg-deeptunnel.dds" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="SwarmHost" />
+    <AffectedUnitArray value="SwarmHostBurrowed" />
+  </CUpgrade>
+  <CUpgrade id="AbathurEnableSymbiote">
+    <EffectArray Reference="Abil,AbathurSymbioteHangerBrutalisk,InfoArray[Ammo1].CountStart" Value="1" />
+    <EffectArray Reference="Abil,AbathurSymbioteHangerLeviathan,InfoArray[Ammo1].CountStart" Value="1" />
+    <AffectedUnitArray value="Brutalisk" />
+    <AffectedUnitArray value="HotSLeviathan" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AbathurEnemyDeathCreateLocusts">
+    <Flags index="UpgradeCheat" value="0" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AbathurHatcheryDoubleQueue">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-incubationchamber.dds" />
+    <AffectedUnitArray value="Hatchery" />
+    <AffectedUnitArray value="Lair" />
+    <AffectedUnitArray value="Hive" />
+  </CUpgrade>
+  <CUpgrade id="AbathurHiddenToxicNest">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="ToxicNestBurrowed" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AbathurImprovedMend">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Reference="Abil,AbathurMend,Cost[0].Charge.TimeUse" Value="120.000000" />
+    <EffectArray Reference="Abil,AbathurMend,Cost[0].Charge.CountUse" Value="1" />
+    <EffectArray Operation="Subtract" Reference="Abil,AbathurMend,Cost[0].Cooldown.TimeUse" Value="150" />
+    <EffectArray Reference="Abil,AbathurMend,Cost[0].Charge.CountStart" Value="1" />
+    <EffectArray Operation="Set" Reference="Button,AbathurMend,Tooltip" Value="Button/Tooltip/AbathurMendUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,AbathurMend,AlertTooltip" Value="Button/Tooltip/AbathurMendUpgraded" />
+    <EffectArray Reference="Abil,AbathurMend,Cost[0].Charge.CountMax" Value="3" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="CoopCasterAbathur" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AbathurImprovedToxicNest">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountMax" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeUse" Value="5.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.TimeStart" Value="5.000000" />
+    <EffectArray Reference="Abil,SpawnToxicNest,InfoArray[Build1].Charge.CountStart" Value="2" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="ToxicNestBurrowed" />
+  </CUpgrade>
+  <CUpgrade id="AbathurLocustAirAttack">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Set" Reference="Weapon,LocustMP,TargetFilters" Value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="AbathurSymbiote" />
+  </CUpgrade>
+  <CUpgrade id="AbathurLocustNest">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <LeaderAlias value="AbathurHiddenToxicNest" />
+  </CUpgrade>
+  <CUpgrade id="AbathurMorphTimeCostReduced">
+    <!-- Train Time Reduction -->
+    <EffectArray Operation="Subtract" Reference="Abil,MorphRoachToRavager,InfoArray[Train1].Time" Value="4.5" />
+    <EffectArray Operation="Subtract" Reference="Abil,MutaliskMorphToDevourer,InfoArray[Train1].Time" Value="7.5" />
+    <EffectArray Operation="Subtract" Reference="Abil,MutaliskMorphToGuardian,InfoArray[Train1].Time" Value="7.5" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathur,CostResource[Minerals]" Value="12" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="37" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Minerals]" Value="12" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="37" />
+    <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Minerals]" Value="75" />
+    <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Minerals]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Vespene]" Value="50" />
+    <!--EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build1].Time" Value="30"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build2].Time" Value="7.5"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build3].Time" Value="15"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build4].Time" Value="7.5"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build5].Time" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build6].Time" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build7].Time" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build8].Time" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build9].Time" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build10].Time" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build11].Time" Value="15"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build14].Time" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build15].Time" Value="15"/>
+        <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build16].Time" Value="15"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="50.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="50.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="50.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToLair,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="30.000000"/>
+        <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="30.000000"/-->
+    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachVile" />
+    <AffectedUnitArray value="Mutalisk" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AbathurMutaliskHealthScalingUpgrade">
+    <EffectArray Reference="Unit,Mutalisk,LifeMax" Value="25" />
+    <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Resource[Minerals]" Value="50" />
+    <EffectArray Reference="Unit,Mutalisk,LifeStart" Value="25" />
+    <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Resource[Vespene]" Value="50" />
+    <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Time" Value="30.000000" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="Mutalisk" />
+    <AffectedUnitArray value="MutaliskBroodlord" />
+    <AffectedUnitArray value="MutaliskViper" />
+    <MaxLevel value="10" />
+    <LeaderAlias value="AbathurRoachRangeScalingUpgrade" />
+  </CUpgrade>
+  <CUpgrade id="AbathurNetworkedCarapace">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="AbathurSymbiote" />
+  </CUpgrade>
+  <CUpgrade id="AbathurRoachRangeScalingUpgrade">
+    <EffectArray Reference="Weapon,AcidSaliva,Range" Value="1" />
+    <EffectArray Reference="Weapon,AcidSaliva,MinScanRange" Value="1" />
+    <EffectArray Reference="Weapon,RoachCorpserAcidSaliva,Range" Value="1" />
+    <EffectArray Reference="Weapon,RoachCorpserAcidSaliva,MinScanRange" Value="1" />
+    <EffectArray Reference="Abil,RoachWarrenResearch,InfoArray[Research10].Resource[Minerals]" Value="50" />
+    <EffectArray Reference="Abil,RoachWarrenResearch,InfoArray[Research10].Resource[Vespene]" Value="50" />
+    <EffectArray Reference="Abil,RoachWarrenResearch,InfoArray[Research10].Time" Value="30.000000" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachBurrowed" />
+    <AffectedUnitArray value="RoachCorpser" />
+    <AffectedUnitArray value="RoachCorpserBurrowed" />
+    <AffectedUnitArray value="RoachVile" />
+    <AffectedUnitArray value="RoachVileBurrowed" />
+    <MaxLevel value="10" />
+  </CUpgrade>
+  <CUpgrade id="AbathurSymbiote">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <MaxLevel value="2" />
+  </CUpgrade>
+  <CUpgrade id="AbathurSymbioteAdrenalineBoost">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+  </CUpgrade>
+  <CUpgrade id="AbathurSymbioteDetection">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+  </CUpgrade>
+  <CUpgrade id="AbathurThornsAura">
+    <Flags index="UpgradeCheat" value="0" />
+  </CUpgrade>
+  <CUpgrade id="AbathurToxicNestIcreasedBiomass">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="ToxicNestBurrowed" />
+    <EffectArray Operation="Set" Reference="Button,SpawnToxicNest,Tooltip" Value="Button/Tooltip/SpawnToxicNestIncreasedBiomass" />
+    <EffectArray Operation="Set" Reference="Button,ToxicNestExplode,Tooltip" Value="Button/Tooltip/ToxicNestExplodeDoubleBiomass" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AbathurToxicNestRespawnTalent">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Set" Reference="Behavior,MasteryAbathurToxicNestRespawn,DamageResponse.Chance" Value="0.6" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="ToxicNestBurrowed" />
+    <AffectedUnitArray value="ToxicNest" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="AberrationArmorAura">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-upgrade-zagara-aberrationarmorcover.dds" />
+    <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="InfestedAbomination" />
+    <AffectedUnitArray value="InfestedAbominationBurrowed" />
+  </CUpgrade>
+  <CUpgrade id="BileLauncherBombardmentCooldown">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-demolition.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Zerg" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Reference="Weapon,BileLauncherZagaraBombardment,RateMultiplier" Value="0.4" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="BileLauncherZagara" />
+  </CUpgrade>
+  <CUpgrade id="BileLauncherIncreasedRange">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-zagara-increasebilelauncherrange.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Zerg" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Reference="Weapon,BileLauncherZagaraBombardment,Range" Value="10" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="BileLauncherZagara" />
+  </CUpgrade>
+  <CUpgrade id="Burrow">
+    <ScoreAmount value="0" />
+  </CUpgrade>
+  <CUpgrade id="Charge">
+    <ScoreAmount value="0" />
+  </CUpgrade>
+  <CUpgrade default="1" id="CommanderPrestige">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeAbathurBiomass" parent="CommanderPrestige">
+    <EffectArray Reference="Effect,AbathurBiomassMaxStacksDummy,Amount" Value="25" />
+    <EffectArray Reference="Effect,AbathurBiomassRefundDummy,Amount" Value="50" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeAbathurDeepTunnel" parent="CommanderPrestige">
+    <EffectArray Reference="Unit,Locust,Speed" Value="1.125000" />
+    <EffectArray Reference="Weapon,Locust,Range" Value="1" />
+    <EffectArray Reference="Weapon,LocustPressurizedGlands,Range" Value="1" />
+    <EffectArray Reference="Behavior,LocustTimedLife,Duration" Value="6.000000" />
+    <EffectArray Reference="Unit,Devourer,CostResource[Vespene]" Value="38" />
+    <EffectArray Reference="Unit,GuardianMP,CostResource[Vespene]" Value="50" />
+    <EffectArray Reference="Unit,Mutalisk,CostResource[Vespene]" Value="25" />
+    <EffectArray Reference="Unit,Queen,CostResource[Vespene]" Value="13" />
+    <EffectArray Reference="Unit,QueenBurrowed,CostResource[Vespene]" Value="13" />
+    <EffectArray Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="19" />
+    <EffectArray Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="19" />
+    <EffectArray Reference="Unit,SwarmHost,CostResource[Vespene]" Value="25" />
+    <EffectArray Reference="Unit,SwarmHostBurrowed,CostResource[Vespene]" Value="25" />
+    <EffectArray Reference="Unit,Viper,CostResource[Vespene]" Value="50" />
+    <EffectArray Operation="Set" Reference="Button,SwarmHostDeepBurrow,Tooltip" Value="Button/Tooltip/SwarmHostDeepBurrowPrestige" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeAbathurUltEvo" parent="CommanderPrestige">
+    <EffectArray Reference="Effect,AbathurBiomassMaxStacksDummy,Amount" Value="100" />
+    <EffectArray Operation="Subtract" Reference="Behavior,AbathurPropArmor,Modification.LifeArmorBonus" Value=".025" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.AdditiveAttackSpeedFactor" Value=".005" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.VitalMaxAdditiveMultiplierArray[Life]" Value=".015" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.VitalRegenMultiplier[Energy]" Value=".025" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.AdditiveAttackSpeedFactor" Value=".05" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.RadiusMultiplier" Value=".0125" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.VitalMaxAdditiveMultiplierArray[Life]" Value=".15" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.VitalRegenMultiplier[Energy]" Value=".25" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.AdditiveAttackSpeedFactor" Value=".5" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.RadiusMultiplier" Value=".125" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalMaxAdditiveMultiplierArray[Life]" Value="1.5" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalRegenMultiplier[Energy]" Value="2.5" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeKerriganCreep" parent="CommanderPrestige">
+    <EffectArray Reference="Effect,KerriganMalignantCreepAttackSpeedDummy,Amount" Value="0.3" />
+    <EffectArray Reference="Effect,KerriganMalignantCreepLifeRegenDummy,Amount" Value="1" />
+    <EffectArray Operation="Subtract" Reference="Unit,QueenCoop,SpeedMultiplierCreep" Value="1.6665" />
+    <EffectArray Reference="Unit,QueenCoop,Speed" Value="1.5623" />
+    <EffectArray Operation="Set" Reference="Abil,QueenBuild,InfoArray[Build1].Unit" Value="CreepTumorQueenNoCreep" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeVorazunTimeStop" parent="CommanderPrestige">
+    <EffectArray Operation="Subtract" Reference="Behavior,ShadowGuardTimedLife,Duration" Value="24.000000" />
+  </CUpgrade>
+  <CUpgrade id="CommanderPrestigeZagaraMaxSupply" parent="CommanderPrestige">
+    <EffectArray Operation="Set" Reference="Abil,LarvaTrain,InfoArray[Train2].Unit[2]" Value="Zergling" />
+    <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train2].Resource[Minerals]" Value="23" />
+    <EffectArray Operation="Set" Reference="Abil,LarvaTrainSwarmling,InfoArray[Train1].Unit[3]" Value="HotSSwarmling" />
+    <EffectArray Operation="Set" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Unit[2]" Value="Scourge" />
+    <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Minerals]" Value="12" />
+    <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Vespene]" Value="37" />
+    <EffectArray Operation="Set" Reference="Abil,ZagaraVoidCoopBanelingSpawnerTrain,InfoArray[Train1].Unit[1]" Value="Baneling" />
+    <EffectArray Operation="Set" Reference="Abil,ZagaraVoidCoopBanelingSpawnerTrain,InfoArray[Train3].Unit[1]" Value="HotSSplitterlingBig" />
+  </CUpgrade>
+  <CUpgrade id="CoopMutalisk">
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="CreepTumorVisible">
+    <Flags index="UpgradeCheat" value="0" />
+    <AffectedUnitArray value="CreepTumorBurrowed" />
+  </CUpgrade>
+  <CUpgrade id="DarkProtoss">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="DevourerAoEDamage">
+    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-devourer-corrosivespray.dds" />
+    <EffectArray Operation="Set" Reference="Effect,DevourerSearchSet,EffectArray[0]" Value="DevourerAoeDamage" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="Devourer" />
+  </CUpgrade>
+  <CUpgrade id="GenerateCreepHealingUpgrade">
+    <AffectedUnitArray value="Overlord" />
+    <EffectArray Operation="Set" Reference="Button,GenerateCreep,Icon" Value="Assets\Textures\btn-ability-zerg-carapace.dds" />
+  </CUpgrade>
+  <CUpgrade id="GuardianAttackRangeIncrease">
+    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-prolongeddispersion.dds" />
+    <EffectArray Reference="Weapon,GuardianMPWeapon,Range" Value="3" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="GuardianMP" />
+  </CUpgrade>
+  <CUpgrade id="HaveGuardian">
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="HotSHaveDevourer">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="HotSHaveSpineCrawler">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="HotSHaveSporeCrawler">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="HotSRapidRegeneration">
+    <Icon value="Assets\Textures\BTN-Upgrade-Zerg-RapidRegeneration.dds" />
+  </CUpgrade>
+  <CUpgrade id="HotSRoachDamage">
+    <Icon value="Assets\Textures\BTN-Upgrade-Zerg-HydriaticAcid.dds" />
+  </CUpgrade>
+  <CUpgrade id="HotSRoachShield">
+    <Icon value="Assets\Textures\btn-upgrade-zerg-adaptivecarapace.dds" />
+  </CUpgrade>
+  <CUpgrade id="HotSViciousGlaive">
+    <Icon value="Assets\Textures\btn-upgrade-zerg-viciousglaive.dds" />
+  </CUpgrade>
+  <CUpgrade id="HotSZerglingHealth">
+    <Icon value="Assets\Textures\btn-upgrade-zerg-hardenedcarapace.dds" />
+  </CUpgrade>
+  <CUpgrade id="HydraliskFrenzy">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-frenzy.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Zerg" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="Hydralisk" />
+    <AffectedUnitArray value="HydraliskBurrowed" />
+    <AffectedUnitArray value="HydraliskImpaler" />
+    <AffectedUnitArray value="HydraliskImpalerBurrowed" />
+    <AffectedUnitArray value="HydraliskLurker" />
+    <AffectedUnitArray value="HydraliskLurkerBurrowed" />
+  </CUpgrade>
+  <CUpgrade id="ImpalerGenerateCreep">
+    <AffectedUnitArray value="ImpalerAbathur" />
+    <AffectedUnitArray value="ImpalerAbathurBurrowed" />
+  </CUpgrade>
+  <CUpgrade id="K5ChainLightning">
+    <Icon value="Assets\Textures\BTN-Ability-Swarm-Kerrigan-ChainReaction.dds" />
+  </CUpgrade>
+  <CUpgrade id="K5Cooldowns">
+    <EffectArray index="0" Reference="Abil,PrimalSlash,Cost[0].Vital[Energy]" Value="10" />
+    <EffectArray index="1" Reference="Abil,PsiStrikeWalk,Cost[0].Vital[Energy]" Value="10" />
+    <EffectArray index="2" Reference="Abil,KerriganVoidCoopEconDrop,Cost[0].Cooldown.TimeUse" Value="24.000000" />
+    <EffectArray index="3" Reference="Abil,KerriganVoidCoopCrushingGripWave,Cost[0].Cooldown.TimeUse" Value="36.000000" />
+    <EffectArray index="4" Reference="Abil,MindBolt,Cost[0].Vital[Energy]" Value="10" />
+    <EffectArray index="5" Reference="Abil,PsionicLift,Cost[0].Vital[Energy]" Value="15" />
+    <EffectArray index="6" removed="1" />
+    <EffectArray index="7" removed="1" />
+    <EffectArray index="8" removed="1" />
+    <EffectArray index="9" removed="1" />
+    <EffectArray index="10" removed="1" />
+    <EffectArray index="11" removed="1" />
+    <EffectArray index="12" removed="1" />
+    <EffectArray index="13" removed="1" />
+    <EffectArray index="14" removed="1" />
+    <EffectArray index="15" removed="1" />
+    <EffectArray index="16" removed="1" />
+    <EffectArray index="17" removed="1" />
+  </CUpgrade>
+  <CUpgrade id="KerriganSeveringGlave">
+    <Icon value="Assets\Textures\btn-upgrade-zerg-explosiveglaive.dds" />
+    <!--EffectArray Reference="Effect,CoopGlaiveWurmU1,AttributeFactor[Armored]" Value="1"/>
+        <EffectArray Reference="Effect,CoopGlaiveWurmU2,AttributeFactor[Armored]" Value="1"/>
+        <EffectArray Reference="Effect,CoopGlaiveWurmU3,AttributeFactor[Armored]" Value="1"/>
+        <EffectArray Reference="Effect,CoopGlaiveWurmU4,AttributeFactor[Armored]" Value="1"/>
+        <EffectArray Reference="Effect,CoopGlaiveWurmU5,AttributeFactor[Armored]" Value="1"/>
+        <EffectArray Reference="Effect,CoopGlaiveWurmU6,AttributeFactor[Armored]" Value="1"/-->
+    <EffectArray Reference="Effect,CoopGlaiveWurmU2,Amount" Value="4" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmU3,Amount" Value="6" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmU4,Amount" Value="6" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmU5,Amount" Value="8" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmU6,Amount" Value="8" />
+    <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="MutaliskBroodlord" />
+  </CUpgrade>
+  <CUpgrade id="KerriganViciousGlaive">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-viciousglaive.dds" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmE1,AreaArray[0].Radius" Value="3" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmE2,AreaArray[0].Radius" Value="3" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmE3,AreaArray[0].Radius" Value="3" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmE4,AreaArray[0].Radius" Value="3" />
+    <EffectArray Reference="Effect,CoopGlaiveWurmE5,AreaArray[0].Radius" Value="3" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="MutaliskBroodlord" />
+    <LeaderAlias value="HotSViciousGlaive" />
+  </CUpgrade>
+  <CUpgrade id="KerriganVoidCoopBroodlordSpeed">
+    <Icon value="Assets\Textures\btn-upgrade-kerrigan-broodlordspeed.dds" />
+    <EffectArray Reference="Unit,BroodLord,Speed" Value="1.406200" />
+    <EffectArray Reference="Unit,BroodLord,Acceleration" Value="0.812500" />
+    <EffectArray Reference="Unit,BroodLord,LifeMax" Value="100" />
+    <EffectArray Reference="Unit,BroodLord,LifeStart" Value="100" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="BroodLord" />
+  </CUpgrade>
+  <CUpgrade id="KerriganVoidCoopEnergyRegen">
+    <EffectArray Reference="Unit,K5Kerrigan,EnergyRegenRate" Value="3.330000" />
+    <EffectArray Reference="Unit,K5KerriganBurrowed,EnergyRegenRate" Value="3.330000" />
+    <EffectArray Reference="Unit,K5KerriganPsiStrike,EnergyRegenRate" Value="3.330000" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="K5Kerrigan" />
+    <AffectedUnitArray value="K5KerriganPsiStrike" />
+    <AffectedUnitArray value="K5KerriganBurrowed" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAbathurBiomassRefund">
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAbathurBiomassRefundonDeathDisplayDummy,Amount" Value="1" />
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAbathurDoubleBiomass">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Reference="Effect,MasteryAbathurDoubleBiomassDisplayDummy,Amount" Value="1.5" />
+    <EditorCategories value="Race:Zerg" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAbathurSymbioteCarapace">
+    <Flags index="UpgradeCheat" value="0" />
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryAbathurSymbioteCarapaceAbsorbtionDisplayDummy,Amount" Value="3.3334" />
+    <EffectArray Reference="Behavior,SymbioteCarapace,Modification.VitalMaxArray[Shields]" Value="6.6667" />
+    <EffectArray Reference="Effect,SymbioteStabDamage,Amount" Value="0.6667" />
+    <EditorCategories value="Race:Zerg" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryAbathurSymbioteCDR">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Reference="Effect,MasteryAbathurSymbioteCDRDisplayDummy,Amount" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Abil,SymbioteCarapace,Cost[0].Cooldown.TimeUse" Value="0.400000" />
+    <EffectArray Operation="Subtract" Reference="Abil,SymbioteStab,Cost[0].Cooldown.TimeUse" Value="0.020000" />
+    <EditorCategories value="Race:Zerg" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryKerriganArmyGasCost">
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryKerriganArmyGasCostDisplayDummy,Amount" Value="1" />
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Protoss" />
+    <!--This upgrade is controlled in the CM_MasteryKerriganArmyVespeneCostList Trigger function-->
+    <!--called from CM_StartingTechForHumanPlayer This is because data can't reduce a cost by .5-->
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MasteryKerriganLarvaRate">
+    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
+    <EffectArray Reference="Effect,MasteryKerriganLarvaRateDisplayDummy,Amount" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Behavior,SpawnLarva,InfoArray[0].Delay" Value="0.150000" />
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Protoss" />
+    <MaxLevel value="30" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="MutaliskSunderingGlave">
+    <EffectArray Reference="Effect,GlaiveWurmU1,AttributeFactor[Armored]" Value="1" />
+    <EffectArray Reference="Effect,GlaiveWurmU2,AttributeFactor[Armored]" Value="1" />
+    <EffectArray Reference="Effect,GlaiveWurmU3,AttributeFactor[Armored]" Value="1" />
+    <EffectArray Reference="Effect,GlaiveWurmU4,AttributeFactor[Armored]" Value="1" />
+    <EffectArray Reference="Effect,GlaiveWurmU5,AttributeFactor[Armored]" Value="1" />
+    <EffectArray Reference="Effect,GlaiveWurmU6,AttributeBonus[Armored]" Value="1" />
+    <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="MutaliskBroodlord" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-explosiveglaive.dds" />
+  </CUpgrade>
+  <CUpgrade id="RavagerCorrosiveBileDamageIncrease">
+    <EffectArray Reference="Effect,RavagerCorrosiveBileAoeDamage,Amount" Value="40" />
+    <AffectedUnitArray value="RavagerAbathur" />
+    <AffectedUnitArray value="RavagerAbathurBurrowed" />
+    <EditorCategories value="Race:Zerg" />
+    <Icon value="Assets\Textures\potentbile_coop.dds" />
+  </CUpgrade>
+  <CUpgrade id="RavagerCorrosiveBileRadiusIncrease">
+    <EffectArray Operation="Set" Reference="Effect,RavagerCorrosiveBileAoeCursorDummy,AreaArray[0].Radius" Value="1.5" />
+    <EffectArray Operation="Set" Reference="Effect,RavagerCorrosiveBileAoeSearch,AreaArray[0].Radius" Value="1.5" />
+    <EffectArray Operation="Set" Reference="Actor,RavagerCorrosiveBileAoePrecursor,Scale" Value="2" />
+    <EffectArray Operation="Set" Reference="Actor,RavagerCorrosiveBileMissile,Scale" Value="2" />
+    <AffectedUnitArray value="RavagerAbathur" />
+    <AffectedUnitArray value="RavagerAbathurBurrowed" />
+    <EditorCategories value="Race:Zerg" />
+    <Icon value="Assets\Textures\btn-ability-zerg-abathur-corrosivebilelarge.dds" />
+  </CUpgrade>
+  <CUpgrade id="SeismicSpines">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-kerrigan-seismicspines.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Zerg" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Reference="Weapon,Impaler,Range" Value="3" />
+    <EffectArray Reference="Weapon,Impaler,MinScanRange" Value="3" />
+    <EffectArray Reference="Weapon,Lurker,Range" Value="3" />
+    <EffectArray Reference="Weapon,Lurker,MinScanRange" Value="3" />
+    <EffectArray Reference="Effect,Lurker,PeriodCount" Value="3" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="Lurker" />
+    <AffectedUnitArray value="LurkerBurrowed" />
+  </CUpgrade>
+  <CUpgrade id="SOATimeFreeze">
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="SymbioteExtraSpawn">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="AbathurSymbiote" />
+  </CUpgrade>
+  <CUpgrade id="SymbioteStabUpgrade">
+    <Flags index="UpgradeCheat" value="0" />
+    <EditorCategories value="Race:Zerg" />
+    <AffectedUnitArray value="AbathurSymbiote" />
+    <!--EffectArray Reference="Abil,SymbioteStab,Range[0]" Value="1.2"/-->
+    <EffectArray Reference="Abil,SymbioteStab,AutoCastRange" Value="1.2" />
+    <!--EffectArray Reference="Effect,SymbioteStabDamage,Amount" Value="7"/-->
+  </CUpgrade>
+  <CUpgrade id="ToxicNestattackgivesMarkforCollectionPassive">
+    <AffectedUnitArray value="EvolutionPit" />
+  </CUpgrade>
+  <CUpgrade id="ToxicNestDamageDebuff">
+    <EffectArray Operation="Set" Reference="Effect,ToxicNestExplodeSearch,AreaArray[0].Effect" Value="ToxicNestExplodeSearchSet" />
+    <EffectArray Operation="Set" Reference="Button,ToxicNestExplode,Tooltip" Value="Button/Tooltip/ToxicNestExplode" />
+    <EffectArray Operation="Set" Reference="Button,ToxicNestExplode,AlertTooltip" Value="Button/Tooltip/ToxicNestExplode" />
+    <EffectArray Operation="Set" Reference="Button,SpawnToxicNest,AlertTooltip" Value="Button/Tooltip/SpawnToxicNest" />
+    <EffectArray Operation="Set" Reference="Button,SpawnToxicNest,Tooltip" Value="Button/Tooltip/SpawnToxicNest" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+  </CUpgrade>
+  <CUpgrade id="VoidCoopHeroicFortitude">
+    <Icon value="Assets\Textures\btn-ability-kerrigan-heroicfortitude.dds" />
+    <EffectArray Reference="Unit,K5Kerrigan,LifeMax" Value="200" />
+    <EffectArray Reference="Unit,K5Kerrigan,LifeStart" Value="200" />
+    <EffectArray Reference="Unit,K5Kerrigan,LifeRegenRate" Value="5.000000" />
+    <EffectArray Reference="Unit,K5KerriganBurrowed,LifeMax" Value="200" />
+    <EffectArray Reference="Unit,K5KerriganBurrowed,LifeStart" Value="200" />
+    <EffectArray Reference="Unit,K5KerriganBurrowed,LifeRegenRate" Value="5.000000" />
+    <EffectArray Reference="Unit,K5KerriganPsiStrike,LifeMax" Value="200" />
+    <EffectArray Reference="Unit,K5KerriganPsiStrike,LifeStart" Value="200" />
+    <EffectArray Reference="Unit,K5KerriganPsiStrike,LifeRegenRate" Value="5.000000" />
+    <EffectArray Reference="Unit,ZagaraVoidCoop,LifeMax" Value="200" />
+    <EffectArray Reference="Unit,ZagaraVoidCoop,LifeStart" Value="200" />
+    <EffectArray Reference="Unit,ZagaraVoidCoop,LifeRegenRate" Value="5.000000" />
+    <EffectArray Reference="Unit,ZagaraVoidCoopBurrowed,LifeMax" Value="200" />
+    <EffectArray Reference="Unit,ZagaraVoidCoopBurrowed,LifeStart" Value="200" />
+    <EffectArray Reference="Unit,ZagaraVoidCoopBurrowed,LifeRegenRate" Value="5.000000" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="K5Kerrigan" />
+    <AffectedUnitArray value="K5KerriganPsiStrike" />
+    <AffectedUnitArray value="K5KerriganBurrowed" />
+    <AffectedUnitArray value="ZagaraVoidCoop" />
+    <AffectedUnitArray value="ZagaraVoidCoopBurrowed" />
+    <LeaderAlias value="KerriganVoidCoopEnergyRegen" />
+  </CUpgrade>
+  <CUpgrade id="ZagaraBileLaunchers">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Set" Reference="Button,SpawningPool,Tooltip" Value="Button/Tooltip/ACZagaraSpawningPoolUpgraded" />
+    <EffectArray Operation="Set" Reference="Button,SpawningPool,AlertTooltip" Value="Button/Tooltip/ACZagaraSpawningPoolUpgraded" />
+    <EffectArray Operation="Set" Reference="Unit,SpawningPool,Description" Value="Button/Tooltip/ACZagaraSpawningPoolUpgraded" />
+    <AffectedUnitArray value="Drone" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="ZagaraGroundAttacksLevel1">
+    <Name value="Button/Name/ZergGroundAttacksLevel1" />
+    <WebPriority value="0" />
+    <Race value="Zerg" />
+    <ScoreCount value="WeaponTechnologyCount" />
+    <ScoreValue value="WeaponTechnologyValue" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Operation="Set" Reference="Weapon,Claws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
+    <EffectArray Reference="Weapon,Claws,Level" Value="1" />
+    <EffectArray Reference="Effect,Claws,Amount" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,HotSSwarmlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
+    <EffectArray Reference="Weapon,HotSSwarmlingClaws,Level" Value="1" />
+    <EffectArray Reference="Effect,HotSSwarmlingClawsDamage,Amount" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKiller,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKillerMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
+    <EffectArray Reference="Effect,ZagaraHunterKillerMelee,Amount" Value="2.000000" />
+    <EffectArray Reference="Effect,ZagaraHunterKillerU,Amount" Value="2.000000" />
+    <EffectArray Reference="Weapon,ZagaraHunterKillerMelee,Level" Value="1" />
+    <EffectArray Reference="Weapon,ZagaraHunterKiller,Level" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraRoachMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
+    <EffectArray Reference="Effect,ZagaraAcidSalivaU,Amount" Value="2.000000" />
+    <EffectArray Reference="Effect,ZagaraRoachUMelee,Amount" Value="2.000000" />
+    <EffectArray Reference="Weapon,ZagaraRoachMelee,Level" Value="1" />
+    <EffectArray Reference="Weapon,ZagaraAcidSaliva,Level" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,InfestedAbomination,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
+    <EffectArray Reference="Weapon,InfestedAbomination,Level" Value="1" />
+    <EffectArray Reference="Effect,ZagaraInfestedAbomination,Amount" Value="2" />
+    <EffectArray Reference="Effect,ZagaraInfestedAbomination,AttributeBonus[Armored]" Value="2" />
+    <EffectArray Reference="Weapon,HotSBanelingDummy,Level" Value="1" />
+    <EffectArray Reference="Weapon,HotSBanelingDummySmall,Level" Value="1" />
+    <EffectArray Reference="Weapon,VolatileBurstDummy,Level" Value="1" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,Amount" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,AttributeBonus[Structure]" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,Amount" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,AttributeBonus[Structure]" Value="4" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,Amount" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,AttributeBonus[Structure]" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,Amount" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,AttributeBonus[Structure]" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level1.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level1.dds" />
+    <EffectArray Reference="Weapon,TalonsMissile,Level" Value="1" />
+    <EffectArray Reference="Weapon,Talons,Level" Value="1" />
+    <EffectArray Reference="Weapon,AcidSpines,Level" Value="1" />
+    <EffectArray Reference="Effect,TalonsMissileDamage,Amount" Value="1.000000" />
+    <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
+    <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
+    <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
+    <AffectedUnitArray value="Zergling" />
+    <AffectedUnitArray value="ZerglingBurrowed" />
+    <AffectedUnitArray value="HotSSwarmling" />
+    <AffectedUnitArray value="HotSSwarmlingBurrowed" />
+    <AffectedUnitArray value="Baneling" />
+    <AffectedUnitArray value="BanelingBurrowed" />
+    <AffectedUnitArray value="HotSSplitterlingBig" />
+    <AffectedUnitArray value="HotSSplitterlingMedium" />
+    <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
+    <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
+    <AffectedUnitArray value="InfestedAbomination" />
+    <AffectedUnitArray value="InfestedAbominationBurrowed" />
+    <AffectedUnitArray value="HunterKiller" />
+    <AffectedUnitArray value="HunterKillerBurrowed" />
+    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachBurrowed" />
+    <AffectedUnitArray value="QueenCoop" />
+    <AffectedUnitArray value="QueenCoopBurrowed" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
+    <LeaderLevel value="1" />
+  </CUpgrade>
+  <CUpgrade id="ZagaraGroundAttacksLevel2">
+    <Name value="Button/Name/ZergGroundAttacksLevel2" />
+    <WebPriority value="0" />
+    <Race value="Zerg" />
+    <ScoreCount value="WeaponTechnologyCount" />
+    <ScoreValue value="WeaponTechnologyValue" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Operation="Set" Reference="Weapon,Claws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
+    <EffectArray Reference="Weapon,Claws,Level" Value="1" />
+    <EffectArray Reference="Effect,Claws,Amount" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,HotSSwarmlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
+    <EffectArray Reference="Weapon,HotSSwarmlingClaws,Level" Value="1" />
+    <EffectArray Reference="Effect,HotSSwarmlingClawsDamage,Amount" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKiller,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKillerMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
+    <EffectArray Reference="Effect,ZagaraHunterKillerMelee,Amount" Value="2.000000" />
+    <EffectArray Reference="Effect,ZagaraHunterKillerU,Amount" Value="2.000000" />
+    <EffectArray Reference="Weapon,ZagaraHunterKillerMelee,Level" Value="1" />
+    <EffectArray Reference="Weapon,ZagaraHunterKiller,Level" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraRoachMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
+    <EffectArray Reference="Effect,ZagaraAcidSalivaU,Amount" Value="2.000000" />
+    <EffectArray Reference="Effect,ZagaraRoachUMelee,Amount" Value="2.000000" />
+    <EffectArray Reference="Weapon,ZagaraRoachMelee,Level" Value="1" />
+    <EffectArray Reference="Weapon,ZagaraAcidSaliva,Level" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,InfestedAbomination,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
+    <EffectArray Reference="Weapon,InfestedAbomination,Level" Value="1" />
+    <EffectArray Reference="Effect,ZagaraInfestedAbomination,Amount" Value="2" />
+    <EffectArray Reference="Effect,ZagaraInfestedAbomination,AttributeBonus[Armored]" Value="2" />
+    <EffectArray Reference="Weapon,HotSBanelingDummy,Level" Value="1" />
+    <EffectArray Reference="Weapon,HotSBanelingDummySmall,Level" Value="1" />
+    <EffectArray Reference="Weapon,VolatileBurstDummy,Level" Value="1" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,Amount" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,AttributeBonus[Structure]" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,Amount" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,AttributeBonus[Structure]" Value="4" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,Amount" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,AttributeBonus[Structure]" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,Amount" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,AttributeBonus[Structure]" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level2.dds" />
+    <EffectArray Reference="Weapon,TalonsMissile,Level" Value="1" />
+    <EffectArray Reference="Weapon,Talons,Level" Value="1" />
+    <EffectArray Reference="Weapon,AcidSpines,Level" Value="1" />
+    <EffectArray Reference="Effect,TalonsMissileDamage,Amount" Value="1.000000" />
+    <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
+    <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
+    <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
+    <AffectedUnitArray value="Zergling" />
+    <AffectedUnitArray value="ZerglingBurrowed" />
+    <AffectedUnitArray value="HotSSwarmling" />
+    <AffectedUnitArray value="HotSSwarmlingBurrowed" />
+    <AffectedUnitArray value="Baneling" />
+    <AffectedUnitArray value="BanelingBurrowed" />
+    <AffectedUnitArray value="HotSSplitterlingBig" />
+    <AffectedUnitArray value="HotSSplitterlingMedium" />
+    <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
+    <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
+    <AffectedUnitArray value="InfestedAbomination" />
+    <AffectedUnitArray value="InfestedAbominationBurrowed" />
+    <AffectedUnitArray value="HunterKiller" />
+    <AffectedUnitArray value="HunterKillerBurrowed" />
+    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachBurrowed" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
+    <LeaderAlias value="ZagaraGroundAttacksLevel1" />
+    <LeaderLevel value="2" />
+  </CUpgrade>
+  <CUpgrade id="ZagaraGroundAttacksLevel3">
+    <Name value="Button/Name/ZergGroundAttacksLevel3" />
+    <WebPriority value="0" />
+    <Race value="Zerg" />
+    <ScoreCount value="WeaponTechnologyCount" />
+    <ScoreValue value="WeaponTechnologyValue" />
+    <ScoreResult value="BuildOrder" />
+    <EffectArray Operation="Set" Reference="Weapon,Claws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
+    <EffectArray Reference="Weapon,Claws,Level" Value="1" />
+    <EffectArray Reference="Effect,Claws,Amount" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,HotSSwarmlingClaws,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
+    <EffectArray Reference="Weapon,HotSSwarmlingClaws,Level" Value="1" />
+    <EffectArray Reference="Effect,HotSSwarmlingClawsDamage,Amount" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKiller,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraHunterKillerMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
+    <EffectArray Reference="Effect,ZagaraHunterKillerMelee,Amount" Value="2.000000" />
+    <EffectArray Reference="Effect,ZagaraHunterKillerU,Amount" Value="2.000000" />
+    <EffectArray Reference="Weapon,ZagaraHunterKillerMelee,Level" Value="1" />
+    <EffectArray Reference="Weapon,ZagaraHunterKiller,Level" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraAcidSaliva,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,ZagaraRoachMelee,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
+    <EffectArray Reference="Effect,ZagaraAcidSalivaU,Amount" Value="2.000000" />
+    <EffectArray Reference="Effect,ZagaraRoachUMelee,Amount" Value="2.000000" />
+    <EffectArray Reference="Weapon,ZagaraRoachMelee,Level" Value="1" />
+    <EffectArray Reference="Weapon,ZagaraAcidSaliva,Level" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,InfestedAbomination,Icon" Value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
+    <EffectArray Reference="Weapon,InfestedAbomination,Level" Value="1" />
+    <EffectArray Reference="Effect,ZagaraInfestedAbomination,Amount" Value="2" />
+    <EffectArray Reference="Effect,ZagaraInfestedAbomination,AttributeBonus[Armored]" Value="2" />
+    <EffectArray Reference="Weapon,HotSBanelingDummy,Level" Value="1" />
+    <EffectArray Reference="Weapon,HotSBanelingDummySmall,Level" Value="1" />
+    <EffectArray Reference="Weapon,VolatileBurstDummy,Level" Value="1" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,Amount" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeDirect,AttributeBonus[Structure]" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,Amount" Value="4" />
+    <EffectArray Reference="Effect,ZagaraHotSBanelingExplodeLargeSearchDamage,AttributeBonus[Structure]" Value="4" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,Amount" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallSearchDamage,AttributeBonus[Structure]" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,Amount" Value="1" />
+    <EffectArray Reference="Effect,HotSBanelingExplodeSmallDirect,AttributeBonus[Structure]" Value="1" />
+    <EffectArray Operation="Set" Reference="Weapon,TalonsMissile,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,Talons,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
+    <EffectArray Operation="Set" Reference="Weapon,AcidSpines,Icon" Value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds" />
+    <EffectArray Reference="Weapon,TalonsMissile,Level" Value="1" />
+    <EffectArray Reference="Weapon,Talons,Level" Value="1" />
+    <EffectArray Reference="Weapon,AcidSpines,Level" Value="1" />
+    <EffectArray Reference="Effect,TalonsMissileDamage,Amount" Value="1.000000" />
+    <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
+    <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
+    <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
+    <AffectedUnitArray value="Zergling" />
+    <AffectedUnitArray value="ZerglingBurrowed" />
+    <AffectedUnitArray value="HotSSwarmling" />
+    <AffectedUnitArray value="HotSSwarmlingBurrowed" />
+    <AffectedUnitArray value="Baneling" />
+    <AffectedUnitArray value="BanelingBurrowed" />
+    <AffectedUnitArray value="HotSSplitterlingBig" />
+    <AffectedUnitArray value="HotSSplitterlingMedium" />
+    <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
+    <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
+    <AffectedUnitArray value="InfestedAbomination" />
+    <AffectedUnitArray value="InfestedAbominationBurrowed" />
+    <AffectedUnitArray value="HunterKiller" />
+    <AffectedUnitArray value="HunterKillerBurrowed" />
+    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachBurrowed" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
+    <LeaderAlias value="ZagaraGroundAttacksLevel1" />
+    <LeaderLevel value="3" />
+  </CUpgrade>
+  <CUpgrade id="ZagaraVoidCoopAttackUpgrade">
+    <Icon value="Assets\Textures\btn-upgrade-zerg-hotsgroovedspines.dds" />
+  </CUpgrade>
+  <CUpgrade id="ZerglingArmorShred">
+    <Flags index="TechTreeCheat" value="1" />
+    <Icon value="Assets\Textures\btn-upgrade-zergling-armorshredding.dds" />
+    <Alert value="ResearchComplete" />
+    <Race value="Zerg" />
+    <ScoreResult value="BuildOrder" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <AffectedUnitArray value="Zergling" />
+    <AffectedUnitArray value="HotSRaptor" />
+    <AffectedUnitArray value="HotSSwarmling" />
   </CUpgrade>
 </Catalog>
