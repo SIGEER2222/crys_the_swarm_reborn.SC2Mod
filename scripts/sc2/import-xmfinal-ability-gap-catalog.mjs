@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
+const commandersRoot = path.join(root, "游戏数据", "官方合作指挥官", "commanders");
 const xmfinalRoot = path.join(root, "原始mod", "Mods", "XM", "XMFinal.SC2Mod", "Base.SC2Data");
 const targetRoot = path.join(xmfinalRoot, "GameData");
 const defaultSummaryPath = path.join(root, "references", "xmfinal-ability-gap-import-summary.tsv");
@@ -12,10 +13,21 @@ const profileFiles = [
   "LibE0EAE146_CommanderHeroAbilities.galaxy",
 ];
 
+const officialBaseMods = [
+  "core.sc2mod",
+  "liberty.sc2mod",
+  "libertymulti.sc2mod",
+  "swarm.sc2mod",
+  "swarmmulti.sc2mod",
+  "void.sc2mod",
+  "voidmulti.sc2mod",
+].map((name) => path.join(root, "references", "sc2-build-96883-casc-export", "mods", name));
+
 const officialRoots = [
   path.join(root, "references", "sc2-build-96883-casc-export", "mods", "starcoop", "starcoop.sc2mod", "base.sc2data", "gamedata"),
   path.join(root, "references", "sc2-build-96883-casc-export", "mods", "starcoop", "commanders", "egonstetmann.sc2mod", "base.sc2data", "gamedata"),
   path.join(root, "references", "sc2-build-96883-casc-export", "mods", "starcoop", "commanders", "arcturusmengsk.sc2mod", "base.sc2data", "gamedata"),
+  ...officialBaseMods,
 ];
 
 const catalogFiles = new Map([
@@ -23,6 +35,43 @@ const catalogFiles = new Map([
   ["ability", "AbilData.xml"],
   ["requirement", "RequirementData.xml"],
 ]);
+
+const manualFallbackNodes = {
+  button: new Map([
+    ["BurrowDown", buttonStub("BurrowDown")],
+    ["SwarmHostBurrowDown", buttonStub("SwarmHostBurrowDown")],
+    ["RapidRegeneration", buttonStub("RapidRegeneration")],
+    ["Frenzied", buttonStub("Frenzied")],
+    ["ImpalerBurrowDown", buttonStub("ImpalerBurrowDown")],
+    ["CloakOnBanshee", buttonStub("CloakOnBanshee")],
+    ["CloakOff", buttonStub("CloakOff")],
+    ["ConcussiveGrenade", buttonStub("ConcussiveGrenade")],
+    ["YamatoGun", buttonStub("YamatoGun")],
+    ["Hyperjump", buttonStub("Hyperjump")],
+    ["SiegeMode", buttonStub("SiegeMode")],
+    ["PermanentlyCloakedGhost", buttonStub("PermanentlyCloakedGhost")],
+    ["GhostHoldFire", buttonStub("GhostHoldFire")],
+    ["WeaponsFree", buttonStub("WeaponsFree")],
+    ["NukeCalldown", buttonStub("NukeCalldown")],
+    ["EMP", buttonStub("EMP")],
+    ["CloakOnGhost", buttonStub("CloakOnGhost")],
+    ["LaserTargetingSystemMarine", buttonStub("LaserTargetingSystemMarine")],
+    ["Detector", buttonStub("Detector")],
+    ["CombatDrugs", buttonStub("CombatDrugs")],
+  ]),
+  ability: new Map([
+    ["Stimpack", abilityStub("CAbilEffectInstant", "Stimpack", "Stim")],
+    ["StimpackMarauder", abilityStub("CAbilEffectInstant", "StimpackMarauder", "StimMarauder")],
+    ["BansheeCloak", behaviorToggleStub("BansheeCloak", "CloakOnBanshee", "CloakOff")],
+    ["GhostHoldFire", abilityStub("CAbilEffectInstant", "GhostHoldFire", "GhostHoldFire")],
+    ["GhostWeaponsFree", abilityStub("CAbilEffectInstant", "GhostWeaponsFree", "WeaponsFree")],
+    ["TacNukeStrike", abilityStub("CAbilEffectTarget", "TacNukeStrike", "NukeCalldown")],
+    ["SiegeMode", abilityStub("CAbilMorph", "SiegeMode", "SiegeMode")],
+  ]),
+  requirement: new Map([
+    ["UsePunisherGrenades", requirementStub("UsePunisherGrenades")],
+  ]),
+};
 
 const tagKinds = new Map([
   ["CButton", "button"],
@@ -50,6 +99,55 @@ const tagKinds = new Map([
   ["CAbilWarpTrain", "ability"],
 ]);
 
+function catalogKindForTag(tag) {
+  return tagKinds.get(tag) ?? (tag.startsWith("CAbil") ? "ability" : undefined);
+}
+
+function manualNode(kind, tag, id, body) {
+  return {
+    fileName: "manual:xmfinal-profile-catalog-stub",
+    tag,
+    id,
+    text: body,
+    manualFallback: true,
+  };
+}
+
+function buttonStub(id) {
+  return manualNode("button", "CButton", id, [
+    `<CButton id="${id}">`,
+    '    <EditorCategories value="Race:Neutral"/>',
+    "</CButton>",
+  ].join("\n"));
+}
+
+function abilityStub(tag, id, buttonId) {
+  return manualNode("ability", tag, id, [
+    `<${tag} id="${id}">`,
+    `    <CmdButtonArray index="Execute" DefaultButtonFace="${buttonId}"/>`,
+    `</${tag}>`,
+  ].join("\n"));
+}
+
+function behaviorToggleStub(id, onButtonId, offButtonId) {
+  return manualNode("ability", "CAbilBehavior", id, [
+    `<CAbilBehavior id="${id}">`,
+    '    <AbilSetId value="Clok"/>',
+    `    <CmdButtonArray index="On" DefaultButtonFace="${onButtonId}"/>`,
+    `    <CmdButtonArray index="Off" DefaultButtonFace="${offButtonId}"/>`,
+    '    <Flags index="Toggle" value="1"/>',
+    "</CAbilBehavior>",
+  ].join("\n"));
+}
+
+function requirementStub(id) {
+  return manualNode("requirement", "CRequirement", id, [
+    `<CRequirement id="${id}">`,
+    '    <EditorCategories value="Race:Neutral,TechType:Ability"/>',
+    "</CRequirement>",
+  ].join("\n"));
+}
+
 function parseArgs() {
   const args = new Map();
   for (let i = 2; i < process.argv.length; i += 1) {
@@ -69,8 +167,32 @@ function parseArgs() {
   return args;
 }
 
+function parseCommanderSet(value) {
+  if (!value) {
+    return undefined;
+  }
+  const names = String(value)
+    .split(/[,\s]+/u)
+    .map((item) => item.trim())
+    .filter(Boolean);
+  return names.length > 0 ? new Set(names) : undefined;
+}
+
+function printUsage() {
+  console.log([
+    "Usage: node scripts/sc2/import-xmfinal-ability-gap-catalog.mjs [--commanders Raynor,Nova,Dehaka] [--summary path]",
+    "",
+    "Imports button/ability/requirement catalog nodes referenced by generated commander ability profiles.",
+    "Use --commanders to keep a run scoped to selected commander names.",
+  ].join("\n"));
+}
+
 function readText(file) {
   return fs.readFileSync(file, "utf8");
+}
+
+function readJson(file) {
+  return JSON.parse(readText(file));
 }
 
 function walk(dir, files = []) {
@@ -173,6 +295,10 @@ function existingKeys(text) {
   return new Set(parseCatalogNodes(ensureCatalogText(text), "").map(objectKey));
 }
 
+function hasExistingId(keys, id) {
+  return [...keys].some((key) => key.endsWith(`|${id}`));
+}
+
 function catalogInsertPosition(text) {
   const closeIndex = text.lastIndexOf("</Catalog>");
   return closeIndex >= 0 ? closeIndex : text.length;
@@ -205,20 +331,130 @@ function appendNodes(targetFile, nodes) {
   return { added: additions.length, skipped: nodes.length - additions.length };
 }
 
-function collectProfileIds() {
+function xmlEscape(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function renderCatalogNode(node) {
+  return `    ${node.text.replaceAll("\n", "\n    ")}`;
+}
+
+function commanderSelected(selectedCommanders, commander) {
+  return !selectedCommanders || selectedCommanders.has(commander);
+}
+
+function commanderNames(selectedCommanders) {
+  return fs
+    .readdirSync(commandersRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((commander) => commanderSelected(selectedCommanders, commander))
+    .sort();
+}
+
+function synthesizeButtonNode(button, sourceName) {
+  const lines = [`<CButton id="${xmlEscape(button.id)}">`];
+  if (button.icon) {
+    lines.push(`    <Icon value="${xmlEscape(button.icon)}"/>`);
+  }
+  if (button.alert_icon) {
+    lines.push(`    <AlertIcon value="${xmlEscape(button.alert_icon)}"/>`);
+  }
+  if (button.tooltip_key) {
+    lines.push(`    <Tooltip value="${xmlEscape(button.tooltip_key)}"/>`);
+  }
+  lines.push("</CButton>");
+  return {
+    fileName: sourceName,
+    tag: "CButton",
+    id: button.id,
+    text: lines.join("\r\n"),
+    generatedFromCommanderJson: true,
+  };
+}
+
+function loadCommanderButtonNodes(selectedCommanders) {
+  const buttons = new Map();
+
+  for (const commander of commanderNames(selectedCommanders)) {
+    const file = path.join(commandersRoot, commander, "command_cards.json");
+    if (!fs.existsSync(file)) {
+      continue;
+    }
+
+    const sourceName = path.relative(root, file).replaceAll("\\", "/");
+    for (const object of readJson(file)) {
+      for (const card of object.cards ?? []) {
+        for (const entry of card.buttons ?? []) {
+          const button = entry.button;
+          if (!button?.id || buttons.has(button.id)) {
+            continue;
+          }
+          if (!button.icon && !button.alert_icon && !button.tooltip_key) {
+            continue;
+          }
+          buttons.set(button.id, synthesizeButtonNode(button, sourceName));
+        }
+      }
+    }
+  }
+
+  return buttons;
+}
+
+function upgradeManualButtonStubs(targetFile, commanderButtonNodes) {
+  if (!fs.existsSync(targetFile) || commanderButtonNodes.size === 0) {
+    return { upgraded: 0, rows: [] };
+  }
+
+  let text = readText(targetFile);
+  let upgraded = 0;
+  const rows = [];
+  for (const node of commanderButtonNodes.values()) {
+    const re = new RegExp(
+      `    <CButton id="${escapeRegExp(node.id)}">\\s*<EditorCategories value="Race:Neutral"\\/>\\s*</CButton>`,
+      "m",
+    );
+    if (!re.test(text)) {
+      continue;
+    }
+    text = text.replace(re, renderCatalogNode(node));
+    upgraded += 1;
+    rows.push(["button", node.id, node.tag, node.fileName, targetFile, "upgraded_manual_stub_from_commander_json"].join("\t"));
+  }
+
+  if (upgraded > 0) {
+    fs.writeFileSync(targetFile, text, "utf8");
+  }
+
+  return { upgraded, rows };
+}
+
+function collectProfileIds(selectedCommanders) {
   const ids = {
     button: new Set(),
     ability: new Set(),
     requirement: new Set(),
   };
   const entryRe =
-    /CheckAbilityProfileEntry\([^,]+,\s*"[^"]+",\s*[^,]+,\s*"[^"]*",\s*"([^"]*)",\s*"([^"]*)",\s*"([^"]*)",\s*"[^"]*"\)/g;
+    /CheckAbilityProfileEntry\([^,]+,\s*"([^"]+)",\s*[^,]+,\s*"[^"]*",\s*"([^"]*)",\s*"([^"]*)",\s*"([^"]*)",\s*"[^"]*"\)/g;
 
   for (const file of profileFiles) {
     const text = readText(path.join(xmfinalRoot, file));
     let match;
     while ((match = entryRe.exec(text))) {
-      const [, buttonId, abilityId, requirementId] = match;
+      const [, commander, buttonId, abilityId, requirementId] = match;
+      if (!commanderSelected(selectedCommanders, commander)) {
+        continue;
+      }
       if (buttonId) {
         ids.button.add(buttonId);
       }
@@ -247,7 +483,7 @@ function loadOfficialNodes() {
       }
       const sourceName = path.relative(root, file).replaceAll("\\", "/");
       for (const node of parseCatalogNodes(readText(file), sourceName)) {
-        const kind = tagKinds.get(node.tag);
+        const kind = catalogKindForTag(node.tag);
         if (!kind) {
           continue;
         }
@@ -262,26 +498,89 @@ function loadOfficialNodes() {
   return nodes;
 }
 
+function loadXmDependencyIds() {
+  const ids = {
+    button: new Map(),
+    ability: new Map(),
+    requirement: new Map(),
+  };
+  const xmRoot = path.join(root, "原始mod", "Mods", "XM");
+  const targetPrefix = `${path.resolve(xmfinalRoot).toLowerCase()}${path.sep}`;
+
+  for (const file of walk(xmRoot).sort()) {
+    const resolved = path.resolve(file).toLowerCase();
+    if (resolved.startsWith(targetPrefix)) {
+      continue;
+    }
+    if (!file.toLowerCase().endsWith(".xml")) {
+      continue;
+    }
+    if (!file.replaceAll("\\", "/").toLowerCase().includes("/gamedata/")) {
+      continue;
+    }
+
+    const sourceName = path.relative(root, file).replaceAll("\\", "/");
+    for (const node of parseCatalogNodes(readText(file), sourceName)) {
+      const kind = catalogKindForTag(node.tag);
+      if (!kind || !ids[kind]) {
+        continue;
+      }
+      if (!ids[kind].has(node.id)) {
+        ids[kind].set(node.id, []);
+      }
+      ids[kind].get(node.id).push(sourceName);
+    }
+  }
+
+  return ids;
+}
+
 function main() {
   const args = parseArgs();
+  if (args.has("help") || args.has("h")) {
+    printUsage();
+    return;
+  }
+
   const summaryPath = path.resolve(String(args.get("summary") ?? defaultSummaryPath));
-  const profileIds = collectProfileIds();
+  const selectedCommanders = parseCommanderSet(args.get("commanders"));
+  const profileIds = collectProfileIds(selectedCommanders);
   const officialNodes = loadOfficialNodes();
+  const commanderButtonNodes = loadCommanderButtonNodes(selectedCommanders);
+  const xmDependencyIds = loadXmDependencyIds();
   const summaryRows = ["Kind\tObjectId\tCatalogType\tOfficialSource\tTargetFile\tStatus"];
   let addedTotal = 0;
   let skippedTotal = 0;
   let missingTotal = 0;
+  let upgradedTotal = 0;
 
   for (const [kind, targetFileName] of catalogFiles) {
     const targetFile = path.join(targetRoot, targetFileName);
+    if (kind === "button") {
+      const upgradeResult = upgradeManualButtonStubs(targetFile, commanderButtonNodes);
+      upgradedTotal += upgradeResult.upgraded;
+      summaryRows.push(...upgradeResult.rows);
+    }
     const beforeKeys = existingKeys(fs.existsSync(targetFile) ? readText(targetFile) : "");
     const nodesToAppend = [];
 
     for (const id of [...profileIds[kind]].sort()) {
       const matches = officialNodes[kind].get(id) ?? [];
       if (matches.length === 0) {
-        missingTotal += 1;
-        summaryRows.push([kind, id, "", "", targetFile, "missing_in_official_sources"].join("\t"));
+        const synthesizedButton = kind === "button" ? commanderButtonNodes.get(id) : undefined;
+        const fallbackNode = manualFallbackNodes[kind]?.get(id);
+        if (synthesizedButton) {
+          nodesToAppend.push(synthesizedButton);
+        } else if (fallbackNode) {
+          nodesToAppend.push(fallbackNode);
+        } else if (hasExistingId(beforeKeys, id)) {
+          summaryRows.push([kind, id, "", "local:xmfinal-target-catalog", targetFile, "skipped_existing_local"].join("\t"));
+        } else if (xmDependencyIds[kind]?.has(id)) {
+          summaryRows.push([kind, id, "", xmDependencyIds[kind].get(id)[0], targetFile, "skipped_existing_xm_dependency"].join("\t"));
+        } else {
+          missingTotal += 1;
+          summaryRows.push([kind, id, "", "", targetFile, "missing_in_official_sources"].join("\t"));
+        }
         continue;
       }
       for (const node of matches) {
@@ -297,7 +596,13 @@ function main() {
     skippedTotal += result.skipped;
 
     for (const node of nodesToAppend) {
-      const status = beforeKeys.has(objectKey(node)) ? "skipped_existing" : "added_or_newer_duplicate";
+      const status = beforeKeys.has(objectKey(node))
+        ? "skipped_existing"
+        : node.generatedFromCommanderJson
+          ? "generated_from_commander_json"
+        : node.manualFallback
+          ? "added_manual_stub"
+          : "added_or_newer_duplicate";
       summaryRows.push([kind, node.id, node.tag, node.fileName, targetFile, status].join("\t"));
     }
   }
@@ -308,8 +613,10 @@ function main() {
   console.log(`XMFINAL_ABILITY_GAP_PROFILE_BUTTON_IDS=${profileIds.button.size}`);
   console.log(`XMFINAL_ABILITY_GAP_PROFILE_ABILITY_IDS=${profileIds.ability.size}`);
   console.log(`XMFINAL_ABILITY_GAP_PROFILE_REQUIREMENT_IDS=${profileIds.requirement.size}`);
+  console.log(`XMFINAL_ABILITY_GAP_COMMANDERS=${selectedCommanders ? [...selectedCommanders].join(",") : "all"}`);
   console.log(`XMFINAL_ABILITY_GAP_ADDED_NODES=${addedTotal}`);
   console.log(`XMFINAL_ABILITY_GAP_SKIPPED_NODES=${skippedTotal}`);
+  console.log(`XMFINAL_ABILITY_GAP_UPGRADED_MANUAL_BUTTON_STUBS=${upgradedTotal}`);
   console.log(`XMFINAL_ABILITY_GAP_MISSING_IN_OFFICIAL=${missingTotal}`);
   console.log(`XMFINAL_ABILITY_GAP_SUMMARY=${summaryPath}`);
 }

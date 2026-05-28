@@ -3995,4 +3995,361 @@
             </Cost>
             <AutoCastFilters value="Visible;Player,Ally,Neutral"/>
         </CAbilEffectInstant>
+    <CAbilEffectTarget id="DehakaLocustFlyingSwoopAttack">
+            <Alignment value="Negative"/>
+            <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+            <Effect index="0" value="DehakaLocustFlyingSwoopCreatePrecursorOffset"/>
+            <Flags index="BestUnit" value="0"/>
+            <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+            <Range value="6"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="DehakaLocustSwoop"/>
+        </CAbilEffectTarget>
+    <CAbilEffectTarget id="FleetwideJump">
+            <EditorCategories value="AbilityorEffectType:Units"/>
+            <Effect index="0" value="FleetwideJumpCreatePrecursor"/>
+            <Flags index="AllowMovement" value="1"/>
+            <Flags index="BestUnit" value="0"/>
+            <Flags index="NoDeceleration" value="1"/>
+            <Flags index="RequireTargetVision" value="0"/>
+            <Cost>
+                <Cooldown TimeUse="60"/>
+            </Cost>
+            <Range value="500"/>
+            <CastIntroTime value="0"/>
+            <CastOutroTime value="1.2624"/>
+            <ShowProgressArray index="Channel" value="1"/>
+            <UninterruptibleArray index="Channel" value="1"/>
+            <ProgressButtonArray index="Channel" value="Hyperjump"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="FleetwideJump" Requirements="HaveHHTacticalJump">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <AbilSetId value="FleetwideJump"/>
+            <PrepTime value="0.0625"/>
+        </CAbilEffectTarget>
+    <CAbilBehavior id="GhostCloak">
+            <CmdButtonArray index="On" Requirements="GhostPermanentCloakUpgrade"/>
+        </CAbilBehavior>
+    <CAbilMorph id="HHAssaultMode">
+            <AbilSetId value="AssaultMode"/>
+            <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="AssaultMode">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <Flags index="IgnoreFacing" value="1"/>
+            <Flags index="IgnorePlacement" value="0"/>
+            <InfoArray Unit="HHVikingAssault" CollideRange="3.75" RandomDelayMax="0.5">
+                <SectionArray index="Actor">
+                    <DurationArray index="Duration" value="2.34"/>
+                </SectionArray>
+                <SectionArray index="Mover">
+                    <DurationArray index="Delay" value="0.533"/>
+                    <DurationArray index="Duration" value="1.2"/>
+                </SectionArray>
+                <SectionArray index="Stats">
+                    <DurationArray index="Duration" value="2.34"/>
+                </SectionArray>
+            </InfoArray>
+        </CAbilMorph>
+    <CAbilEffectTarget id="HHBattlecruiserHyperjump">
+            <AbilSetId value="FleetwideJump"/>
+            <EditorCategories value="AbilityorEffectType:Units"/>
+            <Effect index="0" value="FleetwideJumpCreatePrecursor"/>
+            <Flags index="AllowMovement" value="1"/>
+            <Flags index="BestUnit" value="0"/>
+            <Flags index="NoDeceleration" value="1"/>
+            <Flags index="RequireTargetVision" value="0"/>
+            <Cost>
+                <Charge Link="Abil/FleetwideJump"/>
+                <Cooldown Link="Abil/FleetwideJump" TimeUse="60"/>
+            </Cost>
+            <InterruptCost>
+                <Charge Link="Abil/FleetwideJump"/>
+                <Cooldown Link="Abil/FleetwideJump"/>
+            </InterruptCost>
+            <Range value="500"/>
+            <PrepTime value="0.0625"/>
+            <CastIntroTime value="0"/>
+            <CastOutroTime value="1.2624"/>
+            <ShowProgressArray index="Channel" value="1"/>
+            <UninterruptibleArray index="Channel" value="1"/>
+            <AINotifyEffect value="FleetwideJump"/>
+            <ProgressButtonArray index="Channel" value="Hyperjump"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="FleetwideJump">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+        </CAbilEffectTarget>
+    <CAbilEffectTarget id="HHD8SingleCharge">
+            <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+            <Range value="5"/>
+            <CastOutroTime value="0.35"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="HHKD8Charge">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <TargetFilters value="Ground,Visible;Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+            <Effect index="0" value="HHD8SingleCluster"/>
+            <TargetSorts RequestCount="1">
+                <SortArray value="TSDistance"/>
+            </TargetSorts>
+            <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral"/>
+            <AutoCastRange value="5"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+            <Cost>
+                <Cooldown TimeUse="20"/>
+            </Cost>
+        </CAbilEffectTarget>
+    <CAbilEffectTarget id="HHHellionBomb">
+            <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="HHHellionBomb" Requirements="HaveHHHellionRocket"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+            <Flags index="TransientPreferred" value="1"/>
+            <AutoCastFilters value="Visible;Self,Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+            <Effect index="0" value="HHHellionBombLM"/>
+            <Cost>
+                <Cooldown TimeUse="10"/>
+            </Cost>
+            <AutoCastValidatorArray value="RangeCheckLE6"/>
+            <Range value="6"/>
+            <TargetFilters value="Ground,Visible;Self,Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+            <AutoCastRange value="6"/>
+            <CastIntroTime value="0.75"/>
+        </CAbilEffectTarget>
+    <CAbilMorph id="HHRavenMorphtoHHRavenSiege">
+            <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="MorphtoHHRavenSiege">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <Flags index="BestUnit" value="1"/>
+            <Flags index="DisableAbils" value="1"/>
+            <Flags index="FastBuild" value="1"/>
+            <Flags index="IgnoreFacing" value="1"/>
+            <Flags index="IgnoreUnitCost" value="1"/>
+            <RefundFraction>
+                <Resource index="Minerals" value="0"/>
+                <Resource index="Vespene" value="0"/>
+                <Resource index="Terrazine" value="0"/>
+                <Resource index="Custom" value="0"/>
+            </RefundFraction>
+            <InfoArray Score="1" Unit="HHRavenSiegeMode">
+                <SectionArray index="Abils">
+                    <DurationArray index="Duration" value="0.5"/>
+                </SectionArray>
+                <SectionArray index="Actor">
+                    <DurationArray index="Duration" value="0.5"/>
+                </SectionArray>
+                <SectionArray index="Collide">
+                    <DurationArray index="Duration" value="0.5"/>
+                </SectionArray>
+                <SectionArray index="Mover">
+                    <DurationArray index="Duration" value="0.75"/>
+                    <EffectArray index="Finish" value="HHRavenCloakAB"/>
+                </SectionArray>
+                <SectionArray index="Stats">
+                    <DurationArray index="Duration" value="0.5"/>
+                </SectionArray>
+            </InfoArray>
+        </CAbilMorph>
+    <CAbilEffectInstant id="HHReaperFly">
+            <CmdButtonArray index="Execute" DefaultButtonFace="HHReaperFly" Requirements="HaveHHReaperFlight"/>
+            <Effect index="0" value="HHReaperFlyCreatePrecursor"/>
+            <Cost>
+                <Cooldown TimeUse="20"/>
+            </Cost>
+            <Flags index="Transient" value="1"/>
+        </CAbilEffectInstant>
+    <CAbilEffectTarget id="HHVikingRockets">
+            <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+            <Effect index="0" value="HHVikingRocketsBurstPersistent"/>
+            <Flags index="AllowMovement" value="1"/>
+            <Flags index="AllowMovingSuppressed" value="1"/>
+            <Flags index="AllowTurningSuppressed" value="1"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+            <Flags index="TransientPreferred" value="1"/>
+            <Cost>
+                <Charge>
+                    <CountMax value="2"/>
+                    <CountStart value="2"/>
+                    <CountUse value="1"/>
+                    <TimeUse value="20"/>
+                </Charge>
+                <Cooldown TimeUse="5"/>
+            </Cost>
+            <TargetFilters value="Air,Visible;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Hallucination,Invulnerable"/>
+            <TargetSorts>
+                <SortArray value="TSRandom"/>
+            </TargetSorts>
+            <Range value="10"/>
+            <Arc value="360"/>
+            <SmartValidatorArray value="HHVikingRocketsSmartTarget"/>
+            <AutoCastFilters value="Air,Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Hallucination,Invulnerable"/>
+            <AutoCastRange value="10"/>
+            <CursorEffect value="HHVikingRocketsDamage"/>
+            <AcquireAttackers value="1"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="HHVikingRockets" Requirements="HaveHHVikingRockets"/>
+        </CAbilEffectTarget>
+    <CAbilEffectTarget id="HHWidowMineAttack">
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+            <Flags index="ReExecutable" value="1"/>
+            <Flags index="Smart" value="1"/>
+            <TargetFilters value="Visible;Player,Ally,Neutral,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
+            <Range value="7"/>
+            <Arc value="360"/>
+            <AutoCastFilters value="Visible;Player,Ally,Neutral,Structure,Missile,Item,Stasis,Dead,Hidden,Invulnerable,Benign"/>
+            <AutoCastRange value="7"/>
+            <AutoCastValidatorArray value="HHWidowMineAttackRangeUpgraded"/>
+            <AutoCastValidatorArray value="IsNotDisguisedChangeling"/>
+            <AutoCastValidatorArray value="NotHallucinationOrNotDetected"/>
+            <AutoCastValidatorArray value="noMarkers"/>
+            <PrepTime value="1.5"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="WidowMineAttack" Requirements="HHWidowMineArmed"/>
+            <Cost>
+                <Cooldown Location="Unit" TimeUse="40"/>
+            </Cost>
+        </CAbilEffectTarget>
+    <CAbilMorph id="HHWidowMineBurrow">
+            <AbilSetId value="BrwD"/>
+            <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="WidowMineBurrow">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+            <ActorKey value="BurrowDown"/>
+            <Flags index="Interruptible" value="1"/>
+            <Flags index="IgnoreCollision" value="0"/>
+            <Flags index="IgnoreFacing" value="1"/>
+            <Flags index="IgnorePlacement" value="0"/>
+            <Flags index="SuppressMovement" value="1"/>
+            <InfoArray Unit="HHWidowMineBurrowed" RandomDelayMax="0.5">
+                <SectionArray index="Actor">
+                    <DurationArray index="Duration" value="3"/>
+                </SectionArray>
+                <SectionArray index="Collide">
+                    <DurationArray index="Delay" value="0.5556"/>
+                </SectionArray>
+                <SectionArray index="Stats">
+                    <DurationArray index="Delay" value="3"/>
+                </SectionArray>
+            </InfoArray>
+        </CAbilMorph>
+    <CAbilBehavior id="HHWraithCloak">
+            <AbilSetId value="Clok"/>
+            <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+            <CmdButtonArray index="On" DefaultButtonFace="CloakOn" Requirements="NotHaveHHWraithPermaCloak">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <CmdButtonArray index="Off" DefaultButtonFace="CloakOff" Requirements="NotHaveHHWraithPermaCloak">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <Flags index="Toggle" value="1"/>
+            <Flags index="Transient" value="1"/>
+            <Cost/>
+            <BehaviorArray value="WraithCloak"/>
+        </CAbilBehavior>
+    <CAbilBehavior id="HHYamatoShots">
+            <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+            <CmdButtonArray index="On" DefaultButtonFace="HHYamatoShots" Requirements="HaveHHBattlecruiserYamatoAttacks">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <CmdButtonArray index="Off" DefaultButtonFace="HHBattlecruiserShots">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <Flags index="Toggle" value="1"/>
+            <Flags index="Transient" value="1"/>
+            <BehaviorArray value="HHYamatoShots"/>
+        </CAbilBehavior>
+    <CAbilMorph id="MorphToHHHellion">
+            <AbilSetId value="HellionMode"/>
+            <EditorCategories value="Race:Terran,AbilityorEffectType:MorphsandBurrows"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="MorphToHellion">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <Flags index="IgnoreFacing" value="1"/>
+            <InfoArray Unit="HHHellion" RandomDelayMax="0.25">
+                <SectionArray index="Actor">
+                    <DurationArray index="Delay" value="0.33"/>
+                    <DurationArray index="Duration" value="3.67"/>
+                </SectionArray>
+                <SectionArray index="Collide">
+                    <DurationArray index="Delay" value="4"/>
+                </SectionArray>
+                <SectionArray index="Stats">
+                    <DurationArray index="Delay" value="0.33"/>
+                    <DurationArray index="Duration" value="3.67"/>
+                </SectionArray>
+            </InfoArray>
+        </CAbilMorph>
+    <CAbilMorph id="MorphToHHHellionTank">
+            <AbilSetId value="TankMode"/>
+            <EditorCategories value="Race:Terran,AbilityorEffectType:MorphsandBurrows"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="MorphToHellionTank">
+                <Flags index="ToSelection" value="1"/>
+            </CmdButtonArray>
+            <Flags index="IgnoreFacing" value="1"/>
+            <InfoArray Unit="HHHellionTank" RandomDelayMax="0.25">
+                <SectionArray index="Actor">
+                    <DurationArray index="Delay" value="0.33"/>
+                    <DurationArray index="Duration" value="3.67"/>
+                </SectionArray>
+                <SectionArray index="Collide">
+                    <DurationArray index="Delay" value="4"/>
+                </SectionArray>
+                <SectionArray index="Stats">
+                    <DurationArray index="Delay" value="0.33"/>
+                    <DurationArray index="Duration" value="3.67"/>
+                </SectionArray>
+            </InfoArray>
+        </CAbilMorph>
+    <CAbilEffectTarget id="RavenTargetLock">
+            <AbilSetId value="TargetLock"/>
+            <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+            <Effect index="0" value="RavenAnalyzeCP"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+            <Cost>
+                <Charge Link="Abil/NomadTargetLock"/>
+                <Cooldown Link="Abil/ObserverTargetLock" Location="Unit" TimeUse="3"/>
+            </Cost>
+            <TargetFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Invulnerable"/>
+            <TargetSorts>
+                <SortArray value="TSLifeLargestFirst"/>
+                <SortArray value="TSDistance"/>
+            </TargetSorts>
+            <Range value="8"/>
+            <Arc value="360"/>
+            <AutoCastRange value="8"/>
+            <AutoCastValidatorArray value="NotHaveTargetLock"/>
+            <AutoCastValidatorArray value="NotInterceptor"/>
+            <CastOutroTime value="0.5"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="HHNomadTargetLock"/>
+        </CAbilEffectTarget>
+    <CAbilHarvest id="SCVHarvest">
+            <UninterruptibleArray index="WaitToReturn" value="0"/>
+        </CAbilHarvest>
+    <CAbilBehavior id="BansheeCloak">
+        <AbilSetId value="Clok"/>
+        <CmdButtonArray index="On" DefaultButtonFace="CloakOnBanshee"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="CloakOff"/>
+        <Flags index="Toggle" value="1"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="GhostHoldFire">
+        <CmdButtonArray index="Execute" DefaultButtonFace="GhostHoldFire"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="GhostWeaponsFree">
+        <CmdButtonArray index="Execute" DefaultButtonFace="WeaponsFree"/>
+    </CAbilEffectInstant>
+    <CAbilMorph id="SiegeMode">
+        <CmdButtonArray index="Execute" DefaultButtonFace="SiegeMode"/>
+    </CAbilMorph>
+    <CAbilEffectInstant id="Stimpack">
+        <CmdButtonArray index="Execute" DefaultButtonFace="Stim"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="StimpackMarauder">
+        <CmdButtonArray index="Execute" DefaultButtonFace="StimMarauder"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="TacNukeStrike">
+        <CmdButtonArray index="Execute" DefaultButtonFace="NukeCalldown"/>
+    </CAbilEffectTarget>
 </Catalog>

@@ -1959,4 +1959,63 @@
             </ReviveInfoBase>
             <Description value="Button/Tooltip/ZeratulWarpPrismFlightDescription"/>
         </CUnit>
+    <CUnit id="Medic">
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="HealPlusMech"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons Face="MedicHealPlusMech" Type="AbilCmd" AbilCmd="HealPlusMech,Execute" Row="2" Column="0"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionRaider"/>
+            <HotkeyCategory value="Unit/Category/TerranRaider"/>
+            <SubgroupPriority value="104"/>
+        </CUnit>
+    <CUnit id="Firebat">
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="StimpackMarauder"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="5" Column="1"/>
+                <LayoutButtons index="6" Column="2"/>
+                <LayoutButtons Face="StimMarauder" Type="AbilCmd" AbilCmd="StimpackMarauder,Execute" Row="2" Column="0"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <SubgroupPriority value="114"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionRaider"/>
+            <HotkeyCategory value="Unit/Category/TerranRaider"/>
+        </CUnit>
+    <CUnit id="Vulture">
+            <RepairTime value="23"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="VehicleAfterburners"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="6" AbilCmd="255,255" Column="3"/>
+                <LayoutButtons Face="IgniteAfterburners" Type="AbilCmd" AbilCmd="VehicleAfterburners,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="AfterburnersLocked" Type="Passive" Requirements="RaynorLevel11" Row="2" Column="2"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionRaider"/>
+            <HotkeyCategory value="Unit/Category/TerranRaider"/>
+            <SubgroupPriority value="112"/>
+        </CUnit>
+    <CUnit id="MercReaper">
+            <LifeRegenDelay value="5"/>
+            <LifeRegenRate value="4"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="5" AbilCmd="255,255"/>
+                <LayoutButtons Face="CombatDrugs" Type="Passive" Row="2" Column="2"/>
+            </CardLayouts>
+            <CargoSize value="1"/>
+        </CUnit>
 </Catalog>

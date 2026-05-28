@@ -21,7 +21,8 @@ const aliases = {
     Ghost_BlackOps: ["Ghost_BlackOps", "GhostFemale_BlackOps"],
     AutoTurret: ["AutoTurret", "NovaACLaserTurret"],
     NovaACLaserTurret: ["NovaACLaserTurret", "AutoTurret"],
-    MercReaper: ["MercReaper", "ReaperMira"],
+    SCV: ["SCV", "SCVNova"],
+    SCVNova: ["SCVNova", "SCV"],
   },
   Raynor: {
     Viking: ["Viking", "VikingFighter"],
@@ -108,6 +109,10 @@ function loadCatalogIndex() {
     button: new Map(),
     requirement: new Map(),
     upgrade: new Map(),
+    referencedButton: new Map(),
+    referencedAbility: new Map(),
+    referencedRequirement: new Map(),
+    referencedAny: new Map(),
   };
 
   const officialModRoots = [
@@ -120,9 +125,13 @@ function loadCatalogIndex() {
     "voidmulti.sc2mod",
   ].map((name) => path.join(root, "references", "sc2-build-96883-casc-export", "mods", name));
   const catalogRoots = [path.join(root, "原始mod", "Mods", "XM"), ...officialModRoots];
+  const officialCoopReferenceRoots = [
+    path.join(root, "references", "sc2-build-96883-casc-export", "mods", "starcoop"),
+  ];
 
   for (const catalogRoot of catalogRoots) {
     for (const file of walk(catalogRoot)) {
+      addExternalReferencesFromFile(index, file);
       if (!file.toLowerCase().endsWith(".xml")) {
         continue;
       }
@@ -147,7 +156,94 @@ function loadCatalogIndex() {
     }
   }
 
+  for (const referenceRoot of officialCoopReferenceRoots) {
+    for (const file of walk(referenceRoot)) {
+      addExternalReferencesFromFile(index, file);
+    }
+  }
+
   return index;
+}
+
+function addExternalReferencesFromFile(index, file) {
+  const lowerFile = file.toLowerCase();
+  if (lowerFile.endsWith("gamestrings.txt")) {
+    const text = readText(file);
+    addExternalReferenceMatches(index.referencedButton, text, /^Button\/Name\/([^=\r\n]+)=/gm, file);
+    addExternalReferenceMatches(index.referencedButton, text, /^Button\/Tooltip\/([^=\r\n]+)=/gm, file);
+    addExternalReferenceMatches(index.referencedAny, text, /^(?:[^\/=\r\n]+)\/(?:[^\/=\r\n]+)\/([^=\r\n]+)=/gm, file);
+    return;
+  }
+  if (lowerFile.endsWith("objectstrings.txt")) {
+    const text = readText(file);
+    addExternalReferenceMatches(index.referencedButton, text, /^Button\/(?:Name|Tooltip|EditorPrefix|EditorSuffix)\/([^=\r\n]+)=/gm, file);
+    addExternalReferenceMatches(index.referencedRequirement, text, /^Requirement\/(?:Name|Tooltip|EditorPrefix|EditorSuffix)\/([^=\r\n]+)=/gm, file);
+    addExternalReferenceMatches(index.referencedAny, text, /^(?:[^\/=\r\n]+)\/(?:[^\/=\r\n]+)\/([^=\r\n]+)=/gm, file);
+    return;
+  }
+  if (lowerFile.endsWith("preloadassetdb.txt")) {
+    const text = readText(file);
+    addExternalReferenceMatches(index.referencedButton, text, /^id=([^\r\n]+)/gm, file);
+    addExternalReferenceMatches(index.referencedAbility, text, /^id=([^\r\n]+)/gm, file);
+    addExternalReferenceMatches(index.referencedRequirement, text, /^id=([^\r\n]+)/gm, file);
+    addExternalReferenceMatches(index.referencedAny, text, /^id=([^\r\n]+)/gm, file);
+    addPreloadAssetReferences(index.referencedButton, text, /^Button=([^\r\n]+)/gm, file);
+    addPreloadAssetReferences(index.referencedAbility, text, /^Abil=([^\r\n]+)/gm, file);
+    addPreloadAssetReferences(index.referencedRequirement, text, /^Requirement=([^\r\n]+)/gm, file);
+    addPreloadAssetReferences(index.referencedAny, text, /^(?:Abil|Behavior|Button|Effect|Requirement|Unit|Upgrade|Validator|Weapon)=([^\r\n]+)/gm, file);
+    return;
+  }
+  if (!lowerFile.endsWith(".xml")) {
+    return;
+  }
+  if (!file.replaceAll("\\", "/").toLowerCase().includes("/gamedata/")) {
+    return;
+  }
+
+  const baseName = path.basename(file, ".xml").toLowerCase();
+  const text = readText(file);
+  if (baseName === "unitdata") {
+    addExternalReferenceMatches(index.referencedButton, text, /\bFace="([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedButton, text, /<Face\b[^>]*\bvalue="([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedButton, text, /\bDefaultButtonFace="([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedAbility, text, /\bLink="([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedAbility, text, /\bAbilCmd="([^",]+)(?:,[^"]*)?"/g, file);
+    addExternalReferenceMatches(index.referencedAbility, text, /<AbilCmd\b[^>]*\bvalue="([^",]+)(?:,[^"]*)?"/g, file);
+    addExternalReferenceMatches(index.referencedRequirement, text, /\bRequirements="([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedRequirement, text, /<Requirements\b[^>]*\bvalue="([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedAny, text, /\b(?:AbilCmd|DefaultButtonFace|Face|Link|Requirements)="([^",]+)(?:,[^"]*)?"/g, file);
+    addExternalReferenceMatches(index.referencedAny, text, /<(?:AbilCmd|Face|Requirements)\b[^>]*\bvalue="([^",]+)(?:,[^"]*)?"/g, file);
+  }
+  if (baseName === "abildata" || baseName === "heroabildata") {
+    addExternalReferenceMatches(index.referencedButton, text, /\bDefaultButtonFace="([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedAbility, text, /\bLink="Abil\/([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedRequirement, text, /\bRequirements="([^"]+)"/g, file);
+    addExternalReferenceMatches(index.referencedAny, text, /\b(?:DefaultButtonFace|Link|Requirements)="(?:Abil\/)?([^"]+)"/g, file);
+  }
+}
+
+function addExternalReferenceMatches(target, text, re, file) {
+  for (const match of text.matchAll(re)) {
+    const id = match[1];
+    if (!id) {
+      continue;
+    }
+    if (!target.has(id)) {
+      target.set(id, []);
+    }
+    target.get(id).push(file);
+  }
+}
+
+function addPreloadAssetReferences(target, text, re, file) {
+  for (const match of text.matchAll(re)) {
+    for (const id of match[1].split(",").map((value) => value.trim()).filter(Boolean)) {
+      if (!target.has(id)) {
+        target.set(id, []);
+      }
+      target.get(id).push(file);
+    }
+  }
 }
 
 function commanderFunctionBody(text, commander, suffix) {
@@ -168,8 +264,38 @@ function externalCatalogMatch(commander, kind, id) {
   return externalCampaignCatalog[commander]?.[kind]?.includes(id) ?? false;
 }
 
+function localCatalogHas(catalogIndex, commander, kind, id) {
+  const ids = kind === "unit" ? candidates(commander, id) : [id];
+  return ids.some((candidate) => catalogIndex[kind].has(candidate));
+}
+
 function catalogHas(catalogIndex, commander, kind, id) {
-  return catalogIndex[kind].has(id) || externalCatalogMatch(commander, kind, id);
+  const ids = kind === "unit" ? candidates(commander, id) : [id];
+  return ids.some((candidate) => catalogIndex[kind].has(candidate) || externalCatalogMatch(commander, kind, candidate));
+}
+
+function externallyReferenced(catalogIndex, kind, id) {
+  if (catalogIndex.referencedAny.has(id)) {
+    return true;
+  }
+  if (kind === "button") {
+    return catalogIndex.referencedButton.has(id);
+  }
+  if (kind === "ability") {
+    return catalogIndex.referencedAbility.has(id);
+  }
+  if (kind === "requirement") {
+    return catalogIndex.referencedRequirement.has(id);
+  }
+  return false;
+}
+
+function catalogGapPart(catalogIndex, commander, kind, id) {
+  if (catalogHas(catalogIndex, commander, kind, id)) {
+    return "";
+  }
+  const prefix = externallyReferenced(catalogIndex, kind, id) ? "external-" : "";
+  return `${prefix}${kind}=${id}`;
 }
 
 function containsAnyQuoted(text, values) {
@@ -178,6 +304,19 @@ function containsAnyQuoted(text, values) {
 
 function unique(values) {
   return [...new Set(values)];
+}
+
+function commanderSelected(selectedCommanders, commander) {
+  return !selectedCommanders || selectedCommanders.has(commander);
+}
+
+function commanderNames(selectedCommanders) {
+  return fs
+    .readdirSync(commandersRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((commander) => commanderSelected(selectedCommanders, commander))
+    .sort();
 }
 
 function primaryUnitIds(jsonFile) {
@@ -194,17 +333,11 @@ function commandCardObjects(jsonFile, objectType) {
   ];
 }
 
-function auditProfileCoverage(galaxy) {
+function auditProfileCoverage(galaxy, selectedCommanders) {
   const rows = [];
   let missing = 0;
 
-  const commanders = fs
-    .readdirSync(commandersRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort();
-
-  for (const commander of commanders) {
+  for (const commander of commanderNames(selectedCommanders)) {
     const commanderDir = path.join(commandersRoot, commander);
     const unitIds = [
       ...new Set([
@@ -267,28 +400,42 @@ function auditProfileCoverage(galaxy) {
   return { rows, missing };
 }
 
-function auditAbilityCatalog(galaxy, catalogIndex) {
+function auditAbilityCatalog(galaxy, catalogIndex, selectedCommanders) {
   const rows = new Map();
   const entryRe =
     /CheckAbilityProfileEntry\([^,]+,\s*"([^"]+)",\s*[^,]+,\s*"([^"]*)",\s*"([^"]*)",\s*"([^"]*)",\s*"([^"]*)",\s*"([^"]*)"\)/g;
   const text = `${galaxy.unitAbilities}\n${galaxy.heroAbilities}`;
   let match;
   let missing = 0;
+  let hardMissing = 0;
+  let externalReferenced = 0;
 
   while ((match = entryRe.exec(text))) {
     const [, commander, objectId, buttonId, abilityId, requirementId, entryKind] = match;
+    if (!commanderSelected(selectedCommanders, commander)) {
+      continue;
+    }
+
     const parts = [];
-    if (objectId && !catalogHas(catalogIndex, commander, "unit", objectId)) {
-      parts.push(`unit=${objectId}`);
-    }
-    if (buttonId && !catalogIndex.button.has(buttonId)) {
-      parts.push(`button=${buttonId}`);
-    }
-    if (abilityId && !catalogIndex.ability.has(abilityId)) {
-      parts.push(`ability=${abilityId}`);
-    }
-    if (requirementId && !catalogIndex.requirement.has(requirementId)) {
-      parts.push(`requirement=${requirementId}`);
+    for (const [kind, id] of [
+      ["unit", objectId],
+      ["button", buttonId],
+      ["ability", abilityId],
+      ["requirement", requirementId],
+    ]) {
+      if (!id) {
+        continue;
+      }
+      const part = catalogGapPart(catalogIndex, commander, kind, id);
+      if (!part) {
+        continue;
+      }
+      parts.push(part);
+      if (part.startsWith("external-")) {
+        externalReferenced += 1;
+      } else {
+        hardMissing += 1;
+      }
     }
 
     if (parts.length === 0) {
@@ -309,7 +456,7 @@ function auditAbilityCatalog(galaxy, catalogIndex) {
     });
   }
 
-  return { rows, missing };
+  return { rows, missing, hardMissing, externalReferenced };
 }
 
 function extractCreatedUnitIds(body, functionNames) {
@@ -340,17 +487,11 @@ function extractAliasedCreatedUnitIds(body, functionNames) {
   return ids;
 }
 
-function auditRosterCatalog(galaxy, catalogIndex) {
+function auditRosterCatalog(galaxy, catalogIndex, selectedCommanders) {
   const rows = [];
   let missing = 0;
 
-  const commanders = fs
-    .readdirSync(commandersRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort();
-
-  for (const commander of commanders) {
+  for (const commander of commanderNames(selectedCommanders)) {
     const rosterBody = commanderFunctionBody(galaxy.rosters, commander, "Roster");
     const buildingBody = commanderFunctionBody(galaxy.buildings, commander, "Buildings");
     const rosterUnits = unique([
@@ -363,8 +504,8 @@ function auditRosterCatalog(galaxy, catalogIndex) {
     ]);
     const rosterMissing = rosterUnits.filter((id) => !catalogHas(catalogIndex, commander, "unit", id));
     const buildingMissing = buildingUnits.filter((id) => !catalogHas(catalogIndex, commander, "unit", id));
-    const rosterExternal = rosterUnits.filter((id) => externalCatalogMatch(commander, "unit", id));
-    const buildingExternal = buildingUnits.filter((id) => externalCatalogMatch(commander, "unit", id));
+    const rosterExternal = rosterUnits.filter((id) => !localCatalogHas(catalogIndex, commander, "unit", id) && externalCatalogMatch(commander, "unit", id));
+    const buildingExternal = buildingUnits.filter((id) => !localCatalogHas(catalogIndex, commander, "unit", id) && externalCatalogMatch(commander, "unit", id));
 
     missing += rosterMissing.length + buildingMissing.length;
     rows.push({
@@ -417,6 +558,8 @@ function printAbilityCatalog(result, limit) {
     }
   }
   console.log(`ABILITY_CATALOG_MISSING_ENTRIES=${result.missing}`);
+  console.log(`ABILITY_CATALOG_HARD_MISSING_PARTS=${result.hardMissing}`);
+  console.log(`ABILITY_CATALOG_EXTERNAL_REFERENCED_PARTS=${result.externalReferenced}`);
 }
 
 function printRosterCatalog(result, limit) {
@@ -472,22 +615,34 @@ function parseArgs() {
   return args;
 }
 
+function parseCommanderSet(value) {
+  if (!value) {
+    return undefined;
+  }
+  const names = String(value)
+    .split(/[,\s]+/u)
+    .map((item) => item.trim())
+    .filter(Boolean);
+  return names.length > 0 ? new Set(names) : undefined;
+}
+
 const args = parseArgs();
 const failOnCatalogGaps = args.has("fail-on-catalog-gaps");
 const catalogLimit = Number(args.get("catalog-limit") ?? 12);
+const selectedCommanders = parseCommanderSet(args.get("commanders"));
 
 const galaxy = Object.fromEntries(
   Object.entries(galaxyFiles).map(([key, file]) => [key, readText(path.join(xmfinalRoot, file))]),
 );
 
-const profileCoverage = auditProfileCoverage(galaxy);
+const profileCoverage = auditProfileCoverage(galaxy, selectedCommanders);
 printProfileCoverage(profileCoverage);
 
 const catalogIndex = loadCatalogIndex();
-const rosterCatalog = auditRosterCatalog(galaxy, catalogIndex);
+const rosterCatalog = auditRosterCatalog(galaxy, catalogIndex, selectedCommanders);
 printRosterCatalog(rosterCatalog, catalogLimit);
 
-const abilityCatalog = auditAbilityCatalog(galaxy, catalogIndex);
+const abilityCatalog = auditAbilityCatalog(galaxy, catalogIndex, selectedCommanders);
 printAbilityCatalog(abilityCatalog, catalogLimit);
 
 if (profileCoverage.missing > 0 || (failOnCatalogGaps && ((abilityCatalog.missing + rosterCatalog.missing) > 0))) {
