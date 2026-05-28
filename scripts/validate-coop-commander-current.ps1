@@ -305,7 +305,7 @@ function Resolve-ScenarioRoot {
         return $rootItem
     }
 
-    foreach ($preferredName in @("合作指挥官版起义狂潮", "原始mod", "originalmod")) {
+    foreach ($preferredName in @("原始mod", "originalmod", "合作指挥官版起义狂潮")) {
         $preferredRoot = Join-Path $rootItem.FullName $preferredName
         if (Test-Path -LiteralPath (Join-Path $preferredRoot "Mods\XM\XMCore.SC2Mod")) {
             return Get-Item -LiteralPath $preferredRoot

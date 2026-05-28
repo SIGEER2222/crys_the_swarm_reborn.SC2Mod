@@ -69,6 +69,8 @@ trigger gt_XMTB_ChatZeratul;
 trigger gt_XMTB_ChatNova;
 trigger gt_XMTB_ChatDehaka;
 trigger gt_XMTB_ChatSmoke;
+trigger gt_XMTB_ChatFullBuildings;
+trigger gt_XMTB_ChatFullUnits;
 
 int gv_xmTbCommanderDialog;
 int gv_xmTbScenarioDialog;
@@ -87,6 +89,7 @@ string gv_xmTbCurrentCommander;
 int gv_xmTbCurrentCommanderIndex;
 string gv_xmTbCurrentScenario;
 string gv_xmTbLastEvent;
+string gv_xmTbRunAllDetails;
 int gv_xmTbWarnings;
 int gv_xmTbErrors;
 int gv_xmTbCreated;
@@ -187,6 +190,9 @@ void gf_XMTB_UpdateSummary () {
     lv_text = lv_text + " | Panel: command invoke, not mouse simulation.";
     lv_text = lv_text + " | MapWarnings: " + IntToString(gv_xmTbWarnings);
     lv_text = lv_text + " | MapErrors: " + IntToString(gv_xmTbErrors);
+    if (gv_xmTbRunAllDetails != "") {
+        lv_text = lv_text + " | " + gv_xmTbRunAllDetails;
+    }
     lv_text = lv_text + " | MapLast: " + gv_xmTbLastEvent;
 
     libNtve_gf_SetDialogItemText(gv_xmTbSummaryLabel, StringToText(lv_text), PlayerGroupAll());
@@ -199,6 +205,7 @@ void gf_XMTB_Clear () {
     gv_xmTbWarnings = XMTestBench_GetWarningCount(1);
     gv_xmTbErrors = XMTestBench_GetErrorCount(1);
     gv_xmTbLastEvent = "TEST_CLEAR";
+    gv_xmTbRunAllDetails = "";
     gf_XMTB_UpdateSummary();
 }
 
@@ -208,6 +215,7 @@ void gf_XMTB_SetCommander (string lp_commander) {
     gv_xmTbWarnings = XMTestBench_GetWarningCount(1);
     gv_xmTbErrors = XMTestBench_GetErrorCount(1);
     gv_xmTbLastEvent = "TEST_COMMANDER_SET";
+    gv_xmTbRunAllDetails = "";
     gf_XMTB_UpdateSummary();
 }
 
@@ -223,6 +231,7 @@ void gf_XMTB_RunScenario (string lp_scenario) {
     gv_xmTbWarnings = XMTestBench_GetWarningCount(1);
     gv_xmTbErrors = XMTestBench_GetErrorCount(1);
     gv_xmTbLastEvent = "TEST_SCENARIO_DONE";
+    gv_xmTbRunAllDetails = "";
     gf_XMTB_UpdateSummary();
 }
 
@@ -235,6 +244,16 @@ void gf_XMTB_RunCurrentScenario () {
 void gf_XMTB_RunAllSmoke () {
     int lv_totalWarnings;
     int lv_totalErrors;
+    int lv_pfWarnings;
+    int lv_sbWarnings;
+    int lv_pcWarnings;
+    int lv_fbWarnings;
+    int lv_fuWarnings;
+    int lv_pfErrors;
+    int lv_sbErrors;
+    int lv_pcErrors;
+    int lv_fbErrors;
+    int lv_fuErrors;
     string lv_result;
 
     lv_totalWarnings = 0;
@@ -245,37 +264,47 @@ void gf_XMTB_RunAllSmoke () {
     gf_XMTB_Clear();
     gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("power_fusion");
-    lv_totalWarnings += XMTestBench_GetWarningCount(1);
-    lv_totalErrors += XMTestBench_GetErrorCount(1);
-    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=power_fusion warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+    lv_pfWarnings = XMTestBench_GetWarningCount(1);
+    lv_pfErrors = XMTestBench_GetErrorCount(1);
+    lv_totalWarnings += lv_pfWarnings;
+    lv_totalErrors += lv_pfErrors;
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=power_fusion warnings=" + IntToString(lv_pfWarnings) + " errors=" + IntToString(lv_pfErrors));
 
     gf_XMTB_Clear();
     gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("standard_base");
-    lv_totalWarnings += XMTestBench_GetWarningCount(1);
-    lv_totalErrors += XMTestBench_GetErrorCount(1);
-    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=standard_base warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+    lv_sbWarnings = XMTestBench_GetWarningCount(1);
+    lv_sbErrors = XMTestBench_GetErrorCount(1);
+    lv_totalWarnings += lv_sbWarnings;
+    lv_totalErrors += lv_sbErrors;
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=standard_base warnings=" + IntToString(lv_sbWarnings) + " errors=" + IntToString(lv_sbErrors));
 
     gf_XMTB_Clear();
     gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("panel_cost_smoke");
-    lv_totalWarnings += XMTestBench_GetWarningCount(1);
-    lv_totalErrors += XMTestBench_GetErrorCount(1);
-    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=panel_cost_smoke warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+    lv_pcWarnings = XMTestBench_GetWarningCount(1);
+    lv_pcErrors = XMTestBench_GetErrorCount(1);
+    lv_totalWarnings += lv_pcWarnings;
+    lv_totalErrors += lv_pcErrors;
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=panel_cost_smoke warnings=" + IntToString(lv_pcWarnings) + " errors=" + IntToString(lv_pcErrors));
 
     gf_XMTB_Clear();
     gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("full_buildings");
-    lv_totalWarnings += XMTestBench_GetWarningCount(1);
-    lv_totalErrors += XMTestBench_GetErrorCount(1);
-    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=full_buildings warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+    lv_fbWarnings = XMTestBench_GetWarningCount(1);
+    lv_fbErrors = XMTestBench_GetErrorCount(1);
+    lv_totalWarnings += lv_fbWarnings;
+    lv_totalErrors += lv_fbErrors;
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=full_buildings warnings=" + IntToString(lv_fbWarnings) + " errors=" + IntToString(lv_fbErrors));
 
     gf_XMTB_Clear();
     gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
     gf_XMTB_RunScenario("full_units");
-    lv_totalWarnings += XMTestBench_GetWarningCount(1);
-    lv_totalErrors += XMTestBench_GetErrorCount(1);
-    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=full_units warnings=" + IntToString(XMTestBench_GetWarningCount(1)) + " errors=" + IntToString(XMTestBench_GetErrorCount(1)));
+    lv_fuWarnings = XMTestBench_GetWarningCount(1);
+    lv_fuErrors = XMTestBench_GetErrorCount(1);
+    lv_totalWarnings += lv_fuWarnings;
+    lv_totalErrors += lv_fuErrors;
+    gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=full_units warnings=" + IntToString(lv_fuWarnings) + " errors=" + IntToString(lv_fuErrors));
 
     if (lv_totalErrors > 0) {
         lv_result = "error";
@@ -290,6 +319,7 @@ void gf_XMTB_RunAllSmoke () {
     gv_xmTbWarnings = lv_totalWarnings;
     gv_xmTbErrors = lv_totalErrors;
     gv_xmTbLastEvent = "TEST_RUN_ALL_DONE";
+    gv_xmTbRunAllDetails = "Steps W/E pf=" + IntToString(lv_pfWarnings) + "/" + IntToString(lv_pfErrors) + " sb=" + IntToString(lv_sbWarnings) + "/" + IntToString(lv_sbErrors) + " pc=" + IntToString(lv_pcWarnings) + "/" + IntToString(lv_pcErrors) + " fb=" + IntToString(lv_fbWarnings) + "/" + IntToString(lv_fbErrors) + " fu=" + IntToString(lv_fuWarnings) + "/" + IntToString(lv_fuErrors);
     gf_XMTB_Log("INFO", "TEST_RUN_ALL_DONE", "mode=runtime_api result=" + lv_result + " totalWarnings=" + IntToString(lv_totalWarnings) + " totalErrors=" + IntToString(lv_totalErrors));
     gf_XMTB_UpdateSummary();
 }
@@ -597,6 +627,22 @@ bool gt_XMTB_ChatSmoke_Func (bool testConds, bool runActions) {
     return true;
 }
 
+bool gt_XMTB_ChatFullBuildings_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_RunScenario("full_buildings");
+    return true;
+}
+
+bool gt_XMTB_ChatFullUnits_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_RunScenario("full_units");
+    return true;
+}
+
 void gt_XMTB_Init_Init () {
     gt_XMTB_Init = TriggerCreate("gt_XMTB_Init_Func");
     TriggerAddEventMapInit(gt_XMTB_Init);
@@ -687,6 +733,16 @@ void gt_XMTB_ChatSmoke_Init () {
     TriggerAddEventChatMessage(gt_XMTB_ChatSmoke, c_playerAny, "-tbsmoke", true);
 }
 
+void gt_XMTB_ChatFullBuildings_Init () {
+    gt_XMTB_ChatFullBuildings = TriggerCreate("gt_XMTB_ChatFullBuildings_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatFullBuildings, c_playerAny, "-tbfullbuildings", true);
+}
+
+void gt_XMTB_ChatFullUnits_Init () {
+    gt_XMTB_ChatFullUnits = TriggerCreate("gt_XMTB_ChatFullUnits_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatFullUnits, c_playerAny, "-tbfullunits", true);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
@@ -709,6 +765,8 @@ void InitTriggers () {
     gt_XMTB_ChatNova_Init();
     gt_XMTB_ChatDehaka_Init();
     gt_XMTB_ChatSmoke_Init();
+    gt_XMTB_ChatFullBuildings_Init();
+    gt_XMTB_ChatFullUnits_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
