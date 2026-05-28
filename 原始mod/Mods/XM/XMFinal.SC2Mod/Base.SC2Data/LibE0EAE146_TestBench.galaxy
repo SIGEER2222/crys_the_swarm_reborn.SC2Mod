@@ -79,7 +79,7 @@ void libE0EAE146_gf_XMTestBench_RunScenario (int lp_player, string lp_scenarioKi
     else if ((lp_scenarioKind == "full_buildings") || (lp_scenarioKind == "full_units") || (lp_scenarioKind == "initial_units") || (lp_scenarioKind == "level15_units") || (lp_scenarioKind == "fusion_final_units")) {
         libE0EAE146_gf_XMTestBench_RunRoster(lp_player, lp_scenarioKind);
     }
-    else if (lp_scenarioKind == "hero_modes") {
+    else if ((lp_scenarioKind == "hero_modes") || (lp_scenarioKind == "hero_ability_smoke")) {
         libE0EAE146_gf_XMTestBench_RunHeroSmoke(lp_player);
     }
     else if ((lp_scenarioKind == "unit_ability_smoke") || (lp_scenarioKind == "unit_evolution_smoke")) {
@@ -124,6 +124,9 @@ void libE0EAE146_gf_XMTestBench_RunRoster (int lp_player, string lp_rosterKind) 
     libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player]);
     lv_commander = libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
     if ((lv_commander == "AbathurCustom") && libE0EAE146_gf_XMTestBench_AbathurCustomRoster(lp_player, lp_rosterKind)) {
+        return;
+    }
+    if (libE0EAE146_gf_XMTestBench_RunCommanderBuildings(lp_player, lv_commander, lp_rosterKind)) {
         return;
     }
     if ((lv_commander == "Raynor") && libE0EAE146_gf_XMTestBench_RaynorRoster(lp_player, lp_rosterKind)) {
@@ -191,13 +194,24 @@ void libE0EAE146_gf_XMTestBench_RunPowerFusion (int lp_player) {
 }
 
 void libE0EAE146_gf_XMTestBench_RunHeroSmoke (int lp_player) {
-    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "hero_modes", "hero_profile_not_wired");
+    string lv_commander;
+
+    lv_commander = libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    if (libE0EAE146_gv_xmTestBenchScenario[lp_player] == "hero_ability_smoke") {
+        if (!libE0EAE146_gf_XMTestBench_RunCommanderHeroAbilities(lp_player, lv_commander, "hero_ability_smoke")) {
+            libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "hero_ability_smoke", "hero_ability_profile_not_wired");
+        }
+        return;
+    }
+    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "hero_modes", "hero_mode_profile_not_wired");
 }
 
 void libE0EAE146_gf_XMTestBench_RunUnitAbilitySmoke (int lp_player) {
     string lv_commander;
+    string lv_scenario;
 
     lv_commander = libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    lv_scenario = libE0EAE146_gv_xmTestBenchScenario[lp_player];
     if ((lv_commander == "AbathurCustom") && (libE0EAE146_gv_xmTestBenchScenario[lp_player] == "unit_evolution_smoke")) {
         libE0EAE146_gf_XMTestBench_AbathurCustomZerglingToPygalisk(lp_player);
         return;
@@ -206,7 +220,9 @@ void libE0EAE146_gf_XMTestBench_RunUnitAbilitySmoke (int lp_player) {
         libE0EAE146_gf_XMTestBench_AbathurCustomPurchaseSmoke(lp_player);
         return;
     }
-    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, libE0EAE146_gv_xmTestBenchScenario[lp_player], "unit_ability_profile_not_wired");
+    if (!libE0EAE146_gf_XMTestBench_RunCommanderUnitAbilities(lp_player, lv_commander, lv_scenario)) {
+        libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, lv_scenario, "unit_ability_profile_not_wired");
+    }
 }
 
 void libE0EAE146_gf_XMTestBench_RunPanelCostSmoke (int lp_player) {
@@ -221,11 +237,16 @@ void libE0EAE146_gf_XMTestBench_RunPanelEffectSmoke (int lp_player) {
 }
 
 void libE0EAE146_gf_XMTestBench_RunTechSmoke (int lp_player) {
-    if (libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]) == "AbathurCustom") {
+    string lv_commander;
+
+    lv_commander = libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    if (lv_commander == "AbathurCustom") {
         libE0EAE146_gf_XMTestBench_AbathurCustomCrawlerSmoke(lp_player);
         return;
     }
-    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "tech_smoke", "tech_profile_not_wired");
+    if (!libE0EAE146_gf_XMTestBench_RunCommanderTech(lp_player, lv_commander, "tech_smoke")) {
+        libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, "tech_smoke", "tech_profile_not_wired");
+    }
 }
 
 void libE0EAE146_gf_XMTestBench_RunTransportSmoke (int lp_player, string lp_cargoKind) {
