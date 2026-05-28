@@ -38,6 +38,12 @@ const manualAliases = {
     DevourerMP: ["Devourer"],
     SwarmHostMP: ["SwarmHost"],
   },
+  Karax: {
+    PhoenixPurifier: ["PhoenixPurifier"],
+  },
+  Kerrigan: {
+    SwarmQueen: ["QueenCoop", "Queen"],
+  },
   Horner: {
     HHBattlecruiser: ["BattlecruiserMira"],
     HHHellion: ["HellionMira"],
@@ -77,7 +83,64 @@ const manualAliases = {
   Zeratul: {
     RoboticsFacilityWarp: ["ZeratulRoboticsFacility"],
   },
+  Zagara: {
+    SwarmQueen: ["QueenCoop", "Queen"],
+  },
 };
+
+const manualStateOnlyIds = {
+  Abathur: new Set([
+    "Roach",
+    "RoachCorpser",
+    "RoachVile",
+    "GuardianMP",
+    "DevourerMP",
+  ]),
+  Stetmann: new Set([
+    "LurkerStetmannBurrowed",
+    "OverseerStetmannSiegeMode",
+    "SpineCrawlerUprootedStetmann",
+    "SporeCrawlerUprootedStetmann",
+  ]),
+  Mengsk: new Set([
+    "SiegeTankMengskSieged",
+    "VikingMengskAssault",
+    "RavenMengskSieged",
+  ]),
+  Swann: new Set([
+    "HellionTank",
+  ]),
+  Horner: new Set([
+    "HHHellionTank",
+  ]),
+};
+
+const sharedRuntimeAllowedIds = new Set([
+  "BroodLord",
+  "Corruptor",
+  "Cyclone",
+  "Hellion",
+  "Marauder",
+  "Oracle",
+  "PhotonCannon",
+  "Queen",
+  "SentryPurifier",
+  "SpawningPool",
+  "SpineCrawler",
+  "SporeCrawler",
+  "Stalker",
+  "Stargate",
+  "VoidRay",
+  "Zealot",
+  "ZealotShakuras",
+  "Zergling",
+  "ZagaraVoidCoop",
+  "FleetBeacon",
+  "GhostFemale_BlackOps",
+  "NovaACLaserTurret",
+  "MercReaper",
+  "QueenCoop",
+]);
 
 function parseArgs(argv) {
   const options = {
@@ -293,6 +356,7 @@ function loadCommanderRows(officialRoot, commander) {
         officialId,
         resolvedIds: unique(asArray(entry?.resolved_unit_ids).map(String)),
         name: entry?.name ?? "",
+        stateOnly: manualStateOnlyIds[commander]?.has(officialId) ?? false,
       });
     }
   }
@@ -372,10 +436,22 @@ function resolveRuntimeUnit(catalog, commander, row) {
         runtimeId: candidate.id,
         runtimeUnit: candidate.id,
         kind: row.kind,
-        status: statusForCandidate(candidate),
+        status: row.stateOnly ? "state-only" : statusForCandidate(candidate),
         sourceModule: unique(primaryHits.map((hit) => hit.module)).join(","),
         sourceFile: primaryHits[0].file,
-        note: candidate.reason === "official" ? "" : candidate.reason,
+        note: row.stateOnly ? "state-only runtime state variant; keep out of final roster output" : (candidate.reason === "official" ? "" : candidate.reason),
+      };
+    }
+    if (sharedRuntimeAllowedIds.has(candidate.id) && hits.length > 0) {
+      return {
+        officialId: row.officialId,
+        runtimeId: candidate.id,
+        runtimeUnit: candidate.id,
+        kind: row.kind,
+        status: row.stateOnly ? "state-only" : "shared-exact",
+        sourceModule: unique(hits.map((hit) => hit.module)).join(","),
+        sourceFile: hits[0].file,
+        note: row.stateOnly ? "state-only runtime state variant; keep out of final roster output" : "shared runtime unit from common imported pool",
       };
     }
     if (!external && hits.length > 0) {
@@ -554,18 +630,18 @@ function renderMarkdown(roster) {
     `- 目标 Mod：\`${roster.metadata.modRoot}\``,
     `- 目标 UserData：\`${roster.metadata.targetUserData}\``,
     "- 口径：只读取官方 `heroes.json` / `units.json` / `buildings.json`，不把 command card 的单位/建筑噪声当 roster。",
-    "- `exact/resolved/alias` 可作为运行时工厂候选；`external-only/unresolved` 需要人工确认后再接初始化器或测试台。",
+    "- `exact/shared-exact/resolved/alias` 可作为运行时工厂候选；`state-only` 为埋地态/架设态/中间态，仅保留映射，不应作为最终 roster 输出；`external-only/unresolved` 需要人工确认后再接初始化器或测试台。",
     "",
     "## 汇总",
     "",
-    "| 指挥官 | 运行时 | 模块 | 总数 | exact | resolved | alias | external-only | unresolved |",
-    "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    "| 指挥官 | 运行时 | 模块 | 总数 | exact | shared-exact | resolved | alias | state-only | external-only | unresolved |",
+    "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
   ];
 
   for (const commander of roster.commanders) {
     const counts = commander.statusCounts;
     lines.push(
-      `| ${commander.commander} | ${commander.runtimeCommander} | \`${commander.module}\` | ${commander.count} | ${counts.exact ?? 0} | ${counts.resolved ?? 0} | ${counts.alias ?? 0} | ${counts["external-only"] ?? 0} | ${counts.unresolved ?? 0} |`,
+      `| ${commander.commander} | ${commander.runtimeCommander} | \`${commander.module}\` | ${commander.count} | ${counts.exact ?? 0} | ${counts["shared-exact"] ?? 0} | ${counts.resolved ?? 0} | ${counts.alias ?? 0} | ${counts["state-only"] ?? 0} | ${counts["external-only"] ?? 0} | ${counts.unresolved ?? 0} |`,
     );
   }
 
