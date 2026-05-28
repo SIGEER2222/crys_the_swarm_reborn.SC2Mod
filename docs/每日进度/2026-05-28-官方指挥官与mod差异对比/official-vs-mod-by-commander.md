@@ -1,28 +1,28 @@
 # 官方合作指挥官 vs Mod 差异对比
 
-- 生成时间：2026/5/28 14:51:46
-- 官方数据：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\游戏数据\官方合作指挥官\commanders`
-- Mod 数据：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\合作指挥官版起义狂潮`
+- 生成时间：2026/5/28 17:03:14
+- 官方数据：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\游戏数据\官方合作指挥官\commanders`
+- Mod 数据：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合作指挥官版起义狂潮`
 - Catalog ID 对比：false
 
 ## 汇总
 
 | 指挥官 | 模块 | 官方清单缺失 | 单位缺失 | 建筑缺失 | 升级缺失 | 技能缺失 | 按 Catalog 缺失 |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Abathur | `XMAbathur.SC2Mod` | 41 | 2 | 1 | 2 | 0 | 0 |
+| Abathur | `XMAbathur.SC2Mod` | 39 | 1 | 0 | 2 | 0 | 0 |
 | Alarak | `XMAlarak.SC2Mod` | 36 | 0 | 0 | 0 | 2 | 0 |
 | Artanis | `XMArtanis.SC2Mod` | 37 | 1 | 0 | 0 | 1 | 0 |
 | Dehaka | `XMDehaka.SC2Mod` | 75 | 0 | 0 | 5 | 4 | 0 |
 | Fenix | `XMFenix.SC2Mod` | 37 | 0 | 0 | 0 | 0 | 0 |
 | Horner | `XMMira.SC2Mod` | 111 | 1 | 0 | 16 | 28 | 0 |
 | Karax | `XMKarax.SC2Mod` | 46 | 0 | 0 | 1 | 3 | 0 |
-| Kerrigan | `XMKerrigan.SC2Mod` | 24 | 1 | 0 | 0 | 5 | 0 |
+| Kerrigan | `XMKerrigan.SC2Mod` | 27 | 1 | 0 | 0 | 7 | 0 |
 | Mengsk | `XMMengsk.SC2Mod` | 46 | 0 | 0 | 2 | 3 | 0 |
 | Nova | `XMNova.SC2Mod` | 98 | 0 | 0 | 7 | 24 | 0 |
 | Raynor | `XMRaynor.SC2Mod` | 45 | 0 | 0 | 1 | 2 | 0 |
 | Stetmann | `XMStetmann.SC2Mod` | 42 | 0 | 0 | 0 | 3 | 0 |
 | Stukov | `XMStukov.SC2Mod` | 66 | 0 | 0 | 17 | 1 | 0 |
-| Swann | `XMSwann.SC2Mod` | 137 | 7 | 1 | 20 | 32 | 0 |
+| Swann | `XMSwann.SC2Mod` | 131 | 3 | 0 | 20 | 32 | 0 |
 | Tychus | `XMTychus.SC2Mod` | 52 | 0 | 0 | 3 | 6 | 0 |
 | Vorazun | `XMVorazun.SC2Mod` | 55 | 1 | 0 | 4 | 7 | 0 |
 | Zagara | `XMZagara.SC2Mod` | 51 | 2 | 0 | 0 | 9 | 0 |
@@ -36,12 +36,10 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 2/34
+- `units`: 1/34
   - `DehakaViper`
-  - `DevourerMP`
 
-- `buildings`: 1/13
-  - `DevourerMP`
+- `buildings`: 0/13
 
 - `heroes`: 0/0
 
@@ -161,7 +159,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/18
+- `units`: 1/19
   - `AlarakSupplicantWarpTrainCreator`
 
 - `buildings`: 0/13
@@ -368,7 +366,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/14
+- `units`: 1/15
   - `HHRavenSiegeMode`
 
 - `buildings`: 0/9
@@ -570,14 +568,16 @@
 
 - `upgrades`: 0/25
 
-- `abilities`: 5/41
+- `abilities`: 7/41
   - `[object Object]`
+  - `MorphToBaneling`
+  - `MorphZerglingToBaneling`
   - `MutaliskMorphToBroodLord`
   - `SIBasicBuild`
   - `SpineCrawlerUproot`
   - `SporeCrawlerUproot`
 
-- `buttons`: 12/76
+- `buttons`: 13/76
   - `Attack`
   - `EvolveAnabolicSynthesis2`
   - `Move`
@@ -590,6 +590,7 @@
   - `SummonNydusCanalCreeper`
   - `SummonNydusWorm`
   - `SwarmSeeds`
+  - `ZagaraVoidCoopZerglingDodge`
 
 - `prestiges`: 0/3
 
@@ -787,7 +788,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 0/24
+- `units`: 0/30
 
 - `buildings`: 0/18
 
@@ -1012,17 +1013,12 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 7/27
-  - `HellionTank`
-  - `HHHellion`
-  - `HHHellionTank`
+- `units`: 3/31
   - `HHStarport`
   - `KelMorianWorker`
   - `SICocoonInfestedWraith`
-  - `SIWraith`
 
-- `buildings`: 1/16
-  - `HellionTank`
+- `buildings`: 0/16
 
 - `heroes`: 0/0
 
@@ -1081,7 +1077,7 @@
   - `UpgradeToPlanetaryFortress`
   - ... 其余见 JSON
 
-- `buttons`: 55/102
+- `buttons`: 54/102
   - `AdvancedConstructionAuto`
   - `AdvancedConstructionLocked`
   - `AfterburnersLocked`
@@ -1148,7 +1144,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 0/16
+- `units`: 0/17
 
 - `buildings`: 0/14
 
@@ -1224,7 +1220,7 @@
 
 ### 官方清单在 Mod 中未命中
 
-- `units`: 1/16
+- `units`: 1/17
   - `AlarakSupplicantWarpTrainCreator`
 
 - `buildings`: 0/9
