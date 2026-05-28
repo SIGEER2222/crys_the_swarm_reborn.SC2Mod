@@ -10,8 +10,12 @@ param(
     [int]$CommanderSettleMs = 1800,
     [int]$SmokeWaitSec = 18,
     [string]$SmokeCommand = "-tbsmoke",
+    [string]$FullBuildingsCommand = "-tbfullbuildings",
+    [string]$FullUnitsCommand = "-tbfullunits",
+    [int]$FullRosterWaitSec = 12,
     [switch]$SkipSync,
-    [switch]$KeepOpen
+    [switch]$KeepOpen,
+    [string]$AutoHotkeyPath = "E:\Program Files\AutoHotkey\v2\AutoHotkey64.exe"
 )
 
 $ErrorActionPreference = "Stop"
@@ -82,14 +86,19 @@ function Wait-Sc2Window {
     $deadline = (Get-Date).AddSeconds($TimeoutSec)
     do {
         $proc = Get-Sc2Process
-        if ($proc -and $proc.MainWindowHandle -ne 0) {
-            $rect = New-Object XmUiSmoke+RECT
-            if ([XmUiSmoke]::GetWindowRect([IntPtr]$proc.MainWindowHandle, [ref]$rect)) {
-                $width = $rect.Right - $rect.Left
-                $height = $rect.Bottom - $rect.Top
-                if ($width -ge 1000 -and $height -ge 700) {
-                    return $proc
+        if ($proc) {
+            if ($proc.MainWindowHandle -ne 0) {
+                $rect = New-Object XmUiSmoke+RECT
+                if ([XmUiSmoke]::GetWindowRect([IntPtr]$proc.MainWindowHandle, [ref]$rect)) {
+                    $width = $rect.Right - $rect.Left
+                    $height = $rect.Bottom - $rect.Top
+                    if ($width -ge 1000 -and $height -ge 700) {
+                        return $proc
+                    }
                 }
+            }
+            else {
+                return $proc
             }
         }
         Start-Sleep -Seconds 1
@@ -145,6 +154,9 @@ function Save-Screenshot {
         )
         $bmp.Save($Path, [System.Drawing.Imaging.ImageFormat]::Png)
     }
+    catch {
+        return
+    }
     finally {
         $graphics.Dispose()
         $bmp.Dispose()
@@ -157,37 +169,47 @@ function Send-ChatCommand {
         [int]$DelayMs = 1200
     )
 
-    $clipboardReady = $false
-    for ($attempt = 1; $attempt -le 5; $attempt += 1) {
-        try {
-            Set-Clipboard -Value $Command
-            $clipboardReady = $true
-            break
+    if (-not (Test-Path -LiteralPath $AutoHotkeyPath)) {
+        throw "AutoHotkey v2 runtime not found: $AutoHotkeyPath"
+    }
+
+    $helperScript = Join-Path $PSScriptRoot "send-testbench-chat.ahk"
+    if (-not (Test-Path -LiteralPath $helperScript)) {
+        throw "AutoHotkey chat helper not found: $helperScript"
+    }
+
+    $tempRoot = Join-Path $env:TEMP "xm-testbench-ahk"
+    Ensure-Directory -Path $tempRoot
+    $stamp = Get-Date -Format "yyyyMMdd-HHmmss-fff"
+    $stdoutPath = Join-Path $tempRoot ("stdout-" + $stamp + ".log")
+    $stderrPath = Join-Path $tempRoot ("stderr-" + $stamp + ".log")
+
+    $proc = Start-Process -FilePath $AutoHotkeyPath `
+        -ArgumentList @($helperScript, $Command, "$DelayMs") `
+        -RedirectStandardOutput $stdoutPath `
+        -RedirectStandardError $stderrPath `
+        -PassThru `
+        -Wait `
+        -WindowStyle Hidden
+
+    $stdout = ""
+    $stderr = ""
+    if (Test-Path -LiteralPath $stdoutPath) {
+        $stdoutRaw = Get-Content -LiteralPath $stdoutPath -Raw -ErrorAction SilentlyContinue
+        if ($null -ne $stdoutRaw) {
+            $stdout = $stdoutRaw.Trim()
         }
-        catch {
-            if ($attempt -eq 5) {
-                throw "Failed to write chat command '$Command' to the clipboard after $attempt attempts. $($_.Exception.Message)"
-            }
-            Start-Sleep -Milliseconds 300
+    }
+    if (Test-Path -LiteralPath $stderrPath) {
+        $stderrRaw = Get-Content -LiteralPath $stderrPath -Raw -ErrorAction SilentlyContinue
+        if ($null -ne $stderrRaw) {
+            $stderr = $stderrRaw.Trim()
         }
     }
 
-    if (-not $clipboardReady) {
-        throw "Clipboard did not become available for chat command '$Command'."
+    if ($proc.ExitCode -ne 0) {
+        throw "AutoHotkey chat helper failed for '$Command' with exit code $($proc.ExitCode). stdout=$stdout stderr=$stderr"
     }
-
-    [System.Windows.Forms.SendKeys]::SendWait("{ESC}")
-    Start-Sleep -Milliseconds 120
-    [System.Windows.Forms.SendKeys]::SendWait("{ESC}")
-    Start-Sleep -Milliseconds 120
-    [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
-    Start-Sleep -Milliseconds 150
-    [System.Windows.Forms.SendKeys]::SendWait("^v")
-    Start-Sleep -Milliseconds 150
-    [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
-    Start-Sleep -Milliseconds 120
-    [System.Windows.Forms.SendKeys]::SendWait("{ESC}")
-    Start-Sleep -Milliseconds $DelayMs
 }
 
 function Get-CommanderChatCommand {
@@ -255,6 +277,10 @@ if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
     $OutputRoot = Join-Path $WorkspaceRoot "tmp\live-smoke-originalmod-existing-commanders"
 }
 
+if ($Commanders.Count -eq 1 -and $Commanders[0] -match ',') {
+    $Commanders = @($Commanders[0].Split(',') | ForEach-Object { $_.Trim() } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+}
+
 Ensure-Directory -Path $OutputRoot
 
 if (-not (Test-Path -LiteralPath $Sc2SwitcherPath)) {
@@ -305,9 +331,25 @@ foreach ($commander in $Commanders) {
     Send-ChatCommand -Command $SmokeCommand -DelayMs 800
     Start-Sleep -Seconds $SmokeWaitSec
 
-    $afterShot = Join-Path $commanderRoot ("{0}_after_smoke.png" -f $safeName)
+    $afterSmokeShot = Join-Path $commanderRoot ("{0}_after_smoke.png" -f $safeName)
     Focus-Window -Process $sc2Process | Out-Null
-    Save-Screenshot -Path $afterShot -Process $sc2Process
+    Save-Screenshot -Path $afterSmokeShot -Process $sc2Process
+
+    Focus-Window -Process $sc2Process | Out-Null
+    Send-ChatCommand -Command $FullBuildingsCommand -DelayMs 800
+    Start-Sleep -Seconds $FullRosterWaitSec
+
+    $afterBuildingsShot = Join-Path $commanderRoot ("{0}_after_full_buildings.png" -f $safeName)
+    Focus-Window -Process $sc2Process | Out-Null
+    Save-Screenshot -Path $afterBuildingsShot -Process $sc2Process
+
+    Focus-Window -Process $sc2Process | Out-Null
+    Send-ChatCommand -Command $FullUnitsCommand -DelayMs 800
+    Start-Sleep -Seconds $FullRosterWaitSec
+
+    $afterUnitsShot = Join-Path $commanderRoot ("{0}_after_full_units.png" -f $safeName)
+    Focus-Window -Process $sc2Process | Out-Null
+    Save-Screenshot -Path $afterUnitsShot -Process $sc2Process
 
     $graphicsLog = Copy-LatestLog -Since $startTime -Filter "*Graphics.txt" -TargetPath (Join-Path $commanderRoot "Graphics.txt")
     $systemInfoLog = Copy-LatestLog -Since $startTime -Filter "*SystemInfo.txt" -TargetPath (Join-Path $commanderRoot "SystemInfo.txt")
@@ -318,12 +360,16 @@ foreach ($commander in $Commanders) {
         Commander = $commander
         BeforeScreenshot = $beforeShot
         SelectedScreenshot = $selectedShot
-        AfterSmokeScreenshot = $afterShot
+        AfterSmokeScreenshot = $afterSmokeShot
+        AfterFullBuildingsScreenshot = $afterBuildingsShot
+        AfterFullUnitsScreenshot = $afterUnitsShot
         GraphicsLog = $(if ($graphicsLog) { $graphicsLog } else { "" })
         SystemInfoLog = $(if ($systemInfoLog) { $systemInfoLog } else { "" })
         AlertsLog = $(if ($alertsLog) { $alertsLog } else { "" })
         ScriptErrorLog = $(if ($scriptErrorLog) { $scriptErrorLog } else { "" })
         SmokeCommand = $SmokeCommand
+        FullBuildingsCommand = $FullBuildingsCommand
+        FullUnitsCommand = $FullUnitsCommand
     }) | Out-Null
 
     if (-not $KeepOpen) {
@@ -334,9 +380,13 @@ foreach ($commander in $Commanders) {
 foreach ($result in $results) {
     Write-Output ("SUMMARY commander={0}" -f $result.Commander)
     Write-Output ("SMOKE_COMMAND={0}" -f $result.SmokeCommand)
+    Write-Output ("FULL_BUILDINGS_COMMAND={0}" -f $result.FullBuildingsCommand)
+    Write-Output ("FULL_UNITS_COMMAND={0}" -f $result.FullUnitsCommand)
     Write-Output ("BEFORE_SCREENSHOT={0}" -f $result.BeforeScreenshot)
     Write-Output ("SELECTED_SCREENSHOT={0}" -f $result.SelectedScreenshot)
     Write-Output ("AFTER_SMOKE_SCREENSHOT={0}" -f $result.AfterSmokeScreenshot)
+    Write-Output ("AFTER_FULL_BUILDINGS_SCREENSHOT={0}" -f $result.AfterFullBuildingsScreenshot)
+    Write-Output ("AFTER_FULL_UNITS_SCREENSHOT={0}" -f $result.AfterFullUnitsScreenshot)
     Write-Output ("GRAPHICS_LOG={0}" -f $result.GraphicsLog)
     Write-Output ("SYSTEMINFO_LOG={0}" -f $result.SystemInfoLog)
     Write-Output ("ALERTS_LOG={0}" -f $result.AlertsLog)

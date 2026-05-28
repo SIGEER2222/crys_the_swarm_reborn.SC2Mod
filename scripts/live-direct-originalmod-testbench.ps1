@@ -74,14 +74,19 @@ function Wait-Sc2Window {
     $deadline = (Get-Date).AddSeconds($TimeoutSec)
     do {
         $proc = Get-Sc2Process
-        if ($proc -and $proc.MainWindowHandle -ne 0) {
-            $rect = New-Object XmUiDirect+RECT
-            if ([XmUiDirect]::GetWindowRect([IntPtr]$proc.MainWindowHandle, [ref]$rect)) {
-                $width = $rect.Right - $rect.Left
-                $height = $rect.Bottom - $rect.Top
-                if ($width -ge 1000 -and $height -ge 700) {
-                    return $proc
+        if ($proc) {
+            if ($proc.MainWindowHandle -ne 0) {
+                $rect = New-Object XmUiDirect+RECT
+                if ([XmUiDirect]::GetWindowRect([IntPtr]$proc.MainWindowHandle, [ref]$rect)) {
+                    $width = $rect.Right - $rect.Left
+                    $height = $rect.Bottom - $rect.Top
+                    if ($width -ge 1000 -and $height -ge 700) {
+                        return $proc
+                    }
                 }
+            }
+            else {
+                return $proc
             }
         }
         Start-Sleep -Seconds 1
@@ -134,6 +139,9 @@ function Save-Screenshot {
     try {
         $graphics.CopyFromScreen($sourcePoint, [System.Drawing.Point]::Empty, $size)
         $bmp.Save($path, [System.Drawing.Imaging.ImageFormat]::Png)
+    }
+    catch {
+        return ""
     }
     finally {
         $graphics.Dispose()
