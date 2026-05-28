@@ -23,9 +23,8 @@ bool libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke (int lp_player, string lp_p
         return false;
     }
     lv_cooldown = CatalogFieldValueGet(c_gameCatalogAbil, lv_ability, "Cost[0].Cooldown.TimeUse", lp_player);
-    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_RAYNOR_PROFILE_HIT");
-    libE0EAE146_gf_XMDbgLog("WARN", "PANEL_RAYNOR_PROFILE_HIT", "ability=" + lv_ability + " trigger=command target=point mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " catalogCooldown=" + lv_cooldown + " caster=CoopCasterRaynor result=profile_metadata_only reason=official_caster_not_imported_to_XMFinal");
+    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_RAYNOR_PROFILE_HIT", "ability=" + lv_ability + " trigger=command target=point mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " catalogCooldown=" + lv_cooldown + " caster=CoopCasterRaynor result=profile_metadata_only reason=official_caster_not_imported_to_XMFinal");
     return false;
 }
 
@@ -42,7 +41,6 @@ bool libE0EAE146_gf_XM_InvokeCommanderPanelAbility (int lp_player, string lp_com
         return libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke(lp_player, lp_panelAbilityId, lp_targetPoint);
     }
 
-    libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_TEST_INVOKE");
     libE0EAE146_gf_XMDbgLog("INFO", "PANEL_TEST_INVOKE", "commander=" + lp_commander + " normalized=" + libE0EAE146_gf_NormalizeCommanderId(lp_commander) + " ability=" + lp_panelAbilityId + " trigger=command target=point result=stub");
     return false;

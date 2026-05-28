@@ -128,6 +128,28 @@ function Prepare-LauncherTarget {
     Write-Output "BACKED_UP_LAUNCHER=$backupPath"
 }
 
+function Sync-XMFinalDocumentHeaderDependencies {
+    param([string]$SourceModsRoot)
+
+    $xmFinalRoot = Join-Path $SourceModsRoot "XMFinal.SC2Mod"
+    $syncHeaderScript = Join-Path $PSScriptRoot "sync-sc2-documentheader-deps.ps1"
+    if (-not (Test-Path -LiteralPath $xmFinalRoot)) {
+        return
+    }
+    if (-not (Test-Path -LiteralPath $syncHeaderScript)) {
+        return
+    }
+
+    if ($DryRun) {
+        Write-Output "DRYRUN_SYNC_DOCUMENTHEADER_DEPS=$xmFinalRoot"
+        return
+    }
+
+    & $syncHeaderScript -DocumentRoot $xmFinalRoot | ForEach-Object {
+        Write-Output "DOCUMENTHEADER_DEPS_$_"
+    }
+}
+
 $scenarioRoot = Resolve-ScenarioRoot -Root $WorkspaceRoot -Preferred $ScenarioRoot
 $sourceModsRoot = Join-Path $scenarioRoot "Mods\XM"
 $sourceMapsRoot = Join-Path $scenarioRoot "Maps\XM"
@@ -144,6 +166,10 @@ if (-not (Test-Path -LiteralPath $sourceMapsRoot)) {
 }
 if (-not (Test-Path -LiteralPath $sourceLauncherRoot)) {
     throw "Source launcher root not found: $sourceLauncherRoot"
+}
+
+if (-not $SkipMods) {
+    Sync-XMFinalDocumentHeaderDependencies -SourceModsRoot $sourceModsRoot
 }
 
 $modNames = Resolve-Names -Root $sourceModsRoot -Requested $Mods
