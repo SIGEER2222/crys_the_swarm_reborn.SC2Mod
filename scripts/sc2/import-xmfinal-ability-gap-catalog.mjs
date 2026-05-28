@@ -58,6 +58,7 @@ const manualFallbackNodes = {
     ["LaserTargetingSystemMarine", buttonStub("LaserTargetingSystemMarine")],
     ["Detector", buttonStub("Detector")],
     ["CombatDrugs", buttonStub("CombatDrugs")],
+    ["VoidSentryShieldRepair", buttonStubWithIcon("VoidSentryShieldRepair", "Assets\\Textures\\BTN-Ability-Protoss-ShieldRecharge.dds")],
   ]),
   ability: new Map([
     ["Stimpack", abilityStub("CAbilEffectInstant", "Stimpack", "Stim")],
@@ -65,10 +66,14 @@ const manualFallbackNodes = {
     ["BansheeCloak", behaviorToggleStub("BansheeCloak", "CloakOnBanshee", "CloakOff")],
     ["GhostHoldFire", abilityStub("CAbilEffectInstant", "GhostHoldFire", "GhostHoldFire")],
     ["GhostWeaponsFree", abilityStub("CAbilEffectInstant", "GhostWeaponsFree", "WeaponsFree")],
+    ["LiberatorAGTarget", abilityStub("CAbilEffectTarget", "LiberatorAGTarget", "LiberatorAGMode")],
+    ["LockOnCancel", abilityStub("CAbilEffectInstant", "LockOnCancel", "LockOnCancel")],
     ["TacNukeStrike", abilityStub("CAbilEffectTarget", "TacNukeStrike", "NukeCalldown")],
     ["SiegeMode", abilityStub("CAbilMorph", "SiegeMode", "SiegeMode")],
+    ["VoidScienceVesselNanoRepair", abilityStub("CAbilEffectTarget", "VoidScienceVesselNanoRepair", "NanoRepair")],
   ]),
   requirement: new Map([
+    ["HaveLiberatorRange", requirementStub("HaveLiberatorRange")],
     ["UsePunisherGrenades", requirementStub("UsePunisherGrenades")],
   ]),
 };
@@ -117,6 +122,16 @@ function buttonStub(id) {
   return manualNode("button", "CButton", id, [
     `<CButton id="${id}">`,
     '    <EditorCategories value="Race:Neutral"/>',
+    "</CButton>",
+  ].join("\n"));
+}
+
+function buttonStubWithIcon(id, icon) {
+  return manualNode("button", "CButton", id, [
+    `<CButton id="${id}">`,
+    `    <Icon value="${icon}"/>`,
+    `    <AlertIcon value="${icon}"/>`,
+    '    <EditorCategories value="Race:Protoss"/>',
     "</CButton>",
   ].join("\n"));
 }
