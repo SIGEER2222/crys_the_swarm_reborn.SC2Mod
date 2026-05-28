@@ -2476,26 +2476,31 @@
   </CAbilResearch>
   <CAbilTrain id="LarvaTrain">
     <InfoArray index="Train1">
-      <Button State="Available" />
+      <Button DefaultButtonFace="Zergling" State="Available" />
+      <Unit value="Zergling" />
     </InfoArray>
     <InfoArray index="Train2">
-      <Button State="Available" />
-      <Unit value="" />
+      <Button DefaultButtonFace="Roach" State="Available" />
+      <Unit value="Roach" />
     </InfoArray>
     <InfoArray index="Train4">
-      <Button State="Available" />
+      <Button DefaultButtonFace="Hydralisk" State="Available" />
+      <Unit value="Hydralisk" />
     </InfoArray>
     <InfoArray index="Train5">
-      <Button State="Available" />
+      <Button DefaultButtonFace="Aberration" State="Available" />
+      <Unit value="Aberration" />
     </InfoArray>
     <InfoArray index="Train7">
-      <Button State="Available" />
+      <Button DefaultButtonFace="Ultralisk" State="Available" />
+      <Unit value="Ultralisk" />
     </InfoArray>
     <InfoArray index="Train10">
       <Button State="Restricted" />
     </InfoArray>
     <InfoArray index="Train11">
-      <Button State="Available" />
+      <Button DefaultButtonFace="Mutalisk" State="Available" />
+      <Unit value="Mutalisk" />
     </InfoArray>
     <InfoArray index="Train12">
       <Button State="Restricted" Requirements="HaveScourgeNest" />
@@ -2526,19 +2531,26 @@
     <InfoArray index="Train10">
       <Button State="Restricted" />
     </InfoArray>
-    <InfoArray index="Train17" Time="55" />
-    <InfoArray index="Train18" Time="55" />
+    <InfoArray index="Train17" Time="55">
+      <Button DefaultButtonFace="MorphToHotSTorrasque" State="Restricted" Requirements="HaveHive" />
+      <Unit value="HotSTorrasque" />
+    </InfoArray>
+    <InfoArray index="Train18" Time="55">
+      <Button DefaultButtonFace="MorphToHotSNoxious" State="Restricted" Requirements="HaveHive" />
+      <Unit value="HotSNoxious" />
+    </InfoArray>
     <InfoArray index="Train19" Time="50" Effect="QueenBirth">
-      <Button DefaultButtonFace="QueenClassic" State="Restricted" Requirements="HaveLair">
+      <Button DefaultButtonFace="QueenCoop" State="Restricted" Requirements="HaveLair">
         <Flags index="ToSelection" value="1" />
       </Button>
-      <Unit value="QueenClassic" />
+      <Unit value="QueenCoop" />
     </InfoArray>
     <InfoArray index="Train21">
       <Button State="Restricted" />
     </InfoArray>
     <InfoArray index="Train22">
-      <Button State="Restricted" />
+      <Button DefaultButtonFace="MorphToHydraliskLurker" State="Restricted" Requirements="HaveLair" />
+      <Unit value="HydraliskLurker" />
     </InfoArray>
     <InfoArray index="Train29">
       <Button DefaultButtonFace="Brutalisk" />
@@ -2555,8 +2567,8 @@
   </CAbilTrain>
   <CAbilTrain id="LarvaTrainSwarmling">
     <InfoArray index="Train1">
-      <Button State="Available" Requirements="CoopSwarmlingRequirements" />
-      <Unit value="" />
+      <Button DefaultButtonFace="HotSSwarmling" State="Available" Requirements="CoopSwarmlingRequirements" />
+      <Unit value="HotSSwarmling" />
     </InfoArray>
   </CAbilTrain>
   <CAbilResearch id="LurkerDenResearch">
