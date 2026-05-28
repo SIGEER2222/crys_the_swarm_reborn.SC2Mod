@@ -17,9 +17,8 @@ bool libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke (int lp_player, string lp_p
     lv_mineralsBefore = PlayerGetPropertyInt(lp_player, c_playerPropMinerals);
     lv_vespeneBefore = PlayerGetPropertyInt(lp_player, c_playerPropVespene);
     if ((lv_ability == "") || (!CatalogEntryIsValid(c_gameCatalogAbil, lv_ability))) {
-        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
-        libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_RAYNOR_PROFILE_MISSING");
-        libE0EAE146_gf_XMDbgLog("WARN", "PANEL_RAYNOR_PROFILE_MISSING", "ability=" + lv_ability + " trigger=command target=point mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " result=missing_catalog_entry");
+        libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_RAYNOR_PROFILE_SKIPPED");
+        libE0EAE146_gf_XMDbgLog("INFO", "PANEL_RAYNOR_PROFILE_SKIPPED", "ability=" + lv_ability + " trigger=command target=point mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " result=missing_catalog_entry");
         return false;
     }
     lv_cooldown = CatalogFieldValueGet(c_gameCatalogAbil, lv_ability, "Cost[0].Cooldown.TimeUse", lp_player);

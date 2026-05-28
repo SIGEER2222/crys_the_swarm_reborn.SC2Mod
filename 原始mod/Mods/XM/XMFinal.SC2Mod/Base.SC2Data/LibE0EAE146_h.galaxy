@@ -13,6 +13,7 @@ string[libE0EAE146_gv_xmTestBenchMaxPlayers + 1] libE0EAE146_gv_xmTestBenchComma
 string[libE0EAE146_gv_xmTestBenchMaxPlayers + 1] libE0EAE146_gv_xmTestBenchScenario;
 string[libE0EAE146_gv_xmTestBenchMaxPlayers + 1] libE0EAE146_gv_xmTestBenchLastEvent;
 string[libE0EAE146_gv_xmTestBenchMaxPlayers + 1] libE0EAE146_gv_xmTestBenchSummary;
+string[libE0EAE146_gv_xmTestBenchMaxPlayers + 1] libE0EAE146_gv_xmTestBenchMissingIds;
 int[libE0EAE146_gv_xmTestBenchMaxPlayers + 1] libE0EAE146_gv_xmTestBenchCreated;
 int[libE0EAE146_gv_xmTestBenchMaxPlayers + 1] libE0EAE146_gv_xmTestBenchMissing;
 int[libE0EAE146_gv_xmTestBenchMaxPlayers + 1] libE0EAE146_gv_xmTestBenchWarnings;
@@ -35,6 +36,8 @@ int libE0EAE146_gf_XMTestBench_CountPlayerUnits (int lp_player);
 void libE0EAE146_gf_XMTestBench_RemovePlayerUnits (int lp_player);
 void libE0EAE146_gf_XMTestBench_SeedCommanderBank (int lp_player, string lp_commander);
 void libE0EAE146_gf_XMTestBench_LogScenarioStub (int lp_player, string lp_scenarioKind, string lp_reason);
+void libE0EAE146_gf_XMTestBench_LogScenarioSkip (int lp_player, string lp_scenarioKind, string lp_reason);
+void libE0EAE146_gf_XMTestBench_RecordMissingObject (int lp_player, string lp_objectId);
 point libE0EAE146_gf_XMTestBench_SpawnPoint (int lp_player, int lp_index, fixed lp_radius, fixed lp_spacing);
 void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unitType, point lp_point, string lp_rosterKind);
 bool libE0EAE146_gf_XMTestBench_UnitRosterKindSupported (string lp_rosterKind);
