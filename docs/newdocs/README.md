@@ -13,7 +13,7 @@
 | `测试台与回归验证-2026-05-27.md` | 单图指挥官测试台、静态验证、游戏内冒烟、日志与真实地图回归方案 |
 | `CommanderTestBench地图详细设计-2026-05-27.md` | `CommanderTestBench.SC2Map` 的地图包、区域、Dialog UI、触发器和 `XMFinal` 接口详细设计 |
 | `测试台资源/CommanderTestBench布局蓝图-2026-05-27.svg` | `CommanderTestBench.SC2Map` 的地图区域和测试 UI 蓝图 |
-| `../../runtime/testbench/CommanderTestBench.SC2Map/` | 实际 SC2 可加载地图包骨架，当前为测试台 stub UI |
+| `../../原始mod/Maps/XM/CommanderTestBench.SC2Map/` | 当前有效 SC2 测试地图入口；依赖路径按 `原始mod/Maps/XM -> 原始mod/Mods/XM` 解析 |
 | `架构回看-精通威望与兵种整理后修订-2026-05-27.md` | 精通、威望、兵种整理后新增“强度融合层”的详细架构修订 |
 | `控制反转与数据驱动接入方案-2026-05-27.md` | 地图初始化、科技建筑、英雄技能、面板、测试台的控制反转总方案 |
 | `指挥官威望/README.md` | 指挥官精通、威望、加点融合设计入口 |

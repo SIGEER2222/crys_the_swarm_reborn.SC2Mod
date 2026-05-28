@@ -1,10 +1,37 @@
 // XMFinal split module: commander panel ability test profiles.
 
-bool libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke (int lp_player, string lp_panelAbilityId, point lp_targetPoint) {
-    string lv_ability;
+bool libE0EAE146_gf_XMTestBench_CheckPanelProfile (int lp_player, string lp_commander, string lp_panelAbilityId, string lp_abilityId, string lp_buttonId, string lp_requirementId, string lp_casterId, point lp_targetPoint) {
     string lv_cooldown;
     int lv_mineralsBefore;
     int lv_vespeneBefore;
+
+    lv_mineralsBefore = PlayerGetPropertyInt(lp_player, c_playerPropMinerals);
+    lv_vespeneBefore = PlayerGetPropertyInt(lp_player, c_playerPropVespene);
+
+    if ((lp_abilityId == "") || (!CatalogEntryIsValid(c_gameCatalogAbil, lp_abilityId))) {
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_PROFILE_MISSING");
+        libE0EAE146_gf_XMDbgLog("WARN", "PANEL_PROFILE_MISSING", "commander=" + lp_commander + " panel=" + lp_panelAbilityId + " ability=" + lp_abilityId + " button=" + lp_buttonId + " requirement=" + lp_requirementId + " caster=" + lp_casterId + " result=missing_ability_catalog_entry");
+        return false;
+    }
+    if ((lp_buttonId != "") && (!CatalogEntryIsValid(c_gameCatalogButton, lp_buttonId))) {
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_PROFILE_MISSING");
+        libE0EAE146_gf_XMDbgLog("WARN", "PANEL_PROFILE_MISSING", "commander=" + lp_commander + " panel=" + lp_panelAbilityId + " ability=" + lp_abilityId + " button=" + lp_buttonId + " requirement=" + lp_requirementId + " caster=" + lp_casterId + " result=missing_button_catalog_entry");
+        return false;
+    }
+
+    lv_cooldown = CatalogFieldValueGet(c_gameCatalogAbil, lp_abilityId, "Cost[0].Cooldown.TimeUse", lp_player);
+    libE0EAE146_gv_xmTestBenchCreated[lp_player] += 1;
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_PROFILE_HIT");
+    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_PROFILE_HIT", "commander=" + lp_commander + " panel=" + lp_panelAbilityId + " ability=" + lp_abilityId + " button=" + lp_buttonId + " requirement=" + lp_requirementId + " target=point mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " catalogCooldown=" + lv_cooldown + " caster=" + lp_casterId + " result=profile_metadata_only reason=actual_cast_not_issued_by_smoke");
+    return true;
+}
+
+bool libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke (int lp_player, string lp_panelAbilityId, point lp_targetPoint) {
+    string lv_ability;
 
     lv_ability = lp_panelAbilityId;
     if ((lv_ability == "") || (lv_ability == "default") || (lv_ability == "hyperion")) {
@@ -14,18 +41,49 @@ bool libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke (int lp_player, string lp_p
         lv_ability = "BansheeAirstrike";
     }
 
-    lv_mineralsBefore = PlayerGetPropertyInt(lp_player, c_playerPropMinerals);
-    lv_vespeneBefore = PlayerGetPropertyInt(lp_player, c_playerPropVespene);
-    if ((lv_ability == "") || (!CatalogEntryIsValid(c_gameCatalogAbil, lv_ability))) {
-        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
-        libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_RAYNOR_PROFILE_MISSING");
-        libE0EAE146_gf_XMDbgLog("WARN", "PANEL_RAYNOR_PROFILE_MISSING", "ability=" + lv_ability + " trigger=command target=point mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " result=missing_catalog_entry");
-        return false;
+    return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Raynor", lp_panelAbilityId, lv_ability, "", "", "CoopCasterRaynor", lp_targetPoint);
+}
+
+bool libE0EAE146_gf_XMTestBench_NovaPanelCostSmoke (int lp_player, string lp_panelAbilityId, point lp_targetPoint) {
+    string lv_panel;
+
+    lv_panel = lp_panelAbilityId;
+    if ((lv_panel == "") || (lv_panel == "default") || (lv_panel == "griffin_bombing_run")) {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Nova", lv_panel, "NovaGriffinBombingRunExecute", "NovaGriffinBombingRun", "", "CoopCasterNova", lp_targetPoint);
     }
-    lv_cooldown = CatalogFieldValueGet(c_gameCatalogAbil, lv_ability, "Cost[0].Cooldown.TimeUse", lp_player);
-    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_RAYNOR_PROFILE_HIT");
-    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_RAYNOR_PROFILE_HIT", "ability=" + lv_ability + " trigger=command target=point mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " catalogCooldown=" + lv_cooldown + " caster=CoopCasterRaynor result=profile_metadata_only reason=official_caster_not_imported_to_XMFinal");
-    return false;
+    if ((lv_panel == "griffin_transport") || (lv_panel == "transport")) {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Nova", lv_panel, "NovaGriffinTransportLoad", "NovaGriffinTransportUnits", "", "CoopCasterNova", lp_targetPoint);
+    }
+    if ((lv_panel == "nuke") || (lv_panel == "tactical_nuke")) {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Nova", lv_panel, "NovaCoopCasterNuke", "NovaCoopCasterNuke", "HaveShadowOpsandNovaStealthSuit", "CoopCasterNova", lp_targetPoint);
+    }
+    if ((lv_panel == "holo_decoy") || (lv_panel == "decoy")) {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Nova", lv_panel, "NovaCoopDecoyTarget", "NovaCoopDecoy", "HaveNovaCombatSuit", "CoopCasterNova", lp_targetPoint);
+    }
+
+    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_PROFILE_ALIAS_FALLBACK", "commander=Nova requested=" + lv_panel + " fallback=griffin_bombing_run");
+    return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Nova", lv_panel, "NovaGriffinBombingRunExecute", "NovaGriffinBombingRun", "", "CoopCasterNova", lp_targetPoint);
+}
+
+bool libE0EAE146_gf_XMTestBench_DehakaPanelCostSmoke (int lp_player, string lp_panelAbilityId, point lp_targetPoint) {
+    string lv_panel;
+
+    lv_panel = lp_panelAbilityId;
+    if ((lv_panel == "") || (lv_panel == "default") || (lv_panel == "glevig")) {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Dehaka", lv_panel, "DehakaGlevigTopBar", "DehakaGlevigTopBar", "DehakaSummonGlevig", "CoopCasterDehaka", lp_targetPoint);
+    }
+    if (lv_panel == "murvar") {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Dehaka", lv_panel, "DehakaMurvarTopBar", "DehakaMurvarTopBar", "DehakaSummonMurvar", "CoopCasterDehaka", lp_targetPoint);
+    }
+    if (lv_panel == "dakrun") {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Dehaka", lv_panel, "DehakaDakrunTopBar", "DehakaDakrunTopBar", "DehakaSummonDakrun", "CoopCasterDehaka", lp_targetPoint);
+    }
+    if ((lv_panel == "nydus_destroyer") || (lv_panel == "primal_wurm")) {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Dehaka", lv_panel, "DehakaNydusDestroyerTopBar", "DehakaNydusDestroyerTopBar", "HaveDehakaGlevigStructure", "CoopCasterDehaka", lp_targetPoint);
+    }
+
+    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_PROFILE_ALIAS_FALLBACK", "commander=Dehaka requested=" + lv_panel + " fallback=glevig");
+    return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Dehaka", lv_panel, "DehakaGlevigTopBar", "DehakaGlevigTopBar", "DehakaSummonGlevig", "CoopCasterDehaka", lp_targetPoint);
 }
 
 bool libE0EAE146_gf_XM_InvokeCommanderPanelAbility (int lp_player, string lp_commander, string lp_panelAbilityId, point lp_targetPoint) {
@@ -39,6 +97,12 @@ bool libE0EAE146_gf_XM_InvokeCommanderPanelAbility (int lp_player, string lp_com
     lv_commander = libE0EAE146_gf_NormalizeCommanderId(lp_commander);
     if (lv_commander == "Raynor") {
         return libE0EAE146_gf_XMTestBench_RaynorPanelCostSmoke(lp_player, lp_panelAbilityId, lp_targetPoint);
+    }
+    if (lv_commander == "Nova") {
+        return libE0EAE146_gf_XMTestBench_NovaPanelCostSmoke(lp_player, lp_panelAbilityId, lp_targetPoint);
+    }
+    if (lv_commander == "Dehaka") {
+        return libE0EAE146_gf_XMTestBench_DehakaPanelCostSmoke(lp_player, lp_panelAbilityId, lp_targetPoint);
     }
 
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_TEST_INVOKE");

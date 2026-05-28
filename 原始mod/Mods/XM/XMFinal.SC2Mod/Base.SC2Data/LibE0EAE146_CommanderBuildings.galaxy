@@ -16,6 +16,11 @@ void libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit (int lp_player, string 
     libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, lp_unitType, libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, lp_index, 20.0, 6.0), lp_rosterKind);
 }
 
+void libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnitAlias (int lp_player, string lp_sourceUnitType, string lp_resolvedUnitType, int lp_index, string lp_rosterKind) {
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_BUILDING_ALIAS", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " sourceUnit=" + lp_sourceUnitType + " resolvedUnit=" + lp_resolvedUnitType);
+    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, lp_resolvedUnitType, lp_index, lp_rosterKind);
+}
+
 void libE0EAE146_gf_XMTestBench_LogBuildingRosterDone (int lp_player, string lp_commander, string lp_rosterKind, int lp_expected) {
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_BUILDINGS_" + lp_commander);
     libE0EAE146_gf_XMDbgLog("INFO", "TEST_COMMANDER_BUILDINGS_DONE", "commander=" + lp_commander + " scenario=" + lp_rosterKind + " expected=" + IntToString(lp_expected) + " created=" + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]) + " missing=" + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]));
@@ -222,12 +227,12 @@ bool libE0EAE146_gf_XMTestBench_SwannBuildings (int lp_player, string lp_rosterK
         return false;
     }
     libE0EAE146_gf_XMTestBench_PrepareBuildingRoster(lp_player);
-    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, "SupplyDepot", 1, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnitAlias(lp_player, "SupplyDepot", "SupplyDepotSwann", 1, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, "DrakkenLaserDrillCoop", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, "KelMorianGrenadeTurret", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, "MissileTurret", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, "PerditionTurret", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, "CommandCenter", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnitAlias(lp_player, "KelMorianGrenadeTurret", "GrenadeTurretSwann", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnitAlias(lp_player, "MissileTurret", "MissileTurretSwann", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnitAlias(lp_player, "PerditionTurret", "PerditionTurretSwann", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnitAlias(lp_player, "CommandCenter", "CommandCenterSwann", 6, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_LogBuildingRosterDone(lp_player, "Swann", lp_rosterKind, 6);
     return true;
 }

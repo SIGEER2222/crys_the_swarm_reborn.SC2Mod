@@ -8,10 +8,16 @@ bool libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry (int lp_player, string 
     bool lv_ok;
 
     lv_ok = true;
+    if ((lp_objectId != "") && !CatalogEntryIsValid(c_gameCatalogUnit, lp_objectId)) {
+        lv_ok = false;
+    }
     if ((lp_buttonId != "") && !CatalogEntryIsValid(c_gameCatalogButton, lp_buttonId)) {
         lv_ok = false;
     }
     if ((lp_abilityId != "") && !CatalogEntryIsValid(c_gameCatalogAbil, lp_abilityId)) {
+        lv_ok = false;
+    }
+    if ((lp_requirementId != "") && !CatalogEntryIsValid(c_gameCatalogRequirement, lp_requirementId)) {
         lv_ok = false;
     }
 
@@ -23,7 +29,7 @@ bool libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry (int lp_player, string 
 
     libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
     libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
-    libE0EAE146_gf_XMDbgLog("WARN", "TEST_ABILITY_PROFILE_MISSING", "commander=" + lp_commander + " scenario=" + lp_scenarioKind + " object=" + lp_objectId + " button=" + lp_buttonId + " ability=" + lp_abilityId + " requirement=" + lp_requirementId + " kind=" + lp_entryKind + " reason=button_or_ability_catalog_missing");
+    libE0EAE146_gf_XMDbgLog("WARN", "TEST_ABILITY_PROFILE_MISSING", "commander=" + lp_commander + " scenario=" + lp_scenarioKind + " object=" + lp_objectId + " button=" + lp_buttonId + " ability=" + lp_abilityId + " requirement=" + lp_requirementId + " kind=" + lp_entryKind + " reason=object_button_ability_or_requirement_catalog_missing");
     return false;
 }
 
