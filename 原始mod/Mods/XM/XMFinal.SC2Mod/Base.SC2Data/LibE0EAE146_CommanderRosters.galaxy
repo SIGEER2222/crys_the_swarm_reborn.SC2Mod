@@ -14,6 +14,11 @@ void libE0EAE146_gf_XMTestBench_CreateRosterUnit (int lp_player, string lp_unitT
     libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, lp_unitType, libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, lp_index, 14.0, 4.0), lp_rosterKind);
 }
 
+void libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias (int lp_player, string lp_sourceUnitType, string lp_resolvedUnitType, int lp_index, string lp_rosterKind) {
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_ROSTER_ALIAS", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " sourceUnit=" + lp_sourceUnitType + " resolvedUnit=" + lp_resolvedUnitType);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, lp_resolvedUnitType, lp_index, lp_rosterKind);
+}
+
 void libE0EAE146_gf_XMTestBench_LogRosterDone (int lp_player, string lp_commander, string lp_rosterKind, int lp_expected) {
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_ROSTER_" + lp_commander);
     libE0EAE146_gf_XMDbgLog("INFO", "TEST_COMMANDER_ROSTER_DONE", "commander=" + lp_commander + " scenario=" + lp_rosterKind + " expected=" + IntToString(lp_expected) + " created=" + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]) + " missing=" + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]));
@@ -135,16 +140,16 @@ bool libE0EAE146_gf_XMTestBench_HornerRoster (int lp_player, string lp_rosterKin
         return false;
     }
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HHBattlecruiser", 1, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HHHellion", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HHHellionTank", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HHRaven", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HHReaper", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HHVikingFighter", 6, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HHWidowMine", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HHWraith", 8, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Predator", 9, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Liberator", 10, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "BattlecruiserMira", 1, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HellionMira", 2, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HellionTankMira", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "RavenMira", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ReaperMira", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "VikingFighterMira", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "WidowMineMira", 7, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "WraithMira", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "WidowMineMiraBurrowed", 9, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "LiberatorMira", 10, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Horner", lp_rosterKind, 10);
     return true;
 }
@@ -225,16 +230,17 @@ bool libE0EAE146_gf_XMTestBench_NovaRoster (int lp_player, string lp_rosterKind)
     }
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Banshee_BlackOps", 1, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Goliath_BlackOps", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HellbatBlackOps", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Liberator_BlackOps", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Marauder_BlackOps", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Marine_BlackOps", 6, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Raven_BlackOps", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "MercReaper", 8, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SiegeTank_BlackOps", 9, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SCV", 10, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Nova", lp_rosterKind, 10);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Ghost_BlackOps", 2, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Goliath_BlackOps", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HellbatBlackOps", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Liberator_BlackOps", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Marauder_BlackOps", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Marine_BlackOps", 7, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Raven_BlackOps", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "MercReaper", "ReaperMira", 9, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SiegeTank_BlackOps", 10, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SCV", 11, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Nova", lp_rosterKind, 11);
     return true;
 }
 
@@ -272,7 +278,7 @@ bool libE0EAE146_gf_XMTestBench_StukovRoster (int lp_player, string lp_rosterKin
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SIInfestedMarine", 2, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "StukovInfestedSiegeTank", 3, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SIWraith", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SwarmQueen", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "SwarmQueen", "SIQueen", 5, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Zergling", 6, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Stukov", lp_rosterKind, 6);
     return true;
@@ -285,12 +291,12 @@ bool libE0EAE146_gf_XMTestBench_SwannRoster (int lp_player, string lp_rosterKind
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Cyclone", 1, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HellionTank", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Hercules", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ScienceVessel", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "Hercules", "HerculesSwann", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "ScienceVessel", "ScienceVesselSwann", 4, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Hellion", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Wraith", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "Wraith", "WraithSwann", 6, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SCV", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Goliath", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "GoliathSwann", 8, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SiegeTank", 9, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Swann", lp_rosterKind, 9);
     return true;

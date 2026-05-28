@@ -260,4 +260,1728 @@
         <HotkeyCategory value="Unit/Category/ProtossStory"/>
         <AlliedPushPriority value="11"/>
     </CUnit>
+    <CUnit id="Brutalisk">
+            <TechAliasArray value="Alias_Brutalisk"/>
+            <CostResource index="Minerals" value="500"/>
+            <CostResource index="Vespene" value="300"/>
+            <Collide index="Ground" value="0"/>
+            <Collide index="Colossus" value="1"/>
+            <Collide index="Small" value="0"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <BehaviorArray Link="Frenzy"/>
+            <BehaviorArray Link="CarapaceDamageResponse"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="BrutaliskDeepTunnel,Execute" Row="2" Column="3"/>
+                
+                <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="1" Column="4"/>
+                <LayoutButtons Face="SymbioteCarapace" Type="AbilCmd" AbilCmd="SymbioteCarapace,Execute" Row="1" Column="4"/>
+                <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowBrutaliskDown,Execute" Row="2" Column="4"/>
+                <LayoutButtons>
+                    <Face value="CommanderAbathurBrutaliskSymbiote"/>
+                    <Type value="Passive"/>
+                    <AbilCmd value="AbathurSymbioteHangerBrutalisk,Ammo1"/>
+                    <Requirements value="HaveBrutaliskgainsSymbioteUpgrade"/>
+                    <Row value="2"/>
+                    <Column value="1"/>
+                </LayoutButtons>
+                <LayoutButtons Face="AbathurBrutaliskLeviathanSymbiote" Type="Passive" Requirements="HaveBrutaliskLeviathanSymbiote" Row="2" Column="0"/>
+                <LayoutButtons Face="AbathurBrutaliskLeviathanSymbioteLocked" Type="Passive" Requirements="AbathurLevel10" Row="2" Column="0"/>
+            </CardLayouts>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <AbilArray Link="BrutaliskDeepTunnel"/>
+            <AbilArray Link="SymbioteCarapace"/>
+            <AbilArray Link="BurrowBrutaliskDown"/>
+            <AbilArray Link="AbathurSymbioteHangerBrutalisk"/>
+            <AbilArray Link="que1Passive"/>
+            <Speed value="3"/>
+            <SubgroupPriority value="118"/>
+            <MinimapRadius value="1.5"/>
+            <WeaponArray index="0" Link="Brutalize"/>
+            <WeaponArray index="1" Link="FerociousSpew"/>
+            <ShieldArmorName value="Behavior/Name/SymbioteCarapace"/>
+            <HotkeyCategory value="Unit/Category/ZergEvolved"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"/>
+            <GlossaryPriority value="4"/>
+        </CUnit>
+    <CUnit id="ColossusPurifier">
+            <RepairTime value="42.86"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="FenixWarbringerColossusMorph"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="ThermalLances" Turret="Colossus"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="6" Requirements="HaveFireBeam" Column="2"/>
+                <LayoutButtons Face="ExtendedThermalLance" Type="Passive" Requirements="HaveKaraxExtendedThermalLance" Row="2" Column="1"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier"/>
+            <HotkeyCategory value="Unit/Category/ProtossPurifier"/>
+            <TauntDuration index="Dance" value="5"/>
+            <SelectAlias value="Colossus"/>
+            <SubgroupPriority value="109"/>
+        </CUnit>
+    <CUnit id="ColossusTaldarim">
+            <RepairTime value="42.86"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="ColossusTaldarimChargedBeamFast" Turret="Colossus"/>
+            <CardLayouts index="0">
+                <LayoutButtons Face="AlarakColossusAerialTracking" Type="Passive" Requirements="HaveColossusChargedBlastAirAttack" Row="2" Column="2"/>
+                <LayoutButtons Face="AlarakColossusChargedBlastChargeTime" Type="Passive" Requirements="HaveColossusChargedBlastChargeTime" Row="2" Column="3"/>
+                <LayoutButtons Face="CommanderPrestigeAlarakMechBuff" Type="Passive" Requirements="CommanderPrestigeAlarakMech" Row="1" Column="4"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+            <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+            
+            
+            <TauntDuration index="Dance" value="5"/>
+            <SelectAlias value="Colossus"/>
+            <SubgroupPriority value="109"/>
+            <Level value="11"/>
+        </CUnit>
+    <CUnit id="DarkTemplarShakuras">
+            <CostResource index="Vespene" value="75"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="DarkTemplarVoidStasis"/>
+            <AbilArray Link="DarkArchonMerge"/>
+            <AbilArray Link="DarkTemplarShadowDash"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            
+            
+            <BehaviorArray Link="DarkTemplarRecallToDarkShrine"/>
+            
+            <BehaviorArray Link="VorazunCloakedShieldRegenPermanent"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="6" AbilCmd="DarkTemplarShadowFury,Execute" Row="1" Column="0"/>
+                <LayoutButtons index="7" Face="DarkTemplarShadowDash" AbilCmd="DarkTemplarShadowDash,Execute" Column="1"/>
+                <LayoutButtons Face="ShadowDashLocked" Type="Passive" Requirements="VorazunLevel06" Row="2" Column="1"/>
+                <LayoutButtons Face="VoidStasis" Type="AbilCmd" AbilCmd="DarkTemplarVoidStasis,Execute" Row="2" Column="2"/>
+                
+                <LayoutButtons Face="VoidStasisLocked" Type="Passive" Requirements="VorazunLevel06" Row="2" Column="2"/>
+                <LayoutButtons Face="VoidDarkTemplarShadowFury" Type="AbilCmd" AbilCmd="DarkTemplarShadowFury,Execute" Row="2" Column="0"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionNerazim"/>
+            <SubgroupPriority value="120"/>
+            
+        </CUnit>
+    <CUnit id="Dragoon">
+            <LifeStart value="100"/>
+            <LifeMax value="100"/>
+            <RepairTime value="21"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <BehaviorArray index="0" Link=""/>
+            
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="7" Requirements="HaveDragoonHealth" Column="2"/>
+                <LayoutButtons Face="VoidStalkerDragoonRange" Type="Passive" Requirements="HaveSingularityCharge" Row="2" Column="1"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionKhalai"/>
+            <Speed value="2.9492"/>
+            <SubgroupPriority value="105"/>
+        </CUnit>
+    <CUnit id="HighTemplarTaldarim">
+            <EnergyStart value="200"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray index="7" Link="BuildInProgress"/>
+            <AbilArray index="8" Link="attack"/>
+            <AbilArray index="9" Link="AscendantSacrificeInstant"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="9" AbilCmd="AscendantSacrificeInstant,Execute"/>
+                <LayoutButtons Face="AlarakHighTemplarImprovedSacrifice" Type="Passive" Requirements="HaveHighTemplarImprovedSacrifice" Row="1" Column="2"/>
+                <LayoutButtons Face="ResearchAlarakHighTemplarPsionicOrbTravelDistancePassive" Type="Passive" Requirements="HaveHighTemplarPsionicOrbTravelDistance" Row="1" Column="0"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+            <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+            <SubgroupPriority value="145"/>
+            <Level value="15"/>
+            
+        </CUnit>
+    <CUnit id="ImmortalAiur">
+            <RepairTime value="36.667"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray index="5" Link="ImmortalBarrierBase"/>
+            <AbilArray Link="ImmortalShakurasShadowCannon"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="5" Face="ImmortalBarrierBase" AbilCmd="ImmortalBarrierBase,Execute"/>
+                <LayoutButtons index="6" Face="ImmortalShakurasShadowCannon" Type="AbilCmd" AbilCmd="ImmortalShakurasShadowCannon,Execute"/>
+                <LayoutButtons Face="ShadowCannonLocked" Type="Passive" Requirements="KaraxLevel09" Row="2" Column="1"/>
+                <LayoutButtons Face="HaveBarrier" Type="Passive" Requirements="HaveBarrier" Row="1" Column="0"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionKhalai"/>
+            <LeaderAlias value="Immortal"/>
+            <HotkeyAlias value="Immortal"/>
+            <SelectAlias value="Immortal"/>
+            <SubgroupAlias value="Immortal"/>
+            <HotkeyCategory value="Unit/Category/ProtossUnits"/>
+            <WeaponArray Link="PhaseDisruptorsLookAt" Turret="Immortal"/>
+            <SubgroupPriority value="108"/>
+        </CUnit>
+    <CUnit id="ImmortalTaldarim">
+            <RepairTime value="36.667"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons Face="VanguardArmoredDamage" Type="Passive" Requirements="HaveVanguardArmoredDamage" Row="2" Column="1"/>
+                <LayoutButtons Face="AlarakVanguardIncreaseSplashArea" Type="Passive" Requirements="HaveAlarakVanguardIncreaseSplashArea" Row="2" Column="2"/>
+                <LayoutButtons Face="CommanderPrestigeAlarakMechBuff" Type="Passive" Requirements="CommanderPrestigeAlarakMech" Row="1" Column="4"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+            <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+            <WeaponArray Link="ImmortalTaldarimLookAt" Turret="Immortal"/>
+            <SubgroupPriority value="108"/>
+            <Level value="14"/>
+        </CUnit>
+    <CUnit id="InfestedAbomination">
+            
+            <BehaviorArray Link="AberrationArmorAura"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="AbberationBanelingIncubation"/>
+            <LifeArmor value="0"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <CardLayouts index="0">
+                <LayoutButtons Face="AberrationProtectiveCover" Type="Passive" Requirements="HaveAberrationArmorAura" Row="2" Column="1"/>
+                <LayoutButtons Face="ZagaraVoidCoopIncubateBanelings" Type="Passive" Requirements="HaveZagaraVoidCoopAberrationBanelingIncubation" Row="2" Column="2"/>
+                <LayoutButtons Face="AberrationBanelingIncubationLocked" Type="Passive" Requirements="ZagaraLevel08" Row="2" Column="2"/>
+            </CardLayouts>
+            <KillXP value="0"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"/>
+            <HotkeyCategory value="Unit/Category/ZergEvolved"/>
+            <SubgroupPriority value="109"/>
+        </CUnit>
+    <CUnit id="K5Kerrigan">
+            <CardLayouts index="0">
+                <LayoutButtons index="6" Face="PrimalSlash" AbilCmd="PrimalSlash,Execute"/>
+                <LayoutButtons index="7" Face="MindBolt" Type="AbilCmd" AbilCmd="MindBolt,Execute" Requirements=""/>
+                <LayoutButtons index="8" Face="K5HeroicFortitude" Type="Passive" AbilCmd="" Requirements="HaveK5HeroicFortitude"/>
+                <LayoutButtons index="9" Face="PsiStrike" AbilCmd="PsiStrikeWalk,Execute"/>
+                <LayoutButtons index="10" Face="KerriganChainLightning" Requirements="KerriganLevel09" Row="1"/>
+                <LayoutButtons index="11" Face="PsionicLift" AbilCmd="PsionicLift,Execute"/>
+                <LayoutButtons index="15" Face="KerriganVoidCoopEconDrop" AbilCmd="KerriganVoidCoopEconDrop,Execute"/>
+                <LayoutButtons index="16" Face="PrimalHeal" AbilCmd="PrimalHeal,Execute"/>
+                <LayoutButtons index="17" Face="WildMutation" AbilCmd="WildMutation,Execute"/>
+                <LayoutButtons index="18" Face="KerriganFuryLocked" Requirements="KerriganLevel10" Column="3"/>
+                <LayoutButtons index="19" Face="ChainReaction" Requirements="HaveK5ChainLightning"/>
+                <LayoutButtons index="20" Face="K5Fury" Requirements="HaveK5Fury" Column="3"/>
+                <LayoutButtons index="21" Face="K5CooldownsLocked" Requirements="KerriganLevel09"/>
+                <LayoutButtons index="22">
+                    <Face value="KerriganVoidCoopCrushingGripWave"/>
+                    <Type value="AbilCmd"/>
+                    <AbilCmd value="KerriganVoidCoopCrushingGripWave,Execute"/>
+                    <Requirements value=""/>
+                    <Row value="2"/>
+                    <Column value="3"/>
+                </LayoutButtons>
+                <LayoutButtons index="23" Face="KerriganCrushingGripWaveLocked" Requirements="KerriganLevel02" Row="2" Column="3"/>
+                <LayoutButtons index="25" Face="KerriganAssimilation" Type="Passive" AbilCmd="" Row="1" Column="0"/>
+                <LayoutButtons index="26">
+                    <Face value="K5Cooldowns"/>
+                    <Type value="Passive"/>
+                    <AbilCmd value=""/>
+                    <Requirements value="HaveK5Cooldowns"/>
+                    <Row value="1"/>
+                    <Column value="2"/>
+                </LayoutButtons>
+                <LayoutButtons Face="K5ZerglingRespawn" Type="Passive" Row="1" Column="0"/>
+                <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="Apocalypse" Type="AbilCmd" AbilCmd="Apocalypse,Execute" Row="2" Column="3"/>
+                <LayoutButtons Face="K5DropPods" Type="AbilCmd" AbilCmd="K5DropPods,Execute" Row="2" Column="3"/>
+                <LayoutButtons Face="QueenofBladesLocked" Type="Passive" Requirements="KerriganLevel15" Row="1" Column="4"/>
+                <LayoutButtons Face="CommanderKerriganKerriganEnergyRegeneration" Type="Passive" Requirements="HaveKerriganVoidCoopEnergyRegen" Row="1" Column="4"/>
+            </CardLayouts>
+            <BehaviorArray index="0" Link="KerriganUnburrowedDummy"/>
+            <BehaviorArray index="1" Link="KerriganAssimilationLifesteal"/>
+            <BehaviorArray Link="HeroCCImmunity"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="HeroicFortitude"/>
+            <AbilArray Link="KerriganMaelstrom"/>
+            <AbilArray Link="KerriganVoidCoopEconDrop"/>
+            <AbilArray Link="KerriganVoidCoopCrushingGripWave"/>
+            <LifeStart value="800"/>
+            <LifeMax value="800"/>
+            <LifeArmor value="3"/>
+            <LifeRegenRate value="5"/>
+            <ShieldsMax value="200"/>
+            <ShieldRegenRate value="-5"/>
+            <Radius value="1"/>
+            <SeparationRadius value="1"/>
+            <InnerRadius value="0.5"/>
+            <EnergyRegenRate value="6.668"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ACKerriganArmor"/>
+            <KillXP value="0"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <CargoSize value="2"/>
+            <EditorCategories value="ObjectType:Hero,ObjectFamily:FactionEvolved"/>
+            <HotkeyCategory value="Unit/Category/ZergEvolved"/>
+            <SubgroupPriority value="199"/>
+        </CUnit>
+    <CUnit id="Leviathan">
+            
+            <UserTag value="Zerg"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <KillXP value="0"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <SubgroupPriority value="118"/>
+        </CUnit>
+    <CUnit id="Monitor">
+            <EnergyStart value="0"/>
+            <EnergyMax value="0"/>
+            <EnergyRegenRate value="0"/>
+            <RepairTime value="18.5"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="Detector11"/>
+            <BehaviorArray Link="HavocPermanentCloak"/>
+            <BehaviorArray Link="VorazunCloakedShieldRegenPermanent"/>
+            <CardLayouts index="0">
+                <LayoutButtons Face="HavocPermanentCloak" Type="Passive" Requirements="HaveAlarakHavocPermanentCloak" Row="1" Column="0"/>
+                <LayoutButtons Face="Detector" Type="Passive" Row="2" Column="3"/>
+                <LayoutButtons Face="AlarakTargetLockBuff" Type="Passive" Requirements="HaveAlarakHavocTargetLockBuff" Row="1" Column="1"/>
+                <LayoutButtons Face="AlarakHavocAbilityRange" Type="Passive" Requirements="HaveAlarakHavocAbilityRange" Row="1" Column="2"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+            <GlossaryPriority value="25"/>
+            <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+            <SubgroupPriority value="125"/>
+            <Level value="12"/>
+        </CUnit>
+    <CUnit id="MutaliskBroodlord">
+            <LifeRegenRate value="1"/>
+            <Speed value="4"/>
+            <Acceleration value="3.5"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="KerriganOwned"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="5" Face="SeveringGlave" Requirements="HaveKerriganSunderingGlaive" Row="1" Column="2"/>
+                <LayoutButtons index="6" Requirements="HaveKerriganViciousGlaive" Row="1"/>
+                <LayoutButtons index="7" Row="1" Column="0"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"/>
+            <HotkeyCategory value="Unit/Category/ZergEvolved"/>
+            <SubgroupPriority value="113"/>
+        </CUnit>
+    <CUnit id="PhoenixAiur">
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="VorazunCommanderCloak"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="9" Requirements="HaveResearchDoubleGravitonBeamPassive"/>
+                <LayoutButtons Face="HaveAnionPulseCrystals" Type="Passive" Requirements="HavePhoenixRangeUpgrade" Row="2" Column="2"/>
+            </CardLayouts>
+            <RepairTime value="23.33"/>
+            <KillXP value="0"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <WeaponArray index="0" Link="ArtanisIonCannons"/>
+            <SubgroupPriority value="112"/>
+        </CUnit>
+    <CUnit id="PhoenixPurifier">
+            <RepairTime value="23.33"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="MirageGravitonBeamVoidCampaign"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="7" Face="GravitonBeam" AbilCmd="MirageGravitonBeamVoidCampaign,Execute"/>
+                <LayoutButtons index="8" Face="GravitonBeamVoidCampaign" AbilCmd="GravitonBeamVoidCampaign,Execute"/>
+                <LayoutButtons index="9" Requirements="HaveMiragePhaseArmor" Column="2"/>
+                <LayoutButtons Face="AnionPulseCrystal" Type="Passive" Requirements="HaveKaraxPhoenixRangeUpgrade" Row="2" Column="1"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier"/>
+            <HotkeyCategory value="Unit/Category/ProtossPurifier"/>
+            <GlossaryPriority value="140"/>
+            <WeaponArray index="0" Link="ArtanisIonCannons"/>
+            <SubgroupPriority value="112"/>
+        </CUnit>
+    <CUnit id="RavagerAbathur">
+            <DeathRevealRadius value="3"/>
+            <Race value="Zerg"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Biological" value="1"/>
+            <LifeStart value="120"/>
+            <LifeMax value="120"/>
+            <LifeArmor value="1"/>
+            <LifeRegenRate value="0.2734"/>
+            <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+            <Speed value="2.75"/>
+            <SpeedMultiplierCreep value="1.3"/>
+            <Acceleration value="1000"/>
+            <LateralAcceleration value="46.0625"/>
+            <StationaryTurningRate value="999.8437"/>
+            <TurningRate value="999.8437"/>
+            <Sight value="9"/>
+            <Food value="-3"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="125"/>
+            <CostResource index="Vespene" value="75"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="que1"/>
+            <AbilArray Link="BurrowRavagerAbathurDown"/>
+            <AbilArray Link="RavagerAbathurCorrosiveBile"/>
+            <AbilArray Link="EvolveToBrutaliskRavager"/>
+            <AbilArray Link="AbathurDeepTunnelImproved"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="RavagerWeapon"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurDown,Execute" Row="2" Column="4"/>
+                <LayoutButtons Face="RavagerAbathurCorrosiveBile" Type="AbilCmd" AbilCmd="RavagerAbathurCorrosiveBile,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="CorrosiveBileRadiusIncrease" Type="Passive" Requirements="HaveCorrosiveBileRadiusIncrease" Row="1" Column="0"/>
+                <LayoutButtons Face="CorrosiveBileDamageIncrease" Type="Passive" Requirements="HaveCorrosiveBileDamageIncrease" Row="1" Column="1"/>
+                <LayoutButtons Face="CommanderPrestigeAbathurBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRavager,Train1" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"/>
+                <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnelImproved,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurLevel09DeepTunnelImproved" Row="2" Column="1"/>
+            </CardLayouts>
+            <Radius value="0.75"/>
+            <InnerRadius value="0.5"/>
+            <CargoSize value="4"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="119"/>
+            <MinimapRadius value="0.75"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"/>
+            <TacticalAIThink value="AIThinkRavager"/>
+            <GlossaryCategory value="Unit/Category/ZergUnits"/>
+            <GlossaryPriority value="66"/>
+            <GlossaryStrongArray value="SiegeTankSieged"/>
+            <GlossaryStrongArray value="LurkerMP"/>
+            <GlossaryStrongArray value="Sentry"/>
+            <GlossaryWeakArray value="Marauder"/>
+            <GlossaryWeakArray value="Ultralisk"/>
+            <GlossaryWeakArray value="Immortal"/>
+            <HotkeyCategory value="Unit/Category/ZergUnits"/>
+            <KillDisplay value="Always"/>
+            <RankDisplay value="Always"/>
+            <Description value="Button/Tooltip/Ravager"/>
+        </CUnit>
+    <CUnit id="RoachCorpser">
+            
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <TacticalAIThink value="AIThinkRoach"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <KillXP value="0"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="6" Row="1"/>
+                <LayoutButtons index="7" Requirements="HaveOrganicCarapace" Row="1"/>
+                <LayoutButtons index="8" Row="1" Column="2"/>
+                <LayoutButtons index="9" Row="1" Column="3"/>
+                <LayoutButtons index="10" Row="1" Column="4"/>
+                <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachToRavager,Train1" Row="2" Column="0"/>
+            </CardLayouts>
+            <LifeStart value="145"/>
+            <LifeMax value="145"/>
+            <SubgroupPriority value="116"/>
+            <AbilArray Link="que1"/>
+            <AbilArray Link="MorphRoachToRavager"/>
+            <HotkeyCategory value="Unit/Category/ZergEvolved"/>
+        </CUnit>
+    <CUnit id="RoachVile">
+            
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="AbathurPropArmor"/>
+            <TacticalAIThink value="AIThinkRoach"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <KillXP value="0"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="6" Face="ZerglingBurrowMove" Requirements="HaveOrganicCarapace" Row="1" Column="2"/>
+                <LayoutButtons index="7" Face="HotSRoachShield" Requirements="HaveHotSRoachShield" Row="1" Column="4"/>
+                <LayoutButtons index="8" Row="1" Column="3"/>
+                <LayoutButtons index="9" Face="VilePassive" Requirements="" Row="1" Column="0"/>
+                <LayoutButtons index="10" Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnelImproved,Execute" Column="1"/>
+                <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurLevel09DeepTunnelImproved" Row="2" Column="1"/>
+                <LayoutButtons Face="GlialReconstitutionPassive" Type="Passive" Requirements="HaveGlialReconstitution" Row="1" Column="1"/>
+                <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachVileToRavager,Train1" Row="2" Column="0"/>
+                <LayoutButtons Face="CommanderPrestigeAbathurBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoachVile,Train1" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"/>
+                <LayoutButtons Face="BiomassPassiveArmor" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"/>
+            </CardLayouts>
+            <LifeStart value="145"/>
+            <LifeMax value="145"/>
+            <SubgroupPriority value="116"/>
+            <AbilArray Link="que1"/>
+            <AbilArray Link="MorphRoachVileToRavager"/>
+            <AbilArray Link="EvolveToBrutaliskRoachVile"/>
+            <AbilArray Link="AbathurDeepTunnelImproved"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"/>
+            <HotkeyCategory value="Unit/Category/ZergEvolved"/>
+        </CUnit>
+    <CUnit id="RoboticsFacilityWarp">
+            <Attributes index="Mechanical" value="1"/>
+            <RepairTime value="32.5"/>
+            <BehaviorArray Link="ChronoBoostTarget"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="6" Face="MorphBackToRoboticsFacility" Type="AbilCmd" AbilCmd="MorphBackToRoboticsFacility,Execute" Column="1"/>
+                <LayoutButtons Face="Observer" Type="AbilCmd" AbilCmd="RoboticsFacilityWarpTrain,Train2" Row="0" Column="2"/>
+                <LayoutButtons Face="SuperiorWarpRoboticsFacilities" Type="Passive" Requirements="HaveSuperiorWarpGates" Row="2" Column="2"/>
+            </CardLayouts>
+            <Footprint value="Footprint3x3CreepNormalContour"/>
+            <PlacementFootprint value="Footprint3x3CreepNormal"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionKhalai"/>
+            <HotkeyCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="211"/>
+            <SubgroupPriority value="57"/>
+        </CUnit>
+    <CUnit id="Scourge">
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="SupplyLT1"/>
+            <BehaviorArray Link="NoScrapDrop"/>
+            <CostResource index="Minerals" value="12"/>
+            <CostResource index="Vespene" value="37"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <AbilArray Link="ScourgeDetonate"/>
+            <AbilArray Link="SuicideBuilding"/>
+            <CardLayouts index="0">
+                <LayoutButtons Face="ScourgeSplashDamagePassive" Type="Passive" Requirements="HaveScourgeSplashDamage" Row="1" Column="0"/>
+                <LayoutButtons Face="DetonateScourge" Type="AbilCmd" AbilCmd="ScourgeDetonate,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="EnableBuildingAttackScourge" Type="AbilCmd" AbilCmd="SuicideBuilding,On" Row="2" Column="1"/>
+                <LayoutButtons Face="DisableBuildingAttackScourge" Type="AbilCmd" AbilCmd="SuicideBuilding,Off" Row="2" Column="1"/>
+                <LayoutButtons Face="HaveScourgeGasCostReduction" Type="Passive" Requirements="HaveScourgeGasCostReduction" Row="2" Column="2"/>
+            </CardLayouts>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <HotkeyCategory value="Unit/Category/ZergEvolved"/>
+            <WeaponArray Link="SuicideBuilding"/>
+            <EditorCategories value="ObjectFamily:FactionEvolved,ObjectType:Unit"/>
+            <SubgroupPriority value="108"/>
+            <LeaderAlias value="Scourge"/>
+        </CUnit>
+    <CUnit id="Scout">
+            <LifeStart value="150"/>
+            <LifeMax value="150"/>
+            <ShieldsStart value="100"/>
+            <ShieldsMax value="100"/>
+            <CostResource index="Minerals" value="250"/>
+            <CostResource index="Vespene" value="75"/>
+            <RepairTime value="28.125"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="FenixMojoScoutMorph"/>
+            <BehaviorArray index="0" Link=""/>
+            
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <WeaponArray index="0" Link="ScoutAir"/>
+            <WeaponArray index="1" Link="ScoutGround"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier"/>
+            <HotkeyCategory value="Unit/Category/ProtossPurifier"/>
+            <CardLayouts index="0">
+                <LayoutButtons Face="HaveFenixScoutWeaponRange" Type="Passive" Requirements="HaveFenixScoutWeaponRange" Row="2" Column="0"/>
+            </CardLayouts>
+            <SubgroupPriority value="119"/>
+        </CUnit>
+    <CUnit id="SentryFenix">
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Locust" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Light" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <Attributes index="Psionic" value="1"/>
+            <LifeStart value="40"/>
+            <LifeMax value="40"/>
+            <LifeArmor value="1"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+            <ShieldsStart value="40"/>
+            <ShieldsMax value="40"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Speed value="2.25"/>
+            <Acceleration value="1000"/>
+            <LateralAcceleration value="46"/>
+            <StationaryTurningRate value="999.8437"/>
+            <TurningRate value="999.8437"/>
+            <Sight value="10"/>
+            <Food value="-2"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="50"/>
+            <CostResource index="Vespene" value="100"/>
+            <RepairTime value="18.5"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="Warpable"/>
+            <AbilArray Link="ProgressRally"/>
+            <AbilArray Link="FenixSentryGuardianZone"/>
+            <AbilArray Link="SentryFenixPhasingMode"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="EnergizerWeapon"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
+                <LayoutButtons Face="FenixSentryGuardianZone" Type="AbilCmd" AbilCmd="FenixSentryGuardianZone,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="FenixSentryPhasingMode" Type="AbilCmd" AbilCmd="SentryFenixPhasingMode,Execute" Row="2" Column="2"/>
+            </CardLayouts>
+            <SeparationRadius value="0.625"/>
+            <InnerRadius value="0.375"/>
+            <CargoSize value="2"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="150"/>
+            <MinimapRadius value="0.375"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier"/>
+            <TacticalAIThink value="AIThinkSentry"/>
+            <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="25"/>
+            <GlossaryStrongArray value="Zergling"/>
+            <GlossaryStrongArray value="Zealot"/>
+            <GlossaryWeakArray value="Reaper"/>
+            <GlossaryWeakArray value="Hydralisk"/>
+            <GlossaryWeakArray value="Stalker"/>
+            <HotkeyCategory value="Unit/Category/ProtossPurifier"/>
+            <Fidget>
+                <ChanceArray index="Anim" value="5"/>
+                <ChanceArray index="Idle" value="90"/>
+                <ChanceArray index="Turn" value="5"/>
+            </Fidget>
+        </CUnit>
+    <CUnit id="SentryPurifier">
+            <RepairTime value="18.5"/>
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="EnergizerReclamation"/>
+            <BehaviorArray index="0" Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="VoidSentryChronoBeamRally"/>
+            <BehaviorArray Link="VoidSentryChronoBeamRallyB"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="7" Column="2"/>
+                <LayoutButtons Face="KaraxEnergyRegenUpgrade" Type="Passive" Requirements="HaveKaraxEnergyRegenUpgrade" Row="2" Column="4"/>
+                <LayoutButtons Face="EnergizerReclamation" Type="AbilCmd" AbilCmd="EnergizerReclamation,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="ReclamationLocked" Type="Passive" Requirements="KaraxLevel04" Row="2" Column="1"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier"/>
+            <HotkeyCategory value="Unit/Category/ProtossPurifier"/>
+            <SubgroupPriority value="125"/>
+            
+        </CUnit>
+    <CUnit id="SolarForge">
+            <DeathRevealRadius value="3"/>
+            <Facing value="45"/>
+            <Race value="Prot"/>
+            <Mob value="Campaign"/>
+            <FlagArray index="Turnable" value="0"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="PenaltyRevealed" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="TownAlert" value="1"/>
+            <FlagArray index="NoPortraitTalk" value="1"/>
+            <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+            <FogVisibility value="Snapshot"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Burrow" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="Structure" value="1"/>
+            <Collide index="RoachBurrow" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Armored" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <Attributes index="Structure" value="1"/>
+            <LifeStart value="500"/>
+            <LifeMax value="500"/>
+            <LifeArmor value="1"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossBuildingPlating"/>
+            <ShieldsStart value="500"/>
+            <ShieldsMax value="500"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Sight value="9"/>
+            <CostCategory value="Technology"/>
+            <CostResource index="Minerals" value="200"/>
+            <CostResource index="Vespene" value="200"/>
+            <AttackTargetPriority value="11"/>
+            <AbilArray Link="BuildInProgress"/>
+            <AbilArray Link="que5Passive"/>
+            <AbilArray Link="SolarForgeResearch"/>
+            <AbilArray Link="BrokenSolarForge"/>
+            <BehaviorArray Link="SolarForgePreventDestroy"/>
+            <BehaviorArray Link="SolarForgeBeam"/>
+            <BehaviorArray Link="ChronoBoostTarget"/>
+            <TurretArray value="SolarForgeRotate"/>
+            <TurretArray value="SolarForgeBRotate"/>
+            <CardLayouts>
+                <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+                <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+                <LayoutButtons Face="ResearchSolarEfficiencyLevel1" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research1" Row="0" Column="0"/>
+                <LayoutButtons Face="ResearchSolarEfficiencyLevel2" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research2" Row="0" Column="0"/>
+                <LayoutButtons Face="ResearchSolarEfficiencyLevel3" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research3" Row="0" Column="0"/>
+                <LayoutButtons Face="ResearchSolarEfficiencyLevel3Locked" Type="Passive" Requirements="KaraxLevel08" Row="0" Column="0"/>
+                <LayoutButtons Face="ResearchSOARepairBeamExtraTarget" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research4" Row="0" Column="1"/>
+                <LayoutButtons Face="ResearchSOARepairBeamExtraTargetLocked" Type="Passive" Requirements="KaraxLevel08" Row="0" Column="1"/>
+                <LayoutButtons Face="ResearchSOAOrbitalStrikeUpgrade" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research5" Row="0" Column="2"/>
+                <LayoutButtons Face="ResearchSOAOrbitalStrikeUpgradeLocked" Type="Passive" Requirements="KaraxLevel12" Row="0" Column="2"/>
+                <LayoutButtons Face="ResearchSOASolarLanceUpgrade" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research6" Row="0" Column="3"/>
+                <LayoutButtons Face="ResearchSOASolarLanceUpgradeLocked" Type="Passive" Requirements="KaraxLevel12" Row="0" Column="3"/>
+                <LayoutButtons Face="SolarEfficiencyPassiveLevel1" Type="Passive" Requirements="HaveSolarEfficiencyLevel1" Row="2" Column="0"/>
+                <LayoutButtons Face="SolarEfficiencyPassiveLevel2" Type="Passive" Requirements="HaveSolarEfficiencyLevel2" Row="2" Column="0"/>
+                <LayoutButtons Face="SolarEfficiencyPassiveLevel3" Type="Passive" Requirements="HaveSolarEfficiencyLevel3" Row="2" Column="0"/>
+                <LayoutButtons Face="SOARepairBeamExtraTargetPassive" Type="Passive" Requirements="HaveSOARepairBeamExtraTarget" Row="2" Column="1"/>
+                <LayoutButtons Face="SOAOrbitalStrikeUpgradePassive" Type="Passive" Requirements="HaveSOAOrbitalStrikeUpgrade" Row="2" Column="2"/>
+                <LayoutButtons Face="SOASolarLanceUpgradePassive" Type="Passive" Requirements="HaveSOASolarLanceUpgrade" Row="2" Column="3"/>
+                <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5Passive,CancelLast" Row="2" Column="4"/>
+            </CardLayouts>
+            <CardLayouts CardId="0002">
+                <LayoutButtons Face="BrokenSolarForge" Type="AbilCmd" AbilCmd="BrokenSolarForge,Execute" Row="0" Column="0"/>
+            </CardLayouts>
+            <Radius value="1.5"/>
+            <SeparationRadius value="1.5"/>
+            <Footprint value="Footprint3x3CreepNormalContour"/>
+            <PlacementFootprint value="Footprint3x3CreepNormal"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="30"/>
+            <MinimapRadius value="1.5"/>
+            <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionKhalai"/>
+            <HotkeyCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="200"/>
+        </CUnit>
+    <CUnit id="Supplicant">
+            <Description value="Button/Tooltip/WarpInSupplicant"/>
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Locust" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Light" value="1"/>
+            <Attributes index="Biological" value="1"/>
+            <LifeStart value="75"/>
+            <LifeMax value="75"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+            <ShieldsStart value="125"/>
+            <ShieldsMax value="125"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Speed value="3"/>
+            <Acceleration value="1000"/>
+            <LateralAcceleration value="46.0625"/>
+            <StationaryTurningRate value="999.8437"/>
+            <TurningRate value="999.8437"/>
+            <Sight value="9"/>
+            <Food value="-2"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="75"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="WarpableAnywhere"/>
+            <AbilArray Link="ProgressRally"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="UnderConstructionOrDeadTracker"/>
+            
+            <WeaponArray Link="SupplicantWeapon"/>
+            <EffectArray index="Birth" value="SupplicantBirth"/>
+            <EffectArray index="Death" value="AlarakTheStrongestSurvivePrestigeMechBuffSearch"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
+                <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="AdeptPhaseShiftCancel,Execute" Row="2" Column="4"/>
+                <LayoutButtons Face="AlarakACMyLifefortheHighlord" Type="Passive" Row="2" Column="0"/>
+                <LayoutButtons Face="AlarakSupplicantMaxShields" Type="Passive" Requirements="HaveAlarakSupplicantMaxShields" Row="2" Column="2"/>
+                <LayoutButtons Face="PHSupplicantShieldArmor" Type="Passive" Requirements="HaveSupplicantShieldArmor" Row="2" Column="1"/>
+                <LayoutButtons Face="AlarakSupplicantSacrificeCDR" Type="Passive" Requirements="HaveAlarakSupplicantSacrificeCDR" Row="2" Column="3"/>
+                <LayoutButtons Face="SupplicantSacrificeCDRLocked" Type="Passive" Requirements="AlarakLevel15" Row="2" Column="3"/>
+            </CardLayouts>
+            <InnerRadius value="0.375"/>
+            <CargoSize value="2"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="104"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+            <TacticalAI value="Adept"/>
+            <TacticalAIThink value="AIThinkAdept"/>
+            <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="20"/>
+            <GlossaryStrongArray value="Zergling"/>
+            <GlossaryStrongArray value="Stalker"/>
+            <GlossaryStrongArray value="Marine"/>
+            <GlossaryWeakArray value="Roach"/>
+            <GlossaryWeakArray value="Zealot"/>
+            <GlossaryWeakArray value="Marauder"/>
+            <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+            <AIEvaluateAlias value="Adept"/>
+            <Level value="20"/>
+        </CUnit>
+    <CUnit id="SwarmHost">
+            
+            <WeaponArray Link="SwarmHostFakeWeapon"/>
+            <BehaviorArray index="0" Link="SwarmHostPressurizedGlands"/>
+            <BehaviorArray index="1" Link="AllUnitBehaviorController"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="6" Row="1"/>
+                <LayoutButtons index="7" Row="1"/>
+                <LayoutButtons index="8" Row="1"/>
+                <LayoutButtons index="9" Row="1" Column="0"/>
+                <LayoutButtons index="10" Face="SwarmHostRootBurrow" AbilCmd="MorphToSwarmHostBurrowed,Execute"/>
+                <LayoutButtons index="11" Face="AbathurDeepTunnel" AbilCmd="AbathurDeepTunnel,Execute" Column="1"/>
+                <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnelImproved,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurLevel09" Row="2" Column="1"/>
+                <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="CommanderPrestigeAbathurBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskSwarmHost,Train1" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"/>
+                <LayoutButtons Face="LocustLaunch" Type="AbilCmd" AbilCmd="LocustLaunch,Execute" Row="2" Column="0"/>
+            </CardLayouts>
+            <AbilArray Link="AbathurDeepTunnel"/>
+            <AbilArray Link="AbathurDeepTunnelImproved"/>
+            <AbilArray Link="LocustLaunch"/>
+            <AbilArray Link="EvolveToBrutaliskSwarmHost"/>
+            <AbilArray Link="que1"/>
+            <Description value="Button/Tooltip/SwarmHostAbathur"/>
+            <Radius value="0.75"/>
+            <SeparationRadius value="0.75"/>
+            <InnerRadius value="0.75"/>
+            <HotkeyCategory value="Unit/Category/ZergUnits"/>
+            <SubgroupPriority value="118"/>
+        </CUnit>
+    <CUnit id="SwarmQueen">
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <HotkeyCategory value=""/>
+        </CUnit>
+    <CUnit id="WarpPrismTaldarim">
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="AISupport" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Air" value="1"/>
+            <Collide index="Flying" value="1"/>
+            <Attributes index="Armored" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <Attributes index="Psionic" value="1"/>
+            <LifeStart value="100"/>
+            <LifeMax value="100"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
+            <ShieldsStart value="100"/>
+            <ShieldsMax value="100"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Mover value="Fly"/>
+            <Speed value="3.379"/>
+            <Acceleration value="2.125"/>
+            <LateralAcceleration value="57"/>
+            <Sight value="10"/>
+            <Height value="3.75"/>
+            <VisionHeight value="4"/>
+            <Food value="-2"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="200"/>
+            <RepairTime value="25"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="PhasingModeTaldarim"/>
+            <AbilArray Link="WarpPrismTransport"/>
+            <AbilArray Link="Warpable"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="WarpPrismTaldarimWeapon"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
+                <LayoutButtons Face="WarpPrismLoad" Type="AbilCmd" AbilCmd="WarpPrismTransport,Load" Row="2" Column="2"/>
+                <LayoutButtons Face="WarpPrismUnloadAll" Type="AbilCmd" AbilCmd="WarpPrismTransport,UnloadAt" Row="2" Column="3"/>
+                <LayoutButtons Face="ACAlarakPhasingMode" Type="AbilCmd" AbilCmd="PhasingModeTaldarim,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="TaldarimWarpConduit" Type="Passive" Row="1" Column="0"/>
+                <LayoutButtons Face="CommanderPrestigeAlarakMechBuff" Type="Passive" Requirements="CommanderPrestigeAlarakMech" Row="1" Column="4"/>
+            </CardLayouts>
+            <Radius value="0.875"/>
+            <SeparationRadius value="0.875"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="113"/>
+            <MinimapRadius value="0.875"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionTaldarim"/>
+            <TacticalAIThink value="AIThinkWarpPrism"/>
+            <AIEvalFactor value="0"/>
+            <TechAliasArray value="Alias_WarpPrism"/>
+            <HotkeyCategory value="Unit/Category/ProtossTaldarim"/>
+            <GlossaryPriority value="110"/>
+            <Level value="17"/>
+        </CUnit>
+    <CUnit id="ZagaraVoidCoop">
+            <DeathTime value="-1"/>
+            <DeathRevealRadius value="3"/>
+            <Race value="Zerg"/>
+            <Mob value="Campaign"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="Colossus" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Biological" value="1"/>
+            <Attributes index="Psionic" value="1"/>
+            <Attributes index="Heroic" value="1"/>
+            <LifeStart value="600"/>
+            <LifeMax value="600"/>
+            <LifeRegenRate value="2"/>
+            <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+            <EnergyStart value="200"/>
+            <EnergyMax value="200"/>
+            <EnergyRegenRate value="1"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+            <Speed value="2.9531"/>
+            <SpeedMultiplierCreep value="1.3"/>
+            <Acceleration value="1000"/>
+            <LateralAcceleration value="46.0625"/>
+            <Sight value="13"/>
+            <CostCategory value="Army"/>
+            <RepairTime value="41.667"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="ZagaraVoidCoopBanelingBarrage"/>
+            <AbilArray Link="ZagaraVoidCoopSpawnBroodlings"/>
+            <AbilArray Link="ZagaraVoidCoopCreepMaster"/>
+            <AbilArray Link="ZagaraVoidCoopSpawnHunterKillers"/>
+            <AbilArray Link="ZagaraVoidCoopSpawnMutalisk"/>
+            
+            <AbilArray Link="ZagaraVoidCoopMassFrenzy"/>
+            <AbilArray Link="ZagaraVoidCoopWildInfestation"/>
+            <AbilArray Link="ZagaraVoidCoopDeepTunnel"/>
+            <AbilArray Link="ZagaraVoidCoopNydusWorm"/>
+            <AbilArray Link="ZagaraVoidCoopTransfusionWave"/>
+            <AbilArray Link="ZagaraVoidCoopDevouringMaw"/>
+            <AbilArray Link="ZagaraVoidCoopBurrow"/>
+            <AbilArray Link="ZagaraVoidCoopMassRoachDrop"/>
+            <AbilArray Link="CommanderPrestigeZagaraZagaraDeepTunnel"/>
+            <BehaviorArray Link="KerriganVeterancyDummy"/>
+            <BehaviorArray Link="KerriganUnburrowedDummy"/>
+            <BehaviorArray Link="ZagaraVoidCoopCreepMasterRegen"/>
+            <BehaviorArray Link="HeroCCImmunity"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="HeroicFortitude"/>
+            
+            <WeaponArray Link="ZagaraVoidCoopRanged"/>
+            <CardLayouts>
+                <LayoutButtons Face="MoveChampions" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="AttackChampions" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="ZagaraVoidCoopRelentlessSwarmer" Type="Passive" Row="1" Column="0"/>
+                <LayoutButtons Face="ZagaraVoidCoopBanelingSpawner" Type="Passive" Requirements="HaveZagaraVoidCoopBanelingSpawner" Row="1" Column="1"/>
+                <LayoutButtons Face="VolatileNestLocked" Type="Passive" Requirements="ZagaraLevel07" Row="1" Column="1"/>
+                <LayoutButtons Face="ZagaraVoidCoopAttackUpgrade" Type="Passive" Requirements="HaveZagaraVoidCoopAttackUpgrade" Row="1" Column="2"/>
+                <LayoutButtons Face="MedusasBladesLocked" Type="Passive" Requirements="ZagaraLevel09" Row="1" Column="2"/>
+                <LayoutButtons Face="ZagaraVoidCoopBanelingBarrage" Type="AbilCmd" AbilCmd="ZagaraVoidCoopBanelingBarrage,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="ZagaraVoidCoopSpawnHunterKillers" Type="AbilCmd" AbilCmd="ZagaraVoidCoopSpawnHunterKillers,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="ZagaraVoidCoopMassFrenzy" Type="AbilCmd" AbilCmd="ZagaraVoidCoopMassFrenzy,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="MassRoachDrop" Type="AbilCmd" AbilCmd="ZagaraVoidCoopMassRoachDrop,Execute" Row="2" Column="3"/>
+                <LayoutButtons Face="ZagaraVoidCoopMassRoachDropLocked" Type="Passive" Requirements="ZagaraLevel02" Row="2" Column="3"/>
+                <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="ZagaraVoidCoopBurrow,Execute" Row="2" Column="4"/>
+                <LayoutButtons Face="CommanderPrestigeZagaraZagaraDeepTunnel" Type="AbilCmd" AbilCmd="CommanderPrestigeZagaraZagaraDeepTunnel,Execute" Row="1" Column="4"/>
+            </CardLayouts>
+            
+            <Radius value="1"/>
+            <SeparationRadius value="1"/>
+            <InnerRadius value="0.5"/>
+            <CargoSize value="2"/>
+            <SubgroupPriority value="199"/>
+            <EditorCategories value="ObjectType:Hero,ObjectFamily:FactionEvolved"/>
+            <TechAliasArray value="Alias_Zagara"/>
+            <GlossaryCategory value="Unit/Category/ZergCharacter"/>
+            <HotkeyCategory value="Unit/Category/ZergEvolved"/>
+            <KillDisplay value="Always"/>
+            <RankDisplay value="Never"/>
+            <Fidget>
+                <ChanceArray index="Anim" value="33"/>
+                <ChanceArray index="Idle" value="33"/>
+                <ChanceArray index="Turn" value="33"/>
+            </Fidget>
+            <ReviveInfoBase>
+                <Charge Link="Abil/KerriganRevive"/>
+                <Cooldown Link="Abil/KerriganRevive" Location="Player" TimeUse="0.1"/>
+            </ReviveInfoBase>
+            <AlliedPushPriority value="11"/>
+            <GlossaryPriority value="1"/>
+        </CUnit>
+    <CUnit id="ZealotPurifier">
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <AbilArray Link="FenixKaldalisZealotMorph"/>
+            <BehaviorArray index="0" Link=""/>
+            <BehaviorArray index="1" Link="AllUnitBehaviorController"/>
+            <BehaviorArray index="2" Link="FenixSuppressAvengingProtocol"/>
+            <CardLayouts index="0">
+                <LayoutButtons index="8" Requirements="ZealotPurifierReviveKaraxHide"/>
+                <LayoutButtons Face="ReconstructionLocked" Type="Passive" Requirements="KaraxLevel04" Row="2" Column="1"/>
+            </CardLayouts>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier"/>
+            <HotkeyCategory value="Unit/Category/ProtossPurifier"/>
+            <RepairTime value="20"/>
+            <SubgroupPriority value="105"/>
+            
+        </CUnit>
+    <CUnit id="ZealotShakuras">
+            <DamageDealtXP value="0"/>
+            <DamageTakenXP value="0"/>
+            <KillXP value="0"/>
+            <BehaviorArray index="1" Link=""/>
+            
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <ScoreMake value="0"/>
+            <ScoreKill value="0"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionNerazim"/>
+            
+        </CUnit>
+    <CUnit id="ZeratulDisruptor">
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="Turnable" value="0"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="AlwaysThreatens" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Armored" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <LifeStart value="200"/>
+            <LifeMax value="200"/>
+            <LifeArmor value="1"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+            <ShieldsStart value="200"/>
+            <ShieldsMax value="200"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Speed value="2.25"/>
+            <Acceleration value="1000"/>
+            <LateralAcceleration value="46.0625"/>
+            <StationaryTurningRate value="999.8437"/>
+            <TurningRate value="999.8437"/>
+            <Sight value="9"/>
+            <Food value="-3"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="450"/>
+            <CostResource index="Vespene" value="450"/>
+            <RepairTime value="24"/>
+            <AttackTargetPriority value="20"/>
+            <DamageDealtXP value="1"/>
+            <DamageTakenXP value="1"/>
+            <KillXP value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="attack"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="ZeratulDisruptorWeapon"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
+                <LayoutButtons Face="ZeratulPurificationNovaTargeted" Type="AbilCmd" AbilCmd="attack,Barrage" Row="2" Column="0"/>
+                <LayoutButtons Face="ZeratulNovaBatteryLocked" Type="Passive" Requirements="ZeratulLevel06" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulPurificationNovaBattery" Type="Passive" Requirements="HaveZeratulArtifactTier2AndRoboticsBay" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulClusterNovaLocked" Type="Passive" Requirements="ZeratulLevel13" Row="1" Column="2"/>
+                <LayoutButtons>
+                    <Face value="ZeratulPurificationNovaSplit"/>
+                    <Type value="Passive"/>
+                    <AbilCmd value="ZeratulPurificationNovaTargeted,Execute"/>
+                    <Requirements value="HaveZeratulArtifactTier3AndRoboticsBay"/>
+                    <Row value="1"/>
+                    <Column value="2"/>
+                </LayoutButtons>
+            </CardLayouts>
+            <SeparationRadius value="0.375"/>
+            <InnerRadius value="0.5"/>
+            <CargoSize value="4"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="117"/>
+            <MinimapRadius value="0.375"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionXelNaga"/>
+            <TacticalAIThink value="AIThinkDisruptor"/>
+            <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="135"/>
+            <GlossaryStrongArray value="Marauder"/>
+            <GlossaryStrongArray value="Hydralisk"/>
+            <GlossaryStrongArray value="Probe"/>
+            <GlossaryWeakArray value="Thor"/>
+            <GlossaryWeakArray value="Ultralisk"/>
+            <GlossaryWeakArray value="Immortal"/>
+            <HotkeyCategory value="Unit/Category/ProtossZeratul"/>
+            <KillDisplay value="Always"/>
+            <RankDisplay value="Always"/>
+            <Fidget>
+                <ChanceArray index="Anim" value="20"/>
+                <ChanceArray index="Idle" value="70"/>
+                <ChanceArray index="Turn" value="10"/>
+            </Fidget>
+            <Description value="Button/Tooltip/ZeratulWarpinDisruptor"/>
+        </CUnit>
+    <CUnit id="ZeratulImmortal">
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="Turnable" value="0"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Locust" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Armored" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <LifeStart value="400"/>
+            <LifeMax value="400"/>
+            <LifeArmor value="1"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+            <ShieldsStart value="200"/>
+            <ShieldsMax value="200"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Speed value="2.25"/>
+            <Acceleration value="1000"/>
+            <Sight value="9"/>
+            <Food value="-4"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="750"/>
+            <CostResource index="Vespene" value="300"/>
+            <RepairTime value="36.667"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="WarpableAnywhere"/>
+            <AbilArray Link="ProgressRally"/>
+            <AbilArray Link="ZeratulImmortalBarrierBase"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="ZeratulPhaseDisruptorsAir" Turret="Immortal"/>
+            <WeaponArray Link="ZeratulPhaseDisruptors" Turret="Immortal"/>
+            <WeaponArray Link="ZeratulPhaseDisruptorsLookAt" Turret="Immortal"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="ImmortalBarrierBase" Type="AbilCmd" AbilCmd="ZeratulImmortalBarrierBase,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="ZeratulImmortalBarrierPassive" Type="Passive" Requirements="HaveZeratulArtifactTier1AndRoboticsBay" Row="1" Column="0"/>
+                <LayoutButtons Face="ZeratulImmortalRangeLocked" Type="Passive" Requirements="ZeratulLevel06" Row="1" Column="1"/>
+                <LayoutButtons Face="HaveZeratulImmortalRange" Type="Passive" Requirements="HaveZeratulArtifactTier2AndRoboticsBay" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulImprovedBarrierLocked" Type="Passive" Requirements="ZeratulLevel13" Row="1" Column="2"/>
+                <LayoutButtons Face="HaveZeratulImmortalImprovedBarrier" Type="Passive" Requirements="HaveZeratulArtifactTier3AndRoboticsBay" Row="1" Column="2"/>
+            </CardLayouts>
+            <Radius value="0.75"/>
+            <SeparationRadius value="0.625"/>
+            <InnerRadius value="0.5"/>
+            <CargoSize value="4"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="108"/>
+            <MinimapRadius value="0.625"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionXelNaga"/>
+            <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="120"/>
+            <GlossaryStrongArray value="SiegeTankSieged"/>
+            <GlossaryStrongArray value="Roach"/>
+            <GlossaryStrongArray value="Stalker"/>
+            <GlossaryWeakArray value="Marine"/>
+            <GlossaryWeakArray value="Zergling"/>
+            <GlossaryWeakArray value="Zealot"/>
+            <HotkeyCategory value="Unit/Category/ProtossZeratul"/>
+            <Fidget>
+                <ChanceArray index="Anim" value="5"/>
+                <ChanceArray index="Idle" value="90"/>
+            </Fidget>
+            <TauntDuration index="Dance" value="5"/>
+            <Description value="Button/Tooltip/ImmortalZeratul"/>
+        </CUnit>
+    <CUnit id="ZeratulObserver">
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="Cloaked" value="1"/>
+            <FlagArray index="AISupport" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Air" value="1"/>
+            <Collide index="Flying" value="1"/>
+            <Attributes index="Light" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <LifeStart value="40"/>
+            <LifeMax value="40"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
+            <ShieldsStart value="20"/>
+            <ShieldsMax value="20"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Mover value="Fly"/>
+            <Speed value="1.875"/>
+            <Acceleration value="2.125"/>
+            <Sight value="11"/>
+            <Height value="3.75"/>
+            <VisionHeight value="4"/>
+            <Food value="-1"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="25"/>
+            <CostResource index="Vespene" value="75"/>
+            <RepairTime value="20"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="WarpableAnywhere"/>
+            <AbilArray Link="ZeratulObserverMorphtoZeratulObserverSiege"/>
+            <BehaviorArray Link="ZeratulObserverDetection"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="VorazunCloakedShieldRegenPermanent"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
+                <LayoutButtons Face="PermanentlyCloakedZeratulObserver" Type="Passive" Row="2" Column="0"/>
+                <LayoutButtons Face="MorphtoZeratulObserverSiege" Type="AbilCmd" AbilCmd="ZeratulObserverMorphtoZeratulObserverSiege,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="Detector" Type="Passive" Row="2" Column="4"/>
+                <LayoutButtons Face="ZeratulGraviticBoostersLocked" Type="Passive" Requirements="ZeratulLevel06" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulGraviticBoostersPassive" Type="Passive" Requirements="HaveZeratulArtifactTier2AndRoboticsBay" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulObserverSightRangeLocked" Type="Passive" Requirements="ZeratulLevel13" Row="1" Column="2"/>
+                <LayoutButtons Face="ZeratulObserverSightRange" Type="Passive" Requirements="HaveZeratulArtifactTier3AndRoboticsBay" Row="1" Column="2"/>
+            </CardLayouts>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="104"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionXelNaga"/>
+            <AIEvalFactor value="0"/>
+            <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="110"/>
+            <GlossaryStrongArray value="Banshee"/>
+            <GlossaryStrongArray value="Roach"/>
+            <GlossaryStrongArray value="DarkTemplar"/>
+            <GlossaryWeakArray value="MissileTurret"/>
+            <GlossaryWeakArray value="SporeCrawler"/>
+            <GlossaryWeakArray value="PhotonCannon"/>
+            <HotkeyCategory value="Unit/Category/ProtossZeratul"/>
+            <AIEvaluateAlias value="Observer"/>
+            <CargoSize value="1"/>
+        </CUnit>
+    <CUnit id="ZeratulRoboticsFacility">
+            <DeathRevealRadius value="3"/>
+            <ReviveType value="RoboticsFacility"/>
+            <Facing value="315"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="Turnable" value="0"/>
+            <FlagArray index="PreventDefeat" value="1"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="PenaltyRevealed" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="TownAlert" value="1"/>
+            <FlagArray index="NoPortraitTalk" value="1"/>
+            <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+            <FogVisibility value="Snapshot"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Burrow" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="Structure" value="1"/>
+            <Collide index="RoachBurrow" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Locust" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Armored" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <Attributes index="Structure" value="1"/>
+            <LifeStart value="450"/>
+            <LifeMax value="450"/>
+            <LifeArmor value="1"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossBuildingPlating"/>
+            <ShieldsStart value="450"/>
+            <ShieldsMax value="450"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <StationaryTurningRate value="719.4726"/>
+            <TurningRate value="719.4726"/>
+            <Sight value="9"/>
+            <CostCategory value="Technology"/>
+            <CostResource index="Minerals" value="200"/>
+            <CostResource index="Vespene" value="100"/>
+            <RepairTime value="32.5"/>
+            <AttackTargetPriority value="11"/>
+            <AbilArray Link="BuildInProgress"/>
+            <AbilArray Link="que5"/>
+            <AbilArray Link="ZeratulRoboticsFacilityTrain"/>
+            <AbilArray Link="Rally"/>
+            <BehaviorArray Link="ChronoBoostTarget"/>
+            <CardLayouts>
+                <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+                <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+                <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4"/>
+                <LayoutButtons Face="ImmortalZeratul" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train6" Row="0" Column="0"/>
+                <LayoutButtons Face="ZeratulWarpInXelNagaAbrogatorLocked" Type="Passive" Requirements="ZeratulLevel04" Row="0" Column="1"/>
+                <LayoutButtons Face="ZeratulWarpinDisruptor" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train7" Row="0" Column="1"/>
+                <LayoutButtons Face="ZeratulWarpInXelNagaVoidArrayLocked" Type="Passive" Requirements="ZeratulLevel09" Row="0" Column="2"/>
+                <LayoutButtons Face="WarpInZeratulWarpPrism" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train5" Row="0" Column="2"/>
+                <LayoutButtons Face="ZeratulObserver" Type="AbilCmd" AbilCmd="ZeratulRoboticsFacilityTrain,Train2" Row="0" Column="3"/>
+                <LayoutButtons Face="ZeratulChronometryLocked" Type="Passive" Requirements="ZeratulLevel10" Row="1" Column="0"/>
+                <LayoutButtons Face="ZeratulChronometry" Type="Passive" Row="1" Column="0"/>
+                <LayoutButtons Face="ZeratulMasteryCombatMastery" Type="Passive" Requirements="HaveMasteryZeratulCombatUnitAttackSpeed" Row="1" Column="1"/>
+            </CardLayouts>
+            <Radius value="1.5"/>
+            <SeparationRadius value="1.5"/>
+            <Footprint value="Footprint3x3CreepNormalContour"/>
+            <PlacementFootprint value="Footprint3x3CreepNormal"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="56"/>
+            <MinimapRadius value="1.5"/>
+            <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionXelNaga"/>
+            <TacticalAI value="RoboticsFacility"/>
+            <TechAliasArray value="Alias_RoboticsFacility"/>
+            <GlossaryPriority value="211"/>
+            <HotkeyCategory value="Unit/Category/ProtossZeratul"/>
+            <AIEvaluateAlias value="RoboticsFacility"/>
+            <TechTreeProducedUnitArray value="RoboticsFacilityWarp"/>
+            <TechTreeProducedUnitArray value="TechTreeImmortal"/>
+            <TechTreeProducedUnitArray value="TechTreeColossus"/>
+            <ReviveInfoBase>
+                <Charge Link="RoboticsFacility/Revive"/>
+                <Cooldown Link="RoboticsFacility/Revive"/>
+            </ReviveInfoBase>
+        </CUnit>
+    <CUnit id="ZeratulSentry">
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Locust" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Light" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <Attributes index="Psionic" value="1"/>
+            <LifeStart value="120"/>
+            <LifeMax value="120"/>
+            <LifeArmor value="1"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+            <EnergyStart value="50"/>
+            <EnergyMax value="200"/>
+            <EnergyRegenRate value="0.5625"/>
+            <ShieldsStart value="120"/>
+            <ShieldsMax value="120"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Speed value="2.25"/>
+            <Acceleration value="1000"/>
+            <LateralAcceleration value="46"/>
+            <StationaryTurningRate value="999.8437"/>
+            <TurningRate value="999.8437"/>
+            <Sight value="10"/>
+            <Food value="-2"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="75"/>
+            <CostResource index="Vespene" value="150"/>
+            <RepairTime value="18.5"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="WarpableAnywhere"/>
+            <AbilArray Link="ZeratulReflectionShield"/>
+            <AbilArray Link="ProgressRally"/>
+            <AbilArray Link="BuildInProgress"/>
+            <AbilArray Link="ZeratulSentryShieldRepair"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="ZeratulDisruptionBeam"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
+                <LayoutButtons Face="ZeratulReflectionShieldLocked" Type="Passive" Requirements="ZeratulLevel11" Row="2" Column="1"/>
+                <LayoutButtons Face="ZeratulReflectionShield" Type="AbilCmd" AbilCmd="ZeratulReflectionShield,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="VoidSentryShieldRepair" Type="AbilCmd" AbilCmd="ZeratulSentryShieldRepair,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="ZeratulShieldRechargePassive" Type="Passive" Requirements="HaveZeratulArtifactTier1AndCyberCore" Row="1" Column="0"/>
+                <LayoutButtons Face="ZeratulSentryEnergyRegenLocked" Type="Passive" Requirements="ZeratulLevel03" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulSentryEnergyRegen" Type="Passive" Requirements="HaveZeratulArtifactTier2AndCyberCore" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulReflectionShieldLocked" Type="Passive" Requirements="ZeratulLevel11" Row="1" Column="2"/>
+                <LayoutButtons Face="ZeratulReflectionShieldPassive" Type="Passive" Requirements="HaveZeratulArtifactTier3AndCyberCore" Row="1" Column="2"/>
+            </CardLayouts>
+            <SeparationRadius value="0.625"/>
+            <InnerRadius value="0.375"/>
+            <CargoSize value="2"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="125"/>
+            <MinimapRadius value="0.375"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionXelNaga"/>
+            <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="25"/>
+            <GlossaryStrongArray value="Zergling"/>
+            <GlossaryStrongArray value="Zealot"/>
+            <GlossaryWeakArray value="Reaper"/>
+            <GlossaryWeakArray value="Hydralisk"/>
+            <GlossaryWeakArray value="Stalker"/>
+            <HotkeyCategory value="Unit/Category/ProtossZeratul"/>
+            <AIEvaluateAlias value="Sentry"/>
+            <Fidget>
+                <ChanceArray index="Anim" value="5"/>
+                <ChanceArray index="Idle" value="90"/>
+                <ChanceArray index="Turn" value="5"/>
+            </Fidget>
+            <Description value="Button/Tooltip/SentryZeratul"/>
+        </CUnit>
+    <CUnit id="ZeratulStalker">
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Locust" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Armored" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <LifeStart value="100"/>
+            <LifeMax value="100"/>
+            <LifeArmor value="1"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+            <ShieldsStart value="100"/>
+            <ShieldsMax value="100"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Speed value="2.9492"/>
+            <Acceleration value="1000"/>
+            <LateralAcceleration value="46"/>
+            <StationaryTurningRate value="999.8437"/>
+            <TurningRate value="999.8437"/>
+            <Sight value="10"/>
+            <Food value="-2"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="300"/>
+            <CostResource index="Vespene" value="50"/>
+            <RepairTime value="21"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="WarpableAnywhere"/>
+            <AbilArray Link="ProgressRally"/>
+            <AbilArray Link="ZeratulStalkerBlink"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="ZeratulStalkerShadowBlink"/>
+            <WeaponArray Link="ZeratulParticleDisruptors"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
+                <LayoutButtons Face="ZeratulStalkerShadowBlink" Type="AbilCmd" AbilCmd="ZeratulStalkerBlink,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="PredictiveBlinkPassive" Type="Passive" Requirements="HaveZeratulArtifactTier1AndCyberCore" Row="1" Column="0"/>
+                <LayoutButtons Face="ZeratulVengeanceoftheVoidLocked" Type="Passive" Requirements="ZeratulLevel03" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulStalkerGhost" Type="Passive" Requirements="HaveZeratulArtifactTier2AndCyberCore" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulPhaseBatteryLocked" Type="Passive" Requirements="ZeratulLevel11" Row="1" Column="2"/>
+                <LayoutButtons Face="ZeratulStalkerBlinkCharges" Type="Passive" Requirements="HaveZeratulArtifactTier3AndCyberCore" Row="1" Column="2"/>
+            </CardLayouts>
+            <Radius value="0.625"/>
+            <SeparationRadius value="0.625"/>
+            <InnerRadius value="0.5"/>
+            <CargoSize value="2"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="140"/>
+            <MinimapRadius value="0.625"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionXelNaga"/>
+            <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="30"/>
+            <GlossaryStrongArray value="Reaper"/>
+            <GlossaryStrongArray value="Mutalisk"/>
+            <GlossaryStrongArray value="VoidRay"/>
+            <GlossaryWeakArray value="Marauder"/>
+            <GlossaryWeakArray value="Zergling"/>
+            <GlossaryWeakArray value="Immortal"/>
+            <HotkeyCategory value="Unit/Category/ProtossZeratul"/>
+            <Fidget>
+                <ChanceArray index="Anim" value="5"/>
+                <ChanceArray index="Idle" value="90"/>
+                <ChanceArray index="Turn" value="5"/>
+            </Fidget>
+            <Description value="Button/Tooltip/StalkerZeratul"/>
+        </CUnit>
+    <CUnit id="ZeratulSummonZealot">
+            <Name value="Unit/Name/ZealotAiur"/>
+            <Description value="Button/Tooltip/ZealotAiur"/>
+            <DeathRevealRadius value="3"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="NoPortraitTalk" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Ground" value="1"/>
+            <Collide index="ForceField" value="1"/>
+            <Collide index="Locust" value="1"/>
+            <Collide index="Small" value="1"/>
+            <Attributes index="Light" value="1"/>
+            <Attributes index="Biological" value="1"/>
+            <LifeStart value="100"/>
+            <LifeMax value="100"/>
+            <LifeArmor value="1"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossArmor"/>
+            <ShieldsStart value="50"/>
+            <ShieldsMax value="50"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Speed value="2.75"/>
+            <Acceleration value="1000"/>
+            <LateralAcceleration value="46.0625"/>
+            <StationaryTurningRate value="999.8437"/>
+            <TurningRate value="999.8437"/>
+            <Sight value="9"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="100"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="attack"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="ZeratulCharge"/>
+            <AbilArray Link="ZeratulZealotWhirlwind"/>
+            <AbilArray Link="WarpableZeratul"/>
+            <AbilArray Link="RallyZeratulTopBar"/>
+            <BehaviorArray Link="ZealotRespawnDeath"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <WeaponArray Link="SolariteReaper"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="ZeratulAbilityChargeLocked" Type="Passive" Requirements="ZeratulLevel08" Row="2" Column="0"/>
+                <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="ZeratulCharge,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="VoidZealotWhirlwind" Type="AbilCmd" AbilCmd="ZeratulZealotWhirlwind,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="RallyZeratulTopBar,Rally1" Row="1" Column="4"/>
+                <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="WarpableZeratul,Cancel" Row="2" Column="4"/>
+            </CardLayouts>
+            <SeparationRadius value="0.375"/>
+            <InnerRadius value="0.375"/>
+            <CargoSize value="2"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="5"/>
+            <MinimapRadius value="0.375"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionXelNaga"/>
+            <Fidget>
+                <ChanceArray index="Anim" value="20"/>
+                <ChanceArray index="Idle" value="70"/>
+                <ChanceArray index="Turn" value="10"/>
+            </Fidget>
+            <HotkeyCategory value="Unit/Category/ProtossZeratul"/>
+            <TechAliasArray value="Alias_ZeratulLegion"/>
+        </CUnit>
+    <CUnit id="ZeratulWarpPrism">
+            <DeathRevealRadius value="3"/>
+            <ReviveType value="WarpPrism"/>
+            <Race value="Prot"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="AISupport" value="1"/>
+            <FlagArray index="ArmySelect" value="1"/>
+            <PlaneArray index="Air" value="1"/>
+            <Collide index="Flying" value="1"/>
+            <Attributes index="Armored" value="1"/>
+            <Attributes index="Mechanical" value="1"/>
+            <Attributes index="Psionic" value="1"/>
+            <LifeStart value="200"/>
+            <LifeMax value="200"/>
+            <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
+            <ShieldsStart value="200"/>
+            <ShieldsMax value="200"/>
+            <ShieldRegenDelay value="10"/>
+            <ShieldRegenRate value="2"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+            <Mover value="Fly"/>
+            <Speed value="4.789"/>
+            <Acceleration value="3.75"/>
+            <LateralAcceleration value="57"/>
+            <Sight value="10"/>
+            <Height value="3.75"/>
+            <VisionHeight value="4"/>
+            <Food value="-1"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="150"/>
+            <RepairTime value="25"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="move"/>
+            <AbilArray Link="ZeratulPhasingMode"/>
+            <AbilArray Link="WarpableAnywhere"/>
+            <AbilArray Link="ZeratulWarpPrismTransport"/>
+            <AbilArray Link="ZeratulWarpPrismSelectVoidRift"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="ZeratulSuppressPassager"/>
+            <CardLayouts>
+                <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+                <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+                <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+                <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
+                <LayoutButtons Face="ZeratulWarpPrismWormholeMode" Type="AbilCmd" AbilCmd="ZeratulPhasingMode,Execute" Row="1" Column="1"/>
+                <LayoutButtons Face="ZeratulWarpPrismSelectVoidRift" Type="AbilCmd" AbilCmd="ZeratulWarpPrismSelectVoidRift,Execute" Row="1" Column="2"/>
+            </CardLayouts>
+            <Radius value="0.875"/>
+            <SeparationRadius value="0.875"/>
+            <ScoreResult value="BuildOrder"/>
+            <SubgroupPriority value="113"/>
+            <MinimapRadius value="0.875"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionXelNaga"/>
+            <TacticalAI value="WarpPrism"/>
+            <TacticalAIThink value="AIThinkWarpPrism"/>
+            <AIEvalFactor value="0"/>
+            <TechAliasArray value="Alias_WarpPrism"/>
+            <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+            <GlossaryPriority value="110"/>
+            <HotkeyCategory value="Unit/Category/ProtossZeratul"/>
+            <AIEvaluateAlias value="WarpPrism"/>
+            <ReviveInfoBase>
+                <Charge Link="WarpPrism/Revive"/>
+                <Cooldown Link="WarpPrism/Revive"/>
+            </ReviveInfoBase>
+            <Description value="Button/Tooltip/ZeratulWarpPrismFlightDescription"/>
+        </CUnit>
 </Catalog>

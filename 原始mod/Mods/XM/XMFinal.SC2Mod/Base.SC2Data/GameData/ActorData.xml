@@ -215,4 +215,1297 @@
             <Image value="Assets\Textures\Wireframe-Protoss-Zeratul-Shield03.dds"/>
         </WireframeShield>
     </CActorUnit>
+    <CActorUnit id="Brutalisk">
+            
+            <On Terms="UnitBirth.Brutalisk" Send="$Birth"/>
+            <On Terms="ActorCreation" Send="Create Brutalisk_Morph_Complete_AS"/>
+            <On Terms="Behavior.EvolveBrutaliskTimedLife.On" Send="SetScale 0.400000"/>
+            <On Terms="Behavior.EvolveBrutaliskTimedLife.On" Send="TimerSet 0.125000 DelayScale"/>
+            <On Terms="TimerExpired; TimerName DelayScale" Send="SetScale 1.000000 0.375000"/>
+            <On Terms="Abil.BrutaliskDeepTunnel.SourceCastStart" Send="AnimPlay DeepBurrow Burrow,Superior"/>
+            <On Terms="AnimDone; AnimName DeepBurrow" Send="AnimPlay DeepUnburrow Unburrow,Superior"/>
+            <On Terms="Behavior.EvolveBrutaliskTimedLife.On" Send="SetStatusBarOn 1 Duration"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownLarge"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="AnimClear Fidget"/>
+            
+            <On Terms="Effect.SymbioteRecall.Start; At Caster" Send="RefSetFromRequest ::actor.Symbiote ::LastTargetUnit"/>
+            <On Terms="Abil.BrutaliskDeepTunnel.SourceCastStart" Target="::actor.Symbiote" Send="AnimPlay TeleportStart Burrow PlayForever,NonLooping -1.000000 -1.000000 1.000000 AsTimeScale"/>
+            <On Terms="Abil.BrutaliskDeepTunnel.SourceCastStop" Target="::actor.Symbiote" Send="AnimClear TeleportStart"/>
+            <On Terms="Abil.BrutaliskDeepTunnel.SourceCastStop" Target="::actor.Symbiote" Send="AnimPlay TeleportEnd Birth"/>
+            <On Terms="Abil.BurrowBrutaliskDown.Start" Target="::actor.Symbiote" Send="AnimPlay Burrow Burrow PlayForever,NonLooping -1.000000 -1.000000 1.000000 AsTimeScale"/>
+            <On Terms="Abil.BurrowBrutaliskUp.Start" Target="::actor.Symbiote" Send="AnimClear Burrow"/>
+            <On Terms="Abil.BurrowBrutaliskUp.Start" Target="::actor.Symbiote" Send="$Birth"/>
+            <On Terms="UnitBirth.BrutaliskBurrowed" Send="Create"/>
+            <On Terms="UnitBirth.BrutaliskBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
+            <Macros value="ZergBurrowStandardAnimMacro"/>
+            <Macros value="ZergLargeBurrowEffects"/>
+            <StatusBarFlags index="Magazine" value="0"/>
+            <ShieldArmorIcon value="Assets\Textures\btn-upgrade-zerg-adaptivecarapace.dds"/>
+            <StatusColors index="Shields">
+                <ColorArray index="0" value="255,0,128,0"/>
+            </StatusColors>
+            <VitalColors index="Shields">
+                <ColorArray value="255,0,128,0"/>
+            </VitalColors>
+            <VitalNames index="Shields" value="Vital/ZergShields"/>
+            <WireframeShieldColor value="255,0,128,0"/>
+        </CActorUnit>
+    <CActorUnit id="ColossusPurifier">
+            <On Terms="AbilMorph.*.Finish; MorphTo FenixWarbringerColossus" Send="Destroy"/>
+        </CActorUnit>
+    <CActorUnit id="ColossusTaldarim">
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-colossus-taldarimex3.dds"/>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-colossus-taldarimex3.dds"/>
+            <On Terms="WeaponStart.ColossusTaldarimChargedBeamFast.AttackStart" Send="Create ColossusTaldarimChargedMissilePowerUpSound"/>
+            <On Terms="WeaponStart.ColossusTaldarimChargedBeamFast.AttackStart" Send="Create ColossusTaldarimChargedBeamPowerUpModel"/>
+            <On Terms="WeaponStart.ColossusTaldarimChargedBeamFast.AttackStart" Target="ColossusTaldarimChargedBeamPowerUpModel" Send="AnimSetTimeScale BSD 5.000000"/>
+        </CActorUnit>
+    <CActorUnit id="DarkTemplarShakuras">
+            <PortraitModel value="DarkTemplar2Portrait"/>
+            <WireframeShield>
+                <Image index="0" value="Assets\Textures\wireframe-protoss-darktemplar01-shield01.dds"/>
+                <Image index="1" value="Assets\Textures\wireframe-protoss-darktemplar01-shield02.dds"/>
+                <Image index="2" value="Assets\Textures\wireframe-protoss-darktemplar01-shield03.dds"/>
+            </WireframeShield>
+            <GroupIcon>
+                <Image index="0" value="Assets\Textures\Wireframe-Protoss-DarkTemplar01.dds"/>
+            </GroupIcon>
+            <Wireframe>
+                <Image index="0" value="Assets\Textures\Wireframe-Protoss-DarkTemplar01.dds"/>
+            </Wireframe>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-darktemplar.dds"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-darktemplar.dds"/>
+        </CActorUnit>
+    <CActorUnit id="HighTemplarTaldarim">
+            <On Terms="Behavior.AscendantSacrificeSelfBuff.On" Send="Create AscendantSacrificeEffect"/>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-hightemplar.dds"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-hightemplar.dds"/>
+            <AbilSoundArray AbilCmd="VoidHighTemplarPsiOrb,Execute" Sound="HighTemplarTaldarim_SpellAttackVO"/>
+            <AbilSoundArray AbilCmd="VoidHighTemplarMindBlast,Execute" Sound="HighTemplarTaldarim_SpellAttackVO"/>
+        </CActorUnit>
+    <CActorUnit id="ImmortalAiur">
+            <On Terms="Effect.ImmortalShakurasShadowCannonLM.Start; !ValidateEffect ShadowCannonTargetIsGroundUnitFilter" Send="AnimPlay Spell Attack,Superior"/>
+            <On Terms="Effect.ImmortalShakurasShadowCannonLM.Start; ValidateEffect ShadowCannonTargetIsGroundUnitFilter" Send="AnimPlay Spell Attack"/>
+        </CActorUnit>
+    <CActorUnit id="ImmortalTaldarim">
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-immortal.dds"/>
+        </CActorUnit>
+    <CActorMissile id="K5Kerrigan">
+            
+            <On Terms="Abil.KerriganVoidCoopEconDrop.SourceCastStart" Send="$Spell,F NonLooping"/>
+            <On Terms="Abil.KerriganVoidCoopCrushingGripWave.SourceCastStart; ValidatePlayer HaveKerriganInfestedCosmetic" Send="Signal CrushingGripWaveInfested"/>
+            <On Terms="Abil.KerriganVoidCoopCrushingGripWave.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="Signal CrushingGripWaveGhost"/>
+            <On Terms="Abil.KerriganVoidCoopCrushingGripWave.SourceCastStart; ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell,B 0 -1.000000 -1.000000 4.000000 AsTimeScale"/>
+            <On Terms="Signal.*.CrushingGripWaveInfested" Send="TimerSet 0.375000 AnimSpeedChangeOne"/>
+            <On Terms="Signal.*.CrushingGripWaveGhost" Send="$Spell,One NonLooping"/>
+            <On Terms="TimerExpired; TimerName AnimSpeedChangeOne" Send="AnimSetTimeScale Spell 1.500000"/>
+            <On Terms="TimerExpired; TimerName AnimSpeedChangeOne" Send="TimerSet 0.625000 AnimSpeedChangeTwo"/>
+            <On Terms="TimerExpired; TimerName AnimSpeedChangeTwo" Send="AnimSetTimeScale Spell 4.000000"/>
+            <On Terms="Behavior.KerriganVoidCoopCrushingGripWaveStun.Off; ValidateUnit HaveKerriganInfestedCosmetic" Send="AnimSetTimeScale Spell 1.000000"/>
+            <On Terms="Signal.*.CrushingGripWaveInfested" Send="AnimClear Spell"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create KerriganCoop_BurrowSound"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowUp" Send="Create KerriganCoop_UnburrowSound"/>
+            <On Terms="Abil.PsionicLift.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell NonLooping"/>
+            <On Terms="Abil.MindBolt.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="AnimPlay Spell Attack NonLooping"/>
+            <Remove Terms="ActorCreation; ValidateUnit HaveKerriganInfestedCosmetic" Send="Create KerriganHeroGlowPurple"/>
+            <Remove Terms="ActorCreation; !ValidateUnit HaveKerriganInfestedCosmetic" Send="Create KerriganHeroGlow"/>
+            <Remove Terms="Upgrade.KerriganInfestedCosmetic.Add" Send="Create KerriganHeroGlowPurple"/>
+            <Remove Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="Create KerriganHeroGlow"/>
+            <Remove Terms="UnitRevive.K5Kerrigan; IsStatus SoundRank 0" Send="Create KerriganX1_Ready"/>
+            <Remove Terms="UnitRevive.K5Kerrigan; IsStatus SoundRank 1" Send="Create KerriganX1_Ready_Queen"/>
+            <Remove Terms="UnitRevive.K5Kerrigan; IsStatus SoundRank 2" Send="Create KerriganX1_Ready_Primal"/>
+            <Remove Terms="Abil.PsionicLift.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+            <Remove Terms="Abil.MindBolt.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+            <CustomUnitStatusFrame value="Coop_UnitStatus/KerriganCoopStatusFrameTemplate"/>
+            <MinimapIcon value="Assets\Textures\ui_minimap_icon_kerriganascendant.dds"/>
+            <MinimapIconScale value="0.700000"/>
+            <MinimapTooltip value="Unit/Name/K5Kerrigan"/>
+            <MinimapUseSelfColor value="0"/>
+            <MinimapUseSelectionColor value="0"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <ShieldArmorIcon value="Assets\Textures\btn-upgrade-zerg-tissueassimilation.dds"/>
+            <SoundArray index="Ready" value="KerriganVoid_Pissed"/>
+            <SoundArray index="Help" value="KerriganVoid_Help"/>
+            <SoundArray index="What" value="KerriganVoid_What"/>
+            <SoundArray index="Yes" value="KerriganVoid_Yes"/>
+            <SoundArray index="Attack" value="KerriganVoid_Attack"/>
+            <SoundArray index="Pissed" value="KerriganVoid_Pissed"/>
+            <AbilSoundArray AbilCmd="PrimalSlash,Execute" Sound="Swarm_Silent"/>
+            <AbilSoundArray AbilCmd="PsiStrikeWalk,Execute" Sound="Swarm_Silent"/>
+            <StatusBarOn index="Custom" value="1"/>
+            <UnitIcon value="Assets\Textures\btn-unit-zerg-kerriganinfested.dds"/>
+            <MinimapRenderPriority value="Hero"/>
+        </CActorMissile>
+    <CActorUnit id="Monitor">
+            <On Terms="Upgrade.AlarakHavocAbilityRange.Add" Target="SquadSightAttachment" Send="SetScale 1.750000"/>
+            <On Terms="Upgrade.AlarakHavocAbilityRange.Remove" Target="SquadSightAttachment" Send="SetScale"/>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-sentry.dds"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-sentry.dds"/>
+        </CActorUnit>
+    <CActorUnit id="MutaliskBroodlord">
+            <ModelFlags index="OutlineEmitter" value="1"/>
+        </CActorUnit>
+    <CActorUnit id="RavagerAbathur" parent="GenericBurrowerStandard" unitName="RavagerAbathur">
+            <Macros value="ZergBurrowStandardAnimMacro"/>
+            <Macros value="ZergMediumBurrowEffects"/>
+            <Macros value="UnloadDropAnim"/>
+            <Macros value="PhysicsDeathsSwarmGround"/>
+            <Macros value="PhysicsDeathsVoidGround"/>
+            <Macros value="TerrainSquibAnimations"/>
+            <Macros value="AbathurDeepTunnelImprovedMacro"/>
+            
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Ravager_Land"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="AnimClear Fidget"/>
+            <On Terms="AbilMorph.*.Cancel; MorphFrom RavagerAbathur; MorphTo RavagerAbathurBurrowed" Send="AnimClear Burrow"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathur; MorphFrom RavagerAbathurBurrowed" Send="AnimBracketStop Burrow"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathur; MorphFrom RavagerCocoon" Send="Create"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathur; MorphFrom RavagerCocoon" Send="$Birth 0 0.000000"/>
+            <On Terms="Abil.RavagerAbathurCorrosiveBile.SourceCastStart" Send="$Spell"/>
+            <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
+            <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Birth"/>
+            <On Terms="AbilTrain.EvolveToBrutaliskRavager.Start" Send="Destroy"/>
+            <On Terms="AbilTrain.EvolveToBrutaliskRavager.Cancel" Send="Create"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <DeathArray index="Normal" ModelLink="RavagerDeath" SoundLink="Roach_Explode"/>
+            <DeathArray index="Disintegrate" ModelLink="RavagerDeathAcid" SoundLink="Uni_DeathFXAcid"/>
+            <DeathArray index="Fire" ModelLink="RavagerDeathFire" SoundLink="Uni_DeathFXFire"/>
+            <DeathCustoms ActorModel="RavagerDeathRagdoll" ModelLink="RavagerDeathRagdoll" Name="RagdollBasic">
+                <BodySquibs Name="BloodReduced"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollSiegeTank" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollBaneling" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollUltraUnburrow" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms ActorModel="SpineCrawlerHurlDeathRagdollBloodPrevent" ModelLink="RavagerDeathRagdoll" Name="RagdollSpineCrawlerHurl">
+                <BodySquibs Name="None"/>
+            </DeathCustoms>
+            <PortraitModel value="RavagerPortrait"/>
+            <TerrainSquibs>
+                <MovementDistance value="0.150000,0.150000"/>
+                <IdlePeriod value="0.100000,0.250000"/>
+                <RangeUp value="0.600000"/>
+                <RangeDown value="1.000000"/>
+                <AttachQuery Methods="AMFilterCenter"/>
+                <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleImmortal"/>
+            </TerrainSquibs>
+            <WalkAnimMoveSpeed value="2.25"/>
+            <BarWidth value="85"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\wireframe-zerg-ravagers.dds"/>
+            </GroupIcon>
+            <HeroIcon value="Assets\Textures\btn-unit-zerg-ravager.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level0.dds"/>
+            <UnitIcon value="Assets\Textures\btn-unit-zerg-ravager.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\wireframe-zerg-ravagers.dds"/>
+            </Wireframe>
+            <GroupSoundArray index="What" value="Ravager_GroupWhat"/>
+            <GroupSoundArray index="Yes" value="Ravager_GroupYes"/>
+            <GroupSoundArray index="Attack" value="Ravager_GroupAttack"/>
+            <GroupSoundArray index="Board" value="Ravager_GroupBoard"/>
+            <SoundArray index="Birth" value="Ravager_Birth"/>
+            <SoundArray index="Ready" value="Ravager_Ready"/>
+            <SoundArray index="Help" value="Ravager_Help"/>
+            <SoundArray index="What" value="Ravager_What"/>
+            <SoundArray index="Yes" value="Ravager_Yes"/>
+            <SoundArray index="Attack" value="Ravager_Attack"/>
+            <SoundArray index="Pissed" value="Ravager_Pissed"/>
+            <SoundArray index="Movement" value="Ravager_Movement"/>
+            <SoundArray index="Turning" value="Ravager_Turning"/>
+            <SoundArray index="Board" value="Ravager_Board"/>
+            <SoundArray index="Click" value="Ravager_Click"/>
+            <SoundArray index="ClickError" value="Ravager_ClickError"/>
+            <SoundArray index="Highlight" value="Ravager_Highlight"/>
+            <Aliases value="_UnitLarge"/>
+        </CActorUnit>
+    <CActorUnit id="RoachCorpser">
+            <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathurCocoon" Send="Destroy"/>
+            <On Terms="AbilMorph.*.Finish; MorphFrom RavagerAbathurCocoon; MorphTo RoachCorpser" Send="Create"/>
+        </CActorUnit>
+    <CActorUnit id="RoachVile">
+            <On Terms="AbilMorph.*.Finish; MorphTo RavagerVileAbathurCocoon" Send="Destroy"/>
+            <On Terms="AbilMorph.*.Finish; MorphFrom RavagerVileAbathurCocoon; MorphTo RoachVile" Send="Create"/>
+            <On Terms="AbilTrain.EvolveToBrutaliskRoachVile.Start" Send="Destroy"/>
+            <On Terms="AbilTrain.EvolveToBrutaliskRoachVile.Cancel" Send="Create"/>
+            
+            <Macros value="AbathurDeepTunnelImprovedMacro"/>
+        </CActorUnit>
+    <CActorUnit id="RoboticsFacilityWarp">
+            <Remove Terms="ActorCreation" Send="AnimGroupApply Superior"/>
+            <On Terms="ActorCreation" Send="AnimPlay Morph Work,Start DontResetOnUnhide 0.000000 -1.000000 2.000000 AsDuration"/>
+            <On Terms="AnimDone; AnimName Morph" Send="AnimGroupApply Superior"/>
+        </CActorUnit>
+    <CActorUnit id="Scourge">
+            <SoundArray index="Ready" value="ScourgeMP_Ready"/>
+            <SoundArray index="What" value="ScourgeMP_What"/>
+            <SoundArray index="Yes" value="ScourgeMP_Yes"/>
+            <SoundArray index="Attack" value="ScourgeMP_Attack"/>
+            <On Terms="Behavior.ZagaraVoidCoopAberrationBanelingIncubationBirthHeight.On" Send="SetScale 0.000500"/>
+            <On Terms="Behavior.ZagaraVoidCoopAberrationBanelingIncubationBirthHeight.On" Send="SetOpacity"/>
+            <On Terms="Behavior.ZagaraVoidCoopAberrationBanelingIncubationBirthHeight.On" Send="TimerSet 0.125000 DelayScale"/>
+            <On Terms="TimerExpired; TimerName DelayScale" Send="SetScale 1.000000 0.500000"/>
+            <On Terms="TimerExpired; TimerName DelayScale" Send="SetOpacity 1.000000 0.125000"/>
+        </CActorUnit>
+    <CActorUnit id="Scout">
+            <On Terms="AbilMorph.*.Finish; MorphTo FenixMojoScout" Send="Destroy"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Scout_Land"/>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-scout-purifier.dds"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-scout-purifier.dds"/>
+        </CActorUnit>
+    <CActorUnit id="SentryFenix" parent="GenericUnitStandard" unitName="SentryFenix">
+            <Macros value="TerrainSquibAnimations"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Sentry_Land"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Sentry_Land"/>
+            <On Terms="Signal.*.CampaignBeamCreated" Send="RefSetFromMsg ::actor.MyAttackBeam ::Sender"/>
+            <On Terms="Signal.*.UnitRemoved" Target="::actor.MyAttackBeam" Send="Destroy Immediate"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom SentryFenix; MorphTo SentryFenixPhasing" Send="AnimBracketStart Work Stand,Work,Start,A Stand,Work,A Stand,Work,End,A"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom SentryFenixPhasing; MorphTo SentryFenix" Send="AnimBracketStop Work"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo SentryFenix" Send="Create"/>
+            <On Terms="AbilMorph.*.Finish; MorphFrom SentryFenix" Send="Destroy"/>
+            <On Terms="Abil.FenixSentryGuardianZone.TargetApproachStart; ValidateUnit ConservatorProtectiveFieldRangeCheck; !ScopeContains Conservator_ProtectiveFieldRangedVO_ActorSound" Send="Create Conservator_ProtectiveFieldRangedVO_ActorSound"/>
+            <HostSiteOps Ops="SOpBankerSentry"/>
+            <Model value="Sentry_Purifier_Collection"/>
+            <AnimBlendTime value="0.650000"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <Baselines index="Walk" BlendIn="1.500000" BlendOut="2.000000"/>
+            <BuildModel value="Sentry_Purifier_Collection_WarpIn"/>
+            <DeathArray index="Normal" ModelLink="Sentry_Purifier_Collection_Death" SoundLink="Energizer_Explode"/>
+            <PlacementModel value="Sentry_Purifier_Collection_Placement"/>
+            <PlacementSound value="Protoss_BuildingPlacementSmall"/>
+            <PortraitModel value="SentryPurifierPortrait"/>
+            <TerrainSquibs>
+                <MovementDistance value="0.150000,0.150000"/>
+                <IdlePeriod value="0.100000,0.250000"/>
+                <RangeUp value="0.600000"/>
+                <RangeDown value="0.600000"/>
+                <AttachQuery Methods="AMFilterCenter"/>
+                <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLargeVehicle"/>
+            </TerrainSquibs>
+            <BarOffset value="40"/>
+            <BarWidth value="50"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+            <AbilSoundArray AbilCmd="FenixSentryGuardianZone,Execute" Sound="Conservator_NoVO"/>
+            <SoundArray index="Ready" value="Energizer_Ready"/>
+            <SoundArray index="Help" value="Energizer_Help"/>
+            <SoundArray index="What" value="Energizer_What"/>
+            <SoundArray index="Yes" value="Energizer_Yes"/>
+            <SoundArray index="Attack" value="Energizer_Attack"/>
+            <SoundArray index="Pissed" value="Energizer_Pissed"/>
+            <UnitIcon value="Assets\Textures\btn-unit-collection-purifier-sentry.dds"/>
+            <HeroIcon value="Assets\Textures\btn-unit-collection-purifier-sentry.dds"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\wireframe-collection-purifier-Sentry.dds"/>
+            </GroupIcon>
+            <Wireframe>
+                <Image value="Assets\Textures\wireframe-collection-purifier-Sentry.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\wireframe-collection-purifier-Sentry-shield01.dds"/>
+                <Image value="Assets\Textures\wireframe-collection-purifier-Sentry-shield02.dds"/>
+                <Image value="Assets\Textures\wireframe-collection-purifier-Sentry-shield03.dds"/>
+            </WireframeShield>
+        </CActorUnit>
+    <CActorUnit id="SolarForge" parent="ProtossBuilding" unitName="SolarForge">
+            <On Terms="UnitBirth" Send="Create SolarForgeBeam"/>
+            <On Terms="UnitBirth; ValidatePlayer KaraxHaveSolarEfficiencyLevel1" Target="SolarForgeBeam" Send="AnimBracketStart FirstUpgrade Stand,Work,Start Stand,Work"/>
+            <On Terms="UnitBirth; ValidatePlayer KaraxHaveSolarEfficiencyLevel2" Target="SolarForgeBeam" Send="AnimBracketStart SecondUpgrade Stand,Work,Start,A Stand,Work,A"/>
+            <On Terms="UnitBirth; ValidatePlayer KaraxHaveSolarEfficiencyLevel3" Target="SolarForgeBeam" Send="AnimBracketStart ThirdUpgrade Stand,Work,Start,B Stand,Work,B"/>
+            <On Terms="Upgrade.SolarEfficiencyLevel1.Add" Target="SolarForgeBeam" Send="AnimBracketStart FirstUpgrade Stand,Work,Start Stand,Work"/>
+            <On Terms="Upgrade.SolarEfficiencyLevel2.Add" Target="SolarForgeBeam" Send="AnimBracketStart SecondUpgrade Stand,Work,Start,A Stand,Work,A"/>
+            <On Terms="Upgrade.SolarEfficiencyLevel2.Add" Target="SolarForgeBeam" Send="AnimBracketStop FirstUpgrade"/>
+            <On Terms="Upgrade.SolarEfficiencyLevel3.Add" Target="SolarForgeBeam" Send="AnimBracketStart ThirdUpgrade Stand,Work,Start,B Stand,Work,B"/>
+            <On Terms="Upgrade.SolarEfficiencyLevel3.Add" Target="SolarForgeBeam" Send="AnimBracketStop SecondUpgrade"/>
+            <On Terms="Abil.que5Passive.Start" Send="StatusIncrement Queuing"/>
+            <On Terms="Abil.que5Passive.Stop" Send="StatusDecrement Queuing"/>
+            <On Terms="StatusOn.*.Queuing" Send="AnimBracketStart Queuing Work,Start Work Work,End"/>
+            <On Terms="StatusOff.*.Queuing" Send="AnimBracketStop Queuing"/>
+            <On Terms="AnimBracketState.*.AfterClosing; AnimName Queuing; IsStatus WaitingForAnimBrackets 1" Send="AnimBracketStart StandA Stand,Work,Start,A Stand,Work,A Stand,Work,End,A"/>
+            <On Terms="Effect.BrokenSolarForgeIssueOrder.Start; !IsStatus Queuing 0" Send="StatusSet DiedQueueing 1"/>
+            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge; IsStatus DiedQueueing 0" Send="AnimBracketStart StandA Stand,Work,Start,A Stand,Work,A Stand,Work,End,A"/>
+            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge; IsStatus DiedQueueing 0" Send="StatusSet WaitingForAnimBrackets 0"/>
+            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge; IsStatus DiedQueueing 1" Send="StatusSet WaitingForAnimBrackets 1"/>
+            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge" Target="SolarForgeBeam" Send="Destroy"/>
+            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge" Target="SOARepairBeam" Send="Destroy"/>
+            <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForge; MorphFrom SolarForge" Target="SOARepairBeamImpact" Send="Destroy"/>
+            <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForge" Send="StatusSet WaitingForAnimBrackets 0"/>
+            <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForge" Send="StatusSet DiedQueueing 0"/>
+            <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForge" Send="AnimBracketStop StandA"/>
+            <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForge" Send="TimerSet 2.000000 CreateBeam"/>
+            <On Terms="TimerExpired; TimerName CreateBeam" Send="Create SolarForgeBeam"/>
+            <On Terms="UnitDeathCustomize; CreepEngulfs" Send="CreepEngulfmentStopTransition"/>
+            <Macros index="0" value="BuildingFlattenTerrainMacro"/>
+            <Macros value="ProtossBuildingPowerUp"/>
+            <EventDataSound Name="BuildingWarpIn" Actor="UnitSound" Sound="Protoss_BuildingWarpIn"/>
+            <CreepHeightClass value="Small"/>
+            <BuildModel value="SolarForgeBirth"/>
+            <DeathArray index="Normal" ModelLink="SolarForgeDeath" SoundLink="TemplarArchive_Explode"/>
+            <DeathArray index="UnderConstruction" ModelLink="ProtossWarpInDeath" SoundLink="TemplarArchive_Explode"/>
+            <DeathActorModel value="SolarForgeDeath"/>
+            <PlacementSound value="Protoss_BuildingPlacement"/>
+            <PortraitModel value="ExecutorPortrait"/>
+            <BarOffset value="135"/>
+            <BarWidth value="135"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\wireframe-protoss-solarforge.dds"/>
+            </GroupIcon>
+            <HeroIcon value="Assets\Textures\btn-building-protoss-solarforge.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-armor-protoss-buildingplating.dds"/>
+            <NameOffset value="110"/>
+            <SoundArray index="Construction" value="Protoss_ConstructionWhat"/>
+            <UnitFlags index="ShowBlobShadow" value="0"/>
+            <UnitIcon value="Assets\Textures\btn-building-protoss-solarforge.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\wireframe-protoss-solarforge.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\wireframe-protoss-solarforge-shield01.dds"/>
+                <Image value="Assets\Textures\wireframe-protoss-solarforge-shield02.dds"/>
+                <Image value="Assets\Textures\wireframe-protoss-solarforge-shield03.dds"/>
+            </WireframeShield>
+            <PlacementModel value="SolarForgePlacement"/>
+        </CActorUnit>
+    <CActorUnit id="Supplicant" parent="GenericUnitStandard" unitName="Supplicant">
+            <On Terms="UnitDeathCustomize; KilledByEffect AscendantSacrificeKillSupplicant" Send="DeathCustomize Shadow"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Adept_Land"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Templar_LandSweetener"/>
+            <On Terms="Behavior.Hallucination.On" Send="Create HallucinationBirthSoundSmall"/>
+            <On Terms="UnitDeathCustomize; ValidateUnit IsHallucination" Send="DeathCustomize Hallucination"/>
+            <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Spell" Send="AnimClear Spell"/>
+            
+            <On Terms="Signal.*.NeuralLinkStarted" Send="RefSetFromMsg ::actor.NeuralLinkSite ::Sender"/>
+            <On Terms="Effect.AdeptPhaseShiftTeleportSet.Start" Target="::actor.NeuralLinkSite" Send="Signal BreakLinkInstant"/>
+            <On Terms="Effect.AlarakTheStrongestSurviveStealLife.Start" Send="StatusSet TakeLife 1"/>
+            <On Terms="Effect.AlarakTheStrongestSurviveStealLife.Stop" Send="StatusSet TakeLife 0"/>
+            <On Terms="UnitDeathCustomize; IsStatus TakeLife 1" Send="DeathCustomize Shadow"/>
+            <Macros value="PhysicsDeathsSwarmGround"/>
+            <Macros value="PhysicsDeathsVoidGround"/>
+            <Macros value="TerrainSquibAnimations"/>
+            
+            <BuildModel value="Supplicant_WarpIn"/>
+            <DeathArray index="Normal" ModelLink="Supplicant_Death" SoundLink="Supplicant_DeathFX"/>
+            <PlacementModel value="Supplicant_PlacementModel"/>
+            <PlacementSound value="Protoss_BuildingPlacementSmall"/>
+            <PortraitModel value="Supplicant_Portrait"/>
+            <WalkAnimMoveSpeed value="3"/>
+            <BarOffset value="60"/>
+            <BarWidth value="42"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\wireframe-protoss-supplicant-taldarim.dds"/>
+            </GroupIcon>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-supplicant.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\wireframe-protoss-supplicant-taldarim.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\wireframe-protoss-supplicant-taldarim-shield01.dds"/>
+                <Image value="Assets\Textures\wireframe-protoss-supplicant-taldarim-shield02.dds"/>
+                <Image value="Assets\Textures\wireframe-protoss-supplicant-taldarim-shield03.dds"/>
+            </WireframeShield>
+            <SoundArray index="Ready" value="ZealotAlarak_Ready"/>
+            <SoundArray index="Help" value="ZealotAlarak_Help"/>
+            <SoundArray index="What" value="ZealotAlarak_What"/>
+            <SoundArray index="Yes" value="ZealotAlarak_Yes"/>
+            <SoundArray index="Attack" value="ZealotAlarak_Attack"/>
+            <SoundArray index="Pissed" value="ZealotAlarak_Pissed"/>
+            <DeathCustoms ModelLink="Supplicant_Sacrifice_Death" Name="Shadow"/>
+        </CActorUnit>
+    <CActorUnit id="SwarmHost">
+            <On Terms="AbilTrain.EvolveToBrutaliskSwarmHost.Start" Send="Destroy"/>
+            <On Terms="AbilTrain.EvolveToBrutaliskSwarmHost.Cancel" Send="Create"/>
+            <On Terms="Abil.AbathurDeepTunnel.SourceCastStart" Send="Signal DeepTunnelStart"/>
+            <On Terms="Abil.AbathurDeepTunnel.SourceCastStop" Send="Signal DeepTunnelStop"/>
+            <On Terms="Abil.AbathurDeepTunnelImproved.SourceCastStart" Send="Signal DeepTunnelStart"/>
+            <On Terms="Abil.AbathurDeepTunnelImproved.SourceCastStop" Send="Signal DeepTunnelStop"/>
+            <On Terms="Signal.*.DeepTunnelStart; ValidateUnit IsAbathurSwarmHost" Send="AnimBracketStart DeepBurrow Burrow,Superior,A IGNORE Unburrow,Superior,A ClosingFull,OpeningPlayForever"/>
+            <On Terms="Signal.*.DeepTunnelStart; ValidateUnit IsAbathurSwarmHostBurrowed" Send="AnimBracketStart DeepBurrow Burrow,Superior,B IGNORE IGNORE ClosingFull,OpeningPlayForever"/>
+            <On Terms="Signal.*.DeepTunnelStart" Send="Create Spell_DeepTunnel_Burrow"/>
+            <On Terms="Signal.*.DeepTunnelStop" Send="AnimBracketStop DeepBurrow"/>
+            <On Terms="Signal.*.DeepTunnelStop" Send="AnimBracketClear Burrow"/>
+            
+            
+            <On Terms="Signal.*.DeepTunnelStop; ValidateUnit IsAbathurSwarmHostBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever"/>
+            <On Terms="Signal.*.DeepTunnelStop" Send="Create Spell_DeepTunnel_Unburrow"/>
+            
+            
+            <On Terms="Signal.*.DeepTunnelStart" Send="TimerSet 1.200000 DeepBurrowTimer"/>
+            <On Terms="TimerExpired; TimerName DeepBurrowTimer" Send="Create SwarmHostDeepBurrow"/>
+        </CActorUnit>
+    <CActorUnit id="WarpPrismTaldarim" parent="GenericUnitStandard" unitName="WarpPrismTaldarim">
+            <Aliases value="_UnitLarge"/>
+            <Macros value="PhysicsDeathsSwarmAir"/>
+            <Macros value="PhysicsDeathsVoidAir"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom WarpPrismTaldarim; MorphTo WarpPrismPhasingTaldarim" Send="Destroy"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom WarpPrismPhasingTaldarim; MorphTo WarpPrismTaldarim" Send="Create"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom WarpPrismPhasingTaldarim; MorphTo WarpPrismTaldarim" Send="AnimPlay Work Work,End 0 0.000000"/>
+            <On Terms="Behavior.Hallucination.On" Send="Create HallucinationBirthSoundMedium"/>
+            <On Terms="UnitDeathCustomize; ValidateUnit IsHallucination" Send="DeathCustomize Hallucination"/>
+            <On Terms="Behavior.WarpInEffect15.On; !ValidateUnit NoDarkProtoss" Send="ModelSwap WarpPrismWarpIn"/>
+            <On Terms="Behavior.WarpInEffect15.On; !ValidateUnit NoDarkProtoss" Send="$Birth"/>
+            <On Terms="Behavior.WarpInEffect15.Off; !ValidateUnit NoDarkProtoss" Send="ModelSwap WarpPrism"/>
+            <On Terms="Behavior.WarpInEffect15.Off; !ValidateUnit NoDarkProtoss" Send="AnimBaselineStart"/>
+            <On Terms="Upgrade.DarkProtoss.Add" Send="ModelSwap DarkWarpPrism"/>
+            <On Terms="UnitBirth; ValidateUnit NoDarkProtoss" Send="ModelSwap DarkWarpPrism"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom WarpPrismPhasingTaldarim; MorphTo WarpPrismTaldarim; ValidateUnit NoDarkProtoss" Send="ModelSwap DarkWarpPrism"/>
+            <On Terms="UnitDeathCustomize; ValidateUnit NoDarkProtoss" Send="DeathCustomize DarkProtoss"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create WarpPrism_Land"/>
+            <On Terms="Behavior.WarpInEffect15.On" Send="ModelSwap WarpPrismWarpIn"/>
+            <On Terms="Behavior.WarpInEffect15.On" Send="$Birth"/>
+            <On Terms="Behavior.WarpInEffect15.Off" Send="ModelSwap WarpPrism"/>
+            <On Terms="Behavior.WarpInEffect15.Off" Send="AnimBaselineStart"/>
+            <On Terms="Upgrade.DarkProtoss.Add" Send="DeathCustomsEnablePhysics 0"/>
+            <On Terms="UnitBirth; ValidateUnit NoDarkProtoss" Send="DeathCustomsEnablePhysics 0"/>
+            <On Terms="Upgrade.DarkProtoss.Add" Send="DeathCustomsEnablePhysics 0"/>
+            <On Terms="UnitBirth; ValidateUnit NoDarkProtoss" Send="DeathCustomsEnablePhysics 0"/>
+            <On Terms="UnitBirth; ValidateUnit HasPurifierProtoss" Send="TextureSelectById PurifierHackDiffuse"/>
+            <On Terms="Upgrade.PurifierProtoss.Add" Send="TextureSelectById PurifierHackDiffuse"/>
+            <On Terms="Signal.*.PurifierHack" Send="TextureSelectById PurifierHackDiffuse"/>
+            <On Terms="UnitDeathCustomize; ValidateUnit IsTerrazineShadow" Send="DeathCustomize Hallucination"/>
+            <On Terms="Behavior.WarpInEffect15.Off; ValidateUnit NoDarkProtoss" Send="ModelSwap DarkWarpPrism"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <BuildModel value="WarpPrismWarpIn"/>
+            <DeathArray index="Normal" ModelLink="WarpPrismDeath" SoundLink="WarpPrism_Explode"/>
+            <DeathCustoms ModelLink="HallucinationDeath" SoundLink="Sentry_HallucinationDeathMedium" Name="Hallucination"/>
+            <DeathCustoms ModelLink="DarkWarpPrismDeath" Name="DarkProtoss"/>
+            <DeathCustoms>
+                <ActorModel value="WarpPrismDeathRagdoll"/>
+                <ModelLink value="WarpPrismDeathRagdoll"/>
+                <Name value="RagdollBasic"/>
+                <PhysicsMatchKeysOrdered value="BasicAir,Basic"/>
+                <BodySquibs Name="Basic" Model="ProtossRobotSquibDeathRagdoll"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+            <PhysicsMatchKeysOrdered value="BasicAir,Basic"/>
+            <PortraitModel value="WarpPrismPortrait"/>
+            <BarOffset value="55"/>
+            <BarWidth value="78"/>
+            <GlossaryAnim value="GLstand,A"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00.dds"/>
+            </GroupIcon>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-warpprism.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-airarmorlevel0.dds"/>
+            <NameOffset value="60"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-warpprism.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00-Shield01.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00-Shield02.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00-Shield03.dds"/>
+            </WireframeShield>
+            <Model value="WarpPrism"/>
+            <PlacementModel value="WarpPrism"/>
+        </CActorUnit>
+    <CActorMissile id="ZagaraVoidCoop" parent="GenericUnitBase" unitName="ZagaraVoidCoop">
+            <ShieldArmorIcon value="Assets\Textures\btn-upgrade-zerg-swarmfrenzy.dds"/>
+            <StatusColors index="Shields">
+                <ColorArray index="0" value="255,0,128,0"/>
+            </StatusColors>
+            
+            <StatusColors index="Energy">
+                <ColorArray index="0" value="255,255,128,0"/>
+            </StatusColors>
+            <DeathArray index="Normal" ModelLink="ZaGaraDeath" SoundLink="ZagaraAC_Explode"/>
+            <StatusBarOn index="Shields" value="1"/>
+            <StatusBarOn index="Life" value="1"/>
+            <StatusBarOn index="Energy" value="1"/>
+            <StatusBarOn index="Progress" value="1"/>
+            <StatusBarOn index="Duration" value="1"/>
+            <StatusBarOn index="Custom" value="1"/>
+            <VitalColors index="Shields">
+                <ColorArray value="255,0,128,0"/>
+            </VitalColors>
+            <VitalNames index="Shields" value="Vital/ZergShields"/>
+            <WireframeShieldColor value="255,0,128,0"/>
+            <UnitFlags index="SuppressDefaultStatusBar" value="1"/>
+            
+            
+            <CustomUnitStatusFrame value="Coop_UnitStatus/ZagaraCoopStatusFrameTemplate"/>
+            <Aliases value="_MissileHybrids"/>
+            <WalkAnimMoveSpeed value="1.7031"/>
+            <Macros value="ZergBurrowStandardAnimMacro"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create SmallBurrowDownEffects"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create ZagaraAC_BurrowSound"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowUp" Send="Create SmallBurrowUpEffects"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowUp" Send="Create ZagaraAC_UnburrowSound"/>
+            <On Terms="AbilMorph.*.Start; AbilKey BurrowUpMorph" Send="Create ZagaraAC_UnburrowSound"/>
+            
+            <On Terms="Signal.*.LevelUp" Send="Create K5KerriganLevelUp"/>
+            <On Terms="Signal.*.LevelUp" Send="Create K5KerriganLevelUpText"/>
+            <On Terms="Signal.*.LevelUp" Send="Create KerriganLevelUpSound"/>
+            <On Terms="ActorCreation" Send="StatusSet SoundRank 0"/>
+            
+            <On Terms="WeaponStart.ZagaraVoidCoopRanged.AttackStart" Send="AnimBracketStart Attack Spell,C"/>
+            <On Terms="WeaponStart.ZagaraVoidCoopMelee.AttackStart; WeaponTargetDistance LE 1.000000" Send="AnimBracketStart Attack Attack,Cover"/>
+            <On Terms="WeaponStart.ZagaraVoidCoopMelee.AttackStart" Send="AnimBracketStart Attack Attack"/>
+            <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+            <On Terms="UnitDeath.ZagaraVoidCoop" Send="Create ZagaraAC_DeathSweetener"/>
+            <On Terms="UnitDeath.ZagaraVoidCoop" Send="UIStatusFlagSet Incapacitated 1"/>
+            <On Terms="UnitBirth.ZagaraVoidCoopBurrowed" Send="Create"/>
+            <On Terms="UnitRevive.ZagaraVoidCoopBurrowed" Send="Create"/>
+            <On Terms="UnitBirth.ZagaraVoidCoopBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
+            <On Terms="UnitRevive.ZagaraVoidCoopBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
+            <On Terms="UnitBirth.ZagaraVoidCoop" Send="TerrainSquibActivateGroup RippleStandard"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo ZagaraVoidCoop" Send="TerrainSquibActivateGroup RippleStandard"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo ZagaraVoidCoopBurrowed" Send="TerrainSquibDeactivate"/>
+            <On Terms="AbilMorph.*.Cancel; MorphFrom ZagaraVoidCoop; MorphTo ZagaraVoidCoopBurrowed" Send="AnimClear Burrow"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo ZagaraVoidCoop; MorphFrom ZagaraVoidCoopBurrowed" Send="AnimBracketStop Burrow"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo ZagaraVoidCoop; MorphFrom ZagaraVoidCoopBurrowed" Send="AnimClear Burrow"/>
+            <On Terms="UnitRevive.ZagaraVoidCoop; AnimPlaying Death" Send="Destroy"/>
+            <On Terms="UnitRevive.ZagaraVoidCoop" Send="Create ZergHeroRevive"/>
+            <On Terms="UnitRevive.ZagaraVoidCoop" Send="$Birth 0 0.000000 -1.000000 0.000000"/>
+            <On Terms="Abil.ZagaraVoidCoopBanelingBarrage.SourceCastStart" Send="Create ZagaraAC_BanelingBarrageLaunchSound"/>
+            <On Terms="Abil.ZagaraVoidCoopBanelingBarrage.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopBanelingBarrage.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopSpawnBroodlings.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopCreepMaster.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopSpawnHunterKillers.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopSpawnMutalisk.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopWildInfestation.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopInfestedPods.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopNydusWorm.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopTransfusionWave.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopDevouringMaw.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.ZagaraVoidCoopDeepTunnel.SourceCastStart" Send="Create ZagaraDeepBurrow"/>
+            <On Terms="Abil.ZagaraVoidCoopDeepTunnel.SourceCastStart" Send="Create ZagaraBurrowDownLarge"/>
+            <On Terms="Abil.ZagaraVoidCoopDeepTunnel.SourceCastStart" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever"/>
+            <On Terms="Abil.ZagaraVoidCoopDeepTunnel.SourceCastStop; ValidateUnit IsNotBuried" Send="AnimBracketStop Burrow"/>
+            <On Terms="Abil.ZagaraVoidCoopDeepTunnel.SourceCastStop" Send="Create ZagaraDeepUnburrow"/>
+            <On Terms="Abil.ZagaraVoidCoopDeepTunnel.SourceCastStop" Send="Create BurrowUpLarge"/>
+            
+            <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Birth"/>
+            
+            
+            <On Terms="UnitDeathCustomize; IsStatus InAir 1" Send="DeathCustomize Flying"/>
+            <On Terms="Abil.CommanderPrestigeZagaraZagaraDeepTunnel.SourceCastStart" Send="Signal DeepTunnelStart"/>
+            <On Terms="Abil.CommanderPrestigeZagaraZagaraDeepTunnel.SourceCastStop" Send="Signal DeepTunnelStop"/>
+            <On Terms="Signal.*.DeepTunnelStart" Send="AnimBracketStart DeepBurrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever 1.000000 AsDuration"/>
+            <On Terms="Signal.*.DeepTunnelStart" Send="Create Spell_DeepTunnel_Burrow"/>
+            <On Terms="Signal.*.DeepTunnelStop; ValidateUnit IsBuried" Send="AnimBracketClear DeepBurrow"/>
+            <On Terms="Signal.*.DeepTunnelStop" Send="AnimBracketStop DeepBurrow"/>
+            <On Terms="Signal.*.DeepTunnelStop" Send="Create Spell_DeepTunnel_Unburrow"/>
+            <On Terms="Signal.*.DeepTunnelStart" Send="TimerSet 1.200000 DeepBurrowTimer"/>
+            <On Terms="TimerExpired; TimerName DeepBurrowTimer" Send="Create SwarmHostDeepBurrow"/>
+            
+            <On Terms="UnitDeathCustomize; ValidateUnit HasZergGenericDeath" Send="DeathCustomize Detached"/>
+            <On Terms="ActorCreation; ValidateUnit CommanderPrestigeZagaraZagara" Send="ModelSwap Predator_Zagara_COOP"/>
+            <DeathCustoms ModelLink="ZergLargeUnitDeathLow" Name="Detached"/>
+            <DeathCustoms ModelLink="ZergLargeUnitDeathLow" Name="Flying"/>
+            <AnimBlendTime value="0.250000"/>
+            <PortraitModel value="ZagaraPortrait"/>
+            <PortraitActor value="ZagaraPortrait"/>
+            <BarOffset value="75"/>
+            <ErrorArray Error="CantSeeBuildLocation" Sound="Alert_ZergBuildError" GroupSound="Alert_ZergBuildError"/>
+            <ErrorArray Error="CantSeeLandLocation" Sound="Alert_ZergBuildError" GroupSound="Alert_ZergBuildError"/>
+            <ErrorArray Error="CantBuildLocationInvalid" Sound="Alert_ZergBuildError" GroupSound="Alert_ZergBuildError"/>
+            <ErrorArray Error="CantLandLocationInvalid" Sound="Alert_ZergBuildError" GroupSound="Alert_ZergBuildError"/>
+            <ErrorArray Error="CantLandLocationInvalid" Sound="UI_GenericError" GroupSound="UI_GenericError"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\btn-unit-zerg-broodqueen.dds"/>
+            </GroupIcon>
+            <UnitIcon value="Assets\Textures\btn-unit-zerg-broodqueen.dds"/>
+            <HeroIcon value="Assets\Textures\btn-unit-zerg-broodqueen.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level0.dds"/>
+            
+            <SoundArray index="Ready" value="ZagaraHero_Ready"/>
+            <SoundArray index="Help" value="ZagaraHero_Help"/>
+            <SoundArray index="What" value="ZagaraHero_What"/>
+            <SoundArray index="Yes" value="ZagaraHero_Yes"/>
+            <SoundArray index="Attack" value="ZagaraHero_Attack"/>
+            <AbilSoundArray AbilCmd="ZagaraVoidCoopBanelingBarrage,Execute" Sound="Swarm_Silent"/>
+            <AbilSoundArray AbilCmd="ZagaraVoidCoopSpawnHunterKillers,Execute" Sound="Swarm_Silent"/>
+            <AbilSoundArray AbilCmd="ZagaraVoidCoopInfestedPods,Execute" Sound="Swarm_Silent"/>
+            <AbilSoundArray AbilCmd="ZagaraVoidCoopMassRoachDrop,Execute" Sound="Swarm_Silent"/>
+            <UnitKillRank Text="UnitKillRank/BroodMother"/>
+            <TerrainSquibs>
+                <GroupName value="RippleStandard"/>
+                <MovementDistance value="0.150000,0.150000"/>
+                <IdlePeriod value="0.100000,0.250000"/>
+                <RangeUp value="1.000000"/>
+                <RangeDown value="1.000000"/>
+                <AttachQuery Methods="AMFilterCenter"/>
+                <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLarge"/>
+            </TerrainSquibs>
+            <MinimapIcon value="Assets\Textures\ui_minimap_icon_zagara.dds"/>
+            <MinimapIconScale value="1.300000"/>
+            <MinimapTooltip value="Unit/Name/ZagaraVoidCoop"/>
+            <MinimapUseSelfColor value="0"/>
+            <MinimapUseSelectionColor value="0"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <MinimapRenderPriority value="Hero"/>
+        </CActorMissile>
+    <CActorUnit id="ZealotPurifier">
+            <On Terms="UnitBirth; ValidatePlayer IsFenixCoopCommander" Send="Create ZealotPurifierFenix"/>
+            <On Terms="AbilMorph.*.Finish; MorphTo FenixKaldalisZealot" Send="Destroy"/>
+            <PlacementActorModel value="ZealotPurifierPlacementModel"/>
+        </CActorUnit>
+    <CActorUnit id="ZeratulDisruptor" parent="GenericUnitStandard" unitName="ZeratulDisruptor">
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Disruptor_Land"/>
+            <On Terms="AbilCooldown.ZeratulPurificationNovaTargeted.Spend" Send="AnimBracketStart Cover Cover,Start Cover Cover,End"/>
+            <On Terms="AbilCooldown.ZeratulPurificationNovaTargeted.Regen" Send="AnimBracketStop Cover"/>
+            <On Terms="Behavior.ZeratulPurificationNovaTargettedCaster.On" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
+            <On Terms="Behavior.ZeratulPurificationNovaTargettedCaster.Off" Send="AnimBracketStop Work"/>
+            <DeathCustoms ModelLink="HallucinationDeath" SoundLink="Zeratul_AC_Hallucination_Death" Name="Hallucination"/>
+            <DeathCustoms ActorModel="DisruptorDeathRagdoll" ModelLink="Disruptor_Zeratul_COOP_DeathRagdoll" Name="RagdollBasic">
+                <BodySquibs Name="BloodReduced"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollSiegeTank" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollBaneling" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollUltraUnburrow" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms ActorModel="SpineCrawlerHurlDeathRagdollWithTeamColor" ModelLink="Disruptor_Zeratul_COOP_DeathRagdoll" Name="RagdollSpineCrawlerHurl">
+                <BodySquibs Name="None"/>
+            </DeathCustoms>
+            <Macros value="ChargingAnim"/>
+            <Macros value="TerrainSquibAnimations"/>
+            <Macros value="PhysicsDeathsSwarmGround"/>
+            <Macros value="PhysicsDeathsVoidGround"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <DeathArray index="Normal" ModelLink="Disruptor_Zeratul_COOP_Death" SoundLink="Disruptor_Death"/>
+            <DeathActorModel value="DisruptorDeath"/>
+            <PlacementSound value="Protoss_BuildingPlacementSmall"/>
+            <PortraitModel value="Disruptor_Zeratul_COOP_Portrait"/>
+            <TerrainSquibs>
+                <MovementDistance value="0.150000,0.150000"/>
+                <IdlePeriod value="0.100000,0.250000"/>
+                <RangeUp value="0.600000"/>
+                <RangeDown value="0.600000"/>
+                <AttachQuery Methods="AMFilterCenter"/>
+                <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMedium"/>
+            </TerrainSquibs>
+            <WalkAnimMoveSpeed value="2.25"/>
+            <BarOffset value="90"/>
+            <BarWidth value="65"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\Wireframe-protoss-disruptor.dds"/>
+            </GroupIcon>
+            <GroupSoundArray index="What" value="Zealot_GroupWhat"/>
+            <GroupSoundArray index="Yes" value="Zealot_GroupYes"/>
+            <GroupSoundArray index="Attack" value="Zealot_GroupAttack"/>
+            <GroupSoundArray index="Movement" value="Disruptor_Movement"/>
+            <GroupSoundArray index="Board" value="Zealot_GroupBoard"/>
+            <HeroIcon value="Assets\Textures\Btn-unit-protoss-disruptor.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+            <SoundArray index="Ready" value="Pusher_Ready"/>
+            <SoundArray index="Help" value="Pusher_Help"/>
+            <SoundArray index="What" value="Pusher_What"/>
+            <SoundArray index="Yes" value="Pusher_Yes"/>
+            <SoundArray index="Attack" value="Pusher_Attack"/>
+            <SoundArray index="Pissed" value="Pusher_Pissed"/>
+            <SoundArray index="Turning" value="Observer_Turning"/>
+            <SoundArray index="Board" value="Observer_Board"/>
+            <SoundArray index="Click" value="Observer_Click"/>
+            <SoundArray index="ClickError" value="Observer_ClickError"/>
+            <SoundArray index="Highlight" value="Observer_Highlight"/>
+            
+            <UnitIcon value="Assets\Textures\Btn-unit-protoss-zeratuldisruptor.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\Wireframe-protoss-disruptor.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\Wireframe-protoss-disruptor-shield01.dds"/>
+                <Image value="Assets\Textures\Wireframe-protoss-disruptor-shield02.dds"/>
+                <Image value="Assets\Textures\Wireframe-protoss-disruptor-shield03.dds"/>
+            </WireframeShield>
+            <Aliases value="_UnitLarge"/>
+            <Model value="Disruptor_Zeratul_COOP"/>
+            <BuildModel value="Disruptor_Zeratul_COOP"/>
+            <PlacementModel value="Disruptor_Zeratul_COOP"/>
+        </CActorUnit>
+    <CActorUnit id="ZeratulImmortal" parent="GenericUnitBase" unitName="ZeratulImmortal">
+            <Aliases value="_UnitLarge"/>
+            <Aliases value="_UnitLarge"/>
+            <Macros value="TerrainSquibAnimations"/>
+            <Macros value="PhysicsDeathsSwarmGround"/>
+            <Macros value="PhysicsDeathsVoidGround"/>
+            <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+            <On Terms="WeaponStart.*.AttackStart; WeaponTargetElevation GE 20.000000" Send="AnimBracketStart Attack Attack,Superior"/>
+            <On Terms="WeaponStart.*.AttackStart; WeaponTargetElevation LE -20.000000" Send="AnimBracketStart Attack Attack,Inferior"/>
+            <On Terms="WeaponStart.*.AttackStart" Send="AnimBracketStart Attack Attack"/>
+            <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+            <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Immortal_Land"/>
+            <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Attack"/>
+            <On Terms="Behavior.ImmortalBarrierBase.On" Send="Create Immortal_Barrier_OnSound"/>
+            <On Terms="Behavior.ImmortalBarrierBase.On; ValidateUnit HaveZeratulArtifactTier3AndRoboticsBay" Send="AnimBracketStart Cover Cover,Start,Upgrade Cover,Upgrade Cover,End,Upgrade"/>
+            <On Terms="Behavior.ImmortalBarrierBase.On" Send="AnimBracketStart Cover Cover,Start Cover Cover,End"/>
+            <On Terms="Behavior.ImmortalBarrierBase.Off" Send="Create Immortal_Void_BarrierOffSound"/>
+            <On Terms="Behavior.ImmortalBarrierBase.Off" Send="AnimBracketStop Cover"/>
+            <On Terms="Upgrade.ZeratulArtifactTier1.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier1.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <On Terms="Upgrade.ZeratulArtifactTier3.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier3.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <EventDataFootprint index="0" Actor="UnitFootprint" Model="ImmortalFootprint"/>
+            <BuildModel value="ImmortalShakurasWarpIn"/>
+            <DeathArray index="Normal" ModelLink="Immortal_Zeratul_COOP_Death" SoundLink="ImmortalDeath" VoiceLink="ImmortalDeathVoice"/>
+            <DeathCustoms ModelLink="HallucinationDeath" SoundLink="Zeratul_AC_Hallucination_Death" Name="Hallucination"/>
+            <DeathCustoms ModelLink="ProtossLargeUnitDeathLow" Name="AntiGravProtoss"/>
+            <DeathCustoms ModelLink="Immortal_Zeratul_COOP_DeathRagdoll" Name="RagdollBasic">
+                <BodySquibs Name="Basic" Model="ProtossRobotSquibDeathRagdoll"/>
+                <BodySquibs Name="BloodReduced" Model="ProtossRobotBloodSquibDeathRagdoll"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollSiegeTank" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollBaneling" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollUltraUnburrow" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms>
+                <ModelLink value="DeathVoidShadowMedium"/>
+                <SoundLink value="ShadowUnit_DeathFX"/>
+                <VoiceLink value="ShadowUnit_DeathVox"/>
+                <Name value="Shadow"/>
+            </DeathCustoms>
+            <PlacementModel value="ImmortalShakurasPlacement"/>
+            <PlacementSound value="Protoss_BuildingPlacementSmall"/>
+            <PortraitModel value="Immortal_Zeratul_COOP_Portrait"/>
+            <TerrainSquibs>
+                <MovementDistance value="0.150000,0.150000"/>
+                <IdlePeriod value="0.100000,0.250000"/>
+                <RangeUp value="0.600000"/>
+                <RangeDown value="1.000000"/>
+                <AttachQuery Methods="AMFilterCenter"/>
+                <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleImmortal"/>
+            </TerrainSquibs>
+            <WalkAnimMoveSpeed value="1.25"/>
+            <BarOffset value="80"/>
+            <BarWidth value="90"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\Wireframe-Protoss-Immortal.dds"/>
+            </GroupIcon>
+            <GroupSoundArray index="What" value="Immortal_GroupWhat"/>
+            <GroupSoundArray index="Yes" value="Immortal_GroupYes"/>
+            <GroupSoundArray index="Attack" value="Immortal_GroupAttack"/>
+            <GroupSoundArray index="Board" value="Immortal_GroupBoard"/>
+            <HeroIcon value="Assets\Textures\BTN-Unit-Protoss-Immortal.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+            <SoundArray index="Birth" value="Immortal_Birth"/>
+            <SoundArray index="Ready" value="Annihilator_Ready"/>
+            <SoundArray index="Help" value="Annihilator_Help"/>
+            <SoundArray index="What" value="Annihilator_What"/>
+            <SoundArray index="Yes" value="Annihilator_Yes"/>
+            <SoundArray index="Attack" value="Annihilator_Attack"/>
+            <SoundArray index="Pissed" value="Annihilator_Pissed"/>
+            <SoundArray index="Movement" value="ImmortalShakuras_Movement"/>
+            <SoundArray index="Turning" value="ImmortalShakuras_Turning"/>
+            <SoundArray index="Board" value="ImmortalShakuras_Board"/>
+            <SoundArray index="Click" value="ImmortalShakuras_Click"/>
+            <SoundArray index="ClickError" value="ImmortalShakuras_ClickError"/>
+            <SoundArray index="Highlight" value="ImmortalShakuras_Highlight"/>
+            <UnitIcon value="Assets\Textures\BTN-Unit-Protoss-zeratulImmortal.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\Wireframe-Protoss-Immortal.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\Wireframe-Protoss-Immortal-Shield01.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-Immortal-Shield02.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-Immortal-Shield03.dds"/>
+            </WireframeShield>
+            <Model value="Immortal_Zeratul_COOP"/>
+        </CActorUnit>
+    <CActorUnit id="ZeratulObserver" parent="GenericUnitStandard" unitName="ZeratulObserver">
+            <Aliases value="_UnitMedium"/>
+            <Macros value="PhysicsDeathsSwarmAir"/>
+            <On index="0" Send="Create SoundEmitter Observer_Ambience"/>
+            <On Terms="Behavior.WarpInEffect15.On" Send="ModelSwap ObserverWarpIn"/>
+            <On Terms="Behavior.WarpInEffect15.On" Send="$Birth"/>
+            <On Terms="Behavior.WarpInEffect15.Off" Send="ModelSwap Observer"/>
+            <On Terms="Behavior.WarpInEffect15.Off" Send="AnimBaselineStart"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Observer_Land"/>
+            <On Terms="Upgrade.DarkProtoss.Add" Send="DeathCustomsEnablePhysics 0"/>
+            <On Terms="UnitBirth; ValidateUnit NoDarkProtoss" Send="DeathCustomsEnablePhysics 0"/>
+            <On Terms="Upgrade.DarkProtoss.Add" Send="ModelSwap DarkObserver"/>
+            <On Terms="UnitBirth; ValidateUnit NoDarkProtoss" Send="ModelSwap DarkObserver"/>
+            <On Terms="UnitDeathCustomize; ValidateUnit NoDarkProtoss" Send="DeathCustomize DarkProtoss"/>
+            <On Terms="UnitBirth.ZeratulObserverSiegeMode" Send="Create"/>
+            <On Terms="UnitBirth.ZeratulObserverSiegeMode" Send="Create ObserverObservationMode"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom ZeratulObserver; MorphTo ZeratulObserverSiegeMode" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom ZeratulObserver; MorphTo ZeratulObserverSiegeMode" Send="Create ObserverObservationMode"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom ZeratulObserverSiegeMode; MorphTo ZeratulObserver" Target="ObserverObservationMode" Send="Destroy"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom ZeratulObserverSiegeMode; MorphTo ZeratulObserver" Send="AnimBracketStop Work"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <On Terms="Upgrade.ZeratulArtifactTier3.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier3.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <AnimBlendTime value="1.200000"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <EventDataFootprint index="0" Actor="UnitFootprint" Model="ObserverFootprint"/>
+            <BuildModel value="ProtossGenericWarpInOut"/>
+            <DeathArray index="Normal" ModelLink="Observer_Zeratul_COOP_Death" SoundLink="Observer_Explode" VoiceLink="ObserverDeathVoice"/>
+            <DeathCustoms ModelLink="Observer_Zeratul_COOP_DeathRagdoll" Name="RagdollBasic" PhysicsMatchKeysOrdered="BasicAir,Basic">
+                <BodySquibs Name="Basic" Model="ProtossTinyRobotSquibDeathRagdoll"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms ModelLink="DarkObserverDeath" Name="DarkProtoss"/>
+            <PhysicsMatchKeysOrdered value="BasicAir,Basic"/>
+            <PlacementModel value="ObserverPlacement"/>
+            <PortraitModel value="Observer_Zeratul_COOP_Portrait"/>
+            <BarOffset value="40"/>
+            <BarWidth value="42"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\Wireframe-Protoss-Observer.dds"/>
+            </GroupIcon>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-observer.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-airarmorlevel0.dds"/>
+            <SoundArray index="Birth" value="Observer_Birth"/>
+            <SoundArray index="Ready" value="Observer_Ready"/>
+            <SoundArray index="Help" value="Observer_Help"/>
+            <SoundArray index="What" value="Observer_What"/>
+            <SoundArray index="Yes" value="Observer_Yes"/>
+            <SoundArray index="Attack" value="Observer_Attack"/>
+            <SoundArray index="Pissed" value="Observer_Pissed"/>
+            <SoundArray index="Movement" value="Observer_Movement"/>
+            <SoundArray index="Turning" value="Observer_Turning"/>
+            <SoundArray index="Board" value="Observer_Board"/>
+            <SoundArray index="Click" value="Observer_Click"/>
+            <SoundArray index="ClickError" value="Observer_ClickError"/>
+            <SoundArray index="Highlight" value="Observer_Highlight"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-zeratulobserver.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\Wireframe-Protoss-Observer.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\Wireframe-Protoss-Observer-Shield01.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-Observer-Shield02.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-Observer-Shield03.dds"/>
+            </WireframeShield>
+            <Model value="Observer_Zeratul_COOP"/>
+        </CActorUnit>
+    <CActorUnit id="ZeratulRoboticsFacility" parent="ProtossBuilding" unitName="ZeratulRoboticsFacility">
+            <Aliases value="_UnitHuge"/>
+            <Macros value="QueueAnim"/>
+            <Macros value="BuildingFlattenTerrainMacro"/>
+            <Macros value="ZeratulBuildingPowerUp"/>
+            <On index="0" Send="Create SoundEmitter RoboticsFacility_Ambience"/>
+            <On Terms="UnitDeathCustomize; !IsStatus Queuing 0" Send="DeathCustomize Variation9"/>
+            <On Terms="ActorCreation" Send="AnimGroupRemove Work"/>
+            <AnimBlendTime value="0.000000"/>
+            <ModelFlags index="AutomateGlobalLoops" value="0"/>
+            <EventDataFootprint index="0" Model="RoboticsFacilityFootprint"/>
+            <EventDataSound Name="BuildingWarpIn" Actor="UnitSound" Sound="Protoss_BuildingWarpIn"/>
+            <CreepHeightClass value="Small"/>
+            <BuildModel value="RoboticsFacility_Zeratul_COOP_WarpIn"/>
+            <DeathArray index="Normal" ModelLink="RoboticsFacility_Zeratul_COOP_Death" SoundLink="RoboticsFacilty_Explode" VoiceLink=""/>
+            <DeathArray index="UnderConstruction" ModelLink="ProtossWarpInDeath" SoundLink="RoboticsFacilty_Explode"/>
+            <DeathCustoms ModelLink="RoboticsFacilityDeathUnpowered" SoundLink="RoboticsFacilty_Explode" Name="Variation2"/>
+            <DeathCustoms ModelLink="RoboticsFacilityConstructionDeath" SoundLink="RoboticsFacilty_Explode" Name="Variation9"/>
+            <DeathCustoms ModelLink="RoboticsFacilityTaldarimDeath" Name="DarkProtoss"/>
+            <DeathCustoms ModelLink="RoboticsFacilityTaldarimDeathUnpowered" Name="Variation3"/>
+            <DeathActorModel value="RoboticsFacilityDeath"/>
+            <PlacementModel value="RoboticsFacility_Zeratul_COOP_Placement"/>
+            <PlacementSound value="Protoss_BuildingPlacement"/>
+            <PortraitModel value="DarkVoice_Zeratul_COOP_Portrait"/>
+            <BarOffset value="110"/>
+            <BarWidth value="160"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility.dds"/>
+            </GroupIcon>
+            <GroupSoundArray index="What" value="RoboticsFacility_GroupWhat"/>
+            <GroupSoundArray index="Yes" value="RoboticsFacility_GroupYes"/>
+            <GroupSoundArray index="Attack" value="RoboticsFacility_GroupAttack"/>
+            <GroupSoundArray index="Board" value="RoboticsFacility_GroupBoard"/>
+            <HeroIcon value="Assets\Textures\btn-building-protoss-roboticsfacility.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-armor-protoss-buildingplating.dds"/>
+            <NameOffset value="110"/>
+            <SoundArray index="Birth" value="RoboticsFacility_Birth"/>
+            <SoundArray index="Ready" value="RoboticsFacility_Ready"/>
+            <SoundArray index="Help" value="RoboticsFacility_Help"/>
+            <SoundArray index="What" value="RoboticsFacility_What"/>
+            <SoundArray index="Yes" value="RoboticsFacility_Yes"/>
+            <SoundArray index="Attack" value="RoboticsFacility_Attack"/>
+            <SoundArray index="Pissed" value="RoboticsFacility_Pissed"/>
+            <SoundArray index="Movement" value="RoboticsFacility_Movement"/>
+            <SoundArray index="Turning" value="RoboticsFacility_Turning"/>
+            <SoundArray index="Board" value="RoboticsFacility_Board"/>
+            <SoundArray index="Construction" value="Protoss_ConstructionWhat"/>
+            <SoundArray index="Click" value="RoboticsFacility_Click"/>
+            <SoundArray index="ClickError" value="RoboticsFacility_ClickError"/>
+            <SoundArray index="Highlight" value="RoboticsFacility_Highlight"/>
+            <UnitFlags index="ShowBlobShadow" value="0"/>
+            <UnitIcon value="Assets\Textures\btn-building-protoss-zeratulroboticsfacility.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility-Shield01.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility-Shield02.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility-Shield03.dds"/>
+            </WireframeShield>
+            <Model value="RoboticsFacility_Zeratul_COOP"/>
+        </CActorUnit>
+    <CActorUnit id="ZeratulSentry" parent="GenericUnitBase" unitName="ZeratulSentry">
+            <Aliases value="_UnitMedium"/>
+            <Macros value="TerrainSquibAnimations"/>
+            <Macros value="PhysicsDeathsSwarmGround"/>
+            <Macros value="PhysicsDeathsVoidGround"/>
+            <On Terms="Abil.ForceField.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.NullVoid.SourceCastStart" Send="$Spell"/>
+            <On Terms="Effect.GuardianShieldPersistent.Start" Send="AnimBracketStart Guardian Stand,Work,Start Stand,Work Stand,Work,End"/>
+            <On Terms="Effect.GuardianShieldPersistent.Stop" Send="AnimBracketStop Guardian"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Sentry_Land"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <HostSiteOps Ops="SOpBankerSentry"/>
+            <AnimBlendTime value="0.650000"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <Baselines index="Walk" BlendIn="1.500000" BlendOut="2.000000"/>
+            <BuildModel value="SentryWarpIn"/>
+            <DeathArray index="Normal" ModelLink="Sentry_Zeratul_COOP_Death" SoundLink="Sentry_Explode"/>
+            <DeathCustoms ModelLink="Sentry_Zeratul_COOP_DeathRagdoll" Name="RagdollBasic">
+                <BodySquibs Name="Basic" Model="ProtossRobotSquibDeathRagdoll"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollSiegeTank" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollBaneling" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollUltraUnburrow" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms>
+                <ModelLink value="DeathVoidShadowSmall"/>
+                <SoundLink value="ShadowUnit_DeathFX"/>
+                <VoiceLink value="ShadowUnit_DeathVox"/>
+                <Name value="Shadow"/>
+            </DeathCustoms>
+            <PlacementModel value="SentryPlacement"/>
+            <PlacementSound value="Protoss_BuildingPlacementSmall"/>
+            <PortraitModel value="Sentry_Zeratul_COOP_Portrait"/>
+            <TerrainSquibs>
+                <MovementDistance value="0.150000,0.150000"/>
+                <IdlePeriod value="0.100000,0.250000"/>
+                <RangeUp value="0.600000"/>
+                <RangeDown value="0.600000"/>
+                <AttachQuery Methods="AMFilterCenter"/>
+                <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLargeVehicle"/>
+            </TerrainSquibs>
+            <BarOffset value="40"/>
+            <BarWidth value="50"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\Wireframe-Protoss-sentry.dds"/>
+            </GroupIcon>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-sentry.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-zeratulsentry.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\Wireframe-Protoss-sentry.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\Wireframe-Protoss-sentry-Shield01.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-sentry-Shield02.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-sentry-Shield03.dds"/>
+            </WireframeShield>
+            <SoundArray index="Ready" value="Energizer_Ready"/>
+            <SoundArray index="Help" value="Energizer_Help"/>
+            <SoundArray index="What" value="Energizer_What"/>
+            <SoundArray index="Yes" value="Energizer_Yes"/>
+            <SoundArray index="Attack" value="Energizer_Attack"/>
+            <SoundArray index="Pissed" value="Energizer_Pissed"/>
+            <SoundArray index="Movement" value="Energizer_Movement"/>
+            <Model value="Sentry_Zeratul_COOP"/>
+        </CActorUnit>
+    <CActorUnit id="ZeratulStalker" parent="GenericUnitBase" unitName="ZeratulStalker">
+            <Aliases value="_UnitMedium"/>
+            <Macros value="TerrainSquibAnimations"/>
+            <Macros value="PhysicsDeathsSwarmGround"/>
+            <Macros value="PhysicsDeathsVoidGround"/>
+            <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+            <On Terms="WeaponStart.*.AttackStart; WeaponTargetElevation GE 20.000000" Send="AnimBracketStart Attack Attack,Superior"/>
+            <On Terms="WeaponStart.*.AttackStart; WeaponTargetElevation LE -20.000000" Send="AnimBracketStart Attack Attack,Inferior"/>
+            <On Terms="WeaponStart.*.AttackStart" Send="AnimBracketStart Attack Attack"/>
+            <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+            <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Stalker_Land"/>
+            <On Terms="Upgrade.ZeratulArtifactTier1.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier1.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <DeathArray index="Normal" ModelLink="Stalker_Zeratul_COOP_Death"/>
+            <DeathCustoms ModelLink="Stalker_Zeratul_COOP_DeathRagdoll" Name="RagdollBasic">
+                <BodySquibs Name="Basic" Model="ProtossRobotSquibDeathRagdoll"/>
+                <BodySquibs Name="BloodReduced" Model="ProtossRobotBloodSquibDeathRagdoll"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollSiegeTank" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollBaneling" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollUltraUnburrow" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms>
+                <ModelLink value="DeathVoidShadowMedium"/>
+                <SoundLink value="ShadowUnit_DeathFX"/>
+                <VoiceLink value="ShadowUnit_DeathVox"/>
+                <Name value="Shadow"/>
+            </DeathCustoms>
+            <DeathActorModel value="UnitDeathModelWithDeathMotionGround"/>
+            <PlacementModel value="StalkerPlacement"/>
+            <PlacementSound value="Protoss_BuildingPlacementSmall"/>
+            <PortraitModel value="Stalker_Zeratul_COOP_Portrait"/>
+            <TerrainSquibs>
+                <MovementDistance value="0.150000,0.150000"/>
+                <IdlePeriod value="0.100000,0.250000"/>
+                <RangeUp value="0.600000"/>
+                <RangeDown value="1.000000"/>
+                <AttachQuery Methods="AMFilterCenter"/>
+                <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLarge"/>
+            </TerrainSquibs>
+            <WalkAnimMoveSpeed value="3.1328"/>
+            <BarOffset value="70"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\Wireframe-Protoss-Stalker.dds"/>
+            </GroupIcon>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-stalker.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-zeratulstalker.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\Wireframe-Protoss-Stalker.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\Wireframe-Protoss-Stalker-Shield01.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-Stalker-Shield02.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-Stalker-Shield03.dds"/>
+            </WireframeShield>
+            <SoundArray index="Ready" value="Stalker_Ready"/>
+            <SoundArray index="Help" value="Stalker_Help"/>
+            <SoundArray index="What" value="Stalker_What"/>
+            <SoundArray index="Yes" value="Stalker_Yes"/>
+            <SoundArray index="Attack" value="Stalker_Attack"/>
+            <SoundArray index="Pissed" value="Stalker_Pissed"/>
+            <Model value="Stalker_Zeratul_COOP"/>
+        </CActorUnit>
+    <CActorUnit id="ZeratulSummonZealot" parent="GenericUnitStandard" unitName="ZeratulSummonZealot">
+            <Aliases value="_UnitSmall"/>
+            <Macros value="ChargingAnim"/>
+            <Macros value="TerrainSquibAnimations"/>
+            <On Terms="Behavior.Charging.On" Send="ModelSuddenMotionStart"/>
+            <On Terms="Behavior.Charging.Off" Send="ModelSuddenMotionStop"/>
+            <On Terms="Behavior.Hallucination.On" Send="Create HallucinationBirthSoundSmall"/>
+            <On Terms="UnitDeathCustomize; ValidateUnit IsHallucination" Send="DeathCustomize Hallucination"/>
+            <On Terms="Behavior.VoidZealotWhirlwind.On" Send="HostSiteOpsSet ::Host ZealotWhirlwindRotator"/>
+            <On Terms="Effect.VoidZealotWhirlwindSearch.Start" Send="AnimPlay Attack Attack,03"/>
+            <On Terms="Behavior.VoidZealotWhirlwind.Off" Send="HostSiteOpsSet ::Host"/>
+            <On Terms="Behavior.VoidZealotWhirlwind.Off" Send="AnimClear Attack"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create Zealot_Land"/>
+            <On Terms="Upgrade.CinematicMode.Add; ValidateUnit CasterHasVoidZealotWhirlwind" Send="HostSiteOpsSet ::Host"/>
+            <On Terms="Upgrade.CinematicMode.Remove; ValidateUnit CasterHasVoidZealotWhirlwind" Send="HostSiteOpsSet ::Host ZealotWhirlwindRotator"/>
+            <On Terms="Signal.*.SOATargetingOn; ValidateUnit CasterHasVoidZealotWhirlwind" Send="HostSiteOpsSet ::Host"/>
+            <On Terms="Signal.*.SOATargetingOff; ValidateUnit CasterHasVoidZealotWhirlwind" Send="HostSiteOpsSet ::Host ZealotWhirlwindRotator"/>
+            <On Terms="ActorCreation" Send="SetTeamColor 237,254,22 237,254,22 0.000000 OneShot TeamColor"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <BuildModel value="ZealotAiurWarpIn"/>
+            <DeathArray index="Normal" ModelLink="ZealotGrunt_Zeratul_COOP_Death" SoundLink="Zealot_DeathFX"/>
+            <DeathCustoms ModelLink="HallucinationDeath" SoundLink="Zeratul_AC_BlinkWarp_Fx" Name="Hallucination"/>
+            <PlacementModel value="ZealotAiurPlacement"/>
+            <PlacementSound value="Protoss_BuildingPlacementSmall"/>
+            <PortraitModel value="ZealotGrunt_Zeratul_COOP_Portrait"/>
+            <TerrainSquibs>
+                <MovementDistance value="0.150000,0.150000"/>
+                <IdlePeriod value="0.100000,0.250000"/>
+                <RangeUp value="0.600000"/>
+                <RangeDown value="0.600000"/>
+                <AttachQuery Methods="AMFilterCenter"/>
+                <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMedium"/>
+            </TerrainSquibs>
+            <WalkAnimMoveSpeed value="2.25"/>
+            <BarOffset value="45"/>
+            <BarWidth value="42"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\wireframe-protoss-zealotelite.dds"/>
+            </GroupIcon>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-zealot-aiur.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+            <SoundArray index="Birth" value=""/>
+            <SoundArray index="Ready" value=""/>
+            <SoundArray index="Help" value=""/>
+            <SoundArray index="What" value=""/>
+            <SoundArray index="Yes" value=""/>
+            <SoundArray index="Attack" value=""/>
+            <SoundArray index="Pissed" value=""/>
+            <SoundArray index="Movement" value=""/>
+            <SoundArray index="Turning" value=""/>
+            <SoundArray index="Board" value=""/>
+            <SoundArray index="Click" value=""/>
+            <SoundArray index="ClickError" value=""/>
+            <SoundArray index="Highlight" value=""/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-zeratulzealot.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\wireframe-protoss-zealot-aiur.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\wireframe-protoss-zealot-aiur-shield01.dds"/>
+                <Image value="Assets\Textures\wireframe-protoss-zealot-aiur-shield02.dds"/>
+                <Image value="Assets\Textures\wireframe-protoss-zealot-aiur-shield03.dds"/>
+            </WireframeShield>
+            <Model value="ZealotGrunt_Zeratul_COOP"/>
+        </CActorUnit>
+    <CActorUnit id="ZeratulWarpPrism" parent="GenericUnitStandard" unitName="ZeratulWarpPrism">
+            <Aliases value="_UnitLarge"/>
+            <Macros value="PhysicsDeathsSwarmAir"/>
+            <Macros value="PhysicsDeathsVoidAir"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom ZeratulWarpPrism; MorphTo ZeratulWarpPrismPhasing" Send="Destroy"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom ZeratulWarpPrismPhasing; MorphTo ZeratulWarpPrism" Send="Create"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom ZeratulWarpPrismPhasing; MorphTo ZeratulWarpPrism" Send="AnimPlay Work Work,End 0 0.000000"/>
+            <On Terms="Behavior.Hallucination.On" Send="Create HallucinationBirthSoundMedium"/>
+            <On Terms="UnitDeathCustomize; ValidateUnit IsHallucination" Send="DeathCustomize Hallucination"/>
+            <On Terms="UnitHeightUpdate.*.Land" Send="Create WarpPrism_Land"/>
+            <On Terms="UnitBirth.ZeratulWarpPrism" Send="Create SoundEmitter WarpPrism_Ambience"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <On Terms="Upgrade.ZeratulArtifactTier3.Add" Send="Create ZeratulArtifactPowerUp"/>
+            <On Terms="Upgrade.ZeratulArtifactTier3.Add" Send="Create ZeratulArtifactPowerUpSound"/>
+            <On Terms="Behavior.WarpInEffect15.On" Send="ModelSwap WarpPrism_Zeratul_COOP_WarpIn"/>
+            <On Terms="Behavior.WarpInEffect15.On" Send="$Birth"/>
+            <On Terms="Behavior.WarpInEffect15.Off" Send="ModelSwap WarpPrism_Zeratul_COOP"/>
+            <On Terms="Behavior.WarpInEffect15.Off" Send="AnimBaselineStart"/>
+            <ModelFlags index="OutlineEmitter" value="1"/>
+            <EventDataFootprint index="0" Actor="UnitFootprint" Model="WarpPrismFootprint"/>
+            <BuildModel value="WarpPrism_Zeratul_COOP_WarpIn"/>
+            <DeathArray index="Normal" ModelLink="WarpPrism_Zeratul_COOP_Death" SoundLink="WarpPrism_Explode" VoiceLink="WarpPrismDeathVoice"/>
+            <DeathCustoms ModelLink="HallucinationDeath" SoundLink="Sentry_HallucinationDeathMedium" Name="Hallucination"/>
+            <DeathCustoms>
+                <ActorModel value="WarpPrismDeathRagdoll"/>
+                <ModelLink value="WarpPrism_Zeratul_COOP_DeathRagdoll"/>
+                <Name value="RagdollBasic"/>
+                <PhysicsMatchKeysOrdered value="BasicAir,Basic"/>
+                <BodySquibs Name="Basic" Model="ProtossRobotSquibDeathRagdoll"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Fire"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+                <BodySquibs Name="Acid"/>
+            </DeathCustoms>
+            <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+            <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+            <PhysicsMatchKeysOrdered value="BasicAir,Basic"/>
+            <PortraitModel value="WarpPrism_Zeratul_COOP_Portrait"/>
+            <BarOffset value="55"/>
+            <BarWidth value="78"/>
+            <GlossaryAnim value="GLstand,A"/>
+            <GroupIcon>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00.dds"/>
+            </GroupIcon>
+            <GroupSoundArray index="What" value="WarpPrism_GroupWhat"/>
+            <GroupSoundArray index="Yes" value="WarpPrism_GroupYes"/>
+            <GroupSoundArray index="Attack" value="WarpPrism_GroupAttack"/>
+            <GroupSoundArray index="Board" value="WarpPrism_GroupBoard"/>
+            <HeroIcon value="Assets\Textures\btn-unit-protoss-warpprism.dds"/>
+            <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-airarmorlevel0.dds"/>
+            <NameOffset value="60"/>
+            <SoundArray index="Birth" value="WarpPrism_Birth"/>
+            <SoundArray index="Ready" value="WarpPrism_Ready"/>
+            <SoundArray index="Help" value="WarpPrism_Help"/>
+            <SoundArray index="What" value="WarpPrism_What"/>
+            <SoundArray index="Yes" value="WarpPrism_Yes"/>
+            <SoundArray index="Attack" value="WarpPrism_Attack"/>
+            <SoundArray index="Pissed" value="WarpPrism_Pissed"/>
+            <SoundArray index="Movement" value="WarpPrism_Movement"/>
+            <SoundArray index="Turning" value="WarpPrism_Turning"/>
+            <SoundArray index="Board" value="WarpPrism_Board"/>
+            <SoundArray index="Click" value="WarpPrism_Click"/>
+            <SoundArray index="ClickError" value="WarpPrism_ClickError"/>
+            <SoundArray index="Highlight" value="WarpPrism_Highlight"/>
+            <UnitIcon value="Assets\Textures\btn-unit-protoss-zeratulwarpprism.dds"/>
+            <Wireframe>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00.dds"/>
+            </Wireframe>
+            <WireframeShield>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00-Shield01.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00-Shield02.dds"/>
+                <Image value="Assets\Textures\Wireframe-Protoss-WarpPrism00-Shield03.dds"/>
+            </WireframeShield>
+            <StatusBarFlags index="Cargo" value="0"/>
+            <Model value="WarpPrism_Zeratul_COOP"/>
+            <PlacementModel value="WarpPrism_Zeratul_COOP"/>
+        </CActorUnit>
 </Catalog>

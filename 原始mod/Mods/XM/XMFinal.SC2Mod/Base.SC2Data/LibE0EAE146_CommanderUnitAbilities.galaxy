@@ -8,6 +8,7 @@ bool libE0EAE146_gf_XMTestBench_AbathurUnitAbilities (int lp_player, string lp_s
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "GuardianMP", "GuardianAttackRangeIncrease", "", "HaveGuardianAttackRangeIncrease", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "GuardianMP", "EvolveToLeviathanLocked", "", "AbathurLevel02", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "GuardianMP", "BiomassPassiveEmpty", "", "BiomassBuffEmptyVisible", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "DevourerMP", "", "", "", "unit_card_no_specials");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Mutalisk", "StukovInfestedWildMutation", "StukovInfestedWildMutation", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Mutalisk", "EvolveToLeviathanLocked", "", "AbathurLevel02", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Mutalisk", "BiomassPassiveEmpty", "", "BiomassBuffEmptyVisible", "passive");
@@ -59,7 +60,7 @@ bool libE0EAE146_gf_XMTestBench_AbathurUnitAbilities (int lp_player, string lp_s
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Brutalisk", "CommanderAbathurBrutaliskSymbiote", "AbathurSymbioteHangerBrutalisk", "HaveBrutaliskgainsSymbioteUpgrade", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Brutalisk", "BrutaliskDeepTunnel", "BrutaliskDeepTunnel", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Brutalisk", "BurrowDown", "BurrowBrutaliskDown", "", "ability");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Abathur", lp_scenarioKind, 54);
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Abathur", lp_scenarioKind, 55);
     return true;
 }
 
@@ -137,6 +138,7 @@ bool libE0EAE146_gf_XMTestBench_DehakaUnitAbilities (int lp_player, string lp_sc
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "DehakaDrone", "DehakaMurvarStructure", "DehakaDroneMorph", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "DehakaDrone", "DehakaDakrunStructure", "DehakaDroneMorph", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "DehakaDrone", "DehakaNydusDestroyer", "DehakaDroneMorph", "", "evolution");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "DehakaCreeper", "", "", "", "unit_card_no_specials");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "DehakaCreeperFlying", "DehakaLocustFlyingSwoop", "DehakaLocustFlyingSwoop", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "DehakaHydraliskLevel2", "DehakaHydraliskSpeed", "", "HaveDehakaHydraliskSpeed", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "DehakaHydraliskLevel2", "PrimalCombatPrimalMutaliskLocked", "", "DehakaLevel06", "passive");
@@ -199,7 +201,7 @@ bool libE0EAE146_gf_XMTestBench_DehakaUnitAbilities (int lp_player, string lp_sc
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "ImpalerDehaka", "DehakaGeneLifeLeechPassive", "", "HaveDehakaGeneLifeLeech", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "ImpalerDehaka", "DehakaImpalerTenderize", "", "HaveDehakaImpalerTenderize", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Dehaka", lp_scenarioKind, "ImpalerDehaka", "ImpalerBurrowDown", "BurrowImpalerDehakaDown", "", "ability");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Dehaka", lp_scenarioKind, 68);
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Dehaka", lp_scenarioKind, 69);
     return true;
 }
 
@@ -231,53 +233,53 @@ bool libE0EAE146_gf_XMTestBench_HornerUnitAbilities (int lp_player, string lp_sc
     if (lp_scenarioKind != "unit_ability_smoke" && lp_scenarioKind != "unit_evolution_smoke") {
         return false;
     }
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHBattlecruiser", "HHMSOHealth", "", "HaveHHSOBuff", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHBattlecruiser", "Hyperjump", "HHBattlecruiserHyperjump", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHBattlecruiser", "HHYamatoShots", "HHYamatoShots", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHBattlecruiser", "HHBattlecruiserShots", "HHYamatoShots", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHBattlecruiser", "HHArmyOOCRegen", "", "HaveHHArmyOOCRegen", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHHellion", "HHMSOAttackSpeed", "", "HaveHHSOBuff", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHHellion", "MorphToHellionTank", "MorphToHHHellionTank", "", "evolution");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHHellion", "HHHellionBomb", "HHHellionBomb", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHHellion", "HHHellionDeathStim", "", "HaveHHHellionStimDeath", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHHellionTank", "HHMSOAttackSpeed", "", "HaveHHSOBuff", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHHellionTank", "MorphToHHHellion", "MorphToHHHellion", "", "evolution");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHHellionTank", "HHHellionDeathFear", "", "HaveHHHellionFearDeath", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHHellionTank", "HHHellionAttackDoT", "", "HaveHHHellionAttackDoT", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHRaven", "Detector", "", "", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHRaven", "HHSuperRadar", "", "", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHRaven", "HHMSOHealth", "", "HaveHHSOBuff", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHRaven", "FleetwideJump", "FleetwideJump", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHRaven", "HHNomadTargetLock", "RavenTargetLock", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHRaven", "MorphtoHHRavenSiege", "HHRavenMorphtoHHRavenSiege", "", "evolution");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHRaven", "HHArmyOOCRegen", "", "HaveHHArmyOOCRegen", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHReaper", "HHMSOAttackSpeed", "", "HaveHHSOBuff", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHReaper", "HHKD8Charge", "HHD8SingleCharge", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHReaper", "HHReaperFly", "HHReaperFly", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHReaper", "JetPack", "", "", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHReaper", "CombatDrugs", "", "", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHReaper", "HHReaperClusterBombs", "", "HaveHHReaperClusterBomb", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHVikingFighter", "HHVikingPiercingAttacks", "", "HaveHHVikingPiercingAttack", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHVikingFighter", "HHVikingMorphSpeed", "", "HaveHHVikingMorph", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHVikingFighter", "HHMSOHealth", "", "HaveHHSOBuff", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHVikingFighter", "FleetwideJump", "FleetwideJump", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHVikingFighter", "HHVikingRockets", "HHVikingRockets", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHVikingFighter", "AssaultMode", "HHAssaultMode", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHVikingFighter", "HHArmyOOCRegen", "", "HaveHHArmyOOCRegen", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWidowMine", "HHMSOAttackSpeed", "", "HaveHHSOBuff", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWidowMine", "WidowMineAttack", "HHWidowMineAttack", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWidowMine", "WidowMineBurrow", "HHWidowMineBurrow", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWidowMine", "HHWidowMineDeathBlossom", "", "HaveHHWidowMineDeathBlossom", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWidowMine", "HHWidowMineRangeAttack", "HHWidowMineAttack", "HaveHHWidowMineAttackRange", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWraith", "HHMSOHealth", "", "HaveHHSOBuff", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWraith", "FleetwideJump", "FleetwideJump", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWraith", "HHWraithPermaCloak", "", "HaveHHWraithPermaCloak", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWraith", "WraithCloakOff", "HHWraithCloak", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWraith", "HHWraithFury", "", "HaveHHWraithFury", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HHWraith", "HHArmyOOCRegen", "", "HaveHHArmyOOCRegen", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "Liberator", "LiberatorAGRangeUpgrade", "", "HaveLiberatorRange", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "Liberator", "LiberatorAGMode", "LiberatorAGTarget", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "Liberator", "IgniteAfterburners", "VehicleAfterburners", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "BattlecruiserMira", "MSOHealthMira", "", "HaveSOBuffMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "BattlecruiserMira", "TacticalJumpChargesMira", "TacticalJumpChargesMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "BattlecruiserMira", "YamatoShotsMira", "YamatoShotsMira", "HaveBattlecruiserYamatoAttacksMira", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "BattlecruiserMira", "BattlecruiserShotsMira", "YamatoShotsMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "BattlecruiserMira", "ArmyOOCRegenMira", "", "HaveArmyOOCRegenMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HellionMira", "MSOAttackSpeedMira", "", "HaveSOBuffMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HellionMira", "", "MorphToHellionTankMira", "", "evolution");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HellionMira", "HellionBombMira", "HellionBombMira", "HaveHellionRocketMira", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HellionMira", "HellionDeathStimMira", "", "HaveHellionStimDeathMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HellionTankMira", "MSOAttackSpeedMira", "", "HaveSOBuffMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HellionTankMira", "MorphToHellionMira", "MorphToHellionMira", "", "evolution");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HellionTankMira", "HellionDeathFearMira", "", "HaveHellionFearDeathMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "HellionTankMira", "HellionAttackDoTMira", "", "HaveHellionAttackDoTMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "RavenMira", "", "", "", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "RavenMira", "SuperRadarMira", "", "", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "RavenMira", "MSOHealthMira", "", "HaveSOBuffMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "RavenMira", "FleetwideJumpMira", "FleetwideJumpMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "RavenMira", "RavenAnalyzeMira", "RavenAnalyzeMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "RavenMira", "MorphtoRavenSiegeMira", "RavenMorphtoRavenSiegeMiraMira", "", "evolution");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "RavenMira", "ArmyOOCRegenMira", "", "HaveArmyOOCRegenMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "ReaperMira", "MSOAttackSpeedMira", "", "HaveSOBuffMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "ReaperMira", "KD8ChargeMira", "D8SingleChargeMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "ReaperMira", "ReaperFlyMira", "ReaperFlyMira", "HaveReaperFlightMira", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "ReaperMira", "JetPack", "", "", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "ReaperMira", "CombatDrugs", "", "", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "ReaperMira", "ReaperClusterBombsMira", "", "HaveReaperClusterBombMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "VikingFighterMira", "VikingPiercingAttacksMira", "", "HaveVikingPiercingAttackMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "VikingFighterMira", "HHVikingMorphSpeed", "", "HaveHHVikingMorph", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "VikingFighterMira", "MSOHealthMira", "", "HaveSOBuffMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "VikingFighterMira", "FleetwideJumpMira", "FleetwideJumpMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "VikingFighterMira", "VikingRocketsMira", "VikingRocketsMira", "HaveVikingRocketsMira", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "VikingFighterMira", "AssaultMode", "AssaultModeMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "VikingFighterMira", "ArmyOOCRegenMira", "", "HaveArmyOOCRegenMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WidowMineMira", "MSOAttackSpeedMira", "", "HaveSOBuffMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WidowMineMira", "WidowMineAttack", "WidowMineAttackMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WidowMineMira", "WidowMineBurrow", "WidowMineBurrowMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WidowMineMira", "WidowMineDeathBlossomMira", "", "HaveWidowMineDeathBlossomMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WidowMineMiraBurrowed", "WidowMineRangeAttackMira", "", "HaveWidowMineAttackRangeMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WraithMira", "MSOHealthMira", "", "HaveSOBuffMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WraithMira", "FleetwideJumpMira", "FleetwideJumpMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WraithMira", "WraithPermaCloakMira", "", "HaveWraithPermaCloakMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WraithMira", "CloakOff", "WraithCloakMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WraithMira", "WraithFuryMira", "", "HaveWraithFuryMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "WraithMira", "ArmyOOCRegenMira", "", "HaveArmyOOCRegenMira", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "LiberatorMiraAG", "LiberatorAGTMira", "LiberatorAGTMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "LiberatorMira", "LiberatorAGMode", "LiberatorMAGMira", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Horner", lp_scenarioKind, "LiberatorMira", "IgniteAfterburners", "VehicleAfterburners", "", "ability");
     libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Horner", lp_scenarioKind, 47);
     return true;
 }
@@ -473,15 +475,13 @@ bool libE0EAE146_gf_XMTestBench_NovaUnitAbilities (int lp_player, string lp_scen
     }
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Banshee_BlackOps", "Banshee_BlackOpsAirstrike", "Banshee_BlackOpsAirstrike", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Banshee_BlackOps", "XN51CloakTechnology", "", "HaveBansheePermaCloak", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "PermanentlyCloakedGhost", "", "HaveNovaCommander", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "GhostHoldFire", "GhostHoldFire", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "WeaponsFree", "GhostWeaponsFree", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "NukeCalldown", "TacNukeStrike", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "ChannelSnipe", "ChannelSnipe", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "EMP", "EMP", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "CloakOnGhost", "GhostCloak", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "CloakOff", "GhostCloak", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "GhostNova", "", "Snipe_BlackOps", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "PermanentlyCloakedGhost", "", "HaveNovaCommander", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "GhostHoldFire", "GhostHoldFire", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "WeaponsFree", "GhostWeaponsFree", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "NukeCalldown", "TacNukeStrike", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "ChannelSnipe", "ChannelSnipe", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "EMP", "EMPBlackOps", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "", "Snipe_BlackOps", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Goliath_BlackOps", "NovaUnitLockdown", "NovaUnitLockdown", "HaveNovaUnitLockdown", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Goliath_BlackOps", "AresClassWeaponsSystem", "", "UseAresClassWeaponsSystem", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "HellbatBlackOps", "MorphToHellionBlackOps", "MorphToHellionBlackOps", "", "evolution");
@@ -525,7 +525,7 @@ bool libE0EAE146_gf_XMTestBench_NovaUnitAbilities (int lp_player, string lp_scen
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "SCV", "Armory", "TerranBuild", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "SCV", "Starport", "TerranBuild", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "SCV", "FusionCore", "TerranBuild", "", "ability");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Nova", lp_scenarioKind, 54);
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Nova", lp_scenarioKind, 52);
     return true;
 }
 
@@ -726,6 +726,7 @@ bool libE0EAE146_gf_XMTestBench_SwannUnitAbilities (int lp_player, string lp_sce
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "Hellion", "PassiveInfernalPreIgniter", "", "HaveInfernalPreigniter", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "Hellion", "HellArmor", "", "HaveHellbatHellArmor", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "Wraith", "ImprovedBurstLaser", "", "HaveWraithImprovedBurstLaser", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "GoliathSwann", "", "", "", "unit_card_no_specials");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SCV", "GhostAcademyNova", "TerranBuild", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SCV", "SwannBarracks", "", "HaveSwannCommander", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SCV", "AdvancedConstructionAuto", "AdvancedConstructionAuto", "", "ability");
@@ -751,7 +752,7 @@ bool libE0EAE146_gf_XMTestBench_SwannUnitAbilities (int lp_player, string lp_sce
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SiegeTank", "SiegeMode", "SiegeMode", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SiegeTank", "AfterburnersLocked", "", "RaynorLevel11", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SiegeTank", "MaelstromRounds", "", "HaveMaelstromRounds", "passive");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Swann", lp_scenarioKind, 46);
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Swann", lp_scenarioKind, 47);
     return true;
 }
 
