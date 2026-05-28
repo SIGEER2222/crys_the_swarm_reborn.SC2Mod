@@ -297,15 +297,40 @@ if (-not $commanderConfigs.ContainsKey($Commander)) {
     throw "Unsupported commander '$Commander'. Supported: $($commanderConfigs.Keys -join ', ')"
 }
 
+function Resolve-ScenarioRoot {
+    param([string]$Root)
+
+    $rootItem = Get-Item -LiteralPath $Root
+    if (Test-Path -LiteralPath (Join-Path $rootItem.FullName "Mods\XM\XMCore.SC2Mod")) {
+        return $rootItem
+    }
+
+    foreach ($preferredName in @("合作指挥官版起义狂潮", "原始mod", "originalmod")) {
+        $preferredRoot = Join-Path $rootItem.FullName $preferredName
+        if (Test-Path -LiteralPath (Join-Path $preferredRoot "Mods\XM\XMCore.SC2Mod")) {
+            return Get-Item -LiteralPath $preferredRoot
+        }
+    }
+
+    $candidates = @(
+        Get-ChildItem -LiteralPath $rootItem.FullName -Directory -ErrorAction SilentlyContinue |
+            Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName "Mods\XM\XMCore.SC2Mod") }
+    )
+
+    if ($candidates.Count -eq 1) {
+        return $candidates[0]
+    }
+
+    if ($candidates.Count -gt 1) {
+        $candidateList = ($candidates | Select-Object -ExpandProperty FullName) -join "; "
+        throw "Multiple scenario roots found under $($rootItem.FullName). Pass a narrower -WorkspaceRoot. Candidates: $candidateList"
+    }
+
+    return $null
+}
+
 $projectRoot = Get-Item -LiteralPath $WorkspaceRoot
-$scenarioRoot = if (Test-Path -LiteralPath (Join-Path $projectRoot.FullName "Mods\XM\XMCore.SC2Mod")) {
-    $projectRoot
-}
-else {
-    Get-ChildItem -LiteralPath $projectRoot.FullName -Directory | Where-Object {
-        Test-Path -LiteralPath (Join-Path $_.FullName "Mods\XM\XMCore.SC2Mod")
-    } | Select-Object -First 1
-}
+$scenarioRoot = Resolve-ScenarioRoot -Root $projectRoot.FullName
 
 if (-not $scenarioRoot) {
     throw "Unable to locate scenario root containing Mods\XM\XMCore.SC2Mod under $($projectRoot.FullName)"
@@ -323,6 +348,7 @@ $moduleXmlPaths = if (Test-Path -LiteralPath $moduleGameData) {
 else {
     @()
 }
+$xmFinalGalaxyPaths = @(Get-ChildItem -LiteralPath (Join-Path $xmFinal "Base.SC2Data") -Filter "*.galaxy" -File | Select-Object -ExpandProperty FullName)
 $allXmXmlPaths = @(Get-ChildItem -LiteralPath $xmRoot -Filter "*.xml" -File -Recurse | Select-Object -ExpandProperty FullName)
 $modsStringPaths = @(Get-ChildItem -LiteralPath $xmRoot -Recurse -Filter "GameStrings.txt" -File | Select-Object -ExpandProperty FullName)
 $errors = [System.Collections.Generic.List[string]]::new()
@@ -360,8 +386,14 @@ function Test-AnyContains {
     param(
         [string[]]$Paths,
         [string]$Pattern,
-        [switch]$Simple
+        [switch]$Simple,
+        [string]$Label = "candidate files"
     )
+
+    if (($null -eq $Paths) -or ($Paths.Count -eq 0)) {
+        Add-Error "Pattern '$Pattern' could not be validated because there are no $Label."
+        return
+    }
 
     foreach ($path in $Paths) {
         if (-not (Test-Path -LiteralPath $path)) {
@@ -380,7 +412,12 @@ function Test-AnyContains {
         }
     }
 
-    Add-Error "Pattern '$Pattern' was not found in any of: $($Paths -join ', ')"
+    $preview = ($Paths | Select-Object -First 3) -join ', '
+    if ($Paths.Count -gt 3) {
+        $preview += ", ..."
+    }
+
+    Add-Error "Pattern '$Pattern' was not found in $Label ($($Paths.Count) files). Sample: $preview"
 }
 
 function Test-XmlParse {
@@ -399,6 +436,75 @@ function Test-XmlParse {
     }
 }
 
+function Test-H2CSDocumentHeaderDependency {
+    param(
+        [string]$Path,
+        [string]$Dependency
+    )
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        Add-Error "Missing DocumentHeader: $Path"
+        return
+    }
+
+    try {
+        $bytes = [IO.File]::ReadAllBytes($Path)
+        if ($bytes.Length -lt 0x30) {
+            Add-Error "DocumentHeader is too short: $Path"
+            return
+        }
+
+        $magic = [Text.Encoding]::ASCII.GetString($bytes, 0, 4)
+        if ($magic -ne "H2CS") {
+            return
+        }
+
+        $count = [BitConverter]::ToInt32($bytes, 0x2C)
+        $cursor = 0x30
+        for ($i = 0; $i -lt $count; $i++) {
+            $start = $cursor
+            while ($cursor -lt $bytes.Length -and $bytes[$cursor] -ne 0) {
+                $cursor++
+            }
+            if ($cursor -ge $bytes.Length) {
+                Add-Error "DocumentHeader dependency table is truncated: $Path"
+                return
+            }
+
+            $value = [Text.Encoding]::UTF8.GetString($bytes, $start, $cursor - $start)
+            if ($value -eq $Dependency) {
+                return
+            }
+            $cursor++
+        }
+
+        Add-Error "DocumentHeader '$Path' does not contain dependency '$Dependency'. Run scripts/sync-sc2-documentheader-deps.ps1 for XMFinal."
+    }
+    catch {
+        Add-Error "Failed to inspect DocumentHeader '$Path': $($_.Exception.Message)"
+    }
+}
+
+function Resolve-OfficialCommandersRoot {
+    param([string]$Root)
+
+    $preferred = Join-Path $Root "游戏数据\官方合作指挥官\commanders"
+    if (Test-Path -LiteralPath $preferred) {
+        return $preferred
+    }
+
+    $candidates = Get-ChildItem -LiteralPath $Root -Directory -Recurse -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -eq "commanders" }
+
+    foreach ($candidate in $candidates) {
+        if (Test-Path -LiteralPath (Join-Path $candidate.FullName "Abathur\progression.json")) {
+            return $candidate.FullName
+        }
+    }
+
+    return $null
+}
+
 function Get-OfficialMasteryUpgrades {
     param([string]$CommanderDir)
 
@@ -406,7 +512,12 @@ function Get-OfficialMasteryUpgrades {
         return @()
     }
 
-    $progressionPath = Join-Path $projectRoot.FullName ("游戏数据\官方合作指挥官\commanders\{0}\progression.json" -f $CommanderDir)
+    if ([string]::IsNullOrWhiteSpace($script:officialCommandersRoot)) {
+        Add-Error "Unable to locate official commanders root under $($projectRoot.FullName)"
+        return @()
+    }
+
+    $progressionPath = Join-Path $script:officialCommandersRoot ("{0}\progression.json" -f $CommanderDir)
     if (-not (Test-Path -LiteralPath $progressionPath)) {
         Add-Error "Missing official progression file: $progressionPath"
         return @()
@@ -460,6 +571,8 @@ function Test-LauncherCandidate {
     }
 }
 
+$script:officialCommandersRoot = Resolve-OfficialCommandersRoot -Root $projectRoot.FullName
+
 if (-not (Test-Path -LiteralPath $moduleRoot)) {
     Add-Error "Missing module: $moduleRoot"
 }
@@ -471,8 +584,6 @@ else {
 }
 
 $xmCoreUserData = Join-Path $xmCore "Base.SC2Data\GameData\UserData.xml"
-$xmFinalGalaxy = Join-Path $xmFinal "Base.SC2Data\LibE0EAE146.galaxy"
-$xmFinalHeader = Join-Path $xmFinal "Base.SC2Data\LibE0EAE146_h.galaxy"
 $masteryUserDataPath = if ($config.MasteryUserDataOwner -eq "Module") {
     Join-Path $moduleRoot "Base.SC2Data\GameData\UserData.xml"
 }
@@ -486,23 +597,17 @@ if ($masteryUserDataPath -ne $xmCoreUserData) {
 }
 
 foreach ($pattern in $config.RuntimePatterns) {
-    Test-Contains -Path $xmFinalGalaxy -Pattern $pattern -Simple
-}
-
-$helperName = if ($Commander -eq "AbathurReborn") { "Abathur" } else { $Commander }
-foreach ($headerPattern in @(
-    "libE0EAE146_gf_${helperName}CreateMapStartSquad",
-    "libE0EAE146_gf_${helperName}CreateCargoSquad"
-)) {
-    Test-Contains -Path $xmFinalHeader -Pattern $headerPattern -Simple
+    Test-AnyContains -Paths $xmFinalGalaxyPaths -Pattern $pattern -Simple -Label "XMFinal galaxy files"
 }
 
 if ($RequireXMFinalDependency -or (Test-Path -LiteralPath (Join-Path $xmFinal "DocumentInfo"))) {
-    Test-Contains -Path (Join-Path $xmFinal "DocumentInfo") -Pattern ("file:Mods\XM\{0}" -f $config.Module) -Simple
+    $xmFinalDependency = "file:Mods\XM\{0}" -f $config.Module
+    Test-Contains -Path (Join-Path $xmFinal "DocumentInfo") -Pattern $xmFinalDependency -Simple
+    Test-H2CSDocumentHeaderDependency -Path (Join-Path $xmFinal "DocumentHeader") -Dependency $xmFinalDependency
 }
 
 foreach ($pattern in $config.ModulePatterns) {
-    Test-AnyContains -Paths $moduleXmlPaths -Pattern $pattern -Simple
+    Test-AnyContains -Paths $moduleXmlPaths -Pattern $pattern -Simple -Label "$($config.Module) XML files"
 }
 
 foreach ($pattern in $config.CorePatterns) {
@@ -510,13 +615,13 @@ foreach ($pattern in $config.CorePatterns) {
 }
 
 foreach ($pattern in $config.LocalizedPatterns) {
-    Test-AnyContains -Paths $modsStringPaths -Pattern $pattern -Simple
+    Test-AnyContains -Paths $modsStringPaths -Pattern $pattern -Simple -Label "localized string files"
 }
 
 $officialMasteries = Get-OfficialMasteryUpgrades -CommanderDir $config.OfficialDir
 foreach ($masteryUpgrade in $officialMasteries) {
     Test-Contains -Path $masteryUserDataPath -Pattern ("Upgrade Upgrade=`"{0}`"" -f $masteryUpgrade) -Simple
-    Test-AnyContains -Paths $allXmXmlPaths -Pattern $masteryUpgrade -Simple
+    Test-AnyContains -Paths $allXmXmlPaths -Pattern $masteryUpgrade -Simple -Label "all XM XML files"
 }
 
 if ($RequireLauncherCandidate -and -not $config.SkipLauncher) {
