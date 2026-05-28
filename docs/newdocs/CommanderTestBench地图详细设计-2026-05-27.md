@@ -23,17 +23,17 @@ references/testbench/CommanderTestBench.SC2Map/
 
 注意：SVG 只是说明图，SC2 不能加载 SVG。SC2 实际加载的是 `.SC2Map` 地图包目录。当前地图包已经用真实 `.SC2Map` 模板生成，并且 `MapScript.galaxy` 已改成调用 `XMFinal` 的 `XMTestBench_*` runtime API；仍需用 SC2 Editor 打开确认编译和运行。
 
-当前优先打开 `原始mod/Maps/XM/CommanderTestBench.SC2Map/`。这份地图沿用现有战役地图的目录结构，`DocumentInfo` 中的 `file:Mods\XM\XMFinal.SC2Mod` 可以解析到 `原始mod/Mods/XM/XMFinal.SC2Mod`。`references/testbench/CommanderTestBench.SC2Map/` 保留为资料副本；直接从 `references/testbench` 打开时，依赖路径可能找不到 `XMFinal.SC2Mod`。
+当前 `合作指挥官版起义狂潮/` 是开发主线，但该目录下暂未发现 `Maps/XM/CommanderTestBench.SC2Map/`。需要测试台时，先使用 `原始mod/Maps/XM/CommanderTestBench.SC2Map/` 作为新写法/回归线的测试资产，或将其迁回当前主线后再验证 `DocumentInfo` 依赖解析。
 
 ## 放置建议
 
-推荐先作为独立测试资产，不放在失败半成品目录里：
+推荐先作为独立测试资产保留资料副本：
 
 ```text
 references/testbench/CommanderTestBench.SC2Map/
 ```
 
-后续如果需要打包到游戏内，可以再复制或发布到正式 `Maps/XM/`。测试设计和实现不要以 `合作指挥官版起义狂潮/` 为权威来源。
+后续如果需要打包到游戏内，可以再复制或发布到当前开发主线的 `Maps/XM/`。测试设计和实现不要把任一本地工程线当作官方权威来源。
 
 当前已经同步一份直接加载副本：
 

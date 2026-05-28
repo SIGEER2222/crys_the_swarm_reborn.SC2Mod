@@ -99,6 +99,8 @@ CURATED_COMMANDER_UNIT_IDS = {
         "ZagaraVoidCoop",
     ],
     "Stukov": [
+        "SIOverlord",
+        "SIDiamondBack",
         "StukovInfestedBanshee",
         "SILiberator",
     ],
@@ -235,6 +237,20 @@ TECH_PRODUCTION_COMMAND_OVERRIDES = {
                 "producer_unit_id": "SISCV",
                 "button_face": "SISupplyDepot",
                 "abil_cmd": "SIAdvancedBuild,Build2",
+            },
+        ],
+        "SIOverlord": [
+            {
+                "producer_unit_id": "SICommandCenter",
+                "button_face": "SIOverlord",
+                "abil_cmd": "SICommandCenterTrain,Train3",
+            },
+        ],
+        "SIDiamondBack": [
+            {
+                "producer_unit_id": "SIFactory",
+                "button_face": "SIDiamondBack",
+                "abil_cmd": "SIFactoryTrain,Train3",
             },
         ],
         "StukovInfestedBanshee": [

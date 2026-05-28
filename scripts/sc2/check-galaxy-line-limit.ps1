@@ -9,21 +9,20 @@ $ErrorActionPreference = 'Stop'
 if ([string]::IsNullOrWhiteSpace($Root)) {
     $repoRoot = Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..')
     $scenarioRoots = @(Get-ChildItem -LiteralPath $repoRoot.Path -Directory | Where-Object {
-            (Test-Path -LiteralPath (Join-Path $_.FullName ([System.IO.Path]::Combine('Mods', 'XM', 'XMFinal.SC2Mod', 'Base.SC2Data')))) -and
-            (Test-Path -LiteralPath (Join-Path $_.FullName ([System.IO.Path]::Combine('Maps', 'XM', 'CommanderTestBench.SC2Map'))))
+            Test-Path -LiteralPath (Join-Path $_.FullName ([System.IO.Path]::Combine('Mods', 'XM', 'XMFinal.SC2Mod', 'Base.SC2Data')))
         })
-
-    if ($scenarioRoots.Count -eq 0) {
-        $scenarioRoots = @(Get-ChildItem -LiteralPath $repoRoot.Path -Directory | Where-Object {
-                Test-Path -LiteralPath (Join-Path $_.FullName ([System.IO.Path]::Combine('Mods', 'XM', 'XMFinal.SC2Mod', 'Base.SC2Data')))
-            })
-    }
 
     if ($scenarioRoots.Count -eq 0) {
         throw "Could not locate XMFinal.SC2Mod under top-level scenario directories. Pass -Root explicitly."
     }
 
-    $scenarioRoot = $scenarioRoots | Sort-Object @{ Expression = { $_.Name.Length } }, Name | Select-Object -First 1
+    $preferredNames = @('合作指挥官版起义狂潮', '原始mod', 'originalmod')
+    $scenarioRoot = $scenarioRoots |
+        Sort-Object @{ Expression = {
+                $index = [array]::IndexOf($preferredNames, $_.Name)
+                if ($index -ge 0) { $index } else { $preferredNames.Count }
+            } }, Name |
+        Select-Object -First 1
     $Root = Join-Path $scenarioRoot.FullName ([System.IO.Path]::Combine('Mods', 'XM', 'XMFinal.SC2Mod', 'Base.SC2Data'))
 }
 
