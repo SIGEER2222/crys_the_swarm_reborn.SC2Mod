@@ -772,7 +772,20 @@
     <SubgroupPriority value="114"></SubgroupPriority>
     <Collide index="Ground" value="0"></Collide>
   </CUnit>
-  <CUnit id="BroodLordCocoon">
+  <CUnit id="BroodLord">
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <ScoreMake value="0"></ScoreMake>
+    <ScoreKill value="0"></ScoreKill>
+    <CardLayouts index="0">
+      <LayoutButtons Face="BroodlordSpeed" Type="Passive" Requirements="HaveBroodlordSpeed" Row="2" Column="1"></LayoutButtons>
+    </CardLayouts>
+    <KillXP value="0"></KillXP>
+    <DamageDealtXP value="0"></DamageDealtXP>
+    <DamageTakenXP value="0"></DamageTakenXP>
+    <SubgroupPriority value="114"></SubgroupPriority>
+  </CUnit>
+
+  <CUnit id="BroodLordCocoon">
     <ScoreKill value="0"></ScoreKill>
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
@@ -1097,29 +1110,6 @@
     <LeaderAlias value=""></LeaderAlias>
   </CUnit>
   <CUnit id="CoopCasterKerrigan" parent="CoopGlobalCaster">
-    <Race value="Zerg"></Race>
-    <AbilArray Link="PrimalSlash"></AbilArray>
-    <AbilArray Link="PsiStrikeWalk"></AbilArray>
-    <AbilArray Link="KerriganVoidCoopEconDrop"></AbilArray>
-    <AbilArray Link="KerriganVoidCoopCrushingGripWave"></AbilArray>
-    <BehaviorArray Link="Unmoved"></BehaviorArray>
-    <CardLayouts index="0">
-      <LayoutButtons index="0" Row="0"></LayoutButtons>
-      <LayoutButtons Face="QueenofBladesLocked" Type="Passive" Requirements="KerriganLevel15" Row="1" Column="4"></LayoutButtons>
-      <LayoutButtons Face="CommanderKerriganKerriganEnergyRegeneration" Type="Passive" Row="1" Column="4"></LayoutButtons>
-      <LayoutButtons Face="KerriganAssimilation" Type="Passive" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="KerriganChainLightning" Type="Passive" Requirements="KerriganLevel09" Row="1" Column="1"></LayoutButtons>
-      <LayoutButtons Face="ChainReaction" Type="Passive" Requirements="HaveK5ChainLightning" Row="1" Column="1"></LayoutButtons>
-      <LayoutButtons Face="K5CooldownsLocked" Type="Passive" Requirements="KerriganLevel09" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="K5Cooldowns" Type="Passive" Requirements="HaveK5Cooldowns" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="KerriganFuryLocked" Type="Passive" Requirements="KerriganLevel10" Row="1" Column="3"></LayoutButtons>
-      <LayoutButtons Face="K5Fury" Type="Passive" Row="1" Column="3"></LayoutButtons>
-      <LayoutButtons Face="PrimalSlash" Type="AbilCmd" AbilCmd="PrimalSlash,Execute" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="PsiStrike" Type="AbilCmd" AbilCmd="PsiStrikeWalk,Execute" Row="2" Column="1"></LayoutButtons>
-      <LayoutButtons Face="KerriganVoidCoopEconDrop" Type="AbilCmd" AbilCmd="KerriganVoidCoopEconDrop,Execute" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="KerriganVoidCoopCrushingGripWave" Type="AbilCmd" AbilCmd="KerriganVoidCoopCrushingGripWave,Execute" Row="2" Column="3"></LayoutButtons>
-      <LayoutButtons Face="KerriganCrushingGripWaveLocked" Type="Passive" Requirements="KerriganLevel02" Row="2" Column="3"></LayoutButtons>
-    </CardLayouts>
     <EditorCategories value="ObjectType:Other,ObjectFamily:FactionEvolved"></EditorCategories>
     <LeaderAlias value=""></LeaderAlias>
   </CUnit>
@@ -1981,12 +1971,12 @@
     <CardLayouts index="0">
       <LayoutButtons Face="DevourerAoEDamage" Type="Passive" Requirements="HaveDevourerAoEDamage" Row="1" Column="0"></LayoutButtons>
       <LayoutButtons Face="CorrosiveAcidDevourer" Type="AbilCmd" AbilCmd="CorrosiveAcid,Execute" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanDevourer,Train1" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
-    </CardLayouts>
+      <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanDevourer,Train1" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
+    </CardLayouts>
     <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
     <SubgroupPriority value="17"></SubgroupPriority>
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"></EditorCategories>
@@ -7486,31 +7476,21 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
   </CUnit>
-  <CUnit id="Mutalisk">
-    <CardLayouts index="0">
-      <LayoutButtons index="5" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons index="6" Row="1" Column="1"></LayoutButtons>
-      <LayoutButtons index="7" Row="1"></LayoutButtons>
-      <LayoutButtons index="8" Face="MorphtoDevourer" Type="AbilCmd" AbilCmd="MutaliskMorphToDevourer,Train1" Column="1"></LayoutButtons>
-      <LayoutButtons Face="MorphToGuardian" Type="AbilCmd" AbilCmd="MutaliskMorphToGuardian,Train1" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="StukovInfestedWildMutation" Type="AbilCmd" AbilCmd="StukovInfestedWildMutation,Execute" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanMutalisk,Train1" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
-    </CardLayouts>
+  <CUnit id="Mutalisk">
+    <CardLayouts index="0">
+      <LayoutButtons index="5" Row="1" Column="2"></LayoutButtons>
+      <LayoutButtons index="6" Row="1" Column="1"></LayoutButtons>
+      <LayoutButtons index="7" Row="1"></LayoutButtons>
+      <LayoutButtons Face="BroodLord" Type="AbilCmd" AbilCmd="MutaliskMorphToBroodLord,Train1" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
     <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
     <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
-    <AbilArray Link="MutaliskMorphToGuardian"></AbilArray>
-    <AbilArray Link="MutaliskMorphToDevourer"></AbilArray>
+    <AbilArray Link="MutaliskMorphToBroodLord"></AbilArray>
     <AbilArray Link="que1"></AbilArray>
-    <AbilArray Link="EvolveToLeviathanMutalisk"></AbilArray>
-    <AbilArray Link="StukovInfestedWildMutation"></AbilArray>
     <SubgroupPriority value="113"></SubgroupPriority>
   </CUnit>
   <CUnit id="MutaliskBroodlord">
@@ -7688,7 +7668,6 @@
     <SubgroupPriority value="67"></SubgroupPriority>
     <CardLayouts index="0">
       <LayoutButtons Face="CommanderPrestigeKaraxChronoBoostLocked" Type="Passive" Requirements="CommanderPrestigeKaraxTopBar" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="AutomatedAssimilatorZeratul" Type="AbilCmd" AbilCmd="NexusBuild,Build1" Row="0" Column="1"></LayoutButtons>
     </CardLayouts>
     <FlagArray index="TownStructureTownHall" value="1"></FlagArray>
   </CUnit>

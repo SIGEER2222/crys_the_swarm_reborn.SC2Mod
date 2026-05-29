@@ -2,38 +2,51 @@
 
 - 当前 active Mod：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\合作指挥官版起义狂潮`
 - 指挥官模块：`XMAbathur.SC2Mod`（存在：是）
+- 旧线初始化开局单位：hatchery、drone、overlord
 - Wiki主要部队文件：`wikitext/01-abathur.wiki`
 - Wiki主要部队：蟑螂、虫后、破坏者、虫群宿主、异龙、守护者、吞噬者、飞蛇、莽兽、利维坦、眼虫、脊针爬虫、孢子爬虫、虫道网络
-- 判定口径：wiki用于中文主要部队名单；官方JSON用于ID、生产链、生命/人口/费用；active Mod只检查`合作指挥官版起义狂潮`的本指挥官模块加`XMCore/XMFinal`。
+- 判定口径：wiki用于中文主要部队名单；官方JSON用于ID、生产链、生命/人口/费用；active 侧先看本指挥官模块和 `XMCore/XMFinal`，再看 `XMFinal.SC2Mod/DocumentInfo` 实际运行闭包，最后只把官方镜像作为事实参考。
 
 ## 汇总
 
-| Wiki项 | 官方行 | Wiki未匹配官方 | 官方补充未在Wiki | 当前Mod未命中 | 仅文本命中 | 生产链异常 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 14 | 14 | 0 | 1 | 0 | 0 | 0 |
+| Wiki项 | 官方行 | Wiki未匹配官方 | 官方补充未在Wiki | 当前Mod未命中 | 仅文本命中 | 运行闭包命中 | 仅官方合作镜像 | 底层继承候选 | 生产链异常 | 生产链运行闭包 | 生产链底层候选 | 官方面板缺口 | 特殊面板项 | 命令卡露出产物缺CUnit | 外来生产链露出 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 14 | 14 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 11 |
 
 ## 三方对照
 
-| Wiki项 | 匹配 | 分类 | 官方名称 | ID | 当前Mod | 生产链状态 | 生产/建造/变形 | 数值 | 定义文件 | 备注 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 蟑螂 | 精确匹配 | 单位 | 蟑螂 | Roach | CUnit已定义：Roach | 生产链已命中 | Larva / LarvaTrain / 75晶体矿，25瓦斯，27秒 | 生命145，人口2，视野9；75晶体矿，25瓦斯，27秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 蟑螂 | 精确匹配 | 单位 | 蟑螂 | RoachCorpser | CUnit已定义：RoachCorpser | 生产链已命中 | Drone / ZergBuild / 55秒 | 生命145；55秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 虫后 | 精确匹配 | 单位 | 虫后 | SwarmQueen | CUnit已定义：SwarmQueen, Queen, QueenCoop | 生产链已命中 | Hatchery / TrainQueen / 50秒 | 50秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 破坏者 | 精确匹配 | 单位 | 破坏者 | RavagerAbathur | CUnit已定义：RavagerAbathur, Ravager | 生产链已命中 | Roach / MorphRoachToRavager / 50晶体矿，50瓦斯，9秒 | 生命120，人口3，视野9；50晶体矿，50瓦斯，9秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 虫群宿主 | 精确匹配 | 单位 | 虫群宿主 | SwarmHost | CUnit已定义：SwarmHost | 生产链已命中 | Larva / LarvaTrain / 40秒 | 40秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 异龙 | 精确匹配 | 单位 | 异龙 | Mutalisk | CUnit已定义：Mutalisk | 生产链已命中 | Larva / LarvaTrain / 100晶体矿，100瓦斯，33秒 | 生命120，人口2，视野11；100晶体矿，100瓦斯，33秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 守护者 | 精确匹配 | 单位 | 守护者 | GuardianMP | CUnit已定义：GuardianMP | 生产链已命中 | Mutalisk / MutaliskMorphToGuardian / 50晶体矿，100瓦斯，15秒 | 生命150，人口2，视野13；50晶体矿，100瓦斯，15秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 吞噬者 | 精确匹配 | 单位 | 吞噬者 | DevourerMP | CUnit已定义：Devourer | 生产链已命中 | Mutalisk / MutaliskMorphToDevourer / 150晶体矿，50瓦斯，15秒 | 生命250，人口2，视野9；150晶体矿，50瓦斯，15秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 飞蛇 | 精确匹配 | 单位 | 飞蛇 | Viper | CUnit已定义：Viper | 生产链已命中 | Larva / LarvaTrain / 100晶体矿，200瓦斯，29秒 | 生命150，人口3，视野11；100晶体矿，200瓦斯，29秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 莽兽 | 精确匹配 | 单位 | 莽兽 | Brutalisk | CUnit已定义：Brutalisk | 生产链已命中 | RavagerAbathur / EvolveToBrutaliskRavager / 375晶体矿，225瓦斯，5秒 | 375晶体矿，225瓦斯，5秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 利维坦 | 精确匹配 | 单位 | 利维坦 | Leviathan | CUnit已定义：Leviathan | 生产链已命中 | GuardianMP / EvolveToLeviathanGuardianMP / 5秒 | 5秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 眼虫 | Wiki补充ID | 单位 | 眼虫 | Overseer | CUnit已定义：Overseer | 官方JSON无生产链 |  |  | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml | wiki主要部队补充：官方JSON未列出眼虫，按通用眼虫ID检查当前Mod。 |
-| 脊针爬虫 | 精确匹配 | 建筑 | 脊针爬虫 | SpineCrawler | CUnit已定义：SpineCrawler | 生产链已命中 | Drone / ZergBuild / 150晶体矿，50秒 | 生命300，视野11；150晶体矿，50秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 孢子爬虫 | 精确匹配 | 建筑 | 孢子爬虫 | SporeCrawler | CUnit已定义：SporeCrawler | 生产链已命中 | Drone / ZergBuild / 125晶体矿，30秒 | 生命300，视野11；125晶体矿，30秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
-| 虫道网络 | Wiki补充ID | 建筑 | 虫道网络 | NydusNetwork | CUnit已定义：NydusNetwork | 官方JSON无生产链 |  |  | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml | wiki主要部队补充：官方JSON未列出该建筑时按虫道网络ID检查。 |
-|  | 官方补充 | 单位 | 蟑螂 | RoachVile | CUnit已定义：RoachVile | 生产链已命中 | Drone / ZergBuild / 55秒 | 生命145；55秒 | Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml | 官方JSON有，wiki主要部队未列。 |
+| Wiki项 | 匹配 | 分类 | 官方名称 | ID | 当前Mod | 生产链状态 | 当前面板 | 生产/建造/变形 | 数值 | 定义文件 | 备注 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 蟑螂 | 精确匹配 | 单位 | 蟑螂 | Roach | 当前模块CUnit：Roach；XMFinal运行闭包CUnit：Roach；底层基础镜像CUnit：Roach；官方合作镜像CUnit：Roach | 生产链已命中 | 当前面板已露出：LarvaTrain,Train10 -> Roach | Larva / LarvaTrain / 75晶体矿，25瓦斯，27秒 | 生命145，人口2，视野9；75晶体矿，25瓦斯，27秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 蟑螂 | 精确匹配 | 单位 | 蟑螂 | RoachCorpser | 当前模块CUnit：RoachCorpser；XMFinal运行闭包CUnit：RoachCorpser；底层基础镜像CUnit：RoachCorpser；官方合作镜像CUnit：RoachCorpser | 生产链已命中 | 当前面板已露出：ZergBuild,Build14 -> RoachWarren | Drone / ZergBuild / 55秒 | 生命145；55秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 虫后 | 精确匹配 | 单位 | 虫后 | SwarmQueen | 当前模块CUnit：SwarmQueen, Queen, QueenCoop；XMFinal运行闭包CUnit：SwarmQueen, Queen, QueenCoop；底层基础镜像CUnit：SwarmQueen, Queen；官方合作镜像CUnit：SwarmQueen, Queen, QueenCoop | 生产链已命中 | 当前面板已露出：TrainQueen,Train1 -> Queen | Hatchery / TrainQueen / 50秒 | 50秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMAbathurReborn.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 破坏者 | 精确匹配 | 单位 | 破坏者 | RavagerAbathur | 当前模块CUnit：RavagerAbathur, Ravager；XMFinal运行闭包CUnit：RavagerAbathur, Ravager；底层基础镜像CUnit：Ravager；官方合作镜像CUnit：RavagerAbathur, Ravager | 生产链已命中 | 当前面板已露出：MorphRoachToRavager,Train1 -> RavagerAbathur | Roach / MorphRoachToRavager / 50晶体矿，50瓦斯，9秒 | 生命120，人口3，视野9；50晶体矿，50瓦斯，9秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 虫群宿主 | 精确匹配 | 单位 | 虫群宿主 | SwarmHost | 当前模块CUnit：SwarmHost；XMFinal运行闭包CUnit：SwarmHost；底层基础镜像CUnit：SwarmHost；官方合作镜像CUnit：SwarmHost | 生产链已命中 | 当前面板已露出：LarvaTrain,Train16 -> SwarmHostMP | Larva / LarvaTrain / 40秒 | 40秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 异龙 | 精确匹配 | 单位 | 异龙 | Mutalisk | 当前模块CUnit：Mutalisk；XMFinal运行闭包CUnit：Mutalisk；底层基础镜像CUnit：Mutalisk；官方合作镜像CUnit：Mutalisk | 生产链已命中 | 当前面板已露出：LarvaTrain,Train5 -> Mutalisk | Larva / LarvaTrain / 100晶体矿，100瓦斯，33秒 | 生命120，人口2，视野11；100晶体矿，100瓦斯，33秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 守护者 | 精确匹配 | 单位 | 守护者 | GuardianMP | 当前模块CUnit：GuardianMP；XMFinal运行闭包CUnit：GuardianMP；底层基础镜像CUnit：GuardianMP；官方合作镜像CUnit：GuardianMP | 生产链已命中 | 当前面板已露出：MutaliskMorphToGuardian,Train1 -> GuardianMP | Mutalisk / MutaliskMorphToGuardian / 50晶体矿，100瓦斯，15秒 | 生命150，人口2，视野13；50晶体矿，100瓦斯，15秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 吞噬者 | 精确匹配 | 单位 | 吞噬者 | DevourerMP | 当前模块CUnit：Devourer；XMFinal运行闭包CUnit：Devourer；底层基础镜像CUnit：DevourerMP, Devourer；官方合作镜像CUnit：DevourerMP, Devourer | 生产链已命中 | 当前面板已露出：MutaliskMorphToDevourer,Train1 -> Devourer | Mutalisk / MutaliskMorphToDevourer / 150晶体矿，50瓦斯，15秒 | 生命250，人口2，视野9；150晶体矿，50瓦斯，15秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 飞蛇 | 精确匹配 | 单位 | 飞蛇 | Viper | 当前模块CUnit：Viper；XMFinal运行闭包CUnit：Viper；底层基础镜像CUnit：Viper；官方合作镜像CUnit：Viper | 生产链已命中 | 当前面板已露出：LarvaTrain,Train13 -> Viper | Larva / LarvaTrain / 100晶体矿，200瓦斯，29秒 | 生命150，人口3，视野11；100晶体矿，200瓦斯，29秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 莽兽 | 精确匹配 | 单位 | 莽兽 | Brutalisk | 当前模块CUnit：Brutalisk；XMFinal运行闭包CUnit：Brutalisk；底层基础镜像CUnit：Brutalisk；官方合作镜像CUnit：Brutalisk | 生产链已命中 | 当前面板已露出：EvolveToBrutaliskRavager,Train1 -> Brutalisk | RavagerAbathur / EvolveToBrutaliskRavager / 375晶体矿，225瓦斯，5秒 | 375晶体矿，225瓦斯，5秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml |  |
+| 利维坦 | 精确匹配 | 单位 | 利维坦 | Leviathan | 当前模块CUnit：Leviathan；XMFinal运行闭包CUnit：Leviathan；底层基础镜像CUnit：Leviathan；官方合作镜像CUnit：Leviathan | 生产链已命中 | 当前面板已露出：EvolveToLeviathanGuardianMP,Train1 -> HotSLeviathan | GuardianMP / EvolveToLeviathanGuardianMP / 5秒 | 5秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMAbathurReborn.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>游戏数据/官方SC2原始文本镜像/campaigns/liberty.sc2campaign/base.sc2data/gamedata/unitdata.xml<br>游戏数据/官方SC2原始文本镜像/mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/unitdata.xml |  |
+| 眼虫 | Wiki补充ID | 单位 | 眼虫 | Overseer | 当前模块CUnit：Overseer；XMFinal运行闭包CUnit：Overseer；底层基础镜像CUnit：Overseer；官方合作镜像CUnit：Overseer | 官方JSON无生产链 | 官方JSON无生产链 |  |  | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml | wiki主要部队补充：官方JSON未列出眼虫，按通用眼虫ID检查当前Mod。 |
+| 脊针爬虫 | 精确匹配 | 建筑 | 脊针爬虫 | SpineCrawler | 当前模块CUnit：SpineCrawler；XMFinal运行闭包CUnit：SpineCrawler；底层基础镜像CUnit：SpineCrawler；官方合作镜像CUnit：SpineCrawler | 生产链已命中 | 当前面板已露出：ZergBuild,Build15 -> SpineCrawler | Drone / ZergBuild / 150晶体矿，50秒 | 生命300，视野11；150晶体矿，50秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMFenix.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMAbathurReborn.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>游戏数据/官方SC2原始文本镜像/campaigns/libertystory.sc2campaign/base.sc2data/gamedata/unitdata.xml |  |
+| 孢子爬虫 | 精确匹配 | 建筑 | 孢子爬虫 | SporeCrawler | 当前模块CUnit：SporeCrawler；XMFinal运行闭包CUnit：SporeCrawler；底层基础镜像CUnit：SporeCrawler；官方合作镜像CUnit：SporeCrawler | 生产链已命中 | 当前面板已露出：ZergBuild,Build16 -> SporeCrawler | Drone / ZergBuild / 125晶体矿，30秒 | 生命300，视野11；125晶体矿，30秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMAbathurReborn.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>游戏数据/官方SC2原始文本镜像/campaigns/libertystory.sc2campaign/base.sc2data/gamedata/unitdata.xml<br>游戏数据/官方SC2原始文本镜像/campaigns/swarmstory.sc2campaign/base.sc2data/gamedata/unitdata.xml |  |
+| 虫道网络 | Wiki补充ID | 建筑 | 虫道网络 | NydusNetwork | 当前模块CUnit：NydusNetwork；XMFinal运行闭包CUnit：NydusNetwork；底层基础镜像CUnit：NydusNetwork；官方合作镜像CUnit：NydusNetwork | 官方JSON无生产链 | 官方JSON无生产链 |  |  | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml | wiki主要部队补充：官方JSON未列出该建筑时按虫道网络ID检查。 |
+|  | 官方补充 | 单位 | 蟑螂 | RoachVile | 当前模块CUnit：RoachVile；XMFinal运行闭包CUnit：RoachVile；底层基础镜像CUnit：RoachVile；官方合作镜像CUnit：RoachVile | 生产链已命中 | 当前面板已露出：ZergBuild,Build14 -> RoachWarren | Drone / ZergBuild / 55秒 | 生命145；55秒 | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UnitData.xml<br>合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml | 官方JSON有，wiki主要部队未列。 |
 
 ## 优先排查项
+
+- 无。
+
+## 官方生产面板缺口
+
+说明：按官方 JSON 的生产链，映射到当前指挥官别名后，再检查当前指挥官模块里是否存在同一 `AbilCmd` 的单位命令卡按钮。`当前技能有槽但面板未露出` 是斯旺工厂这类问题的专门口径。
+
+- 无。
+
+## 非缺口特殊机制
+
+说明：这些项来自官方 JSON/ArmyCategory/Catalog，但官方自身也不是普通玩家命令卡入口；保留说明，避免后续继续误补按钮。
 
 - 无。
 
@@ -45,5 +58,35 @@
 
 | 分类 | 官方名称 | ID | 当前Mod | 生产链 | 数值 |
 | --- | --- | --- | --- | --- | --- |
-| 单位 | 蟑螂 | RoachVile | CUnit已定义：RoachVile | Drone / ZergBuild / 55秒 | 生命145；55秒 |
+| 单位 | 蟑螂 | RoachVile | 当前模块CUnit：RoachVile；XMFinal运行闭包CUnit：RoachVile；底层基础镜像CUnit：RoachVile；官方合作镜像CUnit：RoachVile | Drone / ZergBuild / 55秒 | 生命145；55秒 |
+
+## 当前 active 命令卡露出产物缺 CUnit
+
+说明：只扫描当前指挥官模块里已挂到单位命令卡 `AbilCmd="技能,命令"` 的 `CAbilTrain/CAbilWarpTrain/CAbilBuild/CAbilMorph` 产物。产物在当前模块、XM共享模块、XMFinal运行闭包和底层基础镜像都没有 `CUnit` 时列在这里；这类才是当前 Mod 玩家按钮链路的直接风险。XML 注释已在扫描前剔除。
+
+- 无。
+
+## 当前 active 外来生产链露出
+
+说明：这些按钮的产物能在 XMFinal 运行闭包或官方合作镜像中解析，但生产者不属于该指挥官官方体系。它们不是“缺 CUnit”，更像跨指挥官命令卡污染或共享基础单位需要加选择门槛。
+
+| 产物ID | 命中状态 | 引用技能 | 露出命令 | 生产者 | 生产者归属 | 开局归属 | 按钮门槛 | 引用文件 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| HiveMindEmulator | XMFinal运行闭包CUnit：HiveMindEmulator；底层基础镜像CUnit：HiveMindEmulator；官方合作镜像CUnit：HiveMindEmulator | TerranBuild | TerranBuild,Build22 | SCV | SCV:官方无 | SCV:开局无 | UseHiveMindEmulator | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| PsiDisruptor | XMFinal运行闭包CUnit：PsiDisruptor；底层基础镜像CUnit：PsiDisruptor；官方合作镜像CUnit：PsiDisruptor | TerranBuild | TerranBuild,Build8 | SCV | SCV:官方无 | SCV:开局无 | UsePsiDisruptor | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SICocoonInfestedBanshee | XMFinal运行闭包CUnit：SICocoonInfestedBanshee；官方合作镜像CUnit：SICocoonInfestedBanshee | SIStarportTrain | SIStarportTrain,Train1 | SIStarport | SIStarport:官方无 | SIStarport:开局无 | HaveAttachedTechLab | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SICocoonInfestedLiberator | XMFinal运行闭包CUnit：SICocoonInfestedLiberator；官方合作镜像CUnit：SICocoonInfestedLiberator | SIStarportTrain | SIStarportTrain,Train2 | SIStarport | SIStarport:官方无 | SIStarport:开局无 |  | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SICocoonInfestedMarine | XMFinal运行闭包CUnit：SICocoonInfestedMarine；官方合作镜像CUnit：SICocoonInfestedMarine | SIBarracksTrain | SIBarracksTrain,Train1 | SIBarracks | SIBarracks:官方无 | SIBarracks:开局无 |  | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SICocoonInfestedOverlord | XMFinal运行闭包CUnit：SICocoonInfestedOverlord；官方合作镜像CUnit：SICocoonInfestedOverlord | SICommandCenterTrain | SICommandCenterTrain,Train3 | SICommandCenter | SICommandCenter:官方无 | SICommandCenter:开局无 |  | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SICocoonInfestedSCV | XMFinal运行闭包CUnit：SICocoonInfestedSCV；官方合作镜像CUnit：SICocoonInfestedSCV | SICommandCenterTrain | SICommandCenterTrain,Train1 | SICivilianStructure, SICommandCenter | SICivilianStructure:官方无, SICommandCenter:官方无 | SICivilianStructure:开局无, SICommandCenter:开局无 |  | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SICocoonQueen | XMFinal运行闭包CUnit：SICocoonQueen；官方合作镜像CUnit：SICocoonQueen | SIStarportTrain | SIStarportTrain,Train3 | SIStarport | SIStarport:官方无 | SIStarport:开局无 | HaveAttachedTechLab | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SIEngineeringBay | XMFinal运行闭包CUnit：SIEngineeringBay；官方合作镜像CUnit：SIEngineeringBay | SIAdvancedBuild | SIAdvancedBuild,Build5 | SISCV | SISCV:官方无 | SISCV:开局无 | HaveSICommandCenter | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SIInfestedBunker | XMFinal运行闭包CUnit：SIInfestedBunker；官方合作镜像CUnit：SIInfestedBunker | SIAdvancedBuild | SIAdvancedBuild,Build15 | SISCV | SISCV:官方无 | SISCV:开局无 | HaveInfestedBarracks | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+| SIMissileTurret | XMFinal运行闭包CUnit：SIMissileTurret；官方合作镜像CUnit：SIMissileTurret | SIAdvancedBuild | SIAdvancedBuild,Build6 | SISCV | SISCV:官方无 | SISCV:开局无 | HaveSIEngineeringBay | 合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml |
+
+## 当前 active 隐藏技能产物缺 CUnit
+
+说明：这些产物在当前模块的技能 `InfoArray` 中存在，但没有发现对应命令卡 `AbilCmd="技能,命令"`。它们通常是旧官方/编辑器残留或未开放设计，默认不按玩家可点建筑按钮修。
+
+- 无。
 
