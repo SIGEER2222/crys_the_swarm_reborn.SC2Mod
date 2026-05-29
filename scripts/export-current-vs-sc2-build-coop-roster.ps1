@@ -14,7 +14,7 @@ if ([string]::IsNullOrWhiteSpace($OutputPath)) {
 }
 
 if ([string]::IsNullOrWhiteSpace($Sc2BuildExportRoot)) {
-    $Sc2BuildExportRoot = Join-Path $repoRoot "references\sc2-build-96883-casc-export"
+    $Sc2BuildExportRoot = Join-Path $repoRoot "游戏数据\官方SC2原始文本镜像"
 }
 
 if ([string]::IsNullOrWhiteSpace($ScenarioRoot)) {
@@ -767,7 +767,7 @@ $report.Add("")
 $report.Add("## 口径")
 $report.Add("")
 $report.Add("- 当前侧：只读取 合作指挥官版起义狂潮/Mods/XM/<Commander>.SC2Mod 当前实际文件。")
-$report.Add("- 参考侧：读取 references/sc2-build-96883-casc-export，该目录来自本机 E:\SC2\SC2new\StarCraft II\SC2Data 的 CASC 直接抽取，Product=s2，Build=96883。")
+$report.Add("- 参考侧：读取 游戏数据/官方SC2原始文本镜像；旧 references/sc2-build-96883-casc-export 已废弃，不再作为官方事实源。")
 $report.Add("- 条目集合：17 位指挥官沿用 docs/维基指挥官/兵种/all_commanders_data.json 作为待检查清单；阿拉纳克因该 JSON 缺失，沿用 docs/指挥官威望/阿拉纳克.md 的主战单位/光子炮台清单。")
 $report.Add("- 官方 ID、模型、actor、能力引用均从 Build 96883 导出解析；不再使用旧 references/official-casc-export。")
 $report.Add("- 官方候选解析会穿透 ArmyCategory.Unit 和升级中的 Unit 名称改写，例如 CarrierPurifier -> Tempest、ACAlarakSlayer -> Stalker。")

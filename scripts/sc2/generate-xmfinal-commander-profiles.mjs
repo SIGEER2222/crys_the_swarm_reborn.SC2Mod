@@ -30,24 +30,32 @@ const unitAliases = {
     ScienceVessel: "ScienceVesselSwann",
     Wraith: "WraithSwann",
   },
+  Zagara: {
+    Zergling: "ZagaraZergling",
+  },
 };
 
 const wikiSupplementalRosterUnits = {
   Abathur: ["Overseer"],
-  Artanis: ["Tempest"],
+  Artanis: ["Tempest", "Reaver"],
   Dehaka: ["DehakaGuardian"],
   Fenix: ["Disruptor"],
   Kerrigan: ["LurkerMP", "Overseer"],
   Stukov: ["StukovInfestedDiamondBack", "SILiberator", "StukovInfestedBanshee", "OverseerStukov"],
   Swann: ["ThorSwann"],
+  Vorazun: ["DarkArchon"],
   Zagara: ["Overseer"],
 };
 
 const wikiSupplementalBuildingUnits = {
   Abathur: ["NydusNetwork"],
   Horner: ["MercenarySpaceStationMira", "MissileTurretMira"],
+  Karax: ["KhaydarinMonolith"],
+  Kerrigan: ["GreaterNydusWorm"],
   Stukov: ["SIInfestedBunker", "SIMissileTurret"],
   Tychus: ["TychusWarhoundAutoTurret"],
+  Vorazun: ["DarkPylon"],
+  Zagara: ["BileLauncherZagara"],
 };
 
 const abilityObjectAliases = {
@@ -59,6 +67,12 @@ const abilityObjectAliases = {
 };
 
 const abilityRowOverrides = {
+  Abathur: {
+    Viper: {
+      ViperConsume: { abilityId: "ViperConsumption" },
+      ViperConsumeStructure: { abilityId: "ViperConsumption" },
+    },
+  },
   Nova: {
     GhostNova: {
       ChannelSnipe: { buttonId: "Snipe_BlackOps", abilityId: "Snipe_BlackOps" },
@@ -71,6 +85,23 @@ const abilityRowOverrides = {
   Dehaka: {
     DehakaCreeperFlying: {
       DehakaLocustFlyingSwoop: { buttonId: "DehakaLocustSwoop", abilityId: "DehakaLocustFlyingSwoopAttack" },
+    },
+  },
+  Swann: {
+    Hercules: {
+      HyperjumpHercules: { abilityId: "HyperjumpSwann" },
+      Hyperjump: { abilityId: "HyperjumpSwann" },
+    },
+    ScienceVessel: {
+      FleetwideJump: { abilityId: "HyperjumpRSwann" },
+      NanoRepair: { abilityId: "NanoRepairSwann" },
+      DefensiveMatrixTarget: { abilityId: "DefensiveMatrixSwann" },
+    },
+  },
+  Zagara: {
+    Zergling: {
+      Baneling: { abilityId: "MorphToBaneling" },
+      MorphZerglingToBaneling: { abilityId: "MorphToBaneling" },
     },
   },
 };
@@ -477,7 +508,11 @@ function isIgnoredButton(button) {
   const face = button.face || "";
   const rawAbilityId = rawAbilityIdFrom(button.abil_cmd || "");
   const abilityId = abilityIdFrom(button.abil_cmd || "");
+  const hasButtonPayload = button.button && Object.keys(button.button).length > 0;
   if (ignoredFaces.has(face) || ignoredAbilities.has(rawAbilityId)) {
+    return true;
+  }
+  if (!face && !(button.requirements || "") && !hasButtonPayload) {
     return true;
   }
   if (!face && !abilityId && !(button.requirements || "")) {

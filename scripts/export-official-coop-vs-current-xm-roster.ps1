@@ -15,7 +15,7 @@ if ([string]::IsNullOrWhiteSpace($OutputPath)) {
 }
 
 if ([string]::IsNullOrWhiteSpace($Sc2BuildExportRoot)) {
-    $Sc2BuildExportRoot = Join-Path $repoRoot "references\sc2-build-96883-casc-export"
+    $Sc2BuildExportRoot = Join-Path $repoRoot "游戏数据\官方SC2原始文本镜像"
 }
 
 if ([string]::IsNullOrWhiteSpace($ScenarioRoot)) {
@@ -1695,7 +1695,7 @@ $report.Add("")
 $report.Add("## 口径")
 $report.Add("")
 $report.Add("- 主表：以本机 SC2 Build 96883 的官方合作指挥官数据为主，不再以维基 JSON 或当前 XM 已实现内容作为主清单。")
-$report.Add("- 官方来源：references/sc2-build-96883-casc-export，来自本机 E:\SC2\SC2new\StarCraft II\SC2Data 的 CASC 抽取，Product=s2，Build=96883。")
+$report.Add("- 官方来源：游戏数据/官方SC2原始文本镜像；旧 references/sc2-build-96883-casc-export 已废弃，不再作为官方事实源。")
 $report.Add("- 普通指挥官优先读取官方 TechUnit 的 PlayerCommanders 归属，并穿透 ArmyCategory.Unit、Unit/Name 改写与 CUnit。")
 $report.Add("- 泰凯斯读取官方 commandertychus.xml 的单位条目；德哈卡、蒙斯克、斯台特曼读取官方数据中可命名、可训练/建造/英雄相关的 CUnit ID 白名单。")
 $report.Add("- 当前侧 CUnit/能力/模型引用读取 合作指挥官版起义狂潮/Mods/XM/<Commander>.SC2Mod 及其 DocumentInfo 依赖模块；但若命中只来自其他指挥官模块依赖，而不是本模块或 XMCore，则单独记为 DependencyOnly。")

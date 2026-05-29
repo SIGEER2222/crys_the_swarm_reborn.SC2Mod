@@ -5,6 +5,7 @@ import process from "node:process";
 const root = process.cwd();
 const commandersRoot = path.join(root, "游戏数据", "官方合作指挥官", "commanders");
 const xmfinalRoot = path.join(root, "原始mod", "Mods", "XM", "XMFinal.SC2Mod", "Base.SC2Data");
+const officialMirrorRoot = path.join(root, "游戏数据", "官方SC2原始文本镜像");
 
 const galaxyFiles = {
   rosters: "LibE0EAE146_CommanderRosters.galaxy",
@@ -54,6 +55,10 @@ const aliases = {
     HHWraith: ["HHWraith", "WraithMira"],
     Predator: ["Predator", "WidowMineMira", "WidowMineMiraBurrowed"],
     Liberator: ["Liberator", "LiberatorMira", "LiberatorMiraAG"],
+  },
+  Zagara: {
+    Zergling: ["Zergling", "ZagaraZergling"],
+    ZagaraZergling: ["ZagaraZergling", "Zergling"],
   },
   Zeratul: {
     RoboticsFacilityWarp: ["RoboticsFacilityWarp", "ZeratulRoboticsFacility"],
@@ -123,10 +128,17 @@ function loadCatalogIndex() {
     "swarmmulti.sc2mod",
     "void.sc2mod",
     "voidmulti.sc2mod",
-  ].map((name) => path.join(root, "references", "sc2-build-96883-casc-export", "mods", name));
-  const catalogRoots = [path.join(root, "原始mod", "Mods", "XM"), ...officialModRoots];
+  ].map((name) => path.join(officialMirrorRoot, "mods", name));
+  const officialCampaignRoots = [
+    "liberty.sc2campaign",
+    "libertystory.sc2campaign",
+    "swarm.sc2campaign",
+    "void.sc2campaign",
+  ].map((name) => path.join(officialMirrorRoot, "campaigns", name));
+  const catalogRoots = [path.join(root, "原始mod", "Mods", "XM"), ...officialModRoots, ...officialCampaignRoots];
   const officialCoopReferenceRoots = [
-    path.join(root, "references", "sc2-build-96883-casc-export", "mods", "starcoop"),
+    path.join(officialMirrorRoot, "mods", "starcoop"),
+    ...officialCampaignRoots,
   ];
 
   for (const catalogRoot of catalogRoots) {

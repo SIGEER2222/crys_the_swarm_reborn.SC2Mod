@@ -6,7 +6,9 @@ const root = process.cwd();
 const xmfinalRoot = path.join(root, "原始mod", "Mods", "XM", "XMFinal.SC2Mod", "Base.SC2Data");
 const xmfinalGameData = path.join(xmfinalRoot, "GameData");
 const xmModsRoot = path.join(root, "原始mod", "Mods", "XM");
-const officialModsRoot = path.join(root, "references", "sc2-build-96883-casc-export", "mods");
+const officialMirrorRoot = path.join(root, "游戏数据", "官方SC2原始文本镜像");
+const officialModsRoot = path.join(officialMirrorRoot, "mods");
+const officialCampaignsRoot = path.join(officialMirrorRoot, "campaigns");
 const defaultOutputDir = path.join(root, "docs", "每日进度", "2026-05-28-XMFinal-Catalog深层依赖扫描");
 
 const profileFiles = [
@@ -22,6 +24,7 @@ const tagKinds = new Map([
   ["CUnit", "unit"],
   ["CUpgrade", "upgrade"],
   ["CWeaponLegacy", "weapon"],
+  ["CWeaponStrafe", "weapon"],
   ["CBehaviorBuff", "behavior"],
   ["CBehaviorVeterancy", "behavior"],
   ["CBehaviorResource", "behavior"],
@@ -94,6 +97,8 @@ const probableBaseGameRefs = new Map([
     "CasterNotHoldingPosition",
     "CasterShieldsLT1",
     "HasVespene",
+    "EMP2TargetFilters",
+    "HunterSeekerLaunchMissileTargetFilters",
     "IsNotBuried",
     "IsNotDisguisedChangeling",
     "IsNotEgg",
@@ -110,6 +115,14 @@ const probableBaseGameRefs = new Map([
     "TargetInCombat",
     "TargetNotHarmless",
     "noMarkers",
+  ])],
+  ["button", new Set([
+    "CloakOn",
+    "RallyCasual",
+    "RallyEggCasual",
+  ])],
+  ["effect", new Set([
+    "InterceptorFate",
   ])],
 ]);
 
@@ -248,13 +261,14 @@ function sourceScope(file) {
   const localPrefix = `${path.resolve(xmfinalGameData).toLowerCase()}${path.sep}`;
   const xmPrefix = `${path.resolve(xmModsRoot).toLowerCase()}${path.sep}`;
   const officialPrefix = `${path.resolve(officialModsRoot).toLowerCase()}${path.sep}`;
+  const officialCampaignsPrefix = `${path.resolve(officialCampaignsRoot).toLowerCase()}${path.sep}`;
   if (normalized.startsWith(localPrefix)) {
     return "xmfinal";
   }
   if (normalized.startsWith(xmPrefix)) {
     return "xm-dependency";
   }
-  if (normalized.startsWith(officialPrefix)) {
+  if (normalized.startsWith(officialPrefix) || normalized.startsWith(officialCampaignsPrefix)) {
     return "official-reference";
   }
   return "other";
@@ -283,6 +297,7 @@ function loadCatalogIndex() {
     xmfinalGameData,
     xmModsRoot,
     officialModsRoot,
+    officialCampaignsRoot,
   ];
   const seenFiles = new Set();
   for (const scanRoot of roots) {
@@ -415,6 +430,7 @@ function loadProfileUsage() {
       addUsage(profileUsage, "button", buttonId, usage);
       addUsage(profileUsage, "ability", abilityId, usage);
       addUsage(profileUsage, "requirement", requirementId, usage);
+      addUsage(profileUsage, "unit", casterId, usage);
     }
   }
   return profileUsage;
@@ -484,6 +500,10 @@ function addRef(refs, kind, id, field) {
 function extractReferences(node) {
   const refs = [];
   const text = node.text;
+  const ignoredEffectTags = new Set(["AINotifyEffect"]);
+  const ignoredEffectAttrs = new Set(["AINotifyEffect"]);
+  const ignoredBehaviorTags = new Set(["BehaviorAlignment"]);
+  const ignoredUnitTags = new Set(["ResultNoUnit"]);
 
   for (const match of text.matchAll(/<AbilArray\b[^>]*\bLink="([^"]+)"/g)) {
     addRef(refs, "ability", match[1], "AbilArray.Link");
@@ -512,23 +532,35 @@ function extractReferences(node) {
   for (const match of text.matchAll(/<(?:Validator|[A-Za-z0-9_]*ValidatorArray|[A-Za-z0-9_]*Validator)\b[^>]*\bvalue="([^"]+)"/g)) {
     addRef(refs, "validator", match[1], "Validator");
   }
-  for (const match of text.matchAll(/<(?:Effect|[A-Za-z0-9_]*Effect[A-Za-z0-9_]*)\b[^>]*\bvalue="([^"]+)"/g)) {
-    addRef(refs, "effect", match[1], "Effect");
+  for (const match of text.matchAll(/<([A-Za-z0-9_]*Effect[A-Za-z0-9_]*|Effect)\b[^>]*\bvalue="([^"]+)"/g)) {
+    if (ignoredEffectTags.has(match[1])) {
+      continue;
+    }
+    addRef(refs, "effect", match[2], "Effect");
   }
-  for (const match of text.matchAll(/\b(?:Effect|[A-Za-z0-9_]*Effect[A-Za-z0-9_]*)="([^"]+)"/g)) {
-    addRef(refs, "effect", match[1], "EffectAttr");
+  for (const match of text.matchAll(/\b([A-Za-z0-9_]*Effect[A-Za-z0-9_]*|Effect)="([^"]+)"/g)) {
+    if (ignoredEffectAttrs.has(match[1])) {
+      continue;
+    }
+    addRef(refs, "effect", match[2], "EffectAttr");
   }
-  for (const match of text.matchAll(/<(?:Behavior|[A-Za-z0-9_]*Behavior[A-Za-z0-9_]*)\b[^>]*\bvalue="([^"]+)"/g)) {
-    addRef(refs, "behavior", match[1], "Behavior");
+  for (const match of text.matchAll(/<([A-Za-z0-9_]*Behavior[A-Za-z0-9_]*|Behavior)\b[^>]*\bvalue="([^"]+)"/g)) {
+    if (ignoredBehaviorTags.has(match[1])) {
+      continue;
+    }
+    addRef(refs, "behavior", match[2], "Behavior");
   }
-  for (const match of text.matchAll(/\b(?:Behavior|[A-Za-z0-9_]*Behavior[A-Za-z0-9_]*)="([^"]+)"/g)) {
-    addRef(refs, "behavior", match[1], "BehaviorAttr");
+  for (const match of text.matchAll(/\b([A-Za-z0-9_]*Behavior[A-Za-z0-9_]*|Behavior)="([^"]+)"/g)) {
+    addRef(refs, "behavior", match[2], "BehaviorAttr");
   }
-  for (const match of text.matchAll(/<(?:Unit|[A-Za-z0-9_]*Unit[A-Za-z0-9_]*)\b[^>]*\bvalue="([^"]+)"/g)) {
-    addRef(refs, "unit", match[1], "Unit");
+  for (const match of text.matchAll(/<([A-Za-z0-9_]*Unit[A-Za-z0-9_]*|Unit)\b[^>]*\bvalue="([^"]+)"/g)) {
+    if (ignoredUnitTags.has(match[1])) {
+      continue;
+    }
+    addRef(refs, "unit", match[2], "Unit");
   }
-  for (const match of text.matchAll(/\b(?:Unit|[A-Za-z0-9_]*Unit[A-Za-z0-9_]*)="([^"]+)"/g)) {
-    addRef(refs, "unit", match[1], "UnitAttr");
+  for (const match of text.matchAll(/\b([A-Za-z0-9_]*Unit[A-Za-z0-9_]*|Unit)="([^"]+)"/g)) {
+    addRef(refs, "unit", match[2], "UnitAttr");
   }
   for (const match of text.matchAll(/<(?:Upgrade|[A-Za-z0-9_]*Upgrade[A-Za-z0-9_]*)\b[^>]*\bvalue="([^"]+)"/g)) {
     addRef(refs, "upgrade", match[1], "Upgrade");

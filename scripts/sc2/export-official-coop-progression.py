@@ -358,7 +358,7 @@ def render_markdown(data: dict[str, object], export_root: Path) -> str:
     lines.append("## 口径")
     lines.append("")
     lines.append(f"- 官方源：`{export_root.as_posix()}`。")
-    lines.append("- 导出说明：`references/sc2-build-96883-casc-export-MANIFEST.md`，来源为本机 SC2 Build 96883 的 CASC 文本/目录资源导出。")
+    lines.append("- 导出说明：`docs/每日进度/2026-05-29-官方SC2原始文本镜像AI索引/官方SC2原始文本镜像AI阅读入口.md`。")
     lines.append("- 等级加点来自官方 `CUser id=\"CampaignPerk\"`：按 `PlayerLevels` 的 1-15 级、`Button`、`Upgrade`、`AbilityCommand` 整理。")
     lines.append("- 精通来自官方 `CUser id=\"MasteryUpgrades\"`：按 `Category`、`PointIncrement`、`TalentData`、`Upgrade`、`Name`、`ValueFormat` 整理。")
     lines.append("- 斯台特曼和蒙斯克在官方导出中位于单独指挥官模块：`egonstetmann.sc2mod`、`arcturusmengsk.sc2mod`。")
@@ -461,7 +461,7 @@ def render_markdown(data: dict[str, object], export_root: Path) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default=".", help="Repository root")
-    parser.add_argument("--export-root", default="references/sc2-build-96883-casc-export", help="Official CASC export root")
+    parser.add_argument("--export-root", default="游戏数据/官方SC2原始文本镜像", help="Official SC2 raw text mirror root")
     parser.add_argument(
         "--output-dir",
         default="docs/每日进度/2026-05-26官方合作指挥官原始精通加点",
@@ -486,7 +486,7 @@ def main() -> int:
     grouped = group_data(parsed)
     payload = {
         "source_export_root": export_root.relative_to(repo_root).as_posix(),
-        "source_manifest": "references/sc2-build-96883-casc-export-MANIFEST.md",
+        "source_manifest": "docs/每日进度/2026-05-29-官方SC2原始文本镜像AI索引/官方SC2原始文本镜像AI阅读入口.md",
         "commander_order": [{"id": commander_id, "short_id": short_id} for commander_id, short_id in COMMANDERS],
         **grouped,
     }
