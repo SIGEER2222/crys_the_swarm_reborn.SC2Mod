@@ -126,7 +126,7 @@ function generateRuntime(mutators, registrations) {
     "//--------------------------------------------------------------------------------------------------",
     "const int libXMCM_gv_mutatorQuickPlague = 18;",
     "",
-    "bool libXMCM_gv_mutatorQuickList[128];",
+    "bool[128] libXMCM_gv_mutatorQuickList;",
     "int libXMCM_gv_mutatorEnabledCount;",
     "",
     ...mutators.flatMap((mutator) => {

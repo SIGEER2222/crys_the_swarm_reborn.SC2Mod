@@ -33,6 +33,8 @@ void libE0EAE146_gf_XMTestBench_ResetCounters (int lp_player) {
     libE0EAE146_gv_xmTestBenchWarnings[lp_player] = 0;
     libE0EAE146_gv_xmTestBenchErrors[lp_player] = 0;
     libE0EAE146_gv_xmTestBenchMissingIds[lp_player] = "";
+    libE0EAE146_gv_xmTestBenchRequestedIds[lp_player] = "";
+    libE0EAE146_gv_xmTestBenchActualIds[lp_player] = "";
     libE0EAE146_gv_xmTestBenchUnits[lp_player] = UnitGroupEmpty();
 }
 
@@ -41,6 +43,20 @@ void libE0EAE146_gf_XMTestBench_SetLastEvent (int lp_player, string lp_event) {
         return;
     }
     libE0EAE146_gv_xmTestBenchLastEvent[lp_player] = lp_event;
+}
+
+void libE0EAE146_gf_XMTestBench_AppendTrace (int lp_player, string lp_token) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+    if (lp_token == "") {
+        return;
+    }
+    if (libE0EAE146_gv_xmTestBenchTrace[lp_player] == "") {
+        libE0EAE146_gv_xmTestBenchTrace[lp_player] = lp_token;
+        return;
+    }
+    libE0EAE146_gv_xmTestBenchTrace[lp_player] = libE0EAE146_gv_xmTestBenchTrace[lp_player] + ">" + lp_token;
 }
 
 void libE0EAE146_gf_XMTestBench_AddWarning (int lp_player) {
@@ -110,15 +126,64 @@ void libE0EAE146_gf_XMTestBench_LogScenarioSkip (int lp_player, string lp_scenar
     libE0EAE146_gf_XMDbgLog("INFO", "TEST_SCENARIO_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_scenarioKind + " reason=" + lp_reason);
 }
 
+string libE0EAE146_gf_XMTestBench_AppendCsvValue (string lp_list, string lp_value) {
+    if (lp_value == "") {
+        return lp_list;
+    }
+    if (lp_list == "") {
+        return lp_value;
+    }
+    return lp_list + "," + lp_value;
+}
+
 void libE0EAE146_gf_XMTestBench_RecordMissingObject (int lp_player, string lp_objectId) {
     if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
         return;
     }
-    if (libE0EAE146_gv_xmTestBenchMissingIds[lp_player] == "") {
-        libE0EAE146_gv_xmTestBenchMissingIds[lp_player] = lp_objectId;
+    libE0EAE146_gv_xmTestBenchMissingIds[lp_player] = libE0EAE146_gf_XMTestBench_AppendCsvValue(libE0EAE146_gv_xmTestBenchMissingIds[lp_player], lp_objectId);
+}
+
+void libE0EAE146_gf_XMTestBench_RecordRequestedObject (int lp_player, string lp_objectId) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
         return;
     }
-    libE0EAE146_gv_xmTestBenchMissingIds[lp_player] = libE0EAE146_gv_xmTestBenchMissingIds[lp_player] + "," + lp_objectId;
+    libE0EAE146_gv_xmTestBenchRequestedIds[lp_player] = libE0EAE146_gf_XMTestBench_AppendCsvValue(libE0EAE146_gv_xmTestBenchRequestedIds[lp_player], lp_objectId);
+}
+
+void libE0EAE146_gf_XMTestBench_RecordActualObject (int lp_player, string lp_objectId) {
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+    libE0EAE146_gv_xmTestBenchActualIds[lp_player] = libE0EAE146_gf_XMTestBench_AppendCsvValue(libE0EAE146_gv_xmTestBenchActualIds[lp_player], lp_objectId);
+}
+
+string libE0EAE146_gf_XMTestBench_ReportSection (int lp_player) {
+    return "TestBench_" + libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]) + "_" + libE0EAE146_gv_xmTestBenchScenario[lp_player];
+}
+
+void libE0EAE146_gf_XMTestBench_WriteReportBank (int lp_player) {
+    string lv_section;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+
+    lv_section = libE0EAE146_gf_XMTestBench_ReportSection(lp_player);
+    BankLoad("CampaignXCore", lp_player);
+    BankValueSetFromString(BankLastCreated(), lv_section, "Commander", libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    BankValueSetFromString(BankLastCreated(), lv_section, "Normalized", libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]));
+    BankValueSetFromString(BankLastCreated(), lv_section, "Scenario", libE0EAE146_gv_xmTestBenchScenario[lp_player]);
+    BankValueSetFromString(BankLastCreated(), lv_section, "Summary", libE0EAE146_gv_xmTestBenchSummary[lp_player]);
+    BankValueSetFromString(BankLastCreated(), lv_section, "Trace", libE0EAE146_gv_xmTestBenchTrace[lp_player]);
+    BankValueSetFromString(BankLastCreated(), lv_section, "RequestedIds", libE0EAE146_gv_xmTestBenchRequestedIds[lp_player]);
+    BankValueSetFromString(BankLastCreated(), lv_section, "ActualIds", libE0EAE146_gv_xmTestBenchActualIds[lp_player]);
+    BankValueSetFromString(BankLastCreated(), lv_section, "MissingIds", libE0EAE146_gv_xmTestBenchMissingIds[lp_player]);
+    BankValueSetFromInt(BankLastCreated(), lv_section, "Created", libE0EAE146_gv_xmTestBenchCreated[lp_player]);
+    BankValueSetFromInt(BankLastCreated(), lv_section, "Missing", libE0EAE146_gv_xmTestBenchMissing[lp_player]);
+    BankValueSetFromInt(BankLastCreated(), lv_section, "Warnings", libE0EAE146_gv_xmTestBenchWarnings[lp_player]);
+    BankValueSetFromInt(BankLastCreated(), lv_section, "Errors", libE0EAE146_gv_xmTestBenchErrors[lp_player]);
+    BankValueSetFromString(BankLastCreated(), lv_section, "LastEvent", libE0EAE146_gv_xmTestBenchLastEvent[lp_player]);
+    BankSave(BankLastCreated());
 }
 
 point libE0EAE146_gf_XMTestBench_SpawnPoint (int lp_player, int lp_index, fixed lp_radius, fixed lp_spacing) {
@@ -142,15 +207,22 @@ void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unit
     int lv_before;
     int lv_after;
     int lv_created;
+    int lv_createdIndex;
+    int lv_actualCount;
     unitgroup lv_createdGroup;
+    unit lv_createdUnit;
+    string lv_actualType;
+    string lv_actualTypes;
 
     if (lp_unitType == "") {
+        libE0EAE146_gf_XMTestBench_RecordRequestedObject(lp_player, "blank");
         libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
         libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, "blank");
         libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
         libE0EAE146_gf_XMDbgLog("WARN", "TEST_PROFILE_OBJECT_MISSING", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=blank");
         return;
     }
+    libE0EAE146_gf_XMTestBench_RecordRequestedObject(lp_player, lp_unitType);
     if (!CatalogEntryIsValid(c_gameCatalogUnit, lp_unitType)) {
         libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
         libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, lp_unitType);
@@ -168,9 +240,26 @@ void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unit
         lv_created = MaxI(0, (lv_after - lv_before));
     }
     if (lv_created > 0) {
+        lv_actualTypes = "";
+        lv_actualCount = 0;
+        lv_createdIndex = 1;
+        for (; lv_createdIndex <= lv_created; lv_createdIndex += 1) {
+            lv_createdUnit = UnitGroupUnit(lv_createdGroup, lv_createdIndex);
+            if (lv_createdUnit == null) {
+                continue;
+            }
+            lv_actualType = UnitGetType(lv_createdUnit);
+            libE0EAE146_gf_XMTestBench_RecordActualObject(lp_player, lv_actualType);
+            lv_actualTypes = libE0EAE146_gf_XMTestBench_AppendCsvValue(lv_actualTypes, lv_actualType);
+            lv_actualCount += 1;
+            libE0EAE146_gf_XMDbgLog("INFO", "TEST_PROFILE_OBJECT_ACTUAL", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " requestedUnitType=" + lp_unitType + " actualUnitType=" + lv_actualType + " actualIndex=" + IntToString(lv_actualCount));
+        }
+        if (lv_actualTypes == "") {
+            lv_actualTypes = "unknown";
+        }
         libE0EAE146_gv_xmTestBenchCreated[lp_player] += lv_created;
         UnitGroupAddUnitGroup(libE0EAE146_gv_xmTestBenchUnits[lp_player], lv_createdGroup);
-        libE0EAE146_gf_XMDbgLog("INFO", "TEST_PROFILE_OBJECT_CREATED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=" + lp_unitType + " count=" + IntToString(lv_created));
+        libE0EAE146_gf_XMDbgLog("INFO", "TEST_PROFILE_OBJECT_CREATED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=" + lp_unitType + " requestedUnitType=" + lp_unitType + " actualUnitTypes=" + lv_actualTypes + " count=" + IntToString(lv_created));
     }
     else {
         libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;

@@ -4,6 +4,7 @@ param(
     [string]$LiveRoot = "E:\SC2\SC2new\StarCraft II",
     [string[]]$Mods = @(),
     [string[]]$Maps = @(),
+    [switch]$MutateXMFinalDocumentMeta,
     [switch]$SkipMods,
     [switch]$SkipMaps,
     [switch]$SkipLauncher,
@@ -52,7 +53,8 @@ function Ensure-Directory {
 function Invoke-RobocopySync {
     param(
         [string]$Source,
-        [string]$Target
+        [string]$Target,
+        [string[]]$ExcludeFiles = @()
     )
 
     if (-not (Test-Path -LiteralPath $Source)) {
@@ -60,7 +62,8 @@ function Invoke-RobocopySync {
     }
 
     if ($DryRun) {
-        Write-Output "DRYRUN_SYNC=$Source -> $Target"
+        $excludeText = if ($ExcludeFiles.Count -gt 0) { " EXCLUDE=$($ExcludeFiles -join ',')" } else { "" }
+        Write-Output "DRYRUN_SYNC=$Source -> $Target$excludeText"
         return
     }
 
@@ -69,6 +72,10 @@ function Invoke-RobocopySync {
     $robocopy = Get-Command robocopy -ErrorAction SilentlyContinue
     if ($robocopy) {
         $args = @($Source, $Target, "/E", "/R:1", "/W:1", "/NFL", "/NDL", "/NP", "/MT:8")
+        foreach ($name in $ExcludeFiles) {
+            $args += "/XF"
+            $args += $name
+        }
         & $robocopy.Source @args | Out-Null
         $exitCode = $LASTEXITCODE
         if ($exitCode -ge 8) {
@@ -77,7 +84,7 @@ function Invoke-RobocopySync {
         return
     }
 
-    Get-ChildItem -LiteralPath $Source -Recurse -File | ForEach-Object {
+    Get-ChildItem -LiteralPath $Source -Recurse -File | Where-Object { $_.Name -notin $ExcludeFiles } | ForEach-Object {
         $relative = $_.FullName.Substring($Source.Length).TrimStart('\')
         $destination = Join-Path $Target $relative
         $destinationDir = Split-Path -Parent $destination
@@ -166,10 +173,6 @@ if (-not (Test-Path -LiteralPath $sourceMapsRoot)) {
 }
 if (-not (Test-Path -LiteralPath $sourceLauncherRoot)) {
     throw "Source launcher root not found: $sourceLauncherRoot"
-}
-
-if (-not $SkipMods) {
-    Sync-XMFinalDocumentHeaderDependencies -SourceModsRoot $sourceModsRoot
 }
 
 $modNames = Resolve-Names -Root $sourceModsRoot -Requested $Mods

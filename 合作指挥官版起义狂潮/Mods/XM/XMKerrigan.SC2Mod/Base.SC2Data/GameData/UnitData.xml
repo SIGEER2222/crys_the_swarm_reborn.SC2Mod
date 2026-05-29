@@ -5949,31 +5949,24 @@
   <CUnit id="HydraliskDen">
     <CardLayouts index="0">
       <LayoutButtons index="0" AbilCmd="que5CancelToSelection,CancelLast"></LayoutButtons>
-      <LayoutButtons index="2" Face="LurkerDen" AbilCmd="UpgradeToLurkerDen,Execute" Row="2"></LayoutButtons>
-      <LayoutButtons index="3" Face="Cancel" AbilCmd="UpgradeToLurkerDen,Cancel" Column="4"></LayoutButtons>
-      <LayoutButtons index="4">
-        <Face value="Cancel"></Face>
-        <Type value="AbilCmd"></Type>
-        <AbilCmd value="UpgradeToImpalerDen,Cancel"></AbilCmd>
-        <Requirements value=""></Requirements>
-        <Row value="2"></Row>
-        <Column value="4"></Column>
-      </LayoutButtons>
-      <LayoutButtons index="5" Face="MutateintoLurkerDenLocked" Requirements="KerriganLevel05" Row="2"></LayoutButtons>
-      <LayoutButtons index="6" Face="HydraliskDenImpalerPassive" Requirements="HaveHotSImpaler"></LayoutButtons>
-      <LayoutButtons index="7" Face="HydraliskDenLurkerPassive" Type="Passive" AbilCmd="" Requirements="HaveHotSLurker" Row="1"></LayoutButtons>
+      
+      
+      
+      
+      
+      
       <LayoutButtons index="8" Face="HydraliskPassive" Type="Passive" AbilCmd="" Row="1" Column="0"></LayoutButtons>
       <LayoutButtons index="9" Face="EvolveMuscularAugments" AbilCmd="HydraliskDenResearch,Research3" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="ImpalerDen" Type="AbilCmd" AbilCmd="UpgradeToImpalerDen,Execute" Row="2" Column="0"></LayoutButtons>
+      
       <LayoutButtons Face="EvolveAncillaryCarapace" Type="AbilCmd" AbilCmd="HydraliskDenResearch,Research5" Row="0" Column="1"></LayoutButtons>
       <LayoutButtons Face="EvolveAncilarryCarapaceLocked" Type="Passive" Requirements="KerriganLevel06" Row="0" Column="1"></LayoutButtons>
       <LayoutButtons Face="EvolveFrenzy" Type="AbilCmd" AbilCmd="HydraliskDenResearch,Research6" Row="0" Column="2"></LayoutButtons>
       <LayoutButtons Face="EvolveFrenzyLocked" Type="Passive" Requirements="KerriganLevel06" Row="0" Column="2"></LayoutButtons>
-      <LayoutButtons Face="ResearchLurkerRange" Type="AbilCmd" AbilCmd="LurkerDenResearch,Research1" Row="0" Column="3"></LayoutButtons>
-      <LayoutButtons Face="EvolveSeismicSpinesLocked" Type="Passive" Requirements="KerriganLevel06" Row="0" Column="3"></LayoutButtons>
+      
+      
     </CardLayouts>
     <AbilArray index="1" Link="que5CancelToSelection"></AbilArray>
-    <AbilArray Link="LurkerDenResearch"></AbilArray>
+    
     <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
@@ -6418,6 +6411,9 @@
         <Column value="2"></Column>
       </LayoutButtons>
       <LayoutButtons Face="K5ZerglingRespawn" Type="Passive" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="Apocalypse" Type="AbilCmd" AbilCmd="Apocalypse,Execute" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="K5DropPods" Type="AbilCmd" AbilCmd="K5DropPods,Execute" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="QueenofBladesLocked" Type="Passive" Requirements="KerriganLevel15" Row="1" Column="4"></LayoutButtons>
       <LayoutButtons Face="CommanderKerriganKerriganEnergyRegeneration" Type="Passive" Requirements="HaveKerriganVoidCoopEnergyRegen" Row="1" Column="4"></LayoutButtons>
@@ -6539,11 +6535,13 @@
       <LayoutButtons index="10" Row="1" Column="3"></LayoutButtons>
       <LayoutButtons index="15" Face="PrimalHeal" AbilCmd="PrimalHeal,Execute"></LayoutButtons>
       <LayoutButtons index="16" Face="WildMutation" AbilCmd="WildMutation,Execute"></LayoutButtons>
+      <LayoutButtons index="17" Face="SpawnBanelings" AbilCmd="SpawnBanelings,Execute"></LayoutButtons>
       <LayoutButtons index="23" Column="4"></LayoutButtons>
       <LayoutButtons index="25" Face="Apocalypse" AbilCmd="Apocalypse,Execute"></LayoutButtons>
       <LayoutButtons index="26" Face="K5DropPods" AbilCmd="K5DropPods,Execute"></LayoutButtons>
       <LayoutButtons Face="KerriganAssimilation" Type="Passive" Row="1" Column="0"></LayoutButtons>
       <LayoutButtons Face="K5ZerglingRespawn" Type="Passive" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"></LayoutButtons>
       <LayoutButtons Face="KerriganVoidCoopEconDrop" Type="AbilCmd" AbilCmd="KerriganVoidCoopEconDrop,Execute" Row="2" Column="2"></LayoutButtons>
       <LayoutButtons Face="KerriganVoidCoopCrushingGripWave" Type="AbilCmd" AbilCmd="KerriganVoidCoopCrushingGripWave,Execute" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="KerriganCrushingGripWaveLocked" Type="Passive" Requirements="KerriganLevel02" Row="2" Column="3"></LayoutButtons>
@@ -7038,15 +7036,15 @@
   </CUnit>
   <CUnit id="Larva">
     <CardLayouts index="0">
-      <LayoutButtons index="10" Face="Hydralisk" AbilCmd="LarvaTrain,Train4" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons index="11" Face="MorphToHydraliskLurker" AbilCmd="LarvaTrainSwarm,Train22" Row="1" Column="1"></LayoutButtons>
-      <LayoutButtons index="12" Face="Mutalisk" AbilCmd="LarvaTrain,Train11" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons index="13" Face="MorphToGuardian" AbilCmd="MutaliskMorphToGuardian,Train1" Row="2" Column="1"></LayoutButtons>
-      <LayoutButtons index="14" Face="HotSSwarmling" AbilCmd="LarvaTrainSwarmling,Train1" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons index="16" Face="QueenCoop" AbilCmd="LarvaTrainSwarm,Train19" Row="0" Column="2"></LayoutButtons>
-      <LayoutButtons index="18" Face="MorphToHotSTorrasque" AbilCmd="LarvaTrainSwarm,Train17" Row="1" Column="3"></LayoutButtons>
-      <LayoutButtons index="22" Face="Cancel" AbilCmd="que1,CancelLast" Row="2" Column="4"></LayoutButtons>
-    </CardLayouts>
+      
+      
+      
+      
+      
+      
+      
+      
+    <LayoutButtons index="9" Face="Zergling" AbilCmd="LarvaTrain,Train2" Row="0" Column="0" /><LayoutButtons index="10" Face="Hydralisk" AbilCmd="LarvaTrain,Train4" Row="0" Column="1" /><LayoutButtons index="12" Face="Mutalisk" AbilCmd="LarvaTrain,Train11" Row="0" Column="2" /><LayoutButtons index="18" Face="Ultralisk" AbilCmd="LarvaTrain,Train7" Row="0" Column="3" /><LayoutButtons index="22" Face="Cancel" AbilCmd="que1,CancelLast" Row="2" Column="4" /></CardLayouts>
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
@@ -12458,7 +12456,7 @@
       <LayoutButtons index="10" Requirements="HaveMPAdrenalGlands" Row="1"></LayoutButtons>
       <LayoutButtons index="11" Requirements="HaveMPMetabolicBoost" Row="1" Column="0"></LayoutButtons>
       <LayoutButtons Face="ZerglingArmorShred" Type="Passive" Requirements="HaveZerglingArmorShred" Row="1" Column="3"></LayoutButtons>
-    </CardLayouts>
+    <LayoutButtons Face="Baneling" Type="AbilCmd" AbilCmd="MorphZerglingToBaneling,Train1" Row="2" Column="0" /><LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowUltraliskDown,Execute" Row="2" Column="3" /><LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowUltraliskUp,Execute" Row="2" Column="4" /></CardLayouts>
     <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
     <KillXP value="0"></KillXP>
@@ -12471,7 +12469,7 @@
     <AbilArray Link="attack"></AbilArray>
     <AbilArray Link="move"></AbilArray>
     <AbilArray Link="stop"></AbilArray>
-  </CUnit>
+  <AbilArray Link="MorphZerglingToBaneling" /></CUnit>
   <CUnit id="ZergTowerArtillery">
     <DeathTime value="0"></DeathTime>
     <DeadFootprint value=""></DeadFootprint>

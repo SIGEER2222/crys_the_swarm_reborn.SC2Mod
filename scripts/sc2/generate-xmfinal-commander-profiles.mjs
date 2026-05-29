@@ -21,18 +21,68 @@ const runtimeCommanderIds = {
 };
 
 const unitAliases = {
+  Kerrigan: {
+    SwarmQueen: "QueenCoop",
+    Zergling: "HotSRaptor",
+  },
+  Nova: {
+    AutoTurret: "AutoTurret_BlackOps",
+    Barracks: "BarracksNova",
+    CommandCenter: "CommandCenterNova",
+    Factory: "FactoryNova",
+    MissileTurret: "MissileTurretNova",
+    SCV: "SCVNova",
+  },
   Stukov: {
     SwarmQueen: "SIQueen",
   },
   Swann: {
+    Armory: "ArmorySwann",
+    Barracks: "BarracksSwann",
+    CommandCenter: "CommandCenterSwann",
+    EngineeringBay: "EngineeringBaySwann",
     Goliath: "GoliathSwann",
     Hercules: "HerculesSwann",
+    KelMorianGrenadeTurret: "GrenadeTurretSwann",
+    MissileTurret: "MissileTurretSwann",
+    PerditionTurret: "PerditionTurretSwann",
+    SCV: "SCVSwann",
     ScienceVessel: "ScienceVesselSwann",
+    SupplyDepot: "SupplyDepotSwann",
+    Factory: "FactorySwann",
     Wraith: "WraithSwann",
   },
   Zagara: {
     Zergling: "ZagaraZergling",
   },
+};
+
+const commanderRosterOverrides = {
+  Nova: [
+    "Banshee_BlackOps",
+    "GhostNova",
+    "Goliath_BlackOps",
+    "HellbatBlackOps",
+    "Liberator_BlackOps",
+    "Marauder_BlackOps",
+    "Marine_BlackOps",
+    "Raven_BlackOps",
+    "MercReaper",
+    "SiegeTank_BlackOps",
+    "SCV",
+  ],
+  Swann: [
+    "Cyclone",
+    "HellionTank",
+    "Hercules",
+    "ScienceVessel",
+    "Hellion",
+    "Wraith",
+    "SCV",
+    "Goliath",
+    "SiegeTank",
+    "ThorSwann",
+  ],
 };
 
 const wikiSupplementalRosterUnits = {
@@ -58,11 +108,34 @@ const wikiSupplementalBuildingUnits = {
   Zagara: ["BileLauncherZagara"],
 };
 
+const commanderBuildingOverrides = {
+  Nova: [
+    "CommandCenter",
+    "Barracks",
+    "Factory",
+    "GhostAcademyNova",
+    "MissileTurret",
+    "AutoTurret",
+  ],
+  Swann: [
+    "CommandCenter",
+    "SupplyDepot",
+    "Barracks",
+    "EngineeringBay",
+    "Factory",
+    "Armory",
+    "DrakkenLaserDrillCoop",
+    "KelMorianGrenadeTurret",
+    "MissileTurret",
+    "PerditionTurret",
+  ],
+};
+
 const abilityObjectAliases = {
   ...unitAliases,
   Nova: {
+    ...(unitAliases.Nova ?? {}),
     GhostNova: "Ghost_BlackOps",
-    SCV: "SCVNova",
   },
 };
 
@@ -286,6 +359,9 @@ function unitIdsFrom(file) {
 }
 
 function rosterUnitIds(commander) {
+  if (commanderRosterOverrides[commander]) {
+    return unique(commanderRosterOverrides[commander]);
+  }
   const dir = commanderDir(commander);
   return unique([
     ...unitIdsFrom(path.join(dir, "heroes.json")),
@@ -295,6 +371,9 @@ function rosterUnitIds(commander) {
 }
 
 function buildingUnitIds(commander) {
+  if (commanderBuildingOverrides[commander]) {
+    return unique(commanderBuildingOverrides[commander]);
+  }
   return unique([
     ...unitIdsFrom(path.join(commanderDir(commander), "buildings.json")),
     ...(wikiSupplementalBuildingUnits[commander] ?? []),
