@@ -19,11 +19,11 @@
             <String String="GuardianMP"><Field Id="OfficialId"/></String>
             <Unit Unit="GuardianMP"><Field Id="RuntimeUnit"/></Unit>
             <String String="unit"><Field Id="Kind"/></String>
-            <String String="exact"><Field Id="Status"/></String>
+            <String String="state-only"><Field Id="Status"/></String>
             <String String="DevourerMP"><Field Id="OfficialId" Index="1"/></String>
             <Unit Unit="Devourer"><Field Id="RuntimeUnit" Index="1"/></Unit>
             <String String="unit"><Field Id="Kind" Index="1"/></String>
-            <String String="resolved"><Field Id="Status" Index="1"/></String>
+            <String String="state-only"><Field Id="Status" Index="1"/></String>
             <String String="Mutalisk"><Field Id="OfficialId" Index="2"/></String>
             <Unit Unit="Mutalisk"><Field Id="RuntimeUnit" Index="2"/></Unit>
             <String String="unit"><Field Id="Kind" Index="2"/></String>
@@ -31,7 +31,7 @@
             <String String="Roach"><Field Id="OfficialId" Index="3"/></String>
             <Unit Unit="Roach"><Field Id="RuntimeUnit" Index="3"/></Unit>
             <String String="unit"><Field Id="Kind" Index="3"/></String>
-            <String String="exact"><Field Id="Status" Index="3"/></String>
+            <String String="state-only"><Field Id="Status" Index="3"/></String>
             <String String="SwarmHost"><Field Id="OfficialId" Index="4"/></String>
             <Unit Unit="SwarmHost"><Field Id="RuntimeUnit" Index="4"/></Unit>
             <String String="unit"><Field Id="Kind" Index="4"/></String>
@@ -43,11 +43,11 @@
             <String String="RoachCorpser"><Field Id="OfficialId" Index="6"/></String>
             <Unit Unit="RoachCorpser"><Field Id="RuntimeUnit" Index="6"/></Unit>
             <String String="unit"><Field Id="Kind" Index="6"/></String>
-            <String String="exact"><Field Id="Status" Index="6"/></String>
+            <String String="state-only"><Field Id="Status" Index="6"/></String>
             <String String="RoachVile"><Field Id="OfficialId" Index="7"/></String>
             <Unit Unit="RoachVile"><Field Id="RuntimeUnit" Index="7"/></Unit>
             <String String="unit"><Field Id="Kind" Index="7"/></String>
-            <String String="exact"><Field Id="Status" Index="7"/></String>
+            <String String="state-only"><Field Id="Status" Index="7"/></String>
             <String String="RavagerAbathur"><Field Id="OfficialId" Index="8"/></String>
             <Unit Unit="RavagerAbathur"><Field Id="RuntimeUnit" Index="8"/></Unit>
             <String String="unit"><Field Id="Kind" Index="8"/></String>
@@ -103,16 +103,17 @@
             <String String="unit"><Field Id="Kind" Index="5"/></String>
             <String String="exact"><Field Id="Status" Index="5"/></String>
             <String String="Stalker"><Field Id="OfficialId" Index="6"/></String>
+            <Unit Unit="Stalker"><Field Id="RuntimeUnit" Index="6"/></Unit>
             <String String="unit"><Field Id="Kind" Index="6"/></String>
-            <String String="external-only"><Field Id="Status" Index="6"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="6"/></String>
             <String String="Gateway"><Field Id="OfficialId" Index="7"/></String>
             <Unit Unit="Gateway"><Field Id="RuntimeUnit" Index="7"/></Unit>
             <String String="building"><Field Id="Kind" Index="7"/></String>
             <String String="exact"><Field Id="Status" Index="7"/></String>
             <String String="PhotonCannon"><Field Id="OfficialId" Index="8"/></String>
-            <Unit Unit="Zealot"><Field Id="RuntimeUnit" Index="8"/></Unit>
+            <Unit Unit="PhotonCannon"><Field Id="RuntimeUnit" Index="8"/></Unit>
             <String String="building"><Field Id="Kind" Index="8"/></String>
-            <String String="resolved"><Field Id="Status" Index="8"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="8"/></String>
             <String String="TwilightCouncil"><Field Id="OfficialId" Index="9"/></String>
             <Unit Unit="TwilightCouncil"><Field Id="RuntimeUnit" Index="9"/></Unit>
             <String String="building"><Field Id="Kind" Index="9"/></String>
@@ -348,7 +349,7 @@
             <String String="HHHellionTank"><Field Id="OfficialId" Index="2"/></String>
             <Unit Unit="HellionTankMira"><Field Id="RuntimeUnit" Index="2"/></Unit>
             <String String="unit"><Field Id="Kind" Index="2"/></String>
-            <String String="alias"><Field Id="Status" Index="2"/></String>
+            <String String="state-only"><Field Id="Status" Index="2"/></String>
             <String String="HHRaven"><Field Id="OfficialId" Index="3"/></String>
             <Unit Unit="RavenMira"><Field Id="RuntimeUnit" Index="3"/></Unit>
             <String String="unit"><Field Id="Kind" Index="3"/></String>
@@ -392,16 +393,17 @@
             <String String="unit"><Field Id="Kind" Index="1"/></String>
             <String String="exact"><Field Id="Status" Index="1"/></String>
             <String String="PhoenixPurifier"><Field Id="OfficialId" Index="2"/></String>
-            <Unit Unit="FleetBeacon"><Field Id="RuntimeUnit" Index="2"/></Unit>
+            <Unit Unit="PhoenixPurifier"><Field Id="RuntimeUnit" Index="2"/></Unit>
             <String String="unit"><Field Id="Kind" Index="2"/></String>
-            <String String="resolved"><Field Id="Status" Index="2"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="2"/></String>
             <String String="Scout"><Field Id="OfficialId" Index="3"/></String>
             <Unit Unit="Scout"><Field Id="RuntimeUnit" Index="3"/></Unit>
             <String String="unit"><Field Id="Kind" Index="3"/></String>
             <String String="exact"><Field Id="Status" Index="3"/></String>
             <String String="SentryPurifier"><Field Id="OfficialId" Index="4"/></String>
+            <Unit Unit="SentryPurifier"><Field Id="RuntimeUnit" Index="4"/></Unit>
             <String String="unit"><Field Id="Kind" Index="4"/></String>
-            <String String="external-only"><Field Id="Status" Index="4"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="4"/></String>
             <String String="ZealotPurifier"><Field Id="OfficialId" Index="5"/></String>
             <Unit Unit="ZealotPurifier"><Field Id="RuntimeUnit" Index="5"/></Unit>
             <String String="unit"><Field Id="Kind" Index="5"/></String>
@@ -445,8 +447,9 @@
             <String String="hero"><Field Id="Kind"/></String>
             <String String="exact"><Field Id="Status"/></String>
             <String String="BroodLord"><Field Id="OfficialId" Index="1"/></String>
+            <Unit Unit="BroodLord"><Field Id="RuntimeUnit" Index="1"/></Unit>
             <String String="unit"><Field Id="Kind" Index="1"/></String>
-            <String String="external-only"><Field Id="Status" Index="1"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="1"/></String>
             <String String="Hydralisk"><Field Id="OfficialId" Index="2"/></String>
             <Unit Unit="Hydralisk"><Field Id="RuntimeUnit" Index="2"/></Unit>
             <String String="unit"><Field Id="Kind" Index="2"/></String>
@@ -456,9 +459,9 @@
             <String String="unit"><Field Id="Kind" Index="3"/></String>
             <String String="exact"><Field Id="Status" Index="3"/></String>
             <String String="SwarmQueen"><Field Id="OfficialId" Index="4"/></String>
-            <Unit Unit="Queen"><Field Id="RuntimeUnit" Index="4"/></Unit>
+            <Unit Unit="QueenCoop"><Field Id="RuntimeUnit" Index="4"/></Unit>
             <String String="unit"><Field Id="Kind" Index="4"/></String>
-            <String String="resolved"><Field Id="Status" Index="4"/></String>
+            <String String="alias"><Field Id="Status" Index="4"/></String>
             <String String="Ultralisk"><Field Id="OfficialId" Index="5"/></String>
             <Unit Unit="Ultralisk"><Field Id="RuntimeUnit" Index="5"/></Unit>
             <String String="unit"><Field Id="Kind" Index="5"/></String>
@@ -472,11 +475,13 @@
             <String String="building"><Field Id="Kind" Index="7"/></String>
             <String String="exact"><Field Id="Status" Index="7"/></String>
             <String String="SpineCrawler"><Field Id="OfficialId" Index="8"/></String>
+            <Unit Unit="SpineCrawler"><Field Id="RuntimeUnit" Index="8"/></Unit>
             <String String="building"><Field Id="Kind" Index="8"/></String>
-            <String String="external-only"><Field Id="Status" Index="8"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="8"/></String>
             <String String="SporeCrawler"><Field Id="OfficialId" Index="9"/></String>
+            <Unit Unit="SporeCrawler"><Field Id="RuntimeUnit" Index="9"/></Unit>
             <String String="building"><Field Id="Kind" Index="9"/></String>
-            <String String="external-only"><Field Id="Status" Index="9"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="9"/></String>
         </Instances>
         <Instances Id="Mengsk">
             <String String="Mengsk"><Field Id="OfficialCommander"/></String>
@@ -522,7 +527,7 @@
             <String String="SiegeTankMengskSieged"><Field Id="OfficialId" Index="9"/></String>
             <Unit Unit="SiegeTankMengskSieged"><Field Id="RuntimeUnit" Index="9"/></Unit>
             <String String="unit"><Field Id="Kind" Index="9"/></String>
-            <String String="exact"><Field Id="Status" Index="9"/></String>
+            <String String="state-only"><Field Id="Status" Index="9"/></String>
             <String String="ThorMengsk"><Field Id="OfficialId" Index="10"/></String>
             <Unit Unit="ThorMengsk"><Field Id="RuntimeUnit" Index="10"/></Unit>
             <String String="unit"><Field Id="Kind" Index="10"/></String>
@@ -534,7 +539,7 @@
             <String String="VikingMengskAssault"><Field Id="OfficialId" Index="12"/></String>
             <Unit Unit="VikingMengskAssault"><Field Id="RuntimeUnit" Index="12"/></Unit>
             <String String="unit"><Field Id="Kind" Index="12"/></String>
-            <String String="exact"><Field Id="Status" Index="12"/></String>
+            <String String="state-only"><Field Id="Status" Index="12"/></String>
             <String String="BattlecruiserMengsk"><Field Id="OfficialId" Index="13"/></String>
             <Unit Unit="BattlecruiserMengsk"><Field Id="RuntimeUnit" Index="13"/></Unit>
             <String String="unit"><Field Id="Kind" Index="13"/></String>
@@ -546,7 +551,7 @@
             <String String="RavenMengskSieged"><Field Id="OfficialId" Index="15"/></String>
             <Unit Unit="RavenMengskSieged"><Field Id="RuntimeUnit" Index="15"/></Unit>
             <String String="unit"><Field Id="Kind" Index="15"/></String>
-            <String String="exact"><Field Id="Status" Index="15"/></String>
+            <String String="state-only"><Field Id="Status" Index="15"/></String>
             <String String="CommandCenterMengsk"><Field Id="OfficialId" Index="16"/></String>
             <Unit Unit="CommandCenterMengsk"><Field Id="RuntimeUnit" Index="16"/></Unit>
             <String String="building"><Field Id="Kind" Index="16"/></String>
@@ -604,7 +609,7 @@
             <String String="GhostNova"><Field Id="OfficialId" Index="1"/></String>
             <Unit Unit="GhostFemale_BlackOps"><Field Id="RuntimeUnit" Index="1"/></Unit>
             <String String="unit"><Field Id="Kind" Index="1"/></String>
-            <String String="resolved"><Field Id="Status" Index="1"/></String>
+            <String String="alias"><Field Id="Status" Index="1"/></String>
             <String String="Goliath_BlackOps"><Field Id="OfficialId" Index="2"/></String>
             <Unit Unit="Goliath_BlackOps"><Field Id="RuntimeUnit" Index="2"/></Unit>
             <String String="unit"><Field Id="Kind" Index="2"/></String>
@@ -630,8 +635,9 @@
             <String String="unit"><Field Id="Kind" Index="7"/></String>
             <String String="exact"><Field Id="Status" Index="7"/></String>
             <String String="MercReaper"><Field Id="OfficialId" Index="8"/></String>
+            <Unit Unit="MercReaper"><Field Id="RuntimeUnit" Index="8"/></Unit>
             <String String="unit"><Field Id="Kind" Index="8"/></String>
-            <String String="external-only"><Field Id="Status" Index="8"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="8"/></String>
             <String String="SiegeTank_BlackOps"><Field Id="OfficialId" Index="9"/></String>
             <Unit Unit="SiegeTank_BlackOps"><Field Id="RuntimeUnit" Index="9"/></Unit>
             <String String="unit"><Field Id="Kind" Index="9"/></String>
@@ -651,7 +657,7 @@
             <String String="AutoTurret"><Field Id="OfficialId" Index="13"/></String>
             <Unit Unit="NovaACLaserTurret"><Field Id="RuntimeUnit" Index="13"/></Unit>
             <String String="building"><Field Id="Kind" Index="13"/></String>
-            <String String="resolved"><Field Id="Status" Index="13"/></String>
+            <String String="alias"><Field Id="Status" Index="13"/></String>
             <String String="MissileTurret"><Field Id="OfficialId" Index="14"/></String>
             <Unit Unit="MissileTurretNova"><Field Id="RuntimeUnit" Index="14"/></Unit>
             <String String="building"><Field Id="Kind" Index="14"/></String>
@@ -775,7 +781,7 @@
             <String String="LurkerStetmannBurrowed"><Field Id="OfficialId" Index="9"/></String>
             <Unit Unit="LurkerStetmannBurrowed"><Field Id="RuntimeUnit" Index="9"/></Unit>
             <String String="unit"><Field Id="Kind" Index="9"/></String>
-            <String String="exact"><Field Id="Status" Index="9"/></String>
+            <String String="state-only"><Field Id="Status" Index="9"/></String>
             <String String="InfestorStetmann"><Field Id="OfficialId" Index="10"/></String>
             <Unit Unit="InfestorStetmann"><Field Id="RuntimeUnit" Index="10"/></Unit>
             <String String="unit"><Field Id="Kind" Index="10"/></String>
@@ -799,7 +805,7 @@
             <String String="OverseerStetmannSiegeMode"><Field Id="OfficialId" Index="15"/></String>
             <Unit Unit="OverseerStetmannSiegeMode"><Field Id="RuntimeUnit" Index="15"/></Unit>
             <String String="unit"><Field Id="Kind" Index="15"/></String>
-            <String String="exact"><Field Id="Status" Index="15"/></String>
+            <String String="state-only"><Field Id="Status" Index="15"/></String>
             <String String="HatcheryStetmann"><Field Id="OfficialId" Index="16"/></String>
             <Unit Unit="HatcheryStetmann"><Field Id="RuntimeUnit" Index="16"/></Unit>
             <String String="building"><Field Id="Kind" Index="16"/></String>
@@ -859,7 +865,7 @@
             <String String="SpineCrawlerUprootedStetmann"><Field Id="OfficialId" Index="30"/></String>
             <Unit Unit="SpineCrawlerUprootedStetmann"><Field Id="RuntimeUnit" Index="30"/></Unit>
             <String String="building"><Field Id="Kind" Index="30"/></String>
-            <String String="exact"><Field Id="Status" Index="30"/></String>
+            <String String="state-only"><Field Id="Status" Index="30"/></String>
             <String String="SporeCrawlerStetmann"><Field Id="OfficialId" Index="31"/></String>
             <Unit Unit="SporeCrawlerStetmann"><Field Id="RuntimeUnit" Index="31"/></Unit>
             <String String="building"><Field Id="Kind" Index="31"/></String>
@@ -867,7 +873,7 @@
             <String String="SporeCrawlerUprootedStetmann"><Field Id="OfficialId" Index="32"/></String>
             <Unit Unit="SporeCrawlerUprootedStetmann"><Field Id="RuntimeUnit" Index="32"/></Unit>
             <String String="building"><Field Id="Kind" Index="32"/></String>
-            <String String="exact"><Field Id="Status" Index="32"/></String>
+            <String String="state-only"><Field Id="Status" Index="32"/></String>
             <String String="PowerTowerStetmann"><Field Id="OfficialId" Index="33"/></String>
             <Unit Unit="PowerTowerStetmann"><Field Id="RuntimeUnit" Index="33"/></Unit>
             <String String="building"><Field Id="Kind" Index="33"/></String>
@@ -890,17 +896,18 @@
             <Unit Unit="StukovInfestedSiegeTank"><Field Id="RuntimeUnit" Index="2"/></Unit>
             <String String="unit"><Field Id="Kind" Index="2"/></String>
             <String String="exact"><Field Id="Status" Index="2"/></String>
-            <String String="SIWraith"><Field Id="OfficialId" Index="3"/></String>
-            <Unit Unit="SIWraith"><Field Id="RuntimeUnit" Index="3"/></Unit>
+            <String String="SIOverlord"><Field Id="OfficialId" Index="3"/></String>
+            <Unit Unit="SIOverlord"><Field Id="RuntimeUnit" Index="3"/></Unit>
             <String String="unit"><Field Id="Kind" Index="3"/></String>
             <String String="exact"><Field Id="Status" Index="3"/></String>
-            <String String="SwarmQueen"><Field Id="OfficialId" Index="4"/></String>
-            <Unit Unit="SIQueen"><Field Id="RuntimeUnit" Index="4"/></Unit>
+            <String String="StukovInfestedBanshee"><Field Id="OfficialId" Index="4"/></String>
+            <Unit Unit="StukovInfestedBanshee"><Field Id="RuntimeUnit" Index="4"/></Unit>
             <String String="unit"><Field Id="Kind" Index="4"/></String>
-            <String String="alias"><Field Id="Status" Index="4"/></String>
-            <String String="Zergling"><Field Id="OfficialId" Index="5"/></String>
+            <String String="exact"><Field Id="Status" Index="4"/></String>
+            <String String="SILiberator"><Field Id="OfficialId" Index="5"/></String>
+            <Unit Unit="SILiberator"><Field Id="RuntimeUnit" Index="5"/></Unit>
             <String String="unit"><Field Id="Kind" Index="5"/></String>
-            <String String="external-only"><Field Id="Status" Index="5"/></String>
+            <String String="exact"><Field Id="Status" Index="5"/></String>
             <String String="SIEngineeringBay"><Field Id="OfficialId" Index="6"/></String>
             <Unit Unit="SIEngineeringBay"><Field Id="RuntimeUnit" Index="6"/></Unit>
             <String String="building"><Field Id="Kind" Index="6"/></String>
@@ -944,11 +951,13 @@
             <String String="XMSwann.SC2Mod"><Field Id="RuntimeModule"/></String>
             <Int Int="15"><Field Id="Count"/></Int>
             <String String="Cyclone"><Field Id="OfficialId"/></String>
+            <Unit Unit="Cyclone"><Field Id="RuntimeUnit"/></Unit>
             <String String="unit"><Field Id="Kind"/></String>
-            <String String="external-only"><Field Id="Status"/></String>
+            <String String="shared-exact"><Field Id="Status"/></String>
             <String String="HellionTank"><Field Id="OfficialId" Index="1"/></String>
+            <Unit Unit="HellionTank"><Field Id="RuntimeUnit" Index="1"/></Unit>
             <String String="unit"><Field Id="Kind" Index="1"/></String>
-            <String String="external-only"><Field Id="Status" Index="1"/></String>
+            <String String="state-only"><Field Id="Status" Index="1"/></String>
             <String String="Hercules"><Field Id="OfficialId" Index="2"/></String>
             <Unit Unit="HerculesSwann"><Field Id="RuntimeUnit" Index="2"/></Unit>
             <String String="unit"><Field Id="Kind" Index="2"/></String>
@@ -958,8 +967,9 @@
             <String String="unit"><Field Id="Kind" Index="3"/></String>
             <String String="alias"><Field Id="Status" Index="3"/></String>
             <String String="Hellion"><Field Id="OfficialId" Index="4"/></String>
+            <Unit Unit="Hellion"><Field Id="RuntimeUnit" Index="4"/></Unit>
             <String String="unit"><Field Id="Kind" Index="4"/></String>
-            <String String="external-only"><Field Id="Status" Index="4"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="4"/></String>
             <String String="Wraith"><Field Id="OfficialId" Index="5"/></String>
             <Unit Unit="WraithSwann"><Field Id="RuntimeUnit" Index="5"/></Unit>
             <String String="unit"><Field Id="Kind" Index="5"/></String>
@@ -1043,8 +1053,9 @@
             <String String="hero"><Field Id="Kind" Index="8"/></String>
             <String String="exact"><Field Id="Status" Index="8"/></String>
             <String String="Marauder"><Field Id="OfficialId" Index="9"/></String>
+            <Unit Unit="Marauder"><Field Id="RuntimeUnit" Index="9"/></Unit>
             <String String="unit"><Field Id="Kind" Index="9"/></String>
-            <String String="external-only"><Field Id="Status" Index="9"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="9"/></String>
             <String String="TychusSCV"><Field Id="OfficialId" Index="10"/></String>
             <Unit Unit="TychusSCV"><Field Id="RuntimeUnit" Index="10"/></Unit>
             <String String="unit"><Field Id="Kind" Index="10"/></String>
@@ -1072,8 +1083,9 @@
             <String String="unit"><Field Id="Kind"/></String>
             <String String="exact"><Field Id="Status"/></String>
             <String String="Oracle"><Field Id="OfficialId" Index="1"/></String>
+            <Unit Unit="Oracle"><Field Id="RuntimeUnit" Index="1"/></Unit>
             <String String="unit"><Field Id="Kind" Index="1"/></String>
-            <String String="external-only"><Field Id="Status" Index="1"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="1"/></String>
             <String String="CorsairMP"><Field Id="OfficialId" Index="2"/></String>
             <Unit Unit="CorsairMP"><Field Id="RuntimeUnit" Index="2"/></Unit>
             <String String="unit"><Field Id="Kind" Index="2"/></String>
@@ -1083,16 +1095,17 @@
             <String String="unit"><Field Id="Kind" Index="3"/></String>
             <String String="exact"><Field Id="Status" Index="3"/></String>
             <String String="ZealotShakuras"><Field Id="OfficialId" Index="4"/></String>
-            <Unit Unit="Zealot"><Field Id="RuntimeUnit" Index="4"/></Unit>
+            <Unit Unit="ZealotShakuras"><Field Id="RuntimeUnit" Index="4"/></Unit>
             <String String="unit"><Field Id="Kind" Index="4"/></String>
-            <String String="resolved"><Field Id="Status" Index="4"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="4"/></String>
             <String String="Stalker"><Field Id="OfficialId" Index="5"/></String>
+            <Unit Unit="Stalker"><Field Id="RuntimeUnit" Index="5"/></Unit>
             <String String="unit"><Field Id="Kind" Index="5"/></String>
-            <String String="external-only"><Field Id="Status" Index="5"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="5"/></String>
             <String String="VoidRay"><Field Id="OfficialId" Index="6"/></String>
-            <Unit Unit="Stargate"><Field Id="RuntimeUnit" Index="6"/></Unit>
+            <Unit Unit="VoidRay"><Field Id="RuntimeUnit" Index="6"/></Unit>
             <String String="unit"><Field Id="Kind" Index="6"/></String>
-            <String String="resolved"><Field Id="Status" Index="6"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="6"/></String>
             <String String="Gateway"><Field Id="OfficialId" Index="7"/></String>
             <Unit Unit="Gateway"><Field Id="RuntimeUnit" Index="7"/></Unit>
             <String String="building"><Field Id="Kind" Index="7"/></String>
@@ -1124,26 +1137,29 @@
             <String String="unit"><Field Id="Kind" Index="2"/></String>
             <String String="exact"><Field Id="Status" Index="2"/></String>
             <String String="Corruptor"><Field Id="OfficialId" Index="3"/></String>
+            <Unit Unit="Corruptor"><Field Id="RuntimeUnit" Index="3"/></Unit>
             <String String="unit"><Field Id="Kind" Index="3"/></String>
-            <String String="external-only"><Field Id="Status" Index="3"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="3"/></String>
             <String String="Scourge"><Field Id="OfficialId" Index="4"/></String>
             <Unit Unit="Scourge"><Field Id="RuntimeUnit" Index="4"/></Unit>
             <String String="unit"><Field Id="Kind" Index="4"/></String>
             <String String="exact"><Field Id="Status" Index="4"/></String>
             <String String="SwarmQueen"><Field Id="OfficialId" Index="5"/></String>
-            <Unit Unit="Queen"><Field Id="RuntimeUnit" Index="5"/></Unit>
+            <Unit Unit="QueenCoop"><Field Id="RuntimeUnit" Index="5"/></Unit>
             <String String="unit"><Field Id="Kind" Index="5"/></String>
-            <String String="resolved"><Field Id="Status" Index="5"/></String>
+            <String String="alias"><Field Id="Status" Index="5"/></String>
             <String String="Zergling"><Field Id="OfficialId" Index="6"/></String>
-            <Unit Unit="SpawningPool"><Field Id="RuntimeUnit" Index="6"/></Unit>
+            <Unit Unit="Zergling"><Field Id="RuntimeUnit" Index="6"/></Unit>
             <String String="unit"><Field Id="Kind" Index="6"/></String>
-            <String String="resolved"><Field Id="Status" Index="6"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="6"/></String>
             <String String="SpineCrawler"><Field Id="OfficialId" Index="7"/></String>
+            <Unit Unit="SpineCrawler"><Field Id="RuntimeUnit" Index="7"/></Unit>
             <String String="building"><Field Id="Kind" Index="7"/></String>
-            <String String="external-only"><Field Id="Status" Index="7"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="7"/></String>
             <String String="SporeCrawler"><Field Id="OfficialId" Index="8"/></String>
+            <Unit Unit="SporeCrawler"><Field Id="RuntimeUnit" Index="8"/></Unit>
             <String String="building"><Field Id="Kind" Index="8"/></String>
-            <String String="external-only"><Field Id="Status" Index="8"/></String>
+            <String String="shared-exact"><Field Id="Status" Index="8"/></String>
         </Instances>
         <Instances Id="Zeratul">
             <String String="Zeratul"><Field Id="OfficialCommander"/></String>

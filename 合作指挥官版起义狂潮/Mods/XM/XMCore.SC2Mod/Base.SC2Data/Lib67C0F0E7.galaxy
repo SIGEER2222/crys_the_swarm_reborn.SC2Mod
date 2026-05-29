@@ -2105,7 +2105,7 @@ void lib67C0F0E7_gf_CU_GPInit (int lp_player, string lp_type, unit lp_unit, unit
         lib67C0F0E7_gf_CU_GPInitAbathur(lp_player);
     }
     else if (auto1CC9623D_val == "Kerrigan") {
-        lib67C0F0E7_gf_CU_GPInitAbathur(lp_player);
+        // Kerrigan uses hero/panel-specific wiring and should not reuse Abathur's global panel.
     }
     else if (auto1CC9623D_val == "Stukov") {
         lib67C0F0E7_gf_CU_GPInitStukov(lp_player);

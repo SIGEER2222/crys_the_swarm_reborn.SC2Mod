@@ -298,6 +298,18 @@ COMMANDER_TECH_ENTRY_EXCLUDES = {
     },
 }
 
+COMMANDER_TRUSTED_PRODUCTION_RULES = {
+    "Stukov": {
+        "trusted_producer_ids": {
+            "SISCV",
+            "SICommandCenter",
+            "SIBarracks",
+            "SIFactory",
+            "SIStarport",
+        },
+    },
+}
+
 TECH_DISPLAY_KEY_OVERRIDES = {
     "AbathurGuardian": {
         "name_keys": [
@@ -1723,7 +1735,28 @@ def resolve_production_metadata(
             "cost_mode": "",
             "base_unit_id": "",
         }
-        if (
+        resolved_info_units: list[str] = []
+        raw_info_units: list[str] = []
+        for info_node in info_nodes:
+            direct_unit = info_node.get("Unit") or ""
+            if direct_unit:
+                raw_info_units.append(direct_unit)
+            for unit_node in info_node.findall("./Unit"):
+                candidate_unit = unit_node.get("value") or unit_node.get("Unit") or ""
+                if candidate_unit:
+                    raw_info_units.append(candidate_unit)
+        for raw_unit in raw_info_units:
+            for resolved_unit in resolver._resolve_unit_or_spawn(source_name, raw_unit):
+                if resolved_unit not in resolved_info_units:
+                    resolved_info_units.append(resolved_unit)
+        if resolved_info_units:
+            preferred_resolved_units = [
+                candidate
+                for candidate in resolved_info_units
+                if candidate == unit_id or candidate in candidate_unit_id_set
+            ]
+            result["unit"] = preferred_resolved_units[0] if preferred_resolved_units else resolved_info_units[0]
+        elif (
             not result["unit"]
             or result["unit"] in candidate_unit_id_set
             or str(result["unit"]).endswith("SpawnerUnit")
@@ -1874,6 +1907,38 @@ def resolve_production_metadata(
             best_candidate["time"] = candidate.get("time")
             break
     return best_candidate, ordered_candidates
+
+
+def has_trusted_commander_production(
+    short_id: str,
+    entry_id: str,
+    unit_id: str,
+    commander_unit_ids: set[str],
+    candidate_unit_ids: list[str],
+    production: dict[str, object],
+    production_options: list[dict[str, object]],
+) -> bool:
+    rule = COMMANDER_TRUSTED_PRODUCTION_RULES.get(short_id)
+    if not rule:
+        return True
+    if entry_id in CURATED_COMMANDER_UNIT_IDS.get(short_id, []):
+        return True
+
+    trusted_producer_ids = set(commander_unit_ids)
+    trusted_producer_ids.update(str(value) for value in rule.get("trusted_producer_ids", set()))
+    candidate_units = {unit_id, *[candidate for candidate in candidate_unit_ids if candidate]}
+
+    for option in [production, *production_options]:
+        if not option:
+            continue
+        producer_unit_id = str(option.get("producer_unit_id") or "")
+        produced_unit_id = str(option.get("unit") or "")
+        if producer_unit_id not in trusted_producer_ids:
+            continue
+        if produced_unit_id not in candidate_units:
+            continue
+        return True
+    return False
 
 
 def button_candidates(entry_id: str, resolved_unit_id: str, army_categories: list[str]) -> list[str]:
@@ -2574,16 +2639,17 @@ def build_commander_payload(
             entry["icon_button"] = icon_button.get("id", "")
             entry["icon"] = icon_button.get("icon", "")
             entry["alert_icon"] = icon_button.get("alert_icon", "")
+            candidate_unit_ids = [
+                *list(entry.get("resolved_unit_ids", [])),
+                *list(entry.get("army_categories", [])),
+            ]
             production, production_options = resolve_production_metadata(
                 resolver,
                 str(entry["source_name"]),
                 str(entry["unit_id"]),
                 str(entry["icon_button"]),
                 commander_entry_unit_ids,
-                [
-                    *list(entry.get("resolved_unit_ids", [])),
-                    *list(entry.get("army_categories", [])),
-                ],
+                candidate_unit_ids,
                 resolver.army_category_command_entries(
                     str(entry["source_name"]),
                     list(entry.get("army_categories", [])),
@@ -2597,6 +2663,16 @@ def build_commander_payload(
                 for option in production_options:
                     if option.get("abil_cmd") == production.get("abil_cmd"):
                         option.update(field_override)
+            if not has_trusted_commander_production(
+                short_id,
+                str(entry["id"]),
+                str(entry["unit_id"]),
+                commander_entry_unit_ids,
+                candidate_unit_ids,
+                production,
+                production_options,
+            ):
+                continue
             production_button: dict[str, object] = {}
             if production and not entry["icon"]:
                 production_button = resolve_button_metadata(
