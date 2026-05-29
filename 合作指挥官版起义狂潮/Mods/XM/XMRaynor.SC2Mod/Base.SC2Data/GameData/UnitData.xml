@@ -655,9 +655,7 @@
     <BehaviorArray Link="AbilityTargetExclusionBehavior"></BehaviorArray>
   </CUnit>
   <CUnit id="Barracks">
-    <AbilArray Link="BarracksTrainNova"></AbilArray>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
-    <BehaviorArray Link="ChronoBoostBlackOpsBarracks"></BehaviorArray>
     <CardLayouts index="0">
       <LayoutButtons index="2" Face="Rally" AbilCmd="Rally,Rally1" Row="1" Column="4"></LayoutButtons>
       <LayoutButtons index="3" Face="Lift" AbilCmd="BarracksLiftOff,Execute" Row="2"></LayoutButtons>
@@ -671,19 +669,11 @@
       <LayoutButtons index="11" Face="Medic" AbilCmd="BarracksTrain,Train5" Row="0" Column="3"></LayoutButtons>
       <LayoutButtons index="12" Face="Firebat" Type="AbilCmd" AbilCmd="BarracksTrain,Train6" Row="0" Column="2"></LayoutButtons>
       <LayoutButtons index="13" Face="TechReactorAI" AbilCmd="BarracksAddOns,Build3" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons index="14" Face="MengskUnits" Type="Submenu" AbilCmd="" SubmenuCardId="MGSK" Column="3"></LayoutButtons>
       <LayoutButtons index="15" Face="TechReactorAI" AbilCmd="BarracksAddOns,Build3" Row="2" Column="1"></LayoutButtons>
       <LayoutButtons index="16" Face="TechReactor" AbilCmd="BarracksAddOns,Build4" Column="0"></LayoutButtons>
       <LayoutButtons index="17" Face="OrbitalDropPodsPassive" Type="Passive" Requirements="HaveOrbitalDropPods" SubmenuCardId="" Column="0"></LayoutButtons>
-      <LayoutButtons index="18" Face="Reaper" AbilCmd="BarracksTrain,Train2" Row="0" Column="2"></LayoutButtons>
-      <LayoutButtons Face="TrainMarineNova" Type="AbilCmd" AbilCmd="BarracksTrainNova,Train1" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="TrainMarauderNova" Type="AbilCmd" AbilCmd="BarracksTrainNova,Train2" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="TrainGhostNova" Type="AbilCmd" AbilCmd="BarracksTrainNova,Train3" Row="0" Column="2"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyAttackSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyAttackSpeed" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyOOCRegenSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyOOCRegenSpeed" Row="1" Column="1"></LayoutButtons>
     </CardLayouts>
     <CardLayouts index="1">
-      <LayoutButtons Face="Ghost" Type="AbilCmd" AbilCmd="BarracksTrain,Train3" Row="2" Column="0"></LayoutButtons>
     </CardLayouts>
     <Footprint value="Footprint3x3CreepNormalContour"></Footprint>
     <PlacementFootprint value="Footprint3x3CreepNormal"></PlacementFootprint>
@@ -700,8 +690,6 @@
     <ScoreKill value="0"></ScoreKill>
     <CardLayouts index="0">
       <LayoutButtons Face="OrbitalDropPodsPassive" Type="Passive" Requirements="HaveOrbitalDropPods" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyAttackSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyAttackSpeed" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyOOCRegenSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyOOCRegenSpeed" Row="1" Column="1"></LayoutButtons>
     </CardLayouts>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
     <SubgroupPriority value="43"></SubgroupPriority>
@@ -1067,15 +1055,11 @@
   <CUnit id="CommandCenter">
     <Food value="15"></Food>
     <AbilArray Link="UpgradeToOrbitalCoop"></AbilArray>
-    <AbilArray Link="VespeneDroneCast"></AbilArray>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
     <CardLayouts index="0">
       <LayoutButtons index="1" Column="4"></LayoutButtons>
       <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="RallyCommand,Rally2" Row="1" Column="4"></LayoutButtons>
-      <LayoutButtons Face="BuildDroneOperatorLocked" Type="Passive" Requirements="SwannLevel05" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="VespeneDrone" Type="AbilCmd" AbilCmd="VespeneDroneCast,Execute" Row="0" Column="1"></LayoutButtons>
       <LayoutButtons Face="NeoSteelFrameCommandCenter" Type="Passive" Requirements="HaveNeosteelFrame" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyOOCRegenSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyOOCRegenSpeed" Row="1" Column="1"></LayoutButtons>
     </CardLayouts>
     <Footprint value="Footprint5x5NormalCreepContour"></Footprint>
     <PlacementFootprint value="Footprint5x5DropOffCreepNormal"></PlacementFootprint>
@@ -1095,7 +1079,6 @@
     <ScoreKill value="0"></ScoreKill>
     <CardLayouts index="0">
       <LayoutButtons Face="NeoSteelFrameCommandCenter" Type="Passive" Requirements="HaveNeosteelFrame" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyOOCRegenSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyOOCRegenSpeed" Row="1" Column="1"></LayoutButtons>
     </CardLayouts>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
     <SubgroupPriority value="44"></SubgroupPriority>
@@ -1764,7 +1747,7 @@
     <HotkeyCategory value="Unit/Category/ZergPrimal"></HotkeyCategory>
     <Radius value="0.75"></Radius>
   </CUnit>
-  <CUnit id="DehakaDrone">
+  <CUnit id="DehakaDrone">
     <DeathRevealRadius value="3"></DeathRevealRadius>
     <Race value="PZrg"></Race>
     <Mob value="Multiplayer"></Mob>
@@ -1802,10 +1785,10 @@
     <AbilArray Link="DehakaDroneMorph"></AbilArray>
     <AbilArray Link="DroneHarvest"></AbilArray>
     <AbilArray Link="BurrowDehakaDroneDown"></AbilArray>
-    <AbilArray Link="DroneCarcassHarvest"></AbilArray>
-    <AbilArray Link="MapObjectInteract"></AbilArray>
-    <AbilArray Link="MutatorRemoveWorkerSleep"></AbilArray>
-    <AbilArray Link="SprayZerg"></AbilArray>
+    <AbilArray Link="DroneCarcassHarvest"></AbilArray>
+    <AbilArray Link="MapObjectInteract"></AbilArray>
+    <AbilArray Link="MutatorRemoveWorkerSleep"></AbilArray>
+    <AbilArray Link="SprayZerg"></AbilArray>
     <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
     <WeaponArray Link="DehakaDroneSpines"></WeaponArray>
     <CardLayouts>
@@ -2414,17 +2397,10 @@
     <ScoreKill value="0"></ScoreKill>
   </CUnit>
   <CUnit id="Factory">
-    <AbilArray Link="FactoryTrainNova"></AbilArray>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
-    <BehaviorArray Link="ChronoBoostBlackOpsFactory"></BehaviorArray>
     <CardLayouts index="0">
-      <LayoutButtons index="0" Face="HellionTank" AbilCmd="FactoryTrain,Train7" Column="0"></LayoutButtons>
-      <LayoutButtons index="1" Face="Hellion" AbilCmd="FactoryTrain,Train6" Column="0"></LayoutButtons>
       <LayoutButtons index="2" Face="SiegeTank" Type="AbilCmd" AbilCmd="FactoryTrain,Train2" Column="2"></LayoutButtons>
       <LayoutButtons index="3" Face="Vulture" AbilCmd="FactoryTrain,Train10" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons index="4" Face="Thor" AbilCmd="FactoryTrain,Train5" Row="0" Column="4"></LayoutButtons>
-      <LayoutButtons index="5" Face="BuildCyclone" AbilCmd="FactoryTrain,Train8" Row="0"></LayoutButtons>
-      <LayoutButtons index="6" Face="Goliath" AbilCmd="FactoryTrain,Train3" Row="0"></LayoutButtons>
       <LayoutButtons index="8" Face="Reactor" AbilCmd="FactoryAddOns,Build2" Column="1"></LayoutButtons>
       <LayoutButtons index="9" Face="TechReactorFactory" AbilCmd="FactoryAddOns,Build4" Column="0"></LayoutButtons>
       <LayoutButtons index="10" Face="TechReactorAI" AbilCmd="FactoryAddOns,Build3" Column="1"></LayoutButtons>
@@ -2449,17 +2425,7 @@
       </LayoutButtons>
       <LayoutButtons index="16" Face="CancelBuilding" AbilCmd="BuildInProgress,Cancel" Column="4"></LayoutButtons>
       <LayoutButtons index="17" Face="SelectBuilder" Type="SelectBuilder" AbilCmd="FactoryTrain,Train4" Row="1" Column="3"></LayoutButtons>
-      <LayoutButtons index="18" Face="MengskUnits" Type="Submenu" AbilCmd="" SubmenuCardId="MGSK" Row="1"></LayoutButtons>
-      <LayoutButtons index="19" Face="BuildThorLocked" Type="Passive" AbilCmd="" Requirements="SwannLevel06"></LayoutButtons>
       <LayoutButtons index="20" Face="OrbitalDropPodsPassive" Type="Passive" AbilCmd="" Requirements="HaveOrbitalDropPods"></LayoutButtons>
-      <LayoutButtons Face="TrainHellbatNova" Type="AbilCmd" AbilCmd="FactoryTrainNova,Train3" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="TrainSiegeTankNova" Type="AbilCmd" AbilCmd="FactoryTrainNova,Train2" Row="0" Column="2"></LayoutButtons>
-      <LayoutButtons Face="TrainGoliathNova" Type="AbilCmd" AbilCmd="FactoryTrainNova,Train1" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="PerditionTurretPassive" Type="Passive" Requirements="HaveSwannCommander" Row="1" Column="1"></LayoutButtons>
-      <LayoutButtons Face="KelMorianRocketTurretPassive" Type="Passive" Requirements="HaveSwannCommander" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyAttackSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyAttackSpeed" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyOOCRegenSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyOOCRegenSpeed" Row="1" Column="1"></LayoutButtons>
-      <LayoutButtons Face="Hellion" Type="AbilCmd" AbilCmd="FactoryTrain,Train6" Row="1" Column="0"></LayoutButtons>
     </CardLayouts>
     <Footprint value="Footprint3x3CreepNormalContour"></Footprint>
     <PlacementFootprint value="Footprint3x3CreepNormal"></PlacementFootprint>
@@ -2472,10 +2438,6 @@
     <CardLayouts index="0">
       <LayoutButtons index="8" Face="BuildTechReactorFactory"></LayoutButtons>
       <LayoutButtons Face="OrbitalDropPodsPassive" Type="Passive" Requirements="HaveOrbitalDropPods" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="PerditionTurretPassive" Type="Passive" Requirements="HaveSwannCommander" Row="1" Column="1"></LayoutButtons>
-      <LayoutButtons Face="KelMorianRocketTurretPassive" Type="Passive" Requirements="HaveSwannCommander" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyAttackSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyAttackSpeed" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyOOCRegenSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyOOCRegenSpeed" Row="1" Column="1"></LayoutButtons>
     </CardLayouts>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
     <SubgroupPriority value="42"></SubgroupPriority>
@@ -7453,8 +7415,11 @@
     <ScoreKill value="0"></ScoreKill>
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
-    <DamageTakenXP value="0"></DamageTakenXP>
-    <SubgroupPriority value="114"></SubgroupPriority>
+    <DamageTakenXP value="0"></DamageTakenXP>
+    <CardLayouts index="0">
+      <LayoutButtons Face="StimMarauder" Type="AbilCmd" AbilCmd="StimpackMarauder,Execute" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+    <SubgroupPriority value="114"></SubgroupPriority>
     <AbilArray Link="StimpackMarauder"></AbilArray>
     <AbilArray Link="attack"></AbilArray>
     <AbilArray Link="move"></AbilArray>
@@ -7541,7 +7506,8 @@
     <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
     <CardLayouts index="0">
-      <LayoutButtons Face="HaveShieldWall" Type="Passive" Requirements="HaveShieldWall" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="HaveShieldWall" Type="Passive" Requirements="HaveShieldWall" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="Stim" Type="AbilCmd" AbilCmd="Stimpack,Execute" Row="2" Column="0"></LayoutButtons>
     </CardLayouts>
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
@@ -8852,10 +8818,7 @@
     <Food value="15"></Food>
     <CardLayouts index="0">
       <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="RallyCommand,Rally2" Row="1" Column="4"></LayoutButtons>
-      <LayoutButtons Face="BuildDroneOperatorLocked" Type="Passive" Requirements="SwannLevel05" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="VespeneDrone" Type="AbilCmd" AbilCmd="VespeneDroneCast,Execute" Row="0" Column="1"></LayoutButtons>
     </CardLayouts>
-    <AbilArray Link="VespeneDroneCast"></AbilArray>
     <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
@@ -9930,27 +9893,16 @@
     </CardLayouts>
     <SubgroupPriority value="119"></SubgroupPriority>
   </CUnit>
-  <CUnit id="SCV">
+  <CUnit id="SCV">
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <KillXP value="0"></KillXP>
-    <AbilArray Link="MapObjectInteract"></AbilArray>
-    <AbilArray Link="MutatorRemoveWorkerSleep"></AbilArray>
-    <AbilArray Link="TerranBuildFullRefund"></AbilArray>
-    <AbilArray Link="AdvancedConstructionAuto"></AbilArray>
     <AbilArray Link="SprayTerran"></AbilArray>
-    <BehaviorArray Link="KelMorianWorkerCloak"></BehaviorArray>
     <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
     <CardLayouts index="0">
-      <LayoutButtons Face="MapObjectInteract" Type="AbilCmd" AbilCmd="MapObjectInteract,Execute" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="AdvancedConstructionLocked" Type="Passive" Requirements="SwannLevel08" Row="1" Column="4"></LayoutButtons>
-      <LayoutButtons Face="MutatorWorkerSleep" Type="AbilCmd" AbilCmd="MutatorRemoveWorkerSleep,Execute" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="Spray" Type="AbilCmd" AbilCmd="SprayTerran,Execute" Row="2" Column="3"></LayoutButtons>
-      <LayoutButtons Face="AdvancedConstructionAuto" Type="AbilCmd" AbilCmd="AdvancedConstructionAuto,Execute" Row="1" Column="2"></LayoutButtons>
     </CardLayouts>
     <CardLayouts index="1">
-      <LayoutButtons index="7" Face="BuildKelMorianRocketTurret" AbilCmd="TerranBuild,Build27"></LayoutButtons>
-      <LayoutButtons Face="CommandCenterOrbRelay" Type="AbilCmd" AbilCmd="TerranBuild,Build21" Row="0" Column="0"></LayoutButtons>
       <LayoutButtons>
         <Face value="SwannBarracks"></Face>
         <Type value="Passive"></Type>
@@ -9960,15 +9912,8 @@
         <Column value="0"></Column>
       </LayoutButtons>
       <LayoutButtons Face="BunkerFortified" Type="AbilCmd" AbilCmd="TerranBuild,Build23" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="PerditionTurret" Type="AbilCmd" AbilCmd="TerranBuild,Build20" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="BuildLaserTurret" Type="AbilCmd" AbilCmd="TerranBuildFullRefund,Build1" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="BuildKelMorianMissileTurret" Type="AbilCmd" AbilCmd="TerranBuild,Build26" Row="2" Column="1"></LayoutButtons>
-      <LayoutButtons Face="SensorTower" Type="AbilCmd" AbilCmd="TerranBuild,Build9" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="HiveMindEmulator" Type="AbilCmd" AbilCmd="TerranBuild,Build22" Row="2" Column="3"></LayoutButtons>
-      <LayoutButtons Face="PsiDisruptor" Type="AbilCmd" AbilCmd="TerranBuild,Build8" Row="2" Column="3"></LayoutButtons>
     </CardLayouts>
     <CardLayouts index="2">
-      <LayoutButtons Face="GhostAcademyNova" Type="AbilCmd" AbilCmd="TerranBuild,Build15" Row="0" Column="0"></LayoutButtons>
       <LayoutButtons Face="BuildFusionCoreLocked" Type="Passive" Requirements="RaynorLevel06" Row="2" Column="1"></LayoutButtons>
     </CardLayouts>
     <ScoreMake value="0"></ScoreMake>
@@ -11195,10 +11140,8 @@
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
     <SubgroupPriority value="55"></SubgroupPriority>
   </CUnit>
-  <CUnit id="Starport">
-    <AbilArray Link="StarportTrainNova"></AbilArray>
+  <CUnit id="Starport">
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
-    <BehaviorArray Link="ChronoBoostBlackOpsStarport"></BehaviorArray>
     <CardLayouts index="0">
       <LayoutButtons index="0" Face="Banshee" AbilCmd="StarportTrain,Train2" Column="1"></LayoutButtons>
       <LayoutButtons index="1" Face="Battlecruiser" AbilCmd="StarportTrain,Train4" Column="2"></LayoutButtons>
@@ -11215,35 +11158,20 @@
       <LayoutButtons index="12" Face="TechReactorStarport" AbilCmd="StarportAddOns,Build4" Column="0"></LayoutButtons>
       <LayoutButtons index="13" Face="TechReactorAI" Type="AbilCmd" AbilCmd="StarportAddOns,Build3" Row="2" Column="1"></LayoutButtons>
       <LayoutButtons index="14">
-        <Face value="Medivac"></Face>
+        <Face value="VikingFighter"></Face>
         <Type value="AbilCmd"></Type>
-        <AbilCmd value="StarportTrain,Train1"></AbilCmd>
+        <AbilCmd value="StarportTrain,Train5"></AbilCmd>
         <SubmenuCardId value=""></SubmenuCardId>
         <Row value="0"></Row>
         <Column value="0"></Column>
       </LayoutButtons>
-      <LayoutButtons index="15" Face="BuildHercules" AbilCmd="StarportTrain,Train6" Row="0"></LayoutButtons>
-      <LayoutButtons index="16" Face="Raven" AbilCmd="StarportTrain,Train3"></LayoutButtons>
-      <LayoutButtons index="17" Face="Wraith" AbilCmd="StarportTrain,Train8" Row="0"></LayoutButtons>
-      <LayoutButtons index="18" Face="TrainBansheeNova" AbilCmd="StarportTrainNova,Train1" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="BuildScienceVessel" Type="AbilCmd" AbilCmd="StarportTrain,Train9" Row="0" Column="2"></LayoutButtons>
-      <LayoutButtons Face="TrainRavenNova" Type="AbilCmd" AbilCmd="StarportTrainNova,Train2" Row="0" Column="2"></LayoutButtons>
       <LayoutButtons Face="VikingFighter" Type="AbilCmd" AbilCmd="StarportTrain,Train5" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="TrainLiberatorNova" Type="AbilCmd" AbilCmd="StarportTrainNova,Train3" Row="0" Column="0"></LayoutButtons>
       <LayoutButtons Face="OrbitalDropPodsPassive" Type="Passive" Requirements="HaveOrbitalDropPods" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyAttackSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyAttackSpeed" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyOOCRegenSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyOOCRegenSpeed" Row="1" Column="1"></LayoutButtons>
     </CardLayouts>
     <CardLayouts index="1">
-      <LayoutButtons index="0" Face="Wraith"></LayoutButtons>
       <LayoutButtons index="1" Face="VikingFighter" Type="Undefined" AbilCmd=""></LayoutButtons>
       <LayoutButtons index="2" Face="Banshee" Type="Undefined" AbilCmd=""></LayoutButtons>
-      <LayoutButtons index="3" Face="Medivac" Row="1"></LayoutButtons>
-      <LayoutButtons index="4" Face="Raven" Type="Undefined" Row="1" Column="1"></LayoutButtons>
-      <LayoutButtons Face="BuildScienceVessel" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="BuildHercules" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="Battlecruiser" Row="2" Column="1"></LayoutButtons>
-      <LayoutButtons Face="Liberator" Row="0" Column="3"></LayoutButtons>
     </CardLayouts>
     <CardLayouts index="2" removed="1"></CardLayouts>
     <Footprint value="Footprint3x3CreepNormalContour"></Footprint>
@@ -11256,10 +11184,7 @@
     <ScoreKill value="0"></ScoreKill>
     <CardLayouts index="0">
       <LayoutButtons index="8" Face="BuildTechReactor"></LayoutButtons>
-      <LayoutButtons Face="BuildHHTechLabStarport" Type="AbilCmd" AbilCmd="StarportAddOns,Build5" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="OrbitalDropPodsPassive" Type="Passive" Requirements="HaveOrbitalDropPods" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyAttackSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyAttackSpeed" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="MasteryNovaArmyOOCRegenSpeedAppend" Type="Passive" Requirements="HaveMasteryNovaArmyOOCRegenSpeed" Row="1" Column="1"></LayoutButtons>
     </CardLayouts>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
     <SubgroupPriority value="41"></SubgroupPriority>

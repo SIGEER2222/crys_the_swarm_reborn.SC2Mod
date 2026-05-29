@@ -297,8 +297,7 @@ void gf_XMTB_RunAllSmoke () {
     lv_totalErrors += lv_fbErrors;
     gf_XMTB_Log("INFO", "TEST_RUN_ALL_STEP", "scenario=full_buildings warnings=" + IntToString(lv_fbWarnings) + " errors=" + IntToString(lv_fbErrors));
 
-    gf_XMTB_Clear();
-    gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
+    gv_xmTbCurrentScenario = "full_units";
     gf_XMTB_RunScenario("full_units");
     lv_fuWarnings = XMTestBench_GetWarningCount(1);
     lv_fuErrors = XMTestBench_GetErrorCount(1);

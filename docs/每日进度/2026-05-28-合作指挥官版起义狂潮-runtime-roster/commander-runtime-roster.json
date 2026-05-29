@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-05-28T14:45:36.680Z",
+    "generatedAt": "2026-05-28T23:23:35.534Z",
     "generatedBy": "scripts/sc2/generate-runtime-commander-roster.mjs",
     "officialRoot": "C:\\Users\\22448\\Downloads\\重生虫心0.71汉化版（新）\\reborn_workrepo\\游戏数据\\官方合作指挥官\\commanders",
     "modRoot": "C:\\Users\\22448\\Downloads\\重生虫心0.71汉化版（新）\\reborn_workrepo\\合作指挥官版起义狂潮",
@@ -936,13 +936,13 @@
         },
         {
           "officialId": "PhoenixPurifier",
-          "runtimeId": "FleetBeacon",
-          "runtimeUnit": "FleetBeacon",
+          "runtimeId": "PhoenixPurifier",
+          "runtimeUnit": "PhoenixPurifier",
           "kind": "unit",
-          "status": "resolved",
-          "sourceModule": "XMCore.SC2Mod,XMKarax.SC2Mod",
-          "sourceFile": "XMCore.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "status": "shared-exact",
+          "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod",
+          "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+          "note": "shared runtime unit from common imported pool"
         },
         {
           "officialId": "Scout",
@@ -1047,8 +1047,7 @@
       ],
       "statusCounts": {
         "exact": 11,
-        "resolved": 1,
-        "shared-exact": 1
+        "shared-exact": 2
       }
     },
     {
@@ -1099,13 +1098,13 @@
         },
         {
           "officialId": "SwarmQueen",
-          "runtimeId": "Queen",
-          "runtimeUnit": "Queen",
+          "runtimeId": "QueenCoop",
+          "runtimeUnit": "QueenCoop",
           "kind": "unit",
-          "status": "resolved",
+          "status": "alias",
           "sourceModule": "XMKerrigan.SC2Mod",
           "sourceFile": "XMKerrigan.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "note": "manual-alias"
         },
         {
           "officialId": "Ultralisk",
@@ -1161,7 +1160,7 @@
       "statusCounts": {
         "exact": 6,
         "shared-exact": 3,
-        "resolved": 1
+        "alias": 1
       }
     },
     {
@@ -1467,10 +1466,10 @@
           "runtimeId": "GhostFemale_BlackOps",
           "runtimeUnit": "GhostFemale_BlackOps",
           "kind": "unit",
-          "status": "resolved",
+          "status": "alias",
           "sourceModule": "XMNova.SC2Mod",
           "sourceFile": "XMNova.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "note": "manual-alias"
         },
         {
           "officialId": "Goliath_BlackOps",
@@ -1587,10 +1586,10 @@
           "runtimeId": "NovaACLaserTurret",
           "runtimeUnit": "NovaACLaserTurret",
           "kind": "building",
-          "status": "resolved",
+          "status": "alias",
           "sourceModule": "XMNova.SC2Mod",
           "sourceFile": "XMNova.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "note": "manual-alias"
         },
         {
           "officialId": "MissileTurret",
@@ -1615,9 +1614,8 @@
       ],
       "statusCounts": {
         "exact": 9,
-        "resolved": 2,
-        "shared-exact": 1,
-        "alias": 4
+        "alias": 6,
+        "shared-exact": 1
       }
     },
     {
@@ -2323,12 +2321,12 @@
         {
           "officialId": "HellionTank",
           "runtimeId": "HellionTank",
-          "runtimeUnit": "",
+          "runtimeUnit": "HellionTank",
           "kind": "unit",
-          "status": "external-only",
+          "status": "state-only",
           "sourceModule": "XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod",
           "sourceFile": "XMAbathur.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "catalog exists outside commander/shared modules; review before using in runtime factories"
+          "note": "state-only runtime state variant; keep out of final roster output"
         },
         {
           "officialId": "Hercules",
@@ -2463,7 +2461,7 @@
       ],
       "statusCounts": {
         "shared-exact": 2,
-        "external-only": 1,
+        "state-only": 1,
         "alias": 11,
         "exact": 1
       }
@@ -2790,13 +2788,13 @@
         },
         {
           "officialId": "SwarmQueen",
-          "runtimeId": "Queen",
-          "runtimeUnit": "Queen",
+          "runtimeId": "QueenCoop",
+          "runtimeUnit": "QueenCoop",
           "kind": "unit",
-          "status": "resolved",
+          "status": "alias",
           "sourceModule": "XMZagara.SC2Mod",
           "sourceFile": "XMZagara.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
-          "note": "resolved"
+          "note": "manual-alias"
         },
         {
           "officialId": "Zergling",
@@ -2832,7 +2830,7 @@
       "statusCounts": {
         "exact": 4,
         "shared-exact": 4,
-        "resolved": 1
+        "alias": 1
       }
     },
     {
