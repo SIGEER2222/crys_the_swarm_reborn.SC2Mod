@@ -2312,6 +2312,52 @@
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
     </CUnit>
+    <CUnit id="SIDroneBurrowed">
+        <Name value="Unit/Name/Drone"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="InfT"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="Worker" value="1"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="Buried" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="40"/>
+        <LifeMax value="40"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <Mover value="Burrowed"/>
+        <Sight value="4"/>
+        <Food value="-1"/>
+        <CostCategory value="Economy"/>
+        <CostResource index="Minerals" value="50"/>
+        <AttackTargetPriority value="20"/>
+        <AIOverideTargetPriority value="10"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <AbilArray Link="SIBurrowDroneUp"/>
+        <CardLayouts>
+            <LayoutButtons Face="AttackWorker" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="SIBurrowDroneUp,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.375"/>
+        <SeparationRadius value="0"/>
+        <InnerRadius value="0.375"/>
+        <SubgroupPriority value="104"/>
+        <MinimapRadius value="0.375"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionInfested"/>
+        <LeaderAlias value="SIDrone"/>
+        <HotkeyAlias value="SIDrone"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <AIEvaluateAlias value="Drone"/>
+        <HotkeyCategory value="Unit/Category/InfestedTerranUnits"/>
+    </CUnit>
     <CUnit id="SIOverlord">
         <DeathRevealRadius value="3"/>
         <Race value="InfT"/>
