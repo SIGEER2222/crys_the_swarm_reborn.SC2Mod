@@ -275,6 +275,8 @@ void libE0EAE146_gf_XMTestBench_WriteSummary (int lp_player) {
     lv_summary = "Commander: " + libE0EAE146_gv_xmTestBenchCommander[lp_player];
     lv_summary = lv_summary + " | Normalized: " + libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
     lv_summary = lv_summary + " | Scenario: " + libE0EAE146_gv_xmTestBenchScenario[lp_player];
+    lv_summary = lv_summary + " | Blessing: " + XMBlessing_Selected(lp_player);
+    lv_summary = lv_summary + " | Challenge: " + XMChallenge_Active(lp_player);
     lv_summary = lv_summary + " | Created: " + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]);
     lv_summary = lv_summary + " | Missing: " + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]);
     if (libE0EAE146_gv_xmTestBenchMissingIds[lp_player] != "") {

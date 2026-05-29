@@ -21,6 +21,7 @@ include "Lib0940FFB7"
 include "Lib4B62E36B"
 include "Lib975E2FE9"
 include "LibE0EAE146"
+include "LibXMCoopMutators"
 
 //--------------------------------------------------------------------------------------------------
 // Library Initialization
@@ -40,6 +41,7 @@ void InitLibs () {
     lib4B62E36B_InitLib();
     lib975E2FE9_InitLib();
     libE0EAE146_InitLib();
+    libXMCM_InitLib();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -73,6 +75,13 @@ trigger gt_XMTB_ChatFullBuildings;
 trigger gt_XMTB_ChatFullUnits;
 trigger gt_XMTB_ChatRosterCurrent;
 trigger gt_XMTB_ChatRosterAll;
+trigger gt_XMTB_ChatMutatorPlague;
+trigger gt_XMTB_ChatMutatorsAll;
+trigger gt_XMTB_ChatRewardUnlock;
+trigger gt_XMTB_ChatBlessingRepair;
+trigger gt_XMTB_ChatBlessingCreep;
+trigger gt_XMTB_ChatChallengeResource;
+trigger gt_XMTB_ChatChallengeSpeed;
 
 int gv_xmTbCommanderDialog;
 int gv_xmTbScenarioDialog;
@@ -87,6 +96,13 @@ int gv_xmTbButtonNextCommander;
 int gv_xmTbButtonRunAll;
 int gv_xmTbButtonCurrentRoster;
 int gv_xmTbButtonAllRosters;
+int gv_xmTbButtonMutatorPlague;
+int gv_xmTbButtonMutatorsAll;
+int gv_xmTbButtonRewardUnlock;
+int gv_xmTbButtonBlessingRepair;
+int gv_xmTbButtonBlessingCreep;
+int gv_xmTbButtonChallengeResource;
+int gv_xmTbButtonChallengeSpeed;
 int gv_xmTbSummaryLabel;
 
 string gv_xmTbCurrentCommander;
@@ -116,6 +132,13 @@ void gf_XMTB_RunCurrentScenario ();
 void gf_XMTB_RunAllSmoke ();
 void gf_XMTB_RunCurrentCommanderRosterPair ();
 void gf_XMTB_RunAllCommanderRosters ();
+void gf_XMTB_EnablePlagueMutatorTest ();
+void gf_XMTB_EnableAllMutatorsTest ();
+void gf_XMTB_DebugUnlockRewards ();
+void gf_XMTB_SelectBlessingRepair ();
+void gf_XMTB_SelectBlessingCreep ();
+void gf_XMTB_SelectChallengeResource ();
+void gf_XMTB_SelectChallengeSpeed ();
 void gf_XMTB_BuildCommanderUI ();
 void gf_XMTB_BuildScenarioUI ();
 void gf_XMTB_BuildSummaryUI ();
@@ -447,6 +470,58 @@ void gf_XMTB_RunAllCommanderRosters () {
     gf_XMTB_UpdateSummary();
 }
 
+void gf_XMTB_EnablePlagueMutatorTest () {
+    libXMCM_gf_EnableMutator("Plague");
+    gf_XMTB_Log("INFO", "MUTATOR_ENABLE", "mutator=Plague source=CommanderTestBench enabledCount=" + IntToString(libXMCM_gf_MutatorEnabledCount()));
+    gf_XMTB_UpdateSummary();
+}
+
+void gf_XMTB_EnableAllMutatorsTest () {
+    libXMCM_gf_EnableAllMutators();
+    gf_XMTB_Log("INFO", "MUTATOR_ENABLE_ALL", "source=CommanderTestBench enabledCount=" + IntToString(libXMCM_gf_MutatorEnabledCount()));
+    gf_XMTB_UpdateSummary();
+}
+
+void gf_XMTB_DebugUnlockRewards () {
+    XMProgression_DebugUnlockFirstBatch(1);
+    XMProgression_Init(1);
+    gv_xmTbLastEvent = "TEST_REWARD_UNLOCK";
+    gf_XMTB_Log("INFO", "TEST_REWARD_UNLOCK", "result=first_batch_unlocked");
+    gf_XMTB_UpdateSummary();
+}
+
+void gf_XMTB_SelectBlessingRepair () {
+    XMBlessing_SelectForNextRun(1, "BlessingPhaseRepair");
+    XMProgression_Init(1);
+    gv_xmTbLastEvent = "TEST_BLESSING_PHASE_REPAIR";
+    gf_XMTB_Log("INFO", "TEST_BLESSING_PHASE_REPAIR", "result=selected");
+    gf_XMTB_UpdateSummary();
+}
+
+void gf_XMTB_SelectBlessingCreep () {
+    XMBlessing_SelectForNextRun(1, "BlessingCreepRegeneration");
+    XMProgression_Init(1);
+    gv_xmTbLastEvent = "TEST_BLESSING_CREEP_REGEN";
+    gf_XMTB_Log("INFO", "TEST_BLESSING_CREEP_REGEN", "result=selected");
+    gf_XMTB_UpdateSummary();
+}
+
+void gf_XMTB_SelectChallengeResource () {
+    XMChallenge_SelectForNextRun(1, "ChallengeResourceScarce");
+    XMProgression_Init(1);
+    gv_xmTbLastEvent = "TEST_CHALLENGE_RESOURCE";
+    gf_XMTB_Log("INFO", "TEST_CHALLENGE_RESOURCE", "result=selected");
+    gf_XMTB_UpdateSummary();
+}
+
+void gf_XMTB_SelectChallengeSpeed () {
+    XMChallenge_SelectForNextRun(1, "ChallengeSpeedClear");
+    XMProgression_Init(1);
+    gv_xmTbLastEvent = "TEST_CHALLENGE_SPEED";
+    gf_XMTB_Log("INFO", "TEST_CHALLENGE_SPEED", "result=selected");
+    gf_XMTB_UpdateSummary();
+}
+
 void gf_XMTB_BuildCommanderUI () {
     int lv_i;
     int lv_x;
@@ -509,7 +584,7 @@ void gf_XMTB_BuildSummaryUI () {
 }
 
 void gf_XMTB_BuildActionUI () {
-    DialogCreate(760, 100, c_anchorTopLeft, 420, 690, true);
+    DialogCreate(950, 190, c_anchorTopLeft, 420, 650, true);
     gv_xmTbActionDialog = DialogLastCreated();
     DialogSetVisible(gv_xmTbActionDialog, PlayerGroupAll(), true);
     DialogSetImageVisible(gv_xmTbActionDialog, false);
@@ -526,6 +601,20 @@ void gf_XMTB_BuildActionUI () {
     gv_xmTbButtonCurrentRoster = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 190, 44, StringToText("Sweep full_buildings and full_units for all commanders"), StringToText("All Rosters"), "");
     gv_xmTbButtonAllRosters = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 380, 44, StringToText("Enable official co-op mutator Plague"), StringToText("Enable Plague"), "");
+    gv_xmTbButtonMutatorPlague = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 570, 44, StringToText("Enable all official co-op mutators"), StringToText("Enable All"), "");
+    gv_xmTbButtonMutatorsAll = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 0, 88, StringToText("Unlock first reward test batch"), StringToText("Unlock Rewards"), "");
+    gv_xmTbButtonRewardUnlock = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 190, 88, StringToText("Select blessing Phase Repair"), StringToText("Bless Repair"), "");
+    gv_xmTbButtonBlessingRepair = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 380, 88, StringToText("Select blessing Creep Regeneration"), StringToText("Bless Creep"), "");
+    gv_xmTbButtonBlessingCreep = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 570, 88, StringToText("Select challenge Resource Scarce"), StringToText("Challenge Res"), "");
+    gv_xmTbButtonChallengeResource = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 760, 88, StringToText("Select challenge Speed Clear"), StringToText("Challenge Speed"), "");
+    gv_xmTbButtonChallengeSpeed = DialogControlLastCreated();
 }
 
 void gf_XMTB_BuildUI () {
@@ -644,6 +733,27 @@ bool gt_XMTB_ActionClick_Func (bool testConds, bool runActions) {
     }
     else if (EventDialogControl() == gv_xmTbButtonAllRosters) {
         gf_XMTB_RunAllCommanderRosters();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonMutatorPlague) {
+        gf_XMTB_EnablePlagueMutatorTest();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonMutatorsAll) {
+        gf_XMTB_EnableAllMutatorsTest();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonRewardUnlock) {
+        gf_XMTB_DebugUnlockRewards();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonBlessingRepair) {
+        gf_XMTB_SelectBlessingRepair();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonBlessingCreep) {
+        gf_XMTB_SelectBlessingCreep();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonChallengeResource) {
+        gf_XMTB_SelectChallengeResource();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonChallengeSpeed) {
+        gf_XMTB_SelectChallengeSpeed();
     }
     return true;
 }
@@ -792,6 +902,62 @@ bool gt_XMTB_ChatRosterAll_Func (bool testConds, bool runActions) {
     return true;
 }
 
+bool gt_XMTB_ChatMutatorPlague_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_EnablePlagueMutatorTest();
+    return true;
+}
+
+bool gt_XMTB_ChatMutatorsAll_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_EnableAllMutatorsTest();
+    return true;
+}
+
+bool gt_XMTB_ChatRewardUnlock_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_DebugUnlockRewards();
+    return true;
+}
+
+bool gt_XMTB_ChatBlessingRepair_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_SelectBlessingRepair();
+    return true;
+}
+
+bool gt_XMTB_ChatBlessingCreep_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_SelectBlessingCreep();
+    return true;
+}
+
+bool gt_XMTB_ChatChallengeResource_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_SelectChallengeResource();
+    return true;
+}
+
+bool gt_XMTB_ChatChallengeSpeed_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_SelectChallengeSpeed();
+    return true;
+}
+
 void gt_XMTB_Init_Init () {
     gt_XMTB_Init = TriggerCreate("gt_XMTB_Init_Func");
     TriggerAddEventMapInit(gt_XMTB_Init);
@@ -902,6 +1068,41 @@ void gt_XMTB_ChatRosterAll_Init () {
     TriggerAddEventChatMessage(gt_XMTB_ChatRosterAll, c_playerAny, "-tbrosterall", true);
 }
 
+void gt_XMTB_ChatMutatorPlague_Init () {
+    gt_XMTB_ChatMutatorPlague = TriggerCreate("gt_XMTB_ChatMutatorPlague_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatMutatorPlague, c_playerAny, "-tbplague", true);
+}
+
+void gt_XMTB_ChatMutatorsAll_Init () {
+    gt_XMTB_ChatMutatorsAll = TriggerCreate("gt_XMTB_ChatMutatorsAll_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatMutatorsAll, c_playerAny, "-tbmutatorsall", true);
+}
+
+void gt_XMTB_ChatRewardUnlock_Init () {
+    gt_XMTB_ChatRewardUnlock = TriggerCreate("gt_XMTB_ChatRewardUnlock_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatRewardUnlock, c_playerAny, "-tbrewardunlock", true);
+}
+
+void gt_XMTB_ChatBlessingRepair_Init () {
+    gt_XMTB_ChatBlessingRepair = TriggerCreate("gt_XMTB_ChatBlessingRepair_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatBlessingRepair, c_playerAny, "-tbblessrepair", true);
+}
+
+void gt_XMTB_ChatBlessingCreep_Init () {
+    gt_XMTB_ChatBlessingCreep = TriggerCreate("gt_XMTB_ChatBlessingCreep_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatBlessingCreep, c_playerAny, "-tbblesscreep", true);
+}
+
+void gt_XMTB_ChatChallengeResource_Init () {
+    gt_XMTB_ChatChallengeResource = TriggerCreate("gt_XMTB_ChatChallengeResource_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatChallengeResource, c_playerAny, "-tbchallengeres", true);
+}
+
+void gt_XMTB_ChatChallengeSpeed_Init () {
+    gt_XMTB_ChatChallengeSpeed = TriggerCreate("gt_XMTB_ChatChallengeSpeed_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatChallengeSpeed, c_playerAny, "-tbchallengespeed", true);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
@@ -928,6 +1129,13 @@ void InitTriggers () {
     gt_XMTB_ChatFullUnits_Init();
     gt_XMTB_ChatRosterCurrent_Init();
     gt_XMTB_ChatRosterAll_Init();
+    gt_XMTB_ChatMutatorPlague_Init();
+    gt_XMTB_ChatMutatorsAll_Init();
+    gt_XMTB_ChatRewardUnlock_Init();
+    gt_XMTB_ChatBlessingRepair_Init();
+    gt_XMTB_ChatBlessingCreep_Init();
+    gt_XMTB_ChatChallengeResource_Init();
+    gt_XMTB_ChatChallengeSpeed_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
