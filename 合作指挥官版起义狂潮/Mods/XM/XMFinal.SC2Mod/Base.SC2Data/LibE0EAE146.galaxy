@@ -662,6 +662,12 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         }
         if ((lp_createHero == true)) {
             lib0940FFB7_gf_InitlizeNova(1);
+            if ((DataTableGetUnit(true, ("NovaHero" + IntToString(1))) == null)) {
+                libNtve_gf_CreateUnitsWithDefaultFacing(1, "NovaCoop", c_unitCreateIgnoreBirth, 1, PlayerStartLocation(1));
+                if ((UnitLastCreated() != null)) {
+                    lib0940FFB7_gf_NovaTrigger(UnitLastCreated());
+                }
+            }
         }
 
     }
@@ -734,7 +740,6 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         libE0EAE146_gf_CommanderPanelInit("CoopCasterKerrigan", "Kerrigan");
         TechTreeUpgradeAddLevel(1, "CommanderLevel", 15);
         TechTreeUpgradeAddLevel(1, "KerriganCommander", 1);
-        TechTreeUpgradeAddLevel(1, "KerriganInfestedCosmetic", 1);
         TechTreeUpgradeAddLevel(1, "VoidCoopHeroicFortitude", 1);
         TechTreeUpgradeAddLevel(1, "K5PrimalSlash", 1);
         TechTreeUpgradeAddLevel(1, "K5PsiStrike", 1);
@@ -1201,7 +1206,7 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
     else if ((lv_kind == "heavy")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
@@ -1214,7 +1219,7 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "ultimate")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
     }
     else {
@@ -1236,7 +1241,7 @@ void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind)
     else if ((lv_kind == "heavy")) {
         UnitCargoCreate(lp_container, "HydraliskLurker", 2);
         UnitCargoCreate(lp_container, "QueenCoop", 1);
-        UnitCargoCreate(lp_container, "Ultralisk", 1);
+        UnitCargoCreate(lp_container, "HotSTorrasque", 1);
     }
     else if ((lv_kind == "air")) {
         UnitCargoCreate(lp_container, "Mutalisk", 2);

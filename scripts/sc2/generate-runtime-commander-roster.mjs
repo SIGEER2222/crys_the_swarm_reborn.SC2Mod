@@ -60,7 +60,7 @@ const manualAliases = {
     AutoTurret: ["NovaACLaserTurret", "AutoTurret_BlackOps"],
     Barracks: ["BarracksNova"],
     CommandCenter: ["CommandCenterNova"],
-    GhostNova: ["Ghost_BlackOps", "GhostFemale_BlackOps"],
+    GhostNova: ["GhostFemale_BlackOps", "Ghost_BlackOps"],
     MissileTurret: ["MissileTurretNova"],
     SCV: ["SCVNova"],
   },
@@ -120,8 +120,10 @@ const sharedRuntimeAllowedIds = new Set([
   "Corruptor",
   "Cyclone",
   "Hellion",
+  "HellionTank",
   "Marauder",
   "Oracle",
+  "PhoenixPurifier",
   "PhotonCannon",
   "Queen",
   "SentryPurifier",
@@ -399,14 +401,14 @@ function candidateIds(commander, row) {
   const ids = unique([row.officialId, ...row.resolvedIds]);
 
   addCandidate(candidates, row.officialId, "official");
-  for (const id of row.resolvedIds) {
-    if (id !== row.officialId) {
-      addCandidate(candidates, id, "resolved");
-    }
-  }
   for (const sourceId of ids) {
     for (const alias of manualAliases[commander]?.[sourceId] ?? []) {
       addCandidate(candidates, alias, "manual-alias");
+    }
+  }
+  for (const id of row.resolvedIds) {
+    if (id !== row.officialId) {
+      addCandidate(candidates, id, "resolved");
     }
   }
   for (const sourceId of ids) {

@@ -70,6 +70,7 @@ MANUAL_CHAIN_OVERRIDES = {
 
 MANUAL_HIDE_UNITS = {
     "Abathur": {"Roach", "RoachCorpser", "RoachVile", "GuardianMP", "DevourerMP"},
+    "Dehaka": {"DehakaCreeper", "DehakaRoachLevel2", "DehakaUltraliskLevel2"},
     "Stetmann": {
         "LurkerStetmannBurrowed",
         "OverseerStetmannSiegeMode",
@@ -79,6 +80,10 @@ MANUAL_HIDE_UNITS = {
     "Swann": {"HellionTank"},
     "Horner": {"HHHellionTank"},
     "Mengsk": {"SiegeTankMengskSieged", "VikingMengskAssault", "RavenMengskSieged"},
+}
+
+MANUAL_HIDE_BUILDINGS = {
+    "Dehaka": {"DehakaAirTownHall"},
 }
 
 MANUAL_HIDE_EVOLUTION_TARGETS = {
@@ -103,6 +108,10 @@ def normalized_name(entry: dict, commander_short_id: str) -> str:
 
 def commander_hidden_units(commander_short_id: str) -> set[str]:
     return MANUAL_HIDE_UNITS.get(commander_short_id, set())
+
+
+def commander_hidden_buildings(commander_short_id: str) -> set[str]:
+    return MANUAL_HIDE_BUILDINGS.get(commander_short_id, set())
 
 
 def build_evolution_lines(units: list[dict], commander_short_id: str) -> list[str]:
@@ -174,10 +183,14 @@ def build_final_unit_names(units: list[dict], commander_short_id: str) -> list[s
     return names
 
 
-def collect_names(entries: list[dict], commander_short_id: str) -> list[str]:
+def collect_names(entries: list[dict], commander_short_id: str, *, hidden_ids: set[str] | None = None) -> list[str]:
     names: list[str] = []
     seen: set[str] = set()
+    hidden_ids = hidden_ids or set()
     for entry in entries:
+        unit_id = entry.get("unit_id") or ""
+        if unit_id in hidden_ids:
+            continue
         label = normalized_name(entry, commander_short_id)
         if label in seen:
             continue
@@ -226,12 +239,12 @@ def main() -> int:
             lines.append(f"> {commander['description']}")
             lines.append("")
         lines.append(
-            f"- 数量统计：最终兵种 {len(final_units)}，建筑 {len(collect_names(buildings, short_id))}，英雄 {len(collect_names(heroes, short_id))}"
+            f"- 数量统计：最终兵种 {len(final_units)}，建筑 {len(collect_names(buildings, short_id, hidden_ids=commander_hidden_buildings(short_id)))}，英雄 {len(collect_names(heroes, short_id))}"
         )
         lines.append("")
 
         render_list(lines, "最终兵种", final_units)
-        render_list(lines, "建筑", collect_names(buildings, short_id))
+        render_list(lines, "建筑", collect_names(buildings, short_id, hidden_ids=commander_hidden_buildings(short_id)))
         render_list(lines, "英雄", collect_names(heroes, short_id))
         if evolution_lines:
             render_list(lines, "进化 / 升级链", evolution_lines)

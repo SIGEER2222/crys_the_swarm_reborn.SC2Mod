@@ -211,6 +211,32 @@ $commanderConfigs = @{
         -LocalizedPatterns @(
             'UserData/CommanderAch/Kerrigan_TitU='
         )
+    "Nova" = New-CommanderConfig `
+        -Module "XMNova.SC2Mod" `
+        -OfficialDir "Nova" `
+        -SkipLauncher `
+        -RuntimePatterns @(
+            'else if (auto09490B45_val == "Nova")',
+            'libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterNova"',
+            'lib67C0F0E7_gf_CU_GPInit(1, "Nova"',
+            'lib0940FFB7_gf_InitlizeNova(1);',
+            'lv_commandCenterUnit = "CommandCenterNova";',
+            'lv_workerUnit = "SCVNova";'
+        ) `
+        -ModulePatterns @(
+            'CoopCasterNova',
+            'NovaCoop',
+            'CommandCenterNova',
+            'SCVNova',
+            'BarracksNova',
+            'FactoryNova'
+        ) `
+        -CorePatterns @(
+            '<Instances Id="Nova">'
+        ) `
+        -LocalizedPatterns @(
+            'UserData/CommanderAch/Nova_TitU='
+        )
     "Raynor" = New-CommanderConfig `
         -Module "XMRaynor.SC2Mod" `
         -OfficialDir "Raynor" `
@@ -257,6 +283,32 @@ $commanderConfigs = @{
         ) `
         -LocalizedPatterns @(
             'UserData/CommanderAch/Vorazun_TitU='
+        )
+    "Stukov" = New-CommanderConfig `
+        -Module "XMStukov.SC2Mod" `
+        -OfficialDir "Stukov" `
+        -SkipLauncher `
+        -RuntimePatterns @(
+            'if (auto09490B45_val == "Stukov")',
+            'libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterStukov"',
+            'lib67C0F0E7_gf_CU_GPInit(1, "Stukov"',
+            'lv_commandCenterUnit = "SICommandCenter";',
+            'lv_workerUnit = "SISCV";',
+            'lv_secondUnit = "SICivilianStructure";'
+        ) `
+        -ModulePatterns @(
+            'CoopCasterStukov',
+            'SICommandCenterResearch',
+            'ResearchHeavyInfestation',
+            'SILarvaTrain',
+            'SIOverlord',
+            'SISCV'
+        ) `
+        -CorePatterns @(
+            '<Instances Id="Stukov">'
+        ) `
+        -LocalizedPatterns @(
+            'UserData/CommanderAch/Stukov_TitU='
         )
     "Zagara" = New-CommanderConfig `
         -Module "XMZagara.SC2Mod" `
