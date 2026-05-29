@@ -20,6 +20,7 @@ include "LibE0EAE146_CommanderHeroAbilities"
 include "LibE0EAE146_CommanderUnitAbilities"
 include "LibE0EAE146_CommanderPanels"
 include "LibE0EAE146_ExtraAbathur"
+include "LibE0EAE146_ProgressionRewards"
 include "LibE0EAE146_TestBench"
 
 //--------------------------------------------------------------------------------------------------
@@ -62,7 +63,10 @@ void libE0EAE146_InitVariables () {
         libE0EAE146_gv_xmTestBenchWarnings[init_i] = 0;
         libE0EAE146_gv_xmTestBenchErrors[init_i] = 0;
         libE0EAE146_gv_xmTestBenchUnits[init_i] = UnitGroupEmpty();
+        libE0EAE146_gv_xmProgressionSelectedBlessing[init_i] = "";
+        libE0EAE146_gv_xmProgressionActiveChallenge[init_i] = "";
     }
+    libE0EAE146_gv_xmProgressionTriggersReady = false;
 }
 
 // Functions
@@ -83,6 +87,8 @@ void libE0EAE146_gf_FinishLevel () {
     BankValueSetFromInt(BankLastCreated(), "Finished", lv_map, 1);
     BankValueSetFromInt(BankLastCreated(), "Bon", lv_map, MaxI(libE0EAE146_gv_bon, BankValueGetAsInt(BankLastCreated(), "Bon", lv_map)));
     BankSave(BankLastCreated());
+    XMChallenge_EvaluateOnVictory(1, lv_map, libE0EAE146_gv_commander);
+    XMProgression_Save(1);
     TriggerQueueClear(c_triggerQueueRetain);
     TriggerQueuePause(true);
     UISetWorldVisible(PlayerGroupAll(), false);
@@ -197,6 +203,7 @@ void libE0EAE146_gf_XMRuntime_PrepareCommanderFromBank (int lp_player) {
 
 void libE0EAE146_gf_Initialize (bool lp_rpg) {
     libE0EAE146_gf_XMRuntime_PrepareCommanderFromBank(1);
+    XMProgression_Init(1);
     libE0EAE146_gf_XMDbgLog("INFO", "COMMANDER_INIT_DISPATCH", "commander=" + libE0EAE146_gv_commander + " phase=map_init mode=legacy_adapter");
     libE0EAE146_gf_Initialize_Legacy(lp_rpg);
 }
@@ -551,6 +558,7 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     }
     libE0EAE146_gf_XMDbgLog("INFO", "COMMANDER_INIT_DISPATCH", "commander=" + libE0EAE146_gv_commander + " phase=base_init mode=legacy_adapter");
     libE0EAE146_gf_InitializeBase_Legacy(lp_secondUnit, lp_worker, lp_secondBase, lp_createHero);
+    XMBlessing_ApplySelected(1);
 }
 
 void libE0EAE146_gf_CommanderUpgrade () {
