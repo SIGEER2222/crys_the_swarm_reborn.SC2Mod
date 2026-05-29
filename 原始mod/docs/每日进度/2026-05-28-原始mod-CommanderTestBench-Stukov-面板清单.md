@@ -8,7 +8,7 @@
 - [1] `SIInfestedCivilian`：被感染的平民  `(LibE0EAE146_CommanderRosters.galaxy:271)`
 - [2] `SIInfestedMarine`：被感染的陆战队员  `(LibE0EAE146_CommanderRosters.galaxy:272)`
 - [3] `StukovInfestedSiegeTank`：被感染的攻城坦克  `(LibE0EAE146_CommanderRosters.galaxy:273)`
-- [4] `SIWraith`：被感染的怨灵战机  `(LibE0EAE146_CommanderRosters.galaxy:274)`
+- [4] `SIWraith`：SIWraith  `(LibE0EAE146_CommanderRosters.galaxy:274)`
 - [5] `SIQueen`：虫巢女王  `(LibE0EAE146_CommanderRosters.galaxy:275)`
 - [6] `Zergling`：跳虫  `(LibE0EAE146_CommanderRosters.galaxy:276)`
 
@@ -22,4 +22,4 @@
 - [6] `SIFactory`：被感染的重工厂  `(LibE0EAE146_CommanderBuildings.galaxy:218)`
 - [7] `SIRefinery`：被感染的气矿  `(LibE0EAE146_CommanderBuildings.galaxy:219)`
 - [8] `SIStarport`：被感染的星港  `(LibE0EAE146_CommanderBuildings.galaxy:220)`
-- [9] `SISupplyDepot`：被感染的补给站  `(LibE0EAE146_CommanderBuildings.galaxy:221)`
+- [9] `SISupplyDepot`：SISupplyDepot  `(LibE0EAE146_CommanderBuildings.galaxy:221)`

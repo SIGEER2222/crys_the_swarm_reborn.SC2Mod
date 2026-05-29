@@ -5,10 +5,10 @@
 
 ## 兵种
 
-- [1] `ZagaraVoidCoop`：扎加拉  `(LibE0EAE146_CommanderRosters.galaxy:340)`
+- [1] `ZagaraVoidCoop`：ZagaraVoidCoop  `(LibE0EAE146_CommanderRosters.galaxy:340)`
 - [2] `InfestedAbomination`：被感染的畸变体  `(LibE0EAE146_CommanderRosters.galaxy:341)`
-- [3] `Baneling`：爆虫  `(LibE0EAE146_CommanderRosters.galaxy:342)`
-- [4] `Corruptor`：腐化者  `(LibE0EAE146_CommanderRosters.galaxy:343)`
+- [3] `Baneling`：Baneling  `(LibE0EAE146_CommanderRosters.galaxy:342)`
+- [4] `Corruptor`：Corruptor  `(LibE0EAE146_CommanderRosters.galaxy:343)`
 - [5] `Scourge`：爆蚊  `(LibE0EAE146_CommanderRosters.galaxy:344)`
 - [6] `SwarmQueen`：虫群女王  `(LibE0EAE146_CommanderRosters.galaxy:345)`
 - [7] `Zergling`：跳虫  `(LibE0EAE146_CommanderRosters.galaxy:346)`

@@ -1,3 +1,15 @@
+param(
+    [string[]]$Commander,
+    [ValidateSet('All', 'Units', 'Buildings')]
+    [string]$Kind = 'All',
+    [string]$Keyword,
+    [ValidateSet('All', 'Markdown', 'Csv', 'Json')]
+    [string]$OutputFormat = 'All',
+    [string]$OutputDir,
+    [string]$OutputBaseName,
+    [switch]$SkipPerCommanderFiles
+)
+
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
@@ -14,10 +26,27 @@ $officialStrings = @(
     (Join-Path $repoRoot 'references\sc2-build-96883-casc-export\mods\starcoop\starcoop.sc2mod\zhcn.sc2data\localizeddata\gamestrings.txt'),
     (Join-Path $repoRoot 'references\official-casc-export\mods\starcoop\starcoop.sc2mod\zhcn.sc2data\localizeddata\gamestrings.txt')
 )
-$outputDir = Join-Path $originalRoot 'docs\每日进度'
-$outputFile = Join-Path $outputDir '2026-05-28-原始mod-CommanderTestBench兵种与建筑清单.md'
 
-New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
+if ([string]::IsNullOrWhiteSpace($OutputDir)) {
+    $OutputDir = Join-Path $originalRoot 'docs\每日进度'
+}
+
+$hasFilters = ($Commander.Count -gt 0) -or ($Kind -ne 'All') -or (-not [string]::IsNullOrWhiteSpace($Keyword))
+if ([string]::IsNullOrWhiteSpace($OutputBaseName)) {
+    if ($hasFilters) {
+        $OutputBaseName = '2026-05-29-原始mod-CommanderTestBench兵种建筑筛选结果'
+    }
+    else {
+        $OutputBaseName = '2026-05-29-原始mod-CommanderTestBench兵种建筑总表'
+    }
+}
+
+$legacyMarkdownPath = Join-Path $OutputDir '2026-05-28-原始mod-CommanderTestBench兵种与建筑清单.md'
+$markdownPath = Join-Path $OutputDir ($OutputBaseName + '.md')
+$csvPath = Join-Path $OutputDir ($OutputBaseName + '.csv')
+$jsonPath = Join-Path $OutputDir ($OutputBaseName + '.json')
+
+New-Item -ItemType Directory -Path $OutputDir -Force | Out-Null
 
 $nameMap = @{}
 $manualNameMap = [ordered]@{
@@ -45,6 +74,7 @@ $manualNameMap = [ordered]@{
     'InfestedAbomination' = '被感染的畸变体'
     'Scourge' = '爆蚊'
 }
+
 function Import-UnitNamesFromGameStrings {
     param([string]$Path)
 
@@ -63,29 +93,6 @@ function Import-UnitNamesFromGameStrings {
                 }
             }
         }
-    }
-}
-
-Get-ChildItem -Path $modsRoot -Directory | ForEach-Object {
-    $gameStrings = Join-Path $_.FullName 'zhCN.SC2Data\LocalizedData\GameStrings.txt'
-    Import-UnitNamesFromGameStrings -Path $gameStrings
-}
-
-foreach ($gameStrings in $officialStrings) {
-    Import-UnitNamesFromGameStrings -Path $gameStrings
-}
-
-if (Test-Path -LiteralPath $legacyXmRoot) {
-    Get-ChildItem -Path $legacyXmRoot -Recurse -File | Where-Object {
-        $_.Name -ieq 'GameStrings.txt' -and $_.FullName -match 'zhCN\.SC2Data\\LocalizedData\\'
-    } | ForEach-Object {
-        Import-UnitNamesFromGameStrings -Path $_.FullName
-    }
-}
-
-foreach ($entry in $manualNameMap.GetEnumerator()) {
-    if (-not $nameMap.ContainsKey($entry.Key) -or [string]::IsNullOrWhiteSpace($nameMap[$entry.Key]) -or ($nameMap[$entry.Key] -eq $entry.Key)) {
-        $nameMap[$entry.Key] = $entry.Value
     }
 }
 
@@ -142,6 +149,127 @@ function Get-CommanderEntries {
     return $result
 }
 
+function Get-DisplayName {
+    param([string]$UnitId)
+
+    if ($manualNameMap.Contains($UnitId)) {
+        return $manualNameMap[$UnitId]
+    }
+    if ($nameMap.ContainsKey($UnitId)) {
+        return $nameMap[$UnitId]
+    }
+    return $UnitId
+}
+
+function Write-MarkdownReport {
+    param(
+        [System.Collections.IEnumerable]$Rows,
+        [string]$Path,
+        [string]$Title,
+        [string]$Description
+    )
+
+    $rowsByCommander = $Rows | Group-Object Commander
+    $lines = New-Object System.Collections.Generic.List[string]
+    $lines.Add("# $Title")
+    $lines.Add('')
+    $lines.Add('## 说明')
+    $lines.Add('')
+    $lines.Add('- 来源：`原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146_CommanderRosters.galaxy` 与 `LibE0EAE146_CommanderBuildings.galaxy`。')
+    $lines.Add('- 目的：作为 `CommanderTestBench` 的 `full_units` 与 `full_buildings` 测试输入对照表。')
+    $lines.Add('- 中文名优先读取 `原始mod/Mods/XM/*/zhCN.SC2Data/LocalizedData/GameStrings.txt`，缺失时回退到官方 `zhCN` GameStrings；仍缺失则保留原始 UnitId。')
+    $lines.Add('- 筛选方法：可改用脚本参数 `-Commander`、`-Kind`、`-Keyword`，并配合 `-OutputFormat Csv/Json` 生成可继续筛选的本地文件。')
+    if (-not [string]::IsNullOrWhiteSpace($Description)) {
+        $lines.Add("- 当前条件：$Description")
+    }
+    $lines.Add('')
+
+    foreach ($group in $rowsByCommander) {
+        $unitRows = @($group.Group | Where-Object { $_.Kind -eq '兵种' })
+        $buildingRows = @($group.Group | Where-Object { $_.Kind -eq '建筑' })
+
+        $lines.Add("## $($group.Name)")
+        $lines.Add('')
+        $lines.Add(('兵种数量：{0}' -f $unitRows.Count))
+        foreach ($row in $unitRows) {
+            $lines.Add(('- [' + $row.Index + '] `' + $row.UnitId + '`：' + $row.NameZh + '  `(' + $row.SourceFile + ':' + $row.SourceLine + ')`'))
+        }
+        if ($unitRows.Count -eq 0) {
+            $lines.Add('- 无')
+        }
+        $lines.Add('')
+        $lines.Add(('建筑数量：{0}' -f $buildingRows.Count))
+        foreach ($row in $buildingRows) {
+            $lines.Add(('- [' + $row.Index + '] `' + $row.UnitId + '`：' + $row.NameZh + '  `(' + $row.SourceFile + ':' + $row.SourceLine + ')`'))
+        }
+        if ($buildingRows.Count -eq 0) {
+            $lines.Add('- 无')
+        }
+        $lines.Add('')
+    }
+
+    Set-Content -LiteralPath $Path -Value $lines -Encoding UTF8
+}
+
+function Write-CommanderMarkdown {
+    param(
+        [System.Collections.IEnumerable]$Rows,
+        [string]$Path,
+        [string]$CommanderName
+    )
+
+    $unitRows = @($Rows | Where-Object { $_.Kind -eq '兵种' })
+    $buildingRows = @($Rows | Where-Object { $_.Kind -eq '建筑' })
+    $lines = New-Object System.Collections.Generic.List[string]
+    $lines.Add("# $CommanderName CommanderTestBench 面板清单")
+    $lines.Add('')
+    $lines.Add('- 来源：`LibE0EAE146_CommanderRosters.galaxy` / `LibE0EAE146_CommanderBuildings.galaxy`。')
+    $lines.Add('- 用途：人工校对当前指挥官的兵种/建筑面板项。')
+    $lines.Add('')
+    $lines.Add('## 兵种')
+    $lines.Add('')
+    foreach ($row in $unitRows) {
+        $lines.Add(('- [' + $row.Index + '] `' + $row.UnitId + '`：' + $row.NameZh + '  `(' + $row.SourceFile + ':' + $row.SourceLine + ')`'))
+    }
+    if ($unitRows.Count -eq 0) {
+        $lines.Add('- 无')
+    }
+    $lines.Add('')
+    $lines.Add('## 建筑')
+    $lines.Add('')
+    foreach ($row in $buildingRows) {
+        $lines.Add(('- [' + $row.Index + '] `' + $row.UnitId + '`：' + $row.NameZh + '  `(' + $row.SourceFile + ':' + $row.SourceLine + ')`'))
+    }
+    if ($buildingRows.Count -eq 0) {
+        $lines.Add('- 无')
+    }
+
+    Set-Content -LiteralPath $Path -Value $lines -Encoding UTF8
+}
+
+Get-ChildItem -Path $modsRoot -Directory | ForEach-Object {
+    $gameStrings = Join-Path $_.FullName 'zhCN.SC2Data\LocalizedData\GameStrings.txt'
+    Import-UnitNamesFromGameStrings -Path $gameStrings
+}
+
+foreach ($gameStrings in $officialStrings) {
+    Import-UnitNamesFromGameStrings -Path $gameStrings
+}
+
+if (Test-Path -LiteralPath $legacyXmRoot) {
+    Get-ChildItem -Path $legacyXmRoot -Recurse -File | Where-Object {
+        $_.Name -ieq 'GameStrings.txt' -and $_.FullName -match 'zhCN\.SC2Data\\LocalizedData\\'
+    } | ForEach-Object {
+        Import-UnitNamesFromGameStrings -Path $_.FullName
+    }
+}
+
+foreach ($entry in $manualNameMap.GetEnumerator()) {
+    if (-not $nameMap.ContainsKey($entry.Key) -or [string]::IsNullOrWhiteSpace($nameMap[$entry.Key]) -or ($nameMap[$entry.Key] -eq $entry.Key)) {
+        $nameMap[$entry.Key] = $entry.Value
+    }
+}
+
 $unitEntries = Get-CommanderEntries -Path $rostersFile -FunctionPrefix 'libE0EAE146_gf_XMTestBench' -CommanderSuffix 'Roster'
 $buildingEntries = Get-CommanderEntries -Path $buildingsFile -FunctionPrefix 'libE0EAE146_gf_XMTestBench' -CommanderSuffix 'Buildings'
 
@@ -151,76 +279,114 @@ $commanderOrder = @(
     'Zagara', 'Zeratul'
 )
 
-$lines = New-Object System.Collections.Generic.List[string]
-$lines.Add('# 原始mod CommanderTestBench 兵种与建筑清单')
-$lines.Add('')
-$lines.Add('## 说明')
-$lines.Add('')
-$lines.Add('- 来源：`原始mod/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146_CommanderRosters.galaxy` 与 `LibE0EAE146_CommanderBuildings.galaxy`。')
-$lines.Add('- 目的：作为 `CommanderTestBench` 的 `full_units` 与 `full_buildings` 测试输入对照表。')
-$lines.Add('- 中文名优先读取 `原始mod/Mods/XM/*/zhCN.SC2Data/LocalizedData/GameStrings.txt`，缺失时回退到 `references/sc2-build-96883-casc-export` 的官方 `zhcn` GameStrings。')
-$lines.Add('- 若中文名缺失，则保留原始 UnitId。')
-$lines.Add('- 每条记录附带来源文件与行号，便于人工纠正后回写到 Galaxy roster。')
-$lines.Add('')
+$allRows = New-Object System.Collections.Generic.List[object]
 
-foreach ($commander in $commanderOrder) {
-    $unitList = if ($unitEntries.Keys -contains $commander) { $unitEntries[$commander] } else { New-Object System.Collections.Generic.List[object] }
-    $buildingList = if ($buildingEntries.Keys -contains $commander) { $buildingEntries[$commander] } else { New-Object System.Collections.Generic.List[object] }
+foreach ($commanderName in $commanderOrder) {
+    $unitList = if ($unitEntries.Keys -contains $commanderName) { $unitEntries[$commanderName] } else { @() }
+    $buildingList = if ($buildingEntries.Keys -contains $commanderName) { $buildingEntries[$commanderName] } else { @() }
 
-    $lines.Add("## $commander")
-    $lines.Add('')
-    $lines.Add(('兵种数量：{0}' -f $unitList.Count))
-    foreach ($unitEntry in $unitList) {
-        $unitId = $unitEntry.UnitId
-        $displayName = if ($manualNameMap.Contains($unitId)) { $manualNameMap[$unitId] } elseif ($nameMap.ContainsKey($unitId)) { $nameMap[$unitId] } else { $unitId }
-        $lines.Add(('- [' + $unitEntry.Index + '] `' + $unitId + '`：' + $displayName + '  `(' + $unitEntry.SourceFile + ':' + $unitEntry.SourceLine + ')`'))
-    }
-    if ($unitList.Count -eq 0) {
-        $lines.Add('- 无')
-    }
-    $lines.Add('')
-    $lines.Add(('建筑数量：{0}' -f $buildingList.Count))
-    foreach ($buildingEntry in $buildingList) {
-        $buildingId = $buildingEntry.UnitId
-        $displayName = if ($manualNameMap.Contains($buildingId)) { $manualNameMap[$buildingId] } elseif ($nameMap.ContainsKey($buildingId)) { $nameMap[$buildingId] } else { $buildingId }
-        $lines.Add(('- [' + $buildingEntry.Index + '] `' + $buildingId + '`：' + $displayName + '  `(' + $buildingEntry.SourceFile + ':' + $buildingEntry.SourceLine + ')`'))
-    }
-    if ($buildingList.Count -eq 0) {
-        $lines.Add('- 无')
-    }
-    $lines.Add('')
-
-    $singleLines = New-Object System.Collections.Generic.List[string]
-    $singleLines.Add("# $commander CommanderTestBench 面板清单")
-    $singleLines.Add('')
-    $singleLines.Add('- 来源：`LibE0EAE146_CommanderRosters.galaxy` / `LibE0EAE146_CommanderBuildings.galaxy`。')
-    $singleLines.Add('- 用途：人工校对当前指挥官的兵种/建筑面板项。')
-    $singleLines.Add('')
-    $singleLines.Add('## 兵种')
-    $singleLines.Add('')
-    foreach ($unitEntry in $unitList) {
-        $unitId = $unitEntry.UnitId
-        $displayName = if ($manualNameMap.Contains($unitId)) { $manualNameMap[$unitId] } elseif ($nameMap.ContainsKey($unitId)) { $nameMap[$unitId] } else { $unitId }
-        $singleLines.Add(('- [' + $unitEntry.Index + '] `' + $unitId + '`：' + $displayName + '  `(' + $unitEntry.SourceFile + ':' + $unitEntry.SourceLine + ')`'))
-    }
-    if ($unitList.Count -eq 0) {
-        $singleLines.Add('- 无')
-    }
-    $singleLines.Add('')
-    $singleLines.Add('## 建筑')
-    $singleLines.Add('')
-    foreach ($buildingEntry in $buildingList) {
-        $buildingId = $buildingEntry.UnitId
-        $displayName = if ($manualNameMap.Contains($buildingId)) { $manualNameMap[$buildingId] } elseif ($nameMap.ContainsKey($buildingId)) { $nameMap[$buildingId] } else { $buildingId }
-        $singleLines.Add(('- [' + $buildingEntry.Index + '] `' + $buildingId + '`：' + $displayName + '  `(' + $buildingEntry.SourceFile + ':' + $buildingEntry.SourceLine + ')`'))
-    }
-    if ($buildingList.Count -eq 0) {
-        $singleLines.Add('- 无')
+    foreach ($entry in $unitList) {
+        $allRows.Add([pscustomobject]@{
+            Commander = $commanderName
+            Kind = '兵种'
+            Index = $entry.Index
+            UnitId = $entry.UnitId
+            NameZh = Get-DisplayName -UnitId $entry.UnitId
+            SourceFile = $entry.SourceFile
+            SourceLine = $entry.SourceLine
+        })
     }
 
-    $singleFile = Join-Path $outputDir ("2026-05-28-原始mod-CommanderTestBench-{0}-面板清单.md" -f $commander)
-    Set-Content -LiteralPath $singleFile -Value $singleLines -Encoding UTF8
+    foreach ($entry in $buildingList) {
+        $allRows.Add([pscustomobject]@{
+            Commander = $commanderName
+            Kind = '建筑'
+            Index = $entry.Index
+            UnitId = $entry.UnitId
+            NameZh = Get-DisplayName -UnitId $entry.UnitId
+            SourceFile = $entry.SourceFile
+            SourceLine = $entry.SourceLine
+        })
+    }
 }
 
-Set-Content -LiteralPath $outputFile -Value $lines -Encoding UTF8
-Write-Output $outputFile
+$filteredRows = @($allRows | ForEach-Object { $_ })
+if ($Commander.Count -gt 0) {
+    $commanderSet = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
+    foreach ($name in $Commander) {
+        if (-not [string]::IsNullOrWhiteSpace($name)) {
+            [void]$commanderSet.Add($name.Trim())
+        }
+    }
+    $filteredRows = @($filteredRows | Where-Object { $commanderSet.Contains($_.Commander) })
+}
+
+if ($Kind -eq 'Units') {
+    $filteredRows = @($filteredRows | Where-Object { $_.Kind -eq '兵种' })
+}
+elseif ($Kind -eq 'Buildings') {
+    $filteredRows = @($filteredRows | Where-Object { $_.Kind -eq '建筑' })
+}
+
+if (-not [string]::IsNullOrWhiteSpace($Keyword)) {
+    $keywordPattern = [regex]::Escape($Keyword.Trim())
+    $filteredRows = @($filteredRows | Where-Object {
+        $_.Commander -match $keywordPattern -or
+        $_.UnitId -match $keywordPattern -or
+        $_.NameZh -match $keywordPattern -or
+        $_.Kind -match $keywordPattern
+    })
+}
+
+$descriptionParts = New-Object System.Collections.Generic.List[string]
+if ($Commander.Count -gt 0) {
+    $descriptionParts.Add(('指挥官=' + (($Commander | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }) -join ',')))
+}
+if ($Kind -ne 'All') {
+    $descriptionParts.Add(('类型=' + $Kind))
+}
+if (-not [string]::IsNullOrWhiteSpace($Keyword)) {
+    $descriptionParts.Add(('关键词=' + $Keyword.Trim()))
+}
+if ($descriptionParts.Count -eq 0) {
+    $descriptionParts.Add('无筛选，导出全量结果')
+}
+$description = $descriptionParts -join '；'
+
+$writtenFiles = New-Object System.Collections.Generic.List[string]
+
+if (($OutputFormat -eq 'All') -or ($OutputFormat -eq 'Markdown')) {
+    $markdownTitle = if ($hasFilters) { '原始mod CommanderTestBench 兵种与建筑筛选结果' } else { '原始mod CommanderTestBench 兵种与建筑清单' }
+    Write-MarkdownReport -Rows $filteredRows -Path $markdownPath -Title $markdownTitle -Description $description
+    $writtenFiles.Add($markdownPath)
+
+    if (-not $hasFilters) {
+        Write-MarkdownReport -Rows $filteredRows -Path $legacyMarkdownPath -Title '原始mod CommanderTestBench 兵种与建筑清单' -Description $description
+        $writtenFiles.Add($legacyMarkdownPath)
+    }
+
+    if (-not $SkipPerCommanderFiles) {
+        foreach ($commanderGroup in ($filteredRows | Group-Object Commander)) {
+            $singleFile = Join-Path $OutputDir ("2026-05-28-原始mod-CommanderTestBench-{0}-面板清单.md" -f $commanderGroup.Name)
+            Write-CommanderMarkdown -Rows $commanderGroup.Group -Path $singleFile -CommanderName $commanderGroup.Name
+            $writtenFiles.Add($singleFile)
+        }
+    }
+}
+
+if (($OutputFormat -eq 'All') -or ($OutputFormat -eq 'Csv')) {
+    $filteredRows |
+        Select-Object Commander, Kind, Index, UnitId, NameZh, SourceFile, SourceLine |
+        Export-Csv -LiteralPath $csvPath -NoTypeInformation -Encoding UTF8
+    $writtenFiles.Add($csvPath)
+}
+
+if (($OutputFormat -eq 'All') -or ($OutputFormat -eq 'Json')) {
+    $filteredRows |
+        Select-Object Commander, Kind, Index, UnitId, NameZh, SourceFile, SourceLine |
+        ConvertTo-Json -Depth 3 |
+        Set-Content -LiteralPath $jsonPath -Encoding UTF8
+    $writtenFiles.Add($jsonPath)
+}
+
+$writtenFiles | Sort-Object -Unique | ForEach-Object { Write-Output $_ }

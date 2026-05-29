@@ -6,7 +6,7 @@
 ## 兵种
 
 - [1] `Banshee_BlackOps`：隐秘女妖  `(LibE0EAE146_CommanderRosters.galaxy:207)`
-- [2] `GhostNova`：幽灵  `(LibE0EAE146_CommanderRosters.galaxy:208)`
+- [2] `GhostNova`：GhostNova  `(LibE0EAE146_CommanderRosters.galaxy:208)`
 - [3] `Goliath_BlackOps`：强击歌利亚  `(LibE0EAE146_CommanderRosters.galaxy:209)`
 - [4] `HellbatBlackOps`：恶蝠游骑兵  `(LibE0EAE146_CommanderRosters.galaxy:210)`
 - [5] `Liberator_BlackOps`：掠袭解放者  `(LibE0EAE146_CommanderRosters.galaxy:211)`
@@ -19,8 +19,8 @@
 
 ## 建筑
 
-- [1] `Barracks`：兵营  `(LibE0EAE146_CommanderBuildings.galaxy:157)`
+- [1] `Barracks`：Barracks  `(LibE0EAE146_CommanderBuildings.galaxy:157)`
 - [2] `GhostAcademyNova`：幽灵军校  `(LibE0EAE146_CommanderBuildings.galaxy:158)`
-- [3] `AutoTurret`：自动机炮  `(LibE0EAE146_CommanderBuildings.galaxy:159)`
+- [3] `AutoTurret`：AutoTurret  `(LibE0EAE146_CommanderBuildings.galaxy:159)`
 - [4] `MissileTurret`：导弹塔  `(LibE0EAE146_CommanderBuildings.galaxy:160)`
-- [5] `CommandCenter`：指挥中心  `(LibE0EAE146_CommanderBuildings.galaxy:161)`
+- [5] `CommandCenter`：CommandCenter  `(LibE0EAE146_CommanderBuildings.galaxy:161)`

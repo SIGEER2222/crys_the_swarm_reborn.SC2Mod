@@ -16,8 +16,8 @@
 
 ## 建筑
 
-- [1] `Gateway`：传送门  `(LibE0EAE146_CommanderBuildings.galaxy:111)`
+- [1] `Gateway`：Gateway  `(LibE0EAE146_CommanderBuildings.galaxy:111)`
 - [2] `PhotonCannon`：光子炮台  `(LibE0EAE146_CommanderBuildings.galaxy:112)`
 - [3] `ShieldBattery`：护盾充能器  `(LibE0EAE146_CommanderBuildings.galaxy:113)`
 - [4] `SolarForge`：太阳锻炉  `(LibE0EAE146_CommanderBuildings.galaxy:114)`
-- [5] `TwilightCouncil`：光影议会  `(LibE0EAE146_CommanderBuildings.galaxy:115)`
+- [5] `TwilightCouncil`：TwilightCouncil  `(LibE0EAE146_CommanderBuildings.galaxy:115)`

@@ -9,12 +9,12 @@
 - [2] `HighTemplarTaldarim`：晋升者  `(LibE0EAE146_CommanderRosters.galaxy:55)`
 - [3] `ImmortalTaldarim`：先锋  `(LibE0EAE146_CommanderRosters.galaxy:56)`
 - [4] `Monitor`：监视者  `(LibE0EAE146_CommanderRosters.galaxy:57)`
-- [5] `Supplicant`：死徒  `(LibE0EAE146_CommanderRosters.galaxy:58)`
-- [6] `WarpPrismTaldarim`：战争棱镜  `(LibE0EAE146_CommanderRosters.galaxy:59)`
-- [7] `Stalker`：追猎者  `(LibE0EAE146_CommanderRosters.galaxy:60)`
+- [5] `Supplicant`：Supplicant  `(LibE0EAE146_CommanderRosters.galaxy:58)`
+- [6] `WarpPrismTaldarim`：WarpPrismTaldarim  `(LibE0EAE146_CommanderRosters.galaxy:59)`
+- [7] `Stalker`：Stalker  `(LibE0EAE146_CommanderRosters.galaxy:60)`
 
 ## 建筑
 
-- [1] `Gateway`：传送门  `(LibE0EAE146_CommanderBuildings.galaxy:46)`
+- [1] `Gateway`：Gateway  `(LibE0EAE146_CommanderBuildings.galaxy:46)`
 - [2] `PhotonCannon`：光子炮台  `(LibE0EAE146_CommanderBuildings.galaxy:47)`
-- [3] `TwilightCouncil`：光影议会  `(LibE0EAE146_CommanderBuildings.galaxy:48)`
+- [3] `TwilightCouncil`：TwilightCouncil  `(LibE0EAE146_CommanderBuildings.galaxy:48)`
