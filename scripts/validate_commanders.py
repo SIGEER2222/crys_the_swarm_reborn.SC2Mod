@@ -161,8 +161,14 @@ def compare_units(official_units, mod_units, commander_name):
 def main():
     base_path = Path(r"c:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo")
     
-    # 官方数据路径
-    official_path = base_path / "references" / "official-casc-export" / "mods" / "starcoop" / "starcoop.sc2mod" / "base.sc2data" / "gamedata" / "unitdata.xml"
+    # 官方数据路径，优先使用当前从本机 SC2Data 刷新的 live export。
+    official_candidates = [
+        base_path / "游戏数据" / "官方合作指挥官" / "_source-cache" / "live-casc-export" / "mods" / "starcoop" / "starcoop.sc2mod" / "base.sc2data" / "gamedata" / "unitdata.xml",
+        base_path / "references" / "official-casc-export" / "mods" / "starcoop" / "starcoop.sc2mod" / "base.sc2data" / "gamedata" / "unitdata.xml",
+    ]
+    official_path = next((path for path in official_candidates if path.exists()), None)
+    if official_path is None:
+        raise FileNotFoundError("未找到官方 unitdata.xml，请先执行 scripts/sc2/export-official-coop-game-data.py 刷新 live export。")
     
     # 指挥官模组路径
     mods_path = base_path / "合作指挥官版起义狂潮" / "Mods" / "XM"

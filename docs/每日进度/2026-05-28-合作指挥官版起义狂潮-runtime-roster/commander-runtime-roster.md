@@ -1,34 +1,34 @@
 # 合作指挥官版起义狂潮 runtime roster 映射
 
-- 生成时间：2026/5/28 15:06:53
+- 生成时间：2026/5/29 07:23:35
 - 生成脚本：`scripts/sc2/generate-runtime-commander-roster.mjs`
-- 目标 Mod：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\合作指挥官版起义狂潮`
-- 目标 UserData：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\合作指挥官版起义狂潮\Mods\XM\XMFinal.SC2Mod\Base.SC2Data\GameData\UserData.xml`
+- 目标 Mod：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合作指挥官版起义狂潮`
+- 目标 UserData：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合作指挥官版起义狂潮\Mods\XM\XMFinal.SC2Mod\Base.SC2Data\GameData\UserData.xml`
 - 口径：只读取官方 `heroes.json` / `units.json` / `buildings.json`，不把 command card 的单位/建筑噪声当 roster。
-- `exact/resolved/alias` 可作为运行时工厂候选；`external-only/unresolved` 需要人工确认后再接初始化器或测试台。
+- `exact/shared-exact/resolved/alias` 可作为运行时工厂候选；`state-only` 为埋地态/架设态/中间态，仅保留映射，不应作为最终 roster 输出；`external-only/unresolved` 需要人工确认后再接初始化器或测试台。
 
 ## 汇总
 
-| 指挥官 | 运行时 | 模块 | 总数 | exact | resolved | alias | external-only | unresolved |
-| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Abathur | Abathur | `XMAbathur.SC2Mod` | 14 | 13 | 1 | 0 | 0 | 0 |
-| Alarak | Alarak | `XMAlarak.SC2Mod` | 10 | 8 | 1 | 0 | 1 | 0 |
-| Artanis | Artanis | `XMArtanis.SC2Mod` | 12 | 12 | 0 | 0 | 0 | 0 |
-| Dehaka | Dehaka | `XMDehaka.SC2Mod` | 25 | 25 | 0 | 0 | 0 | 0 |
-| Fenix | Fenix | `XMFenix.SC2Mod` | 12 | 12 | 0 | 0 | 0 | 0 |
-| Horner | Mira | `XMMira.SC2Mod` | 10 | 0 | 0 | 10 | 0 | 0 |
-| Karax | Karax | `XMKarax.SC2Mod` | 13 | 11 | 1 | 0 | 1 | 0 |
-| Kerrigan | Kerrigan | `XMKerrigan.SC2Mod` | 10 | 6 | 1 | 0 | 3 | 0 |
-| Mengsk | Mengsk | `XMMengsk.SC2Mod` | 27 | 27 | 0 | 0 | 0 | 0 |
-| Nova | Nova | `XMNova.SC2Mod` | 16 | 9 | 2 | 4 | 1 | 0 |
-| Raynor | Raynor | `XMRaynor.SC2Mod` | 16 | 16 | 0 | 0 | 0 | 0 |
-| Stetmann | Stetmann | `XMStetmann.SC2Mod` | 34 | 34 | 0 | 0 | 0 | 0 |
-| Stukov | Stukov | `XMStukov.SC2Mod` | 15 | 13 | 0 | 1 | 1 | 0 |
-| Swann | Swann | `XMSwann.SC2Mod` | 15 | 1 | 0 | 11 | 3 | 0 |
-| Tychus | Tychus | `XMTychus.SC2Mod` | 14 | 13 | 0 | 0 | 1 | 0 |
-| Vorazun | Vorazun | `XMVorazun.SC2Mod` | 10 | 6 | 2 | 0 | 2 | 0 |
-| Zagara | Zagara | `XMZagara.SC2Mod` | 9 | 4 | 2 | 0 | 3 | 0 |
-| Zeratul | Zeratul | `XMZeratul.SC2Mod` | 12 | 12 | 0 | 0 | 0 | 0 |
+| 指挥官 | 运行时 | 模块 | 总数 | exact | shared-exact | resolved | alias | state-only | external-only | unresolved |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Abathur | Abathur | `XMAbathur.SC2Mod` | 14 | 9 | 0 | 0 | 0 | 5 | 0 | 0 |
+| Alarak | Alarak | `XMAlarak.SC2Mod` | 10 | 8 | 2 | 0 | 0 | 0 | 0 | 0 |
+| Artanis | Artanis | `XMArtanis.SC2Mod` | 12 | 12 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Dehaka | Dehaka | `XMDehaka.SC2Mod` | 25 | 25 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Fenix | Fenix | `XMFenix.SC2Mod` | 12 | 12 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Horner | Mira | `XMMira.SC2Mod` | 10 | 0 | 0 | 0 | 9 | 1 | 0 | 0 |
+| Karax | Karax | `XMKarax.SC2Mod` | 13 | 11 | 2 | 0 | 0 | 0 | 0 | 0 |
+| Kerrigan | Kerrigan | `XMKerrigan.SC2Mod` | 10 | 6 | 3 | 0 | 1 | 0 | 0 | 0 |
+| Mengsk | Mengsk | `XMMengsk.SC2Mod` | 27 | 24 | 0 | 0 | 0 | 3 | 0 | 0 |
+| Nova | Nova | `XMNova.SC2Mod` | 16 | 9 | 1 | 0 | 6 | 0 | 0 | 0 |
+| Raynor | Raynor | `XMRaynor.SC2Mod` | 16 | 16 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Stetmann | Stetmann | `XMStetmann.SC2Mod` | 34 | 30 | 0 | 0 | 0 | 4 | 0 | 0 |
+| Stukov | Stukov | `XMStukov.SC2Mod` | 15 | 15 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Swann | Swann | `XMSwann.SC2Mod` | 15 | 1 | 2 | 0 | 11 | 1 | 0 | 0 |
+| Tychus | Tychus | `XMTychus.SC2Mod` | 14 | 13 | 1 | 0 | 0 | 0 | 0 | 0 |
+| Vorazun | Vorazun | `XMVorazun.SC2Mod` | 10 | 6 | 4 | 0 | 0 | 0 | 0 | 0 |
+| Zagara | Zagara | `XMZagara.SC2Mod` | 9 | 4 | 4 | 0 | 1 | 0 | 0 | 0 |
+| Zeratul | Zeratul | `XMZeratul.SC2Mod` | 12 | 12 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ## Abathur
 
@@ -37,7 +37,11 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `DevourerMP` | `Devourer` | resolved | `XMAbathur.SC2Mod` | resolved |
+| unit | `GuardianMP` | `GuardianMP` | state-only | `XMAbathur.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| unit | `DevourerMP` | `Devourer` | state-only | `XMAbathur.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| unit | `Roach` | `Roach` | state-only | `XMAbathur.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| unit | `RoachCorpser` | `RoachCorpser` | state-only | `XMAbathur.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| unit | `RoachVile` | `RoachVile` | state-only | `XMAbathur.SC2Mod` | state-only runtime state variant; keep out of final roster output |
 
 ## Alarak
 
@@ -46,8 +50,8 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `Stalker` | `Stalker` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
-| building | `PhotonCannon` | `Zealot` | resolved | `XMAlarak.SC2Mod` | resolved |
+| unit | `Stalker` | `Stalker` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
+| building | `PhotonCannon` | `PhotonCannon` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod` | shared runtime unit from common imported pool |
 
 ## Artanis
 
@@ -76,7 +80,7 @@
 | --- | --- | --- | --- | --- | --- |
 | unit | `HHBattlecruiser` | `BattlecruiserMira` | alias | `XMMira.SC2Mod` | manual-alias |
 | unit | `HHHellion` | `HellionMira` | alias | `XMMira.SC2Mod` | manual-alias |
-| unit | `HHHellionTank` | `HellionTankMira` | alias | `XMMira.SC2Mod` | manual-alias |
+| unit | `HHHellionTank` | `HellionTankMira` | state-only | `XMMira.SC2Mod` | state-only runtime state variant; keep out of final roster output |
 | unit | `HHRaven` | `RavenMira` | alias | `XMMira.SC2Mod` | manual-alias |
 | unit | `HHReaper` | `ReaperMira` | alias | `XMMira.SC2Mod` | manual-alias |
 | unit | `HHVikingFighter` | `VikingFighterMira` | alias | `XMMira.SC2Mod` | manual-alias |
@@ -92,8 +96,8 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `PhoenixPurifier` | `FleetBeacon` | resolved | `XMCore.SC2Mod,XMKarax.SC2Mod` | resolved |
-| unit | `SentryPurifier` | `SentryPurifier` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
+| unit | `PhoenixPurifier` | `PhoenixPurifier` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod` | shared runtime unit from common imported pool |
+| unit | `SentryPurifier` | `SentryPurifier` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod` | shared runtime unit from common imported pool |
 
 ## Kerrigan
 
@@ -102,16 +106,21 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `BroodLord` | `BroodLord` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
-| unit | `SwarmQueen` | `Queen` | resolved | `XMKerrigan.SC2Mod` | resolved |
-| building | `SpineCrawler` | `SpineCrawler` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
-| building | `SporeCrawler` | `SporeCrawler` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
+| unit | `BroodLord` | `BroodLord` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
+| unit | `SwarmQueen` | `QueenCoop` | alias | `XMKerrigan.SC2Mod` | manual-alias |
+| building | `SpineCrawler` | `SpineCrawler` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod` | shared runtime unit from common imported pool |
+| building | `SporeCrawler` | `SporeCrawler` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
 
 ## Mengsk
 
 - 运行时实例：`Mengsk`
 - 模块：`XMMengsk.SC2Mod`
-- 非精确映射：无
+
+| 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
+| --- | --- | --- | --- | --- | --- |
+| unit | `SiegeTankMengskSieged` | `SiegeTankMengskSieged` | state-only | `XMMengsk.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| unit | `VikingMengskAssault` | `VikingMengskAssault` | state-only | `XMMengsk.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| unit | `RavenMengskSieged` | `RavenMengskSieged` | state-only | `XMMengsk.SC2Mod` | state-only runtime state variant; keep out of final roster output |
 
 ## Nova
 
@@ -120,11 +129,11 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `GhostNova` | `GhostFemale_BlackOps` | resolved | `XMNova.SC2Mod` | resolved |
-| unit | `MercReaper` | `MercReaper` | external-only | `XMZagara.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
+| unit | `GhostNova` | `GhostFemale_BlackOps` | alias | `XMNova.SC2Mod` | manual-alias |
+| unit | `MercReaper` | `MercReaper` | shared-exact | `XMZagara.SC2Mod` | shared runtime unit from common imported pool |
 | unit | `SCV` | `SCVNova` | alias | `XMNova.SC2Mod` | manual-alias |
 | building | `Barracks` | `BarracksNova` | alias | `XMNova.SC2Mod` | manual-alias |
-| building | `AutoTurret` | `NovaACLaserTurret` | resolved | `XMNova.SC2Mod` | resolved |
+| building | `AutoTurret` | `NovaACLaserTurret` | alias | `XMNova.SC2Mod` | manual-alias |
 | building | `MissileTurret` | `MissileTurretNova` | alias | `XMNova.SC2Mod` | manual-alias |
 | building | `CommandCenter` | `CommandCenterNova` | alias | `XMNova.SC2Mod` | manual-alias |
 
@@ -138,17 +147,19 @@
 
 - 运行时实例：`Stetmann`
 - 模块：`XMStetmann.SC2Mod`
-- 非精确映射：无
+
+| 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
+| --- | --- | --- | --- | --- | --- |
+| unit | `LurkerStetmannBurrowed` | `LurkerStetmannBurrowed` | state-only | `XMStetmann.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| unit | `OverseerStetmannSiegeMode` | `OverseerStetmannSiegeMode` | state-only | `XMStetmann.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| building | `SpineCrawlerUprootedStetmann` | `SpineCrawlerUprootedStetmann` | state-only | `XMStetmann.SC2Mod` | state-only runtime state variant; keep out of final roster output |
+| building | `SporeCrawlerUprootedStetmann` | `SporeCrawlerUprootedStetmann` | state-only | `XMStetmann.SC2Mod` | state-only runtime state variant; keep out of final roster output |
 
 ## Stukov
 
 - 运行时实例：`Stukov`
 - 模块：`XMStukov.SC2Mod`
-
-| 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
-| --- | --- | --- | --- | --- | --- |
-| unit | `SwarmQueen` | `SIQueen` | alias | `XMStukov.SC2Mod` | manual-alias |
-| unit | `Zergling` | `Zergling` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMKerrigan.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
+- 非精确映射：无
 
 ## Swann
 
@@ -157,11 +168,11 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `Cyclone` | `Cyclone` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
-| unit | `HellionTank` | `HellionTank` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
+| unit | `Cyclone` | `Cyclone` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod` | shared runtime unit from common imported pool |
+| unit | `HellionTank` | `HellionTank` | state-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod` | state-only runtime state variant; keep out of final roster output |
 | unit | `Hercules` | `HerculesSwann` | alias | `XMSwann.SC2Mod` | manual-alias |
 | unit | `ScienceVessel` | `ScienceVesselSwann` | alias | `XMSwann.SC2Mod` | manual-alias |
-| unit | `Hellion` | `Hellion` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
+| unit | `Hellion` | `Hellion` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMArtanis.SC2Mod,XMFenix.SC2Mod,XMKarax.SC2Mod,XMKerrigan.SC2Mod,XMRaynor.SC2Mod,XMVorazun.SC2Mod,XMZagara.SC2Mod,XMZeratul.SC2Mod` | shared runtime unit from common imported pool |
 | unit | `Wraith` | `WraithSwann` | alias | `XMSwann.SC2Mod` | manual-alias |
 | unit | `SCV` | `SCVSwann` | alias | `XMSwann.SC2Mod` | manual-alias |
 | unit | `Goliath` | `GoliathSwann` | alias | `XMSwann.SC2Mod` | manual-alias |
@@ -179,7 +190,7 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `Marauder` | `Marauder` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMRaynor.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
+| unit | `Marauder` | `Marauder` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMRaynor.SC2Mod` | shared runtime unit from common imported pool |
 
 ## Vorazun
 
@@ -188,10 +199,10 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `Oracle` | `Oracle` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
-| unit | `ZealotShakuras` | `Zealot` | resolved | `XMVorazun.SC2Mod` | resolved |
-| unit | `Stalker` | `Stalker` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
-| unit | `VoidRay` | `Stargate` | resolved | `XMVorazun.SC2Mod` | resolved |
+| unit | `Oracle` | `Oracle` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
+| unit | `ZealotShakuras` | `ZealotShakuras` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
+| unit | `Stalker` | `Stalker` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
+| unit | `VoidRay` | `VoidRay` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
 
 ## Zagara
 
@@ -200,11 +211,11 @@
 
 | 类型 | 官方 ID | Runtime ID | 状态 | 来源模块 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| unit | `Corruptor` | `Corruptor` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
-| unit | `SwarmQueen` | `Queen` | resolved | `XMZagara.SC2Mod` | resolved |
-| unit | `Zergling` | `SpawningPool` | resolved | `XMZagara.SC2Mod` | resolved |
-| building | `SpineCrawler` | `SpineCrawler` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
-| building | `SporeCrawler` | `SporeCrawler` | external-only | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | catalog exists outside commander/shared modules; review before using in runtime factories |
+| unit | `Corruptor` | `Corruptor` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
+| unit | `SwarmQueen` | `QueenCoop` | alias | `XMZagara.SC2Mod` | manual-alias |
+| unit | `Zergling` | `Zergling` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMKerrigan.SC2Mod` | shared runtime unit from common imported pool |
+| building | `SpineCrawler` | `SpineCrawler` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod,XMFenix.SC2Mod` | shared runtime unit from common imported pool |
+| building | `SporeCrawler` | `SporeCrawler` | shared-exact | `XMAbathur.SC2Mod,XMAbathurReborn.SC2Mod` | shared runtime unit from common imported pool |
 
 ## Zeratul
 

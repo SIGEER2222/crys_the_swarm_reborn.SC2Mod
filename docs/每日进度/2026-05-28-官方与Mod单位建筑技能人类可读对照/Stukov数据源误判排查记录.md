@@ -153,6 +153,41 @@
 
 目的：避免 `TechUnit` 残留/泛用条目继续污染 Stukov 单位名册。
 
+### 4. 修正生产链解析的错误回填
+
+位置：`resolve_production_metadata()` / `parse_command()`
+
+新增逻辑：
+
+- 当 `InfoArray.Unit` 指向 `Cocoon`、`SpawnerUnit`、`Egg` 等中间形态时，先尝试解析成真实产出单位；
+- 只有在解析不到真实单位时，才回退到当前条目的 `unit_id`。
+
+目的：
+
+- 避免把 `SIStarportTrain,Train2 -> SICocoonInfestedLiberator` 这类命令错误回填成 `SIWraith`；
+- 避免旧 `ArmyCategory` 上残留的 `AbilCommandArray` 被直接当成当前条目的有效生产入口。
+
+### 5. 为 Stukov 增加“可信生产者”校验
+
+位置：`COMMANDER_TRUSTED_PRODUCTION_RULES` + `has_trusted_commander_production()`
+
+当前规则：
+
+- `Stukov` 的最终 roster 只接受以下两类条目：
+  - 命中可信生产者链的条目；
+  - 显式 curated 补录条目（当前是 `StukovInfestedBanshee`、`SILiberator`）。
+- 当前可信生产者集合为：
+  - `SISCV`
+  - `SICommandCenter`
+  - `SIBarracks`
+  - `SIFactory`
+  - `SIStarport`
+
+目的：
+
+- 让 `SwarmQueen`、`Zergling`、`StukovInfestedWraith` 这种“能从旧残留命令或中间单位链误撞到候选入口”的条目自动出局；
+- 不再只依赖 `Stukov` 的手工黑名单兜底。
+
 ## 已重新生成的文件
 
 重新生成官方合作指挥官 JSON：
@@ -201,10 +236,11 @@ badMatches=0
 
 ## 根因总结
 
-这次不是“官方 CASC 没有数据”，而是“官方数据层级用途不同”：
+这次不是“官方 CASC 没有数据”，而是“官方数据层级用途不同”叠加“生产链解析回填过宽”：
 
 - `TechUnit` 更像合作模式选择/展示/科技名册的混合数据，不一定等于当前指挥官实际可生产单位。
 - Stukov 这种经过多次改版或有残留条目的指挥官，`TechUnit.PlayerCommanders` 会出现过时或泛用绑定。
+- 旧版提取器在遇到 `Cocoon` / `SpawnerUnit` / 旧 `ArmyCategory` 命令时，会把中间形态回填成当前条目的 `unit_id`，从而把 `SIStarportTrain,Train2` 这类实际对应解放者的命令伪装成 `SIWraith` 的有效入口。
 - 真正判断单位是否属于某指挥官，应同时看：
   - 指挥官建筑命令卡；
   - 训练/变形技能；
@@ -261,4 +297,15 @@ badMatches=0
 ## 当前限制
 
 当前环境没有 SC2，无法进游戏确认面板实际显示和运行时行为。本次验证是基于 CASC XML、官方中文字符串、当前 Mod XML 命中情况和生成报告的静态验证。
+
+## 本轮重跑说明
+
+- 本轮重新导出使用：
+  - `references/sc2-build-96883-casc-export`
+- 本轮重新生成：
+  - `游戏数据/官方合作指挥官/commanders/Stukov/units.json`
+  - `游戏数据/官方合作指挥官/commanders/Stukov/roster.json`
+  - `docs/每日进度/2026-05-28-官方与Mod单位建筑技能人类可读对照/official-vs-mod-readable-units-buildings-hero-skills.md`
+  - `docs/每日进度/2026-05-28-官方指挥官与mod差异对比/official-vs-mod-by-commander.md`
+  - `docs/每日进度/2026-05-28-官方指挥官与mod差异对比/official-vs-mod-by-commander.json`
 
