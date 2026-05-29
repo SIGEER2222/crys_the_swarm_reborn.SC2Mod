@@ -7,7 +7,7 @@ param(
     [string]$OutputRoot = "",
     [string[]]$Commanders = @("Nova", "Dehaka"),
     [int]$MapLoadWaitSec = 18,
-    [int]$CommanderSettleMs = 1800,
+    [int]$CommanderSettleMs = 400,
     [int]$SmokeWaitSec = 18,
     [string]$SmokeCommand = "-tbsmoke",
     [string]$FullBuildingsCommand = "-tbfullbuildings",
@@ -126,12 +126,25 @@ function Get-WindowRect {
 function Focus-Window {
     param([System.Diagnostics.Process]$Process)
 
+    if (-not $Process) {
+        return
+    }
+
     $hwnd = [IntPtr]$Process.MainWindowHandle
-    [XmUiSmoke]::ShowWindowAsync($hwnd, 9) | Out-Null
-    Start-Sleep -Milliseconds 200
-    [XmUiSmoke]::BringWindowToTop($hwnd) | Out-Null
+
+    if ($hwnd -eq [IntPtr]::Zero) {
+        return
+    }
+
+    # 不再使用：
+    # ShowWindowAsync
+    # BringWindowToTop
+    # 避免 SC2 DX11 全屏反复重建
+
     [XmUiSmoke]::SetForegroundWindow($hwnd) | Out-Null
-    Start-Sleep -Milliseconds 400
+
+    Start-Sleep -Milliseconds 100
+
     return (Get-WindowRect -Process $Process)
 }
 
@@ -165,50 +178,60 @@ function Save-Screenshot {
 
 function Send-ChatCommand {
     param(
+        [System.Diagnostics.Process]$Process,
         [string]$Command,
-        [int]$DelayMs = 1200
+        [int]$DelayMs = 200
     )
+
+    # 仅输入前激活一次窗口
+    Focus-Window -Process $Process | Out-Null
 
     if (-not (Test-Path -LiteralPath $AutoHotkeyPath)) {
         throw "AutoHotkey v2 runtime not found: $AutoHotkeyPath"
     }
 
     $helperScript = Join-Path $PSScriptRoot "send-testbench-chat.ahk"
+
     if (-not (Test-Path -LiteralPath $helperScript)) {
         throw "AutoHotkey chat helper not found: $helperScript"
     }
 
     $tempRoot = Join-Path $env:TEMP "xm-testbench-ahk"
+
     Ensure-Directory -Path $tempRoot
+
     $stamp = Get-Date -Format "yyyyMMdd-HHmmss-fff"
+
     $stdoutPath = Join-Path $tempRoot ("stdout-" + $stamp + ".log")
     $stderrPath = Join-Path $tempRoot ("stderr-" + $stamp + ".log")
 
-    $proc = Start-Process -FilePath $AutoHotkeyPath `
-        -ArgumentList @($helperScript, $Command, "$DelayMs") `
+    $proc = Start-Process `
+        -FilePath $AutoHotkeyPath `
+        -ArgumentList @(
+            $helperScript,
+            $Command,
+            "$DelayMs"
+        ) `
         -RedirectStandardOutput $stdoutPath `
         -RedirectStandardError $stderrPath `
         -PassThru `
         -Wait `
         -WindowStyle Hidden
 
-    $stdout = ""
-    $stderr = ""
-    if (Test-Path -LiteralPath $stdoutPath) {
-        $stdoutRaw = Get-Content -LiteralPath $stdoutPath -Raw -ErrorAction SilentlyContinue
-        if ($null -ne $stdoutRaw) {
-            $stdout = $stdoutRaw.Trim()
-        }
-    }
-    if (Test-Path -LiteralPath $stderrPath) {
-        $stderrRaw = Get-Content -LiteralPath $stderrPath -Raw -ErrorAction SilentlyContinue
-        if ($null -ne $stderrRaw) {
-            $stderr = $stderrRaw.Trim()
-        }
-    }
-
     if ($proc.ExitCode -ne 0) {
-        throw "AutoHotkey chat helper failed for '$Command' with exit code $($proc.ExitCode). stdout=$stdout stderr=$stderr"
+
+        $stdout = ""
+        $stderr = ""
+
+        if (Test-Path $stdoutPath) {
+            $stdout = (Get-Content $stdoutPath -Raw).Trim()
+        }
+
+        if (Test-Path $stderrPath) {
+            $stderr = (Get-Content $stderrPath -Raw).Trim()
+        }
+
+        throw "AutoHotkey failed. stdout=$stdout stderr=$stderr"
     }
 }
 
@@ -220,16 +243,166 @@ function Get-CommanderChatCommand {
         "abathurreborn" { return "-tbabathurreborn" }
         "alarak" { return "-tbalarak" }
         "artanis" { return "-tbartanis" }
+        "dehaka" { return "-tbdehaka" }
         "fenix" { return "-tbfenix" }
         "karax" { return "-tbkarax" }
         "kerrigan" { return "-tbkerrigan" }
+        "nova" { return "-tbnova" }
         "raynor" { return "-tbraynor" }
         "vorazun" { return "-tbvorazun" }
         "zagara" { return "-tbzagara" }
         "zeratul" { return "-tbzeratul" }
-        "nova" { return "-tbnova" }
-        "dehaka" { return "-tbdehaka" }
         default { throw "No direct chat trigger is defined for commander '$Commander'." }
+    }
+}
+
+function Get-TestBenchBankPath {
+    return (Join-Path $env:USERPROFILE "Documents\StarCraft II\Banks\CampaignXCore.SC2Bank")
+}
+
+function Get-TestBenchBankSection {
+    param(
+        [string]$Commander,
+        [string]$Scenario
+    )
+
+    return ("TestBench_{0}_{1}" -f $Commander, $Scenario)
+}
+
+function Get-TestBenchBankReport {
+    param(
+        [string]$BankPath,
+        [string]$Commander,
+        [string]$Scenario
+    )
+
+    if (-not (Test-Path -LiteralPath $BankPath)) {
+        return $null
+    }
+
+    [xml]$bankXml = Get-Content -LiteralPath $BankPath -Raw
+    $sectionName = Get-TestBenchBankSection -Commander $Commander -Scenario $Scenario
+    $section = @($bankXml.Bank.Section | Where-Object { $_.name -eq $sectionName }) | Select-Object -First 1
+    if (-not $section) {
+        return $null
+    }
+
+    $keyMap = @{}
+    foreach ($key in @($section.Key)) {
+        if ($key.Value.string) {
+            $keyMap[$key.name] = [string]$key.Value.string
+            continue
+        }
+        if ($key.Value.int) {
+            $keyMap[$key.name] = [int]$key.Value.int
+            continue
+        }
+        $keyMap[$key.name] = ""
+    }
+
+    $requested = @()
+    $actual = @()
+    $missing = @()
+    if (-not [string]::IsNullOrWhiteSpace($keyMap["RequestedIds"])) {
+        $requested = @($keyMap["RequestedIds"].Split(',') | Where-Object { $_ -ne "" })
+    }
+    if (-not [string]::IsNullOrWhiteSpace($keyMap["ActualIds"])) {
+        $actual = @($keyMap["ActualIds"].Split(',') | Where-Object { $_ -ne "" })
+    }
+    if (-not [string]::IsNullOrWhiteSpace($keyMap["MissingIds"])) {
+        $missing = @($keyMap["MissingIds"].Split(',') | Where-Object { $_ -ne "" })
+    }
+
+    $pairs = @()
+    $maxCount = [Math]::Max($requested.Count, $actual.Count)
+    for ($i = 0; $i -lt $maxCount; $i++) {
+        $expectedId = if ($i -lt $requested.Count) { $requested[$i] } else { "" }
+        $actualId = if ($i -lt $actual.Count) { $actual[$i] } else { "" }
+        $pairs += [pscustomobject]@{
+            序号 = $i + 1
+            预期单位ID = $expectedId
+            实际创建对象 = $actualId
+            是否一致 = [bool]($expectedId -ne "" -and $expectedId -eq $actualId)
+        }
+    }
+
+    return [pscustomobject]@{
+        SectionName = $sectionName
+        Commander = [string]$keyMap["Commander"]
+        Normalized = [string]$keyMap["Normalized"]
+        Scenario = [string]$keyMap["Scenario"]
+        Summary = [string]$keyMap["Summary"]
+        Trace = [string]$keyMap["Trace"]
+        RequestedIds = $requested
+        ActualIds = $actual
+        MissingIds = $missing
+        Created = [int]$keyMap["Created"]
+        Missing = [int]$keyMap["Missing"]
+        Warnings = [int]$keyMap["Warnings"]
+        Errors = [int]$keyMap["Errors"]
+        LastEvent = [string]$keyMap["LastEvent"]
+        Pairs = $pairs
+    }
+}
+
+function Export-TestBenchBankReport {
+    param(
+        [string]$CommanderRoot,
+        [pscustomobject]$Report
+    )
+
+    if (-not $Report) {
+        return $null
+    }
+
+    $jsonPath = Join-Path $CommanderRoot ("testbench-{0}.json" -f $Report.Scenario)
+    $csvPath = Join-Path $CommanderRoot ("testbench-{0}.csv" -f $Report.Scenario)
+    $mdPath = Join-Path $CommanderRoot ("testbench-{0}.md" -f $Report.Scenario)
+
+    $payload = [pscustomobject]@{
+        指挥官 = $Report.Commander
+        归一化指挥官 = $Report.Normalized
+        场景 = $Report.Scenario
+        摘要 = $Report.Summary
+        追踪 = $Report.Trace
+        创建数 = $Report.Created
+        缺失数 = $Report.Missing
+        警告数 = $Report.Warnings
+        错误数 = $Report.Errors
+        最后事件 = $Report.LastEvent
+        缺失ID = @($Report.MissingIds)
+        对照 = @($Report.Pairs)
+    }
+    $payload | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $jsonPath -Encoding UTF8
+    @($Report.Pairs) | Export-Csv -LiteralPath $csvPath -NoTypeInformation -Encoding UTF8
+
+    $lines = New-Object System.Collections.Generic.List[string]
+    $lines.Add("# $($Report.Commander) - $($Report.Scenario)") | Out-Null
+    $lines.Add("") | Out-Null
+    $lines.Add("- 摘要：$($Report.Summary)") | Out-Null
+    if (-not [string]::IsNullOrWhiteSpace($Report.Trace)) {
+        $lines.Add("- 追踪：$($Report.Trace)") | Out-Null
+    }
+    $lines.Add("- 创建数：$($Report.Created)") | Out-Null
+    $lines.Add("- 缺失数：$($Report.Missing)") | Out-Null
+    $lines.Add("- 警告数：$($Report.Warnings)") | Out-Null
+    $lines.Add("- 错误数：$($Report.Errors)") | Out-Null
+    if ($Report.MissingIds.Count -gt 0) {
+        $lines.Add("- 缺失ID：$([string]::Join(', ', $Report.MissingIds))") | Out-Null
+    }
+    $lines.Add("") | Out-Null
+    $lines.Add("| 序号 | 预期单位ID | 实际创建对象 | 是否一致 |") | Out-Null
+    $lines.Add("| --- | --- | --- | --- |") | Out-Null
+    foreach ($pair in @($Report.Pairs)) {
+        $matchText = if ($pair.是否一致) { "是" } else { "否" }
+        $lines.Add("| $($pair.序号) | $($pair.预期单位ID) | $($pair.实际创建对象) | $matchText |") | Out-Null
+    }
+    Set-Content -LiteralPath $mdPath -Value $lines -Encoding UTF8
+
+    return [pscustomobject]@{
+        JsonPath = $jsonPath
+        CsvPath = $csvPath
+        MarkdownPath = $mdPath
     }
 }
 
@@ -266,6 +439,7 @@ function Copy-LatestLog {
 
 $scenarioRootResolved = Resolve-ScenarioRoot -Root $WorkspaceRoot -Preferred $ScenarioRoot
 $GameLogsRoot = Join-Path $env:USERPROFILE "Documents\StarCraft II\GameLogs"
+$BankPath = Get-TestBenchBankPath
 
 if ([string]::IsNullOrWhiteSpace($Sc2SwitcherPath)) {
     $Sc2SwitcherPath = Join-Path $LiveRoot "Support64\SC2Switcher_x64.exe"
@@ -306,62 +480,102 @@ foreach ($commander in $Commanders) {
     Ensure-Directory -Path $commanderRoot
 
     $startTime = Get-Date
-    Stop-Sc2
+    $cleanupNeeded = $false
 
-    & $Sc2SwitcherPath $MapPath
-    Start-Sleep -Seconds 2
-
-    $sc2Process = Wait-Sc2Window -TimeoutSec 120
-    Focus-Window -Process $sc2Process | Out-Null
-    Start-Sleep -Seconds $MapLoadWaitSec
-
-    $beforeShot = Join-Path $commanderRoot ("{0}_before.png" -f $safeName)
-    Focus-Window -Process $sc2Process | Out-Null
-    Save-Screenshot -Path $beforeShot -Process $sc2Process
-
-    Focus-Window -Process $sc2Process | Out-Null
-    $commanderCommand = Get-CommanderChatCommand -Commander $commander
-    Send-ChatCommand -Command $commanderCommand -DelayMs $CommanderSettleMs
-
-    $selectedShot = Join-Path $commanderRoot ("{0}_selected.png" -f $safeName)
-    Focus-Window -Process $sc2Process | Out-Null
-    Save-Screenshot -Path $selectedShot -Process $sc2Process
-
-    Focus-Window -Process $sc2Process | Out-Null
-    Send-ChatCommand -Command $SmokeCommand -DelayMs 800
-    Start-Sleep -Seconds $SmokeWaitSec
-
-    $afterSmokeShot = Join-Path $commanderRoot ("{0}_after_smoke.png" -f $safeName)
-    $afterBuildingsShot = Join-Path $commanderRoot ("{0}_after_full_buildings.png" -f $safeName)
-    $afterUnitsShot = Join-Path $commanderRoot ("{0}_after_full_units.png" -f $safeName)
-    Focus-Window -Process $sc2Process | Out-Null
-    Save-Screenshot -Path $afterSmokeShot -Process $sc2Process
-    Copy-Item -LiteralPath $afterSmokeShot -Destination $afterBuildingsShot -Force
-    Copy-Item -LiteralPath $afterSmokeShot -Destination $afterUnitsShot -Force
-
-    $graphicsLog = Copy-LatestLog -Since $startTime -Filter "*Graphics.txt" -TargetPath (Join-Path $commanderRoot "Graphics.txt")
-    $systemInfoLog = Copy-LatestLog -Since $startTime -Filter "*SystemInfo.txt" -TargetPath (Join-Path $commanderRoot "SystemInfo.txt")
-    $alertsLog = Copy-LatestLog -Since $startTime -Filter "*Alerts.txt" -TargetPath (Join-Path $commanderRoot "Alerts.txt")
-    $scriptErrorLog = Copy-LatestLog -Since $startTime -Filter "*ScriptError.txt" -TargetPath (Join-Path $commanderRoot "ScriptError.txt")
-
-    $results.Add([pscustomobject]@{
-        Commander = $commander
-        BeforeScreenshot = $beforeShot
-        SelectedScreenshot = $selectedShot
-        AfterSmokeScreenshot = $afterSmokeShot
-        AfterFullBuildingsScreenshot = $afterBuildingsShot
-        AfterFullUnitsScreenshot = $afterUnitsShot
-        GraphicsLog = $(if ($graphicsLog) { $graphicsLog } else { "" })
-        SystemInfoLog = $(if ($systemInfoLog) { $systemInfoLog } else { "" })
-        AlertsLog = $(if ($alertsLog) { $alertsLog } else { "" })
-        ScriptErrorLog = $(if ($scriptErrorLog) { $scriptErrorLog } else { "" })
-        SmokeCommand = $SmokeCommand
-        FullBuildingsCommand = $SmokeCommand
-        FullUnitsCommand = $SmokeCommand
-    }) | Out-Null
-
-    if (-not $KeepOpen) {
+    try {
         Stop-Sc2
+
+        & $Sc2SwitcherPath $MapPath
+        $cleanupNeeded = $true
+        Start-Sleep -Seconds 2
+
+        $sc2Process = Wait-Sc2Window -TimeoutSec 80
+        Focus-Window -Process $sc2Process | Out-Null
+        Start-Sleep -Seconds $MapLoadWaitSec
+
+        $beforeShot = Join-Path $commanderRoot ("{0}_before.png" -f $safeName)
+        Focus-Window -Process $sc2Process | Out-Null
+        Save-Screenshot -Path $beforeShot -Process $sc2Process
+
+        Focus-Window -Process $sc2Process | Out-Null
+        $commanderCommand = Get-CommanderChatCommand -Commander $commander
+        Send-ChatCommand -Process $sc2Process -Command $commanderCommand -DelayMs $CommanderSettleMs
+
+        $selectedShot = Join-Path $commanderRoot ("{0}_selected.png" -f $safeName)
+        Focus-Window -Process $sc2Process | Out-Null
+        Save-Screenshot -Path $selectedShot -Process $sc2Process
+
+        $afterSmokeShot = Join-Path $commanderRoot ("{0}_after_smoke.png" -f $safeName)
+        $afterBuildingsShot = Join-Path $commanderRoot ("{0}_after_full_buildings.png" -f $safeName)
+        $afterUnitsShot = Join-Path $commanderRoot ("{0}_after_full_units.png" -f $safeName)
+
+        $commandPlan = @(
+            @{ Name = "smoke"; Command = $SmokeCommand; DelayMs = 200; WaitSec = $SmokeWaitSec; Screenshot = $afterSmokeShot },
+            @{ Name = "full_buildings"; Command = $FullBuildingsCommand; DelayMs = 200; WaitSec = $FullRosterWaitSec; Screenshot = $afterBuildingsShot },
+            @{ Name = "full_units"; Command = $FullUnitsCommand; DelayMs = 200; WaitSec = $FullRosterWaitSec; Screenshot = $afterUnitsShot }
+        )
+
+        foreach ($step in $commandPlan) {
+            Send-ChatCommand `
+                -Process $sc2Process `
+                -Command $step.Command `
+                -DelayMs $step.DelayMs
+
+            Start-Sleep -Seconds $step.WaitSec
+
+            Save-Screenshot `
+                -Path $step.Screenshot `
+                -Process $sc2Process
+        }
+
+        if (-not $KeepOpen) {
+            Stop-Sc2
+            $cleanupNeeded = $false
+            Start-Sleep -Seconds 2
+        }
+
+        $graphicsLog = Copy-LatestLog -Since $startTime -Filter "*Graphics.txt" -TargetPath (Join-Path $commanderRoot "Graphics.txt")
+        $systemInfoLog = Copy-LatestLog -Since $startTime -Filter "*SystemInfo.txt" -TargetPath (Join-Path $commanderRoot "SystemInfo.txt")
+        $alertsLog = Copy-LatestLog -Since $startTime -Filter "*Alerts.txt" -TargetPath (Join-Path $commanderRoot "Alerts.txt")
+        $scriptErrorLog = Copy-LatestLog -Since $startTime -Filter "*ScriptError.txt" -TargetPath (Join-Path $commanderRoot "ScriptError.txt")
+        $xmlAlertsLog = Copy-LatestLog -Since $startTime -Filter "*XMLAlerts.txt" -TargetPath (Join-Path $commanderRoot "XMLAlerts.txt")
+
+        if (Test-Path -LiteralPath $BankPath) {
+            Copy-Item -LiteralPath $BankPath -Destination (Join-Path $commanderRoot "CampaignXCore.SC2Bank") -Force
+        }
+
+        $buildingReport = Get-TestBenchBankReport -BankPath $BankPath -Commander $commander -Scenario "full_buildings"
+        $unitReport = Get-TestBenchBankReport -BankPath $BankPath -Commander $commander -Scenario "full_units"
+        $buildingReportFiles = Export-TestBenchBankReport -CommanderRoot $commanderRoot -Report $buildingReport
+        $unitReportFiles = Export-TestBenchBankReport -CommanderRoot $commanderRoot -Report $unitReport
+
+        $results.Add([pscustomobject]@{
+            Commander = $commander
+            BeforeScreenshot = $beforeShot
+            SelectedScreenshot = $selectedShot
+            AfterSmokeScreenshot = $afterSmokeShot
+            AfterFullBuildingsScreenshot = $afterBuildingsShot
+            AfterFullUnitsScreenshot = $afterUnitsShot
+            GraphicsLog = $(if ($graphicsLog) { $graphicsLog } else { "" })
+            SystemInfoLog = $(if ($systemInfoLog) { $systemInfoLog } else { "" })
+            AlertsLog = $(if ($alertsLog) { $alertsLog } else { "" })
+            ScriptErrorLog = $(if ($scriptErrorLog) { $scriptErrorLog } else { "" })
+            XmlAlertsLog = $(if ($xmlAlertsLog) { $xmlAlertsLog } else { "" })
+            SmokeCommand = $SmokeCommand
+            FullBuildingsCommand = $FullBuildingsCommand
+            FullUnitsCommand = $FullUnitsCommand
+            FullBuildingsMarkdown = $(if ($buildingReportFiles) { $buildingReportFiles.MarkdownPath } else { "" })
+            FullBuildingsJson = $(if ($buildingReportFiles) { $buildingReportFiles.JsonPath } else { "" })
+            FullBuildingsCsv = $(if ($buildingReportFiles) { $buildingReportFiles.CsvPath } else { "" })
+            FullUnitsMarkdown = $(if ($unitReportFiles) { $unitReportFiles.MarkdownPath } else { "" })
+            FullUnitsJson = $(if ($unitReportFiles) { $unitReportFiles.JsonPath } else { "" })
+            FullUnitsCsv = $(if ($unitReportFiles) { $unitReportFiles.CsvPath } else { "" })
+        }) | Out-Null
+    }
+    finally {
+        if ($cleanupNeeded -and (-not $KeepOpen)) {
+            Stop-Sc2
+        }
     }
 }
 
@@ -379,6 +593,13 @@ foreach ($result in $results) {
     Write-Output ("SYSTEMINFO_LOG={0}" -f $result.SystemInfoLog)
     Write-Output ("ALERTS_LOG={0}" -f $result.AlertsLog)
     Write-Output ("SCRIPT_ERROR_LOG={0}" -f $result.ScriptErrorLog)
+    Write-Output ("XML_ALERTS_LOG={0}" -f $result.XmlAlertsLog)
+    Write-Output ("FULL_BUILDINGS_MD={0}" -f $result.FullBuildingsMarkdown)
+    Write-Output ("FULL_BUILDINGS_JSON={0}" -f $result.FullBuildingsJson)
+    Write-Output ("FULL_BUILDINGS_CSV={0}" -f $result.FullBuildingsCsv)
+    Write-Output ("FULL_UNITS_MD={0}" -f $result.FullUnitsMarkdown)
+    Write-Output ("FULL_UNITS_JSON={0}" -f $result.FullUnitsJson)
+    Write-Output ("FULL_UNITS_CSV={0}" -f $result.FullUnitsCsv)
 }
 
 Write-Output "VERIFICATION_READY=1"

@@ -157,6 +157,28 @@ function Invoke-DirectoryContentSync {
     }
 }
 
+function Sync-XMFinalDocumentHeaderDependencies {
+    param([string]$SourceModsRoot)
+
+    $xmFinalRoot = Join-Path $SourceModsRoot "XMFinal.SC2Mod"
+    $syncHeaderScript = Join-Path $PSScriptRoot "sync-sc2-documentheader-deps.ps1"
+    if (-not (Test-Path -LiteralPath $xmFinalRoot)) {
+        return
+    }
+    if (-not (Test-Path -LiteralPath $syncHeaderScript)) {
+        throw "DocumentHeader sync script not found: $syncHeaderScript"
+    }
+
+    if ($DryRun) {
+        Write-Output "DRYRUN_SYNC_DOCUMENTHEADER_DEPS=$xmFinalRoot"
+        return
+    }
+
+    & $syncHeaderScript -DocumentRoot $xmFinalRoot | ForEach-Object {
+        Write-Output "DOCUMENTHEADER_DEPS_$_"
+    }
+}
+
 function Invoke-Preflight {
     param(
         [string]$SourceModsRoot,
@@ -204,6 +226,8 @@ $targetMapsRoot = Join-Path $LiveRoot "Maps\XM"
 Assert-Path -Path $sourceModsRoot -Label "Source mods root"
 Assert-Path -Path $sourceMapsRoot -Label "Source maps root"
 
+Sync-XMFinalDocumentHeaderDependencies -SourceModsRoot $sourceModsRoot
+
 if (-not $SkipPreflight) {
     Invoke-Preflight -SourceModsRoot $sourceModsRoot -SourceMapsRoot $sourceMapsRoot
     Write-Output "PREFLIGHT_OK=1"
@@ -224,13 +248,7 @@ Write-Output "DRY_RUN=$([int][bool]$DryRun)"
 foreach ($modName in $modNames) {
     $source = Join-Path $sourceModsRoot $modName
     $target = Join-Path $targetModsRoot $modName
-    if ($modName -eq "XMFinal.SC2Mod") {
-        Invoke-DirectoryContentSync -Source (Join-Path $source "Base.SC2Data") -Target (Join-Path $target "Base.SC2Data")
-        Invoke-DirectoryContentSync -Source (Join-Path $source "zhCN.SC2Data") -Target (Join-Path $target "zhCN.SC2Data")
-    }
-    else {
-        Invoke-RobocopySync -Source $source -Target $target
-    }
+    Invoke-RobocopySync -Source $source -Target $target
     Write-Output "SYNCED_MOD=$modName"
 }
 
