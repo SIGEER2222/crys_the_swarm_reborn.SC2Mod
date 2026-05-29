@@ -92,9 +92,10 @@
 - Launcher 能显示，不代表玩法已完成。
 - 当前有两条本地工程线：`合作指挥官版起义狂潮/` 重新作为当前开发 owner，用于继续完成旧线开发；`原始mod/` 是拿原 mod 续上的新项目，用于测试新写法和回归。
 - `合作指挥官版起义狂潮/` 可以作为当前实现状态与开发目标，但不要当作官方数据或最终设计依据；其中链路仍需逐项验证，不能因为 Launcher 能显示就视为玩法已完成。
-- 官方原始合作指挥官数据以 `references/sc2-build-96883-casc-export` 为准；该目录来自 SC2 Build 96883 CASC 导出。
-- 指挥官等级、精通、威望设计优先读取 `游戏数据/官方合作指挥官/commanders/<Commander>/`，再用 `references/sc2-build-96883-casc-export/` 追完整 Catalog / UserData / 触发器闭包；`合作指挥官版起义狂潮/` 是当前实现目标，`原始mod/` 是新写法和回归线，二者都不能反推官方设计基准。
-- 提取官方等级加点/精通时，读取 `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` 里的 `CampaignPerk` / `MasteryUpgrades`，并补读 `mods/starcoop/commanders/egonstetmann.sc2mod` 与 `mods/starcoop/commanders/arcturusmengsk.sc2mod` 的 `userdata.xml`。
+- 官方原始 SC2 文本事实源以 `游戏数据/官方SC2原始文本镜像/` 为准；`references/sc2-build-96883-casc-export` 与旧 `references/official-casc-export` 均已废弃，只能看历史文档时作为旧线索，不能再作为官方设计基准。
+- 指挥官等级、精通、威望设计优先读取 `游戏数据/官方合作指挥官/commanders/<Commander>/`，再用 `游戏数据/官方SC2原始文本镜像/` 追完整 Catalog / UserData / 触发器闭包；`合作指挥官版起义狂潮/` 是当前实现目标，`原始mod/` 是新写法和回归线，二者都不能反推官方设计基准。
+- 官方原始文本镜像 AI 阅读入口：`docs/每日进度/2026-05-29-官方SC2原始文本镜像AI索引/官方SC2原始文本镜像AI阅读入口.md`；重建索引用 `node .\scripts\sc2\index-official-sc2-raw-text-mirror.mjs`。
+- 提取官方等级加点/精通时，读取 `游戏数据/官方SC2原始文本镜像/mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` 里的 `CampaignPerk` / `MasteryUpgrades`，并补读 `mods/starcoop/commanders/egonstetmann.sc2mod` 与 `mods/starcoop/commanders/arcturusmengsk.sc2mod` 的 `userdata.xml`。
 - 不要把 `合作指挥官版起义狂潮/Mods/XM/**/CommanderAch` 当作官方原始数据源；它是当前 Mod 的 runtime/custom 映射。
 - 当前官方合作指挥官加点/精通提取脚本：`scripts/sc2/export-official-coop-progression.py`；当前输出目录：`docs/每日进度/2026-05-26官方合作指挥官原始精通加点/`。
 - 雷诺强度融合当前以 `docs/指挥官威望/雷诺精通威望加点融合设计-2026-05-27.md` 为准：等级 15 全解锁、6 项精通全满；威望只取选定收益，不直接启用官方三个 `PlayerPrestige`。

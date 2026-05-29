@@ -49,7 +49,7 @@ bool libE0EAE146_gf_XMTestBench_AbathurUnitAbilities (int lp_player, string lp_s
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Viper", "ViperImprovedCastRangePassive", "", "HaveViperImprovedCastRange", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Viper", "ViperAbductImprovedStunPassive", "", "HaveViperAbductImprovedStun", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Viper", "BiomassPassiveEmpty", "", "BiomassBuffEmptyVisible", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Viper", "ViperConsume", "ViperConsumeStructure", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Viper", "ViperConsume", "ViperConsumption", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Viper", "FaceEmbrace", "Yoink", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Viper", "CommanderPrestigeAbathurLeviathanLocked", "", "CommanderPrestigeAbathurBiomass", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Abathur", lp_scenarioKind, "Viper", "ParasiticBomb", "ParasiticBomb", "", "ability");
@@ -73,7 +73,6 @@ bool libE0EAE146_gf_XMTestBench_AlarakUnitAbilities (int lp_player, string lp_sc
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "ColossusTaldarim", "AlarakColossusChargedBlastChargeTime", "", "HaveColossusChargedBlastChargeTime", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "HighTemplarTaldarim", "ResearchAlarakHighTemplarPsionicOrbTravelDistancePassive", "", "HaveHighTemplarPsionicOrbTravelDistance", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "HighTemplarTaldarim", "AlarakHighTemplarImprovedSacrifice", "", "HaveHighTemplarImprovedSacrifice", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "HighTemplarTaldarim", "", "AscendantSacrificeInstant", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "ImmortalTaldarim", "CommanderPrestigeAlarakMechBuff", "", "CommanderPrestigeAlarakMech", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "ImmortalTaldarim", "VanguardArmoredDamage", "", "HaveVanguardArmoredDamage", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "ImmortalTaldarim", "AlarakVanguardIncreaseSplashArea", "", "HaveAlarakVanguardIncreaseSplashArea", "passive");
@@ -93,8 +92,7 @@ bool libE0EAE146_gf_XMTestBench_AlarakUnitAbilities (int lp_player, string lp_sc
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "Stalker", "CommanderPrestigeAlarakMechBuff", "", "CommanderPrestigeAlarakMech", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "Stalker", "Blink", "Blink", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "Stalker", "AlarakStalkerPhasingArmor", "", "HaveAlarakStalkerPhasingArmor", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Alarak", lp_scenarioKind, "Stalker", "", "BlinkSlayer", "", "ability");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Alarak", lp_scenarioKind, 26);
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Alarak", lp_scenarioKind, 24);
     return true;
 }
 
@@ -477,7 +475,6 @@ bool libE0EAE146_gf_XMTestBench_NovaUnitAbilities (int lp_player, string lp_scen
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "EMP", "EMPBlackOps", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "CloakOnGhost", "GhostCloak", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "CloakOff", "GhostCloak", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Ghost_BlackOps", "", "Snipe_BlackOps", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Goliath_BlackOps", "NovaUnitLockdown", "", "HaveNovaUnitLockdown", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "Goliath_BlackOps", "AresClassWeaponsSystem", "", "UseAresClassWeaponsSystem", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "HellbatBlackOps", "MorphToHellionBlackOps", "MorphToHellionBlackOps", "", "evolution");
@@ -501,7 +498,7 @@ bool libE0EAE146_gf_XMTestBench_NovaUnitAbilities (int lp_player, string lp_scen
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "SiegeTank_BlackOps", "SiegeTank_BlackOpsSiege", "SiegeTank_BlackOpsSiege", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "SiegeTank_BlackOps", "DeploySpiderMines", "DeploySpiderMines", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Nova", lp_scenarioKind, "SCVNova", "", "", "", "unit_card_no_specials");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Nova", lp_scenarioKind, 34);
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Nova", lp_scenarioKind, 33);
     return true;
 }
 
@@ -638,16 +635,20 @@ bool libE0EAE146_gf_XMTestBench_StukovUnitAbilities (int lp_player, string lp_sc
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedSiegeTank", "StukovInfestedSiegeTankUproot", "StukovInfestedSiegeTankUproot", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedSiegeTank", "StukovInfestedSiegeTankDeepTunnel", "StukovInfestedSiegeTankDeepTunnel", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedSiegeTank", "StukovInfestedSiegeTankAmmo", "", "", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SIWraith", "WraithCloakOn", "WraithCloak", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SIWraith", "WraithCloakOff", "WraithCloak", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SIWraith", "ImprovedBurstLaser", "", "HaveWraithImprovedBurstLaser", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SIWraith", "SingularityAnchor", "", "DynamicPowerRoutingResearched", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "Zergling", "", "", "HaveMPMetabolicBoost", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "Zergling", "ZerglingArmorShred", "", "HaveZerglingArmorShred", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "Zergling", "", "", "HaveMPAdrenalGlands", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "Zergling", "BurrowDown", "BurrowUltraliskDown", "", "evolution");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "Zergling", "BurrowUp", "BurrowUltraliskUp", "", "evolution");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Stukov", lp_scenarioKind, 20);
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SIOverlord", "HaveOverlordSpeed", "", "HavePneumatizedCarapaceStukov", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SIOverlord", "MorphToOverseer", "SIMorphToOverseer", "", "evolution");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SIOverlord", "StopGenerateCreep", "GenerateCreepStukov", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedBanshee", "StukovInfestedBansheeBurrowRegeneration", "", "", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedBanshee", "StukovInfestedBansheeInfestedLife", "", "HaveStukovInfestedBansheeInfestedLife", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedBanshee", "CommanderPrestigeStukovBansheesDeploy", "CommanderPrestigeStukovBansheesDeploy", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedBanshee", "CloakOnBanshee_Stukov", "InfestedBansheeCloakingField", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedBanshee", "CloakOff", "InfestedBansheeCloakingField", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedBanshee", "CommanderPrestigeStukovBansheeTransportLoad", "CommanderPrestigeStukovBansheeTransport", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedBanshee", "SIBansheeUnloadAll", "CommanderPrestigeStukovBansheeTransport", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "StukovInfestedBanshee", "BurrowDown", "BurrowStukovInfestedBansheeDown", "", "evolution");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SILiberator", "SILiberatorImprovedAoeAttack", "", "HaveSILiberatorAoeAttack", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Stukov", lp_scenarioKind, "SILiberator", "SILiberatorBecometheSwarm", "", "HaveSILiberatorInfestedBees", "passive");
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Stukov", lp_scenarioKind, 24);
     return true;
 }
 
@@ -663,14 +664,12 @@ bool libE0EAE146_gf_XMTestBench_SwannUnitAbilities (int lp_player, string lp_sce
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "HellionTank", "MorphToHellion", "MorphToHellion", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "HellionTank", "PassiveInfernalPreIgniter", "", "HaveInfernalPreigniter", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "HellionTank", "HellArmor", "", "HaveHellbatHellArmor", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "HerculesSwann", "HyperjumpHercules", "Hyperjump", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "HerculesSwann", "HyperjumpHercules", "HyperjumpSwann", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "HerculesSwann", "RapidDeploymentHercules", "", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "FleetwideJump", "CommanderPrestigeSwannHerculesScienceVesselTacticalJump", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "NanoRepair", "NanoRepair", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "DefensiveMatrixTarget", "DefensiveMatrixTarget", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "FleetwideJump", "HyperjumpRSwann", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "NanoRepair", "NanoRepairSwann", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "DefensiveMatrixTarget", "DefensiveMatrixSwann", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "ImprovedNanoRepair", "", "HaveScienceVesselFreeRepair", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "", "ScienceVesselNanoRepairDouble", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "ScienceVesselSwann", "", "VoidScienceVesselNanoRepair", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "Hellion", "ResearchHighCapacityBarrels", "", "HaveInfernalPreigniter", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "Hellion", "MorphToHellionTank", "MorphToHellionTank", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "Hellion", "PassiveInfernalPreIgniter", "", "HaveInfernalPreigniter", "passive");
@@ -683,7 +682,7 @@ bool libE0EAE146_gf_XMTestBench_SwannUnitAbilities (int lp_player, string lp_sce
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SiegeTank", "CommanderSwannImmortalityProtocol", "", "HaveSwannCommanderImmortalityProtocol", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SiegeTank", "SiegeMode", "SiegeMode", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Swann", lp_scenarioKind, "SiegeTank", "MaelstromRounds", "", "HaveMaelstromRounds", "passive");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Swann", lp_scenarioKind, 28);
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Swann", lp_scenarioKind, 26);
     return true;
 }
 
@@ -712,7 +711,6 @@ bool libE0EAE146_gf_XMTestBench_VorazunUnitAbilities (int lp_player, string lp_s
     if (lp_scenarioKind != "unit_ability_smoke" && lp_scenarioKind != "unit_evolution_smoke") {
         return false;
     }
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "DarkTemplarShakuras", "", "DarkTemplarShadowFury", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "DarkTemplarShakuras", "VoidDarkTemplarShadowFury", "DarkTemplarShadowFury", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "DarkTemplarShakuras", "ShadowDashLocked", "", "VorazunLevel06", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "DarkTemplarShakuras", "VoidStasisLocked", "", "VorazunLevel06", "passive");
@@ -726,9 +724,8 @@ bool libE0EAE146_gf_XMTestBench_VorazunUnitAbilities (int lp_player, string lp_s
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "CorsairMP", "PermanentlyCloakedCorsair", "", "HaveCorsairPermanentCloak", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "Zealot", "Charge", "Charge", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "Stalker", "Blink", "Blink", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "Stalker", "", "BlinkSlayer", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Vorazun", lp_scenarioKind, "VoidRay", "VoidRaySwarmDamageBoost", "VoidRaySwarmDamageBoost", "", "ability");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Vorazun", lp_scenarioKind, 16);
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Vorazun", lp_scenarioKind, 14);
     return true;
 }
 
@@ -743,7 +740,6 @@ bool libE0EAE146_gf_XMTestBench_ZagaraUnitAbilities (int lp_player, string lp_sc
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Baneling", "HaveCentrificalHooks", "", "ZagaraHaveCentrificalHooks", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Baneling", "BurrowDown", "BurrowUltraliskDown", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Baneling", "BurrowUp", "BurrowUltraliskUp", "", "evolution");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Baneling", "", "Explode", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Corruptor", "CorruptionAbility", "Corruption", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Corruptor", "BroodLord", "MorphToBroodLord", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Corruptor", "CausticSpray", "CausticSpray", "", "ability");
@@ -751,15 +747,14 @@ bool libE0EAE146_gf_XMTestBench_ZagaraUnitAbilities (int lp_player, string lp_sc
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Scourge", "DetonateScourge", "ScourgeDetonate", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Scourge", "DisableBuildingAttackScourge", "SuicideBuilding", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Scourge", "HaveScourgeGasCostReduction", "", "HaveScourgeGasCostReduction", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Zergling", "", "", "HaveMPMetabolicBoost", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Zergling", "ZerglingArmorShred", "", "HaveZerglingArmorShred", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Zergling", "ZagaraVoidCoopZerglingDodge", "", "HaveMasteryZagaraZerglingDodgeChance", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Zergling", "", "", "HaveMPAdrenalGlands", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Zergling", "Baneling", "MorphZerglingToBaneling", "", "evolution");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Zergling", "BurrowDown", "BurrowUltraliskDown", "", "evolution");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Zergling", "BurrowUp", "BurrowUltraliskUp", "", "evolution");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "Zergling", "", "MorphToBaneling", "", "evolution");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Zagara", lp_scenarioKind, 23);
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "ZagaraZergling", "", "", "HaveMPMetabolicBoost", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "ZagaraZergling", "ZerglingArmorShred", "", "HaveZerglingArmorShred", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "ZagaraZergling", "ZagaraVoidCoopZerglingDodge", "", "HaveMasteryZagaraZerglingDodgeChance", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "ZagaraZergling", "", "", "HaveMPAdrenalGlands", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "ZagaraZergling", "Baneling", "MorphToBaneling", "", "evolution");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "ZagaraZergling", "BurrowDown", "BurrowUltraliskDown", "", "evolution");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zagara", lp_scenarioKind, "ZagaraZergling", "BurrowUp", "BurrowUltraliskUp", "", "evolution");
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Zagara", lp_scenarioKind, 21);
     return true;
 }
 

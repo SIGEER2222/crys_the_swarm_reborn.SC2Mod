@@ -3,18 +3,48 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
-const officialRoot = path.join(
-  root,
-  "references",
-  "sc2-build-96883-casc-export",
-  "mods",
-  "starcoop",
-  "starcoop.sc2mod",
-  "base.sc2data",
-  "gamedata",
-);
+const officialRoots = [
+  path.join(
+    root,
+    "游戏数据",
+    "官方SC2原始文本镜像",
+    "mods",
+    "starcoop",
+    "starcoop.sc2mod",
+    "base.sc2data",
+    "gamedata",
+  ),
+  path.join(
+    root,
+    "游戏数据",
+    "官方SC2原始文本镜像",
+    "mods",
+    "starcoop",
+    "commanders",
+    "arcturusmengsk.sc2mod",
+    "base.sc2data",
+    "gamedata",
+  ),
+  path.join(
+    root,
+    "游戏数据",
+    "官方SC2原始文本镜像",
+    "mods",
+    "starcoop",
+    "commanders",
+    "egonstetmann.sc2mod",
+    "base.sc2data",
+    "gamedata",
+  ),
+].filter((dir) => fs.existsSync(dir));
 const targetRoot = path.join(root, "原始mod", "Mods", "XM", "XMFinal.SC2Mod", "Base.SC2Data", "GameData");
-const defaultSummaryPath = path.join(root, "references", "xmfinal-roster-gap-import-summary.tsv");
+const defaultSummaryPath = path.join(
+  root,
+  "docs",
+  "每日进度",
+  "2026-05-29-原始mod-wiki指挥官对比",
+  "xmfinal-roster-gap-import-summary.tsv",
+);
 
 const seedIds = [
   "SwarmHost",
@@ -160,6 +190,17 @@ function parseArgs() {
   return args;
 }
 
+function parseSeedIds(args) {
+  const raw = args.get("seed-ids");
+  if (!raw) {
+    return seedIds;
+  }
+  return String(raw)
+    .split(/[,;\s]+/g)
+    .map((id) => id.trim())
+    .filter(Boolean);
+}
+
 function readText(file) {
   return fs.readFileSync(file, "utf8");
 }
@@ -257,26 +298,31 @@ function parseCatalogNodes(text, fileName) {
 function loadOfficialNodes() {
   const byId = new Map();
   const allIds = new Set();
-  for (const file of walk(officialRoot).sort()) {
-    const lowerName = path.basename(file).toLowerCase();
-    if (!lowerName.endsWith(".xml") || skipFiles.has(lowerName)) {
-      continue;
-    }
-
-    const relativeName = path.relative(officialRoot, file).replaceAll("\\", "/").toLowerCase();
-    for (const node of parseCatalogNodes(readText(file), relativeName)) {
-      allIds.add(node.id);
-      if (!byId.has(node.id)) {
-        byId.set(node.id, []);
+  for (const officialRoot of officialRoots) {
+    for (const file of walk(officialRoot).sort()) {
+      const lowerName = path.basename(file).toLowerCase();
+      if (!lowerName.endsWith(".xml") || skipFiles.has(lowerName)) {
+        continue;
       }
-      byId.get(node.id).push(node);
+
+      const relativeName = path.relative(officialRoot, file).replaceAll("\\", "/").toLowerCase();
+      for (const node of parseCatalogNodes(readText(file), relativeName)) {
+        allIds.add(node.id);
+        if (!byId.has(node.id)) {
+          byId.set(node.id, []);
+        }
+        byId.get(node.id).push({
+          ...node,
+          sourceRoot: path.relative(root, officialRoot).replaceAll("\\", "/"),
+        });
+      }
     }
   }
   return { byId, allIds };
 }
 
-function expandClosure(official, passes) {
-  const selected = new Set(seedIds.filter((id) => official.allIds.has(id)));
+function expandClosure(official, passes, seeds) {
+  const selected = new Set(seeds.filter((id) => official.allIds.has(id)));
   for (let pass = 0; pass < passes; pass += 1) {
     for (const id of [...selected]) {
       for (const node of official.byId.get(id) ?? []) {
@@ -329,16 +375,35 @@ function appendNodes(targetFile, nodes) {
   return { added: additions.length, skipped: nodes.length - additions.length };
 }
 
+function targetFileNameByTag(node) {
+  if (node.tag.startsWith("CAbil")) return "AbilData.xml";
+  if (node.tag.startsWith("CActor")) return "ActorData.xml";
+  if (node.tag.startsWith("CBehavior")) return "BehaviorData.xml";
+  if (node.tag === "CButton") return "ButtonData.xml";
+  if (node.tag.startsWith("CEffect")) return "EffectData.xml";
+  if (node.tag === "CRequirement") return "RequirementData.xml";
+  if (node.tag.startsWith("CRequirement")) return "RequirementNodeData.xml";
+  if (node.tag === "CUnit") return "UnitData.xml";
+  if (node.tag.startsWith("CUpgrade")) return "UpgradeData.xml";
+  if (node.tag.startsWith("CValidator")) return "ValidatorData.xml";
+  if (node.tag.startsWith("CWeapon")) return "WeaponData.xml";
+  return undefined;
+}
+
 function targetFileName(node) {
-  return tagFileNames.get(node.tag) ?? canonicalFileNames.get(path.basename(node.fileName)) ?? node.fileName;
+  return tagFileNames.get(node.tag)
+    ?? targetFileNameByTag(node)
+    ?? canonicalFileNames.get(path.basename(node.fileName))
+    ?? node.fileName;
 }
 
 function main() {
   const args = parseArgs();
+  const seeds = parseSeedIds(args);
   const closurePasses = Number(args.get("closure-passes") ?? 0);
   const summaryPath = path.resolve(String(args.get("summary") ?? defaultSummaryPath));
   const official = loadOfficialNodes();
-  const selected = expandClosure(official, closurePasses);
+  const selected = expandClosure(official, closurePasses, seeds);
 
   const nodesByTargetFile = new Map();
   for (const id of selected) {
@@ -367,7 +432,7 @@ function main() {
         [
           node.id,
           node.tag,
-          `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/${node.fileName}`,
+          `${node.sourceRoot}/${node.fileName}`,
           targetFile,
           status,
         ].join("\t"),
@@ -378,7 +443,7 @@ function main() {
   fs.mkdirSync(path.dirname(summaryPath), { recursive: true });
   fs.writeFileSync(summaryPath, `${summaryRows.join("\r\n")}\r\n`, "utf8");
 
-  console.log(`XMFINAL_ROSTER_GAP_SEED_IDS=${seedIds.length}`);
+  console.log(`XMFINAL_ROSTER_GAP_SEED_IDS=${seeds.length}`);
   console.log(`XMFINAL_ROSTER_GAP_CLOSURE_IDS=${selected.size}`);
   console.log(`XMFINAL_ROSTER_GAP_ADDED_NODES=${addedTotal}`);
   console.log(`XMFINAL_ROSTER_GAP_SKIPPED_NODES=${skippedTotal}`);
