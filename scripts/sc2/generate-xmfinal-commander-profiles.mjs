@@ -32,6 +32,24 @@ const unitAliases = {
   },
 };
 
+const wikiSupplementalRosterUnits = {
+  Abathur: ["Overseer"],
+  Artanis: ["Tempest"],
+  Dehaka: ["DehakaGuardian"],
+  Fenix: ["Disruptor"],
+  Kerrigan: ["LurkerMP", "Overseer"],
+  Stukov: ["StukovInfestedDiamondBack", "SILiberator", "StukovInfestedBanshee", "OverseerStukov"],
+  Swann: ["ThorSwann"],
+  Zagara: ["Overseer"],
+};
+
+const wikiSupplementalBuildingUnits = {
+  Abathur: ["NydusNetwork"],
+  Horner: ["MercenarySpaceStationMira", "MissileTurretMira"],
+  Stukov: ["SIInfestedBunker", "SIMissileTurret"],
+  Tychus: ["TychusWarhoundAutoTurret"],
+};
+
 const abilityObjectAliases = {
   ...unitAliases,
   Nova: {
@@ -236,6 +254,22 @@ function unitIdsFrom(file) {
   return readJson(file).map((entry) => entry.unit_id).filter(Boolean);
 }
 
+function rosterUnitIds(commander) {
+  const dir = commanderDir(commander);
+  return unique([
+    ...unitIdsFrom(path.join(dir, "heroes.json")),
+    ...unitIdsFrom(path.join(dir, "units.json")),
+    ...(wikiSupplementalRosterUnits[commander] ?? []),
+  ]);
+}
+
+function buildingUnitIds(commander) {
+  return unique([
+    ...unitIdsFrom(path.join(commanderDir(commander), "buildings.json")),
+    ...(wikiSupplementalBuildingUnits[commander] ?? []),
+  ]);
+}
+
 function resolveAlias(commander, id, aliases) {
   return aliases[commander]?.[id] ?? id;
 }
@@ -255,7 +289,7 @@ function lineCreateUnit(commander, id, index, rosterKind, createFn, aliases) {
 function renderRosterFile(commanders) {
   const lines = [
     "// XMFinal split module: official commander unit roster profiles.",
-    "// Source authority: commanders/<Commander>/heroes.json + units.json.",
+    "// Source authority: commanders/<Commander>/heroes.json + units.json + wiki-supported catalog supplements.",
     generatedBy,
     "",
     "bool libE0EAE146_gf_XMTestBench_UnitRosterKindSupported (string lp_rosterKind) {",
@@ -284,8 +318,7 @@ function renderRosterFile(commanders) {
   ];
 
   for (const commander of commanders) {
-    const dir = commanderDir(commander);
-    const ids = unique([...unitIdsFrom(path.join(dir, "heroes.json")), ...unitIdsFrom(path.join(dir, "units.json"))]);
+    const ids = rosterUnitIds(commander);
     const fn = functionCommander(commander);
     lines.push(`bool libE0EAE146_gf_XMTestBench_${fn}Roster (int lp_player, string lp_rosterKind) {`);
     lines.push("    if (!libE0EAE146_gf_XMTestBench_UnitRosterKindSupported(lp_rosterKind)) {");
@@ -307,7 +340,7 @@ function renderRosterFile(commanders) {
 function renderBuildingsFile(commanders) {
   const lines = [
     "// XMFinal split module: official commander building roster profiles.",
-    "// Source authority: commanders/<Commander>/buildings.json.",
+    "// Source authority: commanders/<Commander>/buildings.json + wiki-supported catalog supplements.",
     generatedBy,
     "",
     "bool libE0EAE146_gf_XMTestBench_BuildingRosterKindSupported (string lp_rosterKind) {",
@@ -338,7 +371,7 @@ function renderBuildingsFile(commanders) {
   ];
 
   for (const commander of commanders) {
-    const ids = unique(unitIdsFrom(path.join(commanderDir(commander), "buildings.json")));
+    const ids = buildingUnitIds(commander);
     const fn = functionCommander(commander);
     lines.push(`bool libE0EAE146_gf_XMTestBench_${fn}Buildings (int lp_player, string lp_rosterKind) {`);
     lines.push("    if (!libE0EAE146_gf_XMTestBench_BuildingRosterKindSupported(lp_rosterKind)) {");
