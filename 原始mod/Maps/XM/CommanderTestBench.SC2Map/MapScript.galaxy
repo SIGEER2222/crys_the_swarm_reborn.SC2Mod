@@ -71,6 +71,8 @@ trigger gt_XMTB_ChatDehaka;
 trigger gt_XMTB_ChatSmoke;
 trigger gt_XMTB_ChatFullBuildings;
 trigger gt_XMTB_ChatFullUnits;
+trigger gt_XMTB_ChatRosterCurrent;
+trigger gt_XMTB_ChatRosterAll;
 
 int gv_xmTbCommanderDialog;
 int gv_xmTbScenarioDialog;
@@ -83,6 +85,8 @@ int gv_xmTbButtonClear;
 int gv_xmTbButtonRerun;
 int gv_xmTbButtonNextCommander;
 int gv_xmTbButtonRunAll;
+int gv_xmTbButtonCurrentRoster;
+int gv_xmTbButtonAllRosters;
 int gv_xmTbSummaryLabel;
 
 string gv_xmTbCurrentCommander;
@@ -110,6 +114,8 @@ void gf_XMTB_ChatSelectCommander (int lp_index, string lp_commander);
 void gf_XMTB_RunScenario (string lp_scenario);
 void gf_XMTB_RunCurrentScenario ();
 void gf_XMTB_RunAllSmoke ();
+void gf_XMTB_RunCurrentCommanderRosterPair ();
+void gf_XMTB_RunAllCommanderRosters ();
 void gf_XMTB_BuildCommanderUI ();
 void gf_XMTB_BuildScenarioUI ();
 void gf_XMTB_BuildSummaryUI ();
@@ -323,6 +329,124 @@ void gf_XMTB_RunAllSmoke () {
     gf_XMTB_UpdateSummary();
 }
 
+void gf_XMTB_RunCurrentCommanderRosterPair () {
+    int lv_buildWarnings;
+    int lv_buildErrors;
+    int lv_unitWarnings;
+    int lv_unitErrors;
+    int lv_totalWarnings;
+    int lv_totalErrors;
+    string lv_result;
+
+    gf_XMTB_Log("INFO", "TEST_ROSTER_CURRENT_START", "commander=" + gv_xmTbCurrentCommander + " scenarios=full_buildings,full_units");
+
+    gf_XMTB_Clear();
+    gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
+    gf_XMTB_RunScenario("full_buildings");
+    lv_buildWarnings = XMTestBench_GetWarningCount(1);
+    lv_buildErrors = XMTestBench_GetErrorCount(1);
+    gf_XMTB_Log("INFO", "TEST_ROSTER_CURRENT_STEP", "commander=" + gv_xmTbCurrentCommander + " scenario=full_buildings warnings=" + IntToString(lv_buildWarnings) + " errors=" + IntToString(lv_buildErrors));
+
+    gf_XMTB_Clear();
+    gf_XMTB_SetCommander(gv_xmTbCurrentCommander);
+    gv_xmTbCurrentScenario = "full_units";
+    gf_XMTB_RunScenario("full_units");
+    lv_unitWarnings = XMTestBench_GetWarningCount(1);
+    lv_unitErrors = XMTestBench_GetErrorCount(1);
+    gf_XMTB_Log("INFO", "TEST_ROSTER_CURRENT_STEP", "commander=" + gv_xmTbCurrentCommander + " scenario=full_units warnings=" + IntToString(lv_unitWarnings) + " errors=" + IntToString(lv_unitErrors));
+
+    lv_totalWarnings = lv_buildWarnings + lv_unitWarnings;
+    lv_totalErrors = lv_buildErrors + lv_unitErrors;
+    if (lv_totalErrors > 0) {
+        lv_result = "error";
+    }
+    else if (lv_totalWarnings > 0) {
+        lv_result = "warning";
+    }
+    else {
+        lv_result = "ok";
+    }
+
+    gv_xmTbWarnings = lv_totalWarnings;
+    gv_xmTbErrors = lv_totalErrors;
+    gv_xmTbLastEvent = "TEST_ROSTER_CURRENT_DONE";
+    gv_xmTbRunAllDetails = "Roster W/E buildings=" + IntToString(lv_buildWarnings) + "/" + IntToString(lv_buildErrors) + " units=" + IntToString(lv_unitWarnings) + "/" + IntToString(lv_unitErrors);
+    gf_XMTB_Log("INFO", "TEST_ROSTER_CURRENT_DONE", "commander=" + gv_xmTbCurrentCommander + " result=" + lv_result + " totalWarnings=" + IntToString(lv_totalWarnings) + " totalErrors=" + IntToString(lv_totalErrors));
+    gf_XMTB_UpdateSummary();
+}
+
+void gf_XMTB_RunAllCommanderRosters () {
+    int lv_i;
+    string lv_commander;
+    string lv_restoreCommander;
+    int lv_restoreCommanderIndex;
+    string lv_restoreScenario;
+    int lv_buildWarnings;
+    int lv_buildErrors;
+    int lv_unitWarnings;
+    int lv_unitErrors;
+    int lv_totalBuildWarnings;
+    int lv_totalBuildErrors;
+    int lv_totalUnitWarnings;
+    int lv_totalUnitErrors;
+    string lv_result;
+
+    lv_restoreCommander = gv_xmTbCurrentCommander;
+    lv_restoreCommanderIndex = gv_xmTbCurrentCommanderIndex;
+    lv_restoreScenario = gv_xmTbCurrentScenario;
+    lv_totalBuildWarnings = 0;
+    lv_totalBuildErrors = 0;
+    lv_totalUnitWarnings = 0;
+    lv_totalUnitErrors = 0;
+
+    gf_XMTB_Log("INFO", "TEST_ROSTER_SWEEP_START", "scope=all_commanders commanders=" + IntToString(gv_xmTbCommanderNum) + " scenarios=full_buildings,full_units");
+
+    for (lv_i = 1; lv_i <= gv_xmTbCommanderNum; lv_i += 1) {
+        lv_commander = gf_XMTB_GetCommanderByIndex(lv_i);
+
+        gf_XMTB_Clear();
+        gf_XMTB_SetCommander(lv_commander);
+        gf_XMTB_RunScenario("full_buildings");
+        lv_buildWarnings = XMTestBench_GetWarningCount(1);
+        lv_buildErrors = XMTestBench_GetErrorCount(1);
+        lv_totalBuildWarnings += lv_buildWarnings;
+        lv_totalBuildErrors += lv_buildErrors;
+        gf_XMTB_Log("INFO", "TEST_ROSTER_SWEEP_STEP", "commander=" + lv_commander + " scenario=full_buildings warnings=" + IntToString(lv_buildWarnings) + " errors=" + IntToString(lv_buildErrors));
+
+        gf_XMTB_Clear();
+        gf_XMTB_SetCommander(lv_commander);
+        gv_xmTbCurrentScenario = "full_units";
+        gf_XMTB_RunScenario("full_units");
+        lv_unitWarnings = XMTestBench_GetWarningCount(1);
+        lv_unitErrors = XMTestBench_GetErrorCount(1);
+        lv_totalUnitWarnings += lv_unitWarnings;
+        lv_totalUnitErrors += lv_unitErrors;
+        gf_XMTB_Log("INFO", "TEST_ROSTER_SWEEP_STEP", "commander=" + lv_commander + " scenario=full_units warnings=" + IntToString(lv_unitWarnings) + " errors=" + IntToString(lv_unitErrors));
+    }
+
+    gf_XMTB_Clear();
+    gv_xmTbCurrentCommanderIndex = lv_restoreCommanderIndex;
+    gv_xmTbCurrentScenario = lv_restoreScenario;
+    gf_XMTB_SetCommander(lv_restoreCommander);
+
+    gv_xmTbWarnings = lv_totalBuildWarnings + lv_totalUnitWarnings;
+    gv_xmTbErrors = lv_totalBuildErrors + lv_totalUnitErrors;
+    gv_xmTbCurrentScenario = lv_restoreScenario;
+    gv_xmTbLastEvent = "TEST_ROSTER_SWEEP_DONE";
+    gv_xmTbRunAllDetails = "Sweep commanders=" + IntToString(gv_xmTbCommanderNum) + " bW/E=" + IntToString(lv_totalBuildWarnings) + "/" + IntToString(lv_totalBuildErrors) + " uW/E=" + IntToString(lv_totalUnitWarnings) + "/" + IntToString(lv_totalUnitErrors);
+    if (gv_xmTbErrors > 0) {
+        lv_result = "error";
+    }
+    else if (gv_xmTbWarnings > 0) {
+        lv_result = "warning";
+    }
+    else {
+        lv_result = "ok";
+    }
+    gf_XMTB_Log("INFO", "TEST_ROSTER_SWEEP_DONE", "result=" + lv_result + " commanders=" + IntToString(gv_xmTbCommanderNum) + " totalWarnings=" + IntToString(gv_xmTbWarnings) + " totalErrors=" + IntToString(gv_xmTbErrors));
+    gf_XMTB_UpdateSummary();
+}
+
 void gf_XMTB_BuildCommanderUI () {
     int lv_i;
     int lv_x;
@@ -385,7 +509,7 @@ void gf_XMTB_BuildSummaryUI () {
 }
 
 void gf_XMTB_BuildActionUI () {
-    DialogCreate(760, 56, c_anchorTopLeft, 420, 690, true);
+    DialogCreate(760, 100, c_anchorTopLeft, 420, 690, true);
     gv_xmTbActionDialog = DialogLastCreated();
     DialogSetVisible(gv_xmTbActionDialog, PlayerGroupAll(), true);
     DialogSetImageVisible(gv_xmTbActionDialog, false);
@@ -398,6 +522,10 @@ void gf_XMTB_BuildActionUI () {
     gv_xmTbButtonNextCommander = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 160, 38, c_anchorLeft, 450, 0, StringToText("Run current commander smoke set"), StringToText("Run Smoke"), "");
     gv_xmTbButtonRunAll = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 0, 44, StringToText("Run full_buildings and full_units for current commander"), StringToText("Current Roster"), "");
+    gv_xmTbButtonCurrentRoster = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemButton(gv_xmTbActionDialog, 180, 38, c_anchorLeft, 190, 44, StringToText("Sweep full_buildings and full_units for all commanders"), StringToText("All Rosters"), "");
+    gv_xmTbButtonAllRosters = DialogControlLastCreated();
 }
 
 void gf_XMTB_BuildUI () {
@@ -510,6 +638,12 @@ bool gt_XMTB_ActionClick_Func (bool testConds, bool runActions) {
     }
     else if (EventDialogControl() == gv_xmTbButtonRunAll) {
         gf_XMTB_RunAllSmoke();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonCurrentRoster) {
+        gf_XMTB_RunCurrentCommanderRosterPair();
+    }
+    else if (EventDialogControl() == gv_xmTbButtonAllRosters) {
+        gf_XMTB_RunAllCommanderRosters();
     }
     return true;
 }
@@ -642,6 +776,22 @@ bool gt_XMTB_ChatFullUnits_Func (bool testConds, bool runActions) {
     return true;
 }
 
+bool gt_XMTB_ChatRosterCurrent_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_RunCurrentCommanderRosterPair();
+    return true;
+}
+
+bool gt_XMTB_ChatRosterAll_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+    gf_XMTB_RunAllCommanderRosters();
+    return true;
+}
+
 void gt_XMTB_Init_Init () {
     gt_XMTB_Init = TriggerCreate("gt_XMTB_Init_Func");
     TriggerAddEventMapInit(gt_XMTB_Init);
@@ -742,6 +892,16 @@ void gt_XMTB_ChatFullUnits_Init () {
     TriggerAddEventChatMessage(gt_XMTB_ChatFullUnits, c_playerAny, "-tbfullunits", true);
 }
 
+void gt_XMTB_ChatRosterCurrent_Init () {
+    gt_XMTB_ChatRosterCurrent = TriggerCreate("gt_XMTB_ChatRosterCurrent_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatRosterCurrent, c_playerAny, "-tbrostercurrent", true);
+}
+
+void gt_XMTB_ChatRosterAll_Init () {
+    gt_XMTB_ChatRosterAll = TriggerCreate("gt_XMTB_ChatRosterAll_Func");
+    TriggerAddEventChatMessage(gt_XMTB_ChatRosterAll, c_playerAny, "-tbrosterall", true);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
@@ -766,6 +926,8 @@ void InitTriggers () {
     gt_XMTB_ChatSmoke_Init();
     gt_XMTB_ChatFullBuildings_Init();
     gt_XMTB_ChatFullUnits_Init();
+    gt_XMTB_ChatRosterCurrent_Init();
+    gt_XMTB_ChatRosterAll_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

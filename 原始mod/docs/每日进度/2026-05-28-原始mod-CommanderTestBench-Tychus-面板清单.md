@@ -14,7 +14,7 @@
 - [7] `TychusWarhound`：詹姆斯“天狼星”赛克斯  `(LibE0EAE146_CommanderRosters.galaxy:310)`
 - [8] `TychusReaper`：“老油条”萨姆  `(LibE0EAE146_CommanderRosters.galaxy:311)`
 - [9] `TychusMarauder`：凯文“响尾蛇”韦斯特  `(LibE0EAE146_CommanderRosters.galaxy:312)`
-- [10] `Marauder`：劫掠者  `(LibE0EAE146_CommanderRosters.galaxy:313)`
+- [10] `Marauder`：Marauder  `(LibE0EAE146_CommanderRosters.galaxy:313)`
 - [11] `TychusSCV`：SCV  `(LibE0EAE146_CommanderRosters.galaxy:314)`
 
 ## 建筑

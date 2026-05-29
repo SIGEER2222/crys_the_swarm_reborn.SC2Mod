@@ -10,13 +10,13 @@
 - [3] `Observer`：侦测器  `(LibE0EAE146_CommanderRosters.galaxy:72)`
 - [4] `PhoenixAiur`：凤凰  `(LibE0EAE146_CommanderRosters.galaxy:73)`
 - [5] `Dragoon`：龙骑士  `(LibE0EAE146_CommanderRosters.galaxy:74)`
-- [6] `Zealot`：狂热者  `(LibE0EAE146_CommanderRosters.galaxy:75)`
+- [6] `Zealot`：哨兵  `(LibE0EAE146_CommanderRosters.galaxy:75)`
 - [7] `HighTemplar`：高阶圣堂武士  `(LibE0EAE146_CommanderRosters.galaxy:76)`
 
 ## 建筑
 
-- [1] `Gateway`：传送门  `(LibE0EAE146_CommanderBuildings.galaxy:58)`
+- [1] `Gateway`：Gateway  `(LibE0EAE146_CommanderBuildings.galaxy:58)`
 - [2] `PhotonCannon`：光子炮台  `(LibE0EAE146_CommanderBuildings.galaxy:59)`
-- [3] `RoboticsBay`：机械研究所  `(LibE0EAE146_CommanderBuildings.galaxy:60)`
+- [3] `RoboticsBay`：RoboticsBay  `(LibE0EAE146_CommanderBuildings.galaxy:60)`
 - [4] `RoboticsFacilityWarp`：机械台  `(LibE0EAE146_CommanderBuildings.galaxy:61)`
-- [5] `TwilightCouncil`：光影议会  `(LibE0EAE146_CommanderBuildings.galaxy:62)`
+- [5] `TwilightCouncil`：TwilightCouncil  `(LibE0EAE146_CommanderBuildings.galaxy:62)`

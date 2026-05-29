@@ -16,7 +16,7 @@
 
 ## 建筑
 
-- [1] `Gateway`：传送门  `(LibE0EAE146_CommanderBuildings.galaxy:88)`
+- [1] `Gateway`：Gateway  `(LibE0EAE146_CommanderBuildings.galaxy:88)`
 - [2] `PhotonCannon`：光子炮台  `(LibE0EAE146_CommanderBuildings.galaxy:89)`
-- [3] `RoboticsBay`：机械研究所  `(LibE0EAE146_CommanderBuildings.galaxy:90)`
-- [4] `TwilightCouncil`：光影议会  `(LibE0EAE146_CommanderBuildings.galaxy:91)`
+- [3] `RoboticsBay`：RoboticsBay  `(LibE0EAE146_CommanderBuildings.galaxy:90)`
+- [4] `TwilightCouncil`：TwilightCouncil  `(LibE0EAE146_CommanderBuildings.galaxy:91)`
