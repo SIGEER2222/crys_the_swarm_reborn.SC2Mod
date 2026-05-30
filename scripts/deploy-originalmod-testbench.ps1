@@ -141,6 +141,12 @@ function Invoke-DirectoryContentSync {
     )
 
     Assert-Path -Path $Source -Label "Source directory content"
+
+    if ($DryRun) {
+        Write-Output "DRYRUN_SYNC_CONTENT=$Source -> $Target"
+        return
+    }
+
     Ensure-Directory -Path $Target
 
     Get-ChildItem -LiteralPath $Source -Recurse -File | ForEach-Object {
@@ -158,9 +164,13 @@ function Invoke-DirectoryContentSync {
 }
 
 function Sync-XMFinalDocumentHeaderDependencies {
-    param([string]$SourceModsRoot)
+    param(
+        [string]$SourceModsRoot,
+        [string]$TargetModsRoot
+    )
 
     $xmFinalRoot = Join-Path $SourceModsRoot "XMFinal.SC2Mod"
+    $xmFinalTargetRoot = Join-Path $TargetModsRoot "XMFinal.SC2Mod"
     $syncHeaderScript = Join-Path $PSScriptRoot "sync-sc2-documentheader-deps.ps1"
     if (-not (Test-Path -LiteralPath $xmFinalRoot)) {
         return
@@ -170,11 +180,11 @@ function Sync-XMFinalDocumentHeaderDependencies {
     }
 
     if ($DryRun) {
-        Write-Output "DRYRUN_SYNC_DOCUMENTHEADER_DEPS=$xmFinalRoot"
+        Write-Output "DRYRUN_SYNC_DOCUMENTHEADER_DEPS=$xmFinalRoot -> $xmFinalTargetRoot"
         return
     }
 
-    & $syncHeaderScript -DocumentRoot $xmFinalRoot | ForEach-Object {
+    & $syncHeaderScript -DocumentRoot $xmFinalRoot -TargetDocumentRoot $xmFinalTargetRoot | ForEach-Object {
         Write-Output "DOCUMENTHEADER_DEPS_$_"
     }
 }
@@ -226,8 +236,6 @@ $targetMapsRoot = Join-Path $LiveRoot "Maps\XM"
 Assert-Path -Path $sourceModsRoot -Label "Source mods root"
 Assert-Path -Path $sourceMapsRoot -Label "Source maps root"
 
-Sync-XMFinalDocumentHeaderDependencies -SourceModsRoot $sourceModsRoot
-
 if (-not $SkipPreflight) {
     Invoke-Preflight -SourceModsRoot $sourceModsRoot -SourceMapsRoot $sourceMapsRoot
     Write-Output "PREFLIGHT_OK=1"
@@ -251,6 +259,8 @@ foreach ($modName in $modNames) {
     Invoke-RobocopySync -Source $source -Target $target
     Write-Output "SYNCED_MOD=$modName"
 }
+
+Sync-XMFinalDocumentHeaderDependencies -SourceModsRoot $sourceModsRoot -TargetModsRoot $targetModsRoot
 
 foreach ($mapName in $mapNames) {
     $source = Join-Path $sourceMapsRoot $mapName

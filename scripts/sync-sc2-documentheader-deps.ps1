@@ -1,15 +1,37 @@
 param(
     [Parameter(Mandatory = $true)]
     [string]$DocumentRoot,
+    [string]$TargetDocumentRoot = "",
     [string]$TemplateHeader = "",
     [int]$MaxDependencies = 0
 )
 
 $ErrorActionPreference = "Stop"
 
-$resolvedRoot = (Resolve-Path -LiteralPath $DocumentRoot).Path
-$documentHeaderPath = Join-Path $resolvedRoot "DocumentHeader"
-$documentInfoPath = Join-Path $resolvedRoot "DocumentInfo"
+function Resolve-ExistingOrFullPath {
+    param([string]$Path)
+
+    if (Test-Path -LiteralPath $Path) {
+        return (Resolve-Path -LiteralPath $Path).Path
+    }
+
+    return [IO.Path]::GetFullPath($Path)
+}
+
+$sourceRoot = (Resolve-Path -LiteralPath $DocumentRoot).Path
+if ([string]::IsNullOrWhiteSpace($TargetDocumentRoot)) {
+    $targetRoot = $sourceRoot
+}
+else {
+    $targetRoot = Resolve-ExistingOrFullPath -Path $TargetDocumentRoot
+}
+
+if ($targetRoot -ieq $sourceRoot) {
+    throw "Refusing to rewrite DocumentHeader in place at '$sourceRoot'. Pass -TargetDocumentRoot to a live copy."
+}
+
+$documentHeaderPath = Join-Path $targetRoot "DocumentHeader"
+$documentInfoPath = Join-Path $sourceRoot "DocumentInfo"
 
 if (-not (Test-Path -LiteralPath $documentHeaderPath)) {
     throw "DocumentHeader not found: $documentHeaderPath"
@@ -82,6 +104,8 @@ $newBytes = New-Object byte[] (0x2C + 4 + $dependencyBytes.Count + $suffixLength
 
 [IO.File]::WriteAllBytes($documentHeaderPath, $newBytes)
 
+Write-Output "SOURCE_DOCUMENTROOT=$sourceRoot"
+Write-Output "TARGET_DOCUMENTROOT=$targetRoot"
 Write-Output "UPDATED_DOCUMENTHEADER=$documentHeaderPath"
 Write-Output "DEPENDENCY_COUNT=$($dependencyValues.Count)"
 if ($MaxDependencies -gt 0) {

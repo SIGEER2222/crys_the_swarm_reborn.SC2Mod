@@ -1,32 +1,9 @@
 # 指挥官命令卡归属误挂排查与扫描
 
-- 生成时间：2026/5/28 16:45:37
-- 官方 JSON：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\游戏数据\官方合作指挥官\commanders`
-- XMFinal Profile（回归线/误改线）：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\原始mod\Mods\XM\XMFinal.SC2Mod\Base.SC2Data`
-- 实际修复目标（当前 active owner）：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\合作指挥官版起义狂潮`
+- 生成时间：2026/5/30 10:25:10
+- 官方 JSON：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\游戏数据\官方合作指挥官\commanders`
+- XMFinal Profile：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\原始mod\Mods\XM\XMFinal.SC2Mod\Base.SC2Data`
 - 目的：复用凯瑞甘跳虫误挂爆虫链的排查路子，批量找出共享命令卡把别的指挥官按钮/技能带进来的候选。
-
-## 2026-05-28 夜间修正：实际 XML 修复落点
-
-前一轮只改到 `原始mod` / XMFinal Profile，不会直接影响当前旧线实玩。当前应以 `合作指挥官版起义狂潮/Mods/XM/<Commander>.SC2Mod/Base.SC2Data/GameData/UnitData.xml` 为实际落点。
-
-本轮已在 `合作指挥官版起义狂潮` 删除 35 个误挂 XML 节点：
-
-| 指挥官/模块 | 单位/建筑 | 删除内容 |
-| --- | --- | --- |
-| Abathur / `XMAbathur.SC2Mod` | `Mutalisk` | 删除斯托科夫 `StukovInfestedWildMutation` 按钮和 `AbilArray` |
-| AbathurReborn / `XMAbathurReborn.SC2Mod` | `Mutalisk` | 删除斯托科夫 `StukovInfestedWildMutation` 按钮和 `AbilArray` |
-| Raynor / `XMRaynor.SC2Mod` | `SCV` | 删除斯旺 `AdvancedConstructionLocked` / `SwannBarracks` 锁定按钮 |
-| Raynor / `XMRaynor.SC2Mod` | `SiegeTank`、`SiegeTankSieged` | 删除斯旺 `CommanderSwannImmortalityProtocol` 被动按钮 |
-| Artanis / `XMArtanis.SC2Mod` | `ImmortalAiur` | 删除凯拉克斯 `ImmortalShakurasShadowCannon`、`ShadowCannonLocked` 和对应能力 |
-| Artanis / `XMArtanis.SC2Mod` | `RoboticsBay`、`TwilightCouncil` | 删除凯拉克斯暗影炮、热能长枪、重构/回收锁定研究按钮 |
-| Fenix / `XMFenix.SC2Mod` | `ColossusPurifier` | 删除凯拉克斯 `ExtendedThermalLance` 被动按钮 |
-| Fenix / `XMFenix.SC2Mod` | `RoboticsBay`、`TwilightCouncil`、`ZealotPurifier` | 删除凯拉克斯暗影炮/热能长枪/重构链和亚坦尼斯旋风锁定按钮 |
-| Karax / `XMKarax.SC2Mod` | `Scout` | 删除菲尼克斯 `HaveFenixScoutWeaponRange` 被动按钮 |
-| Vorazun / `XMVorazun.SC2Mod` | `Zealot` | 删除亚坦尼斯 `WhirlwindLocked` 锁定按钮 |
-| Alarak / `XMAlarak.SC2Mod` | `TwilightCouncil`、`Zealot` | 删除凯拉克斯重构/回收链和亚坦尼斯旋风锁定按钮 |
-
-凯瑞甘当前 active 线复核结论：`XMKerrigan.SC2Mod` 的 `Zergling` 单位块内没有 `MorphZerglingToBaneling`、`MorphToBaneling`、`ZagaraVoidCoopZerglingDodge`、`HaveMasteryZagaraZerglingDodgeChance`，所以本轮没有对凯瑞甘跳虫做 XML 删除。该误挂来源仍是官方导出 `Kerrigan/command_cards.json` 的共享命令卡候选，以及前一轮 `原始mod` Profile 过滤目标。
 
 ## 排查路子
 
@@ -52,7 +29,7 @@
 ## 当前结论
 
 - XMFinalProfile 疑似误挂候选：0 行。
-- OfficialJson 共享命令卡候选：96 行。
+- OfficialJson 共享命令卡候选：92 行。
 - 凯瑞甘官方 JSON 中仍能看到共享 Zergling 候选：4 行，这是数据源层面的共享命令卡现象。
 - 凯瑞甘 XMFinal Profile 中同类 Zergling 候选：0 行，当前应为 0。
 
@@ -69,7 +46,6 @@
 | Nova | 0 | 5 | 5 |
 | Raynor | 0 | 6 | 6 |
 | Stetmann | 0 | 1 | 1 |
-| Stukov | 0 | 4 | 4 |
 | Swann | 0 | 2 | 2 |
 | Vorazun | 0 | 12 | 12 |
 | Zeratul | 0 | 11 | 11 |
@@ -153,10 +129,6 @@
 | Raynor | SCV SCV | SwannBarracks |  | HaveSwannCommander | Swann | 字段 ID/Key 中出现其他指挥官标识 | Raynor/command_cards.json |
 | Raynor | 攻城坦克 SiegeTank | CommanderSwannImmortalityProtocol |  | HaveSwannCommanderImmortalityProtocol | Swann | 字段 ID/Key 中出现其他指挥官标识 | Raynor/command_cards.json |
 | Stetmann | 机械萃取房 ExtractorStetmann | K5GasBonuses |  | HaveK5GasBonuses | Kerrigan | 字段 ID/Key 中出现其他指挥官标识 | Stetmann/command_cards.json |
-| Stukov | 跳虫 Zergling |  | MorphToBaneling |  | Zagara | 基础跳虫变爆虫链只应进入扎加拉链路，凯瑞甘/斯托科夫这类共享 Zergling 命令卡不能直接继承 | Stukov/command_cards.json |
-| Stukov | 跳虫 Zergling | Baneling | MorphZerglingToBaneling |  | Zagara | 基础跳虫变爆虫链只应进入扎加拉链路，凯瑞甘/斯托科夫这类共享 Zergling 命令卡不能直接继承 | Stukov/command_cards.json |
-| Stukov | 跳虫 Zergling | ZagaraVoidCoopZerglingDodge |  | HaveMasteryZagaraZerglingDodgeChance | Zagara | 扎加拉跳虫闪避精通只应进入扎加拉链路 | Stukov/command_cards.json |
-| Stukov | 跳虫 Zergling | ZagaraVoidCoopZerglingDodge |  | HaveMasteryZagaraZerglingDodgeChance | Zagara | 字段 ID/Key 中出现其他指挥官标识 | Stukov/command_cards.json |
 | Swann | SCV SCV | BuildFusionCoreLocked |  | RaynorLevel06 | Raynor | 字段 ID/Key 中出现其他指挥官标识 | Swann/command_cards.json |
 | Swann | 攻城坦克 SiegeTank | AfterburnersLocked |  | RaynorLevel11 | Raynor | 字段 ID/Key 中出现其他指挥官标识 | Swann/command_cards.json |
 | Vorazun | 传送门 Gateway | AlarakMasteryUnitAttackSpeed |  | HaveMasteryAlarakUnitAttackSpeed | Alarak | 字段 ID/Key 中出现其他指挥官标识 | Vorazun/command_cards.json |
@@ -188,3 +160,4 @@
 1. 优先处理 P1：它们已经进入 `LibE0EAE146_CommanderUnitAbilities.galaxy` / `LibE0EAE146_CommanderHeroAbilities.galaxy`。
 2. 对 P2 不要一刀切删除：先确认它是否只是官方共享命令卡的多指挥官条目；只有当当前指挥官确实不该拥有该按钮/技能时，才加过滤。
 3. 每修一组后重跑：`node .\scripts\sc2\generate-xmfinal-commander-profiles.mjs --write`，再重跑本脚本和人类可读对照报告。
+

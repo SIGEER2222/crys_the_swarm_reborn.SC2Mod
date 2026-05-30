@@ -136,11 +136,18 @@ function Prepare-LauncherTarget {
 }
 
 function Sync-XMFinalDocumentHeaderDependencies {
-    param([string]$SourceModsRoot)
+    param(
+        [string]$SourceModsRoot,
+        [string]$TargetModsRoot
+    )
 
     $xmFinalRoot = Join-Path $SourceModsRoot "XMFinal.SC2Mod"
+    $xmFinalTargetRoot = Join-Path $TargetModsRoot "XMFinal.SC2Mod"
     $syncHeaderScript = Join-Path $PSScriptRoot "sync-sc2-documentheader-deps.ps1"
     if (-not (Test-Path -LiteralPath $xmFinalRoot)) {
+        return
+    }
+    if (-not (Test-Path -LiteralPath $xmFinalTargetRoot)) {
         return
     }
     if (-not (Test-Path -LiteralPath $syncHeaderScript)) {
@@ -148,11 +155,11 @@ function Sync-XMFinalDocumentHeaderDependencies {
     }
 
     if ($DryRun) {
-        Write-Output "DRYRUN_SYNC_DOCUMENTHEADER_DEPS=$xmFinalRoot"
+        Write-Output "DRYRUN_SYNC_DOCUMENTHEADER_DEPS=$xmFinalRoot -> $xmFinalTargetRoot"
         return
     }
 
-    & $syncHeaderScript -DocumentRoot $xmFinalRoot | ForEach-Object {
+    & $syncHeaderScript -DocumentRoot $xmFinalRoot -TargetDocumentRoot $xmFinalTargetRoot | ForEach-Object {
         Write-Output "DOCUMENTHEADER_DEPS_$_"
     }
 }
@@ -190,6 +197,8 @@ if (-not $SkipMods) {
         Write-Output "SYNCED_MOD=$modName"
     }
 }
+
+Sync-XMFinalDocumentHeaderDependencies -SourceModsRoot $sourceModsRoot -TargetModsRoot $targetModsRoot
 
 if (-not $SkipMaps) {
     foreach ($mapName in $mapNames) {

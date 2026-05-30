@@ -2699,6 +2699,29 @@
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />
   </CAbilTrain>
+  <CAbilTrain id="MorphHydraliskToLurker">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Activity value="UI/Morphing" />
+    <ActorKey value="LurkerAspect" />
+    <Flags index="DisableCollision" value="1" />
+    <Flags index="KillOnFinish" value="1" />
+    <Flags index="Select" value="1" />
+    <Flags index="WaitForFood" value="0" />
+    <MorphUnit value="HydraliskLurkerEgg" />
+    <InfoArray index="Train1" Time="15" Alert="MorphComplete_Zerg">
+      <Button DefaultButtonFace="MorphToHydraliskLurker" Requirements="HaveLurkerDen">
+        <Flags index="ShowInGlossary" value="1" />
+      </Button>
+      <Unit value="HydraliskLurker" />
+    </InfoArray>
+    <Alert value="MorphComplete_Zerg" />
+    <RefundFraction>
+      <Resource index="Minerals" value="-0.75" />
+      <Resource index="Vespene" value="-0.75" />
+      <Resource index="Terrazine" value="-0.75" />
+      <Resource index="Custom" value="-0.75" />
+    </RefundFraction>
+  </CAbilTrain>
   <CAbilTrain id="MorphRoachToCorpser">
     <InfoArray index="Train1" Time="9" />
     <MorphUnit value="Egg" />
@@ -3467,6 +3490,20 @@
       <Cooldown Location="Player" />
     </Cost>
   </CAbilEffectTarget>
+  <CAbilMorph id="K5KerriganPsiStrikeMorph">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="KerriganBrawlerPsiStrikeMorph" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="WaitUntilStopped" value="0" />
+    <InfoArray Unit="K5KerriganPsiStrike" />
+  </CAbilMorph>
+  <CAbilMorph id="K5KerriganMorph">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="KerriganBrawlerMorph" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="WaitUntilStopped" value="0" />
+    <InfoArray Unit="K5Kerrigan" />
+  </CAbilMorph>
   <CAbilQueue id="que5">
     <Flags index="Passive" value="1" />
   </CAbilQueue>
@@ -4597,6 +4634,180 @@
       <Unit value="QueenCoop" />
     </InfoArray>
   </CAbilTrain>
+  <CAbilBuild id="BuildNydusCanal">
+    <InfoArray index="Build1" Unit="NydusCanal" Time="20">
+      <Button DefaultButtonFace="SummonNydusWorm" State="Available" Requirements="" />
+    </InfoArray>
+    <InfoArray index="Build2" Unit="NydusCanal" Time="20">
+      <Button DefaultButtonFace="SummonNydusCanalAttacker" State="Available" Requirements="" />
+    </InfoArray>
+    <InfoArray index="Build3" Unit="NydusCanal" Time="20">
+      <Button DefaultButtonFace="SummonNydusCanalCreeper" State="Available" Requirements="" />
+    </InfoArray>
+  </CAbilBuild>
+  <CAbilTransport id="NydusCanalTransport">
+    <Flags index="CargoDeath" value="0" />
+    <DeathUnloadEffect value="CoopCargoDeathDummy" />
+    <UnloadCargoEffect value="HotSRaptorNoLeaping" />
+  </CAbilTransport>
+  <CAbilRally id="RallyNydus">
+    <EditorCategories value="Race:Neutral,AbilityorEffectType:Structures" />
+  </CAbilRally>
+  <CAbilMorph id="UpgradeToLurkerDen">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <Alert value="MorphComplete_Zerg" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="LurkerDen" State="Available" Requirements="HaveHotSLurker" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <Flags index="BestUnit" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="Produce" value="1" />
+    <Flags index="ShowProgress" value="1" />
+    <InfoArray index="0" Score="1" Unit="LurkerDen">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="30" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="30" />
+      </SectionArray>
+      <SectionArray index="Facing">
+        <DurationArray index="Delay" value="28" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="30" />
+        <EffectArray index="Finish" value="HydraliskDenMorphFinishDummy" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="K5KerriganBurrow">
+    <AbilSetId value="BrwD" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="BurrowDown" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="IgnorePlacement" value="0" />
+    <Flags index="WaitUntilStopped" value="0" />
+    <InfoArray Unit="K5KerriganBurrowed" RandomDelayMax="0.25">
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Delay" value="0.8332" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="0.8332" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="K5KerriganUnburrow">
+    <AbilSetId value="BrwU" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <ActorKey value="BurrowUp" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Unit="K5Kerrigan" RandomDelayMax="0.5">
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="BurrowHydraliskLurkerDown">
+    <AbilSetId value="BrwD" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <ActorKey value="BurrowDown" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="IgnorePlacement" value="0" />
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Unit="HydraliskLurkerBurrowed" RandomDelayMax="0.3703">
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="1.333" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Delay" value="0.5556" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="1.166" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="BurrowHydraliskLurkerUp">
+    <AbilSetId value="BrwU" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <ActorKey value="BurrowUp" />
+    <AutoCastFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden" />
+    <AutoCastRange value="5" />
+    <AutoCastCountMin value="1" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <Flags index="AutoCast" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Unit="HydraliskLurker" RandomDelayMax="0.5">
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Duration" value="0.4443" />
+      </SectionArray>
+    </InfoArray>
+    <AutoCastValidatorArray value="TargetNotChangeling" />
+  </CAbilMorph>
+  <CAbilMorph id="BurrowTorrasqueDown">
+    <AbilSetId value="BrwD" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <ActorKey value="BurrowDown" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="IgnorePlacement" value="0" />
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Unit="HotSTorrasqueBurrowed" RandomDelayMax="0.25">
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="2" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Delay" value="1.5" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="1.8332" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="BurrowTorrasqueUp">
+    <AbilSetId value="BrwU" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <ActorKey value="BurrowUp" />
+    <Flags index="AutoCast" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <Flags index="SuppressMovement" value="1" />
+    <InfoArray Unit="HotSTorrasque" RandomDelayMax="0.5">
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="2" />
+      </SectionArray>
+    </InfoArray>
+    <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral,Air,Missile,Stasis,Dead,Hidden" />
+    <AutoCastValidatorArray value="TargetNotChangeling" />
+    <AutoCastRange value="2" />
+    <AutoCastCountMin value="1" />
+  </CAbilMorph>
   <CAbilEffectTarget id="Transfusion">
     <Effect index="0" value="TransfusionACSwitch" />
     <CmdButtonArray index="Execute" State="Available" />
@@ -5197,42 +5408,130 @@
   <CAbilEffectInstant id="SpawnBanelings">
     <CmdButtonArray index="Execute" DefaultButtonFace="SpawnBanelings" />
   </CAbilEffectInstant>
+  <CAbilMorph id="SpineCrawlerUproot">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SpineCrawlerUproot" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="Uproot" />
+    <Flags index="FastBuild" value="1" />
+    <InfoArray Unit="SpineCrawlerUprooted">
+      <SectionArray index="Abils">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="1" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="SporeCrawlerUproot">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SporeCrawlerUproot" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="Uproot" />
+    <Flags index="FastBuild" value="1" />
+    <InfoArray Unit="SporeCrawlerUprooted">
+      <SectionArray index="Abils">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="1" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorphPlacement id="SpineCrawlerRoot">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SpineCrawlerRoot" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="Root" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="IgnorePlacement" value="0" />
+    <Flags index="ShowProgress" value="1" />
+    <InfoArray Unit="SpineCrawler" CollideRange="0">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="6" />
+      </SectionArray>
+      <SectionArray index="Mover">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+    </InfoArray>
+    <ProgressButton value="SpineCrawlerRootCancel" />
+  </CAbilMorphPlacement>
+  <CAbilMorphPlacement id="SporeCrawlerRoot">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SporeCrawlerRoot" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="Root" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="IgnorePlacement" value="0" />
+    <Flags index="ShowProgress" value="1" />
+    <InfoArray Unit="SporeCrawler" CollideRange="0">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="6" />
+      </SectionArray>
+      <SectionArray index="Mover">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+    </InfoArray>
+    <ProgressButton value="SporeCrawlerRootCancel" />
+  </CAbilMorphPlacement>
   <CAbilBuild id="ZergBuild">
-    <InfoArray index="Build4">
-      <Button State="Restricted" />
+    <InfoArray index="Build4" Unit="SpawningPool" Time="65">
+      <Button DefaultButtonFace="SpawningPool" State="Available" />
     </InfoArray>
     <InfoArray index="Build5">
-      <Button State="Available" />
-    </InfoArray>
-    <InfoArray index="Build6">
       <Button State="Restricted" />
     </InfoArray>
-    <InfoArray index="Build7">
-      <Button State="Available" />
+    <InfoArray index="Build6" Unit="HydraliskDen" Time="40">
+      <Button DefaultButtonFace="HydraliskDen" State="Available" />
     </InfoArray>
-    <InfoArray index="Build8">
-      <Button State="Available" />
+    <InfoArray index="Build7" Unit="Spire" Time="100">
+      <Button DefaultButtonFace="Spire" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build8" Unit="UltraliskCavern" Time="65">
+      <Button DefaultButtonFace="UltraliskCavern" State="Available" />
     </InfoArray>
     <InfoArray index="Build9">
-      <Button State="Available" />
+      <Button State="Restricted" />
     </InfoArray>
-    <InfoArray index="Build10">
-      <Button State="Available" />
+    <InfoArray index="Build10" Unit="NydusNetwork" Time="50">
+      <Button DefaultButtonFace="NydusNetwork" State="Available" />
     </InfoArray>
     <InfoArray index="Build11">
-      <Button State="Available" />
+      <Button State="Restricted" />
     </InfoArray>
     <InfoArray index="Build14">
-      <Button State="Available" />
+      <Button State="Restricted" />
     </InfoArray>
-    <InfoArray index="Build15">
-      <Button State="Available" />
+    <InfoArray index="Build15" Unit="SpineCrawler" Time="50">
+      <Button DefaultButtonFace="SpineCrawler" State="Available" />
     </InfoArray>
-    <InfoArray index="Build16">
-      <Button State="Available" />
+    <InfoArray index="Build16" Unit="SporeCrawler" Time="30">
+      <Button DefaultButtonFace="SporeCrawler" State="Available" />
     </InfoArray>
     <InfoArray index="Build17">
-      <Button State="Available" />
+      <Button State="Restricted" />
     </InfoArray>
     <InfoArray index="Build25" Unit="ScourgeNest" Time="60">
       <Button DefaultButtonFace="ScourgeNest" State="Restricted" Requirements="CanBuildScourgeNest" />

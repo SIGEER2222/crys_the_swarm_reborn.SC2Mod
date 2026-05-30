@@ -455,6 +455,10 @@ string XMTestBench_GetSummaryText (int lp_player) {
     return libE0EAE146_gf_XMTestBench_GetSummaryText(lp_player);
 }
 
+string XMTestBench_GetCommanderRosterPreviewText (int lp_player) {
+    return libE0EAE146_gf_XMTestBench_GetCommanderRosterPreviewTextForCommander(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+}
+
 int XMTestBench_GetWarningCount (int lp_player) {
     return libE0EAE146_gf_XMTestBench_GetWarningCount(lp_player);
 }
