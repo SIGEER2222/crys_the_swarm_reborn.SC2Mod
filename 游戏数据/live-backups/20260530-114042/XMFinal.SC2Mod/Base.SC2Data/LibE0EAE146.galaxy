@@ -1,0 +1,1984 @@
+include "TriggerLibs/NativeLib"
+include "TriggerLibs/CampaignLib"
+include "Lib67C0F0E7"
+include "LibDA886FA0"
+include "LibC0F50AA6"
+include "Lib81FF3B49"
+include "LibDF8E6945"
+include "LibBE3BBD9F"
+include "Lib0940FFB7"
+include "Lib4B62E36B"
+include "Lib975E2FE9"
+
+include "LibE0EAE146_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Final
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libE0EAE146_InitLibraries () {
+    libNtve_InitVariables();
+    libCamp_InitVariables();
+    lib67C0F0E7_InitVariables();
+    libC0F50AA6_InitVariables();
+    libDF8E6945_InitVariables();
+    lib975E2FE9_InitVariables();
+}
+
+// Variable Initialization
+bool libE0EAE146_InitVariables_completed = false;
+
+void libE0EAE146_InitVariables () {
+    if (libE0EAE146_InitVariables_completed) {
+        return;
+    }
+
+    libE0EAE146_InitVariables_completed = true;
+
+    libE0EAE146_gv_commander = "";
+    libE0EAE146_gv_abathurBiomassEffect = "";
+    libE0EAE146_gv_abathurBiomassPlayer = 1;
+    libE0EAE146_gv_abathurBiomassEnabled = false;
+    libE0EAE146_gv_abathurBiomassTestPickupCreated = false;
+}
+
+// Functions
+void libE0EAE146_gf_FinishLevel () {
+    // Variable Declarations
+    string lv_map;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    const int auto510FA344_ae = 29;
+    const int auto510FA344_ai = 1;
+
+    // Variable Initialization
+    lv_map = lib67C0F0E7_gf_MapPathName("XM/");
+
+    // Implementation
+    BankLoad("CampaignXCore", 1);
+    BankValueSetFromInt(BankLastCreated(), "Finished", lv_map, 1);
+    BankValueSetFromInt(BankLastCreated(), "Bon", lv_map, MaxI(libE0EAE146_gv_bon, BankValueGetAsInt(BankLastCreated(), "Bon", lv_map)));
+    BankSave(BankLastCreated());
+    TriggerQueueClear(c_triggerQueueRetain);
+    TriggerQueuePause(true);
+    UISetWorldVisible(PlayerGroupAll(), false);
+    libNtve_gf_HideGameUI(false, PlayerGroupAll());
+    UISetCursorVisible(PlayerGroupAll(), true);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeBattleUI, true);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
+    TransmissionClearAll();
+    ConversationDataStop();
+    SoundStopAllTriggerSounds(false);
+    libCamp_gf_SetAllSoundChannelVolumesCampaign(libNtve_ge_VolumeChannelMode_Victory);
+    lv_i = 1;
+    for ( ; ( (auto510FA344_ai >= 0 && lv_i <= auto510FA344_ae) || (auto510FA344_ai < 0 && lv_i >= auto510FA344_ae) ) ; lv_i += auto510FA344_ai ) {
+        if ((lv_map == UserDataGetString("Campaign", "Wol", "MapPathName", lv_i))) {
+            VictoryPanelSetMissionText(UserDataGetText("Campaign", "Wol", "MapName", lv_i));
+            break;
+        }
+
+    }
+    VictoryPanelSetMissionTimeTitle(StringExternal("Param/Value/lib_E0EAE146_3D02C191"));
+    VictoryPanelSetBackgroundFilePath(UserDataGetImagePath("Campaign", "Wol", "scorescreen", lv_i));
+    VictoryPanelSetSummaryBackgroundFilePath(UserDataGetImagePath("Campaign", "Wol", "battlereports", lv_i));
+    if ((lv_map == "tzeratul04")) {
+        VictoryPanelSetVictoryText(StringExternal("Param/Value/lib_E0EAE146_54CC491A"));
+    }
+    else {
+        VictoryPanelSetVictoryText(StringExternal("Param/Value/lib_E0EAE146_F6A6069C"));
+    }
+    VictoryPanelSetMissionTimeText(FormatDuration(FixedToInt(AIGetTime())));
+    VictoryPanelSetRewardTitle(StringToText(""));
+    VictoryPanelSetAchievementsTitle(StringExternal("Param/Value/lib_E0EAE146_16658C1E"));
+    VictoryPanelSetMissionTitle(StringExternal("Param/Value/lib_E0EAE146_8E44EBBC"));
+    VictoryPanelSetStatisticsTitle(StringExternal("Param/Value/lib_E0EAE146_4CDEE1E2"));
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeVictoryPanel, true);
+    GameSetNextMap(("XM/" + ("Launcher")));
+}
+
+void libE0EAE146_gf_CommanderPanelInit (string lp_casterUnit, string lp_gpCommander) {
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, lp_casterUnit, c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+    lib67C0F0E7_gf_CU_GPInit(1, lp_gpCommander, UnitLastCreated(), null);
+    lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+    lib67C0F0E7_gf_ShowChooseButton();
+}
+
+void libE0EAE146_gf_InitializeAbathurBiomass (int lp_player, string lp_collectEffect) {
+    libE0EAE146_gv_abathurBiomassPlayer = lp_player;
+    libE0EAE146_gv_abathurBiomassEffect = lp_collectEffect;
+    libE0EAE146_gv_abathurBiomassEnabled = true;
+    libE0EAE146_gf_EnableAbathurBiomassTriggers();
+    libE0EAE146_gf_EnableAbathurToxicNestTriggers();
+    if ((libE0EAE146_gv_abathurBiomassTestPickupCreated == false)) {
+        libE0EAE146_gv_abathurBiomassTestPickupCreated = libE0EAE146_gf_CreateAbathurBiomassTestPickup(PointWithOffsetPolar(PlayerStartLocation(lp_player), 4.0, 0.0), libE0EAE146_gf_AbathurBiomassMaxStacks());
+    }
+}
+
+void libE0EAE146_gf_EnableAbathurBiomassTriggers () {
+    if ((libE0EAE146_gt_AbathurBiomassDrop != null)) {
+        TriggerEnable(libE0EAE146_gt_AbathurBiomassDrop, true);
+    }
+    if ((libE0EAE146_gt_AbathurBiomassPickup != null)) {
+        TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, true);
+    }
+}
+
+void libE0EAE146_gf_EnableAbathurToxicNestTriggers () {
+}
+
+bool libE0EAE146_gf_CreateAbathurBiomassPickup (point lp_point, int lp_stack) {
+    if ((lp_point == null)) {
+        return false;
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BiomassPickup", c_unitCreateIgnorePlacement, libE0EAE146_gv_abathurBiomassPlayer, lp_point);
+    if ((UnitLastCreated() == null)) {
+        return false;
+    }
+    UnitSetCustomValue(UnitLastCreated(), 63, IntToFixed(MaxI(1, lp_stack)));
+    return true;
+}
+
+bool libE0EAE146_gf_CreateAbathurBiomassTestPickup (point lp_point, int lp_stack) {
+    return libE0EAE146_gf_CreateAbathurBiomassPickup(lp_point, lp_stack);
+}
+
+bool libE0EAE146_gf_AbathurCanDropBiomass (unit lp_unit) {
+    if ((libE0EAE146_gv_abathurBiomassEnabled == false)) {
+        return false;
+    }
+    if ((lp_unit == null)) {
+        return false;
+    }
+    if ((EventUnitDamageDeathCheck(c_deathTypeRemove) == true)) {
+        return false;
+    }
+    if ((UnitGetOwner(lp_unit) == c_playerAny)) {
+        return false;
+    }
+    if ((libNtve_gf_PlayerIsEnemy(UnitGetOwner(lp_unit), libE0EAE146_gv_abathurBiomassPlayer, libNtve_ge_PlayerRelation_Enemy) == false)) {
+        return false;
+    }
+    if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true)) {
+        return false;
+    }
+    if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeSummoned) == true)) {
+        return false;
+    }
+    if ((UnitHasBehavior2(lp_unit, "NoBiomassDrop") == true)) {
+        return false;
+    }
+    if ((libE0EAE146_gf_AbathurBiomassAmount(lp_unit) <= 0.0)) {
+        return false;
+    }
+    return true;
+}
+
+fixed libE0EAE146_gf_AbathurBiomassAmount (unit lp_unit) {
+    fixed lv_amount;
+    fixed lv_food;
+    int lv_resourceCost;
+
+    if ((lp_unit == null)) {
+        return 0.0;
+    }
+    if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeHeroic) == true)) {
+        lv_amount = 12.0;
+    }
+    else if ((UnitHasBehavior2(lp_unit, "HybridUnitDummy") == true)) {
+        lv_amount = 12.0;
+    }
+    else if ((UnitHasBehavior2(lp_unit, "CritterExplode") == true)) {
+        lv_amount = 1.0;
+    }
+    else {
+        lv_food = StringToFixed(CatalogFieldValueGet(c_gameCatalogUnit, UnitGetType(lp_unit), "Food", libE0EAE146_gv_abathurBiomassPlayer));
+        if ((lv_food < 0.0)) {
+            lv_amount = (-2.0 * lv_food);
+        }
+        else {
+            lv_amount = UnitGetPropertyInt(lp_unit, c_unitPropSuppliesUsed, c_unitPropNormal);
+            if ((lv_amount > 0.0)) {
+                lv_amount *= 2.0;
+            }
+        }
+
+        if ((lv_amount <= 0.0)) {
+            lv_resourceCost = UnitTypeGetCost(UnitGetType(lp_unit), c_unitCostSumMineralsVespene);
+            if ((lv_resourceCost > 0)) {
+                lv_amount = 1.0;
+            }
+        }
+
+        if ((lv_amount > 0.0)) {
+            if ((lv_amount < 1.0)) {
+                lv_amount = 1.0;
+            }
+            if ((lv_amount > 12.0)) {
+                lv_amount = 12.0;
+            }
+        }
+    }
+    return lv_amount;
+}
+
+int libE0EAE146_gf_AbathurBiomassMaxStacks () {
+    int lv_max;
+    lv_max = CatalogFieldValueGetAsInt(c_gameCatalogEffect, "AbathurBiomassMaxStacksDummy", "Amount", libE0EAE146_gv_abathurBiomassPlayer);
+    if ((lv_max <= 0)) {
+        lv_max = 100;
+    }
+    return lv_max;
+}
+
+int libE0EAE146_gf_AbathurUnitBiomassStacks (unit lp_unit) {
+    if ((lp_unit == null)) {
+        return 0;
+    }
+    return ((UnitBehaviorCount(lp_unit, "BiomassBuff100") * 100) + (UnitBehaviorCount(lp_unit, "BiomassBuff10") * 10) + UnitBehaviorCount(lp_unit, "BiomassBuff1"));
+}
+
+int libE0EAE146_gf_AbathurAddBiomassStacks (unit lp_unit, int lp_amount) {
+    int lv_max;
+    int lv_current;
+    int lv_applied;
+    int lv_remaining;
+    int lv_100;
+    int lv_10;
+    int lv_1;
+
+    if ((lp_unit == null)) {
+        return 0;
+    }
+    if ((lp_amount <= 0)) {
+        return 0;
+    }
+
+    lv_max = libE0EAE146_gf_AbathurBiomassMaxStacks();
+    lv_current = libE0EAE146_gf_AbathurUnitBiomassStacks(lp_unit);
+    lv_applied = lp_amount;
+    if (((lv_current + lv_applied) > lv_max)) {
+        lv_applied = (lv_max - lv_current);
+    }
+    if ((lv_applied <= 0)) {
+        return 0;
+    }
+
+    lv_remaining = lv_applied;
+    lv_100 = TruncI((lv_remaining / 100));
+    lv_remaining -= (lv_100 * 100);
+    lv_10 = TruncI((lv_remaining / 10));
+    lv_remaining -= (lv_10 * 10);
+    lv_1 = lv_remaining;
+
+    if ((lv_100 > 0)) {
+        UnitBehaviorAdd(lp_unit, "BiomassBuff100PlusLife", lp_unit, lv_100);
+    }
+    if ((lv_10 > 0)) {
+        UnitBehaviorAdd(lp_unit, "BiomassBuff10PlusLife", lp_unit, lv_10);
+    }
+    if ((lv_1 > 0)) {
+        UnitBehaviorAdd(lp_unit, "BiomassBuff1", lp_unit, lv_1);
+    }
+
+    return lv_applied;
+}
+
+void libE0EAE146_gf_AbathurSetUnitFullBiomass (unit lp_unit) {
+    int lv_applied;
+
+    if ((lp_unit == null)) {
+        return;
+    }
+    if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true)) {
+        return;
+    }
+    lv_applied = libE0EAE146_gf_AbathurAddBiomassStacks(lp_unit, libE0EAE146_gf_AbathurBiomassMaxStacks());
+    if ((lv_applied > 0)) {
+        lib67C0F0E7_gf_UnitAddCustomValue(lp_unit, 62, IntToFixed(lv_applied));
+    }
+}
+
+void libE0EAE146_gf_AbathurSetUnitGroupFullBiomass (unitgroup lp_units) {
+    unit lv_unit;
+    int lv_i;
+
+    if ((lp_units == null)) {
+        return;
+    }
+    lv_i = UnitGroupCount(lp_units, c_unitCountAlive);
+    for (;; lv_i -= 1) {
+        lv_unit = UnitGroupUnitFromEnd(lp_units, lv_i);
+        if (lv_unit == null) { break; }
+        libE0EAE146_gf_AbathurSetUnitFullBiomass(lv_unit);
+    }
+}
+
+void libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass (int lp_count, string lp_unitType, int lp_player, point lp_point) {
+    if ((lp_count <= 0)) {
+        return;
+    }
+    if ((lp_point == null)) {
+        return;
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_count, lp_unitType, 0, lp_player, lp_point);
+    libE0EAE146_gf_AbathurSetUnitGroupFullBiomass(UnitLastCreatedGroup());
+}
+
+void libE0EAE146_gf_AbathurCargoCreateWithFullBiomass (unit lp_container, string lp_unitType, int lp_count) {
+    if ((lp_container == null)) {
+        return;
+    }
+    if ((lp_count <= 0)) {
+        return;
+    }
+    UnitCargoCreate(lp_container, lp_unitType, lp_count);
+    libE0EAE146_gf_AbathurSetUnitGroupFullBiomass(UnitCargoLastCreatedGroup());
+}
+
+void libE0EAE146_gf_Initialize (bool lp_rpg) {
+    // Automatic Variable Declarations
+    string autoC0933116_val;
+
+    // Implementation
+    GameSetSpeedValue(c_gameSpeedFaster);
+    BankLoad("CampaignXCore", 1);
+    libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+    if ((libE0EAE146_gv_commander == "AbathurReborn")) {
+        libE0EAE146_gv_commander = "Abathur";
+    }
+    autoC0933116_val = libE0EAE146_gv_commander;
+    if (autoC0933116_val == "Stukov") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Classic");
+    }
+    else if (autoC0933116_val == "Dehaka") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Dehaka");
+        if ((lp_rpg == false)) {
+            PlayerModifyPropertyInt(1, c_playerPropSuppliesLimit, c_playerPropOperAdd, 60);
+        }
+
+    }
+    else if (autoC0933116_val == "Abathur") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Abathur");
+        libE0EAE146_gf_InitializeAbathurBiomass(1, "AbathurCollectBiomass");
+    }
+    else if (autoC0933116_val == "AbathurReborn") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Abathur");
+        libE0EAE146_gf_InitializeAbathurBiomass(1, "AbathurRebornCollectBiomass");
+    }
+    else if (autoC0933116_val == "Tychus") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Classic");
+        if ((lp_rpg == false)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterTychus", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+            lib67C0F0E7_gf_CU_GPInit(1, "Tychus", UnitLastCreated(), null);
+            lib67C0F0E7_gf_TychusSquadInitTrigger(1, 4, "Abil/TychusTrain", "CoopTechTychusSquad", "Event_TychusHeroStructureCreate", "Event_TychusHeroMainBuilding");
+        }
+
+    }
+    else if (autoC0933116_val == "Mira") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Horner");
+    }
+    else if (autoC0933116_val == "Nova") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_CovertOps");
+    }
+    else if (autoC0933116_val == "Raynor") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Classic");
+    }
+    else if (autoC0933116_val == "Alarak") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Default");
+    }
+    else if (autoC0933116_val == "Artanis") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Default");
+    }
+    else if (autoC0933116_val == "Fenix") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Fenix");
+    }
+    else if (autoC0933116_val == "Karax") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Forged");
+    }
+    else if (autoC0933116_val == "Vorazun") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Nerazim");
+    }
+    else if (autoC0933116_val == "Zeratul") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_XelNaga");
+    }
+    else if (autoC0933116_val == "Mengsk") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Imperial");
+        libC0F50AA6_gf_InitlizeMengskVeterancy();
+    }
+    else if (autoC0933116_val == "Swann") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Swann");
+    }
+    else if (autoC0933116_val == "Stetmann") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Mecha");
+    }
+    else if (autoC0933116_val == "Zagara") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Zagara");
+    }
+    else if (autoC0933116_val == "Kerrigan") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Classic");
+    }
+    else {
+    }
+}
+
+void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp_secondBase, bool lp_createHero) {
+    // Variable Declarations
+    unit lv_u;
+    unitgroup lv_uG;
+    int lv_i;
+    int lv_j;
+    int lv_ach;
+    string lv_commandCenterUnit;
+    string lv_workerUnit;
+    string lv_secondUnit;
+    text lv_tooltip;
+
+    // Automatic Variable Declarations
+    unitgroup auto93C1ECD3_g;
+    int auto93C1ECD3_u;
+    string auto09490B45_val;
+
+    // Variable Initialization
+    lv_uG = UnitGroupEmpty();
+    lv_tooltip = StringExternal("Param/Value/lib_E0EAE146_4A6D72C1");
+    if ((libE0EAE146_gv_commander == "Abathur")) {
+        lv_commandCenterUnit = "Hatchery";
+        lv_workerUnit = "Drone";
+        lv_secondUnit = "Overlord";
+    }
+    else if ((libE0EAE146_gv_commander == "AbathurReborn")) {
+        lv_commandCenterUnit = "Hatchery";
+        lv_workerUnit = "Drone";
+        lv_secondUnit = "Overlord";
+    }
+    else if ((libE0EAE146_gv_commander == "Stukov")) {
+        lv_commandCenterUnit = "SICommandCenter";
+        lv_workerUnit = "SISCV";
+        lv_secondUnit = "SICivilianStructure";
+    }
+    else if ((libE0EAE146_gv_commander == "Dehaka")) {
+        lv_commandCenterUnit = "DehakaHatchery";
+        lv_workerUnit = "DehakaDrone";
+        lv_secondUnit = "DehakaCoopReviveCocoon";
+    }
+    else if ((libE0EAE146_gv_commander == "Tychus")) {
+        lv_commandCenterUnit = "TychusCommandCenter";
+        lv_workerUnit = "TychusSCV";
+        lv_secondUnit = "TychusResearchCenter";
+    }
+    else if ((libE0EAE146_gv_commander == "Mira")) {
+        lv_commandCenterUnit = "CommandCenterMira";
+        lv_workerUnit = "SCVMira";
+        lv_secondUnit = "StarportMira";
+    }
+    else if ((libE0EAE146_gv_commander == "Nova")) {
+        lv_commandCenterUnit = "CommandCenterNova";
+        lv_workerUnit = "SCVNova";
+        lv_secondUnit = "GhostAcademyNova";
+    }
+    else if ((libE0EAE146_gv_commander == "Mengsk")) {
+        lv_commandCenterUnit = "CommandCenterMengsk";
+        lv_workerUnit = "SCVMengsk";
+        lv_secondUnit = "StarportMengsk";
+    }
+    else if ((libE0EAE146_gv_commander == "Swann")) {
+        lv_commandCenterUnit = "CommandCenterSwann";
+        lv_workerUnit = "SCVSwann";
+        lv_secondUnit = "UnfinishedDrakkenLaserDrillCoop";
+    }
+    else if ((libE0EAE146_gv_commander == "Stetmann")) {
+        lv_commandCenterUnit = "HatcheryStetmann";
+        lv_workerUnit = "DroneStetmann";
+        lv_secondUnit = "GarysDen";
+    }
+    else {
+        lv_commandCenterUnit = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1);
+        lv_workerUnit = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1);
+        lv_secondUnit = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1);
+    }
+
+    // Implementation
+    BankLoad("CampaignXCore", 1);
+    lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+    lv_i = 0;
+    for ( ; ( lv_i <= 7 ) ; lv_i += 1 ) {
+        if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, lv_i) == true)) {
+            lv_j = (lv_i+1);
+            TechTreeUpgradeAddLevel(1, UserDataGetUpgrade("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Upg", lv_j), 1);
+            lv_tooltip = libE0EAE146_gf_UpdateTooltip(lv_tooltip, UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "TitU", lv_j));
+        }
+
+    }
+    lv_j = 0;
+    lv_i = 0;
+    for ( ; ( lv_i <= 5 ) ; lv_i += 1 ) {
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(lv_i));
+        if ((lv_ach == 0)) {
+        }
+        else {
+            lv_j = (lv_i+1);
+            TechTreeUpgradeAddLevel(1, UserDataGetUpgrade("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Poi", lv_j), lv_ach);
+            TextExpressionSetToken("Param/Expression/lib_E0EAE146_2000967E", "A", UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "TitP", lv_j));
+            TextExpressionSetToken("Param/Expression/lib_E0EAE146_2000967E", "B", IntToText(lv_ach));
+            lv_tooltip = libE0EAE146_gf_UpdateTooltip(lv_tooltip, TextExpressionAssemble("Param/Expression/lib_E0EAE146_2000967E"));
+        }
+    }
+    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/PlayerPrestigeBrief");
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), true);
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), lv_tooltip, PlayerGroupAll());
+    DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "CommanderIcon");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommanderIcon", 1), PlayerGroupAll());
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_commandCenterUnit, 0, 1, PlayerStartLocation(1));
+    if ((lp_secondBase == null)) {
+    }
+    else {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_commandCenterUnit, 0, 1, lp_secondBase);
+    }
+    auto93C1ECD3_g = UnitGroup(null, c_playerAny, RegionCircle(PlayerStartLocation(1), 8.0), UnitFilter((1 << c_targetFilterHarvestableResource), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto93C1ECD3_u = UnitGroupCount(auto93C1ECD3_g, c_unitCountAll);
+    for (;; auto93C1ECD3_u -= 1) {
+        lv_u = UnitGroupUnitFromEnd(auto93C1ECD3_g, auto93C1ECD3_u);
+        if (lv_u == null) { break; }
+        if (((UnitGetOwner(lv_u) == 0) || (UnitGetOwner(lv_u) == 1))) {
+            UnitGroupAdd(lv_uG, lv_u);
+        }
+
+    }
+    if ((UnitGroupCount(lv_uG, c_unitCountAlive) > 0)) {
+        lv_i = 0;
+        for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_workerUnit, 0, 1, PointWithOffsetPolar(PlayerStartLocation(1), 2.0, (lv_i*10)));
+            UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(null, UnitGroupRandomUnit(lv_uG, c_unitCountAlive)), c_orderQueueReplace);
+        }
+    }
+    else {
+        lv_i = 0;
+        for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_workerUnit, 0, 1, PointWithOffsetPolar(PlayerStartLocation(1), 2.0, (lv_i*10)));
+        }
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_secondUnit, 0, 1, lp_secondUnit);
+    auto09490B45_val = libE0EAE146_gv_commander;
+    if (auto09490B45_val == "Stukov") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterStukov", 0, 1, RegionGetCenter(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Stukov", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+        libBE3BBD9F_gf_StukovCreepEntireMap(1);
+    }
+    else if (auto09490B45_val == "Dehaka") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CasterDehaka", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Dehaka", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "DehakaCoop", 0, 1, lp_secondUnit);
+            libDF8E6945_gf_InitializeDehakaEvent(1, UnitLastCreated());
+            if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit"), 0) == true)) {
+                libDF8E6945_gf_DehakaBroodbrother();
+            }
+
+        }
+
+    }
+    else if (auto09490B45_val == "Abathur") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterAbathur", "Abathur");
+        libE0EAE146_gf_InitializeAbathurBiomass(1, "AbathurCollectBiomass");
+        libE0EAE146_gf_AbathurCreateMapStartSquad("light", 1, PointWithOffsetPolar(PlayerStartLocation(1), 5.0, 90.0));
+    }
+    else if (auto09490B45_val == "AbathurReborn") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterAbathurReborn", "AbathurReborn");
+        libE0EAE146_gf_InitializeAbathurBiomass(1, "AbathurRebornCollectBiomass");
+        libE0EAE146_gf_AbathurCreateMapStartSquad("light", 1, PointWithOffsetPolar(PlayerStartLocation(1), 5.0, 90.0));
+    }
+    else if (auto09490B45_val == "Raynor") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterRaynor", "Raynor");
+    }
+    else if (auto09490B45_val == "Artanis") {
+        libE0EAE146_gf_CommanderPanelInit("SoACasterArtanis", "Artanis");
+    }
+    else if (auto09490B45_val == "Alarak") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAlarak", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Alarak", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "AlarakCoop", 0, 1, lp_secondUnit);
+        }
+
+    }
+    else if (auto09490B45_val == "Fenix") {
+        libE0EAE146_gf_CommanderPanelInit("SoACasterFenix", "Fenix");
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "FenixCoop", 0, 1, lp_secondUnit);
+        }
+
+    }
+    else if (auto09490B45_val == "Karax") {
+        libE0EAE146_gf_CommanderPanelInit("SoACasterKarax", "Karax");
+    }
+    else if (auto09490B45_val == "Vorazun") {
+        libE0EAE146_gf_CommanderPanelInit("SoACasterVorazun", "Vorazun");
+    }
+    else if (auto09490B45_val == "Zeratul") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterZeratul", "Zeratul");
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulCoop", 0, 1, lp_secondUnit);
+        }
+
+    }
+    else if (auto09490B45_val == "Tychus") {
+        lib67C0F0E7_gv_tychusSquadMainBuilding = UnitLastCreated();
+        lib81FF3B49_gf_InitializeTychusEvent();
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(3));
+        lv_ach *= 3;
+        if ((lp_createHero == true)) {
+            lib67C0F0E7_gf_TychusSquadStartCharge((90-lv_ach), (240-lv_ach));
+        }
+        else {
+            lib67C0F0E7_gf_TychusSquadStartCharge((240-lv_ach), (240-lv_ach));
+        }
+    }
+    else if (auto09490B45_val == "Mira") {
+        libDA886FA0_gf_InitlizeMira(1);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CasterMira", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Horner", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+    }
+    else if (auto09490B45_val == "Nova") {
+        lib0940FFB7_gf_NovaCaster();
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterNova", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Nova", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(1));
+        if ((lv_ach == 0)) {
+        }
+        else {
+            lib67C0F0E7_gf_SOAStickyLineUpg(1, lv_ach);
+        }
+        if ((lp_createHero == true)) {
+            lib0940FFB7_gf_InitlizeNova(1);
+            if ((DataTableGetUnit(true, ("NovaHero" + IntToString(1))) == null)) {
+                libNtve_gf_CreateUnitsWithDefaultFacing(1, "NovaCoop", c_unitCreateIgnoreBirth, 1, PlayerStartLocation(1));
+                if ((UnitLastCreated() != null)) {
+                    lib0940FFB7_gf_NovaTrigger(UnitLastCreated());
+                }
+            }
+        }
+
+    }
+    else if (auto09490B45_val == "Mengsk") {
+        lv_j = 0;
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+        if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, 5) == true)) {
+            lv_j += 50;
+        }
+
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(0));
+        if ((lv_ach == 0)) {
+        }
+        else {
+            libC0F50AA6_gv_trooperRate += (lv_ach*0.01);
+        }
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(1));
+        if ((lv_ach == 0)) {
+        }
+        else {
+            libC0F50AA6_gv_royalGuardRate += (lv_ach*0.01);
+        }
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(5));
+        if ((lv_ach == 0)) {
+            libC0F50AA6_gv_mengskVeterancyExp += lv_j;
+        }
+        else {
+            libC0F50AA6_gv_mengskVeterancyExp += (lv_j+(lv_ach*0.5));
+        }
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterMengsk", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(4));
+        if ((lv_ach == 0)) {
+        }
+        else {
+            lib67C0F0E7_gf_UnitAddProperty(UnitLastCreated(), c_unitPropEnergy, (lv_ach*2));
+        }
+        lib67C0F0E7_gf_CU_GPInit(1, "Mengsk", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+        libC0F50AA6_gf_InitlizeMengsk();
+    }
+    else if (auto09490B45_val == "Swann") {
+        lib4B62E36B_gf_DrakkenLaserDrillUnit(UnitLastCreated(), 1);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CasterSwann", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Swann", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib4B62E36B_gf_DrakkenLaserDrillAddCasterGroup(1);
+        lib67C0F0E7_gf_ShowChooseButton();
+    }
+    else if (auto09490B45_val == "Stetmann") {
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+        if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, 7) == true)) {
+            PlayerAddResponse(1, "SuperGaryStetmannTheBestOil");
+        }
+
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterStetmann", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Stetmann", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib975E2FE9_gf_PowerFieldTrigger(1, BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(2)));
+        lib67C0F0E7_gf_ShowChooseButton();
+    }
+    else if (auto09490B45_val == "Zagara") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterZagara", "Zagara");
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZagaraVoidCoop", 0, 1, lp_secondUnit);
+        }
+
+    }
+    else if (auto09490B45_val == "Kerrigan") {
+        libE0EAE146_gf_CommanderPanelInit("CoopCasterKerrigan", "Kerrigan");
+        TechTreeUpgradeAddLevel(1, "CommanderLevel", 15);
+        TechTreeUpgradeAddLevel(1, "KerriganCommander", 1);
+        TechTreeUpgradeAddLevel(1, "VoidCoopHeroicFortitude", 1);
+        TechTreeUpgradeAddLevel(1, "K5PrimalSlash", 1);
+        TechTreeUpgradeAddLevel(1, "K5PsiStrike", 1);
+        TechTreeUpgradeAddLevel(1, "K5ChainLightning", 1);
+        TechTreeUpgradeAddLevel(1, "K5Cooldowns", 1);
+        TechTreeUpgradeAddLevel(1, "K5Fury", 1);
+        TechTreeUpgradeAddLevel(1, "KerriganVoidCoopEnergyRegen", 1);
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, lp_secondUnit);
+        }
+    }
+    else {
+    }
+}
+
+void libE0EAE146_gf_CommanderUpgrade () {
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+    int lv_ach;
+    text lv_tooltip;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_tooltip = StringExternal("Param/Value/lib_E0EAE146_CFEF7FBA");
+
+    // Implementation
+    BankLoad("CampaignXCore", 1);
+    lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, "AchBit");
+    lv_i = 0;
+    for ( ; ( lv_i <= 7 ) ; lv_i += 1 ) {
+        if ((lib67C0F0E7_gf_BitMaskTrueIndexIs(lv_ach, lv_i) == true)) {
+            lv_j = (lv_i+1);
+            TechTreeUpgradeAddLevel(1, UserDataGetUpgrade("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Upg", lv_j), 1);
+            lv_tooltip = libE0EAE146_gf_UpdateTooltip(lv_tooltip, UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "TitU", lv_j));
+        }
+
+    }
+    lv_j = 0;
+    lv_i = 0;
+    for ( ; ( lv_i <= 5 ) ; lv_i += 1 ) {
+        lv_ach = BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(lv_i));
+        if ((lv_ach == 0)) {
+        }
+        else {
+            lv_j = (lv_i+1);
+            TechTreeUpgradeAddLevel(1, UserDataGetUpgrade("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Poi", lv_j), lv_ach);
+            TextExpressionSetToken("Param/Expression/lib_E0EAE146_E4EE868C", "A", UserDataGetText("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "TitP", lv_j));
+            TextExpressionSetToken("Param/Expression/lib_E0EAE146_E4EE868C", "B", IntToText(lv_ach));
+            lv_tooltip = libE0EAE146_gf_UpdateTooltip(lv_tooltip, TextExpressionAssemble("Param/Expression/lib_E0EAE146_E4EE868C"));
+        }
+    }
+    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/PlayerPrestigeBrief");
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), true);
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), lv_tooltip, PlayerGroupAll());
+    DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "CommanderIcon");
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommanderIcon", 1), PlayerGroupAll());
+}
+
+text libE0EAE146_gf_UpdateTooltip (text lp_sourceText, text lp_text) {
+    // Variable Declarations
+    text lv_text;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    TextExpressionSetToken("Param/Expression/lib_E0EAE146_D1CAA647", "A", lp_sourceText);
+    TextExpressionSetToken("Param/Expression/lib_E0EAE146_D1CAA647", "B", lp_text);
+    lv_text = TextExpressionAssemble("Param/Expression/lib_E0EAE146_D1CAA647");
+    return lv_text;
+}
+
+void libE0EAE146_gf_EnemyBriefSet (string lp_race, int lp_type) {
+    // Variable Declarations
+    text lv_enemyBrief;
+
+    // Automatic Variable Declarations
+    string auto845E28EE_val;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_enemyBrief = UserDataGetText("AttackWave", lib67C0F0E7_gf_StrToUserinstance((lp_race + IntToString(lp_type))), "Type", 1);
+    lv_enemyBrief = libE0EAE146_gf_UpdateTooltip(lv_enemyBrief, UserDataGetText("AttackWave", lib67C0F0E7_gf_StrToUserinstance((lp_race + IntToString(lp_type))), "Info", 1));
+    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/EnemyBrief");
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), true);
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), lv_enemyBrief, PlayerGroupAll());
+    DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "RaceIcon");
+    auto845E28EE_val = lp_race;
+    if (auto845E28EE_val == "T") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_terran.dds", PlayerGroupAll());
+    }
+    else if (auto845E28EE_val == "P") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_protoss.dds", PlayerGroupAll());
+    }
+    else if (auto845E28EE_val == "Z") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_zerg.dds", PlayerGroupAll());
+    }
+    else {
+    }
+}
+
+void libE0EAE146_gf_EnemyBrief2Set (string lp_race, int lp_type) {
+    // Variable Declarations
+    text lv_enemyBrief;
+
+    // Automatic Variable Declarations
+    string auto36F886F6_val;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_enemyBrief = UserDataGetText("AttackWave", lib67C0F0E7_gf_StrToUserinstance((lp_race + IntToString(lp_type))), "Type", 1);
+    lv_enemyBrief = libE0EAE146_gf_UpdateTooltip(lv_enemyBrief, UserDataGetText("AttackWave", lib67C0F0E7_gf_StrToUserinstance((lp_race + IntToString(lp_type))), "Info", 1));
+    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/EnemyBrief2");
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), true);
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), lv_enemyBrief, PlayerGroupAll());
+    DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "RaceIcon");
+    auto36F886F6_val = lp_race;
+    if (auto36F886F6_val == "T") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_terran.dds", PlayerGroupAll());
+    }
+    else if (auto36F886F6_val == "P") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_protoss.dds", PlayerGroupAll());
+    }
+    else if (auto36F886F6_val == "Z") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_zerg.dds", PlayerGroupAll());
+    }
+    else {
+    }
+}
+
+void libE0EAE146_gf_EnemyBrief3Set (string lp_race, int lp_type) {
+    // Variable Declarations
+    text lv_enemyBrief;
+
+    // Automatic Variable Declarations
+    string auto46B78BFC_val;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_enemyBrief = UserDataGetText("AttackWave", lib67C0F0E7_gf_StrToUserinstance((lp_race + IntToString(lp_type))), "Type", 1);
+    lv_enemyBrief = libE0EAE146_gf_UpdateTooltip(lv_enemyBrief, UserDataGetText("AttackWave", lib67C0F0E7_gf_StrToUserinstance((lp_race + IntToString(lp_type))), "Info", 1));
+    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/ConsoleUIContainer/EnemyBrief3");
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), true);
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), lv_enemyBrief, PlayerGroupAll());
+    DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "RaceIcon");
+    auto46B78BFC_val = lp_race;
+    if (auto46B78BFC_val == "T") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_terran.dds", PlayerGroupAll());
+    }
+    else if (auto46B78BFC_val == "P") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_protoss.dds", PlayerGroupAll());
+    }
+    else if (auto46B78BFC_val == "Z") {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_coop_ingame_attackwaves_zerg.dds", PlayerGroupAll());
+    }
+    else {
+    }
+}
+
+void libE0EAE146_gf_PickUpSet (unit lp_u, int lp_n) {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitSetCustomValue(lp_u, 63, lp_n);
+}
+
+bool libE0EAE146_gf_AbathurHasUltimateUnlock () {
+    return (TechTreeUpgradeCount(1, "AbathurUnlockUltimateEvolutions", c_techCountCompleteOnly) > 0);
+}
+
+void libE0EAE146_gf_AbathurEarlySnapshot (string lp_phase) {
+}
+
+void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    string lv_ravager;
+    string lv_swarmHost;
+    string lv_queen;
+    string lv_leviathan;
+
+    lv_kind = lp_kind;
+    lv_ravager = "RavagerAbathur";
+    lv_swarmHost = "SwarmHost";
+    lv_queen = "QueenCoop";
+    lv_leviathan = "HotSLeviathan";
+    if ((lv_kind == "light")) {
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "RoachVile", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "RoachVile", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmHost, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "Mutalisk", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Devourer", lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "RoachVile", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmHost, lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_queen, lp_player, lp_point);
+    }
+    else if ((lv_kind == "ultimate")) {
+        if ((libE0EAE146_gf_AbathurHasUltimateUnlock() == true)) {
+            libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Brutalisk", lp_player, lp_point);
+            libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_leviathan, lp_player, lp_point);
+        }
+        else {
+            libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", lp_player, lp_point);
+        }
+    }
+    else {
+        libE0EAE146_gf_AbathurCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_AbathurCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_AbathurCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    string lv_ravager;
+    string lv_swarmHost;
+    string lv_queen;
+
+    lv_kind = lp_kind;
+    lv_ravager = "RavagerAbathur";
+    lv_swarmHost = "SwarmHost";
+    lv_queen = "QueenCoop";
+    if ((lv_kind == "light")) {
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 3);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
+    }
+    else if ((lv_kind == "heavy")) {
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 2);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmHost, 1);
+    }
+    else if ((lv_kind == "air")) {
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Mutalisk", 2);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Devourer", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 2);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmHost, 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_queen, 1);
+    }
+    else {
+        libE0EAE146_gf_AbathurCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_ZagaraCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSSwarmling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Baneling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmQueen", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSSwarmling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Baneling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmQueen", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedAbomination", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Scourge", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZagaraCorruptor", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSSwarmling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Baneling", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmQueen", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedAbomination", 0, lp_player, lp_point);
+    }
+    else {
+        libE0EAE146_gf_ZagaraCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_ZagaraCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_ZagaraCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_ZagaraCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "HotSSwarmling", 4);
+        UnitCargoCreate(lp_container, "Baneling", 2);
+        UnitCargoCreate(lp_container, "SwarmQueen", 1);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "HotSSwarmling", 3);
+        UnitCargoCreate(lp_container, "Baneling", 2);
+        UnitCargoCreate(lp_container, "SwarmQueen", 1);
+        UnitCargoCreate(lp_container, "InfestedAbomination", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "HotSSwarmling", 3);
+        UnitCargoCreate(lp_container, "Baneling", 2);
+        UnitCargoCreate(lp_container, "SwarmQueen", 1);
+        UnitCargoCreate(lp_container, "InfestedAbomination", 1);
+    }
+    else {
+        libE0EAE146_gf_ZagaraCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_AlarakCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Supplicant", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Monitor", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Supplicant", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ImmortalTaldarim", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplarTaldarim", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Monitor", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "WarpPrismTaldarim", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Supplicant", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Monitor", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ImmortalTaldarim", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplarTaldarim", 0, lp_player, lp_point);
+    }
+    else {
+        libE0EAE146_gf_AlarakCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_AlarakCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_AlarakCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_AlarakCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "Supplicant", 2);
+        UnitCargoCreate(lp_container, "Stalker", 1);
+        UnitCargoCreate(lp_container, "Monitor", 1);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "Supplicant", 2);
+        UnitCargoCreate(lp_container, "Stalker", 1);
+        UnitCargoCreate(lp_container, "ImmortalTaldarim", 1);
+        UnitCargoCreate(lp_container, "HighTemplarTaldarim", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "Monitor", 2);
+        UnitCargoCreate(lp_container, "WarpPrismTaldarim", 1);
+        UnitCargoCreate(lp_container, "Stalker", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "Supplicant", 2);
+        UnitCargoCreate(lp_container, "Stalker", 1);
+        UnitCargoCreate(lp_container, "Monitor", 1);
+        UnitCargoCreate(lp_container, "ImmortalTaldarim", 1);
+        UnitCargoCreate(lp_container, "HighTemplarTaldarim", 1);
+    }
+    else {
+        libE0EAE146_gf_AlarakCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_RaynorCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Marine", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Medic", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Firebat", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Marine", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Marauder", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Firebat", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SiegeTank", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "VikingFighter", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Banshee", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Battlecruiser", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "RaynorCommando", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Marine", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Medic", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Firebat", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "ultimate")) {
+        if ((TechTreeUpgradeCount(1, "RaynorUnlockBattlecruiser", c_techCountCompleteOnly) > 0)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Battlecruiser", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "HyperionVoidCoop", 0, lp_player, lp_point);
+        }
+        else {
+            libE0EAE146_gf_RaynorCreateMapStartSquad("heavy", lp_player, lp_point);
+        }
+    }
+    else {
+        libE0EAE146_gf_RaynorCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_RaynorCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_RaynorCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_RaynorCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "Marine", 3);
+        UnitCargoCreate(lp_container, "Medic", 1);
+        UnitCargoCreate(lp_container, "Firebat", 1);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "Marine", 3);
+        UnitCargoCreate(lp_container, "Marauder", 1);
+        UnitCargoCreate(lp_container, "Firebat", 1);
+        UnitCargoCreate(lp_container, "SiegeTank", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "VikingFighter", 2);
+        UnitCargoCreate(lp_container, "Banshee", 1);
+        UnitCargoCreate(lp_container, "Battlecruiser", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "RaynorCommando", 1);
+        UnitCargoCreate(lp_container, "Marine", 3);
+        UnitCargoCreate(lp_container, "Medic", 1);
+        UnitCargoCreate(lp_container, "Firebat", 1);
+    }
+    else {
+        libE0EAE146_gf_RaynorCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "MutaliskBroodlord", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSRaptor", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskLurker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "ultimate")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
+    }
+    else {
+        libE0EAE146_gf_KerriganCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_KerriganCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_KerriganCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "HotSRaptor", 4);
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
+        UnitCargoCreate(lp_container, "QueenCoop", 1);
+        UnitCargoCreate(lp_container, "HotSTorrasque", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "Mutalisk", 2);
+        UnitCargoCreate(lp_container, "MutaliskBroodlord", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "K5Kerrigan", 1);
+        UnitCargoCreate(lp_container, "HotSRaptor", 3);
+        UnitCargoCreate(lp_container, "HydraliskLurker", 2);
+        UnitCargoCreate(lp_container, "QueenCoop", 1);
+    }
+    else {
+        libE0EAE146_gf_KerriganCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_FenixCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "AdeptFenix", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SentryFenix", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "AdeptFenix", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Immortal", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ColossusPurifier", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Scout", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Carrier", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "FenixDragoon", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "AdeptFenix", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "SentryFenix", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "ultimate")) {
+        if ((TechTreeUpgradeCount(1, "FenixChampionClolarionCarrier", c_techCountCompleteOnly) > 0)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "FenixKaldalisZealot", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "FenixTalisAdept", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "FenixClolarionCarrier", 0, lp_player, lp_point);
+        }
+        else {
+            libE0EAE146_gf_FenixCreateMapStartSquad("heavy", lp_player, lp_point);
+        }
+    }
+    else {
+        libE0EAE146_gf_FenixCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_FenixCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_FenixCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_FenixCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "ZealotPurifier", 3);
+        UnitCargoCreate(lp_container, "AdeptFenix", 2);
+        UnitCargoCreate(lp_container, "SentryFenix", 1);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "ZealotPurifier", 2);
+        UnitCargoCreate(lp_container, "AdeptFenix", 2);
+        UnitCargoCreate(lp_container, "Immortal", 1);
+        UnitCargoCreate(lp_container, "ColossusPurifier", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "Scout", 2);
+        UnitCargoCreate(lp_container, "Observer", 1);
+        UnitCargoCreate(lp_container, "Carrier", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "FenixDragoon", 1);
+        UnitCargoCreate(lp_container, "ZealotPurifier", 2);
+        UnitCargoCreate(lp_container, "AdeptFenix", 1);
+        UnitCargoCreate(lp_container, "SentryFenix", 1);
+    }
+    else {
+        libE0EAE146_gf_FenixCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_VorazunCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotShakuras", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "DarkTemplarShakuras", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Stalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "DarkTemplarShakuras", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CorsairMP", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZealotShakuras", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "CorsairMP", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "VoidRay", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Oracle", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "DarkTemplarShakuras", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Stalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CorsairMP", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Oracle", 0, lp_player, lp_point);
+    }
+    else {
+        libE0EAE146_gf_VorazunCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_VorazunCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_VorazunCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_VorazunCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "ZealotShakuras", 2);
+        UnitCargoCreate(lp_container, "Stalker", 1);
+        UnitCargoCreate(lp_container, "DarkTemplarShakuras", 2);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "Stalker", 2);
+        UnitCargoCreate(lp_container, "DarkTemplarShakuras", 2);
+        UnitCargoCreate(lp_container, "ZealotShakuras", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "CorsairMP", 2);
+        UnitCargoCreate(lp_container, "VoidRay", 1);
+        UnitCargoCreate(lp_container, "Oracle", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "DarkTemplarShakuras", 2);
+        UnitCargoCreate(lp_container, "Stalker", 2);
+        UnitCargoCreate(lp_container, "CorsairMP", 1);
+        UnitCargoCreate(lp_container, "Oracle", 1);
+    }
+    else {
+        libE0EAE146_gf_VorazunCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_KaraxCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    if ((lp_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPurifier", 0, lp_player, lp_point);
+    }
+    else if ((lp_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ImmortalAiur", 0, lp_player, lp_point);
+    }
+    else if ((lp_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Scout", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CarrierAiur", 0, lp_player, lp_point);
+    }
+    else if ((lp_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ImmortalAiur", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ColossusPurifier", 0, lp_player, lp_point);
+    }
+    else {
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "ZealotPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "SentryPurifier", 0, lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_KaraxCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_KaraxCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_KaraxCreateCargoSquad (unit lp_container, string lp_kind) {
+    if ((lp_kind == "light")) {
+        UnitCargoCreate(lp_container, "ZealotPurifier", 4);
+        UnitCargoCreate(lp_container, "SentryPurifier", 2);
+    }
+    else if ((lp_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "ZealotPurifier", 3);
+        UnitCargoCreate(lp_container, "SentryPurifier", 2);
+        UnitCargoCreate(lp_container, "ImmortalAiur", 2);
+    }
+    else if ((lp_kind == "air")) {
+        UnitCargoCreate(lp_container, "PhoenixPurifier", 2);
+        UnitCargoCreate(lp_container, "Scout", 1);
+        UnitCargoCreate(lp_container, "CarrierAiur", 1);
+    }
+    else if ((lp_kind == "hero")) {
+        UnitCargoCreate(lp_container, "ZealotPurifier", 3);
+        UnitCargoCreate(lp_container, "ImmortalAiur", 2);
+        UnitCargoCreate(lp_container, "ColossusPurifier", 2);
+    }
+    else {
+        libE0EAE146_gf_KaraxCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_ArtanisCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "ZealotAiur", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Dragoon", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotAiur", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Dragoon", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ImmortalAiur", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixAiur", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ArtanisVoid", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZealotAiur", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Dragoon", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "ultimate")) {
+        if ((TechTreeUpgradeCount(1, "ArtanisUnlockTempest", c_techCountCompleteOnly) > 0)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Archon", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "ImmortalAiur", 0, lp_player, lp_point);
+            libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixAiur", 0, lp_player, lp_point);
+        }
+        else {
+            libE0EAE146_gf_ArtanisCreateMapStartSquad("heavy", lp_player, lp_point);
+        }
+    }
+    else {
+        libE0EAE146_gf_ArtanisCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_ArtanisCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_ArtanisCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_ArtanisCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "ZealotAiur", 3);
+        UnitCargoCreate(lp_container, "Dragoon", 2);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "ZealotAiur", 2);
+        UnitCargoCreate(lp_container, "Dragoon", 2);
+        UnitCargoCreate(lp_container, "ImmortalAiur", 1);
+        UnitCargoCreate(lp_container, "HighTemplar", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "PhoenixAiur", 2);
+        UnitCargoCreate(lp_container, "Observer", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "ArtanisVoid", 1);
+        UnitCargoCreate(lp_container, "ZealotAiur", 2);
+        UnitCargoCreate(lp_container, "Dragoon", 2);
+        UnitCargoCreate(lp_container, "HighTemplar", 1);
+    }
+    else if ((lv_kind == "ultimate")) {
+        UnitCargoCreate(lp_container, "Archon", 1);
+        UnitCargoCreate(lp_container, "ImmortalAiur", 1);
+        UnitCargoCreate(lp_container, "PhoenixAiur", 2);
+    }
+    else {
+        libE0EAE146_gf_ArtanisCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_ZeratulCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZeratulSummonZealot", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZeratulStalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulSentry", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "heavy")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZeratulStalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulImmortal", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulDisruptor", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulSentry", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "air")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulWarpPrism", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulObserver", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "hero")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulCoop", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "ZeratulStalker", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulImmortal", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulSentry", 0, lp_player, lp_point);
+    }
+    else if ((lv_kind == "ultimate")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulXelNagaConstruct", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulXelNagaConstructCyan", 0, lp_player, lp_point);
+    }
+    else {
+        libE0EAE146_gf_ZeratulCreateMapStartSquad("light", lp_player, lp_point);
+    }
+}
+
+void libE0EAE146_gf_ZeratulCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
+    libE0EAE146_gf_ZeratulCreateMapStartSquad(lp_kind, lp_player, RegionGetCenter(lp_region));
+}
+
+void libE0EAE146_gf_ZeratulCreateCargoSquad (unit lp_container, string lp_kind) {
+    string lv_kind;
+    lv_kind = lp_kind;
+    if ((lv_kind == "light")) {
+        UnitCargoCreate(lp_container, "ZeratulSummonZealot", 2);
+        UnitCargoCreate(lp_container, "ZeratulStalker", 2);
+        UnitCargoCreate(lp_container, "ZeratulSentry", 1);
+    }
+    else if ((lv_kind == "heavy")) {
+        UnitCargoCreate(lp_container, "ZeratulStalker", 2);
+        UnitCargoCreate(lp_container, "ZeratulImmortal", 1);
+        UnitCargoCreate(lp_container, "ZeratulDisruptor", 1);
+        UnitCargoCreate(lp_container, "ZeratulSentry", 1);
+    }
+    else if ((lv_kind == "air")) {
+        UnitCargoCreate(lp_container, "ZeratulWarpPrism", 1);
+        UnitCargoCreate(lp_container, "ZeratulObserver", 1);
+        UnitCargoCreate(lp_container, "Observer", 1);
+    }
+    else if ((lv_kind == "hero")) {
+        UnitCargoCreate(lp_container, "ZeratulCoop", 1);
+        UnitCargoCreate(lp_container, "ZeratulStalker", 2);
+        UnitCargoCreate(lp_container, "ZeratulImmortal", 1);
+        UnitCargoCreate(lp_container, "ZeratulSentry", 1);
+    }
+    else if ((lv_kind == "ultimate")) {
+        UnitCargoCreate(lp_container, "ZeratulXelNagaConstruct", 1);
+        UnitCargoCreate(lp_container, "ZeratulXelNagaConstructCyan", 1);
+    }
+    else {
+        libE0EAE146_gf_ZeratulCreateCargoSquad(lp_container, "light");
+    }
+}
+
+void libE0EAE146_gf_AttackWaveRun (int lp_type, int lp_level) {
+    // Automatic Variable Declarations
+    // Implementation
+    Wait(4.0, c_timeGame);
+    lib67C0F0E7_gf_PingAttackWave("PingDiamond", lib67C0F0E7_gf_AttackWaveUGGet());
+}
+
+void libE0EAE146_gf_StartGame () {
+    // Automatic Variable Declarations
+    // Implementation
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_E0EAE146_D1905078"));
+}
+
+void libE0EAE146_gf_ProphecyCameraCreate (unit lp_u) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "ProphecyCamera", c_unitCreateIgnorePlacement, 0, UnitGetPosition(lp_u));
+    CameraSetChannel(1, UnitLastCreated(), "Camera_Basic", 1, 1.0);
+    DataTableSetUnit(true, "ProphecyCameraUnit", UnitLastCreated());
+}
+
+void libE0EAE146_gf_ProphecyCameraMove (unit lp_u) {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitSetPosition(DataTableGetUnit(true, "ProphecyCameraUnit"), UnitGetPosition(lp_u), false);
+}
+
+void libE0EAE146_gf_ProphecyCameraDestroy () {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitRemove(DataTableGetUnit(true, "ProphecyCameraUnit"));
+    CameraClearChannel(1, 1);
+}
+
+void libE0EAE146_gf_Bon1 () {
+    // Automatic Variable Declarations
+    // Implementation
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_E0EAE146_4CBA00C0"));
+    libE0EAE146_gv_bon += 1;
+}
+
+void libE0EAE146_gf_Bon2 () {
+    // Automatic Variable Declarations
+    // Implementation
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_E0EAE146_A9B9723D"));
+    libE0EAE146_gv_bon += 2;
+}
+
+void libE0EAE146_gf_Bon3 () {
+    // Automatic Variable Declarations
+    // Implementation
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_E0EAE146_A7919CF2"));
+    libE0EAE146_gv_bon += 3;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbathurBiomassDrop
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_AbathurBiomassDrop_Func (bool testConds, bool runActions) {
+    fixed lv_amount;
+    unit lv_dead;
+    int lv_stack;
+
+    lv_dead = EventUnit();
+    if (testConds) {
+        if ((libE0EAE146_gf_AbathurCanDropBiomass(lv_dead) == false)) {
+            return false;
+        }
+    }
+    if (!runActions) {
+        return true;
+    }
+
+    lv_amount = libE0EAE146_gf_AbathurBiomassAmount(lv_dead);
+    lv_stack = MaxI(1, FixedToInt(lv_amount));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BiomassPickup", c_unitCreateIgnorePlacement, libE0EAE146_gv_abathurBiomassPlayer, UnitGetPosition(lv_dead));
+    UnitSetCustomValue(UnitLastCreated(), 63, IntToFixed(lv_stack));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_AbathurBiomassDrop_Init () {
+    libE0EAE146_gt_AbathurBiomassDrop = TriggerCreate("libE0EAE146_gt_AbathurBiomassDrop_Func");
+    TriggerEnable(libE0EAE146_gt_AbathurBiomassDrop, false);
+    TriggerAddEventUnitDied(libE0EAE146_gt_AbathurBiomassDrop, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbathurBiomassPickup
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_AbathurBiomassPickup_Func (bool testConds, bool runActions) {
+    unitgroup lv_pickups;
+    unitgroup lv_units;
+    unit lv_unit;
+    unit lv_pickup;
+    int lv_i;
+    int lv_j;
+    fixed lv_amount;
+    int lv_stack;
+    int lv_applied;
+
+    if (!runActions) {
+        return true;
+    }
+    if ((libE0EAE146_gv_abathurBiomassEnabled == false)) {
+        return true;
+    }
+    if ((libE0EAE146_gv_abathurBiomassEffect == "")) {
+        return true;
+    }
+
+    lv_pickups = UnitGroup("BiomassPickup", libE0EAE146_gv_abathurBiomassPlayer, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    lv_i = UnitGroupCount(lv_pickups, c_unitCountAlive);
+    for (;; lv_i -= 1) {
+        lv_pickup = UnitGroupUnitFromEnd(lv_pickups, lv_i);
+        if (lv_pickup == null) { break; }
+        lv_amount = UnitGetCustomValue(lv_pickup, 63);
+        lv_stack = FixedToInt(lv_amount);
+        lv_units = UnitGroup(null, libE0EAE146_gv_abathurBiomassPlayer, RegionCircle(UnitGetPosition(lv_pickup), 2.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        lv_j = UnitGroupCount(lv_units, c_unitCountAlive);
+        for (;; lv_j -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(lv_units, lv_j);
+            if (lv_unit == null) { break; }
+            if ((UnitTypeTestAttribute(UnitGetType(lv_unit), c_unitAttributeStructure) == false)) {
+                lv_applied = libE0EAE146_gf_AbathurAddBiomassStacks(lv_unit, lv_stack);
+                if ((lv_applied > 0)) {
+                    UnitCreateEffectUnit(lv_pickup, libE0EAE146_gv_abathurBiomassEffect, lv_unit);
+                    UnitCreateEffectUnit(lv_pickup, "BiomassPickupFullLM", lv_unit);
+                    lib67C0F0E7_gf_UnitAddCustomValue(lv_unit, 62, IntToFixed(lv_applied));
+                    if ((lv_applied >= lv_stack)) {
+                        UnitKill(lv_pickup);
+                    }
+                    else {
+                        UnitSetCustomValue(lv_pickup, 63, IntToFixed((lv_stack - lv_applied)));
+                    }
+                }
+                break;
+            }
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_AbathurBiomassPickup_Init () {
+    libE0EAE146_gt_AbathurBiomassPickup = TriggerCreate("libE0EAE146_gt_AbathurBiomassPickup_Func");
+    TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, false);
+    TriggerAddEventTimePeriodic(libE0EAE146_gt_AbathurBiomassPickup, 0.5, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbathurToxicNest
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_AbathurToxicNest_Func (bool testConds, bool runActions) {
+    int lv_casterPlayer;
+
+    if (testConds) {
+        if (!(((libE0EAE146_gv_commander == "Abathur") || (libE0EAE146_gv_commander == "AbathurReborn")))) {
+            return false;
+        }
+    }
+    if (!runActions) {
+        return true;
+    }
+
+    lv_casterPlayer = UnitGetOwner(EventUnit());
+    if ((UnitAbilityChargeInfo(EventUnit(), EventUnitAbility(), c_unitAbilChargeCountLeft) > 0.0)) {
+        UISetTargetingOrder(PlayerGroupSingle(lv_casterPlayer), lib67C0F0E7_gv_cU_GPCasterGroup[lv_casterPlayer], OrderTargetingPoint(EventUnitAbility(), UnitGetPosition(EventUnit())), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_AbathurToxicNest_Init () {
+    libE0EAE146_gt_AbathurToxicNest = TriggerCreate("libE0EAE146_gt_AbathurToxicNest_Func");
+    TriggerEnable(libE0EAE146_gt_AbathurToxicNest, false);
+    TriggerAddEventUnitAbility(libE0EAE146_gt_AbathurToxicNest, null, AbilityCommand("SpawnToxicNest", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbathurToxicNestDeathFailsafe
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_AbathurToxicNestDeathFailsafe_Func (bool testConds, bool runActions) {
+    unit lv_target;
+
+    if (!runActions) {
+        return true;
+    }
+
+    lv_target = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    if ((lv_target != null)) {
+        UnitKill(lv_target);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_AbathurToxicNestDeathFailsafe_Init () {
+    libE0EAE146_gt_AbathurToxicNestDeathFailsafe = TriggerCreate("libE0EAE146_gt_AbathurToxicNestDeathFailsafe_Func");
+    TriggerEnable(libE0EAE146_gt_AbathurToxicNestDeathFailsafe, false);
+    TriggerAddEventPlayerEffectUsed(libE0EAE146_gt_AbathurToxicNestDeathFailsafe, c_playerAny, "ToxicNestKillCaster");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: PickUpPickUp
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_PickUpPickUp_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int auto4D417BDB_val;
+    string auto084A15E5_val;
+    fixed autoDDDD0286_val;
+    fixed auto1FBB1063_val;
+    fixed auto5A2F0516_val;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto4D417BDB_val = TriggerGetExecCount(TriggerGetCurrent());
+    if (auto4D417BDB_val == 0) {
+        lib67C0F0E7_gf_ObjectiveNew(false, StringExternal("Param/Value/lib_E0EAE146_533F10CD"), 3, true, 1, 2);
+        lib67C0F0E7_gf_ObjectiveSet(true, 1, lib67C0F0E7_ge_ObjectiveSet_Show);
+    }
+    else {
+        lib67C0F0E7_gf_ObjectiveSet(false, 3, lib67C0F0E7_ge_ObjectiveSet_FinishM);
+    }
+    auto084A15E5_val = libE0EAE146_gv_commander;
+    if (auto084A15E5_val == "Stukov") {
+        autoDDDD0286_val = UnitGetCustomValue(EventPlayerEffectUsedUnit(c_effectUnitCaster), 63);
+        if (autoDDDD0286_val == 0.0) {
+            TechTreeUpgradeAddLevel(EventPlayerEffectUsedUnitOwner(c_effectPlayerTarget), "SIInfantryArmorLv1", 1);
+        }
+        else if (autoDDDD0286_val == 1.0) {
+            TechTreeUpgradeAddLevel(EventPlayerEffectUsedUnitOwner(c_effectPlayerTarget), "SIInfantryWeaponsLv1", 1);
+        }
+        else {
+        }
+    }
+    else if (auto084A15E5_val == "Tychus") {
+        auto1FBB1063_val = UnitGetCustomValue(EventPlayerEffectUsedUnit(c_effectUnitCaster), 63);
+        if (auto1FBB1063_val == 0.0) {
+            TechTreeUpgradeAddLevel(EventPlayerEffectUsedUnitOwner(c_effectPlayerTarget), "TychusOutlawArmorsLevel1", 1);
+        }
+        else if (auto1FBB1063_val == 1.0) {
+            TechTreeUpgradeAddLevel(EventPlayerEffectUsedUnitOwner(c_effectPlayerTarget), "TychusOutlawWeaponsLevel1", 1);
+        }
+        else {
+        }
+    }
+    else if (auto084A15E5_val == "Mira") {
+        auto5A2F0516_val = UnitGetCustomValue(EventPlayerEffectUsedUnit(c_effectUnitCaster), 63);
+        if (auto5A2F0516_val == 0.0) {
+            TechTreeUpgradeAddLevel(EventPlayerEffectUsedUnitOwner(c_effectPlayerTarget), "VehicleAndShipArmorsLevel1Mira", 1);
+        }
+        else if (auto5A2F0516_val == 1.0) {
+            TechTreeUpgradeAddLevel(EventPlayerEffectUsedUnitOwner(c_effectPlayerTarget), "VehicleAndShipWeaponsLevel1Mira", 1);
+        }
+        else {
+        }
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_PickUpPickUp_Init () {
+    libE0EAE146_gt_PickUpPickUp = TriggerCreate("libE0EAE146_gt_PickUpPickUp_Func");
+    TriggerEnable(libE0EAE146_gt_PickUpPickUp, false);
+    TriggerAddEventPlayerEffectUsed(libE0EAE146_gt_PickUpPickUp, c_playerAny, "PickupTechnologySetFinal");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: RPG
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_RPG_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib67C0F0E7_gf_ButtonReplacement(1, (("TychusHeroCommonAbil" + IntToString(1))), UserDataGetGameLink("CoopTechTychusSquad", "TychusCoop", "Active Button", 1));
+    CatalogLinkReplace(1, c_gameCatalogAbil, ("TychusHeroCommonAbil" + IntToString(1)), UserDataGetString("CoopTechTychusSquad", "TychusCoop", "Active Abil", 1));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_RPG_Init () {
+    libE0EAE146_gt_RPG = TriggerCreate("libE0EAE146_gt_RPG_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: PAttack
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_PAttack_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_type;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_type = RandomInt(1, 5);
+    libE0EAE146_gf_EnemyBriefSet("Z", lv_type);
+    Wait(180.0, c_timeAI);
+    libE0EAE146_gf_AttackWaveRun(lv_type, 1);
+    Wait(180.0, c_timeAI);
+    libE0EAE146_gf_AttackWaveRun(lv_type, 2);
+    Wait(180.0, c_timeAI);
+    libE0EAE146_gf_AttackWaveRun(lv_type, 3);
+    Wait(180.0, c_timeAI);
+    libE0EAE146_gf_AttackWaveRun(lv_type, 4);
+    Wait(180.0, c_timeAI);
+    libE0EAE146_gf_AttackWaveRun(lv_type, 5);
+    while (true) {
+        Wait(180.0, c_timeAI);
+        libE0EAE146_gf_AttackWaveRun(lv_type, 5);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_PAttack_Init () {
+    libE0EAE146_gt_PAttack = TriggerCreate("libE0EAE146_gt_PAttack_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AIAttakcWaveUpgrade 2
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_gt_AIAttakcWaveUpgrade2_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(300.0, c_timeAI);
+    Wait(300.0, c_timeAI);
+    Wait(300.0, c_timeAI);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE0EAE146_gt_AIAttakcWaveUpgrade2_Init () {
+    libE0EAE146_gt_AIAttakcWaveUpgrade2 = TriggerCreate("libE0EAE146_gt_AIAttakcWaveUpgrade2_Func");
+}
+
+void libE0EAE146_InitTriggers () {
+    libE0EAE146_gt_AbathurBiomassDrop_Init();
+    libE0EAE146_gt_AbathurBiomassPickup_Init();
+    libE0EAE146_gt_PickUpPickUp_Init();
+    libE0EAE146_gt_RPG_Init();
+    libE0EAE146_gt_PAttack_Init();
+    libE0EAE146_gt_AIAttakcWaveUpgrade2_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libE0EAE146_InitLib_completed = false;
+
+void libE0EAE146_InitLib () {
+    if (libE0EAE146_InitLib_completed) {
+        return;
+    }
+
+    libE0EAE146_InitLib_completed = true;
+
+    libE0EAE146_InitLibraries();
+    libE0EAE146_InitVariables();
+    libE0EAE146_InitTriggers();
+}
+

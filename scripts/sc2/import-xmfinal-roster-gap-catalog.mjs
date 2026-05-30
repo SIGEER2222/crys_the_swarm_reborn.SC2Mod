@@ -36,8 +36,17 @@ const officialRoots = [
     "base.sc2data",
     "gamedata",
   ),
+  path.join(
+    root,
+    "游戏数据",
+    "官方SC2原始文本镜像",
+    "campaigns",
+    "swarm.sc2campaign",
+    "base.sc2data",
+    "gamedata",
+  ),
 ].filter((dir) => fs.existsSync(dir));
-const targetRoot = path.join(root, "原始mod", "Mods", "XM", "XMFinal.SC2Mod", "Base.SC2Data", "GameData");
+const defaultTargetRoot = path.join(root, "原始mod", "Mods", "XM", "XMFinal.SC2Mod", "Base.SC2Data", "GameData");
 const defaultSummaryPath = path.join(
   root,
   "docs",
@@ -350,20 +359,44 @@ function existingKeys(text) {
   return new Set(parseCatalogNodes(text, "").map(objectKey));
 }
 
-function appendNodes(targetFile, nodes) {
-  const originalText = ensureCatalogText(fs.existsSync(targetFile) ? readText(targetFile) : "");
+function coalesceNodesByKey(nodes) {
+  const byKey = new Map();
+  for (const node of nodes) {
+    byKey.set(objectKey(node), node);
+  }
+  return [...byKey.values()];
+}
+
+function removeExistingNode(text, node) {
+  const escapedId = node.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(
+    `\\r?\\n?[ \\t]*<${node.tag}[^>]*\\bid="${escapedId}"[^>]*(?:\\/>|>[\\s\\S]*?<\\/${node.tag}>)`,
+    "g",
+  );
+  return text.replace(pattern, "");
+}
+
+function appendNodes(targetFile, nodes, options = {}) {
+  nodes = coalesceNodesByKey(nodes);
+  let originalText = ensureCatalogText(fs.existsSync(targetFile) ? readText(targetFile) : "");
   const keys = existingKeys(originalText);
   const additions = [];
+  let replaced = 0;
   for (const node of nodes) {
     if (keys.has(objectKey(node))) {
-      continue;
+      if (!options.replaceExisting) {
+        continue;
+      }
+      originalText = removeExistingNode(originalText, node);
+      keys.delete(objectKey(node));
+      replaced += 1;
     }
     keys.add(objectKey(node));
     additions.push(node);
   }
 
   if (additions.length === 0) {
-    return { added: 0, skipped: nodes.length };
+    return { added: 0, replaced, skipped: nodes.length };
   }
 
   fs.mkdirSync(path.dirname(targetFile), { recursive: true });
@@ -372,7 +405,7 @@ function appendNodes(targetFile, nodes) {
   const before = originalText.slice(0, insertAt).replace(/\s*$/, "\r\n");
   const after = originalText.slice(insertAt);
   fs.writeFileSync(targetFile, `${before}${insertion}\r\n${after}`, "utf8");
-  return { added: additions.length, skipped: nodes.length - additions.length };
+  return { added: additions.length - replaced, replaced, skipped: nodes.length - additions.length };
 }
 
 function targetFileNameByTag(node) {
@@ -402,8 +435,19 @@ function main() {
   const seeds = parseSeedIds(args);
   const closurePasses = Number(args.get("closure-passes") ?? 0);
   const summaryPath = path.resolve(String(args.get("summary") ?? defaultSummaryPath));
+  const targetRoot = path.resolve(String(args.get("target-root") ?? defaultTargetRoot));
+  const replaceExisting = args.has("replace-existing");
+  const excludeIds = new Set(
+    String(args.get("exclude-ids") ?? "")
+      .split(/[,;\s]+/g)
+      .map((id) => id.trim())
+      .filter(Boolean),
+  );
   const official = loadOfficialNodes();
   const selected = expandClosure(official, closurePasses, seeds);
+  for (const id of excludeIds) {
+    selected.delete(id);
+  }
 
   const nodesByTargetFile = new Map();
   for (const id of selected) {
@@ -422,8 +466,13 @@ function main() {
   for (const [targetName, nodes] of [...nodesByTargetFile.entries()].sort()) {
     const targetFile = path.join(targetRoot, targetName);
     const beforeKeys = existingKeys(fs.existsSync(targetFile) ? readText(targetFile) : "");
-    const result = appendNodes(targetFile, nodes.sort((a, b) => `${a.id}|${a.tag}`.localeCompare(`${b.id}|${b.tag}`)));
+    const result = appendNodes(
+      targetFile,
+      nodes.sort((a, b) => `${a.id}|${a.tag}`.localeCompare(`${b.id}|${b.tag}`)),
+      { replaceExisting },
+    );
     addedTotal += result.added;
+    addedTotal += result.replaced;
     skippedTotal += result.skipped;
 
     for (const node of nodes) {
