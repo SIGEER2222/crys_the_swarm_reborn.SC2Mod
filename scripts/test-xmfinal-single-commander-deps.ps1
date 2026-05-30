@@ -232,17 +232,12 @@ exit `$exitCode
 }
 
 $baselineInfoBytes = $null
-$baselineHeaderBytes = $null
 if ($MutateXMFinalDependencies) {
     if (-not (Test-Path -LiteralPath $xmFinalInfo)) {
         throw "Missing source DocumentInfo: $xmFinalInfo"
     }
-    if (-not (Test-Path -LiteralPath $xmFinalHeader)) {
-        throw "Missing source DocumentHeader: $xmFinalHeader"
-    }
 
     $baselineInfoBytes = Read-Bytes -Path $xmFinalInfo
-    $baselineHeaderBytes = Read-Bytes -Path $xmFinalHeader
 }
 
 $results = New-Object System.Collections.Generic.List[object]
@@ -270,14 +265,12 @@ try {
 
         if ($MutateXMFinalDependencies) {
             Write-Bytes -Path $xmFinalInfo -Bytes $baselineInfoBytes
-            Write-Bytes -Path $xmFinalHeader -Bytes $baselineHeaderBytes
 
             $dependency = "file:Mods\XM\$module.SC2Mod"
             Add-DependencyToDocumentInfo -Path $xmFinalInfo -Dependency $dependency
-            & $syncHeaderScript -DocumentRoot $xmFinalSource | Out-Null
+            & $syncHeaderScript -DocumentRoot $xmFinalSource -TargetDocumentRoot $xmFinalLive | Out-Null
 
             Copy-Item -LiteralPath $xmFinalInfo -Destination (Join-Path $xmFinalLive "DocumentInfo") -Force
-            Copy-Item -LiteralPath $xmFinalHeader -Destination (Join-Path $xmFinalLive "DocumentHeader") -Force
         }
 
         $commanderName = $module.Substring(2)
@@ -335,11 +328,9 @@ try {
     }
 }
 finally {
-    if ($MutateXMFinalDependencies -and $baselineInfoBytes -and $baselineHeaderBytes) {
+    if ($MutateXMFinalDependencies -and $baselineInfoBytes) {
         Write-Bytes -Path $xmFinalInfo -Bytes $baselineInfoBytes
-        Write-Bytes -Path $xmFinalHeader -Bytes $baselineHeaderBytes
         Copy-Item -LiteralPath $xmFinalInfo -Destination (Join-Path $xmFinalLive "DocumentInfo") -Force -ErrorAction SilentlyContinue
-        Copy-Item -LiteralPath $xmFinalHeader -Destination (Join-Path $xmFinalLive "DocumentHeader") -Force -ErrorAction SilentlyContinue
         $restored = $true
     }
 }

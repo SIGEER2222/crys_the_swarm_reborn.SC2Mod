@@ -478,7 +478,7 @@ function Wait-ForLoadWindow {
 function Get-GameLogEvidence {
     param(
         [datetime]$Since,
-        [string]$Pattern = 'Unit|Structure|Hero|Panel|Ability|Commander|Building|Caster|TopBar|CommandCard'
+        [string]$Pattern = 'Unit|Structure|Hero|Panel|Ability|Commander|Building|Caster|TopBar|CommandCard|TEST_'
     )
 
     if (-not (Test-Path -LiteralPath $logRoot)) {
@@ -641,6 +641,10 @@ if ($CaptureLogEvidence) {
         $probeName = $OutputPrefix
     }
     $probeLog = Save-TextReport -Name ("tmp_{0}_probe" -f $probeName) -Lines $probeLines
+
+    $probeEvidence.Lines |
+        Where-Object { $_ -match 'TEST_(ROSTER|BUILDING)_(UNIT|ALIAS|DONE)' } |
+        ForEach-Object { Write-Output $_ }
 }
 
 if (-not [string]::IsNullOrWhiteSpace($ProbeTopBarButtons)) {

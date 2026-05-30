@@ -79,7 +79,11 @@ function main() {
   addCheck("Runtime exposes enable-all API", runtimeHeader.includes("void libXMCM_gf_EnableAllMutators") && runtime.includes("void libXMCM_gf_EnableAllMutators"));
   addCheck("Runtime has unit-created Plague hook", runtime.includes("TriggerAddEventUnitCreated") && runtime.includes("libXMCM_gf_ApplyPlague(EventUnitCreatedUnit())"));
   addCheck("Runtime has death Plague hook", runtime.includes("TriggerAddEventUnitDied") && runtime.includes("libXMCM_gf_ApplyPlagueOnDeath(EventUnit())"));
-  addCheck("XMFinal depends on XMCoopMutators", finalDoc.includes("file:Mods\\XM\\XMCoopMutators.SC2Mod"));
+  addCheck(
+    "XMFinal does not directly depend on XMCoopMutators",
+    !finalDoc.includes("file:Mods\\XM\\XMCoopMutators.SC2Mod"),
+    "CommanderTestBench can include the test library without mounting XMCoopMutators through XMFinal."
+  );
   addCheck("XMMutator no longer includes generated UserData", !oldMutatorGameData.includes('Catalog path="GameData/UserData.xml"'));
   addCheck("Test map includes XMCoopMutators library", mapScript.includes('include "LibXMCoopMutators"'));
   addCheck("Test map initializes XMCoopMutators library", mapScript.includes("libXMCM_InitLib();"));

@@ -14,11 +14,12 @@ void libE0EAE146_gf_XMTestBench_PrepareBuildingRoster (int lp_player) {
 }
 
 void libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit (int lp_player, string lp_unitType, int lp_index, string lp_rosterKind) {
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_BUILDING_UNIT", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " buildingId=" + lp_unitType + " unitId=" + lp_unitType + " unit=" + lp_unitType + " index=" + IntToString(lp_index));
     libE0EAE146_gf_XMTestBench_CreateProfileUnit(lp_player, lp_unitType, libE0EAE146_gf_XMTestBench_SpawnPoint(lp_player, lp_index, 20.0, 6.0), lp_rosterKind);
 }
 
 void libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnitAlias (int lp_player, string lp_sourceUnitType, string lp_resolvedUnitType, int lp_index, string lp_rosterKind) {
-    libE0EAE146_gf_XMDbgLog("INFO", "TEST_BUILDING_ALIAS", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " sourceUnit=" + lp_sourceUnitType + " resolvedUnit=" + lp_resolvedUnitType);
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_BUILDING_ALIAS", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " sourceUnitId=" + lp_sourceUnitType + " resolvedUnitId=" + lp_resolvedUnitType + " sourceUnit=" + lp_sourceUnitType + " resolvedUnit=" + lp_resolvedUnitType);
     libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, lp_resolvedUnitType, lp_index, lp_rosterKind);
 }
 
