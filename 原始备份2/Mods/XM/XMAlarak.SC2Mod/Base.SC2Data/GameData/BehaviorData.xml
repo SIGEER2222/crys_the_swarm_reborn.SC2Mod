@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CBehaviorBuff id="AlarakKnockback">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AlarakKnockbackAF"/>
+        <Modification Height="3" MoveSpeedMultiplier="2">
+            <StateFlags index="Stun" value="1"/>
+            <StateFlags index="Uncommandable" value="1"/>
+            <HeightTime index="Start" value="0.4"/>
+            <HeightTime index="Stop" value="0.2"/>
+        </Modification>
+        <Duration value="2">
+            <AccumulatorArray value="AlarakKnockbackR"/>
+        </Duration>
+        <FinalEffect value="AlarakKnockbackD"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AlarakBaneBladesSlow">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-slow.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.5" AttackSpeedMultiplier="0.5"/>
+        <BehaviorCategories index="Slow" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AlarakBaneBladesStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-ultrasonicpulse.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+        <BehaviorCategories index="Stun" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorClickResponse id="AlarakLightningStrikes">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Relationship index="Self" value="0"/>
+        <Relationship index="Ally" value="0"/>
+        <Relationship index="Neutral" value="0"/>
+        <Relationship index="Enemy" value="0"/>
+    </CBehaviorClickResponse>
+</Catalog>
