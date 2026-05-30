@@ -1,0 +1,37 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Final
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+string libE0EAE146_gv_commander;
+int libE0EAE146_gv_bon;
+
+// Function Declarations
+void libE0EAE146_gf_FinishLevel ();
+void libE0EAE146_gf_Initialize (bool lp_rpg);
+void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp_secondBase, bool lp_createHero);
+void libE0EAE146_gf_CommanderUpgrade ();
+text libE0EAE146_gf_UpdateTooltip (text lp_sourceText, text lp_text);
+void libE0EAE146_gf_EnemyBriefSet (string lp_race, int lp_type);
+void libE0EAE146_gf_EnemyBrief2Set (string lp_race, int lp_type);
+void libE0EAE146_gf_EnemyBrief3Set (string lp_race, int lp_type);
+void libE0EAE146_gf_PickUpSet (unit lp_u, int lp_n);
+void libE0EAE146_gf_AttackWaveRun (int lp_type, int lp_level);
+void libE0EAE146_gf_StartGame ();
+void libE0EAE146_gf_ProphecyCameraCreate (unit lp_u);
+void libE0EAE146_gf_ProphecyCameraMove (unit lp_u);
+void libE0EAE146_gf_ProphecyCameraDestroy ();
+void libE0EAE146_gf_Bon1 ();
+void libE0EAE146_gf_Bon2 ();
+void libE0EAE146_gf_Bon3 ();
+
+// Trigger Declarations
+trigger libE0EAE146_gt_PickUpPickUp;
+trigger libE0EAE146_gt_RPG;
+trigger libE0EAE146_gt_PAttack;
+trigger libE0EAE146_gt_AIAttakcWaveUpgrade2;
+
+// Library Initialization
+void libE0EAE146_InitVariables ();
+
