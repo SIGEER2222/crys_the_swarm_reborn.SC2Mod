@@ -9,6 +9,7 @@ include "LibBE3BBD9F"
 include "Lib0940FFB7"
 include "Lib4B62E36B"
 include "Lib975E2FE9"
+include "LibD0E57A9C"
 
 include "LibE0EAE146_h"
 
@@ -23,6 +24,7 @@ void libE0EAE146_InitLibraries () {
     libC0F50AA6_InitVariables();
     libDF8E6945_InitVariables();
     lib975E2FE9_InitVariables();
+    libD0E57A9C_InitVariables();
 }
 
 // Variable Initialization
@@ -136,6 +138,9 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     }
     else if (autoC0933116_val == "Stetmann") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Mecha");
+    }
+    else if (autoC0933116_val == "Kerrigan") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Default");
     }
     else {
     }
@@ -337,6 +342,16 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
         lib975E2FE9_gf_PowerFieldTrigger(1, BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(2)));
         lib67C0F0E7_gf_ShowChooseButton();
+    }
+    else if (auto09490B45_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterKerrigan", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Kerrigan", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        lib67C0F0E7_gf_ShowChooseButton();
+        if ((lp_createHero == true)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, lp_secondUnit);
+            libD0E57A9C_gf_InitializeKerriganEvent(1, UnitLastCreated());
+        }
     }
     else {
     }

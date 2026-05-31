@@ -280,18 +280,18 @@ bool libE0EAE146_gf_XMTestBench_AbathurPanelCostSmoke (int lp_player, string lp_
     lv_panel = lp_panelAbilityId;
     if ((lv_panel == "") || (lv_panel == "default")) {
         lv_ok = true;
-        lv_ok = libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "toxic_nest", "SpawnToxicNest", "SpawnToxicNest", "", "CoopCasterAbathur", "build_point", "spawn_toxic_nest", lp_targetPoint) && lv_ok;
-        lv_ok = libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "mend", "AbathurMend", "AbathurMend", "", "CoopCasterAbathur", "instant", "mend", lp_targetPoint) && lv_ok;
+        lv_ok = libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "creep_tumor", "CreepTumorBuild", "ZagaraVoidCoopCreepMaster", "", "CoopCasterAbathur", "build_point", "build_creep_tumor", lp_targetPoint) && lv_ok;
+        lv_ok = libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "creep_mend", "AbathurCreepMend", "AbathurCreepMend", "", "CoopCasterAbathur", "instant", "creep_mend", lp_targetPoint) && lv_ok;
         return lv_ok;
     }
-    if ((lv_panel == "toxic_nest") || (lv_panel == "nest")) {
-        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "toxic_nest", "SpawnToxicNest", "SpawnToxicNest", "", "CoopCasterAbathur", "build_point", "spawn_toxic_nest", lp_targetPoint);
+    if ((lv_panel == "creep_tumor") || (lv_panel == "tumor") || (lv_panel == "build_creep_tumor")) {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "creep_tumor", "CreepTumorBuild", "ZagaraVoidCoopCreepMaster", "", "CoopCasterAbathur", "build_point", "build_creep_tumor", lp_targetPoint);
     }
-    if ((lv_panel == "mend") || (lv_panel == "heal")) {
-        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "mend", "AbathurMend", "AbathurMend", "", "CoopCasterAbathur", "instant", "mend", lp_targetPoint);
+    if ((lv_panel == "creep_mend") || (lv_panel == "mend") || (lv_panel == "heal")) {
+        return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "creep_mend", "AbathurCreepMend", "AbathurCreepMend", "", "CoopCasterAbathur", "instant", "creep_mend", lp_targetPoint);
     }
-    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_PROFILE_ALIAS_FALLBACK", "commander=Abathur requested=" + lv_panel + " fallback=toxic_nest");
-    return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "toxic_nest", "SpawnToxicNest", "SpawnToxicNest", "", "CoopCasterAbathur", "build_point", "spawn_toxic_nest", lp_targetPoint);
+    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_PROFILE_ALIAS_FALLBACK", "commander=Abathur requested=" + lv_panel + " fallback=creep_tumor");
+    return libE0EAE146_gf_XMTestBench_CheckPanelProfile(lp_player, "Abathur", "creep_tumor", "CreepTumorBuild", "ZagaraVoidCoopCreepMaster", "", "CoopCasterAbathur", "build_point", "build_creep_tumor", lp_targetPoint);
 }
 
 bool libE0EAE146_gf_XMTestBench_SwannPanelCostSmoke (int lp_player, string lp_panelAbilityId, point lp_targetPoint) {

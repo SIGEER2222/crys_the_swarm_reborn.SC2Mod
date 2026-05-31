@@ -1,0 +1,37 @@
+include "TriggerLibs/NativeLib"
+include "Lib67C0F0E7"
+
+include "LibD0E57A9C_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Kerrigan
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libD0E57A9C_InitLibraries () {
+    libNtve_InitVariables();
+    lib67C0F0E7_InitVariables();
+}
+
+// Variable Initialization
+bool libD0E57A9C_InitVariables_completed = false;
+
+void libD0E57A9C_InitVariables () {
+    if (libD0E57A9C_InitVariables_completed) {
+        return;
+    }
+
+    libD0E57A9C_InitVariables_completed = true;
+
+    libD0E57A9C_gv_kerriganPlayer = 1;
+}
+
+// Functions
+void libD0E57A9C_gf_InitializeKerriganEvent (int lp_player, unit lp_kerrigan) {
+    // Automatic Variable Declarations
+    // Implementation
+    TriggerAddEventUnitGainLevel(libD0E57A9C_gt_KerriganRevive, UnitRefFromUnit(lp_kerrigan));
+}
+
+void libD0E57A9C_gf_KerriganCreepEntireMap (int lp_player) {
+    // Stub - will be implemented when needed
+}

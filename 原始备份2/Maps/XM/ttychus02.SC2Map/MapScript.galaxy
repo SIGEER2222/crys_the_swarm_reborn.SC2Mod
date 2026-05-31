@@ -731,6 +731,9 @@ bool gt_SiegeTanksComeIn_Func (bool testConds, bool runActions) {
     else if (auto6309E628_val == "Stetmann") {
         UnitCargoCreate(UnitLastCreated(), "InfestorStetmann", 2);
     }
+    else if (auto6309E628_val == "Kerrigan") {
+        UnitCargoCreate(UnitLastCreated(), "Zergling", 4);
+    }
     else {
         UnitCargoCreate(UnitLastCreated(), "SiegeTank", 2);
     }
@@ -936,6 +939,10 @@ bool gt_StartGameTacticalPhase_Func (bool testConds, bool runActions) {
     else if (autoA39A42DB_val == "Stetmann") {
         UnitCargoCreate(UnitFromId(317), "ZerglingStetmann", 6);
         UnitCargoCreate(UnitFromId(317), "HydraliskStetmann", 3);
+    }
+    else if (autoA39A42DB_val == "Kerrigan") {
+        UnitCargoCreate(UnitFromId(317), "Zergling", 6);
+        UnitCargoCreate(UnitFromId(317), "Hydralisk", 3);
     }
     else {
     }

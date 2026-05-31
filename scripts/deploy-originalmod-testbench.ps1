@@ -260,7 +260,9 @@ foreach ($modName in $modNames) {
     Write-Output "SYNCED_MOD=$modName"
 }
 
-Sync-XMFinalDocumentHeaderDependencies -SourceModsRoot $sourceModsRoot -TargetModsRoot $targetModsRoot
+    # Keep DocumentHeader out of the default deployment path.
+    # If it truly needs to change, copy it manually from the approved backup source
+    # or run scripts/sync-sc2-documentheader-deps.ps1 by hand on the live target.
 
 foreach ($mapName in $mapNames) {
     $source = Join-Path $sourceMapsRoot $mapName

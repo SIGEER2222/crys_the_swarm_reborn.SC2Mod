@@ -2122,6 +2122,9 @@ void lib67C0F0E7_gf_CU_GPInit (int lp_player, string lp_type, unit lp_unit, unit
         lib67C0F0E7_gv_cM_GlobalCasterUnitGroupSecondary[lp_player] = libNtve_gf_ConvertUnitToUnitGroup(lib67C0F0E7_gv_cM_GlobalCasterUnitSecondary[lp_player]);
         libNtve_gf_SetDialogItemUnitGroup(lib67C0F0E7_gv_cU_ZeratulSelectionCmdPanel, lib67C0F0E7_gv_cM_GlobalCasterUnitGroupSecondary[lp_player], PlayerGroupSingle(lp_player));
     }
+    else if (auto1CC9623D_val == "Kerrigan") {
+        lib67C0F0E7_gf_CU_GPInitKerrigan(lp_player);
+    }
     else {
     }
     libNtve_gf_SetDialogItemUnitGroup(lib67C0F0E7_gv_cU_GPCmdPanel[lp_player], lib67C0F0E7_gv_cU_GPCasterGroup[lp_player], PlayerGroupSingle(lp_player));
@@ -2671,6 +2674,40 @@ void lib67C0F0E7_gf_TychusSquadInitUI (int lp_tychusPlayer) {
         DialogControlSetAnimationState(lib67C0F0E7_gv_cU_TychusSquadUnitFrames[lv_squadindex], PlayerGroupAll(), "TrainingState", "NotTraining");
         DialogControlSetAnimationState(lib67C0F0E7_gv_cU_TychusSquadUnitFrames[lv_squadindex], PlayerGroupAll(), "AvailabilityState", "NotAvailable");
     }
+}
+
+void lib67C0F0E7_gf_CU_GPInitKerrigan (int lp_player) {
+    // Variable Declarations
+    int lv_lastFrame;
+    int lv_buttonIndex;
+
+    // Automatic Variable Declarations
+    const int autoAE = 4;
+    const int autoAI = 1;
+
+    // Variable Initialization
+    lv_lastFrame = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlCreateInPanelFromTemplate(lib67C0F0E7_gv_cU_GPPanelHolder, c_triggerControlTypePanel, "Coop_GlobalCastingTemplates/ZergCasterPanelTemplate");
+    lib67C0F0E7_gv_cU_GPPanel[lp_player] = DialogControlLastCreated();
+    DialogControlHookup(lib67C0F0E7_gv_cU_GPPanel[lp_player], c_triggerControlTypeCutscene, "ZergCommandCutscene");
+    lib67C0F0E7_gv_cU_GPCutscene[lp_player] = DialogControlLastCreated();
+    DialogControlHookup(lib67C0F0E7_gv_cU_GPPanel[lp_player], c_triggerControlTypePanel, "ButtonHolder");
+    lv_lastFrame = DialogControlLastCreated();
+    DialogControlCreateInPanelFromTemplate(lv_lastFrame, c_triggerControlTypeCommandPanel, "Coop_GlobalCastingTemplates/ZergGlobalCommandPanelTemplate");
+    lib67C0F0E7_gv_cU_GPCmdPanel[lp_player] = DialogControlLastCreated();
+    lv_buttonIndex = 1;
+    for ( ; ( (autoAI >= 0 && lv_buttonIndex <= autoAE) || (autoAI < 0 && lv_buttonIndex >= autoAE) ) ; lv_buttonIndex += autoAI ) {
+        DialogControlHookup(lib67C0F0E7_gv_cU_GPCmdPanel[lp_player], c_triggerControlTypeButton, "CommandButton0" + IntToString(lv_buttonIndex-1));
+        lib67C0F0E7_gv_cU_GPCmdButtons[lv_buttonIndex][lp_player] = DialogControlLastCreated();
+        DialogControlHookup(lib67C0F0E7_gv_cU_GPPanel[lp_player], c_triggerControlTypePanel, "AbilityArrow0" + IntToString(lv_buttonIndex));
+        lib67C0F0E7_gv_cU_GPCmdButtonArrows[lv_buttonIndex][lp_player] = DialogControlLastCreated();
+        DialogControlSetPositionRelative(lib67C0F0E7_gv_cU_GPCmdButtonArrows[lv_buttonIndex][lp_player], PlayerGroupSingle(lp_player), c_anchorTop, lib67C0F0E7_gv_cU_GPCmdButtons[lv_buttonIndex][lp_player], c_anchorBottom, 0, 15);
+    }
+    DialogControlSetVisible(lib67C0F0E7_gv_cU_GPPanel[lp_player], PlayerGroupAll(), false);
+    libNtve_gf_SetDialogItemCutscene(lib67C0F0E7_gv_cU_GPCutscene[lp_player], "Cutscenes\\UI_ZergCastingPanel.SC2Cutscene", PlayerGroupSingle(lp_player));
+    CutscenePlay(CutsceneGetTriggerControl(lib67C0F0E7_gv_cU_GPCutscene[lp_player]));
 }
 
 trigger auto_lib67C0F0E7_gf_TychusSquadInitTrigger_Trigger = null;

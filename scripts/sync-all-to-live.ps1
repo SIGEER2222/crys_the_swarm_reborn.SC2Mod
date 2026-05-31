@@ -198,7 +198,9 @@ if (-not $SkipMods) {
     }
 }
 
-Sync-XMFinalDocumentHeaderDependencies -SourceModsRoot $sourceModsRoot -TargetModsRoot $targetModsRoot
+# Keep DocumentHeader out of the default sync path.
+# If it truly needs to change, copy it manually from the approved backup source
+# or run scripts/sync-sc2-documentheader-deps.ps1 by hand on the live target.
 
 if (-not $SkipMaps) {
     foreach ($mapName in $mapNames) {

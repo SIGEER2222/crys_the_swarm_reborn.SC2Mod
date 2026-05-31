@@ -14,7 +14,6 @@ C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合�
 合作指挥官版起义狂潮/
 ├─ Maps/
 │  └─ XM/
-│     ├─ Launcher.SC2Map
 │     ├─ traynor01.SC2Map
 │     ├─ traynor02.SC2Map
 │     ├─ traynor03.SC2Map
@@ -62,6 +61,8 @@ C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合�
       ├─ XMDehaka.SC2Mod
       └─ XMTychus.SC2Mod
 ```
+
+当前默认直进图测试入口是 `Maps/XM/thorner03.SC2Map`；`Launcher.SC2Map` 仅保留为旧候选界面的历史入口参考，不作为现在的默认测试路径。
 
 ## 主要组成
 

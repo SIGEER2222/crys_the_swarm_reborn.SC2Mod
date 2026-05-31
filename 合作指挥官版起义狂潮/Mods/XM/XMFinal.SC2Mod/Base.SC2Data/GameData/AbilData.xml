@@ -4514,6 +4514,16 @@
             <Arc value="360"/>
             <CmdButtonArray index="Execute" DefaultButtonFace="AbathurMend"/>
         </CAbilEffectInstant>
+    <CAbilEffectInstant id="AbathurCreepMend">
+            <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+            <Effect index="0" value="AbathurCreepMendSearch"/>
+            <Flags index="Transient" value="1"/>
+            <Cost>
+                <Cooldown TimeUse="300"/>
+            </Cost>
+            <Arc value="360"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="AbathurCreepMend"/>
+        </CAbilEffectInstant>
     <CAbilEffectTarget id="AlarakACSoAMothershipV4BlackHole">
             <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
             <Effect index="0" value="VoidSentryBlackHolePersistent"/>
@@ -19480,4 +19490,17 @@
             <Alert value="ZerglingReconstitution"/>
             
         </CAbilTrain>
+    <!-- Minimal Abathur biomass pickup ability. The trigger owns stack transfer. -->
+    <CAbilEffectTarget id="BiomassPickup">
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Range value="0.5"/>
+        <Arc value="360"/>
+        <AutoCastRange value="0.5"/>
+        <AutoCastFilters value="-;Neutral,Enemy,Structure,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable,Benign,Summoned"/>
+        <FinishTime value="0.125"/>
+        <Effect index="0" value="BiomassPickupDummy"/>
+    </CAbilEffectTarget>
 </Catalog>

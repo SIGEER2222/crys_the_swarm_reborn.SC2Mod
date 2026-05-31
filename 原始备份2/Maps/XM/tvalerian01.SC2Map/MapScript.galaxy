@@ -803,6 +803,18 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "RavagerStetmann", 0, gv_p12_MOEBIUS, PointFromId(665));
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "RavagerStetmann", 0, gv_p12_MOEBIUS, PointFromId(344935602));
     }
+    else if (auto412F2E68_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Hydralisk", 0, gv_p12_MOEBIUS, PointFromId(385406063));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Lurker", 0, gv_p12_MOEBIUS, PointFromId(855382681));
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zergling", 0, gv_p12_MOEBIUS, PointFromId(898485624));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Queen", 0, gv_p12_MOEBIUS, PointFromId(95514741));
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zergling", 0, gv_p12_MOEBIUS, PointFromId(95514741));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, gv_p12_MOEBIUS, PointFromId(95514741));
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Hydralisk", 0, gv_p12_MOEBIUS, PointFromId(1089641768));
+        libNtve_gf_CreateUnitsWithDefaultFacing(6, "Zergling", 0, gv_p12_MOEBIUS, PointFromId(1089641768));
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Roach", 0, gv_p12_MOEBIUS, PointFromId(665));
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Roach", 0, gv_p12_MOEBIUS, PointFromId(344935602));
+    }
     else {
     }
     auto23D7A4A6_g = UnitGroup("InfestedCC", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
@@ -1151,6 +1163,16 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "OverseerStetmann", 0, 1, PointFromId(1));
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "LarvaPStetmann", 0, 1, PointFromId(1));
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HydraliskStetmann", 0, 1, PointFromId(1));
+    }
+    else if (auto6FC7555F_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterKerrigan", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "Kerrigan", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(1));
+        libD0E57A9C_gf_InitializeKerriganEvent(1, UnitLastCreated());
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Overlord", 0, 1, PointFromId(1));
+        libNtve_gf_CreateUnitsWithDefaultFacing(3, "Zergling", 0, 1, PointFromId(1));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, 1, PointFromId(1));
     }
     else {
     }

@@ -28560,15 +28560,15 @@
             <On Terms="ActorCreation; ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 1.1992"/>
             <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 2"/>
             <On Terms="ActorCreation; ValidatePlayer HaveKerriganInfestedCosmetic" Send="ModelSwap InfestedKerrigan"/>
-            <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="ModelSwap KerriganGhost00"/>
-            <On Terms="UnitPortrait.*.Customize; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="PortraitCustomize KerriganGhostPortrait KerriganGhostPortrait"/>
+            <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="ModelSwap InfestedKerrigan"/>
+            <On Terms="UnitPortrait.*.Customize; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="PortraitCustomize KerriganPrimalPortrait KerriganPrimalPortrait"/>
             <On Terms="UnitPortrait.*.Customize; ValidatePlayer HaveKerriganInfestedCosmetic" Send="PortraitCustomize KerriganPrimalPortrait KerriganPrimalPortrait"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Add" Send="SetWalkAnimMoveSpeed 1.1992"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Add" Send="SetTeamColor 234,0,255 234,0,255"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Add" Send="ModelSwap InfestedKerrigan"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="SetWalkAnimMoveSpeed 2"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="SetTeamColor 255,128,0 255,128,0"/>
-            <On Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="ModelSwap KerriganGhost00"/>
+            <On Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="ModelSwap InfestedKerrigan"/>
         </CActorEventMacro>
     <CActorBeamSimple id="KerriganDoorBeamOfDeath" parent="BeamSimpleAnimationStyleContinuous">
             <On Terms="Behavior.KerriganDoorBeamOfDeath.On" Send="Create"/>
