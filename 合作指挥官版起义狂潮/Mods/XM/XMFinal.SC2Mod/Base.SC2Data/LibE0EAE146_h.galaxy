@@ -260,6 +260,13 @@ void libE0EAE146_gf_ZeratulCreateMapStartSquadInRegion (string lp_kind, int lp_p
 void libE0EAE146_gf_ZeratulCreateCargoSquad (unit lp_container, string lp_kind);
 void libE0EAE146_gf_AttackWaveRun (int lp_type, int lp_level);
 void libE0EAE146_gf_StartGame ();
+string libE0EAE146_gf_XMTestBench_CommanderRace (string lp_commander);
+string libE0EAE146_gf_XMTestBench_ResolveTransportContainerType (string lp_commander, string lp_cargoKind);
+void libE0EAE146_gf_XMTestBench_RecordCreatedGroup (int lp_player, string lp_eventPrefix, string lp_contextKind, string lp_requestedUnitType, unitgroup lp_group);
+unit libE0EAE146_gf_XMTestBench_CreateTransportUnit (int lp_player, string lp_unitType, point lp_point, string lp_contextKind);
+void libE0EAE146_gf_XMTestBench_CreateCargoUnit (int lp_player, unit lp_container, string lp_unitType, int lp_count, string lp_contextKind, bool lp_fullBiomass);
+string libE0EAE146_gf_XMTestBench_NormalizeTransportCargoKind (string lp_cargoKind);
+void libE0EAE146_gf_XMTestBench_CreateTransportCargoProfile (int lp_player, unit lp_container, string lp_commander, string lp_cargoKind);
 void libE0EAE146_gf_ProphecyCameraCreate (unit lp_u);
 void libE0EAE146_gf_ProphecyCameraMove (unit lp_u);
 void libE0EAE146_gf_ProphecyCameraDestroy ();

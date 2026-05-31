@@ -332,7 +332,24 @@ void libE0EAE146_gf_XMTestBench_RunTechSmoke (int lp_player) {
 }
 
 void libE0EAE146_gf_XMTestBench_RunTransportSmoke (int lp_player, string lp_cargoKind) {
-    libE0EAE146_gf_XMTestBench_LogScenarioStub(lp_player, lp_cargoKind, "cargo_profile_not_wired");
+    string lv_commander;
+    string lv_containerType;
+    unit lv_container;
+    point lv_point;
+
+    lv_commander = libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    lv_containerType = libE0EAE146_gf_XMTestBench_ResolveTransportContainerType(lv_commander, lp_cargoKind);
+    lv_point = PointWithOffsetPolar(PlayerStartLocation(lp_player), 18.0, 0.0);
+
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_TRANSPORT_START");
+    libE0EAE146_gf_XMTestBench_AppendTrace(lp_player, "TRANSPORT:" + lv_commander + ":" + lp_cargoKind);
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_TRANSPORT_START", "commander=" + lv_commander + " cargoKind=" + lp_cargoKind + " containerType=" + lv_containerType + " result=start");
+
+    lv_container = libE0EAE146_gf_XMTestBench_CreateTransportUnit(lp_player, lv_containerType, lv_point, lp_cargoKind);
+    libE0EAE146_gf_XMTestBench_CreateTransportCargoProfile(lp_player, lv_container, lv_commander, lp_cargoKind);
+
+    libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_TRANSPORT_DONE");
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_TRANSPORT_DONE", "commander=" + lv_commander + " cargoKind=" + lp_cargoKind + " containerType=" + lv_containerType + " result=ok");
 }
 
 void libE0EAE146_gf_XMTestBench_RunSpecialSmoke (int lp_player) {
