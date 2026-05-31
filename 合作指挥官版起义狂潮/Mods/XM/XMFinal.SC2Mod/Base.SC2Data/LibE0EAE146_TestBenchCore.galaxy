@@ -268,3 +268,405 @@ void libE0EAE146_gf_XMTestBench_CreateProfileUnit (int lp_player, string lp_unit
         libE0EAE146_gf_XMDbgLog("WARN", "TEST_PROFILE_OBJECT_NOT_CREATED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " unitType=" + lp_unitType + " reason=create_returned_no_count_delta");
     }
 }
+
+string libE0EAE146_gf_XMTestBench_CommanderRace (string lp_commander) {
+    if ((lp_commander == "Raynor") || (lp_commander == "Swann") || (lp_commander == "Nova") || (lp_commander == "Tychus") || (lp_commander == "Mengsk") || (lp_commander == "Mira")) {
+        return "Terran";
+    }
+    if ((lp_commander == "Kerrigan") || (lp_commander == "Abathur") || (lp_commander == "AbathurCustom") || (lp_commander == "Zagara") || (lp_commander == "Stukov") || (lp_commander == "Dehaka") || (lp_commander == "Stetmann")) {
+        return "Zerg";
+    }
+    if ((lp_commander == "Alarak") || (lp_commander == "Artanis") || (lp_commander == "Fenix") || (lp_commander == "Vorazun") || (lp_commander == "Karax") || (lp_commander == "Zeratul")) {
+        return "Protoss";
+    }
+    return "Terran";
+}
+
+string libE0EAE146_gf_XMTestBench_ResolveTransportContainerType (string lp_commander, string lp_cargoKind) {
+    string lv_race;
+
+    lv_race = libE0EAE146_gf_XMTestBench_CommanderRace(lp_commander);
+    if (lp_commander == "Zeratul") {
+        return "ZeratulWarpPrism";
+    }
+    if (lv_race == "Protoss") {
+        return "WarpPrismTaldarim";
+    }
+    if (lv_race == "Zerg") {
+        return "OverlordStetmann";
+    }
+    return "Hercules";
+}
+
+void libE0EAE146_gf_XMTestBench_RecordCreatedGroup (int lp_player, string lp_eventPrefix, string lp_contextKind, string lp_requestedUnitType, unitgroup lp_group) {
+    int lv_created;
+    int lv_index;
+    unit lv_unit;
+    string lv_actualType;
+    string lv_actualTypes;
+
+    if (!libE0EAE146_gf_XMTestBench_PlayerValid(lp_player)) {
+        return;
+    }
+    if ((lp_group == null)) {
+        return;
+    }
+
+    lv_created = UnitGroupCount(lp_group, c_unitCountAll);
+    if ((lv_created <= 0)) {
+        return;
+    }
+
+    lv_actualTypes = "";
+    lv_index = 1;
+    for (; lv_index <= lv_created; lv_index += 1) {
+        lv_unit = UnitGroupUnit(lp_group, lv_index);
+        if (lv_unit == null) {
+            continue;
+        }
+        lv_actualType = UnitGetType(lv_unit);
+        libE0EAE146_gf_XMTestBench_RecordActualObject(lp_player, lv_actualType);
+        lv_actualTypes = libE0EAE146_gf_XMTestBench_AppendCsvValue(lv_actualTypes, lv_actualType);
+        libE0EAE146_gf_XMDbgLog("INFO", lp_eventPrefix + "_ACTUAL", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " requestedUnitType=" + lp_requestedUnitType + " actualUnitType=" + lv_actualType + " actualIndex=" + IntToString(lv_index));
+    }
+    if (lv_actualTypes == "") {
+        lv_actualTypes = "unknown";
+    }
+
+    libE0EAE146_gv_xmTestBenchCreated[lp_player] += lv_created;
+    UnitGroupAddUnitGroup(libE0EAE146_gv_xmTestBenchUnits[lp_player], lp_group);
+    libE0EAE146_gf_XMDbgLog("INFO", lp_eventPrefix + "_CREATED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " unitType=" + lp_requestedUnitType + " actualUnitTypes=" + lv_actualTypes + " count=" + IntToString(lv_created));
+}
+
+unit libE0EAE146_gf_XMTestBench_CreateTransportUnit (int lp_player, string lp_unitType, point lp_point, string lp_contextKind) {
+    int lv_before;
+    int lv_after;
+    int lv_created;
+    unitgroup lv_createdGroup;
+    unit lv_createdUnit;
+
+    if (lp_unitType == "") {
+        libE0EAE146_gf_XMTestBench_RecordRequestedObject(lp_player, "blank");
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, "blank");
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_TRANSPORT_CONTAINER_MISSING", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " unitType=blank");
+        return null;
+    }
+
+    libE0EAE146_gf_XMTestBench_RecordRequestedObject(lp_player, lp_unitType);
+    if (!CatalogEntryIsValid(c_gameCatalogUnit, lp_unitType)) {
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, lp_unitType);
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_TRANSPORT_CONTAINER_INVALID", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " unitType=" + lp_unitType + " reason=missing_catalog_entry");
+        return null;
+    }
+
+    lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, lp_unitType, c_unitCreateIgnorePlacement, lp_player, lp_point);
+    lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
+    lv_createdGroup = UnitLastCreatedGroup();
+    lv_created = UnitGroupCount(lv_createdGroup, c_unitCountAll);
+    if ((lv_created <= 0) && (lv_after > lv_before)) {
+        lv_created = MaxI(0, (lv_after - lv_before));
+    }
+    if ((lv_created <= 0) || (lv_createdGroup == null)) {
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, lp_unitType);
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_TRANSPORT_CONTAINER_NOT_CREATED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " unitType=" + lp_unitType + " reason=create_returned_no_count_delta");
+        return null;
+    }
+
+    libE0EAE146_gf_XMTestBench_RecordCreatedGroup(lp_player, "TEST_TRANSPORT_CONTAINER", lp_contextKind, lp_unitType, lv_createdGroup);
+    lv_createdUnit = UnitGroupUnit(lv_createdGroup, 1);
+    if (lv_createdUnit == null) {
+        lv_createdUnit = UnitLastCreated();
+    }
+    return lv_createdUnit;
+}
+
+void libE0EAE146_gf_XMTestBench_CreateCargoUnit (int lp_player, unit lp_container, string lp_unitType, int lp_count, string lp_contextKind, bool lp_fullBiomass) {
+    int lv_before;
+    int lv_after;
+    int lv_created;
+    unitgroup lv_createdGroup;
+
+    if (lp_container == null) {
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_TRANSPORT_CARGO_CONTAINER_MISSING", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " unitType=" + lp_unitType + " reason=container_null");
+        return;
+    }
+    if ((lp_count <= 0)) {
+        return;
+    }
+    if (lp_unitType == "") {
+        libE0EAE146_gf_XMTestBench_RecordRequestedObject(lp_player, "blank");
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, "blank");
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_TRANSPORT_CARGO_MISSING", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " unitType=blank");
+        return;
+    }
+
+    libE0EAE146_gf_XMTestBench_RecordRequestedObject(lp_player, lp_unitType);
+    if (!CatalogEntryIsValid(c_gameCatalogUnit, lp_unitType)) {
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, lp_unitType);
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_TRANSPORT_CARGO_INVALID", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " unitType=" + lp_unitType + " reason=missing_catalog_entry");
+        return;
+    }
+
+    lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
+    UnitCargoCreate(lp_container, lp_unitType, lp_count);
+    lv_createdGroup = UnitCargoLastCreatedGroup();
+    if ((lp_fullBiomass == true)) {
+        libE0EAE146_gf_AbathurSetUnitGroupFullBiomass(lv_createdGroup);
+    }
+    lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
+    lv_created = UnitGroupCount(lv_createdGroup, c_unitCountAll);
+    if ((lv_created <= 0) && (lv_after > lv_before)) {
+        lv_created = MaxI(0, (lv_after - lv_before));
+    }
+    if ((lv_created <= 0) || (lv_createdGroup == null)) {
+        libE0EAE146_gv_xmTestBenchMissing[lp_player] += 1;
+        libE0EAE146_gf_XMTestBench_RecordMissingObject(lp_player, lp_unitType);
+        libE0EAE146_gf_XMTestBench_AddWarning(lp_player);
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_TRANSPORT_CARGO_NOT_CREATED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " context=" + lp_contextKind + " unitType=" + lp_unitType + " count=" + IntToString(lp_count) + " reason=create_returned_no_count_delta");
+        return;
+    }
+
+    libE0EAE146_gf_XMTestBench_RecordCreatedGroup(lp_player, "TEST_TRANSPORT_CARGO", lp_contextKind, lp_unitType, lv_createdGroup);
+}
+
+string libE0EAE146_gf_XMTestBench_NormalizeTransportCargoKind (string lp_cargoKind) {
+    if ((lp_cargoKind == "cargo_heavy") || (lp_cargoKind == "heavy")) {
+        return "heavy";
+    }
+    if ((lp_cargoKind == "cargo_air") || (lp_cargoKind == "air")) {
+        return "air";
+    }
+    return "light";
+}
+
+void libE0EAE146_gf_XMTestBench_CreateTransportCargoProfile (int lp_player, unit lp_container, string lp_commander, string lp_cargoKind) {
+    string lv_commander;
+    string lv_kind;
+
+    if (lp_container == null) {
+        libE0EAE146_gf_XMDbgLog("WARN", "TEST_TRANSPORT_PROFILE_CONTAINER_MISSING", "commander=" + lp_commander + " cargoKind=" + lp_cargoKind + " reason=container_null");
+        return;
+    }
+
+    lv_commander = libE0EAE146_gf_NormalizeCommanderId(lp_commander);
+    lv_kind = libE0EAE146_gf_XMTestBench_NormalizeTransportCargoKind(lp_cargoKind);
+
+    if (lv_commander == "Raynor") {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Marine", 3, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Marauder", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Firebat", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "SiegeTank", 1, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "VikingFighter", 2, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Banshee", 1, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Battlecruiser", 1, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Marine", 3, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Medic", 1, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Firebat", 1, "cargo_light", false);
+        }
+        return;
+    }
+
+    if ((lv_commander == "Kerrigan") || (lv_commander == "Stukov") || (lv_commander == "Stetmann")) {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Hydralisk", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "QueenCoop", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "HotSTorrasque", 1, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Mutalisk", 2, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "MutaliskBroodlord", 1, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "HotSRaptor", 4, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Hydralisk", 2, "cargo_light", false);
+        }
+        return;
+    }
+
+    if ((lv_commander == "Abathur") || (lv_commander == "AbathurCustom")) {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "RoachVile", 1, "cargo_heavy", true);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "RavagerAbathur", 1, "cargo_heavy", true);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "SwarmHost", 1, "cargo_heavy", true);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "QueenCoop", 1, "cargo_heavy", true);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Mutalisk", 2, "cargo_air", true);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "GuardianMP", 1, "cargo_air", true);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "DevourerMP", 1, "cargo_air", true);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Roach", 2, "cargo_light", true);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "RoachCorpser", 1, "cargo_light", true);
+        }
+        return;
+    }
+
+    if (lv_commander == "Zagara") {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "HotSSwarmling", 3, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Baneling", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "SwarmQueen", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "InfestedAbomination", 1, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Scourge", 4, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZagaraCorruptor", 2, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "HotSSwarmling", 4, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Baneling", 2, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "SwarmQueen", 1, "cargo_light", false);
+        }
+        return;
+    }
+
+    if (lv_commander == "Alarak") {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Supplicant", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Stalker", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ImmortalTaldarim", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "HighTemplarTaldarim", 1, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Monitor", 2, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "WarpPrismTaldarim", 1, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Stalker", 1, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Supplicant", 2, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Stalker", 1, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Monitor", 1, "cargo_light", false);
+        }
+        return;
+    }
+
+    if (lv_commander == "Fenix") {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotPurifier", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "AdeptFenix", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Immortal", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ColossusPurifier", 1, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Scout", 2, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Observer", 1, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Carrier", 1, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotPurifier", 3, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "AdeptFenix", 2, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "SentryFenix", 1, "cargo_light", false);
+        }
+        return;
+    }
+
+    if (lv_commander == "Vorazun") {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Stalker", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "DarkTemplarShakuras", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotShakuras", 1, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "CorsairMP", 2, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "VoidRay", 1, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Oracle", 1, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotShakuras", 2, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Stalker", 1, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "DarkTemplarShakuras", 2, "cargo_light", false);
+        }
+        return;
+    }
+
+    if (lv_commander == "Karax") {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotPurifier", 3, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "SentryPurifier", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ImmortalAiur", 2, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "PhoenixPurifier", 2, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Scout", 1, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "CarrierAiur", 1, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotPurifier", 4, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "SentryPurifier", 2, "cargo_light", false);
+        }
+        return;
+    }
+
+    if (lv_commander == "Artanis") {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotAiur", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Dragoon", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ImmortalAiur", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "HighTemplar", 1, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "PhoenixAiur", 2, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Observer", 1, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotAiur", 3, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Dragoon", 2, "cargo_light", false);
+        }
+        return;
+    }
+
+    if (lv_commander == "Zeratul") {
+        if (lv_kind == "heavy") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulStalker", 2, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulImmortal", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulDisruptor", 1, "cargo_heavy", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulSentry", 1, "cargo_heavy", false);
+        }
+        else if (lv_kind == "air") {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulWarpPrism", 1, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulObserver", 1, "cargo_air", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Observer", 1, "cargo_air", false);
+        }
+        else {
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulSummonZealot", 2, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulStalker", 2, "cargo_light", false);
+            libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZeratulSentry", 1, "cargo_light", false);
+        }
+        return;
+    }
+
+    if (lv_kind == "heavy") {
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Marine", 3, "cargo_heavy", false);
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Marauder", 1, "cargo_heavy", false);
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Firebat", 1, "cargo_heavy", false);
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "SiegeTank", 1, "cargo_heavy", false);
+    }
+    else if (lv_kind == "air") {
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "ZealotAiur", 2, "cargo_air", false);
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Dragoon", 1, "cargo_air", false);
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Observer", 1, "cargo_air", false);
+    }
+    else {
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Marine", 3, "cargo_light", false);
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Medic", 1, "cargo_light", false);
+        libE0EAE146_gf_XMTestBench_CreateCargoUnit(lp_player, lp_container, "Firebat", 1, "cargo_light", false);
+    }
+}
