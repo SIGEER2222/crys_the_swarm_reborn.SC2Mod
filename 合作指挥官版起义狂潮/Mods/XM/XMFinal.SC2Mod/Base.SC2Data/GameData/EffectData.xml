@@ -395,6 +395,29 @@
             <SearchFilters value="-;Neutral,Enemy,Missile,Destructible,Item,Stasis,Dead,Hidden"/>
             <AreaArray Radius="500" Effect="AbathurMendAB"/>
         </CEffectEnumArea>
+    <CEffectCreateHealer id="AbathurMendInitialHealer">
+            <EditorCategories value=""/>
+            <ValidatorArray value="LifeNotFull"/>
+            <Flags index="Channeled" value="0"/>
+            <RechargeVitalRate value="100"/>
+            <PeriodCount value="1"/>
+            <PeriodicPeriod value="1"/>
+        </CEffectCreateHealer>
+    <CEffectCreateHealer id="AbathurMendSecondaryHealer">
+            <EditorCategories value=""/>
+            <Flags index="Channeled" value="0"/>
+            <PeriodCount value="16"/>
+            <RechargeVitalRate value="5"/>
+        </CEffectCreateHealer>
+    <CEffectSet id="AbathurMendSet">
+            <EditorCategories value=""/>
+            <EffectArray value="AbathurMendInitialHealer"/>
+            <EffectArray value="AbathurMendAB"/>
+            <ValidatorArray value="NotUnrepairable"/>
+        </CEffectSet>
+    <CEffectApplyBehavior id="AbathurMendPeriodicHeal">
+            <EditorCategories value="Race:Protoss"/>
+        </CEffectApplyBehavior>
     <CEffectCreatePersistent id="AlarakDestroyerCreationCP">
             <EditorCategories value="Race:Protoss"/>
             <OffsetVectorStartLocation Value="TargetPoint"/>
@@ -10460,4 +10483,8 @@
             <PeriodicPeriodArray value="0.2"/>
             <PeriodicPeriodArray value="6.5"/>
         </CEffectCreatePersistent>
+    <!-- Minimal Abathur biomass effects required by XMFinal runtime triggers. -->
+    <CEffectModifyUnit id="BiomassPickupDummy"/>
+    <CEffectModifyUnit id="BiomassPickupLM"/>
+    <CEffectModifyUnit id="BiomassPickupFullLM"/>
 </Catalog>

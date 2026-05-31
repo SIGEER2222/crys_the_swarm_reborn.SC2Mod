@@ -678,6 +678,11 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     else if (auto06F49FBE_val == "Stetmann") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "GaryStetmann", 0, 1, UnitGetPosition(UnitFromId(4)));
     }
+    else if (auto06F49FBE_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, UnitGetPosition(UnitFromId(4)));
+        libD0E57A9C_gf_InitializeKerriganEvent(1, UnitLastCreated());
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zergling", 0, 1, UnitGetPosition(UnitFromId(4)));
+    }
     else {
     }
     CinematicFade(false, 0.0, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, false);

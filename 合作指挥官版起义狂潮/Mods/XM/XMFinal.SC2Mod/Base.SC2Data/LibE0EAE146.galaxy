@@ -13,6 +13,7 @@ include "Lib975E2FE9"
 include "LibE0EAE146_h"
 include "LibE0EAE146_TestBenchCore"
 include "LibE0EAE146_CommanderRosters"
+include "LibE0EAE146_CommanderStartSquads"
 include "LibE0EAE146_CommanderRosterPreview"
 include "LibE0EAE146_CommanderBuildings"
 include "LibE0EAE146_CommanderTech"
@@ -52,6 +53,10 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_gv_commander = "";
     libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled = false;
     libE0EAE146_gv_xmRuntimeCommanderOverride = "";
+    libE0EAE146_gv_abathurBiomassEffect = "";
+    libE0EAE146_gv_abathurBiomassPlayer = 1;
+    libE0EAE146_gv_abathurBiomassEnabled = false;
+    libE0EAE146_gv_abathurBiomassTestPickupCreated = false;
     init_i = 1;
     for (; init_i <= libE0EAE146_gv_xmTestBenchMaxPlayers; init_i += 1) {
         libE0EAE146_gv_xmTestBenchCommander[init_i] = "Raynor";
@@ -141,7 +146,7 @@ void libE0EAE146_gf_Initialize_Legacy (bool lp_rpg) {
     }
     else {
         BankLoad("CampaignXCore", 1);
-        libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
+        libE0EAE146_gv_commander = libE0EAE146_gf_NormalizeCommanderId(BankValueGetAsString(BankLastCreated(), "Ach", "Commander"));
     }
     autoC0933116_val = libE0EAE146_gv_commander;
     if (autoC0933116_val == "Stukov") {
@@ -153,6 +158,14 @@ void libE0EAE146_gf_Initialize_Legacy (bool lp_rpg) {
             PlayerModifyPropertyInt(1, c_playerPropSuppliesLimit, c_playerPropOperAdd, 60);
         }
 
+    }
+    else if (autoC0933116_val == "Abathur") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Abathur");
+        libE0EAE146_gf_InitializeAbathurBiomass(1, "AbathurCollectBiomass");
+    }
+    else if (autoC0933116_val == "AbathurReborn") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Abathur");
+        libE0EAE146_gf_InitializeAbathurBiomass(1, "AbathurRebornCollectBiomass");
     }
     else if (autoC0933116_val == "Tychus") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Classic");
@@ -272,7 +285,7 @@ void libE0EAE146_gf_XMRuntime_CreateBaseStructures (int lp_player, point lp_seco
     string lv_commandCenterUnit;
 
     lv_commandCenterUnit = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommandCenter", 1);
-    if (((lv_commandCenterUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_commandCenterUnit))) && (libE0EAE146_gv_commander == "Kerrigan")) {
+    if (((lv_commandCenterUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_commandCenterUnit))) && ((libE0EAE146_gv_commander == "Kerrigan") || (libE0EAE146_gv_commander == "Abathur") || (libE0EAE146_gv_commander == "AbathurReborn"))) {
         lv_commandCenterUnit = "Hatchery";
     }
     if ((lv_commandCenterUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_commandCenterUnit))) {
@@ -303,7 +316,7 @@ void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worke
 
     // Implementation
     lv_workerUnit = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Worker", 1);
-    if (((lv_workerUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_workerUnit))) && (libE0EAE146_gv_commander == "Kerrigan")) {
+    if (((lv_workerUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_workerUnit))) && ((libE0EAE146_gv_commander == "Kerrigan") || (libE0EAE146_gv_commander == "Abathur") || (libE0EAE146_gv_commander == "AbathurReborn"))) {
         lv_workerUnit = "Drone";
     }
     if ((lv_workerUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_workerUnit))) {
@@ -338,7 +351,7 @@ void libE0EAE146_gf_XMRuntime_CreateSecondUnit (int lp_player, point lp_secondUn
     string lv_secondUnitType;
 
     lv_secondUnitType = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "SecondUnit", 1);
-    if (((lv_secondUnitType == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_secondUnitType))) && (libE0EAE146_gv_commander == "Kerrigan")) {
+    if (((lv_secondUnitType == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_secondUnitType))) && ((libE0EAE146_gv_commander == "Kerrigan") || (libE0EAE146_gv_commander == "Abathur") || (libE0EAE146_gv_commander == "AbathurReborn"))) {
         lv_secondUnitType = "Overlord";
     }
     if ((lv_secondUnitType == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_secondUnitType))) {
@@ -428,6 +441,12 @@ void libE0EAE146_gf_XMRuntime_InitNovaBaseHook (int lp_player, bool lp_createHer
 void libE0EAE146_gf_XMRuntime_InitKerriganBaseHook (int lp_player, point lp_secondUnit, bool lp_createHero) {
     TechTreeUpgradeAddLevel(lp_player, "CommanderLevel", 15);
     TechTreeUpgradeAddLevel(lp_player, "KerriganCommander", 1);
+    if (CatalogEntryIsValid(c_gameCatalogUpgrade, "KerriganInfestedCosmetic")) {
+        TechTreeUpgradeAddLevel(lp_player, "KerriganInfestedCosmetic", 1);
+    }
+    if (CatalogEntryIsValid(c_gameCatalogUpgrade, "KerriganVoidCoopImprovedLeapingStrike")) {
+        TechTreeUpgradeAddLevel(lp_player, "KerriganVoidCoopImprovedLeapingStrike", 1);
+    }
     TechTreeUpgradeAddLevel(lp_player, "VoidCoopHeroicFortitude", 1);
     TechTreeUpgradeAddLevel(lp_player, "K5PrimalSlash", 1);
     TechTreeUpgradeAddLevel(lp_player, "K5PsiStrike", 1);
@@ -435,6 +454,14 @@ void libE0EAE146_gf_XMRuntime_InitKerriganBaseHook (int lp_player, point lp_seco
     TechTreeUpgradeAddLevel(lp_player, "K5Cooldowns", 1);
     TechTreeUpgradeAddLevel(lp_player, "K5Fury", 1);
     TechTreeUpgradeAddLevel(lp_player, "KerriganVoidCoopEnergyRegen", 1);
+    TechTreeUpgradeAddLevel(lp_player, "HotSTorrasque", 1);
+    if (CatalogEntryIsValid(c_gameCatalogUpgrade, "KerriganVoidCoopBroodlordSpeed")) {
+        TechTreeUpgradeAddLevel(lp_player, "KerriganVoidCoopBroodlordSpeed", 1);
+    }
+    if (CatalogEntryIsValid(c_gameCatalogUpgrade, "KerriganCreepBonusesCoop")) {
+        TechTreeUpgradeAddLevel(lp_player, "KerriganCreepBonusesCoop", 1);
+    }
+    TechTreeUpgradeAddLevel(lp_player, "K5CreepBonuses", 1);
     if ((lp_createHero == true)) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_secondUnit);
     }
@@ -547,6 +574,9 @@ void libE0EAE146_gf_XMRuntime_RunCommanderBaseHook (int lp_player, point lp_seco
     }
     else if (lv_commander == "Kerrigan") {
         libE0EAE146_gf_XMRuntime_InitKerriganBaseHook(lp_player, lp_secondUnit, lp_createHero);
+    }
+    else if ((lv_commander == "Abathur") || (lv_commander == "AbathurReborn")) {
+        libE0EAE146_gf_InitializeAbathurBiomass(lp_player, "AbathurCollectBiomass");
     }
     else if (lv_commander == "Mengsk") {
         libE0EAE146_gf_XMRuntime_InitMengskBaseHook(lp_player);
@@ -972,6 +1002,8 @@ void libE0EAE146_InitTriggers () {
     libE0EAE146_gt_RPG_Init();
     libE0EAE146_gt_PAttack_Init();
     libE0EAE146_gt_AIAttakcWaveUpgrade2_Init();
+    libE0EAE146_gt_AbathurBiomassDrop_Init();
+    libE0EAE146_gt_AbathurBiomassPickup_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

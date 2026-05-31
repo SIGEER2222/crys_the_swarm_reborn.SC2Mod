@@ -2807,14 +2807,14 @@
         </CUnit>
     <CUnit id="CoopCasterAbathur" parent="CoopGlobalCaster">
             <Race value="Zerg"/>
-            <AbilArray Link="SpawnToxicNest"/>
-            <AbilArray Link="AbathurMend"/>
+            <AbilArray Link="CreepTumorBuild"/>
+            <AbilArray Link="AbathurCreepMend"/>
             
             <AbilArray Link="BiomassTargetMark"/>
             
             <CardLayouts>
-                <LayoutButtons Face="SpawnToxicNest" Type="AbilCmd" AbilCmd="SpawnToxicNest,Build1" Row="0" Column="0"/>
-                <LayoutButtons Face="AbathurMend" Type="AbilCmd" AbilCmd="AbathurMend,Execute" Row="0" Column="1"/>
+                <LayoutButtons Face="BuildCreepTumor" Type="AbilCmd" AbilCmd="CreepTumorBuild,Build3" Row="0" Column="0"/>
+                <LayoutButtons Face="AbathurCreepMend" Type="AbilCmd" AbilCmd="AbathurCreepMend,Execute" Row="0" Column="1"/>
             </CardLayouts>
             <EditorCategories value="ObjectType:Other,ObjectFamily:FactionEvolved"/>
             
@@ -26789,42 +26789,27 @@
         </CUnit>
     <CUnit id="K5Kerrigan">
             <CardLayouts index="0">
-                <LayoutButtons index="6" Face="PrimalSlash" AbilCmd="PrimalSlash,Execute"/>
-                <LayoutButtons index="7" Face="MindBolt" Type="AbilCmd" AbilCmd="MindBolt,Execute" Requirements=""/>
+                <LayoutButtons index="6" Face="PrimalSlash" Type="AbilCmd" AbilCmd="PrimalSlash,Execute" Row="2" Column="0"/>
                 <LayoutButtons index="8" Face="K5HeroicFortitude" Type="Passive" AbilCmd="" Requirements="HaveK5HeroicFortitude"/>
-                <LayoutButtons index="9" Face="PsiStrike" AbilCmd="PsiStrikeWalk,Execute"/>
-                <LayoutButtons index="10" Face="KerriganChainLightning" Requirements="KerriganLevel09" Row="1"/>
-                <LayoutButtons index="11" Face="PsionicLift" AbilCmd="PsionicLift,Execute"/>
-                <LayoutButtons index="15" Face="KerriganVoidCoopEconDrop" AbilCmd="KerriganVoidCoopEconDrop,Execute"/>
-                <LayoutButtons index="16" Face="PrimalHeal" AbilCmd="PrimalHeal,Execute"/>
-                <LayoutButtons index="17" Face="WildMutation" AbilCmd="WildMutation,Execute"/>
+                <LayoutButtons index="9" Face="PsiStrike" Type="AbilCmd" AbilCmd="PsiStrikeWalk,Execute" Row="2" Column="1"/>
+                <LayoutButtons index="10" Face="KerriganChainLightning" Requirements="KerriganLevel09" Row="1" Column="2"/>
+                <LayoutButtons index="11" Face="PsionicLift" Type="AbilCmd" AbilCmd="PsionicLift,Execute" Row="2" Column="2"/>
+                <LayoutButtons index="15" Face="KerriganVoidCoopEconDrop" Type="AbilCmd" AbilCmd="KerriganVoidCoopEconDrop,Execute" Row="1" Column="0"/>
                 <LayoutButtons index="18" Face="KerriganFuryLocked" Requirements="KerriganLevel10" Column="3"/>
-                <LayoutButtons index="19" Face="ChainReaction" Requirements="HaveK5ChainLightning"/>
-                <LayoutButtons index="20" Face="K5Fury" Requirements="HaveK5Fury" Column="3"/>
+                <LayoutButtons index="19" Face="ChainReaction" Type="Passive" Requirements="HaveK5ChainLightning" Row="1" Column="2"/>
+                <LayoutButtons index="20" Face="K5Fury" Type="Passive" Requirements="HaveK5Fury" Row="1" Column="3"/>
                 <LayoutButtons index="21" Face="K5CooldownsLocked" Requirements="KerriganLevel09"/>
-                <LayoutButtons index="22">
-                    <Face value="KerriganVoidCoopCrushingGripWave"/>
-                    <Type value="AbilCmd"/>
-                    <AbilCmd value="KerriganVoidCoopCrushingGripWave,Execute"/>
-                    <Requirements value=""/>
-                    <Row value="2"/>
-                    <Column value="3"/>
-                </LayoutButtons>
+                <LayoutButtons index="22" Face="KerriganVoidCoopCrushingGripWave" Type="AbilCmd" AbilCmd="KerriganVoidCoopCrushingGripWave,Execute" Row="2" Column="3"/>
                 <LayoutButtons index="23" Face="KerriganCrushingGripWaveLocked" Requirements="KerriganLevel02" Row="2" Column="3"/>
-                <LayoutButtons index="25" Face="KerriganAssimilation" Type="Passive" AbilCmd="" Row="1" Column="0"/>
                 <LayoutButtons index="26">
                     <Face value="K5Cooldowns"/>
                     <Type value="Passive"/>
                     <AbilCmd value=""/>
                     <Requirements value="HaveK5Cooldowns"/>
                     <Row value="1"/>
-                    <Column value="2"/>
+                    <Column value="1"/>
                 </LayoutButtons>
                 <LayoutButtons Face="K5ZerglingRespawn" Type="Passive" Row="1" Column="0"/>
-                <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="Apocalypse" Type="AbilCmd" AbilCmd="Apocalypse,Execute" Row="2" Column="3"/>
-                <LayoutButtons Face="K5DropPods" Type="AbilCmd" AbilCmd="K5DropPods,Execute" Row="2" Column="3"/>
                 <LayoutButtons Face="QueenofBladesLocked" Type="Passive" Requirements="KerriganLevel15" Row="1" Column="4"/>
                 <LayoutButtons Face="CommanderKerriganKerriganEnergyRegeneration" Type="Passive" Requirements="HaveKerriganVoidCoopEnergyRegen" Row="1" Column="4"/>
             </CardLayouts>
@@ -26844,12 +26829,6 @@
             <AbilArray Link="PsiStrikeWalk"/>
             <AbilArray Link="MindBolt"/>
             <AbilArray Link="PrimalSlash"/>
-            <AbilArray Link="WildMutation"/>
-            <AbilArray Link="SpawnBanelings"/>
-            <AbilArray Link="PrimalHeal"/>
-            <AbilArray Link="K5DropPods"/>
-            <AbilArray Link="K5Leviathan"/>
-            <AbilArray Link="Apocalypse"/>
             <AbilArray Link="K5KerriganBurrow"/>
             <LifeStart value="800"/>
             <LifeMax value="800"/>
@@ -26914,13 +26893,10 @@
             <AbilArray Link="PsiStrikeWalk"/>
             <AbilArray Link="MindBolt"/>
             <AbilArray Link="PrimalSlash"/>
-            <AbilArray Link="WildMutation"/>
-            <AbilArray Link="SpawnBanelings"/>
-            <AbilArray Link="PrimalHeal"/>
-            <AbilArray Link="K5DropPods"/>
-            <AbilArray Link="K5Leviathan"/>
-            <AbilArray Link="Apocalypse"/>
             <AbilArray Link="K5KerriganBurrow"/>
+            <AbilArray Link="KerriganMaelstrom"/>
+            <AbilArray Link="KerriganVoidCoopEconDrop"/>
+            <AbilArray Link="KerriganVoidCoopCrushingGripWave"/>
             <BehaviorArray Link="KerriganVeterancyDummy"/>
             <BehaviorArray Link="KerriganUnburrowedDummy"/>
             <WeaponArray Link="K5Ranged"/>
@@ -26930,29 +26906,16 @@
                 <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
                 <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
                 <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-                <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="K5KerriganBurrow,Execute" Row="2" Column="4"/>
-                <LayoutButtons Face="MindBolt" Type="AbilCmd" AbilCmd="MindBolt,Execute" Row="2" Column="0"/>
-                <LayoutButtons Face="K5HeroicFortitude" Type="Passive" Requirements="HaveK5HeroicFortitude" Row="2" Column="0"/>
                 <LayoutButtons Face="PrimalSlash" Type="AbilCmd" AbilCmd="PrimalSlash,Execute" Row="2" Column="0"/>
-                <LayoutButtons Face="PsionicLift" Type="AbilCmd" AbilCmd="PsionicLift,Execute" Row="2" Column="1"/>
-                <LayoutButtons Face="ChainReaction" Type="Passive" Requirements="HaveK5ChainLightning" Row="2" Column="1"/>
                 <LayoutButtons Face="PsiStrike" Type="AbilCmd" AbilCmd="PsiStrikeWalk,Execute" Row="2" Column="1"/>
-                <LayoutButtons Face="K5ZerglingRespawn" Type="Passive" Requirements="HaveK5ZerglingRespawn" Row="1" Column="0"/>
-                <LayoutButtons Face="K5ImprovedOverlords" Type="Passive" Requirements="HaveK5ImprovedOverlords" Row="1" Column="0"/>
-                <LayoutButtons Face="K5AutoExtractor" Type="Passive" Requirements="HaveK5AutoExtractor" Row="1" Column="0"/>
-                <LayoutButtons Face="WildMutation" Type="AbilCmd" AbilCmd="WildMutation,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="PrimalHeal" Type="AbilCmd" AbilCmd="PrimalHeal,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="K5TwoDrones" Type="Passive" Requirements="HaveK5TwoDrones" Row="1" Column="1"/>
-                <LayoutButtons Face="K5CreepBonuses" Type="Passive" Requirements="HaveK5CreepBonuses" Row="1" Column="1"/>
-                <LayoutButtons Face="K5GasBonuses" Type="Passive" Requirements="HaveK5GasBonuses" Row="1" Column="1"/>
-                <LayoutButtons Face="K5InfestBroodlings" Type="Passive" Requirements="HaveK5InfestBroodlings" Row="1" Column="2"/>
-                <LayoutButtons Face="K5Fury" Type="Passive" Requirements="HaveK5Fury" Row="1" Column="2"/>
-                <LayoutButtons Face="K5Cooldowns" Type="Passive" Requirements="HaveK5Cooldowns" Row="1" Column="2"/>
-                <LayoutButtons Face="K5Leviathan" Type="AbilCmd" AbilCmd="K5Leviathan,Execute" Row="2" Column="3"/>
-                
-                <LayoutButtons Face="K5DropPods" Type="AbilCmd" AbilCmd="K5DropPods,Execute" Row="2" Column="3"/>
-                <LayoutButtons Face="Apocalypse" Type="AbilCmd" AbilCmd="Apocalypse,Execute" Row="2" Column="3"/>
+                <LayoutButtons Face="PsionicLift" Type="AbilCmd" AbilCmd="PsionicLift,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="KerriganVoidCoopCrushingGripWave" Type="AbilCmd" AbilCmd="KerriganVoidCoopCrushingGripWave,Execute" Row="2" Column="3"/>
+                <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="K5KerriganBurrow,Execute" Row="2" Column="4"/>
+                <LayoutButtons Face="KerriganVoidCoopEconDrop" Type="AbilCmd" AbilCmd="KerriganVoidCoopEconDrop,Execute" Row="1" Column="0"/>
+                <LayoutButtons Face="ChainReaction" Type="Passive" Requirements="HaveK5ChainLightning" Row="1" Column="2"/>
+                <LayoutButtons Face="K5Fury" Type="Passive" Requirements="HaveK5Fury" Row="1" Column="3"/>
+                <LayoutButtons Face="CommanderKerriganKerriganEnergyRegeneration" Type="Passive" Requirements="HaveKerriganVoidCoopEnergyRegen" Row="1" Column="4"/>
+                <LayoutButtons Face="K5Cooldowns" Type="Passive" Requirements="HaveK5Cooldowns" Row="1" Column="1"/>
             </CardLayouts>
             <Radius value="0.375"/>
             <SeparationRadius value="0.375"/>
@@ -26960,7 +26923,7 @@
             <ScoreMake value="500"/>
             <ScoreKill value="1000"/>
             <SubgroupPriority value="99"/>
-            <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
+            <EditorCategories value="ObjectType:Hero,ObjectFamily:FactionEvolved"/>
             <TechAliasArray value="Alias_Kerrigan"/>
             <Fidget>
                 <ChanceArray index="Anim" value="33"/>
@@ -28444,8 +28407,11 @@
             <AbilArray Link="move"/>
             <AbilArray Link="attack"/>
             <AbilArray Link="stop"/>
+            <AbilArray Link="SymbioteCarapace"/>
+            <AbilArray Link="AbathurSymbioteHangerLeviathan"/>
             <AbilArray Link="HotSBioPlasmidDischarge"/>
             <AbilArray Link="HotSBioStasis"/>
+            <BehaviorArray Link="CarapaceDamageResponse"/>
             <CardLayouts>
                 <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
                 <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
@@ -28454,6 +28420,8 @@
                 <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
                 <LayoutButtons Face="HotSBioPlasmidDischarge" Type="AbilCmd" AbilCmd="HotSBioPlasmidDischarge,Execute" Row="2" Column="0"/>
                 <LayoutButtons Face="HotSBioStasis" Type="AbilCmd" AbilCmd="HotSBioStasis,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="AbathurBrutaliskLeviathanSymbiote" Type="Passive" Requirements="HaveBrutaliskLeviathanSymbiote" Row="2" Column="0"/>
+                <LayoutButtons Face="AbathurBrutaliskLeviathanSymbioteLocked" Type="Passive" Requirements="AbathurLevel10" Row="2" Column="0"/>
             </CardLayouts>
             <Attributes index="Biological" value="1"/>
             <Attributes index="Massive" value="1"/>
@@ -30166,12 +30134,6 @@
             <AbilArray Link="PsiStrikeWalk"/>
             <AbilArray Link="MindBolt"/>
             <AbilArray Link="PrimalSlash"/>
-            <AbilArray Link="WildMutation"/>
-            <AbilArray Link="SpawnBanelings"/>
-            <AbilArray Link="PrimalHeal"/>
-            <AbilArray Link="K5DropPods"/>
-            <AbilArray Link="K5Leviathan"/>
-            <AbilArray Link="Apocalypse"/>
             <BehaviorArray Link="KerriganVeterancyDummy"/>
             <BehaviorArray Link="K5KerriganBurrowedDisabler"/>
             <CardLayouts>
@@ -30190,19 +30152,12 @@
                 <LayoutButtons Face="K5ZerglingRespawn" Type="Passive" Requirements="HaveK5ZerglingRespawn" Row="1" Column="0"/>
                 <LayoutButtons Face="K5ImprovedOverlords" Type="Passive" Requirements="HaveK5ImprovedOverlords" Row="1" Column="0"/>
                 <LayoutButtons Face="K5AutoExtractor" Type="Passive" Requirements="HaveK5AutoExtractor" Row="1" Column="0"/>
-                <LayoutButtons Face="WildMutation" Type="AbilCmd" AbilCmd="WildMutation,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="PrimalHeal" Type="AbilCmd" AbilCmd="PrimalHeal,Execute" Row="2" Column="2"/>
                 <LayoutButtons Face="K5TwoDrones" Type="Passive" Requirements="HaveK5TwoDrones" Row="1" Column="1"/>
                 <LayoutButtons Face="K5CreepBonuses" Type="Passive" Requirements="HaveK5CreepBonuses" Row="1" Column="1"/>
                 <LayoutButtons Face="K5GasBonuses" Type="Passive" Requirements="HaveK5GasBonuses" Row="1" Column="1"/>
                 <LayoutButtons Face="K5InfestBroodlings" Type="Passive" Requirements="HaveK5InfestBroodlings" Row="1" Column="2"/>
                 <LayoutButtons Face="K5Fury" Type="Passive" Requirements="HaveK5Fury" Row="1" Column="2"/>
                 <LayoutButtons Face="K5Cooldowns" Type="Passive" Requirements="HaveK5Cooldowns" Row="1" Column="2"/>
-                <LayoutButtons Face="K5Leviathan" Type="AbilCmd" AbilCmd="K5Leviathan,Execute" Row="2" Column="3"/>
-                
-                <LayoutButtons Face="K5DropPods" Type="AbilCmd" AbilCmd="K5DropPods,Execute" Row="2" Column="3"/>
-                <LayoutButtons Face="Apocalypse" Type="AbilCmd" AbilCmd="Apocalypse,Execute" Row="2" Column="3"/>
                 <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="K5KerriganUnburrow,Execute" Row="2" Column="4"/>
             </CardLayouts>
             <Radius value="0.375"/>
@@ -30264,12 +30219,6 @@
             <AbilArray Link="PsiStrikeWalk"/>
             <AbilArray Link="MindBolt"/>
             <AbilArray Link="PrimalSlash"/>
-            <AbilArray Link="WildMutation"/>
-            <AbilArray Link="SpawnBanelings"/>
-            <AbilArray Link="PrimalHeal"/>
-            <AbilArray Link="K5DropPods"/>
-            <AbilArray Link="K5Leviathan"/>
-            <AbilArray Link="Apocalypse"/>
             <AbilArray Link="K5KerriganBurrow"/>
             <BehaviorArray Link="KerriganVeterancyDummy"/>
             <WeaponArray Link="K5Ranged"/>
@@ -30289,19 +30238,12 @@
                 <LayoutButtons Face="K5ZerglingRespawn" Type="Passive" Requirements="HaveK5ZerglingRespawn" Row="1" Column="0"/>
                 <LayoutButtons Face="K5ImprovedOverlords" Type="Passive" Requirements="HaveK5ImprovedOverlords" Row="1" Column="0"/>
                 <LayoutButtons Face="K5AutoExtractor" Type="Passive" Requirements="HaveK5AutoExtractor" Row="1" Column="0"/>
-                <LayoutButtons Face="WildMutation" Type="AbilCmd" AbilCmd="WildMutation,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
-                <LayoutButtons Face="PrimalHeal" Type="AbilCmd" AbilCmd="PrimalHeal,Execute" Row="2" Column="2"/>
                 <LayoutButtons Face="K5TwoDrones" Type="Passive" Requirements="HaveK5TwoDrones" Row="1" Column="1"/>
                 <LayoutButtons Face="K5CreepBonuses" Type="Passive" Requirements="HaveK5CreepBonuses" Row="1" Column="1"/>
                 <LayoutButtons Face="K5GasBonuses" Type="Passive" Requirements="HaveK5GasBonuses" Row="1" Column="1"/>
                 <LayoutButtons Face="K5InfestBroodlings" Type="Passive" Requirements="HaveK5InfestBroodlings" Row="1" Column="2"/>
                 <LayoutButtons Face="K5Fury" Type="Passive" Requirements="HaveK5Fury" Row="1" Column="2"/>
                 <LayoutButtons Face="K5Cooldowns" Type="Passive" Requirements="HaveK5Cooldowns" Row="1" Column="2"/>
-                <LayoutButtons Face="K5Leviathan" Type="AbilCmd" AbilCmd="K5Leviathan,Execute" Row="2" Column="3"/>
-                
-                <LayoutButtons Face="K5DropPods" Type="AbilCmd" AbilCmd="K5DropPods,Execute" Row="2" Column="3"/>
-                <LayoutButtons Face="Apocalypse" Type="AbilCmd" AbilCmd="Apocalypse,Execute" Row="2" Column="3"/>
             </CardLayouts>
             <Radius value="0.375"/>
             <SeparationRadius value="0.375"/>
@@ -33141,4 +33083,14 @@
             <KillDisplay value="Always"/>
             <RankDisplay value="Always"/>
         </CUnit>
+    <!-- Minimal Abathur biomass pickup unit. Visual actor can be added later; gameplay uses trigger state. -->
+    <CUnit id="BiomassPickup" parent="ITEM">
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Destructible" value="1"/>
+        <FlagArray index="NoScore" value="1"/>
+        <Sight value="0"/>
+        <AbilArray Link="BiomassPickup"/>
+        <EditorCategories value="ObjectType:Item,ObjectFamily:Campaign"/>
+    </CUnit>
 </Catalog>

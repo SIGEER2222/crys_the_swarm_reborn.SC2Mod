@@ -21,6 +21,36 @@ void libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias (int lp_player, string lp_
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, lp_resolvedUnitType, lp_index, lp_rosterKind);
 }
 
+bool libE0EAE146_gf_XMTestBench_AbathurBiomassRosterEligible (string lp_unitType) {
+    if ((lp_unitType == "Drone") || (lp_unitType == "DroneBurrowed") || (lp_unitType == "Larva")) {
+        return false;
+    }
+    if ((lp_unitType == "Overlord") || (lp_unitType == "Overseer") || (lp_unitType == "OverseerSiegeMode")) {
+        return false;
+    }
+    return true;
+}
+
+void libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit (int lp_player, string lp_unitType, int lp_index, string lp_rosterKind) {
+    int lv_before;
+    int lv_after;
+    int lv_applied;
+
+    lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, lp_unitType, lp_index, lp_rosterKind);
+    lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
+    if ((lv_after > lv_before) && libE0EAE146_gf_XMTestBench_AbathurBiomassRosterEligible(lp_unitType)) {
+        libE0EAE146_gf_AbathurSetUnitGroupFullBiomass(UnitLastCreatedGroup());
+        lv_applied = libE0EAE146_gf_AbathurBiomassMaxStacks();
+        libE0EAE146_gf_XMDbgLog("INFO", "TEST_ABATHUR_BIOMASS_SEEDED", "commander=Abathur scenario=" + lp_rosterKind + " unitId=" + lp_unitType + " stacks=" + IntToString(lv_applied) + " visualScale=" + FixedToString(libE0EAE146_gf_AbathurBiomassVisualScale(lv_applied), c_fixedPrecisionAny));
+    }
+}
+
+void libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnitAlias (int lp_player, string lp_sourceUnitType, string lp_resolvedUnitType, int lp_index, string lp_rosterKind) {
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_ROSTER_ALIAS", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + lp_rosterKind + " sourceUnitId=" + lp_sourceUnitType + " resolvedUnitId=" + lp_resolvedUnitType + " sourceUnit=" + lp_sourceUnitType + " resolvedUnit=" + lp_resolvedUnitType);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, lp_resolvedUnitType, lp_index, lp_rosterKind);
+}
+
 void libE0EAE146_gf_XMTestBench_LogRosterDone (int lp_player, string lp_commander, string lp_rosterKind, int lp_expected) {
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_ROSTER_" + lp_commander);
     libE0EAE146_gf_XMDbgLog("INFO", "TEST_COMMANDER_ROSTER_DONE", "commander=" + lp_commander + " scenario=" + lp_rosterKind + " expected=" + IntToString(lp_expected) + " created=" + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]) + " missing=" + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]));
@@ -31,20 +61,56 @@ bool libE0EAE146_gf_XMTestBench_AbathurRoster (int lp_player, string lp_rosterKi
         return false;
     }
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "GuardianMP", 1, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "DevourerMP", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Mutalisk", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Roach", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SwarmHost", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SwarmQueen", 6, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "RoachCorpser", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "RoachVile", 8, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "RavagerAbathur", 9, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Viper", 10, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Brutalisk", 11, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Leviathan", 12, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Overseer", 13, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Abathur", lp_rosterKind, 13);
+    if (lp_rosterKind == "full_units") {
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Drone", 1, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Larva", 2, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Overlord", 3, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Overseer", 4, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Mutalisk", 5, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "GuardianMP", 6, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "DevourerMP", 7, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Roach", 9, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RoachBurrowed", 10, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RoachCorpser", 11, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RoachCorpserBurrowed", 12, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RoachVile", 13, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RoachVileBurrowed", 14, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RavagerAbathur", 15, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RavagerAbathurBurrowed", 16, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHost", 17, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostMP", 18, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostBurrowed", 19, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostRooted", 20, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostSplitA", 21, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostSplitABurrowed", 22, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostSplitARooted", 23, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostSplitB", 24, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostSplitBBurrowed", 25, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHostSplitBRooted", 26, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "QueenCoop", 27, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "QueenCoopBurrowed", 28, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Viper", 29, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Brutalisk", 30, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Leviathan", 31, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "HotSLeviathan", 32, lp_rosterKind);
+        libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Abathur", lp_rosterKind, 31);
+        return true;
+    }
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnitAlias(lp_player, "AbathurGuardian", "GuardianMP", 1, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnitAlias(lp_player, "Devourer", "DevourerMP", 2, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Mutalisk", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Roach", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, "SpineCrawler", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateBuildingRosterUnit(lp_player, "SporeCrawler", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "SwarmHost", 7, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnitAlias(lp_player, "SwarmQueen", "QueenCoop", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RoachCorpser", 9, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "RoachVile", 10, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnitAlias(lp_player, "Ravager", "RavagerAbathur", 11, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Viper", 12, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Brutalisk", 13, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateAbathurRosterUnit(lp_player, "Leviathan", 14, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Abathur", lp_rosterKind, 14);
     return true;
 }
 

@@ -507,6 +507,11 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "HydraliskStetmann", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "RavagerStetmann", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
     }
+    else if (auto935BE165_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Zergling", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Zergling", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
+        libNtve_gf_CreateUnitsWithDefaultFacing(4, "Zergling", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(58)));
+    }
     else {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "WarPig", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(55)));
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "WarPig", 0, gv_p7_MISSINGSOLDIERS, RegionGetCenter(RegionFromId(56)));
@@ -5086,6 +5091,12 @@ bool gt_IntroCinematic_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "LarvaPStetmann", 0, 1, PointFromId(505));
         UnitCargoCreate(gv_introDropship, "HydraliskStetmann", 2);
     }
+    else if (auto440B2AF1_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+        libD0E57A9C_gf_InitializeKerriganEvent(1, UnitLastCreated());
+        UnitCargoCreate(gv_introDropship, "Zergling", 4);
+    }
     else {
     }
     UnitSetInfoText(gv_raynor, StringToText(""), StringExternal("Param/Value/21D320AE"), StringToText(""));
@@ -5310,6 +5321,13 @@ bool gt_IntroCleanupEscape_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "LarvaPStetmann", 0, 1, PointFromId(505));
         libNtve_gf_CreateUnitsAtPoint2(1, "HydraliskStetmann", 0, gv_p1_USER, PointFromId(415));
         libNtve_gf_CreateUnitsAtPoint2(1, "HydraliskStetmann", 0, gv_p1_USER, PointFromId(581));
+    }
+    else if (autoACB5ADFA_val == "Kerrigan") {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(505));
+        gv_raynor = UnitLastCreated();
+        libD0E57A9C_gf_InitializeKerriganEvent(1, UnitLastCreated());
+        libNtve_gf_CreateUnitsAtPoint2(1, "Zergling", 0, gv_p1_USER, PointFromId(415));
+        libNtve_gf_CreateUnitsAtPoint2(1, "Zergling", 0, gv_p1_USER, PointFromId(581));
     }
     else {
     }
