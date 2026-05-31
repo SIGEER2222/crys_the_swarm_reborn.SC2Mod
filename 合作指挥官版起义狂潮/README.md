@@ -64,6 +64,15 @@ C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合�
 
 当前默认直进图测试入口是 `Maps/XM/thorner03.SC2Map`；`Launcher.SC2Map` 仅保留为旧候选界面的历史入口参考，不作为现在的默认测试路径。
 
+指挥官配置点是 `CampaignXCore` bank 的 `Ach/Commander` 键。地图初始化会直接读这个值来决定进图指挥官，空值会回退到 `Raynor`。要强制指定进图指挥官，就改这个键，不需要先走 Launcher 界面。
+
+仓内直接入口脚本是 `scripts/launch-thorner03.ps1`，例如：
+
+```powershell
+.\scripts\launch-thorner03.ps1 -Commander Kerrigan
+```
+
+这个脚本现在必须显式传入 `-Commander`，否则会直接报错退出。
 ## 主要组成
 
 ### `Maps/XM`
@@ -201,3 +210,4 @@ Objects
    - 文本 `GameStrings.txt` / `ObjectStrings.txt`
 4. 修改中文文本优先看 `zhCN.SC2Data/LocalizedData`；需要英文兼容时同步 `enUS.SC2Data/LocalizedData`。
 5. 如果要同步到游戏目录，应保持 `Maps/XM` 和 `Mods/XM` 的相对结构不变。
+

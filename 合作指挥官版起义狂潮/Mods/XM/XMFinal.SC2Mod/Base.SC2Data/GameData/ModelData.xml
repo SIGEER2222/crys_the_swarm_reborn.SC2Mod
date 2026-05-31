@@ -1194,6 +1194,21 @@
             <ScaleMax value="0.500000,0.500000,0.500000"/>
             <ScaleMin value="0.500000,0.500000,0.500000"/>
         </CModel>
+    <CModel id="BiomassBuffPickup">
+            <Model value="Assets\Units\Zerg\PickUp_Biomass\PickUp_Biomass.m3"/>
+            <EditorCategories value="Race:Zerg"/>
+            <ScaleMax value="0.500000,0.500000,0.500000"/>
+            <ScaleMin value="0.500000,0.500000,0.500000"/>
+        </CModel>
+    <CModel id="AbathurCollectBiomassTarget" parent="PersistentSpellFX">
+            <Model value="Assets\Effects\Zerg\DisablingCloudImpact\DisablingCloudImpact.m3"/>
+            <ScaleMax value="2.000000,2.000000,2.000000"/>
+            <ScaleMin value="2.000000,2.000000,2.000000"/>
+        </CModel>
+    <CModel id="AbathurCollectBiomassImpactHeal" parent="PersistentSpellFX">
+            <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3"/>
+            <EditorCategories value="Race:Terran"/>
+        </CModel>
     <CModel id="BunkerDepotMengsk" parent="BunkerBase">
             <Model value="Assets\COOP\Mengsk\Buildings\SupplyBunker_Mengsk_COOP\SupplyBunker_Mengsk_COOP.m3"/>
             <ScaleMax value="0.750000,0.750000,0.750000"/>
@@ -16715,7 +16730,10 @@
             <ShadowRadius value="0.750000"/>
         </CModel>
     <CModel id="Brutalisk">
+            <Model value="Assets\Units\Zerg\BrutaliskEx3\BrutaliskEx3.m3"/>
             <Radius value="0.750000"/>
+            <ScaleMax value="2.250000,2.250000,2.250000"/>
+            <ScaleMin value="2.250000,2.250000,2.250000"/>
             <SelectionRadius value="0.700000"/>
             <ShadowRadius value="0.700000"/>
         </CModel>
@@ -18462,6 +18480,21 @@
             <EditorCategories value="Race:Zerg"/>
         </CModel>
     <CModel id="SwarmQueen" parent="Unit" Race="Zerg">
+            <Model value="Assets\Units\Zerg\ExpeditionQueenLevel1\ExpeditionQueenLevel1.m3"/>
+            <RequiredAnims value="Assets\Units\Zerg\Queen_SwarmAnims\Queen_SwarmAnims.m3a"/>
+            <Occlusion value="Show"/>
+            <PlanetPanelCamera value="Star2CameraHigh08"/>
+            <Radius value="1.000000"/>
+            <SelectionRadius value="0.972100"/>
+            <ShadowRadius value="0.750000"/>
+            <SquibTypeDefault value="Flesh"/>
+            <TechPurchaseCamera value="Star2CameraHigh08"/>
+            <Tipability value="0.750000"/>
+            <TipabilityLength value="1.000000"/>
+            <TipabilityWidth value="0.800000"/>
+            <UnitGlossaryCamera value="Star2CameraHigh08"/>
+        </CModel>
+    <CModel id="VoidSwarmQueen" parent="Unit" Race="Zerg">
             <Model value="Assets\Units\Zerg\ExpeditionQueenLevel1\ExpeditionQueenLevel1.m3"/>
             <RequiredAnims value="Assets\Units\Zerg\Queen_SwarmAnims\Queen_SwarmAnims.m3a"/>
             <Occlusion value="Show"/>

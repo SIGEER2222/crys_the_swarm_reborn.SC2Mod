@@ -372,6 +372,7 @@ void libE0EAE146_gf_XMTestBench_WriteSummary (int lp_player) {
     libE0EAE146_gv_xmTestBenchSummary[lp_player] = lv_summary;
     libE0EAE146_gf_XMTestBench_WriteReportBank(lp_player);
     libE0EAE146_gf_XMDbgLog("INFO", "TEST_SUMMARY", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + libE0EAE146_gv_xmTestBenchScenario[lp_player] + " created=" + IntToString(libE0EAE146_gv_xmTestBenchCreated[lp_player]) + " missing=" + IntToString(libE0EAE146_gv_xmTestBenchMissing[lp_player]) + " warnings=" + IntToString(libE0EAE146_gv_xmTestBenchWarnings[lp_player]) + " errors=" + IntToString(libE0EAE146_gv_xmTestBenchErrors[lp_player]));
+    libE0EAE146_gf_XMDbgLog("INFO", "TEST_SUMMARY_IDS", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " scenario=" + libE0EAE146_gv_xmTestBenchScenario[lp_player] + " requestedIds=" + libE0EAE146_gv_xmTestBenchRequestedIds[lp_player] + " actualIds=" + libE0EAE146_gv_xmTestBenchActualIds[lp_player] + " missingIds=" + libE0EAE146_gv_xmTestBenchMissingIds[lp_player]);
 }
 
 string libE0EAE146_gf_XMTestBench_GetSummaryText (int lp_player) {

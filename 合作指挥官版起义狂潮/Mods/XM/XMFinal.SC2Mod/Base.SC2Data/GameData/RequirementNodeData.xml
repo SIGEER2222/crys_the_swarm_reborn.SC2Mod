@@ -3987,4 +3987,63 @@
     <CRequirementNot id="NotCountUpgradeStukovCommanderCompleteOnly">
             <OperandArray index="0" value="CountUpgradeStukovCommanderCompleteOnly"/>
         </CRequirementNot>
+    <CRequirementCountUpgrade id="CountUpgradeAbathurHatcheryDoubleQueueQueuedOrBetter">
+            <Count Link="AbathurHatcheryDoubleQueue" State="QueuedOrBetter"/>
+        </CRequirementCountUpgrade>
+    <CRequirementNot id="NotCountUpgradeAbathurHatcheryDoubleQueueQueuedOrBetter">
+            <OperandArray index="0" value="CountUpgradeAbathurHatcheryDoubleQueueQueuedOrBetter"/>
+        </CRequirementNot>
+    <CRequirementCountBehavior id="CountBehaviorBrutaliskTramplingCarapaceBuffCompleteOnlyAtUnit">
+        <Count Link="BrutaliskTramplingCarapaceBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementCountBehavior id="CountBehaviorBrutaliskSavageRendBuffCompleteOnlyAtUnit">
+        <Count Link="BrutaliskSavageRendBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementCountBehavior id="CountBehaviorBrutaliskFleshRecompositionBuffCompleteOnlyAtUnit">
+        <Count Link="BrutaliskFleshRecompositionBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementEq id="Eq2852615412CountBehaviorBrutaliskTramplingCarapaceBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorBrutaliskTramplingCarapaceBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementEq id="Eq2852615412CountBehaviorBrutaliskSavageRendBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorBrutaliskSavageRendBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementEq id="Eq2852615412CountBehaviorBrutaliskFleshRecompositionBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorBrutaliskFleshRecompositionBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementCountBehavior id="CountBehaviorUltraliskElectricShockBuffCompleteOnlyAtUnit">
+        <Count Link="UltraliskElectricShockBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementEq id="Eq2852615412CountBehaviorUltraliskElectricShockBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorUltraliskElectricShockBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementCountBehavior id="CountBehaviorUltraliskHighVoltageBuffCompleteOnlyAtUnit">
+        <Count Link="UltraliskHighVoltageBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementEq id="Eq2852615412CountBehaviorUltraliskHighVoltageBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorUltraliskHighVoltageBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementCountBehavior id="CountBehaviorUltraliskLightningRaidBuffCompleteOnlyAtUnit">
+        <Count Link="UltraliskLightningRaidBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementEq id="Eq2852615412CountBehaviorUltraliskLightningRaidBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorUltraliskLightningRaidBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementCountBehavior id="CountBehaviorUltraliskThunderstormBuffCompleteOnlyAtUnit">
+        <Count Link="UltraliskThunderstormBuff" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
+    <CRequirementEq id="Eq2852615412CountBehaviorUltraliskThunderstormBuffCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorUltraliskThunderstormBuffCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementCountUpgrade id="CountUpgradeRangeCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="Range" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
 </Catalog>

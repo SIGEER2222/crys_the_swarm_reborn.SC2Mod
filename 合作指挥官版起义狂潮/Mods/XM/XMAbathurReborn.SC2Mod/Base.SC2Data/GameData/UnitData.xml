@@ -2696,8 +2696,14 @@
     <BehaviorArray Link="Frenzy" />
     <BehaviorArray Link="CarapaceDamageResponse" />
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="BrutaliskTramplingCarapacePurchase" />
+    <AbilArray Link="BrutaliskSavageRendPurchase" />
+    <AbilArray Link="BrutaliskFleshRecompositionPurchase" />
     <CardLayouts index="0">
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="BrutaliskDeepTunnel,Execute" Row="2" Column="3" />
+      <LayoutButtons Face="BrutaliskTramplingCarapace" Type="AbilCmd" AbilCmd="BrutaliskTramplingCarapacePurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="BrutaliskSavageRend" Type="AbilCmd" AbilCmd="BrutaliskSavageRendPurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="BrutaliskFleshRecomposition" Type="AbilCmd" AbilCmd="BrutaliskFleshRecompositionPurchase,Execute" Row="1" Column="2" />
       <!--LayoutButtons Face="SymbioteStab" Type="AbilCmd" AbilCmd="SymbioteStab,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="SymbioteSpikeBurst" Type="AbilCmd" AbilCmd="SymbioteSpikeBurst,Execute" Row="2" Column="1"/-->
       <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="1" Column="4" />
@@ -2961,9 +2967,9 @@
     <CardLayouts>
       <LayoutButtons Face="SpawnToxicNest" Type="AbilCmd" AbilCmd="SpawnToxicNest,Build1" Row="0" Column="0" />
       <LayoutButtons Face="AbathurRebornMend" Type="AbilCmd" AbilCmd="AbathurRebornMend,Execute" Row="0" Column="1" />
+      <LayoutButtons Face="BiomassTargetMark" Type="AbilCmd" AbilCmd="BiomassTargetMark,Execute" Row="0" Column="2" />
     </CardLayouts>
     <EditorCategories value="ObjectType:Other,ObjectFamily:FactionEvolved" />
-    <!--LayoutButtons Face="BiomassTargetMark" Type="AbilCmd" AbilCmd="BiomassTargetMark,Execute" Row="0" Column="2"/-->
     <!--LayoutButtons Face="BiomassDisplayToggleOn" Type="AbilCmd" AbilCmd="BiomassDisplayToggle,On" Row="0" Column="2"/>
             <LayoutButtons Face="BiomassDisplayToggleOff" Type="AbilCmd" AbilCmd="BiomassDisplayToggle,Off" Row="0" Column="2"/>
             <LayoutButtons Face="RoachBiomassToggleOn" Type="AbilCmd" AbilCmd="RoachBiomassToggle,On" Row="0" Column="3"/>
@@ -5788,6 +5794,10 @@
       <LayoutButtons index="11" Requirements="HaveMPMetabolicBoost" Row="1" Column="0" />
       <LayoutButtons Face="ZerglingArmorShred" Type="Passive" Requirements="HaveZerglingArmorShred" Row="1" Column="3" />
       <LayoutButtons Face="ZagaraVoidCoopZerglingDodge" Type="Passive" Requirements="HaveMasteryZagaraZerglingDodgeChance" Row="1" Column="4" />
+      <LayoutButtons Face="TheHungerZergling" Type="Passive" Row="2" Column="0" />
+      <LayoutButtons Face="HotSRedundantMembranes" Type="Passive" Requirements="HaveHotSZerglingHealth" Row="2" Column="1" />
+      <LayoutButtons Face="HotSZerglingFrenzy" Type="Passive" Requirements="HaveHotSZerglingFrenzy" Row="2" Column="1" />
+      <LayoutButtons Face="HotSMetabolicBoost" Type="Passive" Requirements="HaveHotSMetabolicBoost" Row="2" Column="1" />
     </CardLayouts>
     <ScoreMake value="0" />
     <ScoreKill value="0" />
@@ -5807,6 +5817,9 @@
       <LayoutButtons index="3" Requirements="HaveMPAdrenalGlands" Row="1" />
       <LayoutButtons index="4" Requirements="HaveMPMetabolicBoost" Row="1" Column="0" />
       <LayoutButtons Face="ZerglingArmorShred" Type="Passive" Requirements="HaveZerglingArmorShred" Row="1" Column="3" />
+      <LayoutButtons Face="HotSRedundantMembranes" Type="Passive" Requirements="HaveHotSZerglingHealth" Row="2" Column="1" />
+      <LayoutButtons Face="HotSZerglingFrenzy" Type="Passive" Requirements="HaveHotSZerglingFrenzy" Row="2" Column="1" />
+      <LayoutButtons Face="HotSMetabolicBoost" Type="Passive" Requirements="HaveHotSMetabolicBoost" Row="2" Column="1" />
     </CardLayouts>
     <ScoreKill value="0" />
     <KillXP value="0" />
@@ -5823,6 +5836,7 @@
     <!--BehaviorArray Link="Supply6"/-->
     <BehaviorArray Link="VorazunCloakDamageBoostPermanentUltraliskBurrowCharge" />
     <CardLayouts index="0">
+      <LayoutButtons Face="TheHungerUltralisk" Type="Passive" Row="2" Column="0" />
       <LayoutButtons index="6" Face="TissueAssimilation" Requirements="HaveHotSTissueAssimilation" Column="2" />
       <LayoutButtons index="7" Face="BurrowChargeCampaign" Type="AbilCmd" AbilCmd="UltraliskBurrowCharge,Execute" Requirements="" />
       <LayoutButtons index="8">
@@ -10570,7 +10584,15 @@
     <!--BehaviorArray Link="Supply6"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="VorazunCloakDamageBoostPermanentUltraliskBurrowCharge" />
+    <AbilArray Link="UltraliskElectricShockPurchase" />
+    <AbilArray Link="UltraliskHighVoltagePurchase" />
+    <AbilArray Link="UltraliskLightningRaidPurchase" />
+    <AbilArray Link="UltraliskThunderstormPurchase" />
     <CardLayouts index="0">
+      <LayoutButtons Face="UltraliskElectricShock" Type="AbilCmd" AbilCmd="UltraliskElectricShockPurchase,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="UltraliskHighVoltage" Type="AbilCmd" AbilCmd="UltraliskHighVoltagePurchase,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="UltraliskLightningRaid" Type="AbilCmd" AbilCmd="UltraliskLightningRaidPurchase,Execute" Row="1" Column="2" />
+      <LayoutButtons Face="UltraliskThunderstorm" Type="AbilCmd" AbilCmd="UltraliskThunderstormPurchase,Execute" Row="1" Column="3" />
       <LayoutButtons index="7" Face="BurrowChargeCampaign" Type="AbilCmd" AbilCmd="UltraliskBurrowCharge,Execute" Requirements="" />
       <LayoutButtons index="8" Face="BurrowChargeLocked" Requirements="KerriganLevel13" />
       <LayoutButtons index="9" Face="TissueAssimilation" Type="Passive" AbilCmd="" Requirements="HaveHotSTissueAssimilation" Column="2" />

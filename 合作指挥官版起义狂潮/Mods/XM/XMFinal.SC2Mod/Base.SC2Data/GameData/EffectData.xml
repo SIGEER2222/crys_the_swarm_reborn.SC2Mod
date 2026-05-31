@@ -600,6 +600,12 @@
             <ValidatorArray value="BiomassTargetMarkValidators"/>
             <ValidatorArray value="BiomassBuff100CountLT1"/>
         </CEffectSet>
+    <CEffectApplyBehavior id="BiomassTargetMarkAB">
+            <Behavior value="BiomassTargetMark"/>
+        </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="BiomassTargetMarkRB">
+            <BehaviorLink value="BiomassTargetMark"/>
+        </CEffectRemoveBehavior>
     <CEffectSwitch id="BiomassTargetMarkSwitch">
             <CaseArray Validator="TargetHasBiomassTargetMark" Effect="BiomassTargetMarkRB"/>
             <CaseDefault value="BiomassTargetMarkAB"/>
@@ -10483,8 +10489,163 @@
             <PeriodicPeriodArray value="0.2"/>
             <PeriodicPeriodArray value="6.5"/>
         </CEffectCreatePersistent>
-    <!-- Minimal Abathur biomass effects required by XMFinal runtime triggers. -->
+    <CEffectSet id="BiomassPickupMarked">
+        <EffectArray value="BiomassPickupDummy"/>
+        <ValidatorArray value="TargetHasBiomassTargetMark"/>
+        <ValidatorArray value="BiomassTargetMarkValidators"/>
+        <ValidatorArray value="BiomassBuff100CountLT1"/>
+    </CEffectSet>
+    <CEffectSet id="BiomassPickup">
+        <EffectArray value="BiomassPickupDummy"/>
+        <ValidatorArray value="IsNotEggUnit"/>
+        <ValidatorArray value="BiomassNotMaxed"/>
+        <ValidatorArray value="NotTimedLifeUnitAndNotLarva"/>
+        <ValidatorArray value="NotWorker"/>
+        <ValidatorArray value="NotOverlord"/>
+        <ValidatorArray value="NotOverseer"/>
+        <ValidatorArray value="NotBrutalisk"/>
+        <ValidatorArray value="NotHotSLeviathan"/>
+    </CEffectSet>
+    <CEffectEnumArea id="TransfusionACSearch">
+        <SearchFilters value="Biological,Structure,Visible;Enemy,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="0.5" Effect="Transfusion"/>
+    </CEffectEnumArea>
+    <CEffectSwitch id="TransfusionACSwitch">
+        <CaseArray Validator="IsStructure" Effect="TransfusionACSearch"/>
+        <CaseDefault value="Transfusion"/>
+    </CEffectSwitch>
     <CEffectModifyUnit id="BiomassPickupDummy"/>
-    <CEffectModifyUnit id="BiomassPickupLM"/>
-    <CEffectModifyUnit id="BiomassPickupFullLM"/>
+    <CEffectApplyBehavior id="BiomassBuff10To100AB">
+        <Behavior value="BiomassBuff100"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="BiomassBuff10To100RB">
+        <BehaviorLink value="BiomassBuff10"/>
+        <Count value="10"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="BiomassBuff10To100Set">
+        <EffectArray value="BiomassBuff10To100AB"/>
+        <EffectArray value="BiomassBuff10To100RB"/>
+    </CEffectSet>
+    <CEffectSwitch id="BiomassBuff10To100Switch">
+        <CaseArray Validator="BiomassBuff10CountGE10" Effect="BiomassBuff10To100Set"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="BiomassBuff1To10AB">
+        <Behavior value="BiomassBuff10"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="BiomassBuff1To10RB">
+        <BehaviorLink value="BiomassBuff1"/>
+        <Count value="10"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="BiomassBuff1To10Set">
+        <EffectArray value="BiomassBuff1To10AB"/>
+        <EffectArray value="BiomassBuff1To10RB"/>
+    </CEffectSet>
+    <CEffectSwitch id="BiomassBuff1To10Switch">
+        <CaseArray Validator="BiomassBuff1CountGE10" Effect="BiomassBuff1To10Set"/>
+    </CEffectSwitch>
+    <CEffectLaunchMissile id="BiomassPickupLM">
+        <ImpactEffect value="BiomassPickupImpact"/>
+        <AmmoUnit value="BiomassPickupWeapon"/>
+        <Movers Link="BiomassMover"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="BiomassPickupFullLM">
+        <ImpactEffect value="BiomassPickupFullImpact"/>
+        <Movers Link="BiomassMover"/>
+    </CEffectLaunchMissile>
+    <CEffectModifyUnit id="BiomassPickupImpact"/>
+    <CEffectModifyUnit id="BiomassPickupFullImpact"/>
+    <CEffectApplyBehavior id="AbathurCollectBiomassAB">
+        <Behavior value="AbathurCollectBiomass"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="AbathurCollectBiomassInitialSet">
+        <EffectArray value="AbathurCollectBiomassSearch"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectEnumTransport id="AbathurCollectBiomassIterateTransport">
+        <Effect value="AbathurCollectBiomassAB"/>
+    </CEffectEnumTransport>
+    <CEffectEnumArea id="AbathurCollectBiomassSearch">
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="5" Effect="AbathurCollectBiomassSet"/>
+    </CEffectEnumArea>
+    <CEffectSet id="AbathurCollectBiomassSet">
+        <EffectArray value="AbathurCollectBiomassAB"/>
+        <EffectArray value="AbathurCollectBiomassIterateTransport"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="BiomassCreatedDummy"/>
+    <CEffectApplyBehavior id="BrutaliskTramplingCarapacePurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="BrutaliskTramplingCarapaceBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="BrutaliskSavageRendPurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="BrutaliskSavageRendBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="BrutaliskFleshRecompositionPurchaseEffect">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="BrutaliskFleshRecompositionBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="UltraliskElectricShockSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="UltraliskElectricShockApplyBuff"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="UltraliskElectricShockApplyBuff">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="UltraliskElectricShockBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="UltraliskHighVoltageSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="UltraliskHighVoltageApplyBuff"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="UltraliskHighVoltageApplyBuff">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="UltraliskHighVoltageBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="UltraliskLightningRaidSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="UltraliskLightningRaidApplyBuff"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="UltraliskLightningRaidApplyBuff">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="UltraliskLightningRaidBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="UltraliskThunderstormSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="UltraliskThunderstormApplyBuff"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="UltraliskThunderstormApplyBuff">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="UltraliskThunderstormBuff"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="UltraliskThunderstormDamage">
+        <EditorCategories value="Race:Zerg"/>
+        <Kind value="Spell"/>
+        <Amount value="30"/>
+        <Fraction value="0.3"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+    </CEffectDamage>
+    <CEffectSearchArea id="UltraliskThunderstormSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="Enemy;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="UltraliskThunderstormDamage"/>
+    </CEffectSearchArea>
+    <CEffectApplyBehavior id="UltraliskElectricShockStunApply">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Target"/>
+        <Behavior value="UltraliskElectricShockStun"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UltraliskHighVoltageSlowApply">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Target"/>
+        <Behavior value="UltraliskHighVoltageSlow"/>
+    </CEffectApplyBehavior>
 </Catalog>

@@ -260,14 +260,15 @@
     <CActorUnit id="MutaliskBroodlord">
             <ModelFlags index="OutlineEmitter" value="1"/>
         </CActorUnit>
-    <CActorUnit id="RavagerAbathur" parent="GenericBurrowerStandard" unitName="RavagerAbathur">
+  <CActorUnit id="RavagerAbathur" parent="GenericBurrowerStandard" unitName="RavagerAbathur">
             <Macros value="ZergBurrowStandardAnimMacro"/>
             <Macros value="ZergMediumBurrowEffects"/>
             <Macros value="UnloadDropAnim"/>
-            <Macros value="PhysicsDeathsSwarmGround"/>
-            <Macros value="PhysicsDeathsVoidGround"/>
-            <Macros value="TerrainSquibAnimations"/>
-            <Macros value="AbathurDeepTunnelImprovedMacro"/>
+    <Macros value="PhysicsDeathsSwarmGround"/>
+    <Macros value="PhysicsDeathsVoidGround"/>
+    <Macros value="TerrainSquibAnimations"/>
+    <Macros value="AbathurDeepTunnelImprovedMacro"/>
+    <Model value="RavagerAbathur"/>
 
             <On Terms="UnitHeightUpdate.*.Land" Send="Create Ravager_Land"/>
             <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium"/>
@@ -2022,6 +2023,7 @@
             <On Terms="Behavior.BiomassTargetMark.On" Send="Create"/>
             <On Terms="ActorCreation" Send="SetTintColorBlendPair 128,128,128 {255,255,255 2.000000} 3.000000 Bounce GlowSlow 175.000000"/>
             <On Terms="Behavior.BiomassTargetMark.Off" Send="Destroy"/>
+            <Model value="BiomassTargetMark"/>
             <ModelFlags index="AutomateGlobalLoops" value="1"/>
             <Host Subject="_Unit"/>
         </CActorModel>
@@ -15271,12 +15273,13 @@
             <On Terms="ActorCreation" Send="TimerSet 5.000000 DelayDestroy"/>
             <On Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy"/>
         </CActorModel>
-    <CActorUnit id="LeviathanCocoon" parent="GenericUnitMorph" unitName="LeviathanCocoon">
+  <CActorUnit id="LeviathanCocoon" parent="GenericUnitMorph" unitName="LeviathanCocoon">
             <Aliases value="_UnitMedium"/>
-            <On Terms="ActorCreation" Send="Create RavagerCocoonBirthSound"/>
-            <On Terms="ActorCreation" Send="$Birth 0 0.000000"/>
-            <On Terms="ActorDestruction" Send="Create LeviathanCocoonDeath"/>
-            <ModelFlags index="OutlineEmitter" value="1"/>
+    <On Terms="ActorCreation" Send="Create RavagerCocoonBirthSound"/>
+    <On Terms="ActorCreation" Send="$Birth 0 0.000000"/>
+    <On Terms="ActorDestruction" Send="Create LeviathanCocoonDeath"/>
+    <Model value="LeviathanCocoon"/>
+    <ModelFlags index="OutlineEmitter" value="1"/>
             <DeathArray index="Normal" ModelLink="RavagerCocoonDeath" SoundLink="Egg_Explode"/>
             <PortraitModel value="CocoonPortrait"/>
             <BarOffset value="50"/>
@@ -15287,11 +15290,16 @@
             <HeroIcon value="Assets\Textures\btn-unit-zerg-egg.dds"/>
             <LifeArmorIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level0.dds"/>
             <UnitIcon value="Assets\Textures\btn-unit-zerg-egg.dds"/>
-            <Wireframe>
-                <Image value="Assets\Textures\Wireframe-Zerg-RavagersEgg.dds"/>
-            </Wireframe>
-        </CActorUnit>
-    <CActorSound id="Liberator_BlackOps_Land" parent="SoundOneShot">
+    <Wireframe>
+      <Image value="Assets\Textures\Wireframe-Zerg-RavagersEgg.dds"/>
+    </Wireframe>
+  </CActorUnit>
+  <CActorModel id="LeviathanCocoonDeath">
+    <Model value="LeviathanCocoonDeath"/>
+    <On Terms="ActorCreation" Send="$Death"/>
+    <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
+  </CActorModel>
+  <CActorSound id="Liberator_BlackOps_Land" parent="SoundOneShot">
             <Sound value="Liberator_Land"/>
         </CActorSound>
     <CActorModel id="Liberator_BlackOps_ReEntry" parent="ModelAdditionNoAnims">
@@ -17629,7 +17637,7 @@
         </CActorModel>
     <CActorModel id="RavagerCocoonDeath">
             <On Terms="AbilMorph.*.Start; MorphFrom RavagerAbathurCocoon; ValidateUnit NotDead" Send="Create"/>
-            <On Terms="AbilMorph.*.Start; MorphFrom RavagerVileAbathurCocoon; ValidateUnit NotDead" Send="Create"/>
+            <On Terms="AbilMorph.*.Start; MorphFrom RavagerVileAbathurRebornCocoon; ValidateUnit NotDead" Send="Create"/>
             <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
             <On Terms="ActorCreation" Send="$Death"/>
             <Inherits index="BaseModelScale" value="1"/>
@@ -20661,7 +20669,7 @@
     <CActorUnit id="SILiberator" parent="GenericUnitBase" unitName="SILiberator">
             <Aliases value="_UnitLarge"/>
             <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
-            
+
             <On Terms="WeaponStart.SILiberatorA.AttackStart" Send="AnimBracketStart Attack Attack,Superior"/>
             <On Terms="WeaponStart.SILiberatorG.AttackStart" Send="AnimBracketStart Attack Attack"/>
             <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
@@ -26850,6 +26858,7 @@
             <On Terms="Behavior.EvolveBrutaliskTimedLife.On" Send="SetStatusBarOn 1 Duration"/>
             <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownLarge"/>
             <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="AnimClear Fidget"/>
+            <Model value="Brutalisk"/>
             
             <On Terms="Effect.SymbioteRecall.Start; At Caster" Send="RefSetFromRequest ::actor.Symbiote ::LastTargetUnit"/>
             <On Terms="Abil.BrutaliskDeepTunnel.SourceCastStart" Target="::actor.Symbiote" Send="AnimPlay TeleportStart Burrow PlayForever,NonLooping -1.000000 -1.000000 1.000000 AsTimeScale"/>
@@ -27271,6 +27280,9 @@
     <CActorUnit id="Hatchery">
             <Macros value="ZerglingRespawnAnim"/>
         </CActorUnit>
+    <CActorUnit id="HatcheryAbathur" unitName="HatcheryAbathur">
+            <Macros value="ZerglingRespawnAnim"/>
+        </CActorUnit>
     <CActorUnit id="Hellion">
             <On Terms="AbilMorph.*.Finish; MorphFrom HellionWreckage" Send="ClearTintColor"/>
             <On Terms="AbilMorph.*.Finish; MorphFrom HellionWreckage" Send="AnimSetPausedAll 0"/>
@@ -27392,6 +27404,7 @@
     <CActorUnit id="HotSLeviathan" parent="GenericUnitStandard" unitName="HotSLeviathan">
             <AnimBlendTime value="0.300000"/>
             <DeathArray index="Normal" ModelLink="LeviathanDeath" SoundLink="Leviathan_Explode"/>
+            <Model value="HotSLeviathan"/>
             <On Terms="ActorCreation" Send="ModelSwap LeviathanBirth"/>
             <On Terms="ActorCreation" Send="$Birth"/>
             <On Terms="AnimDone; AnimName Birth" Send="ModelSwap HotSLeviathan"/>
@@ -28548,15 +28561,15 @@
             <On Terms="ActorCreation; ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 1.1992"/>
             <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 2"/>
             <On Terms="ActorCreation; ValidatePlayer HaveKerriganInfestedCosmetic" Send="ModelSwap InfestedKerrigan"/>
-            <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="ModelSwap InfestedKerrigan"/>
-            <On Terms="UnitPortrait.*.Customize; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="PortraitCustomize KerriganPrimalPortrait KerriganPrimalPortrait"/>
+            <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="ModelSwap KerriganGhost00"/>
+            <On Terms="UnitPortrait.*.Customize; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="PortraitCustomize KerriganGhostPortrait KerriganGhostPortrait"/>
             <On Terms="UnitPortrait.*.Customize; ValidatePlayer HaveKerriganInfestedCosmetic" Send="PortraitCustomize KerriganPrimalPortrait KerriganPrimalPortrait"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Add" Send="SetWalkAnimMoveSpeed 1.1992"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Add" Send="SetTeamColor 234,0,255 234,0,255"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Add" Send="ModelSwap InfestedKerrigan"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="SetWalkAnimMoveSpeed 2"/>
             <On Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="SetTeamColor 255,128,0 255,128,0"/>
-            <On Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="ModelSwap InfestedKerrigan"/>
+            <On Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="ModelSwap KerriganGhost00"/>
         </CActorEventMacro>
     <CActorBeamSimple id="KerriganDoorBeamOfDeath" parent="BeamSimpleAnimationStyleContinuous">
             <On Terms="Behavior.KerriganDoorBeamOfDeath.On" Send="Create"/>
@@ -28609,7 +28622,80 @@
         </CActorUnit>
     <CActorSound id="KerriganLevelUpSound" parent="SoundOneShot"/>
     <CActorPortrait id="KerriganPrimalPortrait" parent="CompositePortrait"/>
-    <CActorEventMacro id="KerriganSpells">
+    <!--K5Kerrigan -->
+    <CActorMissile id="K5Kerrigan">
+        <On Terms="ActorCreation; ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetTeamColor 234,0,255 234,0,255"/>
+        <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetTeamColor 255,128,0 255,128,0"/>
+        <On Terms="ActorCreation; ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 1.1992"/>
+        <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 2"/>
+        <On Terms="ActorCreation; ValidatePlayer HaveKerriganInfestedCosmetic" Send="ModelSwap InfestedKerrigan"/>
+        <On Terms="ActorCreation; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="ModelSwap KerriganGhost00"/>
+        <On Terms="UnitPortrait.*.Customize; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="PortraitCustomize KerriganGhostPortrait KerriganGhostPortrait"/>
+        <On Terms="UnitPortrait.*.Customize; ValidatePlayer HaveKerriganInfestedCosmetic" Send="PortraitCustomize KerriganPrimalPortrait KerriganPrimalPortrait"/>
+        <On Terms="Abil.WildMutationMapWide.SourceCastStart; ValidatePlayer HaveKerriganInfestedCosmetic" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Abil.WildMutationMapWide.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+        <On Terms="Abil.SpawnBanelings.SourceCastStart; ValidatePlayer HaveKerriganInfestedCosmetic" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Abil.SpawnBanelings.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+        <On Terms="Abil.PsionicLift.SourceCastStart; ValidatePlayer HaveKerriganInfestedCosmetic" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Abil.PsionicLift.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+        <On Terms="Abil.MindBolt.SourceCastStart; ValidatePlayer HaveKerriganInfestedCosmetic" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Abil.MindBolt.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+        <On Terms="Abil.WildMutation.SourceCastStart; ValidatePlayer HaveKerriganInfestedCosmetic" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Abil.WildMutation.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+        <On Terms="Abil.PsiStrike.SourcePrepStart" Send="AnimPlay SpellC Spell,C PlayForever 0.250000 0.250000"/>
+        <On Terms="Abil.PsiStrike.SourceChannelStop" Send="AnimClear SpellC"/>
+        <On Terms="Behavior.PsiStrikeWalkSpeed.On" Send="AnimPlay SpellC Spell,C PlayForever 0.250000 0.250000"/>
+        <On Terms="Behavior.PsiStrikeWalkSpeed.Off" Send="AnimClear SpellC"/>
+        <On Terms="Abil.PrimalHeal.SourceCastStart; !UnitWalking" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Abil.K5Leviathan.SourceCastStart" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Abil.K5DropPods.SourceCastStart" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Abil.Apocalypse.SourcePrepStart" Send="$Spell PlayForever 0.250000 0.250000"/>
+        <On Terms="Abil.Apocalypse.SourcePrepStop" Send="AnimClear Spell"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
+        <On Terms="ActorCreation" Send="RefSet ::global.Kerrigan ::Self"/>
+        <On Terms="Behavior.KerriganBeamOfDeath.On" Send="AnimPlay BeamChannel Spell,E PlayForever"/>
+        <On Terms="Behavior.KerriganBeamOfDeath.Off" Send="AnimClear BeamChannel"/>
+        <On Terms="Behavior.KerriganDoorBeamOfDeath.On" Send="AnimPlay BeamChannel Spell,E PlayForever"/>
+        <On Terms="Behavior.KerriganDoorBeamOfDeath.Off" Send="AnimClear BeamChannel"/>
+        <On Terms="Behavior.KerriganWallMelt.On" Send="AnimPlay BeamChannel Spell,E PlayForever"/>
+        <On Terms="Behavior.KerriganWallMelt.Off" Send="AnimClear BeamChannel"/>
+        <On Terms="Abil.Haymaker.SourceCastStart" Send="AnimPlay Spell Stand,Work"/>
+        <On Terms="Behavior.KerriganWalk.On" Send="AnimGroupApply Victory"/>
+        <On Terms="Behavior.KerriganWalk.Off" Send="AnimGroupRemove Victory"/>
+        <On Terms="Behavior.KerriganWalk.On; ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 0.7968"/>
+        <On Terms="Behavior.KerriganWalk.Off; ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 1.1992"/>
+        <On Terms="Behavior.KerriganWalk.On; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 0.7968"/>
+        <On Terms="Behavior.KerriganWalk.Off; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="SetWalkAnimMoveSpeed 2"/>
+        <Remove Terms="ActorCreation; ValidateUnit HaveKerriganInfestedCosmetic" Send="Create KerriganHeroGlowPurple"/>
+        <Remove Terms="ActorCreation; !ValidateUnit HaveKerriganInfestedCosmetic" Send="Create KerriganHeroGlow"/>
+        <Remove Terms="Upgrade.KerriganInfestedCosmetic.Add" Send="Create KerriganHeroGlowPurple"/>
+        <Remove Terms="Upgrade.KerriganInfestedCosmetic.Remove" Send="Create KerriganHeroGlow"/>
+        <Remove Terms="UnitRevive.K5Kerrigan; IsStatus SoundRank 0" Send="Create KerriganX1_Ready"/>
+        <Remove Terms="UnitRevive.K5Kerrigan; IsStatus SoundRank 1" Send="Create KerriganX1_Ready_Queen"/>
+        <Remove Terms="UnitRevive.K5Kerrigan; IsStatus SoundRank 2" Send="Create KerriganX1_Ready_Primal"/>
+        <Remove Terms="Abil.PsionicLift.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+        <Remove Terms="Abil.MindBolt.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
+        <CustomUnitStatusFrame value="Coop_UnitStatus/KerriganCoopStatusFrameTemplate"/>
+        <MinimapIcon value="Assets\Textures\ui_minimap_icon_kerriganascendant.dds"/>
+        <MinimapIconScale value="0.700000"/>
+        <MinimapTooltip value="Unit/Name/K5Kerrigan"/>
+        <MinimapUseSelfColor value="0"/>
+        <MinimapUseSelectionColor value="0"/>
+        <ModelFlags index="OutlineEmitter" value="1"/>
+        <ShieldArmorIcon value="Assets\Textures\btn-upgrade-zerg-tissueassimilation.dds"/>
+        <SoundArray index="Ready" value="KerriganVoid_Pissed"/>
+        <SoundArray index="Help" value="KerriganVoid_Help"/>
+        <SoundArray index="What" value="KerriganVoid_What"/>
+        <SoundArray index="Yes" value="KerriganVoid_Yes"/>
+        <SoundArray index="Attack" value="KerriganVoid_Attack"/>
+        <SoundArray index="Pissed" value="KerriganVoid_Pissed"/>
+        <AbilSoundArray AbilCmd="PrimalSlash,Execute" Sound="Swarm_Silent"/>
+        <AbilSoundArray AbilCmd="PsiStrikeWalk,Execute" Sound="Swarm_Silent"/>
+        <StatusBarOn index="Custom" value="1"/>
+        <UnitIcon value="Assets\Textures\btn-unit-zerg-kerriganinfested.dds"/>
+        <MinimapRenderPriority value="Hero"/>
+    </CActorMissile>
+    <CActorEventMacro id="KerriganSpellsLegacy">
             
             <On Terms="Abil.SpawnBanelings.SourceCastStart; ValidatePlayer HaveKerriganInfestedCosmetic" Send="AnimPlay Spell Stand,Work"/>
             <On Terms="Abil.SpawnBanelings.SourceCastStart; !ValidatePlayer HaveKerriganInfestedCosmetic" Send="$Spell"/>
@@ -28656,6 +28742,39 @@
             <HostLaunchSiteOps Ops="SOpAttachHead"/>
             <HostImpactSiteOps Ops="SOpAttachHardPoint"/>
         </CActorBeamSimple>
+    <CActorModel id="KerriganMaelstromAttachment" parent="ModelAnimationStyleContinuous">
+        <On Terms="Behavior.KerriganMaelstrom.On" Send="Create"/>
+        <On Terms="Behavior.KerriganMaelstrom.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter" HoldRotation="1"/>
+        <AcceptedTransfers index="Rotation" value="0"/>
+        <Scale value="2.500000"/>
+    </CActorModel>
+    <CActorAction id="KerriganMaelstromAttack" parent="GenericAttack" effectAttack="KerriganMaelstromSet">
+        <EditorCategories value=""/>
+        <BeamScope value="Caster"/>
+        <ImpactSiteOps Ops="SOpAttachCenter SOpAttachHarness SOpAttachVolumeNoVizEnhance"/>
+        <ImpactMap index="None" Scale="0.500000" Sound="HighTemplar_PsionicOrbBeamImpact"/>
+        <ActionFlags index="ImpactMonitorsTeleports" value="1"/>
+        <LaunchSiteOps Ops="SOpAttachCenter"/>
+    </CActorAction>
+    <CActorBeamSimple id="KerriganMaelstromAttackBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <Macros value="ActionTargetTeleportDestroy"/>
+    </CActorBeamSimple>
+    <CActorRange id="KerriganMaelstromRange">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.KerriganMaelstrom.On" Send="Create"/>
+        <On Terms="Behavior.KerriganMaelstrom.Off" Send="Destroy"/>
+        <Range value="4.000000"/>
+    </CActorRange>
+    <CActorSplat id="K5KerriganBurrowedSplat">
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <Model value="K5KerriganBurrowedSplat"/>
+        <HostSiteOps HoldPosition="1"/>
+        <On Terms="Behavior.UnitKnockback.On" Send="Destroy"/>
+        <On Terms="Behavior.UnitKnockback.Off; ValidateUnit IsK5KerriganBurrowed" Send="Create"/>
+    </CActorSplat>
     <CActorSound id="KerriganX1_Death_Primal" parent="SoundOneShot"/>
     <CActorSound id="KerriganX1_Death_Queen" parent="SoundOneShot"/>
     <CActorSound id="KerriganX1_Death" parent="SoundOneShot"/>
@@ -29102,6 +29221,7 @@
             <HighlightTooltip value="Unit/Name/Bogus"/>
         </CActorUnit>
     <CActorUnit id="QueenCoop" parent="GenericUnitBase" unitName="QueenCoop">
+            <Model value="SwarmQueen"/>
             <On Terms="UnitBirth.QueenBurrowedCoop" Send="Create"/>
             <On Terms="UnitBirth.QueenBurrowedCoop" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
             <On Terms="UnitBirth.QueenCoop.Normal" Send="AnimPlay Unburrow Unburrow 0 0.000000"/>
@@ -29150,10 +29270,10 @@
             <Macros value="TerrainSquibAnimations"/>
             <Macros value="PhysicsDeathsSwarmGround"/>
             <Macros value="PhysicsDeathsVoidGround"/>
-            <Model value="Queen"/>
+            <Model value="SwarmQueen"/>
             <EventDataFootprint index="0" Actor="UnitFootprint" Model="QueenFootprint"/>
-            <BuildModel value="Queen"/>
-            <DeathArray index="Normal" ModelLink="QueenDeath" SoundLink="Queen_Explode" VoiceLink="QueenDeathVoice"/>
+            <BuildModel value="SwarmQueen"/>
+            <DeathArray index="Normal" ModelLink="SwarmQueenDeath" SoundLink="Queen_Explode" VoiceLink="Niadra_Death"/>
             <DeathArray index="Disintegrate" ModelLink="QueenDeathAcid" SoundLink="Uni_DeathFXAcid"/>
             <DeathArray index="Fire" ModelLink="QueenDeathFire" SoundLink="Uni_DeathFXFire"/>
             <DeathCustoms ModelLink="ZergLargeUnitDeathLow" Name="AntiGravZerg"/>
@@ -29254,7 +29374,7 @@
             </Wireframe>
             <Aliases value="_UnitMedium"/>
         </CActorUnit>
-    <CActorUnit id="RavagerVileAbathurCocoon" parent="GenericUnitMorph" unitName="RavagerVileAbathurCocoon">
+    <CActorUnit id="RavagerVileAbathurRebornCocoon" parent="GenericUnitMorph" unitName="RavagerVileAbathurRebornCocoon">
             <Model value="RavagerAbathurCocoon"/>
             <On Terms="ActorCreation" Send="Create RavagerCocoonBirthSound"/>
             <On Terms="ActorCreation" Send="$Birth 0 0.000000"/>
@@ -30473,7 +30593,110 @@
             <BarOffset value="110"/>
             <NameOffset value="60"/>
             <SoundArray index="Construction" value="Zerg_BuildingMorphWhat"/>
-            <LifeArmorIcon value="Assets\Textures\btn-armor-zerg-building.dds"/>
-            
-        </CActorUnit>
+        <LifeArmorIcon value="Assets\Textures\btn-armor-zerg-building.dds"/>
+    </CActorUnit>
+    <CActorSound id="BiomassPickupActorSound" parent="SoundOneShot">
+        <Sound value="Biomass_PickupDelayed"/>
+        <Inherits index="CloakEffect" value="1"/>
+        <On Terms="Effect.BiomassPickupFullLM.Stop; At Target" Send="Create"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth" HoldRotation="1"/>
+    </CActorSound>
+    <CActorUnit id="BiomassPickup" parent="GenericUnitStandardNoAutoSoundLinks" unitName="BiomassPickup">
+        <Aliases value="_NoGlaze"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="Create BlueHeroOmniLightAir"/>
+        <On Terms="ActorCreation" Send="Create ZergSampleGlow"/>
+        <On Terms="ActorCreation" Send="Create SoundEmitter Doodad_DefilerBonesStandLoop"/>
+        <On Terms="ActorCreation" Send="TimerSet 4.600000 Glow"/>
+        <On Terms="TimerExpired; TimerName Glow" Send="Create ZergSampleGlow"/>
+        <On Terms="TimerExpired; TimerName Glow" Send="TimerSet 4.600000 Glow"/>
+        <On Terms="ActorCreation" Send="Create BiomassBuffPickup"/>
+        <On Terms="ActorCreation; IsActorLocalPlayer" Send="SetStatusBarOn 1 Duration"/>
+        <On Terms="Effect.BiomassPickupFullLM.Start; At Caster" Send="AnimPlay Walk Walk PlayForever"/>
+        <Model value="Invisible"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\wireframe-zerg-pickupbiomass.dds"/>
+        </GroupIcon>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <MinimapIcon value="Assets\Textures\ui_minimap_icon_zergresearch.dds"/>
+        <UnitIcon value="Assets\Textures\wireframe-zerg-pickupbiomass.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-zerg-pickupbiomass.dds"/>
+        </Wireframe>
+        <FogVisibility value="Dimmed"/>
+        <Filter index="Ally" value="1"/>
+        <Filter index="Neutral" value="1"/>
+        <Filter index="Enemy" value="1"/>
+    </CActorUnit>
+    <CActorMissile id="BiomassPickupAttackMissile" parent="GenericAttackMissile" unitName="BiomassPickupWeapon">
+        <Model value="BiomassBuffPickup"/>
+        <On Terms="ActorCreation" Send="AnimPlay Walk Walk PlayForever"/>
+    </CActorMissile>
+    <CActorAction id="BiomassPickupAttack" parent="GenericAttack" effectImpact="BiomassPickupImpact" effectLaunch="BiomassPickupLM">
+        <LaunchAssets Sound=""/>
+        <ImpactMap index="None" Model="" Sound="Biomass_Pickup"/>
+    </CActorAction>
+    <CActorModel id="BiomassBuffPickup" parent="ModelAddition">
+        <AutoScaleFactor value="1.500000"/>
+        <Inherits index="Scale" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <HostSiteOps Ops="SOpAttachCenter KerriganVoidCoopEconDropGasOrbiter SOpForwardNorth"/>
+        <On Terms="Behavior.BiomassTimedLifeWarningDelay.Off" Send="AnimPlay Warning Stand,Work PlayForever"/>
+        <On Terms="Effect.BiomassBuffLT1PickupLM.Start" Send="AnimClear Stand"/>
+        <On Terms="Effect.BiomassBuff1PickupLM.Start" Send="AnimClear Stand"/>
+        <On Terms="Effect.BiomassBuff2PickupLM.Start" Send="AnimClear Stand"/>
+        <On Terms="Effect.BiomassBuff3PickupLM.Start" Send="AnimClear Stand"/>
+        <On Terms="Effect.BiomassBuff4PickupLM.Start" Send="AnimClear Stand"/>
+        <On Terms="Effect.BiomassBuff6PickupLM.Start" Send="AnimClear Stand"/>
+        <On Terms="Effect.BiomassBuffLT1PickupLM.Start" Send="AnimPlay Walk Walk"/>
+        <On Terms="Effect.BiomassBuff1PickupLM.Start" Send="AnimPlay Walk Walk"/>
+        <On Terms="Effect.BiomassBuff2PickupLM.Start" Send="AnimPlay Walk Walk"/>
+        <On Terms="Effect.BiomassBuff3PickupLM.Start" Send="AnimPlay Walk Walk"/>
+        <On Terms="Effect.BiomassBuff4PickupLM.Start" Send="AnimPlay Walk Walk"/>
+        <On Terms="Effect.BiomassBuff6PickupLM.Start" Send="AnimPlay Walk Walk"/>
+        <On Terms="Effect.BiomassBuffLT1PickupSet.Start" Send="AnimClear Walk"/>
+        <On Terms="Effect.BiomassBuff1PickupSet.Start" Send="AnimClear Walk"/>
+        <On Terms="Effect.BiomassBuff2PickupSet.Start" Send="AnimClear Walk"/>
+        <On Terms="Effect.BiomassBuff3PickupSet.Start" Send="AnimClear Walk"/>
+        <On Terms="Effect.BiomassBuff4PickupSet.Start" Send="AnimClear Walk"/>
+        <On Terms="Effect.BiomassBuff6PickupSet.Start" Send="AnimClear Walk"/>
+        <On Terms="UnitDeath.BiomassPickup" Send="$Death"/>
+        <On Terms="AnimDone; AnimName Death" Send="Destroy"/>
+        <Model value="BiomassBuffPickup"/>
+        <ModelFlags index="AutomateGlobalLoops" value="1"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth"/>
+        <ScaleMax value="0.550000,0.550000,0.550000"/>
+        <ScaleMin value="0.550000,0.550000,0.550000"/>
+    </CActorModel>
+    <CActorModel id="AbathurCollectBiomassTarget" parent="ModelAnimationStyleContinuous">
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <On Terms="Behavior.AbathurCollectBiomass.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.AbathurCollectBiomass.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetTintColor {0,136,102 3.000000}"/>
+    </CActorModel>
+    <CActorModel id="AbathurCollectBiomassImpact" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.AbathurCollectBiomassSearch.Start" Send="Create"/>
+        <HostSiteOps Ops="SOpShadowRespectsBaseHeight"/>
+        <Model value="FungalGrowthImpact"/>
+    </CActorModel>
+    <CActorModel id="AbathurCollectBiomassImpactHeal" parent="ModelAnimationStyleOneShot">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="Effect.BiomassPickupFullLM.Start; At Target" Send="Create"/>
+        <On Terms="ActorCreation; !IsActorLocalPlayer" Send="SetVisibility"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachCenter SOpForwardNorth" HoldRotation="1"/>
+        <Filter index="Ally" value="1"/>
+        <Filter index="Neutral" value="1"/>
+        <Filter index="Enemy" value="1"/>
+    </CActorModel>
 </Catalog>

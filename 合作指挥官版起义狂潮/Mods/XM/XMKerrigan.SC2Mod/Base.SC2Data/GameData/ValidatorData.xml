@@ -13,6 +13,14 @@
     <Behavior value="KerrigansInitialCocoonTimer" />
     <WhichUnit Value="Caster" />
   </CValidatorUnitCompareBehaviorCount>
+  <CValidatorPlayerRequirement id="HaveHotSTorrasque">
+    <Find value="1" />
+    <Value value="HaveHotSTorrasque" />
+  </CValidatorPlayerRequirement>
+  <CValidatorUnitCompareBehaviorCount id="TorrasqueCantRevive">
+    <WhichUnit Value="Caster" />
+    <Behavior value="TorrasqueTimerBehavior" />
+  </CValidatorUnitCompareBehaviorCount>
   <CValidatorUnitCompareVital id="CasterShieldsNotFull">
     <ResultFailed value="RequiresHealTarget" />
   </CValidatorUnitCompareVital>

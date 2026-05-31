@@ -690,7 +690,7 @@
             <DeathRevealRadius value="3"/>
             <Facing value="45"/>
             <Race value="Prot"/>
-            <Mob value="Campaign"/>
+            <Mob value="Multiplayer"/>
             <FlagArray index="Turnable" value="0"/>
             <FlagArray index="PreventDestroy" value="1"/>
             <FlagArray index="PenaltyRevealed" value="1"/>
@@ -2807,18 +2807,15 @@
         </CUnit>
     <CUnit id="CoopCasterAbathur" parent="CoopGlobalCaster">
             <Race value="Zerg"/>
-            <AbilArray Link="CreepTumorBuild"/>
+            <AbilArray Link="SpawnToxicNest"/>
             <AbilArray Link="AbathurCreepMend"/>
-            
             <AbilArray Link="BiomassTargetMark"/>
-            
             <CardLayouts>
-                <LayoutButtons Face="BuildCreepTumor" Type="AbilCmd" AbilCmd="CreepTumorBuild,Build3" Row="0" Column="0"/>
+                <LayoutButtons Face="SpawnToxicNest" Type="AbilCmd" AbilCmd="SpawnToxicNest,Build1" Row="0" Column="0"/>
                 <LayoutButtons Face="AbathurCreepMend" Type="AbilCmd" AbilCmd="AbathurCreepMend,Execute" Row="0" Column="1"/>
+                <LayoutButtons Face="BiomassTargetMark" Type="AbilCmd" AbilCmd="BiomassTargetMark,Execute" Row="0" Column="2"/>
             </CardLayouts>
             <EditorCategories value="ObjectType:Other,ObjectFamily:FactionEvolved"/>
-            
-            
             <LeaderAlias value=""/>
         </CUnit>
     <CUnit id="CoopCasterDehaka" parent="CoopGlobalCaster">
@@ -26790,17 +26787,27 @@
     <CUnit id="K5Kerrigan">
             <CardLayouts index="0">
                 <LayoutButtons index="6" Face="PrimalSlash" Type="AbilCmd" AbilCmd="PrimalSlash,Execute" Row="2" Column="0"/>
+                <LayoutButtons index="7" Face="MindBolt" Type="AbilCmd" AbilCmd="MindBolt,Execute" Row="2" Column="0"/>
                 <LayoutButtons index="8" Face="K5HeroicFortitude" Type="Passive" AbilCmd="" Requirements="HaveK5HeroicFortitude"/>
                 <LayoutButtons index="9" Face="PsiStrike" Type="AbilCmd" AbilCmd="PsiStrikeWalk,Execute" Row="2" Column="1"/>
                 <LayoutButtons index="10" Face="KerriganChainLightning" Requirements="KerriganLevel09" Row="1" Column="2"/>
                 <LayoutButtons index="11" Face="PsionicLift" Type="AbilCmd" AbilCmd="PsionicLift,Execute" Row="2" Column="2"/>
                 <LayoutButtons index="15" Face="KerriganVoidCoopEconDrop" Type="AbilCmd" AbilCmd="KerriganVoidCoopEconDrop,Execute" Row="1" Column="0"/>
+                <LayoutButtons index="16" Face="PrimalHeal" Type="AbilCmd" AbilCmd="PrimalHeal,Execute" Row="2" Column="2"/>
+                <LayoutButtons index="17" Face="WildMutation" Type="AbilCmd" AbilCmd="WildMutation,Execute" Row="2" Column="2"/>
                 <LayoutButtons index="18" Face="KerriganFuryLocked" Requirements="KerriganLevel10" Column="3"/>
                 <LayoutButtons index="19" Face="ChainReaction" Type="Passive" Requirements="HaveK5ChainLightning" Row="1" Column="2"/>
                 <LayoutButtons index="20" Face="K5Fury" Type="Passive" Requirements="HaveK5Fury" Row="1" Column="3"/>
                 <LayoutButtons index="21" Face="K5CooldownsLocked" Requirements="KerriganLevel09"/>
                 <LayoutButtons index="22" Face="KerriganVoidCoopCrushingGripWave" Type="AbilCmd" AbilCmd="KerriganVoidCoopCrushingGripWave,Execute" Row="2" Column="3"/>
                 <LayoutButtons index="23" Face="KerriganCrushingGripWaveLocked" Requirements="KerriganLevel02" Row="2" Column="3"/>
+                <LayoutButtons index="24" Face="KerriganAssimilation" Type="Passive" Row="1" Column="0"/>
+                <LayoutButtons index="25" Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
+                <LayoutButtons index="26" Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
+                <LayoutButtons index="27" Face="Apocalypse" Type="AbilCmd" AbilCmd="Apocalypse,Execute" Row="2" Column="3"/>
+                <LayoutButtons index="28" Face="K5DropPods" Type="AbilCmd" AbilCmd="K5DropPods,Execute" Row="2" Column="3"/>
+                <LayoutButtons index="29" Face="K5Leviathan" Type="AbilCmd" AbilCmd="K5Leviathan,Execute" Row="2" Column="3"/>
+                <LayoutButtons index="30" Face="BurrowDown" Type="AbilCmd" AbilCmd="K5KerriganBurrow,Execute" Row="2" Column="4"/>
                 <LayoutButtons index="26">
                     <Face value="K5Cooldowns"/>
                     <Type value="Passive"/>
@@ -26821,6 +26828,8 @@
             <AbilArray Link="KerriganMaelstrom"/>
             <AbilArray Link="KerriganVoidCoopEconDrop"/>
             <AbilArray Link="KerriganVoidCoopCrushingGripWave"/>
+            <AbilArray Link="Apocalypse"/>
+            <AbilArray Link="K5DropPods"/>
             <AbilArray Link="attack"/>
             <AbilArray Link="stop"/>
             <AbilArray Link="move"/>
@@ -26828,8 +26837,12 @@
             <AbilArray Link="K5KerriganPsiStrikeMorph"/>
             <AbilArray Link="PsiStrikeWalk"/>
             <AbilArray Link="MindBolt"/>
+            <AbilArray Link="PrimalHeal"/>
             <AbilArray Link="PrimalSlash"/>
             <AbilArray Link="K5KerriganBurrow"/>
+            <AbilArray Link="K5Leviathan"/>
+            <AbilArray Link="SpawnBanelings"/>
+            <AbilArray Link="WildMutation"/>
             <LifeStart value="800"/>
             <LifeMax value="800"/>
             <LifeArmor value="3"/>
@@ -26897,8 +26910,18 @@
             <AbilArray Link="KerriganMaelstrom"/>
             <AbilArray Link="KerriganVoidCoopEconDrop"/>
             <AbilArray Link="KerriganVoidCoopCrushingGripWave"/>
+            <AbilArray Link="Apocalypse"/>
+            <AbilArray Link="K5DropPods"/>
+            <AbilArray Link="K5Leviathan"/>
+            <AbilArray Link="PrimalHeal"/>
+            <AbilArray Link="SpawnBanelings"/>
+            <AbilArray Link="WildMutation"/>
             <BehaviorArray Link="KerriganVeterancyDummy"/>
             <BehaviorArray Link="KerriganUnburrowedDummy"/>
+            <BehaviorArray Link="KerriganAssimilationLifesteal"/>
+            <BehaviorArray Link="HeroCCImmunity"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="HeroicFortitude"/>
             <WeaponArray Link="K5Ranged"/>
             <CardLayouts>
                 <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -26906,16 +26929,25 @@
                 <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
                 <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
                 <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="MindBolt" Type="AbilCmd" AbilCmd="MindBolt,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="K5HeroicFortitude" Type="Passive" Requirements="HaveK5HeroicFortitude" Row="2" Column="0"/>
                 <LayoutButtons Face="PrimalSlash" Type="AbilCmd" AbilCmd="PrimalSlash,Execute" Row="2" Column="0"/>
                 <LayoutButtons Face="PsiStrike" Type="AbilCmd" AbilCmd="PsiStrikeWalk,Execute" Row="2" Column="1"/>
                 <LayoutButtons Face="PsionicLift" Type="AbilCmd" AbilCmd="PsionicLift,Execute" Row="2" Column="2"/>
                 <LayoutButtons Face="KerriganVoidCoopCrushingGripWave" Type="AbilCmd" AbilCmd="KerriganVoidCoopCrushingGripWave,Execute" Row="2" Column="3"/>
                 <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="K5KerriganBurrow,Execute" Row="2" Column="4"/>
                 <LayoutButtons Face="KerriganVoidCoopEconDrop" Type="AbilCmd" AbilCmd="KerriganVoidCoopEconDrop,Execute" Row="1" Column="0"/>
+                <LayoutButtons Face="PrimalHeal" Type="AbilCmd" AbilCmd="PrimalHeal,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="WildMutation" Type="AbilCmd" AbilCmd="WildMutation,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="SpawnBanelings" Type="AbilCmd" AbilCmd="SpawnBanelings,Execute" Row="2" Column="2"/>
                 <LayoutButtons Face="ChainReaction" Type="Passive" Requirements="HaveK5ChainLightning" Row="1" Column="2"/>
                 <LayoutButtons Face="K5Fury" Type="Passive" Requirements="HaveK5Fury" Row="1" Column="3"/>
                 <LayoutButtons Face="CommanderKerriganKerriganEnergyRegeneration" Type="Passive" Requirements="HaveKerriganVoidCoopEnergyRegen" Row="1" Column="4"/>
                 <LayoutButtons Face="K5Cooldowns" Type="Passive" Requirements="HaveK5Cooldowns" Row="1" Column="1"/>
+                <LayoutButtons Face="KerriganAssimilation" Type="Passive" Row="1" Column="0"/>
+                <LayoutButtons Face="Apocalypse" Type="AbilCmd" AbilCmd="Apocalypse,Execute" Row="2" Column="3"/>
+                <LayoutButtons Face="K5DropPods" Type="AbilCmd" AbilCmd="K5DropPods,Execute" Row="2" Column="3"/>
+                <LayoutButtons Face="K5Leviathan" Type="AbilCmd" AbilCmd="K5Leviathan,Execute" Row="2" Column="3"/>
             </CardLayouts>
             <Radius value="0.375"/>
             <SeparationRadius value="0.375"/>
@@ -27384,6 +27416,8 @@
             </Fidget>
         </CUnit>
     <CUnit id="Brutalisk">
+            <Race value="Zerg"/>
+            <Mob value="Multiplayer"/>
             <SpeedMultiplierCreep value="1.3"/>
             <Radius value="1.25"/>
             <SeparationRadius value="1.25"/>
@@ -27393,7 +27427,7 @@
             <Description value="Button/Tooltip/Brutalisk"/>
             <DeathRevealRadius value="3"/>
             <Race value="Zerg"/>
-            <Mob value="Campaign"/>
+            <Mob value="Multiplayer"/>
             <FlagArray index="PreventDestroy" value="1"/>
             <FlagArray index="UseLineOfSight" value="1"/>
             <FlagArray index="Cloaked" value="1"/>
@@ -27423,12 +27457,33 @@
             <MinimapRadius value="2.625"/>
             <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"/>
             <GlossaryCategory value="Unit/Category/ZergUnits"/>
-            <AbilArray Link="BurrowBrutaliskUp"/>
+            <AbilArray Link="BurrowBrutaliskDown"/>
+            <AbilArray Link="BrutaliskDeepTunnel"/>
+            <AbilArray Link="SymbioteCarapace"/>
+            <AbilArray Link="BurrowBrutaliskDown"/>
             <AbilArray Link="AbathurSymbioteHangerBrutalisk"/>
+            <AbilArray Link="que1Passive"/>
+            <AbilArray Link="BrutaliskTramplingCarapacePurchase"/>
+            <AbilArray Link="BrutaliskSavageRendPurchase"/>
+            <AbilArray Link="BrutaliskFleshRecompositionPurchase"/>
             <CardLayouts>
-                <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowBrutaliskUp,Execute" Row="2" Column="4"/>
+                <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="BrutaliskDeepTunnel,Execute" Row="2" Column="3"/>
+                <LayoutButtons Face="SymbioteCarapace" Type="AbilCmd" AbilCmd="SymbioteCarapace,Execute" Row="1" Column="4"/>
+                <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowBrutaliskDown,Execute" Row="2" Column="4"/>
                 <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="1" Column="4"/>
                 <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons>
+                    <Face value="CommanderAbathurBrutaliskSymbiote"/>
+                    <Type value="Passive"/>
+                    <AbilCmd value="AbathurSymbioteHangerBrutalisk,Ammo1"/>
+                    <Requirements value="HaveBrutaliskgainsSymbioteUpgrade"/>
+                    <Row value="2"/>
+                    <Column value="1"/>
+                </LayoutButtons>
+                <LayoutButtons Face="BrutaliskTramplingCarapace" Type="AbilCmd" AbilCmd="BrutaliskTramplingCarapacePurchase,Execute" Row="1" Column="0"/>
+                <LayoutButtons Face="BrutaliskSavageRend" Type="AbilCmd" AbilCmd="BrutaliskSavageRendPurchase,Execute" Row="1" Column="1"/>
+                <LayoutButtons Face="BrutaliskFleshRecomposition" Type="AbilCmd" AbilCmd="BrutaliskFleshRecompositionPurchase,Execute" Row="1" Column="2"/>
+                <LayoutButtons Face="Strider" Type="Passive" Row="1" Column="3"/>
             </CardLayouts>
             <Food value="8"/>
             <CostResource index="Minerals" value="500"/>
@@ -27905,10 +27960,13 @@
             <SubgroupPriority value="101"/>
         </CUnit>
     <CUnit id="EvolutionChamber">
+            <AbilArray Link="evolutionchamberresearch"/>
             <BehaviorArray Link="EvolutionChamberQueue"/>
             <CardLayouts index="0">
                 <LayoutButtons Face="SporeCrawlerPassive" Type="Passive" Requirements="HotSHaveSporeCrawler" Row="1" Column="0"/>
                 <LayoutButtons Face="AberrationPassive" Type="Passive" Requirements="HotSHaveAberration" Row="1" Column="1"/>
+                <LayoutButtons Face="EvolveHatcheryDoubleQueue" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research11" Row="0" Column="4"/>
+                <LayoutButtons Face="EvolveHatcheryDoubleQueueLocked" Type="Passive" Requirements="LearnHatcheryDoubleQueue" Row="0" Column="4"/>
             </CardLayouts>
             <TechTreeUnlockedUnitArray value=""/>
         </CUnit>
@@ -28130,6 +28188,7 @@
         </CUnit>
     <CUnit id="Hatchery">
             <CardLayouts index="0">
+                <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueen,Train4" Row="0" Column="3"/>
                 <LayoutButtons index="9" Face="EvolveVentralSacks" Type="AbilCmd" AbilCmd="LairResearch,Research3" Row="1" Column="1"/>
                 <LayoutButtons Face="RespawnZergling" Type="AbilCmd" AbilCmd="ZerglingRespawn,Execute" Row="0" Column="4"/>
             </CardLayouts>
@@ -28140,10 +28199,16 @@
             <AbilArray Link="ZerglingRespawnDeath"/>
             <AbilArray Link="ZerglingRespawn"/>
             <AbilArray Link="ZerglingRespawnCounter"/>
-            <AbilArray Link="ZerglingRespawnTrain"/>
+            <AbilArray Link="TrainQueen"/>
             <AbilArray Link="RallyBlock"/>
             <BehaviorArray Link="QueenofVenomHatcherySearch"/>
             <BehaviorArray Link="makeCreep8x6Enhanced"/>
+        </CUnit>
+    <CUnit id="HatcheryAbathur" parent="Hatchery">
+            <TechAliasArray value="Alias_Hatchery"/>
+            <Race value="Zerg"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDefeat" value="1"/>
         </CUnit>
     <CUnit id="Hellion">
             <AbilArray Link="HellionWreckage"/>
@@ -28190,6 +28255,7 @@
         </CUnit>
     <CUnit id="Hive">
             <CardLayouts index="0">
+                <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueen,Train4" Row="0" Column="3"/>
                 <LayoutButtons index="7" Face="EvolveVentralSacks" Type="AbilCmd" AbilCmd="LairResearch,Research3" Row="1" Column="1"/>
                 <LayoutButtons Face="RespawnZergling" Type="AbilCmd" AbilCmd="ZerglingRespawn,Execute" Row="0" Column="4"/>
             </CardLayouts>
@@ -28200,7 +28266,7 @@
             <AbilArray Link="ZerglingRespawnDeath"/>
             <AbilArray Link="ZerglingRespawn"/>
             <AbilArray Link="ZerglingRespawnCounter"/>
-            <AbilArray Link="ZerglingRespawnTrain"/>
+            <AbilArray Link="TrainQueen"/>
             <AbilArray Link="RallyBlock"/>
             <BehaviorArray Link="QueenofVenomHatcherySearch"/>
             <BehaviorArray Link="makeCreep8x6Enhanced"/>
@@ -28372,7 +28438,7 @@
             <DeathRevealRadius value="3"/>
             <Facing value="45"/>
             <Race value="Zerg"/>
-            <Mob value="Campaign"/>
+            <Mob value="Multiplayer"/>
             <LifeStart value="1000"/>
             <LifeMax value="1000"/>
             <LifeArmor value="2"/>
@@ -28409,8 +28475,7 @@
             <AbilArray Link="stop"/>
             <AbilArray Link="SymbioteCarapace"/>
             <AbilArray Link="AbathurSymbioteHangerLeviathan"/>
-            <AbilArray Link="HotSBioPlasmidDischarge"/>
-            <AbilArray Link="HotSBioStasis"/>
+            <AbilArray Link="que1Passive"/>
             <BehaviorArray Link="CarapaceDamageResponse"/>
             <CardLayouts>
                 <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
@@ -28418,8 +28483,6 @@
                 <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
                 <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
                 <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-                <LayoutButtons Face="HotSBioPlasmidDischarge" Type="AbilCmd" AbilCmd="HotSBioPlasmidDischarge,Execute" Row="2" Column="0"/>
-                <LayoutButtons Face="HotSBioStasis" Type="AbilCmd" AbilCmd="HotSBioStasis,Execute" Row="2" Column="1"/>
                 <LayoutButtons Face="AbathurBrutaliskLeviathanSymbiote" Type="Passive" Requirements="HaveBrutaliskLeviathanSymbiote" Row="2" Column="0"/>
                 <LayoutButtons Face="AbathurBrutaliskLeviathanSymbioteLocked" Type="Passive" Requirements="AbathurLevel10" Row="2" Column="0"/>
             </CardLayouts>
@@ -30410,6 +30473,7 @@
         </CUnit>
     <CUnit id="Lair">
             <CardLayouts index="0">
+                <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueen,Train4" Row="0" Column="3"/>
                 <LayoutButtons index="9" Face="EvolveVentralSacks" Type="AbilCmd" AbilCmd="LairResearch,Research3" Row="1" Column="1"/>
                 <LayoutButtons Face="RespawnZergling" Type="AbilCmd" AbilCmd="ZerglingRespawn,Execute" Row="0" Column="4"/>
             </CardLayouts>
@@ -30420,7 +30484,7 @@
             <AbilArray Link="ZerglingRespawnDeath"/>
             <AbilArray Link="ZerglingRespawn"/>
             <AbilArray Link="ZerglingRespawnCounter"/>
-            <AbilArray Link="ZerglingRespawnTrain"/>
+            <AbilArray Link="TrainQueen"/>
             <AbilArray Link="RallyBlock"/>
             <BehaviorArray Link="QueenofVenomHatcherySearch"/>
             <BehaviorArray Link="makeCreep8x6Enhanced"/>
@@ -31040,7 +31104,7 @@
             <AbilArray Link="move"/>
             <AbilArray Link="QueenBuild"/>
             <AbilArray Link="BurrowQueenDownCoop"/>
-            <AbilArray Link="Transfusion"/>
+            <AbilArray Link="BioMechanicalTransfusion"/>
             <AbilArray Link="DeepTunnel"/>
             <AbilArray Link="KerriganEnhance"/>
             <AbilArray Link="SpawnLarva"/>
@@ -31059,7 +31123,8 @@
                 <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowQueenDownCoop,Execute" Row="2" Column="4"/>
                 <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="KerriganEnhance,Off" Row="2" Column="4"/>
                 <LayoutButtons Face="MorphMorphalisk" Type="AbilCmd" AbilCmd="SpawnLarva,Execute" Row="2" Column="1"/>
-                <LayoutButtons Face="Transfusion" Type="AbilCmd" AbilCmd="Transfusion,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="BioMechanicalTransfusion" Type="AbilCmd" AbilCmd="BioMechanicalTransfusion,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="BioMechanicalTransfusionPassive" Type="Passive" Requirements="HaveBioMechanicalTransfusionPassive" Row="1" Column="1"/>
                 <LayoutButtons Face="InjectLarvaPassive" Type="Passive" Requirements="HaveQueenDoubleInjectLarva" Row="1" Column="0"/>
                 <LayoutButtons Face="ZagaraQueenInjectLarvaLocked" Type="Passive" Requirements="ZagaraLevel03" Row="1" Column="0"/>
             </CardLayouts>
@@ -31094,6 +31159,67 @@
             </Fidget>
             <TauntDuration index="Dance" value="5"/>
             <TechAliasArray value="Alias_Queen"/>
+        </CUnit>
+    <CUnit id="QueenCoopBurrowed">
+            <Description value="Button/Tooltip/Queen"/>
+            <DeathRevealRadius value="3"/>
+            <Race value="Zerg"/>
+            <Mob value="Multiplayer"/>
+            <FlagArray index="PreventDestroy" value="1"/>
+            <FlagArray index="UseLineOfSight" value="1"/>
+            <FlagArray index="Cloaked" value="1"/>
+            <FlagArray index="Buried" value="1"/>
+            <FlagArray index="AIThreatGround" value="1"/>
+            <FlagArray index="AIThreatAir" value="1"/>
+            <FlagArray index="AIDefense" value="1"/>
+            <PlaneArray index="Ground" value="1"/>
+            <Collide index="Burrow" value="1"/>
+            <Attributes index="Armored" value="1"/>
+            <Attributes index="Biological" value="1"/>
+            <Attributes index="Psionic" value="1"/>
+            <LifeStart value="175"/>
+            <LifeMax value="175"/>
+            <LifeArmor value="1"/>
+            <LifeRegenRate value="0.2734"/>
+            <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+            <EnergyStart value="50"/>
+            <EnergyMax value="200"/>
+            <EnergyRegenRate value="0.5625"/>
+            <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+            <Mover value="Burrowed"/>
+            <StationaryTurningRate value="719.4726"/>
+            <TurningRate value="719.4726"/>
+            <Sight value="5"/>
+            <Food value="-2"/>
+            <CostCategory value="Army"/>
+            <CostResource index="Minerals" value="150"/>
+            <AttackTargetPriority value="20"/>
+            <AbilArray Link="stop"/>
+            <AbilArray Link="BurrowQueenUpCoop"/>
+            <AbilArray Link="QueenBuild"/>
+            <AbilArray Link="BioMechanicalTransfusion"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <CardLayouts>
+                <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+                <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowQueenUpCoop,Execute" Row="2" Column="4"/>
+                <LayoutButtons Face="BioMechanicalTransfusion" Type="AbilCmd" AbilCmd="BioMechanicalTransfusion,Execute" Row="2" Column="2"/>
+                <LayoutButtons Face="BioMechanicalTransfusionPassive" Type="Passive" Requirements="HaveBioMechanicalTransfusionPassive" Row="1" Column="1"/>
+                <LayoutButtons Face="InjectLarvaPassive" Type="Passive" Requirements="HaveQueenDoubleInjectLarva" Row="1" Column="0"/>
+                <LayoutButtons Face="ZagaraQueenInjectLarvaLocked" Type="Passive" Requirements="ZagaraLevel03" Row="1" Column="0"/>
+            </CardLayouts>
+            <Radius value="0.875"/>
+            <SeparationRadius value="0"/>
+            <InnerRadius value="0.5"/>
+            <SubgroupPriority value="120"/>
+            <MinimapRadius value="0.875"/>
+            <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+            <TacticalAIThink value="AIThinkQueen"/>
+            <HotkeyAlias value="QueenCoop"/>
+            <TechAliasArray value="Alias_Queen"/>
+            <HotkeyCategory value="Unit/Category/ZergUnits"/>
+            <KillDisplay value="Always"/>
+            <RankDisplay value="Always"/>
+            <AIEvaluateAlias value="Queen"/>
         </CUnit>
     <CUnit id="Ravager">
             <ScoreMake value="0"/>
@@ -31147,7 +31273,7 @@
             <EditorCategories value="ObjectType:Other,ObjectFamily:FactionEvolved"/>
             <BehaviorArray Link="MorphRoachToRavagerCocoon"/>
         </CUnit>
-    <CUnit id="RavagerVileAbathurCocoon">
+    <CUnit id="RavagerVileAbathurRebornCocoon">
             <DeathRevealRadius value="3"/>
             <Race value="Zerg"/>
             <Mob value="Multiplayer"/>
@@ -32582,7 +32708,7 @@
     <CUnit id="SwarmQueen">
             <DeathRevealRadius value="3"/>
             <Race value="Zerg"/>
-            <Mob value="Campaign"/>
+            <Mob value="Multiplayer"/>
             <Facing value="45"/>
             <FlagArray index="UseLineOfSight" value="1"/>
             <FlagArray index="AIDefense" value="1"/>
@@ -32658,7 +32784,7 @@
     <CUnit id="SwarmQueenBurrowed">
             <DeathRevealRadius value="3"/>
             <Race value="Zerg"/>
-            <Mob value="Campaign"/>
+            <Mob value="Multiplayer"/>
             <FlagArray index="UseLineOfSight" value="1"/>
             <FlagArray index="Cloaked" value="1"/>
             <FlagArray index="Buried" value="1"/>
@@ -32911,7 +33037,15 @@
             <BehaviorArray Link="Frenzy"/>
             <BehaviorArray Link="UltraliskOutOfCombat1"/>
             <AbilArray Link="UltraliskBurrowCharge"/>
+            <AbilArray Link="UltraliskElectricShockPurchase"/>
+            <AbilArray Link="UltraliskHighVoltagePurchase"/>
+            <AbilArray Link="UltraliskLightningRaidPurchase"/>
+            <AbilArray Link="UltraliskThunderstormPurchase"/>
             <CardLayouts index="0">
+                <LayoutButtons Face="UltraliskElectricShock" Type="AbilCmd" AbilCmd="UltraliskElectricShockPurchase,Execute" Row="1" Column="0"/>
+                <LayoutButtons Face="UltraliskHighVoltage" Type="AbilCmd" AbilCmd="UltraliskHighVoltagePurchase,Execute" Row="1" Column="1"/>
+                <LayoutButtons Face="UltraliskLightningRaid" Type="AbilCmd" AbilCmd="UltraliskLightningRaidPurchase,Execute" Row="1" Column="2"/>
+                <LayoutButtons Face="UltraliskThunderstorm" Type="AbilCmd" AbilCmd="UltraliskThunderstormPurchase,Execute" Row="1" Column="3"/>
                 <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="2" Column="3"/>
                 <LayoutButtons Face="MonarchBlades" Type="Passive" Requirements="HaveHotSMonarchBlades" Row="2" Column="0"/>
                 <LayoutButtons Face="TissueAssimilation" Type="Passive" Requirements="HaveHotSTissueAssimilation" Row="2" Column="0"/>
@@ -33071,14 +33205,23 @@
             <KillDisplay value="Always"/>
             <RankDisplay value="Always"/>
         </CUnit>
-    <!-- Minimal Abathur biomass pickup unit. Visual actor can be added later; gameplay uses trigger state. -->
     <CUnit id="BiomassPickup" parent="ITEM">
+        <FlagArray index="Turnable" value="1"/>
+        <FlagArray index="Untooltipable" value="0"/>
         <FlagArray index="Unselectable" value="1"/>
         <FlagArray index="Uncloakable" value="1"/>
         <FlagArray index="Destructible" value="1"/>
         <FlagArray index="NoScore" value="1"/>
+        <FogVisibility value="Snapshot"/>
         <Sight value="0"/>
         <AbilArray Link="BiomassPickup"/>
+        <AbilArray Link="BiomassPickupMarked"/>
+        <BehaviorArray Link="BiomassCreated"/>
         <EditorCategories value="ObjectType:Item,ObjectFamily:Campaign"/>
+    </CUnit>
+    <CUnit id="BiomassPickupWeapon" parent="MISSILE_INVULNERABLE">
+        <Race value="Zerg"/>
+        <Mover value="MissileDefault"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
     </CUnit>
 </Catalog>
