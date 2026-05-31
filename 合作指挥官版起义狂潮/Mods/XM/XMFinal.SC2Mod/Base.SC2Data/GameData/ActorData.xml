@@ -27612,12 +27612,6 @@
             <On Terms="TimerExpired; TimerName LandUpDelay" Send="AnimBracketStop Jump"/>
             <On Terms="Behavior.HotSRaptorCharging.On" Send="SetVisibility"/>
             <On Terms="Behavior.HotSRaptorCharging.Off" Send="SetVisibility 1"/>
-            <On Terms="AbilMorph.MorphZerglingToBaneling.Finish; MorphTo HotSRaptor; !AbilKey BurrowUp" Send="Create"/>
-            <On Terms="AbilMorph.MorphZerglingToBaneling.Start; MorphFrom HotSRaptor; !AbilKey BurrowDown" Send="Destroy"/>
-            <On Terms="AbilMorph.MorphZerglingToHunter.Finish; MorphTo HotSRaptor; !AbilKey BurrowUp" Send="Create"/>
-            <On Terms="AbilMorph.MorphZerglingToHunter.Start; MorphFrom HotSRaptor; !AbilKey BurrowDown" Send="Destroy"/>
-            <On Terms="AbilMorph.MorphZerglingToSplitterling.Finish; MorphTo HotSRaptor; !AbilKey BurrowUp" Send="Create"/>
-            <On Terms="AbilMorph.MorphZerglingToSplitterling.Start; MorphFrom HotSRaptor; !AbilKey BurrowDown" Send="Destroy"/>
             <On Terms="AbilMorph.*.Finish; MorphTo HotSRaptorBurrowed; !AbilKey BurrowDown" Send="Create"/>
             <On Terms="AbilMorph.*.Finish; MorphTo HotSRaptorBurrowed; !AbilKey BurrowDown" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
             <On Terms="AbilMorph.*.Cancel; MorphFrom HotSRaptor; MorphTo HotSRaptorBurrowed" Send="AnimClear Burrow"/>
@@ -27815,12 +27809,6 @@
             <Macros value="UnloadDropAnim"/>
             <Macros value="TerrainSquibAnimations"/>
             <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
-            <On Terms="AbilMorph.MorphZerglingToBaneling.Finish; MorphTo HotSSwarmling; !AbilKey BurrowUp" Send="Create"/>
-            <On Terms="AbilMorph.MorphZerglingToBaneling.Start; MorphFrom HotSSwarmling; !AbilKey BurrowDown" Send="Destroy"/>
-            <On Terms="AbilMorph.MorphZerglingToHunter.Finish; MorphTo HotSSwarmling; !AbilKey BurrowUp" Send="Create"/>
-            <On Terms="AbilMorph.MorphZerglingToHunter.Start; MorphFrom HotSSwarmling; !AbilKey BurrowDown" Send="Destroy"/>
-            <On Terms="AbilMorph.MorphZerglingToSplitterling.Finish; MorphTo HotSSwarmling; !AbilKey BurrowUp" Send="Create"/>
-            <On Terms="AbilMorph.MorphZerglingToSplitterling.Start; MorphFrom HotSSwarmling; !AbilKey BurrowDown" Send="Destroy"/>
             <On Terms="AbilMorph.*.Finish; MorphTo HotSSwarmlingBurrowed; !AbilKey BurrowDown" Send="Create"/>
             <On Terms="AbilMorph.*.Finish; MorphTo HotSSwarmlingBurrowed; !AbilKey BurrowDown" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
             <On Terms="AbilMorph.*.Cancel; MorphFrom HotSSwarmling; MorphTo HotSSwarmlingBurrowed" Send="AnimClear Burrow"/>
