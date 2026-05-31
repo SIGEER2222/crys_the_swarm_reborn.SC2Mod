@@ -491,6 +491,7 @@
     <On Terms="ActorCreation" Send="AnimPlay Walk Walk PlayForever" />
   </CActorMissile>
   <CActorModel id="BiomassTargetMark" parent="ModelAnimationStyleContinuous">
+    <Model value="BiomassTargetMark" />
     <HostSiteOps Ops="SOpAttachOverhead SOpForwardNorth" />
     <On Terms="Behavior.BiomassTargetMark.On" Send="Create" />
     <On Terms="ActorCreation" Send="SetTintColorBlendPair 128,128,128 {255,255,255 2.000000} 3.000000 Bounce GlowSlow 175.000000" />
@@ -795,6 +796,7 @@
   </CActorUnit>
   <CActorUnit id="HotSLeviathan">
     <StatusBarFlags index="Magazine" value="0" />
+    <Model value="HotSLeviathan" />
     <On Terms="Effect.SymbioteRecall.Start; At Caster" Send="RefSetFromRequest ::actor.Symbiote ::LastTargetUnit" />
     <On Terms="Effect.SymbioteRecall.Start; At Caster" Target="::actor.Symbiote" Send="SetOpacity" />
     <On Terms="Effect.SymbioteRecall.Start; At Caster" Send="TimerSet 2.000000 DelaySymbiote" />
@@ -959,6 +961,7 @@
     <On Terms="ActorCreation" Send="Create RavagerCocoonBirthSound" />
     <On Terms="ActorCreation" Send="$Birth 0 0.000000" />
     <On Terms="ActorDestruction" Send="Create LeviathanCocoonDeath" />
+    <Model value="LeviathanCocoon" />
     <ModelFlags index="OutlineEmitter" value="1" />
     <DeathArray index="Normal" ModelLink="RavagerCocoonDeath" SoundLink="Egg_Explode" />
     <PortraitModel value="CocoonPortrait" />
@@ -975,6 +978,7 @@
     </Wireframe>
   </CActorUnit>
   <CActorModel id="LeviathanCocoonDeath">
+    <Model value="LeviathanCocoonDeath" />
     <On Terms="ActorCreation" Send="$Death" />
     <On Terms="AnimDone; AnimName Death" Send="Destroy" />
   </CActorModel>
@@ -1103,20 +1107,10 @@
     <On Terms="Abil.DeepTunnel.SourceCastStop; ValidateUnit IsNotBuried" Send="AnimBracketStop Burrow" />
     <On Terms="Behavior.KerriganEnhanceBeam.On" Send="AnimPlay Channel Fidget PlayForever" />
     <On Terms="Behavior.KerriganEnhanceBeam.Off" Send="AnimClear Channel" />
-    <On Terms="ActorCreation; ValidateUnit HaveSwarmQueenVisual" Send="ModelSwap VoidSwarmQueen" />
-    <On Terms="Upgrade.SwarmQueenVisual.Add" Send="ModelSwap VoidSwarmQueen" />
-    <On Terms="Upgrade.SwarmQueenVisual.Add; ValidateUnit IsBuried" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant" />
-    <On Terms="UnitDeathCustomize; ValidateUnit HaveSwarmQueenVisual" Send="DeathCustomize Upgrade" />
-    <Macros value="ZergBurrowStandardAnimMacro" />
-    <Macros value="ZergLargeBurrowEffects" />
-    <Macros value="UnloadDropAnim" />
-    <Macros value="TerrainSquibAnimations" />
-    <Macros value="PhysicsDeathsSwarmGround" />
-    <Macros value="PhysicsDeathsVoidGround" />
-    <Model value="Queen" />
+    <Model value="SwarmQueen" />
     <EventDataFootprint index="0" Actor="UnitFootprint" Model="QueenFootprint" />
-    <BuildModel value="Queen" />
-    <DeathArray index="Normal" ModelLink="QueenDeath" SoundLink="Queen_Explode" VoiceLink="QueenDeathVoice" />
+    <BuildModel value="SwarmQueen" />
+    <DeathArray index="Normal" ModelLink="SwarmQueenDeath" SoundLink="Queen_Explode" VoiceLink="Niadra_Death" />
     <DeathArray index="Disintegrate" ModelLink="QueenDeathAcid" SoundLink="Uni_DeathFXAcid" />
     <DeathArray index="Fire" ModelLink="QueenDeathFire" SoundLink="Uni_DeathFXFire" />
     <DeathCustoms ModelLink="ZergLargeUnitDeathLow" Name="AntiGravZerg" />
@@ -1139,8 +1133,15 @@
     <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic" />
     <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic" />
     <DeathCustoms ModelLink="SwarmQueenDeath" Name="Upgrade" />
-    <PlacementModel value="Queen" />
-    <PortraitModel value="QueenPortrait" />
+    <PlacementModel value="SwarmQueen" />
+    <PortraitModel value="SwarmQueenPortrait" />
+    <PortraitActor value="SwarmQueenPortrait" />
+    <Macros value="ZergBurrowStandardAnimMacro" />
+    <Macros value="ZergLargeBurrowEffects" />
+    <Macros value="UnloadDropAnim" />
+    <Macros value="TerrainSquibAnimations" />
+    <Macros value="PhysicsDeathsSwarmGround" />
+    <Macros value="PhysicsDeathsVoidGround" />
     <TerrainSquibs>
       <GroupName value="RippleStandard" />
       <MovementDistance value="0.150000,0.150000" />
@@ -1201,6 +1202,7 @@
     <Macros value="TerrainSquibAnimations" />
     <Macros value="AbathurRebornDeepTunnelImprovedMacro" />
     <!--Macros value="AbathurRebornBiomassCustomUnitFrameMacro"/-->
+    <Model value="RavagerAbathur" />
     <On Terms="UnitHeightUpdate.*.Land" Send="Create Ravager_Land" />
     <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium" />
     <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="AnimClear Fidget" />
@@ -1280,6 +1282,7 @@
     <Aliases value="_UnitLarge" />
   </CActorUnit>
   <CActorModel id="RavagerCocoonDeath">
+    <Model value="RavagerAbathurCocoon" />
     <On Terms="AbilMorph.*.Start; MorphFrom RavagerAbathurCocoon; ValidateUnit NotDead" Send="Create" />
     <On Terms="AbilMorph.*.Start; MorphFrom RavagerVileAbathurRebornCocoon; ValidateUnit NotDead" Send="Create" />
     <On Terms="AnimDone; AnimName Death" Send="Destroy" />

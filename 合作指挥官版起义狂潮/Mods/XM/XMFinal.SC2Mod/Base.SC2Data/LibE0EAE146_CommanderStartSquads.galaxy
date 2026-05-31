@@ -25,6 +25,15 @@ void libE0EAE146_gf_EnableAbathurBiomassTriggers () {
     if ((libE0EAE146_gt_AbathurBiomassPickup != null)) {
         TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, true);
     }
+    if ((libE0EAE146_gt_AbathurBiomassRefund != null)) {
+        TriggerEnable(libE0EAE146_gt_AbathurBiomassRefund, true);
+    }
+    if ((libE0EAE146_gt_AbathurBiomassTrain != null)) {
+        TriggerEnable(libE0EAE146_gt_AbathurBiomassTrain, true);
+    }
+    if ((libE0EAE146_gt_AbathurBiomassScaler != null)) {
+        TriggerEnable(libE0EAE146_gt_AbathurBiomassScaler, true);
+    }
 }
 void libE0EAE146_gf_EnableAbathurToxicNestTriggers () {
 }
@@ -37,6 +46,7 @@ bool libE0EAE146_gf_CreateAbathurBiomassPickup (point lp_point, int lp_stack) {
         return false;
     }
     UnitSetCustomValue(UnitLastCreated(), 63, IntToFixed(MaxI(1, lp_stack)));
+    libNtve_gf_SendActorMessageToUnit(UnitLastCreated(), ("SetScale " + FixedToString(libE0EAE146_gf_AbathurBiomassVisualScale(MaxI(1, lp_stack)), c_fixedPrecisionAny)));
     return true;
 }
 bool libE0EAE146_gf_CreateAbathurBiomassTestPickup (point lp_point, int lp_stack) {
@@ -130,6 +140,64 @@ fixed libE0EAE146_gf_AbathurBiomassVisualScale (int lp_totalStacks) {
 
     lv_clamped = MinI(MaxI(lp_totalStacks, 0), 100);
     return (1.0 + (0.0025 * IntToFixed(lv_clamped)));
+}
+
+void libE0EAE146_gf_AbathurBiomassSetStack (unit lp_biomass, int lp_stack) {
+    if ((lp_biomass == null)) {
+        return;
+    }
+    UnitSetCustomValue(lp_biomass, 63, IntToFixed(lp_stack));
+}
+
+void libE0EAE146_gf_AbathurBiomassScale (unit lp_biomassUnit, bool lp_instantScale) {
+    fixed lv_customScale;
+
+    if ((lp_biomassUnit == null)) {
+        return;
+    }
+    lv_customScale = (UnitGetCustomValue(lp_biomassUnit, 63) / 100.0);
+    lv_customScale += 0.8;
+    if ((lv_customScale > 1.8)) {
+        lv_customScale = 1.8;
+    }
+    libNtve_gf_SendActorMessageToUnit(lp_biomassUnit, ("SetScale " + FixedToString(lv_customScale, c_fixedPrecisionAny)));
+}
+
+void libE0EAE146_gf_AbathurBiomassMerge (unit lp_biomassUnit, int lp_biomassUnitCount) {
+    fixed lv_biomassCongealRadius;
+    int lv_nearbyBiomassMaxCount;
+    unit lv_nearbyBiomassMaxCountUnit;
+    unitgroup lv_group;
+    int lv_count;
+    unit lv_groupUnit;
+
+    if ((lp_biomassUnit == null)) {
+        return;
+    }
+    if ((lp_biomassUnitCount <= 0)) {
+        return;
+    }
+
+    lv_biomassCongealRadius = 4.0;
+    lv_group = UnitGroup("BiomassPickup", UnitGetOwner(lp_biomassUnit), RegionCircle(UnitGetPosition(lp_biomassUnit), lv_biomassCongealRadius), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    lv_count = UnitGroupCount(lv_group, c_unitCountAll);
+    for (;; lv_count -= 1) {
+        lv_groupUnit = UnitGroupUnitFromEnd(lv_group, lv_count);
+        if (lv_groupUnit == null) {
+            break;
+        }
+        if ((lv_groupUnit != lp_biomassUnit) && (UnitHasBehavior2(lv_groupUnit, "BiomassTravelling") == false) && (UnitGetCustomValue(lv_groupUnit, 63) > lv_nearbyBiomassMaxCount)) {
+            lv_nearbyBiomassMaxCount = FixedToInt(UnitGetCustomValue(lv_groupUnit, 63));
+            lv_nearbyBiomassMaxCountUnit = lv_groupUnit;
+        }
+    }
+
+    if ((lv_nearbyBiomassMaxCountUnit != null)) {
+        libE0EAE146_gf_AbathurBiomassSetStack(lv_nearbyBiomassMaxCountUnit, FixedToInt((UnitGetCustomValue(lv_nearbyBiomassMaxCountUnit, 63) + lp_biomassUnitCount)));
+        UnitBehaviorAdd(lp_biomassUnit, "BiomassTravelling", lp_biomassUnit, 1);
+        UnitCreateEffectUnit(lp_biomassUnit, "BiomassPickupFullLM", lv_nearbyBiomassMaxCountUnit);
+        libE0EAE146_gf_AbathurBiomassScale(lv_nearbyBiomassMaxCountUnit, false);
+    }
 }
 int libE0EAE146_gf_AbathurUnitBiomassStacks (unit lp_unit) {
     if ((lp_unit == null)) {
@@ -303,6 +371,134 @@ void libE0EAE146_gt_AbathurBiomassPickup_Init () {
     TriggerEnable(libE0EAE146_gt_AbathurBiomassPickup, false);
 }
 
+bool libE0EAE146_gt_AbathurBiomassRefund_Func (bool testConds, bool runActions) {
+    int lv_stack;
+    fixed lv_refundChance;
+    unit lv_dyingUnit;
+
+    lv_dyingUnit = EventUnit();
+    lv_refundChance = libNtve_gf_CatalogFieldValueGetAsReal(c_gameCatalogEffect, "AbathurBiomassRefundDummy", "Amount", UnitGetOwner(lv_dyingUnit));
+    if (testConds) {
+        if (!((PlayerCommander(UnitGetOwner(lv_dyingUnit)) == "Abathur"))) {
+            return false;
+        }
+        if (!((UnitGetType(lv_dyingUnit) != "Locust"))) {
+            return false;
+        }
+        if (!((EventUnitDamageDeathCheck(c_deathTypeRemove) == false))) {
+            return false;
+        }
+        if (!((UnitFilterMatch(lv_dyingUnit, UnitGetOwner(lv_dyingUnit), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile), 0)) == true))) {
+            return false;
+        }
+        if (!((UnitHasBehavior2(lv_dyingUnit, "BiomassBuff1") == true) || (UnitHasBehavior2(lv_dyingUnit, "BiomassBuff10") == true) || (UnitHasBehavior2(lv_dyingUnit, "BiomassBuff100") == true))) {
+            return false;
+        }
+        if (!((lv_refundChance > 0.0))) {
+            return false;
+        }
+    }
+    if (!runActions) {
+        return true;
+    }
+    if ((lv_refundChance < RandomFixed(0.0, 100.0))) {
+        return true;
+    }
+    lv_stack = libE0EAE146_gf_AbathurUnitBiomassStacks(lv_dyingUnit);
+    if ((lv_stack <= 0)) {
+        return true;
+    }
+    libE0EAE146_gf_CreateAbathurBiomassPickup(UnitGetPosition(lv_dyingUnit), lv_stack);
+    libE0EAE146_gf_AbathurBiomassSetStack(UnitLastCreated(), lv_stack);
+    libE0EAE146_gf_AbathurBiomassScale(UnitLastCreated(), true);
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_REFUND", "unit=" + UnitGetType(lv_dyingUnit) + " owner=" + IntToString(UnitGetOwner(lv_dyingUnit)) + " stack=" + IntToString(lv_stack) + " chance=" + FixedToString(lv_refundChance, c_fixedPrecisionAny));
+    return true;
+}
+
+void libE0EAE146_gt_AbathurBiomassRefund_Init () {
+    libE0EAE146_gt_AbathurBiomassRefund = TriggerCreate("libE0EAE146_gt_AbathurBiomassRefund_Func");
+    TriggerAddEventUnitDied(libE0EAE146_gt_AbathurBiomassRefund, null);
+    TriggerEnable(libE0EAE146_gt_AbathurBiomassRefund, false);
+}
+
+bool libE0EAE146_gt_AbathurBiomassTrain_Func (bool testConds, bool runActions) {
+    unit lv_trainUnit;
+    int lv_biomassBuff100Count;
+    int lv_biomassBuff10Count;
+    int lv_biomassBuff1Count;
+
+    lv_trainUnit = EventUnitProgressUnit();
+    if (testConds) {
+        if (!((PlayerCommander(UnitGetOwner(EventUnit())) == "Abathur"))) {
+            return false;
+        }
+        if (!((UnitHasBehavior2(EventUnit(), "BiomassBuff1") == true) || (UnitHasBehavior2(EventUnit(), "BiomassBuff10") == true) || (UnitHasBehavior2(EventUnit(), "BiomassBuff100") == true))) {
+            return false;
+        }
+        if (!((libNtve_gf_TriggeringProgressUnitType() == "RavagerAbathur") || (libNtve_gf_TriggeringProgressUnitType() == "GuardianMP") || (libNtve_gf_TriggeringProgressUnitType() == "Devourer") || (libNtve_gf_TriggeringProgressUnitType() == "DevourerMP"))) {
+            return false;
+        }
+    }
+    if (!runActions) {
+        return true;
+    }
+    lv_biomassBuff100Count = UnitBehaviorCount(EventUnit(), "BiomassBuff100");
+    lv_biomassBuff10Count = UnitBehaviorCount(EventUnit(), "BiomassBuff10");
+    lv_biomassBuff1Count = UnitBehaviorCount(EventUnit(), "BiomassBuff1");
+    libE0EAE146_gf_AbathurAddBiomassStacks(lv_trainUnit, ((lv_biomassBuff100Count * 100) + (lv_biomassBuff10Count * 10) + lv_biomassBuff1Count));
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_TRANSFER", "source=" + UnitGetType(EventUnit()) + " target=" + UnitGetType(lv_trainUnit) + " b100=" + IntToString(lv_biomassBuff100Count) + " b10=" + IntToString(lv_biomassBuff10Count) + " b1=" + IntToString(lv_biomassBuff1Count));
+    return true;
+}
+
+void libE0EAE146_gt_AbathurBiomassTrain_Init () {
+    libE0EAE146_gt_AbathurBiomassTrain = TriggerCreate("libE0EAE146_gt_AbathurBiomassTrain_Func");
+    TriggerAddEventUnitTrainProgress(libE0EAE146_gt_AbathurBiomassTrain, null, c_unitProgressStageComplete);
+    TriggerEnable(libE0EAE146_gt_AbathurBiomassTrain, false);
+}
+
+bool libE0EAE146_gt_AbathurBiomassScaler_Func (bool testConds, bool runActions) {
+    int lv_biomassMaxStacks;
+    int lv_biomassCountTotal;
+    int lv_biomassVisualIndicatorInterval;
+
+    lv_biomassMaxStacks = libE0EAE146_gf_AbathurBiomassMaxStacks();
+    if (testConds) {
+        if (!(((UnitIsAlive(EventUnit()) == true) && (PlayerCommander(UnitGetOwner(EventUnit())) == "Abathur") && ((UnitHasBehavior2(EventUnit(), "BiomassBuff1") == true) || (UnitHasBehavior2(EventUnit(), "BiomassBuff10") == true) || (UnitHasBehavior2(EventUnit(), "BiomassBuff100") == true))))) {
+            return false;
+        }
+    }
+    if (!runActions) {
+        return true;
+    }
+    lv_biomassCountTotal = libE0EAE146_gf_AbathurUnitBiomassStacks(EventUnit());
+    if ((lv_biomassCountTotal > lv_biomassMaxStacks)) {
+        lv_biomassCountTotal = lv_biomassMaxStacks;
+    }
+    libNtve_gf_SendActorMessageToUnit(EventUnit(), (("SetScale " + FixedToString(libE0EAE146_gf_AbathurBiomassVisualScale(lv_biomassCountTotal), c_fixedPrecisionAny))));
+    if ((lv_biomassCountTotal >= 10)) {
+        ActorScopeSend(ActorScopeFromUnit(EventUnit()), "Create BiomassBuffGlaze");
+    }
+    lv_biomassVisualIndicatorInterval = ((lv_biomassMaxStacks - 10) / 3);
+    if ((lv_biomassCountTotal > (lv_biomassVisualIndicatorInterval * 2 + 10))) {
+        ActorScopeSend(ActorScopeFromUnit(EventUnit()), "Signal BiomassAnimGroupC");
+    }
+    else if ((lv_biomassCountTotal > (lv_biomassVisualIndicatorInterval + 10))) {
+        ActorScopeSend(ActorScopeFromUnit(EventUnit()), "Signal BiomassAnimGroupB");
+    }
+    else if ((lv_biomassCountTotal > 10)) {
+        ActorScopeSend(ActorScopeFromUnit(EventUnit()), "Signal BiomassAnimGroupA");
+    }
+    return true;
+}
+
+void libE0EAE146_gt_AbathurBiomassScaler_Init () {
+    libE0EAE146_gt_AbathurBiomassScaler = TriggerCreate("libE0EAE146_gt_AbathurBiomassScaler_Func");
+    TriggerAddEventUnitBehaviorChange(libE0EAE146_gt_AbathurBiomassScaler, null, "BiomassBuff1", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libE0EAE146_gt_AbathurBiomassScaler, null, "BiomassBuff10", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libE0EAE146_gt_AbathurBiomassScaler, null, "BiomassBuff100", c_unitBehaviorChangeIncrease);
+    TriggerEnable(libE0EAE146_gt_AbathurBiomassScaler, false);
+}
+
 void libE0EAE146_gf_RaynorCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
     string lv_kind;
     lv_kind = lp_kind;
@@ -387,22 +583,17 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLord", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "full")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "MutaliskBroodlord", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLord", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HydraliskLurker", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Overseer", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "TorrasqueChrysalis", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLord", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
@@ -415,7 +606,7 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "ultimate")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
     }
     else {
@@ -437,20 +628,18 @@ void libE0EAE146_gf_KerriganCreateCargoSquad (unit lp_container, string lp_kind)
     else if ((lv_kind == "heavy")) {
         UnitCargoCreate(lp_container, "Hydralisk", 2);
         UnitCargoCreate(lp_container, "QueenCoop", 1);
-        UnitCargoCreate(lp_container, "Ultralisk", 1);
+        UnitCargoCreate(lp_container, "HotSTorrasque", 1);
     }
     else if ((lv_kind == "full")) {
         UnitCargoCreate(lp_container, "K5Kerrigan", 1);
         UnitCargoCreate(lp_container, "HotSRaptor", 4);
         UnitCargoCreate(lp_container, "Hydralisk", 2);
         UnitCargoCreate(lp_container, "QueenCoop", 1);
-        UnitCargoCreate(lp_container, "Ultralisk", 1);
         UnitCargoCreate(lp_container, "MutaliskBroodlord", 1);
         UnitCargoCreate(lp_container, "BroodLord", 1);
         UnitCargoCreate(lp_container, "HydraliskLurker", 1);
-        UnitCargoCreate(lp_container, "Overseer", 1);
+        UnitCargoCreate(lp_container, "Overlord", 1);
         UnitCargoCreate(lp_container, "HotSTorrasque", 1);
-        UnitCargoCreate(lp_container, "TorrasqueChrysalis", 1);
     }
     else if ((lv_kind == "air")) {
         UnitCargoCreate(lp_container, "Mutalisk", 2);
@@ -471,22 +660,23 @@ void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, p
     string lv_kind;
     string lv_ravager;
     string lv_swarmHost;
-    string lv_queen;
+    string lv_swarmQueen;
     string lv_leviathan;
 
     lv_kind = lp_kind;
     lv_ravager = "RavagerAbathur";
     lv_swarmHost = "SwarmHost";
-    lv_queen = "QueenCoop";
-    lv_leviathan = "Leviathan";
+    lv_swarmQueen = "QueenCoop";
+    lv_leviathan = "HotSLeviathan";
     if ((lv_kind == "light")) {
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachVile", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Roach", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachCorpser", lp_player, lp_point);
     }
     else if ((lv_kind == "heavy")) {
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachVile", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmHost, lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmQueen, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "Mutalisk", lp_player, lp_point);
@@ -494,19 +684,12 @@ void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, p
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "DevourerMP", lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "GuardianMP", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "DevourerMP", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Mutalisk", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Roach", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachCorpser", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachVile", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmHost, lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "SwarmHostMP", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "SwarmHostRooted", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "SwarmHostSplitA", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "SwarmHostSplitB", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_queen, lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmQueen, lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Viper", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Brutalisk", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_leviathan, lp_player, lp_point);
@@ -523,7 +706,7 @@ void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, p
     else {
         libE0EAE146_gf_AbathurCreateMapStartSquad("light", lp_player, lp_point);
     }
-    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_MAP_START", "kind=" + lv_kind + " player=" + IntToString(lp_player) + " units=GuardianMP,DevourerMP,Mutalisk,Roach,SwarmHost,SwarmHostMP,SwarmHostRooted,SwarmHostSplitA,SwarmHostSplitB,QueenCoop,RoachCorpser,RoachVile,RavagerAbathur,Viper,Brutalisk,Leviathan biomass=full scale=runtime");
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_MAP_START", "kind=" + lv_kind + " player=" + IntToString(lp_player) + " units=Roach,RoachCorpser,RoachVile,RavagerAbathur,SwarmHost,QueenCoop,Mutalisk,GuardianMP,DevourerMP,Viper,Brutalisk,HotSLeviathan biomass=full scale=runtime");
 }
 
 void libE0EAE146_gf_AbathurCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
@@ -534,22 +717,23 @@ void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) 
     string lv_kind;
     string lv_ravager;
     string lv_swarmHost;
-    string lv_queen;
+    string lv_swarmQueen;
     string lv_leviathan;
 
     lv_kind = lp_kind;
     lv_ravager = "RavagerAbathur";
     lv_swarmHost = "SwarmHost";
-    lv_queen = "QueenCoop";
-    lv_leviathan = "Leviathan";
+    lv_swarmQueen = "QueenCoop";
+    lv_leviathan = "HotSLeviathan";
     if ((lv_kind == "light")) {
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 3);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Roach", 2);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachCorpser", 1);
     }
     else if ((lv_kind == "heavy")) {
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 2);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 1);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmHost, 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmQueen, 1);
     }
     else if ((lv_kind == "air")) {
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Mutalisk", 2);
@@ -557,10 +741,14 @@ void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) 
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "DevourerMP", 1);
     }
     else if ((lv_kind == "hero")) {
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 2);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Roach", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachCorpser", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 1);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmHost, 1);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_queen, 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmQueen, 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Viper", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Brutalisk", 1);
     }
     else if ((lv_kind == "ultimate")) {
         if ((libE0EAE146_gf_AbathurHasUltimateUnlock() == true)) {
@@ -574,7 +762,7 @@ void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) 
     else {
         libE0EAE146_gf_AbathurCreateCargoSquad(lp_container, "light");
     }
-    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_CARGO", "kind=" + lv_kind + " ground=RoachVile,RavagerAbathur,SwarmHost,QueenCoop air=Mutalisk,GuardianMP,DevourerMP ultimate=Brutalisk,Leviathan biomass=full scale=runtime");
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_CARGO", "kind=" + lv_kind + " ground=Roach,RoachCorpser,RoachVile,RavagerAbathur,SwarmHost,QueenCoop air=Mutalisk,GuardianMP,DevourerMP,Viper ultimate=Brutalisk,HotSLeviathan biomass=full scale=runtime");
 }
 void libE0EAE146_gf_ZagaraCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
     string lv_kind;

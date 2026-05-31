@@ -16866,6 +16866,11 @@
             <InfoArray index="Research9">
                 <Button State="Suppressed"/>
             </InfoArray>
+            <InfoArray index="Research11" Time="60" Upgrade="AbathurHatcheryDoubleQueue">
+                <Resource index="Minerals" value="100"/>
+                <Resource index="Vespene" value="100"/>
+                <Button DefaultButtonFace="EvolveHatcheryDoubleQueue" State="Restricted" Requirements="LearnHatcheryDoubleQueue"/>
+            </InfoArray>
         </CAbilResearch>
     <CAbilResearch id="EvolutionPitScalingCostResearch">
             <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures"/>
@@ -17820,7 +17825,7 @@
             <Flags index="KillOnFinish" value="1"/>
             <Flags index="Select" value="1"/>
             <Flags index="WaitForFood" value="0"/>
-            <MorphUnit value="RavagerVileAbathurCocoon"/>
+            <MorphUnit value="RavagerVileAbathurRebornCocoon"/>
             <InfoArray index="Train1" Time="9" Alert="MorphComplete_Zerg" Effect="CopyOrdersRavagerMorph">
                 <Button DefaultButtonFace="Ravager" State="Restricted" Requirements="HaveLair"/>
                 <Unit value="RavagerAbathur"/>
@@ -19019,10 +19024,15 @@
                 <Button DefaultButtonFace="HotSLeviathan" Requirements="HaveDestroyerLeviathan"/>
                 <Unit value="HotSLeviathan"/>
             </InfoArray>
+            <InfoArray index="Train4" Time="50">
+                <Button DefaultButtonFace="QueenCoop" Requirements="HaveSpawningPool"/>
+                <Unit value="QueenCoop"/>
+            </InfoArray>
         </CAbilTrain>
     <CAbilEffectTarget id="Transfusion">
-            <CmdButtonArray index="Execute" State="Restricted"/>
-            <Effect index="0" value="TransfusionChain"/>
+            <CmdButtonArray index="Execute" State="Available"/>
+            <Effect index="0" value="TransfusionACSwitch"/>
+            <TargetFilters value="Biological,Visible;Self,Neutral,Enemy,Missile,Stasis,UnderConstruction,Dead,Hidden"/>
         </CAbilEffectTarget>
     <CAbilEffectTarget id="UltraliskBurrowCharge">
             <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
@@ -19490,17 +19500,149 @@
             <Alert value="ZerglingReconstitution"/>
             
         </CAbilTrain>
-    <!-- Minimal Abathur biomass pickup ability. The trigger owns stack transfer. -->
     <CAbilEffectTarget id="BiomassPickup">
         <Flags index="AutoCast" value="1"/>
         <Flags index="AutoCastOn" value="1"/>
         <Flags index="ReExecutable" value="1"/>
         <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Charge Link="Abil/BiomassBuffPickup"/>
+            <Cooldown Link="Abil/BiomassBuffPickup" TimeUse="0.125"/>
+        </Cost>
         <Range value="0.5"/>
         <Arc value="360"/>
         <AutoCastRange value="0.5"/>
-        <AutoCastFilters value="-;Neutral,Enemy,Structure,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable,Benign,Summoned"/>
+        <AutoCastFilters value="-;Ally,Neutral,Enemy,Structure,User1,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable,Benign,Summoned"/>
+        <AutoCastValidatorArray value="PickupCheckCoop"/>
         <FinishTime value="0.125"/>
-        <Effect index="0" value="BiomassPickupDummy"/>
+        <Marker Link="Abil/BiomassBuffPickup"/>
+        <AINotifyEffect value="BiomassBuffPickup"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PickupMinerals100" Requirements="PlayerNotHaveBiomassTargetBuff"/>
+        <AutoCastRange value="0.5"/>
     </CAbilEffectTarget>
+    <CAbilEffectTarget id="BiomassPickupMarked">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Charge Link="Abil/BiomassBuffPickup"/>
+            <Cooldown Link="Abil/BiomassBuffPickup" TimeUse="0.125"/>
+        </Cost>
+        <Range value="5"/>
+        <Arc value="360"/>
+        <AutoCastFilters value="-;Ally,Neutral,Enemy,Structure,User1,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable,Benign,Summoned"/>
+        <AutoCastValidatorArray value="PickupCheckCoop"/>
+        <FinishTime value="0.125"/>
+        <Marker Link="Abil/BiomassBuffPickup"/>
+        <AINotifyEffect value="BiomassBuffPickup"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PickupMinerals100" Requirements="PlayerHasBiomassTargetBuff"/>
+        <AutoCastRange value="5"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="BrutaliskTramplingCarapacePurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="BrutaliskTramplingCarapacePurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="100"/>
+            <Resource index="Vespene" value="100"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskTramplingCarapace" Requirements="NotBrutaliskTramplingCarapacePurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="BrutaliskSavageRendPurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="BrutaliskSavageRendPurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="100"/>
+            <Resource index="Vespene" value="100"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskSavageRend" Requirements="NotBrutaliskSavageRendPurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="BrutaliskFleshRecompositionPurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="BrutaliskFleshRecompositionPurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="100"/>
+            <Resource index="Vespene" value="100"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskFleshRecomposition" Requirements="NotBrutaliskFleshRecompositionPurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="UltraliskElectricShockPurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="UltraliskElectricShockSet"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="120"/>
+            <Resource index="Vespene" value="120"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UltraliskElectricShock" Requirements="NotUltraliskElectricShockPurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="UltraliskHighVoltagePurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="UltraliskHighVoltageSet"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="120"/>
+            <Resource index="Vespene" value="120"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UltraliskHighVoltage" Requirements="NotUltraliskHighVoltagePurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="UltraliskLightningRaidPurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="UltraliskLightningRaidSet"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="150"/>
+            <Resource index="Vespene" value="150"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UltraliskLightningRaid" Requirements="NotUltraliskLightningRaidPurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="UltraliskThunderstormPurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="UltraliskThunderstormSet"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="180"/>
+            <Resource index="Vespene" value="180"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UltraliskThunderstorm" Requirements="NotUltraliskThunderstormPurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
 </Catalog>
