@@ -67,6 +67,7 @@ string gv_xmTbCurrentScenario;
 string gv_xmTbLastEvent;
 
 void tb_XMTB_RunBootSmoke ();
+void tb_XMTB_WriteStateBank (string lp_phase);
 
 void InitGlobals () {
     int lv_i;
@@ -213,6 +214,15 @@ void tb_XMTB_UpdateSummary () {
     }
 }
 
+void tb_XMTB_WriteStateBank (string lp_phase) {
+    BankLoad("CampaignXCore", 1);
+    BankValueSetFromString(BankLastCreated(), "CommanderTestBench", "Phase", lp_phase);
+    BankValueSetFromString(BankLastCreated(), "CommanderTestBench", "Commander", gv_xmTbCurrentCommander);
+    BankValueSetFromString(BankLastCreated(), "CommanderTestBench", "Scenario", gv_xmTbCurrentScenario);
+    BankValueSetFromString(BankLastCreated(), "CommanderTestBench", "LastEvent", gv_xmTbLastEvent);
+    BankSave(BankLastCreated());
+}
+
 void tb_XMTB_LoadCommanderFromBank () {
     string lv_saved;
 
@@ -259,32 +269,43 @@ void tb_XMTB_RunCurrentScenario () {
     tb_XMTB_RunScenario(gv_xmTbCurrentScenario);
 }
 
-void tb_XMTB_RunAllSmoke () {
+void tb_XMTB_RunStartupSmoke () {
     gv_xmTbCurrentScenario = "power_fusion";
     tb_XMTB_RunScenario("power_fusion");
-    tb_XMTB_RunBootSmoke();
-    gv_xmTbLastEvent = "RUN_ALL";
-    tb_XMTB_UpdateSummary();
-}
-
-void tb_XMTB_RunBootSmoke () {
     gv_xmTbCurrentScenario = "standard_base";
     tb_XMTB_RunScenario("standard_base");
     gv_xmTbCurrentScenario = "full_buildings";
     tb_XMTB_RunScenario("full_buildings");
     gv_xmTbCurrentScenario = "full_units";
     tb_XMTB_RunScenario("full_units");
+    gv_xmTbCurrentScenario = "hero_ability_smoke";
+    tb_XMTB_RunScenario("hero_ability_smoke");
+    gv_xmTbCurrentScenario = "unit_ability_smoke";
+    tb_XMTB_RunScenario("unit_ability_smoke");
+    gv_xmTbCurrentScenario = "unit_evolution_smoke";
+    tb_XMTB_RunScenario("unit_evolution_smoke");
+    gv_xmTbCurrentScenario = "tech_smoke";
+    tb_XMTB_RunScenario("tech_smoke");
     gv_xmTbCurrentScenario = "panel_cost_smoke";
     tb_XMTB_RunScenario("panel_cost_smoke");
     gv_xmTbCurrentScenario = "panel_effect_smoke";
     tb_XMTB_RunScenario("panel_effect_smoke");
-    gv_xmTbCurrentScenario = "cargo_light";
-    tb_XMTB_RunScenario("cargo_light");
-    gv_xmTbCurrentScenario = "cargo_heavy";
-    tb_XMTB_RunScenario("cargo_heavy");
-    gv_xmTbCurrentScenario = "cargo_air";
-    tb_XMTB_RunScenario("cargo_air");
+    gv_xmTbLastEvent = "RUN_STARTUP";
+    XMTestBench_WriteSummary(1);
+    tb_XMTB_UpdateSummary();
+}
+
+void tb_XMTB_RunAllSmoke () {
+    tb_XMTB_RunStartupSmoke();
+    gv_xmTbLastEvent = "RUN_ALL";
+    XMTestBench_WriteSummary(1);
+    tb_XMTB_UpdateSummary();
+}
+
+void tb_XMTB_RunBootSmoke () {
+    tb_XMTB_RunStartupSmoke();
     gv_xmTbLastEvent = "RUN_BOOT";
+    XMTestBench_WriteSummary(1);
     tb_XMTB_UpdateSummary();
 }
 
@@ -401,14 +422,14 @@ bool gt_XMTB_Init_Func (bool testConds, bool runActions) {
     tb_XMTB_BuildUI();
     XMTestBench_SetCommander(1, gv_xmTbCurrentCommander);
     XMTestBench_WriteSummary(1);
-    if (gv_xmTbCurrentCommander == "Kerrigan") {
-        gv_xmTbCurrentScenario = "hero_ability_smoke";
-        tb_XMTB_RunCurrentScenario();
-    }
-    else {
-        gv_xmTbLastEvent = "INIT_UI";
-        tb_XMTB_UpdateSummary();
-    }
+    gv_xmTbLastEvent = "INIT_UI";
+    tb_XMTB_UpdateSummary();
+    tb_XMTB_WriteStateBank("init-ui");
+    Wait(1.0, c_timeGame);
+    gv_xmTbLastEvent = "AUTO_BOOT";
+    tb_XMTB_WriteStateBank("auto-boot-start");
+    tb_XMTB_RunBootSmoke();
+    tb_XMTB_WriteStateBank("auto-boot-done");
     return true;
 }
 
