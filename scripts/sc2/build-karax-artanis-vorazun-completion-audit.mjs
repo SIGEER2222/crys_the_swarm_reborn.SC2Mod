@@ -34,6 +34,11 @@ function commandCardFaces(buttons) {
     .filter(Boolean);
 }
 
+function includesAllById(expectedItems, reports, reportIdKey) {
+  const reportedIds = new Set(reports.map((report) => report[reportIdKey]));
+  return expectedItems.every((item) => reportedIds.has(item.id));
+}
+
 function summarizeCommander(commander, fieldAudit, gapReport) {
   const unitsPath = path.join(officialRoot, commander, 'units.json');
   const buildingsPath = path.join(officialRoot, commander, 'buildings.json');
@@ -52,6 +57,8 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
   const unitReports = field.unit_skill_reports || [];
   const buildingReports = field.building_reports || [];
   const topPanel = field.top_panel || { expected: [], issues: [] };
+  const expectedUnitCount = field.expected_unit_count ?? unitReports.length;
+  const expectedBuildingCount = field.expected_building_count ?? buildingReports.length;
   const checks = [
     check(
       'online-source',
@@ -68,8 +75,14 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     check(
       'unit-roster-count',
       '官方 units.json 中的兵种均进入字段级单位审计',
-      officialUnits.length === unitReports.length,
-      `${unitReports.length}/${officialUnits.length}`,
+      includesAllById(officialUnits, unitReports, 'unit'),
+      `${officialUnits.length}/${unitReports.length}`,
+    ),
+    check(
+      'online-added-units',
+      'StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计',
+      expectedUnitCount === unitReports.length,
+      `expected_units=${expectedUnitCount}, audited_units=${unitReports.length}, online_added=${field.online_added_unit_count || 0}`,
     ),
     check(
       'unit-skill-hard-issues',
@@ -86,8 +99,14 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     check(
       'building-roster-count',
       '官方 buildings.json 中的建筑均进入字段级建筑审计',
-      officialBuildings.length === buildingReports.length,
-      `${buildingReports.length}/${officialBuildings.length}`,
+      includesAllById(officialBuildings, buildingReports, 'building'),
+      `${officialBuildings.length}/${buildingReports.length}`,
+    ),
+    check(
+      'online-added-buildings',
+      'StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计',
+      expectedBuildingCount === buildingReports.length,
+      `expected_buildings=${expectedBuildingCount}, audited_buildings=${buildingReports.length}, online_added=${field.online_added_building_count || 0}`,
     ),
     check(
       'building-issues',
@@ -111,11 +130,15 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     official_buildings_path: path.relative(repoRoot, buildingsPath),
     gap_report_path: path.relative(repoRoot, gapReportPath),
     field_audit_path: path.relative(repoRoot, fieldAuditPath),
-    unit_count: officialUnits.length,
-    building_count: officialBuildings.length,
+    official_unit_count: officialUnits.length,
+    official_building_count: officialBuildings.length,
+    online_added_unit_count: field.online_added_unit_count || 0,
+    online_added_building_count: field.online_added_building_count || 0,
+    unit_count: expectedUnitCount,
+    building_count: expectedBuildingCount,
     top_panel_button_count: topPanel.expected.length,
-    unit_ids: officialUnits.map((unit) => unit.id),
-    building_ids: officialBuildings.map((building) => building.id),
+    unit_ids: unitReports.map((unit) => unit.unit),
+    building_ids: buildingReports.map((building) => building.building),
     top_panel_faces: commandCardFaces(topPanel.expected),
     checks,
     status: passFail(checks.every((item) => item.ok)),
@@ -128,7 +151,7 @@ function writeMarkdown(report) {
   lines.push('');
   lines.push(`- 生成时间：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
   lines.push('- 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。');
-  lines.push('- 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告，以及 StarCraft2Coop 在线资料入口。');
+  lines.push('- 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告，以及 StarCraft2Coop 在线资料入口和页面显式补充项。');
   lines.push('- 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。');
   lines.push('');
   lines.push('## 总览');
@@ -144,6 +167,8 @@ function writeMarkdown(report) {
     lines.push(`## ${commander.commander}`);
     lines.push('');
     lines.push(`- 模块：\`${commander.module}\``);
+    lines.push(`- 单位口径：${commander.unit_count}（官方 JSON ${commander.official_unit_count}，在线补充 ${commander.online_added_unit_count}）`);
+    lines.push(`- 建筑口径：${commander.building_count}（官方 JSON ${commander.official_building_count}，在线补充 ${commander.online_added_building_count}）`);
     lines.push(`- 单位：${commander.unit_ids.join('、')}`);
     lines.push(`- 建筑：${commander.building_ids.join('、')}`);
     lines.push(`- 顶部面板：${commander.top_panel_faces.join('、')}`);

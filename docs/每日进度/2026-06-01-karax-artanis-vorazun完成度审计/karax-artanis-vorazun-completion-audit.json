@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T09:20:11.442Z",
+  "generated_at": "2026-06-01T09:30:32.707Z",
   "commanders": [
     {
       "commander": "Karax",
@@ -9,9 +9,13 @@
       "official_buildings_path": "游戏数据\\官方合作指挥官\\commanders\\Karax\\buildings.json",
       "gap_report_path": "docs\\每日进度\\2026-05-31-官方合作指挥官全量缺口清单\\official-vs-mod-gap-report.json",
       "field_audit_path": "docs\\每日进度\\2026-06-01-karax-artanis-vorazun字段级对齐审计\\karax-artanis-vorazun-field-alignment.json",
+      "official_unit_count": 8,
+      "official_building_count": 5,
+      "online_added_unit_count": 0,
+      "online_added_building_count": 1,
       "unit_count": 8,
-      "building_count": 5,
-      "top_panel_button_count": 3,
+      "building_count": 6,
+      "top_panel_button_count": 4,
       "unit_ids": [
         "ImmortalAiur",
         "Observer",
@@ -27,12 +31,14 @@
         "PhotonCannon",
         "ShieldBattery",
         "SolarForge",
-        "TwilightCouncil"
+        "TwilightCouncil",
+        "KhaydarinMonolith"
       ],
       "top_panel_faces": [
         "SOAOrbitalStrikeKarax",
         "SOAThermalLance",
-        "SOAMapWideChrono"
+        "SOAMapWideChrono",
+        "SOAPurifierBeam"
       ],
       "checks": [
         {
@@ -57,6 +63,13 @@
           "evidence": "8/8"
         },
         {
+          "id": "online-added-units",
+          "description": "StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "expected_units=8, audited_units=8, online_added=0"
+        },
+        {
           "id": "unit-skill-hard-issues",
           "description": "兵种技能/被动不存在硬缺口或字段不匹配",
           "status": "PASS",
@@ -75,7 +88,14 @@
           "description": "官方 buildings.json 中的建筑均进入字段级建筑审计",
           "status": "PASS",
           "ok": true,
-          "evidence": "5/5"
+          "evidence": "5/6"
+        },
+        {
+          "id": "online-added-buildings",
+          "description": "StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "expected_buildings=6, audited_buildings=6, online_added=1"
         },
         {
           "id": "building-issues",
@@ -102,9 +122,13 @@
       "official_buildings_path": "游戏数据\\官方合作指挥官\\commanders\\Artanis\\buildings.json",
       "gap_report_path": "docs\\每日进度\\2026-05-31-官方合作指挥官全量缺口清单\\official-vs-mod-gap-report.json",
       "field_audit_path": "docs\\每日进度\\2026-06-01-karax-artanis-vorazun字段级对齐审计\\karax-artanis-vorazun-field-alignment.json",
-      "unit_count": 7,
+      "official_unit_count": 7,
+      "official_building_count": 5,
+      "online_added_unit_count": 2,
+      "online_added_building_count": 0,
+      "unit_count": 9,
       "building_count": 5,
-      "top_panel_button_count": 3,
+      "top_panel_button_count": 4,
       "unit_ids": [
         "Archon",
         "ImmortalAiur",
@@ -112,7 +136,9 @@
         "PhoenixAiur",
         "StalkerAiur",
         "Zealot",
-        "HighTemplar"
+        "HighTemplar",
+        "Tempest",
+        "Reaver"
       ],
       "building_ids": [
         "Gateway",
@@ -124,7 +150,8 @@
       "top_panel_faces": [
         "SOAPylonPower",
         "SOAOrbitalStrike",
-        "SOASuperShield"
+        "SOASuperShield",
+        "SOAStrafeAttack"
       ],
       "checks": [
         {
@@ -146,7 +173,14 @@
           "description": "官方 units.json 中的兵种均进入字段级单位审计",
           "status": "PASS",
           "ok": true,
-          "evidence": "7/7"
+          "evidence": "7/9"
+        },
+        {
+          "id": "online-added-units",
+          "description": "StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "expected_units=9, audited_units=9, online_added=2"
         },
         {
           "id": "unit-skill-hard-issues",
@@ -168,6 +202,13 @@
           "status": "PASS",
           "ok": true,
           "evidence": "5/5"
+        },
+        {
+          "id": "online-added-buildings",
+          "description": "StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "expected_buildings=5, audited_buildings=5, online_added=0"
         },
         {
           "id": "building-issues",
@@ -194,7 +235,11 @@
       "official_buildings_path": "游戏数据\\官方合作指挥官\\commanders\\Vorazun\\buildings.json",
       "gap_report_path": "docs\\每日进度\\2026-05-31-官方合作指挥官全量缺口清单\\official-vs-mod-gap-report.json",
       "field_audit_path": "docs\\每日进度\\2026-06-01-karax-artanis-vorazun字段级对齐审计\\karax-artanis-vorazun-field-alignment.json",
-      "unit_count": 7,
+      "official_unit_count": 7,
+      "official_building_count": 3,
+      "online_added_unit_count": 1,
+      "online_added_building_count": 0,
+      "unit_count": 8,
       "building_count": 3,
       "top_panel_button_count": 5,
       "unit_ids": [
@@ -204,7 +249,8 @@
         "Zealot",
         "ZealotShakuras",
         "Stalker",
-        "VoidRay"
+        "VoidRay",
+        "DarkArchon"
       ],
       "building_ids": [
         "Gateway",
@@ -238,7 +284,14 @@
           "description": "官方 units.json 中的兵种均进入字段级单位审计",
           "status": "PASS",
           "ok": true,
-          "evidence": "7/7"
+          "evidence": "7/8"
+        },
+        {
+          "id": "online-added-units",
+          "description": "StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "expected_units=8, audited_units=8, online_added=1"
         },
         {
           "id": "unit-skill-hard-issues",
@@ -260,6 +313,13 @@
           "status": "PASS",
           "ok": true,
           "evidence": "3/3"
+        },
+        {
+          "id": "online-added-buildings",
+          "description": "StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "expected_buildings=3, audited_buildings=3, online_added=0"
         },
         {
           "id": "building-issues",

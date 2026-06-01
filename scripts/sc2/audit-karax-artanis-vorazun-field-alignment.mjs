@@ -25,6 +25,7 @@ const topPanels = {
       { face: 'SOAPylonPower', abil_cmd: 'SOAPylonPower,Execute', row: '0', column: '0', label: 'Deploy Power Field' },
       { face: 'SOAOrbitalStrike', abil_cmd: 'SOAOrbitalStrikeActivate,On', row: '0', column: '1', label: 'Orbital Strike' },
       { face: 'SOASuperShield', row: '0', column: '2', label: 'Shield Overcharge' },
+      { face: 'SOAStrafeAttack', abil_cmd: 'SOAStrafeAttack,Execute', row: '0', column: '3', label: 'Solar Bombardment' },
     ],
   },
   Karax: {
@@ -33,6 +34,7 @@ const topPanels = {
       { face: 'SOAOrbitalStrikeKarax', abil_cmd: 'SOAOrbitalStrikeKarax,Execute', row: '0', column: '0', label: 'Orbital Strike' },
       { face: 'SOAThermalLance', abil_cmd: 'SOAThermalLanceActivate,On', row: '0', column: '1', label: 'Solar Lance' },
       { face: 'SOAMapWideChrono', abil_cmd: 'SOAMapWideChrono,Execute', row: '0', column: '2', label: 'Chrono Wave' },
+      { face: 'SOAPurifierBeam', abil_cmd: 'SOAPurifierBeam,Execute', row: '0', column: '3', label: 'Purifier Beam' },
     ],
   },
   Vorazun: {
@@ -44,6 +46,57 @@ const topPanels = {
       { face: 'SOATimeFreeze', row: '0', column: '3', label: 'Time Stop' },
       { face: 'RecallOnDeathPassive', type: 'Passive', row: '0', column: '4', label: 'Emergency Recall passive' },
     ],
+  },
+};
+
+const onlineExpectationAdditions = {
+  Artanis: {
+    units: [
+      {
+        id: 'Tempest',
+        name: 'Tempest',
+        source: 'StarCraft2Coop Combat Units',
+        abilities: [
+          { face: 'LightningBomb', type: 'AbilCmd', abil_cmd: 'LightningBomb,Execute', row: '2', column: '0', name: 'Disintegration' },
+          { face: 'DisintegrationLocked', type: 'Passive', requirements: 'ArtanisLevel12', row: '2', column: '0', name: 'Disintegration locked state' },
+        ],
+      },
+      {
+        id: 'Reaver',
+        name: 'Reaver',
+        source: 'StarCraft2Coop Combat Units',
+        abilities: [
+          { face: 'HaveReaverIncreasedScarabCount', type: 'Passive', requirements: 'HaveReaverIncreasedScarabCount', row: '2', column: '1', name: 'Increased Scarab Capacity' },
+          { face: 'PassiveReaverIncreasedScarabSplashRadius', type: 'Passive', requirements: 'HaveReaverIncreasedScarabSplashRadius', row: '2', column: '2', name: 'Solarite Payload' },
+        ],
+      },
+    ],
+    buildings: [],
+  },
+  Karax: {
+    units: [],
+    buildings: [
+      {
+        id: 'KhaydarinMonolith',
+        name: 'Khaydarin Monolith',
+        source: 'StarCraft2Coop Structures',
+      },
+    ],
+  },
+  Vorazun: {
+    units: [
+      {
+        id: 'DarkArchon',
+        name: 'Dark Archon',
+        source: 'StarCraft2Coop Combat Units',
+        abilities: [
+          { face: 'DarkArchonConfusion', type: 'AbilCmd', abil_cmd: 'DarkArchonConfusion,Execute', row: '2', column: '0', name: 'Confusion' },
+          { face: 'DarkArchonMindControl', type: 'AbilCmd', abil_cmd: 'DarkArchonMindControl,Execute', row: '2', column: '1', name: 'Mind Control' },
+          { face: 'HaveDarkArchonFullStartingEnergy', type: 'Passive', requirements: 'HaveDarkArchonFullStartingEnergy', row: '2', column: '2', name: 'Full Starting Energy' },
+        ],
+      },
+    ],
+    buildings: [],
   },
 };
 
@@ -185,16 +238,45 @@ function buildCandidateMap(items) {
   return map;
 }
 
+function mergeExpectationAdditions(baseItems, additionItems) {
+  const byId = new Map(baseItems.map((item) => [item.id, item]));
+  const merged = [...baseItems];
+
+  for (const addition of additionItems || []) {
+    const existing = byId.get(addition.id);
+    if (existing) {
+      const existingFaces = new Set((existing.abilities || []).map((ability) => ability.face || ability.button?.id).filter(Boolean));
+      existing.abilities = [
+        ...(existing.abilities || []),
+        ...(addition.abilities || []).filter((ability) => !existingFaces.has(ability.face || ability.button?.id)),
+      ];
+      existing.online_expectation_source = addition.source;
+      continue;
+    }
+
+    merged.push({
+      ...addition,
+      online_expectation: true,
+      resolved_unit_ids: addition.resolved_unit_ids || [addition.id],
+      production_options: addition.production_options || [],
+    });
+  }
+
+  return merged;
+}
+
 function collectButtons(candidateIds, moduleUnits, finalUnits) {
   const buttons = [];
   const foundUnitIds = [];
   for (const candidateId of candidateIds) {
-    const unit = moduleUnits.get(candidateId) || finalUnits.get(candidateId);
-    if (!unit) {
+    const units = [moduleUnits.get(candidateId), finalUnits.get(candidateId)].filter(Boolean);
+    if (!units.length) {
       continue;
     }
     foundUnitIds.push(candidateId);
-    buttons.push(...unit.buttons);
+    for (const unit of units) {
+      buttons.push(...unit.buttons);
+    }
   }
   return { buttons, foundUnitIds };
 }
@@ -341,8 +423,11 @@ function auditCommander(commander, finalUnits, globalText) {
   const moduleName = `XM${commander}.SC2Mod`;
   const unitDataPath = path.join(activeXmRoot, moduleName, 'Base.SC2Data', 'GameData', 'UnitData.xml');
   const commanderDir = path.join(commandersRoot, commander);
-  const units = readJson(path.join(commanderDir, 'units.json'));
-  const buildings = readJson(path.join(commanderDir, 'buildings.json'));
+  const officialUnits = readJson(path.join(commanderDir, 'units.json'));
+  const officialBuildings = readJson(path.join(commanderDir, 'buildings.json'));
+  const additions = onlineExpectationAdditions[commander] || { units: [], buildings: [] };
+  const units = mergeExpectationAdditions(officialUnits, additions.units);
+  const buildings = mergeExpectationAdditions(officialBuildings, additions.buildings);
   const moduleUnits = parseUnitData(unitDataPath);
   const candidateMap = buildCandidateMap([...units, ...buildings]);
 
@@ -359,6 +444,12 @@ function auditCommander(commander, finalUnits, globalText) {
     commander,
     module: moduleName,
     online_source: onlineSources[commander],
+    official_unit_count: officialUnits.length,
+    official_building_count: officialBuildings.length,
+    online_added_unit_count: additions.units.length,
+    online_added_building_count: additions.buildings.length,
+    expected_unit_count: units.length,
+    expected_building_count: buildings.length,
     unit_skill_issue_count: unitSkillReports.reduce((sum, unit) => sum + unit.issues.length, 0),
     unit_skill_global_only_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_only.length, 0),
     building_issue_count: buildingReports.reduce((sum, building) => sum + building.issues.length, 0),
@@ -411,20 +502,20 @@ function writeMarkdown(report) {
   lines.push('');
   lines.push(`- 生成时间：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
   lines.push('- 目的：补充现有 ID 缺口脚本的盲区，按“网上资料里的兵种技能/被动、建筑、顶部技能面板”做静态对齐审计。');
-  lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并用 StarCraft2Coop 三位 commander guide 做外部人工对照；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
+  lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
   lines.push('- 说明：`global-only` 表示技能按钮 ID 在当前 Mod 全局存在，但没有在候选单位的显式 LayoutButtons 中出现，可能来自父级继承、别名单位或待人工判断，不直接当作硬缺口。');
   lines.push('- 注意：本报告是静态字段审计，不替代 SC2 实机验证。');
   lines.push('');
   lines.push('## 总览');
   lines.push('');
-  lines.push('| 指挥官 | 在线资料 | 兵种技能硬问题 | global-only 提醒 | 建筑问题 | 顶部面板问题 | 问题类型 |');
-  lines.push('| --- | --- | ---: | ---: | ---: | ---: | --- |');
+  lines.push('| 指挥官 | 在线资料 | 单位审计 | 建筑审计 | 兵种技能硬问题 | global-only 提醒 | 建筑问题 | 顶部面板问题 | 问题类型 |');
+  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
   for (const commanderReport of report.commanders) {
     const summary = summarizeIssueTypes(commanderReport);
     const summaryText = Object.keys(summary).length
       ? Object.entries(summary).map(([key, value]) => `${key}:${value}`).join('、')
       : '无';
-    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.building_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
+    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.building_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
   }
   lines.push('');
 
@@ -433,6 +524,8 @@ function writeMarkdown(report) {
     lines.push('');
     lines.push(`- 模块：\`${commanderReport.module}\``);
     lines.push(`- 在线资料：${commanderReport.online_source}`);
+    lines.push(`- 单位审计：${commanderReport.expected_unit_count}（官方 JSON ${commanderReport.official_unit_count}，在线补充 ${commanderReport.online_added_unit_count}）`);
+    lines.push(`- 建筑审计：${commanderReport.expected_building_count}（官方 JSON ${commanderReport.official_building_count}，在线补充 ${commanderReport.online_added_building_count}）`);
     lines.push(`- 兵种技能硬问题：${commanderReport.unit_skill_issue_count}`);
     lines.push(`- global-only 提醒：${commanderReport.unit_skill_global_only_count}`);
     lines.push(`- 建筑问题：${commanderReport.building_issue_count}`);
