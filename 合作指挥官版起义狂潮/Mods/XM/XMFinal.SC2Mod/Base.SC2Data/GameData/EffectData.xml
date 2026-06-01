@@ -6406,6 +6406,30 @@
             <ExpireEffect value="RavagerCorrosiveBileAoeLaunchDown"/>
             <AINotifyEffect value="RavagerCorrosiveBileAoeSearch"/>
         </CEffectCreatePersistent>
+    <CEffectDamage id="RavagerCorrosiveBileAoeDamage">
+            <ValidatorArray value="NotInvulnerable"/>
+            <EditorCategories value="Race:Zerg"/>
+            <ResponseFlags index="Acquire" value="1"/>
+            <ResponseFlags index="Flee" value="1"/>
+            <Flags index="Notification" value="1"/>
+            <Amount value="60"/>
+        </CEffectDamage>
+    <CEffectDamage id="RavagerCorrosiveBileAoeForceFieldKill">
+            <ValidatorArray value="TargetIsForceField"/>
+            <EditorCategories value="Race:Zerg"/>
+            <ResponseFlags index="Acquire" value="1"/>
+            <ResponseFlags index="Flee" value="1"/>
+            <Flags index="Kill" value="1"/>
+            <Flags index="Notification" value="1"/>
+        </CEffectDamage>
+    <CEffectLaunchMissile id="RavagerCorrosiveBileAoeLaunchDown">
+            <EditorCategories value="Race:Zerg"/>
+            <LaunchLocation Value="TargetPoint"/>
+            <ImpactLocation Value="TargetPoint"/>
+            <LaunchOffset value="0,1,30"/>
+            <ImpactEffect value="RavagerCorrosiveBileAoeSearch"/>
+            <AmmoUnit value="RavagerCorrosiveBileAoeMissile"/>
+        </CEffectLaunchMissile>
     <CEffectEnumArea id="RavagerCorrosiveBileAoeCursorDummy">
             <EditorCategories value="Race:Zerg"/>
             <SearchFilters value="-;Missile,Stasis,Dead,Hidden,Invulnerable"/>
@@ -6417,6 +6441,29 @@
             <EffectArray value="RavagerCorrosiveBileAoeWarningDummySearch"/>
             <TargetLocationType value="Point"/>
         </CEffectSet>
+    <CEffectLaunchMissile id="RavagerCorrosiveBileAoeLaunchUp">
+            <EditorCategories value="Race:Zerg"/>
+            <ImpactLocation Value="SourcePoint"/>
+            <ImpactOffset value="0,-1,30"/>
+            <AmmoUnit value="RavagerCorrosiveBileAoeMissile"/>
+        </CEffectLaunchMissile>
+    <CEffectEnumArea id="RavagerCorrosiveBileAoeSearch">
+            <EditorCategories value="Race:Zerg"/>
+            <SearchFilters value="-;Player,Ally,Missile,Stasis,Dead,Hidden"/>
+            <AreaArray Radius="0.5" Effect="RavagerCorrosiveBileAoeSet"/>
+            <AINotifyFlags index="HurtFriend" value="1"/>
+            <AINotifyFlags index="HurtEnemy" value="1"/>
+            <AINotifyFlags index="MajorDanger" value="1"/>
+        </CEffectEnumArea>
+    <CEffectSet id="RavagerCorrosiveBileAoeSet">
+            <EditorCategories value="Race:Zerg"/>
+            <EffectArray value="RavagerCorrosiveBileAoeDamage"/>
+            <EffectArray value="RavagerCorrosiveBileAoeForceFieldKill"/>
+        </CEffectSet>
+    <CEffectDamage id="RavagerCorrosiveBileAoeWarningDummyDamage">
+            <EditorCategories value="Race:Zerg"/>
+            <Flags index="Notification" value="1"/>
+        </CEffectDamage>
     <CEffectEnumArea id="RavagerCorrosiveBileAoeWarningDummySearch">
             <EditorCategories value="Race:Zerg"/>
             <SearchFilters value="-;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
