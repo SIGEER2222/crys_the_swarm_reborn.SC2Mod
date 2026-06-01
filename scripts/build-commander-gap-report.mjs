@@ -44,7 +44,7 @@ function buildModIdSet() {
   const ids = new Set();
   const texts = [];
   const files = walkRelevantFiles(modRoot);
-  const idRegex = /\bid\s*=\s*"([^"]+)"/g;
+  const idRegex = /\bid\s*=\s*"([^"]+)"/gi;
 
   for (const file of files) {
     const text = fs.readFileSync(file, 'utf8');

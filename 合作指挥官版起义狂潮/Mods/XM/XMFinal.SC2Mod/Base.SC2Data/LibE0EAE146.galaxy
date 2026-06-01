@@ -315,6 +315,16 @@ void libE0EAE146_gf_XMDbgLog (string lp_level, string lp_event, string lp_messag
     TriggerDebugOutput(1, StringToText("[XM_DBG][" + lp_level + "][" + lp_event + "] " + lp_message), false);
 }
 
+point libE0EAE146_gf_XMRuntime_GetOriginPoint (int lp_player) {
+    point lv_origin;
+
+    lv_origin = PlayerStartLocation(lp_player);
+    if (lv_origin != null) {
+        return lv_origin;
+    }
+    return PointFromId(1);
+}
+
 bool libE0EAE146_gf_XMTestBench_PlayerValid (int lp_player) {
     if ((lp_player < 1) || (lp_player > libE0EAE146_gv_xmTestBenchMaxPlayers)) {
         return false;
@@ -493,7 +503,7 @@ point libE0EAE146_gf_XMTestBench_SpawnPoint (int lp_player, int lp_index, fixed 
     lv_slotsPerRow = 5;
     lv_row = 0;
     lv_col = (lp_index - 1);
-    lv_origin = PointWithOffsetPolar(PlayerStartLocation(lp_player), lp_radius, 0.0);
+    lv_origin = PointWithOffsetPolar(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), lp_radius, 0.0);
     while (lv_col >= lv_slotsPerRow) {
         lv_col -= lv_slotsPerRow;
         lv_row += 1;
@@ -1009,7 +1019,7 @@ void libE0EAE146_gf_InitializeAbathurBiomass (int lp_player, string lp_collectEf
     libE0EAE146_gv_abathurBiomassEnabled = true;
     libE0EAE146_gf_EnableAbathurBiomassTriggers();
     if ((libE0EAE146_gv_abathurBiomassTestPickupCreated == false)) {
-        libE0EAE146_gv_abathurBiomassTestPickupCreated = libE0EAE146_gf_CreateAbathurBiomassTestPickup(PointWithOffsetPolar(PlayerStartLocation(lp_player), 4.0, 0.0), libE0EAE146_gf_AbathurBiomassMaxStacks());
+        libE0EAE146_gv_abathurBiomassTestPickupCreated = libE0EAE146_gf_CreateAbathurBiomassTestPickup(PointWithOffsetPolar(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), 4.0, 0.0), libE0EAE146_gf_AbathurBiomassMaxStacks());
     }
 }
 void libE0EAE146_gf_EnableAbathurBiomassTriggers () {
@@ -2596,7 +2606,7 @@ bool libE0EAE146_gf_XMTestBench_ZeratulBuildings (int lp_player, string lp_roste
 }
 
 bool libE0EAE146_gf_XMTestBench_RunCommanderBuildings (int lp_player, string lp_commander, string lp_rosterKind) {
-    if ((lp_commander == "Abathur") && libE0EAE146_gf_XMTestBench_AbathurBuildings(lp_player, lp_rosterKind)) {
+    if (((lp_commander == "Abathur") || (lp_commander == "AbathurReborn")) && libE0EAE146_gf_XMTestBench_AbathurBuildings(lp_player, lp_rosterKind)) {
         return true;
     }
     if ((lp_commander == "Alarak") && libE0EAE146_gf_XMTestBench_AlarakBuildings(lp_player, lp_rosterKind)) {
@@ -3241,7 +3251,7 @@ bool libE0EAE146_gf_XMTestBench_ZeratulTech (int lp_player, string lp_scenarioKi
 }
 
 bool libE0EAE146_gf_XMTestBench_RunCommanderTech (int lp_player, string lp_commander, string lp_scenarioKind) {
-    if ((lp_commander == "Abathur") && libE0EAE146_gf_XMTestBench_AbathurTech(lp_player, lp_scenarioKind)) {
+    if (((lp_commander == "Abathur") || (lp_commander == "AbathurReborn")) && libE0EAE146_gf_XMTestBench_AbathurTech(lp_player, lp_scenarioKind)) {
         return true;
     }
     if ((lp_commander == "Alarak") && libE0EAE146_gf_XMTestBench_AlarakTech(lp_player, lp_scenarioKind)) {
@@ -3643,7 +3653,7 @@ bool libE0EAE146_gf_XMTestBench_ZeratulHeroAbilities (int lp_player, string lp_s
 }
 
 bool libE0EAE146_gf_XMTestBench_RunCommanderHeroAbilities (int lp_player, string lp_commander, string lp_scenarioKind) {
-    if ((lp_commander == "Abathur") && libE0EAE146_gf_XMTestBench_AbathurHeroAbilities(lp_player, lp_scenarioKind)) {
+    if (((lp_commander == "Abathur") || (lp_commander == "AbathurReborn")) && libE0EAE146_gf_XMTestBench_AbathurHeroAbilities(lp_player, lp_scenarioKind)) {
         return true;
     }
     if ((lp_commander == "Alarak") && libE0EAE146_gf_XMTestBench_AlarakHeroAbilities(lp_player, lp_scenarioKind)) {
@@ -4496,7 +4506,7 @@ bool libE0EAE146_gf_XMTestBench_ZeratulUnitAbilities (int lp_player, string lp_s
 }
 
 bool libE0EAE146_gf_XMTestBench_RunCommanderUnitAbilities (int lp_player, string lp_commander, string lp_scenarioKind) {
-    if ((lp_commander == "Abathur") && libE0EAE146_gf_XMTestBench_AbathurUnitAbilities(lp_player, lp_scenarioKind)) {
+    if (((lp_commander == "Abathur") || (lp_commander == "AbathurReborn")) && libE0EAE146_gf_XMTestBench_AbathurUnitAbilities(lp_player, lp_scenarioKind)) {
         return true;
     }
     if ((lp_commander == "Alarak") && libE0EAE146_gf_XMTestBench_AlarakUnitAbilities(lp_player, lp_scenarioKind)) {
@@ -5691,7 +5701,7 @@ void libE0EAE146_gf_XMTestBench_RunStandardBase (int lp_player) {
     lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player]);
     libE0EAE146_gf_Initialize(false);
-    libE0EAE146_gf_InitializeBase(PointWithOffsetPolar(PlayerStartLocation(lp_player), 8.0, 0.0), 5, null, true);
+    libE0EAE146_gf_InitializeBase(PointWithOffsetPolar(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), 8.0, 0.0), 5, null, true);
     lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libE0EAE146_gv_xmTestBenchCreated[lp_player] = MaxI(0, (lv_after - lv_before));
     libE0EAE146_gf_XMDbgLog("INFO", "TEST_SCENARIO_ADAPTER", "scenario=standard_base result=adapter_ok reason=legacy_initializebase_adapter cleanup=manual");
@@ -5981,13 +5991,13 @@ void libE0EAE146_gf_XMTestBench_RunUnitAbilitySmoke (int lp_player) {
 }
 
 void libE0EAE146_gf_XMTestBench_RunPanelCostSmoke (int lp_player) {
-    if (XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(PlayerStartLocation(lp_player), 18.0, 0.0)) == false) {
+    if (XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), 18.0, 0.0)) == false) {
         libE0EAE146_gf_XMDbgLog("INFO", "PANEL_COST_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " reason=panel_profile_not_fully_castable");
     }
 }
 
 void libE0EAE146_gf_XMTestBench_RunPanelEffectSmoke (int lp_player) {
-    XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(PlayerStartLocation(lp_player), 18.0, 0.0));
+    XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), 18.0, 0.0));
     libE0EAE146_gf_XMDbgLog("INFO", "PANEL_EFFECT_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " reason=panel_profile_not_wired");
 }
 
@@ -6161,6 +6171,44 @@ trigger libD0E57A9C_gt_KerriganReviveActor;
 // Library Initialization
 void libD0E57A9C_InitVariables ();
 
+void libD0E57A9C_InitLibraries () {
+    libNtve_InitVariables();
+    lib67C0F0E7_InitVariables();
+}
+
+bool libD0E57A9C_InitVariables_completed = false;
+
+void libD0E57A9C_InitVariables () {
+    if (libD0E57A9C_InitVariables_completed) {
+        return;
+    }
+
+    libD0E57A9C_InitVariables_completed = true;
+    libD0E57A9C_gv_kerriganPlayer = 1;
+}
+
+void libD0E57A9C_gf_InitializeKerriganEvent (int lp_player, unit lp_kerrigan) {
+    libD0E57A9C_gv_kerriganPlayer = lp_player;
+    TriggerAddEventUnitGainLevel(libD0E57A9C_gt_KerriganRevive, UnitRefFromUnit(lp_kerrigan));
+}
+
+bool libD0E57A9C_gt_KerriganRevive_Func (bool testConds, bool runActions) {
+    if (!runActions) {
+        return true;
+    }
+
+    return true;
+}
+
+void libD0E57A9C_gt_KerriganRevive_Init () {
+    libD0E57A9C_gt_KerriganRevive = TriggerCreate("libD0E57A9C_gt_KerriganRevive_Func");
+    TriggerEnable(libD0E57A9C_gt_KerriganRevive, false);
+}
+
+void libD0E57A9C_gf_KerriganCreepEntireMap (int lp_player) {
+    // Stub - will be implemented when needed
+}
+
 
 
 //--------------------------------------------------------------------------------------------------
@@ -6174,6 +6222,7 @@ void libE0EAE146_InitLibraries () {
     libC0F50AA6_InitVariables();
     libDF8E6945_InitVariables();
     lib975E2FE9_InitVariables();
+    libD0E57A9C_InitVariables();
 }
 
 // Variable Initialization
@@ -6435,8 +6484,13 @@ void libE0EAE146_gf_XMRuntime_ApplyCommanderProgression (int lp_player) {
 }
 
 void libE0EAE146_gf_XMRuntime_CreateBaseStructures (int lp_player, point lp_secondBase) {
+    int lv_createFlags;
     string lv_commandCenterUnit;
 
+    lv_createFlags = 0;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == true)) {
+        lv_createFlags = c_unitCreateIgnorePlacement;
+    }
     lv_commandCenterUnit = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommandCenter", 1);
     if (((lv_commandCenterUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_commandCenterUnit))) && (libE0EAE146_gv_commander == "Kerrigan")) {
         lv_commandCenterUnit = "Hatchery";
@@ -6448,11 +6502,11 @@ void libE0EAE146_gf_XMRuntime_CreateBaseStructures (int lp_player, point lp_seco
         libE0EAE146_gf_XMDbgLog("WARN", "BASE_STRUCTURE_MISSING", "commander=" + libE0EAE146_gv_commander + " field=CommandCenter unitType=" + lv_commandCenterUnit);
         return;
     }
-    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_commandCenterUnit, 0, 1, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_commandCenterUnit, lv_createFlags, 1, libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player));
     if ((lp_secondBase == null)) {
     }
     else {
-        libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_commandCenterUnit, 0, 1, lp_secondBase);
+        libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_commandCenterUnit, lv_createFlags, 1, lp_secondBase);
     }
 }
 
@@ -6466,9 +6520,14 @@ void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worke
     // Automatic Variable Declarations
     unitgroup auto93C1ECD3_g;
     int auto93C1ECD3_u;
+    int lv_createFlags;
 
     // Variable Initialization
     lv_uG = UnitGroupEmpty();
+    lv_createFlags = 0;
+    if ((libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == true)) {
+        lv_createFlags = c_unitCreateIgnorePlacement;
+    }
 
     // Implementation
     lv_workerUnit = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Worker", 1);
@@ -6482,7 +6541,7 @@ void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worke
         libE0EAE146_gf_XMDbgLog("WARN", "BASE_WORKER_MISSING", "commander=" + libE0EAE146_gv_commander + " field=Worker unitType=" + lv_workerUnit);
         return;
     }
-    auto93C1ECD3_g = UnitGroup(null, c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 8.0), UnitFilter((1 << c_targetFilterHarvestableResource), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto93C1ECD3_g = UnitGroup(null, c_playerAny, RegionCircle(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), 8.0), UnitFilter((1 << c_targetFilterHarvestableResource), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto93C1ECD3_u = UnitGroupCount(auto93C1ECD3_g, c_unitCountAll);
     for (;; auto93C1ECD3_u -= 1) {
         lv_u = UnitGroupUnitFromEnd(auto93C1ECD3_g, auto93C1ECD3_u);
@@ -6494,14 +6553,14 @@ void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worke
     if ((UnitGroupCount(lv_uG, c_unitCountAlive) > 0)) {
         lv_i = 0;
         for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_workerUnit, 0, 1, PointWithOffsetPolar(PlayerStartLocation(lp_player), 2.0, (lv_i*10)));
+            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_workerUnit, lv_createFlags, 1, PointWithOffsetPolar(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), 2.0, (lv_i*10)));
             UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(null, UnitGroupRandomUnit(lv_uG, c_unitCountAlive)), c_orderQueueReplace);
         }
     }
     else {
         lv_i = 0;
         for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_workerUnit, 0, 1, PointWithOffsetPolar(PlayerStartLocation(lp_player), 2.0, (lv_i*10)));
+            libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, lv_workerUnit, lv_createFlags, 1, PointWithOffsetPolar(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), 2.0, (lv_i*10)));
         }
     }
 }
@@ -6626,6 +6685,7 @@ void libE0EAE146_gf_XMRuntime_InitKerriganBaseHook (int lp_player, point lp_seco
         TechTreeUpgradeAddLevel(lp_player, "KerriganCreepBonusesCoop", 1);
     }
     TechTreeUpgradeAddLevel(lp_player, "K5CreepBonuses", 1);
+    libD0E57A9C_gf_KerriganCreepEntireMap(lp_player);
     if ((lp_createHero == true)) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_secondUnit);
         lv_kerrigan = UnitLastCreated();
@@ -7189,6 +7249,7 @@ void libE0EAE146_InitTriggers () {
     libE0EAE146_gt_AbathurBiomassRefund_Init();
     libE0EAE146_gt_AbathurBiomassTrain_Init();
     libE0EAE146_gt_AbathurBiomassScaler_Init();
+    libD0E57A9C_gt_KerriganRevive_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

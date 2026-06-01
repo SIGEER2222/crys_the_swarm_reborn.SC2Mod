@@ -849,9 +849,20 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b intro start"));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:start commander=" + libE0EAE146_gv_commander), false);
+    if (libE0EAE146_gv_commander == "") {
+        libE0EAE146_gf_XMRuntime_PrepareCommanderFromBank(1);
+    }
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:commander=" + libE0EAE146_gv_commander), false);
+    libE0EAE146_gf_InitializeBase(PointFromId(29), 8, null, true);
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:base-initialized"), false);
     libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, PlayerStartLocation(1));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:commandcenter=" + UnitGetType(UnitLastCreated())), false);
     libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1), 0, 1, PlayerStartLocation(1));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:worker=" + UnitGetType(UnitLastCreated())), false);
     libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1), 0, 1, PointFromId(8));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:second=" + UnitGetType(UnitLastCreated())), false);
     auto2F29E444_val = libE0EAE146_gv_commander;
     if (auto2F29E444_val == "Stukov") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "SIStukov", 0, 1, PointFromId(29));
@@ -977,6 +988,8 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     }
     else {
     }
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b pre cinematic"));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:pre-cinematic"), false);
     CinematicFade(false, 0.0, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, false);
     libNtve_gf_CinematicMode(true, PlayerGroupAll(), 0.0);
     libNtve_gf_GlobalCinematicSetting(true);
@@ -989,10 +1002,14 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         UnitCargoCreate(auto5341E998_var, "Marine", 4);
         UnitCargoCreate(auto5341E998_var, "Marauder", 1);
     }
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b after cargo"));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:after-cargo"), false);
     Wait(0.1, c_timeReal);
     libNtve_gf_CinematicMode(false, PlayerGroupAll(), 1.5);
     libNtve_gf_GlobalCinematicSetting(false);
     libNtve_gf_SwooshCamera(gv_pLAYER01_USER, ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 8.0), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), CameraInfoGetTarget(CameraInfoFromId(74)), 1.5);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b camera swoosh"));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:camera-swoosh"), false);
     CinematicFade(true, 1.5, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, true);
     TriggerExecute(gt_LightningGauntlet1, true, false);
     TriggerExecute(gt_LightningGauntlet2, true, false);
@@ -1990,6 +2007,8 @@ void gt_KillOrbitalCommands_Init () {
 //--------------------------------------------------------------------------------------------------
 bool gt_OrbitalScans_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
+    unit auto16139802_eventUnit;
+    point auto16139802_eventPoint = null;
     unitgroup auto16139802_g;
     int auto16139802_u;
     unit auto16139802_var;
@@ -2007,13 +2026,17 @@ bool gt_OrbitalScans_Func (bool testConds, bool runActions) {
     }
 
     Wait(1.0, c_timeGame);
-    if ((UnitGroupCount(UnitGroupAlliance(gv_pLAYER02_TOSH, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(EventUnit()), 15.0), UnitFilter((1 << c_targetFilterCloaked), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) > 0)) {
+    auto16139802_eventUnit = EventUnit();
+    if (((auto16139802_eventUnit != null) && (UnitIsValid(auto16139802_eventUnit) == true))) {
+        auto16139802_eventPoint = UnitGetPosition(auto16139802_eventUnit);
+    }
+    if (((auto16139802_eventPoint != null) && (UnitGroupCount(UnitGroupAlliance(gv_pLAYER02_TOSH, c_unitAllianceEnemy, RegionCircle(auto16139802_eventPoint, 15.0), UnitFilter((1 << c_targetFilterCloaked), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) > 0))) {
         auto16139802_g = UnitGroup("OrbitalCommand", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
         auto16139802_u = UnitGroupCount(auto16139802_g, c_unitCountAll);
         for (;; auto16139802_u -= 1) {
             auto16139802_var = UnitGroupUnitFromEnd(auto16139802_g, auto16139802_u);
             if (auto16139802_var == null) { break; }
-            if ((UnitGetPropertyFixed(auto16139802_var, c_unitPropEnergy, c_unitPropCurrent) >= 50.0) && (libNtve_gf_UnitInRegion(EventUnitDamageSourceUnit(), RegionCircle(UnitGetPosition(auto16139802_var), 50.0)) == true)) {
+            if ((UnitIsValid(auto16139802_var) == true) && (UnitIsAlive(auto16139802_var) == true) && (UnitGetPropertyFixed(auto16139802_var, c_unitPropEnergy, c_unitPropCurrent) >= 50.0)) {
                 UnitIssueOrder(auto16139802_var, OrderTargetingPoint(AbilityCommand("ScannerSweep", 0), UnitGetPosition(EventUnitDamageSourceUnit())), c_orderQueueReplace);
                 if ((gv_scanPerformed == false)) {
                     gv_scanPerformed = true;

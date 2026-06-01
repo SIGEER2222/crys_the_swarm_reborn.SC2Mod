@@ -105,17 +105,21 @@ function Set-BankCommander {
 }
 
 function Stop-RunningSc2 {
-    $running = Get-Process -Name "SC2_x64" -ErrorAction SilentlyContinue
-    if (-not $running) {
-        return
-    }
+    $processNames = @("SC2_x64", "SC2Switcher_x64")
 
-    foreach ($proc in $running) {
-        try {
-            Stop-Process -Id $proc.Id -Force -ErrorAction Stop
+    foreach ($processName in $processNames) {
+        $running = Get-Process -Name $processName -ErrorAction SilentlyContinue
+        if (-not $running) {
+            continue
         }
-        catch {
-            Write-Warning "Could not stop SC2_x64 (PID $($proc.Id)): $($_.Exception.Message)"
+
+        foreach ($proc in $running) {
+            try {
+                Stop-Process -Id $proc.Id -Force -ErrorAction Stop
+            }
+            catch {
+                Write-Warning "Could not stop $processName (PID $($proc.Id)): $($_.Exception.Message)"
+            }
         }
     }
 

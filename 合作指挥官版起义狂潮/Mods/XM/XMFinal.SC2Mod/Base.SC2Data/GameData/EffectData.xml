@@ -418,6 +418,40 @@
     <CEffectApplyBehavior id="AbathurMendPeriodicHeal">
             <EditorCategories value="Race:Protoss"/>
         </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AbathurRebornMendAB">
+            <EditorCategories value="Race:Protoss"/>
+            <Behavior value="AbathurRebornMendInitialHeal"/>
+            <ValidatorArray value="TargetIsNotNonCommanderAlly"/>
+        </CEffectApplyBehavior>
+    <CEffectEnumArea id="AbathurRebornMendSearch">
+            <EditorCategories value="Race:Zerg"/>
+            <ImpactLocation Value="TargetPoint"/>
+            <SearchFilters value="-;Neutral,Enemy,Missile,Destructible,Item,Stasis,Dead,Hidden"/>
+            <AreaArray Radius="500" Effect="AbathurRebornMendAB"/>
+        </CEffectEnumArea>
+    <CEffectCreateHealer id="AbathurRebornMendInitialHealer">
+            <EditorCategories value=""/>
+            <ValidatorArray value="LifeNotFull"/>
+            <Flags index="Channeled" value="0"/>
+            <RechargeVitalRate value="100"/>
+            <PeriodCount value="1"/>
+            <PeriodicPeriod value="1"/>
+        </CEffectCreateHealer>
+    <CEffectCreateHealer id="AbathurRebornMendSecondaryHealer">
+            <EditorCategories value=""/>
+            <Flags index="Channeled" value="0"/>
+            <PeriodCount value="16"/>
+            <RechargeVitalRate value="5"/>
+        </CEffectCreateHealer>
+    <CEffectSet id="AbathurRebornMendSet">
+            <EditorCategories value=""/>
+            <EffectArray value="AbathurRebornMendInitialHealer"/>
+            <EffectArray value="AbathurRebornMendAB"/>
+            <ValidatorArray value="NotUnrepairable"/>
+        </CEffectSet>
+    <CEffectApplyBehavior id="AbathurRebornMendPeriodicHeal">
+            <EditorCategories value="Race:Protoss"/>
+        </CEffectApplyBehavior>
     <CEffectCreatePersistent id="AlarakDestroyerCreationCP">
             <EditorCategories value="Race:Protoss"/>
             <OffsetVectorStartLocation Value="TargetPoint"/>

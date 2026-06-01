@@ -6,6 +6,9 @@ string libE0EAE146_gf_XMTestBench_GetCommanderRosterPreviewTextForCommander (str
     if (lp_commander == "Abathur") {
         return "官方 roster 预览｜阿巴瑟 / Abathur" + "\n" + "英雄(0)：无" + "\n" + "兵种/建筑(12)：守护者、吞噬者、异龙、脊针爬虫、孢子爬虫、虫群宿主、虫后、秽形蟑螂、破坏者、飞蛇、莽兽、利维坦" + "\n" + "备注：官方口径按 commander 目录；Abathur 只保留秽形蟑螂分支，不再列出普通蟑螂/尸毒蟑螂。runtime 侧虫后固定用 QueenCoop/QueenCoopBurrowed，不直接用 Queen/SwarmQueen，避免尼亚德拉混入。";
     }
+    if (lp_commander == "AbathurReborn") {
+        return "重生 roster 预览｜阿巴瑟 / AbathurReborn" + "\n" + "英雄(0)：无" + "\n" + "兵种(12)：跳虫、爆虫、蟑螂、刺蛇、异龙、宿主、雷兽、巢虫领主、感染者、腐化者、飞蛇、利维坦" + "\n" + "建筑(6)：主巢、孵化场、虫穴、进化腔、虫道网络、脊针爬虫" + "\n" + "备注：这是重生线，不沿用官方阿巴瑟口径；这里优先把会进化/会变体的条目单独列出来，避免和官方阿巴瑟混淆。";
+    }
     if (lp_commander == "Alarak") {
         return "官方 roster 预览｜阿拉纳克 / Alarak" + "\n" + "简介：塔达林的高阶领主" + "\n" + "英雄(0)：无" + "\n" + "兵种(7)：天罚行者、晋升者、无情先锋、浩劫、死徒、战争棱镜、追猎者" + "\n" + "建筑(3)：传送门、光子炮台、光影议会" + "\n" + "口径：仅官方 commander/*.json，不含 wiki 补表。";
     }
@@ -25,7 +28,7 @@ string libE0EAE146_gf_XMTestBench_GetCommanderRosterPreviewTextForCommander (str
         return "官方 roster 预览｜凯拉克斯 / Karax" + "\n" + "简介：NYI" + "\n" + "英雄(0)：无" + "\n" + "兵种(8)：不朽者、侦测器、侦察机、折跃侦察机、激励者、哨兵、巨像、航母" + "\n" + "建筑(5)：传送门、光子炮台、护盾充能器、太阳锻炉、光影议会" + "\n" + "口径：仅官方 commander/*.json，不含 wiki 补表。";
     }
     if (lp_commander == "Kerrigan") {
-        return "官方 roster 预览｜凯瑞甘 / Kerrigan" + "\n" + "简介：指挥海量军队，拥有强大的灵能。" + "\n" + "英雄(1)：凯瑞甘" + "\n" + "兵种(6)：巢虫领主、刺蛇、异龙、虫后、雷兽、跳虫" + "\n" + "建筑(3)：虫道网络、脊针爬虫、孢子爬虫" + "\n" + "口径：仅官方 commander/*.json，不含 wiki 补表。";
+        return "官方 roster 预览｜凯瑞甘 / Kerrigan" + "\n" + "简介：指挥海量军队，拥有强大的灵能。" + "\n" + "英雄(1)：凯瑞甘" + "\n" + "兵种(6)：巢虫领主、刺蛇（可进化潜伏者）、异龙、虫后、雷兽（复活形态）、跳虫（走腾跃虫分支，不进化爆虫）" + "\n" + "建筑(3)：虫道网络、脊针爬虫、孢子爬虫" + "\n" + "备注：这里按实机口径把演化关系写进预览，避免把基础单位和进化形态混成一条。";
     }
     if (lp_commander == "Mengsk") {
         return "官方 roster 预览｜蒙斯克 / Mengsk" + "\n" + "简介：帝国元首" + "\n" + "英雄(0)：无" + "\n" + "兵种(16)：帝国劳工、帝国冲锋队、帝国 火箭筒 冲锋队、帝国 火焰器 冲锋队、帝国 突击手 冲锋队、壁垒卫士、元首鬼影、帝国仲裁机、冲击分队、攻城坦克、黑色战锤、天空之怒、奥古斯特格勒的骄傲、帝国见证者" + "\n" + "建筑(11)：征兵中心、补给地堡、导弹塔、兵营、重工厂、星港、工程站、军械库、聚变芯体、皇家军校、大地碎裂炮" + "\n" + "口径：仅官方 commander/*.json，不含 wiki 补表。";
