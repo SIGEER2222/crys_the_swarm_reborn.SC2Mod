@@ -466,6 +466,9 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperSetTo, 1000);
     PlayerModifyPropertyInt(1, c_playerPropSuppliesMade, c_playerPropOperSetTo, 200);
     libE0EAE146_gf_Initialize(true);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b map init"));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] init:map-init commander=" + libE0EAE146_gv_commander), false);
+    ttosh03b_WriteDebug("init:map-init", "commander=" + libE0EAE146_gv_commander);
     TriggerExecute(gt_Init01Technology, true, true);
     TriggerExecute(gt_Init02Players, true, true);
     TriggerExecute(gt_Init03Units, true, true);
@@ -857,6 +860,9 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b intro preflight"));
+    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:preflight commander=" + libE0EAE146_gv_commander), false);
+    ttosh03b_WriteDebug("intro:preflight", "commander=" + libE0EAE146_gv_commander);
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b intro start"));
     TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:start commander=" + libE0EAE146_gv_commander), false);
     ttosh03b_WriteDebug("intro:start", "commander=" + libE0EAE146_gv_commander);

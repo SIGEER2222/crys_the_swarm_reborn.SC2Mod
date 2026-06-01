@@ -1,10 +1,6 @@
 // XMFinal split module: commander panel ability test profiles.
 
 bool libE0EAE146_gf_XMTestBench_CheckPanelProfile (int lp_player, string lp_commander, string lp_panelAbilityId, string lp_abilityId, string lp_buttonId, string lp_requirementId, string lp_casterId, string lp_targetMode, string lp_note, point lp_targetPoint) {
-    string lv_cooldown;
-    string lv_energy;
-    string lv_chargeMax;
-    string lv_chargeTime;
     int lv_mineralsBefore;
     int lv_vespeneBefore;
     bool lv_ok;
@@ -34,13 +30,9 @@ bool libE0EAE146_gf_XMTestBench_CheckPanelProfile (int lp_player, string lp_comm
         return false;
     }
 
-    lv_cooldown = CatalogFieldValueGet(c_gameCatalogAbil, lp_abilityId, "Cost[0].Cooldown.TimeUse", lp_player);
-    lv_energy = CatalogFieldValueGet(c_gameCatalogAbil, lp_abilityId, "Cost[0].Vital[2]", lp_player);
-    lv_chargeMax = CatalogFieldValueGet(c_gameCatalogAbil, lp_abilityId, "Cost[0].Charge.CountMax", lp_player);
-    lv_chargeTime = CatalogFieldValueGet(c_gameCatalogAbil, lp_abilityId, "Cost[0].Charge.TimeUse", lp_player);
     libE0EAE146_gv_xmTestBenchCreated[lp_player] += 1;
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "PANEL_PROFILE_HIT");
-    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_PROFILE_HIT", "commander=" + lp_commander + " panel=" + lp_panelAbilityId + " ability=" + lp_abilityId + " button=" + lp_buttonId + " requirement=" + lp_requirementId + " targetMode=" + lp_targetMode + " mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " catalogCooldown=" + lv_cooldown + " catalogEnergy=" + lv_energy + " catalogChargeMax=" + lv_chargeMax + " catalogChargeTime=" + lv_chargeTime + " caster=" + lp_casterId + " note=" + lp_note + " result=profile_metadata_only reason=actual_cast_not_issued_by_smoke");
+    libE0EAE146_gf_XMDbgLog("INFO", "PANEL_PROFILE_HIT", "commander=" + lp_commander + " panel=" + lp_panelAbilityId + " ability=" + lp_abilityId + " button=" + lp_buttonId + " requirement=" + lp_requirementId + " targetMode=" + lp_targetMode + " mineralsBefore=" + IntToString(lv_mineralsBefore) + " vespeneBefore=" + IntToString(lv_vespeneBefore) + " caster=" + lp_casterId + " note=" + lp_note + " result=profile_metadata_only reason=actual_cast_not_issued_by_smoke");
     return true;
 }
 
