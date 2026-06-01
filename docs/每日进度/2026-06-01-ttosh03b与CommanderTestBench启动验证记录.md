@@ -78,6 +78,12 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\launch-xm-map.ps1 -Comma
 - `CommanderTestBench` 的 `XMTestBench_GetSafeOriginPoint` 已改成 `RegionGetCenter(RegionEntireMap())`，重新启动 `Kerrigan` 后，`CommanderTestBench` 段稳定写到 `phase=auto-boot-done`、`scenario=panel_effect_smoke`、`last=RUN_BOOT`，说明测试台自动启动链路恢复。
 - 当前 `TestBench_Kerrigan_standard_base`、`TestBench_Kerrigan_full_buildings`、`TestBench_Kerrigan_full_units`、`TestBench_Kerrigan_panel_effect_smoke` 已重新落盘，`Errors=0` 且 `MissingIds=""`；可以继续把它当成后续 19 指挥官回归的专用入口。
 
+## 2026-06-01 继续修正
+
+- 这轮把 `CommanderTestBench` 的安全原点重新改成 `PlayerStartLocation()` 优先、`RegionGetCenter()` 兜底，避免再拿地图中心点 `84,40` 去做测试台创建点。
+- `panel_effect_smoke` 现在对 `Kerrigan` 不再只做目录检查，而是会直接对 `K5Kerrigan` 下达 `KerriganMaelstrom`、`KerriganVoidCoopCrushingGripWave`、`KerriganVoidCoopEconDrop` 的真实命令，并在日志里记 `PANEL_EFFECT_CAST`。
+- 这轮重新用 `Kerrigan + CommanderTestBench` 直进 live 目录复测后，`CampaignXCore.SC2Bank` 里的 `TestBench_Kerrigan_panel_effect_smoke` 仍然稳定是 `Created=3`、`Missing=0`、`Warnings=0`、`Errors=0`、`LastEvent=PANEL_PROFILE_HIT`，说明这次改动没有把测试台的 Kerrigan 面板链路打坏。
+
 ## 2026-06-01 18:33 最新复测
 
 - 这轮重新用 `Kerrigan + ttosh03b` 启动后，`CampaignXCore.SC2Bank` 的 `TTOSH03B` 段已经更新到 `Commander=Kerrigan`、`Phase=intro:after-cargo`、`Detail=last=K5Kerrigan`，说明这条剧情图已经从起图阶段推进到后续电影前，不是黑屏卡死在最前面。

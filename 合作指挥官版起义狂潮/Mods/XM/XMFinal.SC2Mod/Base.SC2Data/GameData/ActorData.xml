@@ -278,6 +278,7 @@
             <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathur; MorphFrom RavagerCocoon" Send="Create"/>
             <On Terms="AbilMorph.*.Finish; MorphTo RavagerAbathur; MorphFrom RavagerCocoon" Send="$Birth 0 0.000000"/>
             <On Terms="Abil.RavagerAbathurCorrosiveBile.SourceCastStart" Send="$Spell"/>
+            <On Terms="Abil.RavagerCorrosiveBile.SourceCastStart" Send="$Spell"/>
             <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
             <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Birth"/>
             <On Terms="AbilTrain.EvolveToBrutaliskRavager.Start" Send="Destroy"/>
@@ -30732,4 +30733,56 @@
         <Filter index="Neutral" value="1"/>
         <Filter index="Enemy" value="1"/>
     </CActorModel>
+    <CActorAction id="RavagerCorrosiveBileAoeAttackDown" parent="GenericAttack" effectImpact="RavagerCorrosiveBileAoeSearch" effectLaunch="RavagerCorrosiveBileAoeLaunchDown">
+        <LaunchSiteOps Ops="SOpTargetPointStationary SOpRavagerCorrosiveBileAoeOffsetDown"/>
+        <LaunchAssets Sound="Ravager_CorrosiveBileAoe_Incoming"/>
+        <Missile value="RavagerCorrosiveBileAoeMissile"/>
+        <ImpactMap index="None" Model="RavagerCorrosiveBileAoeImpact" Sound="Ravager_CorrosiveBileAoe_Explosion"/>
+        <ImpactModel value="RavagerCorrosiveBileAoeImpact"/>
+        <ImpactSound value="GenericAttackImpactSoundPoint"/>
+        <ShieldFlashType value="Full"/>
+    </CActorAction>
+    <CActorModel id="RavagerCorrosiveBileAoeImpact" parent="GenericAttackModelPoint">
+        <On Terms="ActorCreation; ValidatePlayer HaveRavagerCorrosiveBileDamageIncrease" Send="ModelSwap RavagerCorrosiveBileAoeUpgradeImpact"/>
+    </CActorModel>
+    <CActorAction id="RavagerCorrosiveBileAoeAttackUp" parent="GenericAttack" effectLaunch="RavagerCorrosiveBileAoeLaunchUp">
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+        <LaunchAssets Sound="Ravager_CorrosiveBileAoe_AttackLaunch"/>
+        <Missile value="RavagerCorrosiveBileAoeMissile"/>
+        <ImpactPointSiteOps Ops="SOpSourcePointSationary SOpRavagerCorrosiveBileAoeOffsetUp"/>
+    </CActorAction>
+    <CActorModel id="RavagerCorrosiveBileAoePrecursor">
+        <On Terms="Effect.RavagerCorrosiveBileAoeCP.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart BSD {} Stand Death ContentPlayOnce"/>
+        <On Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
+        <On Terms="ActorOrphan" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="AnimSetTimeScale BSD 3.000000"/>
+        <On Terms="ActorCreation" Send="TimerSet 0.250000 Anim"/>
+        <On Terms="TimerExpired; TimerName Anim" Send="AnimSetTimeScale BSD 1.000000"/>
+        <Flags index="SuppressSaveLoad" value="1"/>
+        <HostSiteOps Ops="SOpShadow"/>
+    </CActorModel>
+    <CActorForceSphere id="RavagerCorrosiveBileAoeImpactForce">
+        <On Terms="Effect.RavagerCorrosiveBileAoeSearch.Start" Send="Create"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpForwardLaunchGuide SOp2DRotation SOpRandomPointInCircleDot35"/>
+        <Magnitude value="30.000000,12.000000"/>
+        <Radius value="2.150000,0.200000"/>
+        <Duration value="0.250000"/>
+    </CActorForceSphere>
+    <CActorSiteOpLocalOffset id="SOpRavagerCorrosiveBileAoeOffsetUp">
+        <LocalOffset value="0.000000,-1.000000,30.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpLocalOffset id="SOpRavagerCorrosiveBileAoeOffsetDown">
+        <LocalOffset value="0.000000,1.000000,30.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSplat id="RavagerCorrosiveBileAoeCursorSplat" parent="ZergCursorSplat" abil="RavagerAbathurCorrosiveBile">
+        <Model value="RavagerCorrosiveBileAoeCursorSplat"/>
+    </CActorSplat>
+    <CActorRange id="RavagerCorrosiveBileAoeRange" parent="RangeAbil" abil="RavagerAbathurCorrosiveBile">
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+    </CActorRange>
+    <CActorMissile id="RavagerCorrosiveBileAoeMissile" parent="GenericAttackMissile" unitName="RavagerCorrosiveBileAoeMissile">
+        <On Terms="ActorCreation; ValidatePlayer HaveRavagerCorrosiveBileDamageIncrease" Send="ModelSwap RavagerCorrosiveBileAoeUpgradeMissile"/>
+    </CActorMissile>
 </Catalog>

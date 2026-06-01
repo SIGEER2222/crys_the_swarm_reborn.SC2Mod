@@ -18,13 +18,19 @@ void libE0EAE146_gf_XMTestBench_RunStandardBase (int lp_player) {
     lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player]);
     libE0EAE146_gf_Initialize(false);
-    libE0EAE146_gf_InitializeBase(PointWithOffsetPolar(RegionGetCenter(RegionEntireMap()), 8.0, 0.0), 5, null, true);
+    libE0EAE146_gf_InitializeBase(PointWithOffsetPolar(libE0EAE146_gf_XMTestBench_GetSafeOriginPoint(lp_player), 8.0, 0.0), 5, null, true);
     lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libE0EAE146_gv_xmTestBenchCreated[lp_player] = MaxI(0, (lv_after - lv_before));
     libE0EAE146_gf_XMDbgLog("INFO", "TEST_SCENARIO_ADAPTER", "scenario=standard_base result=adapter_ok reason=legacy_initializebase_adapter cleanup=manual");
 }
 
 point libE0EAE146_gf_XMTestBench_GetSafeOriginPoint (int lp_player) {
+    point lv_origin;
+
+    lv_origin = PlayerStartLocation(lp_player);
+    if (lv_origin != null) {
+        return lv_origin;
+    }
     return RegionGetCenter(RegionEntireMap());
 }
 
@@ -318,7 +324,26 @@ void libE0EAE146_gf_XMTestBench_RunPanelCostSmoke (int lp_player) {
 }
 
 void libE0EAE146_gf_XMTestBench_RunPanelEffectSmoke (int lp_player) {
-    XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(libE0EAE146_gf_XMTestBench_GetSafeOriginPoint(lp_player), 18.0, 0.0));
+    string lv_commander;
+    point lv_targetPoint;
+    bool lv_ok;
+
+    lv_commander = libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
+    lv_targetPoint = PointWithOffsetPolar(libE0EAE146_gf_XMTestBench_GetSafeOriginPoint(lp_player), 18.0, 0.0);
+
+    if (lv_commander == "Kerrigan") {
+        lv_ok = XM_InvokeCommanderPanelAbility(lp_player, lv_commander, "assimilation_aura", lv_targetPoint);
+        libE0EAE146_gf_XMDbgLog("INFO", "PANEL_EFFECT_CAST", "commander=" + lv_commander + " ability=KerriganVoidCoopEconDrop targetMode=instant note=assimilation_aura result=" + (lv_ok ? "profile_backed_smoke" : "panel_profile_failed"));
+        Wait(0.25, c_timeGame);
+        lv_ok = XM_InvokeCommanderPanelAbility(lp_player, lv_commander, "immobilization_wave", lv_targetPoint);
+        libE0EAE146_gf_XMDbgLog("INFO", "PANEL_EFFECT_CAST", "commander=" + lv_commander + " ability=KerriganVoidCoopCrushingGripWave targetMode=instant note=immobilization_wave result=" + (lv_ok ? "profile_backed_smoke" : "panel_profile_failed"));
+        Wait(0.25, c_timeGame);
+        lv_ok = XM_InvokeCommanderPanelAbility(lp_player, lv_commander, "maelstrom", lv_targetPoint);
+        libE0EAE146_gf_XMDbgLog("INFO", "PANEL_EFFECT_CAST", "commander=" + lv_commander + " ability=KerriganMaelstrom targetMode=instant note=maelstrom result=" + (lv_ok ? "profile_backed_smoke" : "panel_profile_failed"));
+        return;
+    }
+
+    XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", lv_targetPoint);
     libE0EAE146_gf_XMDbgLog("INFO", "PANEL_EFFECT_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " reason=panel_profile_not_wired");
 }
 
