@@ -1,6 +1,6 @@
 # 官方合作指挥官全量缺口清单
 
-- 生成时间：2026/5/31 21:11:33
+- 生成时间：2026/6/1 01:15:43
 - 官方数据：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\游戏数据\官方合作指挥官\commanders`
 - Mod 数据：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合作指挥官版起义狂潮\Mods\XM`
 - 扫描范围：当前 XM 树下全部 XML / TXT / GALAXY 文件，共 786 个
@@ -11,87 +11,36 @@
 
 | 指挥官 | 模块 | 缺失总数 | 主要缺口 |
 | --- | --- | ---: | --- |
-| Abathur | `XMAbathur.SC2Mod` | 27 | units、prestiges、commander_perks、buttons |
-| Alarak | `XMAlarak.SC2Mod` | 13 | units、upgrades、commander_perks、abilities、buttons |
-| Artanis | `XMArtanis.SC2Mod` | 17 | units、commander_perks、abilities、buttons |
-| Dehaka | `XMDehaka.SC2Mod` | 48 | upgrades、commander_perks、abilities、buttons |
-| Fenix | `XMFenix.SC2Mod` | 15 | commander_perks、abilities、buttons |
-| Horner | `XMHorner.SC2Mod` | 44 | units、upgrades、commander_perks、abilities、buttons |
-| Karax | `XMKarax.SC2Mod` | 15 | upgrades、commander_perks、abilities、buttons |
-| Kerrigan | `XMKerrigan.SC2Mod` | 34 | units、upgrades、commander_perks、buttons |
+| Abathur | `XMAbathur.SC2Mod` | 0 | 无 |
+| Alarak | `XMAlarak.SC2Mod` | 4 | units、upgrades、abilities、buttons |
+| Artanis | `XMArtanis.SC2Mod` | 7 | units、abilities、buttons |
+| Dehaka | `XMDehaka.SC2Mod` | 33 | upgrades、abilities、buttons |
+| Fenix | `XMFenix.SC2Mod` | 4 | abilities、buttons |
+| Horner | `XMHorner.SC2Mod` | 29 | units、upgrades、abilities、buttons |
+| Karax | `XMKarax.SC2Mod` | 3 | upgrades、abilities、buttons |
+| Kerrigan | `XMKerrigan.SC2Mod` | 4 | buttons |
 | Mengsk | `XMMengsk.SC2Mod` | 42 | upgrades、commander_perks、abilities、buttons |
-| Nova | `XMNova.SC2Mod` | 54 | units、upgrades、commander_perks、abilities、buttons |
-| Raynor | `XMRaynor.SC2Mod` | 38 | units、commander_perks、abilities、buttons |
+| Nova | `XMNova.SC2Mod` | 40 | units、upgrades、abilities、buttons |
+| Raynor | `XMRaynor.SC2Mod` | 26 | units、abilities、buttons |
 | Stetmann | `XMStetmann.SC2Mod` | 36 | commander_perks、abilities、buttons |
-| Stukov | `XMStukov.SC2Mod` | 60 | units、buildings、upgrades、commander_perks、buttons |
-| Swann | `XMSwann.SC2Mod` | 42 | units、buildings、upgrades、commander_perks、abilities、buttons |
-| Tychus | `XMTychus.SC2Mod` | 39 | upgrades、commander_perks、abilities、buttons |
-| Vorazun | `XMVorazun.SC2Mod` | 32 | upgrades、commander_perks、abilities、buttons |
-| Zagara | `XMZagara.SC2Mod` | 31 | commander_perks、buttons |
-| Zeratul | `XMZeratul.SC2Mod` | 30 | buildings、upgrades、commander_perks、abilities、buttons |
+| Stukov | `XMStukov.SC2Mod` | 33 | units、buildings、upgrades、buttons |
+| Swann | `XMSwann.SC2Mod` | 25 | units、buildings、upgrades、abilities、buttons |
+| Tychus | `XMTychus.SC2Mod` | 24 | upgrades、abilities、buttons |
+| Vorazun | `XMVorazun.SC2Mod` | 20 | upgrades、abilities、buttons |
+| Zagara | `XMZagara.SC2Mod` | 16 | buttons |
+| Zeratul | `XMZeratul.SC2Mod` | 15 | buildings、upgrades、abilities、buttons |
 
 ## Abathur
 
 - 模块：`XMAbathur.SC2Mod`
-- 缺失总数：27
-- 缺口分类：兵种、威望、指挥官进度、按钮
-
-### 兵种
-
-- 官方数量：12
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 守护者 `AbathurGuardian`
-
-### 威望
-
-- 官方数量：3
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- CommanderPrestigeAbathurUltimateEvo `CommanderPrestigeAbathurUltimateEvo`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：10
-- 仅有文本/引用命中的条目：10
-- 终极进化 `AbathurUnlockBrutaliskLeviathan`
-- 剧毒巢穴 `AbathurImprovedToxicNests`
-- 蟑螂温室升级包 `AbathurRoachWarrenUpgrades`
-- 进化腔升级包 `AbathurEvolutionPitUpgrades`
-- 新单位：飞蛇 `AbathurUnlockViper`
-- 感染深渊升级包 `AbathurInfestationPitUpgrades`
-- 共生体 `AbathurUnlockSymbiote`
-- 尖塔升级包 `AbathurGreaterSpireUpgrades`
-- 突变潜能 `AbathurFasterCheaperMorphs`
-- 蟑螂进化：秽型虫 `AbathurRoachEvolutionVile`
-
-### 按钮
-
-- 官方数量：51
-- 缺失数量：15
-- 仅有文本/引用命中的条目：15
-- 生物质收割者 `CommanderAbathurBaseTrait`
-- 终极进化 `CommanderAbathurUnlockBrutaliskLeviathan`
-- 剧毒巢穴 `CommanderAbathurToxicBonusBiomass`
-- 蟑螂温室升级包 `CommanderAbathurUnlockRoachWarrenUpgrades`
-- 强化愈合 `CommanderAbathurImprovedMend`
-- 进化腔升级包 `CommanderAbathurUnlockEvolutionChamberUpgrades`
-- 生物质恢复 `CommanderAbathurBiomassRefund`
-- 新单位：飞蛇 `CommanderAbathurUnlockViper`
-- 感染深渊升级包 `CommanderAbathurUnlockInfestationPitUpgrades`
-- 共生体 `CommanderAbathurBrutaliskLeviathanSymbiote`
-- 尖塔升级包 `CommanderAbathurUnlockGreaterSpireUpgrades`
-- 突变潜能 `CommanderAbathurUnitEvolutionMorphTimesReduced`
-- 蝗虫注射 `CommanderAbathurSpawnLocustsOnKill`
-- 蟑螂进化：秽型虫 `CommanderAbathurRoachEvolutionVile`
-- 生质汲取 `CommanderAbathurBiomassLifesteal`
+- 缺失总数：0
+- 结论：当前未发现明显缺口。
 
 ## Alarak
 
 - 模块：`XMAlarak.SC2Mod`
-- 缺失总数：13
-- 缺口分类：兵种、升级、指挥官进度、技能、按钮
+- 缺失总数：4
+- 缺口分类：兵种、升级、技能、按钮
 
 ### 兵种
 
@@ -106,21 +55,6 @@
 - 缺失数量：1
 - 仅有文本/引用命中的条目：1
 - HaveMonitor `HaveMonitor`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：9
-- 仅有文本/引用命中的条目：9
-- 强化超载 `AlarakImprovedOvercharge`
-- 死亡议会升级包 `AlarakTwilightCouncilUpgradesPack`
-- 供奉我 `AlarakEmpowerMeSlaves`
-- 机械研究所升级包 `AlarakRoboticsBayUpgradesPack`
-- 新单位：晋升者 `AlarakUnlockAscendant`
-- 浩劫升级包 `AlarakHavocUpgradesPack`
-- 召唤死亡舰队 `AlarakDeathFleet`
-- 晋升者升级包 `AlarakTemplarArchivesUpgradesPack`
-- 阿拉纳克升级包 `AlarakPHLevel14`
 
 ### 技能
 
@@ -139,8 +73,8 @@
 ## Artanis
 
 - 模块：`XMArtanis.SC2Mod`
-- 缺失总数：17
-- 缺口分类：兵种、指挥官进度、技能、按钮
+- 缺失总数：7
+- 缺口分类：兵种、技能、按钮
 
 ### 兵种
 
@@ -148,22 +82,6 @@
 - 缺失数量：1
 - 仅有文本/引用命中的条目：1
 - 龙骑士 `StalkerAiur`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：10
-- 仅有文本/引用命中的条目：10
-- 亚顿之矛：守护之壳 `ArtanisUnlockHeroicShield`
-- 超级折跃门 `ArtanisUnlockWarpGateCharges`
-- 光影议会升级包 `ArtanisTwilightCouncilUpgrades`
-- 圣堂武士文献馆升级包 `ArtanisTemplarArchivesUpgrades`
-- 亚顿之矛：折跃谐振 `ArtanisUnlockWarpTech`
-- 机械研究所升级包 `ArtanisRoboticsBayUpgrades`
-- 亚顿之矛：太阳轰炸 `ArtanisUnlockStrafeAttack`
-- 舰队航标升级包 `ArtanisFleetBeaconUpgrades`
-- 亚顿之矛：护盾超载 `ArtanisImprovedSuperShields`
-- 亚顿之矛：太阳打击 `ArtanisImprovedStrafeAttack`
 
 ### 技能
 
@@ -186,8 +104,8 @@
 ## Dehaka
 
 - 模块：`XMDehaka.SC2Mod`
-- 缺失总数：48
-- 缺口分类：升级、指挥官进度、技能、按钮
+- 缺失总数：33
+- 缺口分类：升级、技能、按钮
 
 ### 升级
 
@@ -199,27 +117,6 @@
 - DehakaLevel08Tooltips `DehakaLevel08Tooltips`
 - DehakaLevel11Tooltips `DehakaLevel11Tooltips`
 - DehakaPrimalBossUpgrades `DehakaPrimalBossUpgrades`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：15
-- 仅有文本/引用命中的条目：15
-- 精华收集者 `DehakaPHLevel01`
-- 新单位：掠食龙和原始点火虫 `DehakaPHLevel02`
-- 掠食龙升级包 `DehakaPHLevel03`
-- 深槽虫道 `DehakaPHLevel04`
-- 原始洞察 `DehakaPHLevel05`
-- 新单位：原始异龙和原始守护者 `DehakaPHLevel06`
-- 原始异龙和原始守护者升级包 `DehakaPHLevel07`
-- 新单位：掘地虫宿主和原始穿刺者 `DehakaPHLevel08`
-- 原始点火虫和原始穿刺者升级包 `DehakaPHLevel09`
-- 进化的虫群首领 `DehakaPHLevel10`
-- 新单位：暴龙兽 `DehakaPHLevel11`
-- 生存本能 `DehakaPHLevel12`
-- 精英原始异虫升级包 `DehakaPHLevel13`
-- 泽鲁斯的狡诈 `DehakaPHLevel14`
-- 基因突变 `DehakaPHLevel15`
 
 ### 技能
 
@@ -264,25 +161,8 @@
 ## Fenix
 
 - 模块：`XMFenix.SC2Mod`
-- 缺失总数：15
-- 缺口分类：指挥官进度、技能、按钮
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：11
-- 仅有文本/引用命中的条目：11
-- 解锁：净化者议会 `FenixUnlockPurifierConclave`
-- 解锁：塞布罗斯仲裁者战甲 `FenixUnlockArbiterSuit`
-- 突击勇士研究包 `FenixPurifierAIResearchCache1`
-- 英雄智能：塔尔达林与摩约 `FenixUnlockPurifierAI1`
-- 菲尼克斯升级包 `FenixSuitUpgrades`
-- 英雄智能：战争使者与科罗拉里昂 `FenixUnlockPurifierAI2`
-- 特种单位升级包 `FenixDisruptorSentryResearchCache`
-- 作战效能 `FenixStructureNoTechNoGas`
-- 复仇协议 `FenixChampionTransferBuff`
-- 强攻勇士升级包 `FenixPurifierAIResearchCache2`
-- 攻城勇士升级包 `FenixPurifierAIResearchCache3`
+- 缺失总数：4
+- 缺口分类：技能、按钮
 
 ### 技能
 
@@ -303,8 +183,8 @@
 ## Horner
 
 - 模块：`XMHorner.SC2Mod`
-- 缺失总数：44
-- 缺口分类：兵种、升级、指挥官进度、技能、按钮
+- 缺失总数：29
+- 缺口分类：兵种、升级、技能、按钮
 
 ### 兵种
 
@@ -329,27 +209,6 @@
 - MasteryHornerBomberRadius `MasteryHornerBomberRadius`
 - MasteryHornerDoubleSalvageChance `MasteryHornerDoubleSalvageChance`
 - MasteryHornerMSOBonus `MasteryHornerMSOBonus`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：15
-- 仅有文本/引用命中的条目：15
-- 霍纳夫妇 `HornerPHLevel1`
-- 新单位：攻击战斗机 `HornerPHLevel2`
-- 突击炮舰和忒伊亚铁鸦升级包 `HornerPHLevel3`
-- 雇佣兵升级包 `HornerPHLevel4`
-- 呼叫舰队 `HornerPHLevel5`
-- 十万火急 `HornerPHLevel6`
-- 帝国星港升级包 `HornerPHLevel7`
-- 他和她的补给 `HornerPHLevel8`
-- 恶火和恶蝠升级包 `HornerPHLevel9`
-- 空间站调度 `HornerPHLevel10`
-- 耐力训练 `HornerPHLevel11`
-- 高级武器 `HornerPHLevel12`
-- 聚变芯体升级包 `HornerPHLevel13`
-- 爆爆乐 `HornerPHLevel14`
-- 我的另一半 `HornerPHLevel15`
 
 ### 技能
 
@@ -383,8 +242,8 @@
 ## Karax
 
 - 模块：`XMKarax.SC2Mod`
-- 缺失总数：15
-- 缺口分类：升级、指挥官进度、技能、按钮
+- 缺失总数：3
+- 缺口分类：升级、技能、按钮
 
 ### 升级
 
@@ -392,24 +251,6 @@
 - 缺失数量：1
 - 仅有文本/引用命中的条目：1
 - 精通 凯纳克斯 单位活力 `MasteryKaraxUnitVital`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：12
-- 仅有文本/引用命中的条目：12
-- 亚顿之矛：提速力场 `KaraxUnlockSOAChronoPassive`
-- 新单位：凯达琳巨石 `KaraxUnlockKhaydarinMonolith`
-- 光影议会升级包 `KaraxTwilightCouncilUpgradesPack`
-- 亚顿之矛：时空过载 `KaraxMassChronoUpgrade`
-- 锻炉升级包 `KaraxForgeUpgradesPack`
-- 亚顿之矛：重构光束 `KaraxUnlockRepairBeam`
-- 太阳锻炉升级包1 `KaraxSolarForgeUpgradesPack1`
-- 机械研究所升级包 `KaraxRoboticsBayUpgradesPack`
-- 亚顿之矛：净化光束 `KaraxUnlockPurifierBeam`
-- 太阳锻炉升级包2 `KaraxSolarForgeUpgradesPack2`
-- 亚顿之矛：净化协议 `KaraxPurifierBeamUpgrade`
-- 舰队航标升级包 `KaraxFleetBeaconUpgrades`
 
 ### 技能
 
@@ -428,62 +269,14 @@
 ## Kerrigan
 
 - 模块：`XMKerrigan.SC2Mod`
-- 缺失总数：34
-- 缺口分类：兵种、升级、指挥官进度、按钮
-
-### 兵种
-
-- 官方数量：6
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 巢虫领主 `Broodlord`
-
-### 升级
-
-- 官方数量：25
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- Omega Worm `VoidCoopGreaterNydusWorm`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：14
-- 仅有文本/引用命中的条目：14
-- 定身波 `KerriganUnlockCrushingGripWave`
-- 残酷无情 `KerriganImprovedLeapingStrike`
-- 跳虫升级包 `KerriganZerglingUpgrades`
-- 新单位：潜伏者 `KerriganUnlockLurker`
-- 刺蛇与潜伏者升级包 `KerriganHydraLurkerUpgrades`
-- 恶变菌毯 `KerriganMalignantCreep`
-- 坑道虫欧米茄 `KerriganUnlockGreaterNydusWorm`
-- 凯瑞甘升级包 `KerriganEvoUpgrades`
-- 狂怒 `KerriganUnlockFury`
-- 尖塔升级包 `KerriganSpireUpgrades`
-- 跳虫进化：腾跃虫 `KerriganZerglingEvo`
-- 雷兽升级包 `KerriganUltraUpgrades`
-- 雷兽进化：暴龙兽 `KerriganUltraEvo`
-- 刀锋女王 `KerriganImprovedEnergyRegen`
+- 缺失总数：4
+- 缺口分类：按钮
 
 ### 按钮
 
 - 官方数量：61
-- 缺失数量：18
-- 仅有文本/引用命中的条目：18
-- 变异甲壳 `CommanderKerriganMutatingCarapace`
-- 定身波 `CommanderKerriganCrushingGripWave`
-- 残酷无情 `CommanderKerriganImprovedLeapingStrike`
-- 跳虫升级包 `CommanderZagaraZerglingUpgradesPack`
-- 新单位：潜伏者 `CommanderKerriganUnlockLurker`
-- 刺蛇与潜伏者升级包 `CommanderKerriganHydraliskandLurkerUpgradesPack`
-- 恶变菌毯 `CommanderKerriganMalignantCreep`
-- 坑道虫欧米茄 `CommanderKerriganGreaterNydusWorm`
-- 凯瑞甘升级包 `CommanderKerriganKerriganUpgradesPack`
-- 狂怒 `CommanderKerriganKerrigansFury`
-- 尖塔升级包 `CommanderKerriganSpireUpgradesPack`
-- 跳虫进化：腾跃虫 `CommanderKerriganZerglingEvolutionRaptor`
-- 雷兽升级包 `CommanderKerriganUltraliskUpgradesPack`
-- 雷兽进化：暴龙兽 `CommanderKerriganUltraliskEvolutionTorrasque`
+- 缺失数量：4
+- 仅有文本/引用命中的条目：4
 - 召唤坑道虫 `SummonNydusWorm`
 - 召唤虫道毁灭者 `SummonNydusCanalAttacker`
 - 召唤菌塔 `SummonNydusCanalCreeper`
@@ -563,8 +356,8 @@
 ## Nova
 
 - 模块：`XMNova.SC2Mod`
-- 缺失总数：54
-- 缺口分类：兵种、升级、指挥官进度、技能、按钮
+- 缺失总数：40
+- 缺口分类：兵种、升级、技能、按钮
 
 ### 兵种
 
@@ -588,26 +381,6 @@
 - 仅有文本/引用命中的条目：2
 - AutoHarvester `AutoHarvester`
 - 精通 诺娃 狮鹫号消耗 `MasteryNovaGriffinCost`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：14
-- 仅有文本/引用命中的条目：14
-- 狮鹫号空袭 `NovaUnlockGriffinBombingRun`
-- 突击模式 `NovaAssaultMode`
-- 兵营升级包 `NovaBarracksTechLabUpgradeCache`
-- 战术空运 `NovaUnlockGriffinTransport`
-- 重工厂升级包 `NovaFactoryTechLabUpgradeCache`
-- 自动化精炼厂 `NovaUnlockAutomatedRefinery`
-- 隐秘行动升级包 `NovaGhostAcademyUpgradeCache`
-- 战术聚变打击和全息诱饵 `NovaUnlockUltimates`
-- 星港升级包 `NovaStarportTechLabUpgradeCache`
-- 研究与开发 `NovaBetterResearh`
-- 铁鸦升级包 `NovaStarportTechLabUpgradeCache2`
-- 武器装备 `NovaImprovedGlobalPowers`
-- 诺娃升级包 `NovaGhostAcademyUpgradeCache2`
-- 随机应变 `NovaStanceUpgrade`
 
 ### 技能
 
@@ -653,8 +426,8 @@
 ## Raynor
 
 - 模块：`XMRaynor.SC2Mod`
-- 缺失总数：38
-- 缺口分类：兵种、指挥官进度、技能、按钮
+- 缺失总数：26
+- 缺口分类：兵种、技能、按钮
 
 ### 兵种
 
@@ -662,24 +435,6 @@
 - 缺失数量：1
 - 仅有文本/引用命中的条目：1
 - 攻城坦克 `Siege Tank`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：12
-- 仅有文本/引用命中的条目：12
-- 纳米投射器 `RaynorUnlockFirebat`
-- 步兵升级包 `RaynorBarracksUpgrades`
-- 休伯利安号：定点防御无人机 `RaynorHyperionAdvancedPDDDrone`
-- 战斗地堡 `RaynorEngineeringBayUpgrades`
-- 轨道空投 `RaynorOrbitalDropPods`
-- 重工厂升级包 `RaynorFactoryUpgrades`
-- 钒合金板 `RaynorArmorVanadium`
-- 军械库升级包 `RaynorArmoryUpgrades`
-- 轨道空投补给站 `RaynorOrbitalDepots`
-- 星港升级包 `RaynorStarportUpgrades`
-- 休伯利安号：高级瞄准系统 `RaynorHyperionAdvancedTargetingAura`
-- 佣兵军火 `RaynorImprovedInfantryAttackSpeed`
 
 ### 技能
 
@@ -781,8 +536,8 @@
 ## Stukov
 
 - 模块：`XMStukov.SC2Mod`
-- 缺失总数：60
-- 缺口分类：兵种、建筑、升级、指挥官进度、按钮
+- 缺失总数：33
+- 缺口分类：兵种、建筑、升级、按钮
 
 ### 兵种
 
@@ -824,47 +579,14 @@
 - 指挥官特质 斯托科夫 8 `CommanderStukovPH8`
 - CommanderStukovPH9 `CommanderStukovPH9`
 
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：15
-- 仅有文本/引用命中的条目：15
-- 感染 `CommanderStukovAutoCreep`
-- 恶意繁殖 `CommanderStukovImprovedInfestStructure`
-- 传染病 `CommanderStukovExtraInfestedCivilians`
-- 末日巨兽 `CommanderStukovApocalisk`
-- 被感染的工程站升级包 `CommanderStukovBunkerResearch`
-- 腐化征用 `CommanderStukovImprovedMarineSpawning`
-- 被感染的步兵升级包 `CommanderStukovInfestedCivilianResearch`
-- 新单位：虫巢女王 `CommanderStukovUnlockQueenClassic`
-- 被感染的重工厂升级包 `CommanderStukovInfestedFactoryResearchPack`
-- 亚历山大号 `CommanderStukovAleksander`
-- 被感染的星港升级包 `CommanderStukovInfestedStarportResearchPack`
-- 易燃外肢 `CommanderStukovApocaliskUpgrades`
-- 虫巢女王升级包 `CommanderStukovQueenClassicResearchPack`
-- 增生地堡 `CommanderStukovBunkerBonuses`
-- 神经感染 `CommanderStukovAleksanderMindControl`
-
 ### 按钮
 
 - 官方数量：74
-- 缺失数量：23
-- 仅有文本/引用命中的条目：23
-- 感染 `CommanderStukovAutoCreep`
-- 恶意繁殖 `CommanderStukovImprovedInfestStructure`
-- 传染病 `CommanderStukovExtraInfestedCivilians`
-- 末日巨兽 `CommanderStukovApocalisk`
-- 被感染的工程站升级包 `CommanderStukovBunkerResearch`
-- 腐化征用 `CommanderStukovImprovedMarineSpawning`
-- 被感染的步兵升级包 `CommanderStukovInfestedCivilianResearch`
+- 缺失数量：11
+- 仅有文本/引用命中的条目：11
 - 新单位：虫巢女王 `CommanderStukovQueenClassic`
-- 被感染的重工厂升级包 `CommanderStukovInfestedFactoryResearchPack`
-- 亚历山大号 `CommanderStukovAleksander`
-- 被感染的星港升级包 `CommanderStukovInfestedStarportResearchPack`
 - 易燃外肢 `CommanderStukovApocaliskUpgraded`
 - 虫巢女王升级包 `CommanderStukovQueenClassicUpgradeCache`
-- 增生地堡 `CommanderStukovBunkerBonuses`
-- 神经感染 `CommanderStukovAleksanderMindControl`
 - 升级步兵护甲等级3 `TerranInfantryArmorLevel3`
 - 升级战车及舰船钢板等级3 `TerranVehicleAndShipPlatingLevel3`
 - AttackWorker `AttackWorker`
@@ -877,8 +599,8 @@
 ## Swann
 
 - 模块：`XMSwann.SC2Mod`
-- 缺失总数：42
-- 缺口分类：兵种、建筑、升级、指挥官进度、技能、按钮
+- 缺失总数：25
+- 缺口分类：兵种、建筑、升级、技能、按钮
 
 ### 兵种
 
@@ -898,8 +620,8 @@
 ### 升级
 
 - 官方数量：25
-- 缺失数量：13
-- 仅有文本/引用命中的条目：13
+- 缺失数量：10
+- 仅有文本/引用命中的条目：10
 - AdvancedConstruction `AdvancedConstruction`
 - 精通 斯旺 建筑生命值 `MasterySwannBuildingHealth`
 - 精通 斯旺 战斗空投 `MasterySwannCombatDrop`
@@ -909,30 +631,7 @@
 - Swann Commander Immortality Protocol `SwannCommanderImmortalityProtocol`
 - Swann Commander Vehicle Health `SwannCommanderVehicleHealth`
 - Swann Commander Worker Free Repairs `SwannCommanderWorkerFreeRepairs`
-- Swann Improved Special Delivery `SwannImprovedSpecialDelivery`
 - Swann Turret Upgrades `SwannKelMorianTurretUpgrades`
-- Swann Special Delivery `SwannSpecialDelivery`
-- Swann Unlock Thor `SwannUnlockThor`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：14
-- 仅有文本/引用命中的条目：14
-- 战斗空投 `SwannSpecialDelivery`
-- 贝蒂家族 `SwannImprovedTurrets`
-- 德拉肯激光钻机：脉冲炮 `SwannLaserDrillUpgrades`
-- 瓦斯采集器 `SwannUnlockVespeneDrone`
-- 新单位：雷神 `SwannUnlockThor`
-- 重工厂升级包 `SwannFactoryUpgrades`
-- 高级建造 `SwannImprovedSCV`
-- 军械库升级包 `SwannArmoryUpgrades`
-- 科技反应堆 `SwannTechReactor`
-- 工程站升级包 `SwannEngineeringBayUpgrades`
-- 永生程序 `SwannImmortalityProtocol`
-- 星港升级包 `SwannStarportUpgrades`
-- 加量不加价 `SwannImprovedSpecialDelivery`
-- 机械专业 `SwannVehicleHealth`
 
 ### 技能
 
@@ -961,8 +660,8 @@
 ## Tychus
 
 - 模块：`XMTychus.SC2Mod`
-- 缺失总数：39
-- 缺口分类：升级、指挥官进度、技能、按钮
+- 缺失总数：24
+- 缺口分类：升级、技能、按钮
 
 ### 升级
 
@@ -972,27 +671,6 @@
 - CommanderPrestigeTychusLoneWolfRecruitment `CommanderPrestigeTychusLoneWolfRecruitment`
 - 指挥官 - 人类 - 泰凯斯 `TychusCommander`
 - TychusCoopFifthHeroUpgrade `TychusCoopFifthHeroUpgrade`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：15
-- 仅有文本/引用命中的条目：15
-- 有点过去的意思 `TychusPHLevel1`
-- 兄弟越多越好 `TychusPHLevel2`
-- 奥丁降世 `TychusPHLevel3`
-- 新不法之徒：凯文“响尾蛇”韦斯特 `TychusPHLevel4`
-- 工程站升级包 `TychusPHLevel5`
-- 新不法之徒：詹姆斯“天狼星”赛克斯 `TychusPHLevel6`
-- 闪亮登场第一人 `TychusPHLevel7`
-- 新不法之徒：罗布“弹头哥”博斯韦尔 `TychusPHLevel8`
-- 要搭飞的吗？ `TychusPHLevel9`
-- 新不法之徒：维嘉 `TychusPHLevel10`
-- 顺手牵羊 `TychusPHLevel11`
-- 初级终极装备包 `TychusPHLevel12`
-- 全副武装 `TychusPHLevel13`
-- 高级终极装备包 `TychusPHLevel14`
-- 红色按钮 `TychusPHLevel15`
 
 ### 技能
 
@@ -1030,8 +708,8 @@
 ## Vorazun
 
 - 模块：`XMVorazun.SC2Mod`
-- 缺失总数：32
-- 缺口分类：升级、指挥官进度、技能、按钮
+- 缺失总数：20
+- 缺口分类：升级、技能、按钮
 
 ### 升级
 
@@ -1041,24 +719,6 @@
 - SOATime Freeze Upgrade `SOATimeFreezeUpgrade`
 - Shadow Guard Spawn Count `ShadowGuardSpawnCount`
 - VoidZealotShadowCharge `VoidZealotShadowCharge`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：12
-- 仅有文本/引用命中的条目：12
-- 亚顿之矛：轨道吸纳舱 `VorazunOrbitalAssimilator`
-- 暗影军团 `VorazunImprovedShadowGuard`
-- 光影议会升级包 `VorazunTwilightCouncilUpgrades`
-- 黑暗圣堂武士升级包 `VorazunDarkTemplarUpgrades`
-- 暗影之幕 `VorazunImprovedShieldRegeneration`
-- 黑暗执政官升级包 `VorazunDarkArchonUpgrades`
-- 亚顿之矛：时间停止 `VorazunUnlockTimeStop`
-- 黑暗水晶塔：召回 `VorazunUnlockDarkPylonRecall`
-- 舰队航标升级包 `VorazunFleetBeaconUpgrades`
-- 黑暗圣堂武士召回 `VorazunUnlockSOARecallOnDeath`
-- 亚顿之矛：时空理论 `VorazunImprovedTimeStop`
-- 阴影黯灭 `VorazunCloakedUnitDamageBoost`
 
 ### 技能
 
@@ -1092,40 +752,19 @@
 ## Zagara
 
 - 模块：`XMZagara.SC2Mod`
-- 缺失总数：31
-- 缺口分类：指挥官进度、按钮
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：14
-- 仅有文本/引用命中的条目：14
-- 感染空投 `ZagaraUnlockMassRoachDrop`
-- 幼虫注射 `ZagaraQueenDoubleInjectLarva`
-- 爆蚊升级包 `ZagaraScourgeUpgrades`
-- 新单位：胆汁喷射体 `ZagaraUnlockBileLaunchers`
-- 跳虫升级包 `ZagaraZerglingUpgrades`
-- 爆虫巢穴：哺育腔 `ZagaraBanelingNestSpawner`
-- 孕育爆虫和爆蚊 `ZagaraBanelingIncubation`
-- 进化腔升级包 `ZagaraAberrationUpgrades`
-- 遮天蔽日 `ZagaraImprovedMassRoachDrop`
-- 爆虫巢穴升级包 `ZagaraBanelingUpgrades`
-- 跳虫进化：裂变虫 `ZagaraZerglingEvo`
-- 胆汁喷射体升级包 `ZagaraBileLauncherUpgrades`
-- 爆虫进化：分裂虫 `ZagaraBanelingEvo`
-- 虫母 `ZagaraImprovedAbilities`
+- 缺失总数：16
+- 缺口分类：按钮
 
 ### 按钮
 
 - 官方数量：46
-- 缺失数量：17
-- 仅有文本/引用命中的条目：17
+- 缺失数量：16
+- 仅有文本/引用命中的条目：16
 - 无尽虫群 `CommanderZagaraRelentless`
 - 感染空投 `CommanderZagaraMassRoachDrop`
 - 幼虫注射 `CommanderZagaraImprovedInjectLarva`
 - 爆蚊升级包 `CommanderZagaraScourgeUpgradesPack`
 - 新单位：胆汁喷射体 `CommanderZagaraUnlockBileLauncher`
-- 跳虫升级包 `CommanderZagaraZerglingUpgradesPack`
 - 爆虫巢穴：哺育腔 `CommanderZagaraVolatileBanelingNest`
 - 孕育爆虫和爆蚊 `CommanderZagaraIncubateBanelings`
 - 进化腔升级包 `CommanderZagaraEvolutionChamberUpgradesPack`
@@ -1141,8 +780,8 @@
 ## Zeratul
 
 - 模块：`XMZeratul.SC2Mod`
-- 缺失总数：30
-- 缺口分类：建筑、升级、指挥官进度、技能、按钮
+- 缺失总数：15
+- 缺口分类：建筑、升级、技能、按钮
 
 ### 建筑
 
@@ -1160,27 +799,6 @@
 - ZeratulCoopEquipmentCostUpgrade `ZeratulCoopEquipmentCostUpgrade`
 - ZeratulCoopHeroHalfCostUpgrade `ZeratulCoopHeroHalfCostUpgrade`
 - ZeratulCoopMedivacChargesUpgrade `ZeratulCoopMedivacChargesUpgrade`
-
-### 指挥官进度
-
-- 官方数量：15
-- 缺失数量：15
-- 仅有文本/引用命中的条目：15
-- 萨尔纳加之力 `ZeratulPHLevel1`
-- 预言成真 `ZeratulPHLevel2`
-- 时空通道强化包1 `ZeratulPHLevel3`
-- 新单位：萨尔纳加禁绝者 `ZeratulPHLevel4`
-- 超维空间技术强化包 `ZeratulPHLevel5`
-- 构造体强化包1 `ZeratulPHLevel6`
-- 虚空之路 `ZeratulPHLevel7`
-- 超能军团 `ZeratulPHLevel8`
-- 新单位：萨尔纳加虚空阵列船 `ZeratulPHLevel9`
-- 时空理论 `ZeratulPHLevel10`
-- 时空通道强化包2 `ZeratulPHLevel11`
-- 黑暗代理 `ZeratulPHLevel12`
-- 构造体强化包2 `ZeratulPHLevel13`
-- 纯粹完美 `ZeratulPHLevel14`
-- 纯粹意志 `ZeratulPHLevel15`
 
 ### 技能
 

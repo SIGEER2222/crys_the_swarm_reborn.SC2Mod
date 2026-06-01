@@ -3380,6 +3380,38 @@
     <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
     <AffectedUnitArray value="BroodLord" />
   </CUpgrade>
+  <CUpgrade id="VoidCoopGreaterNydusWorm">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Set" Reference="Abil,BuildNydusCanal,InfoArray[Build1].Unit" Value="GreaterNydusWorm" />
+    <EffectArray Operation="Set" Reference="Abil,BuildNydusCanal,InfoArray[Build2].Unit" Value="GreaterNydusWorm" />
+    <EffectArray Operation="Subtract" Reference="Abil,BuildNydusCanal,InfoArray[Build1].Time" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Abil,BuildNydusCanal,InfoArray[Build2].Time" Value="20" />
+    <EffectArray Operation="Set" Reference="Button,ZagaraVoidCoopNydusWorm,Tooltip" Value="Button/Tooltip/SummonGreaterNydusWorm" />
+    <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWorm,CostResource[Minerals]" Value="100" />
+    <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWorm,CostResource[Vespene]" Value="100" />
+    <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWormAlly,CostResource[Minerals]" Value="100" />
+    <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWormAlly,CostResource[Vespene]" Value="100" />
+    <EffectArray Reference="Abil,BuildNydusCanal,InfoArray[Build1].Cooldown.TimeUse" Value="60.000000" />
+    <EffectArray Reference="Abil,BuildNydusCanal,InfoArray[Build2].Cooldown.TimeUse" Value="60.000000" />
+    <EffectArray Operation="Set" Reference="Button,ZagaraVoidCoopNydusWorm,Name" Value="Button/Name/SummonGreaterNydusWorm" />
+    <EffectArray Operation="Set" Reference="Unit,NydusNetwork,Description" Value="Button/Tooltip/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Unit,NydusNetworkAlly,Description" Value="Button/Tooltip/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusNetwork,AlertName" Value="Button/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusNetwork,Name" Value="Button/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusNetwork,Tooltip" Value="Button/Tooltip/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusNetwork,AlertTooltip" Value="Button/Tooltip/OmegaNetwork" />
+    <EffectArray Operation="Subtract" Reference="Abil,NydusCanalTransport,UnloadPeriod" Value="0.450000" />
+    <EffectArray Operation="Subtract" Reference="Abil,NydusCanalTransport,LoadPeriod" Value="0.200000" />
+    <EffectArray Operation="Subtract" Reference="Abil,NydusCanalTransport,TotalCargoSpace" Value="520" />
+    <EffectArray Reference="Abil,NydusCanalTransport,MaxCargoCount" Value="245" />
+    <EffectArray Operation="Set" Reference="Unit,NydusNetwork,Name" Value="Unit/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Unit,NydusNetworkAlly,Name" Value="Unit/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Actor,NydusNetwork,HighlightTooltip" Value="Unit/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Actor,NydusNetworkAlly,HighlightTooltip" Value="Unit/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusCanalLoad,Tooltip" Value="Button/Tooltip/NydusCanalLoadOmega" />
+    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
+    <LeaderAlias value="" />
+  </CUpgrade>
   <CUpgrade id="KerriganVoidCoopEnergyRegen">
     <EffectArray Reference="Unit,K5Kerrigan,EnergyRegenRate" Value="3.330000" />
     <EffectArray Reference="Unit,K5KerriganBurrowed,EnergyRegenRate" Value="3.330000" />

@@ -1,11 +1,17 @@
 include "TriggerLibs/NativeLib"
 include "Lib67C0F0E7"
 
-include "LibD0E57A9C_h"
-
 //--------------------------------------------------------------------------------------------------
 // Library: Kerrigan
 //--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int libD0E57A9C_gv_kerriganPlayer;
+unit libD0E57A9C_gv_kerrigan;
+
+// Trigger Declarations
+trigger libD0E57A9C_gt_KerriganRevive;
+trigger libD0E57A9C_gt_KerriganReviveActor;
+
 // External Library Initialization
 void libD0E57A9C_InitLibraries () {
     libNtve_InitVariables();
@@ -29,9 +35,11 @@ void libD0E57A9C_InitVariables () {
 void libD0E57A9C_gf_InitializeKerriganEvent (int lp_player, unit lp_kerrigan) {
     // Automatic Variable Declarations
     // Implementation
+    libD0E57A9C_gv_kerriganPlayer = lp_player;
+    libD0E57A9C_gv_kerrigan = lp_kerrigan;
     TriggerAddEventUnitGainLevel(libD0E57A9C_gt_KerriganRevive, UnitRefFromUnit(lp_kerrigan));
 }
 
 void libD0E57A9C_gf_KerriganCreepEntireMap (int lp_player) {
-    // Stub - will be implemented when needed
+    libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CreepTumorBurrowed", c_unitCreateIgnorePlacement, 1, PlayerStartLocation(lp_player));
 }

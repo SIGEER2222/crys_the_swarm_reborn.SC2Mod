@@ -2017,6 +2017,38 @@
             <Value value="MurvarLairCheck"/>
             <Find value="1"/>
         </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="MutatorCasterIsNotPlayer1">
+            <WhichPlayer Value="Caster"/>
+            <Value value="MutatorIsPlayer1"/>
+        </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="MutatorCasterIsNotPlayer2">
+            <WhichPlayer Value="Caster"/>
+            <Value value="MutatorIsPlayer2"/>
+        </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="MutatorCasterIsPlayer1">
+            <WhichPlayer Value="Caster"/>
+            <Find value="1"/>
+            <Value value="MutatorIsPlayer1"/>
+        </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="MutatorCasterIsPlayer2">
+            <WhichPlayer Value="Caster"/>
+            <Find value="1"/>
+            <Value value="MutatorIsPlayer2"/>
+        </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount id="TargetNotHaveMutatorImmunetoPlayer1">
+            <Behavior value="MutatorImmunetoPlayer1"/>
+        </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetNotHaveMutatorImmunetoPlayer2">
+            <Behavior value="MutatorImmunetoPlayer2"/>
+        </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetHasMutatorImmunetoPlayer1">
+            <Behavior value="MutatorImmunetoPlayer1"/>
+            <Value value="1"/>
+        </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetHasMutatorImmunetoPlayer2">
+            <Behavior value="MutatorImmunetoPlayer2"/>
+            <Value value="1"/>
+        </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="MutatorCasterIsPlayer1AndTargetNotHaveMutatorImmunetoPlayer1">
             <Type value="And"/>
             <CombineArray value="MutatorCasterIsPlayer1"/>
