@@ -403,6 +403,7 @@ bool gt_XMTB_Init_Func (bool testConds, bool runActions) {
     XMTestBench_WriteSummary(1);
     gv_xmTbLastEvent = "INIT_UI";
     tb_XMTB_UpdateSummary();
+    tb_XMTB_RunBootSmoke();
     return true;
 }
 

@@ -18,10 +18,14 @@ void libE0EAE146_gf_XMTestBench_RunStandardBase (int lp_player) {
     lv_before = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libE0EAE146_gf_XMTestBench_SeedCommanderBank(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player]);
     libE0EAE146_gf_Initialize(false);
-    libE0EAE146_gf_InitializeBase(PointWithOffsetPolar(PlayerStartLocation(lp_player), 8.0, 0.0), 5, null, true);
+    libE0EAE146_gf_InitializeBase(PointWithOffsetPolar(RegionGetCenter(RegionEntireMap()), 8.0, 0.0), 5, null, true);
     lv_after = libE0EAE146_gf_XMTestBench_CountPlayerUnits(lp_player);
     libE0EAE146_gv_xmTestBenchCreated[lp_player] = MaxI(0, (lv_after - lv_before));
     libE0EAE146_gf_XMDbgLog("INFO", "TEST_SCENARIO_ADAPTER", "scenario=standard_base result=adapter_ok reason=legacy_initializebase_adapter cleanup=manual");
+}
+
+point libE0EAE146_gf_XMTestBench_GetSafeOriginPoint (int lp_player) {
+    return PointFromId(1);
 }
 
 void libE0EAE146_gf_XMTestBench_SetCommander (int lp_player, string lp_commander) {
@@ -308,13 +312,13 @@ void libE0EAE146_gf_XMTestBench_RunUnitAbilitySmoke (int lp_player) {
 }
 
 void libE0EAE146_gf_XMTestBench_RunPanelCostSmoke (int lp_player) {
-    if (XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(PlayerStartLocation(lp_player), 18.0, 0.0)) == false) {
+    if (XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(libE0EAE146_gf_XMTestBench_GetSafeOriginPoint(lp_player), 18.0, 0.0)) == false) {
         libE0EAE146_gf_XMDbgLog("INFO", "PANEL_COST_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " reason=panel_profile_not_fully_castable");
     }
 }
 
 void libE0EAE146_gf_XMTestBench_RunPanelEffectSmoke (int lp_player) {
-    XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(PlayerStartLocation(lp_player), 18.0, 0.0));
+    XM_InvokeCommanderPanelAbility(lp_player, libE0EAE146_gv_xmTestBenchCommander[lp_player], "default", PointWithOffsetPolar(libE0EAE146_gf_XMTestBench_GetSafeOriginPoint(lp_player), 18.0, 0.0));
     libE0EAE146_gf_XMDbgLog("INFO", "PANEL_EFFECT_SKIPPED", "commander=" + libE0EAE146_gv_xmTestBenchCommander[lp_player] + " reason=panel_profile_not_wired");
 }
 
@@ -339,7 +343,7 @@ void libE0EAE146_gf_XMTestBench_RunTransportSmoke (int lp_player, string lp_carg
 
     lv_commander = libE0EAE146_gf_NormalizeCommanderId(libE0EAE146_gv_xmTestBenchCommander[lp_player]);
     lv_containerType = libE0EAE146_gf_XMTestBench_ResolveTransportContainerType(lv_commander, lp_cargoKind);
-    lv_point = PointWithOffsetPolar(PlayerStartLocation(lp_player), 18.0, 0.0);
+    lv_point = PointWithOffsetPolar(libE0EAE146_gf_XMTestBench_GetSafeOriginPoint(lp_player), 18.0, 0.0);
 
     libE0EAE146_gf_XMTestBench_SetLastEvent(lp_player, "TEST_TRANSPORT_START");
     libE0EAE146_gf_XMTestBench_AppendTrace(lp_player, "TRANSPORT:" + lv_commander + ":" + lp_cargoKind);

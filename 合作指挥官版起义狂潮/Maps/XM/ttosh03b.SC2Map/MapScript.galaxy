@@ -858,12 +858,6 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     libE0EAE146_gf_InitializeBase(PointFromId(29), 8, null, true);
     gv_nova = UnitLastCreated();
     TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:base-initialized"), false);
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, PlayerStartLocation(1));
-    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:commandcenter=" + UnitGetType(UnitLastCreated())), false);
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1), 0, 1, PlayerStartLocation(1));
-    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:worker=" + UnitGetType(UnitLastCreated())), false);
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1), 0, 1, PointFromId(8));
-    TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:second=" + UnitGetType(UnitLastCreated())), false);
     auto2F29E444_val = libE0EAE146_gv_commander;
     if (auto2F29E444_val == "Stukov") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "SIStukov", 0, 1, PointFromId(29));

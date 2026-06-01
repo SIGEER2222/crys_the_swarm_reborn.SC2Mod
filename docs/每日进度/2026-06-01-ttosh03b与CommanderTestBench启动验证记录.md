@@ -27,6 +27,12 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\launch-xm-map.ps1" -Com
 - `Kerrigan` 这轮也可进图，当前截图可见英雄头像和地面单位，说明不再停留在黑屏阶段。
 - `Abathur` 可进图，但 `Alerts.txt` 里出现 `Scope[HatcheryAbathur, Unit] Unable to create unit actor. Creating fallback sphere unit.`，说明它的起始建筑演员还需要继续核对。
 - `AbathurReborn` 仍表现为回退到 `CoopCasterAbathur` 的同路结果，画面和 `Abathur` 基本一致，符合当前“stub 回退”的定位。
+- 2026-06-01 13:45 这轮把 `ttosh03b` 里 `InitializeBase()` 之后那三句重复的 `UserDataGetUnit("CommanderAch", ...)` 直接创建删掉后，重新启动 `Abathur + ttosh03b`，最新落盘只剩启动日志，没有再写出新的 `ScriptError.txt`；说明这条空单位类型报错已经从这个入口上移除了。
+
+补跑结果：
+
+- 2026-06-01 13:58 `Kerrigan + ttosh03b` 重新启动后，最新 `ScriptError.txt` 仍未新增；最新 `Alerts.txt` 里能搜到的凯瑞甘条目只有 `K5KerriganPsiStrike` / `K5Kerrigan` 的 `CAbil` 技能过多警告，没有再出现 `无法找到目录条目''` 这类启动级错误。
+- 2026-06-01 14:01 `Abathur + ttosh03b` 重新启动后，最新 `ScriptError.txt` 仍未新增；最新 `Alerts.txt` 里未在抽样检索中命中 `Abathur/HatcheryAbathur` 关键字，当前先按“无新脚本错误、需继续看实机表现”处理。
 
 ## CommanderTestBench
 

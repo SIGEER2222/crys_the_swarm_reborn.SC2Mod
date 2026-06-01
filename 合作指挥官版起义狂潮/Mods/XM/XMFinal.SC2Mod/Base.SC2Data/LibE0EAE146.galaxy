@@ -318,6 +318,9 @@ void libE0EAE146_gf_XMDbgLog (string lp_level, string lp_event, string lp_messag
 point libE0EAE146_gf_XMRuntime_GetOriginPoint (int lp_player) {
     point lv_origin;
 
+    if (libE0EAE146_gv_xmRuntimeCommanderOverrideEnabled == true) {
+        return PointFromId(1);
+    }
     lv_origin = PlayerStartLocation(lp_player);
     if (lv_origin != null) {
         return lv_origin;
