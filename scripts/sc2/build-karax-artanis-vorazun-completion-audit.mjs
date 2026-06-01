@@ -1,0 +1,188 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const commanders = ['Karax', 'Artanis', 'Vorazun'];
+
+const officialRoot = path.join(repoRoot, '游戏数据', '官方合作指挥官', 'commanders');
+const fieldAuditPath = path.join(repoRoot, 'docs', '每日进度', '2026-06-01-karax-artanis-vorazun字段级对齐审计', 'karax-artanis-vorazun-field-alignment.json');
+const gapReportPath = path.join(repoRoot, 'docs', '每日进度', '2026-05-31-官方合作指挥官全量缺口清单', 'official-vs-mod-gap-report.json');
+const outDir = path.join(repoRoot, 'docs', '每日进度', '2026-06-01-karax-artanis-vorazun完成度审计');
+const outJson = path.join(outDir, 'karax-artanis-vorazun-completion-audit.json');
+const outMd = path.join(outDir, 'karax-artanis-vorazun-completion-audit.md');
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function passFail(ok) {
+  return ok ? 'PASS' : 'FAIL';
+}
+
+function check(id, description, ok, evidence) {
+  return { id, description, status: passFail(ok), ok, evidence };
+}
+
+function byCommander(items) {
+  return new Map(items.map((item) => [item.commander, item]));
+}
+
+function commandCardFaces(buttons) {
+  return buttons
+    .map((button) => button.face)
+    .filter(Boolean);
+}
+
+function summarizeCommander(commander, fieldAudit, gapReport) {
+  const unitsPath = path.join(officialRoot, commander, 'units.json');
+  const buildingsPath = path.join(officialRoot, commander, 'buildings.json');
+  const officialUnits = readJson(unitsPath);
+  const officialBuildings = readJson(buildingsPath);
+  const field = fieldAudit.get(commander);
+  const gap = gapReport.get(commander);
+
+  if (!field) {
+    throw new Error(`Missing field audit for ${commander}`);
+  }
+  if (!gap) {
+    throw new Error(`Missing gap report for ${commander}`);
+  }
+
+  const unitReports = field.unit_skill_reports || [];
+  const buildingReports = field.building_reports || [];
+  const topPanel = field.top_panel || { expected: [], issues: [] };
+  const checks = [
+    check(
+      'online-source',
+      '存在可人工复核的 StarCraft2Coop 在线资料入口',
+      Boolean(field.online_source),
+      field.online_source,
+    ),
+    check(
+      'official-vs-mod-static-gap',
+      '官方合作指挥官数据到当前 Mod 的静态缺口总数为 0',
+      gap.total_missing === 0,
+      `total_missing=${gap.total_missing}`,
+    ),
+    check(
+      'unit-roster-count',
+      '官方 units.json 中的兵种均进入字段级单位审计',
+      officialUnits.length === unitReports.length,
+      `${unitReports.length}/${officialUnits.length}`,
+    ),
+    check(
+      'unit-skill-hard-issues',
+      '兵种技能/被动不存在硬缺口或字段不匹配',
+      field.unit_skill_issue_count === 0,
+      `unit_skill_issues=${field.unit_skill_issue_count}`,
+    ),
+    check(
+      'unit-skill-global-only',
+      '兵种技能/被动不再依赖 global-only 提醒项',
+      field.unit_skill_global_only_count === 0,
+      `global_only=${field.unit_skill_global_only_count}`,
+    ),
+    check(
+      'building-roster-count',
+      '官方 buildings.json 中的建筑均进入字段级建筑审计',
+      officialBuildings.length === buildingReports.length,
+      `${buildingReports.length}/${officialBuildings.length}`,
+    ),
+    check(
+      'building-issues',
+      '建筑 roster/catalog 不存在静态缺口',
+      field.building_issue_count === 0,
+      `building_issues=${field.building_issue_count}`,
+    ),
+    check(
+      'top-panel',
+      '顶部技能面板按钮字段全部匹配预期',
+      field.top_panel_issue_count === 0,
+      `top_panel_issues=${field.top_panel_issue_count}`,
+    ),
+  ];
+
+  return {
+    commander,
+    module: field.module,
+    online_source: field.online_source,
+    official_units_path: path.relative(repoRoot, unitsPath),
+    official_buildings_path: path.relative(repoRoot, buildingsPath),
+    gap_report_path: path.relative(repoRoot, gapReportPath),
+    field_audit_path: path.relative(repoRoot, fieldAuditPath),
+    unit_count: officialUnits.length,
+    building_count: officialBuildings.length,
+    top_panel_button_count: topPanel.expected.length,
+    unit_ids: officialUnits.map((unit) => unit.id),
+    building_ids: officialBuildings.map((building) => building.id),
+    top_panel_faces: commandCardFaces(topPanel.expected),
+    checks,
+    status: passFail(checks.every((item) => item.ok)),
+  };
+}
+
+function writeMarkdown(report) {
+  const lines = [];
+  lines.push('# Karax / Artanis / Vorazun 完成度审计');
+  lines.push('');
+  lines.push(`- 生成时间：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
+  lines.push('- 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。');
+  lines.push('- 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告，以及 StarCraft2Coop 在线资料入口。');
+  lines.push('- 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。');
+  lines.push('');
+  lines.push('## 总览');
+  lines.push('');
+  lines.push('| 指挥官 | 状态 | 单位 | 建筑 | 顶部面板按钮 | 在线资料 |');
+  lines.push('| --- | --- | ---: | ---: | ---: | --- |');
+  for (const commander of report.commanders) {
+    lines.push(`| ${commander.commander} | ${commander.status} | ${commander.unit_count} | ${commander.building_count} | ${commander.top_panel_button_count} | ${commander.online_source} |`);
+  }
+  lines.push('');
+
+  for (const commander of report.commanders) {
+    lines.push(`## ${commander.commander}`);
+    lines.push('');
+    lines.push(`- 模块：\`${commander.module}\``);
+    lines.push(`- 单位：${commander.unit_ids.join('、')}`);
+    lines.push(`- 建筑：${commander.building_ids.join('、')}`);
+    lines.push(`- 顶部面板：${commander.top_panel_faces.join('、')}`);
+    lines.push('');
+    lines.push('| 检查项 | 状态 | 证据 |');
+    lines.push('| --- | --- | --- |');
+    for (const item of commander.checks) {
+      lines.push(`| ${item.description} | ${item.status} | ${item.evidence} |`);
+    }
+    lines.push('');
+  }
+
+  while (lines.at(-1) === '') {
+    lines.pop();
+  }
+  return lines.join('\n');
+}
+
+fs.mkdirSync(outDir, { recursive: true });
+
+const fieldAuditRaw = readJson(fieldAuditPath);
+const gapReportRaw = readJson(gapReportPath);
+const fieldAudit = byCommander(fieldAuditRaw.commanders);
+const gapReport = byCommander(gapReportRaw.commanders);
+const report = {
+  generated_at: new Date().toISOString(),
+  commanders: commanders.map((commander) => summarizeCommander(commander, fieldAudit, gapReport)),
+};
+report.status = passFail(report.commanders.every((commander) => commander.status === 'PASS'));
+
+fs.writeFileSync(outJson, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+fs.writeFileSync(outMd, `${writeMarkdown(report)}\n`, 'utf8');
+
+console.log(`Wrote ${outJson}`);
+console.log(`Wrote ${outMd}`);
+for (const commander of report.commanders) {
+  console.log(`${commander.commander}: status=${commander.status}, units=${commander.unit_count}, buildings=${commander.building_count}, top_panel_buttons=${commander.top_panel_button_count}`);
+}
+
+if (report.status !== 'PASS') {
+  process.exitCode = 1;
+}
