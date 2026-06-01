@@ -226,6 +226,7 @@ void tb_XMTB_LoadCommanderFromBank () {
     }
     gv_xmTbCurrentCommanderIndex = tb_XMTB_FindCommanderIndex(gv_xmTbCurrentCommander);
     gv_xmTbLastEvent = "INIT";
+    TriggerDebugOutput(1, StringToText("[XMTB][INFO] load-commander=" + gv_xmTbCurrentCommander), false);
 }
 
 void tb_XMTB_Clear () {
@@ -240,6 +241,7 @@ void tb_XMTB_SetCommander (string lp_commander) {
     XMTestBench_SetCommander(1, lp_commander);
     XMTestBench_WriteSummary(1);
     gv_xmTbLastEvent = "SET_COMMANDER";
+    TriggerDebugOutput(1, StringToText("[XMTB][INFO] set-commander=" + gv_xmTbCurrentCommander), false);
     tb_XMTB_UpdateSummary();
 }
 
@@ -249,6 +251,7 @@ void tb_XMTB_RunScenario (string lp_scenario) {
     XMTestBench_RunScenario(1, lp_scenario);
     XMTestBench_WriteSummary(1);
     gv_xmTbLastEvent = "RUN_SCENARIO";
+    TriggerDebugOutput(1, StringToText("[XMTB][INFO] run-scenario=" + lp_scenario + " commander=" + gv_xmTbCurrentCommander), false);
     tb_XMTB_UpdateSummary();
 }
 
@@ -398,6 +401,7 @@ bool gt_XMTB_Init_Func (bool testConds, bool runActions) {
     tb_XMTB_BuildUI();
     XMTestBench_SetCommander(1, gv_xmTbCurrentCommander);
     XMTestBench_WriteSummary(1);
+    gv_xmTbLastEvent = "INIT_UI";
     tb_XMTB_UpdateSummary();
     return true;
 }

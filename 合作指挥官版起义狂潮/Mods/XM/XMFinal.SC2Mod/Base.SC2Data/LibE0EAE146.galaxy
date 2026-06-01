@@ -1014,6 +1014,15 @@ void libE0EAE146_gf_CommanderPanelInit (string lp_casterUnit, string lp_gpComman
     lib67C0F0E7_gf_ShowChooseButton();
 }
 void libE0EAE146_gf_InitializeAbathurBiomass (int lp_player, string lp_collectEffect) {
+    string lv_pickupCreatedBeforeText;
+
+    if ((libE0EAE146_gv_abathurBiomassTestPickupCreated == true)) {
+        lv_pickupCreatedBeforeText = "true";
+    }
+    else {
+        lv_pickupCreatedBeforeText = "false";
+    }
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_INIT", "player=" + IntToString(lp_player) + " effect=" + lp_collectEffect + " pickupCreatedBefore=" + lv_pickupCreatedBeforeText);
     libE0EAE146_gv_abathurBiomassPlayer = lp_player;
     libE0EAE146_gv_abathurBiomassEffect = lp_collectEffect;
     libE0EAE146_gv_abathurBiomassEnabled = true;
@@ -1021,6 +1030,13 @@ void libE0EAE146_gf_InitializeAbathurBiomass (int lp_player, string lp_collectEf
     if ((libE0EAE146_gv_abathurBiomassTestPickupCreated == false)) {
         libE0EAE146_gv_abathurBiomassTestPickupCreated = libE0EAE146_gf_CreateAbathurBiomassTestPickup(PointWithOffsetPolar(libE0EAE146_gf_XMRuntime_GetOriginPoint(lp_player), 4.0, 0.0), libE0EAE146_gf_AbathurBiomassMaxStacks());
     }
+    if ((libE0EAE146_gv_abathurBiomassTestPickupCreated == true)) {
+        lv_pickupCreatedBeforeText = "true";
+    }
+    else {
+        lv_pickupCreatedBeforeText = "false";
+    }
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_INIT", "player=" + IntToString(lp_player) + " effect=" + lp_collectEffect + " pickupCreatedAfter=" + lv_pickupCreatedBeforeText);
 }
 void libE0EAE146_gf_EnableAbathurBiomassTriggers () {
     if ((libE0EAE146_gt_AbathurBiomassDrop != null)) {
@@ -1043,14 +1059,18 @@ void libE0EAE146_gf_EnableAbathurToxicNestTriggers () {
 }
 bool libE0EAE146_gf_CreateAbathurBiomassPickup (point lp_point, int lp_stack) {
     if ((lp_point == null)) {
+        libE0EAE146_gf_XMDbgLog("WARN", "ABATHUR_BIOMASS_PICKUP_MISSING", "reason=null_point stack=" + IntToString(lp_stack));
         return false;
     }
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_PICKUP_CREATE", "player=" + IntToString(libE0EAE146_gv_abathurBiomassPlayer) + " stack=" + IntToString(lp_stack));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "BiomassPickup", c_unitCreateIgnorePlacement, libE0EAE146_gv_abathurBiomassPlayer, lp_point);
     if ((UnitLastCreated() == null)) {
+        libE0EAE146_gf_XMDbgLog("WARN", "ABATHUR_BIOMASS_PICKUP_MISSING", "reason=create_failed stack=" + IntToString(lp_stack));
         return false;
     }
     UnitSetCustomValue(UnitLastCreated(), 63, IntToFixed(MaxI(1, lp_stack)));
     libNtve_gf_SendActorMessageToUnit(UnitLastCreated(), ("SetScale " + FixedToString(libE0EAE146_gf_AbathurBiomassVisualScale(MaxI(1, lp_stack)), c_fixedPrecisionAny)));
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_PICKUP_CREATE", "result=ok unit=" + UnitGetType(UnitLastCreated()) + " stack=" + IntToString(lp_stack));
     return true;
 }
 bool libE0EAE146_gf_CreateAbathurBiomassTestPickup (point lp_point, int lp_stack) {
@@ -6492,6 +6512,7 @@ void libE0EAE146_gf_XMRuntime_CreateBaseStructures (int lp_player, point lp_seco
         lv_createFlags = c_unitCreateIgnorePlacement;
     }
     lv_commandCenterUnit = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "CommandCenter", 1);
+    libE0EAE146_gf_XMDbgLog("INFO", "BASE_STRUCTURE_SELECT", "commander=" + libE0EAE146_gv_commander + " field=CommandCenter raw=" + lv_commandCenterUnit);
     if (((lv_commandCenterUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_commandCenterUnit))) && (libE0EAE146_gv_commander == "Kerrigan")) {
         lv_commandCenterUnit = "Hatchery";
     }
@@ -6531,6 +6552,7 @@ void libE0EAE146_gf_XMRuntime_CreateStartingWorkers (int lp_player, int lp_worke
 
     // Implementation
     lv_workerUnit = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "Worker", 1);
+    libE0EAE146_gf_XMDbgLog("INFO", "BASE_WORKER_SELECT", "commander=" + libE0EAE146_gv_commander + " field=Worker raw=" + lv_workerUnit);
     if (((lv_workerUnit == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_workerUnit))) && (libE0EAE146_gv_commander == "Kerrigan")) {
         lv_workerUnit = "Drone";
     }
@@ -6569,6 +6591,7 @@ void libE0EAE146_gf_XMRuntime_CreateSecondUnit (int lp_player, point lp_secondUn
     string lv_secondUnitType;
 
     lv_secondUnitType = UserDataGetUnit("CommanderAch", libE0EAE146_gf_XMRuntime_CommanderInstance(), "SecondUnit", 1);
+    libE0EAE146_gf_XMDbgLog("INFO", "BASE_SECOND_SELECT", "commander=" + libE0EAE146_gv_commander + " field=SecondUnit raw=" + lv_secondUnitType);
     if (((lv_secondUnitType == "") || (!CatalogEntryIsValid(c_gameCatalogUnit, lv_secondUnitType))) && (libE0EAE146_gv_commander == "Kerrigan")) {
         lv_secondUnitType = "Overlord";
     }
