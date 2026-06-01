@@ -6400,6 +6400,9 @@
     <CardLayouts index="0">
       <LayoutButtons Face="HighTemplarEnergyUpgrade" Type="Passive" Requirements="HaveHighTemplarEnergyUpgrade" Row="1" Column="0"></LayoutButtons>
       <LayoutButtons Face="HealingPsionicStorm" Type="Passive" Requirements="HaveHealingPsionicStorm" Row="1" Column="1"></LayoutButtons>
+      <LayoutButtons Face="Feedback" Type="AbilCmd" AbilCmd="Feedback,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="PsiStorm" Type="AbilCmd" AbilCmd="PsiStorm,Execute" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="AWrp" Type="AbilCmd" AbilCmd="ArchonWarp,SelectedUnits" Row="2" Column="3"></LayoutButtons>
     </CardLayouts>
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
@@ -7020,9 +7023,12 @@
     <DamageTakenXP value="0"></DamageTakenXP>
     <KillXP value="0"></KillXP>
     <AbilArray index="5" Link="ImmortalBarrierBase"></AbilArray>
+    <AbilArray Link="ImmortalShakurasShadowCannon"></AbilArray>
     <BehaviorArray index="0" Link="AllUnitBehaviorController"></BehaviorArray>
     <CardLayouts index="0">
       <LayoutButtons index="5" Face="ImmortalBarrierBase" AbilCmd="ImmortalBarrierBase,Execute"></LayoutButtons>
+      <LayoutButtons index="6" Face="ImmortalShakurasShadowCannon" Type="AbilCmd" AbilCmd="ImmortalShakurasShadowCannon,Execute"></LayoutButtons>
+      <LayoutButtons Face="ShadowCannonLocked" Type="Passive" Requirements="KaraxLevel09" Row="2" Column="1"></LayoutButtons>
       <LayoutButtons Face="HaveBarrier" Type="Passive" Requirements="HaveBarrier" Row="1" Column="0"></LayoutButtons>
     </CardLayouts>
     <ScoreMake value="0"></ScoreMake>
@@ -14097,6 +14103,7 @@
     <BehaviorArray index="1" Link=""></BehaviorArray>
     <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
     <CardLayouts index="0">
+      <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="WhirlwindLocked" Type="Passive" Requirements="ArtanisLevel04" Row="2" Column="1"></LayoutButtons>
     </CardLayouts>
     <ScoreMake value="0"></ScoreMake>

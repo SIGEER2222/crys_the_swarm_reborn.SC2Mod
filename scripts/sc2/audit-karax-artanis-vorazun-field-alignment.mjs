@@ -211,6 +211,11 @@ function abilitySignature(ability) {
   };
 }
 
+function isProductionCommand(ability) {
+  const abilCmd = normalize(ability.abil_cmd);
+  return /^(GatewayTrain|WarpGateTrain|StargateTrain|RoboticsFacilityTrain|RoboticsFacilityWarpTrain|TemplarArchivesResearch|FleetBeaconResearch),/.test(abilCmd);
+}
+
 function compareField(field, expected, actual) {
   const expectedValue = normalize(expected[field]);
   const actualValue = normalize(actual[field]);
@@ -265,6 +270,7 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
     const { buttons, foundUnitIds } = collectButtons(candidateIds, moduleUnits, finalUnits);
     const actualFaces = new Set(buttons.map((button) => button.face));
     const expectedSkills = (unit.abilities || [])
+      .filter((ability) => !isProductionCommand(ability))
       .map(abilitySignature)
       .filter((ability) => ability.face && !inheritedOrCoreFaces.has(ability.face));
     const expectedByFace = new Map();
