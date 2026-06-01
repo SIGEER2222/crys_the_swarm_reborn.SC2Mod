@@ -225,23 +225,3 @@
 ### 升级
 
 - HaveMonitor `HaveMonitor`
-
-### 指挥官进度
-
-- 强化超载 `AlarakImprovedOvercharge`
-- 死亡议会升级包 `AlarakTwilightCouncilUpgradesPack`
-- 供奉我 `AlarakEmpowerMeSlaves`
-- 机械研究所升级包 `AlarakRoboticsBayUpgradesPack`
-- 新单位：晋升者 `AlarakUnlockAscendant`
-- 浩劫升级包 `AlarakHavocUpgradesPack`
-- 召唤死亡舰队 `AlarakDeathFleet`
-- 晋升者升级包 `AlarakTemplarArchivesUpgradesPack`
-- 阿拉纳克升级包 `AlarakPHLevel14`
-
-### 技能
-
-- 设定集结点 `ProgressRally`
-
-### 按钮
-
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`

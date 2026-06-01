@@ -6995,6 +6995,28 @@
     <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
     <AffectedUnitArray value="ZealotAiur" />
   </CUpgrade>
+  <CUpgrade id="ShadowGuardSpawnCount">
+    <Race value="Prot" />
+    <EffectArray Reference="Effect,ShadowGuardCU,SpawnCount" Value="2" />
+    <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
+    <AffectedUnitArray value="VorazunShadowGuard" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="SOATimeFreezeUpgrade">
+    <Flags index="UpgradeCheat" value="0" />
+    <EffectArray Operation="Subtract" Reference="Abil,SOATimeFreeze,Cost[0].Cooldown.TimeUse" Value="60.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,SOATimeFreeze,Cost[0].Cooldown.TimeStart" Value="60.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,CommanderPrestigeVorazunTimeStop,Cost[0].Cooldown.TimeUse" Value="60.000000" />
+    <EffectArray Operation="Subtract" Reference="Abil,CommanderPrestigeVorazunTimeStop,Cost[0].Cooldown.TimeStart" Value="60.000000" />
+    <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
+    <AffectedUnitArray value="SoACasterVorazun" />
+    <LeaderAlias value="" />
+  </CUpgrade>
+  <CUpgrade id="VoidZealotShadowCharge">
+    <EffectArray Operation="Set" Reference="Abil,GatewayTrain,InfoArray[Train1].Unit[0]" Value="ZealotShakuras" />
+    <EffectArray Operation="Set" Reference="Abil,WarpGateTrain,InfoArray[Train1].Unit" Value="ZealotShakuras" />
+    <LeaderAlias value="" />
+  </CUpgrade>
   <CUpgrade id="ZerglingArmorShred">
     <Flags index="TechTreeCheat" value="1" />
     <Icon value="Assets\Textures\btn-upgrade-zergling-armorshredding.dds" />

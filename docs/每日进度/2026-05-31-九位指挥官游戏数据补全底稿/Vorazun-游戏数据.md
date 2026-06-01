@@ -226,46 +226,4 @@
 
 ## 当前待核对项
 
-### 升级
-
-- SOATime Freeze Upgrade `SOATimeFreezeUpgrade`
-- Shadow Guard Spawn Count `ShadowGuardSpawnCount`
-- VoidZealotShadowCharge `VoidZealotShadowCharge`
-
-### 指挥官进度
-
-- 亚顿之矛：轨道吸纳舱 `VorazunOrbitalAssimilator`
-- 暗影军团 `VorazunImprovedShadowGuard`
-- 光影议会升级包 `VorazunTwilightCouncilUpgrades`
-- 黑暗圣堂武士升级包 `VorazunDarkTemplarUpgrades`
-- 暗影之幕 `VorazunImprovedShieldRegeneration`
-- 黑暗执政官升级包 `VorazunDarkArchonUpgrades`
-- 亚顿之矛：时间停止 `VorazunUnlockTimeStop`
-- 黑暗水晶塔：召回 `VorazunUnlockDarkPylonRecall`
-- 舰队航标升级包 `VorazunFleetBeaconUpgrades`
-- 黑暗圣堂武士召回 `VorazunUnlockSOARecallOnDeath`
-- 亚顿之矛：时空理论 `VorazunImprovedTimeStop`
-- 阴影黯灭 `VorazunCloakedUnitDamageBoost`
-
-### 技能
-
-- 设定集结点 `ProgressRally`
-
-### 按钮
-
-- 亚顿之影 `CommanderVorazunShadowStalk`
-- 亚顿之矛：轨道吸纳舱 `CommanderVorazunSpearofAdunOrbitalAssimilators`
-- 暗影军团 `CommanderVorazunShadowGuardIncreasedSpawnCount`
-- 光影议会升级包 `CommanderVorazunTwilightCouncilUpgradesPack`
-- 新单位：黑暗执政官 `CommanderVorazunUnlockDarkArchon`
-- 黑暗圣堂武士升级包 `CommanderVorazunDarkTemplarUpgradesPack`
-- 暗影之幕 `CommanderVorazunImprovedShieldRegeneration`
-- 亚顿之矛：事件视界 `CommanderVorazunImprovedSpearofAdunBlackhole`
-- 黑暗执政官升级包 `CommanderVorazunDarkArchonUpgradesPack`
-- 亚顿之矛：时间停止 `CommanderVorazunSpearofAdunTimeStop`
-- 黑暗水晶塔：召回 `CommanderVorazunDarkPylonRecall`
-- 舰队航标升级包 `CommanderVorazunFleetBeaconUpgradesPack`
-- 黑暗圣堂武士召回 `DarkTemplarRecall`
-- 亚顿之矛：时空理论 `CommanderVorazunImprovedTimeStop`
-- 阴影黯灭 `CommanderVorazunCloakedUnitsDamageBoost`
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
+- 原始扫描版未列出明显缺口。

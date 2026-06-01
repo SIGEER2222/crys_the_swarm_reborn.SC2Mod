@@ -333,27 +333,7 @@
 - Swann Commander Immortality Protocol `SwannCommanderImmortalityProtocol`
 - Swann Commander Vehicle Health `SwannCommanderVehicleHealth`
 - Swann Commander Worker Free Repairs `SwannCommanderWorkerFreeRepairs`
-- Swann Improved Special Delivery `SwannImprovedSpecialDelivery`
 - Swann Turret Upgrades `SwannKelMorianTurretUpgrades`
-- Swann Special Delivery `SwannSpecialDelivery`
-- Swann Unlock Thor `SwannUnlockThor`
-
-### 指挥官进度
-
-- 战斗空投 `SwannSpecialDelivery`
-- 贝蒂家族 `SwannImprovedTurrets`
-- 德拉肯激光钻机：脉冲炮 `SwannLaserDrillUpgrades`
-- 瓦斯采集器 `SwannUnlockVespeneDrone`
-- 新单位：雷神 `SwannUnlockThor`
-- 重工厂升级包 `SwannFactoryUpgrades`
-- 高级建造 `SwannImprovedSCV`
-- 军械库升级包 `SwannArmoryUpgrades`
-- 科技反应堆 `SwannTechReactor`
-- 工程站升级包 `SwannEngineeringBayUpgrades`
-- 永生程序 `SwannImmortalityProtocol`
-- 星港升级包 `SwannStarportUpgrades`
-- 加量不加价 `SwannImprovedSpecialDelivery`
-- 机械专业 `SwannVehicleHealth`
 
 ### 技能
 

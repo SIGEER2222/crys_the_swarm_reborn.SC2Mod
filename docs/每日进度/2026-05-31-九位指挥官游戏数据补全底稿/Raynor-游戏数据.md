@@ -343,21 +343,6 @@
 
 - 攻城坦克 `Siege Tank`
 
-### 指挥官进度
-
-- 纳米投射器 `RaynorUnlockFirebat`
-- 步兵升级包 `RaynorBarracksUpgrades`
-- 休伯利安号：定点防御无人机 `RaynorHyperionAdvancedPDDDrone`
-- 战斗地堡 `RaynorEngineeringBayUpgrades`
-- 轨道空投 `RaynorOrbitalDropPods`
-- 重工厂升级包 `RaynorFactoryUpgrades`
-- 钒合金板 `RaynorArmorVanadium`
-- 军械库升级包 `RaynorArmoryUpgrades`
-- 轨道空投补给站 `RaynorOrbitalDepots`
-- 星港升级包 `RaynorStarportUpgrades`
-- 休伯利安号：高级瞄准系统 `RaynorHyperionAdvancedTargetingAura`
-- 佣兵军火 `RaynorImprovedInfantryAttackSpeed`
-
 ### 技能
 
 - 升空 `BarracksLiftOff`

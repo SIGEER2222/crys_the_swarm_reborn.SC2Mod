@@ -258,31 +258,4 @@
 
 ## 当前待核对项
 
-### 兵种
-
-- 龙骑士 `StalkerAiur`
-
-### 指挥官进度
-
-- 亚顿之矛：守护之壳 `ArtanisUnlockHeroicShield`
-- 超级折跃门 `ArtanisUnlockWarpGateCharges`
-- 光影议会升级包 `ArtanisTwilightCouncilUpgrades`
-- 圣堂武士文献馆升级包 `ArtanisTemplarArchivesUpgrades`
-- 亚顿之矛：折跃谐振 `ArtanisUnlockWarpTech`
-- 机械研究所升级包 `ArtanisRoboticsBayUpgrades`
-- 亚顿之矛：太阳轰炸 `ArtanisUnlockStrafeAttack`
-- 舰队航标升级包 `ArtanisFleetBeaconUpgrades`
-- 亚顿之矛：护盾超载 `ArtanisImprovedSuperShields`
-- 亚顿之矛：太阳打击 `ArtanisImprovedStrafeAttack`
-
-### 技能
-
-- 亚顿之矛：折跃谐振 `UpgradeToRoboticsFacilityWarp`
-- 亚顿之矛：太阳轰炸 `SOAStrafeAttackExecute`
-- 设定集结点 `ProgressRally`
-
-### 按钮
-
-- ColossusPassive `ColossusPassive`
-- ReaverPassive `ReaverPassive`
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
+- 原始扫描版未列出明显缺口。

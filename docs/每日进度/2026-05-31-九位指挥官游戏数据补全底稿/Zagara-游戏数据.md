@@ -213,23 +213,6 @@
 
 ## 当前待核对项
 
-### 指挥官进度
-
-- 感染空投 `ZagaraUnlockMassRoachDrop`
-- 幼虫注射 `ZagaraQueenDoubleInjectLarva`
-- 爆蚊升级包 `ZagaraScourgeUpgrades`
-- 新单位：胆汁喷射体 `ZagaraUnlockBileLaunchers`
-- 跳虫升级包 `ZagaraZerglingUpgrades`
-- 爆虫巢穴：哺育腔 `ZagaraBanelingNestSpawner`
-- 孕育爆虫和爆蚊 `ZagaraBanelingIncubation`
-- 进化腔升级包 `ZagaraAberrationUpgrades`
-- 遮天蔽日 `ZagaraImprovedMassRoachDrop`
-- 爆虫巢穴升级包 `ZagaraBanelingUpgrades`
-- 跳虫进化：裂变虫 `ZagaraZerglingEvo`
-- 胆汁喷射体升级包 `ZagaraBileLauncherUpgrades`
-- 爆虫进化：分裂虫 `ZagaraBanelingEvo`
-- 虫母 `ZagaraImprovedAbilities`
-
 ### 按钮
 
 - 无尽虫群 `CommanderZagaraRelentless`
@@ -237,7 +220,6 @@
 - 幼虫注射 `CommanderZagaraImprovedInjectLarva`
 - 爆蚊升级包 `CommanderZagaraScourgeUpgradesPack`
 - 新单位：胆汁喷射体 `CommanderZagaraUnlockBileLauncher`
-- 跳虫升级包 `CommanderZagaraZerglingUpgradesPack`
 - 爆虫巢穴：哺育腔 `CommanderZagaraVolatileBanelingNest`
 - 孕育爆虫和爆蚊 `CommanderZagaraIncubateBanelings`
 - 进化腔升级包 `CommanderZagaraEvolutionChamberUpgradesPack`

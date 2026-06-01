@@ -1,8 +1,8 @@
 # 官方合作指挥官全量缺口清单
 
-- 生成时间：2026/6/1 01:15:43
-- 官方数据：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\游戏数据\官方合作指挥官\commanders`
-- Mod 数据：`C:\Users\22448\Downloads\重生虫心0.71汉化版（新）\reborn_workrepo\合作指挥官版起义狂潮\Mods\XM`
+- 生成时间：2026/6/1 16:05:13
+- 官方数据：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\游戏数据\官方合作指挥官\commanders`
+- Mod 数据：`D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\合作指挥官版起义狂潮\Mods\XM`
 - 扫描范围：当前 XM 树下全部 XML / TXT / GALAXY 文件，共 786 个
 - 判定方式：缺口按官方 JSON 条目 ID 与当前 Mod 中的 `id` 属性做精确比对；同名引用、localized key 和脚本文本命中只作为辅助线索，不视为已实现。
 - 说明：这是精确定义扫描底稿，适合作为缺口排查和人工复核底稿，不应直接当作最终玩法收口判定。
@@ -12,12 +12,12 @@
 | 指挥官 | 模块 | 缺失总数 | 主要缺口 |
 | --- | --- | ---: | --- |
 | Abathur | `XMAbathur.SC2Mod` | 0 | 无 |
-| Alarak | `XMAlarak.SC2Mod` | 4 | units、upgrades、abilities、buttons |
-| Artanis | `XMArtanis.SC2Mod` | 7 | units、abilities、buttons |
-| Dehaka | `XMDehaka.SC2Mod` | 33 | upgrades、abilities、buttons |
-| Fenix | `XMFenix.SC2Mod` | 4 | abilities、buttons |
+| Alarak | `XMAlarak.SC2Mod` | 2 | units、upgrades |
+| Artanis | `XMArtanis.SC2Mod` | 0 | 无 |
+| Dehaka | `XMDehaka.SC2Mod` | 32 | upgrades、abilities、buttons |
+| Fenix | `XMFenix.SC2Mod` | 0 | 无 |
 | Horner | `XMHorner.SC2Mod` | 29 | units、upgrades、abilities、buttons |
-| Karax | `XMKarax.SC2Mod` | 3 | upgrades、abilities、buttons |
+| Karax | `XMKarax.SC2Mod` | 0 | 无 |
 | Kerrigan | `XMKerrigan.SC2Mod` | 4 | buttons |
 | Mengsk | `XMMengsk.SC2Mod` | 42 | upgrades、commander_perks、abilities、buttons |
 | Nova | `XMNova.SC2Mod` | 40 | units、upgrades、abilities、buttons |
@@ -26,9 +26,9 @@
 | Stukov | `XMStukov.SC2Mod` | 33 | units、buildings、upgrades、buttons |
 | Swann | `XMSwann.SC2Mod` | 25 | units、buildings、upgrades、abilities、buttons |
 | Tychus | `XMTychus.SC2Mod` | 24 | upgrades、abilities、buttons |
-| Vorazun | `XMVorazun.SC2Mod` | 20 | upgrades、abilities、buttons |
+| Vorazun | `XMVorazun.SC2Mod` | 0 | 无 |
 | Zagara | `XMZagara.SC2Mod` | 16 | buttons |
-| Zeratul | `XMZeratul.SC2Mod` | 15 | buildings、upgrades、abilities、buttons |
+| Zeratul | `XMZeratul.SC2Mod` | 14 | buildings、upgrades、abilities、buttons |
 
 ## Abathur
 
@@ -39,8 +39,8 @@
 ## Alarak
 
 - 模块：`XMAlarak.SC2Mod`
-- 缺失总数：4
-- 缺口分类：兵种、升级、技能、按钮
+- 缺失总数：2
+- 缺口分类：兵种、升级
 
 ### 兵种
 
@@ -56,55 +56,16 @@
 - 仅有文本/引用命中的条目：1
 - HaveMonitor `HaveMonitor`
 
-### 技能
-
-- 官方数量：15
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 设定集结点 `ProgressRally`
-
-### 按钮
-
-- 官方数量：58
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
-
 ## Artanis
 
 - 模块：`XMArtanis.SC2Mod`
-- 缺失总数：7
-- 缺口分类：兵种、技能、按钮
-
-### 兵种
-
-- 官方数量：7
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 龙骑士 `StalkerAiur`
-
-### 技能
-
-- 官方数量：27
-- 缺失数量：3
-- 仅有文本/引用命中的条目：3
-- 亚顿之矛：折跃谐振 `UpgradeToRoboticsFacilityWarp`
-- 亚顿之矛：太阳轰炸 `SOAStrafeAttackExecute`
-- 设定集结点 `ProgressRally`
-
-### 按钮
-
-- 官方数量：68
-- 缺失数量：3
-- 仅有文本/引用命中的条目：3
-- ColossusPassive `ColossusPassive`
-- ReaverPassive `ReaverPassive`
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
+- 缺失总数：0
+- 结论：当前未发现明显缺口。
 
 ## Dehaka
 
 - 模块：`XMDehaka.SC2Mod`
-- 缺失总数：33
+- 缺失总数：32
 - 缺口分类：升级、技能、按钮
 
 ### 升级
@@ -121,13 +82,12 @@
 ### 技能
 
 - 官方数量：61
-- 缺失数量：5
-- 仅有文本/引用命中的条目：5
+- 缺失数量：4
+- 仅有文本/引用命中的条目：4
 - 采集 `DroneHarvest`
 - 召唤建筑 `255`
 - 喷漆 `SprayZerg`
 - DehakaLocustFlyingSwoop `DehakaLocustFlyingSwoop`
-- 设定集结点 `ProgressRally`
 
 ### 按钮
 
@@ -161,24 +121,8 @@
 ## Fenix
 
 - 模块：`XMFenix.SC2Mod`
-- 缺失总数：4
-- 缺口分类：技能、按钮
-
-### 技能
-
-- 官方数量：21
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 设定集结点 `ProgressRally`
-
-### 按钮
-
-- 官方数量：61
-- 缺失数量：3
-- 仅有文本/引用命中的条目：3
-- ColossusPassive `ColossusPassive`
-- ReaverPassive `ReaverPassive`
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
+- 缺失总数：0
+- 结论：当前未发现明显缺口。
 
 ## Horner
 
@@ -242,29 +186,8 @@
 ## Karax
 
 - 模块：`XMKarax.SC2Mod`
-- 缺失总数：3
-- 缺口分类：升级、技能、按钮
-
-### 升级
-
-- 官方数量：26
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 精通 凯纳克斯 单位活力 `MasteryKaraxUnitVital`
-
-### 技能
-
-- 官方数量：21
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 恢复 `ShieldBatteryRechargeEx5`
-
-### 按钮
-
-- 官方数量：66
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
+- 缺失总数：0
+- 结论：当前未发现明显缺口。
 
 ## Kerrigan
 
@@ -708,46 +631,8 @@
 ## Vorazun
 
 - 模块：`XMVorazun.SC2Mod`
-- 缺失总数：20
-- 缺口分类：升级、技能、按钮
-
-### 升级
-
-- 官方数量：26
-- 缺失数量：3
-- 仅有文本/引用命中的条目：3
-- SOATime Freeze Upgrade `SOATimeFreezeUpgrade`
-- Shadow Guard Spawn Count `ShadowGuardSpawnCount`
-- VoidZealotShadowCharge `VoidZealotShadowCharge`
-
-### 技能
-
-- 官方数量：23
-- 缺失数量：1
-- 仅有文本/引用命中的条目：1
-- 设定集结点 `ProgressRally`
-
-### 按钮
-
-- 官方数量：55
-- 缺失数量：16
-- 仅有文本/引用命中的条目：16
-- 亚顿之影 `CommanderVorazunShadowStalk`
-- 亚顿之矛：轨道吸纳舱 `CommanderVorazunSpearofAdunOrbitalAssimilators`
-- 暗影军团 `CommanderVorazunShadowGuardIncreasedSpawnCount`
-- 光影议会升级包 `CommanderVorazunTwilightCouncilUpgradesPack`
-- 新单位：黑暗执政官 `CommanderVorazunUnlockDarkArchon`
-- 黑暗圣堂武士升级包 `CommanderVorazunDarkTemplarUpgradesPack`
-- 暗影之幕 `CommanderVorazunImprovedShieldRegeneration`
-- 亚顿之矛：事件视界 `CommanderVorazunImprovedSpearofAdunBlackhole`
-- 黑暗执政官升级包 `CommanderVorazunDarkArchonUpgradesPack`
-- 亚顿之矛：时间停止 `CommanderVorazunSpearofAdunTimeStop`
-- 黑暗水晶塔：召回 `CommanderVorazunDarkPylonRecall`
-- 舰队航标升级包 `CommanderVorazunFleetBeaconUpgradesPack`
-- 黑暗圣堂武士召回 `DarkTemplarRecall`
-- 亚顿之矛：时空理论 `CommanderVorazunImprovedTimeStop`
-- 阴影黯灭 `CommanderVorazunCloakedUnitsDamageBoost`
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
+- 缺失总数：0
+- 结论：当前未发现明显缺口。
 
 ## Zagara
 
@@ -780,7 +665,7 @@
 ## Zeratul
 
 - 模块：`XMZeratul.SC2Mod`
-- 缺失总数：15
+- 缺失总数：14
 - 缺口分类：建筑、升级、技能、按钮
 
 ### 建筑
@@ -803,8 +688,8 @@
 ### 技能
 
 - 官方数量：27
-- 缺失数量：8
-- 仅有文本/引用命中的条目：8
+- 缺失数量：7
+- 仅有文本/引用命中的条目：7
 - 时空通道强化包1 `ZeratulCalldownOdinTargeted`
 - 新单位：萨尔纳加禁绝者 `ZeratulBarracksTrain`
 - 超维空间技术强化包 `ZeratulEngineeringBayResearch`
@@ -812,7 +697,6 @@
 - 黑暗代理 `ZeratulHeroResearch2`
 - 黑暗代理 `ZeratulHeroResearch`
 - 构造体强化包2 `ZeratulOdinPlatformResearch`
-- 设定集结点 `ProgressRally`
 
 ### 按钮
 

@@ -260,29 +260,4 @@
 
 ## 当前待核对项
 
-### 升级
-
-- 精通 凯纳克斯 单位活力 `MasteryKaraxUnitVital`
-
-### 指挥官进度
-
-- 亚顿之矛：提速力场 `KaraxUnlockSOAChronoPassive`
-- 新单位：凯达琳巨石 `KaraxUnlockKhaydarinMonolith`
-- 光影议会升级包 `KaraxTwilightCouncilUpgradesPack`
-- 亚顿之矛：时空过载 `KaraxMassChronoUpgrade`
-- 锻炉升级包 `KaraxForgeUpgradesPack`
-- 亚顿之矛：重构光束 `KaraxUnlockRepairBeam`
-- 太阳锻炉升级包1 `KaraxSolarForgeUpgradesPack1`
-- 机械研究所升级包 `KaraxRoboticsBayUpgradesPack`
-- 亚顿之矛：净化光束 `KaraxUnlockPurifierBeam`
-- 太阳锻炉升级包2 `KaraxSolarForgeUpgradesPack2`
-- 亚顿之矛：净化协议 `KaraxPurifierBeamUpgrade`
-- 舰队航标升级包 `KaraxFleetBeaconUpgrades`
-
-### 技能
-
-- 恢复 `ShieldBatteryRechargeEx5`
-
-### 按钮
-
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
+- 原始扫描版未列出明显缺口。

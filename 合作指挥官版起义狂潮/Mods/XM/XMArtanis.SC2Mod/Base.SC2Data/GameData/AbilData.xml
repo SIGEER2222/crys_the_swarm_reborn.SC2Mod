@@ -5798,6 +5798,46 @@
     <Range value="9" />
     <Arc value="4.9987" />
   </CAbilEffectTarget>
+  <CAbilRally id="ProgressRally">
+    <EditorCategories value="Race:Neutral,AbilityorEffectType:Structures" />
+    <Flags index="ShowWhileMerging" value="1" />
+    <Flags index="ShowWhileWarping" value="1" />
+  </CAbilRally>
+  <CAbilEffectTarget id="SOAStrafeAttackExecute">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Effect index="0" value="SOAStrafeAttackMovePersistent" />
+    <Flags index="ReExecutable" value="1" />
+    <Flags index="RequireTargetVision" value="0" />
+    <Range value="500" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOAStrafeAttackUnit" />
+    <SharedFlags index="TargetCursorVisibleInBlackMask" value="1" />
+  </CAbilEffectTarget>
+  <CAbilMorph id="UpgradeToRoboticsFacilityWarp">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:MorphsandBurrows" />
+    <Alert value="TransformationComplete" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="UpgradeToRoboticsFacilityWarp" Requirements="HaveSOAWarpTech" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <Flags index="BestUnit" value="1" />
+    <Flags index="Birth" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Produce" value="1" />
+    <Flags index="ShowProgress" value="1" />
+    <InfoArray Unit="RoboticsFacilityWarp">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="10" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="10" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="10" />
+      </SectionArray>
+    </InfoArray>
+    <ProgressButton value="UpgradeToRoboticsFacilityWarp" />
+    <Activity value="UI/Transforming" />
+  </CAbilMorph>
   <CAbilBuild id="ZergBuild">
     <InfoArray index="Build4">
       <Button State="Restricted" />

@@ -289,24 +289,6 @@
 - ZeratulCoopHeroHalfCostUpgrade `ZeratulCoopHeroHalfCostUpgrade`
 - ZeratulCoopMedivacChargesUpgrade `ZeratulCoopMedivacChargesUpgrade`
 
-### 指挥官进度
-
-- 萨尔纳加之力 `ZeratulPHLevel1`
-- 预言成真 `ZeratulPHLevel2`
-- 时空通道强化包1 `ZeratulPHLevel3`
-- 新单位：萨尔纳加禁绝者 `ZeratulPHLevel4`
-- 超维空间技术强化包 `ZeratulPHLevel5`
-- 构造体强化包1 `ZeratulPHLevel6`
-- 虚空之路 `ZeratulPHLevel7`
-- 超能军团 `ZeratulPHLevel8`
-- 新单位：萨尔纳加虚空阵列船 `ZeratulPHLevel9`
-- 时空理论 `ZeratulPHLevel10`
-- 时空通道强化包2 `ZeratulPHLevel11`
-- 黑暗代理 `ZeratulPHLevel12`
-- 构造体强化包2 `ZeratulPHLevel13`
-- 纯粹完美 `ZeratulPHLevel14`
-- 纯粹意志 `ZeratulPHLevel15`
-
 ### 技能
 
 - 时空通道强化包1 `ZeratulCalldownOdinTargeted`
@@ -316,7 +298,6 @@
 - 黑暗代理 `ZeratulHeroResearch2`
 - 黑暗代理 `ZeratulHeroResearch`
 - 构造体强化包2 `ZeratulOdinPlatformResearch`
-- 设定集结点 `ProgressRally`
 
 ### 按钮
 

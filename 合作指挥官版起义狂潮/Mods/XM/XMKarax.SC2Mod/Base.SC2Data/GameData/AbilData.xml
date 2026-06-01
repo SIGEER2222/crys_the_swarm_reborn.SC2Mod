@@ -5875,6 +5875,40 @@
     <Range value="9" />
     <Arc value="4.9987" />
   </CAbilEffectTarget>
+  <CAbilEffectTarget id="ShieldBatteryRechargeEx5">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Flags index="AutoCast" value="1" />
+    <Flags index="AutoCastOn" value="1" />
+    <Flags index="BestUnit" value="0" />
+    <Flags index="CancelResetAutoCast" value="0" />
+    <Flags index="ReExecutable" value="1" />
+    <Flags index="Smart" value="1" />
+    <TargetFilters value="Visible;Self,Enemy,Missile,Stasis,UnderConstruction,Dead,Hidden,Invulnerable" />
+    <TargetSorts RequestCount="1">
+      <SortArray value="TSAlliancePassive" />
+      <SortArray value="TSShieldsFraction" />
+      <SortArray value="TSDistance" />
+    </TargetSorts>
+    <Range value="6" />
+    <Arc value="360" />
+    <AutoCastAcquireLevel value="Defensive" />
+    <AutoCastFilters value="Visible;Self,Neutral,Enemy,Missile,UnderConstruction,Dead,Hidden" />
+    <AutoCastRange value="6" />
+    <AutoCastValidatorArray value="Casterhas10EnergyorCasterisBatteryOvercharged" />
+    <AutoCastValidatorArray value="UnitOrAttackingStructure" />
+    <AutoCastValidatorArray value="NotHaveBatteryCooldownBehavior" />
+    <UseMarkerArray index="Approach" value="0" />
+    <UseMarkerArray index="Prep" value="0" />
+    <CancelableArray index="Channel" value="1" />
+    <DefaultError value="RequiresHealTarget" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="ShieldBatteryRechargeEx5">
+      <Flags index="UseDefaultButton" value="1" />
+    </CmdButtonArray>
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Stop">
+      <Flags index="ToSelection" value="1" />
+      <Flags index="UseDefaultButton" value="1" />
+    </CmdButtonArray>
+  </CAbilEffectTarget>
   <CAbilBuild id="ZergBuild">
     <InfoArray index="Build4">
       <Button State="Restricted" />

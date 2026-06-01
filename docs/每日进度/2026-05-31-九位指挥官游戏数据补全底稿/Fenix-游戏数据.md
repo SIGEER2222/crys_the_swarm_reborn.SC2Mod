@@ -246,26 +246,4 @@
 
 ## 当前待核对项
 
-### 指挥官进度
-
-- 解锁：净化者议会 `FenixUnlockPurifierConclave`
-- 解锁：塞布罗斯仲裁者战甲 `FenixUnlockArbiterSuit`
-- 突击勇士研究包 `FenixPurifierAIResearchCache1`
-- 英雄智能：塔尔达林与摩约 `FenixUnlockPurifierAI1`
-- 菲尼克斯升级包 `FenixSuitUpgrades`
-- 英雄智能：战争使者与科罗拉里昂 `FenixUnlockPurifierAI2`
-- 特种单位升级包 `FenixDisruptorSentryResearchCache`
-- 作战效能 `FenixStructureNoTechNoGas`
-- 复仇协议 `FenixChampionTransferBuff`
-- 强攻勇士升级包 `FenixPurifierAIResearchCache2`
-- 攻城勇士升级包 `FenixPurifierAIResearchCache3`
-
-### 技能
-
-- 设定集结点 `ProgressRally`
-
-### 按钮
-
-- ColossusPassive `ColossusPassive`
-- ReaverPassive `ReaverPassive`
-- 研究共鸣之刃 `AdeptResearchPiercingUpgrade`
+- 原始扫描版未列出明显缺口。
