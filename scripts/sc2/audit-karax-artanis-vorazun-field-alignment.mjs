@@ -100,6 +100,49 @@ const onlineExpectationAdditions = {
   },
 };
 
+const onlinePrimaryRoster = {
+  Artanis: {
+    units: [
+      { id: 'Zealot', label: 'Zealot' },
+      { id: 'StalkerAiur', label: 'Dragoon' },
+      { id: 'HighTemplar', label: 'High Templar' },
+      { id: 'Archon', label: 'Archon' },
+      { id: 'ImmortalAiur', label: 'Immortal' },
+      { id: 'Reaver', label: 'Reaver' },
+      { id: 'PhoenixAiur', label: 'Phoenix' },
+      { id: 'Tempest', label: 'Tempest' },
+    ],
+    structures: [],
+  },
+  Karax: {
+    units: [
+      { id: 'ZealotPurifier', label: 'Sentinel' },
+      { id: 'SentryPurifier', label: 'Energizer' },
+      { id: 'ImmortalAiur', label: 'Immortal' },
+      { id: 'Colossus', label: 'Colossus' },
+      { id: 'PhoenixPurifier', label: 'Mirage' },
+      { id: 'Carrier', label: 'Carrier' },
+    ],
+    structures: [
+      { id: 'PhotonCannon', label: 'Photon Cannon' },
+      { id: 'KhaydarinMonolith', label: 'Khaydarin Monolith' },
+      { id: 'ShieldBattery', label: 'Shield Battery' },
+    ],
+  },
+  Vorazun: {
+    units: [
+      { id: 'ZealotShakuras', label: 'Centurion' },
+      { id: 'Stalker', label: 'Stalker' },
+      { id: 'DarkTemplarShakuras', label: 'Dark Templar' },
+      { id: 'DarkArchon', label: 'Dark Archon' },
+      { id: 'PhoenixShakuras', label: 'Corsair' },
+      { id: 'VoidRay', label: 'Void Ray' },
+      { id: 'Oracle', label: 'Oracle' },
+    ],
+    structures: [],
+  },
+};
+
 const inheritedOrCoreFaces = new Set([
   '',
   'Move',
@@ -419,6 +462,43 @@ function auditBuildings(buildings, candidateMap, moduleUnits, finalUnits, global
   });
 }
 
+function auditOnlinePrimaryRoster(expectedItems, reports, reportKey) {
+  const reportById = new Map(reports.map((report) => [report[reportKey], report]));
+  const itemReports = expectedItems.map((expected) => {
+    const report = reportById.get(expected.id);
+    const issues = [];
+    if (!report) {
+      issues.push({ type: 'missing_online_primary_item', id: expected.id, label: expected.label });
+    } else if ((report.issues || []).length) {
+      issues.push({ type: 'online_primary_item_has_hard_issues', id: expected.id, issue_count: report.issues.length });
+    } else if ((report.global_only || []).length) {
+      issues.push({ type: 'online_primary_item_has_global_only', id: expected.id, issue_count: report.global_only.length });
+    }
+
+    return {
+      ...expected,
+      audited: Boolean(report),
+      issues,
+    };
+  });
+
+  const expectedIds = new Set(expectedItems.map((item) => item.id));
+  const supplemental = reports
+    .filter((report) => !expectedIds.has(report[reportKey]))
+    .map((report) => ({
+      id: report[reportKey],
+      name: report.name || report[reportKey],
+    }));
+
+  return {
+    expected: expectedItems,
+    reports: itemReports,
+    issue_count: itemReports.reduce((sum, item) => sum + item.issues.length, 0),
+    supplemental,
+    supplemental_count: supplemental.length,
+  };
+}
+
 function auditCommander(commander, finalUnits, globalText) {
   const moduleName = `XM${commander}.SC2Mod`;
   const unitDataPath = path.join(activeXmRoot, moduleName, 'Base.SC2Data', 'GameData', 'UnitData.xml');
@@ -433,6 +513,9 @@ function auditCommander(commander, finalUnits, globalText) {
 
   const unitSkillReports = auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalText);
   const buildingReports = auditBuildings(buildings, candidateMap, moduleUnits, finalUnits, globalText);
+  const primaryRoster = onlinePrimaryRoster[commander] || { units: [], structures: [] };
+  const onlinePrimaryUnits = auditOnlinePrimaryRoster(primaryRoster.units, unitSkillReports, 'unit');
+  const onlinePrimaryStructures = auditOnlinePrimaryRoster(primaryRoster.structures, buildingReports, 'building');
 
   const panel = topPanels[commander];
   const casterUnit = finalUnits.get(panel.caster) || moduleUnits.get(panel.caster);
@@ -450,12 +533,20 @@ function auditCommander(commander, finalUnits, globalText) {
     online_added_building_count: additions.buildings.length,
     expected_unit_count: units.length,
     expected_building_count: buildings.length,
+    online_primary_unit_count: onlinePrimaryUnits.expected.length,
+    online_primary_unit_issue_count: onlinePrimaryUnits.issue_count,
+    online_primary_structure_count: onlinePrimaryStructures.expected.length,
+    online_primary_structure_issue_count: onlinePrimaryStructures.issue_count,
+    supplemental_unit_count: onlinePrimaryUnits.supplemental_count,
+    supplemental_building_count: onlinePrimaryStructures.supplemental_count,
     unit_skill_issue_count: unitSkillReports.reduce((sum, unit) => sum + unit.issues.length, 0),
     unit_skill_global_only_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_only.length, 0),
     building_issue_count: buildingReports.reduce((sum, building) => sum + building.issues.length, 0),
     top_panel_issue_count: topPanelIssues.length,
     unit_skill_reports: unitSkillReports,
     building_reports: buildingReports,
+    online_primary_units: onlinePrimaryUnits,
+    online_primary_structures: onlinePrimaryStructures,
     top_panel: {
       caster: panel.caster,
       expected: panel.expected,
@@ -502,20 +593,20 @@ function writeMarkdown(report) {
   lines.push('');
   lines.push(`- 生成时间：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
   lines.push('- 目的：补充现有 ID 缺口脚本的盲区，按“网上资料里的兵种技能/被动、建筑、顶部技能面板”做静态对齐审计。');
-  lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
+  lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；在线主清单作为必须覆盖的子集，Observer 等支援/扩展项作为 supplemental 透明列出；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
   lines.push('- 说明：`global-only` 表示技能按钮 ID 在当前 Mod 全局存在，但没有在候选单位的显式 LayoutButtons 中出现，可能来自父级继承、别名单位或待人工判断，不直接当作硬缺口。');
   lines.push('- 注意：本报告是静态字段审计，不替代 SC2 实机验证。');
   lines.push('');
   lines.push('## 总览');
   lines.push('');
-  lines.push('| 指挥官 | 在线资料 | 单位审计 | 建筑审计 | 兵种技能硬问题 | global-only 提醒 | 建筑问题 | 顶部面板问题 | 问题类型 |');
-  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 建筑问题 | 顶部面板问题 | 问题类型 |');
+  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
   for (const commanderReport of report.commanders) {
     const summary = summarizeIssueTypes(commanderReport);
     const summaryText = Object.keys(summary).length
       ? Object.entries(summary).map(([key, value]) => `${key}:${value}`).join('、')
       : '无';
-    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.building_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
+    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.building_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
   }
   lines.push('');
 
@@ -525,7 +616,9 @@ function writeMarkdown(report) {
     lines.push(`- 模块：\`${commanderReport.module}\``);
     lines.push(`- 在线资料：${commanderReport.online_source}`);
     lines.push(`- 单位审计：${commanderReport.expected_unit_count}（官方 JSON ${commanderReport.official_unit_count}，在线补充 ${commanderReport.online_added_unit_count}）`);
+    lines.push(`- 在线主单位：${commanderReport.online_primary_unit_count}，问题 ${commanderReport.online_primary_unit_issue_count}；supplemental 单位 ${commanderReport.supplemental_unit_count}`);
     lines.push(`- 建筑审计：${commanderReport.expected_building_count}（官方 JSON ${commanderReport.official_building_count}，在线补充 ${commanderReport.online_added_building_count}）`);
+    lines.push(`- 在线主建筑：${commanderReport.online_primary_structure_count}，问题 ${commanderReport.online_primary_structure_issue_count}；supplemental 建筑 ${commanderReport.supplemental_building_count}`);
     lines.push(`- 兵种技能硬问题：${commanderReport.unit_skill_issue_count}`);
     lines.push(`- global-only 提醒：${commanderReport.unit_skill_global_only_count}`);
     lines.push(`- 建筑问题：${commanderReport.building_issue_count}`);
@@ -550,6 +643,19 @@ function writeMarkdown(report) {
       }
     }
     lines.push('');
+    lines.push('### 在线主单位覆盖');
+    if (!commanderReport.online_primary_units.reports.length) {
+      lines.push('- 该页面没有单独建模的在线主单位清单。');
+    } else {
+      const unitSummary = commanderReport.online_primary_units.reports
+        .map((item) => `${item.label} \`${item.id}\`${item.issues.length ? `（${item.issues.map((issue) => issue.type).join('、')}）` : ''}`)
+        .join('、');
+      lines.push(`- ${unitSummary}`);
+    }
+    if (commanderReport.online_primary_units.supplemental.length) {
+      lines.push(`- supplemental：${commanderReport.online_primary_units.supplemental.map((item) => `${item.name} \`${item.id}\``).join('、')}`);
+    }
+    lines.push('');
     lines.push('### global-only 提醒');
     const unitsWithGlobalOnly = commanderReport.unit_skill_reports.filter((unit) => unit.global_only.length);
     if (!unitsWithGlobalOnly.length) {
@@ -568,6 +674,19 @@ function writeMarkdown(report) {
       for (const building of buildingsWithIssues) {
         lines.push(`- ${building.name} \`${building.building}\`：${building.issues.map((issue) => issue.type).join('、')}`);
       }
+    }
+    lines.push('');
+    lines.push('### 在线主建筑覆盖');
+    if (!commanderReport.online_primary_structures.reports.length) {
+      lines.push('- 该页面没有单独建模的在线主建筑清单。');
+    } else {
+      const structureSummary = commanderReport.online_primary_structures.reports
+        .map((item) => `${item.label} \`${item.id}\`${item.issues.length ? `（${item.issues.map((issue) => issue.type).join('、')}）` : ''}`)
+        .join('、');
+      lines.push(`- ${structureSummary}`);
+    }
+    if (commanderReport.online_primary_structures.supplemental.length) {
+      lines.push(`- supplemental：${commanderReport.online_primary_structures.supplemental.map((item) => `${item.name} \`${item.id}\``).join('、')}`);
     }
     lines.push('');
   }

@@ -85,6 +85,12 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
       `expected_units=${expectedUnitCount}, audited_units=${unitReports.length}, online_added=${field.online_added_unit_count || 0}`,
     ),
     check(
+      'online-primary-units',
+      'StarCraft2Coop Combat Units 主清单均被当前审计覆盖',
+      (field.online_primary_unit_issue_count || 0) === 0,
+      `online_primary_units=${field.online_primary_unit_count || 0}, supplemental_units=${field.supplemental_unit_count || 0}, issues=${field.online_primary_unit_issue_count || 0}`,
+    ),
+    check(
       'unit-skill-hard-issues',
       '兵种技能/被动不存在硬缺口或字段不匹配',
       field.unit_skill_issue_count === 0,
@@ -107,6 +113,12 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
       'StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计',
       expectedBuildingCount === buildingReports.length,
       `expected_buildings=${expectedBuildingCount}, audited_buildings=${buildingReports.length}, online_added=${field.online_added_building_count || 0}`,
+    ),
+    check(
+      'online-primary-structures',
+      'StarCraft2Coop Structures 主清单均被当前审计覆盖',
+      (field.online_primary_structure_issue_count || 0) === 0,
+      `online_primary_structures=${field.online_primary_structure_count || 0}, supplemental_buildings=${field.supplemental_building_count || 0}, issues=${field.online_primary_structure_issue_count || 0}`,
     ),
     check(
       'building-issues',
@@ -134,6 +146,10 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     official_building_count: officialBuildings.length,
     online_added_unit_count: field.online_added_unit_count || 0,
     online_added_building_count: field.online_added_building_count || 0,
+    online_primary_unit_count: field.online_primary_unit_count || 0,
+    online_primary_structure_count: field.online_primary_structure_count || 0,
+    supplemental_unit_count: field.supplemental_unit_count || 0,
+    supplemental_building_count: field.supplemental_building_count || 0,
     unit_count: expectedUnitCount,
     building_count: expectedBuildingCount,
     top_panel_button_count: topPanel.expected.length,
@@ -168,7 +184,9 @@ function writeMarkdown(report) {
     lines.push('');
     lines.push(`- 模块：\`${commander.module}\``);
     lines.push(`- 单位口径：${commander.unit_count}（官方 JSON ${commander.official_unit_count}，在线补充 ${commander.online_added_unit_count}）`);
+    lines.push(`- 在线主单位：${commander.online_primary_unit_count}，supplemental 单位：${commander.supplemental_unit_count}`);
     lines.push(`- 建筑口径：${commander.building_count}（官方 JSON ${commander.official_building_count}，在线补充 ${commander.online_added_building_count}）`);
+    lines.push(`- 在线主建筑：${commander.online_primary_structure_count}，supplemental 建筑：${commander.supplemental_building_count}`);
     lines.push(`- 单位：${commander.unit_ids.join('、')}`);
     lines.push(`- 建筑：${commander.building_ids.join('、')}`);
     lines.push(`- 顶部面板：${commander.top_panel_faces.join('、')}`);
