@@ -146,6 +146,14 @@ unitgroup gv_p1DoneOldUnits;
 bool gv_p2DoneCompleted;
 unitgroup gv_p2DoneOldUnits;
 
+void ttosh03b_WriteDebug (string lp_phase, string lp_detail) {
+    BankLoad("CampaignXCore", 1);
+    BankValueSetFromString(BankLastCreated(), "TTOSH03B", "Phase", lp_phase);
+    BankValueSetFromString(BankLastCreated(), "TTOSH03B", "Detail", lp_detail);
+    BankValueSetFromString(BankLastCreated(), "TTOSH03B", "Commander", libE0EAE146_gv_commander);
+    BankSave(BankLastCreated());
+}
+
 void InitGlobals () {
     gv_platform = 1;
     gv_novaGroup = UnitGroupEmpty();
@@ -851,13 +859,16 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
 
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b intro start"));
     TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:start commander=" + libE0EAE146_gv_commander), false);
+    ttosh03b_WriteDebug("intro:start", "commander=" + libE0EAE146_gv_commander);
     if (libE0EAE146_gv_commander == "") {
         libE0EAE146_gf_XMRuntime_PrepareCommanderFromBank(1);
     }
     TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:commander=" + libE0EAE146_gv_commander), false);
+    ttosh03b_WriteDebug("intro:commander", "commander=" + libE0EAE146_gv_commander);
     libE0EAE146_gf_InitializeBase(PointFromId(29), 8, null, true);
     gv_nova = UnitLastCreated();
     TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:base-initialized"), false);
+    ttosh03b_WriteDebug("intro:base-initialized", "last=" + UnitGetType(gv_nova));
     auto2F29E444_val = libE0EAE146_gv_commander;
     if (auto2F29E444_val == "Stukov") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "SIStukov", 0, 1, PointFromId(29));
@@ -880,7 +891,11 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         libE0EAE146_gf_AlarakCreateMapStartSquad("hero", 1, PointFromId(29));
     }
     else if (auto2F29E444_val == "Kerrigan") {
+        TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:branch=kerrigan start"), false);
+        ttosh03b_WriteDebug("branch:kerrigan:start", "kind=heavy");
         libE0EAE146_gf_KerriganCreateMapStartSquad("heavy", 1, PointFromId(29));
+        TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:branch=kerrigan done"), false);
+        ttosh03b_WriteDebug("branch:kerrigan:done", "last=" + UnitGetType(UnitLastCreated()));
     }
     else if (auto2F29E444_val == "Karax") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "KaraxChampion", 0, 1, PointFromId(29));
@@ -905,11 +920,15 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         lib67C0F0E7_gf_TychusSquadSetMember(UnitLastCreated());
     }
     else if (auto2F29E444_val == "Nova") {
+        TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:branch=nova start"), false);
+        ttosh03b_WriteDebug("branch:nova:start", "kind=standard");
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "NovaCoop", 0, 1, PointFromId(29));
         lib0940FFB7_gf_NovaTrigger(UnitLastCreated());
         gv_nova = UnitLastCreated();
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "Marine_BlackOps", 0, 1, PointFromId(29));
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Marauder_BlackOps", 0, 1, PointFromId(29));
+        TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:branch=nova done last=" + UnitGetType(gv_nova)), false);
+        ttosh03b_WriteDebug("branch:nova:done", "last=" + UnitGetType(gv_nova));
     }
     else if (auto2F29E444_val == "Mengsk") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "GhostMengsk", 0, 1, PointFromId(29));
@@ -942,10 +961,14 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     }
     else if ((auto2F29E444_val == "Abathur") || (auto2F29E444_val == "AbathurReborn")) {
         if ((auto2F29E444_val == "AbathurReborn")) {
+            TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:branch=abathur_reborn start"), false);
+            ttosh03b_WriteDebug("branch:abathur_reborn:start", "kind=heavy");
             libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathurReborn", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
             lib67C0F0E7_gf_CU_GPInit(1, "AbathurReborn", UnitLastCreated(), null);
         }
         else {
+            TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:branch=abathur start"), false);
+            ttosh03b_WriteDebug("branch:abathur:start", "kind=heavy");
             libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathur", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
             lib67C0F0E7_gf_CU_GPInit(1, "Abathur", UnitLastCreated(), null);
         }
@@ -953,6 +976,8 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         libE0EAE146_gf_AbathurEarlySnapshot("ttosh03bInit03Units");
         libE0EAE146_gf_AbathurCreateMapStartSquad("heavy", 1, PointFromId(29));
         gv_nova = UnitLastCreated();
+        TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:branch=abathur done last=" + UnitGetType(gv_nova)), false);
+        ttosh03b_WriteDebug("branch:abathur:done", "last=" + UnitGetType(gv_nova));
     }
     else if (auto2F29E444_val == "Raynor") {
         libE0EAE146_gf_CommanderPanelInit("CoopCasterRaynor", "Raynor");
@@ -983,6 +1008,7 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     }
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b pre cinematic"));
     TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:pre-cinematic"), false);
+    ttosh03b_WriteDebug("intro:pre-cinematic", "last=" + UnitGetType(gv_nova));
     CinematicFade(false, 0.0, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, false);
     libNtve_gf_CinematicMode(true, PlayerGroupAll(), 0.0);
     libNtve_gf_GlobalCinematicSetting(true);
@@ -997,6 +1023,7 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     }
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("[XM_DBG] ttosh03b after cargo"));
     TriggerDebugOutput(1, StringToText("[XM_DBG][INFO][ttosh03b] intro:after-cargo"), false);
+    ttosh03b_WriteDebug("intro:after-cargo", "last=" + UnitGetType(gv_nova));
     Wait(0.1, c_timeReal);
     libNtve_gf_CinematicMode(false, PlayerGroupAll(), 1.5);
     libNtve_gf_GlobalCinematicSetting(false);

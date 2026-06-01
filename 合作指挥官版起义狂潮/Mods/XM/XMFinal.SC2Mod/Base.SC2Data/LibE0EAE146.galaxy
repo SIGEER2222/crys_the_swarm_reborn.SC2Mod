@@ -1602,9 +1602,11 @@ void libE0EAE146_gf_RaynorCreateCargoSquad (unit lp_container, string lp_kind) {
 void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
     string lv_kind;
     lv_kind = lp_kind;
+    libE0EAE146_gf_XMDbgLog("INFO", "KERRIGAN_START_SQUAD_ENTER", "player=" + IntToString(lp_player) + " kind=" + lv_kind);
     if ((lv_kind == "light")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
+        libE0EAE146_gf_XMDbgLog("INFO", "KERRIGAN_START_SQUAD_DONE", "player=" + IntToString(lp_player) + " kind=light created=HotSRaptorx4,Hydraliskx2");
     }
     else if ((lv_kind == "heavy")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
@@ -1613,6 +1615,7 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLord", 0, lp_player, lp_point);
+        libE0EAE146_gf_XMDbgLog("INFO", "KERRIGAN_START_SQUAD_DONE", "player=" + IntToString(lp_player) + " kind=heavy created=HotSRaptorx4,Hydraliskx2,QueenCoopx1,HotSTorrasquex1,Mutaliskx2,BroodLordx1");
     }
     else if ((lv_kind == "full")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "HotSRaptor", 0, lp_player, lp_point);
@@ -1621,22 +1624,27 @@ void libE0EAE146_gf_KerriganCreateMapStartSquad (string lp_kind, int lp_player, 
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLord", 0, lp_player, lp_point);
+        libE0EAE146_gf_XMDbgLog("INFO", "KERRIGAN_START_SQUAD_DONE", "player=" + IntToString(lp_player) + " kind=full created=HotSRaptorx4,Hydraliskx2,QueenCoopx1,HotSTorrasquex1,Mutaliskx2,BroodLordx1");
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "MutaliskBroodlord", 0, lp_player, lp_point);
+        libE0EAE146_gf_XMDbgLog("INFO", "KERRIGAN_START_SQUAD_DONE", "player=" + IntToString(lp_player) + " kind=air created=Mutaliskx2,MutaliskBroodlordx1");
     }
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HotSRaptor", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Hydralisk", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "QueenCoop", 0, lp_player, lp_point);
+        libE0EAE146_gf_XMDbgLog("INFO", "KERRIGAN_START_SQUAD_DONE", "player=" + IntToString(lp_player) + " kind=hero created=K5Kerriganx1,HotSRaptorx3,Hydraliskx2,QueenCoopx1");
     }
     else if ((lv_kind == "ultimate")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, lp_player, lp_point);
+        libE0EAE146_gf_XMDbgLog("INFO", "KERRIGAN_START_SQUAD_DONE", "player=" + IntToString(lp_player) + " kind=ultimate created=HotSTorrasquex1,Mutaliskx2");
     }
     else {
+        libE0EAE146_gf_XMDbgLog("WARN", "KERRIGAN_START_SQUAD_FALLBACK", "player=" + IntToString(lp_player) + " kind=" + lv_kind + " fallback=light");
         libE0EAE146_gf_KerriganCreateMapStartSquad("light", lp_player, lp_point);
     }
 }

@@ -401,9 +401,14 @@ bool gt_XMTB_Init_Func (bool testConds, bool runActions) {
     tb_XMTB_BuildUI();
     XMTestBench_SetCommander(1, gv_xmTbCurrentCommander);
     XMTestBench_WriteSummary(1);
-    gv_xmTbLastEvent = "INIT_UI";
-    tb_XMTB_UpdateSummary();
-    tb_XMTB_RunBootSmoke();
+    if (gv_xmTbCurrentCommander == "Kerrigan") {
+        gv_xmTbCurrentScenario = "hero_ability_smoke";
+        tb_XMTB_RunCurrentScenario();
+    }
+    else {
+        gv_xmTbLastEvent = "INIT_UI";
+        tb_XMTB_UpdateSummary();
+    }
     return true;
 }
 

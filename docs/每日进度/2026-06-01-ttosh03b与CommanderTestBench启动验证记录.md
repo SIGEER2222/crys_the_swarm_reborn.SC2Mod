@@ -48,3 +48,10 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\launch-xm-map.ps1 -Comma
 - `CampaignXCore.SC2Bank` 已写入 `TestBench_*` section。
 - `Nova` / `Kerrigan` / `Abathur` 的 `standard_base`、`full_buildings`、`full_units`、`panel_cost_smoke` 记录均为 `Errors=0`、`Missing=0`。
 - 当前 bank 里唯一可见的缺口来自 `TestBench_AbathurCustom_full_buildings`，属于自定义 Abathur 测试线，不在 19 指挥官主线内。
+
+最新复测：
+
+- `CommanderTestBench` 已改成只起 UI、不在 `MapInit` 自动跑 boot smoke。
+- 2026-06-01 14:40 这轮用 `Kerrigan + CommanderTestBench` 重新启动后，最新 `ScriptError.txt` 没有新增，最新 `Alerts.txt` 为空，说明启动阶段已经不再触发之前的无效位置错误。
+- 2026-06-01 15:04 这轮把 `CommanderTestBench` 临时改成对 `Kerrigan` 自动跑 `hero_ability_smoke`，结果已写入 `Documents\StarCraft II\Banks\CampaignXCore.SC2Bank` 的 `TestBench_Kerrigan_hero_ability_smoke`：`Created=14`、`Missing=0`、`Warnings=0`、`Errors=0`，`Last=TEST_ABILITIES_Kerrigan`。
+- 这次复测同时把 `KerriganCreateMapStartSquad` 的入口/完成/回退日志补到了 `XMFinal`，便于后续从 `KERRIGAN_START_SQUAD_*` 事件追踪起始编队。
