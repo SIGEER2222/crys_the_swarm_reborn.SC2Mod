@@ -13,7 +13,7 @@ const outMd = path.join(outDir, 'karax-artanis-vorazun-field-alignment.md');
 const commanders = ['Karax', 'Artanis', 'Vorazun'];
 
 const onlineSources = {
-  Karax: 'https://starcraft2coop.com/commanders/karax.php',
+  Karax: 'https://starcraft2coop.com/commanders/karax',
   Artanis: 'https://starcraft2coop.com/commanders/artanis',
   Vorazun: 'https://starcraft2coop.com/commanders/vorazun',
 };
