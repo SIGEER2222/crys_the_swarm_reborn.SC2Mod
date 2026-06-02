@@ -440,6 +440,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     throw new Error(`缺少指挥官数据：${commanderId}`);
   }
 
+  const localization = catalogIndex.localization;
   const preferredCatalogs = preferredCatalogNames(data.runtime_module, commanderId);
   const entryNameMap = buildEntryNameMap(data, allData);
   const rawTopPanelCommands = data.commander.top_panel_abilities?.length
@@ -466,6 +467,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
       entryNameMap,
       catalogIndex,
       preferredCatalogs,
+      localization,
       effectDepth,
     });
     return {
@@ -487,6 +489,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     entryNameMap,
     catalogIndex,
     preferredCatalogs,
+    localization,
   }));
   const productionBuildings = (data.production_buildings || []).map((entry) => summarizeTechEntry({
     kind: 'production_building',
@@ -497,6 +500,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     entryNameMap,
     catalogIndex,
     preferredCatalogs,
+    localization,
   }));
   const units = data.units.map((entry) => summarizeTechEntry({
     kind: 'unit',
@@ -507,6 +511,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     entryNameMap,
     catalogIndex,
     preferredCatalogs,
+    localization,
   }));
   const heroes = data.heroes.map((entry) => summarizeTechEntry({
     kind: 'hero',
@@ -517,6 +522,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     entryNameMap,
     catalogIndex,
     preferredCatalogs,
+    localization,
   }));
 
   const effectIds = new Set();
@@ -576,9 +582,10 @@ function summarizeTechEntry({
   entryNameMap,
   catalogIndex,
   preferredCatalogs,
+  localization,
 }) {
   const unitId = entry.unit_id || entry.id;
-  const catalogUnit = summarizeCatalogUnit(unitId, entryNameMap, catalogIndex);
+  const catalogUnit = summarizeCatalogUnit(unitId, entryNameMap, catalogIndex, localization, preferredCatalogs);
   const rawPanelButtons = entry.abilities || [];
   const panelButtons = includeBasicCommands
     ? rawPanelButtons
@@ -593,6 +600,7 @@ function summarizeTechEntry({
       entryNameMap,
       catalogIndex,
       preferredCatalogs,
+      localization,
       effectDepth,
     });
   });
@@ -609,6 +617,7 @@ function summarizeTechEntry({
     kind,
     kind_cn: kindCn,
     name: displayName(entry),
+    display_name: entityDisplayName(displayName(entry), unitId),
     tooltip: normalizeWhitespace(entry.tooltip || ''),
     icon: entry.icon || '',
     source: entry.source || null,
@@ -632,6 +641,7 @@ function summarizeAbilityCommand({
   entryNameMap,
   catalogIndex,
   preferredCatalogs,
+  localization,
   effectDepth: maxEffectDepth,
 }) {
   const effectiveAbilityId = abilityId || '';
@@ -667,10 +677,21 @@ function summarizeAbilityCommand({
     ])
     .filter((item) => item.id);
   const effectSummaries = effectIds.map((effectId) => summarizeEffect(effectId, catalogIndex, entryNameMap, maxEffectDepth));
+  const buttonName = resolveLocalizedText(
+    localization,
+    panelButton?.name || panelButton?.face || effectiveAbilityId,
+    [
+      panelButton?.face ? `Button/Name/${panelButton.face}` : '',
+      effectiveAbilityId ? `Button/Name/${effectiveAbilityId}` : '',
+      effectiveAbilityId ? `Abil/Name/${effectiveAbilityId}` : '',
+    ].filter(Boolean),
+    preferredCatalogs,
+  ) || panelButton?.face || panelButton?.name || effectiveAbilityId;
 
   return {
     face: panelButton?.face || '',
-    button_name: panelButton?.name || panelButton?.face || effectiveAbilityId,
+    button_name: buttonName,
+    button_display_name: entityDisplayName(buttonName, effectiveAbilityId || panelButton?.face || ''),
     button_type: panelButton?.type || '',
     layout: {
       card_id: panelButton?.card_id || '',
@@ -692,6 +713,7 @@ function summarizeAbilityCommand({
     catalog_targets: catalogTargets.map((target) => ({
       ...target,
       name: nameForId(target.id, entryNameMap),
+      display_name: entityDisplayName(nameForId(target.id, entryNameMap), target.id),
       in_current_commander_roster: entryNameMap.localIds.has(target.id),
     })),
     tooltip_effect_refs: tooltipEffectRefs,
@@ -757,7 +779,7 @@ function abilityInfoSignature(infoEntry) {
   ].join('|');
 }
 
-function summarizeCatalogUnit(unitId, entryNameMap, catalogIndex) {
+function summarizeCatalogUnit(unitId, entryNameMap, catalogIndex, localization, preferredCatalogs) {
   const definitions = catalogIndex.units.get(unitId) || [];
   const abilityLinks = new Set();
   const behaviorLinks = new Set();
@@ -786,13 +808,19 @@ function summarizeCatalogUnit(unitId, entryNameMap, catalogIndex) {
   return {
     id: unitId,
     name: nameForId(unitId, entryNameMap),
+    display_name: entityDisplayName(nameForId(unitId, entryNameMap), unitId),
     catalog_sources: summarizeDefinitionSources(definitions),
-    ability_links: [...abilityLinks].sort(naturalSort).map((id) => ({
-      id,
-      catalog_type_cn: abilityTypeCn(id, catalogIndex),
-      catalog_type_raw: abilityTypeRaw(id, catalogIndex),
-      is_basic: basicAbilityIds.has(id),
-    })),
+    ability_links: [...abilityLinks].sort(naturalSort).map((id) => {
+      const name = localizedCatalogAbilityName(id, catalogIndex, localization, preferredCatalogs);
+      return {
+        id,
+        name,
+        display_name: entityDisplayName(name, id),
+        catalog_type_cn: abilityTypeCn(id, catalogIndex),
+        catalog_type_raw: abilityTypeRaw(id, catalogIndex),
+        is_basic: basicAbilityIds.has(id),
+      };
+    }),
     behavior_links: [...behaviorLinks].sort(naturalSort),
     weapon_links: [...weaponLinks].sort(naturalSort),
     effect_links: [...effectLinks].sort(naturalSort),
@@ -877,6 +905,7 @@ function summarizeEffectFields(definitions, catalogIndex, entryNameMap) {
     spawn_units: [...spawnUnits].sort(naturalSort).map((unitId) => ({
       id: unitId,
       name: nameForId(unitId, entryNameMap),
+      display_name: entityDisplayName(nameForId(unitId, entryNameMap), unitId),
       in_current_commander_roster: entryNameMap.localIds.has(unitId),
     })),
     spawn_counts: [...spawnCounts].sort(naturalSort),
@@ -922,6 +951,7 @@ function collectProducedUnits(productionOptions, panelAbilities, entryNameMap, o
     produced.set(option.unit, {
       unit_id: option.unit,
       name: nameForId(option.unit, entryNameMap),
+      display_name: entityDisplayName(nameForId(option.unit, entryNameMap), option.unit),
       source: 'production_options',
       producer_unit_id: option.producer_unit_id || '',
       abil_cmd: option.abil_cmd || '',
@@ -941,6 +971,7 @@ function collectProducedUnits(productionOptions, panelAbilities, entryNameMap, o
         produced.set(production.unit, {
           unit_id: production.unit,
           name: production.unit_name || nameForId(production.unit, entryNameMap),
+          display_name: entityDisplayName(production.unit_name || nameForId(production.unit, entryNameMap), production.unit),
           source: production.source || production.cost_mode || 'production_match',
           producer_unit_id: production.producer_unit_id || '',
           abil_cmd: production.abil_cmd || ability.abil_cmd || '',
@@ -959,6 +990,7 @@ function collectProducedUnits(productionOptions, panelAbilities, entryNameMap, o
         produced.set(target.id, {
           unit_id: target.id,
           name: target.name || target.id,
+          display_name: entityDisplayName(target.name || target.id, target.id),
           source: producedSourceForCatalogTarget(target),
           producer_unit_id: '',
           abil_cmd: ability.abil_cmd || '',
@@ -976,6 +1008,7 @@ function collectProducedUnits(productionOptions, panelAbilities, entryNameMap, o
           produced.set(spawned.id, {
             unit_id: spawned.id,
             name: spawned.name || spawned.id,
+            display_name: entityDisplayName(spawned.name || spawned.id, spawned.id),
             source: 'effect_spawn_unit',
             producer_unit_id: '',
             abil_cmd: ability.abil_cmd || '',
@@ -1021,12 +1054,14 @@ function summarizeProductionOption(option, entryNameMap) {
   return {
     producer_unit_id: option.producer_unit_id || '',
     producer_name: nameForId(option.producer_unit_id, entryNameMap),
+    producer_display_name: entityDisplayName(nameForId(option.producer_unit_id, entryNameMap), option.producer_unit_id),
     ability_id: option.ability_id || '',
     command_index: option.command_index || '',
     abil_cmd: option.abil_cmd || '',
     button_face: option.button_face || '',
     unit: option.unit || '',
     unit_name: nameForId(option.unit, entryNameMap),
+    unit_display_name: entityDisplayName(nameForId(option.unit, entryNameMap), option.unit),
     minerals: option.minerals || '',
     vespene: option.vespene || '',
     terrazine: option.terrazine || '',
@@ -2042,6 +2077,7 @@ function renderCommanderMarkdown(commander) {
     lines.push(`- 当前 Mod 运行名册 / Current Mod roster：module=\`${commander.runtime_module || '-'}\`，instance=\`${commander.runtime_instance || '-'}\``);
   }
   lines.push(`- 统计 / Stats：建筑 ${commander.summary.building_count}、生产链补充建筑 ${commander.summary.production_building_count || 0}、单位 ${commander.summary.unit_count}、英雄 ${commander.summary.hero_count}、建筑按钮 ${commander.summary.building_panel_button_count}、单位按钮 ${commander.summary.unit_panel_button_count}、效果引用 ${commander.summary.effect_ref_count}`);
+  lines.push('- 名称显示 / Name display：能从当前 Mod zhCN 解析时显示“中文名 / `英文ID`”；仅显示 `ID` 表示当前 Mod 未找到可用中文名。');
   lines.push('');
   renderTopPanel(lines, commander.top_panel);
   renderEntryGroup(lines, '建筑', commander.buildings);
@@ -2063,11 +2099,11 @@ function renderTopPanel(lines, topPanel) {
     lines.push('');
     return;
   }
-  lines.push('| 技能 / Ability | 类型 / Type | 效果引用 / Effect References | Catalog 来源 / Catalog Sources |');
-  lines.push('| --- | --- | --- | --- |');
+  lines.push('| 技能名 / Skill Name | Ability/Cmd | 类型 / Type | 效果引用 / Effect References | Catalog 来源 / Catalog Sources |');
+  lines.push('| --- | --- | --- | --- | --- |');
   for (const item of topPanel) {
     const ability = item.ability;
-    lines.push(`| \`${ability.abil_cmd || ability.ability_id}\` | ${formatCatalogTypes(ability)} | ${formatEffects(ability.effect_refs)} | ${formatSources(ability.catalog_sources)} |`);
+    lines.push(`| ${formatEntityLabel(ability.button_name, ability.ability_id || ability.face || ability.abil_cmd)} | \`${ability.abil_cmd || ability.ability_id || '-'}\` | ${formatCatalogTypes(ability)} | ${formatEffects(ability.effect_refs)} | ${formatSources(ability.catalog_sources)} |`);
   }
   lines.push('');
 }
@@ -2082,7 +2118,7 @@ function renderEntryGroup(lines, title, entries) {
   }
 
   for (const entry of entries) {
-    lines.push(`### ${entry.name} / \`${entry.unit_id}\``);
+    lines.push(`### ${formatEntityLabel(entry.name, entry.unit_id)}`);
     lines.push('');
     if (entry.source || entry.roster) {
       lines.push(`- 来源 / Source：${formatEntrySource(entry)}`);
@@ -2117,7 +2153,7 @@ function renderAbilityTable(lines, abilities) {
   lines.push('| --- | --- | --- | --- | --- | --- | --- |');
   for (const ability of abilities) {
     const position = [ability.layout.row, ability.layout.column].filter((item) => item !== '').join(',');
-    lines.push(`| ${position || '-'} | ${escapeMd(ability.button_name)} / \`${ability.face || '-'}\` | \`${ability.abil_cmd || ability.ability_id || '-'}\` | ${formatCatalogTypes(ability)} | ${formatTargets(ability)} | ${formatEffects(ability.effect_refs)} | ${escapeMd(ability.requirements || '-')} |`);
+    lines.push(`| ${position || '-'} | ${formatEntityLabel(ability.button_name, ability.ability_id || ability.face)} | \`${ability.abil_cmd || ability.ability_id || '-'}\` | ${formatCatalogTypes(ability)} | ${formatTargets(ability)} | ${formatEffects(ability.effect_refs)} | ${escapeMd(ability.requirements || '-')} |`);
   }
   lines.push('');
 }
@@ -2146,10 +2182,13 @@ function formatEntrySource(entry) {
 }
 
 function formatProduction(option) {
-  const unitName = option.unit_name || option.unit || '';
+  const unitName = option.unit || option.unit_name ? formatEntityLabel(option.unit_name, option.unit) : '';
+  const producerName = option.producer_unit_id || option.producer_name
+    ? formatEntityLabel(option.producer_name, option.producer_unit_id)
+    : '';
   const cost = [option.minerals, option.vespene].filter(Boolean).join('/');
   const bits = [
-    `生产者 / Producer ${option.producer_name || option.producer_unit_id}`,
+    producerName ? `生产者 / Producer ${producerName}` : '',
     option.abil_cmd ? `能力 / Ability ${option.abil_cmd}` : '',
     unitName ? `目标 / Target ${unitName}` : '',
     cost ? `费用 / Cost ${cost}` : '',
@@ -2163,23 +2202,23 @@ function formatProducedUnit(item) {
   const cost = [item.minerals, item.vespene].filter(Boolean).join('/');
   const costText = cost ? `，费用 / Cost ${cost}` : '';
   const timeText = item.time ? `，耗时 / Time ${item.time}s` : '';
-  return `${item.name || item.unit_id} \`${item.unit_id}\`${rosterText}${costText}${timeText}`;
+  return `${formatEntityLabel(item.name, item.unit_id)}${rosterText}${costText}${timeText}`;
 }
 
 function formatTargets(ability) {
   const targets = [];
   for (const match of ability.production_matches || []) {
     if (match.unit) {
-      targets.push(`${match.unit_name || match.unit} \`${match.unit}\``);
+      targets.push(formatEntityLabel(match.unit_name, match.unit));
     }
   }
   for (const target of ability.catalog_targets || []) {
     const typeCn = target.type === 'upgrade' ? '升级 / Upgrade' : '单位 / Unit';
-    targets.push(`${typeCn}:${target.name || target.id} \`${target.id}\``);
+    targets.push(`${typeCn}:${formatEntityLabel(target.name, target.id)}`);
   }
   for (const effect of ability.effect_refs || []) {
     for (const unit of flattenEffectSpawnUnits(effect)) {
-      targets.push(`效果创建 / Effect creates:${unit.name || unit.id} \`${unit.id}\``);
+      targets.push(`效果创建 / Effect creates:${formatEntityLabel(unit.name, unit.id)}`);
     }
   }
   return unique(targets).join('、') || '-';
@@ -2212,7 +2251,7 @@ function formatCatalogAbilityLinks(links) {
   return links
     .map((link) => {
       const basicText = link.is_basic ? '基础 / Basic' : formatBilingualLabel(link.catalog_type_cn, link.catalog_type_raw);
-      return `\`${link.id}\`${basicText ? `(${basicText})` : ''}`;
+      return `${formatEntityLabel(link.name, link.id)}${basicText ? `(${basicText})` : ''}`;
     })
     .join('、');
 }
@@ -2255,6 +2294,23 @@ function abilityTypeRaw(abilityId, catalogIndex) {
   return tags.join('、') || '';
 }
 
+function localizedCatalogAbilityName(abilityId, catalogIndex, localization, preferredCatalogs) {
+  if (!abilityId) {
+    return '';
+  }
+  const definitions = selectPreferredDefinitions(catalogIndex.abilities.get(abilityId) || [], preferredCatalogs);
+  const body = definitions.map((definition) => definition.body).join('\n');
+  return resolveLocalizedText(
+    localization,
+    valueFromChildElement(body, 'Name'),
+    [
+      `Abil/Name/${abilityId}`,
+      `Button/Name/${abilityId}`,
+    ],
+    preferredCatalogs,
+  ) || abilityId;
+}
+
 function formatBilingualLabel(chinese, english) {
   if (chinese && english) {
     return `${chinese} / ${english}`;
@@ -2273,6 +2329,41 @@ function formatBilingualPairs(chineseList, englishList) {
     parts.push(formatBilingualLabel(chineseList?.[index] || '', englishList?.[index] || ''));
   }
   return parts.join('、');
+}
+
+function formatEntityLabel(name, id) {
+  const cleanId = String(id || '').trim();
+  const cleanName = normalizeWhitespace(name);
+  if (!cleanId && !cleanName) {
+    return '-';
+  }
+  if (!cleanId) {
+    return escapeMd(cleanName);
+  }
+  if (isMeaningfulDisplayName(cleanName, cleanId)) {
+    return `${escapeMd(cleanName)} / \`${cleanId}\``;
+  }
+  return `\`${cleanId}\``;
+}
+
+function entityDisplayName(name, id) {
+  const cleanId = String(id || '').trim();
+  const cleanName = normalizeWhitespace(name);
+  if (!cleanId) {
+    return cleanName;
+  }
+  return isMeaningfulDisplayName(cleanName, cleanId)
+    ? `${cleanName} / ${cleanId}`
+    : cleanId;
+}
+
+function isMeaningfulDisplayName(name, id) {
+  const cleanName = normalizeWhitespace(name);
+  const cleanId = String(id || '').trim();
+  if (!cleanName || cleanName === cleanId) {
+    return false;
+  }
+  return !isLikelyLocalizationKey(cleanName);
 }
 
 function entryGroupTitleEn(title) {
@@ -2568,16 +2659,25 @@ function parseEditorCategory(value, key) {
 }
 
 function resolveLocalizedText(localization, explicitKeyOrText, fallbackKey, preferredCatalogs) {
+  let explicitText = '';
   if (explicitKeyOrText) {
-    const localized = localizeKey(localization, explicitKeyOrText, preferredCatalogs);
+    const explicit = String(explicitKeyOrText).trim();
+    const localized = localizeKey(localization, explicit, preferredCatalogs);
     if (localized) {
       return localized;
     }
-    if (!String(explicitKeyOrText).includes('/')) {
-      return explicitKeyOrText;
+    if (!isLikelyLocalizationKey(explicit)) {
+      explicitText = explicit;
     }
   }
-  return localizeKey(localization, fallbackKey, preferredCatalogs);
+  const fallbacks = Array.isArray(fallbackKey) ? fallbackKey : [fallbackKey];
+  for (const key of fallbacks) {
+    const localized = localizeKey(localization, key, preferredCatalogs);
+    if (localized) {
+      return localized;
+    }
+  }
+  return explicitText;
 }
 
 function localizeKey(localization, key, preferredCatalogs = []) {
@@ -2595,6 +2695,17 @@ function localizeKey(localization, key, preferredCatalogs = []) {
     }
   }
   return candidates.at(-1).text;
+}
+
+function isLikelyLocalizationKey(value) {
+  const text = String(value || '').trim();
+  if (!text) {
+    return false;
+  }
+  if (text.includes('/')) {
+    return true;
+  }
+  return /^[A-Za-z0-9_.,:+-]+$/.test(text) && !/\s/.test(text);
 }
 
 function decodeGameString(value) {
