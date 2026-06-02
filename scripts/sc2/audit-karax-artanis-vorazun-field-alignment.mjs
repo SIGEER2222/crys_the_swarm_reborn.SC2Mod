@@ -667,6 +667,7 @@ function auditBuildingStats(building, moduleUnits, finalUnits) {
 function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalText) {
   return units.map((unit) => {
     const candidateIds = candidateMap.get(unit.id) || catalogCandidates(unit);
+    const resolvedUnitIds = unique(unit.resolved_unit_ids || []);
     const { buttons, foundUnitIds } = collectButtons(candidateIds, moduleUnits, finalUnits);
     const actualFaces = new Set(buttons.map((button) => button.face));
     const expectedSkills = (unit.abilities || [])
@@ -723,6 +724,7 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
     return {
       unit: unit.id,
       name: unit.name || unit.id,
+      resolved_unit_ids: resolvedUnitIds,
       candidate_ids: candidateIds,
       found_unit_ids: foundUnitIds,
       expected_skill_faces: expectedSkills.map((skill) => skill.face),
@@ -784,6 +786,9 @@ function auditOnlinePrimaryRoster(expectedItems, reports, reportKey) {
     return {
       ...expected,
       audited: Boolean(report),
+      resolved_unit_ids: reportKey === 'unit' && report ? report.resolved_unit_ids || [] : [],
+      candidate_ids: report ? report.candidate_ids || [] : [],
+      found_unit_ids: report ? report.found_unit_ids || [] : [],
       issues,
     };
   });
@@ -902,6 +907,19 @@ function formatIssue(issue) {
   return JSON.stringify(issue);
 }
 
+function formatOnlinePrimaryUnit(item) {
+  const resolvedText = (item.resolved_unit_ids || []).length
+    ? `，resolved=${item.resolved_unit_ids.map((id) => `\`${id}\``).join('/')}`
+    : '';
+  const foundText = (item.resolved_unit_ids || []).length && (item.found_unit_ids || []).length
+    ? `，found=${item.found_unit_ids.map((id) => `\`${id}\``).join('/')}`
+    : '';
+  const issueText = item.issues.length
+    ? `（${item.issues.map((issue) => issue.type).join('、')}）`
+    : '';
+  return `${item.label} \`${item.id}\`${resolvedText}${foundText}${issueText}`;
+}
+
 function writeMarkdown(report) {
   const lines = [];
   lines.push('# Karax / Artanis / Vorazun 字段级对齐审计');
@@ -966,7 +984,7 @@ function writeMarkdown(report) {
       lines.push('- 该页面没有单独建模的在线主单位清单。');
     } else {
       const unitSummary = commanderReport.online_primary_units.reports
-        .map((item) => `${item.label} \`${item.id}\`${item.issues.length ? `（${item.issues.map((issue) => issue.type).join('、')}）` : ''}`)
+        .map(formatOnlinePrimaryUnit)
         .join('、');
       lines.push(`- ${unitSummary}`);
     }

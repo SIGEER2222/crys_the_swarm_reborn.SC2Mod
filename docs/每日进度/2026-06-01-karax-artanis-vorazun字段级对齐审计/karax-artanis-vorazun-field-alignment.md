@@ -1,6 +1,6 @@
 # Karax / Artanis / Vorazun 字段级对齐审计
 
-- 生成时间：2026/6/2 10:21:09
+- 生成时间：2026/6/2 10:31:28
 - 目的：补充现有 ID 缺口脚本的盲区，按“网上资料里的兵种技能/被动、建筑、顶部技能面板”做静态对齐审计。
 - 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；在线主清单作为必须覆盖的子集，Observer 等支援/扩展项作为 supplemental 透明列出；非单位按钮承载的技能/被动以 `global_refs` 证明当前 Mod 全局 Catalog/脚本存在；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。
 - 说明：`global-only` 表示技能按钮 ID 在当前 Mod 全局存在，但没有在候选单位的显式 LayoutButtons 中出现，可能来自父级继承、别名单位或待人工判断，不直接当作硬缺口。
@@ -37,7 +37,7 @@
 - 未发现硬缺口。
 
 ### 在线主单位覆盖
-- Sentinel `ZealotPurifier`、Energizer `SentryPurifier`、Immortal `ImmortalAiur`、Colossus `Colossus`、Mirage `PhoenixPurifier`、Carrier `Carrier`
+- Sentinel `ZealotPurifier`，resolved=`ZealotPurifier`/`Zealot`，found=`ZealotPurifier`/`Zealot`/`Supplicant`/`AlarakSupplicantWarpTrainDummy`、Energizer `SentryPurifier`，resolved=`SentryPurifier`/`Sentry`，found=`SentryPurifier`/`Sentry`、Immortal `ImmortalAiur`，resolved=`ImmortalAiur`/`Immortal`/`RoboticsFacility`，found=`ImmortalAiur`/`Immortal`/`RoboticsFacility`、Colossus `Colossus`，resolved=`Colossus`/`RoboticsBay`/`RoboticsFacility`，found=`Colossus`/`RoboticsBay`/`RoboticsFacility`、Mirage `PhoenixPurifier`，resolved=`PhoenixPurifier`/`FleetBeacon`/`Phoenix`/`Stargate`，found=`PhoenixPurifier`/`FleetBeacon`/`Phoenix`/`Stargate`、Carrier `Carrier`，resolved=`Carrier`/`FleetBeacon`/`Stargate`，found=`Carrier`/`FleetBeacon`/`Stargate`
 - supplemental：侦测器 `Observer`、折跃侦察机 `Scout`
 
 ### global-only 提醒
@@ -82,7 +82,7 @@
 - 未发现硬缺口。
 
 ### 在线主单位覆盖
-- Zealot `Zealot`、Dragoon `StalkerAiur`、High Templar `HighTemplar`、Archon `Archon`、Immortal `ImmortalAiur`、Reaver `Reaver`、Phoenix `PhoenixAiur`、Tempest `Tempest`
+- Zealot `Zealot`，resolved=`Zealot`，found=`Zealot`/`Supplicant`/`AlarakSupplicantWarpTrainDummy`、Dragoon `StalkerAiur`，resolved=`Dragoon`/`Stalker`，found=`Dragoon`/`Stalker`、High Templar `HighTemplar`，resolved=`HighTemplar`/`TemplarArchive`，found=`HighTemplar`/`TemplarArchive`、Archon `Archon`，resolved=`Archon`，found=`Archon`、Immortal `ImmortalAiur`，resolved=`ImmortalAiur`/`Immortal`/`RoboticsFacility`，found=`ImmortalAiur`/`Immortal`/`RoboticsFacility`、Reaver `Reaver`，resolved=`Reaver`，found=`Reaver`、Phoenix `PhoenixAiur`，resolved=`PhoenixAiur`/`FleetBeacon`/`Phoenix`/`Stargate`，found=`PhoenixAiur`/`FleetBeacon`/`Phoenix`/`Stargate`、Tempest `Tempest`，resolved=`Tempest`，found=`Tempest`
 - supplemental：侦测器 `Observer`
 
 ### global-only 提醒
@@ -124,7 +124,7 @@
 - 未发现硬缺口。
 
 ### 在线主单位覆盖
-- Centurion `ZealotShakuras`、Stalker `Stalker`、Dark Templar `DarkTemplarShakuras`、Dark Archon `DarkArchon`、Corsair `PhoenixShakuras`、Void Ray `VoidRay`、Oracle `Oracle`
+- Centurion `ZealotShakuras`，resolved=`ZealotShakuras`/`Zealot`，found=`ZealotShakuras`/`Zealot`/`Supplicant`/`AlarakSupplicantWarpTrainDummy`、Stalker `Stalker`，resolved=`Stalker`/`StalkerShakuras`，found=`Stalker`/`StalkerShakuras`、Dark Templar `DarkTemplarShakuras`，resolved=`DarkTemplarShakuras`/`DarkShrine`/`DarkTemplar`，found=`DarkTemplarShakuras`/`DarkShrine`/`DarkTemplar`、Dark Archon `DarkArchon`，resolved=`DarkArchon`，found=`DarkArchon`、Corsair `PhoenixShakuras`，resolved=`CorsairMP`/`FleetBeacon`/`Phoenix`/`PhoenixAiur`/`Stargate`，found=`CorsairMP`/`FleetBeacon`/`Phoenix`/`PhoenixAiur`/`Stargate`、Void Ray `VoidRay`，resolved=`VoidRay`/`Stargate`，found=`VoidRay`/`Stargate`、Oracle `Oracle`，resolved=`Oracle`，found=`Oracle`
 - supplemental：狂热者 `Zealot`
 
 ### global-only 提醒

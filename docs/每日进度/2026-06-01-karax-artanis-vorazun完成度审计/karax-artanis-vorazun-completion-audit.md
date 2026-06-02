@@ -1,6 +1,6 @@
 # Karax / Artanis / Vorazun 完成度审计
 
-- 生成时间：2026/6/2 10:21:08
+- 生成时间：2026/6/2 10:31:48
 - 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。
 - 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告，以及 StarCraft2Coop 在线资料入口和页面显式补充项。
 - 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。
@@ -31,6 +31,7 @@
 | 官方 units.json 中的兵种均进入字段级单位审计 | PASS | 8/8 |
 | StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计 | PASS | expected_units=8, audited_units=8, online_added=4 |
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=6, supplemental_units=2, issues=0 |
+| 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=6, missing=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=10, missing=0 |
@@ -59,6 +60,7 @@
 | 官方 units.json 中的兵种均进入字段级单位审计 | PASS | 7/9 |
 | StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计 | PASS | expected_units=9, audited_units=9, online_added=4 |
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=8, supplemental_units=1, issues=0 |
+| 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=8, missing=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=6, missing=0 |
@@ -87,6 +89,7 @@
 | 官方 units.json 中的兵种均进入字段级单位审计 | PASS | 7/8 |
 | StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计 | PASS | expected_units=8, audited_units=8, online_added=7 |
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=7, supplemental_units=1, issues=0 |
+| 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=7, missing=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=38, missing=0 |

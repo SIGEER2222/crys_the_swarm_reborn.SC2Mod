@@ -39,6 +39,21 @@ function includesAllById(expectedItems, reports, reportIdKey) {
   return expectedItems.every((item) => reportedIds.has(item.id));
 }
 
+function resolvedUnitReports(field) {
+  return (field.online_primary_units?.reports || [])
+    .filter((item) => (item.resolved_unit_ids || []).length);
+}
+
+function missingResolvedUnitReports(field) {
+  return resolvedUnitReports(field)
+    .map((item) => {
+      const foundIds = new Set(item.found_unit_ids || []);
+      const missing = (item.resolved_unit_ids || []).filter((id) => !foundIds.has(id));
+      return { item, missing };
+    })
+    .filter((report) => report.missing.length);
+}
+
 function summarizeCommander(commander, fieldAudit, gapReport) {
   const unitsPath = path.join(officialRoot, commander, 'units.json');
   const buildingsPath = path.join(officialRoot, commander, 'buildings.json');
@@ -59,6 +74,8 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
   const topPanel = field.top_panel || { expected: [], issues: [] };
   const expectedUnitCount = field.expected_unit_count ?? unitReports.length;
   const expectedBuildingCount = field.expected_building_count ?? buildingReports.length;
+  const resolvedUnits = resolvedUnitReports(field);
+  const missingResolvedUnits = missingResolvedUnitReports(field);
   const checks = [
     check(
       'online-source',
@@ -89,6 +106,12 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
       'StarCraft2Coop Combat Units 主清单均被当前审计覆盖',
       (field.online_primary_unit_issue_count || 0) === 0,
       `online_primary_units=${field.online_primary_unit_count || 0}, supplemental_units=${field.supplemental_unit_count || 0}, issues=${field.online_primary_unit_issue_count || 0}`,
+    ),
+    check(
+      'online-primary-unit-resolved-ids',
+      '在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位',
+      missingResolvedUnits.length === 0,
+      `resolved_unit_reports=${resolvedUnits.length}, missing=${missingResolvedUnits.map((report) => `${report.item.id}:${report.missing.join('/')}`).join('; ') || 0}`,
     ),
     check(
       'unit-skill-hard-issues',
@@ -159,6 +182,7 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     online_added_unit_count: field.online_added_unit_count || 0,
     online_added_building_count: field.online_added_building_count || 0,
     online_primary_unit_count: field.online_primary_unit_count || 0,
+    resolved_unit_report_count: resolvedUnits.length,
     online_primary_structure_count: field.online_primary_structure_count || 0,
     supplemental_unit_count: field.supplemental_unit_count || 0,
     supplemental_building_count: field.supplemental_building_count || 0,
