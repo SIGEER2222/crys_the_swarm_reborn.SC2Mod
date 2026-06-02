@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T00:51:31.363Z",
+  "generated_at": "2026-06-02T01:02:56.680Z",
   "commanders": [
     {
       "commander": "Karax",
@@ -12,13 +12,14 @@
       "official_unit_count": 8,
       "official_building_count": 5,
       "online_added_unit_count": 0,
-      "online_added_building_count": 1,
+      "online_added_building_count": 3,
       "online_primary_unit_count": 6,
       "online_primary_structure_count": 3,
       "supplemental_unit_count": 2,
       "supplemental_building_count": 3,
       "unit_skill_global_ref_count": 0,
       "unit_skill_global_ref_missing_count": 0,
+      "building_stat_issue_count": 0,
       "unit_count": 8,
       "building_count": 6,
       "top_panel_button_count": 4,
@@ -115,7 +116,7 @@
           "description": "StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计",
           "status": "PASS",
           "ok": true,
-          "evidence": "expected_buildings=6, audited_buildings=6, online_added=1"
+          "evidence": "expected_buildings=6, audited_buildings=6, online_added=3"
         },
         {
           "id": "online-primary-structures",
@@ -130,6 +131,13 @@
           "status": "PASS",
           "ok": true,
           "evidence": "building_issues=0"
+        },
+        {
+          "id": "building-stat-issues",
+          "description": "建筑 HP/Shield/Energy 基础数值字段不存在静态不匹配",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "building_stat_issues=0"
         },
         {
           "id": "top-panel",
@@ -159,6 +167,7 @@
       "supplemental_building_count": 5,
       "unit_skill_global_ref_count": 0,
       "unit_skill_global_ref_missing_count": 0,
+      "building_stat_issue_count": 0,
       "unit_count": 9,
       "building_count": 5,
       "top_panel_button_count": 4,
@@ -272,6 +281,13 @@
           "evidence": "building_issues=0"
         },
         {
+          "id": "building-stat-issues",
+          "description": "建筑 HP/Shield/Energy 基础数值字段不存在静态不匹配",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "building_stat_issues=0"
+        },
+        {
           "id": "top-panel",
           "description": "顶部技能面板按钮字段全部匹配预期",
           "status": "PASS",
@@ -299,6 +315,7 @@
       "supplemental_building_count": 3,
       "unit_skill_global_ref_count": 3,
       "unit_skill_global_ref_missing_count": 0,
+      "building_stat_issue_count": 0,
       "unit_count": 8,
       "building_count": 3,
       "top_panel_button_count": 5,
@@ -408,6 +425,13 @@
           "status": "PASS",
           "ok": true,
           "evidence": "building_issues=0"
+        },
+        {
+          "id": "building-stat-issues",
+          "description": "建筑 HP/Shield/Energy 基础数值字段不存在静态不匹配",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "building_stat_issues=0"
         },
         {
           "id": "top-panel",

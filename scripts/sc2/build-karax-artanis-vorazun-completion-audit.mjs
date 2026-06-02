@@ -133,6 +133,12 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
       `building_issues=${field.building_issue_count}`,
     ),
     check(
+      'building-stat-issues',
+      '建筑 HP/Shield/Energy 基础数值字段不存在静态不匹配',
+      (field.building_stat_issue_count || 0) === 0,
+      `building_stat_issues=${field.building_stat_issue_count || 0}`,
+    ),
+    check(
       'top-panel',
       '顶部技能面板按钮字段全部匹配预期',
       field.top_panel_issue_count === 0,
@@ -158,6 +164,7 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     supplemental_building_count: field.supplemental_building_count || 0,
     unit_skill_global_ref_count: field.unit_skill_global_ref_count || 0,
     unit_skill_global_ref_missing_count: field.unit_skill_global_ref_missing_count || 0,
+    building_stat_issue_count: field.building_stat_issue_count || 0,
     unit_count: expectedUnitCount,
     building_count: expectedBuildingCount,
     top_panel_button_count: topPanel.expected.length,

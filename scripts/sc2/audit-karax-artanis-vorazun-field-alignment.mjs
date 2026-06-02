@@ -77,9 +77,34 @@ const onlineExpectationAdditions = {
     units: [],
     buildings: [
       {
+        id: 'PhotonCannon',
+        name: 'Photon Cannon',
+        source: 'StarCraft2Coop Structures',
+        online_stats: {
+          life: '150',
+          shields: '150',
+          energy: '',
+        },
+      },
+      {
         id: 'KhaydarinMonolith',
         name: 'Khaydarin Monolith',
         source: 'StarCraft2Coop Structures',
+        online_stats: {
+          life: '100',
+          shields: '200',
+          energy: '',
+        },
+      },
+      {
+        id: 'ShieldBattery',
+        name: 'Shield Battery',
+        source: 'StarCraft2Coop Structures',
+        online_stats: {
+          life: '200',
+          shields: '200',
+          energy: '100',
+        },
       },
     ],
   },
@@ -239,6 +264,11 @@ function parseUnitData(filePath) {
       id: attrs.id,
       parent: attrs.parent || '',
       buttons: parseLayoutButtons(match[2]),
+      stats: {
+        life: valueFromChild(match[2], 'LifeMax') || valueFromChild(match[2], 'LifeStart'),
+        shields: valueFromChild(match[2], 'ShieldsMax') || valueFromChild(match[2], 'ShieldsStart'),
+        energy: valueFromChild(match[2], 'EnergyMax') || valueFromChild(match[2], 'EnergyStart'),
+      },
     });
   }
   return units;
@@ -286,6 +316,13 @@ function catalogCandidates(item) {
   ]);
 }
 
+function buildingStatCandidates(item) {
+  return unique([
+    item.id,
+    item.unit_id,
+  ]);
+}
+
 function buildCandidateMap(items) {
   const map = new Map();
   for (const item of items) {
@@ -310,6 +347,9 @@ function mergeExpectationAdditions(baseItems, additionItems) {
       const addedGlobalRefs = (addition.global_refs || []).filter((ref) => !existingGlobalRefs.has(ref.id || ref.value || ref.face));
       if (addedGlobalRefs.length) {
         existing.global_refs = [...(existing.global_refs || []), ...addedGlobalRefs];
+      }
+      if (addition.online_stats) {
+        existing.online_stats = addition.online_stats;
       }
       existing.online_expectation_source = addition.source;
       continue;
@@ -415,6 +455,62 @@ function compareExpectedButtons(expectedButtons, actualButtons, fields) {
   return issues;
 }
 
+function expectedBuildingStats(building) {
+  const source = building.online_stats || {};
+  return {
+    life: normalize(source.life),
+    shields: normalize(source.shields),
+    energy: normalize(source.energy),
+  };
+}
+
+function activeBuildingStat(building, candidateIds, moduleUnits, finalUnits, field) {
+  for (const candidateId of candidateIds) {
+    const finalValue = normalize(finalUnits.get(candidateId)?.stats?.[field]);
+    if (finalValue) {
+      return { value: finalValue, source: `XMFinal:${candidateId}` };
+    }
+    const moduleValue = normalize(moduleUnits.get(candidateId)?.stats?.[field]);
+    if (moduleValue) {
+      return { value: moduleValue, source: `module:${candidateId}` };
+    }
+  }
+
+  const fallback = normalize((building.online_stats || {})[field]);
+  return fallback
+    ? { value: fallback, source: 'online-expectation-fallback' }
+    : { value: '', source: 'not-declared' };
+}
+
+function auditBuildingStats(building, moduleUnits, finalUnits) {
+  const candidateIds = buildingStatCandidates(building);
+  const expected = expectedBuildingStats(building);
+  const actual = {};
+  const issues = [];
+  for (const field of ['life', 'shields', 'energy']) {
+    if (!expected[field]) {
+      continue;
+    }
+    actual[field] = activeBuildingStat(building, candidateIds, moduleUnits, finalUnits, field);
+    if (actual[field].value !== expected[field]) {
+      issues.push({
+        type: 'building_stat_mismatch',
+        field,
+        expected: expected[field],
+        actual: actual[field].value,
+        source: actual[field].source,
+      });
+    }
+  }
+
+  return {
+    candidate_ids: candidateIds,
+    expected,
+    actual,
+    issues,
+  };
+}
+
 function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalText) {
   return units.map((unit) => {
     const candidateIds = candidateMap.get(unit.id) || catalogCandidates(unit);
@@ -493,11 +589,17 @@ function auditBuildings(buildings, candidateMap, moduleUnits, finalUnits, global
     if (!foundUnitIds.length && !globalText.has(building.id)) {
       issues.push({ type: 'missing_building_catalog', id: building.id });
     }
+    const statReport = auditBuildingStats(building, moduleUnits, finalUnits);
+    issues.push(...statReport.issues);
     return {
       building: building.id,
       name: building.name || building.id,
       candidate_ids: candidateIds,
       found_unit_ids: foundUnitIds,
+      stat_candidate_ids: statReport.candidate_ids,
+      expected_stats: statReport.expected,
+      actual_stats: statReport.actual,
+      stat_issues: statReport.issues,
       issues,
     };
   });
@@ -595,6 +697,7 @@ function auditCommander(commander, finalUnits, globalText) {
     unit_skill_global_ref_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_ref_reports.length, 0),
     unit_skill_global_ref_missing_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_ref_reports.filter((ref) => !ref.present).length, 0),
     building_issue_count: buildingReports.reduce((sum, building) => sum + building.issues.length, 0),
+    building_stat_issue_count: buildingReports.reduce((sum, building) => sum + building.stat_issues.length, 0),
     top_panel_issue_count: topPanelIssues.length,
     unit_skill_reports: unitSkillReports,
     building_reports: buildingReports,
@@ -640,6 +743,9 @@ function formatIssue(issue) {
   if (issue.type === 'field_mismatch') {
     return `${issue.face}: ${issue.mismatches.map((mismatch) => `${mismatch.field} expected=${mismatch.expected || '(empty)'} actual=${mismatch.actual || '(empty)'}`).join('; ')}`;
   }
+  if (issue.type === 'building_stat_mismatch') {
+    return `${issue.field} expected=${issue.expected || '(empty)'} actual=${issue.actual || '(empty)'} source=${issue.source}`;
+  }
   return JSON.stringify(issue);
 }
 
@@ -656,14 +762,14 @@ function writeMarkdown(report) {
   lines.push('');
   lines.push('## 总览');
   lines.push('');
-  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 全局证据 | 全局证据缺失 | 建筑问题 | 顶部面板问题 | 问题类型 |');
-  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 全局证据 | 全局证据缺失 | 建筑问题 | 建筑数值问题 | 顶部面板问题 | 问题类型 |');
+  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
   for (const commanderReport of report.commanders) {
     const summary = summarizeIssueTypes(commanderReport);
     const summaryText = Object.keys(summary).length
       ? Object.entries(summary).map(([key, value]) => `${key}:${value}`).join('、')
       : '无';
-    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.unit_skill_global_ref_count} | ${commanderReport.unit_skill_global_ref_missing_count} | ${commanderReport.building_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
+    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.unit_skill_global_ref_count} | ${commanderReport.unit_skill_global_ref_missing_count} | ${commanderReport.building_issue_count} | ${commanderReport.building_stat_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
   }
   lines.push('');
 
@@ -680,6 +786,7 @@ function writeMarkdown(report) {
     lines.push(`- global-only 提醒：${commanderReport.unit_skill_global_only_count}`);
     lines.push(`- 全局技能/被动证据：${commanderReport.unit_skill_global_ref_count}，缺失 ${commanderReport.unit_skill_global_ref_missing_count}`);
     lines.push(`- 建筑问题：${commanderReport.building_issue_count}`);
+    lines.push(`- 建筑数值问题：${commanderReport.building_stat_issue_count}`);
     lines.push(`- 顶部面板问题：${commanderReport.top_panel_issue_count}`);
     lines.push('');
     lines.push('### 顶部面板');
@@ -758,6 +865,24 @@ function writeMarkdown(report) {
     }
     if (commanderReport.online_primary_structures.supplemental.length) {
       lines.push(`- supplemental：${commanderReport.online_primary_structures.supplemental.map((item) => `${item.name} \`${item.id}\``).join('、')}`);
+    }
+    lines.push('');
+    lines.push('### 建筑数值字段');
+    const buildingsWithStats = commanderReport.building_reports.filter((building) => Object.values(building.expected_stats || {}).some(Boolean));
+    if (!buildingsWithStats.length) {
+      lines.push('- 无。');
+    } else {
+      for (const building of buildingsWithStats) {
+        const fields = ['life', 'shields', 'energy']
+          .filter((field) => building.expected_stats[field])
+          .map((field) => {
+            const actual = building.actual_stats[field];
+            const marker = building.stat_issues.some((issue) => issue.field === field) ? '（不匹配）' : '';
+            return `${field}=${building.expected_stats[field]} actual=${actual?.value || '(empty)'} source=${actual?.source || '(empty)'}${marker}`;
+          })
+          .join('、');
+        lines.push(`- ${building.name} \`${building.building}\`：${fields}`);
+      }
     }
     lines.push('');
   }
