@@ -1087,16 +1087,16 @@
     <EffectArray Operation="Subtract" Reference="Abil,SOAThermalLanceActivate,Cost[0].Cooldown.TimeUse" Value="60" />
     <EffectArray Operation="Subtract" Reference="Abil,SOAPurifierBeam,Cost[0].Cooldown.TimeUse" Value="180" />
   </CUpgrade>
-  <CUpgrade id="CommanderPrestigeKerriganAbilities" parent="CommanderPrestige">
-    <EffectArray Reference="Effect,CommanderPrestigeKerriganAbilitiesConvertRage,Chance" Value="1" />
-    <EffectArray Operation="Subtract" Reference="Effect,PrimalSlash,Amount" Value="75" />
-    <EffectArray Operation="Subtract" Reference="Effect,PsiStrikeDamage,Amount" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Effect,PsionicLiftDamage,Amount" Value="50" />
-    <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Spell]" Value=".15" />
-    <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Melee]" Value=".15" />
-    <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Ranged]" Value=".15" />
-    <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Splash]" Value=".15" />
-  </CUpgrade>
+    <CUpgrade id="CommanderPrestigeKerriganAbilities" parent="CommanderPrestige">
+            <EffectArray Reference="Effect,CommanderPrestigeKerriganAbilitiesConvertRage,Chance" Value="1"/>
+            <EffectArray Operation="Subtract" Reference="Effect,PrimalSlash,Amount" Value="75"/>
+            <EffectArray Operation="Subtract" Reference="Effect,PsiStrikeDamage,Amount" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Effect,PsionicLiftDamage,Amount" Value="50"/>
+            <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Spell]" Value=".15"/>
+            <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Melee]" Value=".15"/>
+            <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Ranged]" Value=".15"/>
+            <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Splash]" Value=".15"/>
+        </CUpgrade>
   <CUpgrade id="CommanderPrestigeKerriganAbilitiesMasteryImmobilizationWave" parent="CommanderPrestige">
     <EffectArray Operation="Subtract" Reference="Effect,PsionicLiftDamage,Amount" Value="1.666" />
     <MaxLevel value="30" />
@@ -1110,19 +1110,14 @@
     <EffectArray Operation="Subtract" Reference="Effect,PrimalSlash,Amount" Value="75" />
     <EffectArray Operation="Subtract" Reference="Effect,PsiStrikeDamage,Amount" Value="25" />
   </CUpgrade>
-  <CUpgrade id="CommanderPrestigeKerriganAssimilationAura" parent="CommanderPrestige" />
-  <CUpgrade id="CommanderPrestigeKerriganAssimilationAuraShared" parent="CommanderPrestige">
-    <EffectArray Reference="Effect,KR0,Resources[Minerals]" Value="5" />
-    <EffectArray Reference="Effect,KR1,Resources[Minerals]" Value="10" />
-    <EffectArray Reference="Effect,KR2,Resources[Minerals]" Value="10" />
-    <EffectArray Reference="Effect,KR2,Resources[Vespene]" Value="10" />
-    <EffectArray Reference="Effect,KR3,Resources[Minerals]" Value="20" />
-    <EffectArray Reference="Effect,KR3,Resources[Vespene]" Value="20" />
-    <EffectArray Reference="Effect,KR4,Resources[Minerals]" Value="40" />
-    <EffectArray Reference="Effect,KR4,Resources[Vespene]" Value="40" />
-    <EffectArray Reference="Effect,KR5,Resources[Minerals]" Value="50" />
-    <EffectArray Reference="Effect,KR5,Resources[Vespene]" Value="50" />
-  </CUpgrade>
+    <CUpgrade id="CommanderPrestigeKerriganAssimilationAura" parent="CommanderPrestige"/>
+    <CUpgrade id="CommanderPrestigeKerriganCreep" parent="CommanderPrestige">
+            <EffectArray Reference="Effect,KerriganMalignantCreepAttackSpeedDummy,Amount" Value="0.3"/>
+            <EffectArray Reference="Effect,KerriganMalignantCreepLifeRegenDummy,Amount" Value="1"/>
+            <EffectArray Operation="Subtract" Reference="Unit,QueenCoop,SpeedMultiplierCreep" Value="1.6665"/>
+            <EffectArray Reference="Unit,QueenCoop,Speed" Value="1.5623"/>
+            <EffectArray Operation="Set" Reference="Abil,QueenBuild,InfoArray[Build1].Unit" Value="CreepTumorQueenNoCreep"/>
+        </CUpgrade>
   <CUpgrade id="CommanderPrestigeKerriganCreep" parent="CommanderPrestige">
     <EffectArray Reference="Effect,KerriganMalignantCreepAttackSpeedDummy,Amount" Value="0.3" />
     <EffectArray Reference="Effect,KerriganMalignantCreepLifeRegenDummy,Amount" Value="1" />
@@ -2472,250 +2467,153 @@
     <EffectArray index="16" removed="1" />
     <EffectArray index="17" removed="1" />
   </CUpgrade>
-  <CUpgrade id="K5CreepBonuses">
-    <EffectArray index="0" Reference="Abil,DroneHarvest,ResourceAmountMultiplier[Vespene]" Value="1.0" />
-    <EffectArray index="1" Reference="Effect,AutoHarvestVespene,Resources" Value="-4" />
-    <EffectArray index="2" Operation="Add" Reference="Unit,CreepTumor,Sight" Value="8" />
-    <EffectArray index="3" Reference="Unit,CreepTumorBurrowed,Sight" Value="4" />
-    <EffectArray index="4" Reference="Unit,CreepTumorUsed,Sight" Value="4" />
-    <EffectArray index="5" Reference="Abil,CreepTumorBuild,Range" Value="3" />
-    <EffectArray index="6" removed="1" />
-    <EffectArray index="7" removed="1" />
-    <EffectArray index="8" removed="1" />
-    <EffectArray index="9" removed="1" />
-    <EffectArray index="10" removed="1" />
-    <EffectArray index="11" removed="1" />
-    <EffectArray index="12" removed="1" />
-    <EffectArray index="13" removed="1" />
-    <EffectArray index="14" removed="1" />
-    <EffectArray index="15" removed="1" />
-    <EffectArray index="16" removed="1" />
-    <EffectArray index="17" removed="1" />
-    <EffectArray index="18" removed="1" />
-    <EffectArray index="19" removed="1" />
-    <EffectArray index="20" removed="1" />
-    <EffectArray index="21" removed="1" />
-    <EffectArray index="22" removed="1" />
-    <EffectArray index="23" removed="1" />
-    <EffectArray index="24" removed="1" />
-    <EffectArray index="25" removed="1" />
-    <EffectArray index="26" removed="1" />
-    <EffectArray index="27" removed="1" />
-    <EffectArray index="28" removed="1" />
-    <EffectArray index="29" removed="1" />
-    <EffectArray index="30" removed="1" />
-    <EffectArray index="31" removed="1" />
-    <EffectArray index="32" removed="1" />
-    <EffectArray index="33" removed="1" />
-    <EffectArray index="34" removed="1" />
-    <EffectArray index="35" removed="1" />
-    <EffectArray index="36" removed="1" />
-    <EffectArray index="37" removed="1" />
-    <EffectArray index="38" removed="1" />
-    <EffectArray index="39" removed="1" />
-    <EffectArray index="40" removed="1" />
-    <EffectArray index="41" removed="1" />
-    <EffectArray index="42" removed="1" />
-    <EffectArray index="43" removed="1" />
-    <EffectArray index="44" removed="1" />
-    <EffectArray index="45" removed="1" />
-    <EffectArray index="46" removed="1" />
-    <EffectArray index="47" removed="1" />
-    <EffectArray index="48" removed="1" />
-    <EffectArray index="49" removed="1" />
-    <EffectArray index="50" removed="1" />
-    <EffectArray index="51" removed="1" />
-    <EffectArray index="52" removed="1" />
-    <EffectArray index="53" removed="1" />
-    <EffectArray index="54" removed="1" />
-    <EffectArray index="55" removed="1" />
-    <EffectArray index="56" removed="1" />
-    <EffectArray index="57" removed="1" />
-    <EffectArray index="58" removed="1" />
-    <EffectArray index="59" removed="1" />
-    <EffectArray index="60" removed="1" />
-    <EffectArray index="61" removed="1" />
-    <EffectArray index="62" removed="1" />
-    <EffectArray index="63" removed="1" />
-    <EffectArray index="64" removed="1" />
-    <EffectArray index="65" removed="1" />
-    <EffectArray index="66" removed="1" />
-    <EffectArray index="67" removed="1" />
-    <EffectArray index="68" removed="1" />
-    <EffectArray index="69" removed="1" />
-    <EffectArray index="70" removed="1" />
-    <EffectArray index="71" removed="1" />
-    <EffectArray index="72" removed="1" />
-    <EffectArray index="73" removed="1" />
-    <EffectArray index="74" removed="1" />
-    <EffectArray index="75" removed="1" />
-    <EffectArray index="76" removed="1" />
-    <EffectArray index="77" removed="1" />
-    <EffectArray index="78" removed="1" />
-    <EffectArray index="79" removed="1" />
-    <EffectArray index="80" removed="1" />
-    <EffectArray index="81" removed="1" />
-    <EffectArray index="82" removed="1" />
-    <EffectArray index="83" removed="1" />
-    <EffectArray index="84" removed="1" />
-    <EffectArray index="85" removed="1" />
-    <EffectArray index="86" removed="1" />
-    <EffectArray index="87" removed="1" />
-    <EffectArray index="88" removed="1" />
-    <EffectArray index="89" removed="1" />
-    <EffectArray index="90" removed="1" />
-    <EffectArray index="91" removed="1" />
-    <EffectArray index="92" removed="1" />
-    <EffectArray index="93" removed="1" />
-    <EffectArray index="94" removed="1" />
-    <EffectArray index="95" removed="1" />
-    <EffectArray index="96" removed="1" />
-    <EffectArray index="97" removed="1" />
-    <EffectArray index="98" removed="1" />
-    <EffectArray index="99" removed="1" />
-    <EffectArray index="100" removed="1" />
-    <EffectArray index="101" removed="1" />
-    <EffectArray index="102" removed="1" />
-    <EffectArray index="103" removed="1" />
-    <EffectArray index="104" removed="1" />
-    <EffectArray index="105" removed="1" />
-    <EffectArray index="106" removed="1" />
-    <EffectArray index="107" removed="1" />
-    <EffectArray index="108" removed="1" />
-    <EffectArray index="109" removed="1" />
-    <EffectArray index="110" removed="1" />
-    <EffectArray index="111" removed="1" />
-    <EffectArray index="112" removed="1" />
-    <EffectArray index="113" removed="1" />
-    <EffectArray index="114" removed="1" />
-    <EffectArray index="115" removed="1" />
-    <EffectArray index="116" removed="1" />
-    <EffectArray index="117" removed="1" />
-    <EffectArray index="118" removed="1" />
-    <EffectArray index="119" removed="1" />
-    <EffectArray index="120" removed="1" />
-    <EffectArray index="121" removed="1" />
-    <EffectArray index="122" removed="1" />
-    <EffectArray index="123" removed="1" />
-    <EffectArray index="124" removed="1" />
-    <EffectArray index="125" removed="1" />
-    <EffectArray index="126" removed="1" />
-    <EffectArray index="127" removed="1" />
-    <EffectArray index="128" removed="1" />
-    <EffectArray index="129" removed="1" />
-    <EffectArray index="130" removed="1" />
-    <EffectArray index="131" removed="1" />
-    <EffectArray index="132" removed="1" />
-    <EffectArray index="133" removed="1" />
-    <EffectArray index="134" removed="1" />
-    <EffectArray index="135" removed="1" />
-    <LeaderAlias value="" />
-    <!--EffectArray Reference="Unit,SCV,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Marine,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Marauder,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Firebat,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Reaper,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Ghost,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Spectre,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Medic,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,HERC,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,HellionTank,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,WarPig,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,HammerSecurity,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,DevilDog,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,MercMedic,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,MercReaper,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Zealot,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ZealotAiur,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ZealotShakuras,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ZealotPurifier,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,HighTemplar,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,HighArchonTemplar,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,HighTemplarShakuras,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,HighTemplarTaldarim,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,DarkTemplar,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,DarkTemplarAiur,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,DarkTemplarShakuras,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,DarkTemplarTaldarim,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Hellion,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Vulture,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,WidowMine,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,WidowMineBurrowed,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,VikingAssault,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,VikingFighter,AttackSpeedMultiplierCreep" Value="0.0"/>
-        <EffectArray Reference="Unit,Cyclone,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SiegeTank,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SiegeTankSieged,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Thor,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Diamondback,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,WarHound,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,AutoTurret,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,MercVulture,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SpartanCompany,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,HelsAngelAssault,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,MercHellion,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SiegeBreaker,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SiegeBreakerSieged,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,OdinMKII,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Stalker,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,StalkerShakuras,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,StalkerPurifier,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Dragoon,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Sentry,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SentryAiur,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SentryPurifier,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SentryPhasing,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Monitor,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Immortal,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ImmortalShakuras,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ImmortalTaldarim,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ImmortalAiur,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Colossus,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ColossusPurifier,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ColossusTaldarim,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Reaver,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,DisruptionWard,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,Archon,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ArchonAdvanced,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,ShadowArchon,AttackSpeedMultiplierCreep" Value="0.3"/>
-        <EffectArray Reference="Unit,SCV,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Marine,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Marauder,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Firebat,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Reaper,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Ghost,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Spectre,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Medic,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,HERC,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Hellion,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,HellionTank,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,WarPig,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,HammerSecurity,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,DevilDog,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,MercMedic,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,MercReaper,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,Zealot,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,ZealotAiur,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,ZealotShakuras,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,ZealotPurifier,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,HighTemplar,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,HighArchonTemplar,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,HighTemplarShakuras,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,HighTemplarTaldarim,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,DarkTemplar,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,DarkTemplarAiur,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,DarkTemplarShakuras,LifeRegenRateCreep" Value="0.820200"/>
-        <EffectArray Reference="Unit,DarkTemplarTaldarim,LifeRegenRateCreep" Value="0.820200"/-->
-  </CUpgrade>
-  <CUpgrade id="K5Fury">
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="K5PrimalSlash">
-    <LeaderAlias value="" />
-  </CUpgrade>
-  <CUpgrade id="K5PsiStrike">
-    <LeaderAlias value="" />
-  </CUpgrade>
+    <CUpgrade id="K5CreepBonuses">
+            <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+            <EffectArray Operation="Set" Reference="Abil,LarvaTrain,InfoArray[Train1].Unit[1]" Value="NullUnit"/>
+            <EffectArray Operation="Set" Reference="Abil,DroneHarvest,ResourceAmountMultiplier[Vespene]" Value="1.0"/>
+            <EffectArray Operation="Set" Reference="Effect,AutoHarvestVespene,Resources" Value="-4"/>
+            <EffectArray Reference="Unit,CreepTumor,Sight" Value="8"/>
+            <EffectArray Reference="Unit,CreepTumorBurrowed,Sight" Value="8"/>
+            <EffectArray Reference="Unit,CreepTumorUsed,Sight" Value="8"/>
+            <EffectArray Reference="Unit,Drone,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Zergling,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,HotSRaptor,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,HotSSwarmling,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Roach,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,RoachVile,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,RoachCorpser,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,KerriganInfestBroodling,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Roachling,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Broodling,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Hydralisk,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,HydraliskLurker,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,HydraliskImpaler,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Ultralisk,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,HotSNoxious,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,HotSTorrasque,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,InfestedAbomination,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Queen,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,K5Kerrigan,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,InfestedStukov,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,StukovInfestedTerran,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,InfestedTerranCampaign,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,InfestedCivilian,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Dehaka,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,DehakaMirrorImage,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,SwarmQueen,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,LargeSwarmQueen,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,HugeSwarmQueen,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Locust,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Brutalisk,AttackSpeedMultiplierCreep" Value="0.3"/>
+            <EffectArray Reference="Unit,Hatchery,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,Lair,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,Hive,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,CreepTumorBurrowed,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,CreepTumorUsed,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,SpawningPool,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,Extractor,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,AutomatedExtractor,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,EvolutionChamber,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,RoachWarren,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,HydraliskDen,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,LurkerDen,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,ImpalerDen,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,BanelingNest,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,InfestationPit,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,Spire,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,GreaterSpire,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,UltraliskCavern,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,NydusNetwork,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,GreaterNydusWorm,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,NydusCanal,LifeRegenRate" Value="0.820200"/>
+            <EffectArray Reference="Unit,Drone,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,DroneBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Zergling,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,ZerglingBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSRaptor,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSRaptorBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSSwarmling,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSSwarmlingBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Baneling,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,BanelingBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSHunter,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSHunterBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSSplitterlingBig,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSSplitterlingBigBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSSplitterlingMedium,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSSplitterlingMediumBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Roach,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,RoachBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,RoachVile,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,RoachVileBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,RoachCorpser,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,RoachCorpserBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,KerriganInfestBroodling,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Roachling,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Broodling,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Hydralisk,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HydraliskBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HydraliskLurker,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HydraliskLurkerBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HydraliskImpaler,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HydraliskImpalerBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Ultralisk,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,UltraliskBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSNoxious,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSNoxiousBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSTorrasque,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HotSTorrasqueBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Infestor,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,InfestorBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,InfestedAbomination,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,InfestedAbominationBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Queen,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,QueenBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,K5Kerrigan,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,K5KerriganBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,InfestedStukov,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,StukovInfestedTerran,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,InfestedTerranCampaign,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,InfestedCivilian,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Dehaka,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,DehakaBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,DehakaMirrorImage,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,DehakaMirrorImageBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmQueen,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmQueenBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,LargeSwarmQueen,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,LargeSwarmQueenBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HugeSwarmQueen,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,HugeSwarmQueenBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Locust,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHost,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHostBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHostRooted,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHostSplitA,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHostSplitABurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHostSplitARooted,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHostSplitB,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHostSplitBBurrowed,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,SwarmHostSplitBRooted,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Unit,Brutalisk,LifeRegenRateCreep" Value="0.820200"/>
+            <EffectArray Reference="Abil,CreepTumorBuild,Range" Value="3"/>
+        </CUpgrade>
+    <CUpgrade id="K5Fury">
+            <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+        </CUpgrade>
+    <CUpgrade id="K5PrimalSlash">
+            <AffectedUnitArray value="K5Kerrigan"/>
+            <AffectedUnitArray value="K5KerriganPsiStrike"/>
+            <AffectedUnitArray value="K5KerriganBurrowed"/>
+            <EffectArray Reference="Weapon,K5Ranged,Range" Value="-3"/>
+            <EffectArray Reference="Effect,ChainReaction1Damage,Amount" Value="10"/>
+            <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+            <Flags index="UpgradeCheat" value="0"/>
+        </CUpgrade>
+    <CUpgrade id="K5PsiStrike">
+            <EffectArray Reference="Unit,K5Kerrigan,Speed" Value="0.7"/>
+            <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+        </CUpgrade>
   <CUpgrade id="K5TwoDrones">
     <EffectArray Operation="Subtract" Reference="Unit,ScourgeNest,CostResource[Minerals]" Value="25" />
     <EffectArray Reference="Abil,LarvaTrain,InfoArray[Train1].Resource[Minerals]" Value="25" />
@@ -3276,9 +3174,16 @@
   <CUpgrade id="KerriganGhostCosmetic">
     <LeaderAlias value="" />
   </CUpgrade>
-  <CUpgrade id="KerriganInfestedCosmetic">
-    <LeaderAlias value="" />
-  </CUpgrade>
+    <CUpgrade id="KerriganInfestedCosmetic">
+            <AffectedUnitArray value="K5Kerrigan"/>
+            <AffectedUnitArray value="K5KerriganBurrowed"/>
+            <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+            <EffectArray Operation="Set" Reference="Actor,K5Kerrigan,GroupIcon.Image[0]" Value="Assets\Textures\wireframe-zerg-kerrigan.dds"/>
+            <EffectArray Operation="Set" Reference="Actor,K5Kerrigan,Wireframe.Image[0]" Value="Assets\Textures\wireframe-zerg-kerrigan.dds"/>
+            <EffectArray Operation="Set" Reference="Actor,K5Kerrigan,PlacementModel" Value="InfestedKerrigan"/>
+            <EffectArray Operation="Set" Reference="Actor,K5Kerrigan,UnitIcon" Value="Assets\Textures\btn-unit-zerg-kerriganinfested.dds"/>
+            <EffectArray Operation="Set" Reference="Unit,K5Kerrigan,Description" Value="Button/Tooltip/K5KerriganQoB"/>
+        </CUpgrade>
   <CUpgrade id="KerriganKitUpgradeArmor">
     <AffectedUnitArray value="ZagaraVoidCoop" />
     <AffectedUnitArray value="ZagaraVoidCoopBurrowed" />
@@ -3332,9 +3237,13 @@
     <EffectArray index="8" removed="1" />
     <LeaderAlias value="" />
   </CUpgrade>
-  <CUpgrade id="KerriganPostZerusSounds">
-    <LeaderAlias value="" />
-  </CUpgrade>
+    <CUpgrade id="KerriganPostZerusSounds">
+            <AffectedUnitArray value="K5Kerrigan"/>
+            <AffectedUnitArray value="K5KerriganPsiStrike"/>
+            <AffectedUnitArray value="K5KerriganBurrowed"/>
+            <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+            <Flags index="UpgradeCheat" value="0"/>
+        </CUpgrade>
   <CUpgrade id="KerriganSeveringGlave">
     <Icon value="Assets\Textures\btn-upgrade-zerg-explosiveglaive.dds" />
     <!--EffectArray Reference="Effect,CoopGlaiveWurmU1,AttributeFactor[Armored]" Value="1"/>
@@ -3737,15 +3646,14 @@
     <MaxLevel value="30" />
     <LeaderAlias value="" />
   </CUpgrade>
-  <CUpgrade id="MasteryKerriganImmobilizationWaveDamage">
-    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-    <EffectArray Reference="Effect,MasteryKerriganImmobilizationWaveDisplayDummy,Amount" Value="3.334" />
-    <EffectArray Reference="Effect,PsionicLiftDamage,Amount" Value="3.334" />
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Protoss" />
-    <MaxLevel value="30" />
-    <LeaderAlias value="" />
-  </CUpgrade>
+    <CUpgrade id="MasteryKerriganImmobilizationWaveDamage">
+            <EffectArray Reference="Effect,MasteryKerriganImmobilizationWaveDisplayDummy,Amount" Value="3.334"/>
+            <EffectArray Reference="Effect,PsionicLiftDamage,Amount" Value="3.334"/>
+            <Flags index="UpgradeCheat" value="0"/>
+            <EditorCategories value="Race:Protoss"/>
+            <MaxLevel value="30"/>
+            <LeaderAlias value=""/>
+        </CUpgrade>
   <CUpgrade id="MasteryKerriganLarvaRate">
     <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
     <EffectArray Reference="Effect,MasteryKerriganLarvaRateDisplayDummy,Amount" Value="2" />
@@ -3763,22 +3671,21 @@
     <MaxLevel value="30" />
     <LeaderAlias value="" />
   </CUpgrade>
-  <CUpgrade id="MasteryKerriganPrimarySpeedDamage">
-    <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
-    <EffectArray Reference="Effect,MasteryKerriganLeapingStrikeDamageDummy,Amount" Value="3" />
-    <EffectArray Reference="Effect,MasteryKerriganPsiStrikeDamageDummy,Amount" Value="1" />
-    <EffectArray Reference="Effect,MasteryKerriganMindBoltDamageDummy,Amount" Value="3" />
-    <EffectArray Reference="Effect,MasteryKerriganCrushingGripDamageDummy,Amount" Value="0.5" />
-    <EffectArray Reference="Weapon,K5Ranged,RateMultiplier" Value="0.01" />
-    <EffectArray Reference="Effect,PrimalSlash,Amount" Value="3" />
-    <EffectArray Reference="Effect,PsiStrikeDamage,Amount" Value="1" />
-    <EffectArray Reference="Effect,MindBoltDamage,Amount" Value="3" />
-    <EffectArray Reference="Effect,PsionicLiftPeriodicDamage,Amount" Value="0.05" />
-    <Flags index="UpgradeCheat" value="0" />
-    <EditorCategories value="Race:Protoss" />
-    <MaxLevel value="30" />
-    <LeaderAlias value="" />
-  </CUpgrade>
+    <CUpgrade id="MasteryKerriganPrimarySpeedDamage">
+            <EffectArray Reference="Effect,MasteryKerriganLeapingStrikeDamageDummy,Amount" Value="3"/>
+            <EffectArray Reference="Effect,MasteryKerriganPsiStrikeDamageDummy,Amount" Value="1"/>
+            <EffectArray Reference="Effect,MasteryKerriganMindBoltDamageDummy,Amount" Value="3"/>
+            <EffectArray Reference="Effect,MasteryKerriganCrushingGripDamageDummy,Amount" Value="0.5"/>
+            <EffectArray Reference="Weapon,K5Ranged,RateMultiplier" Value="0.01"/>
+            <EffectArray Reference="Effect,PrimalSlash,Amount" Value="3"/>
+            <EffectArray Reference="Effect,PsiStrikeDamage,Amount" Value="1"/>
+            <EffectArray Reference="Effect,MindBoltDamage,Amount" Value="3"/>
+            <EffectArray Reference="Effect,PsionicLiftPeriodicDamage,Amount" Value="0.05"/>
+            <Flags index="UpgradeCheat" value="0"/>
+            <EditorCategories value="Race:Protoss"/>
+            <MaxLevel value="30"/>
+            <LeaderAlias value=""/>
+        </CUpgrade>
   <CUpgrade id="MasteryKerriganResearchSpeedandCost">
     <Flags index="UpgradeCheat" value="0" />
     <!--This display dummy effect is used to display the Mastery Tooltip. Make sure to update this value if you change the upgrade-->
@@ -7261,17 +7168,17 @@
     <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
     <AffectedUnitArray value="ZealotAiur" />
   </CUpgrade>
-  <CUpgrade id="ZerglingArmorShred">
-    <Flags index="TechTreeCheat" value="1" />
-    <Icon value="Assets\Textures\btn-upgrade-zergling-armorshredding.dds" />
-    <Alert value="ResearchComplete" />
-    <Race value="Zerg" />
-    <ScoreResult value="BuildOrder" />
-    <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Zergling" />
-    <AffectedUnitArray value="HotSRaptor" />
-    <AffectedUnitArray value="HotSSwarmling" />
-  </CUpgrade>
+    <CUpgrade id="ZerglingArmorShred">
+            <Flags index="TechTreeCheat" value="1"/>
+            <Icon value="Assets\Textures\btn-upgrade-zergling-armorshredding.dds"/>
+            <Alert value="ResearchComplete"/>
+            <Race value="Zerg"/>
+            <ScoreResult value="BuildOrder"/>
+            <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+            <AffectedUnitArray value="Zergling"/>
+            <AffectedUnitArray value="HotSRaptor"/>
+            <AffectedUnitArray value="HotSSwarmling"/>
+        </CUpgrade>
   <CUpgrade id="zerglingattackspeed">
     <EffectArray Reference="Weapon,HotSRaptorClaws,RateMultiplier" Value="0.4" />
     <EffectArray Reference="Weapon,HotSSwarmlingClaws,RateMultiplier" Value="0.4" />
@@ -7288,4 +7195,11 @@
     <AffectedUnitArray value="HotSSwarmlingBurrowed" />
     <ScoreAmount value="0" />
   </CUpgrade>
+    <CUpgrade id="KerriganPostLabSounds">
+            <AffectedUnitArray value="K5Kerrigan"/>
+            <AffectedUnitArray value="K5KerriganPsiStrike"/>
+            <AffectedUnitArray value="K5KerriganBurrowed"/>
+            <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+            <Flags index="UpgradeCheat" value="0"/>
+        </CUpgrade>
 </Catalog>

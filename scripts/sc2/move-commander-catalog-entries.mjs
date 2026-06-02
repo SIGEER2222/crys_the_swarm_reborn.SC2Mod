@@ -43,6 +43,105 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function addRoot(roots, value) {
+  if (typeof value !== 'string') {
+    return;
+  }
+  const trimmed = value.trim();
+  if (trimmed) {
+    roots.add(trimmed);
+  }
+}
+
+function addRoots(roots, values) {
+  if (!Array.isArray(values)) {
+    return;
+  }
+  for (const value of values) {
+    addRoot(roots, value);
+  }
+}
+
+function normalizeAbilityId(value) {
+  if (typeof value !== 'string') {
+    return '';
+  }
+  return value.split(',')[0].trim().replace(/:$/, '');
+}
+
+function addStarcoopButtonRoots(roots, button) {
+  if (!button || typeof button !== 'object' || button.button?.source_catalog !== 'starcoop') {
+    return;
+  }
+
+  addRoot(roots, button.face);
+  addRoot(roots, button.button?.id);
+  addRoot(roots, normalizeAbilityId(button.abil_cmd));
+}
+
+function collectOfficialCommanderRoots(commander) {
+  const commanderDir = path.join(
+    process.cwd(),
+    '游戏数据',
+    '官方合作指挥官',
+    'commanders',
+    commander,
+  );
+  const roots = new Set();
+
+  const commanderJson = readJson(path.join(commanderDir, 'commander.json'));
+  addRoot(roots, commanderJson.id);
+  addRoots(roots, commanderJson.default_upgrades);
+
+  const progressionJson = readJson(path.join(commanderDir, 'progression.json'));
+  for (const perk of progressionJson.perks || []) {
+    addRoot(roots, perk.id);
+    addRoot(roots, perk.button);
+    addRoots(roots, perk.upgrades);
+  }
+
+  const prestigesJson = readJson(path.join(commanderDir, 'prestiges.json'));
+  for (const prestige of prestigesJson.prestiges || []) {
+    addRoot(roots, prestige.id);
+    addRoot(roots, prestige.primary_upgrade);
+    addRoot(roots, prestige.upgrade);
+    addRoots(roots, prestige.upgrades);
+    addRoots(roots, prestige.upgrade_supplements);
+    addRoots(roots, prestige.supplements);
+  }
+
+  const upgradesJson = readJson(path.join(commanderDir, 'upgrades.json'));
+  for (const upgrade of upgradesJson) {
+    addRoot(roots, upgrade.id);
+  }
+
+  const heroesJson = readJson(path.join(commanderDir, 'heroes.json'));
+  for (const hero of heroesJson) {
+    addRoot(roots, hero.id);
+    addRoot(roots, hero.unit_id);
+    for (const card of hero.cards || []) {
+      for (const button of card.buttons || []) {
+        addStarcoopButtonRoots(roots, button);
+      }
+    }
+  }
+
+  const commandCardsJson = readJson(path.join(commanderDir, 'command_cards.json'));
+  for (const object of commandCardsJson) {
+    for (const card of object.cards || []) {
+      for (const button of card.buttons || []) {
+        addStarcoopButtonRoots(roots, button);
+      }
+    }
+  }
+
+  return roots;
+}
+
 function parseEntries(text) {
   const entries = [];
   const re = /\n(\s*<([A-Za-z][\w]*)\b[^>]*\bid="([^"]+)"[\s\S]*?\n\s*<\/\2>)/g;
@@ -184,11 +283,19 @@ function makeDehakaMatcher() {
   return (id) => prefixes.some((prefix) => id.startsWith(prefix));
 }
 
+function makeRootsMatcher(roots) {
+  const rootList = [...roots].sort((left, right) => right.length - left.length);
+  return (id) => rootList.some((root) => id === root || id.startsWith(root));
+}
+
 function getCommanderMatcher(commander) {
-  if (commander !== 'Dehaka') {
-    throw new Error(`No matcher configured for commander: ${commander}`);
+  if (commander === 'Dehaka') {
+    return makeDehakaMatcher();
   }
-  return makeDehakaMatcher();
+  if (commander === 'Raynor' || commander === 'Kerrigan') {
+    return makeRootsMatcher(collectOfficialCommanderRoots(commander));
+  }
+  throw new Error(`No matcher configured for commander: ${commander}`);
 }
 
 function unique(array) {
@@ -198,7 +305,7 @@ function unique(array) {
 function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.commander) {
-    throw new Error('Usage: node scripts/sc2/move-commander-catalog-entries.mjs --commander Dehaka [--dry-run]');
+    throw new Error('Usage: node scripts/sc2/move-commander-catalog-entries.mjs --commander Dehaka|Raynor|Kerrigan [--dry-run]');
   }
 
   const repoRoot = process.cwd();
