@@ -474,3 +474,11 @@
 | 0 | `AbathurBrutaliskLeviathanSymbiote` | `-` | 未解析 / Unresolved | - | - | HaveBrutaliskLeviathanSymbiote |
 | 0,4 | `SymbioteCarapace` | `SymbioteCarapace,Execute` | 瞬发效果技能 / CAbilEffectInstant | - | 效果集合 / CEffectSet:`SymbioteCarapaceSet` | - |
 | 2,0 | `AbathurBrutaliskLeviathanSymbioteLocked` | `-` | 未解析 / Unresolved | - | - | AbathurLevel10 |
+
+## 本轮补全 / This Round
+
+- 已把 `crys_the_swarm_reborn.SC2Mod` 的 Abathur 原始条目同步回 `XMAbathur.SC2Mod` 与 `XMAbathurReborn.SC2Mod`。
+- 重点补齐了 `AbathurHost*`、`Crawler*`、`LocustSpeed` 等按钮，以及 `Abathur`、`AbathurAnnouncer`、`CrawlersSpawnBroodlings`、`HotSLocustSpeed` 等升级。
+- `EffectData.xml` 已补入 `LocustWeaponCreateSet`、`LocustWeaponCreeperCreateSet`、`LocustWeaponFlyingCreateSet` 与 `AbathurHostLocustSpeedPurchaseEffect`。
+- `UnitData.xml` 已补入 `LocustFlying`。
+- 目标 XML 重新载入校验通过，当前补丁未破坏 XML 结构。
