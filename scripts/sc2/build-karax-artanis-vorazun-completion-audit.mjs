@@ -134,7 +134,7 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     ),
     check(
       'building-stat-issues',
-      '建筑 HP/Shield/Energy 基础数值字段不存在静态不匹配',
+      '建筑 HP/Shield/Energy/Damage/Range/Speed 等在线数值字段不存在静态不匹配',
       (field.building_stat_issue_count || 0) === 0,
       `building_stat_issues=${field.building_stat_issue_count || 0}`,
     ),

@@ -84,6 +84,9 @@ const onlineExpectationAdditions = {
           life: '150',
           shields: '150',
           energy: '',
+          damage: '20',
+          range: '7',
+          speed: '1.25',
         },
       },
       {
@@ -94,6 +97,9 @@ const onlineExpectationAdditions = {
           life: '100',
           shields: '200',
           energy: '',
+          damage: '100',
+          range: '13',
+          speed: '3',
         },
       },
       {
@@ -103,7 +109,9 @@ const onlineExpectationAdditions = {
         online_stats: {
           life: '200',
           shields: '200',
-          energy: '100',
+          energy: '200',
+          range: '4',
+          shield_per_energy: '3',
         },
       },
     ],
@@ -199,6 +207,8 @@ const inheritedOrCoreFaces = new Set([
   'Detector',
   'CliffWalk',
 ]);
+
+const buildingStatFields = ['life', 'shields', 'energy', 'damage', 'range', 'speed', 'shield_per_energy'];
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -457,11 +467,7 @@ function compareExpectedButtons(expectedButtons, actualButtons, fields) {
 
 function expectedBuildingStats(building) {
   const source = building.online_stats || {};
-  return {
-    life: normalize(source.life),
-    shields: normalize(source.shields),
-    energy: normalize(source.energy),
-  };
+  return Object.fromEntries(buildingStatFields.map((field) => [field, normalize(source[field])]));
 }
 
 function activeBuildingStat(building, candidateIds, moduleUnits, finalUnits, field) {
@@ -487,7 +493,7 @@ function auditBuildingStats(building, moduleUnits, finalUnits) {
   const expected = expectedBuildingStats(building);
   const actual = {};
   const issues = [];
-  for (const field of ['life', 'shields', 'energy']) {
+  for (const field of buildingStatFields) {
     if (!expected[field]) {
       continue;
     }
@@ -873,7 +879,7 @@ function writeMarkdown(report) {
       lines.push('- 无。');
     } else {
       for (const building of buildingsWithStats) {
-        const fields = ['life', 'shields', 'energy']
+        const fields = buildingStatFields
           .filter((field) => building.expected_stats[field])
           .map((field) => {
             const actual = building.actual_stats[field];
