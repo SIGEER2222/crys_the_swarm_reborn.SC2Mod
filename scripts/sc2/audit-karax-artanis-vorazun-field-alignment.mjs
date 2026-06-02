@@ -53,6 +53,26 @@ const onlineExpectationAdditions = {
   Artanis: {
     units: [
       {
+        id: 'StalkerAiur',
+        name: 'Dragoon',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveDragoonHealth', type: 'Requirement', name: 'Trillic Compression Systems unit-card requirement' },
+          { id: 'StalkerResearchDragoonHealth', type: 'Upgrade', name: 'Trillic Compression Systems upgrade' },
+          { id: 'ResearchDragoonChassis', type: 'Button', name: 'Trillic Compression Systems research button' },
+        ],
+      },
+      {
+        id: 'PhoenixAiur',
+        name: 'Phoenix',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveResearchDoubleGravitonBeamPassive', type: 'Requirement', name: 'Double Graviton Beam unit-card requirement' },
+          { id: 'VoidPhoenixDoubleGraviton', type: 'Upgrade', name: 'Double Graviton Beam upgrade' },
+          { id: 'ResearchDoubleGravitonBeam', type: 'Button', name: 'Double Graviton Beam research button' },
+        ],
+      },
+      {
         id: 'Tempest',
         name: 'Tempest',
         source: 'StarCraft2Coop Combat Units',
