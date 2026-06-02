@@ -46,10 +46,10 @@
     <NodeArray index="Show" Link="AndCountUpgradeAbathurRebornCommanderCompleteOnlyGT15CountUpgradeCommanderLevelCompleteOnlyNot1225867992CountBehaviorUnderConstructionCompleteOnlyAtUnit" />
   </CRequirement>
   <CRequirement id="BiomassBuffEmptyVisible">
-    <NodeArray index="Show" Link="AndCountUpgradeAbathurRebornCommanderCompleteOnlyOrEqCountBehaviorBiomassBuff1CompleteOnlyAtUnit0EqCountBehaviorBiomassBuff10CompleteOnlyAtUnit0EqCountBehaviorBiomassBuff100CompleteOnlyAtUnit0" />
+    <NodeArray index="Show" Link="AndCountUpgradeAbathurRebornCommanderCompleteOnlyOrEqCountBehaviorBiomassBuff1CompleteOnlyAtUnit0EqCountBehaviorBiomassBuff10CompleteOnlyAtUnit0EqCountBehaviorBiomassBuff10PlusLifeCompleteOnlyAtUnit0EqCountBehaviorBiomassBuff100CompleteOnlyAtUnit0EqCountBehaviorBiomassBuff100PlusLifeCompleteOnlyAtUnit0" />
   </CRequirement>
   <CRequirement id="BiomassBuffVisible">
-    <NodeArray index="Show" Link="OrGTCountBehaviorBiomassBuff1CompleteOnlyAtUnit0GTCountBehaviorBiomassBuff10CompleteOnlyAtUnit0GTCountBehaviorBiomassBuff100CompleteOnlyAtUnit0" />
+    <NodeArray index="Show" Link="OrGTCountBehaviorBiomassBuff1CompleteOnlyAtUnit0GTCountBehaviorBiomassBuff10CompleteOnlyAtUnit0GTCountBehaviorBiomassBuff10PlusLifeCompleteOnlyAtUnit0GTCountBehaviorBiomassBuff100CompleteOnlyAtUnit0GTCountBehaviorBiomassBuff100PlusLifeCompleteOnlyAtUnit0" />
   </CRequirement>
   <CRequirement id="BrutaliskMorphAvailable">
     <NodeArray index="Use" Link="AndOr414922528LTCountUnitAlias_BrutaliskQueuedOrBetter3CountUpgradeCommanderPrestigeAbathurRebornUltEvoCompleteOnlyOr4146644285AndCountUpgradeCommanderPrestigeAbathurRebornUltEvoCompleteOnlyGTCountBehaviorBiomass3537587004" />
@@ -619,5 +619,32 @@
   </CRequirement>
   <CRequirement id="ZagaraLevel05">
     <NodeArray index="Show" Link="AndCountUpgradeZagaraCommanderCompleteOnlyGT5CountUpgradeCommanderLevelCompleteOnlyNot1225867992CountBehaviorUnderConstructionCompleteOnlyAtUnit" />
+  </CRequirement>
+  <CRequirement id="NotCrawlerAcidMortar">
+    <NodeArray index="Use" Link="Eq2852615412CountBehaviorCrawlerAcidMortarEnabledCompleteOnlyAtUnit0" />
+  </CRequirement>
+  <CRequirement id="NotCrawlerRagingTentacle">
+    <NodeArray index="Use" Link="Eq2852615412CountBehaviorCrawlerRagingTentacleEnabledCompleteOnlyAtUnit0" />
+  </CRequirement>
+  <CRequirement id="NotCrawlerRange">
+    <NodeArray index="Use" Link="Eq2852615412CountBehaviorCrawlerRangeCompleteOnlyAtUnit0" />
+  </CRequirement>
+  <CRequirement id="NotCrawlerBroodlingInfestation">
+    <NodeArray index="Use" Link="Eq2852615412CountBehaviorCrawlerBroodlingInfestationCompleteOnlyAtUnit0" />
+  </CRequirement>
+  <CRequirement id="NotCrawlerCloudofFlies">
+    <NodeArray index="Use" Link="Eq2852615412CountBehaviorCrawlerCloudofFliesCompleteOnlyAtUnit0" />
+  </CRequirement>
+  <CRequirement id="CrawlerCombatRegen">
+    <NodeArray index="Use" Link="CountUpgradeCrawlerCombatRegenCompleteOnly" />
+  </CRequirement>
+  <CRequirement id="DoesntHaveCrawlerAdaptivity">
+    <NodeArray index="Show" Link="NotCountUpgradeCrawlerSpeedQueuedOrBetter" />
+  </CRequirement>
+  <CRequirement id="DoesntHaveCrawlerPlating">
+    <NodeArray index="Show" Link="NotCountUpgradeCrawlerDefenseQueuedOrBetter" />
+  </CRequirement>
+  <CRequirement id="DoesntHaveCrawlerRegeneration">
+    <NodeArray index="Show" Link="NotCountUpgradeCrawlerCombatRegenQueuedOrBetter" />
   </CRequirement>
 </Catalog>

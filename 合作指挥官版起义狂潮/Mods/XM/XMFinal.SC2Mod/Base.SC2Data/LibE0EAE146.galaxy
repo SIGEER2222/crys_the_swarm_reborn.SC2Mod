@@ -1240,6 +1240,8 @@ int libE0EAE146_gf_AbathurAddBiomassStacks (unit lp_unit, int lp_amount) {
     int lv_100;
     int lv_10;
     int lv_1;
+    fixed lv_lifeCurrent;
+    fixed lv_lifeMax;
 
     if ((lp_unit == null)) {
         return 0;
@@ -1275,7 +1277,9 @@ int libE0EAE146_gf_AbathurAddBiomassStacks (unit lp_unit, int lp_amount) {
         UnitBehaviorAddPlayer(lp_unit, "BiomassBuff1", UnitGetOwner(lp_unit), lv_1);
     }
     libNtve_gf_SendActorMessageToUnit(lp_unit, ("SetScale " + FixedToString(libE0EAE146_gf_AbathurBiomassVisualScale(lv_current + lv_applied), c_fixedPrecisionAny)));
-    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_APPLIED", "unit=" + UnitGetType(lp_unit) + " owner=" + IntToString(UnitGetOwner(lp_unit)) + " applied=" + IntToString(lv_applied) + " total=" + IntToString(lv_current + lv_applied) + " scale=" + FixedToString(libE0EAE146_gf_AbathurBiomassVisualScale(lv_current + lv_applied), c_fixedPrecisionAny) + " b100=" + IntToString(UnitBehaviorCount(lp_unit, "BiomassBuff100")) + " b10=" + IntToString(UnitBehaviorCount(lp_unit, "BiomassBuff10")) + " b1=" + IntToString(UnitBehaviorCount(lp_unit, "BiomassBuff1")));
+    lv_lifeCurrent = UnitGetPropertyFixed(lp_unit, c_unitPropLife, c_unitPropCurrent);
+    lv_lifeMax = UnitGetPropertyFixed(lp_unit, c_unitPropLifeMax, c_unitPropCurrent);
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_APPLIED", "unit=" + UnitGetType(lp_unit) + " owner=" + IntToString(UnitGetOwner(lp_unit)) + " applied=" + IntToString(lv_applied) + " total=" + IntToString(lv_current + lv_applied) + " scale=" + FixedToString(libE0EAE146_gf_AbathurBiomassVisualScale(lv_current + lv_applied), c_fixedPrecisionAny) + " life=" + FixedToString(lv_lifeCurrent, c_fixedPrecisionAny) + "/" + FixedToString(lv_lifeMax, c_fixedPrecisionAny) + " b100=" + IntToString(UnitBehaviorCount(lp_unit, "BiomassBuff100")) + " b10=" + IntToString(UnitBehaviorCount(lp_unit, "BiomassBuff10")) + " b1=" + IntToString(UnitBehaviorCount(lp_unit, "BiomassBuff1")));
 
     return lv_applied;
 }
@@ -1283,6 +1287,7 @@ int libE0EAE146_gf_AbathurAddBiomassStacks (unit lp_unit, int lp_amount) {
 void libE0EAE146_gf_AbathurSetUnitFullBiomass (unit lp_unit) {
     int lv_applied;
     fixed lv_lifeMax;
+    fixed lv_lifeCurrent;
 
     if ((lp_unit == null)) {
         return;
@@ -1298,6 +1303,8 @@ void libE0EAE146_gf_AbathurSetUnitFullBiomass (unit lp_unit) {
     if ((lv_lifeMax > 0.0)) {
         UnitSetPropertyFixed(lp_unit, c_unitPropLife, lv_lifeMax);
     }
+    lv_lifeCurrent = UnitGetPropertyFixed(lp_unit, c_unitPropLife, c_unitPropCurrent);
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_BIOMASS_FULL", "unit=" + UnitGetType(lp_unit) + " owner=" + IntToString(UnitGetOwner(lp_unit)) + " applied=" + IntToString(lv_applied) + " total=" + IntToString(libE0EAE146_gf_AbathurUnitBiomassStacks(lp_unit)) + " life=" + FixedToString(lv_lifeCurrent, c_fixedPrecisionAny) + "/" + FixedToString(lv_lifeMax, c_fixedPrecisionAny));
 }
 
 void libE0EAE146_gf_AbathurSetUnitGroupFullBiomass (unitgroup lp_units) {
@@ -5807,7 +5814,13 @@ void libE0EAE146_gf_XMTestBench_RunScenario (int lp_player, string lp_scenarioKi
     else if (lp_scenarioKind == "tech_smoke") {
         libE0EAE146_gf_XMTestBench_RunTechSmoke(lp_player);
     }
-    else if ((lp_scenarioKind == "cargo_light") || (lp_scenarioKind == "cargo_heavy") || (lp_scenarioKind == "cargo_air")) {
+    else if (lp_scenarioKind == "cargo_light") {
+        libE0EAE146_gf_XMTestBench_RunTransportSmoke(lp_player, lp_scenarioKind);
+    }
+    else if (lp_scenarioKind == "cargo_heavy") {
+        libE0EAE146_gf_XMTestBench_RunTransportSmoke(lp_player, lp_scenarioKind);
+    }
+    else if (lp_scenarioKind == "cargo_air") {
         libE0EAE146_gf_XMTestBench_RunTransportSmoke(lp_player, lp_scenarioKind);
     }
     else if (lp_scenarioKind == "special_smoke") {

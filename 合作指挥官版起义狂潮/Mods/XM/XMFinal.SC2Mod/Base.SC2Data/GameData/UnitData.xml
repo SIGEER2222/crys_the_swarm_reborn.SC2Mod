@@ -27101,6 +27101,9 @@
             <AbilArray Link="stop"/>
             <AbilArray Link="attack"/>
             <AbilArray Link="move"/>
+            <BehaviorArray Link="TriggerInheritsParentBuffs"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="AbathurPropArmor"/>
             <WeaponArray Link="LocustMPMelee"/>
             <WeaponArray Link="LocustMP"/>
             <CardLayouts>
@@ -30782,6 +30785,9 @@
             <AbilArray Link="stop"/>
             <AbilArray Link="attack"/>
             <AbilArray Link="move"/>
+            <BehaviorArray Link="TriggerInheritsParentBuffs"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="AbathurPropArmor"/>
             <BehaviorArray Link="SwarmHostPressurizedGlands"/>
             <WeaponArray Link="LocustMelee"/>
             <WeaponArray Link="Locust"/>
@@ -30809,6 +30815,7 @@
     <CUnit id="LocustMP">
             <BehaviorArray Link="LocustMPPathingHack"/>
             <BehaviorArray Link="TriggerInheritsParentBuffs"/>
+            <BehaviorArray Link="AbathurPropArmor"/>
             <KillXP value="0"/>
             <DamageDealtXP value="0"/>
             <DamageTakenXP value="0"/>
@@ -30870,14 +30877,24 @@
     <CUnit id="Mutalisk">
             <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
             <BehaviorArray Link="MutaliskOutOfCombat1"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <AbilArray Link="MutaliskMorphToGuardian"/>
             <AbilArray Link="MutaliskMorphToDevourer"/>
+            <AbilArray Link="que1"/>
+            <AbilArray Link="EvolveToLeviathanMutalisk"/>
             <AbilArray Link="StukovInfestedWildMutation"/>
             <CardLayouts index="0">
                 <LayoutButtons Face="ExplosiveGlaive" Type="Passive" Requirements="HaveHotSExplosiveGlaive" Row="2" Column="0"/>
                 <LayoutButtons Face="ViciousGlaive" Type="Passive" Requirements="HaveHotSViciousGlaive" Row="2" Column="0"/>
                 <LayoutButtons Face="MutaliskRapidRegeneration" Type="Passive" Requirements="HaveHotSRapidRegeneration" Row="2" Column="0"/>
                 <LayoutButtons Face="MorphtoDevourer" Type="AbilCmd" AbilCmd="MutaliskMorphToDevourer,Train1" Row="1" Column="2"/>
+                <LayoutButtons Face="MorphToGuardian" Type="AbilCmd" AbilCmd="MutaliskMorphToGuardian,Train1" Row="2" Column="0"/>
                 <LayoutButtons Face="StukovInfestedWildMutation" Type="AbilCmd" AbilCmd="StukovInfestedWildMutation,Execute" Row="2" Column="0"/>
+                <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanMutalisk,Train1" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"/>
+                <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"/>
             </CardLayouts>
         </CUnit>
     <CUnit id="NullUnit">
@@ -31451,12 +31468,24 @@
     <CUnit id="Roach">
             <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
             <BehaviorArray Link="RoachShield"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="ZagaraOwned"/>
             <AbilArray Link="MorphRoachToRavager"/>
+            <AbilArray Link="EvolveToBrutaliskRoach"/>
+            <AbilArray Link="AbathurDeepTunnelImproved"/>
+            <AbilArray Link="que1"/>
             <CardLayouts index="0">
                 <LayoutButtons Face="TunnelingClaws" Type="Passive" Requirements="HaveHotSTunnelingClaws" Row="2" Column="1"/>
                 <LayoutButtons Face="HotSRoachDamage" Type="Passive" Requirements="HaveHotSRoachDamage" Row="2" Column="1"/>
                 <LayoutButtons Face="HotSRoachShield" Type="Passive" Requirements="HaveHotSRoachShield" Row="2" Column="1"/>
                 <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachToRavager,Train1" Row="2" Column="0"/>
+                <LayoutButtons Face="CommanderPrestigeAbathurBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoach,Train1" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"/>
+                <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnelImproved,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurLevel09DeepTunnelImproved" Row="2" Column="1"/>
             </CardLayouts>
             <LifeStart value="120"/>
             <LifeMax value="120"/>
@@ -31517,10 +31546,15 @@
             <DamageDealtXP value="1"/>
             <DamageTakenXP value="1"/>
             <KillXP value="15"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
             <AbilArray Link="stop"/>
             <AbilArray Link="attack"/>
             <AbilArray Link="move"/>
             <AbilArray Link="BurrowHotSCorpserDown"/>
+            <AbilArray Link="MorphRoachToRavager"/>
+            <AbilArray Link="EvolveToBrutaliskRoach"/>
+            <AbilArray Link="AbathurDeepTunnelImproved"/>
+            <AbilArray Link="que1"/>
             <BehaviorArray Link="RoachShield"/>
             <WeaponArray Link="RoachCorpserMelee"/>
             <WeaponArray Link="RoachCorpserAcidSaliva"/>
@@ -31536,6 +31570,13 @@
                 <LayoutButtons Face="HotSRoachDamage" Type="Passive" Requirements="HaveHotSRoachDamage" Row="2" Column="1"/>
                 <LayoutButtons Face="HotSRoachShield" Type="Passive" Requirements="HaveHotSRoachShield" Row="2" Column="1"/>
                 <LayoutButtons Face="CorpserPassive" Type="Passive" Row="2" Column="3"/>
+                <LayoutButtons Face="CommanderPrestigeAbathurBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoach,Train1" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"/>
+                <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnelImproved,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurLevel09DeepTunnelImproved" Row="2" Column="1"/>
             </CardLayouts>
             <InnerRadius value="0.625"/>
             <CargoSize value="2"/>
@@ -31700,11 +31741,16 @@
             <DamageDealtXP value="1"/>
             <DamageTakenXP value="1"/>
             <KillXP value="15"/>
+            <BehaviorArray Link="AllUnitBehaviorController"/>
+            <BehaviorArray Link="AbathurPropArmor"/>
             <AbilArray Link="stop"/>
             <AbilArray Link="attack"/>
             <AbilArray Link="move"/>
             <AbilArray Link="MorphRoachVileToRavager"/>
             <AbilArray Link="HotSBurrowVileDown"/>
+            <AbilArray Link="EvolveToBrutaliskRoachVile"/>
+            <AbilArray Link="AbathurDeepTunnelImproved"/>
+            <AbilArray Link="que1"/>
             <BehaviorArray Link="RoachShield"/>
             <WeaponArray Link="RoachVileMelee"/>
             <WeaponArray Link="RoachVileAcidSaliva"/>
@@ -31721,6 +31767,13 @@
                 <LayoutButtons Face="HotSRoachShield" Type="Passive" Requirements="HaveHotSRoachShield" Row="2" Column="1"/>
                 <LayoutButtons Face="VilePassive" Type="Passive" Row="2" Column="3"/>
                 <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachVileToRavager,Train1" Row="2" Column="0"/>
+                <LayoutButtons Face="CommanderPrestigeAbathurBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoachVile,Train1" Row="2" Column="2"/>
+                <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"/>
+                <LayoutButtons Face="BiomassPassiveArmor" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"/>
+                <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnelImproved,Execute" Row="2" Column="1"/>
+                <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurLevel09DeepTunnelImproved" Row="2" Column="1"/>
             </CardLayouts>
             <InnerRadius value="0.625"/>
             <CargoSize value="2"/>

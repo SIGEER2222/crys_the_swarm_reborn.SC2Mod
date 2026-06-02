@@ -787,6 +787,14 @@
     <!-- Player trophy -->
     <On Terms="UnitBirth.Hatchery; PlayerHasTrophy" Send="Create ZergPlayerTrophy" />
   </CActorUnit>
+  <CActorUnit id="HatcheryAbathurReborn" parent="Hatchery" unitName="HatcheryAbathurReborn">
+    <Macros value="ZergHatcheryPlayerDecalMacro" />
+    <Macros value="SprayHelperMacroCoop" />
+    <!-- Clan Decals -->
+    <On Terms="UnitBirth.HatcheryAbathurReborn; PlayerHasClanDecal" Send="Create ZergClanFlag" />
+    <!-- Player trophy -->
+    <On Terms="UnitBirth.HatcheryAbathurReborn; PlayerHasTrophy" Send="Create ZergPlayerTrophy" />
+  </CActorUnit>
   <CActorUnit id="Hive">
     <Macros value="ZergHivePlayerDecalMacro" />
     <!-- Clan Decals -->

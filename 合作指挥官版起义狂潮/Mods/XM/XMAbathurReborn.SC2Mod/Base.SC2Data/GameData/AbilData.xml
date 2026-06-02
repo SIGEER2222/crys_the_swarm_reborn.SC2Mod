@@ -3963,4 +3963,72 @@
       <Button DefaultButtonFace="ZagaraBileLauncher" State="Restricted" Requirements="HaveSpawningPool" />
     </InfoArray>
   </CAbilBuild>
+  <CAbilResearch id="AbathurRebornCrawlerResearch">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures" />
+    <InfoArray index="Research1" Time="90" Upgrade="CrawlerDefense">
+      <Resource index="Minerals" value="200" />
+      <Resource index="Vespene" value="200" />
+      <Button DefaultButtonFace="EvolveCrawlerPlating" Requirements="DoesntHaveCrawlerPlating" />
+    </InfoArray>
+    <InfoArray index="Research2" Time="90" Upgrade="CrawlerSpeed">
+      <Resource index="Minerals" value="200" />
+      <Resource index="Vespene" value="200" />
+      <Button DefaultButtonFace="EvolveCrawlerAdaptivity" Requirements="DoesntHaveCrawlerAdaptivity" />
+    </InfoArray>
+    <InfoArray index="Research3" Time="90" Upgrade="CrawlerCombatRegen">
+      <Resource index="Minerals" value="200" />
+      <Resource index="Vespene" value="200" />
+      <Button DefaultButtonFace="EvolveCrawlerRegeneration" Requirements="DoesntHaveCrawlerRegeneration" />
+    </InfoArray>
+  </CAbilResearch>
+  <CAbilEffectInstant id="RagingTentacle">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Levels value="1" />
+    <Effect index="0" value="CrawlerRagingTentacle" />
+    <Cost>
+      <Resource index="Minerals" value="50" />
+      <Resource index="Vespene" value="25" />
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="RagingTentacle" State="Restricted" Requirements="NotCrawlerRagingTentacle" />
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="CloudofFlies">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Levels value="1" />
+    <Effect index="0" value="CrawlerCloudofFlies" />
+    <Cost>
+      <Resource index="Minerals" value="25" />
+      <Resource index="Vespene" value="25" />
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="CrawlerCloudofFlies" State="Restricted" Requirements="NotCrawlerCloudofFlies" />
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="BroodlingInfestation">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Levels value="1" />
+    <Effect index="0" value="CrawlerBroodlingInfestation" />
+    <Cost>
+      <Resource index="Minerals" value="25" />
+      <Resource index="Vespene" value="25" />
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="CrawlerBroodlingInfestation" State="Restricted" Requirements="NotCrawlerBroodlingInfestation" />
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="Range">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Levels value="1" />
+    <Effect index="0" value="CrawlerRange" />
+    <Cost>
+      <Resource index="Minerals" value="25" />
+      <Resource index="Vespene" value="25" />
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="CrawlerRange" State="Restricted" Requirements="NotCrawlerRange" />
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AcidMortar">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Levels value="1" />
+    <Effect index="0" value="CrawlerAcidMortar" />
+    <Cost>
+      <Resource index="Minerals" value="50" />
+      <Resource index="Vespene" value="25" />
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AcidMortar" State="Restricted" Requirements="NotCrawlerAcidMortar" />
+  </CAbilEffectInstant>
 </Catalog>

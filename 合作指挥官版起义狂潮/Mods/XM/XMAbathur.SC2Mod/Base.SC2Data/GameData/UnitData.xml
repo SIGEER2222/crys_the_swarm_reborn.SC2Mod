@@ -77,8 +77,8 @@
     <AbilArray Link="AlarakACDeadlyCharge"></AbilArray>
     <AbilArray Link="DestructionWaveNoOffset"></AbilArray>
     <AbilArray Link="AlarakEmpower"></AbilArray>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <BehaviorArray Link="SoulAbsorption"></BehaviorArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="SoulAbsorption"></BehaviorArray>
     <BehaviorArray Link="AlarakTheStrongestSurvive"></BehaviorArray>
     <BehaviorArray Link="AlarakEmpowerDisplay"></BehaviorArray>
     <BehaviorArray Link="HeroCCImmunity"></BehaviorArray>
@@ -4391,9 +4391,10 @@
     <DamageTakenXP value="0"></DamageTakenXP>
     <SubgroupPriority value="109"></SubgroupPriority>
   </CUnit>
-  <CUnit id="RoachBurrowed">
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <Acceleration value="0"></Acceleration>
+  <CUnit id="RoachBurrowed">
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <Acceleration value="0"></Acceleration>
     <TacticalAIThink value="AIThinkRoachBurrowed"></TacticalAIThink>
     <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
@@ -4443,9 +4444,10 @@
     <AbilArray index="2" Link="stop"></AbilArray>
     <HotkeyCategory value="Unit/Category/ZergEvolved"></HotkeyCategory>
   </CUnit>
-  <CUnit id="RoachVileBurrowed">
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <Acceleration value="0"></Acceleration>
+  <CUnit id="RoachVileBurrowed">
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <Acceleration value="0"></Acceleration>
     <TacticalAIThink value="AIThinkRoachBurrowed"></TacticalAIThink>
     <ScoreKill value="0"></ScoreKill>
     <KillXP value="0"></KillXP>
@@ -6459,9 +6461,10 @@
     <DamageTakenXP value="0"></DamageTakenXP>
     <HotkeyCategory value=""></HotkeyCategory>
   </CUnit>
-  <CUnit id="SwarmHostBurrowed">
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <BehaviorArray Link="SwarmHostCreep"></BehaviorArray>
+  <CUnit id="SwarmHostBurrowed">
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <BehaviorArray Link="SwarmHostCreep"></BehaviorArray>
     <CardLayouts index="0">
       <LayoutButtons index="1" Row="1"></LayoutButtons>
       <LayoutButtons index="2" Row="1"></LayoutButtons>
@@ -7347,10 +7350,11 @@
     <GlossaryPriority value="148"></GlossaryPriority>
     <KillDisplay value="Never"></KillDisplay>
     <RankDisplay value="Never"></RankDisplay>
-    <BehaviorArray Link="SupplyLT1"></BehaviorArray>
-    <BehaviorArray Link="TriggerInheritsParentBuffs"></BehaviorArray>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-  </CUnit>
+    <BehaviorArray Link="SupplyLT1"></BehaviorArray>
+    <BehaviorArray Link="TriggerInheritsParentBuffs"></BehaviorArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+  </CUnit>
   <CUnit id="AbathurLocustEggAMissileWeapon" parent="MISSILE_INVULNERABLE">
     <Race value="Zerg"></Race>
     <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"></EditorCategories>
@@ -7942,7 +7946,7 @@
     <KillDisplay value="Always"></KillDisplay>
     <RankDisplay value="Always"></RankDisplay>
   </CUnit>
-  <CUnit id="Devourer">
+  <CUnit id="Devourer">
     <AbilArray Link="CorrosiveAcid"></AbilArray>
     <AbilArray Link="EvolveToLeviathanDevourer"></AbilArray>
     <AbilArray Link="que1"></AbilArray>
@@ -7954,9 +7958,10 @@
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
       <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
-    </CardLayouts>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <SubgroupPriority value="17"></SubgroupPriority>
+    </CardLayouts>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <SubgroupPriority value="17"></SubgroupPriority>
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"></EditorCategories>
     <HotkeyCategory value="Unit/Category/ZergEvolved"></HotkeyCategory>
     <GlossaryPriority value="210"></GlossaryPriority>
@@ -8264,7 +8269,7 @@
     <HotkeyAlias value=""></HotkeyAlias>
     <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"></ShieldArmorName>
   </CUnit>
-  <CUnit id="GuardianMP">
+  <CUnit id="GuardianMP">
     <Speed value="2.5"></Speed>
     <Sight value="13"></Sight>
     <GlossaryCategory value="Unit/Category/ZergUnits"></GlossaryCategory>
@@ -8279,9 +8284,10 @@
       <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="GuardianAttackRangeIncrease" Type="Passive" Requirements="HaveGuardianAttackRangeIncrease" Row="1" Column="0"></LayoutButtons>
-    </CardLayouts>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <AbilArray Link="EvolveToLeviathanGuardianMP"></AbilArray>
+    </CardLayouts>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <AbilArray Link="EvolveToLeviathanGuardianMP"></AbilArray>
     <AbilArray Link="que1"></AbilArray>
     <SubgroupPriority value="112"></SubgroupPriority>
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"></EditorCategories>
@@ -9177,14 +9183,16 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <HotkeyCategory value="Unit/Category/ZergUnits"></HotkeyCategory>
-    <BehaviorArray Link="TriggerInheritsParentBuffs"></BehaviorArray>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <SubgroupPriority value="101"></SubgroupPriority>
+    <BehaviorArray Link="TriggerInheritsParentBuffs"></BehaviorArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <SubgroupPriority value="101"></SubgroupPriority>
   </CUnit>
   <CUnit id="LocustMP">
-    <BehaviorArray Link="LocustMPPathingHack"></BehaviorArray>
-    <BehaviorArray Link="TriggerInheritsParentBuffs"></BehaviorArray>
-    <KillXP value="0"></KillXP>
+    <BehaviorArray Link="LocustMPPathingHack"></BehaviorArray>
+    <BehaviorArray Link="TriggerInheritsParentBuffs"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <HotkeyCategory value=""></HotkeyCategory>
@@ -9218,7 +9226,7 @@
     <DamageTakenXP value="0"></DamageTakenXP>
     <SubgroupPriority value="101"></SubgroupPriority>
   </CUnit>
-  <CUnit id="Mutalisk">
+  <CUnit id="Mutalisk">
     <CardLayouts index="0">
       <LayoutButtons index="5" Row="1" Column="2"></LayoutButtons>
       <LayoutButtons index="6" Row="1" Column="1"></LayoutButtons>
@@ -9230,9 +9238,10 @@
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
       <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
-    </CardLayouts>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <ScoreMake value="0"></ScoreMake>
+    </CardLayouts>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
@@ -9488,10 +9497,11 @@
     <AbilArray Link="BurrowQueenDownCoop"></AbilArray>
     <AbilArray Link="Transfusion"></AbilArray>
     <AbilArray Link="DeepTunnel"></AbilArray>
-    <AbilArray Link="KerriganEnhance"></AbilArray>
-    <AbilArray Link="SpawnLarva"></AbilArray>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <WeaponArray Link="AcidSpines"></WeaponArray>
+    <AbilArray Link="KerriganEnhance"></AbilArray>
+    <AbilArray Link="SpawnLarva"></AbilArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <WeaponArray Link="AcidSpines"></WeaponArray>
     <WeaponArray Link="TalonsMissile"></WeaponArray>
     <WeaponArray Link="Talons"></WeaponArray>
     <CardLayouts>
@@ -9575,10 +9585,11 @@
     <CostResource index="Minerals" value="150"></CostResource>
     <AttackTargetPriority value="20"></AttackTargetPriority>
     <AbilArray Link="stop"></AbilArray>
-    <AbilArray Link="BurrowQueenUpCoop"></AbilArray>
-    <AbilArray Link="QueenBuild"></AbilArray>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <CardLayouts>
+    <AbilArray Link="BurrowQueenUpCoop"></AbilArray>
+    <AbilArray Link="QueenBuild"></AbilArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <CardLayouts>
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"></LayoutButtons>
       <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowQueenUpCoop,Execute" Row="2" Column="4"></LayoutButtons>
       <LayoutButtons Face="InjectLarvaPassive" Type="Passive" Requirements="HaveQueenDoubleInjectLarva" Row="1" Column="0"></LayoutButtons>
@@ -9612,7 +9623,7 @@
     <TacticalAIThink value="AIThinkRavager"></TacticalAIThink>
     <HotkeyCategory value=""></HotkeyCategory>
   </CUnit>
-  <CUnit id="RavagerAbathur">
+  <CUnit id="RavagerAbathur">
     <DeathRevealRadius value="3"></DeathRevealRadius>
     <Race value="Zerg"></Race>
     <Mob value="Multiplayer"></Mob>
@@ -9645,12 +9656,13 @@
     <AbilArray Link="attack"></AbilArray>
     <AbilArray Link="move"></AbilArray>
     <AbilArray Link="que1"></AbilArray>
-    <AbilArray Link="BurrowRavagerAbathurDown"></AbilArray>
-    <AbilArray Link="RavagerAbathurCorrosiveBile"></AbilArray>
-    <AbilArray Link="EvolveToBrutaliskRavager"></AbilArray>
-    <AbilArray Link="AbathurDeepTunnelImproved"></AbilArray>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <WeaponArray Link="RavagerWeapon"></WeaponArray>
+    <AbilArray Link="BurrowRavagerAbathurDown"></AbilArray>
+    <AbilArray Link="RavagerAbathurCorrosiveBile"></AbilArray>
+    <AbilArray Link="EvolveToBrutaliskRavager"></AbilArray>
+    <AbilArray Link="AbathurDeepTunnelImproved"></AbilArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <WeaponArray Link="RavagerWeapon"></WeaponArray>
     <CardLayouts>
       <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"></LayoutButtons>
       <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"></LayoutButtons>
@@ -9690,7 +9702,7 @@
     <RankDisplay value="Always"></RankDisplay>
     <Description value="Button/Tooltip/Ravager"></Description>
   </CUnit>
-  <CUnit id="RavagerAbathurBurrowed">
+  <CUnit id="RavagerAbathurBurrowed">
     <DeathRevealRadius value="3"></DeathRevealRadius>
     <Race value="Zerg"></Race>
     <Mob value="Multiplayer"></Mob>
@@ -9718,11 +9730,12 @@
     <CostResource index="Minerals" value="125"></CostResource>
     <CostResource index="Vespene" value="75"></CostResource>
     <AttackTargetPriority value="20"></AttackTargetPriority>
-    <AbilArray Link="BurrowRavagerAbathurUp"></AbilArray>
-    <AbilArray Link="AbathurDeepTunnelImproved"></AbilArray>
-    <AbilArray Link="que1"></AbilArray>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <CardLayouts>
+    <AbilArray Link="BurrowRavagerAbathurUp"></AbilArray>
+    <AbilArray Link="AbathurDeepTunnelImproved"></AbilArray>
+    <AbilArray Link="que1"></AbilArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <CardLayouts>
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"></LayoutButtons>
       <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"></LayoutButtons>
       <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurUp,Execute" Row="2" Column="4"></LayoutButtons>
@@ -9854,9 +9867,10 @@
     <AbilArray Link="que1"></AbilArray>
     <AbilArray Link="MorphRoachToRavager"></AbilArray>
     <AbilArray Link="EvolveToBrutaliskRoach"></AbilArray>
-    <AbilArray Link="AbathurDeepTunnelImproved"></AbilArray>
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <BehaviorArray Link="ZagaraOwned"></BehaviorArray>
+    <AbilArray Link="AbathurDeepTunnelImproved"></AbilArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <BehaviorArray Link="ZagaraOwned"></BehaviorArray>
     <CardLayouts index="0">
       <LayoutButtons index="5" Row="1"></LayoutButtons>
       <LayoutButtons index="7" Face="ZerglingBurrowMove" Requirements="HaveOrganicCarapace" Row="1" Column="2"></LayoutButtons>
@@ -10203,11 +10217,12 @@
   <CUnit id="SS_Leviathan">
     <ScoreKill value="0"></ScoreKill>
   </CUnit>
-  <CUnit id="SwarmHost">
-    <WeaponArray Link="SwarmHostFakeWeapon"></WeaponArray>
-    <BehaviorArray index="0" Link="SwarmHostPressurizedGlands"></BehaviorArray>
-    <BehaviorArray index="1" Link="AllUnitBehaviorController"></BehaviorArray>
-    <CardLayouts index="0">
+  <CUnit id="SwarmHost">
+    <WeaponArray Link="SwarmHostFakeWeapon"></WeaponArray>
+    <BehaviorArray index="0" Link="SwarmHostPressurizedGlands"></BehaviorArray>
+    <BehaviorArray index="1" Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <CardLayouts index="0">
       <LayoutButtons index="6" Row="1"></LayoutButtons>
       <LayoutButtons index="7" Row="1"></LayoutButtons>
       <LayoutButtons index="8" Row="1"></LayoutButtons>
@@ -10370,9 +10385,10 @@
     <SelectAlias value="ToxicNest"></SelectAlias>
     <SubgroupAlias value="ToxicNest"></SubgroupAlias>
   </CUnit>
-  <CUnit id="Viper">
-    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
-    <ScoreMake value="0"></ScoreMake>
+  <CUnit id="Viper">
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <BehaviorArray Link="AbathurPropArmor"></BehaviorArray>
+    <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>

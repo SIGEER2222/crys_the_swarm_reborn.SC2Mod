@@ -1196,4 +1196,71 @@
       <HeightTime index="Stop" value="0.25" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="CrawlerAcidMortarEnabled">
+    <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ravasaur-dissolvingacid.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Modification>
+      <WeaponEnableArray value="AcidMortar" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CrawlerRagingTentacleEnabled">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Modification>
+      <WeaponEnableArray value="RagingTentacle" />
+      <WeaponDisableArray value="ImpalerTentacle" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CrawlerRange">
+    <InfoIcon value="Assets\Textures\btn-upgrade-zagara-increasebilelauncherrange.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Modification SightBonus="1" RangedWeaponRange="1" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CrawlerBroodlingInfestation">
+    <InfoIcon value="Assets\Textures\talent-zagara-level08-incubatebroodlings.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <DamageResponse Handled="SpawnBroodlingCrawler">
+      <Chance value="1" />
+      <Cost>
+        <Cooldown TimeUse="10" />
+      </Cost>
+    </DamageResponse>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CrawlerCloudofFlies">
+    <InfoIcon value="Assets\Textures\btn-upgrade-zagara-scourgegasreduction.dds" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Period value="0.33" />
+    <PeriodicEffect value="CloudofFliesAuraSearch" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CrawlerCombatRegen">
+    <InfoIcon value="Assets\Textures\btn-ability-zerg-regenaura.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Modification>
+      <VitalRegenArray index="Life" value="2" />
+    </Modification>
+    <Requirements value="CrawlerCombatRegen" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CrawlerSafetyRegen">
+    <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-healingaura.dds" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <DisableValidatorArray value="CasterNotInCombat5" />
+    <Modification>
+      <VitalRegenArray index="Life" value="5" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="CrawlerShenanigans">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Requirements value="Abathur" />
+    <Modification>
+      <WeaponEnableArray value="ImpalerTentacle" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="EnableCrawlerWeapon">
+    <InfoFlags index="Hidden" value="1" />
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Modification>
+      <WeaponEnableArray value="ImpalerTentacle" />
+      <WeaponEnableArray value="AcidSpew" />
+    </Modification>
+  </CBehaviorBuff>
 </Catalog>

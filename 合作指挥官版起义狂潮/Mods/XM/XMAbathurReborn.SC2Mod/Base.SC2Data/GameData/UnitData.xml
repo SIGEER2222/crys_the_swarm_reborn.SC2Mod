@@ -142,6 +142,7 @@
     <BehaviorArray Link="SupplyLT1" />
     <BehaviorArray Link="TriggerInheritsParentBuffs" />
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
   </CUnit>
   <CUnit id="AbathurRebornLocustEggAMissileWeapon" parent="MISSILE_INVULNERABLE">
     <Race value="Zerg" />
@@ -441,6 +442,9 @@
     <TechAliasArray value="Alias_EvolutionChamber" />
     <CardLayouts index="0">
       <LayoutButtons index="11" Row="2" Column="1" />
+      <LayoutButtons Face="EvolveCrawlerAdaptivity" Type="AbilCmd" AbilCmd="AbathurRebornCrawlerResearch,Research2" Row="2" Column="0" />
+      <LayoutButtons Face="EvolveCrawlerPlating" Type="AbilCmd" AbilCmd="AbathurRebornCrawlerResearch,Research1" Row="2" Column="1" />
+      <LayoutButtons Face="EvolveCrawlerRegeneration" Type="AbilCmd" AbilCmd="AbathurRebornCrawlerResearch,Research3" Row="2" Column="2" />
       <LayoutButtons Face="ZergGroundAttacksLevel1" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research13" Row="0" Column="0" />
       <LayoutButtons Face="ZergGroundAttacksLevel2" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research14" Row="0" Column="0" />
       <LayoutButtons Face="ZergGroundAttacksLevel3" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research15" Row="0" Column="0" />
@@ -463,6 +467,7 @@
     <ScoreMake value="0" />
     <ScoreKill value="0" />
     <BehaviorArray Link="ChronoBoostTarget" />
+    <AbilArray Link="AbathurRebornCrawlerResearch" />
     <AbilArray Link="EvolutionPitScalingCostResearch" />
     <SubgroupPriority value="34" />
   </CUnit>
@@ -1343,11 +1348,13 @@
     <HotkeyCategory value="Unit/Category/ZergUnits" />
     <BehaviorArray Link="TriggerInheritsParentBuffs" />
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <SubgroupPriority value="101" />
   </CUnit>
   <CUnit id="LocustMP">
     <BehaviorArray Link="LocustMPPathingHack" />
     <BehaviorArray Link="TriggerInheritsParentBuffs" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <KillXP value="0" />
     <DamageDealtXP value="0" />
     <DamageTakenXP value="0" />
@@ -1507,6 +1514,7 @@
   <CUnit id="QueenBurrowed">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <ScoreKill value="0" />
     <KillXP value="0" />
     <DamageDealtXP value="0" />
@@ -1730,6 +1738,7 @@
     <AbilArray Link="EvolveToBrutaliskRavager" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <WeaponArray Link="RavagerWeapon" />
     <CardLayouts>
       <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
@@ -1802,6 +1811,7 @@
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <AbilArray Link="que1" />
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <CardLayouts>
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
       <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4" />
@@ -3534,10 +3544,11 @@
       <LayoutButtons Face="CommanderPrestigeAbathurRebornLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanDevourer,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
+    <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
+    <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
     </CardLayouts>
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <SubgroupPriority value="17" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
@@ -4829,9 +4840,10 @@
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
       <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
       <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
-      <LayoutButtons Face="GuardianAttackRangeIncrease" Type="Passive" Requirements="HaveGuardianAttackRangeIncrease" Row="1" Column="0" />
+    <LayoutButtons Face="GuardianAttackRangeIncrease" Type="Passive" Requirements="HaveGuardianAttackRangeIncrease" Row="1" Column="0" />
     </CardLayouts>
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <AbilArray Link="EvolveToLeviathanGuardianMP" />
     <AbilArray Link="que1" />
     <SubgroupPriority value="112" />
@@ -6861,6 +6873,7 @@
     </CardLayouts>
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <ScoreMake value="0" />
     <ScoreKill value="0" />
     <KillXP value="0" />
@@ -7496,6 +7509,7 @@
     <AbilArray Link="BioMechanicalTransfusion" />
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <CardLayouts index="0">
       <LayoutButtons index="5" Face="BurrowDown" AbilCmd="BurrowQueenDown,Execute" Column="4" />
       <LayoutButtons index="6" Face="DeepTunnel" AbilCmd="DeepTunnel,Execute" Column="3" />
@@ -7763,6 +7777,7 @@
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="ZagaraOwned" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <CardLayouts index="0">
       <LayoutButtons index="5" Row="1" />
       <LayoutButtons index="7" Face="ZerglingBurrowMove" Requirements="HaveOrganicCarapace" Row="1" Column="2" />
@@ -7786,6 +7801,7 @@
   <CUnit id="RoachBurrowed">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <Acceleration value="0" />
     <TacticalAIThink value="AIThinkRoachBurrowed" />
     <ScoreMake value="0" />
@@ -7899,6 +7915,7 @@
   <CUnit id="RoachVileBurrowed">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <Acceleration value="0" />
     <TacticalAIThink value="AIThinkRoachBurrowed" />
     <ScoreKill value="0" />
@@ -9820,15 +9837,70 @@
     <HotkeyCategory value="Unit/Category/TerranRaider" />
   </CUnit>
   <CUnit id="SpineCrawler">
+    <CardLayouts index="0">
+      <LayoutButtons Face="CrawlerSafetyRegen" Type="Passive" Row="2" Column="1" />
+      <LayoutButtons Face="CrawlerCombatRegen" Type="Passive" Requirements="CrawlerCombatRegen" Row="2" Column="2" />
+      <LayoutButtons Face="CrawlerCloudofFlies" Type="AbilCmd" AbilCmd="CloudofFlies,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="CrawlerBroodlingInfestation" Type="AbilCmd" AbilCmd="BroodlingInfestation,Execute" Row="1" Column="2" />
+      <LayoutButtons Face="CrawlerRange" Type="AbilCmd" AbilCmd="Range,Execute" Row="1" Column="3" />
+      <LayoutButtons Face="RagingTentacle" Type="AbilCmd" AbilCmd="RagingTentacle,Execute" Row="1" Column="0" />
+    </CardLayouts>
+    <BehaviorArray Link="CrawlerCombatRegen" />
+    <BehaviorArray Link="CrawlerSafetyRegen" />
+    <BehaviorArray Link="EnableCrawlerWeapon" />
+    <AbilArray Link="BroodlingInfestation" />
+    <AbilArray Link="CloudofFlies" />
+    <AbilArray Link="Range" />
+    <AbilArray Link="RagingTentacle" />
+    <WeaponArray Link="RagingTentacle" Turret="SpineCrawler" />
     <ScoreMake value="0" />
     <ScoreKill value="0" />
     <SubgroupPriority value="23" />
   </CUnit>
   <CUnit id="SporeCrawler">
     <BehaviorArray index="0" Link="Detector11" />
+    <BehaviorArray Link="CrawlerCombatRegen" />
+    <BehaviorArray Link="CrawlerSafetyRegen" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="AcidMortar" Type="AbilCmd" AbilCmd="AcidMortar,Execute" Row="1" Column="0" />
+      <LayoutButtons Face="CrawlerCloudofFlies" Type="AbilCmd" AbilCmd="CloudofFlies,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="CrawlerSafetyRegen" Type="Passive" Row="2" Column="1" />
+      <LayoutButtons Face="CrawlerCombatRegen" Type="Passive" Requirements="CrawlerCombatRegen" Row="2" Column="2" />
+      <LayoutButtons Face="CrawlerBroodlingInfestation" Type="AbilCmd" AbilCmd="BroodlingInfestation,Execute" Row="1" Column="2" />
+      <LayoutButtons Face="CrawlerRange" Type="AbilCmd" AbilCmd="Range,Execute" Row="1" Column="3" />
+    </CardLayouts>
+    <WeaponArray Link="AcidMortar" Turret="SporeCrawler" />
+    <AbilArray Link="AcidMortar" />
+    <AbilArray Link="CloudofFlies" />
+    <AbilArray Link="Range" />
+    <AbilArray Link="BroodlingInfestation" />
     <ScoreMake value="0" />
     <ScoreKill value="0" />
     <SubgroupPriority value="22" />
+  </CUnit>
+  <CUnit id="SpineCrawlerUprooted">
+    <AbilArray Link="attack" />
+    <AbilArray Link="BroodlingInfestation" />
+    <AbilArray Link="CloudofFlies" />
+    <AbilArray Link="RagingTentacle" />
+    <AbilArray Link="Range" />
+    <BehaviorArray Link="CrawlerShenanigans" />
+    <BehaviorArray Link="CrawlerCombatRegen" />
+    <BehaviorArray Link="CrawlerSafetyRegen" />
+    <WeaponArray index="0" Link="ImpalerTentacle" />
+    <WeaponArray Link="RagingTentacle" Turret="SpineCrawlerUprooted" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="CrawlerSafetyRegen" Type="Passive" Row="2" Column="1" />
+      <LayoutButtons Face="CrawlerCombatRegen" Type="Passive" Requirements="CrawlerCombatRegen" Row="2" Column="2" />
+      <LayoutButtons Face="CrawlerCloudofFlies" Type="AbilCmd" AbilCmd="CloudofFlies,Execute" Row="1" Column="1" />
+      <LayoutButtons Face="CrawlerBroodlingInfestation" Type="AbilCmd" AbilCmd="BroodlingInfestation,Execute" Row="1" Column="2" />
+      <LayoutButtons Face="CrawlerRange" Type="AbilCmd" AbilCmd="Range,Execute" Row="1" Column="3" />
+      <LayoutButtons Face="RagingTentacle" Type="AbilCmd" AbilCmd="RagingTentacle,Execute" Row="1" Column="0" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="SporeCrawlerUprooted">
+    <BehaviorArray Link="CrawlerSafetyRegen" />
+    <BehaviorArray Link="CrawlerCombatRegen" />
   </CUnit>
   <CUnit id="Stalker">
     <BehaviorArray index="0" Link="AlarakStalkerPhasingArmor" />
@@ -10153,6 +10225,7 @@
     <WeaponArray Link="SwarmHostFakeWeapon" />
     <BehaviorArray index="0" Link="SwarmHostPressurizedGlands" />
     <BehaviorArray index="1" Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <CardLayouts index="0">
       <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
       <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
@@ -10191,6 +10264,7 @@
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="SwarmHostCreep" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <CardLayouts index="0">
       <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0" />
       <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1" />
@@ -10703,6 +10777,7 @@
   <CUnit id="Viper">
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="AbathurRebornPropArmor" />
     <ScoreMake value="0" />
     <ScoreKill value="0" />
     <KillXP value="0" />

@@ -14,11 +14,25 @@
     <Behavior value="BiomassBuff100" />
     <Copy value="1" />
   </CEffectTransferBehavior>
+  <CEffectTransferBehavior id="AbathurRebornBiomassLocust100PlusLifeTransfer">
+    <EditorCategories value="Race:Zerg" />
+    <LaunchUnit Value="Source" />
+    <ImpactUnit Value="Target" />
+    <Behavior value="BiomassBuff100PlusLife" />
+    <Copy value="1" />
+  </CEffectTransferBehavior>
   <CEffectTransferBehavior id="AbathurRebornBiomassLocust10Transfer">
     <EditorCategories value="Race:Zerg" />
     <LaunchUnit Value="Source" />
     <ImpactUnit Value="Target" />
     <Behavior value="BiomassBuff10" />
+    <Copy value="1" />
+  </CEffectTransferBehavior>
+  <CEffectTransferBehavior id="AbathurRebornBiomassLocust10PlusLifeTransfer">
+    <EditorCategories value="Race:Zerg" />
+    <LaunchUnit Value="Source" />
+    <ImpactUnit Value="Target" />
+    <Behavior value="BiomassBuff10PlusLife" />
     <Copy value="1" />
   </CEffectTransferBehavior>
   <CEffectTransferBehavior id="AbathurRebornBiomassLocust1Transfer">
@@ -177,18 +191,27 @@
   <CEffectSet id="AbathurRebornLocustCreateSetA">
     <EditorCategories value="Race:Zerg" />
     <EffectArray value="AbathurRebornMakePrecursorLocust" />
+    <EffectArray value="AbathurRebornBiomassLocust100Transfer" />
+    <EffectArray value="AbathurRebornBiomassLocust10Transfer" />
+    <EffectArray value="AbathurRebornBiomassLocust1Transfer" />
     <EffectArray value="AbathurRebornLocustCreateLMA" />
     <EffectArray value="AbathurRebornLocustStunAB" />
   </CEffectSet>
   <CEffectSet id="AbathurRebornLocustCreateSetB">
     <EditorCategories value="Race:Zerg" />
     <EffectArray value="AbathurRebornMakePrecursorLocust" />
+    <EffectArray value="AbathurRebornBiomassLocust100Transfer" />
+    <EffectArray value="AbathurRebornBiomassLocust10Transfer" />
+    <EffectArray value="AbathurRebornBiomassLocust1Transfer" />
     <EffectArray value="AbathurRebornLocustCreateLMB" />
     <EffectArray value="AbathurRebornLocustStunAB" />
   </CEffectSet>
   <CEffectSet id="AbathurRebornLocustCreateSetC">
     <EditorCategories value="Race:Zerg" />
     <EffectArray value="AbathurRebornMakePrecursorLocust" />
+    <EffectArray value="AbathurRebornBiomassLocust100Transfer" />
+    <EffectArray value="AbathurRebornBiomassLocust10Transfer" />
+    <EffectArray value="AbathurRebornBiomassLocust1Transfer" />
     <EffectArray value="AbathurRebornLocustCreateLMC" />
     <EffectArray value="AbathurRebornLocustStunAB" />
   </CEffectSet>
@@ -1367,4 +1390,73 @@
     <SearchFlags index="OffsetAreaByAngle" value="1" />
     <ArmorReduction value="1" />
   </CEffectDamage>
+  <CEffectApplyBehavior id="CrawlerRagingTentacle">
+    <EditorCategories value="" />
+    <Behavior value="CrawlerRagingTentacleEnabled" />
+  </CEffectApplyBehavior>
+  <CEffectApplyBehavior id="CrawlerCloudofFlies">
+    <EditorCategories value="" />
+  </CEffectApplyBehavior>
+  <CEffectApplyBehavior id="CrawlerRange">
+    <EditorCategories value="" />
+  </CEffectApplyBehavior>
+  <CEffectApplyBehavior id="CrawlerBroodlingInfestation">
+    <EditorCategories value="" />
+  </CEffectApplyBehavior>
+  <CEffectApplyBehavior id="CrawlerAcidMortar">
+    <EditorCategories value="" />
+    <Behavior value="CrawlerAcidMortarEnabled" />
+  </CEffectApplyBehavior>
+  <CEffectDamage id="CloudofFliesDamage">
+    <Amount value="2" />
+    <Death value="Disintegrate" />
+  </CEffectDamage>
+  <CEffectEnumArea id="CloudofFliesAuraSearch">
+    <EditorCategories value="Race:Terran" />
+    <ResponseFlags index="Acquire" value="1" />
+    <ResponseFlags index="Flee" value="1" />
+    <ImpactLocation Value="CasterUnit" />
+    <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <AreaArray Radius="2" Effect="CloudofFliesDamage" />
+    <SearchFlags index="CallForHelp" value="1" />
+    <SearchFlags index="ExtendByUnitRadius" value="1" />
+    <SearchFlags index="SameCliff" value="1" />
+  </CEffectEnumArea>
+  <CEffectLaunchMissile id="ImpalerTentacleLM2">
+    <ValidatorArray index="0" value="SpineCrawlerLMTargetFilters" />
+    <EditorCategories value="Race:Zerg" />
+    <ImpactEffect value="ImpalerTentacleU2" />
+    <Flags index="Return" value="1" />
+    <AmmoUnit value="SpineCrawlerWeapon2" />
+    <ReturnDelay value="0.175" />
+    <ReturnMovers Link="SpineCrawlerTentacleRetractShort" IfRangeLTE="3" />
+    <ReturnMovers Link="SpineCrawlerTentacleRetractLong" IfRangeLTE="7" />
+    <Movers Link="SpineCrawlerTentacleExtendShort" IfRangeLTE="3" />
+    <Movers Link="SpineCrawlerTentacleExtendLong" IfRangeLTE="7" />
+  </CEffectLaunchMissile>
+  <CEffectDamage id="ImpalerTentacleU2" parent="DU_WEAP_MISSILE">
+    <EditorCategories value="Race:Zerg" />
+    <AttributeBonus index="Armored" value="5" />
+    <Amount value="25" />
+  </CEffectDamage>
+  <CEffectDamage id="AcidMortarDamage" parent="DU_WEAP_MISSILE">
+    <EditorCategories value="Race:Zerg" />
+    <AttributeBonus index="Light" value="30" />
+    <AttributeBonus index="Structure" value="15" />
+    <Amount value="15" />
+    <Death value="Disintegrate" />
+  </CEffectDamage>
+  <CEffectLaunchMissile id="AcidMortarLM">
+    <EditorCategories value="Race:Zerg" />
+    <ImpactEffect value="AcidMortarSearch" />
+    <AmmoUnit value="AcidMortarWeapon" />
+  </CEffectLaunchMissile>
+  <CEffectEnumArea id="AcidMortarSearch">
+    <EditorCategories value="Race:Zerg" />
+    <SearchFilters value="Ground;Player,Ally,Stasis,Dead,Hidden,Invulnerable" />
+    <AreaArray Radius="2" Effect="AcidMortarDamage" />
+    <SearchFlags index="CallForHelp" value="1" />
+    <SearchFlags index="OffsetAreaByAngle" value="0" />
+    <SearchFlags index="SameCliff" value="1" />
+  </CEffectEnumArea>
 </Catalog>
