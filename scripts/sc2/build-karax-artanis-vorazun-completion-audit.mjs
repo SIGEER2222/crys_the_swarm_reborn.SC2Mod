@@ -8,9 +8,14 @@ const commanders = ['Karax', 'Artanis', 'Vorazun'];
 const officialRoot = path.join(repoRoot, '游戏数据', '官方合作指挥官', 'commanders');
 const fieldAuditPath = path.join(repoRoot, 'docs', '每日进度', '2026-06-01-karax-artanis-vorazun字段级对齐审计', 'karax-artanis-vorazun-field-alignment.json');
 const gapReportPath = path.join(repoRoot, 'docs', '每日进度', '2026-05-31-官方合作指挥官全量缺口清单', 'official-vs-mod-gap-report.json');
+const runtimeTechDiagnosticsPath = path.join(repoRoot, 'docs', '每日进度', '2026-06-02-karax-artanis-vorazun当前Mod科技链路排查', 'commander-tech-tree-diagnostics.json');
 const outDir = path.join(repoRoot, 'docs', '每日进度', '2026-06-01-karax-artanis-vorazun完成度审计');
 const outJson = path.join(outDir, 'karax-artanis-vorazun-completion-audit.json');
 const outMd = path.join(outDir, 'karax-artanis-vorazun-completion-audit.md');
+
+const allowedRuntimeExtraBuildings = {
+  Vorazun: new Set(['DarkPylon']),
+};
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -26,6 +31,10 @@ function check(id, description, ok, evidence) {
 
 function byCommander(items) {
   return new Map(items.map((item) => [item.commander, item]));
+}
+
+function unique(values) {
+  return [...new Set(values.filter(Boolean).map(String))];
 }
 
 function commandCardFaces(buttons) {
@@ -54,13 +63,59 @@ function missingResolvedUnitReports(field) {
     .filter((report) => report.missing.length);
 }
 
-function summarizeCommander(commander, fieldAudit, gapReport) {
+function runtimeEntryIds(entry) {
+  return unique([
+    entry.id,
+    entry.unit_id,
+    ...(entry.resolved_unit_ids || []),
+  ]);
+}
+
+function auditReportIds(report, reportKey) {
+  return unique([
+    report[reportKey],
+    report.unit,
+    report.building,
+    ...(report.resolved_unit_ids || []),
+    ...(report.candidate_ids || []),
+    ...(report.found_unit_ids || []),
+  ]);
+}
+
+function missingRuntimeEntries(expectedReports, runtimeEntries, reportKey) {
+  const runtimeIds = new Set(runtimeEntries.flatMap(runtimeEntryIds));
+  return expectedReports
+    .map((report) => ({
+      id: report[reportKey],
+      candidate_ids: auditReportIds(report, reportKey),
+      matched_runtime_ids: auditReportIds(report, reportKey).filter((id) => runtimeIds.has(id)),
+    }))
+    .filter((item) => !item.matched_runtime_ids.length);
+}
+
+function extraRuntimeEntries(expectedReports, runtimeEntries, reportKey, allowedIds = new Set()) {
+  const expectedIds = new Set(expectedReports.flatMap((report) => auditReportIds(report, reportKey)));
+  return runtimeEntries
+    .filter((entry) => runtimeEntryIds(entry).every((id) => !expectedIds.has(id)))
+    .filter((entry) => runtimeEntryIds(entry).every((id) => !allowedIds.has(id)))
+    .map((entry) => entry.unit_id || entry.id)
+    .sort();
+}
+
+function formatRuntimeMissing(missing) {
+  return missing.length
+    ? missing.map((item) => `${item.id}:${item.candidate_ids.join('/')}`).join('; ')
+    : '0';
+}
+
+function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
   const unitsPath = path.join(officialRoot, commander, 'units.json');
   const buildingsPath = path.join(officialRoot, commander, 'buildings.json');
   const officialUnits = readJson(unitsPath);
   const officialBuildings = readJson(buildingsPath);
   const field = fieldAudit.get(commander);
   const gap = gapReport.get(commander);
+  const runtime = runtimeReports.get(commander);
 
   if (!field) {
     throw new Error(`Missing field audit for ${commander}`);
@@ -68,9 +123,22 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
   if (!gap) {
     throw new Error(`Missing gap report for ${commander}`);
   }
+  if (!runtime) {
+    throw new Error(`Missing current Mod tech diagnostics for ${commander}`);
+  }
 
   const unitReports = field.unit_skill_reports || [];
   const buildingReports = field.building_reports || [];
+  const runtimeUnits = runtime.units || [];
+  const runtimeBuildings = runtime.buildings || [];
+  const missingRuntimeUnits = missingRuntimeEntries(unitReports, runtimeUnits, 'unit');
+  const missingRuntimeBuildings = missingRuntimeEntries(buildingReports, runtimeBuildings, 'building');
+  const extraRuntimeBuildings = extraRuntimeEntries(
+    buildingReports,
+    runtimeBuildings,
+    'building',
+    allowedRuntimeExtraBuildings[commander] || new Set(),
+  );
   const topPanel = field.top_panel || { expected: [], issues: [] };
   const expectedUnitCount = field.expected_unit_count ?? unitReports.length;
   const expectedBuildingCount = field.expected_building_count ?? buildingReports.length;
@@ -112,6 +180,12 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
       '在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位',
       missingResolvedUnits.length === 0,
       `resolved_unit_reports=${resolvedUnits.length}, missing=${missingResolvedUnits.map((report) => `${report.item.id}:${report.missing.join('/')}`).join('; ') || 0}`,
+    ),
+    check(
+      'current-mod-runtime-unit-roster',
+      '字段级单位口径均能映射到当前 Mod 运行名册单位',
+      missingRuntimeUnits.length === 0,
+      `runtime_units=${runtimeUnits.length}, missing=${formatRuntimeMissing(missingRuntimeUnits)}`,
     ),
     check(
       'unit-skill-hard-issues',
@@ -156,6 +230,18 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
       `building_issues=${field.building_issue_count}`,
     ),
     check(
+      'current-mod-runtime-building-roster',
+      '字段级建筑口径均能映射到当前 Mod 运行名册建筑',
+      missingRuntimeBuildings.length === 0,
+      `runtime_buildings=${runtimeBuildings.length}, missing=${formatRuntimeMissing(missingRuntimeBuildings)}`,
+    ),
+    check(
+      'current-mod-runtime-extra-buildings',
+      '当前 Mod 运行名册未出现未解释的额外建筑',
+      extraRuntimeBuildings.length === 0,
+      `extra=${extraRuntimeBuildings.join('/') || 0}, allowed=${[...(allowedRuntimeExtraBuildings[commander] || [])].join('/') || 0}`,
+    ),
+    check(
       'building-stat-issues',
       '建筑 HP/Shield/Energy/Damage/Range/Speed 等在线数值字段不存在静态不匹配',
       (field.building_stat_issue_count || 0) === 0,
@@ -177,8 +263,11 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     official_buildings_path: path.relative(repoRoot, buildingsPath),
     gap_report_path: path.relative(repoRoot, gapReportPath),
     field_audit_path: path.relative(repoRoot, fieldAuditPath),
+    runtime_tech_diagnostics_path: path.relative(repoRoot, runtimeTechDiagnosticsPath),
     official_unit_count: officialUnits.length,
     official_building_count: officialBuildings.length,
+    runtime_unit_count: runtimeUnits.length,
+    runtime_building_count: runtimeBuildings.length,
     online_added_unit_count: field.online_added_unit_count || 0,
     online_added_building_count: field.online_added_building_count || 0,
     online_primary_unit_count: field.online_primary_unit_count || 0,
@@ -206,7 +295,7 @@ function writeMarkdown(report) {
   lines.push('');
   lines.push(`- 生成时间：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
   lines.push('- 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。');
-  lines.push('- 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告，以及 StarCraft2Coop 在线资料入口和页面显式补充项。');
+  lines.push('- 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告、当前 Mod 科技链路诊断，以及 StarCraft2Coop 在线资料入口和页面显式补充项。');
   lines.push('- 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。');
   lines.push('');
   lines.push('## 总览');
@@ -226,6 +315,7 @@ function writeMarkdown(report) {
     lines.push(`- 在线主单位：${commander.online_primary_unit_count}，supplemental 单位：${commander.supplemental_unit_count}`);
     lines.push(`- 建筑口径：${commander.building_count}（官方 JSON ${commander.official_building_count}，在线补充 ${commander.online_added_building_count}）`);
     lines.push(`- 在线主建筑：${commander.online_primary_structure_count}，supplemental 建筑：${commander.supplemental_building_count}`);
+    lines.push(`- 当前 Mod 运行名册：单位 ${commander.runtime_unit_count}，建筑 ${commander.runtime_building_count}`);
     lines.push(`- 单位：${commander.unit_ids.join('、')}`);
     lines.push(`- 建筑：${commander.building_ids.join('、')}`);
     lines.push(`- 顶部面板：${commander.top_panel_faces.join('、')}`);
@@ -248,11 +338,13 @@ fs.mkdirSync(outDir, { recursive: true });
 
 const fieldAuditRaw = readJson(fieldAuditPath);
 const gapReportRaw = readJson(gapReportPath);
+const runtimeTechDiagnosticsRaw = readJson(runtimeTechDiagnosticsPath);
 const fieldAudit = byCommander(fieldAuditRaw.commanders);
 const gapReport = byCommander(gapReportRaw.commanders);
+const runtimeReports = byCommander(runtimeTechDiagnosticsRaw.commanders);
 const report = {
   generated_at: new Date().toISOString(),
-  commanders: commanders.map((commander) => summarizeCommander(commander, fieldAudit, gapReport)),
+  commanders: commanders.map((commander) => summarizeCommander(commander, fieldAudit, gapReport, runtimeReports)),
 };
 report.status = passFail(report.commanders.every((commander) => commander.status === 'PASS'));
 

@@ -1,8 +1,8 @@
 # Karax / Artanis / Vorazun 完成度审计
 
-- 生成时间：2026/6/2 10:31:48
+- 生成时间：2026/6/2 10:44:05
 - 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。
-- 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告，以及 StarCraft2Coop 在线资料入口和页面显式补充项。
+- 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告、当前 Mod 科技链路诊断，以及 StarCraft2Coop 在线资料入口和页面显式补充项。
 - 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。
 
 ## 总览
@@ -20,6 +20,7 @@
 - 在线主单位：6，supplemental 单位：2
 - 建筑口径：6（官方 JSON 5，在线补充 3）
 - 在线主建筑：3，supplemental 建筑：3
+- 当前 Mod 运行名册：单位 8，建筑 6
 - 单位：ImmortalAiur、Observer、PhoenixPurifier、Scout、SentryPurifier、ZealotPurifier、Colossus、Carrier
 - 建筑：Gateway、PhotonCannon、ShieldBattery、SolarForge、TwilightCouncil、KhaydarinMonolith
 - 顶部面板：SOAOrbitalStrikeKarax、SOAThermalLance、SOAMapWideChrono、SOAPurifierBeam
@@ -32,6 +33,7 @@
 | StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计 | PASS | expected_units=8, audited_units=8, online_added=4 |
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=6, supplemental_units=2, issues=0 |
 | 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=6, missing=0 |
+| 字段级单位口径均能映射到当前 Mod 运行名册单位 | PASS | runtime_units=8, missing=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=10, missing=0 |
@@ -39,6 +41,8 @@
 | StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计 | PASS | expected_buildings=6, audited_buildings=6, online_added=3 |
 | StarCraft2Coop Structures 主清单均被当前审计覆盖 | PASS | online_primary_structures=3, supplemental_buildings=3, issues=0 |
 | 建筑 roster/catalog 不存在静态缺口 | PASS | building_issues=0 |
+| 字段级建筑口径均能映射到当前 Mod 运行名册建筑 | PASS | runtime_buildings=6, missing=0 |
+| 当前 Mod 运行名册未出现未解释的额外建筑 | PASS | extra=0, allowed=0 |
 | 建筑 HP/Shield/Energy/Damage/Range/Speed 等在线数值字段不存在静态不匹配 | PASS | building_stat_issues=0 |
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
 
@@ -49,6 +53,7 @@
 - 在线主单位：8，supplemental 单位：1
 - 建筑口径：5（官方 JSON 5，在线补充 0）
 - 在线主建筑：0，supplemental 建筑：5
+- 当前 Mod 运行名册：单位 9，建筑 5
 - 单位：Archon、ImmortalAiur、Observer、PhoenixAiur、StalkerAiur、Zealot、HighTemplar、Tempest、Reaver
 - 建筑：Gateway、PhotonCannon、RoboticsBay、RoboticsWarpandStarWarpGate、TwilightCouncil
 - 顶部面板：SOAPylonPower、SOAOrbitalStrike、SOASuperShield、SOAStrafeAttack
@@ -61,6 +66,7 @@
 | StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计 | PASS | expected_units=9, audited_units=9, online_added=4 |
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=8, supplemental_units=1, issues=0 |
 | 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=8, missing=0 |
+| 字段级单位口径均能映射到当前 Mod 运行名册单位 | PASS | runtime_units=9, missing=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=6, missing=0 |
@@ -68,6 +74,8 @@
 | StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计 | PASS | expected_buildings=5, audited_buildings=5, online_added=0 |
 | StarCraft2Coop Structures 主清单均被当前审计覆盖 | PASS | online_primary_structures=0, supplemental_buildings=5, issues=0 |
 | 建筑 roster/catalog 不存在静态缺口 | PASS | building_issues=0 |
+| 字段级建筑口径均能映射到当前 Mod 运行名册建筑 | PASS | runtime_buildings=5, missing=0 |
+| 当前 Mod 运行名册未出现未解释的额外建筑 | PASS | extra=0, allowed=0 |
 | 建筑 HP/Shield/Energy/Damage/Range/Speed 等在线数值字段不存在静态不匹配 | PASS | building_stat_issues=0 |
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
 
@@ -78,6 +86,7 @@
 - 在线主单位：7，supplemental 单位：1
 - 建筑口径：3（官方 JSON 3，在线补充 0）
 - 在线主建筑：0，supplemental 建筑：3
+- 当前 Mod 运行名册：单位 8，建筑 4
 - 单位：DarkTemplarShakuras、Oracle、PhoenixShakuras、Zealot、ZealotShakuras、Stalker、VoidRay、DarkArchon
 - 建筑：Gateway、PhotonCannon、TwilightCouncil
 - 顶部面板：SOADarkPylon、SOAVorazunBlackHole、SOAShadowGuardCalldown、SOATimeFreeze、RecallOnDeathPassive
@@ -90,6 +99,7 @@
 | StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计 | PASS | expected_units=8, audited_units=8, online_added=7 |
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=7, supplemental_units=1, issues=0 |
 | 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=7, missing=0 |
+| 字段级单位口径均能映射到当前 Mod 运行名册单位 | PASS | runtime_units=8, missing=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=38, missing=0 |
@@ -97,5 +107,7 @@
 | StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计 | PASS | expected_buildings=3, audited_buildings=3, online_added=0 |
 | StarCraft2Coop Structures 主清单均被当前审计覆盖 | PASS | online_primary_structures=0, supplemental_buildings=3, issues=0 |
 | 建筑 roster/catalog 不存在静态缺口 | PASS | building_issues=0 |
+| 字段级建筑口径均能映射到当前 Mod 运行名册建筑 | PASS | runtime_buildings=4, missing=0 |
+| 当前 Mod 运行名册未出现未解释的额外建筑 | PASS | extra=0, allowed=DarkPylon |
 | 建筑 HP/Shield/Energy/Damage/Range/Speed 等在线数值字段不存在静态不匹配 | PASS | building_stat_issues=0 |
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
