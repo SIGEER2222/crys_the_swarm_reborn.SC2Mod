@@ -191,6 +191,48 @@ function unresolvedRuntimeTopPanelAbilities(runtime) {
     }));
 }
 
+function collectUnresolvedEffectRefs(effect, context, issues, seen = new Set()) {
+  if (!effect?.id) {
+    return;
+  }
+  const key = `${context.commander}:${context.ability_id}:${effect.id}`;
+  if (seen.has(key)) {
+    return;
+  }
+  seen.add(key);
+
+  if (effect.unresolved_catalog) {
+    issues.push({
+      ...context,
+      effect_id: effect.id,
+    });
+  }
+
+  for (const child of effect.child_effects || []) {
+    collectUnresolvedEffectRefs(child, context, issues, seen);
+  }
+}
+
+function unresolvedRuntimeTopPanelEffectRefs(runtime, commander) {
+  const issues = [];
+  for (const item of runtime.top_panel || []) {
+    const ability = item.ability;
+    if (!ability?.ability_id || ignoredTopPanelAbilityIds.has(ability.ability_id)) {
+      continue;
+    }
+    const context = {
+      commander,
+      face: ability.face || '',
+      abil_cmd: ability.abil_cmd || '',
+      ability_id: ability.ability_id || '',
+    };
+    for (const effect of ability.effect_refs || []) {
+      collectUnresolvedEffectRefs(effect, context, issues);
+    }
+  }
+  return issues;
+}
+
 function crossCommanderPanelRequirements(runtime, commander) {
   const otherCommanders = knownCommanderRequirementTokens.filter((item) => item !== commander);
   const issues = [];
@@ -283,6 +325,15 @@ function formatUnresolvedTopPanelAbilities(issues) {
   }
   return issues
     .map((issue) => `${issue.face || '-'}:${issue.abil_cmd || issue.ability_id}`)
+    .join('; ');
+}
+
+function formatUnresolvedTopPanelEffects(issues) {
+  if (!issues.length) {
+    return '0';
+  }
+  return issues
+    .map((issue) => `${issue.face || '-'}:${issue.abil_cmd || issue.ability_id}->${issue.effect_id}`)
     .join('; ');
 }
 
@@ -413,6 +464,7 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     allowedRuntimeExtraTopPanelFaces[commander] || new Set(),
   );
   const unresolvedTopPanelAbilities = unresolvedRuntimeTopPanelAbilities(runtime);
+  const unresolvedTopPanelEffects = unresolvedRuntimeTopPanelEffectRefs(runtime, commander);
   const crossCommanderRequirements = crossCommanderPanelRequirements(runtime, commander);
   const crossCommanderIdentities = crossCommanderPanelIdentities(runtime, commander);
   const expectedUnitCount = field.expected_unit_count ?? unitReports.length;
@@ -565,6 +617,12 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
       `unresolved=${formatUnresolvedTopPanelAbilities(unresolvedTopPanelAbilities)}`,
     ),
     check(
+      'current-mod-runtime-top-panel-effect-catalog',
+      '当前 Mod runtime 顶部面板按钮引用的 Effect 链均能解析到 Catalog',
+      unresolvedTopPanelEffects.length === 0,
+      `unresolved_effects=${formatUnresolvedTopPanelEffects(unresolvedTopPanelEffects)}`,
+    ),
+    check(
       'current-mod-cross-commander-panel-requirements',
       '当前 Mod 面板未暴露其他指挥官的等级/升级/锁定需求',
       crossCommanderRequirements.length === 0,
@@ -598,6 +656,8 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     runtime_top_panel_face_count: runtimeTopFaces.length,
     runtime_top_panel_unresolved_ability_count: unresolvedTopPanelAbilities.length,
     runtime_top_panel_unresolved_abilities: unresolvedTopPanelAbilities,
+    runtime_top_panel_unresolved_effect_count: unresolvedTopPanelEffects.length,
+    runtime_top_panel_unresolved_effects: unresolvedTopPanelEffects,
     runtime_production_produced_unit_count: productionProducedUnitIds.length,
     runtime_production_produced_unit_ids: productionProducedUnitIds,
     runtime_production_missing_units: missingProductionUnits,
@@ -661,6 +721,7 @@ function writeMarkdown(report) {
     lines.push(`- 在线主建筑：${commander.online_primary_structure_count}，supplemental 建筑：${commander.supplemental_building_count}`);
     lines.push(`- 当前 Mod 运行名册：单位 ${commander.runtime_unit_count}，建筑 ${commander.runtime_building_count}，生产链补充建筑 ${commander.runtime_production_building_count || 0}，顶部面板 face ${commander.runtime_top_panel_face_count}`);
     lines.push(`- 当前 Mod 顶部面板未解析 Ability：${commander.runtime_top_panel_unresolved_ability_count}（${formatUnresolvedTopPanelAbilities(commander.runtime_top_panel_unresolved_abilities || [])}）`);
+    lines.push(`- 当前 Mod 顶部面板未解析 Effect：${commander.runtime_top_panel_unresolved_effect_count}（${formatUnresolvedTopPanelEffects(commander.runtime_top_panel_unresolved_effects || [])}）`);
     if (commander.runtime_production_building_ids?.length) {
       lines.push(`- 当前 Mod 生产链补充建筑：${commander.runtime_production_building_ids.join('、')}`);
     }
