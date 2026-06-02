@@ -74,7 +74,16 @@ const onlineExpectationAdditions = {
     buildings: [],
   },
   Karax: {
-    units: [],
+    units: [
+      {
+        id: 'ZealotPurifier',
+        name: 'Sentinel',
+        source: 'StarCraft2Coop Combat Units',
+        abilities: [
+          { face: 'Charge', type: 'AbilCmd', abil_cmd: 'Charge,Execute', row: '2', column: '0', name: 'Charge' },
+        ],
+      },
+    ],
     buildings: [
       {
         id: 'PhotonCannon',
