@@ -465,6 +465,12 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
       `global_refs=${field.unit_skill_global_ref_count || 0}, missing=${field.unit_skill_global_ref_missing_count || 0}`,
     ),
     check(
+      'unit-card-requirement-refs',
+      '标记为单位卡的技能/被动 Requirement 均出现在候选单位卡按钮',
+      (field.unit_skill_unit_card_requirement_missing_count || 0) === 0,
+      `unit_card_requirements=${field.unit_skill_unit_card_requirement_ref_count || 0}, missing=${field.unit_skill_unit_card_requirement_missing_count || 0}`,
+    ),
+    check(
       'building-roster-count',
       '官方 buildings.json 中的建筑均进入字段级建筑审计',
       includesAllById(officialBuildings, buildingReports, 'building'),
@@ -577,6 +583,8 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     supplemental_building_count: field.supplemental_building_count || 0,
     unit_skill_global_ref_count: field.unit_skill_global_ref_count || 0,
     unit_skill_global_ref_missing_count: field.unit_skill_global_ref_missing_count || 0,
+    unit_skill_unit_card_requirement_ref_count: field.unit_skill_unit_card_requirement_ref_count || 0,
+    unit_skill_unit_card_requirement_missing_count: field.unit_skill_unit_card_requirement_missing_count || 0,
     building_stat_issue_count: field.building_stat_issue_count || 0,
     unit_count: expectedUnitCount,
     building_count: expectedBuildingCount,

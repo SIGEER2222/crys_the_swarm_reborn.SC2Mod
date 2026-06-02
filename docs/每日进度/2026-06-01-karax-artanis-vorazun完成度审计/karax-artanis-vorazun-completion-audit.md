@@ -1,6 +1,6 @@
 # Karax / Artanis / Vorazun 完成度审计
 
-- 生成时间：2026/6/2 12:52:56
+- 生成时间：2026/6/2 13:14:56
 - 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。
 - 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告、当前 Mod 科技链路诊断，以及 StarCraft2Coop 在线资料入口和页面显式补充项。
 - 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。
@@ -41,6 +41,7 @@
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=10, missing=0 |
+| 标记为单位卡的技能/被动 Requirement 均出现在候选单位卡按钮 | PASS | unit_card_requirements=3, missing=0 |
 | 官方 buildings.json 中的建筑均进入字段级建筑审计 | PASS | 5/6 |
 | StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计 | PASS | expected_buildings=6, audited_buildings=6, online_added=3 |
 | StarCraft2Coop Structures 主清单均被当前审计覆盖 | PASS | online_primary_structures=3, supplemental_buildings=3, issues=0 |
@@ -82,6 +83,7 @@
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=6, missing=0 |
+| 标记为单位卡的技能/被动 Requirement 均出现在候选单位卡按钮 | PASS | unit_card_requirements=2, missing=0 |
 | 官方 buildings.json 中的建筑均进入字段级建筑审计 | PASS | 5/5 |
 | StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计 | PASS | expected_buildings=5, audited_buildings=5, online_added=0 |
 | StarCraft2Coop Structures 主清单均被当前审计覆盖 | PASS | online_primary_structures=0, supplemental_buildings=5, issues=0 |
@@ -123,6 +125,7 @@
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=38, missing=0 |
+| 标记为单位卡的技能/被动 Requirement 均出现在候选单位卡按钮 | PASS | unit_card_requirements=9, missing=0 |
 | 官方 buildings.json 中的建筑均进入字段级建筑审计 | PASS | 3/3 |
 | StarCraft2Coop 页面补充的显式建筑也进入字段级建筑审计 | PASS | expected_buildings=3, audited_buildings=3, online_added=0 |
 | StarCraft2Coop Structures 主清单均被当前审计覆盖 | PASS | online_primary_structures=0, supplemental_buildings=3, issues=0 |

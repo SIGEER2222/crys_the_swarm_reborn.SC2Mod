@@ -3,7 +3,7 @@
 - 描述 / Description：达拉姆大主教
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMArtanis.SC2Mod`，instance=`Artanis`
-- 统计 / Stats：建筑 5、生产链补充建筑 4、单位 9、英雄 0、建筑按钮 22、单位按钮 25、效果引用 8
+- 统计 / Stats：建筑 5、生产链补充建筑 4、单位 9、英雄 0、建筑按钮 22、单位按钮 27、效果引用 8
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
@@ -217,10 +217,10 @@
 - 数值 / Stats：无 / None
 - Catalog 技能链接 / Catalog ability links：无 / None
 - 关联 Behavior / Linked behaviors：`AllUnitBehaviorController`、`VorazunCommanderCloak`
-- 已隐藏基础按钮 / Hidden basic buttons：1 个（用 `--include-basic` 可展开 / use `--include-basic` to expand）
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
+| - |  / `-` | `-` | 未解析 / Unresolved | - | - | HaveResearchDoubleGravitonBeamPassive |
 | 2,2 | HaveAnionPulseCrystals / `HaveAnionPulseCrystals` | `-` | 未解析 / Unresolved | - | - | HavePhoenixRangeUpgrade |
 
 ### 龙骑士 / `Dragoon`
@@ -229,10 +229,10 @@
 - 数值 / Stats：类型 / Type Unit，生命 / Life 100
 - Catalog 技能链接 / Catalog ability links：无 / None
 - 关联 Behavior / Linked behaviors：`AllUnitBehaviorController`
-- 已隐藏基础按钮 / Hidden basic buttons：1 个（用 `--include-basic` 可展开 / use `--include-basic` to expand）
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
+| 2 |  / `-` | `-` | 未解析 / Unresolved | - | - | HaveDragoonHealth |
 | 2,1 | VoidStalkerDragoonRange / `VoidStalkerDragoonRange` | `-` | 未解析 / Unresolved | - | - | HaveSingularityCharge |
 
 ### 哨兵 / `Zealot`

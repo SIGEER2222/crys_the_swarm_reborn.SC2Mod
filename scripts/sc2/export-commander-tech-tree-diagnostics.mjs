@@ -2321,8 +2321,9 @@ function collectEffectStats(effect, effectIds, producedUnitIds, options = {}) {
 
 function isBasicPanelButton(button) {
   const { abilityId } = splitAbilityCommand(button.abil_cmd || '');
+  const hasRequirement = Boolean(button.requirements);
   if (!abilityId && !button.face) {
-    return true;
+    return !hasRequirement;
   }
   if (abilityId === '255' || button.face === '255') {
     return true;

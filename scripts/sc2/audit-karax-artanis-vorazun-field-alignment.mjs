@@ -391,7 +391,7 @@ function parseLayoutButtons(unitBody) {
       row: inlineAttrs.Row || valueFromChild(body, 'Row'),
       column: inlineAttrs.Column || valueFromChild(body, 'Column'),
     };
-    if (button.face) {
+    if (button.face || button.abil_cmd || button.requirements) {
       buttons.push(button);
     }
   }
@@ -559,6 +559,23 @@ function globalRefSignature(ref) {
   };
 }
 
+function isUnitCardRequirementRef(ref) {
+  return ref.type === 'Requirement'
+    && /(unit-card|ability requirement|passive requirement)/i.test(ref.name);
+}
+
+function matchingRequirementButtons(buttons, requirementId) {
+  return buttons
+    .filter((button) => normalize(button.requirements).includes(requirementId))
+    .map((button) => ({
+      face: button.face,
+      abil_cmd: button.abil_cmd,
+      requirements: button.requirements,
+      row: button.row,
+      column: button.column,
+    }));
+}
+
 function isProductionCommand(ability) {
   const abilCmd = normalize(ability.abil_cmd);
   return /^(GatewayTrain|WarpGateTrain|StargateTrain|RoboticsFacilityTrain|RoboticsFacilityWarpTrain|TemplarArchivesResearch|FleetBeaconResearch),/.test(abilCmd);
@@ -691,9 +708,24 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
       ...ref,
       present: globalText.has(ref.id),
     }));
+    const unitCardRequirementReports = expectedGlobalRefs
+      .filter(isUnitCardRequirementRef)
+      .map((ref) => {
+        const matching_buttons = matchingRequirementButtons(buttons, ref.id);
+        return {
+          ...ref,
+          present_on_unit_card: matching_buttons.length > 0,
+          matching_buttons,
+        };
+      });
     for (const ref of globalRefReports) {
       if (!ref.present) {
         issues.push({ type: 'missing_global_ref', id: ref.id, expected: ref });
+      }
+    }
+    for (const ref of unitCardRequirementReports) {
+      if (!ref.present_on_unit_card) {
+        issues.push({ type: 'missing_unit_card_requirement', id: ref.id, expected: ref });
       }
     }
 
@@ -729,7 +761,9 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
       found_unit_ids: foundUnitIds,
       expected_skill_faces: expectedSkills.map((skill) => skill.face),
       expected_global_refs: expectedGlobalRefs.map((ref) => ref.id),
+      expected_unit_card_requirement_refs: unitCardRequirementReports.map((ref) => ref.id),
       global_ref_reports: globalRefReports,
+      unit_card_requirement_reports: unitCardRequirementReports,
       issues,
       global_only: globalOnly,
     };
@@ -854,6 +888,8 @@ function auditCommander(commander, finalUnits, globalText) {
     unit_skill_global_only_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_only.length, 0),
     unit_skill_global_ref_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_ref_reports.length, 0),
     unit_skill_global_ref_missing_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_ref_reports.filter((ref) => !ref.present).length, 0),
+    unit_skill_unit_card_requirement_ref_count: unitSkillReports.reduce((sum, unit) => sum + unit.unit_card_requirement_reports.length, 0),
+    unit_skill_unit_card_requirement_missing_count: unitSkillReports.reduce((sum, unit) => sum + unit.unit_card_requirement_reports.filter((ref) => !ref.present_on_unit_card).length, 0),
     building_issue_count: buildingReports.reduce((sum, building) => sum + building.issues.length, 0),
     building_stat_issue_count: buildingReports.reduce((sum, building) => sum + building.stat_issues.length, 0),
     top_panel_issue_count: topPanelIssues.length,
@@ -895,6 +931,9 @@ function formatIssue(issue) {
   if (issue.type === 'missing_global_ref') {
     return `missing global skill/passive ref ${issue.id}`;
   }
+  if (issue.type === 'missing_unit_card_requirement') {
+    return `missing unit-card requirement ${issue.id}`;
+  }
   if (issue.type === 'missing_button') {
     return `missing button ${issue.face}`;
   }
@@ -928,19 +967,19 @@ function writeMarkdown(report) {
   lines.push('- 目的：补充现有 ID 缺口脚本的盲区，按“网上资料里的兵种技能/被动、建筑、顶部技能面板”做静态对齐审计。');
   lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；在线主清单作为必须覆盖的子集，Observer 等支援/扩展项作为 supplemental 透明列出；非单位按钮承载的技能/被动以 `global_refs` 证明当前 Mod 全局 Catalog/脚本存在；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
   lines.push('- 说明：`global-only` 表示技能按钮 ID 在当前 Mod 全局存在，但没有在候选单位的显式 LayoutButtons 中出现，可能来自父级继承、别名单位或待人工判断，不直接当作硬缺口。');
-  lines.push('- 说明：`global_refs` 表示在线技能/被动不是单位命令卡按钮本体，而是以升级、研究按钮、需求或测试台科技检查等全局 Catalog/脚本证据落地。');
+  lines.push('- 说明：`global_refs` 表示在线技能/被动不是单位命令卡按钮本体，而是以升级、研究按钮、需求或测试台科技检查等全局 Catalog/脚本证据落地；其中标记为 unit-card / ability / passive requirement 的项还会额外要求出现在候选单位卡 LayoutButtons 的 Requirements 上。');
   lines.push('- 注意：本报告是静态字段审计，不替代 SC2 实机验证。');
   lines.push('');
   lines.push('## 总览');
   lines.push('');
-  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 全局证据 | 全局证据缺失 | 建筑问题 | 建筑数值问题 | 顶部面板问题 | 问题类型 |');
-  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 全局证据 | 全局证据缺失 | 单位卡Req | 单位卡Req缺失 | 建筑问题 | 建筑数值问题 | 顶部面板问题 | 问题类型 |');
+  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
   for (const commanderReport of report.commanders) {
     const summary = summarizeIssueTypes(commanderReport);
     const summaryText = Object.keys(summary).length
       ? Object.entries(summary).map(([key, value]) => `${key}:${value}`).join('、')
       : '无';
-    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.unit_skill_global_ref_count} | ${commanderReport.unit_skill_global_ref_missing_count} | ${commanderReport.building_issue_count} | ${commanderReport.building_stat_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
+    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.unit_skill_global_ref_count} | ${commanderReport.unit_skill_global_ref_missing_count} | ${commanderReport.unit_skill_unit_card_requirement_ref_count} | ${commanderReport.unit_skill_unit_card_requirement_missing_count} | ${commanderReport.building_issue_count} | ${commanderReport.building_stat_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
   }
   lines.push('');
 
@@ -956,6 +995,7 @@ function writeMarkdown(report) {
     lines.push(`- 兵种技能硬问题：${commanderReport.unit_skill_issue_count}`);
     lines.push(`- global-only 提醒：${commanderReport.unit_skill_global_only_count}`);
     lines.push(`- 全局技能/被动证据：${commanderReport.unit_skill_global_ref_count}，缺失 ${commanderReport.unit_skill_global_ref_missing_count}`);
+    lines.push(`- 单位卡 Requirement 证据：${commanderReport.unit_skill_unit_card_requirement_ref_count}，缺失 ${commanderReport.unit_skill_unit_card_requirement_missing_count}`);
     lines.push(`- 建筑问题：${commanderReport.building_issue_count}`);
     lines.push(`- 建筑数值问题：${commanderReport.building_stat_issue_count}`);
     lines.push(`- 顶部面板问题：${commanderReport.top_panel_issue_count}`);
@@ -1010,6 +1050,24 @@ function writeMarkdown(report) {
       for (const unit of unitsWithGlobalRefs) {
         const refs = unit.global_ref_reports
           .map((ref) => `${ref.name} \`${ref.id}\`${ref.present ? '' : '（缺失）'}`)
+          .join('、');
+        lines.push(`- ${unit.name} \`${unit.unit}\`：${refs}`);
+      }
+    }
+    lines.push('');
+    lines.push('### 单位卡 Requirement 证据');
+    const unitsWithUnitCardRefs = commanderReport.unit_skill_reports.filter((unit) => unit.unit_card_requirement_reports.length);
+    if (!unitsWithUnitCardRefs.length) {
+      lines.push('- 无。');
+    } else {
+      for (const unit of unitsWithUnitCardRefs) {
+        const refs = unit.unit_card_requirement_reports
+          .map((ref) => {
+            const evidence = ref.matching_buttons.length
+              ? ref.matching_buttons.map((button) => `${button.face || '(no-face)'}@${button.row || '?'}:${button.column || '?'}`).join('/')
+              : '缺失';
+            return `${ref.name} \`${ref.id}\`=${evidence}`;
+          })
           .join('、');
         lines.push(`- ${unit.name} \`${unit.unit}\`：${refs}`);
       }

@@ -883,17 +883,19 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <AbilArray Link="FenixClolarionCarrierMorph"></AbilArray>
-    <SubgroupPriority value="111"></SubgroupPriority>
-    <AbilArray Link="CarrierHangar"></AbilArray>
-    <AbilArray Link="HangarQueue5"></AbilArray>
-    <AbilArray Link="attack"></AbilArray>
-    <AbilArray Link="move"></AbilArray>
-    <AbilArray Link="stop"></AbilArray>
+    <SubgroupPriority value="111"></SubgroupPriority>
+    <AbilArray Link="CarrierHangar"></AbilArray>
+    <AbilArray Link="CarrierRepairDroneHanger"></AbilArray>
+    <AbilArray Link="HangarQueue5"></AbilArray>
+    <AbilArray Link="attack"></AbilArray>
+    <AbilArray Link="move"></AbilArray>
+    <AbilArray Link="stop"></AbilArray>
     <CardLayouts index="0">
       <LayoutButtons Face="Interceptor" Type="AbilCmd" AbilCmd="CarrierHangar,Ammo1" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="GravitonCatapult" Type="Passive" Requirements="UseGravitonCatapult" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="RepairDrones" Type="AbilCmd" AbilCmd="CarrierRepairDroneHanger,Ammo1" Requirements="HaveCarrierRepairDrones" Row="2" Column="2"></LayoutButtons>
     </CardLayouts>
-  </CUnit>
+  </CUnit>
   <CUnit id="ChargedBuster" parent="MISSILE_INVULNERABLE"></CUnit>
   <CUnit id="Colossus">
     <BehaviorArray index="0" Link=""></BehaviorArray>
@@ -904,9 +906,10 @@
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
-    <CardLayouts index="0">
-      <LayoutButtons Face="ExtendedThermalLance" Type="Passive" Requirements="HaveKaraxExtendedThermalLance" Row="2" Column="1"></LayoutButtons>
-    </CardLayouts>
+    <CardLayouts index="0">
+      <LayoutButtons Face="ExtendedThermalLance" Type="Passive" Requirements="HaveKaraxExtendedThermalLance" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="ColossusPassive" Type="Passive" Requirements="HaveFireBeam" Row="2" Column="2"></LayoutButtons>
+    </CardLayouts>
     <SubgroupPriority value="109"></SubgroupPriority>
     <AbilArray Link="attack"></AbilArray>
     <AbilArray Link="move"></AbilArray>

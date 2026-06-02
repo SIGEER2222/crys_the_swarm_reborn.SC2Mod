@@ -3,7 +3,7 @@
 - 描述 / Description：无 / None
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMVorazun.SC2Mod`，instance=`Vorazun`
-- 统计 / Stats：建筑 4、生产链补充建筑 2、单位 8、英雄 0、建筑按钮 17、单位按钮 21、效果引用 7
+- 统计 / Stats：建筑 4、生产链补充建筑 2、单位 8、英雄 0、建筑按钮 17、单位按钮 23、效果引用 7
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
@@ -126,7 +126,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | DarkTemplarShadowDash / `DarkTemplarShadowDash` | `DarkTemplarShadowDash,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
 | 1,0 | DarkTemplarShadowFury / `-` | `DarkTemplarShadowFury,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
-| 2,0 | VoidDarkTemplarShadowFury / `VoidDarkTemplarShadowFury` | `DarkTemplarShadowFury,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
+| 2,0 | VoidDarkTemplarShadowFury / `VoidDarkTemplarShadowFury` | `DarkTemplarShadowFury,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | HaveResearchShadowFury |
 | 2,1 | ShadowDashLocked / `ShadowDashLocked` | `-` | 未解析 / Unresolved | - | - | VorazunLevel06 |
 | 2,2 | VoidStasis / `VoidStasis` | `DarkTemplarVoidStasis,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
 | 2,2 | VoidStasisLocked / `VoidStasisLocked` | `-` | 未解析 / Unresolved | - | - | VorazunLevel06 |
@@ -156,7 +156,7 @@
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
-| 2,0 | CorsairMPDisruptionWeb / `CorsairMPDisruptionWeb` | `CorsairMPDisruptionWeb,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
+| 2,0 | CorsairMPDisruptionWeb / `CorsairMPDisruptionWeb` | `CorsairMPDisruptionWeb,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | HaveCorsairDisruptionWeb |
 | 2,1 | PermanentlyCloakedCorsair / `PermanentlyCloakedCorsair` | `-` | 未解析 / Unresolved | - | - | HaveCorsairPermanentCloak |
 
 ### 哨兵 / `Zealot`
@@ -189,6 +189,7 @@
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
 | - | StalkerBlinkShieldRestoreBase / `StalkerBlinkShieldRestoreBase` | `BlinkShieldRestore,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
+| 1,0 | StalkerPassive / `StalkerPassive` | `-` | 未解析 / Unresolved | - | - | HaveVoidStalkerBlinkShieldRestore |
 | 2,0 | Blink / `Blink` | `Blink,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
 | 2,1 | BlinkShieldRestoreUpgrade / `BlinkShieldRestoreUpgrade` | `-` | 未解析 / Unresolved | - | - | HaveBlinkShieldRestore |
 
@@ -214,6 +215,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | MindControlLocked / `MindControlLocked` | `-` | 未解析 / Unresolved | - | - | VorazunLevel09 |
 | 2,0 | DarkArchonConfusion / `DarkArchonConfusion` | `DarkArchonConfusion,Execute` | 目标效果技能 / CAbilEffectTarget | - | 区域枚举效果 / CEffectEnumArea:`DarkArchonConfusionSearch` | - |
+| 2,1 | DarkArchonMindControl / `DarkArchonMindControl` | `DarkArchonMindControl,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | HaveDarkArchonMindControl |
 | 2,2 | HaveDarkArchonFullStartingEnergy / `HaveDarkArchonFullStartingEnergy` | `-` | 未解析 / Unresolved | - | - | HaveDarkArchonFullStartingEnergy |
 
 ## 英雄 / Heroes

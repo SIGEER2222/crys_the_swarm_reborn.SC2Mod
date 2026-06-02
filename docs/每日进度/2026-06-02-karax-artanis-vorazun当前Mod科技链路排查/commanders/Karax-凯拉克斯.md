@@ -3,7 +3,7 @@
 - 描述 / Description：星灵指挥官
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMKarax.SC2Mod`，instance=`Karax`
-- 统计 / Stats：建筑 6、生产链补充建筑 3、单位 8、英雄 0、建筑按钮 35、单位按钮 18、效果引用 11
+- 统计 / Stats：建筑 6、生产链补充建筑 3、单位 8、英雄 0、建筑按钮 35、单位按钮 22、效果引用 11
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
@@ -202,12 +202,12 @@
 - 数值 / Stats：类型 / Type Unit
 - Catalog 技能链接 / Catalog ability links：`MirageGravitonBeamVoidCampaign`(目标效果技能 / CAbilEffectTarget)
 - 关联 Behavior / Linked behaviors：`AllUnitBehaviorController`
-- 已隐藏基础按钮 / Hidden basic buttons：1 个（用 `--include-basic` 可展开 / use `--include-basic` to expand）
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
 | - | GravitonBeam / `GravitonBeam` | `MirageGravitonBeamVoidCampaign,Execute` | 目标效果技能 / CAbilEffectTarget | - | 持续效果 / CEffectCreatePersistent:`GravitonBeamVoidCampaign` | - |
 | - | GravitonBeamVoidCampaign / `GravitonBeamVoidCampaign` | `GravitonBeamVoidCampaign,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
+| 2 |  / `-` | `-` | 未解析 / Unresolved | - | - | HaveMiragePhaseArmor |
 | 2,1 | AnionPulseCrystal / `AnionPulseCrystal` | `-` | 未解析 / Unresolved | - | - | HaveKaraxPhoenixRangeUpgrade |
 
 ### 侦察机 / `Scout`
@@ -239,10 +239,10 @@
 - 数值 / Stats：类型 / Type Unit
 - Catalog 技能链接 / Catalog ability links：`Charge`(CAbilAugment / CAbilAugment)、`FenixKaldalisZealotMorph`(变形技能 / CAbilMorph)
 - 关联 Behavior / Linked behaviors：`AllUnitBehaviorController`、`FenixSuppressAvengingProtocol`
-- 已隐藏基础按钮 / Hidden basic buttons：1 个（用 `--include-basic` 可展开 / use `--include-basic` to expand）
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
+| - |  / `-` | `-` | 未解析 / Unresolved | - | - | ZealotPurifierReviveKaraxHide |
 | 2,0 | Charge / `Charge` | `Charge,Execute` | CAbilAugment / CAbilAugment | - | - | - |
 | 2,1 | ReconstructionLocked / `ReconstructionLocked` | `-` | 未解析 / Unresolved | - | - | KaraxLevel04 |
 
@@ -256,18 +256,20 @@
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2,1 | ExtendedThermalLance / `ExtendedThermalLance` | `-` | 未解析 / Unresolved | - | - | HaveKaraxExtendedThermalLance |
+| 2,2 | 巨像 / `ColossusPassive` | `-` | 未解析 / Unresolved | - | - | HaveFireBeam |
 
 ### 航母 / `Carrier`
 
 - 来源 / Source：名册 / Roster XMFinal CommanderRuntimeRoster + XMFinal CommanderRosters.galaxy，状态 / Status exact，模块 / Module XMKarax.SC2Mod，文件 / File `合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/UserData.xml`
 - 数值 / Stats：无 / None
-- Catalog 技能链接 / Catalog ability links：`attack`(基础 / Basic)、`CarrierHangar`(弹仓/机库技能 / CAbilArmMagazine)、`FenixClolarionCarrierMorph`(变形技能 / CAbilMorph)、`HangarQueue5`、`move`(基础 / Basic)、`stop`(基础 / Basic)
+- Catalog 技能链接 / Catalog ability links：`attack`(基础 / Basic)、`CarrierHangar`(弹仓/机库技能 / CAbilArmMagazine)、`CarrierRepairDroneHanger`(弹仓/机库技能 / CAbilArmMagazine)、`FenixClolarionCarrierMorph`(变形技能 / CAbilMorph)、`HangarQueue5`、`move`(基础 / Basic)、`stop`(基础 / Basic)
 - 关联 Behavior / Linked behaviors：`AllUnitBehaviorController`、`Supply`
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2,0 | Interceptor / `Interceptor` | `CarrierHangar,Ammo1` | 弹仓/机库技能 / CAbilArmMagazine | - | - | - |
 | 2,1 | GravitonCatapult / `GravitonCatapult` | `-` | 未解析 / Unresolved | - | - | UseGravitonCatapult |
+| 2,2 | RepairDrones / `RepairDrones` | `CarrierRepairDroneHanger,Ammo1` | 弹仓/机库技能 / CAbilArmMagazine | - | - | HaveCarrierRepairDrones |
 
 ## 英雄 / Heroes
 

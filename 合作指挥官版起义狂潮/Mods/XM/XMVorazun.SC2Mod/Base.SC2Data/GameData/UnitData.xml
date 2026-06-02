@@ -1162,11 +1162,11 @@
     <DamageTakenXP value="0"></DamageTakenXP>
     <KillXP value="0"></KillXP>
     <BehaviorArray index="0" Link="AllUnitBehaviorController"></BehaviorArray>
-    <BehaviorArray Link="CorsairPermanentCloak"></BehaviorArray>
-    <BehaviorArray Link="VorazunCloakedShieldRegenPermanent"></BehaviorArray>
-    <CardLayouts index="0">
-      <LayoutButtons Face="CorsairMPDisruptionWeb" Type="AbilCmd" AbilCmd="CorsairMPDisruptionWeb,Execute" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="PermanentlyCloakedCorsair" Type="Passive" Requirements="HaveCorsairPermanentCloak" Row="2" Column="1"></LayoutButtons>
+    <BehaviorArray Link="CorsairPermanentCloak"></BehaviorArray>
+    <BehaviorArray Link="VorazunCloakedShieldRegenPermanent"></BehaviorArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="CorsairMPDisruptionWeb" Type="AbilCmd" AbilCmd="CorsairMPDisruptionWeb,Execute" Requirements="HaveCorsairDisruptionWeb" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="PermanentlyCloakedCorsair" Type="Passive" Requirements="HaveCorsairPermanentCloak" Row="2" Column="1"></LayoutButtons>
     </CardLayouts>
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionNerazim"></EditorCategories>
     <SubgroupPriority value="119"></SubgroupPriority>
@@ -1486,11 +1486,13 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <KillXP value="0"></KillXP>
-    <BehaviorArray index="0" Link="AllUnitBehaviorController"></BehaviorArray>
-    <CardLayouts index="0">
-      <LayoutButtons index="7" Face="MindControlLocked" Type="Passive" AbilCmd="" Requirements="VorazunLevel09" Column="1"></LayoutButtons>
-      <LayoutButtons Face="DarkArchonConfusion" Type="AbilCmd" AbilCmd="DarkArchonConfusion,Execute" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="HaveDarkArchonFullStartingEnergy" Type="Passive" Requirements="HaveDarkArchonFullStartingEnergy" Row="2" Column="2"></LayoutButtons>
+    <BehaviorArray index="0" Link="AllUnitBehaviorController"></BehaviorArray>
+    <AbilArray Link="DarkArchonMindControl"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons index="7" Face="MindControlLocked" Type="Passive" AbilCmd="" Requirements="VorazunLevel09" Column="1"></LayoutButtons>
+      <LayoutButtons Face="DarkArchonConfusion" Type="AbilCmd" AbilCmd="DarkArchonConfusion,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="DarkArchonMindControl" Type="AbilCmd" AbilCmd="DarkArchonMindControl,Execute" Requirements="HaveDarkArchonMindControl" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="HaveDarkArchonFullStartingEnergy" Type="Passive" Requirements="HaveDarkArchonFullStartingEnergy" Row="2" Column="2"></LayoutButtons>
     </CardLayouts>
     <ScoreKill value="0"></ScoreKill>
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionNerazim"></EditorCategories>
@@ -1636,7 +1638,7 @@
       <LayoutButtons Face="ShadowDashLocked" Type="Passive" Requirements="VorazunLevel06" Row="2" Column="1"></LayoutButtons>
       <LayoutButtons Face="VoidStasis" Type="AbilCmd" AbilCmd="DarkTemplarVoidStasis,Execute" Row="2" Column="2"></LayoutButtons>
       <LayoutButtons Face="VoidStasisLocked" Type="Passive" Requirements="VorazunLevel06" Row="2" Column="2"></LayoutButtons>
-      <LayoutButtons Face="VoidDarkTemplarShadowFury" Type="AbilCmd" AbilCmd="DarkTemplarShadowFury,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="VoidDarkTemplarShadowFury" Type="AbilCmd" AbilCmd="DarkTemplarShadowFury,Execute" Requirements="HaveResearchShadowFury" Row="2" Column="0"></LayoutButtons>
     </CardLayouts>
     <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
@@ -14139,6 +14141,8 @@
       <LayoutButtons index="6" Face="StalkerBlinkShieldRestoreBase" AbilCmd="BlinkShieldRestore,Execute"></LayoutButtons>
 
       <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="0"></LayoutButtons>
+
+      <LayoutButtons Face="StalkerPassive" Type="Passive" Requirements="HaveVoidStalkerBlinkShieldRestore" Row="1" Column="0"></LayoutButtons>
 
       <LayoutButtons Face="BlinkShieldRestoreUpgrade" Type="Passive" Requirements="HaveBlinkShieldRestore" Row="2" Column="1"></LayoutButtons>
 
