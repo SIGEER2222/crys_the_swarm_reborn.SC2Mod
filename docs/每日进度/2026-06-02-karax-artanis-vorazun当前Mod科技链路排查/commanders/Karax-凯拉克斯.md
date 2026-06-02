@@ -3,7 +3,7 @@
 - 描述 / Description：星灵指挥官
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMKarax.SC2Mod`，instance=`Karax`
-- 统计 / Stats：建筑 6、生产链补充建筑 3、单位 8、英雄 0、建筑按钮 57、单位按钮 19、效果引用 11
+- 统计 / Stats：建筑 6、生产链补充建筑 3、单位 8、英雄 0、建筑按钮 56、单位按钮 18、效果引用 11
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
@@ -39,7 +39,6 @@
 | - | que5notPassive / `-` | `que5notPassive,CancelLast` | 队列技能 / CAbilQueue | - | - | - |
 | 0,0 | Zealot / `Zealot` | `GatewayTrain,Train1` | 训练技能 / CAbilTrain | 哨兵 `ZealotPurifier`、ZealotShakuras `ZealotShakuras`、单位 / Unit:哨兵 `ZealotPurifier` | - | - |
 | 0,1 | Sentry / `Sentry` | `GatewayTrain,Train6` | 训练技能 / CAbilTrain | 激励者 `SentryPurifier`、SentryAiur `SentryAiur`、单位 / Unit:激励者 `SentryPurifier` | - | - |
-| 2,2 | AlarakMasteryUnitAttackSpeed / `AlarakMasteryUnitAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveMasteryAlarakUnitAttackSpeed |
 
 ### 光子炮台 / `PhotonCannon`
 
@@ -159,8 +158,6 @@
 | 0,1 | Colossus / `Colossus` | `RoboticsFacilityTrain,Train3` | 训练技能 / CAbilTrain | 巨像 `Colossus`、单位 / Unit:巨像 `Colossus` | - | - |
 | 0,2 | Observer / `Observer` | `RoboticsFacilityTrain,Train2` | 训练技能 / CAbilTrain | 侦测器 `Observer`、单位 / Unit:侦测器 `Observer` | - | - |
 | 3 | WarpinDisruptor / `WarpinDisruptor` | `-` | 未解析 / Unresolved | - | - | - |
-| 2,0 | TransformToRoboticsWarpFacilityLocked / `TransformToRoboticsWarpFacilityLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel08 |
-| 2,2 | AlarakMasteryUnitAttackSpeed / `AlarakMasteryUnitAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveMasteryAlarakUnitAttackSpeed |
 
 ### Stargate / `Stargate`
 
@@ -176,7 +173,6 @@
 | 0,0 | Phoenix / `Phoenix` | `StargateTrain,Train1` | 训练技能 / CAbilTrain | 侦察机 `PhoenixPurifier`、单位 / Unit:侦察机 `PhoenixPurifier` | - | - |
 | 0,1 | WarpInScout / `WarpInScout` | `StargateTrain,Train6` | 训练技能 / CAbilTrain | 侦察机 `Scout`、单位 / Unit:侦察机 `Scout` | - | - |
 | 0,2 | Carrier / `Carrier` | `StargateTrain,Train3` | 训练技能 / CAbilTrain | 航母 `Carrier`、单位 / Unit:航母 `Carrier` | - | - |
-| 2,0 | TransformToStarWarpGateLocked / `TransformToStarWarpGateLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel08 |
 
 ### WarpGate / `WarpGate`
 
@@ -191,7 +187,6 @@
 | - | WarpGateTrain / `-` | `WarpGateTrain,Train4` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 | 0,0 | Zealot / `Zealot` | `WarpGateTrain,Train1` | 折跃/部署训练技能 / CAbilWarpTrain | 哨兵 `ZealotPurifier`、单位 / Unit:哨兵 `ZealotPurifier` | - | - |
 | 0,1 | Sentry / `Sentry` | `WarpGateTrain,Train6` | 折跃/部署训练技能 / CAbilWarpTrain | 激励者 `SentryPurifier`、单位 / Unit:激励者 `SentryPurifier` | - | - |
-| 2,2 | AlarakMasteryUnitAttackSpeed / `AlarakMasteryUnitAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveMasteryAlarakUnitAttackSpeed |
 | 0,0 | WarpInSupplicant / `WarpInSupplicant` | `WarpGateTrain,Train12` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 
 ## 单位 / Units
@@ -244,9 +239,7 @@
 - Catalog 技能链接 / Catalog ability links：`FenixMojoScoutMorph`(变形技能 / CAbilMorph)
 - 关联 Behavior / Linked behaviors：`AllUnitBehaviorController`
 
-| 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
-| --- | --- | --- | --- | --- | --- | --- |
-| 2,0 | HaveFenixScoutWeaponRange / `HaveFenixScoutWeaponRange` | `-` | 未解析 / Unresolved | - | - | HaveFenixScoutWeaponRange |
+- 面板技能 / Panel skills：无 / None
 
 ### 激励者 / `SentryPurifier`
 

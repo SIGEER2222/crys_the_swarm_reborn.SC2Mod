@@ -3,7 +3,7 @@
 - 描述 / Description：无 / None
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMVorazun.SC2Mod`，instance=`Vorazun`
-- 统计 / Stats：建筑 4、生产链补充建筑 2、单位 8、英雄 0、建筑按钮 41、单位按钮 23、效果引用 11
+- 统计 / Stats：建筑 4、生产链补充建筑 2、单位 8、英雄 0、建筑按钮 38、单位按钮 22、效果引用 11
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
@@ -38,7 +38,6 @@
 | 0,2 | Stalker / `Stalker` | `GatewayTrain,Train2` | 训练技能 / CAbilTrain | Stalker `Stalker`、StalkerShakuras `StalkerShakuras`、龙骑士 `Dragoon`、单位 / Unit:Stalker `Stalker` | - | - |
 | 1,0 | DarkTemplar / `DarkTemplar` | `GatewayTrain,Train5` | 训练技能 / CAbilTrain | 虚空圣堂武士 `DarkTemplarShakuras`、DarkTemplarAiur `DarkTemplarAiur`、DarkTemplarTaldarim `DarkTemplarTaldarim`、单位 / Unit:虚空圣堂武士 `DarkTemplarShakuras` | - | - |
 | 1,2 | DarkArchon / `DarkArchon` | `GatewayTrain,Train9` | 训练技能 / CAbilTrain | DarkArchon `DarkArchon`、单位 / Unit:DarkArchon `DarkArchon` | - | - |
-| 2,2 | AlarakMasteryUnitAttackSpeed / `AlarakMasteryUnitAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveMasteryAlarakUnitAttackSpeed |
 
 ### 光子炮台 / `PhotonCannon`
 
@@ -47,10 +46,7 @@
 - Catalog 技能链接 / Catalog ability links：`attack`(基础 / Basic)、`PhaseCannonProjection`(目标效果技能 / CAbilEffectTarget)、`stop`(基础 / Basic)
 - 已隐藏基础按钮 / Hidden basic buttons：1 个（用 `--include-basic` 可展开 / use `--include-basic` to expand）
 
-| 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
-| --- | --- | --- | --- | --- | --- | --- |
-| 2,0 | 强化瞄准 / `KaraxTurretRange` | `-` | 未解析 / Unresolved | - | - | HaveKaraxTurretRange |
-| 2,1 | 军械优化 / `KaraxTurretAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveKaraxTurretAttackSpeed |
+- 面板技能 / Panel skills：无 / None
 
 ### TwilightCouncil / `TwilightCouncil`
 
@@ -122,7 +118,6 @@
 | 0,0 | Oracle / `Oracle` | `StargateTrain,Train9` | 训练技能 / CAbilTrain | Oracle `Oracle`、单位 / Unit:Oracle `Oracle` | - | - |
 | 1 | VoidRay / `VoidRay` | `StargateTrain,Train5` | 训练技能 / CAbilTrain | VoidRay `VoidRay`、单位 / Unit:VoidRay `VoidRay` | - | - |
 | 0,2 | CorsairMP / `CorsairMP` | `StargateTrain,Train11` | 训练技能 / CAbilTrain | CorsairMP `CorsairMP`、单位 / Unit:CorsairMP `CorsairMP` | - | - |
-| 2,0 | TransformToStarWarpGateLocked / `TransformToStarWarpGateLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel08 |
 
 ### WarpGate / `WarpGate`
 
@@ -138,7 +133,6 @@
 | 0,0 | Zealot / `Zealot` | `WarpGateTrain,Train1` | 折跃/部署训练技能 / CAbilWarpTrain | 哨兵 `Zealot`、ZealotShakuras `ZealotShakuras`、单位 / Unit:哨兵 `Zealot` | - | - |
 | 1,0 | DarkTemplar / `DarkTemplar` | `WarpGateTrain,Train5` | 折跃/部署训练技能 / CAbilWarpTrain | 虚空圣堂武士 `DarkTemplarShakuras`、单位 / Unit:虚空圣堂武士 `DarkTemplarShakuras` | - | - |
 | 1,2 | DarkArchon / `DarkArchon` | `WarpGateTrain,Train9` | 折跃/部署训练技能 / CAbilWarpTrain | DarkArchon `DarkArchon`、单位 / Unit:DarkArchon `DarkArchon` | - | - |
-| 2,2 | AlarakMasteryUnitAttackSpeed / `AlarakMasteryUnitAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveMasteryAlarakUnitAttackSpeed |
 | 0,0 | WarpInSupplicant / `WarpInSupplicant` | `WarpGateTrain,Train12` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 
 ## 单位 / Units
@@ -197,7 +191,6 @@
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2,0 | Charge / `Charge` | `Charge,Execute` | CAbilAugment / CAbilAugment | - | - | - |
-| 2,1 | WhirlwindLocked / `WhirlwindLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel04 |
 
 ### ZealotShakuras / `ZealotShakuras`
 

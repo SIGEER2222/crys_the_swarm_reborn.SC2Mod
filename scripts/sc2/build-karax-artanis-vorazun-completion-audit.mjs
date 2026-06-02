@@ -4,6 +4,27 @@ import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const commanders = ['Karax', 'Artanis', 'Vorazun'];
+const knownCommanderRequirementTokens = [
+  'Abathur',
+  'Alarak',
+  'Artanis',
+  'Dehaka',
+  'Fenix',
+  'HanHorner',
+  'Horner',
+  'Karax',
+  'Kerrigan',
+  'Mengsk',
+  'Nova',
+  'Raynor',
+  'Stetmann',
+  'Stukov',
+  'Swann',
+  'Tychus',
+  'Vorazun',
+  'Zagara',
+  'Zeratul',
+];
 
 const officialRoot = path.join(repoRoot, '游戏数据', '官方合作指挥官', 'commanders');
 const fieldAuditPath = path.join(repoRoot, 'docs', '每日进度', '2026-06-01-karax-artanis-vorazun字段级对齐审计', 'karax-artanis-vorazun-field-alignment.json');
@@ -135,6 +156,46 @@ function runtimeTopPanelFaces(runtime) {
   return unique((runtime.top_panel || []).map((item) => item.ability?.face));
 }
 
+function crossCommanderPanelRequirements(runtime, commander) {
+  const otherCommanders = knownCommanderRequirementTokens.filter((item) => item !== commander);
+  const issues = [];
+  for (const groupName of ['top_panel', 'buildings', 'production_buildings', 'units', 'heroes']) {
+    for (const entry of runtime[groupName] || []) {
+      const abilities = [
+        entry.ability,
+        ...(entry.panel_abilities || []),
+      ].filter(Boolean);
+      for (const ability of abilities) {
+        const requirements = ability.requirements || '';
+        const matchedCommanders = otherCommanders.filter((other) => requirements.includes(other));
+        if (!matchedCommanders.length) {
+          continue;
+        }
+        issues.push({
+          group: groupName,
+          item_id: entry.unit_id || entry.id || entry.source_unit_id || '',
+          face: ability.face || '',
+          abil_cmd: ability.abil_cmd || ability.ability_id || '',
+          requirements,
+          matched_commanders: matchedCommanders,
+        });
+      }
+    }
+  }
+  return issues;
+}
+
+function formatCrossCommanderPanelRequirements(issues) {
+  if (!issues.length) {
+    return '0';
+  }
+  const samples = issues
+    .slice(0, 10)
+    .map((issue) => `${issue.group}:${issue.item_id || '-'}:${issue.face || issue.abil_cmd || '-'}:${issue.requirements}`);
+  const suffix = issues.length > samples.length ? `; +${issues.length - samples.length}` : '';
+  return `${samples.join('; ')}${suffix}`;
+}
+
 function missingRuntimeTopPanelFaces(expectedButtons, runtime) {
   const runtimeFaces = new Set(runtimeTopPanelFaces(runtime));
   return commandCardFaces(expectedButtons).filter((face) => !runtimeFaces.has(face));
@@ -261,6 +322,7 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     runtime,
     allowedRuntimeExtraTopPanelFaces[commander] || new Set(),
   );
+  const crossCommanderRequirements = crossCommanderPanelRequirements(runtime, commander);
   const expectedUnitCount = field.expected_unit_count ?? unitReports.length;
   const expectedBuildingCount = field.expected_building_count ?? buildingReports.length;
   const resolvedUnits = resolvedUnitReports(field);
@@ -398,6 +460,12 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
       extraRuntimeTopFaces.length === 0,
       `extra=${extraRuntimeTopFaces.join('/') || 0}, allowed=${[...(allowedRuntimeExtraTopPanelFaces[commander] || [])].join('/') || 0}`,
     ),
+    check(
+      'current-mod-cross-commander-panel-requirements',
+      '当前 Mod 面板未暴露其他指挥官的等级/升级/锁定需求',
+      crossCommanderRequirements.length === 0,
+      `cross_requirements=${formatCrossCommanderPanelRequirements(crossCommanderRequirements)}`,
+    ),
   ];
 
   return {
@@ -422,6 +490,8 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     runtime_production_produced_unit_ids: productionProducedUnitIds,
     runtime_production_missing_units: missingProductionUnits,
     runtime_production_extra_produced_units: extraProductionUnits,
+    runtime_cross_commander_panel_requirement_count: crossCommanderRequirements.length,
+    runtime_cross_commander_panel_requirements: crossCommanderRequirements,
     runtime_building_panel_produced_unit_count: productionProducedUnitIds.length,
     runtime_building_panel_produced_unit_ids: productionProducedUnitIds,
     runtime_building_panel_missing_units: missingProductionUnits,

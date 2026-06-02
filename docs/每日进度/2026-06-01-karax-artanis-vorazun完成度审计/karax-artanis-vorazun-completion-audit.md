@@ -1,6 +1,6 @@
 # Karax / Artanis / Vorazun 完成度审计
 
-- 生成时间：2026/6/2 12:12:46
+- 生成时间：2026/6/2 12:25:40
 - 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。
 - 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告、当前 Mod 科技链路诊断，以及 StarCraft2Coop 在线资料入口和页面显式补充项。
 - 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。
@@ -9,9 +9,9 @@
 
 | 指挥官 | 状态 | 单位 | 建筑 | 顶部面板按钮 | 在线资料 |
 | --- | --- | ---: | ---: | ---: | --- |
-| Karax | PASS | 8 | 6 | 4 | https://starcraft2coop.com/commanders/karax |
+| Karax | FAIL | 8 | 6 | 4 | https://starcraft2coop.com/commanders/karax |
 | Artanis | PASS | 9 | 5 | 4 | https://starcraft2coop.com/commanders/artanis |
-| Vorazun | PASS | 8 | 3 | 5 | https://starcraft2coop.com/commanders/vorazun |
+| Vorazun | FAIL | 8 | 3 | 5 | https://starcraft2coop.com/commanders/vorazun |
 
 ## Karax
 
@@ -51,6 +51,7 @@
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
 | 顶部技能面板预期按钮均出现在当前 Mod runtime 面板 | PASS | runtime_faces=12, missing=0 |
 | 当前 Mod runtime 顶部面板未出现未解释的额外按钮 | PASS | extra=0, allowed=CancelBuilding/CommanderPrestigeKaraxChronoFieldLocked/CommanderPrestigeKaraxChronoWaveLocked/PurifierBeamLocked/ReconstructionBeamLocked/SOAChronoPassive/SOAChronoPassiveLocked/SOARepairBeam |
+| 当前 Mod 面板未暴露其他指挥官的等级/升级/锁定需求 | FAIL | cross_requirements=buildings:TwilightCouncil:ResearchFenixKaldalisZealotCleaveLocked:FenixLevel04; buildings:TwilightCouncil:ResearchShadowStunLocked:VorazunLevel04; buildings:TwilightCouncil:ResearchSupplicantMaxShieldsLocked:AlarakLevel04; buildings:TwilightCouncil:ResearchWhirlwindLocked:ArtanisLevel04; buildings:TwilightCouncil:FenixTalisAdeptLearnBounceShotUpgradeLocked:FenixLevel04; buildings:TwilightCouncil:ResearchBlinkShieldRestoreLocked:VorazunLevel04; buildings:TwilightCouncil:ResearchDragoonChassisLocked:ArtanisLevel04; buildings:TwilightCouncil:ResearchStalkerPhasingArmorLocked:AlarakLevel04 |
 
 ## Artanis
 
@@ -90,6 +91,7 @@
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
 | 顶部技能面板预期按钮均出现在当前 Mod runtime 面板 | PASS | runtime_faces=11, missing=0 |
 | 当前 Mod runtime 顶部面板未出现未解释的额外按钮 | PASS | extra=0, allowed=CancelBuilding/CommanderPrestigeArtanisGuardianShellLocked/SOAHeroicShield/SOAHeroicShieldLocked/SOAStrafeAttackLocked/SOAWarpTech/WarpHarmonizationLocked |
+| 当前 Mod 面板未暴露其他指挥官的等级/升级/锁定需求 | PASS | cross_requirements=0 |
 
 ## Vorazun
 
@@ -129,3 +131,4 @@
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
 | 顶部技能面板预期按钮均出现在当前 Mod runtime 面板 | PASS | runtime_faces=10, missing=0 |
 | 当前 Mod runtime 顶部面板未出现未解释的额外按钮 | PASS | extra=0, allowed=CancelBuilding/RecallonDeathPassiveLocked/SOAStrikefromtheShadows/SOATimeStopLocked/StrikefromtheShadowsLocked |
+| 当前 Mod 面板未暴露其他指挥官的等级/升级/锁定需求 | FAIL | cross_requirements=buildings:TwilightCouncil:ResearchReconstructionLocked:KaraxLevel04; buildings:TwilightCouncil:ResearchFenixKaldalisZealotCleaveLocked:FenixLevel04; buildings:TwilightCouncil:ResearchKaraxEnergyRegenLocked:KaraxLevel04; buildings:TwilightCouncil:ResearchSupplicantMaxShieldsLocked:AlarakLevel04; buildings:TwilightCouncil:ResearchWhirlwindLocked:ArtanisLevel04; buildings:TwilightCouncil:FenixTalisAdeptLearnBounceShotUpgradeLocked:FenixLevel04; buildings:TwilightCouncil:ResearchDragoonChassisLocked:ArtanisLevel04; buildings:TwilightCouncil:ResearchReclamationLocked:KaraxLevel04; buildings:TwilightCouncil:ResearchStalkerPhasingArmorLocked:AlarakLevel04; units:Stalker:CommanderPrestigeAlarakMechBuff:CommanderPrestigeAlarakMech; +1 |

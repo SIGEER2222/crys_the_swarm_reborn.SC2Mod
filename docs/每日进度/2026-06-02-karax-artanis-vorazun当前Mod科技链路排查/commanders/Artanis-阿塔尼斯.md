@@ -3,7 +3,7 @@
 - 描述 / Description：达拉姆大主教
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMArtanis.SC2Mod`，instance=`Artanis`
-- 统计 / Stats：建筑 5、生产链补充建筑 4、单位 9、英雄 0、建筑按钮 65、单位按钮 26、效果引用 8
+- 统计 / Stats：建筑 5、生产链补充建筑 4、单位 9、英雄 0、建筑按钮 46、单位按钮 25、效果引用 8
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
@@ -40,7 +40,6 @@
 | 0,0 | Zealot / `Zealot` | `GatewayTrain,Train1` | 训练技能 / CAbilTrain | 哨兵 `Zealot`、ZealotShakuras `ZealotShakuras`、单位 / Unit:哨兵 `Zealot` | - | - |
 | 0,2 | Stalker / `Stalker` | `GatewayTrain,Train2` | 训练技能 / CAbilTrain | 龙骑士 `Dragoon`、StalkerShakuras `StalkerShakuras`、单位 / Unit:龙骑士 `Dragoon` | - | - |
 | 1,0 | HighTemplar / `HighTemplar` | `GatewayTrain,Train8` | 训练技能 / CAbilTrain | 高阶圣堂武士 `HighTemplar`、单位 / Unit:高阶圣堂武士 `HighTemplar` | - | - |
-| 2,2 | AlarakMasteryUnitAttackSpeed / `AlarakMasteryUnitAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveMasteryAlarakUnitAttackSpeed |
 
 ### 光子炮台 / `PhotonCannon`
 
@@ -49,10 +48,7 @@
 - Catalog 技能链接 / Catalog ability links：`attack`(基础 / Basic)、`PhaseCannonProjection`(目标效果技能 / CAbilEffectTarget)、`stop`(基础 / Basic)
 - 已隐藏基础按钮 / Hidden basic buttons：1 个（用 `--include-basic` 可展开 / use `--include-basic` to expand）
 
-| 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
-| --- | --- | --- | --- | --- | --- | --- |
-| 2,0 | 强化瞄准 / `KaraxTurretRange` | `-` | 未解析 / Unresolved | - | - | HaveKaraxTurretRange |
-| 2,1 | 军械优化 / `KaraxTurretAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveKaraxTurretAttackSpeed |
+- 面板技能 / Panel skills：无 / None
 
 ### RoboticsBay / `RoboticsBay`
 
@@ -67,31 +63,22 @@
 | - | 掠夺者 / `ReaverPassive` | `-` | 未解析 / Unresolved | - | - | HaveVoidReaver |
 | 0,0 | ResearchGraviticBooster / `ResearchGraviticBooster` | `RoboticsBayResearch,Research2` | 研究技能 / CAbilResearch | - | - | - |
 | 0,0 | ResearchVanguardArmoredDamage / `ResearchVanguardArmoredDamage` | `RoboticsBayResearch,Research16` | 研究技能 / CAbilResearch | 升级 / Upgrade:VanguardArmoredDamage `VanguardArmoredDamage` | - | - |
-| 0,0 | ZeratulResearchImmortalBarrierBase / `ZeratulResearchImmortalBarrierBase` | `-` | 未解析 / Unresolved | - | - | HaveZeratulArtifactTier1AndRoboticsBay |
 | 0,1 | ResearchAlarakVanguardIncreaseSplashArea / `ResearchAlarakVanguardIncreaseSplashArea` | `RoboticsBayResearch,Research15` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakVanguardIncreaseSplashArea `AlarakVanguardIncreaseSplashArea` | - | - |
-| 0,1 | ResearchAlarakVanguardIncreaseSplashAreaLocked / `ResearchAlarakVanguardIncreaseSplashAreaLocked` | `-` | 未解析 / Unresolved | - | - | AlarakLevel06 |
 | 0,1 | ResearchBarrier / `ResearchBarrier` | `RoboticsBayResearch,Research9` | 研究技能 / CAbilResearch | 升级 / Upgrade:ImmortalResearchBarrierAdvanced `ImmortalResearchBarrierAdvanced` | - | - |
-| 0,2 | FenixResearchDisruptorCloakLocked / `FenixResearchDisruptorCloakLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel09 |
 | 0,2 | ResearchAlarakColossusChargedBlastAirAttack / `ResearchAlarakColossusChargedBlastAirAttack` | `RoboticsBayResearch,Research18` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakColossusChargedBlastAirAttack `AlarakColossusChargedBlastAirAttack` | - | - |
 | 0,2 | ResearchDisruptorCloak / `ResearchDisruptorCloak` | `RoboticsBayResearch,Research19` | 研究技能 / CAbilResearch | 升级 / Upgrade:DisruptorCloak `DisruptorCloak` | - | - |
 | 0,2 | ResearchFireBeam / `ResearchFireBeam` | `RoboticsBayResearch,Research12` | 研究技能 / CAbilResearch | 升级 / Upgrade:ColossusFireBeam `ColossusFireBeam` | - | - |
 | 0,2 | ResearchIncreasedScarabCountLocked / `ResearchIncreasedScarabCountLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel09 |
 | 0,2 | ResearchReaverIncreasedScarabCount / `ResearchReaverIncreasedScarabCount` | `RoboticsBayResearch,Research13` | 研究技能 / CAbilResearch | 升级 / Upgrade:ReaverIncreasedScarabCount `ReaverIncreasedScarabCount` | - | - |
-| 0,3 | FenixResearchDisruptorSecondExplosionLocked / `FenixResearchDisruptorSecondExplosionLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel09 |
 | 0,3 | ResearchAlarakColossusChargedBlastChargeTime / `ResearchAlarakColossusChargedBlastChargeTime` | `RoboticsBayResearch,Research17` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakColossusChargedBlastChargeTime `AlarakColossusChargedBlastChargeTime` | - | - |
-| 0,3 | ResearchChargedBlastChargeTimeLocked / `ResearchChargedBlastChargeTimeLocked` | `-` | 未解析 / Unresolved | - | - | AlarakLevel06 |
 | 0,3 | ResearchDisruptorSecondExplosion / `ResearchDisruptorSecondExplosion` | `RoboticsBayResearch,Research20` | 研究技能 / CAbilResearch | 升级 / Upgrade:DisruptorSecondExplosion `DisruptorSecondExplosion` | - | - |
 | 0,3 | ResearchIncreasedScarabSplashRadiusLocked / `ResearchIncreasedScarabSplashRadiusLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel09 |
 | 0,3 | ResearchReaverIncreasedScarabSplashRadius / `ResearchReaverIncreasedScarabSplashRadius` | `RoboticsBayResearch,Research14` | 研究技能 / CAbilResearch | 升级 / Upgrade:ReaverIncreasedScarabSplashRadius `ReaverIncreasedScarabSplashRadius` | - | - |
 | 1 | 巨像 / `ColossusPassive` | `-` | 未解析 / Unresolved | - | - | HaveColossus |
 | 1,0 | 巨像 / `ColossusPassive` | `-` | 未解析 / Unresolved | - | - | HaveVoidColossusFireBeam |
-| 1,0 | ResearchZeratulImmortalRange / `ResearchZeratulImmortalRange` | `-` | 未解析 / Unresolved | - | - | HaveZeratulArtifactTier2AndRoboticsBay |
 | 1,0 | WrathwalkerPassive / `WrathwalkerPassive` | `-` | 未解析 / Unresolved | - | - | HaveVoidColossusTaldarim |
 | 2 | FenixImmortalResearchDetonationShot / `FenixImmortalResearchDetonationShot` | `RoboticsBayResearch,Research21` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixImmortalDetonationShot `FenixImmortalDetonationShot` | - | - |
-| 2 | FenixImmortalResearchDetonationShotLocked / `FenixImmortalResearchDetonationShotLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel12 |
-| 2,0 | ZeratulResearchImprovedBarrier / `ZeratulResearchImprovedBarrier` | `-` | 未解析 / Unresolved | - | - | HaveZeratulArtifactTier3AndRoboticsBay |
 | 2,1 | ResearchFenixWarbringerColossusPowerShot / `ResearchFenixWarbringerColossusPowerShot` | `RoboticsBayResearch,Research23` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixWarbringerColossusPowerShot `FenixWarbringerColossusPowerShot` | - | - |
-| 2,1 | ResearchFenixWarbringerColossusPowerShotLocked / `ResearchFenixWarbringerColossusPowerShotLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel14 |
 
 ### RoboticsFacilityWarp / `RoboticsFacilityWarp`
 
@@ -127,22 +114,15 @@
 | 1 | ResearchStalkerTeleport / `ResearchStalkerTeleport` | `TwilightCouncilResearch,Research2` | 研究技能 / CAbilResearch | - | - | - |
 | 0,2 | ResearchAlarakSupplicantMaxShields / `ResearchAlarakSupplicantMaxShields` | `TwilightCouncilResearch,Research21` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakSupplicantMaxShields `AlarakSupplicantMaxShields` | - | - |
 | 0,2 | ResearchFenixKaldalisZealotCleave / `ResearchFenixKaldalisZealotCleave` | `TwilightCouncilResearch,Research30` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixKaldalisCleave `FenixKaldalisCleave` | - | - |
-| 0,2 | ResearchFenixKaldalisZealotCleaveLocked / `ResearchFenixKaldalisZealotCleaveLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel04 |
-| 0,2 | ResearchKaraxEnergyRegenLocked / `ResearchKaraxEnergyRegenLocked` | `-` | 未解析 / Unresolved | - | - | KaraxLevel04 |
 | 0,2 | 研究快速恢复 / `ResearchKaraxEnergyRegenUpgrade` | `TwilightCouncilResearch,Research14` | 研究技能 / CAbilResearch | 升级 / Upgrade:KaraxEnergyRegenUpgrade `KaraxEnergyRegenUpgrade` | - | - |
-| 0,2 | ResearchShadowStunLocked / `ResearchShadowStunLocked` | `-` | 未解析 / Unresolved | - | - | VorazunLevel04 |
-| 0,2 | ResearchSupplicantMaxShieldsLocked / `ResearchSupplicantMaxShieldsLocked` | `-` | 未解析 / Unresolved | - | - | AlarakLevel04 |
 | 2 | ResearchWhirlwind / `ResearchWhirlwind` | `TwilightCouncilResearch,Research3` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchWhirlwind `ZealotResearchWhirlwind` | - | - |
 | 0,2 | ResearchWhirlwindLocked / `ResearchWhirlwindLocked` | `ChampionWarpTrain,Train4` | 未解析 / Unresolved | - | - | ArtanisLevel04 |
 | 3 | AlarakResearchStalkerPhasingArmor / `AlarakResearchStalkerPhasingArmor` | `TwilightCouncilResearch,Research18` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakStalkerPhasingArmor `AlarakStalkerPhasingArmor` | - | - |
 | 0,3 | FenixTalisAdeptLearnBounceShotUpgrade / `FenixTalisAdeptLearnBounceShotUpgrade` | `TwilightCouncilResearch,Research26` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixChampionTalisAdeptBounceShotUpgrade `FenixChampionTalisAdeptBounceShotUpgrade` | - | - |
-| 0,3 | FenixTalisAdeptLearnBounceShotUpgradeLocked / `FenixTalisAdeptLearnBounceShotUpgradeLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel04 |
-| 0,3 | ResearchBlinkShieldRestoreLocked / `ResearchBlinkShieldRestoreLocked` | `-` | 未解析 / Unresolved | - | - | VorazunLevel04 |
 | 3 | ResearchBlinkShieldRestoreUpgrade / `ResearchBlinkShieldRestoreUpgrade` | `TwilightCouncilResearch,Research8` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchBlinkShieldRestore `StalkerResearchBlinkShieldRestore` | - | - |
 | 3 | ResearchDragoonChassis / `ResearchDragoonChassis` | `TwilightCouncilResearch,Research7` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchDragoonHealth `StalkerResearchDragoonHealth` | - | - |
 | 3 | ResearchDragoonChassisLocked / `ResearchDragoonChassisLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel04 |
 | 3 | ResearchEnergizerReclamation / `ResearchEnergizerReclamation` | `TwilightCouncilResearch,Research13` | 研究技能 / CAbilResearch | 升级 / Upgrade:EnergizerReclamation `EnergizerReclamation` | - | - |
-| 0,3 | ResearchStalkerPhasingArmorLocked / `ResearchStalkerPhasingArmorLocked` | `-` | 未解析 / Unresolved | - | - | AlarakLevel04 |
 
 ## 生产链补充建筑 / Production-support Buildings
 
@@ -159,12 +139,10 @@
 | 0,0 | Immortal / `Immortal` | `RoboticsFacilityTrain,Train4` | 训练技能 / CAbilTrain | 不朽者 `ImmortalAiur` | - | - |
 | 0,1 | BuildReaverLocked / `BuildReaverLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel05 |
 | 0,1 | Colossus / `Colossus` | `RoboticsFacilityTrain,Train3` | 训练技能 / CAbilTrain | - | - | - |
-| 0,3 | FenixWarpinDisruptorLocked / `FenixWarpinDisruptorLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel07 |
 | 3 | WarpinDisruptor / `WarpinDisruptor` | `-` | 未解析 / Unresolved | - | - | - |
 | 0,3 | WarpInWarPrism / `WarpInWarPrism` | `RoboticsFacilityTrain,Train30` | 训练技能 / CAbilTrain | 单位 / Unit:WarpPrismTaldarim `WarpPrismTaldarim` | - | - |
 | 0,3 | WarpPrism / `WarpPrism` | `RoboticsFacilityTrain,Train1` | 训练技能 / CAbilTrain | - | - | - |
 | 2,0 | TransformToRoboticsWarpFacilityLocked / `TransformToRoboticsWarpFacilityLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel08 |
-| 2,2 | AlarakMasteryUnitAttackSpeed / `AlarakMasteryUnitAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveMasteryAlarakUnitAttackSpeed |
 
 ### Stargate / `Stargate`
 
@@ -212,7 +190,6 @@
 | - | WarpGateTrain / `-` | `WarpGateTrain,Train4` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 | 0,0 | Zealot / `Zealot` | `WarpGateTrain,Train1` | 折跃/部署训练技能 / CAbilWarpTrain | 哨兵 `Zealot`、单位 / Unit:哨兵 `Zealot` | - | - |
 | 1,0 | HighTemplar / `HighTemplar` | `WarpGateTrain,Train8` | 折跃/部署训练技能 / CAbilWarpTrain | 高阶圣堂武士 `HighTemplar`、单位 / Unit:高阶圣堂武士 `HighTemplar` | - | - |
-| 2,2 | AlarakMasteryUnitAttackSpeed / `AlarakMasteryUnitAttackSpeed` | `-` | 未解析 / Unresolved | - | - | HaveMasteryAlarakUnitAttackSpeed |
 | 0,0 | WarpInSupplicant / `WarpInSupplicant` | `WarpGateTrain,Train12` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 
 ## 单位 / Units
@@ -245,7 +222,6 @@
 | - | ImmortalBarrierBase / `ImmortalBarrierBase` | `ImmortalBarrierBase,Execute` | 瞬发效果技能 / CAbilEffectInstant | - | - | - |
 | - | ImmortalShakurasShadowCannon / `ImmortalShakurasShadowCannon` | `ImmortalShakurasShadowCannon,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
 | 1,0 | HaveBarrier / `HaveBarrier` | `-` | 未解析 / Unresolved | - | - | HaveBarrier |
-| 2,1 | ShadowCannonLocked / `ShadowCannonLocked` | `-` | 未解析 / Unresolved | - | - | KaraxLevel09 |
 
 ### 侦测器 / `Observer`
 
