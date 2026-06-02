@@ -12932,4 +12932,213 @@
     <DeathTime value="0"></DeathTime>
     <DeadFootprint value=""></DeadFootprint>
   </CUnit>
+  <CUnit id="DroneKerrigan">
+    <Name value="Unit/Name/Drone"></Name>
+    <DeathRevealRadius value="3"></DeathRevealRadius>
+    <ReviveType value="Drone"></ReviveType>
+    <Race value="Zerg"></Race>
+    <Mob value="Multiplayer"></Mob>
+    <FlagArray index="Worker" value="1"></FlagArray>
+    <FlagArray index="PreventDestroy" value="1"></FlagArray>
+    <FlagArray index="UseLineOfSight" value="1"></FlagArray>
+    <PlaneArray index="Ground" value="1"></PlaneArray>
+    <Collide index="Ground" value="1"></Collide>
+    <Collide index="ForceField" value="1"></Collide>
+    <Collide index="Locust" value="1"></Collide>
+    <Collide index="Small" value="1"></Collide>
+    <DefaultAcquireLevel value="Defensive"></DefaultAcquireLevel>
+    <Response value="Flee"></Response>
+    <Attributes index="Light" value="1"></Attributes>
+    <Attributes index="Biological" value="1"></Attributes>
+    <LifeStart value="40"></LifeStart>
+    <LifeMax value="40"></LifeMax>
+    <LifeRegenRate value="0.2734"></LifeRegenRate>
+    <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"></LifeArmorName>
+    <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"></ShieldArmorName>
+    <Speed value="2.8125"></Speed>
+    <Acceleration value="2.5"></Acceleration>
+    <LateralAcceleration value="46.0625"></LateralAcceleration>
+    <StationaryTurningRate value="999.8437"></StationaryTurningRate>
+    <TurningRate value="999.8437"></TurningRate>
+    <Sight value="8"></Sight>
+    <Food value="-1"></Food>
+    <CostCategory value="Economy"></CostCategory>
+    <CostResource index="Minerals" value="50"></CostResource>
+    <AttackTargetPriority value="20"></AttackTargetPriority>
+    <AIOverideTargetPriority value="10"></AIOverideTargetPriority>
+    <AbilArray Link="stop"></AbilArray>
+    <AbilArray Link="attack"></AbilArray>
+    <AbilArray Link="move"></AbilArray>
+    <AbilArray Link="ZergBuildKerrigan"></AbilArray>
+    <AbilArray Link="DroneHarvest"></AbilArray>
+    <AbilArray Link="DroneCarcassHarvest"></AbilArray>
+    <AbilArray Link="MapObjectInteract"></AbilArray>
+    <AbilArray Link="MutatorRemoveWorkerSleep"></AbilArray>
+    <AbilArray Link="SprayZerg"></AbilArray>
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+    <WeaponArray Link="DehakaDroneSpines"></WeaponArray>
+    <CardLayouts>
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="MapObjectInteract" Type="AbilCmd" AbilCmd="MapObjectInteract,Execute" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"></LayoutButtons>
+      <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"></LayoutButtons>
+      <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"></LayoutButtons>
+      <LayoutButtons Face="AttackWorker" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"></LayoutButtons>
+      <LayoutButtons Face="GatherZerg" Type="AbilCmd" AbilCmd="DroneHarvest,Gather" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="ReturnCargo" Type="AbilCmd" AbilCmd="DroneHarvest,Return" Row="1" Column="1"></LayoutButtons>
+      <LayoutButtons>
+        <Face value="ZergBuild"></Face>
+        <Type value="Submenu"></Type>
+        <AbilCmd value="255,255"></AbilCmd>
+        <SubmenuCardId value="ZBl1"></SubmenuCardId>
+        <Row value="2"></Row>
+        <Column value="0"></Column>
+      </LayoutButtons>
+      <LayoutButtons>
+        <Face value="ZergBuildAdvanced"></Face>
+        <Type value="Submenu"></Type>
+        <AbilCmd value="255,255"></AbilCmd>
+        <SubmenuCardId value="ZBl2"></SubmenuCardId>
+        <Row value="2"></Row>
+        <Column value="1"></Column>
+      </LayoutButtons>
+      <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="DroneCarcassHarvest,Cancel" Row="2" Column="4"></LayoutButtons>
+      <LayoutButtons Face="MutatorWorkerSleep" Type="AbilCmd" AbilCmd="MutatorRemoveWorkerSleep,Execute" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="Spray" Type="AbilCmd" AbilCmd="SprayZerg,Execute" Row="2" Column="3"></LayoutButtons>
+    </CardLayouts>
+    <CardLayouts CardId="ZBl1">
+      <LayoutButtons Face="HatcheryKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build1" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="ExtractorKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build3" Row="0" Column="1"></LayoutButtons>
+      <LayoutButtons Face="SpawningPoolKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build4" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="EvolutionChamberKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build5" Row="1" Column="1"></LayoutButtons>
+      <LayoutButtons Face="SpineCrawlerKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build15" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="SporeCrawlerKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build16" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <CardLayouts CardId="ZBl2">
+      <LayoutButtons Face="HydraliskDenKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build6" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="SpireKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build7" Row="0" Column="1"></LayoutButtons>
+      <LayoutButtons Face="UltraliskCavernKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build8" Row="0" Column="2"></LayoutButtons>
+      <LayoutButtons Face="NydusNetworkKerrigan" Type="AbilCmd" AbilCmd="ZergBuildKerrigan,Build10" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <Radius value="0.375"></Radius>
+    <SeparationRadius value="0.375"></SeparationRadius>
+    <InnerRadius value="0.375"></InnerRadius>
+    <CargoSize value="1"></CargoSize>
+    <ScoreResult value="BuildOrder"></ScoreResult>
+    <SubgroupPriority value="104"></SubgroupPriority>
+    <MinimapRadius value="0.375"></MinimapRadius>
+    <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved"></EditorCategories>
+    <TacticalAI value="Drone"></TacticalAI>
+    <GlossaryCategory value="Unit/Category/ZergUnits"></GlossaryCategory>
+    <GlossaryPriority value="20"></GlossaryPriority>
+    <HotkeyCategory value="Unit/Category/ZergEvolved"></HotkeyCategory>
+    <KillDisplay value="Always"></KillDisplay>
+    <RankDisplay value="Always"></RankDisplay>
+  </CUnit>
+  <CUnit id="HatcheryKerrigan" parent="Hatchery">
+    <AbilArray index="11" Link="UpgradeToLairKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="LairKerrigan" Type="AbilCmd" AbilCmd="UpgradeToLairKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToLairKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <TechAliasArray value="Alias_HatcheryKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="LairKerrigan" parent="Lair">
+    <AbilArray Link="UpgradeToHiveKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="HiveKerrigan" Type="AbilCmd" AbilCmd="UpgradeToHiveKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToHiveKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <TechAliasArray value="Alias_HatcheryKerrigan"></TechAliasArray>
+    <TechAliasArray value="Alias_LairKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="HiveKerrigan" parent="Hive">
+    <TechAliasArray value="Alias_HatcheryKerrigan"></TechAliasArray>
+    <TechAliasArray value="Alias_LairKerrigan"></TechAliasArray>
+    <TechAliasArray value="Alias_HiveKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="ExtractorKerrigan" parent="Extractor">
+    <TechAliasArray value="Alias_ExtractorKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="SpawningPoolKerrigan" parent="SpawningPool">
+    <TechAliasArray value="Alias_SpawningPoolKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="EvolutionChamberKerrigan" parent="EvolutionChamber">
+    <TechAliasArray value="Alias_EvolutionChamberKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="HydraliskDenKerrigan" parent="HydraliskDen">
+    <TechAliasArray value="Alias_HydraliskDenKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="SpireKerrigan" parent="Spire">
+    <AbilArray Link="UpgradeToGreaterSpireKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons index="9" Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToGreaterSpireKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
+      <LayoutButtons index="10" Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToGreaterSpireKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
+      <LayoutButtons index="14" Face="GreaterSpireKerrigan" Type="AbilCmd" AbilCmd="UpgradeToGreaterSpireKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+    <TechAliasArray value="Alias_SpireKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="GreaterSpireKerrigan" parent="GreaterSpire">
+    <TechAliasArray value="Alias_SpireKerrigan"></TechAliasArray>
+    <TechAliasArray value="Alias_GreaterSpireKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="UltraliskCavernKerrigan" parent="UltraliskCavern">
+    <TechAliasArray value="Alias_UltraliskCavernKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="NydusNetworkKerrigan" parent="NydusNetwork">
+    <AbilArray Link="BuildNydusCanalKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="SummonNydusWorm" Type="AbilCmd" AbilCmd="BuildNydusCanalKerrigan,Build1" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="SummonNydusCanalAttacker" Type="AbilCmd" AbilCmd="BuildNydusCanalKerrigan,Build2" Row="1" Column="1"></LayoutButtons>
+      <LayoutButtons Face="SummonNydusCanalCreeper" Type="AbilCmd" AbilCmd="BuildNydusCanalKerrigan,Build3" Row="1" Column="2"></LayoutButtons>
+      <LayoutButtons Face="SummonNydusWorm" Type="AbilCmd" AbilCmd="BuildNydusCanalKerrigan,Build1" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+    <TechAliasArray value="Alias_NydusNetworkKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="SpineCrawlerKerrigan" parent="SpineCrawler">
+    <AbilArray Link="SpineCrawlerUprootKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="SpineCrawlerUproot" Type="AbilCmd" AbilCmd="SpineCrawlerUprootKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+    <SelectAlias value="SpineCrawlerUprootedKerrigan"></SelectAlias>
+    <SubgroupAlias value="SpineCrawlerUprootedKerrigan"></SubgroupAlias>
+    <TechAliasArray value="Alias_SpineCrawlerKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="SpineCrawlerUprootedKerrigan" parent="SpineCrawlerUprooted">
+    <AbilArray Link="SpineCrawlerRootKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="SpineCrawlerRoot" Type="AbilCmd" AbilCmd="SpineCrawlerRootKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="SpineCrawlerRootKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <LeaderAlias value="SpineCrawlerKerrigan"></LeaderAlias>
+    <HotkeyAlias value="SpineCrawlerKerrigan"></HotkeyAlias>
+    <TechAliasArray value="Alias_SpineCrawlerKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="SporeCrawlerKerrigan" parent="SporeCrawler">
+    <AbilArray Link="SporeCrawlerUprootKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="SporeCrawlerUproot" Type="AbilCmd" AbilCmd="SporeCrawlerUprootKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+    <SelectAlias value="SporeCrawlerUprootedKerrigan"></SelectAlias>
+    <SubgroupAlias value="SporeCrawlerUprootedKerrigan"></SubgroupAlias>
+    <TechAliasArray value="Alias_SporeCrawlerKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="SporeCrawlerUprootedKerrigan" parent="SporeCrawlerUprooted">
+    <AbilArray Link="SporeCrawlerRootKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="SporeCrawlerRoot" Type="AbilCmd" AbilCmd="SporeCrawlerRootKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="SporeCrawlerRootKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <LeaderAlias value="SporeCrawlerKerrigan"></LeaderAlias>
+    <HotkeyAlias value="SporeCrawlerKerrigan"></HotkeyAlias>
+    <TechAliasArray value="Alias_SporeCrawlerKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="NydusCanalKerrigan" parent="NydusCanal">
+    <TechAliasArray value="Alias_NydusCanalKerrigan"></TechAliasArray>
+  </CUnit>
+  <CUnit id="GreaterNydusWormKerrigan" parent="GreaterNydusWorm">
+    <TechAliasArray value="Alias_GreaterNydusWormKerrigan"></TechAliasArray>
+  </CUnit>
 </Catalog>

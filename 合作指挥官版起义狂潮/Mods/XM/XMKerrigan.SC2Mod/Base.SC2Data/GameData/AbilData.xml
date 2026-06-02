@@ -5543,4 +5543,232 @@
       <Button DefaultButtonFace="ZagaraBileLauncher" State="Restricted" Requirements="HaveSpawningPool" />
     </InfoArray>
   </CAbilBuild>
+  <CAbilBuild id="ZergBuildKerrigan">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <FlagArray index="PeonHide" value="1" />
+    <FlagArray index="PeonKillFinish" value="1" />
+    <FlagArray index="RangeIncludesBuilding" value="0" />
+    <InfoArray index="Build1" Unit="HatcheryKerrigan" Time="60">
+      <Button DefaultButtonFace="HatcheryKerrigan" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build3" Unit="ExtractorKerrigan" Time="30">
+      <Button DefaultButtonFace="ExtractorKerrigan" State="Available" />
+      <ValidatorArray value="HasVespene" />
+    </InfoArray>
+    <InfoArray index="Build4" Unit="SpawningPoolKerrigan" Time="65">
+      <Button DefaultButtonFace="SpawningPoolKerrigan" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build5" Unit="EvolutionChamberKerrigan" Time="40">
+      <Button DefaultButtonFace="EvolutionChamberKerrigan" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build6" Unit="HydraliskDenKerrigan" Time="40">
+      <Button DefaultButtonFace="HydraliskDenKerrigan" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build7" Unit="SpireKerrigan" Time="100">
+      <Button DefaultButtonFace="SpireKerrigan" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build8" Unit="UltraliskCavernKerrigan" Time="65">
+      <Button DefaultButtonFace="UltraliskCavernKerrigan" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build10" Unit="NydusNetworkKerrigan" Time="50">
+      <Button DefaultButtonFace="NydusNetworkKerrigan" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build15" Unit="SpineCrawlerKerrigan" Time="50">
+      <Button DefaultButtonFace="SpineCrawlerKerrigan" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build16" Unit="SporeCrawlerKerrigan" Time="30">
+      <Button DefaultButtonFace="SporeCrawlerKerrigan" State="Available" />
+    </InfoArray>
+  </CAbilBuild>
+  <CAbilBuild id="BuildNydusCanalKerrigan">
+    <InfoArray index="Build1" Unit="NydusCanalKerrigan" Time="20">
+      <Button DefaultButtonFace="SummonNydusWorm" State="Available" Requirements="" />
+    </InfoArray>
+    <InfoArray index="Build2" Unit="NydusCanalKerrigan" Time="20">
+      <Button DefaultButtonFace="SummonNydusCanalAttacker" State="Available" Requirements="" />
+    </InfoArray>
+    <InfoArray index="Build3" Unit="NydusCanalKerrigan" Time="20">
+      <Button DefaultButtonFace="SummonNydusCanalCreeper" State="Available" Requirements="" />
+    </InfoArray>
+  </CAbilBuild>
+  <CAbilMorph id="SpineCrawlerUprootKerrigan">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SpineCrawlerUproot" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="Uproot" />
+    <Flags index="FastBuild" value="1" />
+    <InfoArray Unit="SpineCrawlerUprootedKerrigan">
+      <SectionArray index="Abils">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="1" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="SporeCrawlerUprootKerrigan">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SporeCrawlerUproot" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="Uproot" />
+    <Flags index="FastBuild" value="1" />
+    <InfoArray Unit="SporeCrawlerUprootedKerrigan">
+      <SectionArray index="Abils">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="1" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="1" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorphPlacement id="SpineCrawlerRootKerrigan">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SpineCrawlerRoot" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="Root" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="IgnorePlacement" value="0" />
+    <Flags index="ShowProgress" value="1" />
+    <InfoArray Unit="SpineCrawlerKerrigan" CollideRange="0">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="6" />
+      </SectionArray>
+      <SectionArray index="Mover">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+    </InfoArray>
+    <ProgressButton value="SpineCrawlerRootCancel" />
+  </CAbilMorphPlacement>
+  <CAbilMorphPlacement id="SporeCrawlerRootKerrigan">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SporeCrawlerRoot" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel" />
+    <ActorKey value="Root" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="IgnorePlacement" value="0" />
+    <Flags index="ShowProgress" value="1" />
+    <InfoArray Unit="SporeCrawlerKerrigan" CollideRange="0">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="6" />
+      </SectionArray>
+      <SectionArray index="Mover">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="6" />
+      </SectionArray>
+    </InfoArray>
+    <ProgressButton value="SporeCrawlerRootCancel" />
+  </CAbilMorphPlacement>
+  <CAbilMorph id="UpgradeToLairKerrigan">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="LairKerrigan" State="Available" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="CancelMutateMorph" />
+    <ActorKey value="LairUpgrade" />
+    <Flags index="BestUnit" value="1" />
+    <Flags index="Birth" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="Produce" value="1" />
+    <Flags index="ShowProgress" value="1" />
+    <Cost>
+      <Charge Link="Abil/UpgradeToLair" />
+      <Cooldown Link="Abil/UpgradeToLair" />
+    </Cost>
+    <InfoArray Score="1" Unit="LairKerrigan">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="60" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="60" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="60" />
+      </SectionArray>
+    </InfoArray>
+    <Alert value="MorphComplete_Zerg" />
+    <Activity value="UI/Mutating" />
+  </CAbilMorph>
+  <CAbilMorph id="UpgradeToHiveKerrigan">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="HiveKerrigan" State="Available" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="CancelMutateMorph" />
+    <ActorKey value="HiveUpgrade" />
+    <Flags index="BestUnit" value="1" />
+    <Flags index="Birth" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="Produce" value="1" />
+    <Flags index="ShowProgress" value="1" />
+    <Cost>
+      <Charge Link="Abil/UpgradeToHive" />
+      <Cooldown Link="Abil/UpgradeToHive" />
+    </Cost>
+    <InfoArray Score="1" Unit="HiveKerrigan">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="60" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="60" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="60" />
+      </SectionArray>
+    </InfoArray>
+    <Alert value="MorphComplete_Zerg" />
+    <Activity value="UI/Mutating" />
+  </CAbilMorph>
+  <CAbilMorph id="UpgradeToGreaterSpireKerrigan">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="GreaterSpireKerrigan" State="Available" />
+    <CmdButtonArray index="Cancel" DefaultButtonFace="CancelMutateMorph" />
+    <ActorKey value="UpgradeToGreaterSpire" />
+    <Flags index="BestUnit" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="Interruptible" value="1" />
+    <Flags index="Produce" value="1" />
+    <Flags index="ShowProgress" value="1" />
+    <Cost>
+      <Charge Link="Abil/UpgradeToGreaterSpire" />
+      <Cooldown Link="Abil/UpgradeToGreaterSpire" />
+    </Cost>
+    <InfoArray Score="1" Unit="GreaterSpireKerrigan">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="30" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="30" />
+      </SectionArray>
+      <SectionArray index="Facing">
+        <DurationArray index="Delay" value="5" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="30" />
+      </SectionArray>
+    </InfoArray>
+    <Alert value="MorphComplete_Zerg" />
+    <Activity value="UI/Mutating" />
+  </CAbilMorph>
 </Catalog>
