@@ -195,8 +195,16 @@ const onlineExpectationAdditions = {
         id: 'Stalker',
         name: 'Stalker',
         source: 'StarCraft2Coop Combat Units',
+        resolved_unit_ids: ['StalkerShakuras'],
+        remove_abilities_by_face: ['CommanderPrestigeAlarakMechBuff', 'AlarakStalkerPhasingArmor'],
+        abilities: [
+          { face: 'StalkerBlinkShieldRestoreBase', abil_cmd: 'BlinkShieldRestore,Execute', name: 'Phase Reactor blink command' },
+          { face: 'BlinkShieldRestoreUpgrade', type: 'Passive', requirements: 'HaveBlinkShieldRestore', row: '2', column: '1', name: 'Phase Reactor passive' },
+        ],
         global_refs: [
+          { id: 'StalkerShakuras', type: 'Unit', name: 'Vorazun Stalker trained unit' },
           { id: 'HaveVoidStalkerBlinkShieldRestore', type: 'Requirement', name: 'Phase Reactor unit-card requirement' },
+          { id: 'HaveBlinkShieldRestore', type: 'Requirement', name: 'Phase Reactor passive requirement' },
           { id: 'StalkerResearchBlinkShieldRestore', type: 'Upgrade', name: 'Phase Reactor upgrade' },
           { id: 'ResearchBlinkShieldRestore', type: 'Button', name: 'Phase Reactor research button' },
         ],
@@ -478,11 +486,20 @@ function mergeExpectationAdditions(baseItems, additionItems) {
   for (const addition of additionItems || []) {
     const existing = byId.get(addition.id);
     if (existing) {
+      const removeFaces = new Set(addition.remove_abilities_by_face || []);
+      if (removeFaces.size) {
+        existing.abilities = (existing.abilities || [])
+          .filter((ability) => !removeFaces.has(ability.face || ability.button?.id));
+      }
       const existingFaces = new Set((existing.abilities || []).map((ability) => ability.face || ability.button?.id).filter(Boolean));
       existing.abilities = [
         ...(existing.abilities || []),
         ...(addition.abilities || []).filter((ability) => !existingFaces.has(ability.face || ability.button?.id)),
       ];
+      existing.resolved_unit_ids = unique([
+        ...(existing.resolved_unit_ids || []),
+        ...(addition.resolved_unit_ids || []),
+      ]);
       const existingGlobalRefs = new Set((existing.global_refs || []).map((ref) => ref.id || ref.value || ref.face).filter(Boolean));
       const addedGlobalRefs = (addition.global_refs || []).filter((ref) => !existingGlobalRefs.has(ref.id || ref.value || ref.face));
       if (addedGlobalRefs.length) {
