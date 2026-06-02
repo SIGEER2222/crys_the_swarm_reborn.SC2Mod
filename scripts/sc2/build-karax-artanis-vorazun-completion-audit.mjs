@@ -17,6 +17,35 @@ const allowedRuntimeExtraBuildings = {
   Vorazun: new Set(['DarkPylon']),
 };
 
+const allowedRuntimeExtraTopPanelFaces = {
+  Artanis: new Set([
+    'CancelBuilding',
+    'CommanderPrestigeArtanisGuardianShellLocked',
+    'SOAHeroicShield',
+    'SOAHeroicShieldLocked',
+    'SOAStrafeAttackLocked',
+    'SOAWarpTech',
+    'WarpHarmonizationLocked',
+  ]),
+  Karax: new Set([
+    'CancelBuilding',
+    'CommanderPrestigeKaraxChronoFieldLocked',
+    'CommanderPrestigeKaraxChronoWaveLocked',
+    'PurifierBeamLocked',
+    'ReconstructionBeamLocked',
+    'SOAChronoPassive',
+    'SOAChronoPassiveLocked',
+    'SOARepairBeam',
+  ]),
+  Vorazun: new Set([
+    'CancelBuilding',
+    'RecallonDeathPassiveLocked',
+    'SOAStrikefromtheShadows',
+    'SOATimeStopLocked',
+    'StrikefromtheShadowsLocked',
+  ]),
+};
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
@@ -102,6 +131,23 @@ function extraRuntimeEntries(expectedReports, runtimeEntries, reportKey, allowed
     .sort();
 }
 
+function runtimeTopPanelFaces(runtime) {
+  return unique((runtime.top_panel || []).map((item) => item.ability?.face));
+}
+
+function missingRuntimeTopPanelFaces(expectedButtons, runtime) {
+  const runtimeFaces = new Set(runtimeTopPanelFaces(runtime));
+  return commandCardFaces(expectedButtons).filter((face) => !runtimeFaces.has(face));
+}
+
+function extraRuntimeTopPanelFaces(expectedButtons, runtime, allowedFaces = new Set()) {
+  const expectedFaces = new Set(commandCardFaces(expectedButtons));
+  return runtimeTopPanelFaces(runtime)
+    .filter((face) => !expectedFaces.has(face))
+    .filter((face) => !allowedFaces.has(face))
+    .sort();
+}
+
 function formatRuntimeMissing(missing) {
   return missing.length
     ? missing.map((item) => `${item.id}:${item.candidate_ids.join('/')}`).join('; ')
@@ -140,6 +186,13 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     allowedRuntimeExtraBuildings[commander] || new Set(),
   );
   const topPanel = field.top_panel || { expected: [], issues: [] };
+  const runtimeTopFaces = runtimeTopPanelFaces(runtime);
+  const missingRuntimeTopFaces = missingRuntimeTopPanelFaces(topPanel.expected, runtime);
+  const extraRuntimeTopFaces = extraRuntimeTopPanelFaces(
+    topPanel.expected,
+    runtime,
+    allowedRuntimeExtraTopPanelFaces[commander] || new Set(),
+  );
   const expectedUnitCount = field.expected_unit_count ?? unitReports.length;
   const expectedBuildingCount = field.expected_building_count ?? buildingReports.length;
   const resolvedUnits = resolvedUnitReports(field);
@@ -253,6 +306,18 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
       field.top_panel_issue_count === 0,
       `top_panel_issues=${field.top_panel_issue_count}`,
     ),
+    check(
+      'current-mod-runtime-top-panel',
+      '顶部技能面板预期按钮均出现在当前 Mod runtime 面板',
+      missingRuntimeTopFaces.length === 0,
+      `runtime_faces=${runtimeTopFaces.length}, missing=${missingRuntimeTopFaces.join('/') || 0}`,
+    ),
+    check(
+      'current-mod-runtime-extra-top-panel',
+      '当前 Mod runtime 顶部面板未出现未解释的额外按钮',
+      extraRuntimeTopFaces.length === 0,
+      `extra=${extraRuntimeTopFaces.join('/') || 0}, allowed=${[...(allowedRuntimeExtraTopPanelFaces[commander] || [])].join('/') || 0}`,
+    ),
   ];
 
   return {
@@ -268,6 +333,7 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     official_building_count: officialBuildings.length,
     runtime_unit_count: runtimeUnits.length,
     runtime_building_count: runtimeBuildings.length,
+    runtime_top_panel_face_count: runtimeTopFaces.length,
     online_added_unit_count: field.online_added_unit_count || 0,
     online_added_building_count: field.online_added_building_count || 0,
     online_primary_unit_count: field.online_primary_unit_count || 0,
@@ -315,7 +381,7 @@ function writeMarkdown(report) {
     lines.push(`- 在线主单位：${commander.online_primary_unit_count}，supplemental 单位：${commander.supplemental_unit_count}`);
     lines.push(`- 建筑口径：${commander.building_count}（官方 JSON ${commander.official_building_count}，在线补充 ${commander.online_added_building_count}）`);
     lines.push(`- 在线主建筑：${commander.online_primary_structure_count}，supplemental 建筑：${commander.supplemental_building_count}`);
-    lines.push(`- 当前 Mod 运行名册：单位 ${commander.runtime_unit_count}，建筑 ${commander.runtime_building_count}`);
+    lines.push(`- 当前 Mod 运行名册：单位 ${commander.runtime_unit_count}，建筑 ${commander.runtime_building_count}，顶部面板 face ${commander.runtime_top_panel_face_count}`);
     lines.push(`- 单位：${commander.unit_ids.join('、')}`);
     lines.push(`- 建筑：${commander.building_ids.join('、')}`);
     lines.push(`- 顶部面板：${commander.top_panel_faces.join('、')}`);
