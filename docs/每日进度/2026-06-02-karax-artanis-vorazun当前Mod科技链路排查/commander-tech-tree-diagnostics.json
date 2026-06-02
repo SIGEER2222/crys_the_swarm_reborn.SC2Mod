@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T04:25:28.008Z",
+  "generated_at": "2026-06-02T04:39:25.991Z",
   "scope": "当前 Mod 指挥官科技链路排查 / Current Mod Commander Tech Tree Diagnostics",
   "source_kind": "mod",
   "commanders": [
@@ -3564,6 +3564,16 @@
               {
                 "source_catalog": "xmfinal",
                 "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+                "count": 1
+              },
+              {
+                "source_catalog": "xmkarax",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+                "count": 1
+              },
+              {
+                "source_catalog": "xmvorazun",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
                 "count": 1
               }
             ],
@@ -8361,11 +8371,11 @@
         "unit_count": 8,
         "hero_count": 0,
         "top_panel_ability_count": 11,
-        "building_panel_button_count": 38,
-        "unit_panel_button_count": 22,
+        "building_panel_button_count": 17,
+        "unit_panel_button_count": 21,
         "hero_panel_button_count": 0,
         "produced_unit_count": 14,
-        "effect_ref_count": 11
+        "effect_ref_count": 7
       },
       "top_panel": [
         {
@@ -10082,6 +10092,16 @@
                 "source_catalog": "xmfinal",
                 "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
                 "count": 1
+              },
+              {
+                "source_catalog": "xmkarax",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+                "count": 1
+              },
+              {
+                "source_catalog": "xmvorazun",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+                "count": 1
               }
             ],
             "ability_links": [
@@ -10107,76 +10127,6 @@
           },
           "hidden_basic_button_count": 0,
           "panel_abilities": [
-            {
-              "face": "ArmorResearchSupplicantShieldArmor",
-              "button_name": "ArmorResearchSupplicantShieldArmor",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "0",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantarmor.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research25",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research25",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research25",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "AlarakSupplicantShieldArmor",
-                  "units": [],
-                  "upgrades": [
-                    "AlarakSupplicantShieldArmor"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ArmorResearchSupplicantShieldArmor",
-                      "state": "",
-                      "requirements": "LearnSupplicantShieldArmor"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "AlarakSupplicantShieldArmor",
-                  "name": "AlarakSupplicantShieldArmor",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
             {
               "face": "ResearchCharge",
               "button_name": "ResearchCharge",
@@ -10303,13 +10253,68 @@
               "unresolved_catalog": false
             },
             {
+              "face": "ResearchStalkerTeleport",
+              "button_name": "ResearchStalkerTeleport",
+              "button_type": "AbilCmd",
+              "layout": {
+                "card_id": "0",
+                "row": "0",
+                "column": "1",
+                "submenu_card_id": ""
+              },
+              "requirements": "",
+              "tooltip": "",
+              "icon": "",
+              "abil_cmd": "TwilightCouncilResearch,Research2",
+              "ability_id": "TwilightCouncilResearch",
+              "command_index": "Research2",
+              "catalog_types": [
+                "CAbilResearch"
+              ],
+              "catalog_type_cn": [
+                "研究技能"
+              ],
+              "catalog_sources": [
+                {
+                  "source_catalog": "xmvorazun",
+                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                  "count": 1
+                }
+              ],
+              "matched_info": [
+                {
+                  "index": "Research2",
+                  "match_any_command": false,
+                  "source_element": "InfoArray",
+                  "source_ability_tag": "CAbilResearch",
+                  "time": "60",
+                  "unit_attr": "",
+                  "upgrade_attr": "",
+                  "units": [],
+                  "upgrades": [],
+                  "morph_units": [],
+                  "resources": {
+                    "Minerals": "100",
+                    "Vespene": "100"
+                  },
+                  "buttons": [],
+                  "charge": null
+                }
+              ],
+              "production_matches": [],
+              "catalog_targets": [],
+              "tooltip_effect_refs": [],
+              "effect_refs": [],
+              "unresolved_catalog": false
+            },
+            {
               "face": "ResearchShadowStun",
               "button_name": "ResearchShadowStun",
               "button_type": "AbilCmd",
               "layout": {
                 "card_id": "0",
-                "row": "",
-                "column": "",
+                "row": "0",
+                "column": "2",
                 "submenu_card_id": ""
               },
               "requirements": "",
@@ -10373,559 +10378,6 @@
               "unresolved_catalog": false
             },
             {
-              "face": "ResearchAdeptFenixShadeSpawn",
-              "button_name": "ResearchAdeptFenixShadeSpawn",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "1",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-adeptchampionshadespawn.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research27",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research27",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research27",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "AdeptFenixShadeSpawn",
-                  "units": [],
-                  "upgrades": [
-                    "AdeptFenixShadeSpawn"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchAdeptFenixShadeSpawn",
-                      "state": "Restricted",
-                      "requirements": "LearnAdeptFenixShadeSpawn"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "AdeptFenixShadeSpawn",
-                  "name": "AdeptFenixShadeSpawn",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchDragoonRange",
-              "button_name": "ResearchDragoonRange",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "1",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\BTN-Upgrade-Artanis-SingularityCharge.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research6",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research6",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research6",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "StalkerResearchDragoonRange",
-                  "units": [],
-                  "upgrades": [
-                    "StalkerResearchDragoonRange"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchDragoonRange",
-                      "state": "Restricted",
-                      "requirements": "LearnDragoonRange"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "StalkerResearchDragoonRange",
-                  "name": "StalkerResearchDragoonRange",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchReconstructionLocked",
-              "button_name": "ResearchReconstructionLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "1",
-                "submenu_card_id": ""
-              },
-              "requirements": "KaraxLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchStalkerTeleport",
-              "button_name": "ResearchStalkerTeleport",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "1",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "TwilightCouncilResearch,Research2",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research2",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research2",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "",
-                  "units": [],
-                  "upgrades": [],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ZealotPurifierResearchReconstruction",
-              "button_name": "ZealotPurifierResearchReconstruction",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "1",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\BTN-Ability-Protoss-Reconstruction.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research10",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research10",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research10",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "ZealotResearchReconstruction",
-                  "units": [],
-                  "upgrades": [
-                    "ZealotResearchReconstruction"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ZealotPurifierResearchReconstruction",
-                      "state": "",
-                      "requirements": "LearnZealotPurifierReconstruction"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "ZealotResearchReconstruction",
-                  "name": "ZealotResearchReconstruction",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchAlarakSupplicantMaxShields",
-              "button_name": "ResearchAlarakSupplicantMaxShields",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantextrashields.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research21",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research21",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research21",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "AlarakSupplicantMaxShields",
-                  "units": [],
-                  "upgrades": [
-                    "AlarakSupplicantMaxShields"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchAlarakSupplicantMaxShields",
-                      "state": "Restricted",
-                      "requirements": "LearnAlarakSupplicantMaxShields"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "AlarakSupplicantMaxShields",
-                  "name": "AlarakSupplicantMaxShields",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchFenixKaldalisZealotCleave",
-              "button_name": "ResearchFenixKaldalisZealotCleave",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-zealotcleave.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research30",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research30",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research30",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "FenixKaldalisCleave",
-                  "units": [],
-                  "upgrades": [
-                    "FenixKaldalisCleave"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchFenixKaldalisZealotCleave",
-                      "state": "Restricted",
-                      "requirements": "LearnKaldalisCleave"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "FenixKaldalisCleave",
-                  "name": "FenixKaldalisCleave",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchFenixKaldalisZealotCleaveLocked",
-              "button_name": "ResearchFenixKaldalisZealotCleaveLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "FenixLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchKaraxEnergyRegenLocked",
-              "button_name": "ResearchKaraxEnergyRegenLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "KaraxLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchKaraxEnergyRegenUpgrade",
-              "button_name": "研究快速恢复",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-karax-energyregen200.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research14",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research14",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research14",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "KaraxEnergyRegenUpgrade",
-                  "units": [],
-                  "upgrades": [
-                    "KaraxEnergyRegenUpgrade"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchKaraxEnergyRegenUpgrade",
-                      "state": "Restricted",
-                      "requirements": "LearnKaraxEnergyRegenUpgrade"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "KaraxEnergyRegenUpgrade",
-                  "name": "KaraxEnergyRegenUpgrade",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
               "face": "ResearchShadowStunLocked",
               "button_name": "ResearchShadowStunLocked",
               "button_type": "Passive",
@@ -10952,297 +10404,9 @@
               "unresolved_catalog": true
             },
             {
-              "face": "ResearchSupplicantMaxShieldsLocked",
-              "button_name": "ResearchSupplicantMaxShieldsLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "AlarakLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchWhirlwind",
-              "button_name": "ResearchWhirlwind",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-ability-protoss-whirlwind.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research3",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research3",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research3",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "ZealotResearchWhirlwind",
-                  "units": [],
-                  "upgrades": [
-                    "ZealotResearchWhirlwind"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchWhirlwind",
-                      "state": "Restricted",
-                      "requirements": "LearnWhirlwind"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "ZealotResearchWhirlwind",
-                  "name": "ZealotResearchWhirlwind",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchWhirlwindLocked",
-              "button_name": "ResearchWhirlwindLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "ArtanisLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "ChampionWarpTrain,Train4",
-              "ability_id": "ChampionWarpTrain",
-              "command_index": "Train4",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "AlarakResearchStalkerPhasingArmor",
-              "button_name": "AlarakResearchStalkerPhasingArmor",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-stalkerphasingarmor.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research18",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research18",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research18",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "AlarakStalkerPhasingArmor",
-                  "units": [],
-                  "upgrades": [
-                    "AlarakStalkerPhasingArmor"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "AlarakResearchStalkerPhasingArmor",
-                      "state": "Restricted",
-                      "requirements": "LearnAlarakStalkerPhasingArmor"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "AlarakStalkerPhasingArmor",
-                  "name": "AlarakStalkerPhasingArmor",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "FenixTalisAdeptLearnBounceShotUpgrade",
-              "button_name": "FenixTalisAdeptLearnBounceShotUpgrade",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-adept-recochetglaiveupgraded.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research26",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research26",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research26",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "FenixChampionTalisAdeptBounceShotUpgrade",
-                  "units": [],
-                  "upgrades": [
-                    "FenixChampionTalisAdeptBounceShotUpgrade"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "FenixTalisAdeptLearnBounceShotUpgrade",
-                      "state": "Restricted",
-                      "requirements": "LearnTalisBounceShotUpgrade"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "FenixChampionTalisAdeptBounceShotUpgrade",
-                  "name": "FenixChampionTalisAdeptBounceShotUpgrade",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "FenixTalisAdeptLearnBounceShotUpgradeLocked",
-              "button_name": "FenixTalisAdeptLearnBounceShotUpgradeLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "FenixLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
               "face": "ResearchBlinkShieldRestoreLocked",
               "button_name": "ResearchBlinkShieldRestoreLocked",
-              "button_type": "",
+              "button_type": "Passive",
               "layout": {
                 "card_id": "0",
                 "row": "0",
@@ -11271,7 +10435,7 @@
               "button_type": "AbilCmd",
               "layout": {
                 "card_id": "0",
-                "row": "",
+                "row": "0",
                 "column": "3",
                 "submenu_card_id": ""
               },
@@ -11334,231 +10498,13 @@
               "tooltip_effect_refs": [],
               "effect_refs": [],
               "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchDragoonChassis",
-              "button_name": "ResearchDragoonChassis",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-ability-protoss-dragoonchassis.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research7",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research7",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research7",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "StalkerResearchDragoonHealth",
-                  "units": [],
-                  "upgrades": [
-                    "StalkerResearchDragoonHealth"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchDragoonChassis",
-                      "state": "Restricted",
-                      "requirements": "LearnDragoonHealth"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "StalkerResearchDragoonHealth",
-                  "name": "StalkerResearchDragoonHealth",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchDragoonChassisLocked",
-              "button_name": "ResearchDragoonChassisLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "ArtanisLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchEnergizerReclamation",
-              "button_name": "ResearchEnergizerReclamation",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-ability-protoss-reclamation.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research13",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research13",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research13",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "120",
-                  "unit_attr": "",
-                  "upgrade_attr": "EnergizerReclamation",
-                  "units": [],
-                  "upgrades": [
-                    "EnergizerReclamation"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchEnergizerReclamation",
-                      "state": "Restricted",
-                      "requirements": "LearnEnergizerReclamation"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "EnergizerReclamation",
-                  "name": "EnergizerReclamation",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchReclamationLocked",
-              "button_name": "ResearchReclamationLocked",
-              "button_type": "",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "KaraxLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchStalkerPhasingArmorLocked",
-              "button_name": "ResearchStalkerPhasingArmorLocked",
-              "button_type": "",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "AlarakLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
             }
           ],
           "panel_cards": [
             {
               "card_id": "0",
               "is_default_card": true,
-              "button_count": 28
+              "button_count": 7
             }
           ]
         },
@@ -14132,9 +13078,20 @@
                 "source_catalog": "xmfinal",
                 "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
                 "count": 1
+              },
+              {
+                "source_catalog": "xmvorazun",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+                "count": 1
               }
             ],
             "ability_links": [
+              {
+                "id": "BlinkShieldRestore",
+                "catalog_type_cn": "目标效果技能",
+                "catalog_type_raw": "CAbilEffectTarget",
+                "is_basic": false
+              },
               {
                 "id": "BlinkSlayer",
                 "catalog_type_cn": "目标效果技能",
@@ -14153,8 +13110,8 @@
           "hidden_basic_button_count": 0,
           "panel_abilities": [
             {
-              "face": "",
-              "button_name": "BlinkSlayer",
+              "face": "StalkerBlinkShieldRestoreBase",
+              "button_name": "StalkerBlinkShieldRestoreBase",
               "button_type": "AbilCmd",
               "layout": {
                 "card_id": "0",
@@ -14165,8 +13122,8 @@
               "requirements": "",
               "tooltip": "",
               "icon": "",
-              "abil_cmd": "BlinkSlayer,Execute",
-              "ability_id": "BlinkSlayer",
+              "abil_cmd": "BlinkShieldRestore,Execute",
+              "ability_id": "BlinkShieldRestore",
               "command_index": "Execute",
               "catalog_types": [
                 "CAbilEffectTarget"
@@ -14176,8 +13133,13 @@
               ],
               "catalog_sources": [
                 {
-                  "source_catalog": "xmvorazun",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                  "source_catalog": "xmabathur",
+                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                  "count": 1
+                },
+                {
+                  "source_catalog": "xmabathurreborn",
+                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMAbathurReborn.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
                   "count": 1
                 }
               ],
@@ -14185,302 +13147,8 @@
               "production_matches": [],
               "catalog_targets": [],
               "tooltip_effect_refs": [],
-              "effect_refs": [
-                {
-                  "id": "PhaseBlinkSet",
-                  "name": "PhaseBlinkSet",
-                  "catalog_types": [
-                    "CEffectSet"
-                  ],
-                  "catalog_type_cn": [
-                    "效果集合"
-                  ],
-                  "catalog_sources": [
-                    {
-                      "source_catalog": "xmalarak",
-                      "source_file": "合作指挥官版起义狂潮/Mods/XM/XMAlarak.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                      "count": 1
-                    },
-                    {
-                      "source_catalog": "xmartanis",
-                      "source_file": "合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                      "count": 1
-                    },
-                    {
-                      "source_catalog": "xmfenix",
-                      "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFenix.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                      "count": 1
-                    },
-                    {
-                      "source_catalog": "xmfinal",
-                      "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                      "count": 1
-                    },
-                    {
-                      "source_catalog": "xmkarax",
-                      "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                      "count": 1
-                    },
-                    {
-                      "source_catalog": "xmkerrigan",
-                      "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKerrigan.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                      "count": 1
-                    },
-                    {
-                      "source_catalog": "xmraynor",
-                      "source_file": "合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                      "count": 1
-                    },
-                    {
-                      "source_catalog": "xmvorazun",
-                      "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                      "count": 1
-                    }
-                  ],
-                  "child_effect_ids": [
-                    "Blink",
-                    "PhaseBlinkDamageAB"
-                  ],
-                  "spawn_units": [],
-                  "spawn_counts": [],
-                  "amounts": [],
-                  "behaviors": [],
-                  "validators": [],
-                  "fields": {},
-                  "child_effects": [
-                    {
-                      "id": "Blink",
-                      "name": "Blink",
-                      "catalog_types": [
-                        "CEffectTeleport"
-                      ],
-                      "catalog_type_cn": [
-                        "CEffectTeleport"
-                      ],
-                      "catalog_sources": [
-                        {
-                          "source_catalog": "xmabathur",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMAbathur.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmabathurreborn",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMAbathurReborn.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmalarak",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMAlarak.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmartanis",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmfenix",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFenix.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmfinal",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmkarax",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmkerrigan",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKerrigan.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmraynor",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmvorazun",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmzagara",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMZagara.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmzeratul",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMZeratul.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        }
-                      ],
-                      "child_effect_ids": [
-                        "AlarakStalkerForceBlastCP"
-                      ],
-                      "spawn_units": [],
-                      "spawn_counts": [],
-                      "amounts": [],
-                      "behaviors": [],
-                      "validators": [],
-                      "fields": {},
-                      "child_effects": [
-                        {
-                          "id": "AlarakStalkerForceBlastCP",
-                          "name": "AlarakStalkerForceBlastCP",
-                          "catalog_types": [
-                            "CEffectCreatePersistent"
-                          ],
-                          "catalog_type_cn": [
-                            "持续效果"
-                          ],
-                          "catalog_sources": [
-                            {
-                              "source_catalog": "xmalarak",
-                              "source_file": "合作指挥官版起义狂潮/Mods/XM/XMAlarak.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                              "count": 1
-                            },
-                            {
-                              "source_catalog": "xmartanis",
-                              "source_file": "合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                              "count": 1
-                            },
-                            {
-                              "source_catalog": "xmfenix",
-                              "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFenix.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                              "count": 1
-                            },
-                            {
-                              "source_catalog": "xmfinal",
-                              "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                              "count": 1
-                            },
-                            {
-                              "source_catalog": "xmkarax",
-                              "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                              "count": 1
-                            },
-                            {
-                              "source_catalog": "xmkerrigan",
-                              "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKerrigan.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                              "count": 1
-                            },
-                            {
-                              "source_catalog": "xmraynor",
-                              "source_file": "合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                              "count": 1
-                            },
-                            {
-                              "source_catalog": "xmvorazun",
-                              "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                              "count": 1
-                            }
-                          ],
-                          "child_effect_ids": [
-                            "AlarakStalkerForceBlastSearch"
-                          ],
-                          "spawn_units": [],
-                          "spawn_counts": [],
-                          "amounts": [],
-                          "behaviors": [],
-                          "validators": [
-                            "HaveAlarakStalkerForceBlast"
-                          ],
-                          "fields": {},
-                          "child_effects": [],
-                          "unresolved_catalog": false
-                        }
-                      ],
-                      "unresolved_catalog": false
-                    },
-                    {
-                      "id": "PhaseBlinkDamageAB",
-                      "name": "PhaseBlinkDamageAB",
-                      "catalog_types": [
-                        "CEffectApplyBehavior"
-                      ],
-                      "catalog_type_cn": [
-                        "施加行为效果"
-                      ],
-                      "catalog_sources": [
-                        {
-                          "source_catalog": "xmalarak",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMAlarak.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmartanis",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmfenix",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFenix.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmfinal",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmkarax",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        },
-                        {
-                          "source_catalog": "xmvorazun",
-                          "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
-                          "count": 1
-                        }
-                      ],
-                      "child_effect_ids": [],
-                      "spawn_units": [],
-                      "spawn_counts": [],
-                      "amounts": [],
-                      "behaviors": [
-                        "PhaseBlinkDamage"
-                      ],
-                      "validators": [],
-                      "fields": {},
-                      "child_effects": [],
-                      "unresolved_catalog": false
-                    }
-                  ],
-                  "unresolved_catalog": false
-                }
-              ],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "CommanderPrestigeAlarakMechBuff",
-              "button_name": "CommanderPrestigeAlarakMechBuff",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "1",
-                "column": "4",
-                "submenu_card_id": ""
-              },
-              "requirements": "CommanderPrestigeAlarakMech",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-ability-alarak-reliquaryofsouls.dds",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
               "effect_refs": [],
-              "unresolved_catalog": true
+              "unresolved_catalog": false
             },
             {
               "face": "Blink",
@@ -14519,8 +13187,8 @@
               "unresolved_catalog": false
             },
             {
-              "face": "AlarakStalkerPhasingArmor",
-              "button_name": "AlarakStalkerPhasingArmor",
+              "face": "BlinkShieldRestoreUpgrade",
+              "button_name": "BlinkShieldRestoreUpgrade",
               "button_type": "Passive",
               "layout": {
                 "card_id": "0",
@@ -14528,9 +13196,9 @@
                 "column": "1",
                 "submenu_card_id": ""
               },
-              "requirements": "HaveAlarakStalkerPhasingArmor",
+              "requirements": "HaveBlinkShieldRestore",
               "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-stalkerphasingarmor.dds",
+              "icon": "",
               "abil_cmd": "",
               "ability_id": "",
               "command_index": "",
@@ -14549,7 +13217,7 @@
             {
               "card_id": "0",
               "is_default_card": true,
-              "button_count": 4
+              "button_count": 3
             }
           ]
         },
@@ -14946,7 +13614,7 @@
         "unit_count": 8,
         "hero_count": 0,
         "top_panel_ability_count": 14,
-        "building_panel_button_count": 56,
+        "building_panel_button_count": 35,
         "unit_panel_button_count": 18,
         "hero_panel_button_count": 0,
         "produced_unit_count": 11,
@@ -17659,6 +16327,16 @@
                 "source_catalog": "xmfinal",
                 "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
                 "count": 1
+              },
+              {
+                "source_catalog": "xmkarax",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+                "count": 1
+              },
+              {
+                "source_catalog": "xmvorazun",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/UnitData.xml",
+                "count": 1
               }
             ],
             "ability_links": [
@@ -17684,76 +16362,6 @@
           },
           "hidden_basic_button_count": 0,
           "panel_abilities": [
-            {
-              "face": "ArmorResearchSupplicantShieldArmor",
-              "button_name": "ArmorResearchSupplicantShieldArmor",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "0",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantarmor.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research25",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research25",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research25",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "AlarakSupplicantShieldArmor",
-                  "units": [],
-                  "upgrades": [
-                    "AlarakSupplicantShieldArmor"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ArmorResearchSupplicantShieldArmor",
-                      "state": "",
-                      "requirements": "LearnSupplicantShieldArmor"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "AlarakSupplicantShieldArmor",
-                  "name": "AlarakSupplicantShieldArmor",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
             {
               "face": "ResearchCharge",
               "button_name": "ResearchCharge",
@@ -17810,286 +16418,6 @@
               "unresolved_catalog": false
             },
             {
-              "face": "ResearchShadowCharge",
-              "button_name": "ResearchShadowCharge",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "0",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-ability-protoss-shadowcharge.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research5",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research5",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research5",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "ZealotResearchShadowCharge",
-                  "units": [],
-                  "upgrades": [
-                    "ZealotResearchShadowCharge"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchShadowCharge",
-                      "state": "",
-                      "requirements": "LearnShadowCharge"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "ZealotResearchShadowCharge",
-                  "name": "ZealotResearchShadowCharge",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchShadowStun",
-              "button_name": "ResearchShadowStun",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-vorazun-shadowstun.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research9",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research9",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research9",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "ZealotResearchShadowStun",
-                  "units": [],
-                  "upgrades": [
-                    "ZealotResearchShadowStun"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchShadowStun",
-                      "state": "Restricted",
-                      "requirements": "LearnShadowStun"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "ZealotResearchShadowStun",
-                  "name": "ZealotResearchShadowStun",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchAdeptFenixShadeSpawn",
-              "button_name": "ResearchAdeptFenixShadeSpawn",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "1",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-adeptchampionshadespawn.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research27",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research27",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research27",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "AdeptFenixShadeSpawn",
-                  "units": [],
-                  "upgrades": [
-                    "AdeptFenixShadeSpawn"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchAdeptFenixShadeSpawn",
-                      "state": "Restricted",
-                      "requirements": "LearnAdeptFenixShadeSpawn"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "AdeptFenixShadeSpawn",
-                  "name": "AdeptFenixShadeSpawn",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchDragoonRange",
-              "button_name": "ResearchDragoonRange",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "1",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\BTN-Upgrade-Artanis-SingularityCharge.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research6",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research6",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research6",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "StalkerResearchDragoonRange",
-                  "units": [],
-                  "upgrades": [
-                    "StalkerResearchDragoonRange"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchDragoonRange",
-                      "state": "Restricted",
-                      "requirements": "LearnDragoonRange"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "StalkerResearchDragoonRange",
-                  "name": "StalkerResearchDragoonRange",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
               "face": "ResearchReconstructionLocked",
               "button_name": "ResearchReconstructionLocked",
               "button_type": "Passive",
@@ -18114,61 +16442,6 @@
               "tooltip_effect_refs": [],
               "effect_refs": [],
               "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchStalkerTeleport",
-              "button_name": "ResearchStalkerTeleport",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "1",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "TwilightCouncilResearch,Research2",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research2",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research2",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "",
-                  "units": [],
-                  "upgrades": [],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
             },
             {
               "face": "ZealotPurifierResearchReconstruction",
@@ -18239,172 +16512,6 @@
               "tooltip_effect_refs": [],
               "effect_refs": [],
               "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchAlarakSupplicantMaxShields",
-              "button_name": "ResearchAlarakSupplicantMaxShields",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantextrashields.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research21",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research21",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research21",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "AlarakSupplicantMaxShields",
-                  "units": [],
-                  "upgrades": [
-                    "AlarakSupplicantMaxShields"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchAlarakSupplicantMaxShields",
-                      "state": "Restricted",
-                      "requirements": "LearnAlarakSupplicantMaxShields"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "AlarakSupplicantMaxShields",
-                  "name": "AlarakSupplicantMaxShields",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchFenixKaldalisZealotCleave",
-              "button_name": "ResearchFenixKaldalisZealotCleave",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-zealotcleave.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research30",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research30",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research30",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "FenixKaldalisCleave",
-                  "units": [],
-                  "upgrades": [
-                    "FenixKaldalisCleave"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchFenixKaldalisZealotCleave",
-                      "state": "Restricted",
-                      "requirements": "LearnKaldalisCleave"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "FenixKaldalisCleave",
-                  "name": "FenixKaldalisCleave",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchFenixKaldalisZealotCleaveLocked",
-              "button_name": "ResearchFenixKaldalisZealotCleaveLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "FenixLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
             },
             {
               "face": "ResearchKaraxEnergyRegenLocked",
@@ -18503,518 +16610,12 @@
               "unresolved_catalog": false
             },
             {
-              "face": "ResearchShadowStunLocked",
-              "button_name": "ResearchShadowStunLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "VorazunLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchSupplicantMaxShieldsLocked",
-              "button_name": "ResearchSupplicantMaxShieldsLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "AlarakLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchWhirlwind",
-              "button_name": "ResearchWhirlwind",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-ability-protoss-whirlwind.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research3",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research3",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research3",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "ZealotResearchWhirlwind",
-                  "units": [],
-                  "upgrades": [
-                    "ZealotResearchWhirlwind"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchWhirlwind",
-                      "state": "Restricted",
-                      "requirements": "LearnWhirlwind"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "ZealotResearchWhirlwind",
-                  "name": "ZealotResearchWhirlwind",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchWhirlwindLocked",
-              "button_name": "ResearchWhirlwindLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "2",
-                "submenu_card_id": ""
-              },
-              "requirements": "ArtanisLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "ChampionWarpTrain,Train4",
-              "ability_id": "ChampionWarpTrain",
-              "command_index": "Train4",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "AlarakResearchStalkerPhasingArmor",
-              "button_name": "AlarakResearchStalkerPhasingArmor",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-alarak-stalkerphasingarmor.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research18",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research18",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research18",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "AlarakStalkerPhasingArmor",
-                  "units": [],
-                  "upgrades": [
-                    "AlarakStalkerPhasingArmor"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "AlarakResearchStalkerPhasingArmor",
-                      "state": "Restricted",
-                      "requirements": "LearnAlarakStalkerPhasingArmor"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "AlarakStalkerPhasingArmor",
-                  "name": "AlarakStalkerPhasingArmor",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "FenixTalisAdeptLearnBounceShotUpgrade",
-              "button_name": "FenixTalisAdeptLearnBounceShotUpgrade",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-upgrade-protoss-fenix-adept-recochetglaiveupgraded.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research26",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research26",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research26",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "60",
-                  "unit_attr": "",
-                  "upgrade_attr": "FenixChampionTalisAdeptBounceShotUpgrade",
-                  "units": [],
-                  "upgrades": [
-                    "FenixChampionTalisAdeptBounceShotUpgrade"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "100",
-                    "Vespene": "100"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "FenixTalisAdeptLearnBounceShotUpgrade",
-                      "state": "Restricted",
-                      "requirements": "LearnTalisBounceShotUpgrade"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "FenixChampionTalisAdeptBounceShotUpgrade",
-                  "name": "FenixChampionTalisAdeptBounceShotUpgrade",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "FenixTalisAdeptLearnBounceShotUpgradeLocked",
-              "button_name": "FenixTalisAdeptLearnBounceShotUpgradeLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "FenixLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchBlinkShieldRestoreLocked",
-              "button_name": "ResearchBlinkShieldRestoreLocked",
-              "button_type": "",
-              "layout": {
-                "card_id": "0",
-                "row": "0",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "VorazunLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchBlinkShieldRestoreUpgrade",
-              "button_name": "ResearchBlinkShieldRestoreUpgrade",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-ability-protoss-blinkshieldrestore.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research8",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research8",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research8",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "StalkerResearchBlinkShieldRestore",
-                  "units": [],
-                  "upgrades": [
-                    "StalkerResearchBlinkShieldRestore"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchBlinkShieldRestore",
-                      "state": "Restricted",
-                      "requirements": "LearnBlinkShieldRestore"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "StalkerResearchBlinkShieldRestore",
-                  "name": "StalkerResearchBlinkShieldRestore",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchDragoonChassis",
-              "button_name": "ResearchDragoonChassis",
-              "button_type": "AbilCmd",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "",
-              "tooltip": "",
-              "icon": "Assets\\Textures\\btn-ability-protoss-dragoonchassis.dds",
-              "abil_cmd": "TwilightCouncilResearch,Research7",
-              "ability_id": "TwilightCouncilResearch",
-              "command_index": "Research7",
-              "catalog_types": [
-                "CAbilResearch"
-              ],
-              "catalog_type_cn": [
-                "研究技能"
-              ],
-              "catalog_sources": [
-                {
-                  "source_catalog": "xmkarax",
-                  "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
-                  "count": 1
-                }
-              ],
-              "matched_info": [
-                {
-                  "index": "Research7",
-                  "match_any_command": false,
-                  "source_element": "InfoArray",
-                  "source_ability_tag": "CAbilResearch",
-                  "time": "90",
-                  "unit_attr": "",
-                  "upgrade_attr": "StalkerResearchDragoonHealth",
-                  "units": [],
-                  "upgrades": [
-                    "StalkerResearchDragoonHealth"
-                  ],
-                  "morph_units": [],
-                  "resources": {
-                    "Minerals": "150",
-                    "Vespene": "150"
-                  },
-                  "buttons": [
-                    {
-                      "default_button_face": "ResearchDragoonChassis",
-                      "state": "Restricted",
-                      "requirements": "LearnDragoonHealth"
-                    }
-                  ],
-                  "charge": null
-                }
-              ],
-              "production_matches": [],
-              "catalog_targets": [
-                {
-                  "type": "upgrade",
-                  "id": "StalkerResearchDragoonHealth",
-                  "name": "StalkerResearchDragoonHealth",
-                  "in_current_commander_roster": false
-                }
-              ],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": false
-            },
-            {
-              "face": "ResearchDragoonChassisLocked",
-              "button_name": "ResearchDragoonChassisLocked",
-              "button_type": "Passive",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "ArtanisLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
               "face": "ResearchEnergizerReclamation",
               "button_name": "ResearchEnergizerReclamation",
               "button_type": "AbilCmd",
               "layout": {
                 "card_id": "0",
-                "row": "",
+                "row": "0",
                 "column": "3",
                 "submenu_card_id": ""
               },
@@ -19081,40 +16682,14 @@
             {
               "face": "ResearchReclamationLocked",
               "button_name": "ResearchReclamationLocked",
-              "button_type": "",
-              "layout": {
-                "card_id": "0",
-                "row": "",
-                "column": "3",
-                "submenu_card_id": ""
-              },
-              "requirements": "KaraxLevel04",
-              "tooltip": "",
-              "icon": "",
-              "abil_cmd": "",
-              "ability_id": "",
-              "command_index": "",
-              "catalog_types": [],
-              "catalog_type_cn": [],
-              "catalog_sources": [],
-              "matched_info": [],
-              "production_matches": [],
-              "catalog_targets": [],
-              "tooltip_effect_refs": [],
-              "effect_refs": [],
-              "unresolved_catalog": true
-            },
-            {
-              "face": "ResearchStalkerPhasingArmorLocked",
-              "button_name": "ResearchStalkerPhasingArmorLocked",
-              "button_type": "",
+              "button_type": "Passive",
               "layout": {
                 "card_id": "0",
                 "row": "0",
                 "column": "3",
                 "submenu_card_id": ""
               },
-              "requirements": "AlarakLevel04",
+              "requirements": "KaraxLevel04",
               "tooltip": "",
               "icon": "",
               "abil_cmd": "",
@@ -19135,7 +16710,7 @@
             {
               "card_id": "0",
               "is_default_card": true,
-              "button_count": 28
+              "button_count": 7
             }
           ]
         },
@@ -22733,10 +20308,10 @@
       "production_buildings": 2,
       "units": 8,
       "heroes": 0,
-      "building_panel_buttons": 38,
-      "unit_panel_buttons": 22,
+      "building_panel_buttons": 17,
+      "unit_panel_buttons": 21,
       "produced_units": 14,
-      "effect_refs": 11
+      "effect_refs": 7
     },
     {
       "commander": "Karax",
@@ -22745,7 +20320,7 @@
       "production_buildings": 3,
       "units": 8,
       "heroes": 0,
-      "building_panel_buttons": 56,
+      "building_panel_buttons": 35,
       "unit_panel_buttons": 18,
       "produced_units": 11,
       "effect_refs": 11

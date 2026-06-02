@@ -3,7 +3,7 @@
 - 描述 / Description：无 / None
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMVorazun.SC2Mod`，instance=`Vorazun`
-- 统计 / Stats：建筑 4、生产链补充建筑 2、单位 8、英雄 0、建筑按钮 38、单位按钮 22、效果引用 11
+- 统计 / Stats：建筑 4、生产链补充建筑 2、单位 8、英雄 0、建筑按钮 17、单位按钮 21、效果引用 7
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
@@ -57,34 +57,13 @@
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0,0 | ArmorResearchSupplicantShieldArmor / `ArmorResearchSupplicantShieldArmor` | `TwilightCouncilResearch,Research25` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakSupplicantShieldArmor `AlarakSupplicantShieldArmor` | - | - |
 | 0,0 | ResearchCharge / `ResearchCharge` | `TwilightCouncilResearch,Research1` | 研究技能 / CAbilResearch | - | - | - |
 | 0,0 | ResearchShadowCharge / `ResearchShadowCharge` | `TwilightCouncilResearch,Research5` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchShadowCharge `ZealotResearchShadowCharge` | - | - |
-| - | ResearchShadowStun / `ResearchShadowStun` | `TwilightCouncilResearch,Research9` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchShadowStun `ZealotResearchShadowStun` | - | - |
-| 0,1 | ResearchAdeptFenixShadeSpawn / `ResearchAdeptFenixShadeSpawn` | `TwilightCouncilResearch,Research27` | 研究技能 / CAbilResearch | 升级 / Upgrade:AdeptFenixShadeSpawn `AdeptFenixShadeSpawn` | - | - |
-| 1 | ResearchDragoonRange / `ResearchDragoonRange` | `TwilightCouncilResearch,Research6` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchDragoonRange `StalkerResearchDragoonRange` | - | - |
-| 0,1 | ResearchReconstructionLocked / `ResearchReconstructionLocked` | `-` | 未解析 / Unresolved | - | - | KaraxLevel04 |
-| 1 | ResearchStalkerTeleport / `ResearchStalkerTeleport` | `TwilightCouncilResearch,Research2` | 研究技能 / CAbilResearch | - | - | - |
-| 0,1 | ZealotPurifierResearchReconstruction / `ZealotPurifierResearchReconstruction` | `TwilightCouncilResearch,Research10` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchReconstruction `ZealotResearchReconstruction` | - | - |
-| 0,2 | ResearchAlarakSupplicantMaxShields / `ResearchAlarakSupplicantMaxShields` | `TwilightCouncilResearch,Research21` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakSupplicantMaxShields `AlarakSupplicantMaxShields` | - | - |
-| 0,2 | ResearchFenixKaldalisZealotCleave / `ResearchFenixKaldalisZealotCleave` | `TwilightCouncilResearch,Research30` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixKaldalisCleave `FenixKaldalisCleave` | - | - |
-| 0,2 | ResearchFenixKaldalisZealotCleaveLocked / `ResearchFenixKaldalisZealotCleaveLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel04 |
-| 0,2 | ResearchKaraxEnergyRegenLocked / `ResearchKaraxEnergyRegenLocked` | `-` | 未解析 / Unresolved | - | - | KaraxLevel04 |
-| 0,2 | 研究快速恢复 / `ResearchKaraxEnergyRegenUpgrade` | `TwilightCouncilResearch,Research14` | 研究技能 / CAbilResearch | 升级 / Upgrade:KaraxEnergyRegenUpgrade `KaraxEnergyRegenUpgrade` | - | - |
+| 0,1 | ResearchStalkerTeleport / `ResearchStalkerTeleport` | `TwilightCouncilResearch,Research2` | 研究技能 / CAbilResearch | - | - | - |
+| 0,2 | ResearchShadowStun / `ResearchShadowStun` | `TwilightCouncilResearch,Research9` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchShadowStun `ZealotResearchShadowStun` | - | - |
 | 0,2 | ResearchShadowStunLocked / `ResearchShadowStunLocked` | `-` | 未解析 / Unresolved | - | - | VorazunLevel04 |
-| 0,2 | ResearchSupplicantMaxShieldsLocked / `ResearchSupplicantMaxShieldsLocked` | `-` | 未解析 / Unresolved | - | - | AlarakLevel04 |
-| 2 | ResearchWhirlwind / `ResearchWhirlwind` | `TwilightCouncilResearch,Research3` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchWhirlwind `ZealotResearchWhirlwind` | - | - |
-| 0,2 | ResearchWhirlwindLocked / `ResearchWhirlwindLocked` | `ChampionWarpTrain,Train4` | 未解析 / Unresolved | - | - | ArtanisLevel04 |
-| 3 | AlarakResearchStalkerPhasingArmor / `AlarakResearchStalkerPhasingArmor` | `TwilightCouncilResearch,Research18` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakStalkerPhasingArmor `AlarakStalkerPhasingArmor` | - | - |
-| 0,3 | FenixTalisAdeptLearnBounceShotUpgrade / `FenixTalisAdeptLearnBounceShotUpgrade` | `TwilightCouncilResearch,Research26` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixChampionTalisAdeptBounceShotUpgrade `FenixChampionTalisAdeptBounceShotUpgrade` | - | - |
-| 0,3 | FenixTalisAdeptLearnBounceShotUpgradeLocked / `FenixTalisAdeptLearnBounceShotUpgradeLocked` | `-` | 未解析 / Unresolved | - | - | FenixLevel04 |
 | 0,3 | ResearchBlinkShieldRestoreLocked / `ResearchBlinkShieldRestoreLocked` | `-` | 未解析 / Unresolved | - | - | VorazunLevel04 |
-| 3 | ResearchBlinkShieldRestoreUpgrade / `ResearchBlinkShieldRestoreUpgrade` | `TwilightCouncilResearch,Research8` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchBlinkShieldRestore `StalkerResearchBlinkShieldRestore` | - | - |
-| 3 | ResearchDragoonChassis / `ResearchDragoonChassis` | `TwilightCouncilResearch,Research7` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchDragoonHealth `StalkerResearchDragoonHealth` | - | - |
-| 3 | ResearchDragoonChassisLocked / `ResearchDragoonChassisLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel04 |
-| 3 | ResearchEnergizerReclamation / `ResearchEnergizerReclamation` | `TwilightCouncilResearch,Research13` | 研究技能 / CAbilResearch | 升级 / Upgrade:EnergizerReclamation `EnergizerReclamation` | - | - |
-| 3 | ResearchReclamationLocked / `ResearchReclamationLocked` | `-` | 未解析 / Unresolved | - | - | KaraxLevel04 |
-| 0,3 | ResearchStalkerPhasingArmorLocked / `ResearchStalkerPhasingArmorLocked` | `-` | 未解析 / Unresolved | - | - | AlarakLevel04 |
+| 0,3 | ResearchBlinkShieldRestoreUpgrade / `ResearchBlinkShieldRestoreUpgrade` | `TwilightCouncilResearch,Research8` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchBlinkShieldRestore `StalkerResearchBlinkShieldRestore` | - | - |
 
 ### DarkPylon / `DarkPylon`
 
@@ -205,15 +184,14 @@
 
 - 来源 / Source：名册 / Roster XMFinal CommanderRuntimeRoster + XMFinal CommanderRosters.galaxy，状态 / Status exact，模块 / Module XMVorazun.SC2Mod，文件 / File `合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/UserData.xml`
 - 数值 / Stats：无 / None
-- Catalog 技能链接 / Catalog ability links：`BlinkSlayer`(目标效果技能 / CAbilEffectTarget)
+- Catalog 技能链接 / Catalog ability links：`BlinkShieldRestore`(目标效果技能 / CAbilEffectTarget)、`BlinkSlayer`(目标效果技能 / CAbilEffectTarget)
 - 关联 Behavior / Linked behaviors：`AlarakStalkerPhasingArmor`、`AllUnitBehaviorController`
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
-| - | BlinkSlayer / `-` | `BlinkSlayer,Execute` | 目标效果技能 / CAbilEffectTarget | - | 效果集合 / CEffectSet:`PhaseBlinkSet` | - |
-| 1,4 | CommanderPrestigeAlarakMechBuff / `CommanderPrestigeAlarakMechBuff` | `-` | 未解析 / Unresolved | - | - | CommanderPrestigeAlarakMech |
+| - | StalkerBlinkShieldRestoreBase / `StalkerBlinkShieldRestoreBase` | `BlinkShieldRestore,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
 | 2,0 | Blink / `Blink` | `Blink,Execute` | 目标效果技能 / CAbilEffectTarget | - | - | - |
-| 2,1 | AlarakStalkerPhasingArmor / `AlarakStalkerPhasingArmor` | `-` | 未解析 / Unresolved | - | - | HaveAlarakStalkerPhasingArmor |
+| 2,1 | BlinkShieldRestoreUpgrade / `BlinkShieldRestoreUpgrade` | `-` | 未解析 / Unresolved | - | - | HaveBlinkShieldRestore |
 
 ### VoidRay / `VoidRay`
 

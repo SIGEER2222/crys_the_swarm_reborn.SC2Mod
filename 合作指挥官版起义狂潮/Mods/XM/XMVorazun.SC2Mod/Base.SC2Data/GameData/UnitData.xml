@@ -14121,4 +14121,82 @@
     <DeathTime value="0"></DeathTime>
     <DeadFootprint value=""></DeadFootprint>
   </CUnit>
+  <CUnit id="Stalker">
+
+    <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
+
+    <ScoreMake value="0"></ScoreMake>
+
+    <ScoreKill value="0"></ScoreKill>
+
+    <RepairTime value="21"></RepairTime>
+
+    <KillXP value="0"></KillXP>
+
+    <DamageDealtXP value="0"></DamageDealtXP>
+
+    <DamageTakenXP value="0"></DamageTakenXP>
+
+    <CardLayouts index="0">
+
+      <LayoutButtons index="6" Face="StalkerBlinkShieldRestoreBase" AbilCmd="BlinkShieldRestore,Execute"></LayoutButtons>
+
+      <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="0"></LayoutButtons>
+
+      <LayoutButtons Face="BlinkShieldRestoreUpgrade" Type="Passive" Requirements="HaveBlinkShieldRestore" Row="2" Column="1"></LayoutButtons>
+
+    </CardLayouts>
+
+    <AbilArray Link="BlinkSlayer"></AbilArray>
+
+    <AbilArray index="5" Link="BlinkShieldRestore"></AbilArray>
+
+    <SubgroupPriority value="140"></SubgroupPriority>
+
+    <Level value="18"></Level>
+
+  </CUnit>
+
+  <CUnit id="TwilightCouncil">
+
+    <Footprint value="Footprint3x3CreepNormalContour"></Footprint>
+
+    <PlacementFootprint value="Footprint3x3CreepNormal"></PlacementFootprint>
+
+    <CardLayouts index="0">
+
+      <LayoutButtons Face="ResearchCharge" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research1" Row="0" Column="0"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchShadowCharge" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research5" Row="0" Column="0"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchStalkerTeleport" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research2" Row="0" Column="1"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchShadowStunLocked" Type="Passive" Requirements="VorazunLevel04" Row="0" Column="2"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchShadowStun" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research9" Row="0" Column="2"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchBlinkShieldRestoreLocked" Type="Passive" Requirements="VorazunLevel04" Row="0" Column="3"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchBlinkShieldRestoreUpgrade" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research8" Row="0" Column="3"></LayoutButtons>
+
+    </CardLayouts>
+
+    <Attributes index="Mechanical" value="1"></Attributes>
+
+    <ScoreMake value="0"></ScoreMake>
+
+    <ScoreKill value="0"></ScoreKill>
+
+    <RepairTime value="25"></RepairTime>
+
+    <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
+
+    <SubgroupPriority value="30"></SubgroupPriority>
+
+    <AbilArray Link="BuildInProgress"></AbilArray>
+
+    <AbilArray Link="TwilightCouncilResearch"></AbilArray>
+
+  </CUnit>
+
 </Catalog>
