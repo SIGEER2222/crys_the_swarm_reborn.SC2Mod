@@ -166,7 +166,6 @@
 | - | WarpGateTrain / `-` | `WarpGateTrain,Train4` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 | 0,0 | Zealot / `Zealot` | `WarpGateTrain,Train1` | 折跃/部署训练技能 / CAbilWarpTrain | 哨兵 `ZealotPurifier`、单位 / Unit:哨兵 `ZealotPurifier` | - | - |
 | 0,1 | Sentry / `Sentry` | `WarpGateTrain,Train6` | 折跃/部署训练技能 / CAbilWarpTrain | 激励者 `SentryPurifier`、单位 / Unit:激励者 `SentryPurifier` | - | - |
-| 0,0 | WarpInSupplicant / `WarpInSupplicant` | `WarpGateTrain,Train12` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 
 ## 单位 / Units
 

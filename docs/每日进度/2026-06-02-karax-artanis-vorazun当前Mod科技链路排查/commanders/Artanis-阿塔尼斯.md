@@ -3,7 +3,7 @@
 - 描述 / Description：达拉姆大主教
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMArtanis.SC2Mod`，instance=`Artanis`
-- 统计 / Stats：建筑 5、生产链补充建筑 4、单位 9、英雄 0、建筑按钮 46、单位按钮 25、效果引用 8
+- 统计 / Stats：建筑 5、生产链补充建筑 4、单位 9、英雄 0、建筑按钮 22、单位按钮 25、效果引用 8
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
@@ -62,23 +62,11 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | - | 掠夺者 / `ReaverPassive` | `-` | 未解析 / Unresolved | - | - | HaveVoidReaver |
 | 0,0 | ResearchGraviticBooster / `ResearchGraviticBooster` | `RoboticsBayResearch,Research2` | 研究技能 / CAbilResearch | - | - | - |
-| 0,0 | ResearchVanguardArmoredDamage / `ResearchVanguardArmoredDamage` | `RoboticsBayResearch,Research16` | 研究技能 / CAbilResearch | 升级 / Upgrade:VanguardArmoredDamage `VanguardArmoredDamage` | - | - |
-| 0,1 | ResearchAlarakVanguardIncreaseSplashArea / `ResearchAlarakVanguardIncreaseSplashArea` | `RoboticsBayResearch,Research15` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakVanguardIncreaseSplashArea `AlarakVanguardIncreaseSplashArea` | - | - |
 | 0,1 | ResearchBarrier / `ResearchBarrier` | `RoboticsBayResearch,Research9` | 研究技能 / CAbilResearch | 升级 / Upgrade:ImmortalResearchBarrierAdvanced `ImmortalResearchBarrierAdvanced` | - | - |
-| 0,2 | ResearchAlarakColossusChargedBlastAirAttack / `ResearchAlarakColossusChargedBlastAirAttack` | `RoboticsBayResearch,Research18` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakColossusChargedBlastAirAttack `AlarakColossusChargedBlastAirAttack` | - | - |
-| 0,2 | ResearchDisruptorCloak / `ResearchDisruptorCloak` | `RoboticsBayResearch,Research19` | 研究技能 / CAbilResearch | 升级 / Upgrade:DisruptorCloak `DisruptorCloak` | - | - |
-| 0,2 | ResearchFireBeam / `ResearchFireBeam` | `RoboticsBayResearch,Research12` | 研究技能 / CAbilResearch | 升级 / Upgrade:ColossusFireBeam `ColossusFireBeam` | - | - |
 | 0,2 | ResearchIncreasedScarabCountLocked / `ResearchIncreasedScarabCountLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel09 |
 | 0,2 | ResearchReaverIncreasedScarabCount / `ResearchReaverIncreasedScarabCount` | `RoboticsBayResearch,Research13` | 研究技能 / CAbilResearch | 升级 / Upgrade:ReaverIncreasedScarabCount `ReaverIncreasedScarabCount` | - | - |
-| 0,3 | ResearchAlarakColossusChargedBlastChargeTime / `ResearchAlarakColossusChargedBlastChargeTime` | `RoboticsBayResearch,Research17` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakColossusChargedBlastChargeTime `AlarakColossusChargedBlastChargeTime` | - | - |
-| 0,3 | ResearchDisruptorSecondExplosion / `ResearchDisruptorSecondExplosion` | `RoboticsBayResearch,Research20` | 研究技能 / CAbilResearch | 升级 / Upgrade:DisruptorSecondExplosion `DisruptorSecondExplosion` | - | - |
 | 0,3 | ResearchIncreasedScarabSplashRadiusLocked / `ResearchIncreasedScarabSplashRadiusLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel09 |
 | 0,3 | ResearchReaverIncreasedScarabSplashRadius / `ResearchReaverIncreasedScarabSplashRadius` | `RoboticsBayResearch,Research14` | 研究技能 / CAbilResearch | 升级 / Upgrade:ReaverIncreasedScarabSplashRadius `ReaverIncreasedScarabSplashRadius` | - | - |
-| 1 | 巨像 / `ColossusPassive` | `-` | 未解析 / Unresolved | - | - | HaveColossus |
-| 1,0 | 巨像 / `ColossusPassive` | `-` | 未解析 / Unresolved | - | - | HaveVoidColossusFireBeam |
-| 1,0 | WrathwalkerPassive / `WrathwalkerPassive` | `-` | 未解析 / Unresolved | - | - | HaveVoidColossusTaldarim |
-| 2 | FenixImmortalResearchDetonationShot / `FenixImmortalResearchDetonationShot` | `RoboticsBayResearch,Research21` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixImmortalDetonationShot `FenixImmortalDetonationShot` | - | - |
-| 2,1 | ResearchFenixWarbringerColossusPowerShot / `ResearchFenixWarbringerColossusPowerShot` | `RoboticsBayResearch,Research23` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixWarbringerColossusPowerShot `FenixWarbringerColossusPowerShot` | - | - |
 
 ### RoboticsFacilityWarp / `RoboticsFacilityWarp`
 
@@ -105,24 +93,12 @@
 
 | 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0,0 | ArmorResearchSupplicantShieldArmor / `ArmorResearchSupplicantShieldArmor` | `TwilightCouncilResearch,Research25` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakSupplicantShieldArmor `AlarakSupplicantShieldArmor` | - | - |
 | 0,0 | ResearchCharge / `ResearchCharge` | `TwilightCouncilResearch,Research1` | 研究技能 / CAbilResearch | - | - | - |
-| 0,0 | ResearchShadowCharge / `ResearchShadowCharge` | `TwilightCouncilResearch,Research5` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchShadowCharge `ZealotResearchShadowCharge` | - | - |
-| - | ResearchShadowStun / `ResearchShadowStun` | `TwilightCouncilResearch,Research9` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchShadowStun `ZealotResearchShadowStun` | - | - |
-| 0,1 | ResearchAdeptFenixShadeSpawn / `ResearchAdeptFenixShadeSpawn` | `TwilightCouncilResearch,Research27` | 研究技能 / CAbilResearch | 升级 / Upgrade:AdeptFenixShadeSpawn `AdeptFenixShadeSpawn` | - | - |
 | 1 | ResearchDragoonRange / `ResearchDragoonRange` | `TwilightCouncilResearch,Research6` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchDragoonRange `StalkerResearchDragoonRange` | - | - |
-| 1 | ResearchStalkerTeleport / `ResearchStalkerTeleport` | `TwilightCouncilResearch,Research2` | 研究技能 / CAbilResearch | - | - | - |
-| 0,2 | ResearchAlarakSupplicantMaxShields / `ResearchAlarakSupplicantMaxShields` | `TwilightCouncilResearch,Research21` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakSupplicantMaxShields `AlarakSupplicantMaxShields` | - | - |
-| 0,2 | ResearchFenixKaldalisZealotCleave / `ResearchFenixKaldalisZealotCleave` | `TwilightCouncilResearch,Research30` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixKaldalisCleave `FenixKaldalisCleave` | - | - |
-| 0,2 | 研究快速恢复 / `ResearchKaraxEnergyRegenUpgrade` | `TwilightCouncilResearch,Research14` | 研究技能 / CAbilResearch | 升级 / Upgrade:KaraxEnergyRegenUpgrade `KaraxEnergyRegenUpgrade` | - | - |
 | 2 | ResearchWhirlwind / `ResearchWhirlwind` | `TwilightCouncilResearch,Research3` | 研究技能 / CAbilResearch | 升级 / Upgrade:ZealotResearchWhirlwind `ZealotResearchWhirlwind` | - | - |
 | 0,2 | ResearchWhirlwindLocked / `ResearchWhirlwindLocked` | `ChampionWarpTrain,Train4` | 未解析 / Unresolved | - | - | ArtanisLevel04 |
-| 3 | AlarakResearchStalkerPhasingArmor / `AlarakResearchStalkerPhasingArmor` | `TwilightCouncilResearch,Research18` | 研究技能 / CAbilResearch | 升级 / Upgrade:AlarakStalkerPhasingArmor `AlarakStalkerPhasingArmor` | - | - |
-| 0,3 | FenixTalisAdeptLearnBounceShotUpgrade / `FenixTalisAdeptLearnBounceShotUpgrade` | `TwilightCouncilResearch,Research26` | 研究技能 / CAbilResearch | 升级 / Upgrade:FenixChampionTalisAdeptBounceShotUpgrade `FenixChampionTalisAdeptBounceShotUpgrade` | - | - |
-| 3 | ResearchBlinkShieldRestoreUpgrade / `ResearchBlinkShieldRestoreUpgrade` | `TwilightCouncilResearch,Research8` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchBlinkShieldRestore `StalkerResearchBlinkShieldRestore` | - | - |
 | 3 | ResearchDragoonChassis / `ResearchDragoonChassis` | `TwilightCouncilResearch,Research7` | 研究技能 / CAbilResearch | 升级 / Upgrade:StalkerResearchDragoonHealth `StalkerResearchDragoonHealth` | - | - |
 | 3 | ResearchDragoonChassisLocked / `ResearchDragoonChassisLocked` | `-` | 未解析 / Unresolved | - | - | ArtanisLevel04 |
-| 3 | ResearchEnergizerReclamation / `ResearchEnergizerReclamation` | `TwilightCouncilResearch,Research13` | 研究技能 / CAbilResearch | 升级 / Upgrade:EnergizerReclamation `EnergizerReclamation` | - | - |
 
 ## 生产链补充建筑 / Production-support Buildings
 
@@ -190,7 +166,6 @@
 | - | WarpGateTrain / `-` | `WarpGateTrain,Train4` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 | 0,0 | Zealot / `Zealot` | `WarpGateTrain,Train1` | 折跃/部署训练技能 / CAbilWarpTrain | 哨兵 `Zealot`、单位 / Unit:哨兵 `Zealot` | - | - |
 | 1,0 | HighTemplar / `HighTemplar` | `WarpGateTrain,Train8` | 折跃/部署训练技能 / CAbilWarpTrain | 高阶圣堂武士 `HighTemplar`、单位 / Unit:高阶圣堂武士 `HighTemplar` | - | - |
-| 0,0 | WarpInSupplicant / `WarpInSupplicant` | `WarpGateTrain,Train12` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 
 ## 单位 / Units
 

@@ -25,6 +25,23 @@ const knownCommanderRequirementTokens = [
   'Zagara',
   'Zeratul',
 ];
+const knownForeignPanelIdentityTokens = [
+  ...knownCommanderRequirementTokens
+    .filter((token) => token !== 'Fenix')
+    .map((token) => ({ token, owner: token })),
+  { token: 'AdeptFenix', owner: 'Fenix' },
+  { token: 'FenixImmortal', owner: 'Fenix' },
+  { token: 'FenixKaldalis', owner: 'Fenix' },
+  { token: 'FenixTalis', owner: 'Fenix' },
+  { token: 'FenixWarbringer', owner: 'Fenix' },
+  { token: 'Kaldalis', owner: 'Fenix' },
+  { token: 'ResearchFenix', owner: 'Fenix' },
+  { token: 'Talis', owner: 'Fenix' },
+  { token: 'Warbringer', owner: 'Fenix' },
+  { token: 'Supplicant', owner: 'Alarak' },
+  { token: 'Vanguard', owner: 'Alarak' },
+  { token: 'Wrathwalker', owner: 'Alarak' },
+];
 
 const officialRoot = path.join(repoRoot, '游戏数据', '官方合作指挥官', 'commanders');
 const fieldAuditPath = path.join(repoRoot, 'docs', '每日进度', '2026-06-01-karax-artanis-vorazun字段级对齐审计', 'karax-artanis-vorazun-field-alignment.json');
@@ -185,6 +202,41 @@ function crossCommanderPanelRequirements(runtime, commander) {
   return issues;
 }
 
+function crossCommanderPanelIdentities(runtime, commander) {
+  const issues = [];
+  for (const groupName of ['top_panel', 'buildings', 'production_buildings', 'units', 'heroes']) {
+    for (const entry of runtime[groupName] || []) {
+      const abilities = [
+        entry.ability,
+        ...(entry.panel_abilities || []),
+      ].filter(Boolean);
+      for (const ability of abilities) {
+        const identity = [
+          ability.face || '',
+          ability.abil_cmd || '',
+          ability.ability_id || '',
+        ].join(' ');
+        const matchedTokens = knownForeignPanelIdentityTokens
+          .filter((item) => item.owner !== commander)
+          .filter((item) => identity.includes(item.token));
+        if (!matchedTokens.length) {
+          continue;
+        }
+        issues.push({
+          group: groupName,
+          item_id: entry.unit_id || entry.id || entry.source_unit_id || '',
+          face: ability.face || '',
+          abil_cmd: ability.abil_cmd || ability.ability_id || '',
+          requirements: ability.requirements || '',
+          matched_tokens: matchedTokens.map((item) => item.token),
+          matched_owners: unique(matchedTokens.map((item) => item.owner)),
+        });
+      }
+    }
+  }
+  return issues;
+}
+
 function formatCrossCommanderPanelRequirements(issues) {
   if (!issues.length) {
     return '0';
@@ -192,6 +244,17 @@ function formatCrossCommanderPanelRequirements(issues) {
   const samples = issues
     .slice(0, 10)
     .map((issue) => `${issue.group}:${issue.item_id || '-'}:${issue.face || issue.abil_cmd || '-'}:${issue.requirements}`);
+  const suffix = issues.length > samples.length ? `; +${issues.length - samples.length}` : '';
+  return `${samples.join('; ')}${suffix}`;
+}
+
+function formatCrossCommanderPanelIdentities(issues) {
+  if (!issues.length) {
+    return '0';
+  }
+  const samples = issues
+    .slice(0, 10)
+    .map((issue) => `${issue.group}:${issue.item_id || '-'}:${issue.face || issue.abil_cmd || '-'}:${(issue.matched_tokens || []).join('/')}`);
   const suffix = issues.length > samples.length ? `; +${issues.length - samples.length}` : '';
   return `${samples.join('; ')}${suffix}`;
 }
@@ -323,6 +386,7 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     allowedRuntimeExtraTopPanelFaces[commander] || new Set(),
   );
   const crossCommanderRequirements = crossCommanderPanelRequirements(runtime, commander);
+  const crossCommanderIdentities = crossCommanderPanelIdentities(runtime, commander);
   const expectedUnitCount = field.expected_unit_count ?? unitReports.length;
   const expectedBuildingCount = field.expected_building_count ?? buildingReports.length;
   const resolvedUnits = resolvedUnitReports(field);
@@ -466,6 +530,12 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
       crossCommanderRequirements.length === 0,
       `cross_requirements=${formatCrossCommanderPanelRequirements(crossCommanderRequirements)}`,
     ),
+    check(
+      'current-mod-cross-commander-panel-identities',
+      '当前 Mod 面板未暴露其他指挥官专属按钮/命令身份',
+      crossCommanderIdentities.length === 0,
+      `cross_identities=${formatCrossCommanderPanelIdentities(crossCommanderIdentities)}`,
+    ),
   ];
 
   return {
@@ -492,6 +562,8 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     runtime_production_extra_produced_units: extraProductionUnits,
     runtime_cross_commander_panel_requirement_count: crossCommanderRequirements.length,
     runtime_cross_commander_panel_requirements: crossCommanderRequirements,
+    runtime_cross_commander_panel_identity_count: crossCommanderIdentities.length,
+    runtime_cross_commander_panel_identities: crossCommanderIdentities,
     runtime_building_panel_produced_unit_count: productionProducedUnitIds.length,
     runtime_building_panel_produced_unit_ids: productionProducedUnitIds,
     runtime_building_panel_missing_units: missingProductionUnits,

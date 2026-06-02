@@ -112,7 +112,6 @@
 | 0,0 | Zealot / `Zealot` | `WarpGateTrain,Train1` | 折跃/部署训练技能 / CAbilWarpTrain | 哨兵 `Zealot`、ZealotShakuras `ZealotShakuras`、单位 / Unit:哨兵 `Zealot` | - | - |
 | 1,0 | DarkTemplar / `DarkTemplar` | `WarpGateTrain,Train5` | 折跃/部署训练技能 / CAbilWarpTrain | 虚空圣堂武士 `DarkTemplarShakuras`、单位 / Unit:虚空圣堂武士 `DarkTemplarShakuras` | - | - |
 | 1,2 | DarkArchon / `DarkArchon` | `WarpGateTrain,Train9` | 折跃/部署训练技能 / CAbilWarpTrain | DarkArchon `DarkArchon`、单位 / Unit:DarkArchon `DarkArchon` | - | - |
-| 0,0 | WarpInSupplicant / `WarpInSupplicant` | `WarpGateTrain,Train12` | 折跃/部署训练技能 / CAbilWarpTrain | - | - | - |
 
 ## 单位 / Units
 
