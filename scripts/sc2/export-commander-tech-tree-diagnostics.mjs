@@ -62,6 +62,7 @@ const modCatalogFileNames = new Set([
   'unitdata.xml',
   'upgradedata.xml',
   'userdata.xml',
+  'validatordata.xml',
 ]);
 const basicAbilityIds = new Set([
   'attack',
@@ -351,12 +352,22 @@ function buildModCommanderData({
         trainUnitOverrides,
       }))
       .filter(Boolean);
-    const productionBuildings = inferModProductionBuildingEntries({
+    const inferredHeroes = inferModHeroEntries({
       commanderId,
       runtimeModule,
       catalog,
       localization,
       existingEntries: entries,
+      preferredCatalogs,
+      trainUnitOverrides,
+    });
+    const allEntries = uniqueBy([...entries, ...inferredHeroes], (entry) => entry.unit_id);
+    const productionBuildings = inferModProductionBuildingEntries({
+      commanderId,
+      runtimeModule,
+      catalog,
+      localization,
+      existingEntries: allEntries,
       preferredCatalogs,
       trainUnitOverrides,
     });
@@ -373,10 +384,10 @@ function buildModCommanderData({
         hero_structure: meta.hero_structure || '',
         top_panel_abilities: topPanelAbilities,
       },
-      buildings: entries.filter((entry) => entry.kind === 'building'),
+      buildings: allEntries.filter((entry) => entry.kind === 'building'),
       production_buildings: productionBuildings,
-      units: entries.filter((entry) => entry.kind === 'unit'),
-      heroes: entries.filter((entry) => entry.kind === 'hero'),
+      units: allEntries.filter((entry) => entry.kind === 'unit'),
+      heroes: allEntries.filter((entry) => entry.kind === 'hero'),
       command_cards: [],
       source_kind: 'mod',
       runtime_instance: roster.runtime_instance || commanderId,
@@ -1233,6 +1244,7 @@ function buildCatalogIndex(root) {
     units: new Map(),
     upgrades: new Map(),
     users: new Map(),
+    validators: new Map(),
     effectIds: new Set(),
     fileCount: files.length,
   };
@@ -1252,6 +1264,8 @@ function buildCatalogIndex(root) {
         pushMapArray(index.buttons, entry.id, entry);
       } else if (fileName === 'userdata.xml') {
         pushMapArray(index.users, entry.id, entry);
+      } else if (fileName === 'validatordata.xml') {
+        pushMapArray(index.validators, entry.id, entry);
       } else if (fileName === 'upgradedata.xml') {
         pushMapArray(index.upgrades, entry.id, entry);
       } else if (fileName === 'behaviordata.xml') {
@@ -1276,6 +1290,7 @@ function buildModCatalogIndex(modRoot) {
     units: new Map(),
     upgrades: new Map(),
     users: new Map(),
+    validators: new Map(),
     effectIds: new Set(),
     fileCount: files.length,
   };
@@ -1299,6 +1314,8 @@ function buildModCatalogIndex(modRoot) {
         pushMapArray(index.upgrades, entry.id, entry);
       } else if (fileName === 'userdata.xml') {
         pushMapArray(index.users, entry.id, entry);
+      } else if (fileName === 'validatordata.xml') {
+        pushMapArray(index.validators, entry.id, entry);
       }
     }
   }
@@ -1716,6 +1733,117 @@ function buildModProductionOptions(unitId, buttons, catalog, trainUnitOverrides 
     }
   }
   return uniqueBy(options, (option) => `${option.producer_unit_id}|${option.abil_cmd}|${option.unit}`);
+}
+
+function inferModHeroEntries({
+  commanderId,
+  runtimeModule,
+  catalog,
+  localization,
+  existingEntries,
+  preferredCatalogs,
+  trainUnitOverrides,
+}) {
+  const knownUnitIds = new Set(
+    existingEntries
+      .flatMap((entry) => [entry.unit_id, entry.id, ...(entry.resolved_unit_ids || [])])
+      .filter(Boolean),
+  );
+  const candidates = [];
+  const commanderCatalog = stripSc2ModSuffix(runtimeModule).toLowerCase();
+  const explicitHeroUnitIds = inferCommanderHeroUnitIdsFromValidators(catalog, commanderCatalog, commanderId);
+  if (!explicitHeroUnitIds.size) {
+    return candidates;
+  }
+
+  for (const [unitId, definitions] of catalog.units.entries()) {
+    if (knownUnitIds.has(unitId)) {
+      continue;
+    }
+    if (!explicitHeroUnitIds.has(unitId)) {
+      continue;
+    }
+    const moduleDefinitions = definitions.filter((definition) => (
+      String(definition.source_catalog || '').toLowerCase() === commanderCatalog
+    ));
+    if (!moduleDefinitions.length) {
+      continue;
+    }
+    const body = moduleDefinitions.map((definition) => definition.body).join('\n');
+    if (parseEditorCategory(valueFromChildElement(body, 'EditorCategories'), 'ObjectType') !== 'Hero') {
+      continue;
+    }
+    if (!isCommandableHeroUnit(body)) {
+      continue;
+    }
+
+    const sourceFile = moduleDefinitions[0]?.source_file || '';
+    const entry = buildModTechEntry({
+      item: {
+        official_id: unitId,
+        runtime_unit: unitId,
+        kind: 'hero',
+        source: 'inferred current Mod hero catalog unit',
+        source_file: sourceFile,
+        status: 'catalog ObjectType:Hero',
+      },
+      commanderId,
+      runtimeModule,
+      catalog,
+      localization,
+      preferredCatalogs,
+      trainUnitOverrides,
+    });
+    if (entry) {
+      candidates.push(entry);
+    }
+  }
+
+  return candidates.sort((a, b) => naturalSort(a.unit_id, b.unit_id));
+}
+
+function inferCommanderHeroUnitIdsFromValidators(catalog, commanderCatalog, commanderId) {
+  const ids = new Set();
+  const commanderKey = String(commanderId || '').toLowerCase();
+
+  for (const definitions of catalog.validators?.values() || []) {
+    for (const definition of definitions) {
+      if (String(definition.source_catalog || '').toLowerCase() !== commanderCatalog) {
+        continue;
+      }
+      if (definition.tag !== 'CValidatorUnitType' || isNegativeUnitTypeValidator(definition)) {
+        continue;
+      }
+
+      const unitId = valueFromChildElement(definition.body, 'Value');
+      if (!unitId) {
+        continue;
+      }
+      const validatorId = String(definition.id || '').toLowerCase();
+      const unitKey = unitId.toLowerCase();
+      if (validatorId.includes(commanderKey) || unitKey.includes(commanderKey)) {
+        ids.add(unitId);
+      }
+    }
+  }
+
+  return ids;
+}
+
+function isNegativeUnitTypeValidator(definition) {
+  const id = String(definition.id || '').toLowerCase();
+  return id.startsWith('not')
+    || id.startsWith('isnot')
+    || valueFromChildElement(definition.body, 'Find') === '0';
+}
+
+function isCommandableHeroUnit(body) {
+  const activeFlags = new Set(
+    extractElements(body)
+      .filter((element) => element.name === 'FlagArray' && attr(element.attrs, 'index') && attr(element.attrs, 'value') !== '0')
+      .map((element) => attr(element.attrs, 'index')),
+  );
+  return !activeFlags.has('Uncommandable') && !activeFlags.has('Unselectable');
 }
 
 function inferModProductionBuildingEntries({

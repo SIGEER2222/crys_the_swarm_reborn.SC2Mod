@@ -50,6 +50,106 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 - 14: 休伯利安号：高级瞄准系统
 - 15: 佣兵军火
 
+## 关系总览
+
+雷诺不是英雄型指挥官，主链路是“`SCV` 建基建 -> 建筑开兵种 -> 兵种带技能 -> 顶栏提供全局节奏 -> 威望改写既有链路”。
+
+### 一眼看懂的链路
+
+```mermaid
+flowchart TD
+  subgraph Base["基础链路"]
+    SCV[SCV]
+    CC[CommandCenter]
+    OC[OrbitalCommand]
+    PF[PlanetaryFortress]
+    Barracks[Barracks]
+    Factory[Factory]
+    Starport[Starport]
+    Armory[Armory]
+    EngBay[EngineeringBay]
+    FusionCore[FusionCore]
+    Depot[SupplyDepot]
+    Bunker[Bunker]
+    Turret[MissileTurret]
+    SCV --> CC
+    SCV --> Depot
+    SCV --> Bunker
+    SCV --> Turret
+    SCV --> Barracks
+    SCV --> Factory
+    SCV --> Starport
+    SCV --> Armory
+    SCV --> EngBay
+    SCV --> FusionCore
+    CC --> OC
+    CC --> PF
+  end
+
+  subgraph Army["兵种链路"]
+    Barracks --> Marine[Marine]
+    Barracks --> Marauder[Marauder]
+    Barracks --> Firebat[Firebat]
+    Barracks --> Medic[Medic]
+    Barracks --> Ghost[Ghost]
+    Factory --> Vulture[Vulture]
+    Factory --> SiegeTank[Siege Tank]
+    Starport --> Viking[Viking]
+    Starport --> Banshee[Banshee]
+    FusionCore --> Battlecruiser[Battlecruiser]
+  end
+
+  subgraph Skills["单位/建筑技能"]
+    Marine --> Stimpack[Stimpack]
+    Marauder --> StimMarauder[StimpackMarauder]
+    Marauder --> ConcussiveGrenade[ConcussiveGrenade]
+    Firebat --> StimMarauder
+    Medic --> HealPlusMech[HealPlusMech]
+    Vulture --> VehicleAfterburners[VehicleAfterburners]
+    Banshee --> BansheeCloak[BansheeCloak]
+    Banshee --> VehicleAfterburners
+    Battlecruiser --> Yamato[Yamato]
+    Battlecruiser --> Hyperjump[Hyperjump]
+    Battlecruiser --> VehicleAfterburners
+    OC --> ScannerSweep[ScannerSweep]
+    OC --> SupplyDrop[SupplyDrop]
+    OC --> MULE[CalldownMULE]
+    Bunker --> StimRedirect[StimRedirect]
+    Bunker --> BunkerTransport[BunkerTransport]
+    Bunker --> SalvageShared[SalvageShared]
+    Turret --> SalvageShared
+  end
+
+  subgraph Panels["顶栏技能"]
+    BansheeAirstrike[BansheeAirstrike]
+    HyperionPDD[HyperionAdvancedPDD]
+    OrbitalStrike[OrbitalStrike]
+    HyperionATS[RaynorCommanderHyperionAdvancedTargetingSystems]
+  end
+
+  subgraph Prestige["威望"]
+    Bio[CommanderPrestigeRaynorBio]
+    Mech[CommanderPrestigeRaynorMechAfterburners]
+    Air[CommanderPrestigeRaynorAir]
+    Bio --> MULE
+    Mech --> VehicleAfterburners
+    Air --> Starport
+    Air --> Banshee
+    Air --> Battlecruiser
+  end
+```
+
+### 关系矩阵
+
+| 链路 | 核心对象 | 直接产出 / 解锁 | 典型技能 / 按钮 | 与威望的关系 |
+|---|---|---|---|---|
+| 基础建造 | `SCV`, `CommandCenter`, `OrbitalCommand`, `PlanetaryFortress` | 建筑、轨道、补给、侦测、防线 | `Scan`, `SupplyDrop`, `CalldownMULE` | `CommanderPrestigeRaynorBio` 影响矿骡；轨道基地是雷诺经济与视野的核心入口 |
+| 兵营体系 | `Barracks` -> `Marine` / `Marauder` / `Firebat` / `Medic` / `Ghost` | 生化主力 | `Stimpack`, `StimpackMarauder`, `ConcussiveGrenade`, `HealPlusMech` | 生化威望主要改写步兵生存、步兵升级和矿骡经济支撑 |
+| 重工与星港 | `Factory` -> `Vulture` / `SiegeTank`；`Starport` -> `Viking` / `Banshee`；`FusionCore` -> `Battlecruiser` | 机械与空军主力 | `VehicleAfterburners`, `BansheeCloak`, `Hyperjump`, `Yamato` | `CommanderPrestigeRaynorMechAfterburners` 和 `CommanderPrestigeRaynorAir` 主要改写这一层 |
+| 防线建筑 | `Bunker`, `MissileTurret` | 地面 / 空中防守 | `StimRedirect`, `BunkerTransport`, `SalvageShared` | 防线本身不独立成威望，但会吃到生化与机械链的全局加成 |
+| 顶栏技能 | `BansheeAirstrike`, `HyperionAdvancedPDD`, `OrbitalStrike`, `RaynorCommanderHyperionAdvancedTargetingSystems` | 全局打击 / 控场 / 补给 | 顶栏按钮、冷却、充能 | 精通会改冷却、充能和研究节奏；威望会改顶栏对应载体的成本和前置 |
+| 英雄层 | - | `heroes.json` 为空 | - | 雷诺当前没有独立英雄层，所有核心节奏都落在建筑、兵种、顶栏和威望上 |
+
 ## 模块索引
 
 | 序号 | 模块 | 本文件章节 |
@@ -545,6 +645,16 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 Owner：`CommanderPersonalMechanicProfile`、`CommanderPersonalMechanicEffectProfile`、`CommanderPersonalMechanicHookProfile`、`CommanderPersonalMechanicRequirementProfile`。
 
 本指挥官重点：星轨、矿骡、空投和休伯利安要从个人机制 profile 统一组装。
+
+### 威望速览
+
+| 威望 | 官方主方向 | 官方代价 / 约束 | 当前融合口径 |
+|---|---|---|---|
+| `CommanderPrestigeRaynorBio` | 生化部队基础生命值、步兵相关补充升级 | 官方会禁用 `CalldownMULE`，并锁住轨道空投：矿骡按钮 | 只保留生化侧正面收益，不锁矿骡 |
+| `CommanderPrestigeRaynorMechAfterburners` | 推进器带来的机械单位增益 | 官方会压制 `RaynorCommanderMechCostReduction`，且带有移速/生命代价 | 保留推进器的正面收益，负面项不直接继承 |
+| `CommanderPrestigeRaynorAir` | 星港链路、空军气耗、顶栏联动 | 官方会带来空军矿价惩罚，并和前置/费用规则耦合 | 只保留正面收益，去掉矿价惩罚与不需要的额外约束 |
+
+详细威望取舍和 15 级 / 6 精通融合策略，见 `docs/newdocs/指挥官威望/雷诺精通威望加点融合设计-2026-05-27.md`。
 
 ### 威望正向融合输入
 
