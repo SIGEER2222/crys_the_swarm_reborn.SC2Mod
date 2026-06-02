@@ -21,7 +21,7 @@
 | `` | 未解析 / Unresolved | - | - |
 | `` | 未解析 / Unresolved | - | - |
 | `SOARepairBeam,Execute` | 目标效果技能 / CAbilEffectTarget | - | xmkarax:1 |
-| `SOAThermalLanceTargetingDummy,Execute` | 未解析 / Unresolved | - | - |
+| `SOAThermalLanceTargetingDummy,Execute` | 目标效果技能 / CAbilEffectTarget | - | xmfinal:1 |
 | `BuildInProgress,Cancel` | 未解析 / Unresolved | - | - |
 
 ## 建筑 / Buildings

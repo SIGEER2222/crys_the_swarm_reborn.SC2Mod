@@ -338,6 +338,46 @@
             <EffectArray value="SOAPylonPowerAllyDestroyPersistent"/>
             <EffectArray value="SOAPylonPowerCU"/>
         </CEffectSet>
+    <CEffectModifyUnit id="SOASuperShieldDummy">
+            <EditorCategories value="Race:Protoss"/>
+        </CEffectModifyUnit>
+    <CEffectSet id="SOAStrafeAttackCreateTargeter">
+            <EditorCategories value="Race:Protoss"/>
+            <TargetLocationType value="Point"/>
+        </CEffectSet>
+    <CEffectCreatePersistent id="SOAStrafeAttackMovePersistent">
+            <EditorCategories value="Race:Protoss"/>
+            <WhichLocation Value="CasterPoint"/>
+            <PeriodCount value="1"/>
+            <PeriodicEffectArray value="SOAStrafeAttackCreaterStrafer"/>
+            <PeriodicOffsetArray value="0,-50,0"/>
+            <OffsetVectorStartLocation Value="CasterPoint"/>
+        </CEffectCreatePersistent>
+    <CEffectCreateUnit id="SOAStrafeAttackCreaterStrafer">
+            <EditorCategories value="Race:Protoss"/>
+            <WhichLocation Value="CasterPoint"/>
+            <SpawnEffect value="SOAStrafeAttackExecuteSet"/>
+            <SpawnUnit value="SOAStrafeAttackUnit"/>
+            <CreateFlags index="Placement" value="0"/>
+            <SpawnRange value="0"/>
+        </CEffectCreateUnit>
+    <CEffectSet id="SOAStrafeAttackExecuteSet">
+            <EditorCategories value=""/>
+            <EffectArray value="SOAStrafeAttackOrder"/>
+            <EffectArray value="SOAStrafeAttackRemoveTargeter"/>
+        </CEffectSet>
+    <CEffectIssueOrder id="SOAStrafeAttackOrder">
+            <EditorCategories value="Race:Protoss"/>
+            <Abil value="move"/>
+            <Target Effect="SOAStrafeAttackCreaterStrafer" Value="TargetPoint"/>
+        </CEffectIssueOrder>
+    <CEffectDamage id="SOAStrafeAttackRemoveTargeter">
+            <ImpactLocation Value="CasterUnit"/>
+            <Visibility value="Hidden"/>
+            <Flags index="Kill" value="1"/>
+            <Flags index="NoKillCredit" value="1"/>
+            <Death value="Remove"/>
+        </CEffectDamage>
     <CEffectSet id="SOASummonFenixArbiterInitialSet">
             <EffectArray value="SOASummonFenixHeroSummonCleanupDummy"/>
             <EffectArray value="SOASummonFenixHeroSummonCasterBehaviorCleanup"/>

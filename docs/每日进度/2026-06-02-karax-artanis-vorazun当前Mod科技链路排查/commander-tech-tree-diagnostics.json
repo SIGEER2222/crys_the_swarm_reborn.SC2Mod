@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T05:14:41.440Z",
+  "generated_at": "2026-06-02T05:39:42.814Z",
   "scope": "当前 Mod 指挥官科技链路排查 / Current Mod Commander Tech Tree Diagnostics",
   "source_kind": "mod",
   "commanders": [
@@ -21,8 +21,8 @@
         "building_panel_button_count": 22,
         "unit_panel_button_count": 27,
         "hero_panel_button_count": 0,
-        "produced_unit_count": 15,
-        "effect_ref_count": 8
+        "produced_unit_count": 16,
+        "effect_ref_count": 14
       },
       "top_panel": [
         {
@@ -455,15 +455,25 @@
             "abil_cmd": "SOAOrbitalStrikeActivate,On",
             "ability_id": "SOAOrbitalStrikeActivate",
             "command_index": "On",
-            "catalog_types": [],
-            "catalog_type_cn": [],
-            "catalog_sources": [],
+            "catalog_types": [
+              "CAbilBehavior"
+            ],
+            "catalog_type_cn": [
+              "行为/被动技能"
+            ],
+            "catalog_sources": [
+              {
+                "source_catalog": "xmfinal",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                "count": 1
+              }
+            ],
             "matched_info": [],
             "production_matches": [],
             "catalog_targets": [],
             "tooltip_effect_refs": [],
             "effect_refs": [],
-            "unresolved_catalog": true
+            "unresolved_catalog": false
           }
         },
         {
@@ -561,15 +571,52 @@
             "abil_cmd": "SoASuperShield,Execute",
             "ability_id": "SoASuperShield",
             "command_index": "Execute",
-            "catalog_types": [],
-            "catalog_type_cn": [],
-            "catalog_sources": [],
+            "catalog_types": [
+              "CAbilEffectInstant"
+            ],
+            "catalog_type_cn": [
+              "瞬发效果技能"
+            ],
+            "catalog_sources": [
+              {
+                "source_catalog": "xmfinal",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                "count": 1
+              }
+            ],
             "matched_info": [],
             "production_matches": [],
             "catalog_targets": [],
             "tooltip_effect_refs": [],
-            "effect_refs": [],
-            "unresolved_catalog": true
+            "effect_refs": [
+              {
+                "id": "SOASuperShieldDummy",
+                "name": "SOASuperShieldDummy",
+                "catalog_types": [
+                  "CEffectModifyUnit"
+                ],
+                "catalog_type_cn": [
+                  "修改单位效果"
+                ],
+                "catalog_sources": [
+                  {
+                    "source_catalog": "xmfinal",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  }
+                ],
+                "child_effect_ids": [],
+                "spawn_units": [],
+                "spawn_counts": [],
+                "amounts": [],
+                "behaviors": [],
+                "validators": [],
+                "fields": {},
+                "child_effects": [],
+                "unresolved_catalog": false
+              }
+            ],
+            "unresolved_catalog": false
           }
         },
         {
@@ -592,15 +639,52 @@
             "abil_cmd": "SOAStrafeAttack,Execute",
             "ability_id": "SOAStrafeAttack",
             "command_index": "Execute",
-            "catalog_types": [],
-            "catalog_type_cn": [],
-            "catalog_sources": [],
+            "catalog_types": [
+              "CAbilEffectTarget"
+            ],
+            "catalog_type_cn": [
+              "目标效果技能"
+            ],
+            "catalog_sources": [
+              {
+                "source_catalog": "xmfinal",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                "count": 1
+              }
+            ],
             "matched_info": [],
             "production_matches": [],
             "catalog_targets": [],
             "tooltip_effect_refs": [],
-            "effect_refs": [],
-            "unresolved_catalog": true
+            "effect_refs": [
+              {
+                "id": "SOAStrafeAttackCreateTargeter",
+                "name": "SOAStrafeAttackCreateTargeter",
+                "catalog_types": [
+                  "CEffectSet"
+                ],
+                "catalog_type_cn": [
+                  "效果集合"
+                ],
+                "catalog_sources": [
+                  {
+                    "source_catalog": "xmfinal",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  }
+                ],
+                "child_effect_ids": [],
+                "spawn_units": [],
+                "spawn_counts": [],
+                "amounts": [],
+                "behaviors": [],
+                "validators": [],
+                "fields": {},
+                "child_effects": [],
+                "unresolved_catalog": false
+              }
+            ],
+            "unresolved_catalog": false
           }
         },
         {
@@ -809,15 +893,67 @@
             "abil_cmd": "SOAOrbitalStrikeTargetingDummy,Execute",
             "ability_id": "SOAOrbitalStrikeTargetingDummy",
             "command_index": "Execute",
-            "catalog_types": [],
-            "catalog_type_cn": [],
-            "catalog_sources": [],
+            "catalog_types": [
+              "CAbilEffectTarget"
+            ],
+            "catalog_type_cn": [
+              "目标效果技能"
+            ],
+            "catalog_sources": [
+              {
+                "source_catalog": "xmfinal",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                "count": 1
+              }
+            ],
             "matched_info": [],
             "production_matches": [],
             "catalog_targets": [],
             "tooltip_effect_refs": [],
-            "effect_refs": [],
-            "unresolved_catalog": true
+            "effect_refs": [
+              {
+                "id": "SOAOrbitalStrikeImpactSearch",
+                "name": "SOAOrbitalStrikeImpactSearch",
+                "catalog_types": [
+                  "CEffectEnumArea"
+                ],
+                "catalog_type_cn": [
+                  "区域枚举效果"
+                ],
+                "catalog_sources": [
+                  {
+                    "source_catalog": "xmartanis",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  },
+                  {
+                    "source_catalog": "xmfinal",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  },
+                  {
+                    "source_catalog": "xmkarax",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  },
+                  {
+                    "source_catalog": "xmvorazun",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  }
+                ],
+                "child_effect_ids": [],
+                "spawn_units": [],
+                "spawn_counts": [],
+                "amounts": [],
+                "behaviors": [],
+                "validators": [],
+                "fields": {},
+                "child_effects": [],
+                "unresolved_catalog": false
+              }
+            ],
+            "unresolved_catalog": false
           }
         },
         {
@@ -840,15 +976,167 @@
             "abil_cmd": "SOAOrbitalStrikeExecute,Execute",
             "ability_id": "SOAOrbitalStrikeExecute",
             "command_index": "Execute",
-            "catalog_types": [],
-            "catalog_type_cn": [],
-            "catalog_sources": [],
+            "catalog_types": [
+              "CAbilEffectTarget"
+            ],
+            "catalog_type_cn": [
+              "目标效果技能"
+            ],
+            "catalog_sources": [
+              {
+                "source_catalog": "xmfinal",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                "count": 1
+              }
+            ],
             "matched_info": [],
             "production_matches": [],
             "catalog_targets": [],
             "tooltip_effect_refs": [],
-            "effect_refs": [],
-            "unresolved_catalog": true
+            "effect_refs": [
+              {
+                "id": "SOAOrbitalStrikeCP",
+                "name": "SOAOrbitalStrikeCP",
+                "catalog_types": [
+                  "CEffectCreatePersistent"
+                ],
+                "catalog_type_cn": [
+                  "持续效果"
+                ],
+                "catalog_sources": [
+                  {
+                    "source_catalog": "xmartanis",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  },
+                  {
+                    "source_catalog": "xmfinal",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  },
+                  {
+                    "source_catalog": "xmkarax",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  },
+                  {
+                    "source_catalog": "xmvorazun",
+                    "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                    "count": 1
+                  }
+                ],
+                "child_effect_ids": [
+                  "SOAOrbitalStrikeImpactSet"
+                ],
+                "spawn_units": [],
+                "spawn_counts": [],
+                "amounts": [],
+                "behaviors": [],
+                "validators": [],
+                "fields": {},
+                "child_effects": [
+                  {
+                    "id": "SOAOrbitalStrikeImpactSet",
+                    "name": "SOAOrbitalStrikeImpactSet",
+                    "catalog_types": [
+                      "CEffectSet"
+                    ],
+                    "catalog_type_cn": [
+                      "效果集合"
+                    ],
+                    "catalog_sources": [
+                      {
+                        "source_catalog": "xmartanis",
+                        "source_file": "合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                        "count": 1
+                      },
+                      {
+                        "source_catalog": "xmfinal",
+                        "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                        "count": 1
+                      },
+                      {
+                        "source_catalog": "xmkarax",
+                        "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                        "count": 1
+                      },
+                      {
+                        "source_catalog": "xmvorazun",
+                        "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                        "count": 1
+                      }
+                    ],
+                    "child_effect_ids": [
+                      "CommanderPrestigeArtanisOrbitalStrikesArchonPrecursor"
+                    ],
+                    "spawn_units": [],
+                    "spawn_counts": [],
+                    "amounts": [],
+                    "behaviors": [],
+                    "validators": [],
+                    "fields": {},
+                    "child_effects": [
+                      {
+                        "id": "CommanderPrestigeArtanisOrbitalStrikesArchonPrecursor",
+                        "name": "CommanderPrestigeArtanisOrbitalStrikesArchonPrecursor",
+                        "catalog_types": [
+                          "CEffectCreateUnit"
+                        ],
+                        "catalog_type_cn": [
+                          "创建单位效果"
+                        ],
+                        "catalog_sources": [
+                          {
+                            "source_catalog": "xmartanis",
+                            "source_file": "合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                            "count": 1
+                          },
+                          {
+                            "source_catalog": "xmfinal",
+                            "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                            "count": 1
+                          },
+                          {
+                            "source_catalog": "xmkarax",
+                            "source_file": "合作指挥官版起义狂潮/Mods/XM/XMKarax.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                            "count": 1
+                          },
+                          {
+                            "source_catalog": "xmvorazun",
+                            "source_file": "合作指挥官版起义狂潮/Mods/XM/XMVorazun.SC2Mod/Base.SC2Data/GameData/EffectData.xml",
+                            "count": 1
+                          }
+                        ],
+                        "child_effect_ids": [
+                          "CommanderPrestigeArtanisOrbitalStrikesArchonPrecursorSet"
+                        ],
+                        "spawn_units": [
+                          {
+                            "id": "CommanderPrestigeArtanisOrbitalStrikesArchonPrecursor",
+                            "name": "CommanderPrestigeArtanisOrbitalStrikesArchonPrecursor",
+                            "in_current_commander_roster": false
+                          }
+                        ],
+                        "spawn_counts": [],
+                        "amounts": [],
+                        "behaviors": [],
+                        "validators": [],
+                        "fields": {
+                          "Chance": [
+                            "0"
+                          ]
+                        },
+                        "child_effects": [],
+                        "unresolved_catalog": false
+                      }
+                    ],
+                    "unresolved_catalog": false
+                  }
+                ],
+                "unresolved_catalog": false
+              }
+            ],
+            "unresolved_catalog": false
           }
         },
         {
@@ -7208,15 +7496,25 @@
             "abil_cmd": "SOATimeFreeze,Execute",
             "ability_id": "SOATimeFreeze",
             "command_index": "Execute",
-            "catalog_types": [],
-            "catalog_type_cn": [],
-            "catalog_sources": [],
+            "catalog_types": [
+              "CAbilEffectInstant"
+            ],
+            "catalog_type_cn": [
+              "瞬发效果技能"
+            ],
+            "catalog_sources": [
+              {
+                "source_catalog": "xmfinal",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                "count": 1
+              }
+            ],
             "matched_info": [],
             "production_matches": [],
             "catalog_targets": [],
             "tooltip_effect_refs": [],
             "effect_refs": [],
-            "unresolved_catalog": true
+            "unresolved_catalog": false
           }
         },
         {
@@ -12812,15 +13110,25 @@
             "abil_cmd": "SOAThermalLanceTargetingDummy,Execute",
             "ability_id": "SOAThermalLanceTargetingDummy",
             "command_index": "Execute",
-            "catalog_types": [],
-            "catalog_type_cn": [],
-            "catalog_sources": [],
+            "catalog_types": [
+              "CAbilEffectTarget"
+            ],
+            "catalog_type_cn": [
+              "目标效果技能"
+            ],
+            "catalog_sources": [
+              {
+                "source_catalog": "xmfinal",
+                "source_file": "合作指挥官版起义狂潮/Mods/XM/XMFinal.SC2Mod/Base.SC2Data/GameData/AbilData.xml",
+                "count": 1
+              }
+            ],
             "matched_info": [],
             "production_matches": [],
             "catalog_targets": [],
             "tooltip_effect_refs": [],
             "effect_refs": [],
-            "unresolved_catalog": true
+            "unresolved_catalog": false
           }
         },
         {
@@ -18898,8 +19206,8 @@
       "heroes": 0,
       "building_panel_buttons": 22,
       "unit_panel_buttons": 27,
-      "produced_units": 15,
-      "effect_refs": 8
+      "produced_units": 16,
+      "effect_refs": 14
     },
     {
       "commander": "Vorazun",

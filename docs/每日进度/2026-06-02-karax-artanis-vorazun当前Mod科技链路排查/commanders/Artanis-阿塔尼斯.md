@@ -3,25 +3,25 @@
 - 描述 / Description：达拉姆大主教
 - 数据来源 / Data source：当前 Mod / Current Mod，目录 / Directory：`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod`
 - 当前 Mod 运行名册 / Current Mod roster：module=`XMArtanis.SC2Mod`，instance=`Artanis`
-- 统计 / Stats：建筑 5、生产链补充建筑 4、单位 9、英雄 0、建筑按钮 22、单位按钮 27、效果引用 8
+- 统计 / Stats：建筑 5、生产链补充建筑 4、单位 9、英雄 0、建筑按钮 22、单位按钮 27、效果引用 14
 
 ## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills
 
 | 技能 / Ability | 类型 / Type | 效果引用 / Effect References | Catalog 来源 / Catalog Sources |
 | --- | --- | --- | --- |
 | `SOAPylonPower,Execute` | 目标效果技能 / CAbilEffectTarget | 持续效果 / CEffectCreatePersistent:`SOAPylonPowerCoop` | xmartanis:1 |
-| `SOAOrbitalStrikeActivate,On` | 未解析 / Unresolved | - | - |
+| `SOAOrbitalStrikeActivate,On` | 行为/被动技能 / CAbilBehavior | - | xmfinal:1 |
 | `CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargeted,Execute` | 目标效果技能 / CAbilEffectTarget | 区域枚举效果 / CEffectEnumArea:`CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargetedSearch` | xmartanis:1 |
-| `SoASuperShield,Execute` | 未解析 / Unresolved | - | - |
-| `SOAStrafeAttack,Execute` | 未解析 / Unresolved | - | - |
+| `SoASuperShield,Execute` | 瞬发效果技能 / CAbilEffectInstant | 修改单位效果 / CEffectModifyUnit:`SOASuperShieldDummy` | xmfinal:1 |
+| `SOAStrafeAttack,Execute` | 目标效果技能 / CAbilEffectTarget | 效果集合 / CEffectSet:`SOAStrafeAttackCreateTargeter` | xmfinal:1 |
 | `` | 未解析 / Unresolved | - | - |
 | `` | 未解析 / Unresolved | - | - |
 | `` | 未解析 / Unresolved | - | - |
 | `` | 未解析 / Unresolved | - | - |
 | `` | 未解析 / Unresolved | - | - |
 | `` | 未解析 / Unresolved | - | - |
-| `SOAOrbitalStrikeTargetingDummy,Execute` | 未解析 / Unresolved | - | - |
-| `SOAOrbitalStrikeExecute,Execute` | 未解析 / Unresolved | - | - |
+| `SOAOrbitalStrikeTargetingDummy,Execute` | 目标效果技能 / CAbilEffectTarget | 区域枚举效果 / CEffectEnumArea:`SOAOrbitalStrikeImpactSearch` | xmfinal:1 |
+| `SOAOrbitalStrikeExecute,Execute` | 目标效果技能 / CAbilEffectTarget | 持续效果 / CEffectCreatePersistent:`SOAOrbitalStrikeCP` | xmfinal:1 |
 | `BuildInProgress,Cancel` | 未解析 / Unresolved | - | - |
 
 ## 建筑 / Buildings

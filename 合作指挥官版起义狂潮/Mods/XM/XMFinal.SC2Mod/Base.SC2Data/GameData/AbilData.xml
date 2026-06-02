@@ -4348,6 +4348,34 @@
             <Range value="500"/>
             <Arc value="360"/>
         </CAbilEffectTarget>
+    <CAbilBehavior id="SOAOrbitalStrikeActivate">
+            <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+            <CmdButtonArray index="On" DefaultButtonFace="SOAOrbitalStrike" Requirements="HaveSOAOrbitalStrike"/>
+            <CmdButtonArray index="Off" DefaultButtonFace="Cancel"/>
+            <Flags index="Toggle" value="1"/>
+            <Cost>
+                <Vital index="Energy" value="50"/>
+                <Cooldown TimeUse="60"/>
+            </Cost>
+            <BehaviorArray value="SOAOrbitalStrikeActivate"/>
+        </CAbilBehavior>
+    <CAbilEffectTarget id="SOAOrbitalStrikeTargetingDummy">
+            <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+            <Range value="500"/>
+            <Arc value="360"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="SOAOrbitalStrike" Requirements="HaveSOAOrbitalStrike"/>
+            <Flags index="Transient" value="1"/>
+            <CursorEffect value="SOAOrbitalStrikeImpactSearch"/>
+        </CAbilEffectTarget>
+    <CAbilEffectTarget id="SOAOrbitalStrikeExecute">
+            <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+            <Effect index="0" value="SOAOrbitalStrikeCP"/>
+            <Range value="500"/>
+            <Arc value="360"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="SOAOrbitalStrike" Requirements="HaveSOAOrbitalStrike"/>
+            <PrepTime value="0.125"/>
+            <Flags index="RequireTargetVision" value="0"/>
+        </CAbilEffectTarget>
     <CAbilBuild id="SOADarkPylon">
             <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
             <FlagArray index="IgnoreUnitCost" value="1"/>
@@ -4372,6 +4400,15 @@
             <AINotifyEffect value="ChronoBoost"/>
             <CmdButtonArray index="Execute" DefaultButtonFace="SOAMapWideChrono" Requirements="HaveSOAMapWideChrono"/>
             <PreEffectBehavior Behavior="KaraxMasterySoAEnergyRegen" Count="1"/>
+        </CAbilEffectInstant>
+    <CAbilEffectInstant id="SoASuperShield">
+            <EditorCategories value="AbilityorEffectType:Units"/>
+            <Effect index="0" value="SOASuperShieldDummy"/>
+            <Cost>
+                <Vital index="Energy" value="50"/>
+                <Cooldown TimeStart="180" TimeUse="180"/>
+            </Cost>
+            <CmdButtonArray index="Execute" DefaultButtonFace="SOASuperShield" State="Restricted" Requirements="HaveSOASuperShield"/>
         </CAbilEffectInstant>
     <CAbilEffectTarget id="SOAOrbitalStrikeKarax">
             <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -4417,6 +4454,28 @@
                 <Cooldown TimeStart="450" TimeUse="450"/>
             </Cost>
         </CAbilBehavior>
+    <CAbilEffectTarget id="SOAStrafeAttack">
+            <EditorCategories value="AbilityorEffectType:Units"/>
+            <Effect index="0" value="SOAStrafeAttackCreateTargeter"/>
+            <Range value="500"/>
+            <Arc value="360"/>
+            <AINotifyEffect value="SOAStrafeAttackCreateTargeter"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="SOAStrafeAttack" Requirements="HaveSOAStrafeAttack"/>
+            <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
+            <Cost>
+                <Cooldown TimeStart="300" TimeUse="300"/>
+            </Cost>
+        </CAbilEffectTarget>
+    <CAbilEffectTarget id="SOAStrafeAttackExecute">
+            <EditorCategories value="AbilityorEffectType:Units"/>
+            <Effect index="0" value="SOAStrafeAttackMovePersistent"/>
+            <Flags index="ReExecutable" value="1"/>
+            <Flags index="RequireTargetVision" value="0"/>
+            <Range value="500"/>
+            <Arc value="360"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="SOAStrafeAttackUnit"/>
+            <SharedFlags index="TargetCursorVisibleInBlackMask" value="1"/>
+        </CAbilEffectTarget>
     <CAbilEffectTarget id="SOASummonFenix">
             <EditorCategories value="AbilityorEffectType:Units"/>
             <Effect index="0" value="SOASummonFenixInitialSet"/>
@@ -4484,6 +4543,15 @@
                 <Cooldown TimeUse="120"/>
             </Cost>
         </CAbilBehavior>
+    <CAbilEffectTarget id="SOAThermalLanceTargetingDummy">
+            <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+            <Range value="500"/>
+            <Arc value="360"/>
+            <CmdButtonArray index="Execute" DefaultButtonFace="SOAThermalLance" Requirements="HaveSOAThermalLance"/>
+            <Cost>
+                <Cooldown TimeUse="0.25"/>
+            </Cost>
+        </CAbilEffectTarget>
     <CAbilEffectTarget id="SOAThermalLanceExecute">
             <Effect index="0" value="SOAThermalLanceSet"/>
         </CAbilEffectTarget>
@@ -4504,6 +4572,12 @@
                 <Vital index="Energy" value="25"/>
             </Cost>
         </CAbilEffectTarget>
+    <CAbilEffectInstant id="SOATimeFreeze">
+            <Cost>
+                <Cooldown TimeStart="300" TimeUse="300"/>
+            </Cost>
+            <CmdButtonArray index="Execute" DefaultButtonFace="SOATimeFreeze" Requirements="HaveSOATimeFreeze"/>
+        </CAbilEffectInstant>
     <CAbilEffectInstant id="AbathurMend">
             <EditorCategories value="AbilityorEffectType:Units,Race:Zerg"/>
             <Effect index="0" value="AbathurMendSearch"/>

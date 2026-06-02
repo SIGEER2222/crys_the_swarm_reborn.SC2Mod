@@ -12,7 +12,7 @@
 | `SOADarkPylon,Build1` | 建造技能 / CAbilBuild | - | xmvorazun:1 |
 | `VoidSentryBlackHole,Execute` | 目标效果技能 / CAbilEffectTarget | - | xmvorazun:1 |
 | `SOAShadowGuardCalldown,Execute` | 目标效果技能 / CAbilEffectTarget | 创建单位效果 / CEffectCreateUnit:`ShadowGuardCU` | xmfinal:1 |
-| `SOATimeFreeze,Execute` | 未解析 / Unresolved | - | - |
+| `SOATimeFreeze,Execute` | 瞬发效果技能 / CAbilEffectInstant | - | xmfinal:1 |
 | `CommanderPrestigeVorazunTimeStop,Execute` | 目标效果技能 / CAbilEffectTarget | - | xmvorazun:1 |
 | `` | 未解析 / Unresolved | - | - |
 | `` | 未解析 / Unresolved | - | - |

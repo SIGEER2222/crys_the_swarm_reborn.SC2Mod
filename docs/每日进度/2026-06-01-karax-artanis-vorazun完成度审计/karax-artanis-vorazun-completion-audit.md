@@ -1,6 +1,6 @@
 # Karax / Artanis / Vorazun 完成度审计
 
-- 生成时间：2026/6/2 13:14:56
+- 生成时间：2026/6/2 13:40:31
 - 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。
 - 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告、当前 Mod 科技链路诊断，以及 StarCraft2Coop 在线资料入口和页面显式补充项。
 - 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。
@@ -21,6 +21,7 @@
 - 建筑口径：6（官方 JSON 5，在线补充 3）
 - 在线主建筑：3，supplemental 建筑：3
 - 当前 Mod 运行名册：单位 8，建筑 6，生产链补充建筑 3，顶部面板 face 12
+- 当前 Mod 顶部面板未解析 Ability：0（0）
 - 当前 Mod 生产链补充建筑：RoboticsFacility、Stargate、WarpGate
 - 当前 Mod 可追踪生产/合体/变形目标：8（Carrier、Colossus、ImmortalAiur、Observer、PhoenixPurifier、Scout、SentryPurifier、ZealotPurifier）
 - 单位：ImmortalAiur、Observer、PhoenixPurifier、Scout、SentryPurifier、ZealotPurifier、Colossus、Carrier
@@ -52,6 +53,7 @@
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
 | 顶部技能面板预期按钮均出现在当前 Mod runtime 面板 | PASS | runtime_faces=12, missing=0 |
 | 当前 Mod runtime 顶部面板未出现未解释的额外按钮 | PASS | extra=0, allowed=CancelBuilding/CommanderPrestigeKaraxChronoFieldLocked/CommanderPrestigeKaraxChronoWaveLocked/PurifierBeamLocked/ReconstructionBeamLocked/SOAChronoPassive/SOAChronoPassiveLocked/SOARepairBeam |
+| 当前 Mod runtime 顶部面板按钮引用的非基础 Ability 均能解析到 Catalog | PASS | unresolved=0 |
 | 当前 Mod 面板未暴露其他指挥官的等级/升级/锁定需求 | PASS | cross_requirements=0 |
 | 当前 Mod 面板未暴露其他指挥官专属按钮/命令身份 | PASS | cross_identities=0 |
 
@@ -63,6 +65,7 @@
 - 建筑口径：5（官方 JSON 5，在线补充 0）
 - 在线主建筑：0，supplemental 建筑：5
 - 当前 Mod 运行名册：单位 9，建筑 5，生产链补充建筑 4，顶部面板 face 11
+- 当前 Mod 顶部面板未解析 Ability：0（0）
 - 当前 Mod 生产链补充建筑：RoboticsFacility、Stargate、StargateWarp、WarpGate
 - 当前 Mod 可追踪生产/合体/变形目标：9（Archon、Dragoon、HighTemplar、ImmortalAiur、Observer、PhoenixAiur、Reaver、Tempest、Zealot）
 - 单位：Archon、ImmortalAiur、Observer、PhoenixAiur、StalkerAiur、Zealot、HighTemplar、Tempest、Reaver
@@ -94,6 +97,7 @@
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
 | 顶部技能面板预期按钮均出现在当前 Mod runtime 面板 | PASS | runtime_faces=11, missing=0 |
 | 当前 Mod runtime 顶部面板未出现未解释的额外按钮 | PASS | extra=0, allowed=CancelBuilding/CommanderPrestigeArtanisGuardianShellLocked/SOAHeroicShield/SOAHeroicShieldLocked/SOAStrafeAttackLocked/SOAWarpTech/WarpHarmonizationLocked |
+| 当前 Mod runtime 顶部面板按钮引用的非基础 Ability 均能解析到 Catalog | PASS | unresolved=0 |
 | 当前 Mod 面板未暴露其他指挥官的等级/升级/锁定需求 | PASS | cross_requirements=0 |
 | 当前 Mod 面板未暴露其他指挥官专属按钮/命令身份 | PASS | cross_identities=0 |
 
@@ -105,6 +109,7 @@
 - 建筑口径：3（官方 JSON 3，在线补充 0）
 - 在线主建筑：0，supplemental 建筑：3
 - 当前 Mod 运行名册：单位 8，建筑 4，生产链补充建筑 2，顶部面板 face 10
+- 当前 Mod 顶部面板未解析 Ability：0（0）
 - 当前 Mod 生产链补充建筑：Stargate、WarpGate
 - 当前 Mod 可追踪生产/合体/变形目标：8（CorsairMP、DarkArchon、DarkTemplarShakuras、Oracle、Stalker、VoidRay、Zealot、ZealotShakuras）
 - 单位：DarkTemplarShakuras、Oracle、PhoenixShakuras、Zealot、ZealotShakuras、Stalker、VoidRay、DarkArchon
@@ -136,5 +141,6 @@
 | 顶部技能面板按钮字段全部匹配预期 | PASS | top_panel_issues=0 |
 | 顶部技能面板预期按钮均出现在当前 Mod runtime 面板 | PASS | runtime_faces=10, missing=0 |
 | 当前 Mod runtime 顶部面板未出现未解释的额外按钮 | PASS | extra=0, allowed=CancelBuilding/RecallonDeathPassiveLocked/SOAStrikefromtheShadows/SOATimeStopLocked/StrikefromtheShadowsLocked |
+| 当前 Mod runtime 顶部面板按钮引用的非基础 Ability 均能解析到 Catalog | PASS | unresolved=0 |
 | 当前 Mod 面板未暴露其他指挥官的等级/升级/锁定需求 | PASS | cross_requirements=0 |
 | 当前 Mod 面板未暴露其他指挥官专属按钮/命令身份 | PASS | cross_identities=0 |
