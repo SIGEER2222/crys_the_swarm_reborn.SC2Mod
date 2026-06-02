@@ -76,6 +76,37 @@ const onlineExpectationAdditions = {
   Karax: {
     units: [
       {
+        id: 'Colossus',
+        name: 'Colossus',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveFireBeam', type: 'Requirement', name: 'Fire Beam unit-card requirement' },
+          { id: 'ColossusFireBeam', type: 'Upgrade', name: 'Fire Beam upgrade' },
+          { id: 'ResearchFireBeam', type: 'Button', name: 'Fire Beam research button' },
+        ],
+      },
+      {
+        id: 'PhoenixPurifier',
+        name: 'Mirage',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveMiragePhaseArmor', type: 'Requirement', name: 'Phasing Armor unit-card requirement' },
+          { id: 'MiragePhaseArmor', type: 'Upgrade', name: 'Phasing Armor upgrade' },
+          { id: 'ResearchPhaseArmor', type: 'Button', name: 'Phasing Armor research button' },
+        ],
+      },
+      {
+        id: 'Carrier',
+        name: 'Carrier',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'CarrierRepairDrones', type: 'Upgrade', name: 'Repair Drones upgrade' },
+          { id: 'HaveCarrierRepairDrones', type: 'Requirement', name: 'Repair Drones unit-card requirement' },
+          { id: 'CarrierRepairDroneHanger', type: 'Ability', name: 'Repair Drones carrier hanger ability' },
+          { id: 'ResearchCarrierRepairDrones', type: 'Button', name: 'Repair Drones research button' },
+        ],
+      },
+      {
         id: 'ZealotPurifier',
         name: 'Sentinel',
         source: 'StarCraft2Coop Combat Units',
