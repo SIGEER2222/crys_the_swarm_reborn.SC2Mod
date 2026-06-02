@@ -103,6 +103,12 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
       `global_only=${field.unit_skill_global_only_count}`,
     ),
     check(
+      'unit-skill-global-refs',
+      '兵种技能/被动全局 Catalog/脚本证据均存在',
+      (field.unit_skill_global_ref_missing_count || 0) === 0,
+      `global_refs=${field.unit_skill_global_ref_count || 0}, missing=${field.unit_skill_global_ref_missing_count || 0}`,
+    ),
+    check(
       'building-roster-count',
       '官方 buildings.json 中的建筑均进入字段级建筑审计',
       includesAllById(officialBuildings, buildingReports, 'building'),
@@ -150,6 +156,8 @@ function summarizeCommander(commander, fieldAudit, gapReport) {
     online_primary_structure_count: field.online_primary_structure_count || 0,
     supplemental_unit_count: field.supplemental_unit_count || 0,
     supplemental_building_count: field.supplemental_building_count || 0,
+    unit_skill_global_ref_count: field.unit_skill_global_ref_count || 0,
+    unit_skill_global_ref_missing_count: field.unit_skill_global_ref_missing_count || 0,
     unit_count: expectedUnitCount,
     building_count: expectedBuildingCount,
     top_panel_button_count: topPanel.expected.length,

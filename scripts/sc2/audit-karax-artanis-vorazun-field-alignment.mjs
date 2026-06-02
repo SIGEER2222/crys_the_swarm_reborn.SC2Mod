@@ -86,6 +86,19 @@ const onlineExpectationAdditions = {
   Vorazun: {
     units: [
       {
+        id: 'ZealotShakuras',
+        name: 'Centurion',
+        source: 'StarCraft2Coop Combat Units',
+        abilities: [
+          { face: 'Charge', type: 'AbilCmd', abil_cmd: 'Charge,Execute', row: '2', column: '0', name: 'Shadow Charge base command' },
+        ],
+        global_refs: [
+          { id: 'VoidZealotShadowCharge', type: 'Upgrade', name: 'Shadow Charge upgrade package' },
+          { id: 'ZealotResearchShadowStun', type: 'Upgrade', name: 'Darkcoil upgrade' },
+          { id: 'ResearchShadowStun', type: 'Button', name: 'Darkcoil research button' },
+        ],
+      },
+      {
         id: 'DarkArchon',
         name: 'Dark Archon',
         source: 'StarCraft2Coop Combat Units',
@@ -293,6 +306,11 @@ function mergeExpectationAdditions(baseItems, additionItems) {
         ...(existing.abilities || []),
         ...(addition.abilities || []).filter((ability) => !existingFaces.has(ability.face || ability.button?.id)),
       ];
+      const existingGlobalRefs = new Set((existing.global_refs || []).map((ref) => ref.id || ref.value || ref.face).filter(Boolean));
+      const addedGlobalRefs = (addition.global_refs || []).filter((ref) => !existingGlobalRefs.has(ref.id || ref.value || ref.face));
+      if (addedGlobalRefs.length) {
+        existing.global_refs = [...(existing.global_refs || []), ...addedGlobalRefs];
+      }
       existing.online_expectation_source = addition.source;
       continue;
     }
@@ -333,6 +351,14 @@ function abilitySignature(ability) {
     row: normalize(ability.row),
     column: normalize(ability.column),
     name: normalize(ability.name || ability.button?.name || ability.face),
+  };
+}
+
+function globalRefSignature(ref) {
+  return {
+    id: normalize(ref.id || ref.value || ref.face),
+    type: normalize(ref.type),
+    name: normalize(ref.name || ref.label || ref.id || ref.value || ref.face),
   };
 }
 
@@ -398,6 +424,9 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
       .filter((ability) => !isProductionCommand(ability))
       .map(abilitySignature)
       .filter((ability) => ability.face && !inheritedOrCoreFaces.has(ability.face));
+    const expectedGlobalRefs = (unit.global_refs || [])
+      .map(globalRefSignature)
+      .filter((ref) => ref.id);
     const expectedByFace = new Map();
     for (const expected of expectedSkills) {
       if (!expectedByFace.has(expected.face)) {
@@ -408,6 +437,16 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
 
     const issues = [];
     const globalOnly = [];
+    const globalRefReports = expectedGlobalRefs.map((ref) => ({
+      ...ref,
+      present: globalText.has(ref.id),
+    }));
+    for (const ref of globalRefReports) {
+      if (!ref.present) {
+        issues.push({ type: 'missing_global_ref', id: ref.id, expected: ref });
+      }
+    }
+
     for (const [face, variants] of expectedByFace) {
       const expected = variants[0];
       if (actualFaces.has(face)) {
@@ -438,6 +477,8 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
       candidate_ids: candidateIds,
       found_unit_ids: foundUnitIds,
       expected_skill_faces: expectedSkills.map((skill) => skill.face),
+      expected_global_refs: expectedGlobalRefs.map((ref) => ref.id),
+      global_ref_reports: globalRefReports,
       issues,
       global_only: globalOnly,
     };
@@ -469,10 +510,20 @@ function auditOnlinePrimaryRoster(expectedItems, reports, reportKey) {
     const issues = [];
     if (!report) {
       issues.push({ type: 'missing_online_primary_item', id: expected.id, label: expected.label });
-    } else if ((report.issues || []).length) {
-      issues.push({ type: 'online_primary_item_has_hard_issues', id: expected.id, issue_count: report.issues.length });
-    } else if ((report.global_only || []).length) {
-      issues.push({ type: 'online_primary_item_has_global_only', id: expected.id, issue_count: report.global_only.length });
+    } else {
+      if ((report.issues || []).length) {
+        issues.push({ type: 'online_primary_item_has_hard_issues', id: expected.id, issue_count: report.issues.length });
+      }
+      if ((report.global_only || []).length) {
+        issues.push({ type: 'online_primary_item_has_global_only', id: expected.id, issue_count: report.global_only.length });
+      }
+      if (
+        reportKey === 'unit'
+        && !(report.expected_skill_faces || []).length
+        && !(report.expected_global_refs || []).length
+      ) {
+        issues.push({ type: 'online_primary_unit_has_no_skill_or_global_ref_expectations', id: expected.id });
+      }
     }
 
     return {
@@ -541,6 +592,8 @@ function auditCommander(commander, finalUnits, globalText) {
     supplemental_building_count: onlinePrimaryStructures.supplemental_count,
     unit_skill_issue_count: unitSkillReports.reduce((sum, unit) => sum + unit.issues.length, 0),
     unit_skill_global_only_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_only.length, 0),
+    unit_skill_global_ref_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_ref_reports.length, 0),
+    unit_skill_global_ref_missing_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_ref_reports.filter((ref) => !ref.present).length, 0),
     building_issue_count: buildingReports.reduce((sum, building) => sum + building.issues.length, 0),
     top_panel_issue_count: topPanelIssues.length,
     unit_skill_reports: unitSkillReports,
@@ -578,6 +631,9 @@ function formatIssue(issue) {
   if (issue.type === 'missing_unit_skill_face') {
     return `missing skill/passive face ${issue.face}`;
   }
+  if (issue.type === 'missing_global_ref') {
+    return `missing global skill/passive ref ${issue.id}`;
+  }
   if (issue.type === 'missing_button') {
     return `missing button ${issue.face}`;
   }
@@ -593,20 +649,21 @@ function writeMarkdown(report) {
   lines.push('');
   lines.push(`- 生成时间：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
   lines.push('- 目的：补充现有 ID 缺口脚本的盲区，按“网上资料里的兵种技能/被动、建筑、顶部技能面板”做静态对齐审计。');
-  lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；在线主清单作为必须覆盖的子集，Observer 等支援/扩展项作为 supplemental 透明列出；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
+  lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；在线主清单作为必须覆盖的子集，Observer 等支援/扩展项作为 supplemental 透明列出；非单位按钮承载的技能/被动以 `global_refs` 证明当前 Mod 全局 Catalog/脚本存在；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
   lines.push('- 说明：`global-only` 表示技能按钮 ID 在当前 Mod 全局存在，但没有在候选单位的显式 LayoutButtons 中出现，可能来自父级继承、别名单位或待人工判断，不直接当作硬缺口。');
+  lines.push('- 说明：`global_refs` 表示在线技能/被动不是单位命令卡按钮本体，而是以升级、研究按钮、需求或测试台科技检查等全局 Catalog/脚本证据落地。');
   lines.push('- 注意：本报告是静态字段审计，不替代 SC2 实机验证。');
   lines.push('');
   lines.push('## 总览');
   lines.push('');
-  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 建筑问题 | 顶部面板问题 | 问题类型 |');
-  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 全局证据 | 全局证据缺失 | 建筑问题 | 顶部面板问题 | 问题类型 |');
+  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
   for (const commanderReport of report.commanders) {
     const summary = summarizeIssueTypes(commanderReport);
     const summaryText = Object.keys(summary).length
       ? Object.entries(summary).map(([key, value]) => `${key}:${value}`).join('、')
       : '无';
-    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.building_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
+    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.unit_skill_global_ref_count} | ${commanderReport.unit_skill_global_ref_missing_count} | ${commanderReport.building_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
   }
   lines.push('');
 
@@ -621,6 +678,7 @@ function writeMarkdown(report) {
     lines.push(`- 在线主建筑：${commanderReport.online_primary_structure_count}，问题 ${commanderReport.online_primary_structure_issue_count}；supplemental 建筑 ${commanderReport.supplemental_building_count}`);
     lines.push(`- 兵种技能硬问题：${commanderReport.unit_skill_issue_count}`);
     lines.push(`- global-only 提醒：${commanderReport.unit_skill_global_only_count}`);
+    lines.push(`- 全局技能/被动证据：${commanderReport.unit_skill_global_ref_count}，缺失 ${commanderReport.unit_skill_global_ref_missing_count}`);
     lines.push(`- 建筑问题：${commanderReport.building_issue_count}`);
     lines.push(`- 顶部面板问题：${commanderReport.top_panel_issue_count}`);
     lines.push('');
@@ -663,6 +721,19 @@ function writeMarkdown(report) {
     } else {
       for (const unit of unitsWithGlobalOnly) {
         lines.push(`- ${unit.name} \`${unit.unit}\`：${unit.global_only.map((item) => item.face).join('、')}`);
+      }
+    }
+    lines.push('');
+    lines.push('### 全局技能/被动证据');
+    const unitsWithGlobalRefs = commanderReport.unit_skill_reports.filter((unit) => unit.global_ref_reports.length);
+    if (!unitsWithGlobalRefs.length) {
+      lines.push('- 无。');
+    } else {
+      for (const unit of unitsWithGlobalRefs) {
+        const refs = unit.global_ref_reports
+          .map((ref) => `${ref.name} \`${ref.id}\`${ref.present ? '' : '（缺失）'}`)
+          .join('、');
+        lines.push(`- ${unit.name} \`${unit.unit}\`：${refs}`);
       }
     }
     lines.push('');

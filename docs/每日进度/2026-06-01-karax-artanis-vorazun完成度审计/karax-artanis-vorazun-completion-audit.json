@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T09:40:35.977Z",
+  "generated_at": "2026-06-02T00:47:40.759Z",
   "commanders": [
     {
       "commander": "Karax",
@@ -17,6 +17,8 @@
       "online_primary_structure_count": 3,
       "supplemental_unit_count": 2,
       "supplemental_building_count": 3,
+      "unit_skill_global_ref_count": 0,
+      "unit_skill_global_ref_missing_count": 0,
       "unit_count": 8,
       "building_count": 6,
       "top_panel_button_count": 4,
@@ -95,6 +97,13 @@
           "evidence": "global_only=0"
         },
         {
+          "id": "unit-skill-global-refs",
+          "description": "兵种技能/被动全局 Catalog/脚本证据均存在",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "global_refs=0, missing=0"
+        },
+        {
           "id": "building-roster-count",
           "description": "官方 buildings.json 中的建筑均进入字段级建筑审计",
           "status": "PASS",
@@ -148,6 +157,8 @@
       "online_primary_structure_count": 0,
       "supplemental_unit_count": 1,
       "supplemental_building_count": 5,
+      "unit_skill_global_ref_count": 0,
+      "unit_skill_global_ref_missing_count": 0,
       "unit_count": 9,
       "building_count": 5,
       "top_panel_button_count": 4,
@@ -226,6 +237,13 @@
           "evidence": "global_only=0"
         },
         {
+          "id": "unit-skill-global-refs",
+          "description": "兵种技能/被动全局 Catalog/脚本证据均存在",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "global_refs=0, missing=0"
+        },
+        {
           "id": "building-roster-count",
           "description": "官方 buildings.json 中的建筑均进入字段级建筑审计",
           "status": "PASS",
@@ -273,12 +291,14 @@
       "field_audit_path": "docs\\每日进度\\2026-06-01-karax-artanis-vorazun字段级对齐审计\\karax-artanis-vorazun-field-alignment.json",
       "official_unit_count": 7,
       "official_building_count": 3,
-      "online_added_unit_count": 1,
+      "online_added_unit_count": 2,
       "online_added_building_count": 0,
       "online_primary_unit_count": 7,
       "online_primary_structure_count": 0,
       "supplemental_unit_count": 1,
       "supplemental_building_count": 3,
+      "unit_skill_global_ref_count": 3,
+      "unit_skill_global_ref_missing_count": 0,
       "unit_count": 8,
       "building_count": 3,
       "top_panel_button_count": 5,
@@ -331,7 +351,7 @@
           "description": "StarCraft2Coop 页面补充的显式兵种也进入字段级单位审计",
           "status": "PASS",
           "ok": true,
-          "evidence": "expected_units=8, audited_units=8, online_added=1"
+          "evidence": "expected_units=8, audited_units=8, online_added=2"
         },
         {
           "id": "online-primary-units",
@@ -353,6 +373,13 @@
           "status": "PASS",
           "ok": true,
           "evidence": "global_only=0"
+        },
+        {
+          "id": "unit-skill-global-refs",
+          "description": "兵种技能/被动全局 Catalog/脚本证据均存在",
+          "status": "PASS",
+          "ok": true,
+          "evidence": "global_refs=3, missing=0"
         },
         {
           "id": "building-roster-count",
