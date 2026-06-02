@@ -9,9 +9,24 @@ const rawMirrorRoot = path.join(repoRoot, '游戏数据', '官方SC2原始文本
 const defaultActiveModRoot = path.join(repoRoot, '合作指挥官版起义狂潮');
 
 const commanderDisplayNameFallbacks = {
+  Abathur: '阿巴瑟',
+  Alarak: '阿拉纳克',
   Artanis: '阿塔尼斯',
+  Dehaka: '德哈卡',
+  Fenix: '菲尼克斯',
+  Horner: '霍纳与汉',
   Karax: '凯拉克斯',
+  Kerrigan: '凯瑞甘',
+  Mengsk: '蒙斯克',
+  Nova: '诺娃',
+  Raynor: '雷诺',
+  Stetmann: '斯台特曼',
+  Stukov: '斯托科夫',
+  Swann: '斯旺',
+  Tychus: '泰凯斯',
   Vorazun: '沃拉尊',
+  Zagara: '扎加拉',
+  Zeratul: '泽拉图',
 };
 
 function displayCommanderName(name, commanderId) {
@@ -65,6 +80,22 @@ const basicButtonFaces = new Set([
   'MovePatrol',
   'SelectBuilder',
   'Stop',
+]);
+const standardProductionAbilityIds = new Set([
+  'GatewayTrain',
+  'WarpGateTrain',
+  'RoboticsFacilityTrain',
+  'RoboticsFacilityWarpTrain',
+  'StargateTrain',
+  'StargateWarpTrain',
+]);
+const standardProductionStructureIds = new Set([
+  'Gateway',
+  'WarpGate',
+  'RoboticsFacility',
+  'RoboticsFacilityWarp',
+  'Stargate',
+  'StargateWarp',
 ]);
 
 const chineseTypeNames = {
@@ -179,6 +210,7 @@ report.summary = report.commanders.map((commander) => ({
   commander: commander.commander,
   name: commander.name,
   buildings: commander.summary.building_count,
+  production_buildings: commander.summary.production_building_count || 0,
   units: commander.summary.unit_count,
   heroes: commander.summary.hero_count,
   building_panel_buttons: commander.summary.building_panel_button_count,
@@ -211,8 +243,8 @@ for (const item of report.summary) {
 function loadOfficialDataContext() {
   const officialIndex = readJson(path.join(officialRoot, 'official-coop-index.json'));
   return {
-    scope: '官方合作指挥官科技链路排查',
-    sourceDescription: '读取 `游戏数据/官方合作指挥官/commanders/*` 的中文官方导出，再反查 `游戏数据/官方SC2原始文本镜像` 里的 Unit / Ability / Effect Catalog。',
+    scope: '官方合作指挥官科技链路排查 / Official Co-op Commander Tech Tree Diagnostics',
+    sourceDescription: '读取 `游戏数据/官方合作指挥官/commanders/*` 的中文官方导出，再反查 `游戏数据/官方SC2原始文本镜像` 里的 Unit / Ability / Effect Catalog。 / Read the localized official commander export and cross-check the Unit / Ability / Effect catalogs in `游戏数据/官方SC2原始文本镜像`.',
     sourcePaths: {
       official_commander_json: normalizePath(path.relative(repoRoot, commanderRoot)),
       raw_catalog_mirror: normalizePath(path.relative(repoRoot, rawMirrorRoot)),
@@ -263,8 +295,8 @@ function loadModDataContext(modRoot) {
   });
 
   return {
-    scope: '当前 Mod 指挥官科技链路排查',
-    sourceDescription: '读取 `合作指挥官版起义狂潮` 当前 Mod 内的 `XMFinal` 运行名册、`PlayerCommanders`、各模块 Unit / Ability / Effect / Button Catalog 和 `zhCN` 本地化文本；不再用官方 JSON 作为本次导出的数据源。',
+    scope: '当前 Mod 指挥官科技链路排查 / Current Mod Commander Tech Tree Diagnostics',
+    sourceDescription: '读取 `合作指挥官版起义狂潮` 当前 Mod 内的 `XMFinal` 运行名册、`PlayerCommanders`、各模块 Unit / Ability / Effect / Button Catalog 和 `zhCN` 本地化文本；不再用官方 JSON 作为本次导出的数据源。 / Read the current Mod data from `合作指挥官版起义狂潮`, including the `XMFinal` runtime roster, `PlayerCommanders`, per-module Unit / Ability / Effect / Button Catalogs, and `zhCN` localization; do not use the official JSON as the source for this export.',
     sourcePaths: {
       active_mod_root: normalizePath(path.relative(repoRoot, modRoot)),
       runtime_roster_userdata: normalizePath(path.relative(repoRoot, path.join(modRoot, 'Mods', 'XM', 'XMFinal.SC2Mod', 'Base.SC2Data', 'GameData', 'UserData.xml'))),
@@ -293,6 +325,7 @@ function buildModCommanderData({
     const meta = playerCommanders.get(commanderId) || {};
     const runtimeModule = roster.runtime_module || meta.runtime_module || moduleNameForCommander(commanderId);
     const preferredCatalogs = preferredCatalogNames(runtimeModule, commanderId);
+    const trainUnitOverrides = buildTrainUnitOverrideIndex(catalog, preferredCatalogs);
     const topPanelAbilities = meta.global_cast_unit
       ? parseUnitPanelButtons(meta.global_cast_unit, catalog, localization, preferredCatalogs)
         .map((button) => {
@@ -314,8 +347,19 @@ function buildModCommanderData({
         runtimeModule,
         catalog,
         localization,
+        preferredCatalogs,
+        trainUnitOverrides,
       }))
       .filter(Boolean);
+    const productionBuildings = inferModProductionBuildingEntries({
+      commanderId,
+      runtimeModule,
+      catalog,
+      localization,
+      existingEntries: entries,
+      preferredCatalogs,
+      trainUnitOverrides,
+    });
 
     data.set(commanderId, {
       commander: {
@@ -330,6 +374,7 @@ function buildModCommanderData({
         top_panel_abilities: topPanelAbilities,
       },
       buildings: entries.filter((entry) => entry.kind === 'building'),
+      production_buildings: productionBuildings,
       units: entries.filter((entry) => entry.kind === 'unit'),
       heroes: entries.filter((entry) => entry.kind === 'hero'),
       command_cards: [],
@@ -348,13 +393,15 @@ function buildModTechEntry({
   runtimeModule,
   catalog,
   localization,
+  preferredCatalogs: existingPreferredCatalogs,
+  trainUnitOverrides = new Map(),
 }) {
   const unitId = item.runtime_unit;
   if (!unitId) {
     return null;
   }
 
-  const preferredCatalogs = preferredCatalogNames(runtimeModule, commanderId);
+  const preferredCatalogs = existingPreferredCatalogs || preferredCatalogNames(runtimeModule, commanderId);
   const unitInfo = summarizeModUnitEntry(unitId, catalog, localization, preferredCatalogs);
   const abilities = parseUnitPanelButtons(unitId, catalog, localization, preferredCatalogs);
   const inferredKind = item.kind === 'building' || item.kind === 'hero'
@@ -371,7 +418,7 @@ function buildModTechEntry({
     icon: unitInfo.icon,
     unit: unitInfo.unit,
     abilities,
-    production_options: buildModProductionOptions(unitId, abilities, catalog),
+    production_options: buildModProductionOptions(unitId, abilities, catalog, trainUnitOverrides, preferredCatalogs),
     production: null,
     source: {
       module: runtimeModule,
@@ -393,6 +440,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     throw new Error(`缺少指挥官数据：${commanderId}`);
   }
 
+  const preferredCatalogs = preferredCatalogNames(data.runtime_module, commanderId);
   const entryNameMap = buildEntryNameMap(data, allData);
   const rawTopPanelCommands = data.commander.top_panel_abilities?.length
     ? data.commander.top_panel_abilities
@@ -417,6 +465,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
       productionOptions: [],
       entryNameMap,
       catalogIndex,
+      preferredCatalogs,
       effectDepth,
     });
     return {
@@ -437,6 +486,17 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     abilityProductionOptions: commanderProductionOptions.filter((option) => option.producer_unit_id === (entry.unit_id || entry.id)),
     entryNameMap,
     catalogIndex,
+    preferredCatalogs,
+  }));
+  const productionBuildings = (data.production_buildings || []).map((entry) => summarizeTechEntry({
+    kind: 'production_building',
+    kindCn: '生产链补充建筑',
+    entry,
+    sourceProductionOptions: entry.production_options || [],
+    abilityProductionOptions: entry.production_options || [],
+    entryNameMap,
+    catalogIndex,
+    preferredCatalogs,
   }));
   const units = data.units.map((entry) => summarizeTechEntry({
     kind: 'unit',
@@ -446,6 +506,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     abilityProductionOptions: entry.production_options || [],
     entryNameMap,
     catalogIndex,
+    preferredCatalogs,
   }));
   const heroes = data.heroes.map((entry) => summarizeTechEntry({
     kind: 'hero',
@@ -455,17 +516,19 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     abilityProductionOptions: entry.production_options || [],
     entryNameMap,
     catalogIndex,
+    preferredCatalogs,
   }));
 
   const effectIds = new Set();
   const producedUnitIds = new Set();
-  for (const group of [topPanel, buildings, units, heroes]) {
+  for (const group of [topPanel, buildings, productionBuildings, units, heroes]) {
     for (const item of group) {
+      const onlyCurrentCommanderRoster = item.kind === 'production_building';
       if (item.ability) {
-        collectAbilityStats(item.ability, effectIds, producedUnitIds);
+        collectAbilityStats(item.ability, effectIds, producedUnitIds, { onlyCurrentCommanderRoster });
       }
       for (const ability of item.panel_abilities || []) {
-        collectAbilityStats(ability, effectIds, producedUnitIds);
+        collectAbilityStats(ability, effectIds, producedUnitIds, { onlyCurrentCommanderRoster });
       }
       for (const produced of item.produced_units || []) {
         if (produced.unit_id) {
@@ -486,6 +549,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     runtime_module: data.runtime_module || '',
     summary: {
       building_count: buildings.length,
+      production_building_count: productionBuildings.length,
       unit_count: units.length,
       hero_count: heroes.length,
       top_panel_ability_count: topPanel.length,
@@ -497,6 +561,7 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
     },
     top_panel: topPanel,
     buildings,
+    production_buildings: productionBuildings,
     units,
     heroes,
   };
@@ -510,6 +575,7 @@ function summarizeTechEntry({
   abilityProductionOptions,
   entryNameMap,
   catalogIndex,
+  preferredCatalogs,
 }) {
   const unitId = entry.unit_id || entry.id;
   const catalogUnit = summarizeCatalogUnit(unitId, entryNameMap, catalogIndex);
@@ -526,6 +592,7 @@ function summarizeTechEntry({
       productionOptions: abilityProductionOptions,
       entryNameMap,
       catalogIndex,
+      preferredCatalogs,
       effectDepth,
     });
   });
@@ -533,6 +600,7 @@ function summarizeTechEntry({
     kind === 'building' ? [] : sourceProductionOptions,
     panelAbilities,
     entryNameMap,
+    { onlyCurrentCommanderRoster: kind === 'production_building' },
   );
 
   return {
@@ -563,14 +631,21 @@ function summarizeAbilityCommand({
   productionOptions,
   entryNameMap,
   catalogIndex,
+  preferredCatalogs,
   effectDepth: maxEffectDepth,
 }) {
   const effectiveAbilityId = abilityId || '';
-  const definitions = catalogIndex.abilities.get(effectiveAbilityId) || [];
-  const infoEntries = flatten(definitions.map((definition) => parseInfoArrays(definition.snippet)));
-  const matchedInfo = commandIndex
-    ? infoEntries.filter((item) => item.index === commandIndex)
-    : infoEntries.filter((item) => !item.index);
+  const allDefinitions = catalogIndex.abilities.get(effectiveAbilityId) || [];
+  const definitions = selectPreferredDefinitions(allDefinitions, preferredCatalogs);
+  const infoEntries = flatten(definitions.map((definition) => parseAbilityInfoEntries(definition)));
+  const directMatchedInfo = matchAbilityInfoEntries(infoEntries, commandIndex);
+  const matchedInfo = inheritMatchedInfoEntries({
+    allDefinitions,
+    selectedDefinitions: definitions,
+    directMatchedInfo,
+    commandIndex,
+    preferredCatalogs,
+  });
   const abilityEffectRefs = collectAbilityEffectRefs(definitions, catalogIndex);
   const tooltipEffectRefs = extractTooltipEffectRefs(`${panelButton?.tooltip || ''}\n${panelButton?.name || ''}`);
   const effectIds = unique([...abilityEffectRefs, ...tooltipEffectRefs.map((item) => item.effect_id)]);
@@ -583,7 +658,10 @@ function summarizeAbilityCommand({
     .map((option) => summarizeProductionOption(option, entryNameMap));
   const catalogTargets = matchedInfo
     .flatMap((item) => [
-      ...item.units.map((unitId) => ({ type: 'unit', id: unitId })),
+      ...item.units.map((unitId) => ({
+        type: item.source_ability_tag === 'CAbilMerge' ? 'merge_unit' : 'unit',
+        id: unitId,
+      })),
       ...item.upgrades.map((upgradeId) => ({ type: 'upgrade', id: upgradeId })),
       ...item.morph_units.map((unitId) => ({ type: 'morph_unit', id: unitId })),
     ])
@@ -622,6 +700,63 @@ function summarizeAbilityCommand({
   };
 }
 
+function matchAbilityInfoEntries(infoEntries, commandIndex) {
+  return commandIndex
+    ? infoEntries.filter((item) => item.index === commandIndex || item.match_any_command)
+    : infoEntries.filter((item) => !item.index);
+}
+
+function inheritMatchedInfoEntries({
+  allDefinitions,
+  selectedDefinitions,
+  directMatchedInfo,
+  commandIndex,
+  preferredCatalogs,
+}) {
+  if (!commandIndex || directMatchedInfo.some(hasCatalogTargetInfo)) {
+    return directMatchedInfo;
+  }
+
+  const selected = new Set(selectedDefinitions);
+  const inheritedMatchedInfo = [];
+  for (const preferred of preferredCatalogs || []) {
+    const fallbackDefinitions = allDefinitions.filter((definition) => (
+      !selected.has(definition)
+      && String(definition.source_catalog || '').toLowerCase() === String(preferred).toLowerCase()
+    ));
+    if (!fallbackDefinitions.length) {
+      continue;
+    }
+
+    const fallbackInfo = matchAbilityInfoEntries(
+      flatten(fallbackDefinitions.map((definition) => parseAbilityInfoEntries(definition))),
+      commandIndex,
+    ).filter(hasCatalogTargetInfo);
+    if (fallbackInfo.length) {
+      inheritedMatchedInfo.push(...fallbackInfo);
+      break;
+    }
+  }
+
+  return uniqueBy([...directMatchedInfo, ...inheritedMatchedInfo], abilityInfoSignature);
+}
+
+function hasCatalogTargetInfo(infoEntry) {
+  return Boolean(infoEntry?.units?.length || infoEntry?.upgrades?.length || infoEntry?.morph_units?.length);
+}
+
+function abilityInfoSignature(infoEntry) {
+  return [
+    infoEntry.index || '',
+    infoEntry.match_any_command ? 'any' : '',
+    infoEntry.source_element || '',
+    infoEntry.source_ability_tag || '',
+    (infoEntry.units || []).join(','),
+    (infoEntry.upgrades || []).join(','),
+    (infoEntry.morph_units || []).join(','),
+  ].join('|');
+}
+
 function summarizeCatalogUnit(unitId, entryNameMap, catalogIndex) {
   const definitions = catalogIndex.units.get(unitId) || [];
   const abilityLinks = new Set();
@@ -655,6 +790,7 @@ function summarizeCatalogUnit(unitId, entryNameMap, catalogIndex) {
     ability_links: [...abilityLinks].sort(naturalSort).map((id) => ({
       id,
       catalog_type_cn: abilityTypeCn(id, catalogIndex),
+      catalog_type_raw: abilityTypeRaw(id, catalogIndex),
       is_basic: basicAbilityIds.has(id),
     })),
     behavior_links: [...behaviorLinks].sort(naturalSort),
@@ -775,11 +911,14 @@ function isEffectReferenceElement(elementName) {
   return /(^Effect$|EffectArray|Effect$|EffectRef|LaunchEffect|ImpactEffect|ExpireEffect|InitialEffect|PeriodicEffect|FinalEffect|SearchEffect|SpawnEffect|StartEffect|FinishEffect|PreEffect|PostEffect|RetargetEffect|AmmoEffect|DamageResponseEffect)/i.test(elementName);
 }
 
-function collectProducedUnits(productionOptions, panelAbilities, entryNameMap) {
+function collectProducedUnits(productionOptions, panelAbilities, entryNameMap, options = {}) {
   const produced = new Map();
+  const onlyCurrentCommanderRoster = Boolean(options.onlyCurrentCommanderRoster);
 
   for (const option of productionOptions) {
     if (!option.unit) continue;
+    if (shouldSkipInactiveTrainOverride(option, entryNameMap)) continue;
+    if (onlyCurrentCommanderRoster && !entryNameMap.localIds.has(option.unit)) continue;
     produced.set(option.unit, {
       unit_id: option.unit,
       name: nameForId(option.unit, entryNameMap),
@@ -794,13 +933,33 @@ function collectProducedUnits(productionOptions, panelAbilities, entryNameMap) {
   }
 
   for (const ability of panelAbilities) {
+    for (const production of ability.production_matches || []) {
+      if (!production.unit) continue;
+      if (shouldSkipInactiveTrainOverride(production, entryNameMap)) continue;
+      if (onlyCurrentCommanderRoster && !production.in_current_commander_roster) continue;
+      if (!produced.has(production.unit)) {
+        produced.set(production.unit, {
+          unit_id: production.unit,
+          name: production.unit_name || nameForId(production.unit, entryNameMap),
+          source: production.source || production.cost_mode || 'production_match',
+          producer_unit_id: production.producer_unit_id || '',
+          abil_cmd: production.abil_cmd || ability.abil_cmd || '',
+          minerals: production.minerals || '',
+          vespene: production.vespene || '',
+          time: production.time || '',
+          upgrade_id: production.upgrade_id || '',
+          in_current_commander_roster: production.in_current_commander_roster,
+        });
+      }
+    }
     for (const target of ability.catalog_targets || []) {
-      if (target.type !== 'unit' && target.type !== 'morph_unit') continue;
+      if (target.type !== 'unit' && target.type !== 'morph_unit' && target.type !== 'merge_unit') continue;
+      if (onlyCurrentCommanderRoster && !target.in_current_commander_roster) continue;
       if (!produced.has(target.id)) {
         produced.set(target.id, {
           unit_id: target.id,
           name: target.name || target.id,
-          source: 'catalog_info',
+          source: producedSourceForCatalogTarget(target),
           producer_unit_id: '',
           abil_cmd: ability.abil_cmd || '',
           minerals: '',
@@ -812,6 +971,7 @@ function collectProducedUnits(productionOptions, panelAbilities, entryNameMap) {
     }
     for (const effect of ability.effect_refs || []) {
       for (const spawned of flattenEffectSpawnUnits(effect)) {
+        if (onlyCurrentCommanderRoster && !spawned.in_current_commander_roster) continue;
         if (!produced.has(spawned.id)) {
           produced.set(spawned.id, {
             unit_id: spawned.id,
@@ -830,6 +990,23 @@ function collectProducedUnits(productionOptions, panelAbilities, entryNameMap) {
   }
 
   return [...produced.values()].sort((a, b) => naturalSort(a.unit_id, b.unit_id));
+}
+
+function shouldSkipInactiveTrainOverride(production, entryNameMap) {
+  if ((production.source || '') !== 'upgrade_train_unit_override') {
+    return false;
+  }
+  return !entryNameMap.localIds.has(production.unit || '');
+}
+
+function producedSourceForCatalogTarget(target) {
+  if (target.type === 'merge_unit') {
+    return 'catalog_merge_info';
+  }
+  if (target.type === 'morph_unit') {
+    return 'catalog_morph_info';
+  }
+  return 'catalog_info';
 }
 
 function flattenEffectSpawnUnits(effect) {
@@ -856,6 +1033,11 @@ function summarizeProductionOption(option, entryNameMap) {
     custom: option.custom || '',
     time: option.time || '',
     cost_mode: option.cost_mode || '',
+    source: option.source || option.cost_mode || '',
+    upgrade_id: option.upgrade_id || '',
+    reference: option.reference || '',
+    source_catalog: option.source_catalog || '',
+    source_file: option.source_file || '',
     in_current_commander_roster: entryNameMap.localIds.has(option.unit),
   };
 }
@@ -914,6 +1096,9 @@ function parseInfoArrays(snippet) {
 
     infoEntries.push({
       index: attr(attrs, 'index'),
+      match_any_command: false,
+      source_element: 'InfoArray',
+      source_ability_tag: '',
       time: attr(attrs, 'Time'),
       unit_attr: attr(attrs, 'Unit'),
       upgrade_attr: attr(attrs, 'Upgrade'),
@@ -941,6 +1126,43 @@ function parseInfoArrays(snippet) {
     });
   }
   return infoEntries;
+}
+
+function parseAbilityInfoEntries(definition) {
+  const infoEntries = parseInfoArrays(definition.snippet).map((entry) => ({
+    ...entry,
+    source_ability_tag: definition.tag || '',
+  }));
+
+  if (definition.tag === 'CAbilMerge') {
+    infoEntries.push(...parseMergeInfoEntries(definition.snippet, definition.tag));
+  }
+
+  return infoEntries;
+}
+
+function parseMergeInfoEntries(snippet, sourceAbilityTag) {
+  return extractElements(snippet)
+    .filter((element) => element.name === 'Info')
+    .map((element) => {
+      const attrs = element.attrs || {};
+      return {
+        index: attr(attrs, 'index'),
+        match_any_command: true,
+        source_element: 'Info',
+        source_ability_tag: sourceAbilityTag || '',
+        time: attr(attrs, 'Time'),
+        unit_attr: attr(attrs, 'Unit'),
+        upgrade_attr: attr(attrs, 'Upgrade'),
+        units: unique([attr(attrs, 'Unit')].filter(Boolean)),
+        upgrades: unique([attr(attrs, 'Upgrade')].filter(Boolean)),
+        morph_units: unique([attr(attrs, 'MorphUnit')].filter(Boolean)),
+        resources: {},
+        buttons: [],
+        charge: null,
+      };
+    })
+    .filter((entry) => entry.units.length || entry.upgrades.length || entry.morph_units.length);
 }
 
 function extractCharge(body) {
@@ -1403,14 +1625,14 @@ function parseUnitPanelButtons(unitId, catalog, localization, preferredCatalogs)
   ].join('|')).sort(comparePanelButtons);
 }
 
-function buildModProductionOptions(unitId, buttons, catalog) {
+function buildModProductionOptions(unitId, buttons, catalog, trainUnitOverrides = new Map(), preferredCatalogs = []) {
   const options = [];
   for (const button of buttons) {
     const { abilityId, commandIndex } = splitAbilityCommand(button.abil_cmd || '');
     if (!abilityId) {
       continue;
     }
-    const definitions = catalog.abilities.get(abilityId) || [];
+    const definitions = selectPreferredDefinitions(catalog.abilities.get(abilityId) || [], preferredCatalogs);
     const infoEntries = flatten(definitions.map((definition) => parseInfoArrays(definition.snippet)));
     const matchedInfo = commandIndex
       ? infoEntries.filter((item) => item.index === commandIndex)
@@ -1433,8 +1655,193 @@ function buildModProductionOptions(unitId, buttons, catalog) {
         });
       }
     }
+
+    const overrides = trainUnitOverrides.get(trainUnitOverrideKey(abilityId, commandIndex)) || [];
+    for (const override of overrides) {
+      const info = matchedInfo[0] || {};
+      options.push({
+        producer_unit_id: unitId,
+        ability_id: abilityId,
+        command_index: commandIndex,
+        abil_cmd: button.abil_cmd || joinAbilityCommand(abilityId, commandIndex),
+        button_face: button.face || '',
+        unit: override.unit,
+        minerals: info.resources?.Minerals || '',
+        vespene: info.resources?.Vespene || '',
+        terrazine: info.resources?.Terrazine || '',
+        custom: '',
+        time: info.time || '',
+        cost_mode: `当前Mod UpgradeData训练目标覆盖:${override.upgrade_id}`,
+        source: 'upgrade_train_unit_override',
+        upgrade_id: override.upgrade_id,
+        reference: override.reference,
+        source_catalog: override.source_catalog,
+        source_file: override.source_file,
+      });
+    }
   }
   return uniqueBy(options, (option) => `${option.producer_unit_id}|${option.abil_cmd}|${option.unit}`);
+}
+
+function inferModProductionBuildingEntries({
+  commanderId,
+  runtimeModule,
+  catalog,
+  localization,
+  existingEntries,
+  preferredCatalogs,
+  trainUnitOverrides,
+}) {
+  const knownBuildingIds = new Set(
+    existingEntries
+      .filter((entry) => entry.kind === 'building')
+      .map((entry) => entry.unit_id)
+      .filter(Boolean),
+  );
+  const runtimeUnitIds = runtimeProductionTargetIds(existingEntries);
+  const candidates = [];
+
+  for (const [unitId, definitions] of catalog.units.entries()) {
+    if (knownBuildingIds.has(unitId)) {
+      continue;
+    }
+    const preferredDefinitions = definitionsInPreferredCatalogs(definitions, preferredCatalogs);
+    if (!preferredDefinitions.length) {
+      continue;
+    }
+    const body = preferredDefinitions.map((definition) => definition.body).join('\n');
+    const objectType = parseEditorCategory(valueFromChildElement(body, 'EditorCategories'), 'ObjectType');
+    const isStandardProductionStructure = standardProductionStructureIds.has(unitId);
+    if (objectType !== 'Structure' && !isStandardProductionStructure) {
+      continue;
+    }
+
+    const abilities = parseUnitPanelButtons(unitId, catalog, localization, preferredCatalogs);
+    const productionOptions = buildModProductionOptions(unitId, abilities, catalog, trainUnitOverrides, preferredCatalogs);
+    const matchingOptions = productionOptions.filter((option) => (
+      standardProductionAbilityIds.has(option.ability_id) && runtimeUnitIds.has(option.unit)
+    ));
+    if (!matchingOptions.length) {
+      continue;
+    }
+
+    const sourceFile = preferredDefinitions[0]?.source_file || '';
+    const entry = buildModTechEntry({
+      item: {
+        official_id: unitId,
+        runtime_unit: unitId,
+        kind: 'building',
+        source: 'inferred production building',
+        source_file: sourceFile,
+        status: `produces:${unique(matchingOptions.map((option) => option.unit)).join('/')}`,
+      },
+      commanderId,
+      runtimeModule,
+      catalog,
+      localization,
+      preferredCatalogs,
+      trainUnitOverrides,
+    });
+    if (entry) {
+      entry.production_options = matchingOptions;
+      entry.production_chain = {
+        inferred: true,
+        matched_runtime_unit_ids: unique(matchingOptions.map((option) => option.unit)).sort(naturalSort),
+      };
+      candidates.push(entry);
+    }
+  }
+
+  return candidates.sort((a, b) => naturalSort(a.unit_id, b.unit_id));
+}
+
+function runtimeProductionTargetIds(entries) {
+  const ids = new Set();
+  for (const entry of entries) {
+    if (entry.kind === 'building') {
+      continue;
+    }
+    for (const id of [entry.id, entry.unit_id, ...(entry.resolved_unit_ids || [])]) {
+      if (id) {
+        ids.add(id);
+      }
+    }
+  }
+  return ids;
+}
+
+function buildTrainUnitOverrideIndex(catalog, preferredCatalogs) {
+  const overrides = new Map();
+  for (const [upgradeId, definitions] of catalog.upgrades.entries()) {
+    for (const definition of definitionsInPreferredCatalogs(definitions, preferredCatalogs)) {
+      for (const element of extractElements(definition.snippet)) {
+        if (element.name !== 'EffectArray') {
+          continue;
+        }
+        if (String(attr(element.attrs, 'Operation') || '').toLowerCase() !== 'set') {
+          continue;
+        }
+        const unit = attr(element.attrs, 'Value');
+        const reference = attr(element.attrs, 'Reference');
+        const target = parseTrainUnitOverrideReference(reference);
+        if (!unit || !target) {
+          continue;
+        }
+        pushMapArray(overrides, trainUnitOverrideKey(target.abilityId, target.commandIndex), {
+          upgrade_id: upgradeId,
+          ability_id: target.abilityId,
+          command_index: target.commandIndex,
+          unit,
+          reference,
+          source_catalog: definition.source_catalog,
+          source_file: definition.source_file,
+        });
+      }
+    }
+  }
+
+  for (const [key, values] of overrides.entries()) {
+    overrides.set(key, uniqueBy(values, (item) => [
+      item.upgrade_id,
+      item.ability_id,
+      item.command_index,
+      item.unit,
+      item.reference,
+      item.source_catalog,
+      item.source_file,
+    ].join('|')));
+  }
+  return overrides;
+}
+
+function parseTrainUnitOverrideReference(reference) {
+  const match = String(reference || '').match(/^Abil,([^,]+),InfoArray\[([^\]]+)\]\.Unit(?:\[\d+\])?$/i);
+  if (!match) {
+    return null;
+  }
+  return {
+    abilityId: match[1],
+    commandIndex: match[2],
+  };
+}
+
+function trainUnitOverrideKey(abilityId, commandIndex) {
+  return `${abilityId || ''}|${commandIndex || ''}`;
+}
+
+function definitionsInPreferredCatalogs(definitions, preferredCatalogs = []) {
+  if (!definitions.length || !preferredCatalogs.length) {
+    return definitions;
+  }
+  for (const preferred of preferredCatalogs) {
+    const matched = definitions.filter((definition) => (
+      String(definition.source_catalog || '').toLowerCase() === String(preferred).toLowerCase()
+    ));
+    if (matched.length) {
+      return matched;
+    }
+  }
+  return definitions;
 }
 
 function summarizeModUnitEntry(unitId, catalog, localization, preferredCatalogs) {
@@ -1602,42 +2009,43 @@ function buildEntryNameMap(data, allData) {
 
 function renderOverviewMarkdown(report) {
   const lines = [];
-  lines.push('# 指挥官科技链路排查总览');
+  lines.push('# 指挥官科技链路排查总览 / Commander Tech Tree Diagnostics Overview');
   lines.push('');
-  lines.push(`- 生成时间：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
-  lines.push(`- 口径：${report.source_description}`);
-  lines.push('- 用途：快速排查“建筑有哪些面板技能、生产了哪些单位、单位有哪些面板技能、技能关联哪些效果/创建单位效果”。');
-  lines.push(`- 基础命令：${report.options.include_basic_commands ? '已展开 Move / Stop / Attack 等基础命令' : 'Markdown 和 JSON 均隐藏 Move / Stop / Attack 等基础命令，可用 `--include-basic` 展开'}`);
+  lines.push(`- 生成时间 / Generated at：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
+  lines.push(`- 口径 / Scope：${report.source_description}`);
+  lines.push('- 用途 / Purpose：快速排查“建筑有哪些面板技能、生产了哪些单位、单位有哪些面板技能、技能关联哪些效果/创建单位效果”。 / Quickly inspect which panel abilities each building has, which units it produces, which panel abilities each unit has, and which effects / create-unit effects each ability links to.');
+  lines.push(`- 基础命令 / Basic commands：${report.options.include_basic_commands ? '已展开 Move / Stop / Attack 等基础命令 / Expanded basic commands such as Move / Stop / Attack' : 'Markdown 和 JSON 均隐藏 Move / Stop / Attack 等基础命令，可用 `--include-basic` 展开 / Markdown and JSON both hide basic Move / Stop / Attack commands; use `--include-basic` to expand them'}`);
   lines.push('');
-  lines.push('## 总览表');
+  lines.push('## 总览表 / Overview Table');
   lines.push('');
-  lines.push('| 指挥官 | 建筑 | 单位 | 英雄 | 建筑按钮 | 单位按钮 | 生产/创建单位 | 效果引用 | 中文明细 |');
-  lines.push('| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+  lines.push('| 指挥官 / Commander | 建筑 / Buildings | 生产补充建筑 / Production-support Buildings | 单位 / Units | 英雄 / Heroes | 建筑按钮 / Building Buttons | 单位按钮 / Unit Buttons | 生产/创建单位 / Produced or Created Units | 效果引用 / Effect References | 中文明细 / Chinese Details |');
+  lines.push('| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
   for (const item of report.commanders) {
     const fileName = `commanders/${item.commander}-${sanitizeFilePart(item.name)}.md`;
-    lines.push(`| ${item.name} / \`${item.commander}\` | ${item.summary.building_count} | ${item.summary.unit_count} | ${item.summary.hero_count} | ${item.summary.building_panel_button_count} | ${item.summary.unit_panel_button_count} | ${item.summary.produced_unit_count} | ${item.summary.effect_ref_count} | [打开](${fileName}) |`);
+    lines.push(`| ${item.name} / \`${item.commander}\` | ${item.summary.building_count} | ${item.summary.production_building_count || 0} | ${item.summary.unit_count} | ${item.summary.hero_count} | ${item.summary.building_panel_button_count} | ${item.summary.unit_panel_button_count} | ${item.summary.produced_unit_count} | ${item.summary.effect_ref_count} | [打开 / Open](${fileName}) |`);
   }
   lines.push('');
-  lines.push('## 输出文件');
+  lines.push('## 输出文件 / Output Files');
   lines.push('');
-  lines.push('- `commander-tech-tree-diagnostics.json`：完整结构化明细，适合继续 grep / 脚本二次分析。');
-  lines.push('- `commanders/*.md`：逐指挥官中文排查页。');
+  lines.push('- `commander-tech-tree-diagnostics.json`：完整结构化明细 / Full structured details, 适合继续 grep / 脚本二次分析 / suitable for further grep / script-based analysis.');
+  lines.push('- `commanders/*.md`：逐指挥官中英排查页 / Per-commander bilingual inspection pages.');
   return lines.join('\n');
 }
 
 function renderCommanderMarkdown(commander) {
   const lines = [];
-  lines.push(`# ${commander.name} / \`${commander.commander}\` 科技链路排查`);
+  lines.push(`# ${commander.name} / \`${commander.commander}\` 科技链路排查 / Tech Tree Diagnostics`);
   lines.push('');
-  lines.push(`- 描述：${commander.description || '无'}`);
-  lines.push(`- 数据来源：${commander.source_kind === 'mod' ? '当前 Mod' : '官方导出'}，目录：\`${commander.source_dir}\``);
+  lines.push(`- 描述 / Description：${commander.description || '无 / None'}`);
+  lines.push(`- 数据来源 / Data source：${commander.source_kind === 'mod' ? '当前 Mod / Current Mod' : '官方导出 / Official export'}，目录 / Directory：\`${commander.source_dir}\``);
   if (commander.runtime_module || commander.runtime_instance) {
-    lines.push(`- 当前 Mod 运行名册：module=\`${commander.runtime_module || '-'}\`，instance=\`${commander.runtime_instance || '-'}\``);
+    lines.push(`- 当前 Mod 运行名册 / Current Mod roster：module=\`${commander.runtime_module || '-'}\`，instance=\`${commander.runtime_instance || '-'}\``);
   }
-  lines.push(`- 统计：建筑 ${commander.summary.building_count}、单位 ${commander.summary.unit_count}、英雄 ${commander.summary.hero_count}、建筑按钮 ${commander.summary.building_panel_button_count}、单位按钮 ${commander.summary.unit_panel_button_count}、效果引用 ${commander.summary.effect_ref_count}`);
+  lines.push(`- 统计 / Stats：建筑 ${commander.summary.building_count}、生产链补充建筑 ${commander.summary.production_building_count || 0}、单位 ${commander.summary.unit_count}、英雄 ${commander.summary.hero_count}、建筑按钮 ${commander.summary.building_panel_button_count}、单位按钮 ${commander.summary.unit_panel_button_count}、效果引用 ${commander.summary.effect_ref_count}`);
   lines.push('');
   renderTopPanel(lines, commander.top_panel);
   renderEntryGroup(lines, '建筑', commander.buildings);
+  renderEntryGroup(lines, '生产链补充建筑', commander.production_buildings || []);
   renderEntryGroup(lines, '单位', commander.units);
   renderEntryGroup(lines, '英雄', commander.heroes);
 
@@ -1648,14 +2056,14 @@ function renderCommanderMarkdown(commander) {
 }
 
 function renderTopPanel(lines, topPanel) {
-  lines.push('## 指挥官默认/顶部技能');
+  lines.push('## 指挥官默认/顶部技能 / Commander Default / Top-panel Skills');
   lines.push('');
   if (!topPanel.length) {
-    lines.push('- 无');
+    lines.push('- 无 / None');
     lines.push('');
     return;
   }
-  lines.push('| 技能 | 类型 | 效果引用 | Catalog 来源 |');
+  lines.push('| 技能 / Ability | 类型 / Type | 效果引用 / Effect References | Catalog 来源 / Catalog Sources |');
   lines.push('| --- | --- | --- | --- |');
   for (const item of topPanel) {
     const ability = item.ability;
@@ -1665,10 +2073,10 @@ function renderTopPanel(lines, topPanel) {
 }
 
 function renderEntryGroup(lines, title, entries) {
-  lines.push(`## ${title}`);
+  lines.push(`## ${title} / ${entryGroupTitleEn(title)}`);
   lines.push('');
   if (!entries.length) {
-    lines.push('- 无');
+    lines.push('- 无 / None');
     lines.push('');
     return;
   }
@@ -1677,21 +2085,21 @@ function renderEntryGroup(lines, title, entries) {
     lines.push(`### ${entry.name} / \`${entry.unit_id}\``);
     lines.push('');
     if (entry.source || entry.roster) {
-      lines.push(`- 来源：${formatEntrySource(entry)}`);
+      lines.push(`- 来源 / Source：${formatEntrySource(entry)}`);
     }
-    lines.push(`- 数值：${formatStats(entry.stats)}`);
+    lines.push(`- 数值 / Stats：${formatStats(entry.stats)}`);
     if (entry.production) {
-      lines.push(`- 自身来源：${formatProduction(entry.production, new Map())}`);
+      lines.push(`- 自身来源 / Own source：${formatProduction(entry.production, new Map())}`);
     }
-    lines.push(`- Catalog 技能链接：${formatCatalogAbilityLinks(entry.catalog_unit.ability_links)}`);
+    lines.push(`- Catalog 技能链接 / Catalog ability links：${formatCatalogAbilityLinks(entry.catalog_unit.ability_links)}`);
     if (entry.catalog_unit.behavior_links.length) {
-      lines.push(`- 关联 Behavior：${entry.catalog_unit.behavior_links.map((id) => `\`${id}\``).join('、')}`);
+      lines.push(`- 关联 Behavior / Linked behaviors：${entry.catalog_unit.behavior_links.map((id) => `\`${id}\``).join('、')}`);
     }
     if (entry.produced_units.length) {
-      lines.push(`- 可生产/创建：${entry.produced_units.map(formatProducedUnit).join('、')}`);
+      lines.push(`- 可生产/创建 / Produced or created：${entry.produced_units.map(formatProducedUnit).join('、')}`);
     }
     if (entry.hidden_basic_button_count > 0) {
-      lines.push(`- 已隐藏基础按钮：${entry.hidden_basic_button_count} 个（用 \`--include-basic\` 可展开）`);
+      lines.push(`- 已隐藏基础按钮 / Hidden basic buttons：${entry.hidden_basic_button_count} 个（用 \`--include-basic\` 可展开 / use \`--include-basic\` to expand）`);
     }
     lines.push('');
     renderAbilityTable(lines, entry.panel_abilities);
@@ -1700,12 +2108,12 @@ function renderEntryGroup(lines, title, entries) {
 
 function renderAbilityTable(lines, abilities) {
   if (!abilities.length) {
-    lines.push('- 面板技能：无');
+    lines.push('- 面板技能 / Panel skills：无 / None');
     lines.push('');
     return;
   }
 
-  lines.push('| 位置 | 面板按钮 | Ability/Cmd | 类型 | 生产/研究目标 | 效果引用 | 需求 |');
+  lines.push('| 位置 / Slot | 面板按钮 / Panel Button | Ability/Cmd | 类型 / Type | 生产/研究目标 / Production or Research Target | 效果引用 / Effect References | 需求 / Requirements |');
   lines.push('| --- | --- | --- | --- | --- | --- | --- |');
   for (const ability of abilities) {
     const position = [ability.layout.row, ability.layout.column].filter((item) => item !== '').join(',');
@@ -1716,45 +2124,45 @@ function renderAbilityTable(lines, abilities) {
 
 function formatStats(stats) {
   const parts = [];
-  if (stats.object_type) parts.push(`类型 ${stats.object_type}`);
-  if (stats.race) parts.push(`种族 ${stats.race}`);
-  if (stats.life) parts.push(`生命 ${stats.life}`);
-  if (stats.shields) parts.push(`护盾 ${stats.shields}`);
-  if (stats.energy) parts.push(`能量 ${stats.energy}`);
-  if (stats.minerals || stats.vespene) parts.push(`费用 ${stats.minerals || 0}/${stats.vespene || 0}`);
-  if (stats.supply_cost) parts.push(`补给 ${stats.supply_cost}`);
-  if (stats.supply_provided) parts.push(`提供补给 ${stats.supply_provided}`);
-  return parts.join('，') || '无';
+  if (stats.object_type) parts.push(`类型 / Type ${stats.object_type}`);
+  if (stats.race) parts.push(`种族 / Race ${stats.race}`);
+  if (stats.life) parts.push(`生命 / Life ${stats.life}`);
+  if (stats.shields) parts.push(`护盾 / Shields ${stats.shields}`);
+  if (stats.energy) parts.push(`能量 / Energy ${stats.energy}`);
+  if (stats.minerals || stats.vespene) parts.push(`费用 / Cost ${stats.minerals || 0}/${stats.vespene || 0}`);
+  if (stats.supply_cost) parts.push(`补给 / Supply ${stats.supply_cost}`);
+  if (stats.supply_provided) parts.push(`提供补给 / Supply provided ${stats.supply_provided}`);
+  return parts.join('，') || '无 / None';
 }
 
 function formatEntrySource(entry) {
   const bits = [];
-  if (entry.roster?.source) bits.push(`名册 ${entry.roster.source}`);
-  if (entry.roster?.official_id && entry.roster.official_id !== entry.unit_id) bits.push(`官方ID ${entry.roster.official_id}`);
-  if (entry.roster?.status) bits.push(`状态 ${entry.roster.status}`);
-  if (entry.source?.module) bits.push(`模块 ${entry.source.module}`);
-  if (entry.source?.file) bits.push(`文件 \`${entry.source.file}\``);
-  return bits.join('，') || '无';
+  if (entry.roster?.source) bits.push(`名册 / Roster ${entry.roster.source}`);
+  if (entry.roster?.official_id && entry.roster.official_id !== entry.unit_id) bits.push(`官方ID / Official ID ${entry.roster.official_id}`);
+  if (entry.roster?.status) bits.push(`状态 / Status ${entry.roster.status}`);
+  if (entry.source?.module) bits.push(`模块 / Module ${entry.source.module}`);
+  if (entry.source?.file) bits.push(`文件 / File \`${entry.source.file}\``);
+  return bits.join('，') || '无 / None';
 }
 
 function formatProduction(option) {
   const unitName = option.unit_name || option.unit || '';
   const cost = [option.minerals, option.vespene].filter(Boolean).join('/');
   const bits = [
-    option.producer_name || option.producer_unit_id,
-    option.abil_cmd,
-    unitName,
-    cost ? `费用 ${cost}` : '',
-    option.time ? `耗时 ${option.time}` : '',
+    `生产者 / Producer ${option.producer_name || option.producer_unit_id}`,
+    option.abil_cmd ? `能力 / Ability ${option.abil_cmd}` : '',
+    unitName ? `目标 / Target ${unitName}` : '',
+    cost ? `费用 / Cost ${cost}` : '',
+    option.time ? `耗时 / Time ${option.time}` : '',
   ].filter(Boolean);
-  return bits.join('，') || '无';
+  return bits.join('，') || '无 / None';
 }
 
 function formatProducedUnit(item) {
-  const rosterText = item.in_current_commander_roster ? '' : '（非本指挥官名册）';
+  const rosterText = item.in_current_commander_roster ? '' : '（非本指挥官名册 / not in current commander roster）';
   const cost = [item.minerals, item.vespene].filter(Boolean).join('/');
-  const costText = cost ? `，费用 ${cost}` : '';
-  const timeText = item.time ? `，${item.time}s` : '';
+  const costText = cost ? `，费用 / Cost ${cost}` : '';
+  const timeText = item.time ? `，耗时 / Time ${item.time}s` : '';
   return `${item.name || item.unit_id} \`${item.unit_id}\`${rosterText}${costText}${timeText}`;
 }
 
@@ -1766,12 +2174,12 @@ function formatTargets(ability) {
     }
   }
   for (const target of ability.catalog_targets || []) {
-    const typeCn = target.type === 'upgrade' ? '升级' : '单位';
+    const typeCn = target.type === 'upgrade' ? '升级 / Upgrade' : '单位 / Unit';
     targets.push(`${typeCn}:${target.name || target.id} \`${target.id}\``);
   }
   for (const effect of ability.effect_refs || []) {
     for (const unit of flattenEffectSpawnUnits(effect)) {
-      targets.push(`效果创建:${unit.name || unit.id} \`${unit.id}\``);
+      targets.push(`效果创建 / Effect creates:${unit.name || unit.id} \`${unit.id}\``);
     }
   }
   return unique(targets).join('、') || '-';
@@ -1784,7 +2192,7 @@ function formatEffects(effects) {
   return effects
     .slice(0, 12)
     .map((effect) => {
-      const type = effect.catalog_type_cn?.[0] || effect.catalog_types?.[0] || '';
+      const type = formatBilingualPairs(effect.catalog_type_cn || [], effect.catalog_types || []);
       return `${type ? `${type}:` : ''}\`${effect.id}\``;
     })
     .join('、') + (effects.length > 12 ? `、另 ${effects.length - 12} 个` : '');
@@ -1792,18 +2200,18 @@ function formatEffects(effects) {
 
 function formatCatalogTypes(ability) {
   if (!ability.catalog_type_cn?.length) {
-    return ability.unresolved_catalog ? '未解析' : '-';
+    return ability.unresolved_catalog ? '未解析 / Unresolved' : '-';
   }
-  return ability.catalog_type_cn.join('、');
+  return formatBilingualPairs(ability.catalog_type_cn, ability.catalog_types);
 }
 
 function formatCatalogAbilityLinks(links) {
   if (!links.length) {
-    return '无';
+    return '无 / None';
   }
   return links
     .map((link) => {
-      const basicText = link.is_basic ? '基础' : link.catalog_type_cn;
+      const basicText = link.is_basic ? '基础 / Basic' : formatBilingualLabel(link.catalog_type_cn, link.catalog_type_raw);
       return `\`${link.id}\`${basicText ? `(${basicText})` : ''}`;
     })
     .join('、');
@@ -1841,32 +2249,73 @@ function abilityTypeCn(abilityId, catalogIndex) {
   return tags.map((tag) => chineseTypeNames[tag] || tag).join('、') || '';
 }
 
-function collectAbilityStats(ability, effectIds, producedUnitIds) {
+function abilityTypeRaw(abilityId, catalogIndex) {
+  const definitions = catalogIndex.abilities.get(abilityId) || [];
+  const tags = unique(definitions.map((definition) => definition.tag));
+  return tags.join('、') || '';
+}
+
+function formatBilingualLabel(chinese, english) {
+  if (chinese && english) {
+    return `${chinese} / ${english}`;
+  }
+  return chinese || english || '';
+}
+
+function formatBilingualPairs(chineseList, englishList) {
+  const count = Math.max(chineseList?.length || 0, englishList?.length || 0);
+  if (count === 0) {
+    return '-';
+  }
+
+  const parts = [];
+  for (let index = 0; index < count; index += 1) {
+    parts.push(formatBilingualLabel(chineseList?.[index] || '', englishList?.[index] || ''));
+  }
+  return parts.join('、');
+}
+
+function entryGroupTitleEn(title) {
+  const lookup = {
+    建筑: 'Buildings',
+    生产链补充建筑: 'Production-support Buildings',
+    单位: 'Units',
+    英雄: 'Heroes',
+  };
+  return lookup[title] || title;
+}
+
+function collectAbilityStats(ability, effectIds, producedUnitIds, options = {}) {
   for (const effect of ability.effect_refs || []) {
-    collectEffectStats(effect, effectIds, producedUnitIds);
+    collectEffectStats(effect, effectIds, producedUnitIds, options);
   }
   for (const production of ability.production_matches || []) {
-    if (production.unit) {
+    if (production.unit && (!options.onlyCurrentCommanderRoster || production.in_current_commander_roster)) {
       producedUnitIds.add(production.unit);
     }
   }
   for (const target of ability.catalog_targets || []) {
-    if (target.type === 'unit' || target.type === 'morph_unit') {
+    if (
+      (target.type === 'unit' || target.type === 'morph_unit')
+      && (!options.onlyCurrentCommanderRoster || target.in_current_commander_roster)
+    ) {
       producedUnitIds.add(target.id);
     }
   }
 }
 
-function collectEffectStats(effect, effectIds, producedUnitIds) {
+function collectEffectStats(effect, effectIds, producedUnitIds, options = {}) {
   if (!effect?.id || effectIds.has(effect.id)) {
     return;
   }
   effectIds.add(effect.id);
   for (const unit of effect.spawn_units || []) {
-    producedUnitIds.add(unit.id);
+    if (!options.onlyCurrentCommanderRoster || unit.in_current_commander_roster) {
+      producedUnitIds.add(unit.id);
+    }
   }
   for (const child of effect.child_effects || []) {
-    collectEffectStats(child, effectIds, producedUnitIds);
+    collectEffectStats(child, effectIds, producedUnitIds, options);
   }
 }
 
@@ -2025,9 +2474,15 @@ function selectPreferredDefinitions(definitions, preferredCatalogs = []) {
   if (!definitions.length || !preferredCatalogs.length) {
     return definitions;
   }
-  const preferredSet = new Set(preferredCatalogs.map((item) => String(item).toLowerCase()));
-  const selected = definitions.filter((definition) => preferredSet.has(String(definition.source_catalog || '').toLowerCase()));
-  return selected.length ? selected : definitions;
+  for (const preferred of preferredCatalogs) {
+    const selected = definitions.filter((definition) => (
+      String(definition.source_catalog || '').toLowerCase() === String(preferred).toLowerCase()
+    ));
+    if (selected.length) {
+      return selected;
+    }
+  }
+  return definitions;
 }
 
 function fieldArray(fields, fieldId) {

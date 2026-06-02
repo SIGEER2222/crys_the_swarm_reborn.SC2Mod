@@ -337,6 +337,10 @@
   </CAbilEffectTarget>
   <CAbilMerge id="ArchonWarp">
     <CmdButtonArray index="SelectedUnits" Requirements="NotHaveDarkArchonMindControl" />
+    <Info Unit="Archon" Time="16.6667">
+      <Resource index="Minerals" value="-175" />
+      <Resource index="Vespene" value="-275" />
+    </Info>
   </CAbilMerge>
   <CAbilResearch id="ArmoryResearchVoidCoop">
     <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
@@ -2238,22 +2242,17 @@
     </InfoArray>
   </CAbilResearch>
   <CAbilTrain id="GatewayTrain">
-    <InfoArray index="Train9" Time="55">
-      <Button DefaultButtonFace="DarkArchon" State="Restricted" Requirements="HaveDarkShrine" />
-      <Unit value="DarkArchon" />
+    <InfoArray index="Train1">
+      <Button DefaultButtonFace="Zealot" State="Restricted" />
+      <Unit value="Zealot" />
     </InfoArray>
-    <InfoArray index="Train10" Time="37">
-      <Button DefaultButtonFace="Monitor" State="Restricted" Requirements="HaveCyberneticsCore" />
-      <Unit value="Monitor" />
+    <InfoArray index="Train2">
+      <Button DefaultButtonFace="Stalker" State="Restricted" Requirements="HaveCyberneticsCore" />
+      <Unit value="Dragoon" />
     </InfoArray>
-    <InfoArray index="Train11" Time="28">
-      <Button DefaultButtonFace="WarpInSupplicant" State="Restricted" />
-      <Unit value="Supplicant" />
-      <Unit value="Supplicant" />
-    </InfoArray>
-    <InfoArray index="Train15" Time="37">
-      <Button DefaultButtonFace="SentryFenix" State="Restricted" Requirements="HaveCyberneticsCore" />
-      <Unit value="SentryFenix" />
+    <InfoArray index="Train8">
+      <Button DefaultButtonFace="HighTemplar" State="Restricted" Requirements="HaveTemplarArchive" />
+      <Unit value="HighTemplar" />
     </InfoArray>
   </CAbilTrain>
   <CAbilResearch id="GhostAcademyResearch">
@@ -4265,27 +4264,9 @@
     </InfoArray>
   </CAbilTrain>
   <CAbilWarpTrain id="RoboticsFacilityWarpTrain">
-    <InfoArray index="Train1" Unit="WarpPrismTaldarim" />
-    <InfoArray index="Train6">
-      <Charge>
-        <Flags index="EnableChargeTimeQueuing" value="1" />
-      </Charge>
-    </InfoArray>
-    <InfoArray index="Train7">
-      <Charge>
-        <Flags index="EnableChargeTimeQueuing" value="1" />
-      </Charge>
-    </InfoArray>
-    <InfoArray index="Train8">
-      <Charge>
-        <Flags index="EnableChargeTimeQueuing" value="1" />
-      </Charge>
-    </InfoArray>
-    <InfoArray index="Train9">
-      <Charge>
-        <Flags index="EnableChargeTimeQueuing" value="1" />
-      </Charge>
-    </InfoArray>
+    <InfoArray index="Train2" Unit="Observer" />
+    <InfoArray index="Train3" Unit="Reaver" />
+    <InfoArray index="Train4" Unit="ImmortalAiur" />
   </CAbilWarpTrain>
   <CAbilBehavior id="SalvageShared">
     <CmdButtonArray index="On" Requirements="NotHaveAutoTurret_BlackOpsTimedLife" />
@@ -4702,6 +4683,18 @@
     <InfoArray index="Train12">
       <Button Requirements="HaveFleetBeacon" />
     </InfoArray>
+    <InfoArray index="Train10" Time="5" Unit="Tempest">
+      <Charge>
+        <CountMax value="1" />
+        <CountStart value="1" />
+        <CountUse value="1" />
+        <Link value="WarpGateTrain" />
+        <TimeStart value="30" />
+        <TimeUse value="60" />
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+      <Button DefaultButtonFace="Tempest" State="Restricted" Requirements="HaveVoidTempestandHaveFleetBeacon" />
+    </InfoArray>
     <InfoArray index="Train14" Time="120" Effect="WarpInEffect">
       <Button DefaultButtonFace="CarrierTaldarimMothership" State="Restricted" Requirements="TalDarimMothershipRequirements" />
       <Unit value="SOAMothershipv4" />
@@ -4713,6 +4706,18 @@
     </InfoArray>
     <InfoArray index="Train12">
       <Button Requirements="HaveFleetBeacon" />
+    </InfoArray>
+    <InfoArray index="Train10" Time="5" Unit="Tempest">
+      <Charge>
+        <CountMax value="1" />
+        <CountStart value="1" />
+        <CountUse value="1" />
+        <Link value="WarpGateTrain" />
+        <TimeStart value="30" />
+        <TimeUse value="60" />
+        <Flags index="EnableChargeTimeQueuing" value="1" />
+      </Charge>
+      <Button DefaultButtonFace="Tempest" State="Restricted" Requirements="HaveVoidTempestandHaveFleetBeacon" />
     </InfoArray>
     <InfoArray index="Train14" Time="5" Unit="SOAMothershipv4">
       <Charge>
@@ -5411,6 +5416,15 @@
     <VitalStartFactor index="Shields" value="1" />
   </CAbilWarpable>
   <CAbilWarpTrain id="WarpGateTrain">
+    <InfoArray index="Train1" Unit="Zealot">
+      <Button DefaultButtonFace="Zealot" State="Restricted" />
+    </InfoArray>
+    <InfoArray index="Train2" Unit="Dragoon">
+      <Button DefaultButtonFace="Stalker" State="Restricted" Requirements="HaveCyberneticsCore" />
+    </InfoArray>
+    <InfoArray index="Train8" Unit="HighTemplar">
+      <Button DefaultButtonFace="HighTemplar" State="Restricted" Requirements="HaveTemplarArchive" />
+    </InfoArray>
     <InfoArray index="Train9" Time="5" Unit="DarkArchon">
       <Charge>
         <CountMax value="1" />

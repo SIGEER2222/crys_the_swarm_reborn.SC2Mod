@@ -156,18 +156,26 @@ function productionCandidateIds(report, runtimeUnitIds) {
     : unique([report.unit, ...(report.resolved_unit_ids || [])]);
 }
 
-function runtimeBuildingPanelProducedUnitEvidence(runtime) {
+function runtimeProductionProducedUnitEvidence(runtime) {
   const evidence = new Map();
-  for (const building of runtime.buildings || []) {
-    const buildingId = building.unit_id || building.id || '';
-    for (const produced of building.produced_units || []) {
+  const producers = [
+    ...(runtime.buildings || []).map((entry) => ({ ...entry, producer_kind: 'building' })),
+    ...(runtime.production_buildings || []).map((entry) => ({ ...entry, producer_kind: 'production_building' })),
+    ...(runtime.units || []).map((entry) => ({ ...entry, producer_kind: 'unit' })),
+    ...(runtime.heroes || []).map((entry) => ({ ...entry, producer_kind: 'hero' })),
+  ];
+
+  for (const producer of producers) {
+    const producerId = producer.unit_id || producer.id || '';
+    for (const produced of producer.produced_units || []) {
       const unitId = produced.unit_id || produced.unit || '';
       if (!unitId) continue;
       if (!evidence.has(unitId)) {
         evidence.set(unitId, []);
       }
       evidence.get(unitId).push({
-        building: buildingId,
+        producer_id: producerId,
+        producer_kind: producer.producer_kind || '',
         source: produced.source || '',
         abil_cmd: produced.abil_cmd || '',
       });
@@ -176,7 +184,7 @@ function runtimeBuildingPanelProducedUnitEvidence(runtime) {
   return evidence;
 }
 
-function missingBuildingPanelProducedUnits(unitReports, producedEvidence, runtimeUnitIds) {
+function missingProductionProducedUnits(unitReports, producedEvidence, runtimeUnitIds) {
   return unitReports
     .map((report) => {
       const candidateIds = productionCandidateIds(report, runtimeUnitIds);
@@ -189,7 +197,7 @@ function missingBuildingPanelProducedUnits(unitReports, producedEvidence, runtim
     .filter((item) => !item.matched_produced_ids.length);
 }
 
-function extraBuildingPanelProducedUnits(unitReports, producedEvidence, runtimeUnitIds) {
+function extraProductionProducedUnits(unitReports, producedEvidence, runtimeUnitIds) {
   const expectedIds = new Set(unitReports.flatMap((report) => productionCandidateIds(report, runtimeUnitIds)));
   return [...producedEvidence.keys()]
     .filter((id) => !expectedIds.has(id))
@@ -231,12 +239,13 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
   const buildingReports = field.building_reports || [];
   const runtimeUnits = runtime.units || [];
   const runtimeBuildings = runtime.buildings || [];
+  const runtimeProductionBuildings = runtime.production_buildings || [];
   const missingRuntimeUnits = missingRuntimeEntries(unitReports, runtimeUnits, 'unit');
   const runtimeUnitIds = new Set(runtimeUnits.flatMap(runtimeEntryIds));
-  const producedUnitEvidence = runtimeBuildingPanelProducedUnitEvidence(runtime);
-  const buildingPanelProducedUnitIds = [...producedUnitEvidence.keys()].sort();
-  const missingBuildingPanelUnits = missingBuildingPanelProducedUnits(unitReports, producedUnitEvidence, runtimeUnitIds);
-  const extraBuildingPanelUnits = extraBuildingPanelProducedUnits(unitReports, producedUnitEvidence, runtimeUnitIds);
+  const producedUnitEvidence = runtimeProductionProducedUnitEvidence(runtime);
+  const productionProducedUnitIds = [...producedUnitEvidence.keys()].sort();
+  const missingProductionUnits = missingProductionProducedUnits(unitReports, producedUnitEvidence, runtimeUnitIds);
+  const extraProductionUnits = extraProductionProducedUnits(unitReports, producedUnitEvidence, runtimeUnitIds);
   const missingRuntimeBuildings = missingRuntimeEntries(buildingReports, runtimeBuildings, 'building');
   const extraRuntimeBuildings = extraRuntimeEntries(
     buildingReports,
@@ -301,15 +310,15 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     ),
     check(
       'current-mod-building-panel-produced-unit-coverage',
-      '当前 Mod 建筑面板可追踪生产/变形目标覆盖字段级单位口径',
-      missingBuildingPanelUnits.length === 0,
-      `produced_unit_ids=${buildingPanelProducedUnitIds.join('/') || 0}, missing=${formatProducedMissing(missingBuildingPanelUnits)}`,
+      '当前 Mod 可追踪生产/合体/变形目标覆盖字段级单位口径',
+      missingProductionUnits.length === 0,
+      `produced_unit_ids=${productionProducedUnitIds.join('/') || 0}, missing=${formatProducedMissing(missingProductionUnits)}`,
     ),
     check(
       'current-mod-building-panel-extra-produced-units',
-      '当前 Mod 建筑面板未暴露未解释的额外生产/变形单位',
-      extraBuildingPanelUnits.length === 0,
-      `extra=${extraBuildingPanelUnits.join('/') || 0}`,
+      '当前 Mod 未暴露未解释的额外生产/合体/变形单位',
+      extraProductionUnits.length === 0,
+      `extra=${extraProductionUnits.join('/') || 0}`,
     ),
     check(
       'unit-skill-hard-issues',
@@ -404,11 +413,19 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     official_building_count: officialBuildings.length,
     runtime_unit_count: runtimeUnits.length,
     runtime_building_count: runtimeBuildings.length,
+    runtime_production_building_count: runtimeProductionBuildings.length,
+    runtime_production_building_ids: runtimeProductionBuildings
+      .map((building) => building.unit_id || building.id)
+      .filter(Boolean),
     runtime_top_panel_face_count: runtimeTopFaces.length,
-    runtime_building_panel_produced_unit_count: buildingPanelProducedUnitIds.length,
-    runtime_building_panel_produced_unit_ids: buildingPanelProducedUnitIds,
-    runtime_building_panel_missing_units: missingBuildingPanelUnits,
-    runtime_building_panel_extra_produced_units: extraBuildingPanelUnits,
+    runtime_production_produced_unit_count: productionProducedUnitIds.length,
+    runtime_production_produced_unit_ids: productionProducedUnitIds,
+    runtime_production_missing_units: missingProductionUnits,
+    runtime_production_extra_produced_units: extraProductionUnits,
+    runtime_building_panel_produced_unit_count: productionProducedUnitIds.length,
+    runtime_building_panel_produced_unit_ids: productionProducedUnitIds,
+    runtime_building_panel_missing_units: missingProductionUnits,
+    runtime_building_panel_extra_produced_units: extraProductionUnits,
     online_added_unit_count: field.online_added_unit_count || 0,
     online_added_building_count: field.online_added_building_count || 0,
     online_primary_unit_count: field.online_primary_unit_count || 0,
@@ -456,8 +473,11 @@ function writeMarkdown(report) {
     lines.push(`- 在线主单位：${commander.online_primary_unit_count}，supplemental 单位：${commander.supplemental_unit_count}`);
     lines.push(`- 建筑口径：${commander.building_count}（官方 JSON ${commander.official_building_count}，在线补充 ${commander.online_added_building_count}）`);
     lines.push(`- 在线主建筑：${commander.online_primary_structure_count}，supplemental 建筑：${commander.supplemental_building_count}`);
-    lines.push(`- 当前 Mod 运行名册：单位 ${commander.runtime_unit_count}，建筑 ${commander.runtime_building_count}，顶部面板 face ${commander.runtime_top_panel_face_count}`);
-    lines.push(`- 当前 Mod 建筑面板可追踪生产/变形目标：${commander.runtime_building_panel_produced_unit_count}（${commander.runtime_building_panel_produced_unit_ids.join('、') || '无'}）`);
+    lines.push(`- 当前 Mod 运行名册：单位 ${commander.runtime_unit_count}，建筑 ${commander.runtime_building_count}，生产链补充建筑 ${commander.runtime_production_building_count || 0}，顶部面板 face ${commander.runtime_top_panel_face_count}`);
+    if (commander.runtime_production_building_ids?.length) {
+      lines.push(`- 当前 Mod 生产链补充建筑：${commander.runtime_production_building_ids.join('、')}`);
+    }
+    lines.push(`- 当前 Mod 可追踪生产/合体/变形目标：${commander.runtime_production_produced_unit_count}（${commander.runtime_production_produced_unit_ids.join('、') || '无'}）`);
     lines.push(`- 单位：${commander.unit_ids.join('、')}`);
     lines.push(`- 建筑：${commander.building_ids.join('、')}`);
     lines.push(`- 顶部面板：${commander.top_panel_faces.join('、')}`);

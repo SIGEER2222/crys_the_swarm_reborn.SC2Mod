@@ -1,6 +1,6 @@
 # Karax / Artanis / Vorazun 完成度审计
 
-- 生成时间：2026/6/2 11:02:58
+- 生成时间：2026/6/2 12:12:46
 - 目标：为“兵种及技能/被动、建筑、顶部技能面板与在线指挥官资料一致”提供可复核的静态完成度矩阵。
 - 范围：本报告使用仓内官方合作指挥官数据、字段级审计报告、官方-vs-Mod 缺口报告、当前 Mod 科技链路诊断，以及 StarCraft2Coop 在线资料入口和页面显式补充项。
 - 说明：本机无 SC2 测试环境，本报告只证明静态数据层对齐，不替代实机运行。
@@ -9,9 +9,9 @@
 
 | 指挥官 | 状态 | 单位 | 建筑 | 顶部面板按钮 | 在线资料 |
 | --- | --- | ---: | ---: | ---: | --- |
-| Karax | FAIL | 8 | 6 | 4 | https://starcraft2coop.com/commanders/karax |
-| Artanis | FAIL | 9 | 5 | 4 | https://starcraft2coop.com/commanders/artanis |
-| Vorazun | FAIL | 8 | 3 | 5 | https://starcraft2coop.com/commanders/vorazun |
+| Karax | PASS | 8 | 6 | 4 | https://starcraft2coop.com/commanders/karax |
+| Artanis | PASS | 9 | 5 | 4 | https://starcraft2coop.com/commanders/artanis |
+| Vorazun | PASS | 8 | 3 | 5 | https://starcraft2coop.com/commanders/vorazun |
 
 ## Karax
 
@@ -20,8 +20,9 @@
 - 在线主单位：6，supplemental 单位：2
 - 建筑口径：6（官方 JSON 5，在线补充 3）
 - 在线主建筑：3，supplemental 建筑：3
-- 当前 Mod 运行名册：单位 8，建筑 6，顶部面板 face 12
-- 当前 Mod 建筑面板可追踪生产/变形目标：4（DarkArchon、Monitor、SentryFenix、Supplicant）
+- 当前 Mod 运行名册：单位 8，建筑 6，生产链补充建筑 3，顶部面板 face 12
+- 当前 Mod 生产链补充建筑：RoboticsFacility、Stargate、WarpGate
+- 当前 Mod 可追踪生产/合体/变形目标：8（Carrier、Colossus、ImmortalAiur、Observer、PhoenixPurifier、Scout、SentryPurifier、ZealotPurifier）
 - 单位：ImmortalAiur、Observer、PhoenixPurifier、Scout、SentryPurifier、ZealotPurifier、Colossus、Carrier
 - 建筑：Gateway、PhotonCannon、ShieldBattery、SolarForge、TwilightCouncil、KhaydarinMonolith
 - 顶部面板：SOAOrbitalStrikeKarax、SOAThermalLance、SOAMapWideChrono、SOAPurifierBeam
@@ -35,8 +36,8 @@
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=6, supplemental_units=2, issues=0 |
 | 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=6, missing=0 |
 | 字段级单位口径均能映射到当前 Mod 运行名册单位 | PASS | runtime_units=8, missing=0 |
-| 当前 Mod 建筑面板可追踪生产/变形目标覆盖字段级单位口径 | FAIL | produced_unit_ids=DarkArchon/Monitor/SentryFenix/Supplicant, missing=ImmortalAiur:ImmortalAiur; Observer:Observer; PhoenixPurifier:PhoenixPurifier; Scout:Scout; SentryPurifier:SentryPurifier; ZealotPurifier:ZealotPurifier; Colossus:Colossus; Carrier:Carrier |
-| 当前 Mod 建筑面板未暴露未解释的额外生产/变形单位 | FAIL | extra=DarkArchon/Monitor/SentryFenix/Supplicant |
+| 当前 Mod 可追踪生产/合体/变形目标覆盖字段级单位口径 | PASS | produced_unit_ids=Carrier/Colossus/ImmortalAiur/Observer/PhoenixPurifier/Scout/SentryPurifier/ZealotPurifier, missing=0 |
+| 当前 Mod 未暴露未解释的额外生产/合体/变形单位 | PASS | extra=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=10, missing=0 |
@@ -58,8 +59,9 @@
 - 在线主单位：8，supplemental 单位：1
 - 建筑口径：5（官方 JSON 5，在线补充 0）
 - 在线主建筑：0，supplemental 建筑：5
-- 当前 Mod 运行名册：单位 9，建筑 5，顶部面板 face 11
-- 当前 Mod 建筑面板可追踪生产/变形目标：4（DarkArchon、Monitor、SentryFenix、Supplicant）
+- 当前 Mod 运行名册：单位 9，建筑 5，生产链补充建筑 4，顶部面板 face 11
+- 当前 Mod 生产链补充建筑：RoboticsFacility、Stargate、StargateWarp、WarpGate
+- 当前 Mod 可追踪生产/合体/变形目标：9（Archon、Dragoon、HighTemplar、ImmortalAiur、Observer、PhoenixAiur、Reaver、Tempest、Zealot）
 - 单位：Archon、ImmortalAiur、Observer、PhoenixAiur、StalkerAiur、Zealot、HighTemplar、Tempest、Reaver
 - 建筑：Gateway、PhotonCannon、RoboticsBay、RoboticsWarpandStarWarpGate、TwilightCouncil
 - 顶部面板：SOAPylonPower、SOAOrbitalStrike、SOASuperShield、SOAStrafeAttack
@@ -73,8 +75,8 @@
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=8, supplemental_units=1, issues=0 |
 | 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=8, missing=0 |
 | 字段级单位口径均能映射到当前 Mod 运行名册单位 | PASS | runtime_units=9, missing=0 |
-| 当前 Mod 建筑面板可追踪生产/变形目标覆盖字段级单位口径 | FAIL | produced_unit_ids=DarkArchon/Monitor/SentryFenix/Supplicant, missing=Archon:Archon; ImmortalAiur:ImmortalAiur; Observer:Observer; PhoenixAiur:PhoenixAiur; StalkerAiur:Dragoon; Zealot:Zealot; HighTemplar:HighTemplar; Tempest:Tempest; Reaver:Reaver |
-| 当前 Mod 建筑面板未暴露未解释的额外生产/变形单位 | FAIL | extra=DarkArchon/Monitor/SentryFenix/Supplicant |
+| 当前 Mod 可追踪生产/合体/变形目标覆盖字段级单位口径 | PASS | produced_unit_ids=Archon/Dragoon/HighTemplar/ImmortalAiur/Observer/PhoenixAiur/Reaver/Tempest/Zealot, missing=0 |
+| 当前 Mod 未暴露未解释的额外生产/合体/变形单位 | PASS | extra=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=6, missing=0 |
@@ -96,8 +98,9 @@
 - 在线主单位：7，supplemental 单位：1
 - 建筑口径：3（官方 JSON 3，在线补充 0）
 - 在线主建筑：0，supplemental 建筑：3
-- 当前 Mod 运行名册：单位 8，建筑 4，顶部面板 face 10
-- 当前 Mod 建筑面板可追踪生产/变形目标：4（DarkArchon、Monitor、SentryFenix、Supplicant）
+- 当前 Mod 运行名册：单位 8，建筑 4，生产链补充建筑 2，顶部面板 face 10
+- 当前 Mod 生产链补充建筑：Stargate、WarpGate
+- 当前 Mod 可追踪生产/合体/变形目标：8（CorsairMP、DarkArchon、DarkTemplarShakuras、Oracle、Stalker、VoidRay、Zealot、ZealotShakuras）
 - 单位：DarkTemplarShakuras、Oracle、PhoenixShakuras、Zealot、ZealotShakuras、Stalker、VoidRay、DarkArchon
 - 建筑：Gateway、PhotonCannon、TwilightCouncil
 - 顶部面板：SOADarkPylon、SOAVorazunBlackHole、SOAShadowGuardCalldown、SOATimeFreeze、RecallOnDeathPassive
@@ -111,8 +114,8 @@
 | StarCraft2Coop Combat Units 主清单均被当前审计覆盖 | PASS | online_primary_units=7, supplemental_units=1, issues=0 |
 | 在线主兵种解析 ID 均命中当前 Mod/XMFinal 单位 | PASS | resolved_unit_reports=7, missing=0 |
 | 字段级单位口径均能映射到当前 Mod 运行名册单位 | PASS | runtime_units=8, missing=0 |
-| 当前 Mod 建筑面板可追踪生产/变形目标覆盖字段级单位口径 | FAIL | produced_unit_ids=DarkArchon/Monitor/SentryFenix/Supplicant, missing=DarkTemplarShakuras:DarkTemplarShakuras; Oracle:Oracle; PhoenixShakuras:CorsairMP; Zealot:Zealot; ZealotShakuras:ZealotShakuras/Zealot; Stalker:Stalker; VoidRay:VoidRay |
-| 当前 Mod 建筑面板未暴露未解释的额外生产/变形单位 | FAIL | extra=Monitor/SentryFenix/Supplicant |
+| 当前 Mod 可追踪生产/合体/变形目标覆盖字段级单位口径 | PASS | produced_unit_ids=CorsairMP/DarkArchon/DarkTemplarShakuras/Oracle/Stalker/VoidRay/Zealot/ZealotShakuras, missing=0 |
+| 当前 Mod 未暴露未解释的额外生产/合体/变形单位 | PASS | extra=0 |
 | 兵种技能/被动不存在硬缺口或字段不匹配 | PASS | unit_skill_issues=0 |
 | 兵种技能/被动不再依赖 global-only 提醒项 | PASS | global_only=0 |
 | 兵种技能/被动全局 Catalog/脚本证据均存在 | PASS | global_refs=38, missing=0 |
