@@ -53,6 +53,26 @@ const onlineExpectationAdditions = {
   Artanis: {
     units: [
       {
+        id: 'StalkerAiur',
+        name: 'Dragoon',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveDragoonHealth', type: 'Requirement', name: 'Trillic Compression Systems unit-card requirement' },
+          { id: 'StalkerResearchDragoonHealth', type: 'Upgrade', name: 'Trillic Compression Systems upgrade' },
+          { id: 'ResearchDragoonChassis', type: 'Button', name: 'Trillic Compression Systems research button' },
+        ],
+      },
+      {
+        id: 'PhoenixAiur',
+        name: 'Phoenix',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveResearchDoubleGravitonBeamPassive', type: 'Requirement', name: 'Double Graviton Beam unit-card requirement' },
+          { id: 'VoidPhoenixDoubleGraviton', type: 'Upgrade', name: 'Double Graviton Beam upgrade' },
+          { id: 'ResearchDoubleGravitonBeam', type: 'Button', name: 'Double Graviton Beam research button' },
+        ],
+      },
+      {
         id: 'Tempest',
         name: 'Tempest',
         source: 'StarCraft2Coop Combat Units',
@@ -74,17 +94,137 @@ const onlineExpectationAdditions = {
     buildings: [],
   },
   Karax: {
-    units: [],
+    units: [
+      {
+        id: 'Colossus',
+        name: 'Colossus',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveFireBeam', type: 'Requirement', name: 'Fire Beam unit-card requirement' },
+          { id: 'ColossusFireBeam', type: 'Upgrade', name: 'Fire Beam upgrade' },
+          { id: 'ResearchFireBeam', type: 'Button', name: 'Fire Beam research button' },
+        ],
+      },
+      {
+        id: 'PhoenixPurifier',
+        name: 'Mirage',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveMiragePhaseArmor', type: 'Requirement', name: 'Phasing Armor unit-card requirement' },
+          { id: 'MiragePhaseArmor', type: 'Upgrade', name: 'Phasing Armor upgrade' },
+          { id: 'ResearchPhaseArmor', type: 'Button', name: 'Phasing Armor research button' },
+        ],
+      },
+      {
+        id: 'Carrier',
+        name: 'Carrier',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'CarrierRepairDrones', type: 'Upgrade', name: 'Repair Drones upgrade' },
+          { id: 'HaveCarrierRepairDrones', type: 'Requirement', name: 'Repair Drones unit-card requirement' },
+          { id: 'CarrierRepairDroneHanger', type: 'Ability', name: 'Repair Drones carrier hanger ability' },
+          { id: 'ResearchCarrierRepairDrones', type: 'Button', name: 'Repair Drones research button' },
+        ],
+      },
+      {
+        id: 'ZealotPurifier',
+        name: 'Sentinel',
+        source: 'StarCraft2Coop Combat Units',
+        abilities: [
+          { face: 'Charge', type: 'AbilCmd', abil_cmd: 'Charge,Execute', row: '2', column: '0', name: 'Charge' },
+        ],
+      },
+    ],
     buildings: [
+      {
+        id: 'PhotonCannon',
+        name: 'Photon Cannon',
+        source: 'StarCraft2Coop Structures',
+        online_stats: {
+          life: '150',
+          shields: '150',
+          energy: '',
+          damage: '20',
+          range: '7',
+          speed: '1.25',
+        },
+      },
       {
         id: 'KhaydarinMonolith',
         name: 'Khaydarin Monolith',
         source: 'StarCraft2Coop Structures',
+        online_stats: {
+          life: '100',
+          shields: '200',
+          energy: '',
+          damage: '100',
+          range: '13',
+          speed: '3',
+        },
+      },
+      {
+        id: 'ShieldBattery',
+        name: 'Shield Battery',
+        source: 'StarCraft2Coop Structures',
+        online_stats: {
+          life: '200',
+          shields: '200',
+          energy: '200',
+          range: '4',
+          shield_per_energy: '3',
+        },
       },
     ],
   },
   Vorazun: {
     units: [
+      {
+        id: 'ZealotShakuras',
+        name: 'Centurion',
+        source: 'StarCraft2Coop Combat Units',
+        abilities: [
+          { face: 'Charge', type: 'AbilCmd', abil_cmd: 'Charge,Execute', row: '2', column: '0', name: 'Shadow Charge base command' },
+        ],
+        global_refs: [
+          { id: 'VoidZealotShadowCharge', type: 'Upgrade', name: 'Shadow Charge upgrade package' },
+          { id: 'ZealotResearchShadowStun', type: 'Upgrade', name: 'Darkcoil upgrade' },
+          { id: 'ResearchShadowStun', type: 'Button', name: 'Darkcoil research button' },
+        ],
+      },
+      {
+        id: 'Stalker',
+        name: 'Stalker',
+        source: 'StarCraft2Coop Combat Units',
+        resolved_unit_ids: ['StalkerShakuras'],
+        remove_abilities_by_face: ['CommanderPrestigeAlarakMechBuff', 'AlarakStalkerPhasingArmor'],
+        abilities: [
+          { face: 'StalkerBlinkShieldRestoreBase', abil_cmd: 'BlinkShieldRestore,Execute', name: 'Phase Reactor blink command' },
+          { face: 'BlinkShieldRestoreUpgrade', type: 'Passive', requirements: 'HaveBlinkShieldRestore', row: '2', column: '1', name: 'Phase Reactor passive' },
+        ],
+        global_refs: [
+          { id: 'StalkerShakuras', type: 'Unit', name: 'Vorazun Stalker trained unit' },
+          { id: 'HaveVoidStalkerBlinkShieldRestore', type: 'Requirement', name: 'Phase Reactor unit-card requirement' },
+          { id: 'HaveBlinkShieldRestore', type: 'Requirement', name: 'Phase Reactor passive requirement' },
+          { id: 'StalkerResearchBlinkShieldRestore', type: 'Upgrade', name: 'Phase Reactor upgrade' },
+          { id: 'ResearchBlinkShieldRestore', type: 'Button', name: 'Phase Reactor research button' },
+        ],
+      },
+      {
+        id: 'DarkTemplarShakuras',
+        name: 'Dark Templar',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveResearchShadowFury', type: 'Requirement', name: 'Shadow Fury unit-card requirement' },
+          { id: 'DarkTemplarResearchShadowFury', type: 'Upgrade', name: 'Shadow Fury upgrade' },
+          { id: 'ResearchShadowFury', type: 'Button', name: 'Shadow Fury research button' },
+          { id: 'DarkTemplarShadowDash', type: 'Ability', name: 'Blink ability' },
+          { id: 'DarkTemplarResearchShadowDash', type: 'Upgrade', name: 'Blink upgrade' },
+          { id: 'ResearchShadowDash', type: 'Button', name: 'Blink research button' },
+          { id: 'DarkTemplarVoidStasis', type: 'Ability', name: 'Void Stasis ability' },
+          { id: 'DarkTemplarResearchVoidStasis', type: 'Upgrade', name: 'Void Stasis upgrade' },
+          { id: 'ResearchVoidStasis', type: 'Button', name: 'Void Stasis research button' },
+        ],
+      },
       {
         id: 'DarkArchon',
         name: 'Dark Archon',
@@ -93,6 +233,50 @@ const onlineExpectationAdditions = {
           { face: 'DarkArchonConfusion', type: 'AbilCmd', abil_cmd: 'DarkArchonConfusion,Execute', row: '2', column: '0', name: 'Confusion' },
           { face: 'DarkArchonMindControl', type: 'AbilCmd', abil_cmd: 'DarkArchonMindControl,Execute', row: '2', column: '1', name: 'Mind Control' },
           { face: 'HaveDarkArchonFullStartingEnergy', type: 'Passive', requirements: 'HaveDarkArchonFullStartingEnergy', row: '2', column: '2', name: 'Full Starting Energy' },
+        ],
+        global_refs: [
+          { id: 'HaveDarkArchonFullStartingEnergy', type: 'Requirement', name: 'Argus Crystal unit-card requirement' },
+          { id: 'DarkArchonFullStartingEnergy', type: 'Upgrade', name: 'Argus Crystal upgrade' },
+          { id: 'ResearchDarkArchonFullStartingEnergy', type: 'Button', name: 'Argus Crystal research button' },
+          { id: 'HaveDarkArchonMindControl', type: 'Requirement', name: 'Mind Control ability requirement' },
+          { id: 'DarkArchonMindControl', type: 'Upgrade', name: 'Mind Control upgrade and ability' },
+          { id: 'ResearchDarkArchonMindControl', type: 'Button', name: 'Mind Control research button' },
+        ],
+      },
+      {
+        id: 'PhoenixShakuras',
+        name: 'Corsair',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveCorsairDisruptionWeb', type: 'Requirement', name: 'Disruption Web ability requirement' },
+          { id: 'CorsairDisruptionWeb', type: 'Upgrade', name: 'Disruption Web upgrade' },
+          { id: 'ResearchCorsairDisruptionWeb', type: 'Button', name: 'Disruption Web research button' },
+          { id: 'HaveCorsairPermanentCloak', type: 'Requirement', name: 'Stealth Drive unit-card requirement' },
+          { id: 'CorsairPermanentCloak', type: 'Upgrade', name: 'Stealth Drive upgrade' },
+          { id: 'ResearchCorsairPermanentCloak', type: 'Button', name: 'Stealth Drive research button' },
+        ],
+      },
+      {
+        id: 'VoidRay',
+        name: 'Void Ray',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'LearnVoidRayPrismaticRange', type: 'Requirement', name: 'Prismatic Range research requirement' },
+          { id: 'VoidRayPrismaticRange', type: 'Upgrade', name: 'Prismatic Range upgrade' },
+          { id: 'ResearchVoidRayVoidPrismaticRange', type: 'Button', name: 'Prismatic Range research button' },
+        ],
+      },
+      {
+        id: 'Oracle',
+        name: 'Oracle',
+        source: 'StarCraft2Coop Combat Units',
+        global_refs: [
+          { id: 'HaveCorsairPermanentCloak', type: 'Requirement', name: 'Stealth Drive unit-card requirement' },
+          { id: 'CorsairPermanentCloak', type: 'Upgrade', name: 'Stealth Drive upgrade' },
+          { id: 'ResearchCorsairPermanentCloak', type: 'Button', name: 'Stealth Drive research button' },
+          { id: 'HaveOracleStasisWardUpgrade', type: 'Requirement', name: 'Stasis Calibration unit-card requirement' },
+          { id: 'OracleStasisWardUpgrade', type: 'Upgrade', name: 'Stasis Calibration upgrade' },
+          { id: 'ResearchOracleStasisWardUpgrade', type: 'Button', name: 'Stasis Calibration research button' },
         ],
       },
     ],
@@ -162,6 +346,8 @@ const inheritedOrCoreFaces = new Set([
   'CliffWalk',
 ]);
 
+const buildingStatFields = ['life', 'shields', 'energy', 'damage', 'range', 'speed', 'shield_per_energy'];
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
@@ -205,7 +391,7 @@ function parseLayoutButtons(unitBody) {
       row: inlineAttrs.Row || valueFromChild(body, 'Row'),
       column: inlineAttrs.Column || valueFromChild(body, 'Column'),
     };
-    if (button.face) {
+    if (button.face || button.abil_cmd || button.requirements) {
       buttons.push(button);
     }
   }
@@ -226,6 +412,11 @@ function parseUnitData(filePath) {
       id: attrs.id,
       parent: attrs.parent || '',
       buttons: parseLayoutButtons(match[2]),
+      stats: {
+        life: valueFromChild(match[2], 'LifeMax') || valueFromChild(match[2], 'LifeStart'),
+        shields: valueFromChild(match[2], 'ShieldsMax') || valueFromChild(match[2], 'ShieldsStart'),
+        energy: valueFromChild(match[2], 'EnergyMax') || valueFromChild(match[2], 'EnergyStart'),
+      },
     });
   }
   return units;
@@ -273,6 +464,13 @@ function catalogCandidates(item) {
   ]);
 }
 
+function buildingStatCandidates(item) {
+  return unique([
+    item.id,
+    item.unit_id,
+  ]);
+}
+
 function buildCandidateMap(items) {
   const map = new Map();
   for (const item of items) {
@@ -288,11 +486,28 @@ function mergeExpectationAdditions(baseItems, additionItems) {
   for (const addition of additionItems || []) {
     const existing = byId.get(addition.id);
     if (existing) {
+      const removeFaces = new Set(addition.remove_abilities_by_face || []);
+      if (removeFaces.size) {
+        existing.abilities = (existing.abilities || [])
+          .filter((ability) => !removeFaces.has(ability.face || ability.button?.id));
+      }
       const existingFaces = new Set((existing.abilities || []).map((ability) => ability.face || ability.button?.id).filter(Boolean));
       existing.abilities = [
         ...(existing.abilities || []),
         ...(addition.abilities || []).filter((ability) => !existingFaces.has(ability.face || ability.button?.id)),
       ];
+      existing.resolved_unit_ids = unique([
+        ...(existing.resolved_unit_ids || []),
+        ...(addition.resolved_unit_ids || []),
+      ]);
+      const existingGlobalRefs = new Set((existing.global_refs || []).map((ref) => ref.id || ref.value || ref.face).filter(Boolean));
+      const addedGlobalRefs = (addition.global_refs || []).filter((ref) => !existingGlobalRefs.has(ref.id || ref.value || ref.face));
+      if (addedGlobalRefs.length) {
+        existing.global_refs = [...(existing.global_refs || []), ...addedGlobalRefs];
+      }
+      if (addition.online_stats) {
+        existing.online_stats = addition.online_stats;
+      }
       existing.online_expectation_source = addition.source;
       continue;
     }
@@ -334,6 +549,31 @@ function abilitySignature(ability) {
     column: normalize(ability.column),
     name: normalize(ability.name || ability.button?.name || ability.face),
   };
+}
+
+function globalRefSignature(ref) {
+  return {
+    id: normalize(ref.id || ref.value || ref.face),
+    type: normalize(ref.type),
+    name: normalize(ref.name || ref.label || ref.id || ref.value || ref.face),
+  };
+}
+
+function isUnitCardRequirementRef(ref) {
+  return ref.type === 'Requirement'
+    && /(unit-card|ability requirement|passive requirement)/i.test(ref.name);
+}
+
+function matchingRequirementButtons(buttons, requirementId) {
+  return buttons
+    .filter((button) => normalize(button.requirements).includes(requirementId))
+    .map((button) => ({
+      face: button.face,
+      abil_cmd: button.abil_cmd,
+      requirements: button.requirements,
+      row: button.row,
+      column: button.column,
+    }));
 }
 
 function isProductionCommand(ability) {
@@ -389,15 +629,71 @@ function compareExpectedButtons(expectedButtons, actualButtons, fields) {
   return issues;
 }
 
+function expectedBuildingStats(building) {
+  const source = building.online_stats || {};
+  return Object.fromEntries(buildingStatFields.map((field) => [field, normalize(source[field])]));
+}
+
+function activeBuildingStat(building, candidateIds, moduleUnits, finalUnits, field) {
+  for (const candidateId of candidateIds) {
+    const finalValue = normalize(finalUnits.get(candidateId)?.stats?.[field]);
+    if (finalValue) {
+      return { value: finalValue, source: `XMFinal:${candidateId}` };
+    }
+    const moduleValue = normalize(moduleUnits.get(candidateId)?.stats?.[field]);
+    if (moduleValue) {
+      return { value: moduleValue, source: `module:${candidateId}` };
+    }
+  }
+
+  const fallback = normalize((building.online_stats || {})[field]);
+  return fallback
+    ? { value: fallback, source: 'online-expectation-fallback' }
+    : { value: '', source: 'not-declared' };
+}
+
+function auditBuildingStats(building, moduleUnits, finalUnits) {
+  const candidateIds = buildingStatCandidates(building);
+  const expected = expectedBuildingStats(building);
+  const actual = {};
+  const issues = [];
+  for (const field of buildingStatFields) {
+    if (!expected[field]) {
+      continue;
+    }
+    actual[field] = activeBuildingStat(building, candidateIds, moduleUnits, finalUnits, field);
+    if (actual[field].value !== expected[field]) {
+      issues.push({
+        type: 'building_stat_mismatch',
+        field,
+        expected: expected[field],
+        actual: actual[field].value,
+        source: actual[field].source,
+      });
+    }
+  }
+
+  return {
+    candidate_ids: candidateIds,
+    expected,
+    actual,
+    issues,
+  };
+}
+
 function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalText) {
   return units.map((unit) => {
     const candidateIds = candidateMap.get(unit.id) || catalogCandidates(unit);
+    const resolvedUnitIds = unique(unit.resolved_unit_ids || []);
     const { buttons, foundUnitIds } = collectButtons(candidateIds, moduleUnits, finalUnits);
     const actualFaces = new Set(buttons.map((button) => button.face));
     const expectedSkills = (unit.abilities || [])
       .filter((ability) => !isProductionCommand(ability))
       .map(abilitySignature)
       .filter((ability) => ability.face && !inheritedOrCoreFaces.has(ability.face));
+    const expectedGlobalRefs = (unit.global_refs || [])
+      .map(globalRefSignature)
+      .filter((ref) => ref.id);
     const expectedByFace = new Map();
     for (const expected of expectedSkills) {
       if (!expectedByFace.has(expected.face)) {
@@ -408,6 +704,31 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
 
     const issues = [];
     const globalOnly = [];
+    const globalRefReports = expectedGlobalRefs.map((ref) => ({
+      ...ref,
+      present: globalText.has(ref.id),
+    }));
+    const unitCardRequirementReports = expectedGlobalRefs
+      .filter(isUnitCardRequirementRef)
+      .map((ref) => {
+        const matching_buttons = matchingRequirementButtons(buttons, ref.id);
+        return {
+          ...ref,
+          present_on_unit_card: matching_buttons.length > 0,
+          matching_buttons,
+        };
+      });
+    for (const ref of globalRefReports) {
+      if (!ref.present) {
+        issues.push({ type: 'missing_global_ref', id: ref.id, expected: ref });
+      }
+    }
+    for (const ref of unitCardRequirementReports) {
+      if (!ref.present_on_unit_card) {
+        issues.push({ type: 'missing_unit_card_requirement', id: ref.id, expected: ref });
+      }
+    }
+
     for (const [face, variants] of expectedByFace) {
       const expected = variants[0];
       if (actualFaces.has(face)) {
@@ -435,9 +756,14 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
     return {
       unit: unit.id,
       name: unit.name || unit.id,
+      resolved_unit_ids: resolvedUnitIds,
       candidate_ids: candidateIds,
       found_unit_ids: foundUnitIds,
       expected_skill_faces: expectedSkills.map((skill) => skill.face),
+      expected_global_refs: expectedGlobalRefs.map((ref) => ref.id),
+      expected_unit_card_requirement_refs: unitCardRequirementReports.map((ref) => ref.id),
+      global_ref_reports: globalRefReports,
+      unit_card_requirement_reports: unitCardRequirementReports,
       issues,
       global_only: globalOnly,
     };
@@ -452,11 +778,17 @@ function auditBuildings(buildings, candidateMap, moduleUnits, finalUnits, global
     if (!foundUnitIds.length && !globalText.has(building.id)) {
       issues.push({ type: 'missing_building_catalog', id: building.id });
     }
+    const statReport = auditBuildingStats(building, moduleUnits, finalUnits);
+    issues.push(...statReport.issues);
     return {
       building: building.id,
       name: building.name || building.id,
       candidate_ids: candidateIds,
       found_unit_ids: foundUnitIds,
+      stat_candidate_ids: statReport.candidate_ids,
+      expected_stats: statReport.expected,
+      actual_stats: statReport.actual,
+      stat_issues: statReport.issues,
       issues,
     };
   });
@@ -469,15 +801,28 @@ function auditOnlinePrimaryRoster(expectedItems, reports, reportKey) {
     const issues = [];
     if (!report) {
       issues.push({ type: 'missing_online_primary_item', id: expected.id, label: expected.label });
-    } else if ((report.issues || []).length) {
-      issues.push({ type: 'online_primary_item_has_hard_issues', id: expected.id, issue_count: report.issues.length });
-    } else if ((report.global_only || []).length) {
-      issues.push({ type: 'online_primary_item_has_global_only', id: expected.id, issue_count: report.global_only.length });
+    } else {
+      if ((report.issues || []).length) {
+        issues.push({ type: 'online_primary_item_has_hard_issues', id: expected.id, issue_count: report.issues.length });
+      }
+      if ((report.global_only || []).length) {
+        issues.push({ type: 'online_primary_item_has_global_only', id: expected.id, issue_count: report.global_only.length });
+      }
+      if (
+        reportKey === 'unit'
+        && !(report.expected_skill_faces || []).length
+        && !(report.expected_global_refs || []).length
+      ) {
+        issues.push({ type: 'online_primary_unit_has_no_skill_or_global_ref_expectations', id: expected.id });
+      }
     }
 
     return {
       ...expected,
       audited: Boolean(report),
+      resolved_unit_ids: reportKey === 'unit' && report ? report.resolved_unit_ids || [] : [],
+      candidate_ids: report ? report.candidate_ids || [] : [],
+      found_unit_ids: report ? report.found_unit_ids || [] : [],
       issues,
     };
   });
@@ -541,7 +886,12 @@ function auditCommander(commander, finalUnits, globalText) {
     supplemental_building_count: onlinePrimaryStructures.supplemental_count,
     unit_skill_issue_count: unitSkillReports.reduce((sum, unit) => sum + unit.issues.length, 0),
     unit_skill_global_only_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_only.length, 0),
+    unit_skill_global_ref_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_ref_reports.length, 0),
+    unit_skill_global_ref_missing_count: unitSkillReports.reduce((sum, unit) => sum + unit.global_ref_reports.filter((ref) => !ref.present).length, 0),
+    unit_skill_unit_card_requirement_ref_count: unitSkillReports.reduce((sum, unit) => sum + unit.unit_card_requirement_reports.length, 0),
+    unit_skill_unit_card_requirement_missing_count: unitSkillReports.reduce((sum, unit) => sum + unit.unit_card_requirement_reports.filter((ref) => !ref.present_on_unit_card).length, 0),
     building_issue_count: buildingReports.reduce((sum, building) => sum + building.issues.length, 0),
+    building_stat_issue_count: buildingReports.reduce((sum, building) => sum + building.stat_issues.length, 0),
     top_panel_issue_count: topPanelIssues.length,
     unit_skill_reports: unitSkillReports,
     building_reports: buildingReports,
@@ -578,13 +928,35 @@ function formatIssue(issue) {
   if (issue.type === 'missing_unit_skill_face') {
     return `missing skill/passive face ${issue.face}`;
   }
+  if (issue.type === 'missing_global_ref') {
+    return `missing global skill/passive ref ${issue.id}`;
+  }
+  if (issue.type === 'missing_unit_card_requirement') {
+    return `missing unit-card requirement ${issue.id}`;
+  }
   if (issue.type === 'missing_button') {
     return `missing button ${issue.face}`;
   }
   if (issue.type === 'field_mismatch') {
     return `${issue.face}: ${issue.mismatches.map((mismatch) => `${mismatch.field} expected=${mismatch.expected || '(empty)'} actual=${mismatch.actual || '(empty)'}`).join('; ')}`;
   }
+  if (issue.type === 'building_stat_mismatch') {
+    return `${issue.field} expected=${issue.expected || '(empty)'} actual=${issue.actual || '(empty)'} source=${issue.source}`;
+  }
   return JSON.stringify(issue);
+}
+
+function formatOnlinePrimaryUnit(item) {
+  const resolvedText = (item.resolved_unit_ids || []).length
+    ? `，resolved=${item.resolved_unit_ids.map((id) => `\`${id}\``).join('/')}`
+    : '';
+  const foundText = (item.resolved_unit_ids || []).length && (item.found_unit_ids || []).length
+    ? `，found=${item.found_unit_ids.map((id) => `\`${id}\``).join('/')}`
+    : '';
+  const issueText = item.issues.length
+    ? `（${item.issues.map((issue) => issue.type).join('、')}）`
+    : '';
+  return `${item.label} \`${item.id}\`${resolvedText}${foundText}${issueText}`;
 }
 
 function writeMarkdown(report) {
@@ -593,20 +965,21 @@ function writeMarkdown(report) {
   lines.push('');
   lines.push(`- 生成时间：${new Date(report.generated_at).toLocaleString('zh-CN', { hour12: false })}`);
   lines.push('- 目的：补充现有 ID 缺口脚本的盲区，按“网上资料里的兵种技能/被动、建筑、顶部技能面板”做静态对齐审计。');
-  lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；在线主清单作为必须覆盖的子集，Observer 等支援/扩展项作为 supplemental 透明列出；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
+  lines.push('- 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；在线主清单作为必须覆盖的子集，Observer 等支援/扩展项作为 supplemental 透明列出；非单位按钮承载的技能/被动以 `global_refs` 证明当前 Mod 全局 Catalog/脚本存在；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。');
   lines.push('- 说明：`global-only` 表示技能按钮 ID 在当前 Mod 全局存在，但没有在候选单位的显式 LayoutButtons 中出现，可能来自父级继承、别名单位或待人工判断，不直接当作硬缺口。');
+  lines.push('- 说明：`global_refs` 表示在线技能/被动不是单位命令卡按钮本体，而是以升级、研究按钮、需求或测试台科技检查等全局 Catalog/脚本证据落地；其中标记为 unit-card / ability / passive requirement 的项还会额外要求出现在候选单位卡 LayoutButtons 的 Requirements 上。');
   lines.push('- 注意：本报告是静态字段审计，不替代 SC2 实机验证。');
   lines.push('');
   lines.push('## 总览');
   lines.push('');
-  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 建筑问题 | 顶部面板问题 | 问题类型 |');
-  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+  lines.push('| 指挥官 | 在线资料 | 单位审计 | 在线主单位 | 建筑审计 | 在线主建筑 | 兵种技能硬问题 | global-only 提醒 | 全局证据 | 全局证据缺失 | 单位卡Req | 单位卡Req缺失 | 建筑问题 | 建筑数值问题 | 顶部面板问题 | 问题类型 |');
+  lines.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
   for (const commanderReport of report.commanders) {
     const summary = summarizeIssueTypes(commanderReport);
     const summaryText = Object.keys(summary).length
       ? Object.entries(summary).map(([key, value]) => `${key}:${value}`).join('、')
       : '无';
-    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.building_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
+    lines.push(`| ${commanderReport.commander} | ${commanderReport.online_source} | ${commanderReport.expected_unit_count} | ${commanderReport.online_primary_unit_count} | ${commanderReport.expected_building_count} | ${commanderReport.online_primary_structure_count} | ${commanderReport.unit_skill_issue_count} | ${commanderReport.unit_skill_global_only_count} | ${commanderReport.unit_skill_global_ref_count} | ${commanderReport.unit_skill_global_ref_missing_count} | ${commanderReport.unit_skill_unit_card_requirement_ref_count} | ${commanderReport.unit_skill_unit_card_requirement_missing_count} | ${commanderReport.building_issue_count} | ${commanderReport.building_stat_issue_count} | ${commanderReport.top_panel_issue_count} | ${summaryText} |`);
   }
   lines.push('');
 
@@ -621,7 +994,10 @@ function writeMarkdown(report) {
     lines.push(`- 在线主建筑：${commanderReport.online_primary_structure_count}，问题 ${commanderReport.online_primary_structure_issue_count}；supplemental 建筑 ${commanderReport.supplemental_building_count}`);
     lines.push(`- 兵种技能硬问题：${commanderReport.unit_skill_issue_count}`);
     lines.push(`- global-only 提醒：${commanderReport.unit_skill_global_only_count}`);
+    lines.push(`- 全局技能/被动证据：${commanderReport.unit_skill_global_ref_count}，缺失 ${commanderReport.unit_skill_global_ref_missing_count}`);
+    lines.push(`- 单位卡 Requirement 证据：${commanderReport.unit_skill_unit_card_requirement_ref_count}，缺失 ${commanderReport.unit_skill_unit_card_requirement_missing_count}`);
     lines.push(`- 建筑问题：${commanderReport.building_issue_count}`);
+    lines.push(`- 建筑数值问题：${commanderReport.building_stat_issue_count}`);
     lines.push(`- 顶部面板问题：${commanderReport.top_panel_issue_count}`);
     lines.push('');
     lines.push('### 顶部面板');
@@ -648,7 +1024,7 @@ function writeMarkdown(report) {
       lines.push('- 该页面没有单独建模的在线主单位清单。');
     } else {
       const unitSummary = commanderReport.online_primary_units.reports
-        .map((item) => `${item.label} \`${item.id}\`${item.issues.length ? `（${item.issues.map((issue) => issue.type).join('、')}）` : ''}`)
+        .map(formatOnlinePrimaryUnit)
         .join('、');
       lines.push(`- ${unitSummary}`);
     }
@@ -663,6 +1039,37 @@ function writeMarkdown(report) {
     } else {
       for (const unit of unitsWithGlobalOnly) {
         lines.push(`- ${unit.name} \`${unit.unit}\`：${unit.global_only.map((item) => item.face).join('、')}`);
+      }
+    }
+    lines.push('');
+    lines.push('### 全局技能/被动证据');
+    const unitsWithGlobalRefs = commanderReport.unit_skill_reports.filter((unit) => unit.global_ref_reports.length);
+    if (!unitsWithGlobalRefs.length) {
+      lines.push('- 无。');
+    } else {
+      for (const unit of unitsWithGlobalRefs) {
+        const refs = unit.global_ref_reports
+          .map((ref) => `${ref.name} \`${ref.id}\`${ref.present ? '' : '（缺失）'}`)
+          .join('、');
+        lines.push(`- ${unit.name} \`${unit.unit}\`：${refs}`);
+      }
+    }
+    lines.push('');
+    lines.push('### 单位卡 Requirement 证据');
+    const unitsWithUnitCardRefs = commanderReport.unit_skill_reports.filter((unit) => unit.unit_card_requirement_reports.length);
+    if (!unitsWithUnitCardRefs.length) {
+      lines.push('- 无。');
+    } else {
+      for (const unit of unitsWithUnitCardRefs) {
+        const refs = unit.unit_card_requirement_reports
+          .map((ref) => {
+            const evidence = ref.matching_buttons.length
+              ? ref.matching_buttons.map((button) => `${button.face || '(no-face)'}@${button.row || '?'}:${button.column || '?'}`).join('/')
+              : '缺失';
+            return `${ref.name} \`${ref.id}\`=${evidence}`;
+          })
+          .join('、');
+        lines.push(`- ${unit.name} \`${unit.unit}\`：${refs}`);
       }
     }
     lines.push('');
@@ -687,6 +1094,24 @@ function writeMarkdown(report) {
     }
     if (commanderReport.online_primary_structures.supplemental.length) {
       lines.push(`- supplemental：${commanderReport.online_primary_structures.supplemental.map((item) => `${item.name} \`${item.id}\``).join('、')}`);
+    }
+    lines.push('');
+    lines.push('### 建筑数值字段');
+    const buildingsWithStats = commanderReport.building_reports.filter((building) => Object.values(building.expected_stats || {}).some(Boolean));
+    if (!buildingsWithStats.length) {
+      lines.push('- 无。');
+    } else {
+      for (const building of buildingsWithStats) {
+        const fields = buildingStatFields
+          .filter((field) => building.expected_stats[field])
+          .map((field) => {
+            const actual = building.actual_stats[field];
+            const marker = building.stat_issues.some((issue) => issue.field === field) ? '（不匹配）' : '';
+            return `${field}=${building.expected_stats[field]} actual=${actual?.value || '(empty)'} source=${actual?.source || '(empty)'}${marker}`;
+          })
+          .join('、');
+        lines.push(`- ${building.name} \`${building.building}\`：${fields}`);
+      }
     }
     lines.push('');
   }

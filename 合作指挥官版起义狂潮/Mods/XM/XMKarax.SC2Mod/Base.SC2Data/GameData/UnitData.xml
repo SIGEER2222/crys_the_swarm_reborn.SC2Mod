@@ -883,17 +883,19 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <AbilArray Link="FenixClolarionCarrierMorph"></AbilArray>
-    <SubgroupPriority value="111"></SubgroupPriority>
-    <AbilArray Link="CarrierHangar"></AbilArray>
-    <AbilArray Link="HangarQueue5"></AbilArray>
-    <AbilArray Link="attack"></AbilArray>
-    <AbilArray Link="move"></AbilArray>
-    <AbilArray Link="stop"></AbilArray>
+    <SubgroupPriority value="111"></SubgroupPriority>
+    <AbilArray Link="CarrierHangar"></AbilArray>
+    <AbilArray Link="CarrierRepairDroneHanger"></AbilArray>
+    <AbilArray Link="HangarQueue5"></AbilArray>
+    <AbilArray Link="attack"></AbilArray>
+    <AbilArray Link="move"></AbilArray>
+    <AbilArray Link="stop"></AbilArray>
     <CardLayouts index="0">
       <LayoutButtons Face="Interceptor" Type="AbilCmd" AbilCmd="CarrierHangar,Ammo1" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="GravitonCatapult" Type="Passive" Requirements="UseGravitonCatapult" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="RepairDrones" Type="AbilCmd" AbilCmd="CarrierRepairDroneHanger,Ammo1" Requirements="HaveCarrierRepairDrones" Row="2" Column="2"></LayoutButtons>
     </CardLayouts>
-  </CUnit>
+  </CUnit>
   <CUnit id="ChargedBuster" parent="MISSILE_INVULNERABLE"></CUnit>
   <CUnit id="Colossus">
     <BehaviorArray index="0" Link=""></BehaviorArray>
@@ -904,9 +906,10 @@
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
-    <CardLayouts index="0">
-      <LayoutButtons Face="ExtendedThermalLance" Type="Passive" Requirements="HaveKaraxExtendedThermalLance" Row="2" Column="1"></LayoutButtons>
-    </CardLayouts>
+    <CardLayouts index="0">
+      <LayoutButtons Face="ExtendedThermalLance" Type="Passive" Requirements="HaveKaraxExtendedThermalLance" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="ColossusPassive" Type="Passive" Requirements="HaveFireBeam" Row="2" Column="2"></LayoutButtons>
+    </CardLayouts>
     <SubgroupPriority value="109"></SubgroupPriority>
     <AbilArray Link="attack"></AbilArray>
     <AbilArray Link="move"></AbilArray>
@@ -3972,15 +3975,7 @@
     <CardLayouts index="0">
       <LayoutButtons index="0" AbilCmd="que5notPassive,CancelLast"></LayoutButtons>
       <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="GatewayTrain,Train1" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="WarpInSupplicant" Type="AbilCmd" AbilCmd="GatewayTrain,Train11" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="Stalker" Type="AbilCmd" AbilCmd="GatewayTrain,Train2" Row="0" Column="2"></LayoutButtons>
-      <LayoutButtons Face="WarpinAscendentLocked" Type="Passive" Requirements="AlarakLevel08" Row="1" Column="0"></LayoutButtons>
       <LayoutButtons Face="Sentry" Type="AbilCmd" AbilCmd="GatewayTrain,Train6" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="Monitor" Type="AbilCmd" AbilCmd="GatewayTrain,Train10" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="SentryFenix" Type="AbilCmd" AbilCmd="GatewayTrain,Train15" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="DarkArchon" Type="AbilCmd" AbilCmd="GatewayTrain,Train9" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="WarpInDarkArchonLocked" Type="Passive" Requirements="VorazunLevel05" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="AlarakMasteryUnitAttackSpeed" Type="Passive" Requirements="HaveMasteryAlarakUnitAttackSpeed" Row="2" Column="2"></LayoutButtons>
     </CardLayouts>
     <RepairTime value="32.5"></RepairTime>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
@@ -10322,13 +10317,9 @@
     <CardLayouts index="0">
       <LayoutButtons index="6" Face="WarpinDisruptor" Column="3"></LayoutButtons>
       <LayoutButtons Face="Colossus" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train3" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="BuildReaverLocked" Type="Passive" Requirements="ArtanisLevel05" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="Immortal" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train4" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="WarpInWarPrism" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train30" Row="0" Column="3"></LayoutButtons>
-      <LayoutButtons Face="WarpPrism" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train1" Row="0" Column="3"></LayoutButtons>
-      <LayoutButtons Face="FenixWarpinDisruptorLocked" Type="Passive" Requirements="FenixLevel07" Row="0" Column="3"></LayoutButtons>
-      <LayoutButtons Face="TransformToRoboticsWarpFacilityLocked" Type="Passive" Requirements="ArtanisLevel08" Row="2" Column="0"></LayoutButtons>
-      <LayoutButtons Face="AlarakMasteryUnitAttackSpeed" Type="Passive" Requirements="HaveMasteryAlarakUnitAttackSpeed" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="Immortal" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train4" Row="0" Column="0"></LayoutButtons>
+
+      <LayoutButtons Face="Observer" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train2" Row="0" Column="2"></LayoutButtons>
     </CardLayouts>
     <Footprint value="Footprint3x3CreepNormalContour"></Footprint>
     <PlacementFootprint value="Footprint3x3CreepNormal"></PlacementFootprint>
@@ -10507,7 +10498,6 @@
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier"></EditorCategories>
     <HotkeyCategory value="Unit/Category/ProtossPurifier"></HotkeyCategory>
     <CardLayouts index="0">
-      <LayoutButtons Face="HaveFenixScoutWeaponRange" Type="Passive" Requirements="HaveFenixScoutWeaponRange" Row="2" Column="0"></LayoutButtons>
     </CardLayouts>
     <SubgroupPriority value="119"></SubgroupPriority>
   </CUnit>
@@ -12396,15 +12386,9 @@
     <Footprint value="Footprint3x3CreepNormalContour"></Footprint>
     <PlacementFootprint value="Footprint3x3CreepNormal"></PlacementFootprint>
     <CardLayouts index="0">
-      <LayoutButtons index="3" Face="VoidRay" AbilCmd="StargateTrain,Train5" Column="1"></LayoutButtons>
-      <LayoutButtons index="5" Face="Carrier" AbilCmd="StargateTrain,Train3"></LayoutButtons>
-      <LayoutButtons index="6" Face="Tempest" AbilCmd="StargateTrain,Train10"></LayoutButtons>
-      <LayoutButtons index="7" Face="Arbiter" AbilCmd="StargateTrain,Train12" Column="3"></LayoutButtons>
-      <LayoutButtons index="9" Column="2"></LayoutButtons>
-      <LayoutButtons Face="WarpInScout" Type="AbilCmd" AbilCmd="StargateTrain,Train6" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="BuildTempestLocked" Type="Passive" Requirements="ArtanisLevel11" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="CarrierTaldarimMothership" Type="AbilCmd" AbilCmd="StargateTrain,Train14" Row="0" Column="3"></LayoutButtons>
-      <LayoutButtons Face="TransformToStarWarpGateLocked" Type="Passive" Requirements="ArtanisLevel08" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Phoenix" Type="AbilCmd" AbilCmd="StargateTrain,Train1" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Carrier" Type="AbilCmd" AbilCmd="StargateTrain,Train3" Row="0" Column="2"></LayoutButtons>
+      <LayoutButtons Face="WarpInScout" Type="AbilCmd" AbilCmd="StargateTrain,Train6" Row="0" Column="1"></LayoutButtons>
     </CardLayouts>
     <CardLayouts index="1">
       <LayoutButtons index="0" removed="1"></LayoutButtons>
@@ -13810,19 +13794,10 @@
     <Attributes index="Mechanical" value="1"></Attributes>
     <ScoreKill value="0"></ScoreKill>
     <CardLayouts index="0">
-      <LayoutButtons index="0" Face="WarpInSupplicant" AbilCmd="WarpGateTrain,Train11"></LayoutButtons>
-      <LayoutButtons index="2" Face="WarpinAscendentLocked" Type="Passive" AbilCmd="" Requirements="AlarakLevel08"></LayoutButtons>
       <LayoutButtons index="8" AbilCmd="WarpGateTrain,Train4"></LayoutButtons>
-      <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="WarpGateTrain,Train1" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="HighTemplar" Type="AbilCmd" AbilCmd="WarpGateTrain,Train8" Row="1" Column="0"></LayoutButtons>
-      <LayoutButtons Face="Monitor" Type="AbilCmd" AbilCmd="WarpGateTrain,Train10" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="SentryFenix" Type="AbilCmd" AbilCmd="WarpGateTrain,Train15" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="DarkArchon" Type="AbilCmd" AbilCmd="WarpGateTrain,Train9" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="WarpInDarkArchonLocked" Type="Passive" Requirements="VorazunLevel05" Row="1" Column="2"></LayoutButtons>
-      <LayoutButtons Face="AlarakMasteryUnitAttackSpeed" Type="Passive" Requirements="HaveMasteryAlarakUnitAttackSpeed" Row="2" Column="2"></LayoutButtons>
-    </CardLayouts>
-    <CardLayouts CardId="0003">
-      <LayoutButtons Face="WarpInSupplicant" Type="AbilCmd" AbilCmd="WarpGateTrain,Train12" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="WarpGateTrain,Train1" Row="0" Column="0"></LayoutButtons>
+
+      <LayoutButtons Face="Sentry" Type="AbilCmd" AbilCmd="WarpGateTrain,Train6" Row="0" Column="1"></LayoutButtons>
     </CardLayouts>
     <RepairTime value="32.5"></RepairTime>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
@@ -14319,12 +14294,14 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <KillXP value="0"></KillXP>
+    <AbilArray Link="Charge"></AbilArray>
     <AbilArray Link="FenixKaldalisZealotMorph"></AbilArray>
     <BehaviorArray index="0" Link=""></BehaviorArray>
     <BehaviorArray index="1" Link="AllUnitBehaviorController"></BehaviorArray>
     <BehaviorArray index="2" Link="FenixSuppressAvengingProtocol"></BehaviorArray>
     <CardLayouts index="0">
       <LayoutButtons index="8" Requirements="ZealotPurifierReviveKaraxHide"></LayoutButtons>
+      <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="ReconstructionLocked" Type="Passive" Requirements="KaraxLevel04" Row="2" Column="1"></LayoutButtons>
     </CardLayouts>
     <ScoreMake value="0"></ScoreMake>
@@ -14358,4 +14335,46 @@
     <DeathTime value="0"></DeathTime>
     <DeadFootprint value=""></DeadFootprint>
   </CUnit>
+  <CUnit id="TwilightCouncil">
+
+    <Footprint value="Footprint3x3CreepNormalContour"></Footprint>
+
+    <PlacementFootprint value="Footprint3x3CreepNormal"></PlacementFootprint>
+
+    <CardLayouts index="0">
+
+      <LayoutButtons Face="ResearchCharge" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research1" Row="0" Column="0"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchReconstructionLocked" Type="Passive" Requirements="KaraxLevel04" Row="0" Column="1"></LayoutButtons>
+
+      <LayoutButtons Face="ZealotPurifierResearchReconstruction" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research10" Row="0" Column="1"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchKaraxEnergyRegenLocked" Type="Passive" Requirements="KaraxLevel04" Row="0" Column="2"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchKaraxEnergyRegenUpgrade" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research14" Row="0" Column="2"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchReclamationLocked" Type="Passive" Requirements="KaraxLevel04" Row="0" Column="3"></LayoutButtons>
+
+      <LayoutButtons Face="ResearchEnergizerReclamation" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research13" Row="0" Column="3"></LayoutButtons>
+
+    </CardLayouts>
+
+    <Attributes index="Mechanical" value="1"></Attributes>
+
+    <ScoreMake value="0"></ScoreMake>
+
+    <ScoreKill value="0"></ScoreKill>
+
+    <RepairTime value="25"></RepairTime>
+
+    <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
+
+    <SubgroupPriority value="30"></SubgroupPriority>
+
+    <AbilArray Link="BuildInProgress"></AbilArray>
+
+    <AbilArray Link="TwilightCouncilResearch"></AbilArray>
+
+  </CUnit>
+
 </Catalog>

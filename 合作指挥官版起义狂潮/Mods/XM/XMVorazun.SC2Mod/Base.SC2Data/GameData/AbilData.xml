@@ -2110,22 +2110,21 @@
     </InfoArray>
   </CAbilResearch>
   <CAbilTrain id="GatewayTrain">
-    <InfoArray index="Train9" Time="55">
+    <InfoArray index="Train1">
+      <Button DefaultButtonFace="Zealot" State="Restricted" />
+      <Unit value="Zealot" />
+    </InfoArray>
+    <InfoArray index="Train2">
+      <Button DefaultButtonFace="Stalker" State="Restricted" Requirements="HaveCyberneticsCore" />
+      <Unit value="Stalker" />
+    </InfoArray>
+    <InfoArray index="Train5">
+      <Button DefaultButtonFace="DarkTemplar" State="Restricted" Requirements="HaveDarkShrine" />
+      <Unit value="DarkTemplarShakuras" />
+    </InfoArray>
+    <InfoArray index="Train9">
       <Button DefaultButtonFace="DarkArchon" State="Restricted" Requirements="HaveDarkShrine" />
       <Unit value="DarkArchon" />
-    </InfoArray>
-    <InfoArray index="Train10" Time="37">
-      <Button DefaultButtonFace="Monitor" State="Restricted" Requirements="HaveCyberneticsCore" />
-      <Unit value="Monitor" />
-    </InfoArray>
-    <InfoArray index="Train11" Time="28">
-      <Button DefaultButtonFace="WarpInSupplicant" State="Restricted" />
-      <Unit value="Supplicant" />
-      <Unit value="Supplicant" />
-    </InfoArray>
-    <InfoArray index="Train15" Time="37">
-      <Button DefaultButtonFace="SentryFenix" State="Restricted" Requirements="HaveCyberneticsCore" />
-      <Unit value="SentryFenix" />
     </InfoArray>
   </CAbilTrain>
   <CAbilResearch id="GhostAcademyResearch">
@@ -4610,13 +4609,17 @@
     </InfoArray>
   </CAbilResearch>
   <CAbilTrain id="StargateTrain">
-    <InfoArray index="Train9" Time="30" />
-    <InfoArray index="Train12">
-      <Button Requirements="HaveFleetBeacon" />
+    <InfoArray index="Train5">
+      <Button DefaultButtonFace="VoidRay" State="Restricted" />
+      <Unit value="VoidRay" />
     </InfoArray>
-    <InfoArray index="Train14" Time="120" Effect="WarpInEffect">
-      <Button DefaultButtonFace="CarrierTaldarimMothership" State="Restricted" Requirements="TalDarimMothershipRequirements" />
-      <Unit value="SOAMothershipv4" />
+    <InfoArray index="Train9">
+      <Button DefaultButtonFace="Oracle" State="Restricted" />
+      <Unit value="Oracle" />
+    </InfoArray>
+    <InfoArray index="Train11">
+      <Button DefaultButtonFace="CorsairMP" State="Restricted" />
+      <Unit value="CorsairMP" />
     </InfoArray>
   </CAbilTrain>
   <CAbilWarpTrain id="StargateWarpTrain">
@@ -5429,6 +5432,15 @@
     <VitalStartFactor index="Shields" value="1" />
   </CAbilWarpable>
   <CAbilWarpTrain id="WarpGateTrain">
+    <InfoArray index="Train1" Unit="Zealot">
+      <Button DefaultButtonFace="Zealot" State="Restricted" />
+    </InfoArray>
+    <InfoArray index="Train2" Unit="Stalker">
+      <Button DefaultButtonFace="Stalker" State="Restricted" Requirements="HaveCyberneticsCore" />
+    </InfoArray>
+    <InfoArray index="Train5" Unit="DarkTemplarShakuras">
+      <Button DefaultButtonFace="DarkTemplar" State="Restricted" Requirements="HaveDarkShrine" />
+    </InfoArray>
     <InfoArray index="Train9" Time="5" Unit="DarkArchon">
       <Charge>
         <CountMax value="1" />
