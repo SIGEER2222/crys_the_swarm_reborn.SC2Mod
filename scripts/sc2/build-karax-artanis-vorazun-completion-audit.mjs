@@ -148,7 +148,61 @@ function extraRuntimeTopPanelFaces(expectedButtons, runtime, allowedFaces = new 
     .sort();
 }
 
+function productionCandidateIds(report, runtimeUnitIds) {
+  const matchedRuntimeIds = auditReportIds(report, 'unit')
+    .filter((id) => runtimeUnitIds.has(id));
+  return matchedRuntimeIds.length
+    ? unique(matchedRuntimeIds)
+    : unique([report.unit, ...(report.resolved_unit_ids || [])]);
+}
+
+function runtimeBuildingPanelProducedUnitEvidence(runtime) {
+  const evidence = new Map();
+  for (const building of runtime.buildings || []) {
+    const buildingId = building.unit_id || building.id || '';
+    for (const produced of building.produced_units || []) {
+      const unitId = produced.unit_id || produced.unit || '';
+      if (!unitId) continue;
+      if (!evidence.has(unitId)) {
+        evidence.set(unitId, []);
+      }
+      evidence.get(unitId).push({
+        building: buildingId,
+        source: produced.source || '',
+        abil_cmd: produced.abil_cmd || '',
+      });
+    }
+  }
+  return evidence;
+}
+
+function missingBuildingPanelProducedUnits(unitReports, producedEvidence, runtimeUnitIds) {
+  return unitReports
+    .map((report) => {
+      const candidateIds = productionCandidateIds(report, runtimeUnitIds);
+      return {
+        id: report.unit,
+        candidate_ids: candidateIds,
+        matched_produced_ids: candidateIds.filter((id) => producedEvidence.has(id)),
+      };
+    })
+    .filter((item) => !item.matched_produced_ids.length);
+}
+
+function extraBuildingPanelProducedUnits(unitReports, producedEvidence, runtimeUnitIds) {
+  const expectedIds = new Set(unitReports.flatMap((report) => productionCandidateIds(report, runtimeUnitIds)));
+  return [...producedEvidence.keys()]
+    .filter((id) => !expectedIds.has(id))
+    .sort();
+}
+
 function formatRuntimeMissing(missing) {
+  return missing.length
+    ? missing.map((item) => `${item.id}:${item.candidate_ids.join('/')}`).join('; ')
+    : '0';
+}
+
+function formatProducedMissing(missing) {
   return missing.length
     ? missing.map((item) => `${item.id}:${item.candidate_ids.join('/')}`).join('; ')
     : '0';
@@ -178,6 +232,11 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
   const runtimeUnits = runtime.units || [];
   const runtimeBuildings = runtime.buildings || [];
   const missingRuntimeUnits = missingRuntimeEntries(unitReports, runtimeUnits, 'unit');
+  const runtimeUnitIds = new Set(runtimeUnits.flatMap(runtimeEntryIds));
+  const producedUnitEvidence = runtimeBuildingPanelProducedUnitEvidence(runtime);
+  const buildingPanelProducedUnitIds = [...producedUnitEvidence.keys()].sort();
+  const missingBuildingPanelUnits = missingBuildingPanelProducedUnits(unitReports, producedUnitEvidence, runtimeUnitIds);
+  const extraBuildingPanelUnits = extraBuildingPanelProducedUnits(unitReports, producedUnitEvidence, runtimeUnitIds);
   const missingRuntimeBuildings = missingRuntimeEntries(buildingReports, runtimeBuildings, 'building');
   const extraRuntimeBuildings = extraRuntimeEntries(
     buildingReports,
@@ -239,6 +298,18 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
       '字段级单位口径均能映射到当前 Mod 运行名册单位',
       missingRuntimeUnits.length === 0,
       `runtime_units=${runtimeUnits.length}, missing=${formatRuntimeMissing(missingRuntimeUnits)}`,
+    ),
+    check(
+      'current-mod-building-panel-produced-unit-coverage',
+      '当前 Mod 建筑面板可追踪生产/变形目标覆盖字段级单位口径',
+      missingBuildingPanelUnits.length === 0,
+      `produced_unit_ids=${buildingPanelProducedUnitIds.join('/') || 0}, missing=${formatProducedMissing(missingBuildingPanelUnits)}`,
+    ),
+    check(
+      'current-mod-building-panel-extra-produced-units',
+      '当前 Mod 建筑面板未暴露未解释的额外生产/变形单位',
+      extraBuildingPanelUnits.length === 0,
+      `extra=${extraBuildingPanelUnits.join('/') || 0}`,
     ),
     check(
       'unit-skill-hard-issues',
@@ -334,6 +405,10 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     runtime_unit_count: runtimeUnits.length,
     runtime_building_count: runtimeBuildings.length,
     runtime_top_panel_face_count: runtimeTopFaces.length,
+    runtime_building_panel_produced_unit_count: buildingPanelProducedUnitIds.length,
+    runtime_building_panel_produced_unit_ids: buildingPanelProducedUnitIds,
+    runtime_building_panel_missing_units: missingBuildingPanelUnits,
+    runtime_building_panel_extra_produced_units: extraBuildingPanelUnits,
     online_added_unit_count: field.online_added_unit_count || 0,
     online_added_building_count: field.online_added_building_count || 0,
     online_primary_unit_count: field.online_primary_unit_count || 0,
@@ -382,6 +457,7 @@ function writeMarkdown(report) {
     lines.push(`- 建筑口径：${commander.building_count}（官方 JSON ${commander.official_building_count}，在线补充 ${commander.online_added_building_count}）`);
     lines.push(`- 在线主建筑：${commander.online_primary_structure_count}，supplemental 建筑：${commander.supplemental_building_count}`);
     lines.push(`- 当前 Mod 运行名册：单位 ${commander.runtime_unit_count}，建筑 ${commander.runtime_building_count}，顶部面板 face ${commander.runtime_top_panel_face_count}`);
+    lines.push(`- 当前 Mod 建筑面板可追踪生产/变形目标：${commander.runtime_building_panel_produced_unit_count}（${commander.runtime_building_panel_produced_unit_ids.join('、') || '无'}）`);
     lines.push(`- 单位：${commander.unit_ids.join('、')}`);
     lines.push(`- 建筑：${commander.building_ids.join('、')}`);
     lines.push(`- 顶部面板：${commander.top_panel_faces.join('、')}`);

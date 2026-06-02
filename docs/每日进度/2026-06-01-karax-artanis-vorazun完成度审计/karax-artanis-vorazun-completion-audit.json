@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T02:49:40.854Z",
+  "generated_at": "2026-06-02T03:02:58.750Z",
   "commanders": [
     {
       "commander": "Karax",
@@ -15,6 +15,77 @@
       "runtime_unit_count": 8,
       "runtime_building_count": 6,
       "runtime_top_panel_face_count": 12,
+      "runtime_building_panel_produced_unit_count": 4,
+      "runtime_building_panel_produced_unit_ids": [
+        "DarkArchon",
+        "Monitor",
+        "SentryFenix",
+        "Supplicant"
+      ],
+      "runtime_building_panel_missing_units": [
+        {
+          "id": "ImmortalAiur",
+          "candidate_ids": [
+            "ImmortalAiur"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Observer",
+          "candidate_ids": [
+            "Observer"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "PhoenixPurifier",
+          "candidate_ids": [
+            "PhoenixPurifier"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Scout",
+          "candidate_ids": [
+            "Scout"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "SentryPurifier",
+          "candidate_ids": [
+            "SentryPurifier"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "ZealotPurifier",
+          "candidate_ids": [
+            "ZealotPurifier"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Colossus",
+          "candidate_ids": [
+            "Colossus"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Carrier",
+          "candidate_ids": [
+            "Carrier"
+          ],
+          "matched_produced_ids": []
+        }
+      ],
+      "runtime_building_panel_extra_produced_units": [
+        "DarkArchon",
+        "Monitor",
+        "SentryFenix",
+        "Supplicant"
+      ],
       "online_added_unit_count": 4,
       "online_added_building_count": 3,
       "online_primary_unit_count": 6,
@@ -101,6 +172,20 @@
           "status": "PASS",
           "ok": true,
           "evidence": "runtime_units=8, missing=0"
+        },
+        {
+          "id": "current-mod-building-panel-produced-unit-coverage",
+          "description": "当前 Mod 建筑面板可追踪生产/变形目标覆盖字段级单位口径",
+          "status": "FAIL",
+          "ok": false,
+          "evidence": "produced_unit_ids=DarkArchon/Monitor/SentryFenix/Supplicant, missing=ImmortalAiur:ImmortalAiur; Observer:Observer; PhoenixPurifier:PhoenixPurifier; Scout:Scout; SentryPurifier:SentryPurifier; ZealotPurifier:ZealotPurifier; Colossus:Colossus; Carrier:Carrier"
+        },
+        {
+          "id": "current-mod-building-panel-extra-produced-units",
+          "description": "当前 Mod 建筑面板未暴露未解释的额外生产/变形单位",
+          "status": "FAIL",
+          "ok": false,
+          "evidence": "extra=DarkArchon/Monitor/SentryFenix/Supplicant"
         },
         {
           "id": "unit-skill-hard-issues",
@@ -194,7 +279,7 @@
           "evidence": "extra=0, allowed=CancelBuilding/CommanderPrestigeKaraxChronoFieldLocked/CommanderPrestigeKaraxChronoWaveLocked/PurifierBeamLocked/ReconstructionBeamLocked/SOAChronoPassive/SOAChronoPassiveLocked/SOARepairBeam"
         }
       ],
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "commander": "Artanis",
@@ -210,6 +295,84 @@
       "runtime_unit_count": 9,
       "runtime_building_count": 5,
       "runtime_top_panel_face_count": 11,
+      "runtime_building_panel_produced_unit_count": 4,
+      "runtime_building_panel_produced_unit_ids": [
+        "DarkArchon",
+        "Monitor",
+        "SentryFenix",
+        "Supplicant"
+      ],
+      "runtime_building_panel_missing_units": [
+        {
+          "id": "Archon",
+          "candidate_ids": [
+            "Archon"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "ImmortalAiur",
+          "candidate_ids": [
+            "ImmortalAiur"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Observer",
+          "candidate_ids": [
+            "Observer"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "PhoenixAiur",
+          "candidate_ids": [
+            "PhoenixAiur"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "StalkerAiur",
+          "candidate_ids": [
+            "Dragoon"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Zealot",
+          "candidate_ids": [
+            "Zealot"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "HighTemplar",
+          "candidate_ids": [
+            "HighTemplar"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Tempest",
+          "candidate_ids": [
+            "Tempest"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Reaver",
+          "candidate_ids": [
+            "Reaver"
+          ],
+          "matched_produced_ids": []
+        }
+      ],
+      "runtime_building_panel_extra_produced_units": [
+        "DarkArchon",
+        "Monitor",
+        "SentryFenix",
+        "Supplicant"
+      ],
       "online_added_unit_count": 4,
       "online_added_building_count": 0,
       "online_primary_unit_count": 8,
@@ -296,6 +459,20 @@
           "status": "PASS",
           "ok": true,
           "evidence": "runtime_units=9, missing=0"
+        },
+        {
+          "id": "current-mod-building-panel-produced-unit-coverage",
+          "description": "当前 Mod 建筑面板可追踪生产/变形目标覆盖字段级单位口径",
+          "status": "FAIL",
+          "ok": false,
+          "evidence": "produced_unit_ids=DarkArchon/Monitor/SentryFenix/Supplicant, missing=Archon:Archon; ImmortalAiur:ImmortalAiur; Observer:Observer; PhoenixAiur:PhoenixAiur; StalkerAiur:Dragoon; Zealot:Zealot; HighTemplar:HighTemplar; Tempest:Tempest; Reaver:Reaver"
+        },
+        {
+          "id": "current-mod-building-panel-extra-produced-units",
+          "description": "当前 Mod 建筑面板未暴露未解释的额外生产/变形单位",
+          "status": "FAIL",
+          "ok": false,
+          "evidence": "extra=DarkArchon/Monitor/SentryFenix/Supplicant"
         },
         {
           "id": "unit-skill-hard-issues",
@@ -389,7 +566,7 @@
           "evidence": "extra=0, allowed=CancelBuilding/CommanderPrestigeArtanisGuardianShellLocked/SOAHeroicShield/SOAHeroicShieldLocked/SOAStrafeAttackLocked/SOAWarpTech/WarpHarmonizationLocked"
         }
       ],
-      "status": "PASS"
+      "status": "FAIL"
     },
     {
       "commander": "Vorazun",
@@ -405,6 +582,70 @@
       "runtime_unit_count": 8,
       "runtime_building_count": 4,
       "runtime_top_panel_face_count": 10,
+      "runtime_building_panel_produced_unit_count": 4,
+      "runtime_building_panel_produced_unit_ids": [
+        "DarkArchon",
+        "Monitor",
+        "SentryFenix",
+        "Supplicant"
+      ],
+      "runtime_building_panel_missing_units": [
+        {
+          "id": "DarkTemplarShakuras",
+          "candidate_ids": [
+            "DarkTemplarShakuras"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Oracle",
+          "candidate_ids": [
+            "Oracle"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "PhoenixShakuras",
+          "candidate_ids": [
+            "CorsairMP"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Zealot",
+          "candidate_ids": [
+            "Zealot"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "ZealotShakuras",
+          "candidate_ids": [
+            "ZealotShakuras",
+            "Zealot"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "Stalker",
+          "candidate_ids": [
+            "Stalker"
+          ],
+          "matched_produced_ids": []
+        },
+        {
+          "id": "VoidRay",
+          "candidate_ids": [
+            "VoidRay"
+          ],
+          "matched_produced_ids": []
+        }
+      ],
+      "runtime_building_panel_extra_produced_units": [
+        "Monitor",
+        "SentryFenix",
+        "Supplicant"
+      ],
       "online_added_unit_count": 7,
       "online_added_building_count": 0,
       "online_primary_unit_count": 7,
@@ -489,6 +730,20 @@
           "status": "PASS",
           "ok": true,
           "evidence": "runtime_units=8, missing=0"
+        },
+        {
+          "id": "current-mod-building-panel-produced-unit-coverage",
+          "description": "当前 Mod 建筑面板可追踪生产/变形目标覆盖字段级单位口径",
+          "status": "FAIL",
+          "ok": false,
+          "evidence": "produced_unit_ids=DarkArchon/Monitor/SentryFenix/Supplicant, missing=DarkTemplarShakuras:DarkTemplarShakuras; Oracle:Oracle; PhoenixShakuras:CorsairMP; Zealot:Zealot; ZealotShakuras:ZealotShakuras/Zealot; Stalker:Stalker; VoidRay:VoidRay"
+        },
+        {
+          "id": "current-mod-building-panel-extra-produced-units",
+          "description": "当前 Mod 建筑面板未暴露未解释的额外生产/变形单位",
+          "status": "FAIL",
+          "ok": false,
+          "evidence": "extra=Monitor/SentryFenix/Supplicant"
         },
         {
           "id": "unit-skill-hard-issues",
@@ -582,8 +837,8 @@
           "evidence": "extra=0, allowed=CancelBuilding/RecallonDeathPassiveLocked/SOAStrikefromtheShadows/SOATimeStopLocked/StrikefromtheShadowsLocked"
         }
       ],
-      "status": "PASS"
+      "status": "FAIL"
     }
   ],
-  "status": "PASS"
+  "status": "FAIL"
 }
