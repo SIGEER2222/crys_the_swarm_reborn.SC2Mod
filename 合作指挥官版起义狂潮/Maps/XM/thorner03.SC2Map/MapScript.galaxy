@@ -17,31 +17,6 @@ include "LibE0EAE146"
 //--------------------------------------------------------------------------------------------------
 // Library Initialization
 //--------------------------------------------------------------------------------------------------
-void gt_Thorner03_LogCreatedUnitGroup (string lp_label, unitgroup lp_group) {
-    int lv_count;
-    int lv_index;
-    unit lv_unit;
-    string lv_types;
-    string lv_type;
-
-    lv_count = UnitGroupCount(lp_group, c_unitCountAll);
-    lv_types = "";
-    for (lv_index = 1; lv_index <= lv_count; lv_index += 1) {
-        lv_unit = UnitGroupUnit(lp_group, lv_index);
-        if (lv_unit == null) {
-            continue;
-        }
-        lv_type = UnitGetType(lv_unit);
-        if (lv_types == "") {
-            lv_types = lv_type;
-        }
-        else {
-            lv_types = lv_types + "," + lv_type;
-        }
-    }
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_SPAWN", lp_label + " count=" + IntToString(lv_count) + " actualUnitTypes=" + lv_types);
-}
-
 void InitLibs () {
     libNtve_InitLib();
     libLbty_InitLib();
@@ -397,21 +372,16 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INIT", "phase=enter");
     PlayerModifyPropertyInt(gv_p01_USER, c_playerPropMinerals, c_playerPropOperSetTo, 300);
     PlayerModifyPropertyInt(gv_p01_USER, c_playerPropVespene, c_playerPropOperSetTo, 250);
     libE0EAE146_gf_Initialize(false);
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INIT", "phase=after_initialize commander=" + libE0EAE146_gv_commander);
     TriggerExecute(gt_Init01Technology, true, true);
     TriggerExecute(gt_Init02Players, true, true);
     TriggerExecute(gt_Init03Units, true, true);
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INIT", "phase=after_init03 commander=" + libE0EAE146_gv_commander);
     TriggerExecute(gt_Init04Music, true, true);
     TriggerExecute(gt_Init05Environment, true, true);
     TriggerExecute(gt_Init06Difficulty, true, true);
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INIT", "phase=before_intro commander=" + libE0EAE146_gv_commander);
     TriggerExecute(gt_IntroSequence, true, false);
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INIT", "phase=exit commander=" + libE0EAE146_gv_commander);
     return true;
 }
 
@@ -672,7 +642,6 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
     lib67C0F0E7_gf_ObjectiveNew(false, StringExternal("Param/Value/5F775286"), 1, true, 0, 3);
     lib67C0F0E7_gf_ObjectiveNew(false, StringExternal("Param/Value/6AFB51F6"), 2, false, 0, 3);
     auto06F49FBE_val = libE0EAE146_gv_commander;
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INTRO", "phase=enter commander=" + auto06F49FBE_val);
     if (auto06F49FBE_val == "Stukov") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestedBunkerNeutUprooted", 0, 1, UnitGetPosition(UnitFromId(4)));
         UnitCargoCreate(UnitLastCreated(), "SIInfestedTrooper", 6);
@@ -694,29 +663,6 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         }
 
     }
-    else if (auto06F49FBE_val == "Alarak") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "AlarakCoop", 0, 1, UnitGetPosition(UnitFromId(4)));
-        libE0EAE146_gf_AlarakCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
-    else if (auto06F49FBE_val == "Kerrigan") {
-        // thorner03 only: spawn a Kerrigan test roster without touching shared commander start squads.
-        point lv_kerriganStartPoint;
-        libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INTRO", "phase=kerrigan_spawn_begin commander=" + auto06F49FBE_val);
-        lv_kerriganStartPoint = UnitGetPosition(UnitFromId(4));
-        libE0EAE146_gf_KerriganCreateMapStartSquad("hero", 1, lv_kerriganStartPoint);
-        gt_Thorner03_LogCreatedUnitGroup("Kerrigan.hero", UnitLastCreatedGroup());
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HydraliskLurker", 0, 1, lv_kerriganStartPoint);
-        gt_Thorner03_LogCreatedUnitGroup("Kerrigan.extra.HydraliskLurker", UnitLastCreatedGroup());
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "TorrasqueChrysalis", 0, 1, lv_kerriganStartPoint);
-        gt_Thorner03_LogCreatedUnitGroup("Kerrigan.extra.TorrasqueChrysalis", UnitLastCreatedGroup());
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "HotSTorrasque", 0, 1, lv_kerriganStartPoint);
-        gt_Thorner03_LogCreatedUnitGroup("Kerrigan.extra.HotSTorrasque", UnitLastCreatedGroup());
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "Mutalisk", 0, 1, lv_kerriganStartPoint);
-        gt_Thorner03_LogCreatedUnitGroup("Kerrigan.extra.Mutalisk", UnitLastCreatedGroup());
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLord", 0, 1, lv_kerriganStartPoint);
-        gt_Thorner03_LogCreatedUnitGroup("Kerrigan.extra.BroodLord", UnitLastCreatedGroup());
-        libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INTRO", "phase=kerrigan_spawn_end commander=" + auto06F49FBE_val);
-    }
     else if (auto06F49FBE_val == "Nova") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "NovaCoop", 0, 1, UnitGetPosition(UnitFromId(4)));
         lib0940FFB7_gf_NovaTrigger(UnitLastCreated());
@@ -729,37 +675,11 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "PredatorSwann", 0, 1, UnitGetPosition(UnitFromId(4)));
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "MicrobotSwann", 0, 1, UnitGetPosition(UnitFromId(4)));
     }
-    else if ((auto06F49FBE_val == "Abathur") || (auto06F49FBE_val == "AbathurReborn")) {
-        libE0EAE146_gf_AbathurCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
-    else if (auto06F49FBE_val == "Raynor") {
-        libE0EAE146_gf_RaynorCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
-    else if (auto06F49FBE_val == "Zagara") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZagaraVoidCoop", 0, 1, UnitGetPosition(UnitFromId(4)));
-        libE0EAE146_gf_ZagaraCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
-    else if (auto06F49FBE_val == "Fenix") {
-        libE0EAE146_gf_FenixCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
-    else if (auto06F49FBE_val == "Artanis") {
-        libE0EAE146_gf_ArtanisCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
-    else if (auto06F49FBE_val == "Vorazun") {
-        libE0EAE146_gf_VorazunCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
-    else if (auto06F49FBE_val == "Karax") {
-        libE0EAE146_gf_KaraxCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
-    else if (auto06F49FBE_val == "Zeratul") {
-        libE0EAE146_gf_ZeratulCreateMapStartSquad("hero", 1, UnitGetPosition(UnitFromId(4)));
-    }
     else if (auto06F49FBE_val == "Stetmann") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "GaryStetmann", 0, 1, UnitGetPosition(UnitFromId(4)));
     }
     else {
     }
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_INTRO", "phase=exit commander=" + auto06F49FBE_val);
     CinematicFade(false, 0.0, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, false);
     libNtve_gf_CinematicMode(true, PlayerGroupAll(), 0.0);
     libNtve_gf_GlobalCinematicSetting(true);
@@ -4234,9 +4154,7 @@ bool gt_MidSetup_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_MIDSETUP", "phase=enter commander=" + libE0EAE146_gv_commander);
-    libE0EAE146_gf_InitializeBase(PointFromId(75), 7, null, true);
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_MIDSETUP", "phase=after_initialize_base commander=" + libE0EAE146_gv_commander);
+    libE0EAE146_gf_InitializeBase(PointFromId(75), 7, null, false);
     gv_inCinematic = true;
     CinematicFade(false, 1.0, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, false);
     UISetMode(PlayerGroupAll(), c_uiModeFullscreen, 1.0);
@@ -4261,7 +4179,6 @@ bool gt_MidSetup_Func (bool testConds, bool runActions) {
     libNtve_gf_PauseUnit(UnitFromId(4), false);
     libNtve_gf_MakeUnitInvulnerable(UnitFromId(341), false);
     libNtve_gf_ChangeUnitDamage(UnitFromId(341), libNtve_ge_UnitDamageTakenDealt_Damage_Take, libNtve_ge_UnitDamageChangeOption_No);
-    libE0EAE146_gf_XMDbgLog("INFO", "THORNER03_MIDSETUP", "phase=exit commander=" + libE0EAE146_gv_commander);
     return true;
 }
 

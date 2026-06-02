@@ -1708,21 +1708,21 @@ bool gt_ReinforcementBehavior_Func (bool testConds, bool runActions) {
         UnitIssueOrder(EventUnitProgressUnit(), OrderTargetingPoint(AbilityCommand("attack", 0), PointFromId(56380697)), c_orderQueueReplace);
     }
 
-    if (((UnitGetType(EventUnitProgressUnit()) == "ZeratulSummonZealot") || (UnitGetType(EventUnitProgressUnit()) == "Carrier"))) {
+    if (((UnitGetType(EventUnitProgressUnit()) == "Zealot") || (UnitGetType(EventUnitProgressUnit()) == "Carrier"))) {
         UnitSetOwner(EventUnitProgressUnit(), gv_p3_ARTANIS, false);
         UnitSetTeamColorIndex(EventUnitProgressUnit(), 7);
         UnitSetState(EventUnitProgressUnit(), c_unitStateUsingSupply, false);
         UnitIssueOrder(EventUnitProgressUnit(), OrderTargetingPoint(AbilityCommand("attack", 0), PointFromId(56380697)), c_orderQueueReplace);
     }
 
-    if (((UnitGetType(EventUnitProgressUnit()) == "ZeratulStalker") || (UnitGetType(EventUnitProgressUnit()) == "VoidRay"))) {
+    if (((UnitGetType(EventUnitProgressUnit()) == "Stalker") || (UnitGetType(EventUnitProgressUnit()) == "VoidRay"))) {
         UnitSetOwner(EventUnitProgressUnit(), gv_p3_ARTANIS, false);
         UnitSetTeamColorIndex(EventUnitProgressUnit(), 7);
         UnitSetState(EventUnitProgressUnit(), c_unitStateUsingSupply, false);
         UnitIssueOrder(EventUnitProgressUnit(), OrderTargetingPoint(AbilityCommand("attack", 0), PointFromId(1722689501)), c_orderQueueReplace);
     }
 
-    if (((UnitGetType(EventUnitProgressUnit()) == "ZeratulImmortal") || (UnitGetType(EventUnitProgressUnit()) == "Phoenix"))) {
+    if (((UnitGetType(EventUnitProgressUnit()) == "Immortal") || (UnitGetType(EventUnitProgressUnit()) == "Phoenix"))) {
         UnitSetOwner(EventUnitProgressUnit(), gv_p3_ARTANIS, false);
         UnitSetTeamColorIndex(EventUnitProgressUnit(), 7);
         UnitSetState(EventUnitProgressUnit(), c_unitStateUsingSupply, false);
@@ -3632,98 +3632,98 @@ bool gt_BriefingScene00_Func (bool testConds, bool runActions) {
     libNtve_gf_SetAlliance(gv_p01_PLAYER, gv_p05_ZERG_NE, libNtve_ge_AllianceSetting_AllyWithSharedVision);
     lv_i = 1;
     for ( ; ( (autoBB1C8C2F_ai >= 0 && lv_i <= autoBB1C8C2F_ae) || (autoBB1C8C2F_ai < 0 && lv_i >= autoBB1C8C2F_ae) ) ; lv_i += autoBB1C8C2F_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(156), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(156), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto7ADDB744_ai >= 0 && lv_i <= auto7ADDB744_ae) || (auto7ADDB744_ai < 0 && lv_i >= auto7ADDB744_ae) ) ; lv_i += auto7ADDB744_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), 2.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), 2.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto91B88097_ai >= 0 && lv_i <= auto91B88097_ae) || (auto91B88097_ai < 0 && lv_i >= auto91B88097_ae) ) ; lv_i += auto91B88097_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), 4.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), 4.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto7D942836_ai >= 0 && lv_i <= auto7D942836_ae) || (auto7D942836_ai < 0 && lv_i >= auto7D942836_ae) ) ; lv_i += auto7D942836_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), 6.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), 6.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto600C0ABB_ai >= 0 && lv_i <= auto600C0ABB_ae) || (auto600C0ABB_ai < 0 && lv_i >= auto600C0ABB_ae) ) ; lv_i += auto600C0ABB_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), -2.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), -2.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto253E4128_ai >= 0 && lv_i <= auto253E4128_ae) || (auto253E4128_ai < 0 && lv_i >= auto253E4128_ae) ) ; lv_i += auto253E4128_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), -4.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), -4.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (autoC57E9366_ai >= 0 && lv_i <= autoC57E9366_ae) || (autoC57E9366_ai < 0 && lv_i >= autoC57E9366_ae) ) ; lv_i += autoC57E9366_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), -6.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointWithOffsetPolar(PointFromId(156), -6.0, PointGetFacing(PointFromId(370))), ((IntToFixed(lv_i) * 2.0) - 10.0), (PointGetFacing(PointFromId(156)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto869B007E_ai >= 0 && lv_i <= auto869B007E_ae) || (auto869B007E_ai < 0 && lv_i >= auto869B007E_ae) ) ; lv_i += auto869B007E_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1470), ((IntToFixed(lv_i) * 2.0) - 6.0), (PointGetFacing(PointFromId(1470)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1470), ((IntToFixed(lv_i) * 2.0) - 6.0), (PointGetFacing(PointFromId(1470)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (autoE33B3400_ai >= 0 && lv_i <= autoE33B3400_ae) || (autoE33B3400_ai < 0 && lv_i >= autoE33B3400_ae) ) ; lv_i += autoE33B3400_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1495), ((IntToFixed(lv_i) * 2.0) - 6.0), (PointGetFacing(PointFromId(1495)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1495), ((IntToFixed(lv_i) * 2.0) - 6.0), (PointGetFacing(PointFromId(1495)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto7961FB29_ai >= 0 && lv_i <= auto7961FB29_ae) || (auto7961FB29_ai < 0 && lv_i >= auto7961FB29_ae) ) ; lv_i += auto7961FB29_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1496), ((IntToFixed(lv_i) * 2.0) - 6.0), (PointGetFacing(PointFromId(1496)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1496), ((IntToFixed(lv_i) * 2.0) - 6.0), (PointGetFacing(PointFromId(1496)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (autoCE950DAC_ai >= 0 && lv_i <= autoCE950DAC_ae) || (autoCE950DAC_ai < 0 && lv_i >= autoCE950DAC_ae) ) ; lv_i += autoCE950DAC_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonZealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1521), ((IntToFixed(lv_i) * 2.0) - 6.0), (PointGetFacing(PointFromId(1521)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Zealot", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1521), ((IntToFixed(lv_i) * 2.0) - 6.0), (PointGetFacing(PointFromId(1521)) - 90.0)), PointFromId(370));
     }
     TriggerExecute(gt_BriefingZealotAnimations, true, false);
     lv_i = 1;
     for ( ; ( (auto63EBA02A_ai >= 0 && lv_i <= auto63EBA02A_ae) || (auto63EBA02A_ai < 0 && lv_i >= auto63EBA02A_ae) ) ; lv_i += auto63EBA02A_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulStalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(229), ((IntToFixed(lv_i) * 2.5) - 7.5), (PointGetFacing(PointFromId(229)) - 0.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Stalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(229), ((IntToFixed(lv_i) * 2.5) - 7.5), (PointGetFacing(PointFromId(229)) - 0.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (autoCAC63A47_ai >= 0 && lv_i <= autoCAC63A47_ae) || (autoCAC63A47_ai < 0 && lv_i >= autoCAC63A47_ae) ) ; lv_i += autoCAC63A47_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulStalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(576), ((IntToFixed(lv_i) * 2.5) - 7.5), (PointGetFacing(PointFromId(576)) - 0.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Stalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(576), ((IntToFixed(lv_i) * 2.5) - 7.5), (PointGetFacing(PointFromId(576)) - 0.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto4BA3BC52_ai >= 0 && lv_i <= auto4BA3BC52_ae) || (auto4BA3BC52_ai < 0 && lv_i >= auto4BA3BC52_ae) ) ; lv_i += auto4BA3BC52_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulStalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1522), ((IntToFixed(lv_i) * 2.5) - 5.0), (PointGetFacing(PointFromId(1522)) - 0.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Stalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1522), ((IntToFixed(lv_i) * 2.5) - 5.0), (PointGetFacing(PointFromId(1522)) - 0.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto13A3CACE_ai >= 0 && lv_i <= auto13A3CACE_ae) || (auto13A3CACE_ai < 0 && lv_i >= auto13A3CACE_ae) ) ; lv_i += auto13A3CACE_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulStalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1523), ((IntToFixed(lv_i) * 2.5) - 5.0), (PointGetFacing(PointFromId(1523)) - 0.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Stalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1523), ((IntToFixed(lv_i) * 2.5) - 5.0), (PointGetFacing(PointFromId(1523)) - 0.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto53AD8F9B_ai >= 0 && lv_i <= auto53AD8F9B_ae) || (auto53AD8F9B_ai < 0 && lv_i >= auto53AD8F9B_ae) ) ; lv_i += auto53AD8F9B_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulStalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1524), ((IntToFixed(lv_i) * 2.5) - 5.0), (PointGetFacing(PointFromId(1524)) - 0.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Stalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1524), ((IntToFixed(lv_i) * 2.5) - 5.0), (PointGetFacing(PointFromId(1524)) - 0.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto657BB555_ai >= 0 && lv_i <= auto657BB555_ae) || (auto657BB555_ai < 0 && lv_i >= auto657BB555_ae) ) ; lv_i += auto657BB555_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulStalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1525), ((IntToFixed(lv_i) * 2.5) - 5.0), (PointGetFacing(PointFromId(1525)) - 0.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Stalker", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1525), ((IntToFixed(lv_i) * 2.5) - 5.0), (PointGetFacing(PointFromId(1525)) - 0.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (autoED8E5CF8_ai >= 0 && lv_i <= autoED8E5CF8_ae) || (autoED8E5CF8_ai < 0 && lv_i >= autoED8E5CF8_ae) ) ; lv_i += autoED8E5CF8_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulImmortal", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(579), 2.5, ((IntToFixed(lv_i) * 120.0) - 75.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Immortal", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(579), 2.5, ((IntToFixed(lv_i) * 120.0) - 75.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (autoD34478E9_ai >= 0 && lv_i <= autoD34478E9_ae) || (autoD34478E9_ai < 0 && lv_i >= autoD34478E9_ae) ) ; lv_i += autoD34478E9_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulImmortal", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(582), 2.5, ((IntToFixed(lv_i) * 120.0) - 10.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "Immortal", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(582), 2.5, ((IntToFixed(lv_i) * 120.0) - 10.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto550C05B1_ai >= 0 && lv_i <= auto550C05B1_ae) || (auto550C05B1_ai < 0 && lv_i >= auto550C05B1_ae) ) ; lv_i += auto550C05B1_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonKarass", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(853), ((IntToFixed(lv_i) * 1.5) - 2.25), (PointGetFacing(PointFromId(853)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "HighTemplar", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(853), ((IntToFixed(lv_i) * 1.5) - 2.25), (PointGetFacing(PointFromId(853)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto8C8D7E4C_ai >= 0 && lv_i <= auto8C8D7E4C_ae) || (auto8C8D7E4C_ai < 0 && lv_i >= auto8C8D7E4C_ae) ) ; lv_i += auto8C8D7E4C_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonKarass", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1466), ((IntToFixed(lv_i) * 1.5) - 2.25), (PointGetFacing(PointFromId(1466)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "HighTemplar", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1466), ((IntToFixed(lv_i) * 1.5) - 2.25), (PointGetFacing(PointFromId(1466)) - 90.0)), PointFromId(370));
     }
     lv_i = 1;
     for ( ; ( (auto1D00FB1C_ai >= 0 && lv_i <= auto1D00FB1C_ae) || (auto1D00FB1C_ai < 0 && lv_i >= auto1D00FB1C_ae) ) ; lv_i += auto1D00FB1C_ai ) {
-        libNtve_gf_UnitCreateFacingPoint(1, "ZeratulSummonKarass", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1467), ((IntToFixed(lv_i) * 1.5) - 2.25), (PointGetFacing(PointFromId(1467)) - 90.0)), PointFromId(370));
+        libNtve_gf_UnitCreateFacingPoint(1, "HighTemplar", 0, gv_p01_PLAYER, PointWithOffsetPolar(PointFromId(1467), ((IntToFixed(lv_i) * 1.5) - 2.25), (PointGetFacing(PointFromId(1467)) - 90.0)), PointFromId(370));
     }
-    libNtve_gf_UnitCreateFacingPoint(1, "ZeratulDisruptor", 0, gv_p01_PLAYER, PointFromId(580), PointFromId(370));
-    libNtve_gf_UnitCreateFacingPoint(1, "ZeratulDisruptor", 0, gv_p01_PLAYER, PointFromId(1468), PointFromId(370));
-    libNtve_gf_UnitCreateFacingPoint(1, "ZeratulDisruptor", 0, gv_p01_PLAYER, PointFromId(581), PointFromId(370));
-    libNtve_gf_UnitCreateFacingPoint(1, "ZeratulDisruptor", 0, gv_p01_PLAYER, PointFromId(1526), PointFromId(370));
-    libNtve_gf_UnitCreateFacingPoint(1, "ZeratulDisruptor", 0, gv_p01_PLAYER, PointFromId(832), PointFromId(370));
+    libNtve_gf_UnitCreateFacingPoint(1, "Colossus", 0, gv_p01_PLAYER, PointFromId(580), PointFromId(370));
+    libNtve_gf_UnitCreateFacingPoint(1, "Colossus", 0, gv_p01_PLAYER, PointFromId(1468), PointFromId(370));
+    libNtve_gf_UnitCreateFacingPoint(1, "Colossus", 0, gv_p01_PLAYER, PointFromId(581), PointFromId(370));
+    libNtve_gf_UnitCreateFacingPoint(1, "Colossus", 0, gv_p01_PLAYER, PointFromId(1526), PointFromId(370));
+    libNtve_gf_UnitCreateFacingPoint(1, "Colossus", 0, gv_p01_PLAYER, PointFromId(832), PointFromId(370));
     Wait(2.0, c_timeGame);
     CameraApplyInfo(gv_p01_PLAYER, CameraInfoFromId(101), 0.0, -1, 10, true);
     CinematicFade(true, 0.1, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, true);
@@ -3731,7 +3731,7 @@ bool gt_BriefingScene00_Func (bool testConds, bool runActions) {
     MovieStartRecording("Briefing_Video_TZeratul04_00");
     SoundPlay(SoundLink("TZeratul04BriefingOvermind00009", 0), PlayerGroupAll(), 100.0, 0.0);
     Wait((1.0 * SoundLengthSync(SoundLink("TZeratul04BriefingOvermind00009", 0))), c_timeReal);
-    auto1B425C86_g = UnitGroup("ZeratulSummonZealot", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto1B425C86_g = UnitGroup("Zealot", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto1B425C86_u = UnitGroupCount(auto1B425C86_g, c_unitCountAll);
     for (;; auto1B425C86_u -= 1) {
         auto1B425C86_var = UnitGroupUnitFromEnd(auto1B425C86_g, auto1B425C86_u);
@@ -3910,7 +3910,7 @@ bool gt_BriefingZealotAnimations_Func (bool testConds, bool runActions) {
 
     while (true) {
         Wait(1.0, c_timeGame);
-        auto795A85AC_g = UnitGroup("ZeratulSummonZealot", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto795A85AC_g = UnitGroup("Zealot", gv_p01_PLAYER, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
         auto795A85AC_u = UnitGroupCount(auto795A85AC_g, c_unitCountAll);
         for (;; auto795A85AC_u -= 1) {
             auto795A85AC_var = UnitGroupUnitFromEnd(auto795A85AC_g, auto795A85AC_u);
@@ -4115,10 +4115,10 @@ bool gt_IntroCinematic_Func (bool testConds, bool runActions) {
     CameraApplyInfo(gv_p01_PLAYER, CameraInfoFromId(851), (SoundLengthSync(SoundLink("TZeratul04Zeratul00001", 0)) * 0.8), -1, 5, true);
     TriggerExecute(gt_IntroHeroGate, true, false);
     GameSetLighting("AiurFlashback", 0.0);
-    libNtve_gf_CreateUnitsAtPoint2(1, "ZeratulDisruptor", 0, gv_p01_PLAYER, PointFromId(1552));
+    libNtve_gf_CreateUnitsAtPoint2(1, "Colossus", 0, gv_p01_PLAYER, PointFromId(1552));
     UnitGroupAdd(gv_introCinematicProtossUnits, UnitLastCreated());
     gv_introCinematicColossusWest = UnitLastCreated();
-    libNtve_gf_CreateUnitsAtPoint2(1, "ZeratulDisruptor", 0, gv_p01_PLAYER, PointFromId(1551));
+    libNtve_gf_CreateUnitsAtPoint2(1, "Colossus", 0, gv_p01_PLAYER, PointFromId(1551));
     UnitGroupAdd(gv_introCinematicProtossUnits, UnitLastCreated());
     gv_introCinematicColossusEast = UnitLastCreated();
     TriggerSkippableBegin(PlayerGroupAll(), 0, null, true, false);
@@ -4131,7 +4131,7 @@ bool gt_IntroCinematic_Func (bool testConds, bool runActions) {
     Wait((SoundLengthSync(SoundLink("TZeratul04Zeratul00001", 0)) * 0.8), c_timeGame);
     CameraApplyInfo(gv_p01_PLAYER, CameraInfoFromId(252), (SoundLengthSync(SoundLink("TZeratul04Zeratul00001", 0)) * 0.2), -1, 10, true);
     TransmissionWait(TransmissionLastSent(), 5.0);
-    auto6F0B679E_g = UnitGroup("ZeratulSummonZealot", gv_p01_PLAYER, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto6F0B679E_g = UnitGroup("Zealot", gv_p01_PLAYER, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto6F0B679E_u = UnitGroupCount(auto6F0B679E_g, c_unitCountAll);
     for (;; auto6F0B679E_u -= 1) {
         auto6F0B679E_var = UnitGroupUnitFromEnd(auto6F0B679E_g, auto6F0B679E_u);

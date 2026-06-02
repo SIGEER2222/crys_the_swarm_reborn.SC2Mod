@@ -916,13 +916,6 @@ bool gt_FirebatDropshipAction_Func (bool testConds, bool runActions) {
         }
 
     }
-    else if (auto8F0E1D21_val == "Alarak") {
-        libE0EAE146_gf_AlarakCreateCargoSquad(UnitFromId(290), "hero");
-    }
-    else if (auto8F0E1D21_val == "Kerrigan") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(2150));
-        libE0EAE146_gf_KerriganCreateCargoSquad(UnitFromId(290), "light");
-    }
     else if (auto8F0E1D21_val == "Nova") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "NovaCoop", 0, 1, PointFromId(2150));
         lib0940FFB7_gf_NovaTrigger(UnitLastCreated());
@@ -933,31 +926,6 @@ bool gt_FirebatDropshipAction_Func (bool testConds, bool runActions) {
     }
     else if (auto8F0E1D21_val == "Swann") {
         UnitCargoCreate(UnitFromId(290), "PredatorSwann", 4);
-    }
-    else if ((auto8F0E1D21_val == "Abathur") || (auto8F0E1D21_val == "AbathurReborn")) {
-        libE0EAE146_gf_AbathurCreateCargoSquad(UnitFromId(290), "hero");
-        libE0EAE146_gf_AbathurCreateMapStartSquad("hero", 1, PointWithOffsetPolar(PointFromId(2157), 2.0, 180.0));
-    }
-    else if (auto8F0E1D21_val == "Raynor") {
-        libE0EAE146_gf_RaynorCreateCargoSquad(UnitFromId(290), "hero");
-    }
-    else if (auto8F0E1D21_val == "Zagara") {
-        libE0EAE146_gf_ZagaraCreateCargoSquad(UnitFromId(290), "hero");
-    }
-    else if (auto8F0E1D21_val == "Fenix") {
-        libE0EAE146_gf_FenixCreateCargoSquad(UnitFromId(290), "hero");
-    }
-    else if (auto8F0E1D21_val == "Artanis") {
-        libE0EAE146_gf_ArtanisCreateCargoSquad(UnitFromId(290), "hero");
-    }
-    else if (auto8F0E1D21_val == "Vorazun") {
-        libE0EAE146_gf_VorazunCreateCargoSquad(UnitFromId(290), "hero");
-    }
-    else if (auto8F0E1D21_val == "Karax") {
-        libE0EAE146_gf_KaraxCreateCargoSquad(UnitFromId(290), "hero");
-    }
-    else if (auto8F0E1D21_val == "Zeratul") {
-        libE0EAE146_gf_ZeratulCreateCargoSquad(UnitFromId(290), "hero");
     }
     else if (auto8F0E1D21_val == "Stetmann") {
         UnitCargoCreate(UnitFromId(290), "LurkerStetmann", 3);
