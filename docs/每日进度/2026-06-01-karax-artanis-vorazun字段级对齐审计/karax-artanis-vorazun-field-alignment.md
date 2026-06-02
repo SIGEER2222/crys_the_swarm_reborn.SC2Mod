@@ -1,6 +1,6 @@
 # Karax / Artanis / Vorazun 字段级对齐审计
 
-- 生成时间：2026/6/2 08:47:27
+- 生成时间：2026/6/2 08:51:20
 - 目的：补充现有 ID 缺口脚本的盲区，按“网上资料里的兵种技能/被动、建筑、顶部技能面板”做静态对齐审计。
 - 口径：兵种技能/被动以仓内官方 `units.json` 为机器可读来源，并补入 StarCraft2Coop 页面明确列出的 Combat Units / Structures 漏项；在线主清单作为必须覆盖的子集，Observer 等支援/扩展项作为 supplemental 透明列出；非单位按钮承载的技能/被动以 `global_refs` 证明当前 Mod 全局 Catalog/脚本存在；建筑按 roster/catalog 存在性核对；顶部面板按当前 XMFinal caster command card 精确核对。
 - 说明：`global-only` 表示技能按钮 ID 在当前 Mod 全局存在，但没有在候选单位的显式 LayoutButtons 中出现，可能来自父级继承、别名单位或待人工判断，不直接当作硬缺口。
