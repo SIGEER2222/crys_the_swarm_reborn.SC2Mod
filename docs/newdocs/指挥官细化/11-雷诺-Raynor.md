@@ -32,6 +32,8 @@ roster 样例：
 Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, SCV, Viking, Banshee, CommandCenter, Marauder, OrbitalCommand, Battlecruiser, Siege Tank
 ```
 
+注意：官方 Raynor JSON 里大量按钮面和图标名仍复用 Nova 的命名，例如 `TrainMarineNova`、`TrainMarauderNova`、`TrainGhostNova`、`GhostAcademyNova`。这些只是共享按钮壳或资源名，不代表 Raynor 的实际 roster 变成了 Nova。判断是否属于雷诺，优先看 `commander_id=TerranRaynor`、`level_id=RaynorLevelXX`、`upgrade=RaynorCommander` 以及具体 `requirements`。
+
 ## 15 级解锁摘要
 
 - 1: 快速招募
@@ -149,6 +151,18 @@ flowchart TD
 | 防线建筑 | `Bunker`, `MissileTurret` | 地面 / 空中防守 | `StimRedirect`, `BunkerTransport`, `SalvageShared` | 防线本身不独立成威望，但会吃到生化与机械链的全局加成 |
 | 顶栏技能 | `BansheeAirstrike`, `HyperionAdvancedPDD`, `OrbitalStrike`, `RaynorCommanderHyperionAdvancedTargetingSystems` | 全局打击 / 控场 / 补给 | 顶栏按钮、冷却、充能 | 精通会改冷却、充能和研究节奏；威望会改顶栏对应载体的成本和前置 |
 | 英雄层 | - | `heroes.json` 为空 | - | 雷诺当前没有独立英雄层，所有核心节奏都落在建筑、兵种、顶栏和威望上 |
+
+### 官方 - runtime 关键落点
+
+| 官方项 | 官方位置 | 当前 runtime 落点 | 关键结论 |
+|---|---|---|---|
+| `RaynorCommander` | `commander.json` / `upgrades.json` | `合作指挥官版起义狂潮/Mods/XM/XMRaynor.SC2Mod/Base.SC2Data/GameData/UpgradeData.xml:4461-4518` | 基础升级壳，改建筑和科技按钮文案、训练/建造时间、战列巡航舰能量、Banshee 隐形能量等。 |
+| `RaynorBansheeAirstrike` | `progression.json` level 2 | `UnitData.xml:2172-2184`、`UnitData.xml:2360-2376`、`AbilData.xml:264-273`、`EffectData.xml:295-423`、`ButtonData.xml:184-191`、`RequirementData.xml:779-782` | 顶栏 `BansheeAirstrike` 挂在 `CoopAssistCasterRaynor` 和 `CoopCasterRaynor` 上，`BansheeAirstrikeLocked` 由 `RaynorLevel02` 控制；冷却再由 `MasteryRaynorDuskWingCooldown` 往下压。 |
+| `OrbitalStrike` | `progression.json` level 8 | `UpgradeData.xml:4039-4058` | 不是单独按钮，而是轨道空投体系的总开关，主要改工厂/星港/兵营掉落式生产时间。 |
+| `RaynorCommanderHyperionAdvancedTargetingSystems` | `progression.json` level 14 | `UnitData.xml:12873-12979`、`RequirementData.xml:543-545`、`RequirementData.xml:1488-1493`、`ValidatorData.xml`、`ButtonData.xml:37-41` | 被动按钮挂在 `HyperionVoidCoop` 上，`HaveRaynorCommanderHyperionAdvancedTargetingSystems` 是专门门槛；`AdvancedTargetingSystemsLocked` 仍受 `RaynorLevel15` 保护。 |
+| `CommanderPrestigeRaynorBio` | `prestiges.json` / `upgrades.json` | `UpgradeData.xml:1177-1194` | 官方负面项会禁用 `CalldownMULE`，并把 Marine / Medic / Firebat 生命线和相关按钮文案改写成生化威望版本。 |
+| `CommanderPrestigeRaynorMechAfterburners` | `prestiges.json` / `upgrades.json` | `UpgradeData.xml:1233-1238` | 直接强化 `VehicleAfterburners`，但会压掉 `RaynorCommanderMechCostReduction`。 |
+| `CommanderPrestigeRaynorAir` | `prestiges.json` / `upgrades.json` | `UpgradeData.xml:1156-1176`、`libcomi.galaxy` | 直接抬高海军/空军/星港的矿气成本，并通过触发器闭包动态更新空军补给对应的冷却率行为。 |
 
 ## 模块索引
 
