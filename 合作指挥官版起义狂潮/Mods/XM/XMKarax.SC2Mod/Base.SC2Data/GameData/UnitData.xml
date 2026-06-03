@@ -14377,4 +14377,175 @@
 
   </CUnit>
 
+  <CUnit id="ProbeKarax" parent="Probe">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray index="3" Link="ProtossBuildKarax" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="1" removed="1" />
+    <CardLayouts index="2" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
+      <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1" />
+      <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
+      <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
+      <LayoutButtons Face="AttackWorker" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
+      <LayoutButtons Face="GatherProt" Type="AbilCmd" AbilCmd="ProbeHarvest,Gather" Row="1" Column="0" />
+      <LayoutButtons Face="ReturnCargo" Type="AbilCmd" AbilCmd="ProbeHarvest,Return" Row="1" Column="1" />
+      <LayoutButtons Face="ProtossBuild" Type="Submenu" SubmenuCardId="PBl1" Row="2" Column="0" />
+      <LayoutButtons Face="ProtossBuildAdvanced" Type="Submenu" SubmenuCardId="PBl2" Row="2" Column="1" />
+      <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Halt" Row="2" Column="4" />
+    </CardLayouts>
+    <CardLayouts CardId="PBl1">
+      <LayoutButtons Face="Nexus" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build1" Row="0" Column="0" />
+      <LayoutButtons Face="Pylon" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build2" Row="0" Column="2" />
+      <LayoutButtons Face="Assimilator" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build3" Row="0" Column="1" />
+      <LayoutButtons Face="Gateway" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build4" Row="1" Column="0" />
+      <LayoutButtons Face="Gateway" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build26" Row="1" Column="0" />
+      <LayoutButtons Face="Forge" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build5" Row="1" Column="1" />
+      <LayoutButtons Face="PhotonCannon" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build8" Row="2" Column="1" />
+      <LayoutButtons Face="CyberneticsCore" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build15" Row="2" Column="0" />
+      <LayoutButtons Face="ShieldBattery" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build16" Row="2" Column="2" />
+      <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4" />
+    </CardLayouts>
+    <CardLayouts CardId="PBl2">
+      <LayoutButtons Face="TwilightCouncil" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build7" Row="0" Column="0" />
+      <LayoutButtons Face="SolarForge" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build29" Row="2" Column="1" />
+      <LayoutButtons Face="RoboticsFacility" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build14" Row="0" Column="2" />
+      <LayoutButtons Face="RoboticsBay" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build13" Row="1" Column="2" />
+      <LayoutButtons Face="Stargate" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build10" Row="0" Column="1" />
+      <LayoutButtons Face="FleetBeacon" Type="AbilCmd" AbilCmd="ProtossBuildKarax,Build6" Row="1" Column="1" />
+      <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="NexusKarax" parent="Nexus">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="NexusTrainKarax" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrainKarax,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="RallyNexus,Rally1" Row="1" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_Nexus" />
+    <TechTreeProducedUnitArray value="ProbeKarax" />
+  </CUnit>
+  <CUnit id="PylonKarax" parent="Pylon">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Pylon" />
+  </CUnit>
+  <CUnit id="AssimilatorKarax" parent="Assimilator">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Assimilator" />
+  </CUnit>
+  <CUnit id="GatewayKarax" parent="Gateway">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="GatewayTrainKarax" />
+    <AbilArray Link="UpgradeToWarpGateKarax" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="GatewayTrainKarax,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="Sentry" Type="AbilCmd" AbilCmd="GatewayTrainKarax,Train6" Row="0" Column="1" />
+      <LayoutButtons Face="UpgradeToWarpGate" Type="AbilCmd" AbilCmd="UpgradeToWarpGateKarax,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_Gateway" />
+    <TechTreeProducedUnitArray value="ZealotPurifier" />
+    <TechTreeProducedUnitArray value="SentryPurifier" />
+  </CUnit>
+  <CUnit id="ForgeKarax" parent="Forge">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Forge" />
+  </CUnit>
+  <CUnit id="PhotonCannonKarax" parent="PhotonCannon">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_PhotonCannon" />
+  </CUnit>
+  <CUnit id="CyberneticsCoreKarax" parent="CyberneticsCore">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_CyberneticsCore" />
+  </CUnit>
+  <CUnit id="TwilightCouncilKarax" parent="TwilightCouncil">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_TwilightCouncil" />
+  </CUnit>
+  <CUnit id="ShieldBatteryKarax" parent="ShieldBattery">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_ShieldBattery" />
+  </CUnit>
+  <CUnit id="SolarForgeKarax" parent="SolarForge">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_SolarForge" />
+  </CUnit>
+  <CUnit id="RoboticsFacilityKarax" parent="RoboticsFacility">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="RoboticsFacilityTrainKarax" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Observer" Type="AbilCmd" AbilCmd="RoboticsFacilityTrainKarax,Train2" Row="0" Column="0" />
+      <LayoutButtons Face="Colossus" Type="AbilCmd" AbilCmd="RoboticsFacilityTrainKarax,Train3" Row="0" Column="1" />
+      <LayoutButtons Face="Immortal" Type="AbilCmd" AbilCmd="RoboticsFacilityTrainKarax,Train4" Row="0" Column="2" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_RoboticsFacility" />
+    <TechTreeProducedUnitArray value="Observer" />
+    <TechTreeProducedUnitArray value="Colossus" />
+    <TechTreeProducedUnitArray value="ImmortalAiur" />
+  </CUnit>
+  <CUnit id="RoboticsBayKarax" parent="RoboticsBay">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_RoboticsBay" />
+  </CUnit>
+  <CUnit id="StargateKarax" parent="Stargate">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="StargateTrainKarax" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Phoenix" Type="AbilCmd" AbilCmd="StargateTrainKarax,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="WarpInScout" Type="AbilCmd" AbilCmd="StargateTrainKarax,Train6" Row="0" Column="1" />
+      <LayoutButtons Face="Carrier" Type="AbilCmd" AbilCmd="StargateTrainKarax,Train3" Row="0" Column="2" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_Stargate" />
+    <TechTreeProducedUnitArray value="PhoenixPurifier" />
+    <TechTreeProducedUnitArray value="Scout" />
+    <TechTreeProducedUnitArray value="Carrier" />
+  </CUnit>
+  <CUnit id="FleetBeaconKarax" parent="FleetBeacon">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_FleetBeacon" />
+  </CUnit>
+  <CUnit id="WarpGateKarax" parent="WarpGate">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="WarpGateTrainKarax" />
+    <AbilArray Link="MorphBackToGatewayKarax" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="WarpGateTrainKarax,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="Sentry" Type="AbilCmd" AbilCmd="WarpGateTrainKarax,Train6" Row="0" Column="1" />
+      <LayoutButtons Face="MorphBackToGateway" Type="AbilCmd" AbilCmd="MorphBackToGatewayKarax,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_WarpGate" />
+    <TechTreeProducedUnitArray value="ZealotPurifier" />
+    <TechTreeProducedUnitArray value="SentryPurifier" />
+  </CUnit>
 </Catalog>
