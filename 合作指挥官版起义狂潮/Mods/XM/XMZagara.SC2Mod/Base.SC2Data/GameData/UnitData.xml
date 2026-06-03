@@ -11106,4 +11106,143 @@
     <DeathTime value="0"></DeathTime>
     <DeadFootprint value=""></DeadFootprint>
   </CUnit>
+  <CUnit id="DroneZagara" parent="Drone">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <AbilArray index="3" removed="1" />
+    <AbilArray Link="ZergBuildZagara" />
+    <CardLayouts index="1" removed="1" />
+    <CardLayouts index="2" removed="1" />
+    <CardLayouts index="1">
+      <LayoutButtons Face="Hatchery" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build1" Row="0" Column="0" />
+      <LayoutButtons Face="Extractor" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build3" Row="0" Column="1" />
+      <LayoutButtons Face="SpawningPool" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build4" Row="1" Column="0" />
+      <LayoutButtons Face="EvolutionChamber" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build5" Row="1" Column="1" />
+      <LayoutButtons Face="BanelingNest" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build11" Row="1" Column="2" />
+      <LayoutButtons Face="SpineCrawler" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build15" Row="2" Column="0" />
+      <LayoutButtons Face="SporeCrawler" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build16" Row="2" Column="1" />
+      <LayoutButtons Face="ZagaraBileLauncher" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build27" Row="2" Column="2" />
+      <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4" />
+    </CardLayouts>
+    <CardLayouts CardId="ZBl2">
+      <LayoutButtons Face="Spire" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build7" Row="0" Column="0" />
+      <LayoutButtons Face="ScourgeNest" Type="AbilCmd" AbilCmd="ZergBuildZagara,Build25" Row="0" Column="1" />
+      <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="LarvaZagara" parent="Larva">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <AbilArray Link="LarvaTrainZagara" />
+    <AbilArray Link="LarvaTrainSwarmZagara" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrainZagara,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="Overlord" Type="AbilCmd" AbilCmd="LarvaTrainZagara,Train4" Row="0" Column="1" />
+      <LayoutButtons Face="Zergling" Type="AbilCmd" AbilCmd="LarvaTrainZagara,Train2" Row="0" Column="2" />
+      <LayoutButtons Face="Corruptor" Type="AbilCmd" AbilCmd="LarvaTrainZagara,Train12" Row="1" Column="0" />
+      <LayoutButtons Face="InfestedAbomination" Type="AbilCmd" AbilCmd="LarvaTrainSwarmZagara,Train28" Row="1" Column="1" />
+      <LayoutButtons Face="Scourge" Type="AbilCmd" AbilCmd="LarvaTrainSwarmZagara,Train30" Row="1" Column="2" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="OverlordZagara" parent="Overlord">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Overlord" />
+  </CUnit>
+  <CUnit id="HatcheryZagara" parent="Hatchery">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <AbilArray Link="TrainQueenZagara" />
+    <AbilArray Link="UpgradeToLairZagara" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Queen" Type="AbilCmd" AbilCmd="TrainQueenZagara,Train1" Row="0" Column="1" />
+      <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenZagara,Train4" Row="0" Column="2" />
+      <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="RallyHatchery,Rally3" Row="1" Column="3" />
+      <LayoutButtons Face="overlordspeed" Type="AbilCmd" AbilCmd="LairResearch,Research7" Row="1" Column="0" />
+      <LayoutButtons Face="UpgradeToLair" Type="AbilCmd" AbilCmd="UpgradeToLairZagara,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <BehaviorArray Link="HatcheryLarvaDeath" />
+    <BehaviorArray Link="ChronoBoostTarget" />
+    <BehaviorArray Link="HatcheryDoubleQueue" />
+    <TechAliasArray value="Alias_Hatchery" />
+  </CUnit>
+  <CUnit id="LairZagara" parent="Lair">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <AbilArray Link="TrainQueenZagara" />
+    <AbilArray Link="UpgradeToHiveZagara" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Queen" Type="AbilCmd" AbilCmd="TrainQueenZagara,Train1" Row="0" Column="1" />
+      <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenZagara,Train4" Row="0" Column="2" />
+      <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="RallyHatchery,Rally3" Row="1" Column="3" />
+      <LayoutButtons Face="overlordspeed" Type="AbilCmd" AbilCmd="LairResearch,Research7" Row="1" Column="0" />
+      <LayoutButtons Face="UpgradeToHive" Type="AbilCmd" AbilCmd="UpgradeToHiveZagara,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <BehaviorArray Link="HatcheryLarvaDeath" />
+    <BehaviorArray Link="ChronoBoostTarget" />
+    <BehaviorArray Link="HatcheryDoubleQueue" />
+    <TechAliasArray value="Alias_Lair" />
+  </CUnit>
+  <CUnit id="HiveZagara" parent="Hive">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <AbilArray Link="TrainQueenZagara" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Queen" Type="AbilCmd" AbilCmd="TrainQueenZagara,Train1" Row="0" Column="1" />
+      <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenZagara,Train4" Row="0" Column="2" />
+      <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="RallyHatchery,Rally3" Row="1" Column="3" />
+      <LayoutButtons Face="overlordspeed" Type="AbilCmd" AbilCmd="LairResearch,Research7" Row="1" Column="0" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <BehaviorArray Link="HatcheryLarvaDeath" />
+    <BehaviorArray Link="ChronoBoostTarget" />
+    <BehaviorArray Link="HatcheryDoubleQueue" />
+    <TechAliasArray value="Alias_Hive" />
+  </CUnit>
+  <CUnit id="ExtractorZagara" parent="Extractor">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Extractor" />
+  </CUnit>
+  <CUnit id="SpawningPoolZagara" parent="SpawningPool">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_SpawningPool" />
+  </CUnit>
+  <CUnit id="EvolutionChamberZagara" parent="EvolutionChamber">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_EvolutionChamber" />
+  </CUnit>
+  <CUnit id="SpireZagara" parent="Spire">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Spire" />
+  </CUnit>
+  <CUnit id="BanelingNestZagara" parent="BanelingNest">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_BanelingNest" />
+  </CUnit>
+  <CUnit id="SpineCrawlerZagara" parent="SpineCrawler">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_SpineCrawler" />
+  </CUnit>
+  <CUnit id="SporeCrawlerZagara" parent="SporeCrawler">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_SporeCrawler" />
+  </CUnit>
+  <CUnit id="ScourgeNestZagara" parent="ScourgeNest">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_ScourgeNest" />
+  </CUnit>
 </Catalog>
