@@ -5591,7 +5591,7 @@ bool gt_VictoryCinematic_Func (bool testConds, bool runActions) {
     gv_victoryCinematicShuttleUnload = true;
     UnitRemove(gv_hybridPhysical);
     ActorSend(ActorFromDoodad(gv_libraryHybrid), "AnimBracketStop Work");
-    UnitCreate(1, "ZeratulCoop", 0, gv_p1_USER, PointFromId(557), 225.0);
+    UnitCreate(1, "Zeratul", 0, gv_p1_USER, PointFromId(557), 225.0);
     gv_zeratul = UnitLastCreated();
     UnitIssueOrder(gv_zeratul, OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(525)), c_orderQueueReplace);
     UnitBehaviorAdd(gv_zeratul, "SuppressCloak", gv_zeratul, 1);

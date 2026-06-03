@@ -1133,7 +1133,7 @@ bool gt_Init03Units_Func (bool testConds, bool runActions) {
         UnitBehaviorAddPlayer(auto2A1C41CA_var, "ColonyInfestation", gv_p04_ZERG_NORTH, 1);
         UnitSetState(auto2A1C41CA_var, c_unitStateTargetable, true);
     }
-    auto6AD46C2B_g = UnitGroup("Observer", gv_p11_OBSERVERS, null, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto6AD46C2B_g = UnitGroup("Kit@ObserverSiegeMode", gv_p11_OBSERVERS, null, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto6AD46C2B_u = UnitGroupCount(auto6AD46C2B_g, c_unitCountAll);
     for (;; auto6AD46C2B_u -= 1) {
         auto6AD46C2B_var = UnitGroupUnitFromEnd(auto6AD46C2B_g, auto6AD46C2B_u);
