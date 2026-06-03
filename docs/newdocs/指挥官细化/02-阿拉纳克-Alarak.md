@@ -6,7 +6,13 @@
 
 当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 阿拉纳克。依据 `游戏数据/官方合作指挥官/commanders/Alarak/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 阿拉纳克。依据 `游戏数据/官方合作指挥官/commanders/Alarak/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
+
+## 链路提醒
+
+- 阿拉纳克当前官方正向建筑只有 `Gateway`、`PhotonCannon`、`TwilightCouncil`；这些是共享星灵 Catalog 对象，不能因为建筑按钮表里出现别的指挥官锁定项就当作阿拉纳克私有链。
+- 阿拉纳克正向兵种按 `units.json` 的 `ColossusTaldarim`、`HighTemplarTaldarim`、`ImmortalTaldarim`、`SentryTaldarim`、`Supplicant`、`WarpPrismTaldarim`、`Stalker` 过滤。
+- 候选表里出现 `FenixLevel*`、`KaraxLevel*`、`VorazunLevel*`、`ZeratulArtifact*` 或其它神族指挥官专属 Requirement 时，只能作为共享 Gateway/Twilight/Robotics 污染候选，不得接入阿拉纳克满级实现。
 
 ## 官方数据摘要
 
@@ -105,13 +111,13 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或 CASC 继续追。 |
+| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或官方原始文本镜像继续追。 |
 
 ### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从 CASC 或实机日志补。 |
+| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从官方原始文本镜像或实机日志补。 |
 
 ### 英雄形态/模式候选
 
@@ -139,7 +145,7 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | Lv14 | 阿拉纳克升级包 | - | - | 在锻炉中解锁以下升级： / 使阿拉纳克的普通攻击能够击晕敌人及减速英雄单位，持续2秒。湮灭波的击退距离提高100%。 |
 | Lv15 | 高阶领主之怒 | `AlarakSupplicantSacrificeCDR` | - | 每当有一个死徒被献祭，阿拉纳克致命冲锋的冷却时间缩短10秒，湮灭波的冷却时间缩短5秒。 |
 
-口径：官方玩法存在阿拉纳克本体，但当前 heroes.json 未列出，需要从 CASC/实机补 HeroProfile、复活和技能闭包。
+口径：官方玩法存在阿拉纳克本体，但当前 heroes.json 未列出，需要从官方原始文本镜像/实机补 HeroProfile、复活和技能闭包。
 
 待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 

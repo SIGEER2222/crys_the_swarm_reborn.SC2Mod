@@ -6,7 +6,15 @@
 
 当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 霍纳与汉。依据 `游戏数据/官方合作指挥官/commanders/Horner/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 霍纳与汉。依据 `游戏数据/官方合作指挥官/commanders/Horner/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
+
+## 链路提醒
+
+- 官方 `buildings.json` 为空，Horner 不应生成建筑清单或农民可建造清单；当前人族闭包里 Horner 的 `buildings=0 / worker_buildable_structures=0` 是刻意保留的归属过滤结果。
+- `HH*` / `Horner*` 是 Horner 正向 owner；非 Horner 指挥官命中这些前缀时只能作为共享污染排除。
+- `Liberator` 的生产候选 `StarportTrainNova,Train3` 属于 Nova 隐秘解放者链，当前仅作为共享污染排除，不计入 Horner 生产闭包。
+- `Liberator` 继承到的 `VehicleAfterburners` 被 `HaveVehicleAfterburners -> CountUpgradeRaynorCommanderCompleteOnly` 锁到 Raynor 显示条件下，本轮人族闭包已把它从 Horner accepted 技能里排除。
+- 后续实现霍纳时优先看 `docs/newdocs/指挥官细化/人族闭包/terran-commander-closure.json`，不要从通用 `SCV` / `CommandCenter` / `HHSCV` 共享链反推出建筑体系。
 
 ## 官方数据摘要
 

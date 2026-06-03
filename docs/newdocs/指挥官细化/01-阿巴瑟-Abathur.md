@@ -6,13 +6,21 @@
 
 当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 阿巴瑟。依据 `游戏数据/官方合作指挥官/commanders/Abathur/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 阿巴瑟。依据 `游戏数据/官方合作指挥官/commanders/Abathur/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
 
 ## 链路提醒
 
 - `Leviathan` 在官方口径里按单位/终极进化对象处理，不按英雄处理；`heroes.json` 仍为 0。
 - `03. 普通单位技能及其进化功能` 和 `10. 指挥官特殊机制` 已经把阿巴瑟的关键链路拆开，重点是 `Ravager`、`Leviathan`、`Brutalisk`、`Deep Tunnel`。
-- 实现时不要只看按钮是否显示；要同时核对 `ButtonData -> AbilData -> EffectData -> UnitData/UpgradeData -> RequirementData`，尤其是 `MorphRoachToRavager` / `MorphRoachVileToRavager` 和 `RavagerCorrosiveBile`。
+- 实现时不要只看按钮是否显示；要同时核对 `ButtonData -> AbilData -> EffectData -> UnitData/UpgradeData -> RequirementData`，尤其是 `MorphRoachVileToRavager`、`RavagerAbathurCorrosiveBile` 和 `BurrowRavagerAbathur*`。
+- 2026-06-03 修正：本文件有效实现口径只按满级 `power_fusion`。阿巴瑟有效蟑螂单位只有 `RoachVile`；`Roach` 只作基础训练入口/差异审计，`RoachCorpser` 只作外部或遗留候选，不进入满级主链。
+- 2026-06-03 修正：官方 `buildings.json` 只列出 `SpineCrawler` 和 `SporeCrawler`。`NydusNetwork` 即使在共享 `ZergBuild` 或继承链里有痕迹，也不计入阿巴瑟有效建筑/科技链。
+
+## 误判复盘（2026-06-03）
+
+这次把 `NydusNetwork` 混入阿巴瑟链路的直接原因，是补官方生产闭包时读到了共享原始镜像里的 `ZergBuild,Build10`、`ArmyCategory NydusNetwork`、`TechUnit/NydusNetwork` 和相关 Unit/Effect/Upgrade 定义，却没有再用 `commanders/Abathur/buildings.json` 与满级 `power_fusion` 有效名册做归属过滤。
+
+排查漏掉它的原因也明确：2026-06-02 当前 Mod 诊断页里阿巴瑟 `生产链补充建筑` 已经是 0，并且破坏者链已经显示 `RavagerAbathurCorrosiveBile`、`BurrowRavagerAbathurDown`；但后续补“官方闭包”时绕开了这份诊断结果，按共享 `Drone/ZergBuild` 菜单手工整理，导致共享 Catalog 命中被提升成阿巴瑟候选。以后阿巴瑟页中 `NydusNetwork` 或 `ZergBuild,Build10` 只能出现在“不计入/共享污染/排除”上下文；新增或整理文档后运行 `node scripts/sc2/validate-commander-doc-ownership.mjs` 做最低限度防回归。
 
 ## 官方数据摘要
 
@@ -147,6 +155,8 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 
 ### 单位技能按钮候选
 
+注意：本表是早期 `command_cards.json` 自动候选输入，不等同于满级有效实现表。共享卡污染需要过滤，例如 `Mutalisk` 上的 `StukovInfestedWildMutation` 不是阿巴瑟技能，破坏者也必须使用 `RavagerAbathurCorrosiveBile` 而不是普通 `RavagerCorrosiveBile`。满级实现以本节后面的“满级有效单位技能链补充”为准。
+
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
 | 守护者 | `GuardianAttackRangeIncrease` | 加长散射 | - | `HaveGuardianAttackRangeIncrease` | 守护者的攻击射程提高{Upgrade,GuardianAttackRangeIncrease,EffectArray[0].Value}。 |
@@ -157,7 +167,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 吞噬者 | `EvolveToLeviathanLocked` | 进化为利维坦 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
 | 吞噬者 | `BiomassPassiveEmpty` | 生物质搜集 | - | `BiomassBuffEmptyVisible` | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 异龙 | `-` | - | - | - | - |
-| 异龙 | `StukovInfestedWildMutation` | 斯托科夫 感染体 野性突变 | `StukovInfestedWildMutation,Execute` | - | 异龙的最大生命值提高{Behavior,WildMutation,Modification.VitalMaxArray[1]}点，攻击速度提高{(Behavior,WildMutation,Modification.AttackSpeedMultiplier - 1) * ... |
+| 异龙（排除） | `StukovInfestedWildMutation` | 斯托科夫 感染体 野性突变 | `StukovInfestedWildMutation,Execute` | - | 共享卡污染，不计入阿巴瑟满级有效技能链。 |
 | 异龙 | `EvolveToLeviathanLocked` | 进化为利维坦 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
 | 异龙 | `BiomassPassiveEmpty` | 生物质搜集 | - | `BiomassBuffEmptyVisible` | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 异龙 | `MorphtoDevourer` | - | `MutaliskMorphToDevourer,Train1` | - | 强大的对空飞行单位。可以使用腐蚀强酸。 / 可以对空。 |
@@ -166,11 +176,11 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 蟑螂 | `HotSRoachDamage` | HotSRoachDamage | - | `HaveHotSRoachDamage` | - |
 | 蟑螂 | `HotSRoachShield` | HotSRoachShield | - | `HaveHotSRoachShield` | - |
 | 蟑螂 | `-` | - | - | - | - |
-| 蟑螂 | `Ravager` | 变异为破坏者 | `MorphRoachToRavager,Train1` | - | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
+| 蟑螂（满级前） | `Ravager` | 变异为破坏者 | `MorphRoachToRavager,Train1` | - | 满级有效主链改走 `RoachVile` -> `MorphRoachVileToRavager`。 |
 | 蟑螂 | `DeepTunnelLocked` | 深槽虫道 | - | `AbathurLevel09DeepTunnelImproved` | 该技能将在指挥官等级9时解锁。 |
 | 蟑螂 | `EvolveToBrutaliskLocked` | 进化为莽兽 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
 | 蟑螂 | `BiomassPassiveEmpty` | 生物质搜集 | - | `BiomassBuffEmptyVisible` | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
-| 蟑螂 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
+| 蟑螂（排除） | `BurrowUp` | 出地 | - | - | 候选表遗留；满级有效蟑螂以 `RoachVile` 表为准，不从本行接潜地/出地能力。 |
 | 虫群宿主 | `-` | - | - | - | - |
 | 虫群宿主 | `LocustLaunch` | - | `LocustLaunch,Execute` | - | - |
 | 虫群宿主 | `DeepTunnelLocked` | 深槽虫道 | - | `AbathurLevel09` | 该技能将在指挥官等级9时解锁。 |
@@ -180,7 +190,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 虫群宿主 | `SwarmHostRootBurrow` | SwarmHostRootBurrow | `MorphToSwarmHostBurrowed,Execute` | - | - |
 | 蟑螂 | `-` | - | - | - | - |
 | 蟑螂 | `-` | - | - | `HaveOrganicCarapace` | - |
-| 蟑螂 | `Ravager` | 变异为破坏者 | `MorphRoachToRavager,Train1` | - | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
+| 蟑螂（满级前） | `Ravager` | 变异为破坏者 | `MorphRoachToRavager,Train1` | - | 满级有效主链改走 `RoachVile` -> `MorphRoachVileToRavager`。 |
 | 蟑螂 | `VilePassive` | VilePassive | - | - | - |
 | 蟑螂 | `GlialReconstitutionPassive` | 神经胶原重组 | - | `HaveGlialReconstitution` | 移动速度提高。 |
 | 蟑螂 | `ZerglingBurrowMove` | ZerglingBurrowMove | - | `HaveOrganicCarapace` | - |
@@ -191,9 +201,9 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 蟑螂 | `EvolveToBrutaliskLocked` | 进化为莽兽 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
 | 蟑螂 | `BiomassPassiveEmpty` | 生物质搜集 | - | `BiomassBuffEmptyVisible` | 该单位可以通过击杀敌方单位搜集生物质来获得能量。 |
 | 蟑螂 | `BrutaliskDeepTunnel` | 深槽虫道 | `AbathurDeepTunnelImproved,Execute` | - | 快速潜地前往目标位置。 |
-| 破坏者 | `RavagerCorrosiveBile` | 腐蚀胆汁 | `RavagerCorrosiveBile,Execute` | - | 朝目标位置发射一枚飞弹，撞击后对该范围内的所有单位造成{Effect,RavagerCorrosiveBileDamage,Amount}点伤害。 / 可以摧毁星灵力场。 |
-| 破坏者 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
-| 破坏者 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
+| 破坏者 | `RavagerAbathurCorrosiveBile` | 腐蚀胆汁 | `RavagerAbathurCorrosiveBile,Execute` | - | 阿巴瑟专用破坏者技能；不要接普通 `RavagerCorrosiveBile`。 |
+| 破坏者 | `BurrowDown` | 潜地 | `BurrowRavagerAbathurDown,Execute` | - | 阿巴瑟破坏者潜地能力；不要接雷兽潜地命令。 |
+| 破坏者 | `BurrowUp` | 出地 | `BurrowRavagerAbathurUp,Execute` | - | 阿巴瑟破坏者出地能力；需和潜地单位形态一起核对。 |
 | ... | ... | ... | ... | ... | 还有 23 项，后续从 command_cards.json 继续展开。 |
 
 ### 进化/形态/切换候选
@@ -205,19 +215,19 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 异龙 | `EvolveToLeviathanLocked` | 进化为利维坦 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
 | 异龙 | `MorphtoDevourer` | - | `MutaliskMorphToDevourer,Train1` | - | 强大的对空飞行单位。可以使用腐蚀强酸。 / 可以对空。 |
 | 蟑螂 | `ZerglingBurrowMove` | ZerglingBurrowMove | - | `HaveOrganicCarapace` | - |
-| 蟑螂 | `Ravager` | 变异为破坏者 | `MorphRoachToRavager,Train1` | - | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
+| 蟑螂（满级前） | `Ravager` | 变异为破坏者 | `MorphRoachToRavager,Train1` | - | 满级有效主链改走 `RoachVile` -> `MorphRoachVileToRavager`。 |
 | 蟑螂 | `EvolveToBrutaliskLocked` | 进化为莽兽 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
-| 蟑螂 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
+| 蟑螂（排除） | `BurrowUp` | 出地 | - | - | 候选表遗留；满级有效蟑螂以 `RoachVile` 表为准，不从本行接潜地/出地能力。 |
 | 脊针爬虫 | `SpineCrawlerUproot` | 站起 | `SpineCrawlerUproot,Execute` | - | 使脊针爬虫站起。站起的脊针爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
 | 孢子爬虫 | `SporeCrawlerUproot` | 站起 | `SporeCrawlerUproot,Execute` | - | 使孢子爬虫站起。站起的孢子爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
 | 虫群宿主 | `EvolveToBrutaliskLocked` | 进化为莽兽 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
 | 虫群宿主 | `SwarmHostRootBurrow` | SwarmHostRootBurrow | `MorphToSwarmHostBurrowed,Execute` | - | - |
-| 蟑螂 | `Ravager` | 变异为破坏者 | `MorphRoachToRavager,Train1` | - | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
+| 蟑螂（满级前） | `Ravager` | 变异为破坏者 | `MorphRoachToRavager,Train1` | - | 满级有效主链改走 `RoachVile` -> `MorphRoachVileToRavager`。 |
 | 蟑螂 | `ZerglingBurrowMove` | ZerglingBurrowMove | - | `HaveOrganicCarapace` | - |
 | 蟑螂 | `Ravager` | 变异为破坏者 | `MorphRoachVileToRavager,Train1` | - | 远程火炮单位。可以使用腐蚀胆汁。 / 可以对地。 |
 | 蟑螂 | `EvolveToBrutaliskLocked` | 进化为莽兽 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
-| 破坏者 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
-| 破坏者 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
+| 破坏者 | `BurrowDown` | 潜地 | `BurrowRavagerAbathurDown,Execute` | - | 阿巴瑟破坏者潜地能力；不要接雷兽潜地命令。 |
+| 破坏者 | `BurrowUp` | 出地 | `BurrowRavagerAbathurUp,Execute` | - | 阿巴瑟破坏者出地能力；需和 `RavagerAbathurBurrowed` 形态一起核对。 |
 | 飞蛇 | `EvolveToLeviathanLocked` | 进化为利维坦 | - | `AbathurLevel02` | 该技能将在指挥官等级2时解锁。 |
 | 莽兽 | `BurrowDown` | 潜地 | `BurrowBrutaliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
 
@@ -314,6 +324,97 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 ## 08. 科技建筑及其升级选项
 
 Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`CommanderUpgradeEffectProfile`。
+
+### 官方生产/变异闭包补充（2026-06-03 核对）
+
+来源口径：本节只使用官方数据，主入口是 `游戏数据/官方合作指挥官/commanders/Abathur/*.json`，再回查 `游戏数据/官方SC2原始文本镜像/mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/*.xml` 与基础虫族 `liberty/swarm` XML。`Drone` 是共享虫族工蜂，不能把共享卡上所有按钮都直接算作阿巴瑟专属链路。
+
+#### 工蜂建筑菜单
+
+| 归类 | 建筑/按钮 | AbilityCmd | 官方链路判断 |
+|---|---|---|---|
+| 基础经济 | `Hatchery` | `ZergBuild,Build1` | 普通虫族基础继承；阿巴瑟仍使用孵化场/虫穴/主巢作为基地链。 |
+| 基础经济 | `Extractor` | `ZergBuild,Build3` | 普通气矿建筑。 |
+| 明确禁用 | `SpawningPool` | `ZergBuild,Build4` | `starcoop` 将 `Build4` 置为 `Restricted`，并在工蜂卡上用 `AbathurSpawningPool` 被动覆盖；中文文本为“分裂池已禁用”，提示“阿巴瑟的基础生产设施是蟑螂温室，而不是分裂池。” |
+| 基础科技 | `EvolutionChamber` | `ZergBuild,Build5` | `starcoop` 置为 `Available`；用于阿巴瑟进化腔升级包。 |
+| 主生产科技 | `RoachWarren` | `ZergBuild,Build14` | `starcoop` 置为 `Available`；`HaveBanelingNest2` 在 `starcoop` 中实际映射到 `CountUnitAlias_RoachWarren`，因此蟑螂链以蟑螂温室为核心。 |
+| 防御建筑 | `SpineCrawler` | `ZergBuild,Build15` | `starcoop` 置为 `Available`；官方 `buildings.json` 明确列为阿巴瑟建筑。 |
+| 防御建筑 | `SporeCrawler` | `ZergBuild,Build16` | `starcoop` 置为 `Available`；官方 `buildings.json` 明确列为阿巴瑟建筑。 |
+| 空军科技 | `Spire` | `ZergBuild,Build7` | `starcoop` 置为 `Available`；异龙由幼虫在尖塔后变异。 |
+| 空军高阶 | `GreaterSpire` | `UpgradeToGreaterSpire,Execute` | 不是工蜂直接建造；由 `Spire` 变形，基础要求 `HaveHive`，守护者/吞噬者要求 `HaveGreaterSpire`。 |
+| 施法/宿主科技 | `InfestationPit` | `ZergBuild,Build9` | `starcoop` 置为 `Available`；飞蛇和虫群宿主的幼虫变异要求 `HaveInfestationPit`。 |
+| 基地高阶 | `Lair` / `Hive` | `UpgradeToLair,Execute` / `UpgradeToHive,Execute` | `starcoop` 将两者 Execute 置为 `Available`，用于绕开普通虫族“分裂池/感染深渊”前置的阿巴瑟链。 |
+| 明确不计入 | `NydusNetwork` | `ZergBuild,Build10` | 不在官方 `commanders/Abathur/buildings.json` 中，也不解锁阿巴瑟满级主战单位；共享 `ZergBuild` 或继承链痕迹不能当作阿巴瑟有效建筑。 |
+| 共享卡遗留 | `BanelingNest` / `UltraliskCavern` | `ZergBuild,Build11` / `ZergBuild,Build8` | XML 上 `starcoop` 置为 `Available`，但阿巴瑟官方 `units.json`/等级链没有以它们为生产前置的主战单位；实现时不要用它们解锁阿巴瑟兵种。 |
+| 共享卡污染 | `ScourgeNest` / `ZagaraBileLauncher` | `ZergBuild,Build25` / `ZergBuild,Build27` | 这是共享 `Drone` 卡上的扎加拉链路，不应计入阿巴瑟。 |
+| 明确不走 | `HydraliskDen` | `ZergBuild,Build6` | `starcoop` 置为 `Restricted`；阿巴瑟没有刺蛇主链。 |
+
+#### 幼虫与单位生产
+
+| 单位 | 来源 | AbilityCmd | 解锁建筑/要求 | 备注 |
+|---|---|---|---|---|
+| `Drone` | `Larva` | `LarvaTrain,Train1` | 基地基础链 | 经济单位；不是阿巴瑟主战单位。 |
+| `Overlord` | `Larva` | `LarvaTrain,Train3` | 基地基础链 | 补给单位；不是阿巴瑟主战单位。 |
+| `Roach` | `Larva` | `LarvaTrain,Train10` | `HaveBanelingNest2`，在 `starcoop` 中映射为 `RoachWarren` | 只作为满级前训练入口/差异审计；满级有效蟑螂必须落到 `RoachVile`，不要把 `Roach` 当最终可投放或最终科技链单位。 |
+| `RoachVile` | 等级替换/进化 | `MorphRoachVileToRavager,Train1` 等后续按钮挂在本单位上 | 14 级 `AbathurRoachEvolutionVile` | “蟑螂进化：秽型虫”；这是阿巴瑟满级唯一有效蟑螂主线。 |
+| `RoachCorpser` | 外部/遗留候选 | `LarvaTrainSwarm,Train20`（官方 XML 中该 InfoArray 被注释） | `HaveBanelingNest2` | 出现在官方 TechUnit/roster 文本里，但不进入满级有效主链；实现和投放时先排除。 |
+| `SwarmQueen` / `Queen` | `Hatchery` / `Lair` / `Hive` | `TrainQueen,Train1`，另有 `TrainQueen,Train4` 的 `QueenCoop` 分支 | 城镇大厅训练；`commander.json` 默认启用 `TrainQueen` | `TrainQueen,Train4` 在 XML 仍有普通虫族 `HaveSpawningPool` 遗留语义，阿巴瑟主链应落到城镇大厅训练闭包。 |
+| `Mutalisk` | `Larva` | `LarvaTrain,Train5` | `HaveSpire` | 空军基础单位。 |
+| `SwarmHostMP` | `Larva` | `LarvaTrain,Train16` | `HaveInfestationPit` | 虫群宿主主链；`Train15` 是普通 HotS 旧分支，不作为阿巴瑟主入口。 |
+| `Viper` | `Larva` | `LarvaTrain,Train13` | `HaveInfestationPit` | `starcoop` 将飞蛇生产时间改为 29，并把要求落到感染深渊；8 级解锁“新单位：飞蛇”。 |
+
+#### 进化/变异单位
+
+| 目标单位 | 来源单位 | AbilityCmd | 要求/说明 |
+|---|---|---|---|
+| `RavagerAbathur` | `RoachVile` | `MorphRoachVileToRavager,Train1` | 满级有效主入口；9 秒；按钮 `Ravager`；要求 `HaveLair`；使用 `RavagerVileAbathurCocoon`。 |
+| `RavagerAbathur` | `Roach` / `RoachCorpser` | `MorphRoachToRavager,Train1` | 满级前/遗留审计入口；不要作为阿巴瑟满级实现主链。 |
+| `GuardianMP` | `Mutalisk` | `MutaliskMorphToGuardian,Train1` | 15 秒；要求 `HaveGreaterSpire`。 |
+| `Devourer` | `Mutalisk` | `MutaliskMorphToDevourer,Train1` | 15 秒；要求 `HaveGreaterSpire`。 |
+| `Brutalisk` | 满级有效地面/生物质单位：`RoachVile`、`RavagerAbathur`、`SwarmHost`、`Queen` 等 | `EvolveToBrutalisk*` | 5 秒；`BrutaliskMorphAvailable` 要求 2 级终极进化、未选择禁用终极进化的生物质威望，并满足生物质/数量限制。`Roach`、`RoachCorpser`、`DefilerMP` 分支只作审计，不进满级主链。 |
+| `HotSLeviathan` / `Leviathan` | 空中/生物质单位：`Mutalisk`、`GuardianMP`、`Devourer`、`Viper` | `EvolveToLeviathan*` | 5 秒；`LeviathanMorphAvailable` 要求 2 级终极进化、未选择禁用终极进化的生物质威望，并满足生物质/数量限制。`Leviathan` 按终极进化单位处理，不按英雄处理。 |
+
+实现提醒：阿巴瑟如果在当前 Mod 中私有化经济链，应优先私有化 `Drone/ZergBuild/LarvaTrain/TrainQueen`，并把 `SpawningPool disabled`、`HaveBanelingNest2 -> RoachWarren`、`Viper/SwarmHost -> InfestationPit`、`Guardian/Devourer -> GreaterSpire`、`Ravager -> Lair` 这些官方闭包一并带过去。
+
+#### 满级有效单位技能链补充
+
+口径：以下只列满级 `power_fusion` 有效链路。基础攻击、移动、停止等通用命令不列；锁定按钮只在说明列提示，不作为最终可用技能。
+
+| 满级单位 | 按钮/Face | AbilityCmd | Ability / Effect 闭包 | 冷却/范围/资源 | 实现验收点 |
+|---|---|---|---|---|---|
+| `RoachVile` | `Ravager` | `MorphRoachVileToRavager,Train1` | `CAbilTrain MorphRoachVileToRavager` -> `RavagerVileAbathurCocoon` -> `RavagerAbathur` | 9 秒；要求 `HaveLair` | 满级只从 `RoachVile` 接破坏者，不从 `Roach` 或 `RoachCorpser` 接主链。 |
+| `RoachVile` | `BrutaliskDeepTunnel` | `AbathurDeepTunnelImproved,Execute` | `AbathurDeepTunnelImproved` -> `AbathurDeepTunnelCU` | 冷却 30；范围 500；施法引导 2 秒，收尾 1 秒，完成 0.5 秒；要求 `HaveAbathurImpalerDeepTunnelImproved` | 按当前威望正向融合口径可作为深槽虫道能力；如果实现纯非威望阿巴瑟，需要重新过滤该 Requirement。 |
+| `RoachVile` | `EvolveToBrutalisk` | `EvolveToBrutaliskRoachVile,Train1` | parent `EvolveToBrutalisk` -> `BrutaliskCocoonRoachVile` -> `Brutalisk` | 5 秒；要求 `BrutaliskMorphAvailable` | 终极进化数量、生物质和禁用终极进化威望都要进 Requirement 验收。 |
+| `RavagerAbathur` | `RavagerAbathurCorrosiveBile` | `RavagerAbathurCorrosiveBile,Execute` | `RavagerCorrosiveBileAoeLaunchSet` -> `RavagerCorrosiveBileAoeCP` -> `RavagerCorrosiveBileAoeLaunchDown` -> `RavagerCorrosiveBileAoeSearch` -> `RavagerCorrosiveBileAoeSet` -> `RavagerCorrosiveBileAoeDamage` + `RavagerCorrosiveBileAoeForceFieldKill` | 冷却 10；范围 12；基础伤害 60；基础命中半径 0.5 | 这是阿巴瑟专用链；不能接普通 `RavagerCorrosiveBile`。满级研究后伤害升级应 +40，范围升级应把搜索/光标半径置为 1.5。 |
+| `RavagerAbathur` | `BurrowDown` | `BurrowRavagerAbathurDown,Execute` | `BurrowRavagerAbathurDown` -> `RavagerAbathurBurrowed` | 通用潜地链 | 必须和 `RavagerAbathurBurrowed` 的出地、深槽虫道、终极进化按钮一起验证，否则会出现潜地后断技能。 |
+| `RavagerAbathur` | `BrutaliskDeepTunnel` | `AbathurDeepTunnelImproved,Execute` | `AbathurDeepTunnelImproved` -> `AbathurDeepTunnelCU` | 冷却 30；范围 500；要求 `HaveAbathurImpalerDeepTunnelImproved` | 满级/威望正向融合下可用；按钮存在不代表 Requirement 已满足。 |
+| `RavagerAbathur` | `EvolveToBrutalisk` | `EvolveToBrutaliskRavager,Train1` | parent `EvolveToBrutalisk` -> `BrutaliskCocoonRavager` -> `Brutalisk` | 5 秒；要求 `BrutaliskMorphAvailable` | 破坏者进莽兽链和腐蚀胆汁链相互独立，不能因变异按钮接上就跳过技能验证。 |
+| `Mutalisk` | `MorphToGuardian` | `MutaliskMorphToGuardian,Train1` | `MutaliskMorphToGuardian` -> `GuardianCocoon` -> `GuardianMP` | 15 秒；要求 `HaveGreaterSpire` | command card 抽取可能漏按钮，XML 闭包必须补上。 |
+| `Mutalisk` | `MorphtoDevourer` | `MutaliskMorphToDevourer,Train1` | `MutaliskMorphToDevourer` -> `DevourerCocoonMP` -> `Devourer` | 15 秒；要求 `HaveGreaterSpire` | 排除 `StukovInfestedWildMutation` 这类共享卡污染。 |
+| `Mutalisk` | `EvolveToLeviathan` | `EvolveToLeviathanMutalisk,Train1` | parent `EvolveToLeviathan` -> `LeviathanCocoon` -> `HotSLeviathan` | 5 秒；要求 `LeviathanMorphAvailable` | 利维坦按终极进化单位，不按英雄单位。 |
+| `GuardianMP` | `GuardianAttackRangeIncrease` | Passive | `GuardianAttackRangeIncrease` upgrade 被动 | - | 满级应显示/生效守护者射程升级。 |
+| `GuardianMP` | `EvolveToLeviathan` | `EvolveToLeviathanGuardianMP,Train1` | parent `EvolveToLeviathan` -> `HotSLeviathan` | 5 秒；要求 `LeviathanMorphAvailable` | 守护者来自异龙变异，不是幼虫直出。 |
+| `Devourer` | `CorrosiveAcidDevourer` | `CorrosiveAcid,Execute` | `CorrosiveAcid` -> `CorrosiveAcidLM` | 冷却 45；范围 10；自动施放默认开启 | 吞噬者攻击范围升级和腐蚀强酸都要保留；`DevourerMP` 只是提取别名，实际 UnitData 为 `Devourer`。 |
+| `Devourer` | `EvolveToLeviathan` | `EvolveToLeviathanDevourer,Train1` | parent `EvolveToLeviathan` -> `HotSLeviathan` | 5 秒；要求 `LeviathanMorphAvailable` | 满级空军终极进化入口之一。 |
+| `SwarmHost` | `LocustLaunch` | `LocustLaunch,Execute` | `LocustLaunch` 蝗虫发射链 | 依能力定义 | 破阵/阵地单位的主技能，不能只接终极进化。 |
+| `SwarmHost` | `AbathurDeepTunnel` | `AbathurDeepTunnel,Execute` | `AbathurDeepTunnel` -> `AbathurDeepTunnelCU` | 冷却 30；范围 500；要求 `HaveAbathurImpalerDeepTunnel` | 9 级感染深渊升级包解锁；和改良版深槽虫道分开验证。 |
+| `SwarmHost` | `SwarmHostRootBurrow` | `MorphToSwarmHostBurrowed,Execute` | 虫群宿主扎根/潜地形态切换 | - | 潜地形态也要验证 `EvolveToBrutaliskSwarmHost`，避免形态切换后按钮丢失。 |
+| `SwarmHost` | `EvolveToBrutalisk` | `EvolveToBrutaliskSwarmHost,Train1` | parent `EvolveToBrutalisk` -> `BrutaliskCocoonSwarmhost` -> `Brutalisk` | 5 秒；要求 `BrutaliskMorphAvailable` | 满级地面终极进化入口之一。 |
+| `Viper` | `ViperConsume` | `ViperConsumeStructure,Execute` | 吞噬建筑回能链 | 持续 20 秒；能量收益按 `ViperConsumeStructureModifyCaster` | 只能以己方建筑为目标；不要让按钮能点但目标过滤错误。 |
+| `Viper` | `FaceEmbrace` | `Yoink,Execute` | 绑架目标拉取链 | 受飞蛇施法距离/麻痹勾刺升级影响 | 满级应包含 `ViperImprovedCastRange` 和 `ViperAbductImprovedStun` 被动。 |
+| `Viper` | `ParasiticBomb` | `ParasiticBomb,Execute` | `ParasiticBomb` 施加持续伤害云 | 消耗 125 能量；目标过滤为空中可见敌人 | 只能选空中目标；如果地面可点就是过滤错。 |
+| `Viper` | `EvolveToLeviathan` | `EvolveToLeviathanViper,Train1` | parent `EvolveToLeviathan` -> `HotSLeviathan` | 5 秒；要求 `LeviathanMorphAvailable` | 满级空军终极进化入口之一。 |
+| `Brutalisk` | `SymbioteCarapace` | `SymbioteCarapace,Execute` | 共生体甲壳护盾 | 持续 8 秒 | 10 级共生体后必须可用；同时验证 `AbathurSymbioteHangerBrutalisk,Ammo1` 被动。 |
+| `Brutalisk` | `BrutaliskDeepTunnel` | `BrutaliskDeepTunnel,Execute` | `BrutaliskDeepTunnel` -> `BrutaliskDeepTunnelCU` | 冷却 10；范围 500；不要求目标视野 | 莽兽是终极进化单位，深槽虫道与普通 `AbathurDeepTunnel` 分开。 |
+| `Brutalisk` | `BurrowDown` | `BurrowBrutaliskDown,Execute` | 莽兽潜地形态切换 | - | 潜地后仍需保留深槽虫道/共生体相关链路。 |
+| `HotSLeviathan` / `Leviathan` | `SymbioteCarapace` | `SymbioteCarapace,Execute` | 共生体甲壳护盾 | 持续 8 秒 | 利维坦不是英雄，但 UnitData 上有共生体能力。 |
+| `HotSLeviathan` / `Leviathan` | `AbathurBrutaliskLeviathanSymbiote` | `AbathurSymbioteHangerLeviathan,Ammo1` | 共生体挂载/弹药被动 | 要求 `HaveBrutaliskLeviathanSymbiote` | 10 级共生体满级口径下必须生效。 |
+
+满级研究补充：
+
+- `RoachWarrenResearch,Research7` -> `RavagerCorrosiveBileRadiusIncrease`：按钮 `EvolveCorrosiveBileRadiusIncrease`，资源 150/150，时间 90；升级将 `RavagerCorrosiveBileAoeSearch` 和光标半径置为 1.5。
+- `RoachWarrenResearch,Research8` -> `RavagerCorrosiveBileDamageIncrease`：按钮 `EvolveCorrosiveBileDamageIncrease`，资源 200/200，时间 120；升级将 `RavagerCorrosiveBileAoeDamage,Amount` 增加 40。
+- `AbathurMorphTimeCostReduced`：官方 XML 明确减少 `MorphRoachToRavager`、`MutaliskMorphToDevourer`、`MutaliskMorphToGuardian` 的变异时间和部分单位成本；当前未在 `upgradedata.xml` 里看到对 `MorphRoachVileToRavager` 的直接引用。当前 Mod 如果只走满级 `RoachVile` 链，需要单独验证或补齐秽型虫变破坏者的满级减时/减费效果。
 
 ### 15 级解锁与研究命令
 

@@ -6,13 +6,14 @@
 
 当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 凯瑞甘。依据 `游戏数据/官方合作指挥官/commanders/Kerrigan/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 凯瑞甘。依据 `游戏数据/官方合作指挥官/commanders/Kerrigan/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
 
 ## 链路提醒
 
 - `K5Kerrigan` 和 `K5KerriganBurrowed` 仍然是同一条英雄主链；“刀锋女王 / 人类形态”的差异主要由威望和外观升级控制，不是两个互相独立的英雄单位。
 - 当前 Mod 已把 `DroneKerrigan -> ZergBuildKerrigan -> *Kerrigan` 的建筑链私有化到第一阶段，但幼虫训练和作战单位仍有共享链路，不能视为完全闭环。
 - 第三威望通过 `KerriganInfestedCosmetic` / `KerriganGhostCosmetic` 切换外观并启用/禁用技能，追形态时要把威望和技能开关一起看。
+- 凯瑞甘的 `NydusNetwork` 是官方 `buildings.json` 正向建筑，不能套用阿巴瑟的排除结论；但 `ZagaraVoidCoopZerglingDodge`、`MorphZerglingToBaneling`、`MorphToBaneling` 这类扎加拉/普通虫族跳虫链不在凯瑞甘满级名册中，只能作为共享污染排除项。
 
 ## 官方数据摘要
 
@@ -172,6 +173,44 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 
+### 形态与技能链路补充
+
+| 类型 | ID | 说明 | 关键挂载 |
+|---|---|---|---|
+| 稳定主形态 | `K5Kerrigan` | 凯瑞甘主英雄体。 | `PrimalSlash`、`PsiStrike`、`PsionicLift`、`KerriganVoidCoopEconDrop`、`KerriganVoidCoopCrushingGripWave` |
+| 稳定潜地形态 | `K5KerriganBurrowed` | 凯瑞甘潜地体。与主形态共享核心技能，只额外挂潜地出地与禁用器。 | `BurrowUp -> K5KerriganUnburrow,Execute`；`K5KerriganBurrowedDisabler` |
+| 瞬态 helper | `K5KerriganPsiStrike` | `PsiStrikeWalk` 的 morph 目标，不是第三个持久英雄形态。 | `SelectAlias=K5Kerrigan`，`EditorCategories=ObjectType:Other,ObjectFamily:FactionEvolved` |
+
+`K5KerriganBurrowedDisabler` 只禁用 `KerriganMaelstrom`、`KerriganVoidCoopEconDrop`、`KerriganVoidCoopCrushingGripWave`。`K5KerriganPsiStrikeMorph` 的 `InfoArray` 只指向 `K5KerriganPsiStrike`，所以 `PsiStrike` 的实际链路是按钮 `PsiStrike` -> `PsiStrikeWalk,Execute` -> `PsiStrikeWalk` transient ability -> `K5KerriganPsiStrikeMorph` -> `K5KerriganPsiStrike` -> 伤害/行为效果链。
+
+### 关键技能快照
+
+| 技能 | 面板/按钮 | 能力 ID | 关键参数 | 主要效果链 |
+|---|---|---|---|---|
+| `PrimalSlash` | `PrimalSlash` | `PrimalSlash,Execute` | 50 能量，0.125 秒冷却，距离 6。 | `PrimalSlashInitialSet` -> `PrimalSlashUpgradedSet` -> `PrimalSlashUpgraded` switch -> `PrimalSlashSet` / `PrimalSlashUpgradedLMWings` / `PrimalSlashJumpOnlyUnit` / `PrimalSlashJumpOnly` |
+| `PsiStrike` | `PsiStrike` | `PsiStrikeWalk,Execute` | `PsiStrikeWalk` 是 transient，50 能量，`Cooldown Location="Unit"`，`PrepTime=0.01`，`Range=500`，`HaveK5PsiStrike`。 | `PsiStrikeTargetSearch` -> `PsiStrikeTargetSet` -> `PsiStrikeDamage` + `KerriganPsiStrikeDamageAB` -> `KerriganPsiStrikeDamaged` |
+| `PsionicLift` | 官方英雄页显示 `PsionicLift`，raw unit card 里是 `KerriganVoidCoopCrushingGripWave` | `PsionicLift,Execute` / `KerriganVoidCoopCrushingGripWave,Execute` | `PsionicLift` 在 coop 层是 75 能量、0 冷却；`KerriganVoidCoopCrushingGripWave` 是 600 起手、180 玩家冷却、0.25 秒 finish、Cast/Finish 都不可打断。 | `PsionicLiftRaiseSearch` / `KerriganVoidCoopCrushingGripWaveDelayCP` -> `KerriganVoidCoopCrushingGripWaveSearch` -> `KerriganVoidCoopCrushingGripWaveDummyCP` -> `KerriganVoidCoopCrushingGripWaveSet` |
+| `KerriganVoidCoopEconDrop` | `KerriganVoidCoopEconDrop` | `KerriganVoidCoopEconDrop,Execute` | 玩家冷却 120 秒。 | `KerriganVoidCoopEconDropCasterAB` -> `KerriganVoidCoopEconDropCaster` -> `KerriganVoidCoopEconDropSearch` -> `KerriganVoidCoopEconDropSet` -> `KerriganVoidCoopEconDropAB` |
+| `MindBolt` | raw unit card 有，但默认 hero JSON 不把它当主面板核心技。 | `MindBolt,Execute` | 10 秒冷却，9 距离，允许移动且无减速；`MindBoltDamage` 在 coop 层是 150。 | `MindBoltLaunchMissile` -> `MindBoltDamageSet` -> `MindBoltDamage` + `K5InfestBroodlings` |
+
+补充：`CommanderPrestigeKerriganAssimilationAura` 会禁用 `PsiStrikeWalk` 和 `PrimalSlash`，同时启用 `PsionicLift` 与 `MindBolt`。因此 `MindBolt` 应按威望切换技理解，不要和默认主面板技能混写。
+
+### 威望 3 外观/技能切换
+
+`CommanderPrestigeKerriganAssimilationAura` 不是新单位 morph，而是同一位 `K5Kerrigan` 的外观与技能集合重挂：
+
+| 项 | 数据 | 结论 |
+|---|---|---|
+| 威望主键 | `CommanderPrestigeKerriganAssimilationAura` | 威望 3 的正向收益入口 |
+| 外观来源 | `secondary_upgrades_self = KerriganGhostCosmetic` | 给凯瑞甘挂上幽灵/人形外观 |
+| 外观抑制 | `suppress_upgrades = KerriganInfestedCosmetic` | 关闭感染体外观分支 |
+| 技能禁用 | `PsiStrikeWalk`、`PrimalSlash` | 原本的跳击和冲刺链被关掉 |
+| 技能启用 | `PsionicLift`、`MindBolt` | 切到控制 + 单点高伤技能组 |
+| 角色模型 | `ModelSwap KerriganGhost00` / `ModelSwap InfestedKerrigan` | `!HaveKerriganInfestedCosmetic` 时走幽灵模型；有感染体外观时走感染体模型 |
+| 动画分支 | `Abil.PsionicLift.SourceCastStart`、`Abil.MindBolt.SourceCastStart` | 同一技能在不同外观下播放不同动画 |
+
+结论：这个威望改变的是“同一位凯瑞甘的外观 + 可用技能集合”，不是新增一个独立的人形英雄单位，也不是改成另一套 `unitdata.xml` 主体。
+
 ## 03. 普通单位技能及其进化功能
 
 Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderUnitEvolutionProfile`、`CommanderUnitBehaviorProfile`、`CommanderUnitWeaponProfile`。
@@ -205,12 +244,12 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 跳虫 | `-` | - | - | `HaveMPMetabolicBoost` | - |
 | 跳虫 | `-` | - | - | - | - |
 | 跳虫 | `ZerglingArmorShred` | 切割利爪 | - | `HaveZerglingArmorShred` | 跳虫的攻击会使目标的护甲降低到0，持续{Behavior,ZerglingArmorShredTarget,Duration}秒。 |
-| 跳虫 | `ZagaraVoidCoopZerglingDodge` | 闪避 | - | `HaveMasteryZagaraZerglingDodgeChance` | 跳虫有{Effect,MasteryZagaraZerglingDodgeChanceDisplayDummy,Amount}%的几率躲避一次攻击。 |
+| 跳虫（排除：扎加拉污染） | `ZagaraVoidCoopZerglingDodge` | 闪避 | - | `HaveMasteryZagaraZerglingDodgeChance` | 扎加拉跳虫精通被动污染；不计入凯瑞甘满级单位技能。 |
 | 跳虫 | `-` | - | - | `HaveMPAdrenalGlands` | - |
-| 跳虫 | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
+| 跳虫（排除：非凯瑞甘） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异污染；`Baneling` 不在凯瑞甘满级 `units.json` / `roster.json` 主链中。 |
 | 跳虫 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
 | 跳虫 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
-| 跳虫 | `-` | - | `MorphToBaneling,Execute` | - | - |
+| 跳虫（排除：非凯瑞甘） | `-` | - | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异污染；不计入凯瑞甘满级单位技能。 |
 
 ### 进化/形态/切换候选
 
@@ -227,10 +266,10 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 雷兽 | `BurrowChargeCampaign` | BurrowChargeCampaign | `UltraliskBurrowCharge,Execute` | - | - |
 | 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级14时解锁。 |
 | 跳虫 | `-` | - | - | `HaveMPAdrenalGlands` | - |
-| 跳虫 | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
+| 跳虫（排除：非凯瑞甘） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异污染；`Baneling` 不在凯瑞甘满级 `units.json` / `roster.json` 主链中。 |
 | 跳虫 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
 | 跳虫 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
-| 跳虫 | `-` | - | `MorphToBaneling,Execute` | - | - |
+| 跳虫（排除：非凯瑞甘） | `-` | - | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异污染；不计入凯瑞甘进化链。 |
 | 凯瑞甘 | `PsionicLift` | - | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
 
 实现备注：单位自身声明技能、被动、武器、Behavior 和升级后替换关系；科技建筑只触发研究，不在科技建筑内部判断所有兵种 if/else。

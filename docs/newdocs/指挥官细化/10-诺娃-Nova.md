@@ -6,12 +6,14 @@
 
 当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 诺娃。依据 `游戏数据/官方合作指挥官/commanders/Nova/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 诺娃。依据 `游戏数据/官方合作指挥官/commanders/Nova/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
 
 ## 链路提醒
 
 - 诺娃是“运行名册在 `XMFinal`、私有 Catalog 在 `XMNova.SC2Mod`”的样板；`XMCore` 只保留 `SOAStickyLine` 这类可复用顶部技能 helper。
-- 追 `SCVNova`、`CommandCenterNova`、`BarracksNova` 这类链路时，不要停在 `CAbilWarpTrain.InfoArray.Unit`，要继续追 `SpawnerUnit -> Behavior -> EffectSet -> CreateUnit`，才能得到真正的最终兵种。
+- 官方 Nova JSON 里的经济单位是 `SCV`，不是 `SCVNova`；`SCVNova` 更像当前 Mod/旧线私有命名线索，不能反推为官方单位 ID。
+- 追 `MarineNova`、`MarauderNova`、`GhostNova` 等黑色行动训练链时，不要停在 `CAbilWarpTrain.InfoArray.Unit`，要继续追 `SpawnerUnit -> Behavior -> EffectSet -> CreateUnit`，才能得到真正的最终兵种。
+- `AutoTurret` 的正向产物链是 `Raven_BlackOps -> BuildAutoTurret_BlackOps -> AutoTurret`；`SalvageShared` 里的 `NotHaveAutoTurret_BlackOpsTimedLife` 只是共享负条件，不代表其它指挥官的回收按钮归 Nova。
 
 ## 官方数据摘要
 
@@ -210,15 +212,15 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 部署重型攻城坦克 | `SiegeTank_BlackOpsSiege` | 攻城模式 | `SiegeTank_BlackOpsSiege,Execute` | - | 部署成攻城模式。重型攻城坦克在该模式下拥有超远射程，能造成范围伤害，但无法移动和攻击近距离目标。 |
 | 部署重型攻城坦克 | `DeploySpiderMines` | 部署蜘蛛雷 | `DeploySpiderMines,Execute` | - | 蜘蛛雷会对进入范围的敌方单位进行追击，引爆后可造成大量范围伤害。潜地的蜘蛛雷只能被敌人的侦测单位发现。 |
 | SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
-| SCV | `SwannBarracks` | 兵营已禁用 | - | `HaveSwannCommander` | 斯旺的基础生产建筑是重工厂而不是兵营。 / 重工厂可以在SCV的高级建筑菜单中找到。 |
+| SCV（排除：斯旺污染） | `SwannBarracks` | 兵营已禁用 | - | `HaveSwannCommander` | 斯旺的基础生产建筑提示，不计入 Nova 正向技能。 |
 | SCV | `ReturnCargo` | 返还资源 | `SCVHarvest,Return` | - | 将携带的资源送往最近的卸载点。 |
 | SCV | `AdvancedConstructionAuto` | 高级建造 | `AdvancedConstructionAuto,Execute` | - | 多台SCV可同时建造同一个建筑，缩短其建造时间。修理不消耗资源。 |
-| SCV | `AdvancedConstructionLocked` | 高级建造 | - | `SwannLevel08` | 该技能将在指挥官等级8时解锁。 |
+| SCV（排除：斯旺等级锁污染） | `AdvancedConstructionLocked` | 高级建造 | - | `SwannLevel08` | 斯旺等级锁提示，不计入 Nova。 |
 | SCV | `BuildLaserTurret` | 建造磁轨炮塔 | `TerranBuildFullRefund,Build1` | - | 自动化防御炮塔。对一条直线上的所有敌方地面单位造成伤害。 / 可以对地。 |
-| SCV | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 该单位将在指挥官等级6时解锁。 |
+| SCV（排除：雷诺等级锁污染） | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 雷诺等级锁提示，不计入 Nova。 |
 | SCV | `SensorTower` | 建造感应塔 | `TerranBuild,Build9` | - | 在大范围内显示敌方单位的位置。敌方单位可以看到感应塔的侦测范围。 |
 | SCV | `PsiDisruptor` | PsiDisruptor | `TerranBuild,Build8` | - | - |
-| SCV | `BuildKelMorianRocketTurret` | 建造毁灭炮塔 | `TerranBuild,Build27` | - | 对重甲单位造成额外伤害。攻击会使敌人减速。 / 可以对地。 |
+| SCV（排除：斯旺污染） | `BuildKelMorianRocketTurret` | 建造毁灭炮塔 | `TerranBuild,Build27` | - | `KelMorian*` 是斯旺炮塔链，不计入 Nova 正向建筑链。 |
 | ... | ... | ... | ... | ... | 还有 19 项，后续从 command_cards.json 继续展开。 |
 
 ### 进化/形态/切换候选
@@ -423,7 +425,7 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 | 幽灵军校 | `ResearchOperationalEfficiencyLocked` | 研究作战效能 | - | `NovaLevel14` | 该科技将在指挥官等级14时解锁。 |
 | 幽灵军校 | `ResearchInfernalProjectilesLocked` | 研究狱火爆弹 | - | `NovaLevel14` | 该科技将在指挥官等级14时解锁。 |
 | SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
-| SCV | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 该单位将在指挥官等级6时解锁。 |
+| SCV（排除：雷诺等级锁污染） | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 雷诺等级锁提示，不计入 Nova。 |
 | SCV | `EngineeringBay` | 建造工程站 | `TerranBuild,Build5` | - | 为人类步兵单位和建筑提供升级方案。 / 开启： / - 使SCV可以建造导弹塔 / - 使SCV可以建造感应塔 / - 使指挥中心可升级为行星要塞 |
 | SCV | `GhostAcademy` | 建造幽灵军校 | `TerranBuild,Build10` | - | 能够制造供幽灵使用的聚变弹头，并为幽灵提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 |
 | SCV | `Armory` | 建造军械库 | `TerranBuild,Build14` | - | 为重工厂和星港制造的单位提供武器和护甲升级方案。 / 开启： / - 可以在重工厂中制造恶蝠 / - 可以在重工厂中制造雷神 |

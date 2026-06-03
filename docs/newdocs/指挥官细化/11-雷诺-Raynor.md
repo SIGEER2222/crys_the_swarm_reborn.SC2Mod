@@ -6,7 +6,7 @@
 
 当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 雷诺。依据 `游戏数据/官方合作指挥官/commanders/Raynor/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 雷诺。依据 `游戏数据/官方合作指挥官/commanders/Raynor/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
 
 ## 官方数据摘要
 
@@ -33,6 +33,8 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 ```
 
 注意：官方 Raynor JSON 里大量按钮面和图标名仍复用 Nova 的命名，例如 `TrainMarineNova`、`TrainMarauderNova`、`TrainGhostNova`、`GhostAcademyNova`。这些只是共享按钮壳或资源名，不代表 Raynor 的实际 roster 变成了 Nova。判断是否属于雷诺，优先看 `commander_id=TerranRaynor`、`level_id=RaynorLevelXX`、`upgrade=RaynorCommander` 以及具体 `requirements`。
+
+2026-06-03 人族闭包已补严生产者归属过滤；实现时以 `docs/newdocs/指挥官细化/人族闭包/terran-commander-closure.json` 的 accepted 链路为准。`HH*`、`BlackOps`、`KelMorian*`、`SwannLevel*` 等命中只能作为共享污染或排除项，不能直接接入 Raynor。
 
 ## 15 级解锁摘要
 
@@ -271,16 +273,16 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 秃鹫 | `-` | - | `255,255` | - | - |
 | 火蝠 | `StimMarauder` | 使用强化剂 | `StimpackMarauder,Execute` | - | 给单位注入强效的刺激物，大幅提高其移动和攻击速度，持续{Behavior,Stimpack,Duration}秒。该单位会受到相当于其生命值{Abil,StimpackMarauder,Cost[0].Vital[Life]}的伤害。 |
 | 火蝠 | `-` | - | - | - | - |
-| SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
-| SCV | `SwannBarracks` | 兵营已禁用 | - | `HaveSwannCommander` | 斯旺的基础生产建筑是重工厂而不是兵营。 / 重工厂可以在SCV的高级建筑菜单中找到。 |
+| SCV（排除：诺娃污染） | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | `GhostAcademyNova` 是诺娃共享按钮/建筑线索，不计入 Raynor 正向建筑链。 |
+| SCV（排除：斯旺污染） | `SwannBarracks` | 兵营已禁用 | - | `HaveSwannCommander` | 斯旺的基础生产建筑提示，不计入 Raynor 正向技能。 |
 | SCV | `ReturnCargo` | 返还资源 | `SCVHarvest,Return` | - | 将携带的资源送往最近的卸载点。 |
 | SCV | `AdvancedConstructionAuto` | 高级建造 | `AdvancedConstructionAuto,Execute` | - | 多台SCV可同时建造同一个建筑，缩短其建造时间。修理不消耗资源。 |
-| SCV | `AdvancedConstructionLocked` | 高级建造 | - | `SwannLevel08` | 该技能将在指挥官等级8时解锁。 |
-| SCV | `BuildLaserTurret` | 建造磁轨炮塔 | `TerranBuildFullRefund,Build1` | - | 自动化防御炮塔。对一条直线上的所有敌方地面单位造成伤害。 / 可以对地。 |
+| SCV（排除：斯旺等级锁污染） | `AdvancedConstructionLocked` | 高级建造 | - | `SwannLevel08` | 斯旺等级锁提示，不计入 Raynor。 |
+| SCV（排除：诺娃污染） | `BuildLaserTurret` | 建造磁轨炮塔 | `TerranBuildFullRefund,Build1` | - | 诺娃磁轨炮塔/全额退款建造链，不计入 Raynor。 |
 | SCV | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 该单位将在指挥官等级6时解锁。 |
 | SCV | `SensorTower` | 建造感应塔 | `TerranBuild,Build9` | - | 在大范围内显示敌方单位的位置。敌方单位可以看到感应塔的侦测范围。 |
 | SCV | `PsiDisruptor` | PsiDisruptor | `TerranBuild,Build8` | - | - |
-| SCV | `BuildKelMorianRocketTurret` | 建造毁灭炮塔 | `TerranBuild,Build27` | - | 对重甲单位造成额外伤害。攻击会使敌人减速。 / 可以对地。 |
+| SCV（排除：斯旺污染） | `BuildKelMorianRocketTurret` | 建造毁灭炮塔 | `TerranBuild,Build27` | - | `KelMorian*` 是斯旺炮塔链，不计入 Raynor 正向建筑链。 |
 | SCV | `CommandCenter` | 建造指挥中心 | `TerranBuild,Build1` | - | 基础建筑，用于接收采集到的资源。自体可以升空，可以升级成为轨道控制基地或行星要塞。 / 开启： / - SCV |
 | SCV | `Refinery` | 建造精炼厂 | `TerranBuild,Build3` | - | 建造在瓦斯气泉上，用于采集高能瓦斯。 |
 | SCV | `SupplyDepot` | 建造补给站 | `TerranBuild,Build2` | - | 为人类部队提供补给， / 提高本方单位数量上限。 / 补给站可以降下，允许地面单位出入。 |
@@ -307,7 +309,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 战列巡航舰 | `-` | - | `BattlecruiserMove,HoldPos` | - | - |
 | 战列巡航舰 | `-` | - | `BattlecruiserMove,Patrol` | - | - |
 | 战列巡航舰 | `-` | - | `BattlecruiserAttack,Execute` | - | - |
-| 攻城坦克 | `CommanderSwannImmortalityProtocol` | 永生程序 | - | `HaveSwannCommanderImmortalityProtocol` | 解锁重建能力。使被摧毁的雷神和攻城坦克能在战场上重建。 |
+| 攻城坦克（排除：斯旺污染） | `CommanderSwannImmortalityProtocol` | 永生程序 | - | `HaveSwannCommanderImmortalityProtocol` | 斯旺永生程序提示，不计入 Raynor 正向技能链。 |
 | 攻城坦克 | `SiegeMode` | 攻城模式 | `SiegeMode,Execute` | - | 部署为攻城模式。在该模式下，攻城坦克的射程极大提高，并可造成范围伤害，但无法移动和攻击近距离目标。 |
 | ... | ... | ... | ... | ... | 还有 6 项，后续从 command_cards.json 继续展开。 |
 
@@ -317,7 +319,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 |---|---|---|---|---|---|
 | 兵营 | `Lift` | 升空 | `BarracksLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
 | 轨道控制基地 | `Lift` | 升空 | `OrbitalLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
-| 攻城坦克 | `CommanderSwannImmortalityProtocol` | 永生程序 | - | `HaveSwannCommanderImmortalityProtocol` | 解锁重建能力。使被摧毁的雷神和攻城坦克能在战场上重建。 |
+| 攻城坦克（排除：斯旺污染） | `CommanderSwannImmortalityProtocol` | 永生程序 | - | `HaveSwannCommanderImmortalityProtocol` | 斯旺永生程序提示，不计入 Raynor 正向技能链。 |
 | 攻城坦克 | `SiegeMode` | 攻城模式 | `SiegeMode,Execute` | - | 部署为攻城模式。在该模式下，攻城坦克的射程极大提高，并可造成范围伤害，但无法移动和攻击近距离目标。 |
 | 攻城坦克 | `AfterburnersLocked` | 后燃推进系统 | - | `RaynorLevel11` | 该技能将在指挥官等级11时解锁。 |
 | 攻城坦克 | `MaelstromRounds` | - | - | `HaveMaelstromRounds` | 攻城坦克在攻城模式下的攻击力提高40点。溅射伤害保持不变。 |
@@ -343,11 +345,11 @@ Owner：`CommanderBaseInitProfile`、`CommanderOpeningLoadoutProfile`、`Command
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 兵营 | `TrainMarineNova` | 部署精英陆战队员 | `BarracksTrainNova,Train1` | - | 部署{Effect,MarineBlackOpsSpawnerCreateUnit,SpawnCount}名精英陆战队员。精英通用型步兵。 / 可以对地和对空。 |
-| 兵营 | `TrainMarauderNova` | 部署劫掠者突击手 | `BarracksTrainNova,Train2` | - | 部署{Effect,MarauderBlackOpsSpawnerCreateUnit,SpawnCount}名劫掠者突击手。精英重型突击步兵。 / 可以对地。 |
-| 兵营 | `TrainGhostNova` | 部署特战幽灵 | `BarracksTrainNova,Train3` | - | 部署{Effect,GhostBlackOpsSpawnerCreateUnit,SpawnCount+Effect,GhostBlackOpsSpawnerCreateUnitFemale,SpawnCount}名特战幽灵。精英狙击手。可以使用狙杀并且永久隐形。可以在升级... |
+| 兵营（排除：诺娃共享部署污染） | `TrainMarineNova` | 部署精英陆战队员 | `BarracksTrainNova,Train1` | - | 诺娃 BlackOps 部署按钮，不计入 Raynor 建筑生产链。 |
+| 兵营（排除：诺娃共享部署污染） | `TrainMarauderNova` | 部署劫掠者突击手 | `BarracksTrainNova,Train2` | - | 诺娃 BlackOps 部署按钮，不计入 Raynor 建筑生产链。 |
+| 兵营（排除：诺娃共享部署污染） | `TrainGhostNova` | 部署特战幽灵 | `BarracksTrainNova,Train3` | - | 诺娃 BlackOps 部署按钮，不计入 Raynor 建筑生产链。 |
 | 兵营 | `Medic` | Medic | `BarracksTrain,Train5` | - | - |
-| 兵营 | `Ghost` | 训练幽灵 | `BarracksTrain,Train3` | - | 狙击手。能够使用稳定瞄准、EMP弹并且升级后可以使用隐形技能。能够对幽灵军校发动的聚变打击进行制导。 / 可以对地和对空。 |
+| 兵营（排除：非 Raynor 满级 units.json） | `Ghost` | 训练幽灵 | `BarracksTrain,Train3` | - | Raynor official units.json 不含 Ghost，不计入默认满级主链。 |
 | 兵营 | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | - |
 | 兵营 | `Lift` | 升空 | `BarracksLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
 | 兵营 | `Reactor` | 建造反应堆 | `BarracksAddOns,Build2` | - | 使该建筑能够同步生产两个单位。 |
@@ -424,18 +426,18 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 兵营 | `TrainMarineNova` | 部署精英陆战队员 | `BarracksTrainNova,Train1` | - | 部署{Effect,MarineBlackOpsSpawnerCreateUnit,SpawnCount}名精英陆战队员。精英通用型步兵。 / 可以对地和对空。 |
-| 兵营 | `TrainMarauderNova` | 部署劫掠者突击手 | `BarracksTrainNova,Train2` | - | 部署{Effect,MarauderBlackOpsSpawnerCreateUnit,SpawnCount}名劫掠者突击手。精英重型突击步兵。 / 可以对地。 |
-| 兵营 | `TrainGhostNova` | 部署特战幽灵 | `BarracksTrainNova,Train3` | - | 部署{Effect,GhostBlackOpsSpawnerCreateUnit,SpawnCount+Effect,GhostBlackOpsSpawnerCreateUnitFemale,SpawnCount}名特战幽灵。精英狙击手。可以使用狙杀并且永久隐形。可以在升级... |
+| 兵营（排除：诺娃共享部署污染） | `TrainMarineNova` | 部署精英陆战队员 | `BarracksTrainNova,Train1` | - | 诺娃 BlackOps 部署按钮，不计入 Raynor 建筑生产链。 |
+| 兵营（排除：诺娃共享部署污染） | `TrainMarauderNova` | 部署劫掠者突击手 | `BarracksTrainNova,Train2` | - | 诺娃 BlackOps 部署按钮，不计入 Raynor 建筑生产链。 |
+| 兵营（排除：诺娃共享部署污染） | `TrainGhostNova` | 部署特战幽灵 | `BarracksTrainNova,Train3` | - | 诺娃 BlackOps 部署按钮，不计入 Raynor 建筑生产链。 |
 | 兵营 | `Medic` | Medic | `BarracksTrain,Train5` | - | - |
-| 兵营 | `MasteryNovaArmyAttackSpeedAppend` | 战斗精通 | - | `HaveMasteryNovaArmyAttackSpeed` | 精通：从这座建筑部署的单位获得{Effect,MasteryNovaArmyAttackSpeedDisplayDummy,Amount}%攻击速度。 |
-| 兵营 | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | - | `HaveMasteryNovaArmyOOCRegenSpeed` | 精通：从这座建筑部署的单位脱离战斗后每秒恢复{Effect,MasteryNovaArmyOOCRegenSpeedDisplayDummy,Amount}点生命值。 |
-| 兵营 | `Ghost` | 训练幽灵 | `BarracksTrain,Train3` | - | 狙击手。能够使用稳定瞄准、EMP弹并且升级后可以使用隐形技能。能够对幽灵军校发动的聚变打击进行制导。 / 可以对地和对空。 |
+| 兵营（排除：诺娃精通污染） | `MasteryNovaArmyAttackSpeedAppend` | 战斗精通 | - | `HaveMasteryNovaArmyAttackSpeed` | 诺娃精通提示，不计入 Raynor 建筑技能链。 |
+| 兵营（排除：诺娃精通污染） | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | - | `HaveMasteryNovaArmyOOCRegenSpeed` | 诺娃精通提示，不计入 Raynor 建筑技能链。 |
+| 兵营（排除：非 Raynor 满级 units.json） | `Ghost` | 训练幽灵 | `BarracksTrain,Train3` | - | Raynor official units.json 不含 Ghost，不计入默认满级主链。 |
 | 兵营 | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | - |
 | 兵营 | `Lift` | 升空 | `BarracksLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
 | 兵营 | `OrbitalDropPodsPassive` | 轨道空投 | - | `HaveOrbitalDropPods` | 兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。 |
 | 兵营 | `Reactor` | 建造反应堆 | `BarracksAddOns,Build2` | - | 使该建筑能够同步生产两个单位。 |
-| 兵营 | `MengskUnits` | MengskUnits | - | - | - |
+| 兵营（排除：蒙斯克污染） | `MengskUnits` | MengskUnits | - | - | 蒙斯克共享提示，不计入 Raynor 建筑技能链。 |
 | 兵营 | `Marauder` | 训练劫掠者 | `BarracksTrain,Train4` | - | 重型突击步兵。 / 可以对地。 |
 | 补给站 | `Lower` | 降下 | `SupplyDepotLower,Execute` | - | 降下建筑，允许地面单位出入。 |
 | 地堡 | `NeoSteelFrame` | - | - | `UseNeoSteelFrame` | - |
@@ -449,13 +451,13 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 导弹塔 | `HellstormMissileBatteries` | HellstormMissileBatteries | - | `HailstormMissilePods` | - |
 | 导弹塔 | `Salvage` | 回收 | `SalvageShared,On` | - | 回收该建筑，将其移除并返还75%建造所花费的晶体矿及高能瓦斯数量。回收过程需要{time:5}。警告：回收过程一旦开始便无法取消。 |
 | 导弹塔 | `HaveHiSecAutoTracking` | 瞬时自动追踪 | - | `HaveTerranDefenseRangeBonus` | 所有炮台射程+1。 |
-| 导弹塔 | `HaveImprovedTurretAttackSpeed` | KMC自动填弹装置 | - | `HaveSwannTurretIncreasedAttackSpeed` | 所有炮台的攻击速度提高25%。 |
+| 导弹塔（排除：斯旺炮塔升级污染） | `HaveImprovedTurretAttackSpeed` | KMC自动填弹装置 | - | `HaveSwannTurretIncreasedAttackSpeed` | 斯旺炮塔升级提示，不计入 Raynor 建筑技能链。 |
 | 导弹塔 | `Detector` | 侦测单位 | - | `NotUnderConstruction` | 该单位能够侦测到隐形、潜地和幻像单位。 |
 | 指挥中心 | `SCV` | 制造SCV | `CommandCenterTrain,Train1` | - | 基础工作单位。用于采集资源、建造人类建筑和修理。 / 可以对地。 |
 | 指挥中心 | `VespeneDrone` | 瓦斯采集器 | `VespeneDroneCast,Execute` | - | 空投一名自动采集单位，从任何友方瓦斯采集建筑中为你和你的盟友采集更多的高能瓦斯。 / 瞄准一个友方瓦斯采集建筑。 |
 | 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
 | 指挥中心 | `UpgradeToPlanetaryFortress` | 升级为行星要塞 | `UpgradeToPlanetaryFortress,Execute` | - | 添置一个强力炮塔，并且提高护甲。 / 可以对地。 |
-| 指挥中心 | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | - | `HaveMasteryNovaArmyOOCRegenSpeed` | 精通：从这座建筑部署的单位脱离战斗后每秒恢复{Effect,MasteryNovaArmyOOCRegenSpeedDisplayDummy,Amount}点生命值。 |
+| 指挥中心（排除：诺娃精通污染） | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | - | `HaveMasteryNovaArmyOOCRegenSpeed` | 诺娃精通提示，不计入 Raynor 建筑技能链。 |
 | 指挥中心 | `CommandCenterLoad` | 装载 | `CommandCenterTransport,LoadAll` | - | 将附近的SCV装载进指挥中心。 |
 | 指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `CommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
 | 指挥中心 | `NeoSteelFrameCommandCenter` | 精钢指挥中心 | - | `HaveNeosteelFrame` | 指挥中心的舱位增加5。 |
@@ -534,7 +536,7 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
+| SCV（排除：诺娃污染） | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | `GhostAcademyNova` 是诺娃共享按钮/建筑线索，不计入 Raynor 正向建筑链。 |
 | SCV | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 该单位将在指挥官等级6时解锁。 |
 | SCV | `EngineeringBay` | 建造工程站 | `TerranBuild,Build5` | - | 为人类步兵单位和建筑提供升级方案。 / 开启： / - 使SCV可以建造导弹塔 / - 使SCV可以建造感应塔 / - 使指挥中心可升级为行星要塞 |
 | SCV | `GhostAcademy` | 建造幽灵军校 | `TerranBuild,Build10` | - | 能够制造供幽灵使用的聚变弹头，并为幽灵提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 |

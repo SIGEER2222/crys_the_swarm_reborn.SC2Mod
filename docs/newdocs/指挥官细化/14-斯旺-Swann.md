@@ -6,7 +6,13 @@
 
 当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 斯旺。依据 `游戏数据/官方合作指挥官/commanders/Swann/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 斯旺。依据 `游戏数据/官方合作指挥官/commanders/Swann/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
+
+## 链路提醒
+
+- 本轮人族闭包已确认 `KelMorian*` / `DrakkenLaser*` 是 Swann 正向 owner；这些命中在其它人族指挥官里要排除，但在 Swann 页里应保留。
+- `SalvageShared` 的 `NotHaveAutoTurret_BlackOpsTimedLife` 只是共享负条件，不代表 Swann 防御建筑的回收按钮归 Nova。
+- 后续实现斯旺时优先看 `docs/newdocs/指挥官细化/人族闭包/terran-commander-closure.json` 的 accepted 链路。
 
 ## 官方数据摘要
 
@@ -177,13 +183,13 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 恶火 | `HellArmor` | 地狱火装甲 | - | `HaveHellbatHellArmor` | 恶蝠和恶火的护甲提高2点。 |
 | 怨灵战机 | `ImprovedBurstLaser` | 脉冲增幅器 | - | `HaveWraithImprovedBurstLaser` | 怨灵战机移动时，双子飞弹的伤害提高{(Behavior,SwannGeminiMissileMovementBuff,DamageResponse.ModifyFraction-1)*100}%，脉冲激光炮的伤害提高{(Behavior,SwannBurstLaserMov... |
 | 怨灵战机 | `-` | - | `255,255` | - | - |
-| SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
+| SCV（排除：诺娃污染） | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 诺娃幽灵军校按钮，不计入 Swann 劳工建造或建筑链。 |
 | SCV | `SwannBarracks` | 兵营已禁用 | - | `HaveSwannCommander` | 斯旺的基础生产建筑是重工厂而不是兵营。 / 重工厂可以在SCV的高级建筑菜单中找到。 |
 | SCV | `ReturnCargo` | 返还资源 | `SCVHarvest,Return` | - | 将携带的资源送往最近的卸载点。 |
 | SCV | `AdvancedConstructionAuto` | 高级建造 | `AdvancedConstructionAuto,Execute` | - | 多台SCV可同时建造同一个建筑，缩短其建造时间。修理不消耗资源。 |
 | SCV | `AdvancedConstructionLocked` | 高级建造 | - | `SwannLevel08` | 该技能将在指挥官等级8时解锁。 |
-| SCV | `BuildLaserTurret` | 建造磁轨炮塔 | `TerranBuildFullRefund,Build1` | - | 自动化防御炮塔。对一条直线上的所有敌方地面单位造成伤害。 / 可以对地。 |
-| SCV | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 该单位将在指挥官等级6时解锁。 |
+| SCV（排除：诺娃污染） | `BuildLaserTurret` | 建造磁轨炮塔 | `TerranBuildFullRefund,Build1` | - | 诺娃磁轨炮塔/全额退款建造链，不计入 Swann。 |
+| SCV（排除：雷诺等级锁污染） | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 雷诺等级锁提示，不计入 Swann；Swann 的 raw `TerranBuild,Build16 -> FusionCore` 另见人族闭包。 |
 | SCV | `SensorTower` | 建造感应塔 | `TerranBuild,Build9` | - | 在大范围内显示敌方单位的位置。敌方单位可以看到感应塔的侦测范围。 |
 | SCV | `PsiDisruptor` | PsiDisruptor | `TerranBuild,Build8` | - | - |
 | SCV | `BuildKelMorianRocketTurret` | 建造毁灭炮塔 | `TerranBuild,Build27` | - | 对重甲单位造成额外伤害。攻击会使敌人减速。 / 可以对地。 |
@@ -320,7 +326,7 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 指挥中心 | `VespeneDrone` | 瓦斯采集器 | `VespeneDroneCast,Execute` | - | 空投一名自动采集单位，从任何友方瓦斯采集建筑中为你和你的盟友采集更多的高能瓦斯。 / 瞄准一个友方瓦斯采集建筑。 |
 | 指挥中心 | `OrbitalCommand` | 升级为轨道控制基地 | `UpgradeToOrbital,Execute` | - | 使指挥中心升级为轨道控制基地，并启用析像扫描和轨道空投：矿骡技能。无法装载SCV。 |
 | 指挥中心 | `UpgradeToPlanetaryFortress` | 升级为行星要塞 | `UpgradeToPlanetaryFortress,Execute` | - | 添置一个强力炮塔，并且提高护甲。 / 可以对地。 |
-| 指挥中心 | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | - | `HaveMasteryNovaArmyOOCRegenSpeed` | 精通：从这座建筑部署的单位脱离战斗后每秒恢复{Effect,MasteryNovaArmyOOCRegenSpeedDisplayDummy,Amount}点生命值。 |
+| 指挥中心（排除：诺娃精通污染） | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | - | `HaveMasteryNovaArmyOOCRegenSpeed` | 诺娃精通提示，不计入 Swann 建筑技能链。 |
 | 指挥中心 | `CommandCenterLoad` | 装载 | `CommandCenterTransport,LoadAll` | - | 将附近的SCV装载进指挥中心。 |
 | 指挥中心 | `CommandCenterUnloadAll` | 全部卸载 | `CommandCenterTransport,UnloadAll` | - | 卸载所有单位。 |
 | 指挥中心 | `NeoSteelFrameCommandCenter` | 精钢指挥中心 | - | `HaveNeosteelFrame` | 指挥中心的舱位增加5。 |
@@ -393,8 +399,8 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 | 恶火 | `ResearchHighCapacityBarrels` | 研究地狱火预燃器 | - | `HaveInfernalPreigniter` | 强化恶火的地狱火喷射器，使其对轻甲单位造成额外{$UpgradeEffectArrayValue:HighCapacityBarrels:Effect,InfernalFlameThrower,AttributeBonus[Light]$}点伤害；强化恶蝠的凝固汽油喷射器，... |
 | 德拉肯激光钻机 | `ResearchDrakkenLaserDrillNuke` | 升级2级激光钻机 | `DrakkenLaserDrillResearch,Research2` | - | 启用脉冲炮技能，并使德拉肯激光钻机的攻击力+20。 |
 | 毁灭炮塔 | `KelMorianGrenadeTurretConcussiveGrenades` | 震荡榴弹 | - | `HaveSwannKelMorianGrenadeTurretUpgrade` | 被爆弹比利攻击的单位会被暂时减速。 / 重型单位对此免疫。 |
-| SCV | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 为诺娃提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 / - 诺娃可以使用战术聚变打击 |
-| SCV | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 该单位将在指挥官等级6时解锁。 |
+| SCV（排除：诺娃污染） | `GhostAcademyNova` | 建造幽灵军校 | `TerranBuild,Build15` | - | 诺娃幽灵军校按钮，不计入 Swann 劳工建造或建筑链。 |
+| SCV（排除：雷诺等级锁污染） | `BuildFusionCoreLocked` | 建造聚变芯体 | - | `RaynorLevel06` | 雷诺等级锁提示，不计入 Swann；Swann 的 raw `TerranBuild,Build16 -> FusionCore` 另见人族闭包。 |
 | SCV | `EngineeringBay` | 建造工程站 | `TerranBuild,Build5` | - | 为人类步兵单位和建筑提供升级方案。 / 开启： / - 使SCV可以建造导弹塔 / - 使SCV可以建造感应塔 / - 使指挥中心可升级为行星要塞 |
 | SCV | `GhostAcademy` | 建造幽灵军校 | `TerranBuild,Build10` | - | 能够制造供幽灵使用的聚变弹头，并为幽灵提供升级方案。 / 开启： / - 可以在兵营中训练幽灵 |
 | SCV | `Armory` | 建造军械库 | `TerranBuild,Build14` | - | 为重工厂和星港制造的单位提供武器和护甲升级方案。 / 开启： / - 可以在重工厂中制造恶蝠 / - 可以在重工厂中制造雷神 |
@@ -506,7 +512,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 怨灵战机 | `ImprovedBurstLaser` | 脉冲增幅器 | - | `HaveWraithImprovedBurstLaser` | 怨灵战机移动时，双子飞弹的伤害提高{(Behavior,SwannGeminiMissileMovementBuff,DamageResponse.ModifyFraction-1)*100}%，脉冲激光炮的伤害提高{(Behavior,SwannBurstLaserMov... |
 | SCV | `SwannBarracks` | 兵营已禁用 | - | `HaveSwannCommander` | 斯旺的基础生产建筑是重工厂而不是兵营。 / 重工厂可以在SCV的高级建筑菜单中找到。 |
 | SCV | `AdvancedConstructionLocked` | 高级建造 | - | `SwannLevel08` | 该技能将在指挥官等级8时解锁。 |
-| SCV | `BuildLaserTurret` | 建造磁轨炮塔 | `TerranBuildFullRefund,Build1` | - | 自动化防御炮塔。对一条直线上的所有敌方地面单位造成伤害。 / 可以对地。 |
+| SCV（排除：诺娃污染） | `BuildLaserTurret` | 建造磁轨炮塔 | `TerranBuildFullRefund,Build1` | - | 诺娃磁轨炮塔/全额退款建造链，不计入 Swann。 |
 | 攻城坦克 | `CommanderSwannImmortalityProtocol` | 永生程序 | - | `HaveSwannCommanderImmortalityProtocol` | 解锁重建能力。使被摧毁的雷神和攻城坦克能在战场上重建。 |
 
 实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。

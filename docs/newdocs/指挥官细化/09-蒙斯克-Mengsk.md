@@ -6,7 +6,15 @@
 
 当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 蒙斯克。依据 `游戏数据/官方合作指挥官/commanders/Mengsk/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 蒙斯克。依据 `游戏数据/官方合作指挥官/commanders/Mengsk/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
+
+## 链路提醒
+
+- 本轮人族闭包已确认 `SCVMengsk`、`TrooperMengsk`、`TrooperMengskAA`、`TrooperMengskFlamethrower`、`TrooperMengskImproved` 都能进入 `TrooperMengskBuild` 战斗建筑链。
+- `BunkerDepotMengsk`、`ArtilleryMengsk`、`MissileTurretMengsk` 的建造者不仅是 `SCVMengsk`，满级口径下四种冲锋队形态也都应保留。
+- 冲锋队正向技能闭包至少包含 `TrooperMengskEnlist`、`TrooperMengskSpecializeImproved`、`TrooperMengskSpecializeFlamethrower`、`TrooperMengskSpecializeAA`、`TrooperMengskBuild,Build3/6/7`。
+- `Rally,Rally1` 本身可能是蒙斯克正向集结点；但人族闭包中带 `other_commander_token:Nova` / `requirement_reference_belongs_to_other_commander:Nova` 的共享 `Rally,Rally1` 行只能作为污染排除，不能覆盖蒙斯克 accepted 链。
+- 后续实现蒙斯克时优先看 `docs/newdocs/指挥官细化/人族闭包/terran-commander-closure.json` 的 accepted 链路。
 
 ## 官方数据摘要
 
