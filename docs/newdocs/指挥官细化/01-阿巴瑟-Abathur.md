@@ -4,7 +4,7 @@
 
 ## 当前口径
 
-当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
+本文件统一按满级 `power_fusion` 口径编写：正文只讨论满级指挥官的最终态，不再把 1 级与 15 级拆成两套玩法态；等级 1-15 只保留为解锁门槛和审计锚点。精通默认 6 项全部 30 点，三个威望按正收益融合展开，不直接启用官方 `PlayerPrestige`。`initial` 仅用于官方基础状态审计和差异对照，默认测试和玩法都看 `power_fusion` 最终状态。
 
 本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 阿巴瑟。依据 `游戏数据/官方合作指挥官/commanders/Abathur/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
 

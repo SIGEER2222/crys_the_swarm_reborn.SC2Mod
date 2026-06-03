@@ -8,16 +8,15 @@
 
 统一口径：
 
-1. 当前指挥官默认 15 级，不从 1 级开始。
-2. 精通默认 6 项全部 30 点。
-3. 威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。
-4. `full_units` 默认指向强度融合最终 roster，即 `power_fusion`。
-5. `initial` 只用于官方基础状态审计和差异对照。
-6. 单指挥官有效单位、建筑、技能链均按满级最终状态过滤；1 级、中间等级、历史候选和共享卡污染只作审计输入，不得直接作为实现主链。
-7. 具体实现前仍需追 `游戏数据/官方SC2原始文本镜像/` 闭包并补 `[XM_DBG]` 验证日志。
-8. `heroes.json` 只按当前 JSON 事实写入英雄模块；`heroes.json=0` 不代表官方玩法一定没有英雄，只代表本轮提取数据未直接列出，需要官方原始文本镜像/实机补闭包。
-9. 原始镜像里的 `AbilData`、`ArmyCategory`、`TechUnit`、`UpgradeData` 是共享 Catalog 事实，不是单指挥官归属事实；任何工蜂/SCV/探机共享建造菜单必须先过 `commanders/<Commander>/buildings.json`、满级 `power_fusion` 名册和等级/威望闭包过滤。
-10. `buildings.json` 是官方提取出的建筑名册，不等于劳工实际 command card 的全部建造按钮；人族闭包同时保留 `worker_build_commands`，用于回答 SCV/劳工/冲锋队可以实际点击哪些建筑命令。`raw-only` tech building 可作为功能性前置链，但不能反过来覆盖 official buildings.json 归属。
+1. 正文统一按满级 `power_fusion` 口径写，不再把 1 级和 15 级拆成两套玩法态；等级 1-15 只作解锁门槛和审计锚点。
+2. 精通默认 6 项全部 30 点，三个威望按正收益融合展开，不直接启用官方 `PlayerPrestige`。
+3. `full_units` 默认指向强度融合最终 roster，即 `power_fusion`。
+4. `initial` 只用于官方基础状态审计和差异对照。
+5. 单指挥官有效单位、建筑、技能链均按满级最终状态过滤；历史候选和共享卡污染只作审计输入，不得直接作为实现主链。
+6. 具体实现前仍需追 `游戏数据/官方SC2原始文本镜像/` 闭包并补 `[XM_DBG]` 验证日志。
+7. `heroes.json` 只按当前 JSON 事实写入英雄模块；`heroes.json=0` 不代表官方玩法一定没有英雄，只代表本轮提取数据未直接列出，需要官方原始文本镜像/实机补闭包。
+8. 原始镜像里的 `AbilData`、`ArmyCategory`、`TechUnit`、`UpgradeData` 是共享 Catalog 事实，不是单指挥官归属事实；任何工蜂/SCV/探机共享建造菜单必须先过 `commanders/<Commander>/buildings.json`、满级 `power_fusion` 名册和满级威望闭包过滤。
+9. `buildings.json` 是官方提取出的建筑名册，不等于劳工实际 command card 的全部建造按钮；人族闭包同时保留 `worker_build_commands`，用于回答 SCV/劳工/冲锋队可以实际点击哪些建筑命令。`raw-only` tech building 可作为功能性前置链，但不能反过来覆盖 official buildings.json 归属。
 
 ## 误归属防线
 
@@ -77,7 +76,7 @@
 
 先看单指挥官文档的 `01. 顶部技能栏` 到 `11. 指挥官个性化机制`，再回到 `../模块拆分/` 中对应模块补实现。每个指挥官文档是工作清单，不是最终闭包证明；标记为“候选”或“待审计”的内容必须继续追 `游戏数据/官方SC2原始文本镜像/`、Requirement 闭包或实机日志。
 
-注意：`command_cards.json` 中部分共享单位会带出其它指挥官的按钮或锁定提示，例如同一个 SCV、兵营、导弹塔对象上可能出现诺娃、斯旺、雷诺等不同 commander 的 Requirement。单指挥官文档中的按钮表只作为候选输入，真正实现时必须按当前 commander、15 级、六精通全满和威望正向融合后的 Requirement 过滤。
+注意：`command_cards.json` 中部分共享单位会带出其它指挥官的按钮或锁定提示，例如同一个 SCV、兵营、导弹塔对象上可能出现诺娃、斯旺、雷诺等不同 commander 的 Requirement。单指挥官文档中的按钮表只作为候选输入，真正实现时必须按当前 commander 的满级 `power_fusion`、六精通全满和威望正向融合后的 Requirement 过滤。
 
 英雄模块同样是候选输入：如果 `heroes.json` 已有条目，则优先把对应 command card 技能归入 `02. 英雄单位及其技能`；如果 `heroes.json` 暂无条目但官方玩法存在英雄，例如诺娃、泽拉图、超级盖瑞、阿拉纳克、菲尼克斯，文档会继续标记为 CASC/实机待补。
 
