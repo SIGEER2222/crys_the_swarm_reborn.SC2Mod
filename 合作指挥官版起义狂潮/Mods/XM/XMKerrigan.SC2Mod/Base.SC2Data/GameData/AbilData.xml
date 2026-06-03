@@ -2520,6 +2520,33 @@
             <Unit value="RoachCorpser"/>
         </InfoArray-->
   </CAbilTrain>
+  <CAbilTrain id="LarvaTrainKerrigan" parent="LarvaTrain">
+    <InfoArray index="Train1">
+      <Button DefaultButtonFace="Zergling" State="Available" />
+      <Unit value="Zergling" />
+    </InfoArray>
+    <InfoArray index="Train4">
+      <Button DefaultButtonFace="Hydralisk" State="Available" />
+      <Unit value="Hydralisk" />
+    </InfoArray>
+    <InfoArray index="Train7">
+      <Button DefaultButtonFace="Ultralisk" State="Available" />
+      <Unit value="Ultralisk" />
+    </InfoArray>
+    <InfoArray index="Train11">
+      <Button DefaultButtonFace="Mutalisk" State="Available" />
+      <Unit value="Mutalisk" />
+    </InfoArray>
+    <InfoArray index="Train2" removed="1" />
+    <InfoArray index="Train3" removed="1" />
+    <InfoArray index="Train5" removed="1" />
+    <InfoArray index="Train8" removed="1" />
+    <InfoArray index="Train10" removed="1" />
+    <InfoArray index="Train12" removed="1" />
+    <InfoArray index="Train13" removed="1" />
+    <InfoArray index="Train15" removed="1" />
+    <InfoArray index="Train16" removed="1" />
+  </CAbilTrain>
   <CAbilTrain id="LarvaTrainSwarm">
     <InfoArray index="Train3">
       <Button DefaultButtonFace="Defiler" State="Restricted" />
@@ -4627,6 +4654,16 @@
     <InfoArray index="Train1">
       <Button State="Restricted" Requirements="" />
     </InfoArray>
+    <InfoArray index="Train4" Time="50" Effect="QueenBirth">
+      <Button DefaultButtonFace="QueenCoop" State="Restricted" Requirements="HaveSpawningPool">
+        <Flags index="ToSelection" value="1" />
+      </Button>
+      <Unit value="QueenCoop" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="TrainQueenKerrigan" parent="TrainQueen">
+    <InfoArray index="Train1" removed="1" />
+    <InfoArray index="Train3" removed="1" />
     <InfoArray index="Train4" Time="50" Effect="QueenBirth">
       <Button DefaultButtonFace="QueenCoop" State="Restricted" Requirements="HaveSpawningPool">
         <Flags index="ToSelection" value="1" />
