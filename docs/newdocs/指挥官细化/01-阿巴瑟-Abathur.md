@@ -8,6 +8,12 @@
 
 本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 阿巴瑟。依据 `游戏数据/官方合作指挥官/commanders/Abathur/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
 
+## 链路提醒
+
+- `Leviathan` 在官方口径里按单位/终极进化对象处理，不按英雄处理；`heroes.json` 仍为 0。
+- `03. 普通单位技能及其进化功能` 和 `10. 指挥官特殊机制` 已经把阿巴瑟的关键链路拆开，重点是 `Ravager`、`Leviathan`、`Brutalisk`、`Deep Tunnel`。
+- 实现时不要只看按钮是否显示；要同时核对 `ButtonData -> AbilData -> EffectData -> UnitData/UpgradeData -> RequirementData`，尤其是 `MorphRoachToRavager` / `MorphRoachVileToRavager` 和 `RavagerCorrosiveBile`。
+
 ## 官方数据摘要
 
 | 项 | 值 |
