@@ -21,7 +21,6 @@ void libA1BA7A9F_InitVariables () {
 
 void libA1BA7A9F_gf_InitializeAbathurEvent (int lp_player) {
     libA1BA7A9F_gv_abathurPlayer = lp_player;
-    // Runtime ownership moved to XMFinal. Keep this library data-only.
 }
 
 bool libA1BA7A9F_gf_AbathurCanDropBiomass (unit lp_unit) {
@@ -133,4 +132,21 @@ void libA1BA7A9F_gt_AbathurBiomassPickup_Init () {
 void libA1BA7A9F_InitTriggers () {
     libA1BA7A9F_gt_AbathurBiomassDrop_Init();
     libA1BA7A9F_gt_AbathurBiomassPickup_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libA1BA7A9F_InitLib_completed = false;
+
+void libA1BA7A9F_InitLib () {
+    if (libA1BA7A9F_InitLib_completed) {
+        return;
+    }
+
+    libA1BA7A9F_InitLib_completed = true;
+
+    libA1BA7A9F_InitLibraries();
+    libA1BA7A9F_InitVariables();
+    libA1BA7A9F_InitTriggers();
 }
