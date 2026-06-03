@@ -27,7 +27,7 @@
 2. 再用 `游戏数据/官方SC2原始文本镜像/` 追 `ButtonData -> AbilData -> EffectData -> RequirementData` 闭包。
 3. 共享 Catalog 命中只能作为“候选/审计输入”，不能单独升级为“本指挥官有效建筑/单位/技能链”。
 4. 对工蜂/SCV/探机这类共享建造菜单，必须显式写出是否通过指挥官归属过滤；没通过的只能写成“排除/不计入/共享污染”。
-5. 文档改动后运行 `node scripts/sc2/validate-commander-doc-ownership.mjs`，当前覆盖虫族系和神族系单页基础归属防线，并额外校验神族/人族生成闭包。
+5. 文档改动后运行 `node scripts/sc2/validate-commander-doc-ownership.mjs`，当前覆盖虫族系和神族系单页基础归属防线，并额外校验虫族/神族/人族生成闭包。
 
 2026-06-03 虫族系复核结论：
 
@@ -82,6 +82,21 @@
 英雄模块同样是候选输入：如果 `heroes.json` 已有条目，则优先把对应 command card 技能归入 `02. 英雄单位及其技能`；如果 `heroes.json` 暂无条目但官方玩法存在英雄，例如诺娃、泽拉图、超级盖瑞、阿拉纳克、菲尼克斯，文档会继续标记为 CASC/实机待补。
 
 ## 闭包证明文档
+
+2026-06-03 已新增虫族指挥官官方闭包导出：
+
+- `docs/newdocs/指挥官细化/虫族闭包/虫族指挥官完整闭包-2026-06-03.md`
+- `docs/newdocs/指挥官细化/虫族闭包/zerg-commander-closure.json`
+- 生成脚本：`scripts/sc2/export-zerg-commander-closure.mjs`
+
+这份闭包按官方 commander JSON 先做归属过滤，再用官方原始文本镜像补 `AbilData / EffectData / RequirementData` 摘要。它覆盖阿巴瑟、凯瑞甘、扎加拉、斯台特曼、斯托科夫、德哈卡 6 名虫族指挥官的顶部/等级解锁技能、工蜂/私有劳工建造项、幼虫变异、形态进化、建筑训练/召唤、非默认技能按钮、raw effect 闭包和排除/复核候选。
+
+虫族闭包的额外防线：
+
+- 阿巴瑟满级有效蟑螂主线只保留 `RoachVile`，`Roach` / `RoachCorpser` 只保留为审计项。
+- 阿巴瑟 `Ravager` 只接受 `RoachVile -> MorphRoachVileToRavager -> RavagerAbathur`，并显式补 `RavagerAbathurCorrosiveBile`、`BurrowRavagerAbathurDown`、`BurrowRavagerAbathurUp`。
+- 阿巴瑟 worker build 不应包含普通 `NydusNetwork` / `ZergBuild,Build10`，这两项只能作为共享污染排除；凯瑞甘仍保留官方正向 `NydusNetwork`。
+- 斯台特曼 worker build 必须走 `ZergBuildStetmann` 私有链；德哈卡坑道类对象必须是 `DehakaNydusDestroyer`；斯托科夫保持 `SI*` 感染链。
 
 2026-06-03 已新增神族指挥官官方闭包导出：
 

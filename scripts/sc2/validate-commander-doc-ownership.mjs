@@ -342,6 +342,7 @@ for (const check of checks) {
   validateCommanderOwnershipGuard(check);
 }
 
+validateGeneratedZergClosure();
 validateGeneratedProtossClosure();
 validateGeneratedTerranClosure();
 validateTerranSinglePagePollutionContext();
@@ -355,7 +356,7 @@ if (errors.length) {
 }
 
 console.log(
-  `指挥官文档归属校验通过：${checks.map((check) => check.commander).join(', ')}；生成闭包校验通过：Protoss, Terran；人族单页补充防线校验通过：${terranSinglePageGuardCommanders.join(', ')}`,
+  `指挥官文档归属校验通过：${checks.map((check) => check.commander).join(', ')}；生成闭包校验通过：Zerg, Protoss, Terran；人族单页补充防线校验通过：${terranSinglePageGuardCommanders.join(', ')}`,
 );
 
 function validateCommanderOwnershipGuard(check) {
@@ -397,6 +398,130 @@ function assertOnlyNegativeContext({ check, docPath, scanLines, token }) {
         `${check.commander}: ${docPath}:${lineNumber} 出现 ${token}，但没有标记为排除/共享污染/不计入上下文。`,
       );
     }
+  }
+}
+
+function validateGeneratedZergClosure() {
+  const closurePath = path.join(repoRoot, 'docs/newdocs/指挥官细化/虫族闭包/zerg-commander-closure.json');
+  if (!fs.existsSync(closurePath)) {
+    errors.push('虫族闭包 JSON 不存在；请先运行 node scripts/sc2/export-zerg-commander-closure.mjs。');
+    return;
+  }
+
+  const closure = readJson(closurePath);
+  const expectedCommanders = ['Abathur', 'Kerrigan', 'Zagara', 'Stetmann', 'Stukov', 'Dehaka'];
+  const actualCommanders = (closure.commanders || []).map((commander) => commander.commander).sort(naturalSort);
+
+  if (actualCommanders.join('|') !== expectedCommanders.sort(naturalSort).join('|')) {
+    errors.push(`虫族闭包 JSON 指挥官集合异常，实际 ${actualCommanders.join(', ')}。`);
+    return;
+  }
+
+  assertAbathurFullLevelZergClosure(closure);
+  assertStetmannPrivateZergBuildClosure(closure);
+  assertDehakaNydusDestroyerClosure(closure);
+  assertKerriganKeepsOfficialNydusNetwork(closure);
+  assertZagaraBanelingMorphClosure(closure);
+  assertStukovUsesInfestedChain(closure);
+}
+
+function assertAbathurFullLevelZergClosure(closure) {
+  const abathur = closure.commanders.find((commander) => commander.commander === 'Abathur');
+  const effectiveUnitIds = new Set((abathur.official_roster.units_effective || []).map((entry) => entry.id));
+  const auditOnlyUnitIds = new Set((abathur.official_roster.units_audit_only || []).map((entry) => entry.id));
+  for (const unitId of ['Roach', 'RoachCorpser']) {
+    if (effectiveUnitIds.has(unitId)) {
+      errors.push(`Abathur: ${unitId} 不应进入满级有效 units_effective。`);
+    }
+    if (!auditOnlyUnitIds.has(unitId)) {
+      errors.push(`Abathur: ${unitId} 应保留在 units_audit_only，防止被误当作满级主链。`);
+    }
+  }
+
+  for (const unitId of ['RoachVile', 'Ravager']) {
+    if (!effectiveUnitIds.has(unitId)) {
+      errors.push(`Abathur: ${unitId} 应进入满级有效 units_effective。`);
+    }
+  }
+
+  const workerTargets = new Set((abathur.worker_build_commands || []).map((item) => item.unit));
+  if (workerTargets.has('NydusNetwork')) {
+    errors.push('Abathur: worker_build_commands 不应包含普通 NydusNetwork。');
+  }
+  if ((abathur.worker_build_commands || []).some((item) => item.abil_cmd === 'ZergBuild,Build10')) {
+    errors.push('Abathur: worker_build_commands 不应包含共享 ZergBuild,Build10。');
+  }
+
+  const ravager = abathur.units.find((entry) => entry.id === 'Ravager');
+  const acceptedProduction = ravager?.production_options?.accepted || [];
+  if (
+    !acceptedProduction.some(
+      (item) =>
+        item.producer_unit_id === 'RoachVile' &&
+        item.abil_cmd === 'MorphRoachVileToRavager,Train1' &&
+        item.unit === 'RavagerAbathur',
+    )
+  ) {
+    errors.push('Abathur: Ravager 缺少 RoachVile -> MorphRoachVileToRavager -> RavagerAbathur 的满级有效生产链。');
+  }
+  if (acceptedProduction.some((item) => ['Roach', 'RoachCorpser'].includes(item.producer_unit_id) || item.unit === 'Ravager')) {
+    errors.push('Abathur: Ravager accepted 生产链不应包含普通 Roach/RoachCorpser/Ravager 分支。');
+  }
+
+  const ravagerAbilities = new Set((ravager?.abilities?.accepted || []).map((item) => item.abil_cmd || item.face));
+  for (const abilCmd of ['RavagerAbathurCorrosiveBile,Execute', 'BurrowRavagerAbathurDown,Execute', 'BurrowRavagerAbathurUp,Execute']) {
+    if (!ravagerAbilities.has(abilCmd)) {
+      errors.push(`Abathur: Ravager accepted 技能闭包缺少 ${abilCmd}。`);
+    }
+  }
+}
+
+function assertStetmannPrivateZergBuildClosure(closure) {
+  const stetmann = closure.commanders.find((commander) => commander.commander === 'Stetmann');
+  if ((stetmann.worker_build_commands || []).some((item) => !item.abil_cmd.startsWith('ZergBuildStetmann,'))) {
+    errors.push('Stetmann: worker_build_commands 必须使用 ZergBuildStetmann 私有建造链。');
+  }
+  if ((stetmann.worker_build_commands || []).some((item) => item.unit === 'NydusNetwork')) {
+    errors.push('Stetmann: worker_build_commands 不应包含普通 NydusNetwork。');
+  }
+}
+
+function assertDehakaNydusDestroyerClosure(closure) {
+  const dehaka = closure.commanders.find((commander) => commander.commander === 'Dehaka');
+  const workerTargets = new Set((dehaka.worker_build_commands || []).map((item) => item.unit));
+  if (!workerTargets.has('DehakaNydusDestroyer')) {
+    errors.push('Dehaka: worker_build_commands 缺少 DehakaNydusDestroyer。');
+  }
+  if (workerTargets.has('NydusNetwork')) {
+    errors.push('Dehaka: worker_build_commands 不应包含普通 NydusNetwork。');
+  }
+}
+
+function assertKerriganKeepsOfficialNydusNetwork(closure) {
+  const kerrigan = closure.commanders.find((commander) => commander.commander === 'Kerrigan');
+  const buildingIds = new Set((kerrigan.official_roster.buildings || []).map((entry) => entry.id));
+  if (!buildingIds.has('NydusNetwork')) {
+    errors.push('Kerrigan: 官方 buildings.json 正向包含 NydusNetwork，生成闭包不应误删。');
+  }
+}
+
+function assertZagaraBanelingMorphClosure(closure) {
+  const zagara = closure.commanders.find((commander) => commander.commander === 'Zagara');
+  if (!(zagara.evolution_morphs || []).some((item) => item.abil_cmd === 'MorphZerglingToBaneling,Train1' && item.unit === 'Baneling')) {
+    errors.push('Zagara: 缺少 Zergling -> MorphZerglingToBaneling -> Baneling 进化闭包。');
+  }
+}
+
+function assertStukovUsesInfestedChain(closure) {
+  const stukov = closure.commanders.find((commander) => commander.commander === 'Stukov');
+  const effectiveUnitIds = new Set((stukov.official_roster.units_effective || []).map((entry) => entry.id));
+  for (const forbidden of ['Zergling', 'SwarmQueen', 'QueenCoop']) {
+    if (effectiveUnitIds.has(forbidden)) {
+      errors.push(`Stukov: ${forbidden} 不应进入满级有效单位链，应使用 SI*/StukovInfested*。`);
+    }
+  }
+  if (!(stukov.worker_build_commands || []).every((item) => /^SI/.test(item.abil_cmd))) {
+    errors.push('Stukov: worker_build_commands 应保持 SI* 感染链。');
   }
 }
 
