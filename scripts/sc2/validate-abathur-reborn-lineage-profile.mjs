@@ -143,6 +143,78 @@ const expectedLineages = [
   },
 ];
 
+const expectedLarvaTrainButtons = [
+  { command: 'Train1', face: 'Drone', unit: 'DroneAbathurReborn' },
+  { command: 'Train2', face: 'Overlord', unit: 'OverlordAbathurReborn' },
+  { command: 'Train3', face: 'Zergling', unit: 'Zergling' },
+  { command: 'Train4', face: 'Baneling', unit: 'Baneling' },
+  { command: 'Train5', face: 'Roach', unit: 'Roach' },
+  { command: 'Train6', face: 'Hydralisk', unit: 'Hydralisk' },
+  { command: 'Train7', face: 'Mutalisk', unit: 'Mutalisk' },
+  { command: 'Train8', face: 'SwarmHostMP', unit: 'SwarmHost' },
+  { command: 'Train9', face: 'Ultralisk', unit: 'Ultralisk' },
+  { command: 'Train10', face: 'Infestor', unit: 'Infestor' },
+  { command: 'Train11', face: 'BroodLord', unit: 'BroodLord' },
+];
+
+const expectedWorkerBuildButtons = [
+  { command: 'Build1', face: 'Hatchery', unit: 'HatcheryAbathurReborn' },
+  { command: 'Build2', face: 'Extractor', unit: 'Extractor' },
+  { command: 'Build3', face: 'SpawningPool', unit: 'SpawningPool' },
+  { command: 'Build4', face: 'EvolutionChamber', unit: 'EvolutionChamber' },
+  { command: 'Build5', face: 'BanelingNest', unit: 'BanelingNest' },
+  { command: 'Build6', face: 'RoachWarren', unit: 'RoachWarren' },
+  { command: 'Build7', face: 'HydraliskDen', unit: 'HydraliskDen' },
+  { command: 'Build8', face: 'InfestationPit', unit: 'InfestationPit' },
+  { command: 'Build9', face: 'Spire', unit: 'Spire' },
+  { command: 'Build10', face: 'UltraliskCavern', unit: 'UltraliskCavern' },
+  { command: 'Build11', face: 'SpineCrawler', unit: 'SpineCrawler' },
+  { command: 'Build12', face: 'SporeCrawler', unit: 'SporeCrawler' },
+];
+
+const forbiddenLarvaPositiveTokens = new Set([
+  'Aberration',
+  'BuildViperLocked',
+  'Corruptor',
+  'Defiler',
+  'DefilerMP',
+  'HotSLeviathan',
+  'LarvaTrainSwarm',
+  'LarvaTrainSwarm2',
+  'Leviathan',
+  'MorphBrutalisk',
+  'MorphToHydraliskImpaler',
+  'MorphToHydraliskLurker',
+  'MorphToHotSTorrasque',
+  'MorphToHotSNoxious',
+  'MorphToSwarmHostSplitA',
+  'MorphToSwarmHostSplitB',
+  'MorphToMutaliskViper',
+  'QueenClassic',
+  'Scourge',
+  'SwarmHostMPUnit',
+  'Viper',
+]);
+
+const forbiddenWorkerBuildTokens = new Set([
+  'Armory',
+  'AshWorm2',
+  'BileLauncherZagara',
+  'Bunker',
+  'CreepColony',
+  'EngineeringBay',
+  'GreaterNydusWorm',
+  'InfestedBarracks2',
+  'LeaperDrone',
+  'MercCompound',
+  'Naktul',
+  'NydusNetwork',
+  'PrimalHive',
+  'PrimalSunkenColony',
+  'PrimalTownHall',
+  'ScourgeNest',
+]);
+
 const forbiddenPositiveUnits = new Set(['NydusNetwork', 'Naktul', 'Leviathan']);
 const expectedStatuses = new Set(['ready', 'planned']);
 const requiredRavagerEffects = [
@@ -171,6 +243,8 @@ const targetEffects = collectCatalogIds(targetEffectText, /<CEffect[A-Za-z]*\s+i
 const profile = parseUserProfile(userText, 'AbathurRebornLineageProfile');
 validateProfile(profile);
 validateNoAllLarvaPool();
+validateLarvaBaseProduction(profile);
+validateWorkerBuildWhitelist();
 validateRavagerClosure(profile);
 validateDocSurface();
 printSummary(profile);
@@ -271,6 +345,174 @@ function validateNoAllLarvaPool() {
   }
 }
 
+function validateLarvaBaseProduction(instances) {
+  const larvaBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'Larva');
+  if (!larvaBlock) {
+    errors.push('当前 UnitData 缺少 CUnit id="Larva"');
+    return;
+  }
+
+  if (!/AbilArray\s+Link="LarvaTrain"/.test(larvaBlock)) {
+    errors.push('Larva 必须显式挂载 AbilArray Link="LarvaTrain"');
+  }
+  for (const forbidden of forbiddenLarvaPositiveTokens) {
+    if (larvaBlock.includes(forbidden)) {
+      errors.push(`Larva 本地卡面不能正向引用 ${forbidden}`);
+    }
+  }
+
+  const layoutButtons = parseLayoutButtons(larvaBlock);
+  const visibleLarvaTrainButtons = layoutButtons.filter((button) => button.AbilCmd?.startsWith('LarvaTrain,'));
+  if (visibleLarvaTrainButtons.length !== expectedLarvaTrainButtons.length) {
+    errors.push(`Larva 本地 LarvaTrain 按钮数 ${visibleLarvaTrainButtons.length} 与期望 ${expectedLarvaTrainButtons.length} 不一致`);
+  }
+
+  for (const expected of expectedLarvaTrainButtons) {
+    const abilCmd = `LarvaTrain,${expected.command}`;
+    const button = visibleLarvaTrainButtons.find((candidate) => candidate.AbilCmd === abilCmd);
+    if (!button) {
+      errors.push(`Larva 本地卡面缺少 ${abilCmd}`);
+      continue;
+    }
+    if (button.Face !== expected.face) {
+      errors.push(`Larva ${abilCmd} Face=${button.Face || '<missing>'}, expected ${expected.face}`);
+    }
+  }
+
+  const trainBlock = extractCatalogBlock(targetAbilText, 'CAbilTrain', 'LarvaTrain');
+  if (!trainBlock) {
+    errors.push('当前 AbilData 缺少 CAbilTrain id="LarvaTrain"');
+    return;
+  }
+
+  for (const forbidden of ['Scourge', 'QueenClassic', 'Corruptor', 'DefilerMP', 'Viper', 'SwarmHostMP', 'Brutalisk', 'Leviathan']) {
+    if (trainBlock.includes(`value="${forbidden}"`)) {
+      errors.push(`LarvaTrain 不应产出 ${forbidden}`);
+    }
+  }
+
+  for (const expected of expectedLarvaTrainButtons) {
+    const info = extractInfoArrayBlock(trainBlock, expected.command);
+    if (!info) {
+      errors.push(`LarvaTrain 缺少 ${expected.command}`);
+      continue;
+    }
+    const units = collectTagValues(info, 'Unit');
+    if (!units.includes(expected.unit)) {
+      errors.push(`LarvaTrain ${expected.command} 产出 ${units.join(', ') || '<none>'}, expected includes ${expected.unit}`);
+    }
+  }
+
+  const baseUnits = new Set([...instances.values()].map((fields) => scalarValue(fields, 'BaseUnit')).filter(Boolean));
+  const trainedUnits = new Set(expectedLarvaTrainButtons.map((button) => button.unit));
+  for (const baseUnit of baseUnits) {
+    if (!trainedUnits.has(baseUnit)) {
+      errors.push(`族系 BaseUnit ${baseUnit} 没有对应 LarvaTrain 基础入口`);
+    }
+  }
+}
+
+function validateWorkerBuildWhitelist() {
+  const droneBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'DroneAbathurReborn');
+  if (!droneBlock) {
+    errors.push('当前 UnitData 缺少 CUnit id="DroneAbathurReborn"');
+    return;
+  }
+
+  if (!/AbilArray\s+Link="ZergBuildAbathurReborn"/.test(droneBlock)) {
+    errors.push('DroneAbathurReborn 必须显式挂载 AbilArray Link="ZergBuildAbathurReborn"');
+  }
+  if (/<AbilArray\s+Link="ZergBuild"\s*\/>/.test(droneBlock)) {
+    errors.push('DroneAbathurReborn 不能直接挂载共享 ZergBuild');
+  }
+  if (/AbilCmd="ZergBuild,/.test(droneBlock)) {
+    errors.push('DroneAbathurReborn 卡面不能直接引用共享 ZergBuild 命令');
+  }
+  for (const forbidden of ['TerranBuild', 'ProtossBuild']) {
+    if (droneBlock.includes(forbidden)) {
+      errors.push(`DroneAbathurReborn 卡面不能引用 ${forbidden}`);
+    }
+  }
+  if (/AbilCmd="ZergBuildAbathur,/.test(droneBlock) || /<AbilArray\s+Link="ZergBuildAbathur"\s*\/>/.test(droneBlock)) {
+    errors.push('DroneAbathurReborn 卡面不能引用旧阿巴瑟 ZergBuildAbathur');
+  }
+  for (const forbidden of forbiddenWorkerBuildTokens) {
+    if (droneBlock.includes(forbidden)) {
+      errors.push(`DroneAbathurReborn 卡面不能出现非白名单对象 ${forbidden}`);
+    }
+  }
+
+  const layoutButtons = parseLayoutButtons(droneBlock);
+  const buildButtons = layoutButtons.filter((button) => button.AbilCmd?.startsWith('ZergBuildAbathurReborn,'));
+  if (buildButtons.length !== expectedWorkerBuildButtons.length) {
+    errors.push(`DroneAbathurReborn 本地建造按钮数 ${buildButtons.length} 与期望 ${expectedWorkerBuildButtons.length} 不一致`);
+  }
+
+  for (const expected of expectedWorkerBuildButtons) {
+    const abilCmd = `ZergBuildAbathurReborn,${expected.command}`;
+    const button = buildButtons.find((candidate) => candidate.AbilCmd === abilCmd);
+    if (!button) {
+      errors.push(`DroneAbathurReborn 本地卡面缺少 ${abilCmd}`);
+      continue;
+    }
+    if (button.Face !== expected.face) {
+      errors.push(`DroneAbathurReborn ${abilCmd} Face=${button.Face || '<missing>'}, expected ${expected.face}`);
+    }
+  }
+
+  const buildBlock = extractCatalogBlock(targetAbilText, 'CAbilBuild', 'ZergBuildAbathurReborn');
+  if (!buildBlock) {
+    errors.push('当前 AbilData 缺少 CAbilBuild id="ZergBuildAbathurReborn"');
+    return;
+  }
+  if (!/parent="ZergBuild"/.test(buildBlock)) {
+    errors.push('ZergBuildAbathurReborn 应继承 ZergBuild 后再显式白名单覆盖');
+  }
+  for (const forbidden of forbiddenWorkerBuildTokens) {
+    if (buildBlock.includes(forbidden)) {
+      errors.push(`ZergBuildAbathurReborn 不能产出非白名单对象 ${forbidden}`);
+    }
+  }
+
+  const infoArrays = parseInfoArrays(buildBlock);
+  const byIndex = new Map(infoArrays.map((info) => [info.index, info]));
+  const expectedUnits = new Set(expectedWorkerBuildButtons.map((button) => button.unit));
+  const activeUnits = infoArrays.filter((info) => info.unit && !info.removed).map((info) => info.unit);
+
+  for (const unitId of activeUnits) {
+    if (!expectedUnits.has(unitId)) {
+      errors.push(`ZergBuildAbathurReborn 出现非白名单建造单位: ${unitId}`);
+    }
+  }
+
+  for (const expected of expectedWorkerBuildButtons) {
+    const info = byIndex.get(expected.command);
+    if (!info) {
+      errors.push(`ZergBuildAbathurReborn 缺少 ${expected.command}`);
+      continue;
+    }
+    if (info.removed) {
+      errors.push(`ZergBuildAbathurReborn ${expected.command} 被 removed，但应为白名单建筑`);
+    }
+    if (info.unit !== expected.unit) {
+      errors.push(`ZergBuildAbathurReborn ${expected.command} Unit=${info.unit || '<missing>'}, expected ${expected.unit}`);
+    }
+    if (info.button.DefaultButtonFace && info.button.DefaultButtonFace !== expected.face) {
+      errors.push(
+        `ZergBuildAbathurReborn ${expected.command} ButtonFace=${info.button.DefaultButtonFace}, expected ${expected.face}`,
+      );
+    }
+  }
+
+  for (let index = 13; index <= 30; index += 1) {
+    const command = `Build${index}`;
+    const info = byIndex.get(command);
+    if (!info?.removed) {
+      errors.push(`ZergBuildAbathurReborn 必须显式移除继承项 ${command}`);
+    }
+  }
+}
+
 function validateRavagerClosure(instances) {
   const roach = instances.get('Roach');
   if (!roach) {
@@ -367,6 +609,9 @@ function validateDocSurface() {
     '`NydusNetwork`',
     '`Leviathan`',
     '每个族系只有一个基础可造单位',
+    '`DroneAbathurReborn`',
+    '`ZergBuildAbathurReborn`',
+    '`HatcheryAbathurReborn`',
   ];
   for (const token of requiredDocTokens) {
     if (!docText.includes(token)) {
@@ -453,6 +698,48 @@ function parseAttrs(attrsText) {
     attrs[match[1]] = match[2];
   }
   return attrs;
+}
+
+function parseLayoutButtons(block) {
+  const buttons = [];
+  const buttonRe = /<LayoutButtons\s+([^>]*?)(?:\/>|><\/LayoutButtons>)/g;
+  for (const match of block.matchAll(buttonRe)) {
+    buttons.push(parseAttrs(match[1]));
+  }
+  return buttons;
+}
+
+function parseInfoArrays(block) {
+  const infoArrays = [];
+  const infoRe = /<InfoArray\s+([^>]*?)(?:\/>|>([\s\S]*?)<\/InfoArray>)/g;
+  for (const match of block.matchAll(infoRe)) {
+    const attrs = parseAttrs(match[1]);
+    const body = match[2] ?? '';
+    const buttonAttrs = body.match(/<Button\s+([^>]*?)(?:\/>|>)/)?.[1] ?? '';
+    infoArrays.push({
+      index: attrs.index ?? '',
+      unit: attrs.Unit ?? '',
+      removed: attrs.removed === '1',
+      attrs,
+      body,
+      button: buttonAttrs ? parseAttrs(buttonAttrs) : {},
+    });
+  }
+  return infoArrays;
+}
+
+function extractInfoArrayBlock(trainBlock, index) {
+  const re = new RegExp(`<InfoArray\\s+index="${escapeRegExp(index)}"[^>]*>[\\s\\S]*?<\\/InfoArray>`);
+  return trainBlock.match(re)?.[0] ?? '';
+}
+
+function collectTagValues(block, tagName) {
+  const values = [];
+  const re = new RegExp(`<${tagName}(?:\\s+index="[^"]+")?\\s+value="([^"]*)"`, 'g');
+  for (const match of block.matchAll(re)) {
+    values.push(match[1]);
+  }
+  return values;
 }
 
 function extractUserBlock(text, userId) {
