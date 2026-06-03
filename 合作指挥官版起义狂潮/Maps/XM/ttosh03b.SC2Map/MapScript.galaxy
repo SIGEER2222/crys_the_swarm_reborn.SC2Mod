@@ -921,6 +921,21 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HydraliskStetmann", 0, 1, PointFromId(29));
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "ZerglingStetmann", 0, 1, PointFromId(29));
     }
+    else if (auto2F29E444_val == "AbathurReborn") {
+        BankLoad("cryswarmcoop", 1);
+        TechTreeUpgradeAddLevel(1, "CommanderLevel", 16);
+        TechTreeUpgradeAddLevel(1, "AbathurRebornCommander", 1);
+        TechTreeUpgradeAddLevel(1, "AbathurRebornImprovedToxicNest", 1);
+        TechTreeUpgradeAddLevel(1, "AbathurRebornImprovedMend", 1);
+        TechTreeUpgradeAddLevel(1, "AbathurRebornSymbiote", 1);
+        TechTreeUpgradeAddLevel(1, "AbathurRebornEnableSymbiote", 1);
+        TechTreeUpgradeAddLevel(1, "AbathurRebornMorphTimeCostReduced", 1);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterAbathurReborn", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
+        lib67C0F0E7_gf_CU_GPInit(1, "AbathurReborn", UnitLastCreated(), null);
+        lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ravager", 0, 1, PointFromId(29));
+        gv_nova = UnitLastCreated();
+    }
     else {
     }
     CinematicFade(false, 0.0, c_fadeStyleNormal, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), 0.0, false);

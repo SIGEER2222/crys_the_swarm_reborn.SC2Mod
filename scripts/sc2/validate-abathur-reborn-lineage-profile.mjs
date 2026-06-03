@@ -20,6 +20,7 @@ const files = {
   targetUnit: path.join(targetRoot, 'UnitData.xml'),
   targetAbil: path.join(targetRoot, 'AbilData.xml'),
   targetEffect: path.join(targetRoot, 'EffectData.xml'),
+  targetRuntime: path.join(repoRoot, '合作指挥官版起义狂潮', 'Mods', 'XM', 'XMAbathurReborn.SC2Mod', 'Base.SC2Data', 'LibA1BA7A9F.galaxy'),
   doc: path.join(repoRoot, 'docs', 'newdocs', '额外指挥官', '03-重生阿巴瑟-兵种融入设计.md'),
   sourceUnit: path.join(sourceRoot, 'UnitData.xml'),
 };
@@ -232,6 +233,7 @@ const userText = readRequired(files.user);
 const targetUnitText = readRequired(files.targetUnit);
 const targetAbilText = readRequired(files.targetAbil);
 const targetEffectText = readRequired(files.targetEffect);
+const targetRuntimeText = readRequired(files.targetRuntime);
 const sourceUnitText = readRequired(files.sourceUnit);
 const docText = readOptional(files.doc);
 
@@ -245,6 +247,7 @@ validateProfile(profile);
 validateNoAllLarvaPool();
 validateLarvaBaseProduction(profile);
 validateWorkerBuildWhitelist();
+validateNoBiomassGameplayEntrypoints();
 validateRavagerClosure(profile);
 validateDocSurface();
 printSummary(profile);
@@ -513,6 +516,67 @@ function validateWorkerBuildWhitelist() {
   }
 }
 
+function validateNoBiomassGameplayEntrypoints() {
+  const visibleBiomassButtons = [
+    ...targetUnitText.matchAll(/<LayoutButtons[^>]*(?:Biomass|CommanderPrestigeAbathurReborn[^>]*Biomass)[^>]*>/g),
+  ].map((match) => match[0]);
+  if (visibleBiomassButtons.length > 0) {
+    errors.push(`UnitData 不允许暴露 Biomass 可见按钮，发现 ${visibleBiomassButtons.length} 处`);
+  }
+
+  const biomassAbilityLinks = [...targetUnitText.matchAll(/<AbilArray\s+Link="(?:Biomass|AbathurRebornCollectBiomass|AbathurRebornBiomassCollection)[^"]*"\s*\/>/g)]
+    .map((match) => match[0]);
+  if (biomassAbilityLinks.length > 0) {
+    errors.push(`UnitData 不允许挂载 Biomass 交互能力，发现 ${biomassAbilityLinks.length} 处`);
+  }
+
+  const pickupBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'BiomassPickup');
+  if (pickupBlock) {
+    if (/<AbilArray\s+Link="[^"]*Biomass[^"]*"\s*\/>/.test(pickupBlock)) {
+      errors.push('BiomassPickup 残留单位必须保持不可交互，不能挂载 Biomass 拾取能力');
+    }
+    if (/<LayoutButtons[^>]*Biomass[^>]*>/.test(pickupBlock)) {
+      errors.push('BiomassPickup 残留单位不能暴露 Biomass 按钮');
+    }
+  }
+
+  if (/CreateUnitsWithDefaultFacing\([^;\n]*"BiomassPickup"/.test(targetRuntimeText)) {
+    errors.push('LibA1BA7A9F.galaxy 不允许创建 BiomassPickup');
+  }
+  if (/UnitCreateEffectUnit\([^;\n]*"AbathurRebornCollectBiomass"/.test(targetRuntimeText)) {
+    errors.push('LibA1BA7A9F.galaxy 不允许触发 AbathurRebornCollectBiomass');
+  }
+  if (/UnitAddCustomValue\([^;\n]*,\s*62\s*,/.test(targetRuntimeText)) {
+    errors.push('LibA1BA7A9F.galaxy 不允许用 custom value 62 记录生物质');
+  }
+
+  const canDropBlock = extractGalaxyFunction(
+    targetRuntimeText,
+    'bool libA1BA7A9F_gf_AbathurRebornCanDropBiomass',
+  );
+  if (!/\breturn\s+false\s*;/.test(canDropBlock)) {
+    errors.push('AbathurRebornCanDropBiomass 必须显式 return false');
+  }
+
+  const amountBlock = extractGalaxyFunction(
+    targetRuntimeText,
+    'fixed libA1BA7A9F_gf_AbathurRebornBiomassAmount',
+  );
+  if (!/\breturn\s+0\.0\s*;/.test(amountBlock)) {
+    errors.push('AbathurRebornBiomassAmount 必须显式 return 0.0');
+  }
+
+  for (const functionName of [
+    'bool libA1BA7A9F_gt_AbathurRebornBiomassDrop_Func',
+    'bool libA1BA7A9F_gt_AbathurRebornBiomassPickup_Func',
+  ]) {
+    const block = extractGalaxyFunction(targetRuntimeText, functionName);
+    if (!/\breturn\s+false\s*;/.test(block)) {
+      errors.push(`${functionName} 必须显式 return false`);
+    }
+  }
+}
+
 function validateRavagerClosure(instances) {
   const roach = instances.get('Roach');
   if (!roach) {
@@ -750,6 +814,15 @@ function extractUserBlock(text, userId) {
 function extractCatalogBlock(text, tagName, id) {
   const re = new RegExp(`<${tagName}\\s+id="${escapeRegExp(id)}"[^>]*>[\\s\\S]*?<\\/${tagName}>`);
   return text.match(re)?.[0] ?? '';
+}
+
+function extractGalaxyFunction(text, signaturePrefix) {
+  const start = text.indexOf(signaturePrefix);
+  if (start < 0) {
+    return '';
+  }
+  const nextFunction = text.indexOf('\n\n', start);
+  return text.slice(start, nextFunction < 0 ? text.length : nextFunction);
 }
 
 function expectScalar(fields, fieldId, expected, context) {

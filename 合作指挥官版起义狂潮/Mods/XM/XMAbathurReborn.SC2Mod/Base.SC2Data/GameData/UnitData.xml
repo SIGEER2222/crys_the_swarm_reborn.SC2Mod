@@ -212,8 +212,6 @@
     <FlagArray index="NoScore" value="1" />
     <FogVisibility value="Snapshot" />
     <Sight value="0" />
-    <AbilArray Link="BiomassPickup" />
-    <AbilArray Link="BiomassPickupMarked" />
     <EditorCategories value="ObjectType:Item,ObjectFamily:Campaign" />
     <BehaviorArray Link="BiomassCreated" />
     <!--BehaviorArray Link="BiomassTimedLifeWarningDelay"/>
@@ -1539,11 +1537,8 @@
     <AbilArray Link="que1" />
     <AbilArray Link="EvolveToBrutaliskQueen" />
     <CardLayouts index="0">
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskQueen,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassiveEnergy" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
     </CardLayouts>
     <HotkeyCategory value="Unit/Category/ZergPrimal" />
   </CUnit>
@@ -1766,11 +1761,8 @@
       <LayoutButtons Face="RavagerAbathurCorrosiveBile" Type="AbilCmd" AbilCmd="RavagerAbathurCorrosiveBile,Execute" Row="2" Column="0" />
       <LayoutButtons Face="CorrosiveBileRadiusIncrease" Type="Passive" Requirements="HaveCorrosiveBileRadiusIncrease" Row="1" Column="0" />
       <LayoutButtons Face="CorrosiveBileDamageIncrease" Type="Passive" Requirements="HaveCorrosiveBileDamageIncrease" Row="1" Column="1" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRavager,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Row="2" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09DeepTunnelImproved" Row="2" Column="1" />
     </CardLayouts>
@@ -1845,11 +1837,8 @@
       <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
       <LayoutButtons Face="CorrosiveBileRadiusIncrease" Type="Passive" Requirements="HaveCorrosiveBileRadiusIncrease" Row="1" Column="0" />
       <LayoutButtons Face="CorrosiveBileDamageIncrease" Type="Passive" Requirements="HaveCorrosiveBileDamageIncrease" Row="1" Column="1" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRavager,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassiveRavager" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Row="2" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09DeepTunnelImproved" Row="2" Column="1" />
     </CardLayouts>
@@ -2976,40 +2965,11 @@
     <AbilArray Link="AbathurRebornMend" />
     <!--AbilArray Link="AbathurRebornMarkforCollection"/>
         <AbilArray Link="SpawnLavaWorm"/-->
-    <AbilArray Link="BiomassTargetMark" />
-    <!--AbilArray Link="BiomassDisplayToggle"/>
-        <AbilArray Link="RoachBiomassToggle"/>
-        <AbilArray Link="QueenBiomassDisplayToggle"/>
-        <AbilArray Link="RavagerBiomassDisplayToggle"/>
-        <AbilArray Link="SwarmHostBiomassDisplayToggle"/>
-        <AbilArray Link="MutaliskBiomassDisplayToggle"/>
-        <AbilArray Link="ViperBiomassDisplayToggle"/>
-        <BehaviorArray Link="RoachBiomassToggle"/>
-        <BehaviorArray Link="QueenBiomassDisplayToggle"/>
-        <BehaviorArray Link="RavagerBiomassDisplayToggle"/>
-        <BehaviorArray Link="SwarmHostBiomassDisplayToggle"/>
-        <BehaviorArray Link="MutaliskBiomassDisplayToggle"/>
-        <BehaviorArray Link="ViperBiomassDisplayToggle"/-->
     <CardLayouts>
       <LayoutButtons Face="SpawnToxicNest" Type="AbilCmd" AbilCmd="SpawnToxicNest,Build1" Row="0" Column="0" />
       <LayoutButtons Face="AbathurRebornMend" Type="AbilCmd" AbilCmd="AbathurRebornMend,Execute" Row="0" Column="1" />
-      <LayoutButtons Face="BiomassTargetMark" Type="AbilCmd" AbilCmd="BiomassTargetMark,Execute" Row="0" Column="2" />
     </CardLayouts>
     <EditorCategories value="ObjectType:Other,ObjectFamily:FactionEvolved" />
-    <!--LayoutButtons Face="BiomassDisplayToggleOn" Type="AbilCmd" AbilCmd="BiomassDisplayToggle,On" Row="0" Column="2"/>
-            <LayoutButtons Face="BiomassDisplayToggleOff" Type="AbilCmd" AbilCmd="BiomassDisplayToggle,Off" Row="0" Column="2"/>
-            <LayoutButtons Face="RoachBiomassToggleOn" Type="AbilCmd" AbilCmd="RoachBiomassToggle,On" Row="0" Column="3"/>
-            <LayoutButtons Face="RoachBiomassToggleOff" Type="AbilCmd" AbilCmd="RoachBiomassToggle,Off" Row="0" Column="3"/>
-            <LayoutButtons Face="QueenBiomassDisplayToggleOn" Type="AbilCmd" AbilCmd="QueenBiomassDisplayToggle,On" Row="0" Column="4"/>
-            <LayoutButtons Face="QueenBiomassDisplayToggleOff" Type="AbilCmd" AbilCmd="QueenBiomassDisplayToggle,Off" Row="0" Column="4"/>
-            <LayoutButtons Face="RavagerBiomassDisplayToggleOn" Type="AbilCmd" AbilCmd="RavagerBiomassDisplayToggle,On" Row="1" Column="0"/>
-            <LayoutButtons Face="RavagerBiomassDisplayToggleOff" Type="AbilCmd" AbilCmd="RavagerBiomassDisplayToggle,Off" Row="1" Column="0"/>
-            <LayoutButtons Face="SwarmHostBiomassDisplayToggleOn" Type="AbilCmd" AbilCmd="SwarmHostBiomassDisplayToggle,On" Row="1" Column="1"/>
-            <LayoutButtons Face="SwarmHostBiomassDisplayToggleOff" Type="AbilCmd" AbilCmd="SwarmHostBiomassDisplayToggle,Off" Row="1" Column="1"/>
-            <LayoutButtons Face="MutaliskBiomassDisplayToggleOn" Type="AbilCmd" AbilCmd="MutaliskBiomassDisplayToggle,On" Row="1" Column="2"/>
-            <LayoutButtons Face="MutaliskBiomassDisplayToggleOff" Type="AbilCmd" AbilCmd="MutaliskBiomassDisplayToggle,Off" Row="1" Column="2"/>
-            <LayoutButtons Face="ViperBiomassDisplayToggleOn" Type="AbilCmd" AbilCmd="ViperBiomassDisplayToggle,On" Row="1" Column="3"/>
-            <LayoutButtons Face="ViperBiomassDisplayToggleOff" Type="AbilCmd" AbilCmd="ViperBiomassDisplayToggle,Off" Row="1" Column="3"/-->
     <LeaderAlias value="" />
   </CUnit>
   <CUnit id="CoopCasterAlarak" parent="CoopGlobalCaster">
@@ -3557,11 +3517,8 @@
       <LayoutButtons Face="AbathurDevourerStomachOverload" Type="AbilCmd" AbilCmd="AbathurDevourerStomachOverloadPurchase,Execute" Row="1" Column="2" />
       <LayoutButtons Face="DevourerAoEDamage" Type="Passive" Requirements="HaveDevourerAoEDamage" Row="1" Column="0" />
       <LayoutButtons Face="CorrosiveAcidDevourer" Type="AbilCmd" AbilCmd="CorrosiveAcid,Execute" Row="2" Column="0" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanDevourer,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-    <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-    <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
     </CardLayouts>
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="AbathurRebornPropArmor" />
@@ -4851,11 +4808,8 @@
       <LayoutButtons Face="AbathurGuardianExtendedSpines" Type="AbilCmd" AbilCmd="AbathurGuardianExtendedSpinesPurchase,Execute" Row="1" Column="0" />
       <LayoutButtons Face="AbathurGuardianCorrosiveBombardment" Type="AbilCmd" AbilCmd="AbathurGuardianCorrosiveBombardmentPurchase,Execute" Row="1" Column="1" />
       <LayoutButtons Face="AbathurGuardianRegenerativeSacs" Type="AbilCmd" AbilCmd="AbathurGuardianRegenerativeSacsPurchase,Execute" Row="1" Column="2" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanGuardianMP,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
     <LayoutButtons Face="GuardianAttackRangeIncrease" Type="Passive" Requirements="HaveGuardianAttackRangeIncrease" Row="1" Column="0" />
     </CardLayouts>
     <BehaviorArray Link="AllUnitBehaviorController" />
@@ -6881,11 +6835,8 @@
       <LayoutButtons index="7" Row="1" />
       <LayoutButtons index="8" Face="MorphtoDevourer" Type="AbilCmd" AbilCmd="MutaliskMorphToDevourer,Train1" Column="1" />
       <LayoutButtons Face="MorphToGuardian" Type="AbilCmd" AbilCmd="MutaliskMorphToGuardian,Train1" Row="2" Column="0" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanMutalisk,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
     </CardLayouts>
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
@@ -7532,10 +7483,7 @@
       <LayoutButtons index="7" Face="Cancel" AbilCmd="KerriganEnhance,Off" Column="4" />
       <LayoutButtons index="8" Face="BuildCreepTumor" AbilCmd="QueenBuild,Build3" Column="0" />
       <LayoutButtons index="9" Face="QueenBurstHeal" AbilCmd="QueenBurstHeal,Execute" Column="1" />
-      <LayoutButtons Face="BiomassPassiveEnergy" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
       <LayoutButtons Face="BioMechanicalTransfusion" Type="AbilCmd" AbilCmd="BioMechanicalTransfusion,Execute" Row="2" Column="1" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskQueen,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
       <LayoutButtons Face="BioMechanicalTransfusionPassive" Type="Passive" Requirements="HaveBioMechanicalTransfusionPassive" Row="1" Column="1" />
@@ -7801,11 +7749,8 @@
       <LayoutButtons index="9" Face="HotSRoachDamage" Requirements="HaveHotSRoachDamage" Row="1" Column="3" />
       <LayoutButtons Face="GlialReconstitutionPassive" Type="Passive" Requirements="HaveGlialReconstitution" Row="1" Column="1" />
       <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachToRavager,Train1" Row="2" Column="0" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoach,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Row="2" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09DeepTunnelImproved" Row="2" Column="1" />
     </CardLayouts>
@@ -7832,11 +7777,8 @@
       <LayoutButtons index="9" Face="HotSRoachShield" Requirements="HaveHotSRoachShield" Row="1" Column="4" />
       <LayoutButtons index="10" Face="HotSRoachDamage" Requirements="HaveHotSRoachDamage" Row="1" Column="3" />
       <LayoutButtons Face="GlialReconstitutionPassive" Type="Passive" Requirements="HaveGlialReconstitution" Row="1" Column="1" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoach,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Row="2" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09DeepTunnelImproved" Row="2" Column="1" />
     </CardLayouts>
@@ -7912,11 +7854,8 @@
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09DeepTunnelImproved" Row="2" Column="1" />
       <LayoutButtons Face="GlialReconstitutionPassive" Type="Passive" Requirements="HaveGlialReconstitution" Row="1" Column="1" />
       <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachVileToRavager,Train1" Row="2" Column="0" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoachVile,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassiveArmor" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
     </CardLayouts>
     <LifeStart value="145" />
     <LifeMax value="145" />
@@ -7947,9 +7886,6 @@
       <LayoutButtons index="10" Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09DeepTunnelImproved" Row="2" Column="1" />
       <LayoutButtons Face="GlialReconstitutionPassive" Type="Passive" Requirements="HaveGlialReconstitution" Row="1" Column="1" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoachVile,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
     </CardLayouts>
@@ -10254,9 +10190,6 @@
       <LayoutButtons index="11" Face="AbathurRebornDeepTunnel" AbilCmd="AbathurRebornDeepTunnel,Execute" Column="1" />
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Row="2" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09" Row="2" Column="1" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskSwarmHost,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
       <LayoutButtons Face="LocustLaunch" Type="AbilCmd" AbilCmd="LocustLaunch,Execute" Row="2" Column="0" />
@@ -10289,11 +10222,8 @@
       <LayoutButtons index="2" Row="1" />
       <LayoutButtons index="3" Row="1" />
       <LayoutButtons index="4" Row="1" Column="0" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskSwarmHost,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
-      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3" />
       <LayoutButtons Face="AbathurRebornDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnel,Execute" Row="2" Column="1" />
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Row="2" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09" Row="2" Column="1" />
@@ -10815,11 +10745,8 @@
       <LayoutButtons Face="AbathurCasterMimeticMembrane" Type="AbilCmd" AbilCmd="AbathurCasterMimeticMembranePurchase,Execute" Row="1" Column="4" />
       <LayoutButtons Face="ViperImprovedCastRangePassive" Type="Passive" Requirements="HaveViperImprovedCastRange" Row="1" Column="0" />
       <LayoutButtons Face="ViperAbductImprovedStunPassive" Type="Passive" Requirements="HaveViperAbductImprovedStun" Row="1" Column="1" />
-      <LayoutButtons Face="CommanderPrestigeAbathurRebornLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurRebornBiomass" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanViper,Train1" Row="2" Column="4" />
       <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="4" />
-      <LayoutButtons Face="BiomassPassiveEnergy" Type="Passive" Requirements="BiomassBuffVisible" Row="1" Column="4" />
-      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="1" Column="4" />
     </CardLayouts>
     <CostResource index="Minerals" value="100" />
     <TacticalAIThink value="AIThinkViperAC" />
