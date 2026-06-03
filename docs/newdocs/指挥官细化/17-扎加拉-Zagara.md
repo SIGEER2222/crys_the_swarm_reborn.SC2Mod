@@ -8,6 +8,12 @@
 
 本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 扎加拉。依据 `游戏数据/官方合作指挥官/commanders/Zagara/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
 
+## 链路提醒
+
+- `buildings.json` 只是扎加拉官方链路的摘要；`BanelingNest`、`ScourgeNest`、`BileLauncherZagara` 这些关键对象要继续看 raw XML 才能闭环。
+- 扎加拉的稳定追法是 `Commander JSON + roster.json + raw XML`，不要只用 `units.json` 或 `buildings.json` 判断她的完整建筑/生产链。
+- `Drone` 仍是通用工蜂，专属建筑入口主要挂在 `ZergBuild` 的特殊按钮上。
+
 ## 官方数据摘要
 
 | 项 | 值 |

@@ -8,6 +8,11 @@
 
 本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 诺娃。依据 `游戏数据/官方合作指挥官/commanders/Nova/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
 
+## 链路提醒
+
+- 诺娃是“运行名册在 `XMFinal`、私有 Catalog 在 `XMNova.SC2Mod`”的样板；`XMCore` 只保留 `SOAStickyLine` 这类可复用顶部技能 helper。
+- 追 `SCVNova`、`CommandCenterNova`、`BarracksNova` 这类链路时，不要停在 `CAbilWarpTrain.InfoArray.Unit`，要继续追 `SpawnerUnit -> Behavior -> EffectSet -> CreateUnit`，才能得到真正的最终兵种。
+
 ## 官方数据摘要
 
 | 项 | 值 |

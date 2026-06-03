@@ -8,6 +8,12 @@
 
 本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 凯瑞甘。依据 `游戏数据/官方合作指挥官/commanders/Kerrigan/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
 
+## 链路提醒
+
+- `K5Kerrigan` 和 `K5KerriganBurrowed` 仍然是同一条英雄主链；“刀锋女王 / 人类形态”的差异主要由威望和外观升级控制，不是两个互相独立的英雄单位。
+- 当前 Mod 已把 `DroneKerrigan -> ZergBuildKerrigan -> *Kerrigan` 的建筑链私有化到第一阶段，但幼虫训练和作战单位仍有共享链路，不能视为完全闭环。
+- 第三威望通过 `KerriganInfestedCosmetic` / `KerriganGhostCosmetic` 切换外观并启用/禁用技能，追形态时要把威望和技能开关一起看。
+
 ## 官方数据摘要
 
 | 项 | 值 |

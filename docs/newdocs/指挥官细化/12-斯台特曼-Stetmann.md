@@ -8,6 +8,12 @@
 
 本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 斯台特曼。依据 `游戏数据/官方合作指挥官/commanders/Stetmann/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
 
+## 链路提醒
+
+- 官方斯台特曼不是只看 `commanderdata.xml` 就能下结论的 case；真实的单位、建筑、按钮、效果和生产链都要把 `egonstetmann.sc2mod` 的 raw Catalog 一起展开。
+- `ViperStetmann` 在快速核对里没有找到独立的 `CUnit id="ViperStetmann"`，后续继续按依赖追，不要默认它已经闭环。
+- 追斯台特曼时，优先用结构化 `commanders/Stetmann/` 定位，再用 raw XML 还原按钮、效果、行为和生产链。
+
 ## 官方数据摘要
 
 | 项 | 值 |
