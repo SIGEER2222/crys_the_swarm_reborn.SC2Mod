@@ -14200,4 +14200,149 @@
 
   </CUnit>
 
+  <CUnit id="ProbeVorazun" parent="Probe">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray index="3" Link="ProtossBuildVorazun" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="1" removed="1" />
+    <CardLayouts index="2" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
+      <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1" />
+      <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
+      <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
+      <LayoutButtons Face="AttackWorker" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
+      <LayoutButtons Face="GatherProt" Type="AbilCmd" AbilCmd="ProbeHarvest,Gather" Row="1" Column="0" />
+      <LayoutButtons Face="ReturnCargo" Type="AbilCmd" AbilCmd="ProbeHarvest,Return" Row="1" Column="1" />
+      <LayoutButtons Face="ProtossBuild" Type="Submenu" SubmenuCardId="PBl1" Row="2" Column="0" />
+      <LayoutButtons Face="ProtossBuildAdvanced" Type="Submenu" SubmenuCardId="PBl2" Row="2" Column="1" />
+      <LayoutButtons Face="Halt" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Halt" Row="2" Column="4" />
+    </CardLayouts>
+    <CardLayouts CardId="PBl1">
+      <LayoutButtons Face="Nexus" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build1" Row="0" Column="0" />
+      <LayoutButtons Face="Pylon" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build2" Row="0" Column="2" />
+      <LayoutButtons Face="Assimilator" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build3" Row="0" Column="1" />
+      <LayoutButtons Face="Gateway" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build4" Row="1" Column="0" />
+      <LayoutButtons Face="Gateway" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build26" Row="1" Column="0" />
+      <LayoutButtons Face="Forge" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build5" Row="1" Column="1" />
+      <LayoutButtons Face="PhotonCannon" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build8" Row="2" Column="1" />
+      <LayoutButtons Face="CyberneticsCore" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build15" Row="2" Column="0" />
+      <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4" />
+    </CardLayouts>
+    <CardLayouts CardId="PBl2">
+      <LayoutButtons Face="TwilightCouncil" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build7" Row="0" Column="0" />
+      <LayoutButtons Face="DarkShrine" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build12" Row="2" Column="0" />
+      <LayoutButtons Face="Stargate" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build10" Row="0" Column="1" />
+      <LayoutButtons Face="FleetBeacon" Type="AbilCmd" AbilCmd="ProtossBuildVorazun,Build6" Row="1" Column="1" />
+      <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="NexusVorazun" parent="Nexus">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="NexusTrainVorazun" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrainVorazun,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="RallyNexus,Rally1" Row="1" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_Nexus" />
+    <TechTreeProducedUnitArray value="ProbeVorazun" />
+  </CUnit>
+  <CUnit id="PylonVorazun" parent="Pylon">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Pylon" />
+  </CUnit>
+  <CUnit id="AssimilatorVorazun" parent="Assimilator">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Assimilator" />
+  </CUnit>
+  <CUnit id="GatewayVorazun" parent="Gateway">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="GatewayTrainVorazun" />
+    <AbilArray Link="UpgradeToWarpGateVorazun" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="ZealotShakuras" Type="AbilCmd" AbilCmd="GatewayTrainVorazun,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="Stalker" Type="AbilCmd" AbilCmd="GatewayTrainVorazun,Train2" Row="0" Column="1" />
+      <LayoutButtons Face="DarkTemplarShakuras" Type="AbilCmd" AbilCmd="GatewayTrainVorazun,Train5" Row="0" Column="2" />
+      <LayoutButtons Face="UpgradeToWarpGate" Type="AbilCmd" AbilCmd="UpgradeToWarpGateVorazun,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_Gateway" />
+    <TechTreeProducedUnitArray value="ZealotShakuras" />
+    <TechTreeProducedUnitArray value="Stalker" />
+    <TechTreeProducedUnitArray value="DarkTemplarShakuras" />
+  </CUnit>
+  <CUnit id="ForgeVorazun" parent="Forge">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Forge" />
+  </CUnit>
+  <CUnit id="PhotonCannonVorazun" parent="PhotonCannon">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_PhotonCannon" />
+  </CUnit>
+  <CUnit id="CyberneticsCoreVorazun" parent="CyberneticsCore">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_CyberneticsCore" />
+  </CUnit>
+  <CUnit id="TwilightCouncilVorazun" parent="TwilightCouncil">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_TwilightCouncil" />
+  </CUnit>
+  <CUnit id="DarkShrineVorazun" parent="DarkShrine">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_DarkShrine" />
+  </CUnit>
+  <CUnit id="StargateVorazun" parent="Stargate">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="StargateTrainVorazun" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="VoidRay" Type="AbilCmd" AbilCmd="StargateTrainVorazun,Train5" Row="0" Column="0" />
+      <LayoutButtons Face="Oracle" Type="AbilCmd" AbilCmd="StargateTrainVorazun,Train9" Row="0" Column="1" />
+      <LayoutButtons Face="CorsairMP" Type="AbilCmd" AbilCmd="StargateTrainVorazun,Train11" Row="0" Column="2" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_Stargate" />
+    <TechTreeProducedUnitArray value="VoidRay" />
+    <TechTreeProducedUnitArray value="Oracle" />
+    <TechTreeProducedUnitArray value="CorsairMP" />
+  </CUnit>
+  <CUnit id="FleetBeaconVorazun" parent="FleetBeacon">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_FleetBeacon" />
+  </CUnit>
+  <CUnit id="WarpGateVorazun" parent="WarpGate">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray Link="WarpGateTrainVorazun" />
+    <AbilArray Link="MorphBackToGatewayVorazun" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="ZealotShakuras" Type="AbilCmd" AbilCmd="WarpGateTrainVorazun,Train1" Row="0" Column="0" />
+      <LayoutButtons Face="Stalker" Type="AbilCmd" AbilCmd="WarpGateTrainVorazun,Train2" Row="0" Column="1" />
+      <LayoutButtons Face="DarkTemplarShakuras" Type="AbilCmd" AbilCmd="WarpGateTrainVorazun,Train5" Row="0" Column="2" />
+      <LayoutButtons Face="MorphBackToGateway" Type="AbilCmd" AbilCmd="MorphBackToGatewayVorazun,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_WarpGate" />
+    <TechTreeProducedUnitArray value="ZealotShakuras" />
+    <TechTreeProducedUnitArray value="Stalker" />
+    <TechTreeProducedUnitArray value="DarkTemplarShakuras" />
+  </CUnit>
 </Catalog>
