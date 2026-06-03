@@ -6,10 +6,32 @@
     <Mob value="Campaign"></Mob>
     <FlagArray index="PreventDefeat" value="1"></FlagArray>
   </CUnit>
-  <CUnit id="DroneAbathur" parent="Drone">
-    <Race value="Zerg"></Race>
-    <Mob value="Campaign"></Mob>
-  </CUnit>
+  <CUnit id="DroneAbathur" parent="Drone">
+
+    <Race value="Zerg"></Race>
+
+    <Mob value="Campaign"></Mob>
+
+    <AbilArray index="3" removed="1"></AbilArray>
+
+    <AbilArray Link="ZergBuildAbathur"></AbilArray>
+
+    <CardLayouts index="1" removed="1"></CardLayouts>
+
+    <CardLayouts index="2" removed="1"></CardLayouts>
+
+    <CardLayouts index="1">
+
+      <LayoutButtons index="4" Column="2"></LayoutButtons>
+
+      <LayoutButtons Face="SpineCrawler" Type="AbilCmd" AbilCmd="ZergBuildAbathur,Build15" Row="2" Column="0"></LayoutButtons>
+
+      <LayoutButtons Face="SporeCrawler" Type="AbilCmd" AbilCmd="ZergBuildAbathur,Build16" Row="2" Column="1"></LayoutButtons>
+
+    </CardLayouts>
+
+  </CUnit>
+
   <CUnit id="OverlordAbathur" parent="Overlord">
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
