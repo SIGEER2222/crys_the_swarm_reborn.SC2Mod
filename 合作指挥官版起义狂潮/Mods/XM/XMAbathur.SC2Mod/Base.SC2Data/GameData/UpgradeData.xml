@@ -2629,6 +2629,12 @@
     <EffectArray Reference="Unit,Viper,CostResource[Vespene]" Value="50" />
     <EffectArray Operation="Set" Reference="Button,SwarmHostDeepBurrow,Tooltip" Value="Button/Tooltip/SwarmHostDeepBurrowPrestige" />
   </CUpgrade>
+  <CUpgrade id="CommanderPrestigeAbathurDeepTunnelLevel12" parent="CommanderPrestige">
+    <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Vespene]" Value="6" />
+    <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Vespene]" Value="13" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="9" />
+    <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="9" />
+  </CUpgrade>
   <CUpgrade id="CommanderPrestigeAbathurUltEvo" parent="CommanderPrestige">
     <EffectArray Reference="Effect,AbathurBiomassMaxStacksDummy,Amount" Value="100" />
     <EffectArray Operation="Subtract" Reference="Behavior,AbathurPropArmor,Modification.LifeArmorBonus" Value=".025" />
@@ -2644,7 +2650,28 @@
     <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalMaxAdditiveMultiplierArray[Life]" Value="1.5" />
     <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalRegenMultiplier[Energy]" Value="2.5" />
   </CUpgrade>
+  <CUpgrade id="CommanderPrestigeAbathurUltEvoLevel15" parent="CommanderPrestige">
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="0.005" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="0.005" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="0.005" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff1,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="0.005" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="0.05" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="0.05" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="0.05" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff10,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="0.05" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Melee]" Value="0.5" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Ranged]" Value="0.5" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Spell]" Value="0.5" />
+    <EffectArray Operation="Subtract" Reference="Behavior,BiomassBuff100,Modification.VitalDamageLeechArray[Life].KindArray[Splash]" Value="0.5" />
+  </CUpgrade>
   <CUpgrade id="CommanderPrestigeAbathurUltimateEvo" parent="CommanderPrestigeAbathurUltEvo" />
+  <CUpgrade id="SwarmQueenVisual">
+    <Flags index="UpgradeCheat" value="0" />
+    <AffectedUnitArray value="Queen" />
+    <AffectedUnitArray value="QueenBurrowed" />
+    <EffectArray Operation="Set" Reference="Unit,Queen,Name" Value="Unit/Name/QueenUpgraded" />
+    <EffectArray Operation="Set" Reference="Unit,QueenBurrowed,Name" Value="Unit/Name/QueenUpgraded" />
+  </CUpgrade>
   <CUpgrade id="CommanderPrestigeKerriganCreep" parent="CommanderPrestige">
     <EffectArray Reference="Effect,KerriganMalignantCreepAttackSpeedDummy,Amount" Value="0.3" />
     <EffectArray Reference="Effect,KerriganMalignantCreepLifeRegenDummy,Amount" Value="1" />

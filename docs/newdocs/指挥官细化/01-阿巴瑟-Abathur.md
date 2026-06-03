@@ -8,6 +8,8 @@
 
 本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 阿巴瑟。依据 `游戏数据/官方合作指挥官/commanders/Abathur/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
 
+重生阿巴瑟单独看：`docs/newdocs/额外指挥官/01-阿巴瑟-自定义Mod.md`。那份文档对应的是嵌套 Mod `crys_the_swarm_reborn.SC2Mod\crys_the_swarm_reborn.SC2Mod`，不要和本页官方合作指挥官口径混用。
+
 ## 链路提醒
 
 - `Leviathan` 在官方口径里按单位/终极进化对象处理，不按英雄处理；`heroes.json` 仍为 0。
@@ -46,7 +48,7 @@ roster 样例：
 AbathurGuardian, Devourer, Mutalisk, Roach, SpineCrawler, SporeCrawler, SwarmHost, SwarmQueen, RoachCorpser, RoachVile, Ravager, Viper, Brutalisk, Leviathan
 ```
 
-## 15 级解锁摘要
+## 15 级最终解锁摘要（审计锚点）
 
 - 1: 生物质收割者
 - 2: 终极进化
@@ -628,4 +630,3 @@ personal_mechanic_smoke
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
 - 特殊机制、个性化机制是否需要 runtime hook。
-

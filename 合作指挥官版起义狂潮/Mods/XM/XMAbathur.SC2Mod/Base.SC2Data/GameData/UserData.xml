@@ -169,4 +169,67 @@
       </Upgrade>
     </Instances>
   </CUser>
+  <CUser id="PlayerCommanders">
+    <Instances Id="ZergAbathur">
+      <Text Text="UserData/PlayerCommanders/ZergAbathur_Name">
+        <Field Id="Name" />
+      </Text>
+      <Text Text="UserData/PlayerCommanders/ZergAbathur_InfoDetails">
+        <Field Id="InfoDetails" />
+      </Text>
+      <Upgrade Upgrade="AbathurCommander">
+        <Field Id="DefaultUpgrades" />
+      </Upgrade>
+      <User Type="PlayerPrestige" Instance="CommanderPrestigeAbathurBiomass">
+        <Field Id="Prestige" />
+      </User>
+      <User Type="PlayerPrestige" Instance="CommanderPrestigeAbathurDeepTunnel">
+        <Field Id="Prestige" Index="1" />
+      </User>
+      <User Type="PlayerPrestige" Instance="CommanderPrestigeAbathurUltimateEvo">
+        <Field Id="Prestige" Index="2" />
+      </User>
+    </Instances>
+  </CUser>
+  <CUser id="PlayerPrestige">
+    <Instances Id="CommanderPrestigeAbathurDeepTunnel">
+      <GameLink GameLink="CommanderPrestigeAbathurDeepTunnel">
+        <Field Id="PrimaryUpgrade" />
+      </GameLink>
+      <User Type="PlayerPrestigeUpgradeSupplements" Instance="AbathurDeepTunnel1">
+        <Field Id="UpgradeSupplements" />
+      </User>
+    </Instances>
+    <Instances Id="CommanderPrestigeAbathurUltimateEvo">
+      <GameLink GameLink="CommanderPrestigeAbathurUltEvo">
+        <Field Id="PrimaryUpgrade" />
+      </GameLink>
+      <User Type="PlayerPrestigeUpgradeSupplements" Instance="AbathurUltimateEvo1">
+        <Field Id="UpgradeSupplements" />
+      </User>
+    </Instances>
+    <Instances Id="CommanderPrestigeAbathurBiomass">
+      <GameLink GameLink="CommanderPrestigeAbathurBiomass">
+        <Field Id="PrimaryUpgrade" />
+      </GameLink>
+    </Instances>
+  </CUser>
+  <CUser id="PlayerPrestigeUpgradeSupplements">
+    <Instances Id="AbathurDeepTunnel1">
+      <GameLink GameLink="AbathurMorphTimeCostReduced">
+        <Field Id="Upgrade" />
+      </GameLink>
+      <GameLink GameLink="CommanderPrestigeAbathurDeepTunnelLevel12">
+        <Field Id="Supplement" />
+      </GameLink>
+    </Instances>
+    <Instances Id="AbathurUltimateEvo1">
+      <GameLink GameLink="AbathurBiomassLifeLeech">
+        <Field Id="Upgrade" />
+      </GameLink>
+      <GameLink GameLink="CommanderPrestigeAbathurUltEvoLevel15">
+        <Field Id="Supplement" />
+      </GameLink>
+    </Instances>
+  </CUser>
 </Catalog>

@@ -7,7 +7,7 @@
 本文件整理的不是官方合作指挥官阿巴瑟，而是嵌套 Mod：
 
 ```text
-crys_the_swarm_reborn.SC2Mod/
+D:\MyWork\新建文件夹\mom.report.client\src\MyMod\crys_the_swarm_reborn.SC2Mod\crys_the_swarm_reborn.SC2Mod
 ```
 
 主要来源：
@@ -24,6 +24,19 @@ crys_the_swarm_reborn.SC2Mod/zhCN.SC2Data/LocalizedData/ObjectStrings.txt
 
 不要把这份和 `docs/newdocs/指挥官细化/01-阿巴瑟-Abathur.md` 混用。官方阿巴瑟走 `游戏数据/官方合作指挥官/commanders/Abathur/`；这里的自定义阿巴瑟以 nested mod 的 Catalog 和 `Lib48DF4533` 为准。
 
+这个重生阿巴瑟没有官方合作指挥官那套 `15 级 / 6 精通 / 3 威望` 进度体系。它靠 `Commanders/Commander = Abathur`、`Abathur` runtime upgrade、`Evolutions/<族系>` bank 和 `Triggers` 内的单位替换/能力补挂运行，所以文档必须按“自定义 bank + trigger 闭包”理解，而不是反推官方 coop progression。
+
+本地 bank 名称是 `cryswarmcoop`，`DocumentInfo` 里的内部依赖名是 `Mods\sibirens_sundries_swarm_reborn.SC2Mod`。
+
+## 单位继承原则
+
+后续这个自定义阿巴瑟里新增或整理单位时，优先采用“继承/派生”而不是直接改共享原型单位：
+
+- 新单位优先用 `parent=...` 派生自原型单位，再覆盖自己的 `AbilArray`、`CardLayouts`、`BehaviorArray`、`WeaponArray`。
+- 如果同一族系要给不同指挥官或不同阶段做变体，用自己的单位 ID 和自己的 bank/trigger 映射，不要直接改别的指挥官共享的基础单位。
+- 共享原型只保留必要的通用数据，所有指挥官专属按钮、技能补挂、变异路线尽量挂在派生单位或进入地图后补挂的 trigger 上。
+- 这样后续即使继续加阿巴瑟变体，也不容易把别的指挥官的兵种一起污染掉。
+
 ## 实现入口
 
 | 项 | 位置 | 说明 |
@@ -31,16 +44,16 @@ crys_the_swarm_reborn.SC2Mod/zhCN.SC2Data/LocalizedData/ObjectStrings.txt
 | 指挥官选择 | `Lib48DF4533.galaxy:16440` | 点击 Abathur 按钮后写 Bank：`Commanders/Commander = Abathur` |
 | 随机指挥官 | `Lib48DF4533.galaxy:4962` | Random 可能写入 `Abathur` |
 | 指挥官升级开关 | `Lib48DF4533.galaxy:5010` | 读取 Bank 后给玩家设置 `Abathur` upgrade |
-| 阿巴瑟初始化 | `Lib48DF4533.galaxy:10971` | `lib48DF4533_gt_Abathur`，按玩家 `Abathur` upgrade 解锁技能和追加单位能力 |
+| 重生阿巴瑟运行时 | `Lib48DF4533.galaxy:10971` | `lib48DF4533_gt_Abathur`，按玩家 `Abathur` upgrade 挂接重生阿巴瑟技能和单位能力 |
 | 新单位能力补挂 | `Lib48DF4533.galaxy:11122` | `lib48DF4533_gt_AbathurAbilities`，单位进入地图后按类型 `UnitAbilityAdd` |
 | 进化选择面板 | `Lib48DF4533.galaxy:17169` | 写 `Evolutions/<单位族系>` Bank，用于不同地图/阶段解锁变体 |
 | 突变解锁快捷 | `Lib48DF4533.galaxy:15536` | `-mutations` 会一次性设置多项突变和爬虫升级 |
 
 ## 指挥官兵种
 
-### 初始化明确处理的族系
+### 重生阿巴瑟处理的族系
 
-这些是 `lib48DF4533_gt_Abathur` 和 `lib48DF4533_gt_AbathurAbilities` 明确按 `Abathur` upgrade 处理的单位族系。
+这些是 `lib48DF4533_gt_Abathur` 和 `lib48DF4533_gt_AbathurAbilities` 按 `Abathur` upgrade 处理的重生阿巴瑟单位族系。
 
 | 族系 | 单位 ID | 初始化追加能力 |
 |---|---|---|

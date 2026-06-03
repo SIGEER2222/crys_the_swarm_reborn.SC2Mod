@@ -113,12 +113,66 @@ function buildCommanderClosure(commanderInfo) {
   const otherTechEntries = readJson(path.join(commanderDir, 'other-tech-entries.json'));
   const upgrades = readJson(path.join(commanderDir, 'upgrades.json'));
   const progression = readJson(path.join(commanderDir, 'progression.json'));
+  const prestiges = readJson(path.join(commanderDir, 'prestiges.json'));
 
   const override = effectiveOverrides[commanderInfo.id] || { excludeUnitIds: new Set(), notes: [] };
   const effectiveUnits = units.filter((entry) => !override.excludeUnitIds.has(entry.id));
   const auditOnlyUnits = units.filter((entry) => override.excludeUnitIds.has(entry.id));
   const identity = buildCommanderIdentity({ heroes, units: effectiveUnits, buildings, roster, otherTechEntries });
   const context = { commander: commanderInfo.id, identity, override };
+
+  const progressionLevels = (progression.perks || [])
+    .filter((perk) => Number(perk.level) <= 15)
+    .map((perk) => ({
+      id: perk.id,
+      commander_id: perk.commander_id,
+      commander: perk.commander,
+      level_id: perk.level_id,
+      level: perk.level,
+      ui_slot: perk.ui_slot,
+      button: perk.button,
+      name: perk.name || '',
+      tooltip: compactText(perk.tooltip || ''),
+      description: compactText(perk.description || ''),
+      upgrades: [...(perk.upgrades || [])],
+      ability_commands: [...(perk.ability_commands || [])],
+      source: perk.source,
+      source_name: perk.source_name,
+    }));
+  const progressionMasteries = (progression.masteries || []).map((mastery) => ({
+    id: mastery.id,
+    commander_id: mastery.commander_id,
+    commander: mastery.commander,
+    category: mastery.category,
+    name: mastery.name || '',
+    upgrade: mastery.upgrade || '',
+    talent_data: mastery.talent_data || '',
+    point_increments: [...(mastery.point_increments || [])],
+    value_format: mastery.value_format || '',
+    source: mastery.source,
+    source_name: mastery.source_name,
+  }));
+  const prestigeRows = (prestiges || []).map((prestige) => ({
+    id: prestige.id,
+    name: prestige.name || '',
+    description: prestige.description || '',
+    primary_upgrade: prestige.primary_upgrade || '',
+    secondary_upgrades_shared: [...(prestige.secondary_upgrades_shared || [])],
+    secondary_upgrades_self: [...(prestige.secondary_upgrades_self || [])],
+    suppress_upgrades: [...(prestige.suppress_upgrades || [])],
+    disable_units: [...(prestige.disable_units || [])],
+    enable_units: [...(prestige.enable_units || [])],
+    disable_abils: [...(prestige.disable_abils || [])],
+    enable_abils: [...(prestige.enable_abils || [])],
+    upgrade_supplement_ids: [...(prestige.upgrade_supplement_ids || [])],
+    upgrade_supplements: (prestige.upgrade_supplements || []).map((supplement) => ({
+      id: supplement.id,
+      upgrade: supplement.upgrade || '',
+      supplement_upgrades: [...(supplement.supplement_upgrades || [])],
+      source: supplement.source,
+      source_name: supplement.source_name,
+    })),
+  }));
 
   const topBarAbilityCommands = summarizeCommanderAbilityCommands({
     context,
@@ -186,6 +240,11 @@ function buildCommanderClosure(commanderInfo) {
       other_tech_entries: summarizeIds(otherTechEntries),
       upgrades: upgrades.map((upgrade) => upgrade.id).filter(Boolean).sort(naturalSort),
     },
+    progression: {
+      levels: progressionLevels,
+      masteries: progressionMasteries,
+      prestiges: prestigeRows,
+    },
     top_bar_ability_commands: topBarAbilityCommands,
     progression_ability_commands: progressionAbilityCommands,
     worker_build_commands: workerBuildCommands,
@@ -212,6 +271,9 @@ function buildCommanderClosure(commanderInfo) {
       units_audit_only: auditOnlyUnits.length,
       buildings: buildings.length,
       worker_build_commands: workerBuildCommands.length,
+      progression_levels: progressionLevels.length,
+      masteries: progressionMasteries.length,
+      prestiges: prestigeRows.length,
       larva_mutations: uniqueBy(
         acceptedProduction.filter((option) => option.stage === 'larva_mutation'),
         (option) => `${option.abil_cmd}|${option.unit}|${option.owner}`,
@@ -754,6 +816,7 @@ function renderMarkdown(data) {
       for (const note of commander.effective_notes) lines.push(`- ${note}`);
       lines.push('');
     }
+    renderProgressionSummary(lines, commander.progression);
     lines.push(`- 英雄：${renderIdList(commander.official_roster.heroes)}`);
     lines.push(`- 兵种（满级有效）：${renderIdList(commander.official_roster.units_effective)}`);
     if (commander.official_roster.units_audit_only.length) {
@@ -807,6 +870,69 @@ function renderProductionTable(lines, title, options) {
     );
   }
   lines.push('');
+}
+
+function renderProgressionSummary(lines, progression) {
+  const levels = progression?.levels || [];
+  const masteries = progression?.masteries || [];
+  const prestiges = progression?.prestiges || [];
+
+  if (levels.length) {
+    lines.push('### 15 级最终解锁');
+    lines.push('');
+    lines.push('本段只作为最终态来源，不再拆成 1 级 / 15 级两套玩法态。');
+    lines.push('');
+    lines.push('| 等级 | 名称 | 挂载升级 | 说明 |');
+    lines.push('|---|---|---|---|');
+    for (const level of levels.slice(0, 20)) {
+      lines.push(
+        `| ${escapePipe(String(level.level || ''))} | ${escapePipe(level.name || level.id || '')} | ${escapePipe(renderStringList(level.upgrades))} | ${escapePipe(level.tooltip || level.description || '')} |`,
+      );
+    }
+    lines.push('');
+  }
+
+  if (masteries.length) {
+    lines.push('### 精通（6 项满配）');
+    lines.push('');
+    lines.push('| ID | 名称 | 类别 | Upgrade | 点数步进 | ValueFormat |');
+    lines.push('|---|---|---|---|---|---|');
+    for (const mastery of masteries.slice(0, 20)) {
+      lines.push(
+        `| ${escapePipe(mastery.id || '')} | ${escapePipe(mastery.name || '')} | ${escapePipe(String(mastery.category ?? ''))} | ${escapePipe(mastery.upgrade || '')} | ${escapePipe(renderStringList(mastery.point_increments))} | ${escapePipe(mastery.value_format || '')} |`,
+      );
+    }
+    lines.push('');
+  }
+
+  if (prestiges.length) {
+    lines.push('### 威望（正向融合）');
+    lines.push('');
+    lines.push('| ID | Primary Upgrade | Secondary Upgrades | 补充链 | 负面/禁用项 |');
+    lines.push('|---|---|---|---|---|');
+    for (const prestige of prestiges.slice(0, 20)) {
+      const secondarySummary = [
+        prestige.secondary_upgrades_shared?.length ? `shared=${renderStringList(prestige.secondary_upgrades_shared)}` : '',
+        prestige.secondary_upgrades_self?.length ? `self=${renderStringList(prestige.secondary_upgrades_self)}` : '',
+      ]
+        .filter(Boolean)
+        .join(' | ');
+      const supplementSummary = renderPrestigeSupplementSummary(prestige);
+      const negativeSummary = [
+        renderStringList(prestige.suppress_upgrades),
+        renderStringList(prestige.disable_units),
+        renderStringList(prestige.disable_abils),
+        renderStringList(prestige.enable_units),
+        renderStringList(prestige.enable_abils),
+      ]
+        .filter((text) => text && text !== '-')
+        .join(' | ');
+      lines.push(
+        `| ${escapePipe(prestige.id || '')} | ${escapePipe(prestige.primary_upgrade || '')} | ${escapePipe(secondarySummary || '-')} | ${escapePipe(supplementSummary)} | ${escapePipe(negativeSummary || '-')} |`,
+      );
+    }
+    lines.push('');
+  }
 }
 
 function renderTechClosureTable(lines, title, entries) {
@@ -1169,6 +1295,27 @@ function rawToSearchText(raw) {
 function renderIdList(entries) {
   if (!entries.length) return '-';
   return entries.map((entry) => `${entry.id}${entry.name ? `（${entry.name}）` : ''}`).join('、');
+}
+
+function renderStringList(values) {
+  if (!values?.length) return '-';
+  return values.join('、');
+}
+
+function renderPrestigeSupplementSummary(prestige) {
+  const chains = [];
+  for (const supplement of prestige.upgrade_supplements || []) {
+    const chain = [supplement.id, supplement.upgrade, ...(supplement.supplement_upgrades || [])].filter(Boolean);
+    if (chain.length) {
+      chains.push(chain.join(' -> '));
+    }
+  }
+
+  if (chains.length) {
+    return chains.join('<br>');
+  }
+
+  return renderStringList(prestige.upgrade_supplement_ids);
 }
 
 function formatCost(option) {

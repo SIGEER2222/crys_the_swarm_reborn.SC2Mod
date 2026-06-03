@@ -88,7 +88,7 @@
 - `docs/newdocs/指挥官细化/虫族闭包/zerg-commander-closure.json`
 - 生成脚本：`scripts/sc2/export-zerg-commander-closure.mjs`
 
-这份闭包按官方 commander JSON 先做归属过滤，再用官方原始文本镜像补 `AbilData / EffectData / RequirementData` 摘要。它覆盖阿巴瑟、凯瑞甘、扎加拉、斯台特曼、斯托科夫、德哈卡 6 名虫族指挥官的顶部/等级解锁技能、工蜂/私有劳工建造项、幼虫变异、形态进化、建筑训练/召唤、非默认技能按钮、raw effect 闭包和排除/复核候选。
+这份闭包按官方 commander JSON 先做归属过滤，再用官方原始文本镜像补 `AbilData / EffectData / RequirementData` 摘要。它覆盖阿巴瑟、凯瑞甘、扎加拉、斯台特曼、斯托科夫、德哈卡 6 名虫族指挥官的顶部/等级解锁技能、15 级最终解锁、6 项精通、3 个威望、工蜂/私有劳工建造项、幼虫变异、形态进化、建筑训练/召唤、非默认技能按钮、raw effect 闭包和排除/复核候选。
 
 虫族闭包的额外防线：
 
