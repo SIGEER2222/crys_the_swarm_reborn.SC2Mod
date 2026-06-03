@@ -102,7 +102,38 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
     BankLoad("CampaignXCore", 1);
     libE0EAE146_gv_commander = BankValueGetAsString(BankLastCreated(), "Ach", "Commander");
     autoC0933116_val = libE0EAE146_gv_commander;
-    if (autoC0933116_val == "Stukov") {
+    // Keep every commander on an explicit console skin path instead of falling through silently.
+    if (autoC0933116_val == "Raynor") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Default");
+    }
+    else if (autoC0933116_val == "Kerrigan") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Default");
+    }
+    else if (((autoC0933116_val == "Abathur") || (autoC0933116_val == "AbathurCustom") || (autoC0933116_val == "AbathurReborn"))) {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Abathur");
+    }
+    else if (autoC0933116_val == "Zagara") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Zagara");
+    }
+    else if (autoC0933116_val == "Alarak") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Forged");
+    }
+    else if (autoC0933116_val == "Artanis") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Default");
+    }
+    else if (autoC0933116_val == "Fenix") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Fenix");
+    }
+    else if (autoC0933116_val == "Karax") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Default");
+    }
+    else if (autoC0933116_val == "Vorazun") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Default");
+    }
+    else if (autoC0933116_val == "Zeratul") {
+        lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleProtoss_Ihanrii");
+    }
+    else if (autoC0933116_val == "Stukov") {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleZerg_Classic");
     }
     else if (autoC0933116_val == "Dehaka") {
@@ -121,7 +152,7 @@ void libE0EAE146_gf_Initialize (bool lp_rpg) {
         }
 
     }
-    else if (autoC0933116_val == "Mira") {
+    else if (((autoC0933116_val == "Mira") || (autoC0933116_val == "Horner") || (autoC0933116_val == "HanHorner") || (autoC0933116_val == "HanAndHorner"))) {
         lib67C0F0E7_gf_PlayerSetCommanderConsoleSkin(1, "ConsoleTerran_Horner");
     }
     else if (autoC0933116_val == "Nova") {
