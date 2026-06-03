@@ -4,9 +4,15 @@
 
 ## 当前口径
 
-当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
+本文件统一按满级 `power_fusion` 口径编写：正文只讨论满级指挥官的最终态，不再把 1 级与 15 级拆成两套玩法态；等级 1-15 只保留为解锁门槛和审计锚点。精通默认 6 项全部 30 点，三个威望按正收益融合展开，不直接启用官方 `PlayerPrestige`。`initial` 仅用于官方基础状态审计和差异对照，默认测试和玩法都看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 泽拉图。依据 `游戏数据/官方合作指挥官/commanders/Zeratul/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 泽拉图。依据 `游戏数据/官方合作指挥官/commanders/Zeratul/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
+
+## 链路提醒
+
+- 泽拉图当前官方正向建筑是 `DarkShrine`、`Gateway`、`PhotonCannon`、`RoboticsWarp`；古代吸纳舱来自 `SOAAutoAssimilator` / 泽拉图经济机制，不应反推到其它神族指挥官。
+- 泽拉图正向兵种按 `DisruptorZeratul`、`ImmortalZeratul`、`Observer`、`ObserverZeratul`、`SentryZeratul`、`StalkerZeratul`、`WarpPrismZeratul`、`ZealotZeratul` 过滤。
+- `VorazunLevel*`、`AlarakLevel*`、`KaraxTurret*` 等共享神族候选在泽拉图页只能作为污染项；泽拉图专属技能链应优先看 `ZeratulArtifact*`、`ZeratulRoboticsFacilityTrain*` 和对应 raw XML 闭包。
 
 ## 官方数据摘要
 
@@ -120,13 +126,13 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或 CASC 继续追。 |
+| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或官方原始文本镜像继续追。 |
 
 ### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从 CASC 或实机日志补。 |
+| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从官方原始文本镜像或实机日志补。 |
 
 ### 英雄形态/模式候选
 
@@ -154,7 +160,7 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | Lv14 | 纯粹完美 | `ZeratulTalentUltimatePurity` | `ZeratulHeroResearch:3`, `ZeratulHeroResearch2:20`, `ZeratulHeroResearch:7`, `ZeratulHeroResearch2:2` | 形体化身获得一项能力，可以召唤能独自施放微型灵能风暴的充能水晶。精华化身获得一项能力，可以将一个大范围内的所有敌人变形成更低一级的进化形态。 |
 | Lv15 | 纯粹意志 | - | `ZeratulEngineeringBayResearch:11`, `ZeratulEngineeringBayResearch:12`, `ZeratulEngineeringBayResearch:6`, `ZeratulEngineeringBayResearch:7` | 泽拉图每找到一块神器碎片，就会获得额外的护盾、暗影顺劈伤害提高以及额外的闪现使用次数。 |
 
-口径：官方玩法存在泽拉图本体，但当前 heroes.json 未列出，需要从 CASC/实机补 HeroProfile、神器碎片和技能闭包。
+口径：官方玩法存在泽拉图本体，但当前 heroes.json 未列出，需要从官方原始文本镜像/实机补 HeroProfile、神器碎片和技能闭包。
 
 待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 

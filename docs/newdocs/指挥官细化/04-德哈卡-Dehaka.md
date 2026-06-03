@@ -4,9 +4,14 @@
 
 ## 当前口径
 
-当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
+本文件统一按满级 `power_fusion` 口径编写：正文只讨论满级指挥官的最终态，不再把 1 级与 15 级拆成两套玩法态；等级 1-15 只保留为解锁门槛和审计锚点。精通默认 6 项全部 30 点，三个威望按正收益融合展开，不直接启用官方 `PlayerPrestige`。`initial` 仅用于官方基础状态审计和差异对照，默认测试和玩法都看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 德哈卡。依据 `游戏数据/官方合作指挥官/commanders/Dehaka/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 德哈卡。依据 `游戏数据/官方合作指挥官/commanders/Dehaka/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
+
+## 链路提醒
+
+- 官方德哈卡的数据已经足够把英雄、兵种、建筑、按钮和生产/变异链反推出，追这条线时不要只看 `units.json` 或只看 `buildings.json`。
+- 德哈卡是典型的“建筑蛋 -> 蛋 morph -> 最终单位”链路，单位按钮和研究按钮要连同 `roster.json`、`command_cards.json` 和 raw XML 一起看。
 
 ## 官方数据摘要
 

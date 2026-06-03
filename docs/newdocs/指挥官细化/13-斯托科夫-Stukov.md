@@ -4,9 +4,16 @@
 
 ## 当前口径
 
-当前指挥官默认 15 级，不从 1 级开始；精通默认 6 项全部 30 点；威望默认只取正面收益，不直接启用官方 `PlayerPrestige`。`initial` 只作为官方基础状态审计和差异对照，默认测试和玩法应看 `power_fusion` 最终状态。
+本文件统一按满级 `power_fusion` 口径编写：正文只讨论满级指挥官的最终态，不再把 1 级与 15 级拆成两套玩法态；等级 1-15 只保留为解锁门槛和审计锚点。精通默认 6 项全部 30 点，三个威望按正收益融合展开，不直接启用官方 `PlayerPrestige`。`initial` 仅用于官方基础状态审计和差异对照，默认测试和玩法都看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 斯托科夫。依据 `游戏数据/官方合作指挥官/commanders/Stukov/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `references/sc2-build-96883-casc-export/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 斯托科夫。依据 `游戏数据/官方合作指挥官/commanders/Stukov/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
+
+## 链路提醒
+
+- 2026-06-03 复核：斯托科夫满级有效主链按当前官方 `buildings.json` / `units.json` / `roster.json` 过滤，不把普通虫族 `Zergling`、`SwarmQueen`、`QueenCoop` 或扎加拉跳虫被动算作斯托科夫单位。
+- `SIQueen` / 虫巢女王需要从 `SIStarportTrain,Train3`、`SIQueenFungalGrowth`、`SIQueenEnergy` 继续追官方原始闭包；不要用普通 `SwarmQueen` 或 `QueenCoop` 顶替。
+- `StukovInfestedWraith` 在旧表里容易和当前 `StukovInfestedBanshee` 混用；当前官方 `units.json` 的空军主链是 `StukovInfestedBanshee` 与 `SILiberator`，`SIDiamondBack` 位于 `roster.json` / `other-tech-entries.json` 审计入口。
+- 候选表中凡是 `ZagaraVoidCoopZerglingDodge`、`MorphZerglingToBaneling`、`BurrowUltralisk*` 这类普通虫族/扎加拉跳虫链，只能作为共享卡污染排除项，不能接入斯托科夫满级实现。
 
 ## 官方数据摘要
 
@@ -18,18 +25,18 @@
 | 默认能力命令 | - |
 | 威望 ID | `CommanderPrestigeStukovMech`, `CommanderPrestigeStukovBanshees`, `CommanderPrestigeStukovBunkers` |
 | heroes.json 数量 | 0 |
-| roster.json 数量 | 15 |
+| roster.json 数量 | 16 |
 | units.json 数量 | 6 |
 | buildings.json 数量 | 9 |
 | command_cards.json 对象数 | 14 |
 | upgrades.json 数量 | 29 |
-| other-tech-entries.json 数量 | 0 |
+| other-tech-entries.json 数量 | 1 |
 | source | `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` |
 
 roster 样例：
 
 ```text
-StukovEvolutionChamber, StukovInfestedArmory, StukovInfestedBarracks, StukovInfestedCivilian, StukovInfestedCivilianStructure, StukovInfestedCommandCenter, StukovInfestedFactory, StukovInfestedMarine, StukovInfestedRefinery, StukovInfestedSiegeTank, StukovInfestedStarport, StukovInfestedSupplyDepot, StukovInfestedWraith, SwarmQueen, Zergling
+StukovEvolutionChamber, StukovInfestedArmory, StukovInfestedBarracks, StukovInfestedCivilian, StukovInfestedCivilianStructure, StukovInfestedCommandCenter, StukovInfestedFactory, StukovInfestedMarine, StukovInfestedRefinery, StukovInfestedSiegeTank, StukovInfestedStarport, StukovInfestedSupplyDepot, SIOverlord, SIDiamondBack, StukovInfestedBanshee, SILiberator
 ```
 
 ## 15 级解锁摘要
@@ -151,19 +158,19 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 被感染的攻城坦克 | `StukovInfestedSiegeTankUproot` | 站起 | `StukovInfestedSiegeTankUproot,Execute` | - | 使被感染的攻城坦克站起。站起后的被感染的攻城坦克拥有移动的能力，但无法攻击。在菌毯上的移动速度加快。 |
 | 被感染的攻城坦克 | `StukovInfestedSiegeTankDeepTunnel` | 深槽虫道 | `StukovInfestedSiegeTankDeepTunnel,Execute` | - | 可以快速移动至任何有菌毯的可见位置。 |
 | 被感染的攻城坦克 | `StukovInfestedSiegeTankAmmo` | 烈性生质 | - | - | 吞噬周围被感染的平民和被感染的士兵来恢复20点生命值，并为被感染的攻城坦克的烈性爆弹武器提供弹药。最多可储存8枚炮弹。 |
-| 被感染的怨灵战机 | `WraithCloakOn` | - | `WraithCloak,On` | - | - |
-| 被感染的怨灵战机 | `WraithCloakOff` | - | `WraithCloak,Off` | - | - |
-| 被感染的怨灵战机 | `ImprovedBurstLaser` | 脉冲增幅器 | - | `HaveWraithImprovedBurstLaser` | 怨灵战机移动时，双子飞弹的伤害提高{(Behavior,SwannGeminiMissileMovementBuff,DamageResponse.ModifyFraction-1)*100}%，脉冲激光炮的伤害提高{(Behavior,SwannBurstLaserMov... |
-| 被感染的怨灵战机 | `SingularityAnchor` | SingularityAnchor | `255,255` | `DynamicPowerRoutingResearched` | - |
-| 跳虫 | `-` | - | - | `HaveMPMetabolicBoost` | - |
-| 跳虫 | `-` | - | - | - | - |
-| 跳虫 | `ZerglingArmorShred` | 切割利爪 | - | `HaveZerglingArmorShred` | 跳虫的攻击会使目标的护甲降低到0，持续{Behavior,ZerglingArmorShredTarget,Duration}秒。 |
-| 跳虫 | `ZagaraVoidCoopZerglingDodge` | 闪避 | - | `HaveMasteryZagaraZerglingDodgeChance` | 跳虫有{Effect,MasteryZagaraZerglingDodgeChanceDisplayDummy,Amount}%的几率躲避一次攻击。 |
-| 跳虫 | `-` | - | - | `HaveMPAdrenalGlands` | - |
-| 跳虫 | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
-| 跳虫 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
-| 跳虫 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
-| 跳虫 | `-` | - | `MorphToBaneling,Execute` | - | - |
+| 被感染的怨灵战机（排除：旧表/非当前官方主链） | `WraithCloakOn` | - | `WraithCloak,On` | - | 历史 Wraith 候选污染；当前官方空军主链是 `StukovInfestedBanshee` / `SILiberator`。 |
+| 被感染的怨灵战机（排除：旧表/非当前官方主链） | `WraithCloakOff` | - | `WraithCloak,Off` | - | 历史 Wraith 候选污染；当前官方空军主链是 `StukovInfestedBanshee` / `SILiberator`。 |
+| 被感染的怨灵战机（排除：旧表/非当前官方主链） | `ImprovedBurstLaser` | 脉冲增幅器 | - | `HaveWraithImprovedBurstLaser` | 历史 Wraith/斯旺怨灵候选污染；当前官方空军主链是 `StukovInfestedBanshee` / `SILiberator`。 |
+| 被感染的怨灵战机（排除：旧表/非当前官方主链） | `SingularityAnchor` | SingularityAnchor | `255,255` | `DynamicPowerRoutingResearched` | 历史 Wraith 候选污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：非斯托科夫） | `-` | - | - | `HaveMPMetabolicBoost` | 共享普通虫族/多人跳虫候选污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：非斯托科夫） | `-` | - | - | - | 共享普通虫族候选污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：非斯托科夫） | `ZerglingArmorShred` | 切割利爪 | - | `HaveZerglingArmorShred` | 共享普通虫族跳虫候选污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：扎加拉污染） | `ZagaraVoidCoopZerglingDodge` | 闪避 | - | `HaveMasteryZagaraZerglingDodgeChance` | 扎加拉跳虫精通被动污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：非斯托科夫） | `-` | - | - | `HaveMPAdrenalGlands` | 共享普通虫族/多人跳虫候选污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：非斯托科夫） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：非斯托科夫） | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 共享普通虫族/雷兽潜地链污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：非斯托科夫） | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 共享普通虫族/雷兽出地链污染；不计入斯托科夫满级单位技能。 |
+| 跳虫（排除：非斯托科夫） | `-` | - | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异污染；不计入斯托科夫满级单位技能。 |
 
 ### 进化/形态/切换候选
 
@@ -182,11 +189,11 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 被感染的攻城坦克 | `StukovInfestedSiegeTankUproot` | 站起 | `StukovInfestedSiegeTankUproot,Execute` | - | 使被感染的攻城坦克站起。站起后的被感染的攻城坦克拥有移动的能力，但无法攻击。在菌毯上的移动速度加快。 |
 | 被感染的攻城坦克 | `StukovInfestedSiegeTankDeepTunnel` | 深槽虫道 | `StukovInfestedSiegeTankDeepTunnel,Execute` | - | 可以快速移动至任何有菌毯的可见位置。 |
 | 被感染的攻城坦克 | `StukovInfestedSiegeTankAmmo` | 烈性生质 | - | - | 吞噬周围被感染的平民和被感染的士兵来恢复20点生命值，并为被感染的攻城坦克的烈性爆弹武器提供弹药。最多可储存8枚炮弹。 |
-| 跳虫 | `-` | - | - | `HaveMPAdrenalGlands` | - |
-| 跳虫 | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 自毁型单位。爆炸时能够造成小范围的伤害。 / 可以对地。 |
-| 跳虫 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
-| 跳虫 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
-| 跳虫 | `-` | - | `MorphToBaneling,Execute` | - | - |
+| 跳虫（排除：非斯托科夫） | `-` | - | - | `HaveMPAdrenalGlands` | 共享普通虫族/多人跳虫候选污染；不计入斯托科夫进化链。 |
+| 跳虫（排除：非斯托科夫） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异污染；不计入斯托科夫进化链。 |
+| 跳虫（排除：非斯托科夫） | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 共享普通虫族/雷兽潜地链污染；不计入斯托科夫进化链。 |
+| 跳虫（排除：非斯托科夫） | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 共享普通虫族/雷兽出地链污染；不计入斯托科夫进化链。 |
+| 跳虫（排除：非斯托科夫） | `-` | - | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异污染；不计入斯托科夫进化链。 |
 
 实现备注：单位自身声明技能、被动、武器、Behavior 和升级后替换关系；科技建筑只触发研究，不在科技建筑内部判断所有兵种 if/else。
 
@@ -232,15 +239,17 @@ Owner：`CommanderRosterProfile`、`CommanderUnitFactoryProfile`、`CommanderUni
 | 被感染的平民 | `StukovInfestedCivilian` | `SIInfestedCivilian, SICocoonInfestedSCV` | Ground; Biological/Light; Unit; FactionInfested | 矿:- 气:- 人口:-0.5 生命:35 护盾:- 能量:- | 通用型被感染的步兵。 / 可以对地。 |
 | 被感染的陆战队员 | `StukovInfestedMarine` | `SIInfestedMarine, SICocoonInfestedMarine` | Ground; Biological/Light; Unit; FactionInfested | 矿:15 气:- 人口:-1 生命:50 护盾:- 能量:- | 通用型被感染的步兵。 / 可以对地和对空。 |
 | 被感染的攻城坦克 | `StukovInfestedSiegeTank` | `StukovInfestedSiegeTank, SICocoonInfestedSiegeTank` | Ground; Armored/Biological/Mechanical; Unit; FactionInfested | 矿:200 气:100 人口:-3 生命:200 护盾:- 能量:- | 重型坦克。让自己站起后可提供机动的坦克火力支援。可以使用深槽虫道技能快速移动至任何有菌毯的可见位置。 / 可以对地。 |
-| 被感染的怨灵战机 | `StukovInfestedWraith` | `SIWraith, SICocoonInfestedLiberator` | Air; Armored/Mechanical; Unit; Campaign | 矿:150 气:150 人口:-2 生命:140 护盾:- 能量:200 | 高度机动性空中单位。擅长突袭打击。 / 可以对空和对地 |
-| 虫后 | `SwarmQueen` | `SwarmQueen, Queen, QueenCoop` | Unit | 矿:- 气:- 人口:- 生命:- 护盾:- 能量:- | 支援单位。可以使用孵化菌毯肿瘤和速效哺液技能。 / 可以对地和对空。 |
-| 跳虫 | `Zergling` | `Zergling, SpawningPool` | Ground; Biological/Light; Unit; Melee | 矿:25 气:- 人口:-0.5 生命:35 护盾:- 能量:- | 迅捷的肉搏型生物。可以变异为爆虫。 / 可以对地。 |
+| 王虫 | `SIOverlord` | `SIOverlord` | Air; Armored/Biological; Unit; FactionInfested | 矿:100 气:- 人口:8 生命:200 护盾:- 能量:- | 提供补给。提高本方单位数量上限。 / 无法攻击。 |
+| 被感染的女妖 | `StukovInfestedBanshee` | `StukovInfestedBanshee` | Air; Biological/Light/Mechanical; Unit; FactionInfested | 矿:150 气:100 人口:-3 生命:140 护盾:- 能量:200 | 战术打击飞行器。可以隐形，还可以升级潜地技能。 / 可以对地。 |
+| 被感染的解放者 | `SILiberator` | `SILiberator` | Air; Armored/Biological/Mechanical; Unit; FactionInfested | 矿:150 气:125 人口:-3 生命:180 护盾:- 能量:- | 重型火炮战机。攻击对敌方空中单位造成范围伤害。 / 可以对空。 |
+
+补充审计：`SIDiamondBack` 位于 `roster.json` 和 `other-tech-entries.json`，生产入口是 `SIFactoryTrain,Train3`；`SIQueen` 位于官方 raw XML，生产入口是 `SIStarportTrain,Train3`，技能/升级闭包为 `SIQueenFungalGrowth`、`SIQueenEnergy`，但不能用普通 `SwarmQueen` / `QueenCoop` 替代。
 
 ### roster 中未归入 units/buildings/heroes 的对象
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 备注 |
 |---|---|---|---|---|
-| - | - | - | - | roster 中没有额外未分类对象。 |
+| 被感染的响尾蛇战车 | `SIDiamondBack` | `SIDiamondBack` | 待 raw XML 追闭包 | `roster.json` / `other-tech-entries.json` 补充项；生产入口 `SIFactoryTrain,Train3`。 |
 
 口径：`units.json` 是当前提取出的兵种清单；`roster.json` 仍作为审计入口，用于发现满级后新增、替换、召唤或特殊形态对象。满级之后兵种会变化，测试台默认使用 `power_fusion` 而不是基础 `initial`。
 
@@ -425,8 +434,8 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 | ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
 |---|---|---|---|---|
 | `cargo_light` | StukovInfestedMarine x10, StukovInfestedCivilian x8 | 感染潮 | 大量感染步兵作为救援消耗单位。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
-| `cargo_heavy` | StukovInfestedSiegeTank x2, SwarmQueen x2 | 阵地支援 | 感染攻城坦克和虫后控制。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
-| `cargo_air` | StukovInfestedWraith x4, SwarmQueen x1 | 空中感染支援 | 感染怨灵配虫后。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
+| `cargo_heavy` | StukovInfestedSiegeTank x2, SIInfestedMarine x6 | 阵地支援 | 感染攻城坦克压阵，被感染陆战队员补充火力；不使用普通 `SwarmQueen`。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
+| `cargo_air` | StukovInfestedBanshee x4, SILiberator x2 | 空中感染支援 | 当前官方空军主链使用被感染女妖和被感染解放者；不使用历史 `StukovInfestedWraith` 或普通 `SwarmQueen`。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
 | `bonus_reward` | StukovInfestedSiegeTank x3, StukovInfestedMarine x12 | 防守奖励 | 适合防守地图的增援潮。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
 | `replacement_squad` | StukovInfestedCivilian x16, StukovInfestedMarine x8 | 感染生成测试 | 用于验证感染体生命周期。 | 已有 Stukov 多个运输容器和地图货舱分支；此处需保留感染单位生命周期和容器限制。 |
 
