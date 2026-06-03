@@ -7426,8 +7426,23 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <BehaviorArray Link="ChronoBoostTarget"></BehaviorArray>
-  </CUnit>
-  <CUnit id="LeviathanCocoon">
+  </CUnit>
+  <CUnit id="LarvaKerrigan" parent="Larva">
+    <AbilArray index="0" Link="LarvaTrainKerrigan"></AbilArray>
+    <CardLayouts index="0" removed="1"></CardLayouts>
+    <CardLayouts index="0">
+      <LayoutButtons Face="Zergling" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train1" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Hydralisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train4" Row="0" Column="1"></LayoutButtons>
+      <LayoutButtons Face="Mutalisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train11" Row="0" Column="2"></LayoutButtons>
+      <LayoutButtons Face="Ultralisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train7" Row="0" Column="3"></LayoutButtons>
+      <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que1,CancelLast" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <TechTreeProducedUnitArray value="Zergling"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="Hydralisk"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="Mutalisk"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="Ultralisk"></TechTreeProducedUnitArray>
+  </CUnit>
+  <CUnit id="LeviathanCocoon">
     <DeathRevealRadius value="3"></DeathRevealRadius>
     <Race value="Zerg"></Race>
     <Mob value="Multiplayer"></Mob>
@@ -13038,16 +13053,22 @@
     <RankDisplay value="Always"></RankDisplay>
   </CUnit>
   <CUnit id="HatcheryKerrigan" parent="Hatchery">
+    <AbilArray index="4" Link="TrainQueenKerrigan"></AbilArray>
     <AbilArray index="11" Link="UpgradeToLairKerrigan"></AbilArray>
+    <BehaviorArray index="1" Link="SpawnLarvaKerrigan"></BehaviorArray>
     <CardLayouts index="0">
+      <LayoutButtons index="6" Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenKerrigan,Train4" Row="0" Column="1"></LayoutButtons>
       <LayoutButtons Face="LairKerrigan" Type="AbilCmd" AbilCmd="UpgradeToLairKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToLairKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
     </CardLayouts>
     <TechAliasArray value="Alias_HatcheryKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="LairKerrigan" parent="Lair">
+    <AbilArray index="5" Link="TrainQueenKerrigan"></AbilArray>
     <AbilArray Link="UpgradeToHiveKerrigan"></AbilArray>
+    <BehaviorArray index="1" Link="SpawnLarvaKerrigan"></BehaviorArray>
     <CardLayouts index="0">
+      <LayoutButtons index="7" Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenKerrigan,Train4" Row="0" Column="1"></LayoutButtons>
       <LayoutButtons Face="HiveKerrigan" Type="AbilCmd" AbilCmd="UpgradeToHiveKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToHiveKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
     </CardLayouts>
@@ -13055,6 +13076,11 @@
     <TechAliasArray value="Alias_LairKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="HiveKerrigan" parent="Hive">
+    <AbilArray index="4" Link="TrainQueenKerrigan"></AbilArray>
+    <BehaviorArray index="1" Link="SpawnLarvaKerrigan"></BehaviorArray>
+    <CardLayouts index="0">
+      <LayoutButtons index="5" Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenKerrigan,Train4" Row="0" Column="1"></LayoutButtons>
+    </CardLayouts>
     <TechAliasArray value="Alias_HatcheryKerrigan"></TechAliasArray>
     <TechAliasArray value="Alias_LairKerrigan"></TechAliasArray>
     <TechAliasArray value="Alias_HiveKerrigan"></TechAliasArray>
