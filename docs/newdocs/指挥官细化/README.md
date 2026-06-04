@@ -17,6 +17,7 @@
 7. `heroes.json` 只按当前 JSON 事实写入英雄模块；`heroes.json=0` 不代表官方玩法一定没有英雄，只代表本轮提取数据未直接列出，需要官方原始文本镜像/实机补闭包。
 8. 原始镜像里的 `AbilData`、`ArmyCategory`、`TechUnit`、`UpgradeData` 是共享 Catalog 事实，不是单指挥官归属事实；任何工蜂/SCV/探机共享建造菜单必须先过 `commanders/<Commander>/buildings.json`、满级 `power_fusion` 名册和满级威望闭包过滤。
 9. `buildings.json` 是官方提取出的建筑名册，不等于劳工实际 command card 的全部建造按钮；人族闭包同时保留 `worker_build_commands`，用于回答 SCV/劳工/冲锋队可以实际点击哪些建筑命令。`raw-only` tech building 可作为功能性前置链，但不能反过来覆盖 official buildings.json 归属。
+10. 当前 Mod 实现口径下，所有指挥官攻防升级均按五档处理；文档和实现必须追完整 `ButtonData -> UnitData CardLayouts -> AbilData Research -> RequirementData -> UpgradeData/Effect` 的 1-5 档闭包。共享 `UpgradeData` / `AbilData` 命中只能作为审计候选，只有当前指挥官自己的科技建筑面板实际暴露并能研究生效时，才计入该指挥官正向攻防链。
 
 ## 误归属防线
 
