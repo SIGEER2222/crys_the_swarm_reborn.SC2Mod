@@ -28,6 +28,15 @@ const files = {
     'XMFinal.SC2Mod',
     'DocumentHeader',
   ),
+  xmFinalCompatGalaxy: path.join(
+    repoRoot,
+    '合作指挥官版起义狂潮',
+    'Mods',
+    'XM',
+    'XMFinal.SC2Mod',
+    'Base.SC2Data',
+    'LibA1BA7A9F.galaxy',
+  ),
   bankList: path.join(mapRoot, 'BankList.xml'),
   mapScript: path.join(mapRoot, 'MapScript.galaxy'),
   userData: path.join(rebornGameData, 'UserData.xml'),
@@ -192,6 +201,13 @@ if (headerDependencies.includes(forbiddenMapDependency)) {
 const xmFinalDependencies = parseDocumentHeader(files.xmFinalDocumentHeader).dependencies;
 if (!xmFinalDependencies.includes(requiredXMFinalDependency)) {
   errors.push(`XMFinal DocumentHeader: missing ${requiredXMFinalDependency}`);
+}
+
+const xmFinalCompatGalaxy = readText(files.xmFinalCompatGalaxy);
+requireContains('XMFinal LibA1BA7A9F.galaxy', xmFinalCompatGalaxy, 'void libA1BA7A9F_InitLib ()');
+requireContains('XMFinal LibA1BA7A9F.galaxy', xmFinalCompatGalaxy, 'bool libA1BA7A9F_gf_AbathurRebornCanDropBiomass');
+if (/CreateUnitsWithDefaultFacing\([^;\n]*"BiomassPickup"/.test(xmFinalCompatGalaxy)) {
+  errors.push('XMFinal LibA1BA7A9F.galaxy: must not create BiomassPickup');
 }
 
 if (errors.length > 0) {
