@@ -1518,14 +1518,26 @@ function loadCommanderAchOpeners(catalog, localization) {
         source_catalog: definition.source_catalog,
         source_file: definition.source_file,
         source_score: commanderSourceScore(definition.source_catalog, commanderId),
+        private_slot_score: commanderOpenerPrivateSlotScore(slots, commanderId),
       };
+      candidate.selection_score = candidate.source_score + (candidate.private_slot_score * 100);
       const existing = map.get(commanderId);
-      if (!existing || candidate.source_score > existing.source_score) {
+      if (!existing || candidate.selection_score > existing.selection_score) {
         map.set(commanderId, candidate);
       }
     }
   }
   return map;
+}
+
+function commanderOpenerPrivateSlotScore(slots, commanderId) {
+  const commanderKey = String(commanderId || '').toLowerCase();
+  if (!commanderKey) {
+    return 0;
+  }
+  return Object.values(slots || {})
+    .filter((unitId) => String(unitId || '').toLowerCase().includes(commanderKey))
+    .length;
 }
 
 function loadCommanderRuntimeRoster(catalog) {
@@ -1895,6 +1907,9 @@ function inferModHeroEntries({
       continue;
     }
     if (!explicitHeroUnitIds.has(unitId)) {
+      continue;
+    }
+    if (isAbathurLeviathanRosterItem({ official_id: unitId, runtime_unit: unitId }, commanderId)) {
       continue;
     }
     const moduleDefinitions = definitions.filter((definition) => (
