@@ -154,6 +154,8 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 口径：官方 heroes.json 暂无条目；若官方玩法存在隐藏英雄或召唤英雄，继续用官方原始文本镜像/实机日志补。
 
+补充备注：阿塔尼斯这条线后续实现时，要把战役里的阿塔尼斯本体作为 mod 内的英雄单位接入，再补齐对应的 Hero Unit / Ability / Behavior / Actor / Sound 闭包；当前文档里提到的 `SoACasterArtanis` 只是顶栏宿主，不等于英雄本体。
+
 待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 
 ## 03. 普通单位技能及其进化功能
