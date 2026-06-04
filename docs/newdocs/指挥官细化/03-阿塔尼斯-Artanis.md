@@ -197,7 +197,8 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 
 ### 运行时面板落点
 
-- `SoACasterArtanis` 是阿塔尼斯顶栏的统一宿主，`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/UnitData.xml:11698` 里把 `SOAPylonPower`、`SOAOrbitalStrikeActivate`、`SOAOrbitalStrikeExecute`、`SOAOrbitalStrikeTargetingDummy`、`SoASuperShield`、`SOAStrafeAttackActivate`、`SOAStrafeAttack`、`SOAStrafeAttackExecute`、`CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargeted` 一并挂在它身上。
+- `SoACasterArtanis` 是阿塔尼斯顶栏的统一宿主，`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/UnitData.xml:11753` 里把 `SOAPylonPower`、`SOAOrbitalStrikeActivate`、`SOAOrbitalStrikeExecute`、`SOAOrbitalStrikeTargetingDummy`、`SoASuperShield`、`SOAStrafeAttackActivate`、`SOAStrafeAttack`、`SOAStrafeAttackExecute`、`CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargeted` 一并挂在它身上。
+- `XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146_ArtanisRuntime.galaxy` 已接入普通 `InitializeBase` 分支：创建 `SoACasterArtanis`，调用 `CU_GPInit(1, "Artanis", caster, null)`，显示顶部面板和选择按钮，并在 `lp_createHero == true` 时创建 `ArtanisVoid`。
 - `ArtanisVoid` 是当前开局链创建的战役阿塔尼斯英雄体；`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/UnitData.xml` 已显式钉住英雄数值、属性和 UI 分类，技能/武器/按钮/Actor/Effect 继续继承 `XMCore -> Void.SC2Campaign` 的官方战役闭包。
 - `XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146_CommanderPanels.galaxy` 的 test bench 直接把 `power_field`、`orbital_strike_activate`、`orbital_strike_execute`、`shield_overcharge`、`solar_bombardment`、`solar_bombardment_execute` 都映射到 `SoACasterArtanis`，说明面板转发链的真实落点就是这个 caster。
 - `SOAStrafeAttackActivate` 在 `XMArtanis` 里是独立 `CAbilBehavior`，带 `450` 秒冷却；`SOAStrafeAttackExecute` 是实际的 effect-target ability，`CmdButtonArray` 绑定 `SOAStrafeAttackUnit`，效果入口是 `SOAStrafeAttackMovePersistent`。
