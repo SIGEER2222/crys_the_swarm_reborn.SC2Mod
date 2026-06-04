@@ -117,13 +117,15 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或官方原始文本镜像继续追。 |
+| 战役沃拉尊 | `VorazunChampion` | `VorazunChampion` | Ground; Light; Biological; Psionic; Heroic | 生命:150 护盾:150 护甲:1 护盾护甲:1 | 这是本 mod 为沃拉尊额外接入的战役英雄体。`XMVorazun` 显式钉住英雄数值/UI 字段；技能、武器、按钮、Actor、Effect 继续从 `XMCore -> Void.SC2Campaign` 继承，避免重复 Catalog 数组。 |
 
 ### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从官方原始文本镜像或实机日志补。 |
+| `VorazunChampion` | `VorazunBlink` | 暗影冲刺 | `VorazunShadowDash,Execute` | - | 官方战役链：目标点技能，10 秒冷却；`VorazunShadowDash` 进入 `VorazunBlinkSet`，先通过 `VorazunBlinkResetShadowFury` 重置 `VorazunShadowFury` 冷却，再用 `VorazunBlink` 传送沃拉尊。 |
+| `VorazunChampion` | `MohandarOmnislash` | 暗影之怒 | `VorazunShadowFury,Execute` | - | 官方战役链：5 距离对地技能，15 秒冷却并默认自动施放；`VorazunShadowFuryPersistent` 施加 `VorazunShadowFuryController`，按 0.3 秒周期搜索目标，循环跃迁并通过 `VorazunShadowFuryDamage` 造成 60 伤害。 |
+| `VorazunChampion` | `DarkTemplarChampionPermanentlyCloaked` | 暗影之幕 | - | - | 官方战役被动显示项：单位永久隐形；未被侦测时通过继承的 `VorazunRegenShield` 提高护盾恢复。 |
 
 ### 英雄形态/模式候选
 
@@ -137,9 +139,11 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 |---|---|---|---|---|
 | - | - | - | - | 未自动命中英雄相关等级解锁；需要从官方原始文本镜像或实机日志补。 |
 
-口径：官方 heroes.json 暂无条目；若官方玩法存在隐藏英雄或召唤英雄，继续用官方原始文本镜像/实机日志补。
+口径：官方合作 `heroes.json` 仍暂无沃拉尊英雄条目；`VorazunChampion` 是本 mod 按用户要求额外接入的战役英雄单位，不反推为官方合作沃拉尊原生英雄。
 
-待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
+实现备注：`SoACasterVorazun` 仍只是顶栏宿主，不等于英雄本体；`VorazunChampion` 才是当前 `lp_createHero == true` 时创建的战役沃拉尊英雄体。`XMVorazun` 没有重复写 `AbilArray` / `WeaponArray` / `BehaviorArray` / `CardLayouts`，这些数组从 `Void.SC2Campaign` 继承，避免在 Catalog 合并时出现重复按钮或重复武器。
+
+待实机复核：`VorazunChampion` 的暗影冲刺、暗影之怒、永久隐形/护盾恢复、Actor/声音表现，以及与合作沃拉尊顶栏隐形增伤/时间停止的叠加表现。
 
 ## 03. 普通单位技能及其进化功能
 
@@ -465,7 +469,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 
 实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
-当前 runtime 落点：官方合作 `heroes.json=0`，本轮不创建英雄本体；`XMFinal` 通过 `LibE0EAE146_VorazunRuntime.galaxy` 在 `InitializeBase` 的 `Vorazun` 分支创建 `SoACasterVorazun`，执行 `CU_GPInit(1, "Vorazun", caster, null)`，并显示顶部面板和选择按钮。顶栏技能 `SOADarkPylon`、`VoidSentryBlackHole`、`SOAShadowGuardCalldown`、`SOATimeFreeze` / `CommanderPrestigeVorazunTimeStop` 都落在该 caster 上。
+当前 runtime 落点：官方合作 `heroes.json=0`，但本 mod 已额外接入战役英雄 `VorazunChampion`；`XMFinal` 通过 `LibE0EAE146_VorazunRuntime.galaxy` 在 `InitializeBase` 的 `Vorazun` 分支创建 `SoACasterVorazun`，执行 `CU_GPInit(1, "Vorazun", caster, null)`，显示顶部面板和选择按钮，并在 `lp_createHero == true` 时创建 `VorazunChampion`。顶栏技能 `SOADarkPylon`、`VoidSentryBlackHole`、`SOAShadowGuardCalldown`、`SOATimeFreeze` / `CommanderPrestigeVorazunTimeStop` 都落在该 caster 上；开局/货舱 `hero` 模板也包含 `VorazunChampion`。
 
 ## 11. 指挥官个性化机制
 
@@ -516,8 +520,8 @@ personal_mechanic_smoke
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Vorazun levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Vorazun levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Vorazun stage=power_fusion units=7 buildings=3 heroes=0 result=ok
-[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Vorazun heroes=0 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Vorazun stage=power_fusion units=7 buildings=3 officialHeroes=0 extraCampaignHeroes=1 result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Vorazun hero=VorazunChampion source=Void.SC2Campaign result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Vorazun module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Vorazun module=<module> object=<object> result=needs-casc-audit
 ```

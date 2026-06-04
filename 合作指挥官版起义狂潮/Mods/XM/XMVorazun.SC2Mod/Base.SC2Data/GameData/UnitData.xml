@@ -138,7 +138,7 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
     <KillXP value="0"></KillXP>
-    <HotkeyCategory value=""></HotkeyCategory>
+    <HotkeyCategory value="Unit/Category/ProtossStory"></HotkeyCategory>
   </CUnit>
   <CUnit id="AlarakCoop">
     <DeathTime value="-1"></DeathTime>
@@ -13493,7 +13493,104 @@
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
   </CUnit>
-  <CUnit id="VorazunChampion">
+  <CUnit id="VorazunChampion">
+
+    <!-- Inherit abilities, weapons, behaviors, and command cards from Void.SC2Campaign to avoid duplicate catalog arrays. -->
+
+    <DeathRevealRadius value="3"></DeathRevealRadius>
+
+    <Race value="Prot"></Race>
+
+    <Mob value="Campaign"></Mob>
+
+    <FlagArray index="UseLineOfSight" value="1"></FlagArray>
+
+    <FlagArray index="Cloaked" value="1"></FlagArray>
+
+    <FlagArray index="ArmySelect" value="1"></FlagArray>
+
+    <PlaneArray index="Ground" value="1"></PlaneArray>
+
+    <Collide index="Ground" value="1"></Collide>
+
+    <Collide index="Small" value="1"></Collide>
+
+    <Collide index="ForceField" value="1"></Collide>
+
+    <Collide index="Locust" value="1"></Collide>
+
+    <Attributes index="Light" value="1"></Attributes>
+
+    <Attributes index="Biological" value="1"></Attributes>
+
+    <Attributes index="Psionic" value="1"></Attributes>
+
+    <Attributes index="Heroic" value="1"></Attributes>
+
+    <LifeStart value="150"></LifeStart>
+
+    <LifeMax value="150"></LifeMax>
+
+    <LifeArmor value="1"></LifeArmor>
+
+    <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"></LifeArmorName>
+
+    <ShieldsStart value="150"></ShieldsStart>
+
+    <ShieldsMax value="150"></ShieldsMax>
+
+    <ShieldArmor value="1"></ShieldArmor>
+
+    <ShieldRegenDelay value="3"></ShieldRegenDelay>
+
+    <ShieldRegenRate value="2"></ShieldRegenRate>
+
+    <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"></ShieldArmorName>
+
+    <Speed value="3"></Speed>
+
+    <Acceleration value="1000"></Acceleration>
+
+    <LateralAcceleration value="46"></LateralAcceleration>
+
+    <Sight value="10"></Sight>
+
+    <CostCategory value="Army"></CostCategory>
+
+    <AttackTargetPriority value="19"></AttackTargetPriority>
+
+    <InnerRadius value="0.5"></InnerRadius>
+
+    <CargoSize value="2"></CargoSize>
+
+    <ScoreMake value="1000"></ScoreMake>
+
+    <ScoreKill value="200"></ScoreKill>
+
+    <ScoreResult value="BuildOrder"></ScoreResult>
+
+    <SubgroupPriority value="56"></SubgroupPriority>
+
+    <MinimapRadius value="0.625"></MinimapRadius>
+
+    <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"></EditorCategories>
+
+    <GlossaryCategory value="Unit/Category/ProtossUnits"></GlossaryCategory>
+
+    <GlossaryPriority value="300"></GlossaryPriority>
+
+    <GlossaryStrongArray value="Zergling"></GlossaryStrongArray>
+
+    <GlossaryStrongArray value="Roach"></GlossaryStrongArray>
+
+    <GlossaryStrongArray value="Hydralisk"></GlossaryStrongArray>
+
+    <GlossaryWeakArray value="Overseer"></GlossaryWeakArray>
+
+    <GlossaryWeakArray value="SporeCrawler"></GlossaryWeakArray>
+
+    <AlliedPushPriority value="11"></AlliedPushPriority>
+
     <KillXP value="0"></KillXP>
     <DamageDealtXP value="0"></DamageDealtXP>
     <DamageTakenXP value="0"></DamageTakenXP>
