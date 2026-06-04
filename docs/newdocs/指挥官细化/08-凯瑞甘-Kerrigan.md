@@ -12,6 +12,7 @@
 
 - `K5Kerrigan` 和 `K5KerriganBurrowed` 仍然是同一条英雄主链；“刀锋女王 / 人类形态”的差异主要由威望和外观升级控制，不是两个互相独立的英雄单位。
 - 2026-06-04 当前 Mod 已把运行名册和测试台名册切到 Kerrigan 私有单位：`BroodLordKerrigan`、`HydraliskKerrigan`、`MutaliskKerrigan`、`QueenCoopKerrigan`、`UltraliskKerrigan`、`ZerglingKerrigan`、`HydraliskLurkerKerrigan`、`OverseerKerrigan`。生产链抽查显示 `LarvaTrainKerrigan`、`TrainQueenKerrigan`、`MorphToOverseerKerrigan`、`MutaliskMorphToBroodLordKerrigan`、`MorphHydraliskToLurkerKerrigan` 的输出也已经落到私有单位；后续若继续补技能，应保持 Button -> Ability -> Unit/Effect 都使用私有链路。
+- 2026-06-04 形态闭包补充：当前 Mod runtime 和测试台已显式纳入 `K5KerriganBurrowed`、`NydusCanalKerrigan`、`SpineCrawlerUprootedKerrigan`、`SporeCrawlerUprootedKerrigan`、`HydraliskLurkerBurrowedKerrigan`、`OverseerSiegeModeKerrigan`。对应 smoke 链路是 `K5Kerrigan <-> K5KerriganBurrowed` 英雄主链、`NydusNetworkKerrigan -> BuildNydusCanalKerrigan -> NydusCanalKerrigan`、`Spine/SporeCrawler* -> *UprootKerrigan -> *UprootedKerrigan -> *RootKerrigan`、`HydraliskLurkerKerrigan -> BurrowHydraliskLurkerDownKerrigan -> HydraliskLurkerBurrowedKerrigan -> BurrowHydraliskLurkerUpKerrigan`、`OverseerKerrigan -> OverseerMorphtoOverseerSiegeKerrigan -> OverseerSiegeModeKerrigan -> OverseerSiegeMorphtoOverseerKerrigan`。
 - 第三威望通过 `KerriganInfestedCosmetic` / `KerriganGhostCosmetic` 切换外观并启用/禁用技能，追形态时要把威望和技能开关一起看。
 - 凯瑞甘的 `NydusNetwork` 是官方 `buildings.json` 正向建筑，不能套用阿巴瑟的排除结论；但 `ZagaraVoidCoopZerglingDodge`、`MorphZerglingToBaneling`、`MorphToBaneling` 这类扎加拉/普通虫族跳虫链不在凯瑞甘满级名册中，只能作为共享污染排除项。
 

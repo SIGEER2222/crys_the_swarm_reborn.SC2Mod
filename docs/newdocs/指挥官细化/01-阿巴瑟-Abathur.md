@@ -17,6 +17,7 @@
 - 实现时不要只看按钮是否显示；要同时核对 `ButtonData -> AbilData -> EffectData -> UnitData/UpgradeData -> RequirementData`，尤其是 `MorphRoachVileToRavager`、`RavagerAbathurCorrosiveBile` 和 `BurrowRavagerAbathur*`。
 - 2026-06-03 修正：本文件有效实现口径只按满级 `power_fusion`。阿巴瑟有效蟑螂单位只有 `RoachVile`；`Roach` 只作基础训练入口/差异审计，`RoachCorpser` 只作外部或遗留候选，不进入满级主链。
 - 2026-06-03 修正：官方 `buildings.json` 只列出 `SpineCrawler` 和 `SporeCrawler`。`NydusNetwork` 即使在共享 `ZergBuild` 或继承链里有痕迹，也不计入阿巴瑟有效建筑/科技链。
+- 2026-06-04 当前 Mod runtime 已按满级口径收敛：`XMFinal CommanderRuntimeRoster` 不再把 `Roach` / `RoachCorpser` 当正链单位，只保留 `RoachVile -> MorphRoachVileToRavager -> RavagerAbathur`，并显式纳入 `SwarmHostAbathurBurrowed`、`RavagerAbathurBurrowed`、`ToxicNest`、`ToxicNestBurrowed`。测试台单位名册和能力 smoke 也同步切到 `AbathurGuardian / DevourerAbathur / MutaliskAbathur / SwarmHostAbathur / ViperAbathur / BrutaliskAbathur` 等当前 Mod ID；后续不要再把 `Roach/RoachCorpser` 补回 runtime 正链。
 
 ## 误判复盘（2026-06-03）
 
