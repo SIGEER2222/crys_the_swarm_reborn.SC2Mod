@@ -4613,6 +4613,31 @@
     <CmdButtonArray index="Execute" DefaultButtonFace="SOAMapWideChrono" Requirements="HaveSOAMapWideChrono" />
     <PreEffectBehavior Behavior="KaraxMasterySoAEnergyRegen" Count="1" />
   </CAbilEffectInstant>
+  <CAbilEffectTarget id="SOAPurifierBeam">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Effect index="0" value="SOAPurifierBeamCU" />
+    <Cost>
+      <Cooldown TimeStart="450" TimeUse="360" />
+    </Cost>
+    <Range value="500" />
+    <Arc value="360" />
+    <CursorEffect value="SOAPurifierBeamSearch" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOAPurifierBeam" />
+    <Flags index="TransientPreferred" value="1" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="ImmortalShakurasShadowCannon">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Effect index="0" value="ImmortalShakurasShadowCannonTargetingCP" />
+    <Cost>
+      <Cooldown TimeUse="45" />
+    </Cost>
+    <TargetFilters value="-;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <Range value="13" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="ImmortalShakurasShadowCannon" />
+    <PrepEffect value="ImmortalShakurasShadowCannonInitialDisableAttackAB" />
+    <PrepTime value="0.0625" />
+  </CAbilEffectTarget>
   <CAbilEffectTarget id="SOAOrbitalStrikeKarax">
     <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
     <Effect index="0" value="SOAOrbitalStrikeCP" />
@@ -4649,6 +4674,12 @@
       <Cooldown TimeUse="120" />
     </Cost>
   </CAbilBehavior>
+  <CAbilEffectTarget id="SOAThermalLanceTargetingDummy">
+    <Effect index="0" value="SOAThermalLanceSet" />
+    <Range value="500" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOAThermalLance" />
+  </CAbilEffectTarget>
   <CAbilEffectTarget id="SOAThermalLanceExecute">
     <Effect index="0" value="SOAThermalLanceSet" />
   </CAbilEffectTarget>
@@ -5991,6 +6022,9 @@
     </InfoArray>
     <InfoArray index="Build8" Unit="PhotonCannonKarax">
       <Button DefaultButtonFace="PhotonCannon" State="Restricted" Requirements="HaveForge" />
+    </InfoArray>
+    <InfoArray index="Build25" Unit="KhaydarinMonolithKarax">
+      <Button DefaultButtonFace="KhaydarinMonolith" State="Restricted" Requirements="HaveKhaydarinMonolith" />
     </InfoArray>
     <InfoArray index="Build15" Unit="CyberneticsCoreKarax">
       <Button DefaultButtonFace="CyberneticsCore" State="Restricted" Requirements="HaveGateway" />

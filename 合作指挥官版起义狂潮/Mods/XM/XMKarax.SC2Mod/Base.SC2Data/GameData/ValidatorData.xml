@@ -1439,4 +1439,23 @@
     <CombineArray value="HaveSOAMapWideChronoPassiveTargetBehavior" />
     <CombineArray value="HaveChronoBoostTargetBehavior" />
   </CValidatorCombine>
+  <CValidatorUnitCompareBehaviorCount id="DoesNotHaveAbilityTargetExclusionBehavior">
+    <Behavior value="AbilityTargetExclusionBehavior" />
+  </CValidatorUnitCompareBehaviorCount>
+  <CValidatorLocationEnumArea id="SOAPurifierBeamTargetsInRange">
+    <WhichLocation Value="SourceUnit" />
+    <AreaArray Radius="3" />
+    <SearchFilters value="-;Self,Player,Ally,Stasis,Dead,Hidden,Invulnerable" />
+  </CValidatorLocationEnumArea>
+  <CValidatorCombine id="ImmortalShakurasShadowCannonValidators">
+    <Type value="And" />
+    <CombineArray value="CasterIsNotHidden" />
+    <CombineArray value="CasterNotDead" />
+    <CombineArray value="CasterNotStunned" />
+    <CombineArray value="ImmortalShakurasShadowCannonTargetFilters" />
+  </CValidatorCombine>
+  <CValidatorUnitFilters id="ImmortalShakurasShadowCannonTargetFilters">
+    <Filters value="-;Stasis,Dead,Hidden,Invulnerable" />
+    <WhichUnit Effect="ImmortalShakurasShadowCannonTargetingCP" />
+  </CValidatorUnitFilters>
 </Catalog>

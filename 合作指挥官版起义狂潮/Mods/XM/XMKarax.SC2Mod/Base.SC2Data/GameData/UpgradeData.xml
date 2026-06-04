@@ -2858,14 +2858,23 @@
     <EditorCategories value="Race:Protoss" />
     <AffectedUnitArray value="SoACasterKarax" />
     <AffectedUnitArray value="FleetBeacon" />
+    <AffectedUnitArray value="FleetBeaconKarax" />
     <AffectedUnitArray value="TwilightCouncil" />
+    <AffectedUnitArray value="TwilightCouncilKarax" />
     <AffectedUnitArray value="CyberneticsCore" />
+    <AffectedUnitArray value="CyberneticsCoreKarax" />
     <AffectedUnitArray value="Forge" />
+    <AffectedUnitArray value="ForgeKarax" />
     <AffectedUnitArray value="RoboticsBay" />
+    <AffectedUnitArray value="RoboticsBayKarax" />
     <AffectedUnitArray value="Stargate" />
+    <AffectedUnitArray value="StargateKarax" />
     <AffectedUnitArray value="WarpGate" />
+    <AffectedUnitArray value="WarpGateKarax" />
     <AffectedUnitArray value="Gateway" />
+    <AffectedUnitArray value="GatewayKarax" />
     <AffectedUnitArray value="RoboticsFacility" />
+    <AffectedUnitArray value="RoboticsFacilityKarax" />
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="KaraxEnergyRegenUpgrade">
@@ -2877,10 +2886,12 @@
     <EffectArray Reference="Unit,SentryPurifier,EnergyRegenRate" Value="1.125000" />
     <EffectArray Reference="Unit,SentryPhasing,EnergyRegenRate" Value="1.125000" />
     <EffectArray Reference="Unit,ShieldBattery,EnergyRegenRate" Value="1.125000" />
+    <EffectArray Reference="Unit,ShieldBatteryKarax,EnergyRegenRate" Value="1.125000" />
     <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
     <AffectedUnitArray value="Sentry" />
     <AffectedUnitArray value="SentryPurifier" />
     <AffectedUnitArray value="ShieldBattery" />
+    <AffectedUnitArray value="ShieldBatteryKarax" />
   </CUpgrade>
   <CUpgrade id="KaraxInstantStructureWarp">
     <Flags index="UpgradeCheat" value="0" />
@@ -2888,6 +2899,10 @@
     <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build8].Time" Value="39" />
     <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build25].Time" Value="79" />
     <EffectArray Operation="Subtract" Reference="Abil,ProtossBuild,InfoArray[Build22].Time" Value="29" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuildKarax,InfoArray[Build2].Time" Value="24" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuildKarax,InfoArray[Build8].Time" Value="39" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuildKarax,InfoArray[Build25].Time" Value="79" />
+    <EffectArray Operation="Subtract" Reference="Abil,ProtossBuildKarax,InfoArray[Build16].Time" Value="29" />
     <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
     <LeaderAlias value="" />
   </CUpgrade>
@@ -2895,13 +2910,17 @@
     <EffectArray Operation="Set" Reference="Button,Forge,Tooltip" Value="Button/Tooltip/ForgeKaraxMonolith" />
     <EffectArray Operation="Set" Reference="Button,Forge,AlertTooltip" Value="Button/Tooltip/ForgeKaraxMonolith" />
     <EffectArray Operation="Set" Reference="Unit,Forge,Description" Value="Button/Tooltip/ForgeKaraxMonolith" />
+    <EffectArray Operation="Set" Reference="Unit,ForgeKarax,Description" Value="Button/Tooltip/ForgeKaraxMonolith" />
     <AffectedUnitArray value="Forge" />
+    <AffectedUnitArray value="ForgeKarax" />
     <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="KaraxPylonOvercharge">
     <EffectArray Reference="Unit,Nexus,EnergyMax" Value="200" />
+    <EffectArray Reference="Unit,NexusKarax,EnergyMax" Value="200" />
     <AffectedUnitArray value="Nexus" />
+    <AffectedUnitArray value="NexusKarax" />
   </CUpgrade>
   <CUpgrade id="KaraxRepairBeamLimit">
     <MaxLevel value="20" />
@@ -2925,7 +2944,9 @@
     <EffectArray Reference="Weapon,KhaydarinBeam3Upgraded,RateMultiplier" Value="0.25" />
     <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
     <AffectedUnitArray value="PhotonCannon" />
+    <AffectedUnitArray value="PhotonCannonKarax" />
     <AffectedUnitArray value="KhaydarinMonolith" />
+    <AffectedUnitArray value="KhaydarinMonolithKarax" />
   </CUpgrade>
   <CUpgrade id="KaraxTurretRange">
     <Icon value="Assets\Textures\btn-upgrade-karax-turretrange.dds" />
@@ -2944,8 +2965,11 @@
     <EffectArray Reference="Abil,ShieldBatteryStructureBarrier,AutoCastRange" Value="2" />
     <EditorCategories value="Race:Protoss,UpgradeType:SpellResearch" />
     <AffectedUnitArray value="PhotonCannon" />
+    <AffectedUnitArray value="PhotonCannonKarax" />
     <AffectedUnitArray value="ShieldBattery" />
+    <AffectedUnitArray value="ShieldBatteryKarax" />
     <AffectedUnitArray value="KhaydarinMonolith" />
+    <AffectedUnitArray value="KhaydarinMonolithKarax" />
   </CUpgrade>
   <CUpgrade id="KaraxUnitSpawnBarrier">
     <Flags index="UpgradeCheat" value="0" />
@@ -3268,66 +3292,130 @@
     <EffectArray Reference="Unit,SolarForge,ShieldsMax" Value="10" />
     <EffectArray Reference="Unit,SolarForge,LifeStart" Value="10" />
     <EffectArray Reference="Unit,SolarForge,ShieldsStart" Value="10" />
+    <EffectArray Reference="Unit,SolarForgeKarax,LifeMax" Value="10" />
+    <EffectArray Reference="Unit,SolarForgeKarax,ShieldsMax" Value="10" />
+    <EffectArray Reference="Unit,SolarForgeKarax,LifeStart" Value="10" />
+    <EffectArray Reference="Unit,SolarForgeKarax,ShieldsStart" Value="10" />
     <EffectArray Reference="Unit,Nexus,LifeMax" Value="20" />
     <EffectArray Reference="Unit,Nexus,ShieldsMax" Value="20" />
     <EffectArray Reference="Unit,Nexus,LifeStart" Value="20" />
     <EffectArray Reference="Unit,Nexus,ShieldsStart" Value="20" />
+    <EffectArray Reference="Unit,NexusKarax,LifeMax" Value="20" />
+    <EffectArray Reference="Unit,NexusKarax,ShieldsMax" Value="20" />
+    <EffectArray Reference="Unit,NexusKarax,LifeStart" Value="20" />
+    <EffectArray Reference="Unit,NexusKarax,ShieldsStart" Value="20" />
     <EffectArray Reference="Unit,Assimilator,LifeMax" Value="9" />
     <EffectArray Reference="Unit,Assimilator,ShieldsMax" Value="9" />
     <EffectArray Reference="Unit,Assimilator,LifeStart" Value="9" />
     <EffectArray Reference="Unit,Assimilator,ShieldsStart" Value="9" />
+    <EffectArray Reference="Unit,AssimilatorKarax,LifeMax" Value="9" />
+    <EffectArray Reference="Unit,AssimilatorKarax,ShieldsMax" Value="9" />
+    <EffectArray Reference="Unit,AssimilatorKarax,LifeStart" Value="9" />
+    <EffectArray Reference="Unit,AssimilatorKarax,ShieldsStart" Value="9" />
     <EffectArray Reference="Unit,Gateway,LifeMax" Value="10" />
     <EffectArray Reference="Unit,Gateway,ShieldsMax" Value="10" />
     <EffectArray Reference="Unit,Gateway,LifeStart" Value="10" />
     <EffectArray Reference="Unit,Gateway,ShieldsStart" Value="10" />
+    <EffectArray Reference="Unit,GatewayKarax,LifeMax" Value="10" />
+    <EffectArray Reference="Unit,GatewayKarax,ShieldsMax" Value="10" />
+    <EffectArray Reference="Unit,GatewayKarax,LifeStart" Value="10" />
+    <EffectArray Reference="Unit,GatewayKarax,ShieldsStart" Value="10" />
     <EffectArray Reference="Unit,WarpGate,LifeMax" Value="10" />
     <EffectArray Reference="Unit,WarpGate,ShieldsMax" Value="10" />
     <EffectArray Reference="Unit,WarpGate,LifeStart" Value="10" />
     <EffectArray Reference="Unit,WarpGate,ShieldsStart" Value="10" />
+    <EffectArray Reference="Unit,WarpGateKarax,LifeMax" Value="10" />
+    <EffectArray Reference="Unit,WarpGateKarax,ShieldsMax" Value="10" />
+    <EffectArray Reference="Unit,WarpGateKarax,LifeStart" Value="10" />
+    <EffectArray Reference="Unit,WarpGateKarax,ShieldsStart" Value="10" />
     <EffectArray Reference="Unit,Forge,LifeMax" Value="8" />
     <EffectArray Reference="Unit,Forge,ShieldsMax" Value="8" />
     <EffectArray Reference="Unit,Forge,LifeStart" Value="8" />
     <EffectArray Reference="Unit,Forge,ShieldsStart" Value="8" />
+    <EffectArray Reference="Unit,ForgeKarax,LifeMax" Value="8" />
+    <EffectArray Reference="Unit,ForgeKarax,ShieldsMax" Value="8" />
+    <EffectArray Reference="Unit,ForgeKarax,LifeStart" Value="8" />
+    <EffectArray Reference="Unit,ForgeKarax,ShieldsStart" Value="8" />
     <EffectArray Reference="Unit,Pylon,LifeMax" Value="4" />
     <EffectArray Reference="Unit,Pylon,ShieldsMax" Value="4" />
     <EffectArray Reference="Unit,Pylon,LifeStart" Value="4" />
     <EffectArray Reference="Unit,Pylon,ShieldsStart" Value="4" />
+    <EffectArray Reference="Unit,PylonKarax,LifeMax" Value="4" />
+    <EffectArray Reference="Unit,PylonKarax,ShieldsMax" Value="4" />
+    <EffectArray Reference="Unit,PylonKarax,LifeStart" Value="4" />
+    <EffectArray Reference="Unit,PylonKarax,ShieldsStart" Value="4" />
     <EffectArray Reference="Unit,ShieldBattery,LifeMax" Value="4" />
     <EffectArray Reference="Unit,ShieldBattery,ShieldsMax" Value="4" />
     <EffectArray Reference="Unit,ShieldBattery,LifeStart" Value="4" />
     <EffectArray Reference="Unit,ShieldBattery,ShieldsStart" Value="4" />
+    <EffectArray Reference="Unit,ShieldBatteryKarax,LifeMax" Value="4" />
+    <EffectArray Reference="Unit,ShieldBatteryKarax,ShieldsMax" Value="4" />
+    <EffectArray Reference="Unit,ShieldBatteryKarax,LifeStart" Value="4" />
+    <EffectArray Reference="Unit,ShieldBatteryKarax,ShieldsStart" Value="4" />
     <EffectArray Reference="Unit,CyberneticsCore,LifeMax" Value="11" />
     <EffectArray Reference="Unit,CyberneticsCore,ShieldsMax" Value="11" />
     <EffectArray Reference="Unit,CyberneticsCore,LifeStart" Value="11" />
     <EffectArray Reference="Unit,CyberneticsCore,ShieldsStart" Value="11" />
+    <EffectArray Reference="Unit,CyberneticsCoreKarax,LifeMax" Value="11" />
+    <EffectArray Reference="Unit,CyberneticsCoreKarax,ShieldsMax" Value="11" />
+    <EffectArray Reference="Unit,CyberneticsCoreKarax,LifeStart" Value="11" />
+    <EffectArray Reference="Unit,CyberneticsCoreKarax,ShieldsStart" Value="11" />
     <EffectArray Reference="Unit,PhotonCannon,LifeMax" Value="3" />
     <EffectArray Reference="Unit,PhotonCannon,ShieldsMax" Value="3" />
     <EffectArray Reference="Unit,PhotonCannon,LifeStart" Value="3" />
     <EffectArray Reference="Unit,PhotonCannon,ShieldsStart" Value="3" />
+    <EffectArray Reference="Unit,PhotonCannonKarax,LifeMax" Value="3" />
+    <EffectArray Reference="Unit,PhotonCannonKarax,ShieldsMax" Value="3" />
+    <EffectArray Reference="Unit,PhotonCannonKarax,LifeStart" Value="3" />
+    <EffectArray Reference="Unit,PhotonCannonKarax,ShieldsStart" Value="3" />
     <EffectArray Reference="Unit,KhaydarinMonolith,LifeMax" Value="4" />
     <EffectArray Reference="Unit,KhaydarinMonolith,ShieldsMax" Value="2" />
     <EffectArray Reference="Unit,KhaydarinMonolith,LifeStart" Value="4" />
     <EffectArray Reference="Unit,KhaydarinMonolith,ShieldsStart" Value="2" />
+    <EffectArray Reference="Unit,KhaydarinMonolithKarax,LifeMax" Value="4" />
+    <EffectArray Reference="Unit,KhaydarinMonolithKarax,ShieldsMax" Value="2" />
+    <EffectArray Reference="Unit,KhaydarinMonolithKarax,LifeStart" Value="4" />
+    <EffectArray Reference="Unit,KhaydarinMonolithKarax,ShieldsStart" Value="2" />
     <EffectArray Reference="Unit,TwilightCouncil,LifeMax" Value="10" />
     <EffectArray Reference="Unit,TwilightCouncil,ShieldsMax" Value="10" />
     <EffectArray Reference="Unit,TwilightCouncil,LifeStart" Value="10" />
     <EffectArray Reference="Unit,TwilightCouncil,ShieldsStart" Value="10" />
+    <EffectArray Reference="Unit,TwilightCouncilKarax,LifeMax" Value="10" />
+    <EffectArray Reference="Unit,TwilightCouncilKarax,ShieldsMax" Value="10" />
+    <EffectArray Reference="Unit,TwilightCouncilKarax,LifeStart" Value="10" />
+    <EffectArray Reference="Unit,TwilightCouncilKarax,ShieldsStart" Value="10" />
     <EffectArray Reference="Unit,Stargate,LifeMax" Value="12" />
     <EffectArray Reference="Unit,Stargate,ShieldsMax" Value="12" />
     <EffectArray Reference="Unit,Stargate,LifeStart" Value="12" />
     <EffectArray Reference="Unit,Stargate,ShieldsStart" Value="12" />
+    <EffectArray Reference="Unit,StargateKarax,LifeMax" Value="12" />
+    <EffectArray Reference="Unit,StargateKarax,ShieldsMax" Value="12" />
+    <EffectArray Reference="Unit,StargateKarax,LifeStart" Value="12" />
+    <EffectArray Reference="Unit,StargateKarax,ShieldsStart" Value="12" />
     <EffectArray Reference="Unit,RoboticsFacility,LifeMax" Value="9" />
     <EffectArray Reference="Unit,RoboticsFacility,ShieldsMax" Value="9" />
     <EffectArray Reference="Unit,RoboticsFacility,LifeStart" Value="9" />
     <EffectArray Reference="Unit,RoboticsFacility,ShieldsStart" Value="9" />
+    <EffectArray Reference="Unit,RoboticsFacilityKarax,LifeMax" Value="9" />
+    <EffectArray Reference="Unit,RoboticsFacilityKarax,ShieldsMax" Value="9" />
+    <EffectArray Reference="Unit,RoboticsFacilityKarax,LifeStart" Value="9" />
+    <EffectArray Reference="Unit,RoboticsFacilityKarax,ShieldsStart" Value="9" />
     <EffectArray Reference="Unit,RoboticsBay,LifeMax" Value="10" />
     <EffectArray Reference="Unit,RoboticsBay,ShieldsMax" Value="10" />
     <EffectArray Reference="Unit,RoboticsBay,LifeStart" Value="10" />
     <EffectArray Reference="Unit,RoboticsBay,ShieldsStart" Value="10" />
+    <EffectArray Reference="Unit,RoboticsBayKarax,LifeMax" Value="10" />
+    <EffectArray Reference="Unit,RoboticsBayKarax,ShieldsMax" Value="10" />
+    <EffectArray Reference="Unit,RoboticsBayKarax,LifeStart" Value="10" />
+    <EffectArray Reference="Unit,RoboticsBayKarax,ShieldsStart" Value="10" />
     <EffectArray Reference="Unit,FleetBeacon,LifeMax" Value="10" />
     <EffectArray Reference="Unit,FleetBeacon,ShieldsMax" Value="10" />
     <EffectArray Reference="Unit,FleetBeacon,LifeStart" Value="10" />
     <EffectArray Reference="Unit,FleetBeacon,ShieldsStart" Value="10" />
+    <EffectArray Reference="Unit,FleetBeaconKarax,LifeMax" Value="10" />
+    <EffectArray Reference="Unit,FleetBeaconKarax,ShieldsMax" Value="10" />
+    <EffectArray Reference="Unit,FleetBeaconKarax,LifeStart" Value="10" />
+    <EffectArray Reference="Unit,FleetBeaconKarax,ShieldsStart" Value="10" />
     <Flags index="UpgradeCheat" value="0" />
     <EditorCategories value="Race:Protoss" />
     <MaxLevel value="30" />
@@ -5188,6 +5276,7 @@
     <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
     <AffectedUnitArray value="SoACasterKarax" />
     <AffectedUnitArray value="SolarForge" />
+    <AffectedUnitArray value="SolarForgeKarax" />
     <Icon value="Assets\Textures\btn-upgrade-karax-solarefficiencylevel1.dds" />
     <LeaderLevel value="1" />
   </CUpgrade>
@@ -5204,6 +5293,7 @@
     <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
     <AffectedUnitArray value="SoACasterKarax" />
     <AffectedUnitArray value="SolarForge" />
+    <AffectedUnitArray value="SolarForgeKarax" />
     <Icon value="Assets\Textures\btn-upgrade-karax-solarefficiencylevel2.dds" />
     <LeaderAlias value="SolarEfficiencyLevel1" />
     <LeaderLevel value="2" />
@@ -5221,6 +5311,7 @@
     <EditorCategories value="Race:Protoss,UpgradeType:Talents" />
     <AffectedUnitArray value="SoACasterKarax" />
     <AffectedUnitArray value="SolarForge" />
+    <AffectedUnitArray value="SolarForgeKarax" />
     <Icon value="Assets\Textures\btn-upgrade-karax-solarefficiencylevel3.dds" />
     <LeaderAlias value="SolarEfficiencyLevel1" />
     <LeaderLevel value="3" />

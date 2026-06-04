@@ -6208,6 +6208,10 @@
     <On Terms="UnitConstruction.KhaydarinMonolith; ValidatePlayer KaraxHaveStructureInstantWarp" Send="AnimPlay BSD Stand,Build,End 0 -1.000000 -1.000000 1.500000 AsDuration 0.000000 60" />
     <UnitIcon value="Assets\Textures\btn-building-protoss-khaydarinmonolithaiur.dds" />
   </CActorUnit>
+  <CActorUnit id="KhaydarinMonolithKarax" parent="KhaydarinMonolith" unitName="KhaydarinMonolithKarax">
+    <On Terms="UnitConstruction.KhaydarinMonolithKarax; ValidatePlayer KaraxHaveStructureInstantWarp" Send="AnimPlay BSD Stand,Build,End 0 -1.000000 -1.000000 1.500000 AsDuration 0.000000 60" />
+    <UnitIcon value="Assets\Textures\btn-building-protoss-khaydarinmonolithaiur.dds" />
+  </CActorUnit>
   <CActorUnit id="Lair">
     <Macros value="ZergLairPlayerDecalMacro" />
     <!-- Clan decals -->
@@ -10877,4 +10881,68 @@
     <DeathArray index="Normal" ModelLink="" VoiceLink="" />
     <!--MinimapIcon value="Assets\Textures\ui_minimap_icon_scourgecannon.dds"/-->
   </CActorUnit>
+  <CActorUnit id="SOAPurifierBeamUnit" parent="GenericUnitBase" unitName="SOAPurifierBeamUnit">
+    <On Terms="ActorCreation" Send="SetOpacity" />
+    <On Terms="ActorCreation" Send="Create SOAPurifierBeam" />
+    <On Terms="Behavior.SOAPurifierBeamFiring.Off" Target="SOAPurifierBeam" Send="Destroy" />
+    <StatusBarFlags index="Shields" value="0" />
+    <StatusBarFlags index="Life" value="0" />
+    <StatusBarFlags index="Energy" value="0" />
+    <StatusBarFlags index="Cargo" value="0" />
+    <StatusBarFlags index="Progress" value="0" />
+    <StatusBarFlags index="Duration" value="0" />
+    <UnitFlags index="ShowBlobShadow" value="0" />
+    <SoundArray index="What" value="SOAPurifierBeamWhat" />
+    <SoundArray index="Attack" value="SOAPurifierBeamAttack" />
+    <PortraitModel value="ExecutorPortrait" />
+    <Wireframe>
+      <Image value="Assets\Textures\wireframe-protoss-PurifierBeam.dds" />
+    </Wireframe>
+    <WireframeShield>
+      <Image value="Assets\Textures\wireframe-protoss-PurifierBeam-Shield01.dds" />
+      <Image value="Assets\Textures\wireframe-protoss-PurifierBeam-Shield02.dds" />
+      <Image value="Assets\Textures\wireframe-protoss-PurifierBeam-Shield03.dds" />
+    </WireframeShield>
+    <GroupIcon>
+      <Image value="Assets\Textures\wireframe-protoss-purifierbeam.dds" />
+    </GroupIcon>
+  </CActorUnit>
+  <CActorModel id="SOAPurifierBeamTargetModel" parent="ModelAnimationStyleContinuous">
+    <Host Subject="_Unit" />
+    <HostSiteOps Ops="SOpAttachOrigin SOpShadowSyncGround" />
+  </CActorModel>
+  <CActorModel id="SOAPurifierBeam" parent="ModelAnimationStyleContinuous">
+    <Host Subject="_Unit" />
+    <HostSiteOps Ops="SOpAttachOrigin SOpShadowSyncGround" />
+    <ModelFlags index="AutomateGlobalLoops" value="1" />
+  </CActorModel>
+  <CActorSound id="SOAPurifierBeamBuildUpSound" parent="SoundOneShot">
+    <On Terms="Behavior.SOAPurifierBeamBuildUp.On" Send="Create" />
+    <Sound value="SOAPurifierBeamBuildUp" />
+  </CActorSound>
+  <CActorSound id="SOAPurifierBeamFiringLoopSound" parent="SoundContinuous">
+    <On Terms="Behavior.SOAPurifierBeamFiring.On" Send="Create" />
+    <On Terms="Behavior.SOAPurifierBeamFiring.Off" Send="ModelMaterialMaximizePriority" />
+    <On Terms="Behavior.SOAPurifierBeamFiring.Off" Send="Destroy" />
+    <Sound value="SOAPurifierBeamFiring_Loop" />
+    <Layers Sound="SOAPurifierBeam_QuakeLayer_Loop" />
+  </CActorSound>
+  <CActorSound id="SOAPurifierBeamEndSound" parent="SoundOneShot">
+    <On Terms="Behavior.SOAPurifierBeamFiring.Off" Send="Create" />
+    <Sound value="SOAPurifierBeamEnd" />
+  </CActorSound>
+  <CActorSplat id="SOAPurifierBeamCursorSplat" parent="ProtossCursorSplat" abil="SOAPurifierBeam">
+    <Model value="SOA_MouseCursor" />
+  </CActorSplat>
+  <CActorMissile id="ImmortalShakurasShadowCannonAttackMissile" parent="GenericAttackMissileWithDeathAnim" unitName="ImmortalShakurasShadowCannonMissile" />
+  <CActorAction id="ImmortalShakurasShadowCannonAttack" parent="GenericAttack" effectImpact="ImmortalShakurasShadowCannonDamage" effectLaunch="ImmortalShakurasShadowCannonLM">
+    <LaunchAttachQuery Methods="AMPatternImmortalShakuras" />
+    <LaunchAssets Sound="ImmortalShakuras_ShadowCannon_AttackLaunch" />
+    <ImpactMap index="None" Sound="ImmortalShakuras_ShadowCannon_AttackImpact" />
+    <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeNoVizEnhance SOpForwardLaunchGuide" />
+  </CActorAction>
+  <CActorRange id="ImmortalShakurasShadowCannonRange" parent="RangeAbil" abil="ImmortalShakurasShadowCannon">
+    <Icon value="Assets\Textures\RadarIcon2.dds" />
+    <IconArcLength value="3.250000" />
+  </CActorRange>
 </Catalog>

@@ -134,6 +134,12 @@ const onlineExpectationAdditions = {
           { face: 'Charge', type: 'AbilCmd', abil_cmd: 'Charge,Execute', row: '2', column: '0', name: 'Charge' },
         ],
       },
+      {
+        id: 'Scout',
+        name: 'Scout',
+        source: 'Karax ownership filter',
+        remove_abilities_by_face: ['HaveFenixScoutWeaponRange'],
+      },
     ],
     buildings: [
       {
@@ -300,12 +306,12 @@ const onlinePrimaryRoster = {
   },
   Karax: {
     units: [
-      { id: 'ZealotPurifier', label: 'Sentinel' },
-      { id: 'SentryPurifier', label: 'Energizer' },
-      { id: 'ImmortalAiur', label: 'Immortal' },
-      { id: 'Colossus', label: 'Colossus' },
-      { id: 'PhoenixPurifier', label: 'Mirage' },
-      { id: 'Carrier', label: 'Carrier' },
+      { id: 'ZealotPurifier', label: 'Sentinel', resolved_unit_ids: ['ZealotPurifier'] },
+      { id: 'SentryPurifier', label: 'Energizer', resolved_unit_ids: ['SentryPurifier'] },
+      { id: 'ImmortalAiur', label: 'Immortal', resolved_unit_ids: ['ImmortalAiur'] },
+      { id: 'Colossus', label: 'Colossus', resolved_unit_ids: ['Colossus'] },
+      { id: 'PhoenixPurifier', label: 'Mirage', resolved_unit_ids: ['PhoenixPurifier'] },
+      { id: 'Carrier', label: 'Carrier', resolved_unit_ids: ['Carrier'] },
     ],
     structures: [
       { id: 'PhotonCannon', label: 'Photon Cannon' },
@@ -820,7 +826,9 @@ function auditOnlinePrimaryRoster(expectedItems, reports, reportKey) {
     return {
       ...expected,
       audited: Boolean(report),
-      resolved_unit_ids: reportKey === 'unit' && report ? report.resolved_unit_ids || [] : [],
+      resolved_unit_ids: reportKey === 'unit' && report
+        ? unique(expected.resolved_unit_ids || report.resolved_unit_ids || [])
+        : [],
       candidate_ids: report ? report.candidate_ids || [] : [],
       found_unit_ids: report ? report.found_unit_ids || [] : [],
       issues,

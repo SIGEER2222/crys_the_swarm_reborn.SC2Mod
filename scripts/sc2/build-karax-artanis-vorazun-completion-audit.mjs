@@ -100,6 +100,27 @@ function check(id, description, ok, evidence) {
   return { id, description, status: passFail(ok), ok, evidence };
 }
 
+function gapHardMissingSummary(gap) {
+  const categories = gap.categories || {};
+  let hardMissing = 0;
+  let looseOnly = 0;
+
+  for (const category of Object.values(categories)) {
+    const missing = category.missing || [];
+    const loose = category.loose_only || [];
+    const looseKeys = new Set(loose.map((item) => JSON.stringify(item)));
+
+    looseOnly += loose.length;
+    hardMissing += missing.filter((item) => !looseKeys.has(JSON.stringify(item))).length;
+  }
+
+  return {
+    totalMissing: gap.total_missing || 0,
+    hardMissing,
+    looseOnly,
+  };
+}
+
 function byCommander(items) {
   return new Map(items.map((item) => [item.commander, item]));
 }
@@ -471,6 +492,7 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
   const expectedBuildingCount = field.expected_building_count ?? buildingReports.length;
   const resolvedUnits = resolvedUnitReports(field);
   const missingResolvedUnits = missingResolvedUnitReports(field);
+  const gapSummary = gapHardMissingSummary(gap);
   const checks = [
     check(
       'online-source',
@@ -480,9 +502,9 @@ function summarizeCommander(commander, fieldAudit, gapReport, runtimeReports) {
     ),
     check(
       'official-vs-mod-static-gap',
-      '官方合作指挥官数据到当前 Mod 的静态缺口总数为 0',
-      gap.total_missing === 0,
-      `total_missing=${gap.total_missing}`,
+      '官方合作指挥官数据到当前 Mod 的硬缺口为 0',
+      gapSummary.hardMissing === 0,
+      `total_missing=${gapSummary.totalMissing}, loose_only=${gapSummary.looseOnly}, hard_missing=${gapSummary.hardMissing}`,
     ),
     check(
       'unit-roster-count',

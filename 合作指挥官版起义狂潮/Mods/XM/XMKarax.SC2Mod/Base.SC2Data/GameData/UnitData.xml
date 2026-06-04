@@ -12187,12 +12187,11 @@
     <Race value="Prot"></Race>
     <EnergyMax value="200"></EnergyMax>
     <EnergyRegenRate value="0.2812"></EnergyRegenRate>
-    <AbilArray Link="SOAOrbitalStrikeKarax"></AbilArray>
-    <AbilArray Link="SOAThermalLanceActivate"></AbilArray>
-    <AbilArray Link="SOAThermalLanceTargetingDummy"></AbilArray>
-    <AbilArray Link="SOASuperChronoMapwide"></AbilArray>
-    <AbilArray Link="SOAMapWideChrono"></AbilArray>
-    <AbilArray Link="SOAPurifierBeam"></AbilArray>
+    <AbilArray Link="SOAOrbitalStrikeKarax"></AbilArray>
+    <AbilArray Link="SOAThermalLanceActivate"></AbilArray>
+    <AbilArray Link="SOAThermalLanceTargetingDummy"></AbilArray>
+    <AbilArray Link="SOAMapWideChrono"></AbilArray>
+    <AbilArray Link="SOAPurifierBeam"></AbilArray>
     <AbilArray Link="SOARepairBeam"></AbilArray>
     <CardLayouts>
       <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"></LayoutButtons>
@@ -12209,10 +12208,91 @@
       <LayoutButtons Face="CommanderPrestigeKaraxChronoFieldLocked" Type="Passive" Requirements="CommanderPrestigeKaraxTopBar" Row="0" Column="4"></LayoutButtons>
       <LayoutButtons Face="SOAChronoPassive" Type="Passive" Requirements="HaveKaraxSOAChronoPassive" Row="0" Column="4"></LayoutButtons>
       <LayoutButtons Face="SOAChronoPassiveLocked" Type="Passive" Requirements="KaraxLevel02" Row="0" Column="4"></LayoutButtons>
-    </CardLayouts>
-    <LeaderAlias value=""></LeaderAlias>
-  </CUnit>
-  <CUnit id="SoACasterVorazun" parent="CoopGlobalCaster">
+    </CardLayouts>
+    <LeaderAlias value=""></LeaderAlias>
+  </CUnit>
+  <CUnit id="SOAPurifierBeamUnit">
+    <Facing value="45" />
+    <Race value="Prot" />
+    <FlagArray index="Turnable" value="0" />
+    <FlagArray index="Untargetable" value="1" />
+    <FlagArray index="Invulnerable" value="1" />
+    <FlagArray index="NoPortraitTalk" value="1" />
+    <FlagArray index="Unstoppable" value="1" />
+    <PlaneArray index="Air" value="1" />
+    <Mover value="Fly" />
+    <Speed value="1.5" />
+    <Acceleration value="1000" />
+    <LateralAcceleration value="46.0625" />
+    <Sight value="11" />
+    <AbilArray Link="stop" />
+    <AbilArray Link="move" />
+    <AbilArray Link="attack" />
+    <BehaviorArray Link="SuppressCloak" />
+    <BehaviorArray Link="SOAPurifierBeamBuildUp" />
+    <BehaviorArray Link="SOAPurifierWeaponDisable" />
+    <BehaviorArray Link="AbilityTargetExclusionBehavior" />
+    <WeaponArray Link="SOAPurifierBeamWeapon" />
+    <CardLayouts>
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
+      <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1" />
+      <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
+      <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
+      <LayoutButtons Face="MothershipCoreAttack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
+    </CardLayouts>
+    <Radius value="1" />
+    <SeparationRadius value="1" />
+    <MinimapRadius value="0" />
+    <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign" />
+    <ShieldsStart value="3" />
+    <ShieldsMax value="3" />
+  </CUnit>
+  <CUnit id="ImmortalShakurasShadowCannonMissile" parent="MISSILE_INVULNERABLE">
+    <Race value="Prot" />
+    <Mover value="MissileDefault" />
+    <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee" />
+  </CUnit>
+  <CUnit id="PhoenixPurifier">
+    <RepairTime value="23.33" />
+    <DamageDealtXP value="0" />
+    <DamageTakenXP value="0" />
+    <KillXP value="0" />
+    <AbilArray Link="MirageGravitonBeamVoidCampaign" />
+    <BehaviorArray index="0" Link="AllUnitBehaviorController" />
+    <CardLayouts index="0">
+      <LayoutButtons index="7" Face="GravitonBeam" AbilCmd="MirageGravitonBeamVoidCampaign,Execute" />
+      <LayoutButtons index="8" Face="GravitonBeamVoidCampaign" AbilCmd="GravitonBeamVoidCampaign,Execute" />
+      <LayoutButtons index="9" Requirements="HaveMiragePhaseArmor" Column="2" />
+      <LayoutButtons Face="AnionPulseCrystal" Type="Passive" Requirements="HaveKaraxPhoenixRangeUpgrade" Row="2" Column="1" />
+    </CardLayouts>
+    <ScoreMake value="0" />
+    <ScoreKill value="0" />
+    <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier" />
+    <HotkeyCategory value="Unit/Category/ProtossPurifier" />
+    <GlossaryPriority value="140" />
+    <WeaponArray index="0" Link="ArtanisIonCannons" />
+  </CUnit>
+  <CUnit id="SentryPurifier">
+    <RepairTime value="18.5" />
+    <DamageDealtXP value="0" />
+    <DamageTakenXP value="0" />
+    <KillXP value="0" />
+    <AbilArray Link="EnergizerReclamation" />
+    <BehaviorArray index="0" Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="VoidSentryChronoBeamRally" />
+    <BehaviorArray Link="VoidSentryChronoBeamRallyB" />
+    <CardLayouts index="0">
+      <LayoutButtons index="7" Column="2" />
+      <LayoutButtons Face="KaraxEnergyRegenUpgrade" Type="Passive" Requirements="HaveKaraxEnergyRegenUpgrade" Row="2" Column="4" />
+      <LayoutButtons Face="EnergizerReclamation" Type="AbilCmd" AbilCmd="EnergizerReclamation,Execute" Row="2" Column="1" />
+      <LayoutButtons Face="ReclamationLocked" Type="Passive" Requirements="KaraxLevel04" Row="2" Column="1" />
+    </CardLayouts>
+    <ScoreMake value="0" />
+    <ScoreKill value="0" />
+    <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionPurifier" />
+    <HotkeyCategory value="Unit/Category/ProtossPurifier" />
+  </CUnit>
+  <CUnit id="SoACasterVorazun" parent="CoopGlobalCaster">
     <Race value="Prot"></Race>
     <EnergyMax value="200"></EnergyMax>
     <EnergyRegenRate value="0.2812"></EnergyRegenRate>
@@ -14512,6 +14592,10 @@
     <Race value="Prot" />
     <Mob value="Campaign" />
     <TechAliasArray value="Alias_PhotonCannon" />
+  </CUnit>
+  <CUnit id="KhaydarinMonolithKarax" parent="KhaydarinMonolith">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
   </CUnit>
   <CUnit id="CyberneticsCoreKarax" parent="CyberneticsCore">
     <Race value="Prot" />

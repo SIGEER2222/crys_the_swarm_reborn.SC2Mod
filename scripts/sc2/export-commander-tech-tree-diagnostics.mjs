@@ -98,6 +98,11 @@ const standardProductionStructureIds = new Set([
   'Stargate',
   'StargateWarp',
 ]);
+const commanderOpenerRoles = [
+  { field: 'CommandCenter', id: 'command_center', name: '初始基地 / Command Center', kind: 'building' },
+  { field: 'Worker', id: 'worker', name: '初始工人 / Worker', kind: 'unit' },
+  { field: 'SecondUnit', id: 'second_unit', name: '第二初始单位 / Second Unit', kind: 'unit' },
+];
 
 const chineseTypeNames = {
   CAbilArmMagazine: '弹仓/机库技能',
@@ -277,6 +282,7 @@ function loadModDataContext(modRoot) {
   catalog.localization = localization;
 
   const playerCommanders = loadModPlayerCommanders(catalog, localization);
+  const commanderOpeners = loadCommanderAchOpeners(catalog, localization);
   const runtimeRosters = loadCommanderRuntimeRoster(catalog);
   mergeGalaxyRosterItems(
     runtimeRosters,
@@ -292,12 +298,13 @@ function loadModDataContext(modRoot) {
     catalog,
     localization,
     playerCommanders,
+    commanderOpeners,
     runtimeRosters,
   });
 
   return {
     scope: '当前 Mod 指挥官科技链路排查 / Current Mod Commander Tech Tree Diagnostics',
-    sourceDescription: '读取 `合作指挥官版起义狂潮` 当前 Mod 内的 `XMFinal` 运行名册、`PlayerCommanders`、各模块 Unit / Ability / Effect / Button Catalog 和 `zhCN` 本地化文本；不再用官方 JSON 作为本次导出的数据源。 / Read the current Mod data from `合作指挥官版起义狂潮`, including the `XMFinal` runtime roster, `PlayerCommanders`, per-module Unit / Ability / Effect / Button Catalogs, and `zhCN` localization; do not use the official JSON as the source for this export.',
+    sourceDescription: '读取 `合作指挥官版起义狂潮` 当前 Mod 内的 `XMFinal` 运行名册、`CommanderAch` 开局配置、`PlayerCommanders`、各模块 Unit / Ability / Effect / Button Catalog 和 `zhCN` 本地化文本；不再用官方 JSON 作为本次导出的数据源。 / Read the current Mod data from `合作指挥官版起义狂潮`, including the `XMFinal` runtime roster, `CommanderAch` opener setup, `PlayerCommanders`, per-module Unit / Ability / Effect / Button Catalogs, and `zhCN` localization; do not use the official JSON as the source for this export.',
     sourcePaths: {
       active_mod_root: normalizePath(path.relative(repoRoot, modRoot)),
       runtime_roster_userdata: normalizePath(path.relative(repoRoot, path.join(modRoot, 'Mods', 'XM', 'XMFinal.SC2Mod', 'Base.SC2Data', 'GameData', 'UserData.xml'))),
@@ -316,6 +323,7 @@ function buildModCommanderData({
   catalog,
   localization,
   playerCommanders,
+  commanderOpeners,
   runtimeRosters,
 }) {
   const data = new Map();
@@ -327,6 +335,15 @@ function buildModCommanderData({
     const runtimeModule = roster.runtime_module || meta.runtime_module || moduleNameForCommander(commanderId);
     const preferredCatalogs = preferredCatalogNames(runtimeModule, commanderId);
     const trainUnitOverrides = buildTrainUnitOverrideIndex(catalog, preferredCatalogs);
+    const opener = buildModOpenerEntries({
+      opener: commanderOpeners.get(commanderId),
+      commanderId,
+      runtimeModule,
+      catalog,
+      localization,
+      preferredCatalogs,
+      runtimeRoster: roster,
+    });
     const topPanelAbilities = meta.global_cast_unit
       ? parseUnitPanelButtons(meta.global_cast_unit, catalog, localization, preferredCatalogs)
         .map((button) => {
@@ -384,6 +401,7 @@ function buildModCommanderData({
         hero_structure: meta.hero_structure || '',
         top_panel_abilities: topPanelAbilities,
       },
+      opener,
       buildings: allEntries.filter((entry) => entry.kind === 'building'),
       production_buildings: productionBuildings,
       units: allEntries.filter((entry) => entry.kind === 'unit'),
@@ -415,9 +433,7 @@ function buildModTechEntry({
   const preferredCatalogs = existingPreferredCatalogs || preferredCatalogNames(runtimeModule, commanderId);
   const unitInfo = summarizeModUnitEntry(unitId, catalog, localization, preferredCatalogs);
   const abilities = parseUnitPanelButtons(unitId, catalog, localization, preferredCatalogs);
-  const inferredKind = item.kind === 'building' || item.kind === 'hero'
-    ? item.kind
-    : (unitInfo.unit.object_type === 'Hero' ? 'hero' : 'unit');
+  const inferredKind = inferModEntryKind(item, unitInfo, commanderId);
 
   return {
     id: item.official_id || unitId,
@@ -443,6 +459,87 @@ function buildModTechEntry({
       status: item.status || '',
     },
   };
+}
+
+function inferModEntryKind(item, unitInfo, commanderId) {
+  if (isAbathurLeviathanRosterItem(item, commanderId)) {
+    return 'unit';
+  }
+  if (item.kind === 'building' || item.kind === 'hero') {
+    return item.kind;
+  }
+  return unitInfo.unit.object_type === 'Hero' ? 'hero' : 'unit';
+}
+
+function isAbathurLeviathanRosterItem(item, commanderId) {
+  if (commanderId !== 'Abathur') {
+    return false;
+  }
+  const ids = [item.runtime_unit, item.official_id]
+    .filter(Boolean)
+    .map((value) => value.toLowerCase());
+  return ids.some((id) => id === 'leviathan' || id === 'hotsleviathan' || id === 'leviathanabathur');
+}
+
+function buildModOpenerEntries({
+  opener,
+  commanderId,
+  runtimeModule,
+  catalog,
+  localization,
+  preferredCatalogs,
+  runtimeRoster,
+}) {
+  if (!opener) {
+    return [];
+  }
+
+  return commanderOpenerRoles
+    .map((role) => {
+      const unitId = opener.slots?.[role.field] || '';
+      if (!unitId) {
+        return null;
+      }
+
+      const unitInfo = summarizeModUnitEntry(unitId, catalog, localization, preferredCatalogs);
+      const runtimeRosterItem = runtimeRoster?.item_by_unit?.get(unitId);
+      return {
+        role_id: role.id,
+        role_field: role.field,
+        role_name: role.name,
+        expected_kind: role.kind,
+        unit_id: unitId,
+        name: unitInfo.name,
+        tooltip: unitInfo.tooltip,
+        icon: unitInfo.icon,
+        stats: unitInfo.unit,
+        parent_ids: catalogUnitParentIds(unitId, catalog, preferredCatalogs),
+        in_runtime_roster: Boolean(runtimeRosterItem),
+        runtime_roster: runtimeRosterItem
+          ? {
+            source: runtimeRosterItem.source || '',
+            official_id: runtimeRosterItem.official_id || '',
+            status: runtimeRosterItem.status || '',
+            kind: runtimeRosterItem.kind || '',
+          }
+          : null,
+        source: {
+          module: runtimeModule,
+          catalog: opener.source_catalog || '',
+          file: opener.source_file || '',
+          instance: opener.instance_id || commanderId,
+        },
+      };
+    })
+    .filter(Boolean);
+}
+
+function catalogUnitParentIds(unitId, catalog, preferredCatalogs) {
+  return unique(
+    selectPreferredDefinitions(catalog.units.get(unitId) || [], preferredCatalogs)
+      .map((definition) => definition.parent)
+      .filter(Boolean),
+  ).sort(naturalSort);
 }
 
 function buildCommanderReport(commanderId, allData, catalogIndex) {
@@ -575,7 +672,9 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
       hero_panel_button_count: sumBy(heroes, (item) => item.panel_abilities.length),
       produced_unit_count: producedUnitIds.size,
       effect_ref_count: effectIds.size,
+      opener_count: data.opener?.length || 0,
     },
+    opener: data.opener || [],
     top_panel: topPanel,
     buildings,
     production_buildings: productionBuildings,
@@ -1394,6 +1493,41 @@ function loadModPlayerCommanders(catalog, localization) {
   return map;
 }
 
+function loadCommanderAchOpeners(catalog, localization) {
+  const map = new Map();
+  for (const definition of catalog.users.get('CommanderAch') || []) {
+    for (const instance of parseUserInstances(definition)) {
+      if (!instance.id || instance.id === '[Default]') {
+        continue;
+      }
+
+      const commanderId = shortCommanderId(instance.id);
+      const preferredCatalogs = preferredCatalogNames(definition.source_catalog, commanderId);
+      const fields = parseUserFieldArrays(instance.body, localization, preferredCatalogs);
+      const slots = Object.fromEntries(
+        commanderOpenerRoles.map((role) => [role.field, stringField(fields, role.field)]),
+      );
+      if (!Object.values(slots).some(Boolean)) {
+        continue;
+      }
+
+      const candidate = {
+        commander_id: commanderId,
+        instance_id: instance.id,
+        slots,
+        source_catalog: definition.source_catalog,
+        source_file: definition.source_file,
+        source_score: commanderSourceScore(definition.source_catalog, commanderId),
+      };
+      const existing = map.get(commanderId);
+      if (!existing || candidate.source_score > existing.source_score) {
+        map.set(commanderId, candidate);
+      }
+    }
+  }
+  return map;
+}
+
 function loadCommanderRuntimeRoster(catalog) {
   const map = new Map();
   const definitions = catalog.users.get('CommanderRuntimeRoster') || [];
@@ -2181,11 +2315,11 @@ function renderOverviewMarkdown(report) {
   lines.push('');
   lines.push('## 总览表 / Overview Table');
   lines.push('');
-  lines.push('| 指挥官 / Commander | 建筑 / Buildings | 生产补充建筑 / Production-support Buildings | 单位 / Units | 英雄 / Heroes | 建筑按钮 / Building Buttons | 单位按钮 / Unit Buttons | 生产/创建单位 / Produced or Created Units | 效果引用 / Effect References | 中文明细 / Chinese Details |');
-  lines.push('| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+  lines.push('| 指挥官 / Commander | 开局槽位 / Opener | 建筑 / Buildings | 生产补充建筑 / Production-support Buildings | 单位 / Units | 英雄 / Heroes | 建筑按钮 / Building Buttons | 单位按钮 / Unit Buttons | 生产/创建单位 / Produced or Created Units | 效果引用 / Effect References | 中文明细 / Chinese Details |');
+  lines.push('| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
   for (const item of report.commanders) {
     const fileName = `commanders/${item.commander}-${sanitizeFilePart(item.name)}.md`;
-    lines.push(`| ${item.name} / \`${item.commander}\` | ${item.summary.building_count} | ${item.summary.production_building_count || 0} | ${item.summary.unit_count} | ${item.summary.hero_count} | ${item.summary.building_panel_button_count} | ${item.summary.unit_panel_button_count} | ${item.summary.produced_unit_count} | ${item.summary.effect_ref_count} | [打开 / Open](${fileName}) |`);
+    lines.push(`| ${item.name} / \`${item.commander}\` | ${item.opener?.length || 0} | ${item.summary.building_count} | ${item.summary.production_building_count || 0} | ${item.summary.unit_count} | ${item.summary.hero_count} | ${item.summary.building_panel_button_count} | ${item.summary.unit_panel_button_count} | ${item.summary.produced_unit_count} | ${item.summary.effect_ref_count} | [打开 / Open](${fileName}) |`);
   }
   lines.push('');
   lines.push('## 输出文件 / Output Files');
@@ -2207,6 +2341,7 @@ function renderCommanderMarkdown(commander) {
   lines.push(`- 统计 / Stats：建筑 ${commander.summary.building_count}、生产链补充建筑 ${commander.summary.production_building_count || 0}、单位 ${commander.summary.unit_count}、英雄 ${commander.summary.hero_count}、建筑按钮 ${commander.summary.building_panel_button_count}、单位按钮 ${commander.summary.unit_panel_button_count}、效果引用 ${commander.summary.effect_ref_count}`);
   lines.push('- 名称显示 / Name display：能从当前 Mod zhCN 解析时显示“中文名 / `英文ID`”；仅显示 `ID` 表示当前 Mod 未找到可用中文名。');
   lines.push('');
+  renderOpener(lines, commander.opener || []);
   renderTopPanel(lines, commander.top_panel);
   renderEntryGroup(lines, '建筑', commander.buildings);
   renderEntryGroup(lines, '生产链补充建筑', commander.production_buildings || []);
@@ -2217,6 +2352,22 @@ function renderCommanderMarkdown(commander) {
     lines.pop();
   }
   return lines.join('\n');
+}
+
+function renderOpener(lines, opener) {
+  lines.push('## 初始化/开局单位 / Initial Opener');
+  lines.push('');
+  if (!opener.length) {
+    lines.push('- 无 / None');
+    lines.push('');
+    return;
+  }
+  lines.push('| 槽位 / Slot | 单位 / Unit | 预期类型 / Expected Kind | Catalog 父级 / Catalog Parent | 是否在运行名册 / In Runtime Roster | 来源 / Source |');
+  lines.push('| --- | --- | --- | --- | --- | --- |');
+  for (const item of opener) {
+    lines.push(`| ${escapeMd(item.role_name)} | ${formatEntityLabel(item.name, item.unit_id)} | ${item.expected_kind || '-'} | ${formatIdList(item.parent_ids)} | ${item.in_runtime_roster ? '是 / Yes' : '否 / No'} | ${formatOpenerSource(item)} |`);
+  }
+  lines.push('');
 }
 
 function renderTopPanel(lines, topPanel) {
@@ -2307,6 +2458,22 @@ function formatEntrySource(entry) {
   if (entry.source?.module) bits.push(`模块 / Module ${entry.source.module}`);
   if (entry.source?.file) bits.push(`文件 / File \`${entry.source.file}\``);
   return bits.join('，') || '无 / None';
+}
+
+function formatOpenerSource(item) {
+  const bits = [];
+  if (item.source?.catalog) bits.push(`Catalog ${item.source.catalog}`);
+  if (item.source?.instance) bits.push(`Instance ${item.source.instance}`);
+  if (item.source?.file) bits.push(`文件 / File \`${item.source.file}\``);
+  if (item.runtime_roster?.status) bits.push(`名册状态 / Roster status ${item.runtime_roster.status}`);
+  return bits.join('，') || '无 / None';
+}
+
+function formatIdList(ids) {
+  if (!ids?.length) {
+    return '-';
+  }
+  return ids.map((id) => `\`${id}\``).join('、');
 }
 
 function formatProduction(option) {
