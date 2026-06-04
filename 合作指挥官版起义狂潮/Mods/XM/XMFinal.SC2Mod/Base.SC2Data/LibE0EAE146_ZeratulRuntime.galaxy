@@ -53,6 +53,10 @@ void libE0EAE146_gf_ZeratulRuntimeInit (int lp_player, point lp_heroPoint, bool 
     }
 
     libE0EAE146_gv_zeratulRuntimeInitialized = true;
+    libE0EAE146_gt_ZeratulArtifactPickedUp_Init();
+    libE0EAE146_gt_ZeratulArtifactRevealed_Init();
+    libE0EAE146_gt_ZeratulArtifactUsed_Init();
+    libE0EAE146_gt_ZeratulProphecyCast_Init();
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterZeratul", c_unitCreateIgnorePlacement, lp_player, RegionGetBoundsMin(RegionEntireMap()));
     lv_mainCaster = UnitLastCreated();
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterZeratulSpecialization", c_unitCreateIgnorePlacement, lp_player, RegionGetBoundsMin(RegionEntireMap()));
