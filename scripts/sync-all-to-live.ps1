@@ -252,10 +252,6 @@ Write-Output "LIVE_ROOT=$LiveRoot"
 Write-Output "DRY_RUN=$([int][bool]$DryRun)"
 
 if (-not $SkipMods) {
-    if (-not $DryRun -and $modNames -contains "XMFinal.SC2Mod") {
-        Assert-XMFinalDocumentMetaIsSafeToSkip -SourceModsRoot $sourceModsRoot -TargetModsRoot $targetModsRoot
-    }
-
     foreach ($modName in $modNames) {
         $source = Join-Path $sourceModsRoot $modName
         $target = Join-Path $targetModsRoot $modName

@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CActorUnit id="AutoTurret2" parent="GenericUnitStandard" unitName="AutoTurret2">
+        <Aliases value="_CreepEngulfable"/>
+        <On Terms="Behavior.Precursor.Off" Send="Create AutoTurretReleaseMissileImpact"/>
+        <On Terms="Behavior.Precursor.Off" Send="$Birth"/>
+        <On Terms="WeaponStart.*.AttackStart" Send="AnimClear Birth"/>
+        <Model value="AutoTurret"/>
+        <CreepHeightClass value="Small"/>
+        <BuildModel value="AutoTurret"/>
+        <DeathArray index="Normal" ModelLink="AutoTurretDeath" SoundLink="Raven_AutoTurretExplode"/>
+        <DeathArray index="UnderConstruction" ModelLink="TerranBuildingDeath" SoundLink="Raven_AutoTurretExplode"/>
+        <PlacementModel value="AutoTurretPlacement"/>
+        <PlacementSound value="Terran_BuildingPlacement"/>
+        <PortraitModel value="AdjutantPortrait"/>
+        <BarOffset value="50"/>
+        <ErrorArray Error="CantBuildLocationInvalid" Sound="Raven_Pissed"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-AutoTurret.dds"/>
+        </GroupIcon>
+        <HeroIcon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
+        <SoundArray index="Birth" value="Raven_AutoTurretBirth"/>
+        <SoundArray index="Ready" value="Raven_AutoTurretReady"/>
+        <SoundArray index="What" value="Raven_AutoTurretWhat"/>
+        <UnitFlags index="ShowBlobShadow" value="0"/>
+        <UnitIcon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-AutoTurret.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="Banshee">
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BansheeMercenaryReentry"/>
+    </CActorUnit>
+    <CActorUnit id="Battlecruiser">
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BattlecruiserLokiReentry"/>
+    </CActorUnit>
+    <CActorUnit id="Cyclone">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create SiegeBreakerDropModel"/>
+    </CActorUnit>
+    <CActorSplat id="DarkSwarmCursorSplat" parent="ZergCursorSplat" abil="DarkSwarm"/>
+    <CActorModel id="DarkSwarmModel" parent="ModelAnimationStyleContinuous">
+        <On Terms="Effect.DarkSwarmPersistent.Start" Send="Create"/>
+        <On Terms="Effect.DarkSwarmPersistent.Stop" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,64,0"/>
+        <HostSiteOps Ops="SOpHigherBy1"/>
+        <Model value="DefilerMPDarkSwarm"/>
+    </CActorModel>
+    <CActorSound id="DarkSwarmSound">
+        <EditorCategories value=""/>
+        <On Terms="Abil.DarkSwarm.TargetCastStart" Send="Create"/>
+        <On Terms="Abil.DarkSwarmHardcore.TargetCastStart" Send="Create"/>
+        <Sound value="Defiler_DarkSwarm"/>
+    </CActorSound>
+    <CActorRange id="DarkSwarmRange" parent="RangeAbil" abil="DarkSwarm"/>
+    <!--                                                                                         -->
+    <!-- Devourer                                                                                  -->
+    <!--                                                                                         -->
+    <CActorUnit id="Devourer"/>
+    <CActorModel id="FireSuppressionBots2" parent="ModelAnimationStyleContinuous">
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel2" parent="GenericAttackModel"/>
+    <CActorModel id="GenericAttackDamageModel3" parent="GenericAttackModel"/>
+    <CActorModel id="GenericAttackDamageModel4" parent="GenericAttackModel"/>
+    <CActorSound id="GenericAttackDamageSound2" parent="GenericAttackSound"/>
+    <CActorSound id="GenericAttackDamageSound3" parent="GenericAttackSound"/>
+    <CActorSound id="GenericAttackDamageSound4" parent="GenericAttackSound"/>
+    <CActorModel id="GenericAttackImpactModel2" parent="GenericAttackModel"/>
+    <CActorModel id="GenericAttackImpactModel3" parent="GenericAttackModel"/>
+    <CActorModel id="GenericAttackImpactModel4" parent="GenericAttackModel"/>
+    <CActorSound id="GenericAttackImpactSound2" parent="GenericAttackSound"/>
+    <CActorSound id="GenericAttackImpactSound3" parent="GenericAttackSound"/>
+    <CActorSound id="GenericAttackImpactSound4" parent="GenericAttackSound"/>
+    <CActorModel id="GenericAttackLaunchModel2" parent="GenericAttackModel"/>
+    <CActorModel id="GenericAttackLaunchModel3" parent="GenericAttackModel"/>
+    <CActorModel id="GenericAttackLaunchModel4" parent="GenericAttackModel"/>
+    <CActorSound id="GenericAttackLaunchSound2" parent="GenericAttackSound"/>
+    <CActorSound id="GenericAttackLaunchSound3" parent="GenericAttackSound"/>
+    <CActorSound id="GenericAttackLaunchSound4" parent="GenericAttackSound"/>
+    <CActorUnit id="Ghost">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create WarPigDropModel"/>
+    </CActorUnit>
+    <!--                                                                                         -->
+    <!-- Guardian .............................................................................. -->
+    <!--                                                                                         -->
+    <CActorUnit id="GuardianMP"/>
+    <!--                                                                                         -->
+    <!-- Gun Tower ........................................................................ -->
+    <!--                                                                                         -->
+    <CActorUnit id="GunTower">
+        <Scale value="0.500000"/>
+    </CActorUnit>
+    <CActorUnit id="Hellion">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create MengskFirebatDropModel"/>
+    </CActorUnit>
+    <CActorUnit id="Liberator">
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BansheeMercenaryReentry"/>
+    </CActorUnit>
+    <CActorUnit id="Marauder">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create HammerSecurityDropModel"/>
+    </CActorUnit>
+    <CActorUnit id="Marine">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create WarPigDropModel"/>
+    </CActorUnit>
+    <CActorUnit id="Medivac">
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BansheeMercenaryReentry"/>
+    </CActorUnit>
+    <CActorUnit id="Mothership">
+        <On index="0" Send="Create {} Mothership_Ambience"/>
+        <On index="62" Send="Create"/>
+        <On index="70" Terms="AbilMorph.*.Finish; MorphFrom MothershipCore" Send="Create"/>
+        <On index="72" Terms="AbilMorph.*.Finish; MorphFrom MothershipCore" Send="Create"/>
+        <On index="73" Terms="AbilMorph.*.Finish; MorphFrom MothershipCore" Send="Create"/>
+        <On index="74" Terms="AbilMorph.*.Finish; MorphFrom MothershipCore" Send="Create"/>
+    </CActorUnit>
+    <CActorUnit id="MothershipCore">
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
+        <On index="83" removed="1"/>
+        <On index="84" removed="1"/>
+        <On index="85" removed="1"/>
+        <On index="86" removed="1"/>
+        <On index="87" removed="1"/>
+        <On index="88" removed="1"/>
+        <On index="89" removed="1"/>
+        <On index="90" removed="1"/>
+        <On index="91" removed="1"/>
+        <On index="92" removed="1"/>
+        <On index="93" removed="1"/>
+        <On index="94" removed="1"/>
+        <On index="95" removed="1"/>
+        <On index="96" removed="1"/>
+        <On index="97" removed="1"/>
+        <On index="98" removed="1"/>
+        <On index="99" removed="1"/>
+        <On index="100" removed="1"/>
+        <EventDataFootprint index="0" Actor="" Model=""/>
+    </CActorUnit>
+    <CActorAction id="MutaliskAttackSegment12" parent="MutaliskAttackSegment1" effectLaunch="GlaiveWurm2">
+        <On index="6" Terms="Effect.GlaiveWurm2.Start; At Caster; ValidateUnit NotHotSExplosiveGlaiveAndNotHotSViciousGlaive"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment1Missile2"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorAction id="MutaliskAttackSegment1ExplosiveGlaive2" parent="GenericAttack" effectImpact="MutaliskExplosiveGlaive" effectLaunch="GlaiveWurm2">
+        <On index="6" Terms="Effect.GlaiveWurm2.Start; At Caster; ValidateUnit HaveHotSExplosiveGlaiveAndNotHotSViciousGlaive" Send="Create"/>
+        <LaunchAssets Sound="Mutalisk_Segment1AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment1Missile2"/>
+        <ImpactSite value="MutaliskAttackSegment1ImpactSite"/>
+        <ImpactMap index="None" Model="ExplosiveGlaiveImpact" Sound="ExplosiveGlaiveImpactSound"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorMissile id="MutaliskAttackSegment1Missile2" parent="GenericAttackMissile" unitName="GlaiveWurmWeapon"/>
+    <CActorAction id="MutaliskAttackSegment1ViciousGlaive2" parent="GenericAttack" effectImpact="GlaiveWurmU1" effectLaunch="GlaiveWurm2">
+        <On index="6" Terms="Effect.GlaiveWurm2.Start; At Caster; ValidateUnit NotHotSExplosiveGlaiveAndHaveHotSViciousGlaive" Send="Create"/>
+        <LaunchAssets Sound="Mutalisk_Segment1AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment1Missile2"/>
+        <ImpactSite value="MutaliskAttackSegment1ImpactSite"/>
+        <ImpactMap index="None" Model="ViciouisGlaiveAttackImpact" Sound="Mutalisk_Segment1AttackImpact"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorAction id="MutaliskAttackSegment22" parent="MutaliskAttackSegment2" effectLaunch="GlaiveWurmM22">
+        <On index="6" Terms="Effect.GlaiveWurmM22.Start; At Caster; !ValidateUnit HaveHotSViciousGlaive"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment2Missile2"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorMissile id="MutaliskAttackSegment2Missile2" parent="GenericAttackMissile" unitName="GlaiveWurmM2Weapon"/>
+    <CActorAction id="MutaliskAttackSegment2ViciousGlaive2" parent="GenericAttack" effectImpact="GlaiveWurmU2" effectLaunch="GlaiveWurmM22">
+        <On index="6" Terms="Effect.GlaiveWurmM22.Start; At Caster; ValidateUnit HaveHotSViciousGlaive" Send="Create"/>
+        <LaunchRequest Subject="_ImpactGuide" Actor="Find"/>
+        <LaunchAssets Sound="Mutalisk_Segment2AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment2Missile2"/>
+        <ImpactSite value="MutaliskAttackSegment2ImpactSite"/>
+        <ImpactMap index="None" Model="ViciouisGlaiveAttackImpact" Sound="Mutalisk_Segment2AttackImpact"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorAction id="MutaliskAttackSegment32" parent="MutaliskAttackSegment3" effectLaunch="GlaiveWurmM32">
+        <On index="6" Terms="Effect.GlaiveWurmM32.Start; At Caster; !ValidateUnit HaveHotSViciousGlaive"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment3Missile2"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorMissile id="MutaliskAttackSegment3Missile2" parent="GenericAttackMissile" unitName="GlaiveWurmM3Weapon"/>
+    <CActorAction id="MutaliskAttackSegment3ViciousGlaive2" parent="GenericAttack" effectImpact="GlaiveWurmU3" effectLaunch="GlaiveWurmM32">
+        <On index="6" Terms="Effect.GlaiveWurmM32.Start; At Caster; ValidateUnit HaveHotSViciousGlaive" Send="Create"/>
+        <LaunchRequest Subject="_ImpactGuide" Actor="Find"/>
+        <LaunchAssets Sound="Mutalisk_Segment3AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment3Missile2"/>
+        <ImpactSite value="MutaliskAttackSegment3ImpactSite"/>
+        <ImpactMap index="None" Model="ViciouisGlaiveAttackImpact" Sound="Mutalisk_Segment3AttackImpact"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorAction id="MutaliskAttackSegment42" parent="GenericAttack" effectImpact="GlaiveWurmU4" effectLaunch="GlaiveWurmM42">
+        <LaunchRequest Subject="MutaliskAttackSegment3ImpactSite" Actor="Find"/>
+        <LaunchAssets Sound="Mutalisk_Segment3AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment4Missile2"/>
+        <ImpactSite value="MutaliskAttackSegment4ImpactSite"/>
+        <ImpactMap index="None" Model="ViciouisGlaiveAttackImpact" Sound="Mutalisk_Segment3AttackImpact"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorMissile id="MutaliskAttackSegment4Missile2" parent="GenericAttackMissile" unitName="GlaiveWurmM4Weapon"/>
+    <CActorAction id="MutaliskAttackSegment52" parent="GenericAttack" effectImpact="GlaiveWurmU5" effectLaunch="GlaiveWurmM52">
+        <LaunchRequest Subject="MutaliskAttackSegment4ImpactSite" Actor="Find"/>
+        <LaunchAssets Sound="Mutalisk_Segment3AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment5Missile2"/>
+        <ImpactSite value="MutaliskAttackSegment5ImpactSite"/>
+        <ImpactMap index="None" Model="ViciouisGlaiveAttackImpact" Sound="Mutalisk_Segment3AttackImpact"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorMissile id="MutaliskAttackSegment5Missile2" parent="GenericAttackMissile" unitName="GlaiveWurmM5Weapon"/>
+    <CActorAction id="MutaliskAttackSegment62" parent="GenericAttack" effectImpact="GlaiveWurmU6" effectLaunch="GlaiveWurmM62">
+        <LaunchRequest Subject="MutaliskAttackSegment5ImpactSite" Actor="Find"/>
+        <LaunchAssets Sound="Mutalisk_Segment3AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel4"/>
+        <LaunchSound value="GenericAttackLaunchSound4"/>
+        <ContainerModel value="GenericAttackLaunchModel4"/>
+        <ContainerSound value="GenericAttackLaunchSound4"/>
+        <Missile value="MutaliskAttackSegment6Missile2"/>
+        <ImpactSite value="MutaliskAttackSegment6ImpactSite"/>
+        <ImpactMap index="None" Model="ViciouisGlaiveAttackImpact" Sound="Mutalisk_Segment3AttackImpact"/>
+        <ImpactModel value="GenericAttackImpactModel4"/>
+        <ImpactSound value="GenericAttackImpactSound4"/>
+        <DamageModel value="GenericAttackDamageModel4"/>
+        <DamageSound value="GenericAttackDamageSound4"/>
+    </CActorAction>
+    <CActorMissile id="MutaliskAttackSegment6Missile2" parent="GenericAttackMissile" unitName="GlaiveWurmM6Weapon"/>
+    <CActorModel id="OdinNukeIndicator">
+        <Filter index="Enemy" value="0"/>
+    </CActorModel>
+    <CActorUnit id="PrimalSunkenColony2" parent="GenericUnitBase" unitName="PrimalSunkenColony2">
+        <On Terms="WeaponStart.PrimalSunkenColony.AttackStart" Send="AnimClear Attack"/>
+        <On Terms="WeaponStart.PrimalSunkenColony.AttackStart" Send="Create PrimalSunkenColonyAttackLaunch"/>
+        <On Terms="WeaponStart.PrimalSunkenColony.AttackStart" Send="AnimPlay Attack Attack 0 0.500000 0.500000 7.000000 AsDuration"/>
+        <Model value="PrimalSunkenColony"/>
+        <AnimBlendTime value="0.400000"/>
+        <BuildModel value="PrimalSunkenColony"/>
+        <DeathArray index="Normal" ModelLink="PrimalSunkenColonyDeath" SoundLink="SporeCrawler_Explode"/>
+        <PlacementModel value="PrimalSunkenColony"/>
+        <PlacementSound value="Zerg_BuildingPlacementSmall"/>
+        <PortraitModel value="ZergBuildingEx2_Portrait"/>
+        <WalkAnimMoveSpeed value="0.7968"/>
+        <BarOffset value="60"/>
+        <BarWidth value="90"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Zerg-PrimalSunkenColony.dds"/>
+        </GroupIcon>
+        <HeroIcon value="Assets\Textures\Wireframe-Zerg-PrimalSunkenColony.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-armor-zerg-building.dds"/>
+        <SoundArray index="Construction" value="Zerg_BuildingMorphWhat"/>
+        <UnitIcon value="Assets\Textures\Wireframe-Zerg-PrimalSunkenColony.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Zerg-PrimalSunkenColony.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorAction id="PrimalSunkenColonyAttack2" parent="GenericAttack" effectImpact="PrimalSunkenColonySearch" effectLaunch="PrimalSunkenColony2">
+        <LaunchSiteOps Ops="SOpShadow"/>
+        <LaunchAssets Sound="Lurker_AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel3"/>
+        <LaunchSound value="GenericAttackLaunchSound3"/>
+        <ContainerModel value="GenericAttackLaunchModel3"/>
+        <ContainerSound value="GenericAttackLaunchSound3"/>
+        <Missile value="PrimalSunkenColonyAttackMissile2"/>
+        <ImpactSiteOps Ops="SOpShadow SOpForwardLaunchGuide"/>
+        <ImpactMap index="None" Model="" Sound="Queen_AttackImpactRanged"/>
+        <ImpactModel value="GenericAttackImpactModel3"/>
+        <ImpactSound value="GenericAttackImpactSound3"/>
+        <DamageModel value="GenericAttackDamageModel3"/>
+        <DamageSound value="GenericAttackDamageSound3"/>
+        <ShieldFlashType value="Full"/>
+    </CActorAction>
+    <CActorModel id="PrimalSunkenColonyAttackImpact2">
+        <Flags index="SuppressSaveLoad" value="1"/>
+        <On Terms="Effect.PrimalSunkenColonySearch2.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="$Birth 0 0.000000 0.000000 2.000000 AsDuration"/>
+        <On Terms="AnimDone; AnimName Birth" Send="Destroy"/>
+        <HostSiteOps Ops="SOpShadow SOpAttachOriginStationary"/>
+        <Model value="PrimalSunkenColonyAttackImpact"/>
+    </CActorModel>
+    <CActorMissile id="PrimalSunkenColonyAttackMissile2" parent="GenericAttackMissile" unitName="PrimalSunkenColonyWeapon">
+        <On Terms="ActorCreation" Send="SetOpacity 0.500000"/>
+        <HostSiteOps Ops="SOpShadow"/>
+        <Model value="Invisible"/>
+        <Baselines index="Stand" AnimProps="Unburrow" BlendIn="-1.000000" BlendOut="-1.000000"/>
+    </CActorMissile>
+    <CActorModel id="PrimalSunkenColonyAttackTargetUI2" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.PrimalSunkenColony2.Start; At Target" Send="Create"/>
+        <On Terms="ActorCreation" Send="TimerSet 2.500000 DelayDestroy"/>
+        <On Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy"/>
+        <HostSiteOps Ops="SOpShadow" HoldPosition="1" HoldRotation="1"/>
+        <Model value="PrimalSunkenColonyAttackTargetUI"/>
+    </CActorModel>
+    <CActorModel id="PrimalSunkenColonyAttackTargetUICone2" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.PrimalSunkenColony2.Start; At Target" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,0,0"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.100000"/>
+        <On Terms="ActorCreation" Send="TimerSet 2.500000 DelayDestroy"/>
+        <On Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy"/>
+        <HostSiteOps Ops="SOpShadow SOpPrimalSunkenColonyAttackTargetUICone SOpPrimalSunkenColonyAttackTargetUIConeOffset" HoldPosition="1" HoldRotation="1"/>
+        <Model value="PrimalSunkenColonyAttackTargetUICone"/>
+    </CActorModel>
+    <CActorModel id="PrimalSunkenColonyAttackTargetUICylinder2" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.PrimalSunkenColony2.Start; At Target" Send="Create"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,0,0"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.100000"/>
+        <On Terms="ActorCreation" Send="TimerSet 2.500000 DelayDestroy"/>
+        <On Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy"/>
+        <HostSiteOps Ops="SOpShadow SOpPrimalSunkenColonyAttackTargetUICylinder" HoldPosition="1" HoldRotation="1"/>
+        <Model value="PrimalSunkenColonyAttackTargetUICylinder"/>
+    </CActorModel>
+    <CActorUnit id="Raven">
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BansheeMercenaryReentry"/>
+    </CActorUnit>
+    <CActorMissile id="Reaper">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create MengskReaperDropModel"/>
+    </CActorMissile>
+    <!-- SJHyperion Blink Model                                                        -->
+    <CActorRange id="SJHyperionBlinkRange">
+        <IconScale value="0.000000,0.000000"/>
+    </CActorRange>
+    <CActorSplat id="SOAOrbitalStrikeCursor">
+        <On index="0" Terms="Abil.SOAOrbitalStrikeExecute.Cursor"/>
+    </CActorSplat>
+    <CActorUnit id="SiegeTank">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create SiegeBreakerDropModel"/>
+    </CActorUnit>
+    <CActorUnit id="SporeCrawler2" parent="SporeCrawler" unitName="SporeCrawler2">
+        <On index="0" Terms="UnitBirth.SporeCrawler2"/>
+        <On index="1" Terms="UnitBirth.SporeCrawler2"/>
+        <On index="2" Terms="UnitRevive.SporeCrawler2"/>
+        <On index="3" Terms="UnitRevive.SporeCrawler2"/>
+        <On index="4" Terms="UnitConstruction.SporeCrawler2.Start"/>
+        <On index="5" Terms="UnitConstruction.SporeCrawler2.Finish"/>
+        <On index="65" Terms="UnitConstruction.SporeCrawler2.Start"/>
+        <On index="66" Terms="UnitConstruction.SporeCrawler2.Start"/>
+        <On index="67" Terms="UnitConstruction.SporeCrawler2.Cancel"/>
+        <On index="68" Terms="UnitConstruction.SporeCrawler2.Finish"/>
+        <On index="69" Terms="UnitBirth.SporeCrawler2.Normal"/>
+        <On index="70" Terms="UnitBirth.SporeCrawler2.Suppressed"/>
+        <On index="71" Terms="UnitBirth.SporeCrawler2.EditorPlaced"/>
+        <On index="72" Terms="UnitDeath.SporeCrawler2"/>
+        <HighlightTooltip value="Unit/Name/SporeCrawler2"/>
+    </CActorUnit>
+    <CActorAction id="SporeCrawlerAttack2" parent="GenericAttack" effectImpact="SporeCrawlerU" effectLaunch="SporeCrawler2">
+        <LaunchAssets Sound="SporeCrawler_AttackLaunch"/>
+        <LaunchModel value="GenericAttackLaunchModel2"/>
+        <LaunchSound value="GenericAttackLaunchSound2"/>
+        <ContainerModel value="GenericAttackLaunchModel2"/>
+        <ContainerSound value="GenericAttackLaunchSound2"/>
+        <Missile value="SporeCrawlerAttackMissile2"/>
+        <ImpactMap index="None" Model="SporeCrawlerAttackImpact" Sound="SporeCrawler_AttackImpact"/>
+        <ImpactModel value="GenericAttackImpactModel2"/>
+        <ImpactSound value="GenericAttackImpactSound2"/>
+        <ImpactPhysics Name="AcidSpewImpact" MatchKeys="Basic" Physics="SporeCrawlerAttackForce"/>
+        <DamageModel value="GenericAttackDamageModel2"/>
+        <DamageSound value="GenericAttackDamageSound2"/>
+    </CActorAction>
+    <CActorMissile id="SporeCrawlerAttackMissile2" parent="GenericAttackMissile" unitName="SporeCrawlerWeapon"/>
+    <CActorSplat id="SporeCrawlerSplat2" parent="BurrowedSplatBase">
+        <On Terms="UnitBirth.SporeCrawler2" Send="Create"/>
+        <On Terms="AbilMorph.*.Start; MorphTo SporeCrawler" Send="Create"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom SporeCrawler" Send="RefClear ::Host"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom SporeCrawler" Send="TimerSet 5.000000 DelayDestroy"/>
+        <On Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy"/>
+        <AutoScaleFactor value="0.800000"/>
+    </CActorSplat>
+    <CActorSound id="SporeCrawler_Death2" parent="SoundOneShot">
+        <On Terms="UnitDeath.SporeCrawler2; PassChance 25.000000" Send="Create"/>
+        <On Terms="UnitDeath.SporeCrawlerUprooted; PassChance 25.000000" Send="Create"/>
+        <Sound value="SporeCrawler_Death"/>
+    </CActorSound>
+    <CActorStateMonitor id="TerranFlamesSmallBuilding2" parent="TerranFlamesSmallBuilding">
+        <On index="13" Terms="UnitCreation.AutoTurret2"/>
+    </CActorStateMonitor>
+    <CActorUnit id="Thor">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create SiegeBreakerDropModel"/>
+    </CActorUnit>
+    <CActorUnit id="VikingFighter">
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create VikingMercenaryFighterReentry"/>
+    </CActorUnit>
+    <CActorSimple id="VoidDetectorRadarSetupEnemyDetector2">
+        <Supporter Subject="_Unit"/>
+        <On Terms="ActorCreation" Send="StatusSet AllyStateSet 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector8 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector9 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector10 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector11 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector12 0"/>
+        <On Terms="Behavior.Detector8.On" Send="Create"/>
+        <On Terms="Behavior.Detector8.On" Send="StatusSet Detector8 1"/>
+        <On Terms="Behavior.Detector9.On" Send="Create"/>
+        <On Terms="Behavior.Detector9.On" Send="StatusSet Detector9 1"/>
+        <On Terms="Behavior.Detector10.On" Send="Create"/>
+        <On Terms="Behavior.Detector10.On" Send="StatusSet Detector10 1"/>
+        <On Terms="Behavior.Detector11.On" Send="Create"/>
+        <On Terms="Behavior.Detector11.On" Send="StatusSet Detector11 1"/>
+        <On Terms="Behavior.Detector12.On" Send="Create"/>
+        <On Terms="Behavior.Detector12.On" Send="StatusSet Detector12 1"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="AliasAdd _DetectorEnemy"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="StatusSet AllyStateSet 1"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="Behavior.Detector8.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector9.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector10.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector11.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector12.Off" Send="Destroy"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerKill DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerSet 1.100000 DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector12"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector12"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="AliasRemove _DetectorEnemy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="Destroy"/>
+    </CActorSimple>
+    <CActorSimple id="VoidDetectorRadarSetupEnemyDetector22">
+        <Supporter Subject="_Unit"/>
+        <On Terms="ActorCreation" Send="StatusSet AllyStateSet 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector8 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector9 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector10 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector11 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector12 0"/>
+        <On Terms="Behavior.Detector8.On" Send="Create"/>
+        <On Terms="Behavior.Detector8.On" Send="StatusSet Detector8 1"/>
+        <On Terms="Behavior.Detector9.On" Send="Create"/>
+        <On Terms="Behavior.Detector9.On" Send="StatusSet Detector9 1"/>
+        <On Terms="Behavior.Detector10.On" Send="Create"/>
+        <On Terms="Behavior.Detector10.On" Send="StatusSet Detector10 1"/>
+        <On Terms="Behavior.Detector11.On" Send="Create"/>
+        <On Terms="Behavior.Detector11.On" Send="StatusSet Detector11 1"/>
+        <On Terms="Behavior.Detector12.On" Send="Create"/>
+        <On Terms="Behavior.Detector12.On" Send="StatusSet Detector12 1"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="AliasAdd _DetectorEnemy"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="StatusSet AllyStateSet 1"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="Behavior.Detector8.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector9.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector10.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector11.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector12.Off" Send="Destroy"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerKill DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerSet 1.100000 DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector12"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector12"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="AliasRemove _DetectorEnemy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="Destroy"/>
+    </CActorSimple>
+    <CActorSimple id="VoidDetectorRadarSetupEnemyDetector222">
+        <Supporter Subject="_Unit"/>
+        <On Terms="ActorCreation" Send="StatusSet AllyStateSet 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector8 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector9 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector10 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector11 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector12 0"/>
+        <On Terms="Behavior.Detector83.On" Send="Create"/>
+        <On Terms="Behavior.Detector83.On" Send="StatusSet Detector8 1"/>
+        <On Terms="Behavior.Detector9.On" Send="Create"/>
+        <On Terms="Behavior.Detector9.On" Send="StatusSet Detector9 1"/>
+        <On Terms="Behavior.Detector10.On" Send="Create"/>
+        <On Terms="Behavior.Detector10.On" Send="StatusSet Detector10 1"/>
+        <On Terms="Behavior.Detector11.On" Send="Create"/>
+        <On Terms="Behavior.Detector11.On" Send="StatusSet Detector11 1"/>
+        <On Terms="Behavior.Detector12.On" Send="Create"/>
+        <On Terms="Behavior.Detector12.On" Send="StatusSet Detector12 1"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="AliasAdd _DetectorEnemy"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="StatusSet AllyStateSet 1"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="Behavior.Detector83.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector9.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector10.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector11.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector12.Off" Send="Destroy"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerKill DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerSet 1.100000 DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector12"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector12"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="AliasRemove _DetectorEnemy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="Destroy"/>
+    </CActorSimple>
+    <CActorSimple id="VoidDetectorRadarSetupEnemyDetector23">
+        <Supporter Subject="_Unit"/>
+        <On Terms="ActorCreation" Send="StatusSet AllyStateSet 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector8 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector9 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector10 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector11 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector12 0"/>
+        <On Terms="Behavior.Detector83.On" Send="Create"/>
+        <On Terms="Behavior.Detector83.On" Send="StatusSet Detector8 1"/>
+        <On Terms="Behavior.Detector9.On" Send="Create"/>
+        <On Terms="Behavior.Detector9.On" Send="StatusSet Detector9 1"/>
+        <On Terms="Behavior.Detector10.On" Send="Create"/>
+        <On Terms="Behavior.Detector10.On" Send="StatusSet Detector10 1"/>
+        <On Terms="Behavior.Detector11.On" Send="Create"/>
+        <On Terms="Behavior.Detector11.On" Send="StatusSet Detector11 1"/>
+        <On Terms="Behavior.Detector12.On" Send="Create"/>
+        <On Terms="Behavior.Detector12.On" Send="StatusSet Detector12 1"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="AliasAdd _DetectorEnemy"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="StatusSet AllyStateSet 1"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="Behavior.Detector83.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector9.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector10.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector11.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector12.Off" Send="Destroy"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerKill DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerSet 1.100000 DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector12"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector12"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="AliasRemove _DetectorEnemy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="Destroy"/>
+    </CActorSimple>
+    <CActorSimple id="VoidDetectorRadarSetupEnemyDetector32">
+        <Supporter Subject="_Unit"/>
+        <On Terms="ActorCreation" Send="StatusSet AllyStateSet 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector8 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector9 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector10 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector11 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector12 0"/>
+        <On Terms="Behavior.Detector83.On" Send="Create"/>
+        <On Terms="Behavior.Detector83.On" Send="StatusSet Detector8 1"/>
+        <On Terms="Behavior.Detector9.On" Send="Create"/>
+        <On Terms="Behavior.Detector9.On" Send="StatusSet Detector9 1"/>
+        <On Terms="Behavior.Detector10.On" Send="Create"/>
+        <On Terms="Behavior.Detector10.On" Send="StatusSet Detector10 1"/>
+        <On Terms="Behavior.Detector11.On" Send="Create"/>
+        <On Terms="Behavior.Detector11.On" Send="StatusSet Detector11 1"/>
+        <On Terms="Behavior.Detector12.On" Send="Create"/>
+        <On Terms="Behavior.Detector12.On" Send="StatusSet Detector12 1"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="AliasAdd _DetectorEnemy"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="StatusSet AllyStateSet 1"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="Behavior.Detector83.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector9.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector10.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector11.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector12.Off" Send="Destroy"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerKill DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerSet 1.100000 DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector12"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector12"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="AliasRemove _DetectorEnemy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="Destroy"/>
+    </CActorSimple>
+    <CActorSimple id="VoidDetectorRadarSetupEnemyDetector4">
+        <Supporter Subject="_Unit"/>
+        <On Terms="ActorCreation" Send="StatusSet AllyStateSet 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector8 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector9 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector10 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector11 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector12 0"/>
+        <On Terms="Behavior.Detector83.On" Send="Create"/>
+        <On Terms="Behavior.Detector83.On" Send="StatusSet Detector8 1"/>
+        <On Terms="Behavior.Detector9.On" Send="Create"/>
+        <On Terms="Behavior.Detector9.On" Send="StatusSet Detector9 1"/>
+        <On Terms="Behavior.Detector10.On" Send="Create"/>
+        <On Terms="Behavior.Detector10.On" Send="StatusSet Detector10 1"/>
+        <On Terms="Behavior.Detector11.On" Send="Create"/>
+        <On Terms="Behavior.Detector11.On" Send="StatusSet Detector11 1"/>
+        <On Terms="Behavior.Detector12.On" Send="Create"/>
+        <On Terms="Behavior.Detector12.On" Send="StatusSet Detector12 1"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="AliasAdd _DetectorEnemy"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="StatusSet AllyStateSet 1"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="Behavior.Detector83.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector9.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector10.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector11.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector12.Off" Send="Destroy"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerKill DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerSet 1.100000 DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector12"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector12"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="AliasRemove _DetectorEnemy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="Destroy"/>
+    </CActorSimple>
+    <CActorSimple id="VoidDetectorRadarSetupEnemyDetector3">
+        <Supporter Subject="_Unit"/>
+        <On Terms="ActorCreation" Send="StatusSet AllyStateSet 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector8 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector9 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector10 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector11 0"/>
+        <On Terms="ActorCreation" Send="StatusSet Detector12 0"/>
+        <On Terms="Behavior.Detector8.On" Send="Create"/>
+        <On Terms="Behavior.Detector8.On" Send="StatusSet Detector8 1"/>
+        <On Terms="Behavior.Detector9.On" Send="Create"/>
+        <On Terms="Behavior.Detector9.On" Send="StatusSet Detector9 1"/>
+        <On Terms="Behavior.Detector10.On" Send="Create"/>
+        <On Terms="Behavior.Detector10.On" Send="StatusSet Detector10 1"/>
+        <On Terms="Behavior.Detector11.On" Send="Create"/>
+        <On Terms="Behavior.Detector11.On" Send="StatusSet Detector11 1"/>
+        <On Terms="Behavior.Detector12.On" Send="Create"/>
+        <On Terms="Behavior.Detector12.On" Send="StatusSet Detector12 1"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="AliasAdd _DetectorEnemy"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0; ValidatePlayer HaveDetectionEnemy" Send="StatusSet AllyStateSet 1"/>
+        <On Terms="TimerExpired; TimerName Retest; IsStatus AllyStateSet 0" Send="TimerSet 1.000000 Retest"/>
+        <On Terms="Behavior.Detector8.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector9.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector10.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector11.Off" Send="Destroy"/>
+        <On Terms="Behavior.Detector12.Off" Send="Destroy"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerKill DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector" Send="TimerSet 1.100000 DetectionOn"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector8 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector8"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector9 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector9"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector10 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector10"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector11 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector11"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarModel_Detector12"/>
+        <On Terms="Signal.*.FoundDetector; IsStatus Detector12 1" Target="_Unit" Send="Create VoidDetectorRadarRange_Detector12"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="TimerExpired; TimerName DetectionOn; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="AliasRemove _DetectorEnemy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarModel_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector8 1" Target="VoidDetectorRadarRange_Detector8" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarModel_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector9 1" Target="VoidDetectorRadarRange_Detector9" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarModel_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector10 1" Target="VoidDetectorRadarRange_Detector10" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarModel_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector11 1" Target="VoidDetectorRadarRange_Detector11" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarModel_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On; IsStatus Detector12 1" Target="VoidDetectorRadarRange_Detector12" Send="Destroy"/>
+        <On Terms="Behavior.DarkArchonMindControl.On" Send="Destroy"/>
+    </CActorSimple>
+    <!-- Psi Shield -->
+    <CActorModel id="VoodooShield">
+        <Scale value="6.000000"/>
+    </CActorModel>
+    <CActorUnit id="WidowMine">
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create SpartanCompanyDropModel"/>
+    </CActorUnit>
+    <CActorStateMonitor id="ZergBloodMediumBuilding2" parent="ZergBloodMediumBuilding">
+        <On index="40" Terms="UnitCreation.PrimalSunkenColony2"/>
+        <On index="43" Terms="UnitCreation.PrimalSunkenColony2"/>
+    </CActorStateMonitor>
+    <CActorStateMonitor id="ZergBloodSmallBuilding2">
+        <On Terms="UnitCreation.Spire" Send="Create"/>
+        <On Terms="UnitCreation.GreaterSpire" Send="Create"/>
+        <On Terms="UnitCreation.SpineCrawler" Send="Create"/>
+        <On Terms="UnitCreation.SporeCrawler2" Send="Create"/>
+        <On Terms="UnitCreation.SpineCrawlerUprooted" Send="Create"/>
+        <On Terms="UnitCreation.SporeCrawlerUprooted" Send="Create"/>
+        <On Terms="StateChange; StateValid ZergBleedLight; StateChanged ZergNormal" Send="Create ZergBloodSetBleedSmall"/>
+        <On Terms="StateChange; StateValid ZergBleedHeavy; StateChanged ZergNormal" Send="Create ZergBloodSetBleedHeavy"/>
+        <On Terms="StateChange; StateValid ZergBleedProfusely; StateChanged ZergNormal" Send="Create ZergBloodSetBleedProfusely"/>
+        <On Terms="StateChange; StateValid ZergBleedLight; !StateChanged ZergNormal" Send="Create ZergBloodSetBleedSmall"/>
+        <On Terms="StateChange; StateValid ZergBleedHeavy; !StateChanged ZergNormal" Send="Create ZergBloodSetBleedHeavy"/>
+        <On Terms="StateChange; StateValid ZergBleedProfusely; !StateChanged ZergNormal" Send="Create ZergBloodSetBleedProfusely"/>
+        <On Terms="StateChange; StateValid ZergNormal; StateChanged ZergBleedLight" Target="ZergBloodSetBleedSmall" Send="Destroy"/>
+        <On Terms="StateChange; StateValid ZergBleedLight; StateChanged ZergBleedHeavy" Target="ZergBloodSetBleedHeavy" Send="Destroy"/>
+        <On Terms="StateChange; StateValid ZergBleedHeavy; StateChanged ZergBleedProfusely" Target="ZergBloodSetBleedProfusely" Send="Destroy"/>
+        <On Terms="StateChange; StateValid ZergNormal" Target="ZergBloodSetBleedSmall" Send="Destroy"/>
+        <On Terms="StateChange; StateValid ZergNormal" Target="ZergBloodSetBleedHeavy" Send="Destroy"/>
+        <On Terms="StateChange; StateValid ZergNormal" Target="ZergBloodSetBleedProfusely" Send="Destroy"/>
+        <On Terms="UnitCreation.CreepTumorUsed" Send="Create"/>
+        <StateArray Name="ZergNormal" Terms="ValidateUnit ZergBleedNormal"/>
+        <StateArray Name="ZergBleedLight" Terms="ValidateUnit ZergBleedLight"/>
+        <StateArray Name="ZergBleedHeavy" Terms="ValidateUnit ZergBleedHeavy"/>
+        <StateArray Name="ZergBleedProfusely" Terms="ValidateUnit ZergBleedProfusely"/>
+        <StateThinkInterval value="0.5"/>
+    </CActorStateMonitor>
+</Catalog>

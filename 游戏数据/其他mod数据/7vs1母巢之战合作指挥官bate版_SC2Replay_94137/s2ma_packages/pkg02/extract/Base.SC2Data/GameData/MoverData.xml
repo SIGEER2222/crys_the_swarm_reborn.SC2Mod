@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CMoverMissile id="GlaiveWurmBounceMissile2" parent="GlaiveWurmMissile">
+        <MotionPhases index="0">
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <MaxSpeed value="18.75"/>
+            <ClearanceAcceleration value="75"/>
+            <ActorTracking value="Actual"/>
+            <Outro value="-1"/>
+            <RotationLaunchActorType value="LaunchToTarget"/>
+            <YawPitchRoll value="719.2968"/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverAvoid id="Ground2">
+        <PlacementArray index="Prevent">
+            <Bits index="GroundNoSpawn" value="1"/>
+        </PlacementArray>
+    </CMoverAvoid>
+    <CMoverAvoid id="Ground3">
+        <PlacementArray index="Prevent">
+            <Bits index="GroundNoSpawn" value="1"/>
+        </PlacementArray>
+    </CMoverAvoid>
+    <CMoverMissile id="MissileDefault2">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <MaxSpeed value="18.75"/>
+            <ClearanceAcceleration value="75"/>
+            <Outro value="-1"/>
+            <YawPitchRoll value="719.2968"/>
+        </MotionPhases>
+        <MotionPhases YawPitchRoll="MAX"/>
+    </CMoverMissile>
+    <CMoverMissile id="MissileDefault3">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <MaxSpeed value="18.75"/>
+            <ClearanceAcceleration value="75"/>
+            <Outro value="-1"/>
+            <YawPitchRoll value="719.2968"/>
+        </MotionPhases>
+        <MotionPhases YawPitchRoll="MAX"/>
+    </CMoverMissile>
+</Catalog>

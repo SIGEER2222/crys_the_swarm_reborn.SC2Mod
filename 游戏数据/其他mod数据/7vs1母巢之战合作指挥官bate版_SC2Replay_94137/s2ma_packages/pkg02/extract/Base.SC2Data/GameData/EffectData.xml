@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CEffectDamage id="AcidSporesDamage"/>
+    <CEffectCreateHealer id="BonesHeal">
+        <RechargeVitalRate value="15"/>
+    </CEffectCreateHealer>
+    <CEffectDamage id="Claws"/>
+    <CEffectEnumArea id="CloakingFieldSearch">
+        <AreaArray index="0" Radius="4" Effect="CloakingField"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="CommandoRifle">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectModifyUnit id="ConsumeAddEnergy">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactUnit Value="Caster"/>
+        <VitalArray index="Energy" Change="50"/>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="ConsumeApply">
+        <ValidatorArray index="0" value="NotLarva"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="Consume"/>
+        <KillHallucination value="1"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="DarkSwarm">
+        <EditorCategories value="Race:Zerg"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="DarkSwarmSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="-;Air,Structure,RawResource,HarvestableResource,Missile,Stasis,Dead,Invulnerable"/>
+        <AreaArray Radius="3" Effect="DarkSwarm"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="DarkSwarmPersistent">
+        <EditorCategories value="Race:Zerg"/>
+        <InitialEffect value="DarkSwarmSearch"/>
+        <PeriodCount value="80"/>
+        <PeriodicEffectArray value="DarkSwarmSearch"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="DarkTemplarChampionCleaveDamage">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="DarkTemplarChampionDamage">
+        <Amount value="100"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="DefilerMPDarkSwarmCreatePersistent">
+        <PeriodCount value="240"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="DestructionWaveDamage">
+        <Amount value="15"/>
+    </CEffectDamage>
+    <CEffectDamage id="DestructionWaveDamageAir">
+        <Amount value="10"/>
+    </CEffectDamage>
+    <CEffectDamage id="DevastatingShotDamage">
+        <Amount value="250"/>
+    </CEffectDamage>
+    <CEffectDamage id="DevourerMPWeaponDamage">
+        <Amount value="30"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="DisablingCloud">
+        <PeriodCount value="60"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="EnergyNovaDamage">
+        <Amount value="1000"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="GlaiveWurm2">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactEffect value="GlaiveWurmS12"/>
+        <AmmoUnit value="GlaiveWurmWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectEnumArea id="GlaiveWurmE12">
+        <ValidatorArray value="NotHotSExplosiveGlaive"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ExcludeArray Value="Outer"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="GlaiveWurmM22"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="GlaiveWurmE22">
+        <EditorCategories value="Race:Zerg"/>
+        <ExcludeArray Value="Outer"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="GlaiveWurmM32"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="GlaiveWurmE32">
+        <ValidatorArray value="HaveHotSViciousGlaive"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ExcludeArray Value="Outer"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="GlaiveWurmM42"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="GlaiveWurmE42">
+        <EditorCategories value="Race:Zerg"/>
+        <ExcludeArray Value="Outer"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="GlaiveWurmM52"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="GlaiveWurmE52">
+        <EditorCategories value="Race:Zerg"/>
+        <ExcludeArray Value="Outer"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="GlaiveWurmM62"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectLaunchMissile id="GlaiveWurmM22">
+        <ValidatorArray value="noMarkers"/>
+        <ValidatorArray value="TargetNotChangeling"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="GlaiveWurmS22"/>
+        <AmmoUnit value="GlaiveWurmM2Weapon"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="GlaiveWurmM32">
+        <ValidatorArray value="noMarkers"/>
+        <ValidatorArray value="TargetNotChangeling"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="GlaiveWurmS32"/>
+        <AmmoUnit value="GlaiveWurmM3Weapon"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="GlaiveWurmM42">
+        <ValidatorArray value="noMarkers"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="GlaiveWurmS42"/>
+        <AmmoUnit value="GlaiveWurmM4Weapon"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="GlaiveWurmM52">
+        <ValidatorArray value="noMarkers"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="GlaiveWurmS52"/>
+        <AmmoUnit value="GlaiveWurmM5Weapon"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="GlaiveWurmM62">
+        <ValidatorArray value="noMarkers"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="GlaiveWurmU62"/>
+        <AmmoUnit value="GlaiveWurmM6Weapon"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="GlaiveWurmS1">
+        <EffectArray index="0" value="GlaiveWurmU13"/>
+    </CEffectSet>
+    <CEffectSet id="GlaiveWurmS12">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="GlaiveWurmU12"/>
+        <EffectArray value="GlaiveWurmE12"/>
+        <EffectArray value="MutaliskDoubleDamageRB2"/>
+        <EffectArray value="MutaliskRapidRegenRB2"/>
+        <EffectArray value="MutaliskOutOfCombat2RB2"/>
+        <EffectArray value="MutaliskExplosiveGlaive2"/>
+    </CEffectSet>
+    <CEffectSet id="GlaiveWurmS22">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="GlaiveWurmU22"/>
+        <EffectArray value="GlaiveWurmE22"/>
+    </CEffectSet>
+    <CEffectSet id="GlaiveWurmS32">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="GlaiveWurmU32"/>
+        <EffectArray value="GlaiveWurmE32"/>
+    </CEffectSet>
+    <CEffectSet id="GlaiveWurmS42">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="GlaiveWurmU42"/>
+        <EffectArray value="GlaiveWurmE42"/>
+    </CEffectSet>
+    <CEffectSet id="GlaiveWurmS52">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="GlaiveWurmU52"/>
+        <EffectArray value="GlaiveWurmE52"/>
+    </CEffectSet>
+    <CEffectDamage id="GlaiveWurmU1"/>
+    <CEffectDamage id="GlaiveWurmU12" parent="GlaiveWurmU1">
+        <Name value="Effect/Name/GlaiveWurmU12"/>
+        <Amount value="20"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU13" parent="GlaiveWurmU1">
+        <Name value="Effect/Name/GlaiveWurmU13"/>
+        <Amount value="20"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU22" parent="GlaiveWurmU2">
+        <Name value="Effect/Name/GlaiveWurmU22"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU3">
+        <Amount value="6"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU32" parent="GlaiveWurmU3">
+        <Name value="Effect/Name/GlaiveWurmU32"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU4">
+        <Amount value="5"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU42" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Zerg"/>
+        <Visibility value="Visible"/>
+        <Amount value="5"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU5">
+        <Amount value="5"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU52" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Zerg"/>
+        <Visibility value="Visible"/>
+        <Amount value="5"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU6">
+        <Amount value="5"/>
+    </CEffectDamage>
+    <CEffectDamage id="GlaiveWurmU62" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Zerg"/>
+        <Visibility value="Visible"/>
+        <Amount value="5"/>
+    </CEffectDamage>
+    <CEffectDamage id="GuardianMPWeaponDamage"/>
+    <CEffectDamage id="GunTowerBDamage">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="GunTowerCDamage">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="GunTowerDDamage">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="GunTowerDamage">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="HotSBanelingExplodeLargeDirect">
+        <AttributeBonus index="Structure" value="80"/>
+    </CEffectDamage>
+    <CEffectDamage id="HotSBanelingExplodeLargeSearchDamage">
+        <AttributeBonus index="Structure" value="55"/>
+    </CEffectDamage>
+    <CEffectDamage id="HotSRaptorClawsDamage">
+        <Amount value="8"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="HyperionCreatePersistent">
+        <PeriodCount value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="HyperionKorhalAirDamage">
+        <Amount value="12"/>
+    </CEffectDamage>
+    <CEffectDamage id="HyperionKorhalGroundDamage">
+        <Amount value="12"/>
+    </CEffectDamage>
+    <CEffectDamage id="InfestedStukovDamage">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="KaiserWormScourgeMissileDamage">
+        <Amount value="15"/>
+    </CEffectDamage>
+    <CEffectDamage id="KerriganVoidApocalypseDamage">
+        <Amount value="200"/>
+    </CEffectDamage>
+    <CEffectDamage id="KorhalPalaceGateDamage">
+        <Amount value="100"/>
+    </CEffectDamage>
+    <CEffectDamage id="LiberatorAGDamage">
+        <Amount value="45"/>
+        <!--AttributeBonus index="Light" value="15"/-->
+    </CEffectDamage>
+    <CEffectApplyBehavior id="MothershipCoreApplyPurifyAB">
+        <ValidatorArray index="1" value="NotNexus"/>
+        <ValidatorArray value="IsNotConstructing"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="MothershipCoreWeaponDamage">
+        <Amount value="30"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="MothershipCoreWeaponLM"/>
+    <CEffectDamage id="MutatorLaserDrillFakeDamage">
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectDamage id="NukeDamage">
+        <AttributeBonus index="Structure" value="1000"/>
+        <AttributeBonus index="Heroic" value="2000"/>
+        <AreaArray index="1" Radius="6" Fraction="1"/>
+        <AreaArray index="2" Radius="8" Fraction="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="Obliterate">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="OdinNukeDamage">
+        <Amount value="100"/>
+        <AreaArray index="1" Radius="8" Fraction="0.5"/>
+        <AreaArray index="2" Radius="8" Fraction="0.25"/>
+        <AttributeBonus index="Structure" value="300"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="OdinNukePersistent">
+        <ValidatorArray index="0" value="HasVision"/>
+        <ValidatorArray value="OdinRepairing"/>
+        <Flags index="Channeled" value="1"/>
+        <InitialDelay value="8.75"/>
+        <ExpireDelay value="15"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="ParticleDisruptorsU">
+        <Amount value="23"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PlagueApply">
+        <ValidatorArray index="0" value="NotBurrowed"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Behavior value="Plague"/>
+        <KillHallucination value="1"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="PlagueSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;RawResource,HarvestableResource,Missile,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3.3332" Effect="PlagueApply"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="LiberatorMissileDamage">
+        <Amount value="9"/>
+    </CEffectDamage>
+    <CEffectDamage id="PlagueDamage">
+        <EditorCategories value="Race:Zerg"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Flags index="Live" value="1"/>
+        <Flags index="NoVitalAbsorbShields" value="1"/>
+        <Amount value="11.8"/>
+        <KillHallucination value="1"/>
+        <MaxCount value="0"/>
+    </CEffectDamage>
+    <CEffectRemoveBehavior id="MutaliskDoubleDamageRB2">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="MutaliskDoubleDamage"/>
+    </CEffectRemoveBehavior>
+    <CEffectDamage id="MutaliskExplosiveGlaive2" parent="DU_WEAP_MISSILE">
+        <ValidatorArray value="HaveHotSExplosiveGlaive"/>
+        <EditorCategories value="Race:Zerg"/>
+        <AttributeBonus index="Armored" value="9"/>
+        <Visibility value="Visible"/>
+        <Amount value="9"/>
+    </CEffectDamage>
+    <CEffectRemoveBehavior id="MutaliskOutOfCombat2RB2">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="MutaliskOutOfCombat2"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="MutaliskRapidRegenRB2">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="MutaliskRapidRegen"/>
+    </CEffectRemoveBehavior>
+    <CEffectDamage id="PrimalHydraliskMelee">
+        <Amount value="25"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrimalRoachDamage">
+        <Amount value="25"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrimalRoachMelee">
+        <Amount value="25"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="PrimalSunkenColony2">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="PrimalSunkenColonySearch2"/>
+        <AmmoUnit value="PrimalSunkenColonyWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectApplyBehavior id="PrimalSunkenColonyApplyBehavior2">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="PrimalSunkenColonyBenign"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="PrimalSunkenColonyDamage2">
+        <EditorCategories value="Race:Zerg"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <Amount value="120"/>
+    </CEffectDamage>
+    <CEffectSet id="PrimalSunkenColonyInitialSet2">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="PrimalSunkenColonyApplyBehavior2"/>
+        <EffectArray value="PrimalSunkenColony2"/>
+    </CEffectSet>
+    <CEffectEnumArea id="PrimalSunkenColonySearch2">
+        <ValidatorArray value="CasterNotDead"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="Ground;Self,Player,Neutral,Stasis,Dead,Invulnerable"/>
+        <AreaArray Radius="0.5" Effect="PrimalSunkenColonyDamage2"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="PsionicShockwaveCreatePersistent">
+        <DetectFilters value="-;Player,Ally"/>
+        <RadarFilters value="-;Player,Ally"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="PsionicShockwaveSearchArea">
+        <AreaArray index="0" Radius="2" RadiusBonus="0.5" Effect="PsionicShockwaveSearchSet"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="PsionicShockwaveSpellDamage">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectModifyUnit id="QueenBurstHeal">
+        <VitalArray index="Life" Change="10"/>
+    </CEffectModifyUnit>
+    <CEffectDamage id="RavasaurDamage"/>
+    <CEffectDamage id="RaynorSnipeDamage">
+        <Amount value="100"/>
+    </CEffectDamage>
+    <CEffectCreateHealer id="Repair">
+        <DrainResourceCostFactor index="Vespene" value="0"/>
+    </CEffectCreateHealer>
+    <CEffectTeleport id="SJHyperionBlink">
+        <PlacementArc value="139.9987"/>
+        <PlacementRange value="500"/>
+        <Range value="500"/>
+    </CEffectTeleport>
+    <CEffectDamage id="SJHyperionDamage">
+        <Amount value="12"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="SJPirateLightningStormSearch">
+        <AreaArray index="0" Radius="20" RadiusBonus="0.5" Effect="SJPirateLightningStormSet"/>
+    </CEffectEnumArea>
+    <CEffectSet id="SOASuperShieldApply">
+        <ValidatorArray index="0" removed="1"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="SOASuperShieldApplyBehavior"/>
+    <CEffectEnumArea id="SOASuperShieldSearch">
+        <SearchFilters value="Visible;Self,Neutral,Enemy,Missile,Item,Stasis,Dead,Hidden"/>
+        <AreaArray index="0" Radius="500" RadiusBonus="500" Effect="SOASuperShieldApply"/>
+    </CEffectEnumArea>
+    <CEffectCreateHealer id="SpaceStationNanoRepair">
+        <!--DrainVital value="Energy"/>
+        <DrainVitalCostFactor value="0.33"/-->
+        <RechargeVitalRate value="9"/>
+        <DrainVital value="Energy"/>
+    </CEffectCreateHealer>
+    <CEffectDamage id="SpartanCompanyG">
+        <Amount value="55"/>
+    </CEffectDamage>
+    <CEffectUseCalldown id="SpectreNuke">
+        <CalldownEffect value="SpectreNukeDetonate"/>
+    </CEffectUseCalldown>
+    <CEffectLaunchMissile id="SporeCrawler2">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="SporeCrawlerU2"/>
+        <AmmoUnit value="SporeCrawlerWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="SporeCrawlerU2" parent="SporeCrawlerU">
+        <Name value="Effect/Name/SporeCrawlerU2"/>
+    </CEffectDamage>
+    <CEffectDamage id="SwannMelee">
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="TitanMechRepel">
+        <DetectFilters value="-;Ally"/>
+        <RadarFilters value="-;Ally"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="TitanMechRepelDamage">
+        <RevealerParams DetectFilters="-;Player,Ally" RadarFilters="-;Player,Ally"/>
+        <SearchFilters value="-;Player,Ally"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="TitanMechRepelSearchArea">
+        <SearchFilters value="-;Player,Ally,Structure,Stasis,Hidden,Invulnerable"/>
+        <RevealerParams DetectFilters="-;Player,Ally" RadarFilters="-;Player,Ally"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="TychusCommandoAttackDamage">
+        <Amount value="10"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="ZHybridPsionicShockwaveCreatePersistent">
+        <DetectFilters value="-;Player,Ally"/>
+        <RadarFilters value="-;Player,Ally"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="ZHybridPsionicShockwaveSearchArea">
+        <SearchFilters value="-;Player,Ally,Structure,Buried,Stasis,Hidden,Invulnerable,Unstoppable"/>
+        <RevealerParams DetectFilters="-;Player,Ally" RadarFilters="-;Player,Ally"/>
+        <AreaArray index="0" Radius="0" RadiusBonus="0.2" Effect="ZHybridPsionicShockwaveSearchSet"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="ZHybridPsionicShockwaveSpellDamage">
+        <RevealerParams DetectFilters="-;Player,Ally" RadarFilters="-;Player,Ally"/>
+    </CEffectDamage>
+    <CEffectDamage id="ZergBuildingNotOnCreepDamage2">
+        <EditorCategories value="Race:Zerg"/>
+        <Flags index="NoKillCredit" value="1"/>
+        <Amount value="1"/>
+    </CEffectDamage>
+</Catalog>
