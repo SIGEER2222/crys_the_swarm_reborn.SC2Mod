@@ -43,3 +43,19 @@ void libD0E57A9C_gf_InitializeKerriganEvent (int lp_player, unit lp_kerrigan) {
 void libD0E57A9C_gf_KerriganCreepEntireMap (int lp_player) {
     libNtve_gf_CreateUnitsWithDefaultFacing(lp_player, "CreepTumorBurrowed", c_unitCreateIgnorePlacement, 1, PlayerStartLocation(lp_player));
 }
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libD0E57A9C_InitLib_completed = false;
+
+void libD0E57A9C_InitLib () {
+    if (libD0E57A9C_InitLib_completed) {
+        return;
+    }
+
+    libD0E57A9C_InitLib_completed = true;
+
+    libD0E57A9C_InitLibraries();
+    libD0E57A9C_InitVariables();
+}

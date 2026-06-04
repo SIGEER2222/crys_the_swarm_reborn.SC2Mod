@@ -1965,10 +1965,20 @@ bool gt_OrbitalScans_Func (bool testConds, bool runActions) {
     unitgroup auto16139802_g;
     int auto16139802_u;
     unit auto16139802_var;
+    unit lv_damagedUnit;
+    unit lv_damageSourceUnit;
+    point lv_damagedPoint;
+    point lv_damageSourcePoint;
+
+    lv_damagedUnit = EventUnit();
+    lv_damageSourceUnit = EventUnitDamageSourceUnit();
 
     // Conditions
+    if (lv_damagedUnit == null) {
+        return false;
+    }
     if (testConds) {
-        if (!((UnitGetOwner(EventUnit()) == gv_pLAYER02_TOSH))) {
+        if (!((UnitGetOwner(lv_damagedUnit) == gv_pLAYER02_TOSH))) {
             return false;
         }
     }
@@ -1979,14 +1989,19 @@ bool gt_OrbitalScans_Func (bool testConds, bool runActions) {
     }
 
     Wait(1.0, c_timeGame);
-    if ((UnitGroupCount(UnitGroupAlliance(gv_pLAYER02_TOSH, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(EventUnit()), 15.0), UnitFilter((1 << c_targetFilterCloaked), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) > 0)) {
+    if ((UnitIsValid(lv_damagedUnit) == false) || (UnitIsAlive(lv_damagedUnit) == false) || (lv_damageSourceUnit == null) || (UnitIsValid(lv_damageSourceUnit) == false)) {
+        return true;
+    }
+    lv_damagedPoint = UnitGetPosition(lv_damagedUnit);
+    lv_damageSourcePoint = UnitGetPosition(lv_damageSourceUnit);
+    if ((UnitGroupCount(UnitGroupAlliance(gv_pLAYER02_TOSH, c_unitAllianceEnemy, RegionCircle(lv_damagedPoint, 15.0), UnitFilter((1 << c_targetFilterCloaked), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) > 0)) {
         auto16139802_g = UnitGroup("OrbitalCommand", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
         auto16139802_u = UnitGroupCount(auto16139802_g, c_unitCountAll);
         for (;; auto16139802_u -= 1) {
             auto16139802_var = UnitGroupUnitFromEnd(auto16139802_g, auto16139802_u);
             if (auto16139802_var == null) { break; }
-            if ((UnitGetPropertyFixed(auto16139802_var, c_unitPropEnergy, c_unitPropCurrent) >= 50.0) && (libNtve_gf_UnitInRegion(EventUnitDamageSourceUnit(), RegionCircle(UnitGetPosition(auto16139802_var), 50.0)) == true)) {
-                UnitIssueOrder(auto16139802_var, OrderTargetingPoint(AbilityCommand("ScannerSweep", 0), UnitGetPosition(EventUnitDamageSourceUnit())), c_orderQueueReplace);
+            if ((UnitGetPropertyFixed(auto16139802_var, c_unitPropEnergy, c_unitPropCurrent) >= 50.0) && (libNtve_gf_UnitInRegion(lv_damageSourceUnit, RegionCircle(UnitGetPosition(auto16139802_var), 50.0)) == true)) {
+                UnitIssueOrder(auto16139802_var, OrderTargetingPoint(AbilityCommand("ScannerSweep", 0), lv_damageSourcePoint), c_orderQueueReplace);
                 if ((gv_scanPerformed == false)) {
                     gv_scanPerformed = true;
                     TriggerQueueEnter();
