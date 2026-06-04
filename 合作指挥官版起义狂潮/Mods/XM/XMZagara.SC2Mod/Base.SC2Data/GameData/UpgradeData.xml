@@ -516,9 +516,12 @@
     <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
     <AffectedUnitArray value="HotSSplitterlingMedium" />
     <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
+    <AffectedUnitArray value="HotSSplitterlingBigZagara" />
     <EffectArray Reference="Unit,HotSSplitterlingBig,Speed" Value="0.453100" />
     <EffectArray Reference="Unit,HotSSplitterlingMedium,Speed" Value="0.453100" />
     <EffectArray Reference="Unit,Baneling,Speed" Value="0.453100" />
+    <EffectArray Reference="Unit,HotSSplitterlingBigZagara,Speed" Value="0.453100" />
+    <EffectArray Reference="Unit,BanelingZagara,Speed" Value="0.453100" />
     <ScoreAmount value="0" />
   </CUpgrade>
   <CUpgrade id="CerberusMines">
@@ -1094,12 +1097,17 @@
     <EffectArray Reference="Unit,ZagaraCorruptor,LifeRegenRate" Value="3.000000" />
     <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationBurrowed,CostResource[Minerals]" Value="45" />
     <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationBurrowed,CostResource[Vespene]" Value="17" />
+    <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationZagara,CostResource[Minerals]" Value="45" />
+    <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationZagara,CostResource[Vespene]" Value="17" />
     <EffectArray Reference="Unit,InfestedAbomination,LifeMax" Value="138" />
     <EffectArray Reference="Unit,InfestedAbomination,LifeStart" Value="138" />
     <EffectArray Reference="Unit,InfestedAbomination,LifeRegenRate" Value="3.000000" />
     <EffectArray Reference="Unit,InfestedAbominationBurrowed,LifeMax" Value="138" />
     <EffectArray Reference="Unit,InfestedAbominationBurrowed,LifeStart" Value="138" />
     <EffectArray Reference="Unit,InfestedAbominationBurrowed,LifeRegenRate" Value="3.000000" />
+    <EffectArray Reference="Unit,InfestedAbominationZagara,LifeMax" Value="138" />
+    <EffectArray Reference="Unit,InfestedAbominationZagara,LifeStart" Value="138" />
+    <EffectArray Reference="Unit,InfestedAbominationZagara,LifeRegenRate" Value="3.000000" />
   </CUpgrade>
   <CUpgrade id="CommanderPrestigeZagaraMaxSupply" parent="CommanderPrestige">
     <EffectArray Operation="Set" Reference="Abil,LarvaTrain,InfoArray[Train2].Unit[2]" Value="Zergling" />
@@ -1131,6 +1139,10 @@
     <EffectArray Reference="Unit,ZagaraCorruptor,CostResource[Vespene]" Value="23" />
     <EffectArray Reference="Unit,Scourge,CostResource[Minerals]" Value="3" />
     <EffectArray Reference="Unit,Scourge,CostResource[Vespene]" Value="9" />
+    <EffectArray Reference="Unit,InfestedAbominationZagara,CostResource[Minerals]" Value="45" />
+    <EffectArray Reference="Unit,InfestedAbominationZagara,CostResource[Vespene]" Value="17" />
+    <EffectArray Reference="Unit,ScourgeZagara,CostResource[Minerals]" Value="3" />
+    <EffectArray Reference="Unit,ScourgeZagara,CostResource[Vespene]" Value="9" />
     <EffectArray Reference="Abil,LarvaTrainSwarmling,InfoArray[Train1].Resource[Minerals]" Value="11" />
     <EffectArray Reference="Abil,LarvaTrain,InfoArray[Train2].Resource[Minerals]" Value="7" />
   </CUpgrade>
@@ -4843,6 +4855,12 @@
     <AffectedUnitArray value="HunterKillerBurrowed" />
     <AffectedUnitArray value="Roach" />
     <AffectedUnitArray value="RoachBurrowed" />
+    <AffectedUnitArray value="BanelingZagara" />
+    <AffectedUnitArray value="HotSSplitterlingBigZagara" />
+    <AffectedUnitArray value="InfestedAbominationZagara" />
+    <AffectedUnitArray value="HunterKillerZagara" />
+    <AffectedUnitArray value="HunterKillerBurrowedZagara" />
+    <AffectedUnitArray value="RoachZagara" />
     <AffectedUnitArray value="QueenCoop" />
     <AffectedUnitArray value="QueenCoopBurrowed" />
     <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level1.dds" />
@@ -4914,6 +4932,12 @@
     <AffectedUnitArray value="HunterKillerBurrowed" />
     <AffectedUnitArray value="Roach" />
     <AffectedUnitArray value="RoachBurrowed" />
+    <AffectedUnitArray value="BanelingZagara" />
+    <AffectedUnitArray value="HotSSplitterlingBigZagara" />
+    <AffectedUnitArray value="InfestedAbominationZagara" />
+    <AffectedUnitArray value="HunterKillerZagara" />
+    <AffectedUnitArray value="HunterKillerBurrowedZagara" />
+    <AffectedUnitArray value="RoachZagara" />
     <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
     <LeaderAlias value="ZagaraGroundAttacksLevel1" />
     <LeaderLevel value="2" />
@@ -4984,6 +5008,12 @@
     <AffectedUnitArray value="HunterKillerBurrowed" />
     <AffectedUnitArray value="Roach" />
     <AffectedUnitArray value="RoachBurrowed" />
+    <AffectedUnitArray value="BanelingZagara" />
+    <AffectedUnitArray value="HotSSplitterlingBigZagara" />
+    <AffectedUnitArray value="InfestedAbominationZagara" />
+    <AffectedUnitArray value="HunterKillerZagara" />
+    <AffectedUnitArray value="HunterKillerBurrowedZagara" />
+    <AffectedUnitArray value="RoachZagara" />
     <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
     <LeaderAlias value="ZagaraGroundAttacksLevel1" />
     <LeaderLevel value="3" />
@@ -5159,6 +5189,10 @@
     <EffectArray Operation="Subtract" Reference="Unit,BanelingBurrowed,CostResource[Vespene]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBig,CostResource[Vespene]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigBurrowed,CostResource[Vespene]" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Unit,BanelingZagara,CostResource[Minerals]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigZagara,CostResource[Minerals]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,BanelingZagara,CostResource[Vespene]" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigZagara,CostResource[Vespene]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSHunter,CostResource[Vespene]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSHunterBurrowed,CostResource[Vespene]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,Hydralisk,CostResource[Minerals]" Value="10" />
@@ -5185,6 +5219,8 @@
     <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Vespene]" Value="3" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Vespene]" Value="3" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Vespene]" Value="3" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachZagara,CostResource[Minerals]" Value="8" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachZagara,CostResource[Vespene]" Value="3" />
     <EffectArray Operation="Subtract" Reference="Unit,Ultralisk,CostResource[Minerals]" Value="30" />
     <EffectArray Operation="Subtract" Reference="Unit,UltraliskBurrowed,CostResource[Minerals]" Value="30" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasque,CostResource[Minerals]" Value="30" />
@@ -5229,6 +5265,8 @@
     <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationBurrowed,CostResource[Minerals]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,InfestedAbomination,CostResource[Vespene]" Value="8" />
     <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationBurrowed,CostResource[Vespene]" Value="8" />
+    <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationZagara,CostResource[Minerals]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationZagara,CostResource[Vespene]" Value="8" />
     <EffectArray Operation="Subtract" Reference="Unit,Overseer,CostResource[Minerals]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,Overseer,CostResource[Vespene]" Value="6" />
     <EffectArray Operation="Subtract" Reference="Unit,OverseerSiegeMode,CostResource[Minerals]" Value="5" />

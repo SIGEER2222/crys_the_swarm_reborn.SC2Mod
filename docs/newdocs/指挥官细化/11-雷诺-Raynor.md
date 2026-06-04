@@ -40,13 +40,15 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 
 2026-06-04 当前 Mod 实现状态：官方 ID 仍按 `Marine / Medic / Vulture / Firebat / SCV / Viking / Banshee / Marauder / Battlecruiser / SiegeTank` 记录，但 `XMFinal` 的 `CommanderRuntimeRoster` 和测试台创建已切到 `MarineRaynor`、`MedicRaynor`、`VultureRaynor`、`FirebatRaynor`、`SCVRaynor`、`VikingRaynor`、`BansheeRaynor`、`MarauderRaynor`、`BattlecruiserRaynor`、`SiegeTankRaynor`。`XMRaynor` 还补了 `BarracksTrainRaynor`、`FactoryTrainRaynor`、`StarportTrainRaynor`、`TerranBuildRaynor` 的私有输出，SCV raw-only 前置建筑也用 `RefineryRaynor / EngineeringBayRaynor / FactoryRaynor / StarportRaynor / ArmoryRaynor / FusionCoreRaynor / SensorTowerRaynor` 这类薄壳承载；不要再把当前 Mod 的 Raynor 实现回退到通用 Terran 单位。
 
+2026-06-04 形态闭包补充：`VikingRaynor` 和 `SiegeTankRaynor` 的形态切换已私有化。当前链路是 `AssaultModeRaynor -> VikingAssaultRaynor`、`FighterModeRaynor -> VikingRaynor`、`SiegeModeRaynor -> SiegeTankSiegedRaynor`、`UnsiegeRaynor -> SiegeTankRaynor`；`XMFinal CommanderRuntimeRoster` 和测试台 roster 已把 `VikingAssaultRaynor`、`SiegeTankSiegedRaynor` 纳入 Raynor runtime。对应机械/空军成本、攻速、护甲/生命和攻城模式升级已补到私有形态；不要再让维京突击模式或攻城坦克攻城模式落回共享 `VikingAssault` / `SiegeTankSieged`。
+
 ## 2026-06-04 闭包复核补充
 
 2026-06-03 的人族闭包已经把 Raynor 的有效链路闭到 official JSON + raw closure 两层，这里补一版便于后续实现直接引用的结论：
 
 - 官方有效名册只有 `10` 个兵种、`6` 个建筑、`0` 个英雄；`Ghost`、`Refinery`、`EngineeringBay`、`Factory`、`Starport`、`Armory`、`FusionCore`、`SensorTower`、`PsiDisruptor` 都只能按 raw-only 或排除项看待。
 - `SCV` 的正式建造面板只保留 `CommandCenter`、`SupplyDepot`、`Barracks`、`MissileTurret`、`Bunker` 这条官方建筑链；其余科技建筑只作为前置，不应反推成 Raynor 的 official buildings.json 名册。
-- 兵种主链闭合为 `Marine / Medic / Marauder / Firebat / Vulture / Siege Tank / Viking / Banshee / Battlecruiser / SCV`，其中 `Battlecruiser` 依赖 `FusionCore`，`Siege Tank` 保留 `SiegeMode`，`Banshee` 保留隐形与后燃锁定，`SCV` 保留 `AdvancedConstructionAuto` / `VespeneDrone` / `Scan` / `SupplyDrop` / `OrbitalLiftOff`。
+- 兵种主链闭合为 `Marine / Medic / Marauder / Firebat / Vulture / Siege Tank / Viking / Banshee / Battlecruiser / SCV`，其中 `Battlecruiser` 依赖 `FusionCore`，`Siege Tank` 保留 `SiegeModeRaynor -> SiegeTankSiegedRaynor` 私有形态，`Viking` 保留 `AssaultModeRaynor -> VikingAssaultRaynor` 私有形态，`Banshee` 保留隐形与后燃锁定，`SCV` 保留 `AdvancedConstructionAuto` / `VespeneDrone` / `Scan` / `SupplyDrop` / `OrbitalLiftOff`。
 - 共享卡里的 `Nova`、`Swann`、`Horner`、`Mengsk` 命中都只是污染或排除项，不应反推成 Raynor 的有效单位或建筑。
 
 ## 15 级解锁摘要

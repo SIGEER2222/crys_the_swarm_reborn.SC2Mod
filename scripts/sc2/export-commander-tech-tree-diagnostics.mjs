@@ -578,11 +578,13 @@ function buildCommanderReport(commanderId, allData, catalogIndex) {
       localization,
       effectDepth,
     });
+    const producedUnits = collectProducedUnits([], [ability], entryNameMap);
     return {
       ability_id: abilityId,
       command_index: commandIndex,
       source_unit_id: item.source_unit_id || '',
       ability,
+      produced_units: producedUnits,
     };
   });
 
@@ -779,7 +781,7 @@ function summarizeAbilityCommand({
   const catalogTargets = matchedInfo
     .flatMap((item) => [
       ...item.units.map((unitId) => ({
-        type: item.source_ability_tag === 'CAbilMerge' ? 'merge_unit' : 'unit',
+        type: catalogTargetTypeForInfoEntry(item),
         id: unitId,
       })),
       ...item.upgrades.map((upgradeId) => ({ type: 'upgrade', id: upgradeId })),
@@ -830,6 +832,16 @@ function summarizeAbilityCommand({
     effect_refs: effectSummaries,
     unresolved_catalog: effectiveAbilityId ? definitions.length === 0 : true,
   };
+}
+
+function catalogTargetTypeForInfoEntry(infoEntry) {
+  if (infoEntry.source_ability_tag === 'CAbilMerge') {
+    return 'merge_unit';
+  }
+  if (infoEntry.source_ability_tag === 'CAbilMorph') {
+    return 'morph_unit';
+  }
+  return 'unit';
 }
 
 function matchAbilityInfoEntries(infoEntries, commandIndex) {
@@ -1276,6 +1288,7 @@ function parseInfoArrays(snippet) {
 function parseAbilityInfoEntries(definition) {
   const infoEntries = parseInfoArrays(definition.snippet).map((entry) => ({
     ...entry,
+    match_any_command: entry.match_any_command || (definition.tag === 'CAbilMorph' && !entry.index),
     source_ability_tag: definition.tag || '',
   }));
 
@@ -2393,11 +2406,14 @@ function renderTopPanel(lines, topPanel) {
     lines.push('');
     return;
   }
-  lines.push('| 技能名 / Skill Name | Ability/Cmd | 类型 / Type | 效果引用 / Effect References | Catalog 来源 / Catalog Sources |');
-  lines.push('| --- | --- | --- | --- | --- |');
+  lines.push('| 技能名 / Skill Name | Ability/Cmd | 类型 / Type | 可创建单位 / Created Units | 效果引用 / Effect References | Catalog 来源 / Catalog Sources |');
+  lines.push('| --- | --- | --- | --- | --- | --- |');
   for (const item of topPanel) {
     const ability = item.ability;
-    lines.push(`| ${formatEntityLabel(ability.button_name, ability.ability_id || ability.face || ability.abil_cmd)} | \`${ability.abil_cmd || ability.ability_id || '-'}\` | ${formatCatalogTypes(ability)} | ${formatEffects(ability.effect_refs)} | ${formatSources(ability.catalog_sources)} |`);
+    const produced = item.produced_units?.length
+      ? item.produced_units.map(formatProducedUnit).join('、')
+      : '-';
+    lines.push(`| ${formatEntityLabel(ability.button_name, ability.ability_id || ability.face || ability.abil_cmd)} | \`${ability.abil_cmd || ability.ability_id || '-'}\` | ${formatCatalogTypes(ability)} | ${produced} | ${formatEffects(ability.effect_refs)} | ${formatSources(ability.catalog_sources)} |`);
   }
   lines.push('');
 }

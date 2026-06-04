@@ -25693,10 +25693,34 @@
   <CUnit id="SiegeTankRaynor" parent="SiegeTank">
     <Race value="Terr" />
     <Mob value="Campaign" />
+    <AbilArray index="3" Link="SiegeModeRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="SiegeMode" Type="AbilCmd" AbilCmd="SiegeModeRaynor,Execute" Row="2" Column="0" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="SiegeTankSiegedRaynor" parent="SiegeTankSieged">
+    <Race value="Terr" />
+    <Mob value="Campaign" />
+    <AbilArray index="2" Link="UnsiegeRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Unsiege" Type="AbilCmd" AbilCmd="UnsiegeRaynor,Execute" Row="2" Column="1" />
+    </CardLayouts>
   </CUnit>
   <CUnit id="VikingRaynor" parent="VikingFighter">
     <Race value="Terr" />
     <Mob value="Campaign" />
+    <AbilArray index="3" Link="AssaultModeRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="AssaultMode" Type="AbilCmd" AbilCmd="AssaultModeRaynor,Execute" Row="2" Column="1" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="VikingAssaultRaynor" parent="VikingAssault">
+    <Race value="Terr" />
+    <Mob value="Campaign" />
+    <AbilArray index="3" Link="FighterModeRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="FighterMode" Type="AbilCmd" AbilCmd="FighterModeRaynor,Execute" Row="2" Column="0" />
+    </CardLayouts>
   </CUnit>
   <CUnit id="BansheeRaynor" parent="Banshee">
     <Race value="Terr" />

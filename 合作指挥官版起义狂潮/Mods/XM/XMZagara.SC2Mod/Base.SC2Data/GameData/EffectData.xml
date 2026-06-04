@@ -2435,7 +2435,7 @@
   <CEffectCreateUnit id="ZagaraVoidCoopAberrationBanelingIncubationCU">
     <EditorCategories value="Race:Zerg" />
     <WhichLocation Value="SourcePoint" />
-    <SpawnUnit value="Baneling" />
+    <SpawnUnit value="BanelingZagara" />
     <SpawnCount value="2" />
     <SpawnEffect value="ZagaraVoidCoopAberrationBanelingIncubationBirthHeightBirthSet" />
     <SpawnRange value="1" />
@@ -2454,7 +2454,7 @@
   <CEffectCreateUnit id="ZagaraVoidCoopAberrationSplitterlingIncubationCU">
     <EditorCategories value="Race:Zerg" />
     <WhichLocation Value="SourcePoint" />
-    <SpawnUnit value="HotSSplitterlingBig" />
+    <SpawnUnit value="HotSSplitterlingBigZagara" />
     <SpawnCount value="2" />
     <SpawnEffect value="ZagaraVoidCoopAberrationBanelingIncubationBirthHeightBirthSet" />
     <SpawnRange value="1" />
@@ -2537,7 +2537,7 @@
   <CEffectCreateUnit id="ZagaraVoidCoopCorruptorScourgeIncubationCU">
     <EditorCategories value="Race:Zerg" />
     <WhichLocation Value="SourcePoint" />
-    <SpawnUnit value="Scourge" />
+    <SpawnUnit value="ScourgeZagara" />
     <SpawnCount value="2" />
     <SpawnEffect value="ZagaraVoidCoopAberrationBanelingIncubationBirthHeightBirthSet" />
     <SpawnRange value="1" />
@@ -2559,10 +2559,47 @@
     <EditorCategories value="Race:Zerg" />
     <Behavior value="ZagaraVoidCoopEnvenomedSpines" />
   </CEffectApplyBehavior>
+  <CEffectIssueOrder id="ZagaraHunterKillerUnburrow">
+    <EditorCategories value="Race:Zerg" />
+    <Abil value="BurrowHunterKillerZagaraUp" />
+    <CmdFlags index="Queued" value="1" />
+  </CEffectIssueOrder>
+  <CEffectSet id="ZagaraVoidCoopSpawnHunterKillersCreateSet">
+    <EffectArray value="ZagaraHunterKillerUnburrow" />
+    <EffectArray value="ZagaraVoidCoopSpawnHunterKillersTimedLifeAB" />
+  </CEffectSet>
+  <CEffectCreateUnit id="ZagaraVoidCoopSpawnHunterKillersCU">
+    <EditorCategories value="Race:Zerg" />
+    <WhichLocation Value="TargetPoint" />
+    <SpawnEffect value="ZagaraVoidCoopSpawnHunterKillersCreateSet" />
+    <SpawnUnit value="HunterKillerBurrowedZagara" />
+    <SpawnCount value="4" />
+    <SpawnRange value="5" />
+  </CEffectCreateUnit>
+  <CEffectSet id="ZagaraVoidCoopSpawnHunterKillersInitialSet">
+    <EffectArray value="ZagaraVoidCoopSpawnHunterKillersCU" />
+    <TargetLocationType value="Point" />
+    <ValidatorArray value="Pathable" />
+  </CEffectSet>
+  <CEffectApplyBehavior id="ZagaraVoidCoopSpawnHunterKillersTimedLifeAB">
+    <EditorCategories value="Race:Protoss" />
+    <Behavior value="ZagaraVoidCoopSpawnHunterKillersTimedLife" />
+  </CEffectApplyBehavior>
+  <CEffectCreatePersistent id="ZagaraVoidCoopInfestedPodsCP">
+    <EditorCategories value="Race:Protoss" />
+    <PeriodCount value="1" />
+    <PeriodicPeriodArray value="1.35" />
+    <PeriodicEffectArray value="ZagaraVoidCoopInfestedPodsImpactSet" />
+    <TimeScaleSource Value="Caster" />
+  </CEffectCreatePersistent>
+  <CEffectSet id="ZagaraVoidCoopInfestedPodsImpactSet">
+    <EffectArray value="ZagaraVoidCoopInfestedPodsImpactSearch" />
+    <EffectArray value="ZagaraVoidCoopInfestedPodsImpactCU" />
+  </CEffectSet>
   <CEffectCreateUnit id="ZagaraVoidCoopInfestedPodsImpactCU">
     <SpawnCount value="1" />
     <CreateFlags index="UseFood" value="0" />
-    <SpawnUnit value="Roach" />
+    <SpawnUnit value="RoachZagara" />
     <SpawnEffect value="ZagaraVoidCoopInfestedPodsImpactCUEffectSet" />
   </CEffectCreateUnit>
   <CEffectSet id="ZagaraVoidCoopInfestedPodsImpactCUEffectSet">
