@@ -36,6 +36,8 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 
 2026-06-03 人族闭包已补严生产者归属过滤；实现时以 `docs/newdocs/指挥官细化/人族闭包/terran-commander-closure.json` 的 accepted 链路为准。`HH*`、`BlackOps`、`KelMorian*`、`SwannLevel*` 等命中只能作为共享污染或排除项，不能直接接入 Raynor。
 
+2026-06-04 复核：在当前 `XMRaynor` 模块里没有命中 `SCVNova`；本地出现的 Nova 命名主要是 `GhostAcademyNova`、`Train*Nova` 这类共享按钮/模型壳，不应把它们误当成雷诺的独立兵种或建筑。雷诺自身的主链仍然由 `CoopCasterRaynor`、`HyperionVoidCoop`、`BansheeAirstrike` 和 `RaynorCommanderHyperionAdvancedTargetingSystems` 承载。
+
 ## 2026-06-04 闭包复核补充
 
 2026-06-03 的人族闭包已经把 Raynor 的有效链路闭到 official JSON + raw closure 两层，这里补一版便于后续实现直接引用的结论：
