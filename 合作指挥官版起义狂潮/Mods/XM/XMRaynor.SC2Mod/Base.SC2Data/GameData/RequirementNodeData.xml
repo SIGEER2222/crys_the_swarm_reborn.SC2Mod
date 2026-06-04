@@ -1606,4 +1606,388 @@
     <OperandArray value="CountUnitAlias_FactoryCompleteOnly" />
     <OperandArray value="CountUpgradeCommanderPrestigeRaynorAirCompleteOnly" />
   </CRequirementOr>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel1NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel1Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel2NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel2Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierInfantryWeaponsLevel2Use">
+    <OperandArray value="RaynorFiveTierInfantryWeaponsLevel1Complete" />
+    <OperandArray value="RaynorFiveTierInfantryWeaponsLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel3NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel3Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierInfantryWeaponsLevel3Use">
+    <OperandArray value="RaynorFiveTierInfantryWeaponsLevel2Complete" />
+    <OperandArray value="RaynorFiveTierInfantryWeaponsLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel4NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel4Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierInfantryWeaponsLevel4Use">
+    <OperandArray value="RaynorFiveTierInfantryWeaponsLevel3Complete" />
+    <OperandArray value="RaynorFiveTierInfantryWeaponsLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryWeaponsLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranInfantryWeaponsLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel5NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryWeaponsLevel5Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryWeaponsLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierInfantryWeaponsLevel5Use">
+    <OperandArray value="RaynorFiveTierInfantryWeaponsLevel4Complete" />
+    <OperandArray value="RaynorFiveTierInfantryWeaponsLevel5NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel1NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel1Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel2NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel2Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierInfantryArmorLevel2Use">
+    <OperandArray value="RaynorFiveTierInfantryArmorLevel1Complete" />
+    <OperandArray value="RaynorFiveTierInfantryArmorLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel3NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel3Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierInfantryArmorLevel3Use">
+    <OperandArray value="RaynorFiveTierInfantryArmorLevel2Complete" />
+    <OperandArray value="RaynorFiveTierInfantryArmorLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel4NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel4Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierInfantryArmorLevel4Use">
+    <OperandArray value="RaynorFiveTierInfantryArmorLevel3Complete" />
+    <OperandArray value="RaynorFiveTierInfantryArmorLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierInfantryArmorLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranInfantryArmorLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel5NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierInfantryArmorLevel5Complete">
+    <OperandArray index="0" value="RaynorFiveTierInfantryArmorLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierInfantryArmorLevel5Use">
+    <OperandArray value="RaynorFiveTierInfantryArmorLevel4Complete" />
+    <OperandArray value="RaynorFiveTierInfantryArmorLevel5NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel1NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel1Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel2NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel2Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierVehicleAndShipWeaponsLevel2Use">
+    <OperandArray value="RaynorFiveTierVehicleAndShipWeaponsLevel1Complete" />
+    <OperandArray value="RaynorFiveTierVehicleAndShipWeaponsLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel3NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel3Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierVehicleAndShipWeaponsLevel3Use">
+    <OperandArray value="RaynorFiveTierVehicleAndShipWeaponsLevel2Complete" />
+    <OperandArray value="RaynorFiveTierVehicleAndShipWeaponsLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel4NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel4Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierVehicleAndShipWeaponsLevel4Use">
+    <OperandArray value="RaynorFiveTierVehicleAndShipWeaponsLevel3Complete" />
+    <OperandArray value="RaynorFiveTierVehicleAndShipWeaponsLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipWeaponsLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="TerranVehicleAndShipWeaponsLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel5NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipWeaponsLevel5Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipWeaponsLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierVehicleAndShipWeaponsLevel5Use">
+    <OperandArray value="RaynorFiveTierVehicleAndShipWeaponsLevel4Complete" />
+    <OperandArray value="RaynorFiveTierVehicleAndShipWeaponsLevel5NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel1NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel1Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel2NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel2Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierVehicleAndShipArmorLevel2Use">
+    <OperandArray value="RaynorFiveTierVehicleAndShipArmorLevel1Complete" />
+    <OperandArray value="RaynorFiveTierVehicleAndShipArmorLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel3NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel3Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierVehicleAndShipArmorLevel3Use">
+    <OperandArray value="RaynorFiveTierVehicleAndShipArmorLevel2Complete" />
+    <OperandArray value="RaynorFiveTierVehicleAndShipArmorLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel4NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel4Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierVehicleAndShipArmorLevel4Use">
+    <OperandArray value="RaynorFiveTierVehicleAndShipArmorLevel3Complete" />
+    <OperandArray value="RaynorFiveTierVehicleAndShipArmorLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="RaynorFiveTierVehicleAndShipArmorLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="RaynorTalentedTerranVehicleAndShipPlatingLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel5NotQueued">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="RaynorFiveTierVehicleAndShipArmorLevel5Complete">
+    <OperandArray index="0" value="RaynorFiveTierVehicleAndShipArmorLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="RaynorFiveTierVehicleAndShipArmorLevel5Use">
+    <OperandArray value="RaynorFiveTierVehicleAndShipArmorLevel4Complete" />
+    <OperandArray value="RaynorFiveTierVehicleAndShipArmorLevel5NotQueued" />
+  </CRequirementAnd>
 </Catalog>

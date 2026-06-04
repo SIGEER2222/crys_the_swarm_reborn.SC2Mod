@@ -55,9 +55,9 @@ function childValue(block, tag, attr = 'value') {
 
 function blocks(xml, tagName) {
   const result = [];
-  const pattern = new RegExp(`<${tagName}\\b([^>]*)>([\\s\\S]*?)<\\/${tagName}>|<${tagName}\\b([^>]*)\\/>`, 'g');
+  const pattern = new RegExp(`<${tagName}\\b([^>]*)\\/>|<${tagName}\\b([^>]*)>([\\s\\S]*?)<\\/${tagName}>`, 'g');
   for (const match of xml.matchAll(pattern)) {
-    result.push({ attrs: attrs(match[1] ?? match[3] ?? ''), body: match[2] ?? '' });
+    result.push({ attrs: attrs(match[1] ?? match[2] ?? ''), body: match[3] ?? '' });
   }
   return result;
 }

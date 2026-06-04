@@ -1300,4 +1300,100 @@
     <OperandArray value="GTCountBehaviorBiomassBuff10CompleteOnlyAtUnit0" />
     <OperandArray value="GTCountBehaviorBiomassBuff100CompleteOnlyAtUnit0" />
   </CRequirementOr>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel1NotQueued">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel1Complete">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel2NotQueued">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel2Complete">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ZergFiveTierGroundAttacksLevel2Use">
+    <OperandArray value="ZergFiveTierGroundAttacksLevel1Complete" />
+    <OperandArray value="ZergFiveTierGroundAttacksLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel3NotQueued">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel3Complete">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ZergFiveTierGroundAttacksLevel3Use">
+    <OperandArray value="ZergFiveTierGroundAttacksLevel2Complete" />
+    <OperandArray value="ZergFiveTierGroundAttacksLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel4NotQueued">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel4Complete">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ZergFiveTierGroundAttacksLevel4Use">
+    <OperandArray value="ZergFiveTierGroundAttacksLevel3Complete" />
+    <OperandArray value="ZergFiveTierGroundAttacksLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ZergFiveTierGroundAttacksLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ZagaraGroundAttacksLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel5NotQueued">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ZergFiveTierGroundAttacksLevel5Complete">
+    <OperandArray index="0" value="ZergFiveTierGroundAttacksLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ZergFiveTierGroundAttacksLevel5Use">
+    <OperandArray value="ZergFiveTierGroundAttacksLevel4Complete" />
+    <OperandArray value="ZergFiveTierGroundAttacksLevel5NotQueued" />
+  </CRequirementAnd>
 </Catalog>

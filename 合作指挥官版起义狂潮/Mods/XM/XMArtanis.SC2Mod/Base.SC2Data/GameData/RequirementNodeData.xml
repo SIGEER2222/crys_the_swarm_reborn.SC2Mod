@@ -2458,4 +2458,388 @@
     <OperandArray value="GTCountBehaviorBiomassBuff10CompleteOnlyAtUnit0" />
     <OperandArray value="GTCountBehaviorBiomassBuff100CompleteOnlyAtUnit0" />
   </CRequirementOr>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel1NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel1Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel2NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel2Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierGroundWeaponsLevel2Use">
+    <OperandArray value="ProtossFiveTierGroundWeaponsLevel1Complete" />
+    <OperandArray value="ProtossFiveTierGroundWeaponsLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel3NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel3Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierGroundWeaponsLevel3Use">
+    <OperandArray value="ProtossFiveTierGroundWeaponsLevel2Complete" />
+    <OperandArray value="ProtossFiveTierGroundWeaponsLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel4NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel4Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierGroundWeaponsLevel4Use">
+    <OperandArray value="ProtossFiveTierGroundWeaponsLevel3Complete" />
+    <OperandArray value="ProtossFiveTierGroundWeaponsLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundWeaponsLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundWeaponsLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel5NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundWeaponsLevel5Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundWeaponsLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierGroundWeaponsLevel5Use">
+    <OperandArray value="ProtossFiveTierGroundWeaponsLevel4Complete" />
+    <OperandArray value="ProtossFiveTierGroundWeaponsLevel5NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel1NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel1Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel2NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel2Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierGroundArmorsLevel2Use">
+    <OperandArray value="ProtossFiveTierGroundArmorsLevel1Complete" />
+    <OperandArray value="ProtossFiveTierGroundArmorsLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel3NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel3Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierGroundArmorsLevel3Use">
+    <OperandArray value="ProtossFiveTierGroundArmorsLevel2Complete" />
+    <OperandArray value="ProtossFiveTierGroundArmorsLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel4NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel4Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierGroundArmorsLevel4Use">
+    <OperandArray value="ProtossFiveTierGroundArmorsLevel3Complete" />
+    <OperandArray value="ProtossFiveTierGroundArmorsLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierGroundArmorsLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossGroundArmorsLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel5NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierGroundArmorsLevel5Complete">
+    <OperandArray index="0" value="ProtossFiveTierGroundArmorsLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierGroundArmorsLevel5Use">
+    <OperandArray value="ProtossFiveTierGroundArmorsLevel4Complete" />
+    <OperandArray value="ProtossFiveTierGroundArmorsLevel5NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel1NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel1Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel2NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel2Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierAirWeaponsLevel2Use">
+    <OperandArray value="ProtossFiveTierAirWeaponsLevel1Complete" />
+    <OperandArray value="ProtossFiveTierAirWeaponsLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel3NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel3Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierAirWeaponsLevel3Use">
+    <OperandArray value="ProtossFiveTierAirWeaponsLevel2Complete" />
+    <OperandArray value="ProtossFiveTierAirWeaponsLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel4NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel4Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierAirWeaponsLevel4Use">
+    <OperandArray value="ProtossFiveTierAirWeaponsLevel3Complete" />
+    <OperandArray value="ProtossFiveTierAirWeaponsLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirWeaponsLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirWeaponsLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel5NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirWeaponsLevel5Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirWeaponsLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierAirWeaponsLevel5Use">
+    <OperandArray value="ProtossFiveTierAirWeaponsLevel4Complete" />
+    <OperandArray value="ProtossFiveTierAirWeaponsLevel5NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel1QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel1" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel1CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel1" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel1NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel1QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel1Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel1CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel2QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel2" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel2CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel2" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel2NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel2QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel2Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel2CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierAirArmorsLevel2Use">
+    <OperandArray value="ProtossFiveTierAirArmorsLevel1Complete" />
+    <OperandArray value="ProtossFiveTierAirArmorsLevel2NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel3QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel3" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel3CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel3" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel3NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel3QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel3Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel3CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierAirArmorsLevel3Use">
+    <OperandArray value="ProtossFiveTierAirArmorsLevel2Complete" />
+    <OperandArray value="ProtossFiveTierAirArmorsLevel3NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel4QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel4" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel4CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel4" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel4NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel4QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel4Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel4CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierAirArmorsLevel4Use">
+    <OperandArray value="ProtossFiveTierAirArmorsLevel3Complete" />
+    <OperandArray value="ProtossFiveTierAirArmorsLevel4NotQueued" />
+  </CRequirementAnd>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel5QueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel5" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="ProtossFiveTierAirArmorsLevel5CompleteOnly">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ProtossAirArmorsLevel5" State="CompleteOnly" />
+  </CRequirementCountUpgrade>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel5NotQueued">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel5QueuedOrBetter" />
+    <OperandArray index="1" value="0" />
+  </CRequirementEq>
+  <CRequirementEq id="ProtossFiveTierAirArmorsLevel5Complete">
+    <OperandArray index="0" value="ProtossFiveTierAirArmorsLevel5CompleteOnly" />
+    <OperandArray index="1" value="1" />
+  </CRequirementEq>
+  <CRequirementAnd id="ProtossFiveTierAirArmorsLevel5Use">
+    <OperandArray value="ProtossFiveTierAirArmorsLevel4Complete" />
+    <OperandArray value="ProtossFiveTierAirArmorsLevel5NotQueued" />
+  </CRequirementAnd>
 </Catalog>
