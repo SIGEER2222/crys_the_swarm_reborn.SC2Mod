@@ -17,9 +17,23 @@ const sourceRoot = path.join(repoRoot, 'crys_the_swarm_reborn.SC2Mod', 'Base.SC2
 
 const files = {
   user: path.join(targetRoot, 'UserData.xml'),
+  targetButton: path.join(targetRoot, 'ButtonData.xml'),
   targetUnit: path.join(targetRoot, 'UnitData.xml'),
   targetAbil: path.join(targetRoot, 'AbilData.xml'),
   targetEffect: path.join(targetRoot, 'EffectData.xml'),
+  targetRequirement: path.join(targetRoot, 'RequirementData.xml'),
+  targetRequirementNode: path.join(targetRoot, 'RequirementNodeData.xml'),
+  targetUpgrade: path.join(targetRoot, 'UpgradeData.xml'),
+  targetGameStrings: path.join(
+    repoRoot,
+    '合作指挥官版起义狂潮',
+    'Mods',
+    'XM',
+    'XMAbathurReborn.SC2Mod',
+    'zhCN.SC2Data',
+    'LocalizedData',
+    'GameStrings.txt',
+  ),
   targetRuntime: path.join(repoRoot, '合作指挥官版起义狂潮', 'Mods', 'XM', 'XMAbathurReborn.SC2Mod', 'Base.SC2Data', 'LibA1BA7A9F.galaxy'),
   doc: path.join(repoRoot, 'docs', 'newdocs', '额外指挥官', '03-重生阿巴瑟-兵种融入设计.md'),
   sourceUnit: path.join(sourceRoot, 'UnitData.xml'),
@@ -230,9 +244,14 @@ const errors = [];
 const warnings = [];
 
 const userText = readRequired(files.user);
+const targetButtonText = readRequired(files.targetButton);
 const targetUnitText = readRequired(files.targetUnit);
 const targetAbilText = readRequired(files.targetAbil);
 const targetEffectText = readRequired(files.targetEffect);
+const targetRequirementText = readRequired(files.targetRequirement);
+const targetRequirementNodeText = readRequired(files.targetRequirementNode);
+const targetUpgradeText = readRequired(files.targetUpgrade);
+const targetGameStringsText = readRequired(files.targetGameStrings);
 const targetRuntimeText = readRequired(files.targetRuntime);
 const sourceUnitText = readRequired(files.sourceUnit);
 const docText = readOptional(files.doc);
@@ -249,6 +268,7 @@ validateLarvaBaseProduction(profile);
 validateWorkerBuildWhitelist();
 validateNoBiomassGameplayEntrypoints();
 validateRavagerClosure(profile);
+validateFiveTierUpgradeClosure();
 validateDocSurface();
 printSummary(profile);
 
@@ -661,6 +681,153 @@ function validateRavagerClosure(instances) {
   }
 }
 
+function validateFiveTierUpgradeClosure() {
+  const seriesSpecs = [
+    {
+      label: '重生阿巴瑟地面攻击',
+      units: ['EvolutionChamber'],
+      ability: 'evolutionchamberresearch',
+      levels: [
+        ['Research13', 'ZergGroundAttacksLevel1', 'ZagaraGroundAttacksLevel1', 'LearnZagaraGroundAttack1'],
+        ['Research14', 'ZergGroundAttacksLevel2', 'ZagaraGroundAttacksLevel2', 'LearnZagaraGroundAttack2'],
+        ['Research15', 'ZergGroundAttacksLevel3', 'ZagaraGroundAttacksLevel3', 'LearnZagaraGroundAttack3'],
+        ['Research16', 'ZergGroundAttacksLevel4', 'ZagaraGroundAttacksLevel4', 'LearnZagaraGroundAttack4'],
+        ['Research17', 'ZergGroundAttacksLevel5', 'ZagaraGroundAttacksLevel5', 'LearnZagaraGroundAttack5'],
+      ],
+      localButtonLevels: [1, 2, 3, 4, 5],
+      localRequirementLevels: [1, 2, 3, 4, 5],
+      localUpgradeLevels: [1, 2, 3, 4, 5],
+      requirementLinks: new Map([
+        [4, ['ZergFiveTierGroundAttacksLevel4Use', 'ZergFiveTierGroundAttacksLevel4NotQueued']],
+        [5, ['ZergFiveTierGroundAttacksLevel5Use', 'ZergFiveTierGroundAttacksLevel5NotQueued']],
+      ]),
+    },
+    {
+      label: '重生阿巴瑟空军攻击',
+      units: ['Spire', 'GreaterSpire'],
+      ability: 'SpireResearch',
+      levels: [
+        ['Research1', 'zergflyerattack1', 'ZergFlyerWeaponsLevel1', 'LearnZergFlyerAttack1'],
+        ['Research2', 'zergflyerattack2', 'ZergFlyerWeaponsLevel2', 'LearnZergFlyerAttack2'],
+        ['Research3', 'zergflyerattack3', 'ZergFlyerWeaponsLevel3', 'LearnZergFlyerAttack3'],
+        ['Research16', 'zergflyerattack4', 'ZergFlyerWeaponsLevel4', 'LearnZergFlyerAttack4'],
+        ['Research17', 'zergflyerattack5', 'ZergFlyerWeaponsLevel5', 'LearnZergFlyerAttack5'],
+      ],
+      localButtonLevels: [4, 5],
+      localRequirementLevels: [4, 5],
+      localUpgradeLevels: [4, 5],
+      requirementLinks: new Map([
+        [4, ['ZergFiveTierFlyerWeaponsLevel4Use', 'ZergFiveTierFlyerWeaponsLevel4NotQueued']],
+        [5, ['ZergFiveTierFlyerWeaponsLevel5Use', 'ZergFiveTierFlyerWeaponsLevel5NotQueued']],
+      ]),
+    },
+    {
+      label: '重生阿巴瑟空军护甲',
+      units: ['Spire', 'GreaterSpire'],
+      ability: 'SpireResearch',
+      levels: [
+        ['Research4', 'zergflyerarmor1', 'ZergFlyerArmorsLevel1', 'LearnZergFlyerArmor1'],
+        ['Research5', 'zergflyerarmor2', 'ZergFlyerArmorsLevel2', 'LearnZergFlyerArmor2'],
+        ['Research6', 'zergflyerarmor3', 'ZergFlyerArmorsLevel3', 'LearnZergFlyerArmor3'],
+        ['Research18', 'zergflyerarmor4', 'ZergFlyerArmorsLevel4', 'LearnZergFlyerArmor4'],
+        ['Research19', 'zergflyerarmor5', 'ZergFlyerArmorsLevel5', 'LearnZergFlyerArmor5'],
+      ],
+      localButtonLevels: [4, 5],
+      localRequirementLevels: [4, 5],
+      localUpgradeLevels: [4, 5],
+      requirementLinks: new Map([
+        [4, ['ZergFiveTierFlyerArmorsLevel4Use', 'ZergFiveTierFlyerArmorsLevel4NotQueued']],
+        [5, ['ZergFiveTierFlyerArmorsLevel5Use', 'ZergFiveTierFlyerArmorsLevel5NotQueued']],
+      ]),
+    },
+  ];
+
+  for (const spec of seriesSpecs) {
+    const abilityBlock = extractCatalogBlock(targetAbilText, 'CAbilResearch', spec.ability);
+    if (!abilityBlock) {
+      errors.push(`${spec.label}: 缺少研究能力 ${spec.ability}`);
+      continue;
+    }
+
+    spec.levels.forEach(([command, face, upgrade, requirement], index) => {
+      const level = index + 1;
+      const abilCmd = `${spec.ability},${command}`;
+
+      for (const unitId of spec.units) {
+        const unitBlocks = extractCatalogBlocks(targetUnitText, 'CUnit', unitId);
+        if (unitBlocks.length === 0) {
+          errors.push(`${spec.label}: 缺少科技建筑 ${unitId}`);
+          continue;
+        }
+        if (!unitBlocks.some((block) => hasLayoutButton(block, abilCmd, face))) {
+          errors.push(`${spec.label}: ${unitId} 缺少卡面按钮 ${face} -> ${abilCmd}`);
+        }
+      }
+
+      const infoBlock = extractInfoArrayBlock(abilityBlock, command);
+      if (!infoBlock) {
+        errors.push(`${spec.label}: ${spec.ability} 缺少 ${command}`);
+      } else {
+        if (!infoBlock.includes(`Upgrade="${upgrade}"`)) {
+          errors.push(`${spec.label}: ${spec.ability},${command} 未绑定 Upgrade=${upgrade}`);
+        }
+        if (!infoBlock.includes(`DefaultButtonFace="${face}"`)) {
+          errors.push(`${spec.label}: ${spec.ability},${command} 未绑定按钮 ${face}`);
+        }
+        if (!infoBlock.includes(`Requirements="${requirement}"`)) {
+          errors.push(`${spec.label}: ${spec.ability},${command} 未绑定 Requirement=${requirement}`);
+        }
+      }
+
+      if (spec.localButtonLevels.includes(level) && !extractCatalogBlock(targetButtonText, 'CButton', face)) {
+        errors.push(`${spec.label}: 本地 ButtonData 缺少 ${face}`);
+      }
+      if (spec.localButtonLevels.includes(level)) {
+        expectGameString(`${spec.label}: 按钮名称文本`, `Button/Name/${face}`);
+        expectGameString(`${spec.label}: 按钮提示文本`, `Button/Tooltip/${face}`);
+      }
+      if (spec.localUpgradeLevels.includes(level) && !extractCatalogBlock(targetUpgradeText, 'CUpgrade', upgrade)) {
+        errors.push(`${spec.label}: 本地 UpgradeData 缺少 ${upgrade}`);
+      }
+      if (spec.localUpgradeLevels.includes(level) && upgrade.startsWith('ZergFlyer')) {
+        expectGameString(`${spec.label}: 升级名称文本`, `Upgrade/Name/${upgrade}`);
+      }
+      if (spec.localRequirementLevels.includes(level)) {
+        const requirementBlock = extractCatalogBlock(targetRequirementText, 'CRequirement', requirement);
+        if (!requirementBlock) {
+          errors.push(`${spec.label}: 本地 RequirementData 缺少 ${requirement}`);
+        }
+        const links = spec.requirementLinks.get(level);
+        if (links && requirementBlock) {
+          const [useLink, showLink] = links;
+          if (!requirementBlock.includes(`index="Use" Link="${useLink}"`)) {
+            errors.push(`${spec.label}: ${requirement} 未绑定 Use=${useLink}`);
+          }
+          if (!requirementBlock.includes(`index="Show" Link="${showLink}"`)) {
+            errors.push(`${spec.label}: ${requirement} 未绑定 Show=${showLink}`);
+          }
+          for (const link of links) {
+            if (!targetRequirementNodeText.includes(`id="${link}"`)) {
+              errors.push(`${spec.label}: RequirementNodeData 缺少 ${link}`);
+            }
+          }
+        }
+      }
+    });
+  }
+
+  for (const forbidden of ['RavagerAbathurCorrosiveBile', 'RavagerAbathur,Execute']) {
+    const positiveBlocks = [
+      ...extractCatalogBlocks(targetUnitText, 'CUnit', 'Ravager'),
+      ...extractCatalogBlocks(targetAbilText, 'CAbilTrain', 'MorphRoachToRavager'),
+      ...extractCatalogBlocks(targetAbilText, 'CAbilTrain', 'MorphRoachVileToRavager'),
+    ];
+    if (positiveBlocks.some((block) => block.includes(forbidden))) {
+      errors.push(`破坏者正向链不能引用遗留对象 ${forbidden}`);
+    }
+  }
+}
+
 function validateDocSurface() {
   if (!docText) {
     warnings.push('未找到 03-重生阿巴瑟-兵种融入设计.md，跳过文档表面检查');
@@ -814,6 +981,26 @@ function extractUserBlock(text, userId) {
 function extractCatalogBlock(text, tagName, id) {
   const re = new RegExp(`<${tagName}\\s+id="${escapeRegExp(id)}"[^>]*>[\\s\\S]*?<\\/${tagName}>`);
   return text.match(re)?.[0] ?? '';
+}
+
+function extractCatalogBlocks(text, tagName, id) {
+  const blocks = [];
+  const re = new RegExp(`<${tagName}\\s+id="${escapeRegExp(id)}"[^>]*>[\\s\\S]*?<\\/${tagName}>`, 'g');
+  for (const match of text.matchAll(re)) {
+    blocks.push(match[0]);
+  }
+  return blocks;
+}
+
+function hasLayoutButton(unitBlock, abilCmd, face) {
+  return parseLayoutButtons(unitBlock).some((button) => button.AbilCmd === abilCmd && button.Face === face);
+}
+
+function expectGameString(label, key) {
+  const pattern = new RegExp(`^${escapeRegExp(key)}=`, 'm');
+  if (!pattern.test(targetGameStringsText)) {
+    errors.push(`${label}: GameStrings.txt 缺少 ${key}`);
+  }
 }
 
 function extractGalaxyFunction(text, signaturePrefix) {

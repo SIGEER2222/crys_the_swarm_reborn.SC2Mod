@@ -1,0 +1,36 @@
+// XMFinal split module: runtime initialization safety helpers.
+
+void libE0EAE146_gf_SeedDefaultCommanderBankIfEmpty (string lp_defaultCommander) {
+    if (lp_defaultCommander == "") {
+        return;
+    }
+
+    BankLoad("CampaignXCore", 1);
+    if (BankValueGetAsString(BankLastCreated(), "Ach", "Commander") == "") {
+        BankValueSetFromString(BankLastCreated(), "Ach", "Commander", lp_defaultCommander);
+        BankSave(BankLastCreated());
+    }
+}
+
+string libE0EAE146_gf_CommanderAchUnit (string lp_field) {
+    string lv_unit;
+
+    lv_unit = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), lp_field, 1);
+    if (lv_unit != "") {
+        return lv_unit;
+    }
+
+    if (libE0EAE146_gv_commander == "AbathurReborn") {
+        if (lp_field == "CommandCenter") {
+            return "HatcheryAbathurReborn";
+        }
+        if (lp_field == "Worker") {
+            return "DroneAbathurReborn";
+        }
+        if (lp_field == "SecondUnit") {
+            return "OverlordAbathurReborn";
+        }
+    }
+
+    return lv_unit;
+}

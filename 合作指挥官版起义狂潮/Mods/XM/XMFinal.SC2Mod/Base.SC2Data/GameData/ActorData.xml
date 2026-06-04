@@ -153,6 +153,8 @@
         <HighlightTooltip value="Unit/Name/Bogus"/>
     </CActorUnit>
     <CActorModel id="ProphecyVision" parent="ModelAnimationStyleContinuous">
+        <On Terms="Effect.ProphecyVision.Start" Send="Create"/>
+        <On Terms="Effect.ProphecyVision.Stop; FromEffectTreeDescendant" Send="AnimBracketStop BSD"/>
         <On Terms="Effect.ProphecyVisiontzeratul01.Start" Send="Create"/>
         <On Terms="Effect.ProphecyVisiontzeratul01.Stop; FromEffectTreeDescendant" Send="AnimBracketStop BSD"/>
         <ModelFlags index="AllowHitTest" value="0"/>
@@ -176,6 +178,8 @@
         <On Terms="Abil.PhaseMineBlast.SourceCastStart" Send="AnimPlay Spell Attack,01 NonLooping"/>
         <On Terms="Abil.ZeratulStun.SourceCastStart" Send="AnimPlay Spell Stand,Work,Start 0 -1.000000 -1.000000 0.250000 AsDuration"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Spell"/>
+        <On Terms="Abil.ProphecyVision.SourceChannelStart" Send="AnimBracketStart work Stand,Work,Start Stand,Work Stand,Work,End"/>
+        <On Terms="Abil.ProphecyVision.SourceChannelStop" Send="AnimBracketStop work"/>
         <On Terms="Abil.ProphecyVisiontzeratul01.SourceChannelStart" Send="AnimBracketStart work Stand,Work,Start Stand,Work Stand,Work,End"/>
         <On Terms="Abil.ProphecyVisiontzeratul01.SourceChannelStop" Send="AnimBracketStop work"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear work"/>
