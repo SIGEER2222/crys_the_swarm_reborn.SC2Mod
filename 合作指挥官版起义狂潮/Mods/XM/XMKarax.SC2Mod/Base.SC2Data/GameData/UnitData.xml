@@ -7460,12 +7460,58 @@
     <CargoSize value="2"></CargoSize>
     <EditorCategories value="ObjectType:Other,ObjectFamily:FactionEvolved"></EditorCategories>
   </CUnit>
-  <CUnit id="KaraxChampion">
-    <KillXP value="0"></KillXP>
-    <DamageDealtXP value="0"></DamageDealtXP>
-    <DamageTakenXP value="0"></DamageTakenXP>
-    <HotkeyCategory value=""></HotkeyCategory>
-  </CUnit>
+  <CUnit id="KaraxChampion">
+    <!-- Inherit abilities, weapons, behaviors, and command cards from Void.SC2Campaign to avoid duplicate catalog arrays. -->
+    <DeathRevealRadius value="3"></DeathRevealRadius>
+    <Race value="Prot"></Race>
+    <Mob value="Campaign"></Mob>
+    <FlagArray index="PreventDestroy" value="1"></FlagArray>
+    <FlagArray index="UseLineOfSight" value="1"></FlagArray>
+    <FlagArray index="AlwaysThreatens" value="1"></FlagArray>
+    <FlagArray index="AIThreatGround" value="1"></FlagArray>
+    <FlagArray index="AISplash" value="1"></FlagArray>
+    <FlagArray index="AIPressForwardDisabled" value="1"></FlagArray>
+    <FlagArray index="ArmySelect" value="1"></FlagArray>
+    <PlaneArray index="Ground" value="1"></PlaneArray>
+    <Collide index="Ground" value="1"></Collide>
+    <Collide index="Small" value="1"></Collide>
+    <Collide index="ForceField" value="1"></Collide>
+    <Collide index="Locust" value="1"></Collide>
+    <Attributes index="Biological" value="1"></Attributes>
+    <Attributes index="Heroic" value="1"></Attributes>
+    <LifeStart value="100"></LifeStart>
+    <LifeMax value="100"></LifeMax>
+    <LifeArmor value="1"></LifeArmor>
+    <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"></LifeArmorName>
+    <ShieldsStart value="200"></ShieldsStart>
+    <ShieldsMax value="200"></ShieldsMax>
+    <ShieldArmor value="1"></ShieldArmor>
+    <ShieldRegenDelay value="3"></ShieldRegenDelay>
+    <ShieldRegenRate value="2"></ShieldRegenRate>
+    <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"></ShieldArmorName>
+    <Speed value="2.5"></Speed>
+    <Acceleration value="1000"></Acceleration>
+    <Deceleration value="1000"></Deceleration>
+    <LateralAcceleration value="46"></LateralAcceleration>
+    <Sight value="10"></Sight>
+    <CostCategory value="Army"></CostCategory>
+    <RepairTime value="120"></RepairTime>
+    <AttackTargetPriority value="20"></AttackTargetPriority>
+    <InnerRadius value="0.5"></InnerRadius>
+    <CargoSize value="2"></CargoSize>
+    <ScoreMake value="600"></ScoreMake>
+    <ScoreKill value="200"></ScoreKill>
+    <SubgroupPriority value="57"></SubgroupPriority>
+    <MinimapRadius value="0.625"></MinimapRadius>
+    <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"></EditorCategories>
+    <Mass value="0.6"></Mass>
+    <GlossaryCategory value="Unit/Category/ProtossStory"></GlossaryCategory>
+    <AlliedPushPriority value="11"></AlliedPushPriority>
+    <KillXP value="0"></KillXP>
+    <DamageDealtXP value="0"></DamageDealtXP>
+    <DamageTakenXP value="0"></DamageTakenXP>
+    <HotkeyCategory value="Unit/Category/ProtossStory"></HotkeyCategory>
+  </CUnit>
   <CUnit id="KaraxMicroBotActivated"></CUnit>
   <CUnit id="KaraxMicroBotDeactivated"></CUnit>
   <CUnit id="KelMorianAutoTurret">

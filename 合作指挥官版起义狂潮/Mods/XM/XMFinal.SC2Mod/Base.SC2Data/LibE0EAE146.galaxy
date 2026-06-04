@@ -12,6 +12,7 @@ include "Lib975E2FE9"
 
 include "LibE0EAE146_h"
 include "LibE0EAE146_ArtanisRuntime"
+include "LibE0EAE146_KaraxRuntime"
 include "LibE0EAE146_ZeratulRuntime"
 
 //--------------------------------------------------------------------------------------------------
@@ -43,6 +44,7 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_gv_zeratulArtifactNumber = 1;
     libE0EAE146_gv_zeratulRuntimeInitialized = false;
     libE0EAE146_gv_artanisRuntimeInitialized = false;
+    libE0EAE146_gv_karaxRuntimeInitialized = false;
 }
 
 // Functions
@@ -378,6 +380,9 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     }
     else if (auto09490B45_val == "Artanis") {
         libE0EAE146_gf_ArtanisRuntimeInit(1, lp_secondUnit, lp_createHero);
+    }
+    else if (auto09490B45_val == "Karax") {
+        libE0EAE146_gf_KaraxRuntimeInit(1, lp_secondUnit, lp_createHero);
     }
     else if (auto09490B45_val == "Zeratul") {
         libE0EAE146_gf_ZeratulRuntimeInit(1, lp_secondUnit, lp_createHero);

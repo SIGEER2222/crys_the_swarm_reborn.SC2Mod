@@ -133,13 +133,15 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或官方原始文本镜像继续追。 |
+| 战役凯拉克斯 | `KaraxChampion` | `KaraxChampion` | Ground; Biological; Heroic | 生命:100 护盾:200 护甲:1 护盾护甲:1 | 这是本 mod 为凯拉克斯额外接入的战役英雄体。`XMKarax` 显式钉住英雄数值/UI 字段；技能、武器、按钮、Behavior、Actor、Effect 继续从 `XMCore -> Void.SC2Campaign` 继承，避免重复 Catalog 数组。 |
 
 ### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从官方原始文本镜像或实机日志补。 |
+| `KaraxChampion` | `Reclamation` | 回收 | `Reclamation,Execute` | - | 官方战役链：永久控制目标敌方机械单位或星灵建筑；效果链进入 `Reclamation*`。 |
+| `KaraxChampion` | `ProdigalEngineer` | 相位大师 | - | - | 官方战役被动：凯拉克斯提供类似水晶塔的能量场，并提高能量场中建筑的攻击/生产效率。 |
+| `KaraxChampion` | `PhaseCannon` | 相位光炮 | `PhaseCannon,Execute` | - | 官方战役链：在能量场中临时相位化一门光子炮台；效果链进入 `PhaseCannon*`。 |
 
 ### 英雄形态/模式候选
 
@@ -153,9 +155,11 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 |---|---|---|---|---|
 | - | - | - | - | 未自动命中英雄相关等级解锁；需要从官方原始文本镜像或实机日志补。 |
 
-口径：官方 heroes.json 暂无条目；若官方玩法存在隐藏英雄或召唤英雄，继续用官方原始文本镜像/实机日志补。
+口径：官方合作 `heroes.json` 仍暂无凯拉克斯英雄条目；`KaraxChampion` 是本 mod 按用户要求额外接入的战役英雄单位，不反推为官方合作凯拉克斯原生英雄。
 
-待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
+实现备注：`SoACasterKarax` 仍只是顶栏宿主，不等于英雄本体；`KaraxChampion` 才是当前开局创建的战役凯拉克斯英雄体。`XMKarax` 没有重复写 `AbilArray` / `WeaponArray` / `CardLayouts` / `BehaviorArray`，这些数组从 `Void.SC2Campaign` 继承，避免在 Catalog 合并时出现重复按钮、重复武器或重复被动。
+
+待实机复核：`KaraxChampion` 主动技能点击、相位光炮放置条件、回收目标过滤、Actor/声音表现，以及与合作凯拉克斯顶栏 `SoACasterKarax` 的同时存在表现。
 
 ## 03. 普通单位技能及其进化功能
 
@@ -331,6 +335,8 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 光影议会 | `ResearchShadowStun` | 研究黑暗缠绕 | `TwilightCouncilResearch,Research9` | - | 使百夫长能击晕附近的敌人，并使他们的护盾值在一小段时间内提高{Behavior,VoidZealotShadowChargeSelfBuff,Modification.VitalMaxArray[Shields]}点。重型单位则会被减速。 |
 
 实现备注：建筑自己的技能、生产队列、变形、起飞/降落、特殊自动施法由建筑 profile 声明；地图和科技建筑不持有跨指挥官判断。
+
+当前 Mod 下方面板复核：`GatewayKarax` 面板挂 `GatewayTrainKarax`，产出 `ZealotPurifier`、`SentryPurifier`；`WarpGateKarax` 面板挂 `WarpGateTrainKarax`，产出 `ZealotPurifier`、`SentryPurifier`；`RoboticsFacilityKarax` 面板挂 `RoboticsFacilityTrainKarax`，产出 `Observer`、`Colossus`、`ImmortalAiur`；`StargateKarax` 面板挂 `StargateTrainKarax`，产出 `PhoenixPurifier`、`Scout`、`Carrier`。这些是当前 Mod 的有效下方面板落点，不要只看文件前部共享 `Gateway` / `RoboticsFacility` / `Stargate` 块。
 
 ## 08. 科技建筑及其升级选项
 
@@ -526,6 +532,8 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 巨像 | `ExtendedThermalLance` | 加长热能射线枪 | - | `HaveKaraxExtendedThermalLance` | 使巨像的射程提高3。 |
 
 实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
+
+当前 runtime 落点：`XMFinal` 通过 `LibE0EAE146_KaraxRuntime.galaxy` 在 `InitializeBase` 的 `Karax` 分支创建 `SoACasterKarax` 并执行 `CU_GPInit(1, "Karax", caster, null)`；`lp_createHero == true` 时同一入口创建 `KaraxChampion`。地图/货舱的 `KaraxCreateMapStartSquad("hero")` 和 `KaraxCreateCargoSquad("hero")` 也显式包含 `KaraxChampion`。
 
 ## 11. 指挥官个性化机制
 
