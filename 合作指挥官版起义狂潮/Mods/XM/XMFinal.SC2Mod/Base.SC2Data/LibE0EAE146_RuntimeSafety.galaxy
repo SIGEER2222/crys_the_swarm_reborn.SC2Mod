@@ -12,12 +12,37 @@ void libE0EAE146_gf_SeedDefaultCommanderBankIfEmpty (string lp_defaultCommander)
     }
 }
 
+string libE0EAE146_gf_CatalogUnitOrEmpty (string lp_unitType) {
+    if ((lp_unitType != "") && CatalogEntryIsValid(c_gameCatalogUnit, lp_unitType)) {
+        return lp_unitType;
+    }
+
+    return "";
+}
+
 string libE0EAE146_gf_CommanderAchUnit (string lp_field) {
     string lv_unit;
 
-    lv_unit = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), lp_field, 1);
-    if (lv_unit != "") {
-        return lv_unit;
+    // XMCore still defines generic Zagara opener slots, so private openers must win before UserData lookup.
+    if (libE0EAE146_gv_commander == "Zagara") {
+        if (lp_field == "CommandCenter") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("HatcheryZagara");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
+        if (lp_field == "Worker") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("DroneZagara");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
+        if (lp_field == "SecondUnit") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("OverlordZagara");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
     }
 
     if (libE0EAE146_gv_commander == "AbathurReborn") {
@@ -30,6 +55,11 @@ string libE0EAE146_gf_CommanderAchUnit (string lp_field) {
         if (lp_field == "SecondUnit") {
             return "OverlordAbathurReborn";
         }
+    }
+
+    lv_unit = UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), lp_field, 1);
+    if (lv_unit != "") {
+        return lv_unit;
     }
 
     return lv_unit;

@@ -462,6 +462,7 @@ requireContains('XMFinal ButtonData.xml', xmFinalButtonData, '<CButton id="Proph
 const xmFinalEffectData = readText(files.xmFinalEffectData);
 requireContains('XMFinal EffectData.xml', xmFinalEffectData, '<CEffectCreatePersistent id="ProphecyVision">');
 requireContains('XMFinal EffectData.xml', xmFinalEffectData, '<CEffectCreatePersistent id="ProphecyVisiontzeratul01">');
+requireContains('XMFinal EffectData.xml', xmFinalEffectData, '<CEffectModifyUnit id="BiomassPickupDummy"');
 
 const xmFinalActorData = readText(files.xmFinalActorData);
 requireContains('XMFinal ActorData.xml', xmFinalActorData, 'Effect.ProphecyVision.Start');
