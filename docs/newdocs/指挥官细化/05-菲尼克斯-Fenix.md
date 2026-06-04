@@ -13,6 +13,7 @@
 - 菲尼克斯当前官方正向建筑是 `Gateway`、`PhotonCannon`、`RoboticsBay`、`TwilightCouncil`；这些共享建筑上的其它神族指挥官按钮只能做污染候选。
 - 菲尼克斯正向兵种按 `Adept`、`ColossusPurifier`、`Observer`、`Scout`、`SentryFenix`、`ZealotPurifier`、`Immortal`、`Carrier` 过滤。
 - `heroes.json` 暂无条目不代表菲尼克斯战甲/人格不存在；战甲、人格载体和英雄技能必须继续从官方原始文本镜像/实机补闭包，不能从共享 Gateway/Twilight/Robotics 候选行反推。
+- 当前 Mod 运行时按官方原始镜像里的 `SoACasterFenix`、`FenixCoop`、`FenixDragoon`、`FenixArbiter` 闭包接入；`SoACasterFenix` 是顶部面板 caster，`FenixCoop` 是默认执政官战甲，龙骑/仲裁者战甲由面板召唤链承载。
 
 ## 官方数据摘要
 
@@ -124,19 +125,31 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或官方原始文本镜像继续追。 |
+| 执政官战甲 | `FenixCoop` | `FenixCoop` | Heroic; Mechanical; Ground | 生命 500 / 护盾 500 / 能量 500 | 官方 `heroes.json` 未列出，但官方原始 `UnitData.xml` 定义为英雄战甲；当前 Mod `lp_createHero=true` 时默认生成这一套。 |
+| 龙骑士战甲 | `FenixDragoon` | `FenixDragoon` | Heroic; Mechanical; Ground | 生命 500 / 护盾 500 / 能量 500 | 由 `SOASummonFenixDragoon` 面板链进入，拥有充能爆破/空中炸弹/武器过载。 |
+| 仲裁者战甲 | `FenixArbiter` | `FenixArbiter` | Heroic; Mechanical; Air | 生命 500 / 护盾 500 / 能量 500 | 由 `SOASummonFenixArbiter` 面板链进入，拥有静滞力场、隐形场、召回。 |
 
 ### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从官方原始文本镜像或实机日志补。 |
+| `FenixCoop` | `FenixThunderousChargeCoop` | 雷霆冲锋 | `FenixThunderousChargeCoop,Execute` | - | 执政官战甲位移/冲锋技能，官方原始 UnitData 挂在 `FenixCoop`。 |
+| `FenixCoop` | `FenixWhirlwind` | 旋风斩 | `FenixSoAWhirlwind,Execute` | - | 执政官战甲范围伤害技能，官方原始 UnitData 挂在 `FenixCoop`。 |
+| `FenixCoop` | `VoidShieldCapacitor` | 护盾电容 | `VoidShieldCapacitor,Execute` | - | 执政官战甲护盾技能，官方原始 UnitData 挂在 `FenixCoop`。 |
+| `FenixDragoon` | `FenixDragoonChargedBuster` | 充能爆破 | `ChargedBuster,Execute` | - | 龙骑士战甲主技能之一。 |
+| `FenixDragoon` | `FenixDragoonAirBomb` | 空中炸弹 | `FenixDragoonAirBomb,Execute` | - | 龙骑士战甲对空/区域技能。 |
+| `FenixDragoon` | `FenixDragoonArsenalOvercharge` | 武器过载 | `FenixDragoonArsenalOvercharge,On` | `NotHaveExpiringBusterBehavior` | 龙骑士战甲过载开关，当前 Mod/官方原始 Ability 均存在。 |
+| `FenixArbiter` | `FenixArbiterStasisField` | 静滞力场 | `FenixArbiterStasisField,Execute` | - | 仲裁者战甲目标区域控制技能。 |
+| `FenixArbiter` | `FenixArbiterCloakField` | 隐形场 | `FenixArbiterCloakingField,On` / `Off` | - | 仲裁者战甲隐形场开关。 |
+| `FenixArbiter` | `ArbiterMPRecall` | 召回 | `ArbiterMPRecall,Execute` | - | 仲裁者战甲召回技能。 |
 
 ### 英雄形态/模式候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 未自动命中英雄形态或模式按钮。 |
+| 顶部面板 | `SOASummonFenix` | 召唤执政官战甲 | `SOASummonFenix,Execute` | - | `SoACasterFenix` 挂载，创建/切换默认 `FenixCoop` 战甲。 |
+| 顶部面板 | `SOASummonFenixDragoon` | 召唤龙骑士战甲 | `SOASummonFenixDragoon,Execute` | - | `SoACasterFenix` 挂载，创建/切换 `FenixDragoon` 战甲。 |
+| 顶部面板 | `SOASummonFenixArbiter` | 召唤仲裁者战甲 | `SOASummonFenixArbiter,Execute` | `FenixLevel03` 锁定提示 | `SoACasterFenix` 挂载，创建/切换 `FenixArbiter` 战甲。满级口径下视为已解锁。 |
 
 ### 英雄相关等级解锁
 
@@ -158,7 +171,7 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | Lv14 | 攻城勇士升级包 | - | `RoboticsBayResearch:21`, `FleetBeaconResearch:20`, `FenixClolarionCarrierBomberHangar:`, `RoboticsBayResearch:22`, `FenixWarbringerColos... | 解锁下列升级： / 战争使者获得一项技能，可对敌方单位发射一次毁灭性轰击 (在机械研究所中研究)科罗拉里昂可以建造强击机轰炸敌方单位 (在舰队航标中研究) |
 | Lv15 | 战术数据网 | `FenixNetworkedSuperiority` | - | 每有一个同类型的宿主机体，智能人格英雄的特殊技能便获得加成 (最多获得20个补给的加成)。 |
 
-口径：官方玩法存在菲尼克斯多套战甲/人格载体，但当前 heroes.json 未列出，需要从官方原始文本镜像/实机补 HeroModeProfile。
+口径：官方玩法存在菲尼克斯多套战甲/人格载体；`heroes.json` 未列出时，以官方原始镜像 `UnitData.xml` / `AbilData.xml` 的战甲和 `SoACasterFenix` 链为正向依据。
 
 待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 
@@ -237,6 +250,13 @@ Owner：`CommanderBaseInitProfile`、`CommanderOpeningLoadoutProfile`、`Command
 | 光影议会 | `AdeptResearchPiercingUpgrade` | 研究共鸣之刃 | - | - | 使徒的攻击速度提高45%。 |
 
 实现备注：地图初始化只传 commander、出生点和场景语义；基地、工人、特殊建筑、初始科技和补给由本指挥官 initializer 自己组装。
+
+当前 Mod 接入状态：
+
+- `XMFinal.SC2Mod/DocumentInfo` 激活 `file:Mods\XM\XMFenix.SC2Mod`，地图只依赖 `XMFinal` 时也能加载菲尼克斯私有目录。
+- `LibE0EAE146_FenixRuntime.galaxy` 创建 `SoACasterFenix` 并调用 `CU_GPInit(player, "Fenix", caster, null)`，从而接通三套战甲顶部面板。
+- `lp_createHero=true` 时 runtime 默认创建 `FenixCoop`；`FenixDragoon` / `FenixArbiter` 保持由 `SOASummonFenixDragoon` / `SOASummonFenixArbiter` 面板链进入。
+- `XMFenix.SC2Mod` 的 `CommanderAch/Fenix` 覆盖开局三件套为 `NexusFenix` / `ProbeFenix` / `PylonFenix`，避免测试初始化落回共享 `Nexus` / `Probe` / `Pylon`。
 
 ## 05. 指挥官兵种
 
