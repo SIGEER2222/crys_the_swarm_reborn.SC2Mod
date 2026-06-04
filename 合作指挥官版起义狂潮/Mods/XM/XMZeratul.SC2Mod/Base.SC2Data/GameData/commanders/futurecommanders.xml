@@ -1922,6 +1922,12 @@
   <CValidatorUnitType id="IsProphecyArtifactPickupUnlimited">
     <Value value="ZeratulArtifactPickupUnlimited" />
   </CValidatorUnitType>
+  <CValidatorLocationEnumArea id="ProphecyArtifactNearby">
+    <WhichLocation Value="SourcePoint" />
+    <AreaArray Radius="13" Validator="IsProphecyArtifact" />
+    <LaunchLocation Value="SourcePoint" />
+    <SearchFilters value="-;Missile,Dead" />
+  </CValidatorLocationEnumArea>
   <CValidatorUnitType id="IsZeratulXelnagaConstruct">
     <Value value="ZeratulXelNagaConstruct" />
   </CValidatorUnitType>
@@ -2467,6 +2473,21 @@
       <StateFlags index="NoDraw" value="1" />
     </Modification>
   </CBehaviorBuff>
+  <CEffectSet id="Event_ZeratulProphecyPrepMiss">
+    <EditorCategories value="Race:Terran" />
+  </CEffectSet>
+  <CEffectSet id="Event_ZeratulProphecyPrepFound">
+    <EditorCategories value="Race:Terran" />
+  </CEffectSet>
+  <CEffectSwitch id="Event_ZeratulProphecyPrepSwitch">
+    <EditorCategories value="Race:Protoss" />
+    <CaseArray Validator="ProphecyArtifactNearby" Effect="Event_ZeratulProphecyPrepFound" />
+    <CaseArray Effect="Event_ZeratulProphecyPrepMiss" FallThrough="1" />
+  </CEffectSwitch>
+  <CEffectEnumArea id="ProphecyArtifactRevealSearch">
+    <SearchFilters value="-;Missile,Dead" />
+    <AreaArray Radius="13" Effect="ProphecyArtifactRevealSet" />
+  </CEffectEnumArea>
   <CEffectRemoveBehavior id="ProphecyArtifactReveal">
     <BehaviorLink value="ProphecyArtifactHide" />
     <WhichUnit Effect="ProphecyArtifactRevealSet" />
@@ -2531,6 +2552,11 @@
     <Flags index="Channeled" value="1" />
     <Flags index="PersistUntilDestroyed" value="1" />
   </CEffectCreatePersistent>
+  <CEffectSwitch id="ProphecyVisionSwitch">
+    <EditorCategories value="Race:Protoss" />
+    <CaseArray Validator="ProphecyArtifactNearby" Effect="ProphecyArtifactRevealSearch" />
+    <CaseArray Effect="ProphecyVision" FallThrough="1" />
+  </CEffectSwitch>
   <CModel id="ProphecyVision">
     <Model value="Assets\COOP\Zeratul\Portraits\Prophecy_Zeratul_COOP_Portrait\Prophecy_Zeratul_COOP_Portrait.m3" />
     <EditorCategories value="Race:Protoss" />
