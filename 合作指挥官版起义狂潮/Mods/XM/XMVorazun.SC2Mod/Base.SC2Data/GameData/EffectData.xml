@@ -5039,4 +5039,70 @@
     <Behavior value="ZerglingArmorShredTarget" />
     <ValidatorArray index="0" value="HaveZerglingArmorShred" />
   </CEffectApplyBehavior>
+  <CEffectSet id="ShadowGuardSpawnSet">
+    <EffectArray value="ShadowGuardSpawnMakePrecursorAB" />
+    <EffectArray value="ShadowGuardSpawnDelayAB" />
+    <EffectArray value="CommanderPrestigeVorazunTimeStopDeathWatch" />
+  </CEffectSet>
+  <CEffectCreateUnit id="ShadowGuardCU">
+    <WhichLocation Value="TargetPoint" />
+    <CreateFlags index="UseFood" value="0" />
+    <SpawnUnit value="VorazunShadowGuard" />
+    <SpawnCount value="2" />
+    <SpawnRange value="4" />
+    <SpawnEffect value="ShadowGuardSpawnSet" />
+    <ValidatorArray value="Pathable" />
+  </CEffectCreateUnit>
+  <CEffectCreatePersistent id="SOATimeFreeze">
+    <EditorCategories value="Race:Protoss" />
+    <PeriodCount value="1" />
+    <PeriodicEffectArray value="SOATimeFreezeB" />
+    <PeriodicPeriodArray value="1.2" />
+  </CEffectCreatePersistent>
+  <CEffectCreatePersistent id="SOATimeFreezeB">
+    <EditorCategories value="Race:Protoss" />
+    <PeriodCount value="48" />
+    <PeriodicEffectArray value="SOATimeFreezeSearch" />
+    <PeriodicPeriodArray value="0.0625" />
+  </CEffectCreatePersistent>
+  <CEffectEnumArea id="SOATimeFreezeSearch">
+    <SearchFilters value="-;Player,Ally,Neutral,Missile,Dead,Hidden" />
+    <AreaArray MaxCount="20" Radius="500" Effect="SOATimeFreezeAB" />
+  </CEffectEnumArea>
+  <CEffectApplyBehavior id="SOATimeFreezeAB">
+    <Behavior value="SOATimeFreeze" />
+  </CEffectApplyBehavior>
+  <CEffectApplyBehavior id="OracleRevelationApplyBehavior">
+    <Behavior value="OracleRevelation" />
+  </CEffectApplyBehavior>
+  <CEffectDamage id="OracleRevelationDummyDamage">
+    <EditorCategories value="" />
+    <ResponseFlags index="Acquire" value="1" />
+    <Flags index="Notification" value="1" />
+    <Flags index="NoDamageTimerReset" value="1" />
+  </CEffectDamage>
+  <CEffectSet id="RevelationSet">
+    <EditorCategories value="" />
+    <EffectArray value="OracleRevelationApplyBehavior" />
+    <EffectArray value="OracleRevelationDummyDamage" />
+  </CEffectSet>
+  <CEffectEnumArea id="OracleRevelationSearch">
+    <EditorCategories value="Race:Protoss" />
+    <ImpactLocation Value="TargetPoint" />
+    <SearchFilters value="-;Self,Player,Ally,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable" />
+    <AreaArray Radius="6" Effect="RevelationSet" />
+  </CEffectEnumArea>
+  <CEffectCreateUnit id="OracleStasisTrapCU">
+    <EditorCategories value="Race:Protoss" />
+    <WhichLocation Value="TargetPoint" />
+    <SpawnUnit value="OracleStasisTrap" />
+  </CEffectCreateUnit>
+  <CEffectDamage id="OracleStasisTrapBuildBeamOn">
+    <EditorCategories value="Race:Protoss" />
+    <ImpactLocation Value="TargetUnit" />
+  </CEffectDamage>
+  <CEffectDamage id="OracleStasisTrapBuildBeamOff">
+    <EditorCategories value="Race:Protoss" />
+    <ImpactLocation Value="SourcePoint" />
+  </CEffectDamage>
 </Catalog>

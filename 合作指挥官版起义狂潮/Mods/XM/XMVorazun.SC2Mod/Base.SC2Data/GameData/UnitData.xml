@@ -14442,4 +14442,68 @@
     <TechTreeProducedUnitArray value="Stalker" />
     <TechTreeProducedUnitArray value="DarkTemplarShakuras" />
   </CUnit>
+  <CUnit id="ZealotShakuras">
+    <BehaviorArray index="1" Link="" />
+    <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="Charge" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="0" />
+    </CardLayouts>
+    <ScoreMake value="0" />
+    <ScoreKill value="0" />
+    <DamageDealtXP value="0" />
+    <DamageTakenXP value="0" />
+    <KillXP value="0" />
+    <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionNerazim" />
+  </CUnit>
+  <CUnit id="Oracle">
+    <BehaviorArray Link="AllUnitBehaviorController" />
+    <BehaviorArray Link="CorsairPermanentCloak" />
+    <BehaviorArray Link="VorazunCloakedShieldRegenPermanent" />
+    <AbilArray Link="OracleRevelation" />
+    <AbilArray Link="OracleStasisTrapBuild" />
+    <AbilArray Link="OracleWeapon" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="OracleRevelation" Type="AbilCmd" AbilCmd="OracleRevelation,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="OracleBuildStasisTrap" Type="AbilCmd" AbilCmd="OracleStasisTrapBuild,Build1" Row="2" Column="1" />
+      <LayoutButtons Face="OracleWeaponOn" Type="AbilCmd" AbilCmd="OracleWeapon,On" Row="2" Column="2" />
+      <LayoutButtons Face="HaveOracleStasisWardUpgrade" Type="Passive" Requirements="HaveOracleStasisWardUpgrade" Row="2" Column="3" />
+      <LayoutButtons Face="PermanentlyCloakedOracle" Type="Passive" Requirements="HaveCorsairPermanentCloak" Row="2" Column="4" />
+    </CardLayouts>
+    <ScoreMake value="0" />
+    <ScoreKill value="0" />
+    <CostResource index="Minerals" value="100" />
+    <CostResource index="Vespene" value="75" />
+    <RepairTime value="18.75" />
+    <TacticalAIChannel value="AIChannelOracle" />
+  </CUnit>
+  <CUnit id="VoidRay">
+    <BehaviorArray index="0" Link="" />
+    <BehaviorArray Link="AllUnitBehaviorController" />
+    <AbilArray Link="VoidRaySwarmDamageBoost" />
+    <WeaponArray Link="VoidRaySwarm" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="VoidRaySwarmDamageBoost" Type="AbilCmd" AbilCmd="VoidRaySwarmDamageBoost,Execute" Row="2" Column="0" />
+    </CardLayouts>
+    <ScoreMake value="0" />
+    <ScoreKill value="0" />
+    <RepairTime value="36" />
+    <KillXP value="0" />
+    <DamageDealtXP value="0" />
+    <DamageTakenXP value="0" />
+  </CUnit>
+  <CUnit id="OracleStasisTrap">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <FlagArray index="Turnable" value="0" />
+    <FlagArray index="NoPortraitTalk" value="1" />
+    <PlaneArray index="Ground" value="1" />
+    <Attributes index="Light" value="1" />
+    <Attributes index="Structure" value="1" />
+    <LifeStart value="30" />
+    <LifeMax value="30" />
+    <ShieldsStart value="30" />
+    <ShieldsMax value="30" />
+    <EditorCategories value="ObjectType:Structure,ObjectFamily:FactionNerazim" />
+  </CUnit>
 </Catalog>

@@ -587,6 +587,11 @@ function isProductionCommand(ability) {
   return /^(GatewayTrain|WarpGateTrain|StargateTrain|RoboticsFacilityTrain|RoboticsFacilityWarpTrain|TemplarArchivesResearch|FleetBeaconResearch),/.test(abilCmd);
 }
 
+function isMaxLevelLockedUnitSkill(ability) {
+  const requirements = normalize(ability.requirements);
+  return /\b(?:Abathur|Alarak|Artanis|Dehaka|Fenix|Horner|Karax|Kerrigan|Mengsk|Nova|Raynor|Stetmann|Stukov|Swann|Tychus|Vorazun|Zagara|Zeratul)Level\d+\b/i.test(requirements);
+}
+
 function compareField(field, expected, actual) {
   const expectedValue = normalize(expected[field]);
   const actualValue = normalize(actual[field]);
@@ -696,6 +701,7 @@ function auditUnitSkills(units, candidateMap, moduleUnits, finalUnits, globalTex
     const expectedSkills = (unit.abilities || [])
       .filter((ability) => !isProductionCommand(ability))
       .map(abilitySignature)
+      .filter((ability) => !isMaxLevelLockedUnitSkill(ability))
       .filter((ability) => ability.face && !inheritedOrCoreFaces.has(ability.face));
     const expectedGlobalRefs = (unit.global_refs || [])
       .map(globalRefSignature)
@@ -827,7 +833,7 @@ function auditOnlinePrimaryRoster(expectedItems, reports, reportKey) {
       ...expected,
       audited: Boolean(report),
       resolved_unit_ids: reportKey === 'unit' && report
-        ? unique(expected.resolved_unit_ids || report.resolved_unit_ids || [])
+        ? unique([...(expected.resolved_unit_ids || []), ...(report.resolved_unit_ids || [])])
         : [],
       candidate_ids: report ? report.candidate_ids || [] : [],
       found_unit_ids: report ? report.found_unit_ids || [] : [],

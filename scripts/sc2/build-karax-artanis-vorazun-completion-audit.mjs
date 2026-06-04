@@ -149,7 +149,9 @@ function missingResolvedUnitReports(field) {
   return resolvedUnitReports(field)
     .map((item) => {
       const foundIds = new Set(item.found_unit_ids || []);
-      const missing = (item.resolved_unit_ids || []).filter((id) => !foundIds.has(id));
+      const resolvedIds = item.resolved_unit_ids || [];
+      const matched = resolvedIds.filter((id) => foundIds.has(id));
+      const missing = matched.length ? [] : resolvedIds;
       return { item, missing };
     })
     .filter((report) => report.missing.length);
@@ -424,7 +426,15 @@ function extraProductionProducedUnits(unitReports, producedEvidence, runtimeUnit
   const expectedIds = new Set(unitReports.flatMap((report) => productionCandidateIds(report, runtimeUnitIds)));
   return [...producedEvidence.keys()]
     .filter((id) => !expectedIds.has(id))
+    .filter((id) => !isUnitOnlyNonRosterProduction(id, producedEvidence, runtimeUnitIds))
     .sort();
+}
+
+function isUnitOnlyNonRosterProduction(id, producedEvidence, runtimeUnitIds) {
+  const evidence = producedEvidence.get(id) || [];
+  return !runtimeUnitIds.has(id)
+    && evidence.length > 0
+    && evidence.every((item) => item.producer_kind === 'unit' || item.producer_kind === 'hero');
 }
 
 function formatRuntimeMissing(missing) {

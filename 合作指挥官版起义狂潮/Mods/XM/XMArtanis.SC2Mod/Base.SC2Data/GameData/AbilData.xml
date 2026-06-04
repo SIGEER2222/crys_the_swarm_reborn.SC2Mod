@@ -6117,4 +6117,47 @@
   <CAbilMorph id="MorphBackToStargateArtanis" parent="MorphBackToStargate">
     <InfoArray index="0" Unit="StargateArtanis" />
   </CAbilMorph>
+  <CAbilBehavior id="SOAOrbitalStrikeActivate">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <CmdButtonArray index="On" DefaultButtonFace="SOAOrbitalStrike" Requirements="HaveSOAOrbitalStrike" />
+    <CmdButtonArray index="Off" DefaultButtonFace="Cancel" />
+    <Flags index="Toggle" value="1" />
+    <Cost>
+      <Vital index="Energy" value="50" />
+      <Cooldown TimeUse="60" />
+    </Cost>
+    <BehaviorArray value="SOAOrbitalStrikeActivate" />
+  </CAbilBehavior>
+  <CAbilEffectTarget id="SOAOrbitalStrikeTargetingDummy">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Effect index="0" value="SOAOrbitalStrikeCP" />
+    <Range value="500" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOAOrbitalStrike" Requirements="HaveSOAOrbitalStrike" />
+    <Flags index="Transient" value="1" />
+    <Flags index="RequireTargetVision" value="0" />
+    <CursorEffect value="SOAOrbitalStrikeImpactSearch" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="SOAOrbitalStrikeExecute">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Effect index="0" value="SOAOrbitalStrikeCP" />
+    <Range value="500" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOAOrbitalStrike" Requirements="HaveSOAOrbitalStrike" />
+    <PrepTime value="0.125" />
+    <Flags index="RequireTargetVision" value="0" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="SOAStrafeAttack">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Effect index="0" value="SOAStrafeAttackMovePersistent" />
+    <Range value="500" />
+    <Arc value="360" />
+    <AINotifyEffect value="SOAStrafeAttackMovePersistent" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOAStrafeAttack" Requirements="HaveSOAStrafeAttack" />
+    <SharedFlags index="TargetCursorVisibleInBlackMask" value="1" />
+    <Cost>
+      <Cooldown TimeStart="300" TimeUse="300" />
+    </Cost>
+    <CursorEffect value="SOAStrafeAttackSearch" />
+  </CAbilEffectTarget>
 </Catalog>

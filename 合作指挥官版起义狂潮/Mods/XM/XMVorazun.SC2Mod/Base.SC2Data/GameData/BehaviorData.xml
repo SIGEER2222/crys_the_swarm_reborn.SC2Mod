@@ -2736,4 +2736,28 @@
       <StateFlags index="SuppressCloak" value="1" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="SOATimeFreeze">
+    <Alignment value="Negative" />
+    <InfoIcon value="Assets\Textures\BTN-Ability-SpearOfAdun-TimeStop.dds" />
+    <BehaviorCategories index="Slow" value="1" />
+    <TimeScaleSource Value="Global" />
+    <Duration value="20" />
+    <Modification TimeScale="0.01">
+      <StateFlags index="Stun" value="1" />
+      <StateFlags index="SuppressAttack" value="1" />
+      <StateFlags index="SuppressCloak" value="1" />
+      <StateFlags index="SuppressDetection" value="1" />
+      <StateFlags index="SuppressRadar" value="1" />
+      <AbilClassDisableArray index="CAbilAttack" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="OracleRevelation">
+    <Alignment value="Negative" />
+    <InfoIcon value="Assets\Textures\btn-status-detector.dds" />
+    <Duration value="60" />
+    <Modification>
+      <ModifyFlags index="Reveal" value="1" />
+      <StateFlags index="SuppressCloak" value="1" />
+    </Modification>
+  </CBehaviorBuff>
 </Catalog>

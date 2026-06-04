@@ -581,6 +581,7 @@
         </InfoArray-->
   </CAbilTrain>
   <CAbilEffectTarget id="CommanderPrestigeVorazunTimeStop">
+    <Effect index="0" value="CommanderPrestigeVorazunTimeStop" />
     <Cost>
       <Cooldown TimeStart="300" TimeUse="300" />
     </Cost>
@@ -6006,4 +6007,57 @@
   <CAbilMorph id="MorphBackToGatewayVorazun" parent="MorphBackToGateway">
     <InfoArray index="0" Unit="GatewayVorazun" />
   </CAbilMorph>
+  <CAbilEffectTarget id="SOAShadowGuardCalldown">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Effect index="0" value="ShadowGuardCU" />
+    <Cost>
+      <Vital index="Energy" value="50" />
+      <Cooldown TimeStart="180" TimeUse="180" />
+    </Cost>
+    <Range value="500" />
+    <Arc value="360" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOAShadowGuardCalldown" />
+  </CAbilEffectTarget>
+  <CAbilEffectInstant id="SOATimeFreeze">
+    <Effect index="0" value="SOATimeFreeze" />
+    <Cost>
+      <Cooldown TimeStart="300" TimeUse="300" />
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOATimeFreeze" Requirements="HaveSOATimeFreeze" />
+  </CAbilEffectInstant>
+  <CAbilEffectTarget id="OracleRevelation">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <Effect index="0" value="OracleRevelationSearch" />
+    <Flags index="AllowMovement" value="1" />
+    <Cost>
+      <Vital index="Energy" value="50" />
+      <Cooldown TimeUse="2.5" />
+    </Cost>
+    <Range value="9" />
+    <Arc value="360" />
+    <CursorEffect value="OracleRevelationSearch" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="OracleRevelation" />
+  </CAbilEffectTarget>
+  <CAbilBuild id="OracleStasisTrapBuild">
+    <EditorCategories value="Race:Protoss,AbilityorEffectType:Units" />
+    <InfoArray index="Build1" Unit="OracleStasisTrap" Time="5">
+      <Vital index="Energy" value="50" />
+      <Button DefaultButtonFace="OracleBuildStasisTrap" />
+    </InfoArray>
+    <FlagArray index="RequireFacing" value="1" />
+    <Range value="5" />
+    <EffectArray index="Start" value="OracleStasisTrapBuildBeamOn" />
+    <EffectArray index="Finish" value="OracleStasisTrapBuildBeamOff" />
+    <EffectArray index="Cancel" value="OracleStasisTrapBuildBeamOff" />
+  </CAbilBuild>
+  <CAbilBehavior id="OracleWeapon">
+    <Cost index="0">
+      <Vital index="Energy" value="0" />
+    </Cost>
+    <CmdButtonArray index="On" DefaultButtonFace="OracleWeaponOn" />
+    <CmdButtonArray index="Off" DefaultButtonFace="OracleWeaponOff" />
+  </CAbilBehavior>
+  <CAbilEffectInstant id="VoidRaySwarmDamageBoost">
+    <CmdButtonArray index="Execute" DefaultButtonFace="VoidRaySwarmDamageBoost" Requirements="NotHaveVoidVoidRayChargeBeam" />
+  </CAbilEffectInstant>
 </Catalog>
