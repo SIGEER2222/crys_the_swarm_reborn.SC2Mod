@@ -38,6 +38,8 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 
 2026-06-04 复核：在当前 `XMRaynor` 模块里没有命中 `SCVNova`；本地出现的 Nova 命名主要是 `GhostAcademyNova`、`Train*Nova` 这类共享按钮/模型壳，不应把它们误当成雷诺的独立兵种或建筑。雷诺自身的主链仍然由 `CoopCasterRaynor`、`HyperionVoidCoop`、`BansheeAirstrike` 和 `RaynorCommanderHyperionAdvancedTargetingSystems` 承载。
 
+2026-06-04 当前 Mod 实现状态：官方 ID 仍按 `Marine / Medic / Vulture / Firebat / SCV / Viking / Banshee / Marauder / Battlecruiser / SiegeTank` 记录，但 `XMFinal` 的 `CommanderRuntimeRoster` 和测试台创建已切到 `MarineRaynor`、`MedicRaynor`、`VultureRaynor`、`FirebatRaynor`、`SCVRaynor`、`VikingRaynor`、`BansheeRaynor`、`MarauderRaynor`、`BattlecruiserRaynor`、`SiegeTankRaynor`。`XMRaynor` 还补了 `BarracksTrainRaynor`、`FactoryTrainRaynor`、`StarportTrainRaynor`、`TerranBuildRaynor` 的私有输出，SCV raw-only 前置建筑也用 `RefineryRaynor / EngineeringBayRaynor / FactoryRaynor / StarportRaynor / ArmoryRaynor / FusionCoreRaynor / SensorTowerRaynor` 这类薄壳承载；不要再把当前 Mod 的 Raynor 实现回退到通用 Terran 单位。
+
 ## 2026-06-04 闭包复核补充
 
 2026-06-03 的人族闭包已经把 Raynor 的有效链路闭到 official JSON + raw closure 两层，这里补一版便于后续实现直接引用的结论：

@@ -11149,6 +11149,12 @@
     <Race value="Zerg" />
     <Mob value="Campaign" />
     <TechAliasArray value="Alias_Overlord" />
+    <AbilArray index="3" removed="1" />
+    <AbilArray Link="MorphToOverseerZagara" />
+    <CardLayouts index="0">
+      <LayoutButtons index="6" Face="MorphToOverseer" Type="AbilCmd" AbilCmd="MorphToOverseerZagara,Execute" Row="2" Column="0" />
+      <LayoutButtons index="7" Face="Cancel" Type="AbilCmd" AbilCmd="MorphToOverseerZagara,Cancel" Row="2" Column="4" />
+    </CardLayouts>
   </CUnit>
   <CUnit id="HatcheryZagara" parent="Hatchery">
     <Race value="Zerg" />
@@ -11244,5 +11250,65 @@
     <Race value="Zerg" />
     <Mob value="Campaign" />
     <TechAliasArray value="Alias_ScourgeNest" />
+  </CUnit>
+  <CUnit id="ZerglingZagara" parent="HotSSwarmling">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Zergling" />
+  </CUnit>
+  <CUnit id="BanelingZagara" parent="Baneling">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Baneling" />
+  </CUnit>
+  <CUnit id="HotSHunterZagara" parent="HotSHunter">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+  </CUnit>
+  <CUnit id="HotSSplitterlingBigZagara" parent="HotSSplitterlingBig">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+  </CUnit>
+  <CUnit id="InfestedAbominationZagara" parent="InfestedAbomination">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+  </CUnit>
+  <CUnit id="ScourgeZagara" parent="Scourge">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+  </CUnit>
+  <CUnit id="QueenZagara" parent="Queen">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+  </CUnit>
+  <CUnit id="SwarmQueenZagara" parent="SwarmQueen">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+  </CUnit>
+  <CUnit id="OverseerZagara" parent="Overseer">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Overseer" />
+    <LeaderAlias value="OverseerZagara" />
+    <HotkeyAlias value="OverseerZagara" />
+    <SelectAlias value="OverseerZagara" />
+    <SubgroupAlias value="OverseerZagara" />
+    <AbilArray Link="OverseerMorphtoOverseerSiegeZagara" />
+    <CardLayouts index="0">
+      <LayoutButtons index="8" Face="MorphtoOverseerSiege" Type="AbilCmd" AbilCmd="OverseerMorphtoOverseerSiegeZagara,Execute" Row="2" Column="0" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="OverseerSiegeModeZagara" parent="OverseerSiegeMode">
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Overseer" />
+    <LeaderAlias value="OverseerZagara" />
+    <HotkeyAlias value="OverseerZagara" />
+    <SelectAlias value="OverseerZagara" />
+    <SubgroupAlias value="OverseerZagara" />
+    <AbilArray Link="OverseerSiegeMorphtoOverseerZagara" />
+    <CardLayouts index="0">
+      <LayoutButtons index="7" Face="MorphtoOverseerNormal" Type="AbilCmd" AbilCmd="OverseerSiegeMorphtoOverseerZagara,Execute" Row="2" Column="1" />
+    </CardLayouts>
   </CUnit>
 </Catalog>

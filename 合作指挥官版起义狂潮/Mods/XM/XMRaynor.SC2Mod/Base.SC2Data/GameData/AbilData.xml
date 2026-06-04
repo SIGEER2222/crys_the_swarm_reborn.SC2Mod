@@ -581,6 +581,39 @@
     <InfoArray index="Train2" removed="1" />
     <InfoArray index="Train15" removed="1" />
   </CAbilTrain>
+  <CAbilTrain id="BarracksTrainRaynor" parent="BarracksTrain">
+    <InfoArray index="Train1">
+      <Unit value="MarineRaynor" />
+    </InfoArray>
+    <InfoArray index="Train4">
+      <Unit value="MarauderRaynor" />
+    </InfoArray>
+    <InfoArray index="Train5">
+      <Unit value="MedicRaynor" />
+    </InfoArray>
+    <InfoArray index="Train6">
+      <Unit value="FirebatRaynor" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="FactoryTrainRaynor" parent="FactoryTrain">
+    <InfoArray index="Train2">
+      <Unit value="SiegeTankRaynor" />
+    </InfoArray>
+    <InfoArray index="Train10">
+      <Unit value="VultureRaynor" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="StarportTrainRaynor" parent="StarportTrain">
+    <InfoArray index="Train2">
+      <Unit value="BansheeRaynor" />
+    </InfoArray>
+    <InfoArray index="Train4">
+      <Unit value="BattlecruiserRaynor" />
+    </InfoArray>
+    <InfoArray index="Train5">
+      <Unit value="VikingRaynor" />
+    </InfoArray>
+  </CAbilTrain>
   <CAbilEffectTarget id="CommanderPrestigeVorazunTimeStop">
     <Cost>
       <Cooldown TimeStart="300" TimeUse="300" />
@@ -4964,9 +4997,20 @@
     </InfoArray>
   </CAbilBuild>
   <CAbilBuild id="TerranBuildRaynor" parent="TerranBuild">
-    <InfoArray index="Build4">
+    <InfoArray index="Build1" Unit="CommandCenterRaynor" />
+    <InfoArray index="Build2" Unit="SupplyDepotRaynor" />
+    <InfoArray index="Build3" Unit="RefineryRaynor" />
+    <InfoArray index="Build4" Unit="BarracksRaynor">
       <Button State="Available" Requirements="" />
     </InfoArray>
+    <InfoArray index="Build5" Unit="EngineeringBayRaynor" />
+    <InfoArray index="Build6" Unit="MissileTurretRaynor" />
+    <InfoArray index="Build7" Unit="BunkerRaynor" />
+    <InfoArray index="Build9" Unit="SensorTowerRaynor" />
+    <InfoArray index="Build11" Unit="FactoryRaynor" />
+    <InfoArray index="Build12" Unit="StarportRaynor" />
+    <InfoArray index="Build14" Unit="ArmoryRaynor" />
+    <InfoArray index="Build16" Unit="FusionCoreRaynor" />
     <InfoArray index="Build8" removed="1" />
     <InfoArray index="Build10" removed="1" />
     <InfoArray index="Build13" removed="1" />
@@ -5258,6 +5302,12 @@
       </SectionArray>
     </InfoArray>
   </CAbilMorph>
+  <CAbilMorph id="UpgradeToOrbitalRaynor" parent="UpgradeToOrbital">
+    <InfoArray index="0" Unit="OrbitalCommandRaynor" />
+  </CAbilMorph>
+  <CAbilBuild id="OrbitalCommandSupplyDepotDropRaynor" parent="OrbitalCommandSupplyDepotDrop">
+    <InfoArray index="Build1" Unit="SupplyDepotRaynor" />
+  </CAbilBuild>
   <CAbilMorph id="UpgradeToWarpGate">
     <CmdButtonArray index="Execute" State="Available" Requirements="UseWarpGate" />
     <Flags index="AutoCast" value="1" />

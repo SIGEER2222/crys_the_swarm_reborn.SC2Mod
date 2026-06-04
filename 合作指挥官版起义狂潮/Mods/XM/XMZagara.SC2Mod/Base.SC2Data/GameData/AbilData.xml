@@ -4398,7 +4398,7 @@
         <Flags index="RestoreAllChargesOnCooldown" value="1" />
       </Charge>
       <Button DefaultButtonFace="Baneling" Requirements="HaveZagaraBirthingChamberBaneling" />
-      <Unit value="Baneling" />
+      <Unit value="BanelingZagara" />
       <Unit value="" />
       <Unit value="" />
       <Flags index="AutoCast" value="1" />
@@ -4414,7 +4414,7 @@
         <Flags index="RestoreAllChargesOnCooldown" value="1" />
       </Charge>
       <Button DefaultButtonFace="MorphtoHunter" Requirements="CoopHaveHunter" />
-      <Unit value="HotSHunter" />
+      <Unit value="HotSHunterZagara" />
       <Flags index="AutoCast" value="1" />
       <Flags index="AutoCastOn" value="1" />
     </InfoArray>
@@ -4428,7 +4428,7 @@
         <Flags index="RestoreAllChargesOnCooldown" value="1" />
       </Charge>
       <Button DefaultButtonFace="MorphtoSplitterling" Requirements="CoopHaveSplitterling" />
-      <Unit value="HotSSplitterlingBig" />
+      <Unit value="HotSSplitterlingBigZagara" />
       <Unit value="" />
       <Unit value="" />
       <Flags index="AutoCast" value="1" />
@@ -4737,8 +4737,8 @@
     </InfoArray>
     <InfoArray index="Train2">
       <Button DefaultButtonFace="Zergling" State="Available" />
-      <Unit value="Zergling" />
-      <Unit value="Zergling" />
+      <Unit value="ZerglingZagara" />
+      <Unit value="ZerglingZagara" />
     </InfoArray>
     <InfoArray index="Train4">
       <Button DefaultButtonFace="Overlord" State="Available" />
@@ -4746,7 +4746,7 @@
     </InfoArray>
     <InfoArray index="Train12">
       <Button DefaultButtonFace="Corruptor" State="Restricted" Requirements="HaveScourgeNest" />
-      <Unit value="Corruptor" />
+      <Unit value="ZagaraCorruptor" />
     </InfoArray>
     <InfoArray index="Train3" removed="1" />
     <InfoArray index="Train5" removed="1" />
@@ -4778,12 +4778,12 @@
   <CAbilTrain id="LarvaTrainSwarmZagara" parent="LarvaTrainSwarm">
     <InfoArray index="Train28">
       <Button DefaultButtonFace="InfestedAbomination" State="Available" />
-      <Unit value="InfestedAbomination" />
+      <Unit value="InfestedAbominationZagara" />
     </InfoArray>
     <InfoArray index="Train30" Time="30">
       <Button DefaultButtonFace="Scourge" State="Restricted" Requirements="HaveScourgeNest" />
-      <Unit value="Scourge" />
-      <Unit value="Scourge" />
+      <Unit value="ScourgeZagara" />
+      <Unit value="ScourgeZagara" />
     </InfoArray>
     <InfoArray index="Train1" removed="1" />
     <InfoArray index="Train2" removed="1" />
@@ -4817,11 +4817,11 @@
   <CAbilTrain id="TrainQueenZagara" parent="TrainQueen">
     <InfoArray index="Train1">
       <Button DefaultButtonFace="Queen" State="Available" />
-      <Unit value="Queen" />
+      <Unit value="QueenZagara" />
     </InfoArray>
     <InfoArray index="Train4" Time="50">
       <Button DefaultButtonFace="QueenCoop" State="Restricted" Requirements="HaveSpawningPool" />
-      <Unit value="QueenCoop" />
+      <Unit value="SwarmQueenZagara" />
     </InfoArray>
     <InfoArray index="Train2" removed="1" />
     <InfoArray index="Train3" removed="1" />
@@ -4831,5 +4831,14 @@
   </CAbilMorph>
   <CAbilMorph id="UpgradeToHiveZagara" parent="UpgradeToHive">
     <InfoArray index="0" Unit="HiveZagara" />
+  </CAbilMorph>
+  <CAbilMorph id="MorphToOverseerZagara" parent="MorphToOverseer">
+    <InfoArray Score="1" Unit="OverseerZagara" />
+  </CAbilMorph>
+  <CAbilMorph id="OverseerMorphtoOverseerSiegeZagara" parent="OverseerMorphtoOverseerSiege">
+    <InfoArray Score="1" Unit="OverseerSiegeModeZagara" />
+  </CAbilMorph>
+  <CAbilMorph id="OverseerSiegeMorphtoOverseerZagara" parent="OverseerSiegeMorphtoOverseer">
+    <InfoArray Score="1" Unit="OverseerZagara" />
   </CAbilMorph>
 </Catalog>
