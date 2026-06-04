@@ -465,6 +465,8 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 
 实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
+当前 runtime 落点：官方合作 `heroes.json=0`，本轮不创建英雄本体；`XMFinal` 通过 `LibE0EAE146_VorazunRuntime.galaxy` 在 `InitializeBase` 的 `Vorazun` 分支创建 `SoACasterVorazun`，执行 `CU_GPInit(1, "Vorazun", caster, null)`，并显示顶部面板和选择按钮。顶栏技能 `SOADarkPylon`、`VoidSentryBlackHole`、`SOAShadowGuardCalldown`、`SOATimeFreeze` / `CommanderPrestigeVorazunTimeStop` 都落在该 caster 上。
+
 ## 11. 指挥官个性化机制
 
 Owner：`CommanderPersonalMechanicProfile`、`CommanderPersonalMechanicEffectProfile`、`CommanderPersonalMechanicHookProfile`、`CommanderPersonalMechanicRequirementProfile`。
