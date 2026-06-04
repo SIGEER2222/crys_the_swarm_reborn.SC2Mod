@@ -13,6 +13,8 @@
 - 阿拉纳克当前官方正向建筑只有 `Gateway`、`PhotonCannon`、`TwilightCouncil`；这些是共享星灵 Catalog 对象，不能因为建筑按钮表里出现别的指挥官锁定项就当作阿拉纳克私有链。
 - 阿拉纳克正向兵种按 `units.json` 的 `ColossusTaldarim`、`HighTemplarTaldarim`、`ImmortalTaldarim`、`SentryTaldarim`、`Supplicant`、`WarpPrismTaldarim`、`Stalker` 过滤。
 - 候选表里出现 `FenixLevel*`、`KaraxLevel*`、`VorazunLevel*`、`ZeratulArtifact*` 或其它神族指挥官专属 Requirement 时，只能作为共享 Gateway/Twilight/Robotics 污染候选，不得接入阿拉纳克满级实现。
+- 当前官方 `heroes.json` 未列阿拉纳克本体，但官方 raw Catalog 明确存在 `AlarakCoop`；当前 Mod runtime 以 `CoopCasterAlarak` 承载顶部面板，以 `AlarakCoop` 作为 `createHero=true` 时的英雄本体。
+- 当前 Mod 已在 `XMAlarak.SC2Mod` 覆盖 `CommanderAch/Alarak` 开局三件套为 `NexusAlarak`、`ProbeAlarak`、`PylonAlarak`，避免落回通用 `Nexus/Probe/Pylon`。
 
 ## 官方数据摘要
 
@@ -111,13 +113,15 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或官方原始文本镜像继续追。 |
+| 阿拉纳克 | `AlarakCoop` | `AlarakCoop` | Ground; Biological/Psionic/Heroic; Hero; FactionTaldarim | 矿:- 气:- 人口:- 生命:200 护盾:200 能量:- | `heroes.json` 未列，但官方 raw `UnitData.xml` 和当前 Mod 均存在；由 `LibE0EAE146_AlarakRuntime.galaxy` 在 `createHero=true` 时创建。 |
 
 ### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从官方原始文本镜像或实机日志补。 |
+| 阿拉纳克 | `AlarakDeadlyCharge` | 致命冲锋 | `AlarakACDeadlyCharge,Execute` | - | `AlarakCoop` 英雄卡能力，等级/威望会改写射程、冷却或伤害链。 |
+| 阿拉纳克 | `AlarakKnockback` | 湮灭波 | `AlarakKnockback,Execute` | - | `AlarakCoop` 英雄卡能力，相关升级包含击退距离和闪电奔涌。 |
+| 阿拉纳克 | `AlarakEmpower` | 供奉我 | `AlarakEmpower,Execute` | `AlarakLevel05` | 满级口径应视为可用，按钮上保留等级锁用于审计。 |
 
 ### 英雄形态/模式候选
 
@@ -145,7 +149,7 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | Lv14 | 阿拉纳克升级包 | - | - | 在锻炉中解锁以下升级： / 使阿拉纳克的普通攻击能够击晕敌人及减速英雄单位，持续2秒。湮灭波的击退距离提高100%。 |
 | Lv15 | 高阶领主之怒 | `AlarakSupplicantSacrificeCDR` | - | 每当有一个死徒被献祭，阿拉纳克致命冲锋的冷却时间缩短10秒，湮灭波的冷却时间缩短5秒。 |
 
-口径：官方玩法存在阿拉纳克本体，但当前 heroes.json 未列出，需要从官方原始文本镜像/实机补 HeroProfile、复活和技能闭包。
+口径：官方玩法存在阿拉纳克本体；`heroes.json` 未列出时，以官方 raw `AlarakCoop` 和当前 Mod `AlarakCoop` 为英雄闭包锚点。
 
 待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
 
@@ -523,8 +527,8 @@ personal_mechanic_smoke
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Alarak levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Alarak levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Alarak stage=power_fusion units=7 buildings=3 heroes=0 result=ok
-[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Alarak heroes=0 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Alarak stage=power_fusion units=7 buildings=3 heroes=1 runtimeHero=AlarakCoop result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Alarak heroes=1 runtimeHero=AlarakCoop result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Alarak module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Alarak module=<module> object=<object> result=needs-casc-audit
 ```
