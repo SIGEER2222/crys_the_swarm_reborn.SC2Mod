@@ -397,12 +397,67 @@
     <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"></EditorCategories>
     <Mover value="IonCannonsWeapon"></Mover>
   </CUnit>
-  <CUnit id="ArtanisVoid">
-    <KillXP value="0"></KillXP>
-    <DamageDealtXP value="0"></DamageDealtXP>
-    <DamageTakenXP value="0"></DamageTakenXP>
-    <HotkeyCategory value=""></HotkeyCategory>
-  </CUnit>
+  <CUnit id="ArtanisVoid">
+    <!-- Inherit abilities, weapons, behaviors, and command cards from Void.SC2Campaign to avoid duplicate catalog arrays. -->
+    <DeathRevealRadius value="3"></DeathRevealRadius>
+    <Race value="Prot"></Race>
+    <Mob value="Campaign"></Mob>
+    <FlagArray index="PreventDestroy" value="1"></FlagArray>
+    <FlagArray index="UseLineOfSight" value="1"></FlagArray>
+    <FlagArray index="AlwaysThreatens" value="1"></FlagArray>
+    <FlagArray index="AIThreatGround" value="1"></FlagArray>
+    <FlagArray index="AIThreatAir" value="1"></FlagArray>
+    <FlagArray index="AISplash" value="1"></FlagArray>
+    <FlagArray index="AIHighPrioTarget" value="1"></FlagArray>
+    <FlagArray index="AICaster" value="1"></FlagArray>
+    <FlagArray index="AIPressForwardDisabled" value="1"></FlagArray>
+    <FlagArray index="ArmySelect" value="1"></FlagArray>
+    <PlaneArray index="Ground" value="1"></PlaneArray>
+    <Collide index="Ground" value="1"></Collide>
+    <Collide index="Small" value="1"></Collide>
+    <Collide index="ForceField" value="1"></Collide>
+    <Collide index="Locust" value="1"></Collide>
+    <Attributes index="Biological" value="1"></Attributes>
+    <Attributes index="Psionic" value="1"></Attributes>
+    <Attributes index="Heroic" value="1"></Attributes>
+    <LifeStart value="200"></LifeStart>
+    <LifeMax value="200"></LifeMax>
+    <LifeArmor value="3"></LifeArmor>
+    <LifeRegenRate value="1"></LifeRegenRate>
+    <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"></LifeArmorName>
+    <ShieldsStart value="500"></ShieldsStart>
+    <ShieldsMax value="500"></ShieldsMax>
+    <ShieldArmor value="3"></ShieldArmor>
+    <ShieldRegenDelay value="3"></ShieldRegenDelay>
+    <ShieldRegenRate value="4"></ShieldRegenRate>
+    <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"></ShieldArmorName>
+    <Speed value="2.9492"></Speed>
+    <Acceleration value="1000"></Acceleration>
+    <Deceleration value="1000"></Deceleration>
+    <LateralAcceleration value="46"></LateralAcceleration>
+    <Sight value="10"></Sight>
+    <CostCategory value="Army"></CostCategory>
+    <AttackTargetPriority value="20"></AttackTargetPriority>
+    <InnerRadius value="0.5"></InnerRadius>
+    <CargoSize value="2"></CargoSize>
+    <ScoreMake value="200"></ScoreMake>
+    <ScoreKill value="200"></ScoreKill>
+    <SubgroupPriority value="60"></SubgroupPriority>
+    <MinimapRadius value="0.625"></MinimapRadius>
+    <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"></EditorCategories>
+    <AIEvalFactor value="1.8"></AIEvalFactor>
+    <GlossaryCategory value="Unit/Category/ProtossStory"></GlossaryCategory>
+    <GlossaryPriority value="80"></GlossaryPriority>
+    <KillDisplay value="Always"></KillDisplay>
+    <RankDisplay value="Always"></RankDisplay>
+    <TauntDuration index="Cheer" value="5"></TauntDuration>
+    <TauntDuration index="Dance" value="5"></TauntDuration>
+    <AlliedPushPriority value="11"></AlliedPushPriority>
+    <KillXP value="0"></KillXP>
+    <DamageDealtXP value="0"></DamageDealtXP>
+    <DamageTakenXP value="0"></DamageTakenXP>
+    <HotkeyCategory value="Unit/Category/ProtossStory"></HotkeyCategory>
+  </CUnit>
   <CUnit id="ArtanisVoidAiur6"></CUnit>
   <CUnit id="Assimilator">
     <Attributes index="Mechanical" value="1"></Attributes>

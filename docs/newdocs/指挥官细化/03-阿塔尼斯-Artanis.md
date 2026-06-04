@@ -132,19 +132,22 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或官方原始文本镜像继续追。 |
+| 战役阿塔尼斯 | `ArtanisVoid` | `ArtanisVoid` | Ground; Biological; Psionic; Heroic | 生命:200 护盾:500 护甲:3 护盾护甲:3 | 这是本 mod 为阿塔尼斯额外接入的战役英雄体。`XMFinal` 开局组装创建 `ArtanisVoid`，`XMArtanis` 显式钉住英雄数值/UI 字段；技能、武器、按钮、Actor、Effect 继续从 `XMCore -> Void.SC2Campaign` 继承，避免重复 Catalog 数组。 |
 
 ### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从官方原始文本镜像或实机日志补。 |
+| `ArtanisVoid` | `ArtanisLightningDash` | 闪电冲锋 | `ArtanisLightningDash,Execute` | - | 官方战役链：8 范围指向型技能，5 秒冷却；效果链进入 `ArtanisLightningDash*`，造成 100 伤害并昏迷附近敌人。 |
+| `ArtanisVoid` | `ArtanisAstralWind` | 星界之风 | `ArtanisAstralWind,Execute` | - | 官方战役链：15 秒冷却瞬发；效果链进入 `ArtanisAstralWind*`，为阿塔尼斯和周围友军恢复生命与护盾。 |
+| `ArtanisVoid` | `ArtanisResurgence` | 复苏 | - | `ArtanisResurgenceReviveOffCooldown` / `ArtanisResurgenceReviveSupressed` | 官方战役被动：致命伤触发 `ArtanisResurgenceSet`，进入短暂无敌、恢复和冲击波；内置冷却由 `ArtanisResurgenceDisable` 抑制。 |
+| `ArtanisVoid` | `ArtanisForceOfWill` | 意志力场 | - | - | 官方战役被动显示项：对应阿塔尼斯自恢复/护盾恢复说明。 |
 
 ### 英雄形态/模式候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 未自动命中英雄形态或模式按钮。 |
+| `ArtanisVoid` | `ArtanisChannel` / `ArtanisChannelOff` | 引导开关 | `ArtanisChannel,On` / `ArtanisChannel,Off` | - | 隐藏/剧情用 `Trig` 卡页按钮；官方行为 `ArtanisChannel` 会禁止移动、转向、攻击和移动类能力。 |
 
 ### 英雄相关等级解锁
 
@@ -152,11 +155,11 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 |---|---|---|---|---|
 | - | - | - | - | 未自动命中英雄相关等级解锁；需要从官方原始文本镜像或实机日志补。 |
 
-口径：官方 heroes.json 暂无条目；若官方玩法存在隐藏英雄或召唤英雄，继续用官方原始文本镜像/实机日志补。
+口径：官方合作 `heroes.json` 仍暂无阿塔尼斯英雄条目；`ArtanisVoid` 是本 mod 按用户要求额外接入的战役英雄单位，不反推为官方合作阿塔尼斯原生英雄。
 
-补充备注：阿塔尼斯这条线后续实现时，要把战役里的阿塔尼斯本体作为 mod 内的英雄单位接入，再补齐对应的 Hero Unit / Ability / Behavior / Actor / Sound 闭包；当前文档里提到的 `SoACasterArtanis` 只是顶栏宿主，不等于英雄本体。
+实现备注：`SoACasterArtanis` 仍只是顶栏宿主，不等于英雄本体；`ArtanisVoid` 才是当前开局创建的战役阿塔尼斯英雄体。`XMArtanis` 没有重复写 `AbilArray` / `WeaponArray` / `CardLayouts`，这些数组从 `Void.SC2Campaign` 继承，避免在 Catalog 合并时出现重复按钮或重复武器。
 
-待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
+待实机复核：`ArtanisVoid` 的主动技能点击、复苏触发、Actor/声音表现、与合作守护之壳/护盾超载叠加表现。
 
 ## 03. 普通单位技能及其进化功能
 
@@ -195,7 +198,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 ### 运行时面板落点
 
 - `SoACasterArtanis` 是阿塔尼斯顶栏的统一宿主，`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/UnitData.xml:11698` 里把 `SOAPylonPower`、`SOAOrbitalStrikeActivate`、`SOAOrbitalStrikeExecute`、`SOAOrbitalStrikeTargetingDummy`、`SoASuperShield`、`SOAStrafeAttackActivate`、`SOAStrafeAttack`、`SOAStrafeAttackExecute`、`CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargeted` 一并挂在它身上。
-- `ArtanisVoid` 只是一个极简 unit 壳，当前 XML 只看到空壳属性，没有 `AbilArray` / `CardLayouts`，不要把它当成顶栏技能承载体。
+- `ArtanisVoid` 是当前开局链创建的战役阿塔尼斯英雄体；`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/UnitData.xml` 已显式钉住英雄数值、属性和 UI 分类，技能/武器/按钮/Actor/Effect 继续继承 `XMCore -> Void.SC2Campaign` 的官方战役闭包。
 - `XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146_CommanderPanels.galaxy` 的 test bench 直接把 `power_field`、`orbital_strike_activate`、`orbital_strike_execute`、`shield_overcharge`、`solar_bombardment`、`solar_bombardment_execute` 都映射到 `SoACasterArtanis`，说明面板转发链的真实落点就是这个 caster。
 - `SOAStrafeAttackActivate` 在 `XMArtanis` 里是独立 `CAbilBehavior`，带 `450` 秒冷却；`SOAStrafeAttackExecute` 是实际的 effect-target ability，`CmdButtonArray` 绑定 `SOAStrafeAttackUnit`，效果入口是 `SOAStrafeAttackMovePersistent`。
 - `SoASuperShield` 在 `XMArtanis` 里是 `CAbilEffectInstant`，先打 `SOASuperShieldDummy` 触发 `XMCore` 里的 `PM_SoASuperShieldsActivated`，再把 `SOASuperShieldApply` 撒给全部有效单位；`SOASuperShieldApply` 通过 `SOASuperShieldModifyUnit` 和 `SOASuperShieldApplyBehavior` 同时补护盾和 `SOASuperShield` buff，validator 只保留 `DoesNotHaveAbilityTargetExclusionBehavior`，不要误加成只接受指挥官的条件，`CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargeted` 则直接走点选搜索复用同一套 apply 链。
