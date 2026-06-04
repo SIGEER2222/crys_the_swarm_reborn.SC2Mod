@@ -7431,16 +7431,20 @@
     <AbilArray index="0" Link="LarvaTrainKerrigan"></AbilArray>
     <CardLayouts index="0" removed="1"></CardLayouts>
     <CardLayouts index="0">
-      <LayoutButtons Face="Zergling" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train1" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="Hydralisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train4" Row="0" Column="1"></LayoutButtons>
-      <LayoutButtons Face="Mutalisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train11" Row="0" Column="2"></LayoutButtons>
-      <LayoutButtons Face="Ultralisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train7" Row="0" Column="3"></LayoutButtons>
+      <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train1" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Overlord" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train3" Row="0" Column="1"></LayoutButtons>
+      <LayoutButtons Face="Zergling" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train2" Row="0" Column="2"></LayoutButtons>
+      <LayoutButtons Face="Hydralisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train4" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="Mutalisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train11" Row="1" Column="1"></LayoutButtons>
+      <LayoutButtons Face="Ultralisk" Type="AbilCmd" AbilCmd="LarvaTrainKerrigan,Train7" Row="1" Column="2"></LayoutButtons>
       <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que1,CancelLast" Row="2" Column="4"></LayoutButtons>
     </CardLayouts>
-    <TechTreeProducedUnitArray value="Zergling"></TechTreeProducedUnitArray>
-    <TechTreeProducedUnitArray value="Hydralisk"></TechTreeProducedUnitArray>
-    <TechTreeProducedUnitArray value="Mutalisk"></TechTreeProducedUnitArray>
-    <TechTreeProducedUnitArray value="Ultralisk"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="DroneKerrigan"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="OverlordKerrigan"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="ZerglingKerrigan"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="HydraliskKerrigan"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="MutaliskKerrigan"></TechTreeProducedUnitArray>
+    <TechTreeProducedUnitArray value="UltraliskKerrigan"></TechTreeProducedUnitArray>
   </CUnit>
   <CUnit id="LeviathanCocoon">
     <DeathRevealRadius value="3"></DeathRevealRadius>
@@ -13052,6 +13056,99 @@
     <KillDisplay value="Always"></KillDisplay>
     <RankDisplay value="Always"></RankDisplay>
   </CUnit>
+  <CUnit id="OverlordKerrigan" parent="Overlord">
+    <TechAliasArray value="Alias_Overlord"></TechAliasArray>
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <AbilArray index="3" removed="1"></AbilArray>
+    <AbilArray Link="MorphToOverseerKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons index="6" Face="MorphToOverseer" Type="AbilCmd" AbilCmd="MorphToOverseerKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons index="7" Face="Cancel" Type="AbilCmd" AbilCmd="MorphToOverseerKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="OverlordCocoonKerrigan" parent="OverlordCocoon">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+  </CUnit>
+  <CUnit id="OverseerKerrigan" parent="Overseer">
+    <TechAliasArray value="Alias_Overseer"></TechAliasArray>
+    <LeaderAlias value="OverseerKerrigan"></LeaderAlias>
+    <HotkeyAlias value="OverseerKerrigan"></HotkeyAlias>
+    <SelectAlias value="OverseerKerrigan"></SelectAlias>
+    <SubgroupAlias value="OverseerKerrigan"></SubgroupAlias>
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <AbilArray Link="OverseerMorphtoOverseerSiegeKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons index="8" Face="MorphtoOverseerSiege" Type="AbilCmd" AbilCmd="OverseerMorphtoOverseerSiegeKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="OverseerSiegeModeKerrigan" parent="OverseerSiegeMode">
+    <TechAliasArray value="Alias_Overseer"></TechAliasArray>
+    <LeaderAlias value="OverseerKerrigan"></LeaderAlias>
+    <HotkeyAlias value="OverseerKerrigan"></HotkeyAlias>
+    <SelectAlias value="OverseerKerrigan"></SelectAlias>
+    <SubgroupAlias value="OverseerKerrigan"></SubgroupAlias>
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <AbilArray Link="OverseerSiegeMorphtoOverseerKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons index="7" Face="MorphtoOverseerNormal" Type="AbilCmd" AbilCmd="OverseerSiegeMorphtoOverseerKerrigan,Execute" Row="2" Column="1"></LayoutButtons>
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="QueenCoopKerrigan" parent="QueenCoop">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+  </CUnit>
+  <CUnit id="ZerglingKerrigan" parent="Zergling">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+  </CUnit>
+  <CUnit id="HydraliskKerrigan" parent="Hydralisk">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <CardLayouts index="0">
+      <LayoutButtons Face="MorphToHydraliskLurker" Type="AbilCmd" AbilCmd="MorphHydraliskToLurkerKerrigan,Train1" Requirements="HaveLurkerDen" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+    <AbilArray Link="MorphHydraliskToLurkerKerrigan"></AbilArray>
+  </CUnit>
+  <CUnit id="HydraliskLurkerKerrigan" parent="HydraliskLurker">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <CardLayouts index="0">
+      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowHydraliskLurkerDownKerrigan,Execute" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <AbilArray Link="BurrowHydraliskLurkerDownKerrigan"></AbilArray>
+  </CUnit>
+  <CUnit id="HydraliskLurkerBurrowedKerrigan" parent="HydraliskLurkerBurrowed">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <CardLayouts index="0">
+      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowHydraliskLurkerUpKerrigan,Execute" Row="2" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <AbilArray Link="BurrowHydraliskLurkerUpKerrigan"></AbilArray>
+  </CUnit>
+  <CUnit id="MutaliskKerrigan" parent="Mutalisk">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <AbilArray Link="MutaliskMorphToBroodLordKerrigan"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="BroodLord" Type="AbilCmd" AbilCmd="MutaliskMorphToBroodLordKerrigan,Train1" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="UltraliskKerrigan" parent="Ultralisk">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+  </CUnit>
+  <CUnit id="BroodLordKerrigan" parent="BroodLord">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+  </CUnit>
+  <CUnit id="BroodLordCocoonKerrigan" parent="BroodLordCocoon">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+  </CUnit>
   <CUnit id="HatcheryKerrigan" parent="Hatchery">
     <AbilArray index="4" Link="TrainQueenKerrigan"></AbilArray>
     <AbilArray index="11" Link="UpgradeToLairKerrigan"></AbilArray>
@@ -13061,6 +13158,7 @@
       <LayoutButtons Face="LairKerrigan" Type="AbilCmd" AbilCmd="UpgradeToLairKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToLairKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
     </CardLayouts>
+    <TechAliasArray value="Alias_Hatchery"></TechAliasArray>
     <TechAliasArray value="Alias_HatcheryKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="LairKerrigan" parent="Lair">
@@ -13072,6 +13170,8 @@
       <LayoutButtons Face="HiveKerrigan" Type="AbilCmd" AbilCmd="UpgradeToHiveKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
       <LayoutButtons Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToHiveKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
     </CardLayouts>
+    <TechAliasArray value="Alias_Hatchery"></TechAliasArray>
+    <TechAliasArray value="Alias_Lair"></TechAliasArray>
     <TechAliasArray value="Alias_HatcheryKerrigan"></TechAliasArray>
     <TechAliasArray value="Alias_LairKerrigan"></TechAliasArray>
   </CUnit>
@@ -13081,21 +13181,36 @@
     <CardLayouts index="0">
       <LayoutButtons index="5" Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenKerrigan,Train4" Row="0" Column="1"></LayoutButtons>
     </CardLayouts>
+    <TechAliasArray value="Alias_Hatchery"></TechAliasArray>
+    <TechAliasArray value="Alias_Lair"></TechAliasArray>
+    <TechAliasArray value="Alias_Hive"></TechAliasArray>
     <TechAliasArray value="Alias_HatcheryKerrigan"></TechAliasArray>
     <TechAliasArray value="Alias_LairKerrigan"></TechAliasArray>
     <TechAliasArray value="Alias_HiveKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="ExtractorKerrigan" parent="Extractor">
+    <TechAliasArray value="Alias_Extractor"></TechAliasArray>
     <TechAliasArray value="Alias_ExtractorKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="SpawningPoolKerrigan" parent="SpawningPool">
+    <TechAliasArray value="Alias_SpawningPool"></TechAliasArray>
     <TechAliasArray value="Alias_SpawningPoolKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="EvolutionChamberKerrigan" parent="EvolutionChamber">
+    <TechAliasArray value="Alias_EvolutionChamber"></TechAliasArray>
     <TechAliasArray value="Alias_EvolutionChamberKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="HydraliskDenKerrigan" parent="HydraliskDen">
+    <TechAliasArray value="Alias_HydraliskDen"></TechAliasArray>
     <TechAliasArray value="Alias_HydraliskDenKerrigan"></TechAliasArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="LurkerDen" Type="AbilCmd" AbilCmd="UpgradeToLurkerDenKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+    <AbilArray Link="UpgradeToLurkerDenKerrigan"></AbilArray>
+  </CUnit>
+  <CUnit id="LurkerDenKerrigan" parent="LurkerDen">
+    <TechAliasArray value="Alias_HydraliskDen"></TechAliasArray>
+    <TechAliasArray value="Alias_LurkerDen"></TechAliasArray>
   </CUnit>
   <CUnit id="SpireKerrigan" parent="Spire">
     <AbilArray Link="UpgradeToGreaterSpireKerrigan"></AbilArray>
@@ -13104,13 +13219,17 @@
       <LayoutButtons index="10" Face="CancelMutateMorph" Type="AbilCmd" AbilCmd="UpgradeToGreaterSpireKerrigan,Cancel" Row="2" Column="4"></LayoutButtons>
       <LayoutButtons index="14" Face="GreaterSpireKerrigan" Type="AbilCmd" AbilCmd="UpgradeToGreaterSpireKerrigan,Execute" Row="2" Column="0"></LayoutButtons>
     </CardLayouts>
+    <TechAliasArray value="Alias_Spire"></TechAliasArray>
     <TechAliasArray value="Alias_SpireKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="GreaterSpireKerrigan" parent="GreaterSpire">
+    <TechAliasArray value="Alias_Spire"></TechAliasArray>
+    <TechAliasArray value="Alias_GreaterSpire"></TechAliasArray>
     <TechAliasArray value="Alias_SpireKerrigan"></TechAliasArray>
     <TechAliasArray value="Alias_GreaterSpireKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="UltraliskCavernKerrigan" parent="UltraliskCavern">
+    <TechAliasArray value="Alias_UltraliskCavern"></TechAliasArray>
     <TechAliasArray value="Alias_UltraliskCavernKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="NydusNetworkKerrigan" parent="NydusNetwork">
@@ -13121,6 +13240,7 @@
       <LayoutButtons Face="SummonNydusCanalCreeper" Type="AbilCmd" AbilCmd="BuildNydusCanalKerrigan,Build3" Row="1" Column="2"></LayoutButtons>
       <LayoutButtons Face="SummonNydusWorm" Type="AbilCmd" AbilCmd="BuildNydusCanalKerrigan,Build1" Row="2" Column="0"></LayoutButtons>
     </CardLayouts>
+    <TechAliasArray value="Alias_NydusNetwork"></TechAliasArray>
     <TechAliasArray value="Alias_NydusNetworkKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="SpineCrawlerKerrigan" parent="SpineCrawler">
@@ -13130,6 +13250,7 @@
     </CardLayouts>
     <SelectAlias value="SpineCrawlerUprootedKerrigan"></SelectAlias>
     <SubgroupAlias value="SpineCrawlerUprootedKerrigan"></SubgroupAlias>
+    <TechAliasArray value="Alias_SpineCrawler"></TechAliasArray>
     <TechAliasArray value="Alias_SpineCrawlerKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="SpineCrawlerUprootedKerrigan" parent="SpineCrawlerUprooted">
@@ -13149,6 +13270,7 @@
     </CardLayouts>
     <SelectAlias value="SporeCrawlerUprootedKerrigan"></SelectAlias>
     <SubgroupAlias value="SporeCrawlerUprootedKerrigan"></SubgroupAlias>
+    <TechAliasArray value="Alias_SporeCrawler"></TechAliasArray>
     <TechAliasArray value="Alias_SporeCrawlerKerrigan"></TechAliasArray>
   </CUnit>
   <CUnit id="SporeCrawlerUprootedKerrigan" parent="SporeCrawlerUprooted">

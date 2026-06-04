@@ -1187,7 +1187,7 @@
     </InfoArray>
     <InfoArray index="Train16" Time="40">
       <Button DefaultButtonFace="SwarmHostMP" State="Restricted" Requirements="HaveInfestationPit" />
-      <Unit value="SwarmHostMP" />
+      <Unit value="SwarmHostAbathur" />
     </InfoArray>
     <!--InfoArray index="Train20" Time="27">
             <Button DefaultButtonFace="MorphToCorpserAbathur" State="Restricted" Requirements="HaveBanelingNest2"/>
@@ -1221,7 +1221,7 @@
     </InfoArray>
     <InfoArray index="Train29">
       <Button DefaultButtonFace="Brutalisk" />
-      <Unit value="Brutalisk" />
+      <Unit value="BrutaliskAbathur" />
     </InfoArray>
     <InfoArray index="Train30" Time="30">
       <Resource index="Minerals" value="1" />
@@ -1231,6 +1231,54 @@
       <Unit value="Scourge" />
       <Unit value="" />
     </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="LarvaTrainAbathur" parent="LarvaTrain">
+    <InfoArray index="Train1">
+      <Button DefaultButtonFace="Drone" State="Available" />
+      <Unit value="DroneAbathur" />
+    </InfoArray>
+    <InfoArray index="Train2" removed="1" />
+    <InfoArray index="Train3">
+      <Button DefaultButtonFace="Overlord" State="Available" />
+      <Unit value="OverlordAbathur" />
+    </InfoArray>
+    <InfoArray index="Train4" removed="1" />
+    <InfoArray index="Train5">
+      <Button DefaultButtonFace="Mutalisk" State="Available" />
+      <Unit value="MutaliskAbathur" />
+    </InfoArray>
+    <InfoArray index="Train7" removed="1" />
+    <InfoArray index="Train10" removed="1" />
+    <InfoArray index="Train12" removed="1" />
+    <InfoArray index="Train13" Time="29">
+      <Button DefaultButtonFace="Viper" State="Available" Requirements="HaveInfestationPit" />
+      <Unit value="ViperAbathur" />
+    </InfoArray>
+    <InfoArray index="Train15" removed="1" />
+    <InfoArray index="Train16" Time="40">
+      <Button DefaultButtonFace="SwarmHostMP" State="Restricted" Requirements="HaveInfestationPit" />
+      <Unit value="SwarmHostAbathur" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="LarvaTrainSwarmAbathur" parent="LarvaTrainSwarm">
+    <InfoArray index="Train1" Time="27">
+      <Button DefaultButtonFace="Roach" State="Available" Requirements="HaveRoachWarren" />
+      <Unit value="RoachVile" />
+    </InfoArray>
+    <InfoArray index="Train3" removed="1" />
+    <InfoArray index="Train7" removed="1" />
+    <InfoArray index="Train10" removed="1" />
+    <InfoArray index="Train17" removed="1" />
+    <InfoArray index="Train18" removed="1" />
+    <InfoArray index="Train19" removed="1" />
+    <InfoArray index="Train21" removed="1" />
+    <InfoArray index="Train22" removed="1" />
+    <InfoArray index="Train25" removed="1" />
+    <InfoArray index="Train26" removed="1" />
+    <InfoArray index="Train27" removed="1" />
+    <InfoArray index="Train28" removed="1" />
+    <InfoArray index="Train29" removed="1" />
+    <InfoArray index="Train30" removed="1" />
   </CAbilTrain>
   <CAbilTrain id="MorphHydraliskToHydraliskEvolved">
     <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
@@ -2370,7 +2418,17 @@
       <Button DefaultButtonFace="QueenCoop" State="Restricted" Requirements="HaveSpawningPool">
         <Flags index="ToSelection" value="1" />
       </Button>
-      <Unit value="QueenCoop" />
+      <Unit value="QueenCoopAbathur" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="TrainQueenAbathur" parent="TrainQueen">
+    <InfoArray index="Train1" removed="1" />
+    <InfoArray index="Train3" removed="1" />
+    <InfoArray index="Train4" Time="50" Effect="QueenBirth">
+      <Button DefaultButtonFace="QueenCoop" State="Restricted" Requirements="HaveSpawningPool">
+        <Flags index="ToSelection" value="1" />
+      </Button>
+      <Unit value="QueenCoopAbathur" />
     </InfoArray>
   </CAbilTrain>
   <CAbilResearch id="TwilightCouncilResearch">
@@ -3215,7 +3273,7 @@
     <MorphUnit value="BrutaliskCocoon" />
     <InfoArray index="Train1" Time="5" Alert="MorphComplete_Brutalisk">
       <Button DefaultButtonFace="EvolveBrutalisk" Requirements="BrutaliskMorphAvailable" />
-      <Unit value="Brutalisk" />
+      <Unit value="BrutaliskAbathur" />
       <Flags index="AutoCast" value="1" />
       <Flags index="AutoCastOn" value="1" />
       <Flags index="IgnorePlacement" value="1" />
@@ -3252,7 +3310,7 @@
     <MorphUnit value="LeviathanCocoon" />
     <InfoArray index="Train1" Time="5" Alert="MorphComplete_Leviathan">
       <Button DefaultButtonFace="EvolveToLeviathan" Requirements="LeviathanMorphAvailable" />
-      <Unit value="HotSLeviathan" />
+      <Unit value="LeviathanAbathur" />
       <Flags index="AutoCast" value="1" />
       <Flags index="AutoCastOn" value="1" />
       <Flags index="IgnorePlacement" value="1" />
@@ -3414,6 +3472,12 @@
       </SectionArray>
     </InfoArray>
   </CAbilMorph>
+  <CAbilMorph id="MorphToSwarmHostBurrowedAbathur" parent="MorphToSwarmHostBurrowed">
+    <InfoArray Unit="SwarmHostAbathurBurrowed" RallyResetPhase="Delay" RandomDelayMax="0.25" />
+  </CAbilMorph>
+  <CAbilMorph id="MorphToSwarmHostAbathur" parent="MorphToSwarmHost">
+    <InfoArray Unit="SwarmHostAbathur" RandomDelayMax="0.5" />
+  </CAbilMorph>
   <CAbilMove id="move">
     <FollowFilters value="-;Hover" />
   </CAbilMove>
@@ -3435,7 +3499,7 @@
       <Button DefaultButtonFace="MorphtoDevourer" State="Restricted" Requirements="HaveGreaterSpire">
         <Flags index="ShowInGlossary" value="1" />
       </Button>
-      <Unit value="Devourer" />
+      <Unit value="DevourerAbathur" />
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />
     <ActorKey value="GuardianAspect" />
@@ -3452,7 +3516,7 @@
       <Button DefaultButtonFace="MorphToGuardian" State="Restricted" Requirements="HaveGreaterSpire">
         <Flags index="ShowInGlossary" value="1" />
       </Button>
-      <Unit value="GuardianMP" />
+      <Unit value="AbathurGuardian" />
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />
     <RefundFraction>
@@ -3881,10 +3945,22 @@
   <CAbilMorph id="UpgradeToGreaterSpireViper">
     <CmdButtonArray index="Execute" State="Restricted" Requirements="HaveHive" />
   </CAbilMorph>
+  <CAbilMorph id="UpgradeToGreaterSpireAbathur" parent="UpgradeToGreaterSpireBroodlord">
+    <InfoArray Unit="GreaterSpireAbathur" />
+    <CmdButtonArray index="Execute" State="Restricted" Requirements="HaveHive" />
+  </CAbilMorph>
   <CAbilMorph id="UpgradeToHive">
     <CmdButtonArray index="Execute" State="Available" />
   </CAbilMorph>
   <CAbilMorph id="UpgradeToLair">
+    <CmdButtonArray index="Execute" State="Available" />
+  </CAbilMorph>
+  <CAbilMorph id="UpgradeToHiveAbathur" parent="UpgradeToHive">
+    <InfoArray Unit="HiveAbathur" />
+    <CmdButtonArray index="Execute" State="Available" />
+  </CAbilMorph>
+  <CAbilMorph id="UpgradeToLairAbathur" parent="UpgradeToLair">
+    <InfoArray Unit="LairAbathur" />
     <CmdButtonArray index="Execute" State="Available" />
   </CAbilMorph>
   <CAbilEffectTarget id="YagdraFirebreath">
@@ -3964,17 +4040,39 @@
     </InfoArray>
   </CAbilBuild>
   <CAbilBuild id="ZergBuildAbathur" parent="ZergBuild">
-    <InfoArray index="Build1" removed="1" />
-    <InfoArray index="Build3" removed="1" />
-    <InfoArray index="Build4" removed="1" />
-    <InfoArray index="Build5" removed="1" />
+    <InfoArray index="Build1" Unit="HatcheryAbathur">
+      <Button DefaultButtonFace="Hatchery" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build2" removed="1" />
+    <InfoArray index="Build3" Unit="ExtractorAbathur">
+      <Button DefaultButtonFace="Extractor" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build4" Unit="SpawningPoolAbathur">
+      <Button DefaultButtonFace="SpawningPool" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build5" Unit="EvolutionChamberAbathur">
+      <Button DefaultButtonFace="EvolutionChamber" State="Available" />
+    </InfoArray>
     <InfoArray index="Build6" removed="1" />
-    <InfoArray index="Build7" removed="1" />
+    <InfoArray index="Build7" Unit="SpireAbathur">
+      <Button DefaultButtonFace="Spire" State="Available" />
+    </InfoArray>
     <InfoArray index="Build8" removed="1" />
-    <InfoArray index="Build9" removed="1" />
+    <InfoArray index="Build9" Unit="InfestationPitAbathur">
+      <Button DefaultButtonFace="InfestationPit" State="Available" />
+    </InfoArray>
     <InfoArray index="Build10" removed="1" />
     <InfoArray index="Build11" removed="1" />
-    <InfoArray index="Build14" removed="1" />
+    <InfoArray index="Build14" Unit="RoachWarrenAbathur">
+      <Button DefaultButtonFace="RoachWarren" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build15" Unit="SpineCrawlerAbathur">
+      <Button DefaultButtonFace="SpineCrawler" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build16" Unit="SporeCrawlerAbathur">
+      <Button DefaultButtonFace="SporeCrawler" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build17" removed="1" />
     <InfoArray index="Build25" removed="1" />
     <InfoArray index="Build26" removed="1" />
     <InfoArray index="Build27" removed="1" />

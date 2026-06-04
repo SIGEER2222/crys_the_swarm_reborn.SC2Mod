@@ -110,9 +110,9 @@ void libE0EAE146_gf_XMTestBench_AbathurCustomInit (int lp_player) {
         return;
     }
     libE0EAE146_gf_XMTestBench_AbathurCustomSeed(lp_player, "extra_abathur_init");
-    libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "HatcheryAbathur", 1, 18.0, 5.0, "extra_abathur_init", "standard zerg base scaffold");
-    libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "Drone", 2, 18.0, 5.0, "extra_abathur_init", "standard zerg base scaffold");
-    libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "Overlord", 3, 18.0, 5.0, "extra_abathur_init", "standard zerg base scaffold");
+    libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "HatcheryAbathur", 1, 18.0, 5.0, "extra_abathur_init", "abathur base scaffold");
+    libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "DroneAbathur", 2, 18.0, 5.0, "extra_abathur_init", "abathur worker scaffold");
+    libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "OverlordAbathur", 3, 18.0, 5.0, "extra_abathur_init", "abathur supply scaffold");
     libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "SpawningPool", 4, 18.0, 5.0, "extra_abathur_init", "Pygalisk requirement scaffold");
     libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "EvolutionChamber", 5, 18.0, 5.0, "extra_abathur_init", "crawler research scaffold");
     libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "Zergling", 6, 18.0, 5.0, "extra_abathur_init", "zergling family source unit");
@@ -131,8 +131,8 @@ bool libE0EAE146_gf_XMTestBench_AbathurCustomRoster (int lp_player, string lp_ro
     }
     libE0EAE146_gf_XMTestBench_AbathurCustomSeed(lp_player, lp_rosterKind);
     if (lp_rosterKind == "initial_units") {
-        libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "Drone", 1, 14.0, 4.0, lp_rosterKind, "initial zerg worker");
-        libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "Overlord", 2, 14.0, 4.0, lp_rosterKind, "initial zerg supply");
+        libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "DroneAbathur", 1, 14.0, 4.0, lp_rosterKind, "initial abathur worker");
+        libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "OverlordAbathur", 2, 14.0, 4.0, lp_rosterKind, "initial abathur supply");
         libE0EAE146_gf_XMTestBench_AbathurCustomTryCreateUnit(lp_player, "Zergling", 3, 14.0, 4.0, lp_rosterKind, "initial zergling family");
         libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "AbathurCustom", lp_rosterKind, 3);
         return true;

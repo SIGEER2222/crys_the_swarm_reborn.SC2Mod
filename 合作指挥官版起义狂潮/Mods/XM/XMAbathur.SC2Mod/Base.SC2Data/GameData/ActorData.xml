@@ -3493,6 +3493,43 @@
     <SoundArray index="Help" value="Alert_ZergEconomyUnderAttack" />
     <LifeArmorIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level0.dds" />
   </CActorUnit>
+  <CActorUnit id="DroneAbathur" parent="GenericBurrowerStandard" unitName="DroneAbathur">
+    <ModelFlags index="OutlineEmitter" value="1" />
+    <On Terms="Abil.DroneHarvest.Start" Send="AnimPlay Work Work PlayForever" />
+    <On Terms="Abil.DroneHarvest.Stop" Send="AnimClear Work" />
+    <On Terms="AbilMorph.*.Cancel; MorphFrom DroneAbathur; MorphTo DroneBurrowed" Send="AnimClear Burrow" />
+    <On Terms="AbilMorph.*.Finish; MorphTo DroneAbathur; MorphFrom DroneBurrowed" Send="AnimBracketStop Burrow" />
+    <On Terms="AbilMorph.*.Finish; MorphTo DroneAbathur; MorphFrom DroneBurrowed" Send="AnimClear Burrow" />
+    <!-- cloaking sound setup, different to other units -->
+    <On Terms="Abil.DroneHarvest.Start" Send="StatusSet CloakSound 1" />
+    <On Terms="Behavior.CarryHarvestableVespeneGeyserGasZerg.Create" Send="StatusSet CloakSound 1" />
+    <On Terms="Confirmation.Drone.Start" Send="StatusSet CloakSound 0" />
+    <On Terms="Behavior.CloakFieldEffect.Create; IsStatus CloakSound 0" Send="Create Worker_CloakFieldOn" />
+    <On Terms="Behavior.CloakFieldEffect.Destroy; IsStatus CloakSound 0" Send="Create Worker_CloakFieldOff" />
+    <On Terms="UnitBirth.DroneAbathur" Send="TerrainSquibActivateGroup RippleStandard" />
+    <On Terms="UnitHeightUpdate.*.Land" Send="Create Drone_Land" />
+    <Macros value="UnloadDropAnim" />
+    <Macros value="CarryAnim" />
+    <Macros value="BuildAnim" />
+    <Macros value="ZergBurrowStandardAnimMacro" />
+    <Macros value="ZergSmallBurrowEffects" />
+    <DeathArray index="Normal" ModelLink="DroneDeath" SoundLink="Drone_Explode" />
+    <DeathArray index="Disintegrate" ModelLink="DroneDeathAcid" SoundLink="Uni_DeathFXAcid" />
+    <DeathArray index="Fire" ModelLink="DroneDeathFire" SoundLink="Uni_DeathFXFire" />
+    <PortraitModel value="DronePortrait" />
+    <BarWidth value="42" />
+    <BarOffset value="40" />
+    <UnitIcon value="Assets\Textures\btn-unit-zerg-drone.dds" />
+    <HeroIcon value="Assets\Textures\btn-unit-zerg-drone.dds" />
+    <GroupIcon>
+      <Image value="Assets\Textures\Wireframe-Zerg-Drone.dds" />
+    </GroupIcon>
+    <Wireframe>
+      <Image value="Assets\Textures\Wireframe-Zerg-Drone.dds" />
+    </Wireframe>
+    <SoundArray index="Help" value="Alert_ZergEconomyUnderAttack" />
+    <LifeArmorIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level0.dds" />
+  </CActorUnit>
   <CActorUnit id="SiegeTank_BlackOps" parent="GenericUnitMorph" unitName="SiegeTank_BlackOps">
     <On Terms="Behavior.MercGroundDrop.Create" Send="Create SiegeBreakerDropModel" />
     <On Terms="Behavior.MercGroundDropRaynor.Create" Send="Create SiegeBreakerDropModelRaynor" />
@@ -5551,6 +5588,14 @@
     <!-- Player trophy -->
     <On Terms="UnitBirth.Hatchery; PlayerHasTrophy" Send="Create ZergPlayerTrophy" />
   </CActorUnit>
+  <CActorUnit id="HatcheryAbathur" parent="Hatchery" unitName="HatcheryAbathur">
+    <Macros value="ZergHatcheryPlayerDecalMacro" />
+    <Macros value="SprayHelperMacroCoop" />
+    <!-- Clan Decals -->
+    <On Terms="UnitBirth.HatcheryAbathur; PlayerHasClanDecal" Send="Create ZergClanFlag" />
+    <!-- Player trophy -->
+    <On Terms="UnitBirth.HatcheryAbathur; PlayerHasTrophy" Send="Create ZergPlayerTrophy" />
+  </CActorUnit>
   <CActorUnit id="Hive">
     <Macros value="ZergHivePlayerDecalMacro" />
     <!-- Clan Decals -->
@@ -5880,6 +5925,8 @@
   <CActorUnit id="OverlordCocoon">
     <On Terms="AbilMorph.*.Finish; MorphTo OverlordCocoon; MorphFrom SIOverlord" Send="AnimBaselineStop" />
     <On Terms="AbilMorph.*.Finish; MorphTo OverlordCocoon; MorphFrom SIOverlord" Send="$Birth 0 0.000000 -1.000000 0.000000" />
+    <On Terms="AbilMorph.*.Finish; MorphTo OverlordCocoon; MorphFrom OverlordAbathur" Send="AnimBaselineStop" />
+    <On Terms="AbilMorph.*.Finish; MorphTo OverlordCocoon; MorphFrom OverlordAbathur" Send="$Birth 0 0.000000 -1.000000 0.000000" />
   </CActorUnit>
   <CActorUnit id="Overseer" parent="GenericUnitStandard" unitName="Overseer">
     <UnitFlags index="StandAnimBirthVariation" value="0" />
@@ -6371,6 +6418,39 @@
     <GroupSoundArray index="Yes" value="Overlord_Yes" />
     <GroupSoundArray index="Attack" value="Overlord_Attack" />
   </CActorUnit>
+  <CActorUnit id="OverlordAbathur" parent="GenericUnitMorph" unitName="OverlordAbathur">
+    <DeathArray index="Normal" ModelLink="OverlordDeath" SoundLink="" />
+    <PortraitModel value="OverlordPortrait" />
+    <On Terms="Abil.OverlordTransport.TransportUnloadStart" Send="AnimPlay Work Stand,Work PlayForever" />
+    <On Terms="Abil.OverlordTransport.TransportUnloadStop" Send="AnimClear Work" />
+    <On Terms="Behavior.makeCreep2x2Overlord.Delay" Send="Create OverlordGenerateCreepModel" />
+    <On Terms="Behavior.makeCreep2x2Overlord.Delay" Send="Create OverlordGenerateCreepSound" />
+    <On Terms="Behavior.makeCreep2x2Overlord.Cancel" Target="OverlordGenerateCreepModel" Send="Destroy" />
+    <On Terms="Behavior.makeCreep2x2Overlord.Cancel" Target="OverlordGenerateCreepSound" Send="Destroy" />
+    <On Terms="Behavior.makeCreep2x2Overlord.Off" Target="OverlordGenerateCreepModel" Send="Destroy" />
+    <On Terms="Behavior.makeCreep2x2Overlord.Off" Target="OverlordGenerateCreepSound" Send="Destroy" />
+    <BarOffset value="70" />
+    <NameOffset value="70" />
+    <UnitIcon value="Assets\Textures\btn-unit-zerg-overlord.dds" />
+    <HeroIcon value="Assets\Textures\btn-unit-zerg-overlord.dds" />
+    <GroupIcon>
+      <Image value="Assets\Textures\Wireframe-Zerg-Overlord.dds" />
+    </GroupIcon>
+    <Wireframe>
+      <Image value="Assets\Textures\Wireframe-Zerg-Overlord.dds" />
+    </Wireframe>
+    <LifeArmorIcon value="Assets\Textures\btn-upgrade-zerg-flyercarapace-level0.dds" />
+    <SoundArray index="Birth" value="Overlord_Birth" />
+    <SoundArray index="Ready" value="Overlord_Ready" />
+    <SoundArray index="Help" value="Overlord_Help" />
+    <SoundArray index="What" value="Overlord_What" />
+    <SoundArray index="Yes" value="Overlord_Yes" />
+    <SoundArray index="Attack" value="Overlord_Attack" />
+    <SoundArray index="Pissed" value="Overlord_Pissed" />
+    <GroupSoundArray index="What" value="Overlord_What" />
+    <GroupSoundArray index="Yes" value="Overlord_Yes" />
+    <GroupSoundArray index="Attack" value="Overlord_Attack" />
+  </CActorUnit>
   <CActorSnapshot id="Snapshot">
     <On Terms="ActorCopy; ValidatePlayer HaveNoSnapshots" Send="TimerSet 0.100000 DelayDestroy" />
     <On Terms="TimerExpired; TimerName DelayDestroy" Send="Destroy" />
@@ -6712,4 +6792,28 @@
     <DeathArray index="Normal" ModelLink="" VoiceLink="" />
     <!--MinimapIcon value="Assets\Textures\ui_minimap_icon_scourgecannon.dds"/-->
   </CActorUnit>
+  <CActorUnit id="ExtractorAbathur" parent="Extractor" unitName="ExtractorAbathur" />
+  <CActorUnit id="SpawningPoolAbathur" parent="SpawningPool" unitName="SpawningPoolAbathur" />
+  <CActorUnit id="EvolutionChamberAbathur" parent="EvolutionChamber" unitName="EvolutionChamberAbathur" />
+  <CActorUnit id="RoachWarrenAbathur" parent="RoachWarren" unitName="RoachWarrenAbathur" />
+  <CActorUnit id="InfestationPitAbathur" parent="InfestationPit" unitName="InfestationPitAbathur" />
+  <CActorUnit id="SpireAbathur" parent="Spire" unitName="SpireAbathur" />
+  <CActorUnit id="GreaterSpireAbathur" parent="GreaterSpire" unitName="GreaterSpireAbathur" />
+  <CActorUnit id="LairAbathur" parent="Lair" unitName="LairAbathur" />
+  <CActorUnit id="HiveAbathur" parent="Hive" unitName="HiveAbathur" />
+  <CActorUnit id="SpineCrawlerAbathur" parent="SpineCrawler" unitName="SpineCrawlerAbathur" />
+  <CActorUnit id="SporeCrawlerAbathur" parent="SporeCrawler" unitName="SporeCrawlerAbathur" />
+  <CActorUnit id="QueenCoopAbathur" parent="QueenCoop" unitName="QueenCoopAbathur" />
+  <CActorUnit id="MutaliskAbathur" parent="Mutalisk" unitName="MutaliskAbathur" />
+  <CActorUnit id="SwarmHostAbathur" parent="SwarmHost" unitName="SwarmHostAbathur" />
+  <CActorUnit id="SwarmHostAbathurBurrowed" parent="SwarmHost" unitName="SwarmHostAbathurBurrowed">
+    <On Terms="UnitBirth.SwarmHostAbathurBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant" />
+    <On Terms="AbilMorph.*.Finish; MorphTo SwarmHostAbathur; MorphFrom SwarmHostAbathurBurrowed" Send="AnimBracketStop Burrow" />
+    <On Terms="AbilMorph.*.Finish; MorphTo SwarmHostAbathur; MorphFrom SwarmHostAbathurBurrowed" Send="AnimClear Burrow" />
+  </CActorUnit>
+  <CActorUnit id="ViperAbathur" parent="Viper" unitName="ViperAbathur" />
+  <CActorUnit id="DevourerAbathur" parent="Devourer" unitName="DevourerAbathur" />
+  <CActorUnit id="AbathurGuardian" parent="GuardianMP" unitName="AbathurGuardian" />
+  <CActorUnit id="BrutaliskAbathur" parent="Brutalisk" unitName="BrutaliskAbathur" />
+  <CActorUnit id="LeviathanAbathur" parent="HotSLeviathan" unitName="LeviathanAbathur" />
 </Catalog>
