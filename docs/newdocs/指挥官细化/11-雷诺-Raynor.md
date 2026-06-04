@@ -36,6 +36,15 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 
 2026-06-03 人族闭包已补严生产者归属过滤；实现时以 `docs/newdocs/指挥官细化/人族闭包/terran-commander-closure.json` 的 accepted 链路为准。`HH*`、`BlackOps`、`KelMorian*`、`SwannLevel*` 等命中只能作为共享污染或排除项，不能直接接入 Raynor。
 
+## 2026-06-04 闭包复核补充
+
+2026-06-03 的人族闭包已经把 Raynor 的有效链路闭到 official JSON + raw closure 两层，这里补一版便于后续实现直接引用的结论：
+
+- 官方有效名册只有 `10` 个兵种、`6` 个建筑、`0` 个英雄；`Ghost`、`Refinery`、`EngineeringBay`、`Factory`、`Starport`、`Armory`、`FusionCore`、`SensorTower`、`PsiDisruptor` 都只能按 raw-only 或排除项看待。
+- `SCV` 的正式建造面板只保留 `CommandCenter`、`SupplyDepot`、`Barracks`、`MissileTurret`、`Bunker` 这条官方建筑链；其余科技建筑只作为前置，不应反推成 Raynor 的 official buildings.json 名册。
+- 兵种主链闭合为 `Marine / Medic / Marauder / Firebat / Vulture / Siege Tank / Viking / Banshee / Battlecruiser / SCV`，其中 `Battlecruiser` 依赖 `FusionCore`，`Siege Tank` 保留 `SiegeMode`，`Banshee` 保留隐形与后燃锁定，`SCV` 保留 `AdvancedConstructionAuto` / `VespeneDrone` / `Scan` / `SupplyDrop` / `OrbitalLiftOff`。
+- 共享卡里的 `Nova`、`Swann`、`Horner`、`Mengsk` 命中都只是污染或排除项，不应反推成 Raynor 的有效单位或建筑。
+
 ## 15 级解锁摘要
 
 - 1: 快速招募

@@ -38,6 +38,16 @@ roster 样例：
 Archon, Gateway, ImmortalAiur, Observer, PhoenixAiur, PhotonCannon, RoboticsBay, RoboticsWarpandStarWarpGate, StalkerAiur, TwilightCouncil, Zealot, HighTemplar
 ```
 
+## 2026-06-04 闭包复核补充
+
+2026-06-03 的神族闭包已经把 Artanis 的有效链路闭到 official JSON + raw closure 两层，这里补一版便于后续实现直接引用的结论：
+
+- 官方有效名册只有 `7` 个兵种、`5` 个建筑、`0` 个英雄；`Gateway`、`PhotonCannon`、`RoboticsBay`、`RoboticsWarpandStarWarpGate`、`TwilightCouncil` 为官方正向建筑。
+- `Probe` 的正式建造链就是上面这 5 个建筑；`ProtossBuild,Build20` 只是 `PhotonCannon` 的 raw 变体，不应扩成新的官方建筑。
+- 兵种主链闭合为 `Zealot / StalkerAiur / HighTemplar / Archon / ImmortalAiur / Observer / PhoenixAiur`；其中 `Archon` 来自高阶圣堂武士融合，`HighTemplar` 保留 `Feedback`、`PsiStorm`、`ArchonWarp`，`Zealot` 保留 `Charge` 与 `Whirlwind`，`ImmortalAiur` / `Observer` / `PhoenixAiur` / `StalkerAiur` 分别保留各自的折跃、变形和被动链。
+- 顶栏与科技链闭合为 `SOAPylonPower`、`SOAOrbitalStrike*`、`SoASuperShield`、`RoboticsBayResearch,8`、`VoidZealotWhirlwind`、`ArtanisUnlockReaver`、`ArtanisUnlockHighArchon`、`SOAWarpTech`、`SOAStrafeAttack`、`ArtanisUnlockTempest`、`FleetBeaconResearch/LightningBomb`、`SOASuperShieldUpgrade`、`SOAStrafeAttackUpgrade`、`ArtanisStartingSupply`。
+- 共享卡里的 `Alarak`、`Fenix`、`Karax`、`Vorazun`、`Zeratul` 锁定项只作污染排除，不反推成 Artanis 主链。
+
 ## 15 级解锁摘要
 
 - 1: 即时正义
@@ -179,6 +189,15 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 高阶圣堂武士 | `Feedback` | 能量反蚀 | `Feedback,Execute` | - | 抽取目标所有能量。每点能量造成{(Effect,Feedback,VitalFractionCurrent[Energy])}点伤害。 |
 | 高阶圣堂武士 | `PsiStorm` | 灵能风暴 | `PsiStorm,Execute` | - | 召唤一股持续{time:8.4}的灵能风暴，对目标区域内的所有单位造成最多110点伤害。 |
 | 高阶圣堂武士 | `AWrp` | 执政官融合 | `ArchonWarp,SelectedUnits` | - | 两名圣堂武士牺牲自身，融合为一名执政官。 / 可以对地和对空。 |
+
+### 运行时面板落点
+
+- `SoACasterArtanis` 是阿塔尼斯顶栏的统一宿主，`合作指挥官版起义狂潮/Mods/XM/XMArtanis.SC2Mod/Base.SC2Data/GameData/UnitData.xml:11698` 里把 `SOAPylonPower`、`SOAOrbitalStrikeActivate`、`SOAOrbitalStrikeExecute`、`SOAOrbitalStrikeTargetingDummy`、`SoASuperShield`、`SOAStrafeAttackActivate`、`SOAStrafeAttack`、`SOAStrafeAttackExecute`、`CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargeted` 一并挂在它身上。
+- `ArtanisVoid` 只是一个极简 unit 壳，当前 XML 只看到空壳属性，没有 `AbilArray` / `CardLayouts`，不要把它当成顶栏技能承载体。
+- `XMFinal.SC2Mod/Base.SC2Data/LibE0EAE146_CommanderPanels.galaxy` 的 test bench 直接把 `power_field`、`orbital_strike_activate`、`orbital_strike_execute`、`shield_overcharge`、`solar_bombardment`、`solar_bombardment_execute` 都映射到 `SoACasterArtanis`，说明面板转发链的真实落点就是这个 caster。
+- `SOAStrafeAttackActivate` 在 `XMArtanis` 里是独立 `CAbilBehavior`，带 `450` 秒冷却；`SOAStrafeAttackExecute` 是实际的 effect-target ability，`CmdButtonArray` 绑定 `SOAStrafeAttackUnit`，效果入口是 `SOAStrafeAttackMovePersistent`。
+- `SoASuperShield` 在 `XMArtanis` 里是 `CAbilEffectInstant`，先打 `SOASuperShieldDummy` 触发 `XMCore` 里的 `PM_SoASuperShieldsActivated`，再把 `SOASuperShieldApply` 撒给全部有效单位；`SOASuperShieldApply` 通过 `SOASuperShieldModifyUnit` 和 `SOASuperShieldApplyBehavior` 同时补护盾和 `SOASuperShield` buff，validator 只保留 `DoesNotHaveAbilityTargetExclusionBehavior`，不要误加成只接受指挥官的条件，`CommanderPrestigeArtanisOrbitalStrikeShieldOverchargeTargeted` 则直接走点选搜索复用同一套 apply 链。
+- `SOAOrbitalStrikeActivate`、`SOAOrbitalStrikeExecute` 在本仓库的 commander XML 里主要表现为挂接、升级和测试台引用，当前未命中独立 `CAbil` 本体定义；写文档时应按“共享/基础数据能力”处理，不要写成阿塔尼斯模块独占。
 
 ### 进化/形态/切换候选
 

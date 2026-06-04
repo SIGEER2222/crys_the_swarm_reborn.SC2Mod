@@ -4552,6 +4552,15 @@
     </Cost>
     <CmdButtonArray index="Execute" DefaultButtonFace="SOARecallOnDeath" />
   </CAbilEffectInstant>
+  <CAbilEffectInstant id="SoASuperShield">
+    <EditorCategories value="AbilityorEffectType:Units" />
+    <Effect index="0" value="SOASuperShieldDummy" />
+    <Cost>
+      <Vital index="Energy" value="50" />
+      <Cooldown TimeStart="180" TimeUse="180" />
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="SOASuperShield" State="Restricted" Requirements="HaveSOASuperShield" />
+  </CAbilEffectInstant>
   <CAbilEffectTarget id="SOARepairBeam">
     <AutoCastValidatorArray value="NotUnrepairable" />
     <!--AutoCastValidatorArray value="UnitIsNotBiologicalorIsHellbat"/-->

@@ -4475,6 +4475,43 @@ void lib67C0F0E7_gt_UnitAbilityEffStage_Init () {
     TriggerEnable(lib67C0F0E7_gt_UnitAbilityEffStage, false);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: PM_SoASuperShieldsActivated
+//--------------------------------------------------------------------------------------------------
+bool lib67C0F0E7_gt_PM_SoASuperShieldsActivated_Func (bool testConds, bool runActions) {
+    playergroup lv_players;
+    int lv_player;
+    unitgroup lv_units;
+    int lv_index;
+    unit lv_unit;
+
+    if (!runActions) {
+        return true;
+    }
+
+    lv_players = PlayerGroupAll();
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(lv_players, lv_player);
+        if (lv_player < 0) { break; }
+        if ((TechTreeUpgradeCount(lv_player, "SOASuperShield", c_techCountQueuedOrBetter) >= 1)) {
+            lv_units = UnitGroup(null, lv_player, RegionEntireMap(), UnitFilter((1 << c_targetFilterVisible), 0, (1 << c_targetFilterNeutral) | (1 << c_targetFilterEnemy) | (1 << c_targetFilterMissile) | (1 << c_targetFilterItem), (1 << (c_targetFilterStasis - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            lv_index = UnitGroupCount(lv_units, c_unitCountAll);
+            for (;; lv_index -= 1) {
+                lv_unit = UnitGroupUnitFromEnd(lv_units, lv_index);
+                if (lv_unit == null) { break; }
+                UnitCreateEffectUnit(EventPlayerEffectUsedUnit(c_effectUnitCaster), "SOASuperShieldApply", lv_unit);
+            }
+        }
+    }
+    return true;
+}
+
+void lib67C0F0E7_gt_PM_SoASuperShieldsActivated_Init () {
+    lib67C0F0E7_gt_PM_SoASuperShieldsActivated = TriggerCreate("lib67C0F0E7_gt_PM_SoASuperShieldsActivated_Func");
+    TriggerAddEventPlayerEffectUsed(lib67C0F0E7_gt_PM_SoASuperShieldsActivated, c_playerAny, "SOASuperShieldDummy");
+}
+
 void lib67C0F0E7_InitTriggers () {
     lib67C0F0E7_gt_PingDestroy_Init();
     lib67C0F0E7_gt_PingDestroyT_Init();
@@ -4490,6 +4527,7 @@ void lib67C0F0E7_InitTriggers () {
     lib67C0F0E7_gt_SOAStickyUnitActive_Init();
     lib67C0F0E7_gt_SOAStickyUnitExecute_Init();
     lib67C0F0E7_gt_SOAStickyUnitExit_Init();
+    lib67C0F0E7_gt_PM_SoASuperShieldsActivated_Init();
     lib67C0F0E7_gt_SOATargetingOrder_Init();
     lib67C0F0E7_gt_SOATargetingOrderUnitGroup_Init();
     lib67C0F0E7_gt_CU_GPVitalChangesP1_Init();

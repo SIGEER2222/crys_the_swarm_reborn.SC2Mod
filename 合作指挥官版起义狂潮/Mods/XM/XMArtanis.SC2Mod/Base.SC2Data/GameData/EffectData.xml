@@ -4157,11 +4157,19 @@
   <CEffectDamage id="SOAStrafeAttackDamage">
     <SearchFilters value="-;Self,Player,Ally,Missile,Item,Stasis,Dead,Hidden,Invulnerable" />
   </CEffectDamage>
+  <CEffectModifyUnit id="SOASuperShieldDummy">
+    <EditorCategories value="Race:Protoss" />
+  </CEffectModifyUnit>
   <CEffectSet id="SOASuperShieldApply">
-    <ValidatorArray value="TargetisAnyCommander" />
+    <EffectArray value="SOASuperShieldModifyUnit" />
+    <EffectArray value="SOASuperShieldApplyBehavior" />
+    <ValidatorArray value="DoesNotHaveAbilityTargetExclusionBehavior" />
   </CEffectSet>
+  <CEffectModifyUnit id="SOASuperShieldModifyUnit">
+    <VitalArray index="Shields" Change="1" />
+  </CEffectModifyUnit>
   <CEffectApplyBehavior id="SOASuperShieldApplyBehavior">
-    <ValidatorArray index="0" removed="1" />
+    <Behavior value="SOASuperShield" />
   </CEffectApplyBehavior>
   <CEffectCreatePersistent id="SOAThermalLanceCP">
     <PeriodicEffectArray value="" />
