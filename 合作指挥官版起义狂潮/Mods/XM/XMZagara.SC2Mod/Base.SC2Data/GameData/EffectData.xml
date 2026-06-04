@@ -2460,9 +2460,8 @@
     <SpawnRange value="1" />
   </CEffectCreateUnit>
   <CEffectSet id="ZagaraVoidCoopBanelingBarrageExplodeSearchSet">
-    <EffectArray index="1" value="ZagaraVoidCoopBanelingBarrageForceFieldScanPersistentDestroy" />
-    <EffectArray index="2" value="ZagaraVoidCoopBanelingBarrageUnpathableScanPersistentDestroy" />
-    <EffectArray index="3" value="ZagaraVoidCoopBanelingBarrageExplodeSearchUnit" />
+    <EffectArray value="ZagaraVoidCoopBanelingBarrageMissileScanPersistentDestroy" />
+    <EffectArray value="ZagaraVoidCoopBanelingBarrageExplodeSearchUnit" />
     <EffectArray value="ZagaraVoidCoopBanelingBarrageExplodeSearchStructure" />
     <EffectArray value="Suicide" />
   </CEffectSet>
@@ -2501,12 +2500,69 @@
     <Count value="1" />
     <Radius value="1" />
   </CEffectDestroyPersistent>
+  <CEffectCreatePersistent id="ZagaraVoidCoopBanelingBarrageCP">
+    <EditorCategories value="Race:Protoss" />
+    <WhichLocation Value="CasterPoint" />
+    <TimeScaleSource Value="Caster" />
+    <Flags index="Channeled" value="1" />
+    <PeriodCount value="4" />
+    <PeriodicValidator value="CasterNotDead" />
+    <PeriodicEffectArray value="ZagaraVoidCoopBanelingBarrageLM" />
+    <PeriodicOffsetArray value="0,-10,0" />
+    <PeriodicPeriodArray value="0.25" />
+  </CEffectCreatePersistent>
+  <CEffectLaunchMissile id="ZagaraVoidCoopBanelingBarrageLM">
+    <ValidatorArray index="0" value="CasterNotDead" />
+    <EditorCategories value="Race:Zerg" />
+    <ImpactLocation Value="TargetPoint" />
+    <LaunchEffect value="ZagaraVoidCoopBanelingBarrageMissileScanSet" />
+    <ImpactEffect value="ZagaraVoidCoopBanelingBarrageImpactDummySet" />
+    <AmmoUnit value="ZagaraVoidCoopBanelingBarrageWeapon" />
+    <Movers Link="ZagaraVoidCoopBanelingBarrageWeapon" />
+  </CEffectLaunchMissile>
   <CEffectEnumArea id="ZagaraVoidCoopBanelingBarrageMissileScan">
-    <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden" />
+    <LaunchLocation Effect="ZagaraVoidCoopBanelingBarrageMissileScanPersistent" Value="OriginPoint" />
+    <SearchFilters value="-;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden" />
+    <AreaArray>
+      <MaxCount value="1" />
+      <RectangleWidth value="0.75" />
+      <RectangleHeight value="0.75" />
+      <Effect value="ZagaraVoidCoopBanelingBarrageExplodeSearchSet" />
+    </AreaArray>
+    <RevealerParams Duration="1" ShapeExpansion="2">
+      <RevealFlags index="Unfog" value="1" />
+    </RevealerParams>
   </CEffectEnumArea>
   <CEffectSet id="ZagaraVoidCoopBanelingBarrageMissileScanSet">
-    <EffectArray value="ZagaraVoidCoopBanelingBarrageForceFieldScanPersistent" />
+    <EffectArray value="ZagaraVoidCoopBanelingBarrageMissileScanPersistent" />
+    <EffectArray value="ZagaraVoidCoopBanelingBarrageUnpathableScanPersistent" />
   </CEffectSet>
+  <CEffectCreatePersistent id="ZagaraVoidCoopBanelingBarrageMissileScanPersistent">
+    <WhichLocation Value="SourceUnit" />
+    <PeriodCount value="80" />
+    <PeriodicEffectArray value="ZagaraVoidCoopBanelingBarrageMissileScan" />
+    <PeriodicPeriodArray value="0.0625" />
+  </CEffectCreatePersistent>
+  <CEffectCreatePersistent id="ZagaraVoidCoopBanelingBarrageUnpathableScanPersistent">
+    <WhichLocation Value="SourceUnit" />
+    <PeriodCount value="80" />
+    <PeriodicEffectArray value="NoPathSuicideSet" />
+    <PeriodicPeriodArray value="0.0625" />
+  </CEffectCreatePersistent>
+  <CEffectSet id="NoPathSuicideSet">
+    <ValidatorArray value="SourceUnitNotOnPathable" />
+    <EffectArray value="ZagaraVoidCoopBanelingBarrageMissileScanPersistentDestroy" />
+    <EffectArray value="ZagaraVoidCoopBanelingBarrageExplodeSearchUnit" />
+    <EffectArray value="ZagaraVoidCoopBanelingBarrageExplodeSearchStructure" />
+    <EffectArray value="Suicide" />
+    <TargetLocationType value="Point" />
+  </CEffectSet>
+  <CEffectDestroyPersistent id="ZagaraVoidCoopBanelingBarrageMissileScanPersistentDestroy">
+    <WhichLocation Value="SourceUnitOrPoint" />
+    <Effect value="ZagaraVoidCoopBanelingBarrageMissileScanPersistent" />
+    <Count value="1" />
+    <Radius value="1" />
+  </CEffectDestroyPersistent>
   <CEffectDestroyPersistent id="ZagaraVoidCoopBanelingBarrageUnpathableScanPersistentDestroy">
     <WhichLocation Value="SourceUnitOrPoint" />
     <Effect value="ZagaraVoidCoopBanelingBarrageUnpathableScanPersistent" />
