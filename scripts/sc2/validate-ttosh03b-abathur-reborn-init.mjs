@@ -14,7 +14,7 @@ const rebornGameData = path.join(
   'GameData',
 );
 
-const forbiddenMapDependency = 'file:Mods\\XM\\XMAbathurReborn.SC2Mod';
+const rebornMapDependency = 'file:Mods\\XM\\XMAbathurReborn.SC2Mod';
 
 const files = {
   documentInfo: path.join(mapRoot, 'DocumentInfo'),
@@ -96,9 +96,7 @@ function findFirstDependencyOffset(bytes) {
 
 const documentInfo = readText(files.documentInfo);
 requireContains('DocumentInfo', documentInfo, '<Value>file:Mods\\XM\\XMFinal.SC2Mod</Value>');
-if (documentInfo.includes(forbiddenMapDependency)) {
-  errors.push(`DocumentInfo: must not add map dependency ${forbiddenMapDependency}`);
-}
+requireContains('DocumentInfo', documentInfo, `<Value>${rebornMapDependency}</Value>`);
 if (documentInfo.includes('Bank;cryswarmcoop;1')) {
   errors.push('DocumentInfo: must not add cryswarmcoop preload; load it from MapScript only when AbathurReborn is active');
 }
@@ -176,8 +174,8 @@ const headerDependencies = parseDocumentHeader(files.documentHeader).dependencie
 if (!headerDependencies.includes('file:Mods\\XM\\XMFinal.SC2Mod')) {
   errors.push('DocumentHeader: missing file:Mods\\XM\\XMFinal.SC2Mod');
 }
-if (headerDependencies.includes(forbiddenMapDependency)) {
-  errors.push(`DocumentHeader: must not add map dependency ${forbiddenMapDependency}`);
+if (!headerDependencies.includes(rebornMapDependency)) {
+  errors.push(`DocumentHeader: missing ${rebornMapDependency}`);
 }
 
 if (errors.length > 0) {
