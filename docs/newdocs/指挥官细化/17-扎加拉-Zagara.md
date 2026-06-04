@@ -13,6 +13,8 @@
 - `buildings.json` 只是扎加拉官方链路的摘要；`BanelingNest`、`ScourgeNest`、`BileLauncherZagara` 这些关键对象要继续看 raw XML 才能闭环。
 - 扎加拉的稳定追法是 `Commander JSON + roster.json + raw XML`，不要只用 `units.json` 或 `buildings.json` 判断她的完整建筑/生产链。
 - `Drone` 仍是通用工蜂，专属建筑入口主要挂在 `ZergBuild` 的特殊按钮上。
+- 当前 Mod 已在 `XMZagara.SC2Mod` 覆盖 `CommanderAch/Zagara` 开局三件套为 `HatcheryZagara`、`DroneZagara`、`OverlordZagara`；runtime 入口由 `XMFinal` 的 `LibE0EAE146_ZagaraRuntime.galaxy` 创建 `CoopCasterZagara`，并在需要英雄时创建 `ZagaraVoidCoop` 作为主施法单位。
+- `ZagaraVoidCoop` 是扎加拉英雄技能的真实 caster；`CoopCasterZagara` 只作为兼容/global caster shell 保留，不能反过来把英雄技能挂到它身上。
 
 ## 官方数据摘要
 

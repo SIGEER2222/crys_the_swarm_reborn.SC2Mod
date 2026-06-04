@@ -14,6 +14,7 @@ include "LibE0EAE146_h"
 include "LibE0EAE146_ArtanisRuntime"
 include "LibE0EAE146_KaraxRuntime"
 include "LibE0EAE146_VorazunRuntime"
+include "LibE0EAE146_ZagaraRuntime"
 include "LibE0EAE146_ZeratulRuntime"
 
 //--------------------------------------------------------------------------------------------------
@@ -47,6 +48,7 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_gv_artanisRuntimeInitialized = false;
     libE0EAE146_gv_karaxRuntimeInitialized = false;
     libE0EAE146_gv_vorazunRuntimeInitialized = false;
+    libE0EAE146_gv_zagaraRuntimeInitialized = false;
 }
 
 // Functions
@@ -388,6 +390,9 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     }
     else if (auto09490B45_val == "Vorazun") {
         libE0EAE146_gf_VorazunRuntimeInit(1, lp_secondUnit, lp_createHero);
+    }
+    else if (auto09490B45_val == "Zagara") {
+        libE0EAE146_gf_ZagaraRuntimeInit(1, lp_secondUnit, lp_createHero);
     }
     else if (auto09490B45_val == "Zeratul") {
         libE0EAE146_gf_ZeratulRuntimeInit(1, lp_secondUnit, lp_createHero);
