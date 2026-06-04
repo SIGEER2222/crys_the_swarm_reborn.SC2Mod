@@ -14,11 +14,20 @@ const rebornGameData = path.join(
   'GameData',
 );
 
-const rebornMapDependency = 'file:Mods\\XM\\XMAbathurReborn.SC2Mod';
+const forbiddenMapDependency = 'file:Mods\\XM\\XMAbathurReborn.SC2Mod';
+const requiredXMFinalDependency = 'file:Mods\\XM\\XMAbathurReborn.SC2Mod';
 
 const files = {
   documentInfo: path.join(mapRoot, 'DocumentInfo'),
   documentHeader: path.join(mapRoot, 'DocumentHeader'),
+  xmFinalDocumentHeader: path.join(
+    repoRoot,
+    '合作指挥官版起义狂潮',
+    'Mods',
+    'XM',
+    'XMFinal.SC2Mod',
+    'DocumentHeader',
+  ),
   bankList: path.join(mapRoot, 'BankList.xml'),
   mapScript: path.join(mapRoot, 'MapScript.galaxy'),
   userData: path.join(rebornGameData, 'UserData.xml'),
@@ -96,7 +105,9 @@ function findFirstDependencyOffset(bytes) {
 
 const documentInfo = readText(files.documentInfo);
 requireContains('DocumentInfo', documentInfo, '<Value>file:Mods\\XM\\XMFinal.SC2Mod</Value>');
-requireContains('DocumentInfo', documentInfo, `<Value>${rebornMapDependency}</Value>`);
+if (documentInfo.includes(forbiddenMapDependency)) {
+  errors.push(`DocumentInfo: must not add map dependency ${forbiddenMapDependency}`);
+}
 if (documentInfo.includes('Bank;cryswarmcoop;1')) {
   errors.push('DocumentInfo: must not add cryswarmcoop preload; load it from MapScript only when AbathurReborn is active');
 }
@@ -174,8 +185,13 @@ const headerDependencies = parseDocumentHeader(files.documentHeader).dependencie
 if (!headerDependencies.includes('file:Mods\\XM\\XMFinal.SC2Mod')) {
   errors.push('DocumentHeader: missing file:Mods\\XM\\XMFinal.SC2Mod');
 }
-if (!headerDependencies.includes(rebornMapDependency)) {
-  errors.push(`DocumentHeader: missing ${rebornMapDependency}`);
+if (headerDependencies.includes(forbiddenMapDependency)) {
+  errors.push(`DocumentHeader: must not add map dependency ${forbiddenMapDependency}`);
+}
+
+const xmFinalDependencies = parseDocumentHeader(files.xmFinalDocumentHeader).dependencies;
+if (!xmFinalDependencies.includes(requiredXMFinalDependency)) {
+  errors.push(`XMFinal DocumentHeader: missing ${requiredXMFinalDependency}`);
 }
 
 if (errors.length > 0) {
@@ -186,4 +202,4 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`PASS: ttosh03b 重生阿巴瑟初始化校验通过 dependencies=${headerDependencies.length}`);
+console.log(`PASS: ttosh03b 重生阿巴瑟初始化校验通过 map_dependencies=${headerDependencies.length} xmfinal_dependencies=${xmFinalDependencies.length}`);
