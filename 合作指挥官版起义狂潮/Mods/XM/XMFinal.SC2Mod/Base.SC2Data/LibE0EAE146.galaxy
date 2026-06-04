@@ -15,6 +15,7 @@ include "LibE0EAE146_AlarakRuntime"
 include "LibE0EAE146_ArtanisRuntime"
 include "LibE0EAE146_FenixRuntime"
 include "LibE0EAE146_KaraxRuntime"
+include "LibE0EAE146_RuntimeSafety"
 include "LibE0EAE146_VorazunRuntime"
 include "LibE0EAE146_ZagaraRuntime"
 include "LibE0EAE146_ZeratulRuntime"
@@ -238,11 +239,11 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), lv_tooltip, PlayerGroupAll());
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeImage, "CommanderIcon");
     libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommanderIcon", 1), PlayerGroupAll());
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, PlayerStartLocation(1));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, libE0EAE146_gf_CommanderAchUnit("CommandCenter"), 0, 1, PlayerStartLocation(1));
     if ((lp_secondBase == null)) {
     }
     else {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, lp_secondBase);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, libE0EAE146_gf_CommanderAchUnit("CommandCenter"), 0, 1, lp_secondBase);
     }
     auto93C1ECD3_g = UnitGroup(null, c_playerAny, RegionCircle(PlayerStartLocation(1), 8.0), UnitFilter((1 << c_targetFilterHarvestableResource), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto93C1ECD3_u = UnitGroupCount(auto93C1ECD3_g, c_unitCountAll);
@@ -257,17 +258,17 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     if ((UnitGroupCount(lv_uG, c_unitCountAlive) > 0)) {
         lv_i = 0;
         for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1), 0, 1, PointWithOffsetPolar(PlayerStartLocation(1), 2.0, (lv_i*10)));
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, libE0EAE146_gf_CommanderAchUnit("Worker"), 0, 1, PointWithOffsetPolar(PlayerStartLocation(1), 2.0, (lv_i*10)));
             UnitIssueOrder(UnitLastCreated(), OrderTargetingUnit(null, UnitGroupRandomUnit(lv_uG, c_unitCountAlive)), c_orderQueueReplace);
         }
     }
     else {
         lv_i = 0;
         for ( ; ( lv_i <= lp_worker ) ; lv_i += 1 ) {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1), 0, 1, PointWithOffsetPolar(PlayerStartLocation(1), 2.0, (lv_i*10)));
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, libE0EAE146_gf_CommanderAchUnit("Worker"), 0, 1, PointWithOffsetPolar(PlayerStartLocation(1), 2.0, (lv_i*10)));
         }
     }
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1), 0, 1, lp_secondUnit);
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, libE0EAE146_gf_CommanderAchUnit("SecondUnit"), 0, 1, lp_secondUnit);
     auto09490B45_val = libE0EAE146_gv_commander;
     if (auto09490B45_val == "Stukov") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterStukov", 0, 1, RegionGetCenter(RegionEntireMap()));

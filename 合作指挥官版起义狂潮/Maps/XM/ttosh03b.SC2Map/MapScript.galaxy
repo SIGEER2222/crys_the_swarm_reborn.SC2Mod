@@ -459,6 +459,7 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
     PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperSetTo, 2000);
     PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperSetTo, 1000);
     PlayerModifyPropertyInt(1, c_playerPropSuppliesMade, c_playerPropOperSetTo, 200);
+    libE0EAE146_gf_SeedDefaultCommanderBankIfEmpty("AbathurReborn");
     libE0EAE146_gf_Initialize(true);
     TriggerExecute(gt_Init01Technology, true, true);
     TriggerExecute(gt_Init02Players, true, true);
@@ -851,9 +852,9 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "CommandCenter", 1), 0, 1, PlayerStartLocation(1));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "Worker", 1), 0, 1, PlayerStartLocation(1));
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("CommanderAch", lib67C0F0E7_gf_StrToUserinstance(libE0EAE146_gv_commander), "SecondUnit", 1), 0, 1, PointFromId(8));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, libE0EAE146_gf_CommanderAchUnit("CommandCenter"), 0, 1, PlayerStartLocation(1));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, libE0EAE146_gf_CommanderAchUnit("Worker"), 0, 1, PlayerStartLocation(1));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, libE0EAE146_gf_CommanderAchUnit("SecondUnit"), 0, 1, PointFromId(8));
     auto2F29E444_val = libE0EAE146_gv_commander;
     if (auto2F29E444_val == "Stukov") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "SIStukov", 0, 1, PointFromId(29));
@@ -1111,6 +1112,10 @@ bool gt_ExtremeAggro_Func (bool testConds, bool runActions) {
 
     // Actions
     if (!runActions) {
+        return true;
+    }
+
+    if (UnitIsValid(gv_nova) == false) {
         return true;
     }
 

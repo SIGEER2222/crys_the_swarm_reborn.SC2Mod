@@ -12,6 +12,7 @@ const targets = [
   { commander: 'Kerrigan', module: 'XMKerrigan.SC2Mod', units: ['EvolutionChamberKerrigan', 'SpireKerrigan', 'GreaterSpireKerrigan'] },
   { commander: 'Zagara', module: 'XMZagara.SC2Mod', units: ['EvolutionChamberZagara', 'SpireZagara'] },
   { commander: 'Abathur', module: 'XMAbathur.SC2Mod', units: ['EvolutionChamberAbathur', 'SpireAbathur', 'GreaterSpireAbathur'] },
+  { commander: 'AbathurReborn', module: 'XMAbathurReborn.SC2Mod', units: ['EvolutionChamber', 'Spire', 'GreaterSpire'] },
   { commander: 'Alarak', module: 'XMAlarak.SC2Mod', units: ['ForgeAlarak', 'CyberneticsCoreAlarak'] },
   { commander: 'Artanis', module: 'XMArtanis.SC2Mod', units: ['ForgeArtanis', 'CyberneticsCoreArtanis'] },
   { commander: 'Fenix', module: 'XMFenix.SC2Mod', units: ['ForgeFenix', 'CyberneticsCoreFenix'] },
