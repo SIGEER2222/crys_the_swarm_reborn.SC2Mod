@@ -96,6 +96,56 @@ function Get-ExcludedFiles {
     return @()
 }
 
+function Test-FileMatches {
+    param(
+        [string]$Source,
+        [string]$Target
+    )
+
+    if (-not (Test-Path -LiteralPath $Source)) {
+        throw "Source metadata file not found: $Source"
+    }
+
+    if (-not (Test-Path -LiteralPath $Target)) {
+        return $false
+    }
+
+    $sourceHash = (Get-FileHash -LiteralPath $Source -Algorithm SHA256).Hash
+    $targetHash = (Get-FileHash -LiteralPath $Target -Algorithm SHA256).Hash
+    return $sourceHash -eq $targetHash
+}
+
+function Assert-XMFinalDocumentMetaIsSafeToSkip {
+    param(
+        [string]$SourceModsRoot,
+        [string]$TargetModsRoot
+    )
+
+    if ($MutateXMFinalDocumentMeta) {
+        return
+    }
+
+    $sourceFinalRoot = Join-Path $SourceModsRoot "XMFinal.SC2Mod"
+    $targetFinalRoot = Join-Path $TargetModsRoot "XMFinal.SC2Mod"
+    $metaFiles = @("DocumentHeader", "DocumentInfo")
+    $staleFiles = New-Object System.Collections.Generic.List[string]
+
+    foreach ($fileName in $metaFiles) {
+        $sourceFile = Join-Path $sourceFinalRoot $fileName
+        $targetFile = Join-Path $targetFinalRoot $fileName
+        if (-not (Test-FileMatches -Source $sourceFile -Target $targetFile)) {
+            $staleFiles.Add($fileName)
+        }
+    }
+
+    if ($staleFiles.Count -eq 0) {
+        return
+    }
+
+    $files = $staleFiles -join ", "
+    throw "XMFinal.SC2Mod metadata differs from the live copy ($files), but this sync would skip it. Stale XMFinal metadata can make MapScript include resolution fail, for example missing LibA1BA7A9F. Rerun with -MutateXMFinalDocumentMeta to copy the checked-in DocumentHeader/DocumentInfo, or exclude XMFinal.SC2Mod intentionally."
+}
+
 function Invoke-RobocopySync {
     param(
         [string]$Source,
@@ -202,6 +252,10 @@ Write-Output "LIVE_ROOT=$LiveRoot"
 Write-Output "DRY_RUN=$([int][bool]$DryRun)"
 
 if (-not $SkipMods) {
+    if (-not $DryRun -and $modNames -contains "XMFinal.SC2Mod") {
+        Assert-XMFinalDocumentMetaIsSafeToSkip -SourceModsRoot $sourceModsRoot -TargetModsRoot $targetModsRoot
+    }
+
     foreach ($modName in $modNames) {
         $source = Join-Path $sourceModsRoot $modName
         $target = Join-Path $targetModsRoot $modName
