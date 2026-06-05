@@ -14,6 +14,7 @@
 - 2026-06-04 当前 Mod 已把运行名册和测试台名册切到 Kerrigan 私有单位：`BroodLordKerrigan`、`HydraliskKerrigan`、`MutaliskKerrigan`、`QueenCoopKerrigan`、`UltraliskKerrigan`、`ZerglingKerrigan`、`HydraliskLurkerKerrigan`、`OverseerKerrigan`。生产链抽查显示 `LarvaTrainKerrigan`、`TrainQueenKerrigan`、`MorphToOverseerKerrigan`、`MutaliskMorphToBroodLordKerrigan`、`MorphHydraliskToLurkerKerrigan` 的输出也已经落到私有单位；后续若继续补技能，应保持 Button -> Ability -> Unit/Effect 都使用私有链路。
 - 2026-06-04 形态闭包补充：当前 Mod runtime 和测试台已显式纳入 `K5KerriganBurrowed`、`NydusCanalKerrigan`、`SpineCrawlerUprootedKerrigan`、`SporeCrawlerUprootedKerrigan`、`HydraliskLurkerBurrowedKerrigan`、`OverseerSiegeModeKerrigan`。对应 smoke 链路是 `K5Kerrigan <-> K5KerriganBurrowed` 英雄主链、`NydusNetworkKerrigan -> BuildNydusCanalKerrigan -> NydusCanalKerrigan`、`Spine/SporeCrawler* -> *UprootKerrigan -> *UprootedKerrigan -> *RootKerrigan`、`HydraliskLurkerKerrigan -> BurrowHydraliskLurkerDownKerrigan -> HydraliskLurkerBurrowedKerrigan -> BurrowHydraliskLurkerUpKerrigan`、`OverseerKerrigan -> OverseerMorphtoOverseerSiegeKerrigan -> OverseerSiegeModeKerrigan -> OverseerSiegeMorphtoOverseerKerrigan`。
 - 第三威望通过 `KerriganInfestedCosmetic` / `KerriganGhostCosmetic` 切换外观并启用/禁用技能，追形态时要把威望和技能开关一起看。
+- 2026-06-05 runtime 口径修正：第三威望的凯瑞甘能力链 `MindBolt` / `PsionicLift` 先不并入当前 `power_fusion` 运行时，避免与 `PrimalSlash` / `PsiStrike` 的官方互斥卡位冲突。当前 old-line runtime 仅保留 P1 恶变菌毯正收益与 P2 自定义正向 fury 转伤，不再授予 `CommanderPrestigeKerriganAssimilationAura` / `CommanderPrestigeKerriganAssimilationAuraShared`。
 - 凯瑞甘的 `NydusNetwork` 是官方 `buildings.json` 正向建筑，不能套用阿巴瑟的排除结论；但 `ZagaraVoidCoopZerglingDodge`、`MorphZerglingToBaneling`、`MorphToBaneling` 这类扎加拉/普通虫族跳虫链不在凯瑞甘满级名册中，只能作为共享污染排除项。
 
 ## 官方数据摘要
@@ -126,7 +127,6 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 凯瑞甘 | `K5ZerglingRespawn` | 跳虫重组 | - | - | 阵亡的跳虫会在主孵化场免费复活；每 30 秒至多重组一批阵亡跳虫，直到全部回到战场。 |
 | 凯瑞甘 | `K5Cooldowns` | 技能专精 | - | `HaveK5Cooldowns` | 凯瑞甘的技能冷却时间和能量消耗降低 20%。 |
 | 凯瑞甘 | `CommanderKerriganKerriganEnergyRegeneration` | 刀锋女王 | - | `HaveKerriganVoidCoopEnergyRegen` | 凯瑞甘的能量恢复速度提高50%。 |
 | 凯瑞甘 | `KerriganChainLightning` | 连锁反应 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
@@ -143,6 +143,8 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | 凯瑞甘 | `WildMutation` | 野性突变 | `WildMutation,Execute` | - | 使目标区域内的友方异虫单位提高最大生命值和攻击速度；对空中单位或英雄单位无效。 |
 | 凯瑞甘 | `ChainReaction` | 连锁反应 | - | `HaveK5ChainLightning` | 凯瑞甘的普通攻击会弹射到附近额外目标，最多可命中 4 个追加目标。 |
 | 凯瑞甘 | `K5CooldownsLocked` | 技能专精 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
+
+注：`K5ZerglingRespawn` 虽然仍能在官方 raw 和 `7v1` 的凯瑞甘英雄卡面中看到，但当前只视为战役继承下来的卡面残留；未找到合作模式凯瑞甘的实授 upgrade/运行时闭包，因此不计入凯瑞甘正向技能链。
 
 ### 英雄形态/模式候选
 
@@ -230,7 +232,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | `UltraliskKerrigan` | `BurrowChargeCampaign` | `UltraliskBurrowCharge,Execute` | 雷兽潜地冲锋 | 能力本体已在当前 Mod 中，是否可点由雷兽洞研究/升级解锁。 |
 | `UltraliskKerrigan` / `HotSTorrasque` | `TissueAssimilation` | `HaveHotSTissueAssimilation` | 雷兽普通攻击吸血被动已挂载 | 研究来自 `UltraliskCavernResearch,Research5`；当前单位卡和需求链都已接通，实际回血沿用官方 `TissueAssimilation` / `TissueAssimilationSecondary` 命中效果。 |
 | `ZerglingKerrigan` | 护甲撕裂被动 | `ZerglingArmorShred` | 跳虫攻击可削甲 | `Baneling` 相关共享污染不计入凯瑞甘主链。 |
-| `NydusNetworkKerrigan` | `SummonNydusWorm` / `SummonNydusCanalAttacker` / `SummonNydusCanalCreeper` | `BuildNydusCanalKerrigan,Build1/2/3` | 召唤 `NydusCanalKerrigan` 系列 | 这条建筑技能也已切到私有坑道虫。 |
+| `NydusNetworkKerrigan` | `SummonNydusWorm` / `SummonNydusCanalAttacker` / `SummonNydusCanalCreeper` | `BuildNydusCanalKerrigan,Build1/2/3` | 召唤 `NydusCanalKerrigan` 系列 | 这条建筑技能也已切到私有坑道虫；runtime 现已显式放开 3 个命令位，官方 `VoidCoopGreaterNydusWorm` 只强化 `Build1/2`。 |
 | `SpineCrawlerKerrigan` | `SpineCrawlerUproot` | `SpineCrawlerUprootKerrigan,Execute` | 站起为 `SpineCrawlerUprootedKerrigan` | 回根由 `SpineCrawlerRootKerrigan` 处理。 |
 | `SporeCrawlerKerrigan` | `SporeCrawlerUproot` | `SporeCrawlerUprootKerrigan,Execute` | 站起为 `SporeCrawlerUprootedKerrigan` | 回根由 `SporeCrawlerRootKerrigan` 处理。 |
 
@@ -261,10 +263,10 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 当前补充结论：
 
 - 你提的这个点是对的，凯瑞甘的“雷兽可复活”在数据上不是泛泛描述，而是 `HotSTorrasque -> TorrasqueDontDie -> TorrasqueCorpse -> TorrasqueTimerBehavior` 这条专门闭包。
-- 但当前 old-line Mod 的量产链还要单独看。`LarvaTrainKerrigan` 现在静态上产出的仍是 `UltraliskKerrigan`，不是 `HotSTorrasque`。
-- 同时 `LibE0EAE146_KerriganRuntime.galaxy` 目前只负责凯瑞甘英雄 / caster 初始化，未见显式 `SetUpgradeLevelForPlayer(..., "HotSTorrasque", 1)` 或 `TechTreeUnitAllow(..., "HotSTorrasque", true)`。
-- 这和 13 级雷兽升级包要区分看：`HotSTissueAssimilation` 这条“普通攻击吸血”研究在当前 Mod 静态链上是挂上的，问题集中在 14 级暴龙兽量产切换，而不是 13 级吸血本身。
-- 所以可以确认“暴龙兽复活闭包存在，而且开局小队也能直接创建 `HotSTorrasque`”，但“普通量产雷兽已经稳定切到可复活暴龙兽”这一点，当前还不能只靠静态文本直接下结论，后续应继续补 runtime 授权或做实机验证。
+- 2026-06-05 follow-up：当前 old-line 静态量产链已经补到 `HotSTorrasque`。`HotSTorrasque` 升级会把 `LarvaTrainKerrigan,Train7` 从 `UltraliskKerrigan` 改写为 `HotSTorrasque`，同时把 `UltraliskCavernKerrigan` 的解锁单位改写为 `HotSTorrasque`。
+- `LibE0EAE146_KerriganRuntime.galaxy` 当前也已经显式授予 `HotSTorrasque`，并把 `HotSTorrasque` / `HotSTorrasqueBurrowed` 纳入 runtime tech filter。
+- 这和 13 级雷兽升级包要区分看：`HotSTissueAssimilation` 这条“普通攻击吸血”研究本来就已挂好；现在 14 级暴龙兽量产切换的静态缺口也已经补上。
+- 当前剩下的重点不再是“有没有静态闭包”，而是“进游戏后量产出的暴龙兽是否稳定走复活链、计时链和 UI 展示链”，这部分仍需实机验证。
 
 ### 单位技能按钮候选
 
@@ -396,7 +398,7 @@ Owner：`CommanderRosterProfile`、`CommanderUnitFactoryProfile`、`CommanderUni
 | `LarvaKerrigan` | `LarvaTrainKerrigan,Train3` | `OverlordKerrigan` | 无 |
 | `LarvaKerrigan` | `LarvaTrainKerrigan,Train4` | `HydraliskKerrigan` | `HaveHydraliskDen` |
 | `LarvaKerrigan` | `LarvaTrainKerrigan,Train11` | `MutaliskKerrigan` | `HaveSpire` |
-| `LarvaKerrigan` | `LarvaTrainKerrigan,Train7` | `UltraliskKerrigan` | `HaveUltraliskCavern` |
+| `LarvaKerrigan` | `LarvaTrainKerrigan,Train7` | `HotSTorrasque` | `HaveUltraliskCavern`；满级态由 `HotSTorrasque` 升级把基础 `UltraliskKerrigan` 量产位改写为可复活暴龙兽。 |
 | `HatcheryKerrigan / LairKerrigan / HiveKerrigan` | `TrainQueenKerrigan,Train4` | `QueenCoopKerrigan` | `HaveSpawningPool` |
 
 结论：当前“基地出兵”不是主基地直接产出整套部队，而是主基地负责刷 `LarvaKerrigan`，真正的兵种生产由 `LarvaTrainKerrigan` 完成；主基地自己只额外挂了 `TrainQueenKerrigan` 这条虫后链。
@@ -622,7 +624,6 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 异龙 | `KerriganViciousGlaive` | 残暴龙爪 | - | `HaveKerriganViciousGlaive` | 异龙攻击会额外弹射 3 次，最多击中 6 个目标，且弹射距离更远。 |
 | 雷兽 | `TissueAssimilation` | 组织同化 | - | `HaveHotSTissueAssimilation` | 雷兽普通攻击造成伤害的 40% 会转化为自身生命值。 |
 | 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级13时解锁。 |
-| 凯瑞甘 | `K5ZerglingRespawn` | 跳虫重组 | - | - | 阵亡的跳虫会在主孵化场免费复活；每 30 秒至多重组一批阵亡跳虫，直到全部回到战场。 |
 | 凯瑞甘 | `K5Cooldowns` | 技能专精 | - | `HaveK5Cooldowns` | 凯瑞甘的技能冷却时间和能量消耗降低 20%。 |
 | 凯瑞甘 | `CommanderKerriganKerriganEnergyRegeneration` | 刀锋女王 | - | `HaveKerriganVoidCoopEnergyRegen` | 凯瑞甘的能量恢复速度提高50%。 |
 | 凯瑞甘 | `KerriganChainLightning` | 连锁反应 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
@@ -639,6 +640,8 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 凯瑞甘 | `WildMutation` | 野性突变 | `WildMutation,Execute` | - | 使目标区域内的友方异虫单位提高最大生命值和攻击速度；对空中单位或英雄单位无效。 |
 | 凯瑞甘 | `ChainReaction` | 连锁反应 | - | `HaveK5ChainLightning` | 凯瑞甘的普通攻击会弹射到附近额外目标，最多可命中 4 个追加目标。 |
 | 凯瑞甘 | `K5CooldownsLocked` | 技能专精 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
+
+注：上表同样不再把 `K5ZerglingRespawn` 记为凯瑞甘合作模式的确认生效链；它当前仅作为卡面残留信息保留在审计结论中。
 
 实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
@@ -699,7 +702,7 @@ personal_mechanic_smoke
 
 ## 当前剩余风险 / 需实机验证项
 
-- `LarvaTrainKerrigan` 的普通量产雷兽是否会在 Lv14 后稳定切到 `HotSTorrasque`，当前静态链只确认了暴龙兽复活闭包本身存在。
+- `HotSTorrasque` 量产切换、复活、计时与按钮显示链当前已静态闭合，但仍需实机确认量产出的暴龙兽会稳定走完整 revive loop。
 - 顶部技能与隐藏 caster 的玩家冷却、充能、目标转发和地图触发接线，仍需对照 `[XM_DBG]` 日志或实机测试。
 - `SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation` 这些官方 hero/raw card 继承技能，当前文档已确认按钮与数据源存在，但 old-line Mod 里是否全部“可点击且生效”仍需实机验证。
 - `power_fusion` 最终 roster 与 `level15` roster 的替换/变体关系，仍应结合地图初始化和运输场景继续校验。

@@ -1407,4 +1407,102 @@
     <WhichUnit Value="Caster"/>
     <Behavior value="AbathurHostLocustSpeedBuff"/>
   </CEffectApplyBehavior>
+  <CEffectLaunchMissile id="ViperConsumeStructureLaunchMissile">
+    <EditorCategories value="Race:Zerg" />
+    <AmmoUnit value="ViperConsumeStructureWeapon" />
+    <ImpactEffect value="ViperConsumeStructureCreatePersistent" />
+    <Flags index="Channeled" value="1" />
+  </CEffectLaunchMissile>
+  <CEffectCreatePersistent id="ViperConsumeStructureCreatePersistent">
+    <EditorCategories value="Race:Zerg" />
+    <WhichLocation Value="TargetUnit" />
+    <InitialEffect value="ViperConsumeStructureApplyBehavior" />
+    <FinalEffect value="ViperConsumeStructureRemoveBehavior" />
+    <PeriodicEffectArray value="ViperConsumeStructurePeriodicSet" />
+    <PeriodicPeriodArray value="1" />
+    <PeriodCount value="20" />
+    <Flags index="Channeled" value="1" />
+  </CEffectCreatePersistent>
+  <CEffectApplyBehavior id="ViperConsumeStructureApplyBehavior">
+    <EditorCategories value="Race:Zerg" />
+    <Behavior value="ViperConsumeStructure" />
+  </CEffectApplyBehavior>
+  <CEffectRemoveBehavior id="ViperConsumeStructureRemoveBehavior">
+    <EditorCategories value="Race:Zerg" />
+    <BehaviorLink value="ViperConsumeStructure" />
+    <Count value="1" />
+  </CEffectRemoveBehavior>
+  <CEffectSet id="ViperConsumeStructurePeriodicSet">
+    <EditorCategories value="Race:Zerg" />
+    <EffectArray value="ViperConsumeStructureModifyTarget" />
+    <EffectArray value="ViperConsumeStructureModifyCaster" />
+  </CEffectSet>
+  <CEffectModifyUnit id="ViperConsumeStructureModifyTarget">
+    <EditorCategories value="Race:Zerg" />
+    <VitalArray index="Life" Change="-10" />
+  </CEffectModifyUnit>
+  <CEffectModifyUnit id="ViperConsumeStructureModifyCaster">
+    <EditorCategories value="Race:Zerg" />
+    <VitalArray index="Energy" Change="2.5" />
+    <ImpactUnit Value="Caster" />
+  </CEffectModifyUnit>
+  <CEffectSet id="YoinkStartSwitch">
+    <EditorCategories value="Race:Zerg" />
+    <EffectArray value="YoinkStartCreatePlaceholder" />
+    <EffectArray value="YoinkStartSet" />
+    <EffectArray value="YoinkTeleport" />
+    <EffectArray value="YoinkEnemyStun" />
+  </CEffectSet>
+  <CEffectDamage id="YoinkStartCreatePlaceholder">
+    <EditorCategories value="Race:Zerg" />
+    <Flags index="NoDamageTimerReset" value="1" />
+  </CEffectDamage>
+  <CEffectDamage id="YoinkStartSet">
+    <EditorCategories value="Race:Zerg" />
+    <Flags index="NoDamageTimerReset" value="1" />
+  </CEffectDamage>
+  <CEffectTeleport id="YoinkTeleport">
+    <EditorCategories value="Race:Zerg" />
+    <PlacementAround Value="CasterUnit" />
+    <SourceLocation Value="TargetUnit" />
+    <TeleportFlags index="TestFog" value="0" />
+  </CEffectTeleport>
+  <CEffectApplyBehavior id="YoinkEnemyStun">
+    <EditorCategories value="Race:Zerg" />
+    <Behavior value="YoinkEnemyStun" />
+  </CEffectApplyBehavior>
+  <CEffectLaunchMissile id="ParasiticBombLM">
+    <EditorCategories value="Race:Zerg" />
+    <ImpactEffect value="ParasiticBombInitialSet" />
+    <AmmoUnit value="ParasiticBombMissile" />
+  </CEffectLaunchMissile>
+  <CEffectSet id="ParasiticBombInitialSet">
+    <EditorCategories value="Race:Zerg" />
+    <EffectArray value="ParasiticBombApplyBehavior" />
+    <EffectArray value="ParasiticBombTimerApplyBehavior" />
+  </CEffectSet>
+  <CEffectApplyBehavior id="ParasiticBombApplyBehavior">
+    <EditorCategories value="Race:Zerg" />
+    <Behavior value="ParasiticBomb" />
+  </CEffectApplyBehavior>
+  <CEffectApplyBehavior id="ParasiticBombTimerApplyBehavior">
+    <EditorCategories value="Race:Zerg" />
+    <Behavior value="ParasiticBombTimer" />
+  </CEffectApplyBehavior>
+  <CEffectEnumArea id="ParasiticBombSearchEffect">
+    <EditorCategories value="Race:Zerg" />
+    <SearchFilters value="Air;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable" />
+    <AreaArray Radius="3" Effect="ParasiticBombDotDamage" />
+    <AINotifyFlags index="HurtFriend" value="1" />
+    <AINotifyFlags index="MinorDanger" value="1" />
+    <AINotifyFlags index="MajorDanger" value="1" />
+  </CEffectEnumArea>
+  <CEffectDamage id="ParasiticBombDotDamage">
+    <EditorCategories value="Race:Zerg" />
+    <Amount value="2.25" />
+    <ResponseFlags index="Acquire" value="1" />
+    <ResponseFlags index="Flee" value="1" />
+    <Flags index="Notification" value="1" />
+    <SearchFlags index="CallForHelp" value="1" />
+  </CEffectDamage>
 </Catalog>

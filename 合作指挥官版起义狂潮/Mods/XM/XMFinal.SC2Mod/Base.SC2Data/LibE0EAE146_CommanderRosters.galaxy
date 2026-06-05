@@ -124,14 +124,15 @@ bool libE0EAE146_gf_XMTestBench_ArtanisRoster (int lp_player, string lp_rosterKi
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Archon", 1, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ImmortalAiur", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Observer", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "PhoenixAiur", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Dragoon", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Zealot", 6, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HighTemplar", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Tempest", 8, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Reaver", 9, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Artanis", lp_rosterKind, 9);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "Observer", "ObserverArtanis", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ObserverSiegeModeArtanis", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "PhoenixAiur", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Dragoon", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Zealot", 7, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "HighTemplar", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Tempest", 9, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Reaver", 10, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Artanis", lp_rosterKind, 10);
     return true;
 }
 
@@ -170,14 +171,15 @@ bool libE0EAE146_gf_XMTestBench_FenixRoster (int lp_player, string lp_rosterKind
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Adept", 1, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ColossusPurifier", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Observer", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Scout", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SentryFenix", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZealotPurifier", 6, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Immortal", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Carrier", 8, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Disruptor", 9, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Fenix", lp_rosterKind, 9);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "Observer", "ObserverFenix", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ObserverSiegeModeFenix", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Scout", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SentryFenix", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZealotPurifier", 7, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Immortal", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Carrier", 9, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Disruptor", 10, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Fenix", lp_rosterKind, 10);
     return true;
 }
 
@@ -206,14 +208,15 @@ bool libE0EAE146_gf_XMTestBench_KaraxRoster (int lp_player, string lp_rosterKind
     }
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ImmortalAiur", 1, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Observer", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "PhoenixPurifier", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Scout", 4, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SentryPurifier", 5, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZealotPurifier", 6, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Colossus", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Carrier", 8, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Karax", lp_rosterKind, 8);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "Observer", "ObserverKarax", 2, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ObserverSiegeModeKarax", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "PhoenixPurifier", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Scout", 5, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "SentryPurifier", 6, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZealotPurifier", 7, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Colossus", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Carrier", 9, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Karax", lp_rosterKind, 9);
     return true;
 }
 
@@ -432,12 +435,13 @@ bool libE0EAE146_gf_XMTestBench_ZeratulRoster (int lp_player, string lp_rosterKi
     libE0EAE146_gf_XMTestBench_PrepareUnitRoster(lp_player);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulDisruptor", 1, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulImmortal", 2, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "Observer", 3, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulObserver", 4, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "Observer", "ZeratulObserver", 3, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulObserverSiegeMode", 4, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulSentry", 5, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulStalker", 6, lp_rosterKind);
     libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulWarpPrism", 7, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulSummonZealot", 8, lp_rosterKind);
-    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Zeratul", lp_rosterKind, 8);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulWarpPrismPhasing", 8, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_CreateRosterUnit(lp_player, "ZeratulSummonZealot", 9, lp_rosterKind);
+    libE0EAE146_gf_XMTestBench_LogRosterDone(lp_player, "Zeratul", lp_rosterKind, 9);
     return true;
 }

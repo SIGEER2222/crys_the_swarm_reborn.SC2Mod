@@ -350,6 +350,43 @@ const privateCatalogIdMap = new Map(Object.entries({
   RavagerAbathurCorrosiveBile: 'RavagerAbathurCorrosiveBileLegacyAbathurReborn',
 }));
 
+const privateAuxiliaryUnitIds = new Map(Object.entries({
+  FrostFiendBurrowed: 'FrostFiendBurrowedAbathurReborn',
+  SavageBurrowed: 'SavageBurrowedAbathurReborn',
+  BaneHostBurrowed: 'BaneHostBurrowedAbathurReborn',
+  ToxicZerglingBurrowed: 'ToxicZerglingBurrowedAbathurReborn',
+  IgniterBurrowed: 'IgniterBurrowedAbathurReborn',
+  HydraliskParalyticBurrowed: 'HydraliskParalyticBurrowedAbathurReborn',
+  Vespid: 'VespidAbathurReborn',
+  VespidWeapon: 'VespidWeaponAbathurReborn',
+}));
+
+const privateAuxiliaryAbilityIds = new Map(Object.entries({
+  FrostFiendBurrow: 'FrostFiendBurrowAbathurReborn',
+  FrostFiendUnburrow: 'FrostFiendUnburrowAbathurReborn',
+  SavageBurrow: 'SavageBurrowAbathurReborn',
+  SavageUnburrow: 'SavageUnburrowAbathurReborn',
+  BurrowBaneHost: 'BurrowBaneHostAbathurReborn',
+  UnburrowBaneHost: 'UnburrowBaneHostAbathurReborn',
+  VespidHangar: 'VespidHangarAbathurReborn',
+  AbathurToxicZerglingBurrow: 'AbathurToxicZerglingBurrowAbathurReborn',
+  AbathurUnburrowToxicZergling: 'AbathurUnburrowToxicZerglingAbathurReborn',
+  AbathurBurrowIgniter: 'AbathurBurrowIgniterAbathurReborn',
+  AbathurUnburrowIgniter: 'AbathurUnburrowIgniterAbathurReborn',
+  AbathurBurrowParalyticHydralisk: 'AbathurBurrowParalyticHydraliskAbathurReborn',
+  AbathurUnburrowToxicHydralisk: 'AbathurUnburrowToxicHydraliskAbathurReborn',
+}));
+
+const privateAuxiliaryWeaponIds = new Map(Object.entries({
+  VespidAcid: 'VespidAcidAbathurReborn',
+  AcidSpit: 'AcidSpitAbathurReborn',
+}));
+
+const privateAuxiliaryEffectIds = new Map(Object.entries({
+  VespidDamage: 'VespidDamageAbathurReborn',
+  VespidLaunchMissile: 'VespidLaunchMissileAbathurReborn',
+}));
+
 const errors = [];
 const warnings = [];
 
@@ -394,6 +431,7 @@ const targetRequirementNodes = collectCatalogIds(targetRequirementNodeText, /<CR
 const profile = parseUserProfile(userText, 'AbathurRebornLineageProfile');
 validateProfile(profile);
 validatePrivatePositiveCatalogIsolation(profile);
+validatePrivateAuxiliaryCatalogIsolation();
 validateNoAllLarvaPool();
 validateLarvaBaseProduction(profile);
 validateWorkerBuildWhitelist();
@@ -537,6 +575,9 @@ function validatePrivatePositiveCatalogIsolation(instances) {
     if (xmFinalAbathurRebornRuntimeText.includes(`return "${bareUnitId}"`)) {
       errors.push(`AbathurRebornRuntime 不允许把普通单位作为替换产物: ${bareUnitId}`);
     }
+    if (targetUpgradeText.includes(`Unit,${bareUnitId},`)) {
+      errors.push(`UpgradeData 不允许把正向升级效果打到普通单位引用: Unit,${bareUnitId},`);
+    }
   }
 
   for (const expected of expectedLineages) {
@@ -578,6 +619,70 @@ function validatePrivatePositiveCatalogIsolation(instances) {
     }
     if (!targetEffects.has(privateCatalogId(effectId))) {
       errors.push(`破坏者胆汁效果缺少私有 Effect: ${privateCatalogId(effectId)}`);
+    }
+  }
+}
+
+function validatePrivateAuxiliaryCatalogIsolation() {
+  for (const [bareUnitId, privateUnitId] of privateAuxiliaryUnitIds) {
+    if (targetUnits.has(bareUnitId)) {
+      errors.push(`重生阿巴瑟辅助单位必须私有化，UnitData 不应定义普通 ID: ${bareUnitId}`);
+    }
+    if (!targetUnits.has(privateUnitId)) {
+      errors.push(`重生阿巴瑟辅助单位缺少私有 ID: ${privateUnitId}`);
+    }
+
+    const barePattern = escapeRegExp(bareUnitId);
+    const unitReferenceChecks = [
+      ['AbilData Unit 产物', targetAbilText, new RegExp(`\\bUnit="${barePattern}"\\b`)],
+      ['EffectData AmmoUnit', targetEffectText, new RegExp(`\\bAmmoUnit\\s+value="${barePattern}"\\b`)],
+      ['RequirementNodeData CountUnit', targetRequirementNodeText, new RegExp(`\\bLink="${barePattern}"\\s+State="QueuedOrBetterAtUnit"`)],
+      ['UpgradeData Unit 引用', targetUpgradeText, new RegExp(`Unit,${barePattern},`)],
+      ['ActorData unitName', targetActorText, new RegExp(`\\bunitName="${barePattern}"\\b`)],
+      ['ActorData UnitBirth', targetActorText, new RegExp(`\\bUnitBirth\\.${barePattern}\\b`)],
+      ['ActorData MorphTo', targetActorText, new RegExp(`\\bMorphTo ${barePattern}\\b`)],
+      ['ActorData MorphFrom', targetActorText, new RegExp(`\\bMorphFrom ${barePattern}\\b`)],
+    ];
+    for (const [label, text, pattern] of unitReferenceChecks) {
+      if (pattern.test(text)) {
+        errors.push(`${label} 不应继续引用普通辅助单位 ${bareUnitId}，应使用 ${privateUnitId}`);
+      }
+    }
+  }
+
+  for (const [bareAbilityId, privateAbilityId] of privateAuxiliaryAbilityIds) {
+    if (targetAbilities.has(bareAbilityId)) {
+      errors.push(`重生阿巴瑟辅助技能必须私有化，AbilData 不应定义普通 ID: ${bareAbilityId}`);
+    }
+    if (!targetAbilities.has(privateAbilityId)) {
+      errors.push(`重生阿巴瑟辅助技能缺少私有 ID: ${privateAbilityId}`);
+    }
+    if (targetUnitText.includes(`Link="${bareAbilityId}"`) || targetUnitText.includes(`AbilCmd="${bareAbilityId},`)) {
+      errors.push(`UnitData 不应继续引用普通辅助技能 ${bareAbilityId}，应使用 ${privateAbilityId}`);
+    }
+  }
+
+  for (const [bareWeaponId, privateWeaponId] of privateAuxiliaryWeaponIds) {
+    if (targetWeapons.has(bareWeaponId)) {
+      errors.push(`重生阿巴瑟辅助武器必须私有化，WeaponData 不应定义普通 ID: ${bareWeaponId}`);
+    }
+    if (!targetWeapons.has(privateWeaponId)) {
+      errors.push(`重生阿巴瑟辅助武器缺少私有 ID: ${privateWeaponId}`);
+    }
+    if (targetUnitText.includes(`WeaponArray Link="${bareWeaponId}"`) || targetUpgradeText.includes(`Weapon,${bareWeaponId},`)) {
+      errors.push(`辅助武器引用不应继续指向普通 ID ${bareWeaponId}，应使用 ${privateWeaponId}`);
+    }
+  }
+
+  for (const [bareEffectId, privateEffectId] of privateAuxiliaryEffectIds) {
+    if (targetEffects.has(bareEffectId)) {
+      errors.push(`重生阿巴瑟辅助效果必须私有化，EffectData 不应定义普通 ID: ${bareEffectId}`);
+    }
+    if (!targetEffects.has(privateEffectId)) {
+      errors.push(`重生阿巴瑟辅助效果缺少私有 ID: ${privateEffectId}`);
+    }
+    if (targetWeaponText.includes(`value="${bareEffectId}"`) || targetActorText.includes(`Effect.${bareEffectId}.`)) {
+      errors.push(`辅助效果引用不应继续指向普通 ID ${bareEffectId}，应使用 ${privateEffectId}`);
     }
   }
 }
@@ -1199,7 +1304,7 @@ function validateRavagerClosure(instances) {
     }
   }
 
-  const ravagerUnitBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'Ravager');
+  const ravagerUnitBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'RavagerAbathurReborn');
   if (!ravagerUnitBlock) {
     errors.push('当前 UnitData 缺少 CUnit id="RavagerAbathurReborn"');
   } else {
@@ -1214,7 +1319,7 @@ function validateRavagerClosure(instances) {
     }
   }
 
-  const bileBlock = extractCatalogBlock(targetAbilText, 'CAbilEffectTarget', 'RavagerCorrosiveBile');
+  const bileBlock = extractCatalogBlock(targetAbilText, 'CAbilEffectTarget', 'RavagerCorrosiveBileAbathurReborn');
   if (!bileBlock) {
     errors.push('当前 AbilData 缺少 CAbilEffectTarget id="RavagerCorrosiveBileAbathurReborn"');
   } else {
@@ -1228,7 +1333,7 @@ function validateRavagerClosure(instances) {
 
   for (const abilityId of ['MorphRoachToRavager', 'MorphRoachVileToRavager']) {
     const catalogAbilityId = privateCatalogId(abilityId);
-    const block = extractCatalogBlock(targetAbilText, 'CAbilTrain', abilityId);
+    const block = extractCatalogBlock(targetAbilText, 'CAbilTrain', catalogAbilityId);
     if (!block) {
       errors.push(`当前 AbilData 缺少 ${catalogAbilityId}`);
       continue;
@@ -1241,7 +1346,7 @@ function validateRavagerClosure(instances) {
     }
   }
 
-  const launchSetBlock = extractCatalogBlock(targetEffectText, 'CEffectSet', 'RavagerCorrosiveBileAoeLaunchSet');
+  const launchSetBlock = extractCatalogBlock(targetEffectText, 'CEffectSet', 'RavagerCorrosiveBileAoeLaunchSetAbathurReborn');
   if (launchSetBlock) {
     for (const ref of ['RavagerCorrosiveBileAoeCPAbathurReborn', 'RavagerCorrosiveBileAoeWarningDummySearchAbathurReborn']) {
       if (!launchSetBlock.includes(`value="${ref}"`)) {
@@ -1481,12 +1586,12 @@ function validateFinalFourVariantClosure() {
     ...zerglingPurchases,
     ...roachPurchases,
     ...hydraliskPurchases,
-    'AbathurToxicZerglingBurrow',
-    'AbathurUnburrowToxicZergling',
-    'AbathurBurrowIgniter',
-    'AbathurUnburrowIgniter',
-    'AbathurBurrowParalyticHydralisk',
-    'AbathurUnburrowToxicHydralisk',
+    'AbathurToxicZerglingBurrowAbathurReborn',
+    'AbathurUnburrowToxicZerglingAbathurReborn',
+    'AbathurBurrowIgniterAbathurReborn',
+    'AbathurUnburrowIgniterAbathurReborn',
+    'AbathurBurrowParalyticHydraliskAbathurReborn',
+    'AbathurUnburrowToxicHydraliskAbathurReborn',
   ]);
   expectIdsPresent('重生阿巴瑟最终四变体 WeaponData', targetWeapons, [
     'AbathurZerglingPoisonedFangs',
@@ -1558,7 +1663,7 @@ function validateFinalFourVariantClosure() {
     {
       unit: 'ZerglingToxic',
       purchases: zerglingPurchases,
-      abilities: ['AbathurToxicZerglingBurrow'],
+      abilities: ['AbathurToxicZerglingBurrowAbathurReborn'],
       behaviors: ['AbathurZerglingEvasionBuff'],
       weapon: 'AbathurZerglingPoisonedFangs',
       buttons: ['AbathurZerglingPoisonedFangs', 'AbathurZerglingEvasion', 'BurrowDown'],
@@ -1566,7 +1671,7 @@ function validateFinalFourVariantClosure() {
     {
       unit: 'Igniter',
       purchases: roachPurchases,
-      abilities: ['AbathurBurrowIgniter'],
+      abilities: ['AbathurBurrowIgniterAbathurReborn'],
       behaviors: ['AbathurRoachAdaptivePlatingLowBuff', 'AbathurRoachAdaptivePlatingHighBuff'],
       weapon: 'AbathurIgniterFireBreath',
       buttons: ['AbathurIgniterScorchingBreath', 'AbathurRoachPlatedExoskeleton', 'BurrowDown'],
@@ -1574,7 +1679,7 @@ function validateFinalFourVariantClosure() {
     {
       unit: 'Hydralisk2',
       purchases: hydraliskPurchases,
-      abilities: ['AbathurBurrowParalyticHydralisk', 'HydraliskFrenzy'],
+      abilities: ['AbathurBurrowParalyticHydraliskAbathurReborn', 'HydraliskFrenzy'],
       weapon: 'AbathurHydraliskParalyticSpines',
       buttons: ['AbathurHydraliskVenomSpines', 'HydraliskFrenzy', 'BurrowDown'],
     },
@@ -1617,9 +1722,9 @@ function validateFinalFourVariantClosure() {
   }
 
   const burrowChecks = [
-    ['ToxicZerglingBurrowed', 'AbathurUnburrowToxicZergling'],
-    ['IgniterBurrowed', 'AbathurUnburrowIgniter'],
-    ['HydraliskParalyticBurrowed', 'AbathurUnburrowToxicHydralisk'],
+    ['ToxicZerglingBurrowedAbathurReborn', 'AbathurUnburrowToxicZerglingAbathurReborn'],
+    ['IgniterBurrowedAbathurReborn', 'AbathurUnburrowIgniterAbathurReborn'],
+    ['HydraliskParalyticBurrowedAbathurReborn', 'AbathurUnburrowToxicHydraliskAbathurReborn'],
   ];
   for (const [unitId, abilityId] of burrowChecks) {
     const block = extractCatalogBlock(targetUnitText, 'CUnit', unitId);
@@ -1829,7 +1934,7 @@ function validateBileTitanClosure() {
 
 function validateFrostFiendClosure() {
   expectIdsPresent('FrostFiend UnitData', targetUnits, ['FrostFiend', 'FrostFiendBurrowed', 'FrozenShards']);
-  expectIdsPresent('FrostFiend AbilData', targetAbilities, ['FrostFiendBurrow', 'FrostFiendUnburrow']);
+  expectIdsPresent('FrostFiend AbilData', targetAbilities, ['FrostFiendBurrowAbathurReborn', 'FrostFiendUnburrowAbathurReborn']);
   expectIdsPresent('FrostFiend WeaponData', targetWeapons, ['FrozenShards']);
   expectIdsPresent('FrostFiend EffectData', targetEffects, [
     'FrostFiendBoltLM',
@@ -1852,7 +1957,7 @@ function validateFrostFiendClosure() {
     return;
   }
   for (const token of [
-    'AbilArray Link="FrostFiendBurrow"',
+    'AbilArray Link="FrostFiendBurrowAbathurReborn"',
     'BehaviorArray Link="BanelingLifesteal"',
     'WeaponArray Link="FrozenShards"',
     'Face="PiercingShards" Type="Passive"',
@@ -1863,8 +1968,8 @@ function validateFrostFiendClosure() {
   }
 
   const burrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'FrostFiendBurrow');
-  if (!burrow.includes('InfoArray Unit="FrostFiendBurrowed"')) {
-    errors.push('FrostFiendBurrow 必须变形为 FrostFiendBurrowed');
+  if (!burrow.includes(unitReferenceToken('InfoArray Unit', 'FrostFiendBurrowed'))) {
+    errors.push('FrostFiendBurrowAbathurReborn 必须变形为 FrostFiendBurrowedAbathurReborn');
   }
   const unburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'FrostFiendUnburrow');
   if (!unburrow.includes(unitReferenceToken('InfoArray Unit', 'FrostFiend'))) {
@@ -1945,7 +2050,7 @@ function validateAbathurRebornSwarmHostVariantClosure() {
     'BanelingEggAAttack',
     'BanelingEggBAttack',
     'VespidHost',
-    'VespidWeapon',
+    'VespidWeaponAbathurReborn',
     'VespidAttack',
   ]);
   expectIdsPresent('重生阿巴瑟宿主变体 ModelData', targetModels, [
@@ -1973,7 +2078,7 @@ function validateAbathurRebornSwarmHostVariantClosure() {
 
   for (const token of [
     'AbilArray Link="BanelingLaunch"',
-    'AbilArray Link="BurrowBaneHost"',
+    'AbilArray Link="BurrowBaneHostAbathurReborn"',
     'AbilArray Link="AbathurHostRapidIncubationPurchase"',
     'AbilArray Link="AbathurHostLocustSpeedPurchase"',
     'AbilArray Link="AbathurHostPressurizedGlandsPurchase"',
@@ -1989,8 +2094,8 @@ function validateAbathurRebornSwarmHostVariantClosure() {
   if (burrow.includes('HaveHotSBurrowSwarmHost')) {
     errors.push('BurrowBaneHost 不应继续依赖 HaveHotSBurrowSwarmHost');
   }
-  if (!burrow.includes('InfoArray Unit="BaneHostBurrowed"')) {
-    errors.push('BurrowBaneHost 必须变形为 BaneHostBurrowed');
+  if (!burrow.includes(unitReferenceToken('InfoArray Unit', 'BaneHostBurrowed'))) {
+    errors.push('BurrowBaneHostAbathurReborn 必须变形为 BaneHostBurrowedAbathurReborn');
   }
   const unburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'UnburrowBaneHost');
   if (!unburrow.includes(unitReferenceToken('InfoArray Unit', 'BaneHost'))) {
@@ -2029,29 +2134,29 @@ function validateAbathurRebornSwarmHostVariantClosure() {
   }
 
   for (const token of [
-    'AbilArray Link="VespidHangar"',
+    'AbilArray Link="VespidHangarAbathurReborn"',
     'AbilArray Link="AbathurHostRapidIncubationPurchase"',
     'AbilArray Link="AbathurHostLocustSpeedPurchase"',
     'AbilArray Link="AbathurHostPressurizedGlandsPurchase"',
-    'WeaponArray Link="VespidAcid"',
+    'WeaponArray Link="VespidAcidAbathurReborn"',
   ]) {
     if (!vespidHost.includes(token)) {
       errors.push(`VespidHost 单位闭包缺少: ${token}`);
     }
   }
   const hangar = extractCatalogBlock(targetAbilText, 'CAbilArmMagazine', 'VespidHangar');
-  if (!hangar.includes('InfoArray index="Ammo1"') || !hangar.includes('Unit="Vespid"')) {
-    errors.push('VespidHangar 必须挂载 Ammo1=Vespid');
+  if (!hangar.includes('InfoArray index="Ammo1"') || !hangar.includes(unitReferenceToken('Unit', 'Vespid'))) {
+    errors.push('VespidHangarAbathurReborn 必须挂载 Ammo1=VespidAbathurReborn');
   }
   if (!hangar.includes('Requirements="ArmVespidEscort"')) {
     errors.push('VespidHangar 必须使用 ArmVespidEscort 限制护航弹药数量');
   }
   const vespidLaunch = extractCatalogBlock(targetEffectText, 'CEffectLaunchMissile', 'VespidLaunchMissile');
-  if (!vespidLaunch.includes('ImpactEffect value="VespidDamage"')) {
-    errors.push('VespidLaunchMissile 必须指向 VespidDamage');
+  if (!vespidLaunch.includes('ImpactEffect value="VespidDamageAbathurReborn"')) {
+    errors.push('VespidLaunchMissileAbathurReborn 必须指向 VespidDamageAbathurReborn');
   }
-  if (!vespidLaunch.includes('AmmoUnit value="VespidWeapon"')) {
-    errors.push('VespidLaunchMissile 必须使用本地 VespidWeapon 弹体');
+  if (!vespidLaunch.includes(unitReferenceToken('AmmoUnit value', 'VespidWeapon'))) {
+    errors.push('VespidLaunchMissileAbathurReborn 必须使用本地 VespidWeaponAbathurReborn 弹体');
   }
 
   for (const key of [
@@ -2125,7 +2230,7 @@ function validateAbathurRebornUltraliskVariantClosure() {
     }
   }
   for (const token of [
-    'AbilArray Link="SavageBurrow"',
+    'AbilArray Link="SavageBurrowAbathurReborn"',
     'BehaviorArray Link="FirstbornStrain"',
     'WeaponArray Link="KaiserBlades"',
     'Face="SavageStrain" Type="Passive"',
@@ -2135,8 +2240,8 @@ function validateAbathurRebornUltraliskVariantClosure() {
     }
   }
   const savageBurrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'SavageBurrow');
-  if (!savageBurrow.includes('InfoArray Unit="SavageBurrowed"')) {
-    errors.push('SavageBurrow 必须变形为 SavageBurrowed');
+  if (!savageBurrow.includes(unitReferenceToken('InfoArray Unit', 'SavageBurrowed'))) {
+    errors.push('SavageBurrowAbathurReborn 必须变形为 SavageBurrowedAbathurReborn');
   }
   const savageUnburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'SavageUnburrow');
   if (!savageUnburrow.includes(unitReferenceToken('InfoArray Unit', 'UltraliskSavage'))) {
@@ -2734,7 +2839,12 @@ function collectCatalogIds(text, re) {
 }
 
 function privateCatalogId(id) {
-  return privateCatalogIdMap.get(id) ?? id;
+  return privateCatalogIdMap.get(id)
+    ?? privateAuxiliaryUnitIds.get(id)
+    ?? privateAuxiliaryAbilityIds.get(id)
+    ?? privateAuxiliaryWeaponIds.get(id)
+    ?? privateAuxiliaryEffectIds.get(id)
+    ?? id;
 }
 
 function catalogIdCandidates(id) {

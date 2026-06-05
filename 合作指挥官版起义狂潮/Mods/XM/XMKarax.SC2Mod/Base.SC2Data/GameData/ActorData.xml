@@ -7463,14 +7463,14 @@
     <ErrorArray Error="CantLandLocationInvalid" Sound="Alert_ZergBuildError" GroupSound="Alert_ZergBuildError" />
     <Aliases value="_UnitHuge" />
   </CActorUnit>
-  <CActorUnit id="Observer">
+  <CActorUnit id="ObserverKarax" parent="Observer" unitName="ObserverKarax">
     <PlacementModel value="ObserverPlacement" />
-    <On Terms="UnitBirth.ObserverSiegeMode" Send="Create" />
-    <On Terms="UnitBirth.ObserverSiegeMode" Send="Create ObserverObservationMode" />
-    <On Terms="AbilMorph.*.Start; MorphFrom Observer; MorphTo ObserverSiegeMode" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End" />
-    <On Terms="AbilMorph.*.Start; MorphFrom Observer; MorphTo ObserverSiegeMode" Send="Create ObserverObservationMode" />
-    <On Terms="AbilMorph.*.Start; MorphFrom ObserverSiegeMode; MorphTo Observer" Target="ObserverObservationMode" Send="Destroy" />
-    <On Terms="AbilMorph.*.Start; MorphFrom ObserverSiegeMode; MorphTo Observer" Send="AnimBracketStop Work" />
+    <On Terms="UnitBirth.ObserverSiegeModeKarax" Send="Create" />
+    <On Terms="UnitBirth.ObserverSiegeModeKarax" Send="Create ObserverObservationMode" />
+    <On Terms="AbilMorph.*.Start; MorphFrom ObserverKarax; MorphTo ObserverSiegeModeKarax" Send="AnimBracketStart Work Stand,Work,Start Stand,Work Stand,Work,End" />
+    <On Terms="AbilMorph.*.Start; MorphFrom ObserverKarax; MorphTo ObserverSiegeModeKarax" Send="Create ObserverObservationMode" />
+    <On Terms="AbilMorph.*.Start; MorphFrom ObserverSiegeModeKarax; MorphTo ObserverKarax" Target="ObserverObservationMode" Send="Destroy" />
+    <On Terms="AbilMorph.*.Start; MorphFrom ObserverSiegeModeKarax; MorphTo ObserverKarax" Send="AnimBracketStop Work" />
     <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUp" />
     <On Terms="Upgrade.ZeratulArtifactTier2.Add" Send="Create ZeratulArtifactPowerUpSound" />
     <On Terms="Upgrade.ZeratulArtifactTier3.Add" Send="Create ZeratulArtifactPowerUp" />

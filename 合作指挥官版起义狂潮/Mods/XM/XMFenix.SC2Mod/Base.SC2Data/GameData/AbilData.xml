@@ -4050,7 +4050,41 @@
     <DeathUnloadEffect value="CoopCargoDeathDummy" />
     <UnloadCargoEffect value="HotSRaptorNoLeaping" />
   </CAbilTransport>
-  <CAbilMorph id="ObserverSiegeMorphtoObserver">
+  <CAbilMorph id="ObserverMorphtoObserverSiegeFenix">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="MorphtoObserverSiege">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <Flags index="BestUnit" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <!--Flags index="Transient" value="1"/-->
+    <RefundFraction>
+      <Resource index="Minerals" value="0" />
+      <Resource index="Vespene" value="0" />
+      <Resource index="Terrazine" value="0" />
+      <Resource index="Custom" value="0" />
+    </RefundFraction>
+    <InfoArray Score="1" Unit="ObserverSiegeModeFenix">
+      <SectionArray index="Abils">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Mover">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="ObserverSiegeMorphtoObserverFenix">
     <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
     <CmdButtonArray index="Execute" DefaultButtonFace="MorphtoObserver">
       <Flags index="ToSelection" value="1" />
@@ -4066,7 +4100,7 @@
       <Resource index="Terrazine" value="0" />
       <Resource index="Custom" value="0" />
     </RefundFraction>
-    <InfoArray Score="1" Unit="Observer">
+    <InfoArray Score="1" Unit="ObserverFenix">
       <SectionArray index="Abils">
         <DurationArray index="Duration" value="0.75" />
       </SectionArray>
@@ -6572,7 +6606,7 @@
   <CAbilTrain id="RoboticsFacilityTrainFenix" parent="RoboticsFacilityTrain">
     <InfoArray index="Train2">
       <Button DefaultButtonFace="Observer" State="Available" />
-      <Unit value="Observer" />
+      <Unit value="ObserverFenix" />
     </InfoArray>
     <InfoArray index="Train3">
       <Button DefaultButtonFace="ColossusPurifier" State="Restricted" Requirements="HaveRoboticsBay" />

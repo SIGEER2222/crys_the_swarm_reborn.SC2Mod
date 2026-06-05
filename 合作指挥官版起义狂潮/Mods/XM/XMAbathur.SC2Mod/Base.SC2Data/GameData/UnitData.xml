@@ -153,14 +153,41 @@
   <CUnit id="MutaliskAbathur" parent="Mutalisk">
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
+    <AbilArray Link="MutaliskMorphToGuardian"></AbilArray>
+    <AbilArray Link="MutaliskMorphToDevourer"></AbilArray>
+    <AbilArray Link="EvolveToLeviathanMutalisk"></AbilArray>
+    <AbilArray Link="que1"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="MorphtoDevourer" Type="AbilCmd" AbilCmd="MutaliskMorphToDevourer,Train1" Row="1" Column="1"></LayoutButtons>
+      <LayoutButtons Face="MorphToGuardian" Type="AbilCmd" AbilCmd="MutaliskMorphToGuardian,Train1" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanMutalisk,Train1" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
+    </CardLayouts>
   </CUnit>
 
   <CUnit id="SwarmHostAbathur" parent="SwarmHost">
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
+    <AbilArray Link="AbathurDeepTunnel"></AbilArray>
+    <AbilArray Link="AbathurDeepTunnelImproved"></AbilArray>
+    <AbilArray Link="LocustLaunch"></AbilArray>
+    <AbilArray Link="EvolveToBrutaliskSwarmHost"></AbilArray>
+    <AbilArray Link="que1"></AbilArray>
     <AbilArray Link="MorphToSwarmHostBurrowedAbathur"></AbilArray>
     <CardLayouts index="0">
       <LayoutButtons index="10" Face="SwarmHostRootBurrow" AbilCmd="MorphToSwarmHostBurrowedAbathur,Execute"></LayoutButtons>
+      <LayoutButtons Face="LocustLaunch" Type="AbilCmd" AbilCmd="LocustLaunch,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="AbathurDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnel,Execute" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnelImproved,Execute" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurLevel09" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="CommanderPrestigeAbathurBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskSwarmHost,Train1" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
     </CardLayouts>
   </CUnit>
 
@@ -172,30 +199,109 @@
     <SubgroupAlias value="SwarmHostAbathur"></SubgroupAlias>
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
+    <AbilArray Link="AbathurDeepTunnel"></AbilArray>
+    <AbilArray Link="AbathurDeepTunnelImproved"></AbilArray>
+    <AbilArray Link="EvolveToBrutaliskSwarmHost"></AbilArray>
     <AbilArray Link="MorphToSwarmHostAbathur"></AbilArray>
     <CardLayouts index="0">
       <LayoutButtons Face="SwarmHostUprootUnburrow" Type="AbilCmd" AbilCmd="MorphToSwarmHostAbathur,Execute" Row="2" Column="4"></LayoutButtons>
+      <LayoutButtons Face="AbathurDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnel,Execute" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurDeepTunnelImproved,Execute" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurLevel09" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="CommanderPrestigeAbathurBrutaliskLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskSwarmHost,Train1" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
     </CardLayouts>
   </CUnit>
 
   <CUnit id="ViperAbathur" parent="Viper">
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
+    <AbilArray index="3" Link="ParasiticBomb"></AbilArray>
+    <AbilArray Link="EvolveToLeviathanViper"></AbilArray>
+    <AbilArray Link="que1"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons index="3" Face="AttackGhost"></LayoutButtons>
+      <LayoutButtons Face="ViperConsume" Type="AbilCmd" AbilCmd="ViperConsumeStructure,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="FaceEmbrace" Type="AbilCmd" AbilCmd="Yoink,Execute" Row="2" Column="1"></LayoutButtons>
+      <LayoutButtons Face="ParasiticBomb" Type="AbilCmd" AbilCmd="ParasiticBomb,Execute" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="ViperImprovedCastRangePassive" Type="Passive" Requirements="HaveViperImprovedCastRange" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="ViperAbductImprovedStunPassive" Type="Passive" Requirements="HaveViperAbductImprovedStun" Row="1" Column="1"></LayoutButtons>
+      <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanViper,Train1" Row="2" Column="4"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="4"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassiveEnergy" Type="Passive" Requirements="BiomassBuffVisible" Row="1" Column="4"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="1" Column="4"></LayoutButtons>
+    </CardLayouts>
+    <AbilArray Link="ViperConsumeStructure"></AbilArray>
+    <AbilArray Link="Yoink"></AbilArray>
+    <AbilArray Link="move"></AbilArray>
+    <AbilArray Link="stop"></AbilArray>
   </CUnit>
 
   <CUnit id="DevourerAbathur" parent="Devourer">
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
+    <AbilArray Link="CorrosiveAcid"></AbilArray>
+    <AbilArray Link="EvolveToLeviathanDevourer"></AbilArray>
+    <AbilArray Link="que1"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="DevourerAoEDamage" Type="Passive" Requirements="HaveDevourerAoEDamage" Row="1" Column="0"></LayoutButtons>
+      <LayoutButtons Face="CorrosiveAcidDevourer" Type="AbilCmd" AbilCmd="CorrosiveAcid,Execute" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanDevourer,Train1" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
+    </CardLayouts>
   </CUnit>
 
   <CUnit id="BrutaliskAbathur" parent="Brutalisk">
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
+    <AbilArray Link="BrutaliskDeepTunnel"></AbilArray>
+    <AbilArray Link="SymbioteCarapace"></AbilArray>
+    <AbilArray Link="BurrowBrutaliskAbathurDown"></AbilArray>
+    <AbilArray Link="AbathurSymbioteHangerBrutalisk"></AbilArray>
+    <AbilArray Link="que1Passive"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="BrutaliskDeepTunnel,Execute" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="1" Column="4"></LayoutButtons>
+      <LayoutButtons Face="SymbioteCarapace" Type="AbilCmd" AbilCmd="SymbioteCarapace,Execute" Row="1" Column="4"></LayoutButtons>
+      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowBrutaliskAbathurDown,Execute" Row="2" Column="4"></LayoutButtons>
+      <LayoutButtons Face="AbathurBrutaliskLeviathanSymbiote" Type="Passive" Requirements="HaveBrutaliskLeviathanSymbiote" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="AbathurBrutaliskLeviathanSymbioteLocked" Type="Passive" Requirements="AbathurLevel10" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
+  </CUnit>
+
+  <CUnit id="BrutaliskAbathurBurrowed" parent="BrutaliskBurrowed">
+    <LeaderAlias value="BrutaliskAbathur"></LeaderAlias>
+    <HotkeyAlias value="BrutaliskAbathur"></HotkeyAlias>
+    <SelectAlias value="BrutaliskAbathur"></SelectAlias>
+    <SubgroupAlias value="BrutaliskAbathur"></SubgroupAlias>
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <AbilArray Link="BurrowBrutaliskAbathurUp"></AbilArray>
+    <AbilArray Link="AbathurSymbioteHangerBrutalisk"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowBrutaliskAbathurUp,Execute" Row="2" Column="4"></LayoutButtons>
+      <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="1" Column="4"></LayoutButtons>
+    </CardLayouts>
   </CUnit>
 
   <CUnit id="LeviathanAbathur" parent="HotSLeviathan">
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
+    <AbilArray Link="SymbioteCarapace"></AbilArray>
+    <AbilArray Link="AbathurSymbioteHangerLeviathan"></AbilArray>
+    <AbilArray Link="que1Passive"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="SymbioteCarapace" Type="AbilCmd" AbilCmd="SymbioteCarapace,Execute" Row="0" Column="4"></LayoutButtons>
+      <LayoutButtons Face="AbathurBrutaliskLeviathanSymbiote" Type="Passive" Requirements="HaveBrutaliskLeviathanSymbiote" Row="2" Column="0"></LayoutButtons>
+      <LayoutButtons Face="AbathurBrutaliskLeviathanSymbioteLocked" Type="Passive" Requirements="AbathurLevel10" Row="2" Column="0"></LayoutButtons>
+    </CardLayouts>
   </CUnit>
 
   <CUnit id="Adept">
@@ -8482,7 +8588,20 @@
     <AbilArray Link="move"></AbilArray>
     <AbilArray Link="stop"></AbilArray>
   </CUnit>
-  <CUnit id="AbathurGuardian" parent="GuardianMP" />
+  <CUnit id="AbathurGuardian" parent="GuardianMP">
+    <Race value="Zerg"></Race>
+    <Mob value="Campaign"></Mob>
+    <AbilArray Link="EvolveToLeviathanGuardianMP"></AbilArray>
+    <AbilArray Link="que1"></AbilArray>
+    <CardLayouts index="0">
+      <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathan" Type="AbilCmd" AbilCmd="EvolveToLeviathanGuardianMP,Train1" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="EvolveToLeviathanLocked" Type="Passive" Requirements="AbathurLevel02" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassive" Type="Passive" Requirements="BiomassBuffVisible" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="BiomassPassiveEmpty" Type="Passive" Requirements="BiomassBuffEmptyVisible" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="GuardianAttackRangeIncrease" Type="Passive" Requirements="HaveGuardianAttackRangeIncrease" Row="1" Column="0"></LayoutButtons>
+    </CardLayouts>
+  </CUnit>
 
   <CUnit id="Hatchery">
     <CardLayouts index="0">
@@ -10598,7 +10717,7 @@
     <AbilArray Link="que1"></AbilArray>
     <CardLayouts index="0">
       <LayoutButtons index="3" Face="AttackGhost"></LayoutButtons>
-      <LayoutButtons Face="ParasiticBomb" Type="AbilCmd" AbilCmd="ParasiticBomb,Execute" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons Face="ParasiticBomb" Type="AbilCmd" AbilCmd="ParasiticBomb,Execute" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons Face="ViperImprovedCastRangePassive" Type="Passive" Requirements="HaveViperImprovedCastRange" Row="1" Column="0"></LayoutButtons>
       <LayoutButtons Face="ViperAbductImprovedStunPassive" Type="Passive" Requirements="HaveViperAbductImprovedStun" Row="1" Column="1"></LayoutButtons>
       <LayoutButtons Face="CommanderPrestigeAbathurLeviathanLocked" Type="Passive" Requirements="CommanderPrestigeAbathurBiomass" Row="2" Column="2"></LayoutButtons>
@@ -10611,8 +10730,7 @@
     <TacticalAIThink value="AIThinkViperAC"></TacticalAIThink>
     <SubgroupPriority value="120"></SubgroupPriority>
     <AbilArray Link="ViperConsumeStructure"></AbilArray>
-    <AbilArray Link="Yoink"></AbilArray>
-    <AbilArray Link="move"></AbilArray>
+    <AbilArray Link="move"></AbilArray>
     <AbilArray Link="stop"></AbilArray>
   </CUnit>
   <CUnit id="Yagdra">
@@ -10832,5 +10950,13 @@
   </CUnit>
   <CUnit id="LocustFlying">
     <FlagArray index="ArmySelect" value="0"/>
+  </CUnit>
+  <CUnit id="ViperConsumeStructureWeapon" parent="MISSILE_INVULNERABLE">
+    <Race value="Zerg"/>
+    <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
+  </CUnit>
+  <CUnit id="ParasiticBombMissile" parent="MISSILE_INVULNERABLE">
+    <Race value="Zerg"/>
+    <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
   </CUnit>
 </Catalog>

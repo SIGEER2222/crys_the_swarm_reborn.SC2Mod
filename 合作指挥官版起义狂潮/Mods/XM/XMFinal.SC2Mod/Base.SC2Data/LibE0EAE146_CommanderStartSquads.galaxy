@@ -673,12 +673,11 @@ void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, p
 
     lv_kind = lp_kind;
     lv_ravager = "RavagerAbathur";
-    lv_swarmHost = "SwarmHost";
-    lv_swarmQueen = "QueenCoop";
-    lv_leviathan = "HotSLeviathan";
+    lv_swarmHost = "SwarmHostAbathur";
+    lv_swarmQueen = "QueenCoopAbathur";
+    lv_leviathan = "LeviathanAbathur";
     if ((lv_kind == "light")) {
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Roach", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachCorpser", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "RoachVile", lp_player, lp_point);
     }
     else if ((lv_kind == "heavy")) {
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachVile", lp_player, lp_point);
@@ -687,24 +686,22 @@ void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, p
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmQueen, lp_player, lp_point);
     }
     else if ((lv_kind == "air")) {
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "Mutalisk", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "GuardianMP", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "DevourerMP", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(2, "MutaliskAbathur", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "AbathurGuardian", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "DevourerAbathur", lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Roach", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachCorpser", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "RoachVile", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(3, "RoachVile", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_ravager, lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmHost, lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_swarmQueen, lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Viper", lp_player, lp_point);
-        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Brutalisk", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "ViperAbathur", lp_player, lp_point);
+        libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "BrutaliskAbathur", lp_player, lp_point);
         libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_leviathan, lp_player, lp_point);
     }
     else if ((lv_kind == "ultimate")) {
         if ((libE0EAE146_gf_AbathurHasUltimateUnlock() == true)) {
-            libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "Brutalisk", lp_player, lp_point);
+            libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, "BrutaliskAbathur", lp_player, lp_point);
             libE0EAE146_gf_AbathurCreateUnitsWithFullBiomass(1, lv_leviathan, lp_player, lp_point);
         }
         else {
@@ -714,7 +711,7 @@ void libE0EAE146_gf_AbathurCreateMapStartSquad (string lp_kind, int lp_player, p
     else {
         libE0EAE146_gf_AbathurCreateMapStartSquad("light", lp_player, lp_point);
     }
-    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_MAP_START", "kind=" + lv_kind + " player=" + IntToString(lp_player) + " units=Roach,RoachCorpser,RoachVile,RavagerAbathur,SwarmHost,QueenCoop,Mutalisk,GuardianMP,DevourerMP,Viper,Brutalisk,HotSLeviathan biomass=full scale=runtime");
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_MAP_START", "kind=" + lv_kind + " player=" + IntToString(lp_player) + " units=RoachVile,RavagerAbathur,SwarmHostAbathur,QueenCoopAbathur,MutaliskAbathur,AbathurGuardian,DevourerAbathur,ViperAbathur,BrutaliskAbathur,LeviathanAbathur biomass=full scale=runtime");
 }
 
 void libE0EAE146_gf_AbathurCreateMapStartSquadInRegion (string lp_kind, int lp_player, region lp_region) {
@@ -730,12 +727,11 @@ void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) 
 
     lv_kind = lp_kind;
     lv_ravager = "RavagerAbathur";
-    lv_swarmHost = "SwarmHost";
-    lv_swarmQueen = "QueenCoop";
-    lv_leviathan = "HotSLeviathan";
+    lv_swarmHost = "SwarmHostAbathur";
+    lv_swarmQueen = "QueenCoopAbathur";
+    lv_leviathan = "LeviathanAbathur";
     if ((lv_kind == "light")) {
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Roach", 2);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachCorpser", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 3);
     }
     else if ((lv_kind == "heavy")) {
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 1);
@@ -744,23 +740,21 @@ void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) 
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmQueen, 1);
     }
     else if ((lv_kind == "air")) {
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Mutalisk", 2);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "GuardianMP", 1);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "DevourerMP", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "MutaliskAbathur", 2);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "AbathurGuardian", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "DevourerAbathur", 1);
     }
     else if ((lv_kind == "hero")) {
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Roach", 1);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachCorpser", 1);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "RoachVile", 3);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_ravager, 1);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmHost, 1);
         libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_swarmQueen, 1);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Viper", 1);
-        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Brutalisk", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "ViperAbathur", 1);
+        libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "BrutaliskAbathur", 1);
     }
     else if ((lv_kind == "ultimate")) {
         if ((libE0EAE146_gf_AbathurHasUltimateUnlock() == true)) {
-            libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "Brutalisk", 1);
+            libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, "BrutaliskAbathur", 1);
             libE0EAE146_gf_AbathurCargoCreateWithFullBiomass(lp_container, lv_leviathan, 1);
         }
         else {
@@ -770,7 +764,7 @@ void libE0EAE146_gf_AbathurCreateCargoSquad (unit lp_container, string lp_kind) 
     else {
         libE0EAE146_gf_AbathurCreateCargoSquad(lp_container, "light");
     }
-    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_CARGO", "kind=" + lv_kind + " ground=Roach,RoachCorpser,RoachVile,RavagerAbathur,SwarmHost,QueenCoop air=Mutalisk,GuardianMP,DevourerMP,Viper ultimate=Brutalisk,HotSLeviathan biomass=full scale=runtime");
+    libE0EAE146_gf_XMDbgLog("INFO", "ABATHUR_CARGO", "kind=" + lv_kind + " ground=RoachVile,RavagerAbathur,SwarmHostAbathur,QueenCoopAbathur air=MutaliskAbathur,AbathurGuardian,DevourerAbathur,ViperAbathur ultimate=BrutaliskAbathur,LeviathanAbathur biomass=full scale=runtime");
 }
 void libE0EAE146_gf_ZagaraCreateMapStartSquad (string lp_kind, int lp_player, point lp_point) {
     string lv_kind;
@@ -912,7 +906,7 @@ void libE0EAE146_gf_FenixCreateMapStartSquad (string lp_kind, int lp_player, poi
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "Scout", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ObserverFenix", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Carrier", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
@@ -956,7 +950,7 @@ void libE0EAE146_gf_FenixCreateCargoSquad (unit lp_container, string lp_kind) {
     }
     else if ((lv_kind == "air")) {
         UnitCargoCreate(lp_container, "Scout", 2);
-        UnitCargoCreate(lp_container, "Observer", 1);
+        UnitCargoCreate(lp_container, "ObserverFenix", 1);
         UnitCargoCreate(lp_container, "Carrier", 1);
     }
     else if ((lv_kind == "hero")) {
@@ -1107,7 +1101,7 @@ void libE0EAE146_gf_ArtanisCreateMapStartSquad (string lp_kind, int lp_player, p
     }
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixAiur", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "ObserverArtanis", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ArtanisVoid", 0, lp_player, lp_point);
@@ -1149,7 +1143,7 @@ void libE0EAE146_gf_ArtanisCreateCargoSquad (unit lp_container, string lp_kind) 
     }
     else if ((lv_kind == "air")) {
         UnitCargoCreate(lp_container, "PhoenixAiur", 2);
-        UnitCargoCreate(lp_container, "Observer", 1);
+        UnitCargoCreate(lp_container, "ObserverArtanis", 1);
     }
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "ArtanisVoid", 1);
@@ -1184,7 +1178,6 @@ void libE0EAE146_gf_ZeratulCreateMapStartSquad (string lp_kind, int lp_player, p
     else if ((lv_kind == "air")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulWarpPrism", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulObserver", 0, lp_player, lp_point);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, lp_point);
     }
     else if ((lv_kind == "hero")) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "ZeratulCoop", 0, lp_player, lp_point);
@@ -1222,7 +1215,6 @@ void libE0EAE146_gf_ZeratulCreateCargoSquad (unit lp_container, string lp_kind) 
     else if ((lv_kind == "air")) {
         UnitCargoCreate(lp_container, "ZeratulWarpPrism", 1);
         UnitCargoCreate(lp_container, "ZeratulObserver", 1);
-        UnitCargoCreate(lp_container, "Observer", 1);
     }
     else if ((lv_kind == "hero")) {
         UnitCargoCreate(lp_container, "ZeratulCoop", 1);

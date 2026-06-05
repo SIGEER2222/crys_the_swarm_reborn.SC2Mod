@@ -6816,5 +6816,11 @@
   <CActorUnit id="DevourerAbathur" parent="Devourer" unitName="DevourerAbathur" />
   <CActorUnit id="AbathurGuardian" parent="GuardianMP" unitName="AbathurGuardian" />
   <CActorUnit id="BrutaliskAbathur" parent="Brutalisk" unitName="BrutaliskAbathur" />
+  <CActorUnit id="BrutaliskAbathurBurrowed" parent="Brutalisk" unitName="BrutaliskAbathurBurrowed">
+    <On Terms="UnitBirth.BrutaliskAbathurBurrowed" Send="Create" />
+    <On Terms="UnitBirth.BrutaliskAbathurBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant" />
+    <On Terms="AbilMorph.*.Finish; MorphTo BrutaliskAbathur; MorphFrom BrutaliskAbathurBurrowed" Send="AnimBracketStop Burrow" />
+    <On Terms="AbilMorph.*.Finish; MorphTo BrutaliskAbathur; MorphFrom BrutaliskAbathurBurrowed" Send="AnimClear Burrow" />
+  </CActorUnit>
   <CActorUnit id="LeviathanAbathur" parent="HotSLeviathan" unitName="LeviathanAbathur" />
 </Catalog>

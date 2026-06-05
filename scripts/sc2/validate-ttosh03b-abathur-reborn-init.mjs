@@ -344,8 +344,8 @@ requireContains('MapScript.galaxy', mapScript, 'lib67C0F0E7_gf_CU_GPInit(1, "Aba
 requireRegex(
   'MapScript.galaxy',
   mapScript,
-  /libNtve_gf_CreateUnitsWithDefaultFacing\(1,\s*"Ravager"[\s\S]*?gv_nova = UnitLastCreated\(\);/,
-  'AbathurReborn branch must create a Ravager and bind it as the ttosh03b story anchor',
+  /libNtve_gf_CreateUnitsWithDefaultFacing\(1,\s*"RavagerAbathurReborn"[\s\S]*?gv_nova = UnitLastCreated\(\);/,
+  'AbathurReborn branch must create a private RavagerAbathurReborn and bind it as the ttosh03b story anchor',
 );
 if (/auto2F29E444_val == "AbathurReborn"[\s\S]*?CreateUnitsWithDefaultFacing\([^)]*"RoachVile"/.test(mapScript)) {
   errors.push('MapScript.galaxy: AbathurReborn ttosh03b init must not spawn RoachVile because its current card still carries biomass passives');
@@ -390,13 +390,13 @@ if (!casterMatch) {
 else if (/\bBiomass(TargetMark|Display|Collection|Pickup)\b/.test(casterMatch[0])) {
   errors.push('XMAbathurReborn UnitData.xml: CoopCasterAbathurReborn must not expose biomass buttons or abilities');
 }
-requireContains('XMAbathurReborn UnitData.xml', unitData, '<CUnit id="Ravager">');
-requireContains('XMAbathurReborn UnitData.xml', unitData, '<AbilArray Link="RavagerCorrosiveBile" />');
+requireContains('XMAbathurReborn UnitData.xml', unitData, '<CUnit id="RavagerAbathurReborn" parent="Ravager">');
+requireContains('XMAbathurReborn UnitData.xml', unitData, '<AbilArray Link="RavagerCorrosiveBileAbathurReborn" />');
 
 const abilData = readText(files.abilData);
 requireContains('XMAbathurReborn AbilData.xml', abilData, '<CAbilTrain id="LarvaTrainAbathurReborn" parent="LarvaTrain">');
-requireContains('XMAbathurReborn AbilData.xml', abilData, '<CAbilEffectTarget id="RavagerCorrosiveBile">');
-requireContains('XMAbathurReborn AbilData.xml', abilData, '<Cooldown Link="Abil/RavagerCorrosiveBile" TimeUse="15" />');
+requireContains('XMAbathurReborn AbilData.xml', abilData, '<CAbilEffectTarget id="RavagerCorrosiveBileAbathurReborn" parent="RavagerCorrosiveBile">');
+requireContains('XMAbathurReborn AbilData.xml', abilData, '<Cooldown Link="Abil/RavagerCorrosiveBileAbathurReborn" TimeUse="15" />');
 
 const behaviorData = readText(files.behaviorData);
 requireContains('XMAbathurReborn BehaviorData.xml', behaviorData, '<CBehaviorSpawn id="SpawnLarvaAbathurReborn" parent="SpawnLarva">');
@@ -462,7 +462,7 @@ requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathu
 requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, '"CommanderLevel", 16');
 requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, '"AbathurRebornCommander", 1');
 requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, 'TechTreeUnitAllow(lp_player, "NydusNetwork", false);');
-requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, 'AbilityCommand("RavagerCorrosiveBile", 0)');
+requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, 'AbilityCommand("RavagerCorrosiveBileAbathurReborn", 0)');
 if (/InitializeAbathurBiomass|BiomassPickup|AbathurRebornCollectBiomass/.test(xmFinalAbathurRebornRuntimeGalaxy)) {
   errors.push('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy: AbathurReborn runtime must not initialize biomass');
 }

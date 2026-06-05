@@ -1087,7 +1087,7 @@
     <EffectArray Operation="Subtract" Reference="Abil,SOAThermalLanceActivate,Cost[0].Cooldown.TimeUse" Value="60" />
     <EffectArray Operation="Subtract" Reference="Abil,SOAPurifierBeam,Cost[0].Cooldown.TimeUse" Value="180" />
   </CUpgrade>
-    <CUpgrade id="CommanderPrestigeKerriganAbilities" parent="CommanderPrestige">
+        <CUpgrade id="CommanderPrestigeKerriganAbilities" parent="CommanderPrestige">
             <EffectArray Reference="Effect,CommanderPrestigeKerriganAbilitiesConvertRage,Chance" Value="1"/>
             <EffectArray Operation="Subtract" Reference="Effect,PrimalSlash,Amount" Value="75"/>
             <EffectArray Operation="Subtract" Reference="Effect,PsiStrikeDamage,Amount" Value="25"/>
@@ -1097,6 +1097,9 @@
             <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Ranged]" Value=".15"/>
             <EffectArray Operation="Subtract" Reference="Behavior,KerriganAssimilationLifesteal,Modification.VitalDamageLeechArray[Shields].KindArray[Splash]" Value=".15"/>
         </CUpgrade>
+  <CUpgrade id="KerriganPowerFusionAbilities">
+    <EffectArray Reference="Effect,CommanderPrestigeKerriganAbilitiesConvertRage,Chance" Value="1" />
+  </CUpgrade>
   <CUpgrade id="CommanderPrestigeKerriganAbilitiesMasteryImmobilizationWave" parent="CommanderPrestige">
     <EffectArray Operation="Subtract" Reference="Effect,PsionicLiftDamage,Amount" Value="1.666" />
     <MaxLevel value="30" />
@@ -2382,6 +2385,8 @@
     <Icon value="Assets\Textures\btn-upgrade-zerg-tissueassimilation.dds" />
   </CUpgrade>
   <CUpgrade id="HotSTorrasque">
+    <EffectArray Operation="Set" Reference="Abil,LarvaTrainKerrigan,InfoArray[Train7].Unit" Value="HotSTorrasque" />
+    <EffectArray Operation="Set" Reference="Unit,UltraliskCavernKerrigan,TechTreeUnlockedUnitArray[0]" Value="HotSTorrasque" />
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="HotSUltraliskBurrowCharge">
@@ -3295,20 +3300,39 @@
     <EffectArray Operation="Set" Reference="Abil,BuildNydusCanal,InfoArray[Build2].Unit" Value="GreaterNydusWorm" />
     <EffectArray Operation="Subtract" Reference="Abil,BuildNydusCanal,InfoArray[Build1].Time" Value="20" />
     <EffectArray Operation="Subtract" Reference="Abil,BuildNydusCanal,InfoArray[Build2].Time" Value="20" />
+    <EffectArray Operation="Set" Reference="Abil,BuildNydusCanalKerrigan,InfoArray[Build1].Unit" Value="GreaterNydusWormKerrigan" />
+    <EffectArray Operation="Set" Reference="Abil,BuildNydusCanalKerrigan,InfoArray[Build2].Unit" Value="GreaterNydusWormKerrigan" />
+    <EffectArray Operation="Subtract" Reference="Abil,BuildNydusCanalKerrigan,InfoArray[Build1].Time" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Abil,BuildNydusCanalKerrigan,InfoArray[Build2].Time" Value="20" />
     <EffectArray Operation="Set" Reference="Button,ZagaraVoidCoopNydusWorm,Tooltip" Value="Button/Tooltip/SummonGreaterNydusWorm" />
+    <EffectArray Operation="Set" Reference="Button,GreaterNydusWormKerrigan,Tooltip" Value="Button/Tooltip/SummonGreaterNydusWorm" />
+    <EffectArray Operation="Set" Reference="Button,SummonNydusWorm,Tooltip" Value="Button/Tooltip/SummonGreaterNydusWorm" />
+    <EffectArray Operation="Set" Reference="Button,SummonNydusCanalAttacker,Tooltip" Value="Button/Tooltip/SummonGreaterNydusWorm" />
     <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWorm,CostResource[Minerals]" Value="100" />
     <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWorm,CostResource[Vespene]" Value="100" />
     <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWormAlly,CostResource[Minerals]" Value="100" />
     <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWormAlly,CostResource[Vespene]" Value="100" />
+    <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWormKerrigan,CostResource[Minerals]" Value="100" />
+    <EffectArray Operation="Subtract" Reference="Unit,GreaterNydusWormKerrigan,CostResource[Vespene]" Value="100" />
     <EffectArray Reference="Abil,BuildNydusCanal,InfoArray[Build1].Cooldown.TimeUse" Value="60.000000" />
     <EffectArray Reference="Abil,BuildNydusCanal,InfoArray[Build2].Cooldown.TimeUse" Value="60.000000" />
+    <EffectArray Reference="Abil,BuildNydusCanalKerrigan,InfoArray[Build1].Cooldown.TimeUse" Value="60.000000" />
+    <EffectArray Reference="Abil,BuildNydusCanalKerrigan,InfoArray[Build2].Cooldown.TimeUse" Value="60.000000" />
     <EffectArray Operation="Set" Reference="Button,ZagaraVoidCoopNydusWorm,Name" Value="Button/Name/SummonGreaterNydusWorm" />
+    <EffectArray Operation="Set" Reference="Button,GreaterNydusWormKerrigan,Name" Value="Button/Name/SummonGreaterNydusWorm" />
+    <EffectArray Operation="Set" Reference="Button,SummonNydusWorm,Name" Value="Button/Name/SummonGreaterNydusWorm" />
+    <EffectArray Operation="Set" Reference="Button,SummonNydusCanalAttacker,Name" Value="Button/Name/SummonGreaterNydusWorm" />
     <EffectArray Operation="Set" Reference="Unit,NydusNetwork,Description" Value="Button/Tooltip/OmegaNetwork" />
     <EffectArray Operation="Set" Reference="Unit,NydusNetworkAlly,Description" Value="Button/Tooltip/OmegaNetwork" />
     <EffectArray Operation="Set" Reference="Button,NydusNetwork,AlertName" Value="Button/Name/OmegaNetwork" />
     <EffectArray Operation="Set" Reference="Button,NydusNetwork,Name" Value="Button/Name/OmegaNetwork" />
     <EffectArray Operation="Set" Reference="Button,NydusNetwork,Tooltip" Value="Button/Tooltip/OmegaNetwork" />
     <EffectArray Operation="Set" Reference="Button,NydusNetwork,AlertTooltip" Value="Button/Tooltip/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Unit,NydusNetworkKerrigan,Description" Value="Button/Tooltip/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusNetworkKerrigan,AlertName" Value="Button/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusNetworkKerrigan,Name" Value="Button/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusNetworkKerrigan,Tooltip" Value="Button/Tooltip/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Button,NydusNetworkKerrigan,AlertTooltip" Value="Button/Tooltip/OmegaNetwork" />
     <EffectArray Operation="Subtract" Reference="Abil,NydusCanalTransport,UnloadPeriod" Value="0.450000" />
     <EffectArray Operation="Subtract" Reference="Abil,NydusCanalTransport,LoadPeriod" Value="0.200000" />
     <EffectArray Operation="Subtract" Reference="Abil,NydusCanalTransport,TotalCargoSpace" Value="520" />
@@ -3317,6 +3341,8 @@
     <EffectArray Operation="Set" Reference="Unit,NydusNetworkAlly,Name" Value="Unit/Name/OmegaNetwork" />
     <EffectArray Operation="Set" Reference="Actor,NydusNetwork,HighlightTooltip" Value="Unit/Name/OmegaNetwork" />
     <EffectArray Operation="Set" Reference="Actor,NydusNetworkAlly,HighlightTooltip" Value="Unit/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Unit,NydusNetworkKerrigan,Name" Value="Unit/Name/OmegaNetwork" />
+    <EffectArray Operation="Set" Reference="Actor,NydusNetworkKerrigan,HighlightTooltip" Value="Unit/Name/OmegaNetwork" />
     <EffectArray Operation="Set" Reference="Button,NydusCanalLoad,Tooltip" Value="Button/Tooltip/NydusCanalLoadOmega" />
     <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
     <LeaderAlias value="" />

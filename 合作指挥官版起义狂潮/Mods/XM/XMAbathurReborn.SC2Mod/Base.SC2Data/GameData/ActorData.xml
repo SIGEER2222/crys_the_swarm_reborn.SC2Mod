@@ -7072,17 +7072,17 @@
         <On Terms="Upgrade.CentrificalHooks.Add" Send="SetWalkAnimMoveSpeed 3"/>
         <On Terms="Upgrade.CentrificalHooks.Remove" Send="AnimGroupRemove Superior"/>
         <On Terms="Upgrade.CentrificalHooks.Remove" Send="SetWalkAnimMoveSpeed 2"/>
-        <On Terms="AbilMorph.*.Cancel; MorphFrom FrostFiendAbathurReborn; MorphTo FrostFiendBurrowed" Send="AnimClear Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo FrostFiendAbathurReborn; MorphFrom FrostFiendBurrowed" Send="AnimBracketStop Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo FrostFiendAbathurReborn; MorphFrom FrostFiendBurrowed" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Cancel; MorphFrom FrostFiendAbathurReborn; MorphTo FrostFiendBurrowedAbathurReborn" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo FrostFiendAbathurReborn; MorphFrom FrostFiendBurrowedAbathurReborn" Send="AnimBracketStop Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo FrostFiendAbathurReborn; MorphFrom FrostFiendBurrowedAbathurReborn" Send="AnimClear Burrow"/>
         <On Terms="WeaponStart.VolatileBurst.AttackStart" Send="StatusSet DeathSuicide 1"/>
         <On Terms="Abil.Explode.SourceCastStart" Send="StatusSet DeathSuicide 1"/>
         <On Terms="UnitDeathCustomize; IsStatus DeathSuicide 0" Send="Create BanelingDeathNormalSound"/>
         <On Terms="UnitDeathCustomize; IsStatus DeathSuicide 1" Send="Create BanelingDeathSuicideSound"/>
         <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
         <On Terms="UnitBirth.FrostFiendAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo FrostFiendAbathurReborn; MorphFrom FrostFiendBurrowed" Send="TerrainSquibActivateGroup RippleStandard"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo FrostFiendBurrowed; MorphFrom FrostFiendAbathurReborn" Send="TerrainSquibDeactivate"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo FrostFiendAbathurReborn; MorphFrom FrostFiendBurrowedAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo FrostFiendBurrowedAbathurReborn; MorphFrom FrostFiendAbathurReborn" Send="TerrainSquibDeactivate"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Baneling_Land"/>
         <On Terms="ActorCreation; ValidateUnit HotSCentrifugalHooksResearched" Send="AnimGroupApply Superior"/>
         <On Terms="ActorCreation; ValidateUnit HotSCentrifugalHooksResearched" Send="SetWalkAnimMoveSpeed 3"/>
@@ -7142,8 +7142,8 @@
         <Macros value="ZergLargeBurrowEffects"/>
         <Macros value="UnloadDropAnim"/>
         <Macros value="TerrainSquibAnimations"/>
-        <On Terms="UnitBirth.SavageBurrowed" Send="Create"/>
-        <On Terms="UnitBirth.SavageBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
+        <On Terms="UnitBirth.SavageBurrowedAbathurReborn" Send="Create"/>
+        <On Terms="UnitBirth.SavageBurrowedAbathurReborn" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
         <On Terms="WeaponStart.KaiserBlades.AttackStart; !ValidateUnit HaveHotSMonarchBlades" Send="AnimPlay Attack Spell,A"/>
         <On Terms="WeaponStart.KaiserBlades.AttackStart; ValidateUnit HaveHotSMonarchBlades" Send="AnimPlay Attack Spell,D"/>
@@ -7155,10 +7155,10 @@
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear BurrowChargeUp"/>
         <On Terms="UnitBirth.UltraliskSavageAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
         <On Terms="AbilMorph.*.Finish; MorphTo UltraliskSavageAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo SavageBurrowed" Send="TerrainSquibDeactivate"/>
-        <On Terms="AbilMorph.*.Cancel; MorphFrom UltraliskSavageAbathurReborn; MorphTo SavageBurrowed" Send="AnimClear Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo UltraliskSavageAbathurReborn; MorphFrom SavageBurrowed" Send="AnimBracketStop Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo UltraliskSavageAbathurReborn; MorphFrom SavageBurrowed" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo SavageBurrowedAbathurReborn" Send="TerrainSquibDeactivate"/>
+        <On Terms="AbilMorph.*.Cancel; MorphFrom UltraliskSavageAbathurReborn; MorphTo SavageBurrowedAbathurReborn" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo UltraliskSavageAbathurReborn; MorphFrom SavageBurrowedAbathurReborn" Send="AnimBracketStop Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo UltraliskSavageAbathurReborn; MorphFrom SavageBurrowedAbathurReborn" Send="AnimClear Burrow"/>
         <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
         <On Terms="ActorCreation" Send="StatusSet BurrowCharging 0"/>
         <On Terms="ActorCreation" Send="TimerSet 0.070000 BurrowChargeFX"/>
@@ -7523,11 +7523,11 @@
         <On Terms="ActorCreation" Send="AnimBracketStart Ready Spell,Alternate,Start Spell,Alternate Spell,Alternate,End"/>
         <On Terms="Behavior.SwarmHostEggAnimation.Create" Send="AnimBracketStop Ready"/>
         <On Terms="Behavior.SwarmHostEggAnimation.Destroy" Send="AnimBracketStart Ready Spell,Alternate,Start Spell,Alternate Spell,Alternate,End"/>
-        <On Terms="UnitBirth.BaneHostBurrowed" Send="Create"/>
-        <On Terms="UnitBirth.BaneHostBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
-        <On Terms="AbilMorph.*.Cancel; MorphFrom BaneHostAbathurReborn; MorphTo BaneHostBurrowed" Send="AnimClear Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo BaneHostAbathurReborn; MorphFrom BaneHostBurrowed" Send="AnimBracketStop Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo BaneHostAbathurReborn; MorphFrom BaneHostBurrowed" Send="AnimClear Burrow"/>
+        <On Terms="UnitBirth.BaneHostBurrowedAbathurReborn" Send="Create"/>
+        <On Terms="UnitBirth.BaneHostBurrowedAbathurReborn" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
+        <On Terms="AbilMorph.*.Cancel; MorphFrom BaneHostAbathurReborn; MorphTo BaneHostBurrowedAbathurReborn" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo BaneHostAbathurReborn; MorphFrom BaneHostBurrowedAbathurReborn" Send="AnimBracketStop Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo BaneHostAbathurReborn; MorphFrom BaneHostBurrowedAbathurReborn" Send="AnimClear Burrow"/>
         <On Terms="UnitBirth.BaneHostAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create SwarmHost_Land"/>
         <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
@@ -7657,13 +7657,13 @@
         </Wireframe>
         <WireframeShieldColor value="255,0,128,0"/>
     </CActorUnit>
-    <CActorMissile id="VespidWeapon" parent="GenericAttackMissile" unitName="VespidWeapon">
+    <CActorMissile id="VespidWeaponAbathurReborn" parent="GenericAttackMissile" unitName="VespidWeaponAbathurReborn">
         <Model value="AcidSalivaWeapon"/>
     </CActorMissile>
     <CActorAction id="VespidAttack" parent="GenericAttack" effectImpact="LocustMPDamage" effectLaunch="LocustMPLM">
-        <On index="1" Terms="Effect.VespidDamage.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
-        <On index="2" Terms="Effect.VespidDamage.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <On index="6" Terms="Effect.VespidLaunchMissile.Start; At Caster" Send="Create"/>
+        <On index="1" Terms="Effect.VespidDamageAbathurReborn.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On index="2" Terms="Effect.VespidDamageAbathurReborn.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <On index="6" Terms="Effect.VespidLaunchMissileAbathurReborn.Start; At Caster" Send="Create"/>
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="LocustMPAttackLaunch" Sound="Locust_Spit"/>
         <Missile value="RoachAttackMissile"/>
@@ -7678,15 +7678,15 @@
         <Macros value="ZergSmallBurrowEffects"/>
         <Macros value="UnloadDropAnim"/>
         <Macros value="TerrainSquibAnimations"/>
-        <On index="69" Terms="UnitBirth.ToxicZerglingBurrowed" Send="Create"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo ToxicZerglingBurrowed; !AbilKey BurrowDown" Send="Create"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo ToxicZerglingBurrowed; !AbilKey BurrowDown" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
-        <On Terms="AbilMorph.*.Cancel; MorphFrom ZerglingToxicAbathurReborn; MorphTo ToxicZerglingBurrowed" Send="AnimClear Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo ZerglingToxicAbathurReborn; MorphFrom ToxicZerglingBurrowed" Send="AnimBracketStop Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo ZerglingToxicAbathurReborn; MorphFrom ToxicZerglingBurrowed" Send="AnimClear Burrow"/>
+        <On index="69" Terms="UnitBirth.ToxicZerglingBurrowedAbathurReborn" Send="Create"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo ToxicZerglingBurrowedAbathurReborn; !AbilKey BurrowDown" Send="Create"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo ToxicZerglingBurrowedAbathurReborn; !AbilKey BurrowDown" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
+        <On Terms="AbilMorph.*.Cancel; MorphFrom ZerglingToxicAbathurReborn; MorphTo ToxicZerglingBurrowedAbathurReborn" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo ZerglingToxicAbathurReborn; MorphFrom ToxicZerglingBurrowedAbathurReborn" Send="AnimBracketStop Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo ZerglingToxicAbathurReborn; MorphFrom ToxicZerglingBurrowedAbathurReborn" Send="AnimClear Burrow"/>
         <On Terms="AbilMorph.*.Finish; MorphTo ZerglingToxicAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
         <On Terms="UnitBirth.ZerglingToxicAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo ToxicZerglingBurrowed" Send="TerrainSquibDeactivate"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo ToxicZerglingBurrowedAbathurReborn" Send="TerrainSquibDeactivate"/>
         <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
         <Model value="Zergling_Webby_Collection"/>
         <DeathArray index="Normal" ModelLink="Zergling_Webby_Collection_Death" SoundLink="Zergling_Explode"/>
@@ -7770,16 +7770,16 @@
         <On Terms="WeaponStart.HydraliskMelee.AttackStart; AnimPlaying AttackCover Cover,01" Send="TimerSet 0.100000 MeleeAttackLaunch"/>
         <On Terms="TimerExpired; TimerName MeleeAttackLaunch" Send="Create HydraliskMeleeAttackLaunch"/>
         <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo HydraliskParalyticBurrowed; !AbilKey BurrowDown" Send="Create"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo HydraliskParalyticBurrowed; !AbilKey BurrowDown" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
-        <On Terms="AbilMorph.*.Cancel; MorphFrom Hydralisk2AbathurReborn; MorphTo HydraliskParalyticBurrowed" Send="AnimClear Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo Hydralisk2AbathurReborn; MorphFrom HydraliskParalyticBurrowed" Send="AnimBracketStop Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo Hydralisk2AbathurReborn; MorphFrom HydraliskParalyticBurrowed" Send="AnimClear Burrow"/>
-        <On Terms="UnitBirth.HydraliskParalyticBurrowed" Send="Create"/>
-        <On Terms="UnitBirth.HydraliskParalyticBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo HydraliskParalyticBurrowedAbathurReborn; !AbilKey BurrowDown" Send="Create"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo HydraliskParalyticBurrowedAbathurReborn; !AbilKey BurrowDown" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
+        <On Terms="AbilMorph.*.Cancel; MorphFrom Hydralisk2AbathurReborn; MorphTo HydraliskParalyticBurrowedAbathurReborn" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo Hydralisk2AbathurReborn; MorphFrom HydraliskParalyticBurrowedAbathurReborn" Send="AnimBracketStop Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo Hydralisk2AbathurReborn; MorphFrom HydraliskParalyticBurrowedAbathurReborn" Send="AnimClear Burrow"/>
+        <On Terms="UnitBirth.HydraliskParalyticBurrowedAbathurReborn" Send="Create"/>
+        <On Terms="UnitBirth.HydraliskParalyticBurrowedAbathurReborn" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
         <On Terms="UnitBirth.Hydralisk2AbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
         <On Terms="AbilMorph.*.Finish; MorphTo Hydralisk2AbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo HydraliskParalyticBurrowed" Send="TerrainSquibDeactivate"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo HydraliskParalyticBurrowedAbathurReborn" Send="TerrainSquibDeactivate"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Hydra_Land"/>
         <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
         <Model value="ParalyticHydralisk"/>
@@ -7830,24 +7830,24 @@
         <Macros value="ZergMediumBurrowEffects"/>
         <Macros value="UnloadDropAnim"/>
         <Macros value="TerrainSquibAnimations"/>
-        <On Terms="UnitMovementUpdate.IgniterBurrowed.Stand" Send="Create RoachBurrowedSplat"/>
-        <On Terms="UnitMovementUpdate.IgniterBurrowed.Walk" Target="RoachVileBurrowedSplat" Send="Destroy"/>
+        <On Terms="UnitMovementUpdate.IgniterBurrowedAbathurReborn.Stand" Send="Create RoachBurrowedSplat"/>
+        <On Terms="UnitMovementUpdate.IgniterBurrowedAbathurReborn.Walk" Target="RoachVileBurrowedSplat" Send="Destroy"/>
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
         <On Terms="WeaponStart.*.AttackStart" Send="AnimBracketStart Attack Attack"/>
         <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
-        <On Terms="UnitBirth.IgniterBurrowed" Send="Create"/>
-        <On Terms="UnitBirth.IgniterBurrowed" Send="AnimGroupApply Burrow Burrow Unburrow ClosingFull,Instant"/>
+        <On Terms="UnitBirth.IgniterBurrowedAbathurReborn" Send="Create"/>
+        <On Terms="UnitBirth.IgniterBurrowedAbathurReborn" Send="AnimGroupApply Burrow Burrow Unburrow ClosingFull,Instant"/>
         <On Terms="AbilMorph.*.Start; AbilKey BurrowDown" Send="Create BurrowDownMedium"/>
-        <On Terms="AbilMorph.*.Cancel; MorphFrom IgniterAbathurReborn; MorphTo IgniterBurrowed" Send="AnimClear Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo IgniterAbathurReborn; MorphFrom IgniterBurrowed" Send="AnimBracketStop Burrow"/>
+        <On Terms="AbilMorph.*.Cancel; MorphFrom IgniterAbathurReborn; MorphTo IgniterBurrowedAbathurReborn" Send="AnimClear Burrow"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo IgniterAbathurReborn; MorphFrom IgniterBurrowedAbathurReborn" Send="AnimBracketStop Burrow"/>
         <On Terms="Abil.BurrowSurge.SourceCastStart; ValidateUnit IsNotBuried" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever"/>
         <On Terms="Abil.BurrowSurge.SourceCastStop; ValidateUnit IsNotBuried" Send="AnimBracketStop Burrow"/>
         <On Terms="Abil.BurrowSurge.SourceCastStart; !ValidateUnit IsNotBuried" Send="AnimBracketStart BurrowSurge Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever"/>
         <On Terms="Abil.BurrowSurge.SourceCastStop; !ValidateUnit IsNotBuried" Send="AnimBracketStop BurrowSurge"/>
         <On Terms="UnitBirth.IgniterAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
         <On Terms="AbilMorph.*.Finish; MorphTo IgniterAbathurReborn" Send="TerrainSquibActivateGroup RippleStandard"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo IgniterBurrowed" Send="TerrainSquibDeactivate"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo IgniterBurrowedAbathurReborn" Send="TerrainSquibDeactivate"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Roach_Land"/>
         <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
         <Model value="Roach_Deluxe_Collection_Upgrade"/>

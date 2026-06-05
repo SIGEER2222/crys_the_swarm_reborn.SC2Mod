@@ -1202,4 +1202,37 @@
       <HeightTime index="Stop" value="0.25" />
     </Modification>
   </CBehaviorBuff>
+  <CBehaviorBuff id="ViperConsumeStructure">
+    <Alignment value="Negative" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <InfoIcon value="Assets\Textures\btn-ability-zerg-corruption-color.dds" />
+    <MaxStackCount value="100" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="YoinkEnemyStun">
+    <Alignment value="Negative" />
+    <InfoFlags index="Hidden" value="0" />
+    <InfoIcon value="Assets\Textures\btn-ability-zerg-abduct.dds" />
+    <BehaviorCategories index="Stun" value="1" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Duration value="1" />
+    <Modification>
+      <StateFlags index="Stun" value="1" />
+    </Modification>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ParasiticBomb">
+    <Alignment value="Negative" />
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Duration value="10" />
+    <Period value="0.25" />
+    <PeriodicEffect value="ParasiticBombSearchEffect" />
+    <InfoIcon value="Assets\Textures\btn-ability-zerg-parasiticbomb.dds" />
+    <AINotifyEffect value="ParasiticBombSearchEffect" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="ParasiticBombTimer">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Duration value="10" />
+    <BehaviorFlags index="Permanent" value="1" />
+    <BehaviorFlags index="EnabledWhileDead" value="1" />
+    <InfoFlags index="Hidden" value="1" />
+  </CBehaviorBuff>
 </Catalog>

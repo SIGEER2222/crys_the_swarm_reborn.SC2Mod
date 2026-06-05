@@ -11646,7 +11646,7 @@
     <AbilArray Link="stop"/>
     <AbilArray Link="attack"/>
     <AbilArray Link="move"/>
-    <AbilArray Link="FrostFiendBurrow"/>
+    <AbilArray Link="FrostFiendBurrowAbathurReborn"/>
     <BehaviorArray Link="BanelingLifesteal"/>
     <BehaviorArray Link="BanelingExplode"/>
     <WeaponArray Link="FrozenShards"/>
@@ -11658,7 +11658,7 @@
       <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
       <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="FrostFiendBurrow,Execute" Row="2" Column="4"/>
+      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="FrostFiendBurrowAbathurReborn,Execute" Row="2" Column="4"/>
       <LayoutButtons Face="PiercingShards" Type="Passive" Row="2" Column="0"/>
       <LayoutButtons Face="BanelingCorrosiveBile" Type="Passive" Requirements="HaveHotSBanelingCorrosiveBile" Row="2" Column="1"/>
       <LayoutButtons Face="RuptureUpgrade" Type="Passive" Requirements="HaveHotSRupture" Row="2" Column="1"/>
@@ -11688,7 +11688,7 @@
     <KillDisplay value="Always"/>
     <RankDisplay value="Always"/>
   </CUnit>
-  <CUnit id="FrostFiendBurrowed">
+  <CUnit id="FrostFiendBurrowedAbathurReborn">
     <Name value="Unit/Name/FrostFiendAbathurReborn"/>
     <Description value="Button/Tooltip/BanelingAbathurReborn"/>
     <DeathRevealRadius value="3"/>
@@ -11719,12 +11719,12 @@
     <DamageDealtXP value="1"/>
     <DamageTakenXP value="1"/>
     <KillXP value="20"/>
-    <AbilArray Link="FrostFiendUnburrow"/>
+    <AbilArray Link="FrostFiendUnburrowAbathurReborn"/>
     <AbilArray Link="move"/>
     <BehaviorArray Link="BurrowCracks"/>
     <CardLayouts>
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="FrostFiendUnburrow,Execute" Row="2" Column="4"/>
+      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="FrostFiendUnburrowAbathurReborn,Execute" Row="2" Column="4"/>
       <LayoutButtons Face="BanelingCorrosiveBile" Type="Passive" Requirements="HaveHotSBanelingCorrosiveBile" Row="1" Column="0"/>
       <LayoutButtons Face="BanelingHeal" Type="Passive" Requirements="HaveHotSBanelingHeal" Row="1" Column="1"/>
       <LayoutButtons Face="RuptureUpgrade" Type="Passive" Requirements="HaveHotSRupture" Row="1" Column="2"/>
@@ -11853,7 +11853,7 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
-        <AbilArray Link="SavageBurrow"/>
+        <AbilArray Link="SavageBurrowAbathurReborn"/>
         <AbilArray Link="UltraliskBurrowCharge"/>
         <BehaviorArray Link="Frenzy"/>
         <BehaviorArray Link="MassiveVoidRayVulnerability"/>
@@ -11868,7 +11868,7 @@
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="2" Column="3"/>
             <LayoutButtons Face="SavageStrain" Type="Passive" Row="2" Column="0"/>
-            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="SavageBurrow,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="SavageBurrowAbathurReborn,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Strider" Type="Passive" Row="2" Column="2"/>
             <LayoutButtons Face="BurrowChargeCampaign" Type="AbilCmd" AbilCmd="UltraliskBurrowCharge,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="TheHungerUltralisk" Type="Passive" Row="2" Column="1"/>
@@ -11897,11 +11897,11 @@
         <TauntDuration index="Cheer" value="5"/>
         <TauntDuration index="Dance" value="5"/>
     </CUnit>
-    <CUnit id="SavageBurrowed" parent="UltraliskBurrowed">
+    <CUnit id="SavageBurrowedAbathurReborn" parent="UltraliskBurrowed">
         <Name value="Unit/Name/SavageBurrowed"/>
-        <AbilArray index="0" Link="SavageUnburrow"/>
+        <AbilArray index="0" Link="SavageUnburrowAbathurReborn"/>
         <CardLayouts index="0">
-            <LayoutButtons index="1" AbilCmd="SavageUnburrow,Execute"/>
+            <LayoutButtons index="1" AbilCmd="SavageUnburrowAbathurReborn,Execute"/>
             <LayoutButtons index="3" removed="1"/>
             <LayoutButtons index="4" removed="1"/>
             <LayoutButtons index="5" removed="1"/>
@@ -12162,7 +12162,7 @@
         <AbilArray Link="attack"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
-        <AbilArray Link="BurrowBaneHost"/>
+        <AbilArray Link="BurrowBaneHostAbathurReborn"/>
         <AbilArray Link="BanelingLaunch"/>
         <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
         <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
@@ -12177,7 +12177,7 @@
             <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
             <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="Burrow" Type="AbilCmd" AbilCmd="BurrowBaneHost,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="Burrow" Type="AbilCmd" AbilCmd="BurrowBaneHostAbathurReborn,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
@@ -12203,7 +12203,7 @@
         <RankDisplay value="Always"/>
         <KillXP value="50"/>
     </CUnit>
-    <CUnit id="BaneHostBurrowed">
+    <CUnit id="BaneHostBurrowedAbathurReborn">
         <Description value="Button/Tooltip/SwarmHostAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <ReviveType value="SwarmHostBurrowed"/>
@@ -12239,7 +12239,7 @@
         <AbilArray Link="que1"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="stop"/>
-        <AbilArray Link="UnburrowBaneHost"/>
+        <AbilArray Link="UnburrowBaneHostAbathurReborn"/>
         <AbilArray Link="BanelingLaunch"/>
         <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
         <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
@@ -12252,7 +12252,7 @@
             <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
-            <LayoutButtons Face="UnburrowBaneHost" Type="AbilCmd" AbilCmd="UnburrowBaneHost,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="UnburrowBaneHost" Type="AbilCmd" AbilCmd="UnburrowBaneHostAbathurReborn,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AttackBuilding" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
         </CardLayouts>
         <Radius value="0.8125"/>
@@ -12311,7 +12311,7 @@
         <AbilArray Link="attack"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="move"/>
-        <AbilArray Link="VespidHangar"/>
+        <AbilArray Link="VespidHangarAbathurReborn"/>
         <AbilArray Link="BroodLordQueue2"/>
         <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
         <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
@@ -12347,10 +12347,10 @@
         <HotkeyCategory value="Unit/Category/ZergStory"/>
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
-        <WeaponArray Link="VespidAcid"/>
+        <WeaponArray Link="VespidAcidAbathurReborn"/>
         <KillXP value="50"/>
     </CUnit>
-    <CUnit id="Vespid">
+    <CUnit id="VespidAbathurReborn">
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <FlagArray index="NoScore" value="1"/>
@@ -12384,7 +12384,7 @@
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
         <BehaviorArray Link="SwarmHostPressurizedGlands"/>
-        <WeaponArray Link="AcidSpit"/>
+        <WeaponArray Link="AcidSpitAbathurReborn"/>
         <CardLayouts>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
@@ -12403,7 +12403,7 @@
         <KillDisplay value="Never"/>
         <RankDisplay value="Never"/>
     </CUnit>
-    <CUnit id="VespidWeapon" parent="MISSILE">
+    <CUnit id="VespidWeaponAbathurReborn" parent="MISSILE">
         <Race value="Zerg"/>
         <Mover value="AcidSalivaWeapon"/>
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
@@ -12476,7 +12476,7 @@
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
         <AbilArray Link="que1"/>
-        <AbilArray Link="AbathurToxicZerglingBurrow"/>
+        <AbilArray Link="AbathurToxicZerglingBurrowAbathurReborn"/>
         <AbilArray Link="AbathurZerglingStealthlingPurchase"/>
         <AbilArray Link="AbathurZerglingKetamineInfusionPurchase"/>
         <AbilArray Link="AbathurZerglingKleptomaniaPurchase"/>
@@ -12496,7 +12496,7 @@
             <LayoutButtons Face="AbathurZerglingMoonrage" Type="AbilCmd" AbilCmd="AbathurZerglingMoonragePurchase,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="AbathurZerglingArmoredCarapace" Type="AbilCmd" AbilCmd="AbathurZerglingArmoredCarapacePurchase,Execute" Row="1" Column="4"/>
             <LayoutButtons Face="AbathurZerglingPoisonedFangs" Type="Passive" Row="2" Column="0"/>
-            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurToxicZerglingBurrow,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurToxicZerglingBurrowAbathurReborn,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AbathurZerglingEvasion" Type="Passive" Row="2" Column="2"/>
         </CardLayouts>
         <Radius value="0.375"/>
@@ -12527,7 +12527,7 @@
         <TauntDuration index="Cheer" value="5"/>
         <TauntDuration index="Dance" value="5"/>
     </CUnit>
-    <CUnit id="ToxicZerglingBurrowed">
+    <CUnit id="ToxicZerglingBurrowedAbathurReborn">
         <Description value="Button/Tooltip/ZerglingAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
@@ -12556,10 +12556,10 @@
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
         <KillXP value="5"/>
-        <AbilArray Link="AbathurUnburrowToxicZergling"/>
+        <AbilArray Link="AbathurUnburrowToxicZerglingAbathurReborn"/>
         <CardLayouts>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowToxicZergling,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowToxicZerglingAbathurReborn,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.375"/>
         <SeparationRadius value="0"/>
@@ -12618,7 +12618,7 @@
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
-        <AbilArray Link="AbathurBurrowIgniter"/>
+        <AbilArray Link="AbathurBurrowIgniterAbathurReborn"/>
         <AbilArray Link="AbathurRoachMeleeStrainPurchase"/>
         <AbilArray Link="AbathurRoachBanelingGestationPurchase"/>
         <AbilArray Link="AbathurRoachRoachlingInfestationPurchase"/>
@@ -12638,7 +12638,7 @@
             <LayoutButtons Face="AbathurRoachRoachlingInfestation" Type="AbilCmd" AbilCmd="AbathurRoachRoachlingInfestationPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="AbathurRoachBileShield" Type="AbilCmd" AbilCmd="AbathurRoachBileShieldPurchase,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="AbathurRoachAdrenalineOverdose" Type="AbilCmd" AbilCmd="AbathurRoachAdrenalineOverdosePurchase,Execute" Row="1" Column="4"/>
-            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurBurrowIgniter,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurBurrowIgniterAbathurReborn,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AbathurIgniterScorchingBreath" Type="Passive" Row="2" Column="0"/>
             <LayoutButtons Face="AbathurRoachPlatedExoskeleton" Type="Passive" Row="2" Column="1"/>
         </CardLayouts>
@@ -12666,7 +12666,7 @@
             <ChanceArray index="Turn" value="33"/>
         </Fidget>
     </CUnit>
-    <CUnit id="IgniterBurrowed">
+    <CUnit id="IgniterBurrowedAbathurReborn">
         <Subtitle value="UnitSubtitle/RoachCorpserAbathurReborn"/>
         <Description value="Button/Tooltip/RoachCorpserAbathurReborn"/>
         <DeathRevealRadius value="3"/>
@@ -12701,14 +12701,14 @@
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
         <KillXP value="15"/>
-        <AbilArray Link="AbathurUnburrowIgniter"/>
+        <AbilArray Link="AbathurUnburrowIgniterAbathurReborn"/>
         <AbilArray Link="move"/>
         <AbilArray Link="burrowedStop"/>
         <BehaviorArray Link="AbathurRoachBurrowRegenBuff"/>
 
         <CardLayouts>
             <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
-            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowIgniter,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowIgniterAbathurReborn,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
             <LayoutButtons>
                 <Face value="StopRoachBurrowed"/>
@@ -12775,7 +12775,7 @@
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
         <AbilArray Link="que1"/>
-        <AbilArray Link="AbathurBurrowParalyticHydralisk"/>
+        <AbilArray Link="AbathurBurrowParalyticHydraliskAbathurReborn"/>
         <AbilArray Link="HydraliskFrenzy"/>
         <AbilArray Link="AbathurHydraliskCripplePurchase"/>
         <AbilArray Link="AbathurHydraliskBroodlingsPurchase"/>
@@ -12794,7 +12794,7 @@
             <LayoutButtons Face="AbathurHydraliskMechanical" Type="AbilCmd" AbilCmd="AbathurHydraliskMechanicalPurchase,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="AbathurHydraliskRange" Type="AbilCmd" AbilCmd="AbathurHydraliskRangePurchase,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="AbathurHydraliskMelee" Type="AbilCmd" AbilCmd="AbathurHydraliskMeleePurchase,Execute" Row="1" Column="4"/>
-            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurBurrowParalyticHydralisk,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurBurrowParalyticHydraliskAbathurReborn,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="AbathurHydraliskVenomSpines" Type="Passive" Row="2" Column="0"/>
             <LayoutButtons Face="HydraliskFrenzy" Type="AbilCmd" AbilCmd="HydraliskFrenzy,Execute" Row="2" Column="1"/>
         </CardLayouts>
@@ -12821,7 +12821,7 @@
         <TauntDuration index="Cheer" value="5"/>
         <TauntDuration index="Dance" value="5"/>
     </CUnit>
-    <CUnit id="HydraliskParalyticBurrowed">
+    <CUnit id="HydraliskParalyticBurrowedAbathurReborn">
         <Name value="Unit/Name/HydraliskAbathurReborn"/>
         <Subtitle value="UnitSubtitle/HydraliskLurkerAbathurReborn"/>
         <Description value="Button/Tooltip/HydraliskAbathurReborn"/>
@@ -12855,11 +12855,11 @@
         <DamageDealtXP value="1"/>
         <DamageTakenXP value="1"/>
         <KillXP value="20"/>
-        <AbilArray Link="AbathurUnburrowToxicHydralisk"/>
+        <AbilArray Link="AbathurUnburrowToxicHydraliskAbathurReborn"/>
         <AbilArray Link="HydraliskFrenzy"/>
         <CardLayouts>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowToxicHydralisk,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowToxicHydraliskAbathurReborn,Execute" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.625"/>
         <SeparationRadius value="0"/>

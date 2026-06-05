@@ -809,4 +809,18 @@
     <OperandArray value="ZergFiveTierGroundAttacksLevel4Complete" />
     <OperandArray value="ZergFiveTierGroundAttacksLevel5NotQueued" />
   </CRequirementAnd>
+  <CRequirementCountUpgrade id="CountUpgradeViperImprovedCastRangeQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ViperImprovedCastRange" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementCountUpgrade id="CountUpgradeViperAbductImprovedStunQueuedOrBetter">
+    <Flags index="TechTreeCheat" value="0" />
+    <Count Link="ViperAbductImprovedStun" State="QueuedOrBetter" />
+  </CRequirementCountUpgrade>
+  <CRequirementNot id="NotCountUpgradeViperImprovedCastRangeQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeViperImprovedCastRangeQueuedOrBetter" />
+  </CRequirementNot>
+  <CRequirementNot id="NotCountUpgradeViperAbductImprovedStunQueuedOrBetter">
+    <OperandArray index="0" value="CountUpgradeViperAbductImprovedStunQueuedOrBetter" />
+  </CRequirementNot>
 </Catalog>

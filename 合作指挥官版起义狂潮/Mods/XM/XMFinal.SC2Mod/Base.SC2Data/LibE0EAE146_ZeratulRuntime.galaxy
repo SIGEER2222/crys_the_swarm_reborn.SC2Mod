@@ -53,6 +53,7 @@ void libE0EAE146_gf_ZeratulRuntimeInit (int lp_player, point lp_heroPoint, bool 
     }
 
     libE0EAE146_gv_zeratulRuntimeInitialized = true;
+    libE0EAE146_gv_zeratulRuntimePlayer = lp_player;
     libE0EAE146_gt_ZeratulArtifactPickedUp_Init();
     libE0EAE146_gt_ZeratulArtifactRevealed_Init();
     libE0EAE146_gt_ZeratulArtifactUsed_Init();
@@ -97,6 +98,7 @@ int libE0EAE146_gf_ZeratulArtifactUpgradeButton (string lp_upgradeName) {
 
 bool libE0EAE146_gt_ZeratulArtifactPickedUp_Func (bool testConds, bool runActions) {
     int lv_artifactNumber;
+    int lv_player;
 
     if (testConds) {
         if (!((libE0EAE146_gv_commander == "Zeratul") && (EventUnit() == libE0EAE146_gv_zeratulArtifact))) {
@@ -113,21 +115,29 @@ bool libE0EAE146_gt_ZeratulArtifactPickedUp_Func (bool testConds, bool runAction
         return true;
     }
 
-    TechTreeUpgradeAddLevel(1, ("ZeratulArtifactTier" + IntToString(lv_artifactNumber)), 1);
-    lib67C0F0E7_gf_ZeratulPanelControl(1, lv_artifactNumber, "Collected");
+    lv_player = libE0EAE146_gv_zeratulRuntimePlayer;
+    if (lv_player <= 0) {
+        lv_player = UnitGetOwner(EventUnit());
+    }
+    if (lv_player <= 0) {
+        lv_player = 1;
+    }
+
+    TechTreeUpgradeAddLevel(lv_player, ("ZeratulArtifactTier" + IntToString(lv_artifactNumber)), 1);
+    lib67C0F0E7_gf_ZeratulPanelControl(lv_player, lv_artifactNumber, "Collected");
     libE0EAE146_gv_zeratulArtifact = null;
     if (lv_artifactNumber >= 3) {
         libE0EAE146_gv_zeratulArtifactNumber = 4;
-        TechTreeUpgradeAddLevel(1, "ProphecyArtifactsDiscovered", 1);
-        DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[1], PlayerGroupAll(), "ProphecyState", "NotReady");
+        TechTreeUpgradeAddLevel(lv_player, "ProphecyArtifactsDiscovered", 1);
+        DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[lv_player], PlayerGroupAll(), "ProphecyState", "NotReady");
         return true;
     }
 
     libE0EAE146_gv_zeratulArtifactNumber += 1;
-    DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[1], PlayerGroupAll(), "CurrentArtifact", IntToString(libE0EAE146_gv_zeratulArtifactNumber));
-    DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[1], PlayerGroupAll(), "ProphecyState", "NotReady");
+    DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[lv_player], PlayerGroupAll(), "CurrentArtifact", IntToString(libE0EAE146_gv_zeratulArtifactNumber));
+    DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[lv_player], PlayerGroupAll(), "ProphecyState", "NotReady");
     Wait(10.0, c_timeGame);
-    libE0EAE146_gf_ZeratulPlaceArtifact(1);
+    libE0EAE146_gf_ZeratulPlaceArtifact(lv_player);
     return true;
 }
 
@@ -137,6 +147,8 @@ void libE0EAE146_gt_ZeratulArtifactPickedUp_Init () {
 }
 
 bool libE0EAE146_gt_ZeratulArtifactRevealed_Func (bool testConds, bool runActions) {
+    int lv_player;
+
     if (testConds) {
         if (!((libE0EAE146_gv_commander == "Zeratul") && (EventUnit() == libE0EAE146_gv_zeratulArtifact))) {
             return false;
@@ -147,7 +159,15 @@ bool libE0EAE146_gt_ZeratulArtifactRevealed_Func (bool testConds, bool runAction
         return true;
     }
 
-    DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[1], PlayerGroupAll(), "ProphecyState", "Ready");
+    lv_player = libE0EAE146_gv_zeratulRuntimePlayer;
+    if (lv_player <= 0) {
+        lv_player = UnitGetOwner(EventUnit());
+    }
+    if (lv_player <= 0) {
+        lv_player = 1;
+    }
+
+    DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[lv_player], PlayerGroupAll(), "ProphecyState", "Ready");
     lib67C0F0E7_gf_PingUnitU(EventUnit(), "PingQuest", Color(80,255,180));
     return true;
 }
@@ -159,10 +179,18 @@ void libE0EAE146_gt_ZeratulArtifactRevealed_Init () {
 
 bool libE0EAE146_gt_ZeratulArtifactUsed_Func (bool testConds, bool runActions) {
     int lv_button;
+    int lv_player;
 
+    lv_player = libE0EAE146_gv_zeratulRuntimePlayer;
+    if (lv_player <= 0) {
+        lv_player = EventPlayer();
+    }
+    if (lv_player <= 0) {
+        lv_player = 1;
+    }
     lv_button = libE0EAE146_gf_ZeratulArtifactUpgradeButton(EventUpgradeName());
     if (testConds) {
-        if (!((libE0EAE146_gv_commander == "Zeratul") && (EventPlayer() == 1) && (lv_button >= 0))) {
+        if (!((libE0EAE146_gv_commander == "Zeratul") && (EventPlayer() == lv_player) && (lv_button >= 0))) {
             return false;
         }
     }
@@ -171,12 +199,12 @@ bool libE0EAE146_gt_ZeratulArtifactUsed_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lib67C0F0E7_gf_ZeratulPanelControl(1, lv_button, "Used");
+    lib67C0F0E7_gf_ZeratulPanelControl(lv_player, lv_button, "Used");
     if (EventUpgradeName() == "ZeratulArtifactUpgradeTier3A") {
-        DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[1], PlayerGroupAll(), "AvatarState", "Form");
+        DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[lv_player], PlayerGroupAll(), "AvatarState", "Form");
     }
     else if (EventUpgradeName() == "ZeratulArtifactUpgradeTier3B") {
-        DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[1], PlayerGroupAll(), "AvatarState", "Essence");
+        DialogControlSetAnimationState(lib67C0F0E7_gv_cU_GPPanel[lv_player], PlayerGroupAll(), "AvatarState", "Essence");
     }
     else {
     }
@@ -189,8 +217,18 @@ void libE0EAE146_gt_ZeratulArtifactUsed_Init () {
 }
 
 bool libE0EAE146_gt_ZeratulProphecyCast_Func (bool testConds, bool runActions) {
+    int lv_player;
+
+    lv_player = libE0EAE146_gv_zeratulRuntimePlayer;
+    if (lv_player <= 0) {
+        lv_player = UnitGetOwner(EventUnit());
+    }
+    if (lv_player <= 0) {
+        lv_player = 1;
+    }
+
     if (testConds) {
-        if (!((libE0EAE146_gv_commander == "Zeratul") && (UnitGetOwner(EventUnit()) == 1))) {
+        if (!((libE0EAE146_gv_commander == "Zeratul") && (UnitGetOwner(EventUnit()) == lv_player))) {
             return false;
         }
     }

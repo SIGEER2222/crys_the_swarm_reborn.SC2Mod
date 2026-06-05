@@ -9200,17 +9200,17 @@
     <SubgroupPriority value="61"></SubgroupPriority>
     <FlagArray index="PreventDefeat" value="0"></FlagArray>
   </CUnit>
-  <CUnit id="Observer">
+  <CUnit id="ObserverKarax" parent="Observer">
     <BehaviorArray Link="AllUnitBehaviorController"></BehaviorArray>
     <AbilArray Link="attack"></AbilArray>
     <AbilArray Link="Warpable"></AbilArray>
-    <AbilArray Link="ObserverMorphtoObserverSiege"></AbilArray>
+    <AbilArray Link="ObserverMorphtoObserverSiegeKarax"></AbilArray>
     <ScoreMake value="0"></ScoreMake>
     <ScoreKill value="0"></ScoreKill>
     <RepairTime value="20"></RepairTime>
     <CardLayouts index="0">
       <LayoutButtons index="7" Face="HaveGraviticBoosters" Requirements="HaveGraviticBoosters" Column="1"></LayoutButtons>
-      <LayoutButtons Face="MorphtoObserverSiege" Type="AbilCmd" AbilCmd="ObserverMorphtoObserverSiege,Execute" Row="2" Column="2"></LayoutButtons>
+      <LayoutButtons Face="MorphtoObserverSiege" Type="AbilCmd" AbilCmd="ObserverMorphtoObserverSiegeKarax,Execute" Row="2" Column="2"></LayoutButtons>
       <LayoutButtons Face="Detector" Type="Passive" Row="2" Column="4"></LayoutButtons>
     </CardLayouts>
     <KillXP value="0"></KillXP>
@@ -9221,7 +9221,7 @@
     <AbilArray Link="move"></AbilArray>
     <AbilArray Link="stop"></AbilArray>
   </CUnit>
-  <CUnit id="ObserverSiegeMode" parent="Observer">
+  <CUnit id="ObserverSiegeModeKarax" parent="ObserverKarax">
     <Name value="Unit/Name/ObserverSiegeMode"></Name>
     <Description value="Button/Tooltip/ObserverSiegeMode"></Description>
     <Speed value="0"></Speed>
@@ -9229,10 +9229,10 @@
     <StationaryTurningRate value="0"></StationaryTurningRate>
     <TurningRate value="0"></TurningRate>
     <Sight value="16.5"></Sight>
-    <AbilArray index="4" Link="ObserverSiegeMorphtoObserver"></AbilArray>
+    <AbilArray index="4" Link="ObserverSiegeMorphtoObserverKarax"></AbilArray>
     <CardLayouts index="0">
       <LayoutButtons index="8" Face="Detector" Type="Passive" AbilCmd="" Row="2" Column="4"></LayoutButtons>
-      <LayoutButtons index="9" Face="MorphtoObserver" Type="AbilCmd" AbilCmd="ObserverSiegeMorphtoObserver,Execute" Row="2" Column="3"></LayoutButtons>
+      <LayoutButtons index="9" Face="MorphtoObserver" Type="AbilCmd" AbilCmd="ObserverSiegeMorphtoObserverKarax,Execute" Row="2" Column="3"></LayoutButtons>
     </CardLayouts>
     <Height value="5"></Height>
     <BehaviorArray index="0" Link="Detector16.5"></BehaviorArray>
@@ -14643,7 +14643,7 @@
       <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
     </CardLayouts>
     <TechAliasArray value="Alias_RoboticsFacility" />
-    <TechTreeProducedUnitArray value="Observer" />
+    <TechTreeProducedUnitArray value="ObserverKarax" />
     <TechTreeProducedUnitArray value="Colossus" />
     <TechTreeProducedUnitArray value="ImmortalAiur" />
   </CUnit>

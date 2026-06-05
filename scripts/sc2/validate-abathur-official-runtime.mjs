@@ -14,13 +14,22 @@ const files = {
   documentInfo: path.join(xmFinalRoot, 'DocumentInfo'),
   documentHeader: path.join(xmFinalRoot, 'DocumentHeader'),
   runtime: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_AbathurRuntime.galaxy'),
+  commanderStartSquads: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_CommanderStartSquads.galaxy'),
+  commanderUnitAbilities: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_CommanderUnitAbilities.galaxy'),
   finalGalaxy: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146.galaxy'),
   finalHeader: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_h.galaxy'),
   userData: path.join(gameDataRoot, 'UserData.xml'),
   unitData: path.join(gameDataRoot, 'UnitData.xml'),
+  buttonData: path.join(gameDataRoot, 'ButtonData.xml'),
   abilData: path.join(gameDataRoot, 'AbilData.xml'),
+  effectData: path.join(gameDataRoot, 'EffectData.xml'),
   behaviorData: path.join(gameDataRoot, 'BehaviorData.xml'),
+  actorData: path.join(gameDataRoot, 'ActorData.xml'),
   upgradeData: path.join(gameDataRoot, 'UpgradeData.xml'),
+  requirementData: path.join(gameDataRoot, 'RequirementData.xml'),
+  requirementNodeData: path.join(gameDataRoot, 'RequirementNodeData.xml'),
+  finalRequirementData: path.join(xmFinalRoot, 'Base.SC2Data', 'GameData', 'RequirementData.xml'),
+  finalRequirementNodeData: path.join(xmFinalRoot, 'Base.SC2Data', 'GameData', 'RequirementNodeData.xml'),
 };
 
 const texts = Object.fromEntries(Object.entries(files).map(([key, filePath]) => [key, readText(filePath)]));
@@ -31,9 +40,13 @@ validatePrivateLarvaClosure();
 validateWorkerBuildClosure();
 validateLarvaTrainClosure();
 validateRavagerClosure();
+validatePrivateCombatAndEvolutionClosure();
+validateViperSkillAndResearchClosure();
 validateToxicNestClosure();
 validateRuntimeFullLevelClosure();
 validateRuntimePollutionGuard();
+validateRuntimeSquadClosure();
+validateTestBenchAbilitySmoke();
 
 if (errors.length > 0) {
   console.error('FAIL: Abathur official runtime validation failed');
@@ -166,6 +179,277 @@ function validateRavagerClosure() {
   assertBlockIncludes(bileBlock, 'XMAbathur AbilData.xml', 'Effect index="0"', 'RavagerAbathurCorrosiveBile must trigger an effect');
 }
 
+function validatePrivateCombatAndEvolutionClosure() {
+  const privateUnitChecks = [
+    {
+      unitId: 'MutaliskAbathur',
+      required: [
+        'AbilArray Link="MutaliskMorphToGuardian"',
+        'AbilArray Link="MutaliskMorphToDevourer"',
+        'AbilArray Link="EvolveToLeviathanMutalisk"',
+        'AbilCmd="MutaliskMorphToDevourer,Train1"',
+        'AbilCmd="MutaliskMorphToGuardian,Train1"',
+        'AbilCmd="EvolveToLeviathanMutalisk,Train1"',
+      ],
+    },
+    {
+      unitId: 'AbathurGuardian',
+      required: [
+        'AbilArray Link="EvolveToLeviathanGuardianMP"',
+        'AbilCmd="EvolveToLeviathanGuardianMP,Train1"',
+        'Face="GuardianAttackRangeIncrease" Type="Passive" Requirements="HaveGuardianAttackRangeIncrease"',
+      ],
+    },
+    {
+      unitId: 'DevourerAbathur',
+      required: [
+        'AbilArray Link="CorrosiveAcid"',
+        'AbilArray Link="EvolveToLeviathanDevourer"',
+        'AbilCmd="CorrosiveAcid,Execute"',
+        'AbilCmd="EvolveToLeviathanDevourer,Train1"',
+        'Face="DevourerAoEDamage" Type="Passive" Requirements="HaveDevourerAoEDamage"',
+      ],
+    },
+    {
+      unitId: 'SwarmHostAbathur',
+      required: [
+        'AbilArray Link="AbathurDeepTunnel"',
+        'AbilArray Link="AbathurDeepTunnelImproved"',
+        'AbilArray Link="LocustLaunch"',
+        'AbilArray Link="EvolveToBrutaliskSwarmHost"',
+        'AbilArray Link="MorphToSwarmHostBurrowedAbathur"',
+        'AbilCmd="LocustLaunch,Execute"',
+        'AbilCmd="AbathurDeepTunnel,Execute"',
+        'AbilCmd="AbathurDeepTunnelImproved,Execute"',
+        'AbilCmd="EvolveToBrutaliskSwarmHost,Train1"',
+        'AbilCmd="MorphToSwarmHostBurrowedAbathur,Execute"',
+      ],
+    },
+    {
+      unitId: 'SwarmHostAbathurBurrowed',
+      required: [
+        'AbilArray Link="AbathurDeepTunnel"',
+        'AbilArray Link="AbathurDeepTunnelImproved"',
+        'AbilArray Link="EvolveToBrutaliskSwarmHost"',
+        'AbilArray Link="MorphToSwarmHostAbathur"',
+        'AbilCmd="AbathurDeepTunnel,Execute"',
+        'AbilCmd="AbathurDeepTunnelImproved,Execute"',
+        'AbilCmd="EvolveToBrutaliskSwarmHost,Train1"',
+        'AbilCmd="MorphToSwarmHostAbathur,Execute"',
+      ],
+    },
+    {
+      unitId: 'BrutaliskAbathur',
+      required: [
+        'AbilArray Link="BrutaliskDeepTunnel"',
+        'AbilArray Link="SymbioteCarapace"',
+        'AbilArray Link="BurrowBrutaliskAbathurDown"',
+        'AbilArray Link="AbathurSymbioteHangerBrutalisk"',
+        'AbilCmd="BrutaliskDeepTunnel,Execute"',
+        'AbilCmd="SymbioteCarapace,Execute"',
+        'AbilCmd="BurrowBrutaliskAbathurDown,Execute"',
+      ],
+      forbidden: ['AbilCmd="BurrowBrutaliskDown,Execute"'],
+    },
+    {
+      unitId: 'BrutaliskAbathurBurrowed',
+      required: [
+        'AbilArray Link="BurrowBrutaliskAbathurUp"',
+        'AbilArray Link="AbathurSymbioteHangerBrutalisk"',
+        'AbilCmd="BurrowBrutaliskAbathurUp,Execute"',
+      ],
+      forbidden: ['AbilCmd="BurrowBrutaliskUp,Execute"'],
+    },
+    {
+      unitId: 'LeviathanAbathur',
+      required: [
+        'AbilArray Link="SymbioteCarapace"',
+        'AbilArray Link="AbathurSymbioteHangerLeviathan"',
+        'AbilCmd="SymbioteCarapace,Execute"',
+        'Face="AbathurBrutaliskLeviathanSymbiote" Type="Passive" Requirements="HaveBrutaliskLeviathanSymbiote"',
+      ],
+    },
+  ];
+
+  for (const check of privateUnitChecks) {
+    const block = getXmlBlock(texts.unitData, 'CUnit', check.unitId);
+    for (const token of check.required) {
+      assertBlockIncludes(block, 'XMAbathur UnitData.xml', token, `${check.unitId} must explicitly close ${token}`);
+    }
+    for (const token of check.forbidden ?? []) {
+      assertBlockNotIncludes(block, 'XMAbathur UnitData.xml', token, `${check.unitId} must not keep public ${token}`);
+    }
+  }
+
+  const outputChecks = [
+    ['CAbilTrain', 'MutaliskMorphToDevourer', 'Unit value="DevourerAbathur"'],
+    ['CAbilTrain', 'MutaliskMorphToGuardian', 'Unit value="AbathurGuardian"'],
+    ['CAbilTrain', 'EvolveToBrutalisk', 'Unit value="BrutaliskAbathur"'],
+    ['CAbilTrain', 'EvolveToBrutaliskRoachVile', 'Unit value="BrutaliskAbathur"'],
+    ['CAbilTrain', 'EvolveToBrutaliskRavager', 'Unit value="BrutaliskAbathur"'],
+    ['CAbilTrain', 'EvolveToBrutaliskSwarmHost', 'Unit value="BrutaliskAbathur"'],
+    ['CAbilTrain', 'EvolveToLeviathan', 'Unit value="LeviathanAbathur"'],
+    ['CAbilTrain', 'EvolveToLeviathanMutalisk', 'Unit value="LeviathanAbathur"'],
+    ['CAbilTrain', 'EvolveToLeviathanGuardianMP', 'Unit value="LeviathanAbathur"'],
+    ['CAbilTrain', 'EvolveToLeviathanDevourer', 'Unit value="LeviathanAbathur"'],
+    ['CAbilTrain', 'EvolveToLeviathanViper', 'Unit value="LeviathanAbathur"'],
+    ['CAbilMorph', 'MorphToSwarmHostBurrowedAbathur', 'InfoArray Unit="SwarmHostAbathurBurrowed"'],
+    ['CAbilMorph', 'MorphToSwarmHostAbathur', 'InfoArray Unit="SwarmHostAbathur"'],
+    ['CAbilMorph', 'BurrowBrutaliskAbathurDown', 'InfoArray Unit="BrutaliskAbathurBurrowed"'],
+    ['CAbilMorph', 'BurrowBrutaliskAbathurUp', 'InfoArray Unit="BrutaliskAbathur"'],
+  ];
+
+  for (const [tag, id, token] of outputChecks) {
+    const block = getXmlBlock(texts.abilData, tag, id);
+    assertBlockIncludes(block, 'XMAbathur AbilData.xml', token, `${id} must produce private target via ${token}`);
+  }
+
+  const publicBurrowDown = getXmlBlock(texts.abilData, 'CAbilMorph', 'BurrowBrutaliskDown');
+  assertBlockIncludes(publicBurrowDown, 'XMAbathur AbilData.xml', 'InfoArray Unit="BrutaliskBurrowed"', 'public BurrowBrutaliskDown remains public baseline');
+  const privateBurrowDown = getXmlBlock(texts.abilData, 'CAbilMorph', 'BurrowBrutaliskAbathurDown');
+  assertBlockNotIncludes(privateBurrowDown, 'XMAbathur AbilData.xml', 'InfoArray Unit="BrutaliskBurrowed"', 'private Brutalisk burrow must not produce public BrutaliskBurrowed');
+
+  const actorBlock = getXmlBlock(texts.actorData, 'CActorUnit', 'BrutaliskAbathurBurrowed');
+  assertBlockIncludes(actorBlock, 'XMAbathur ActorData.xml', 'unitName="BrutaliskAbathurBurrowed"', 'BrutaliskAbathurBurrowed must have a private actor');
+  assertBlockIncludes(actorBlock, 'XMAbathur ActorData.xml', 'UnitBirth.BrutaliskAbathurBurrowed', 'BrutaliskAbathurBurrowed actor must listen to private unit birth');
+
+  const upgradeChecks = [
+    ['AbathurDeepTunnel', 'AffectedUnitArray value="SwarmHostAbathur"'],
+    ['AbathurDeepTunnel', 'AffectedUnitArray value="SwarmHostAbathurBurrowed"'],
+    ['AbathurEnableSymbiote', 'AffectedUnitArray value="BrutaliskAbathur"'],
+    ['AbathurEnableSymbiote', 'AffectedUnitArray value="BrutaliskAbathurBurrowed"'],
+    ['AbathurEnableSymbiote', 'AffectedUnitArray value="LeviathanAbathur"'],
+    ['AbathurMorphTimeCostReduced', 'Reference="Unit,DevourerAbathur,CostResource[Minerals]"'],
+    ['AbathurMorphTimeCostReduced', 'Reference="Unit,AbathurGuardian,CostResource[Minerals]"'],
+    ['AbathurMorphTimeCostReduced', 'AffectedUnitArray value="MutaliskAbathur"'],
+    ['AbathurMorphTimeCostReduced', 'AffectedUnitArray value="DevourerAbathur"'],
+    ['AbathurMorphTimeCostReduced', 'AffectedUnitArray value="AbathurGuardian"'],
+    ['MutaliskSunderingGlave', 'AffectedUnitArray value="MutaliskAbathur"'],
+  ];
+
+  for (const [upgradeId, token] of upgradeChecks) {
+    const block = getXmlBlock(texts.upgradeData, 'CUpgrade', upgradeId);
+    assertBlockIncludes(block, 'XMAbathur UpgradeData.xml', token, `${upgradeId} must affect private Abathur chain via ${token}`);
+  }
+}
+
+function validateViperSkillAndResearchClosure() {
+  const viperBlock = getXmlBlock(texts.unitData, 'CUnit', 'ViperAbathur');
+  for (const abilityId of ['ViperConsumeStructure', 'Yoink', 'ParasiticBomb']) {
+    assertBlockIncludes(viperBlock, 'XMAbathur UnitData.xml', `AbilArray${abilityId === 'ParasiticBomb' ? ' index="3"' : ''} Link="${abilityId}"`, `ViperAbathur must mount ${abilityId}`);
+  }
+
+  const cardChecks = [
+    ['ViperConsume', 'ViperConsumeStructure,Execute'],
+    ['FaceEmbrace', 'Yoink,Execute'],
+    ['ParasiticBomb', 'ParasiticBomb,Execute'],
+  ];
+  for (const [face, command] of cardChecks) {
+    assertBlockIncludes(viperBlock, 'XMAbathur UnitData.xml', `Face="${face}" Type="AbilCmd" AbilCmd="${command}"`, `ViperAbathur card must expose ${face} -> ${command}`);
+  }
+  assertBlockIncludes(viperBlock, 'XMAbathur UnitData.xml', 'Face="ViperImprovedCastRangePassive" Type="Passive" Requirements="HaveViperImprovedCastRange"', 'ViperAbathur must show improved cast range passive after research');
+  assertBlockIncludes(viperBlock, 'XMAbathur UnitData.xml', 'Face="ViperAbductImprovedStunPassive" Type="Passive" Requirements="HaveViperAbductImprovedStun"', 'ViperAbathur must show improved abduct stun passive after research');
+
+  const sharedViperBlock = getXmlBlock(texts.unitData, 'CUnit', 'Viper');
+  assertBlockNotIncludes(sharedViperBlock, 'XMAbathur UnitData.xml', 'Face="ViperConsume" Type="AbilCmd" AbilCmd="ViperConsumeStructure,Execute"', 'shared Viper must not be the Abathur consume command-card owner');
+  assertBlockNotIncludes(sharedViperBlock, 'XMAbathur UnitData.xml', 'Face="FaceEmbrace" Type="AbilCmd" AbilCmd="Yoink,Execute"', 'shared Viper must not be the Abathur abduct command-card owner');
+  assertBlockNotIncludes(sharedViperBlock, 'XMAbathur UnitData.xml', 'AbilArray Link="Yoink"', 'shared Viper must not mount Yoink for Abathur-specific closure');
+
+  for (const buttonId of [
+    'ViperConsume',
+    'FaceEmbrace',
+    'ParasiticBomb',
+    'EvolveViperImprovedCastRange',
+    'EvolveViperImprovedCastRangeLocked',
+    'EvolveViperAbductImprovedStun',
+    'EvolveViperAbductImprovedStunLocked',
+    'ViperImprovedCastRangePassive',
+    'ViperAbductImprovedStunPassive',
+  ]) {
+    assertXmlBlock(texts.buttonData, 'CButton', buttonId, 'XMAbathur ButtonData.xml', `missing Viper button ${buttonId}`);
+  }
+
+  const consumeAbility = getXmlBlock(texts.abilData, 'CAbilEffectTarget', 'ViperConsumeStructure');
+  assertBlockIncludes(consumeAbility, 'XMAbathur AbilData.xml', 'Effect index="0" value="ViperConsumeStructureLaunchMissile"', 'ViperConsumeStructure must launch its consume effect');
+  assertBlockIncludes(consumeAbility, 'XMAbathur AbilData.xml', 'CmdButtonArray index="Execute" DefaultButtonFace="ViperConsume"', 'ViperConsumeStructure must use ViperConsume button');
+
+  const yoinkAbility = getXmlBlock(texts.abilData, 'CAbilEffectTarget', 'Yoink');
+  assertBlockIncludes(yoinkAbility, 'XMAbathur AbilData.xml', 'Effect index="0" value="YoinkStartSwitch"', 'Yoink must trigger YoinkStartSwitch');
+  assertBlockIncludes(yoinkAbility, 'XMAbathur AbilData.xml', 'CmdButtonArray index="Execute" DefaultButtonFace="FaceEmbrace"', 'Yoink must use FaceEmbrace button');
+
+  const parasiticAbility = getXmlBlock(texts.abilData, 'CAbilEffectTarget', 'ParasiticBomb');
+  assertBlockIncludes(parasiticAbility, 'XMAbathur AbilData.xml', 'Effect index="0" value="ParasiticBombLM"', 'ParasiticBomb must launch its missile/effect chain');
+  assertBlockIncludes(parasiticAbility, 'XMAbathur AbilData.xml', 'Vital index="Energy" value="125"', 'ParasiticBomb must use the StarCoop energy cost');
+  assertBlockIncludes(parasiticAbility, 'XMAbathur AbilData.xml', 'TargetFilters value="Air,Visible;Self,Player,Ally,Neutral,Structure,Stasis,Invulnerable"', 'ParasiticBomb must keep the StarCoop air-target filter');
+  assertBlockIncludes(parasiticAbility, 'XMAbathur AbilData.xml', 'CmdButtonArray index="Execute" DefaultButtonFace="ParasiticBomb"', 'ParasiticBomb must use ParasiticBomb button');
+
+  for (const effectId of [
+    'ViperConsumeStructureLaunchMissile',
+    'ViperConsumeStructureCreatePersistent',
+    'ViperConsumeStructureApplyBehavior',
+    'ViperConsumeStructureRemoveBehavior',
+    'ViperConsumeStructurePeriodicSet',
+    'ViperConsumeStructureModifyTarget',
+    'ViperConsumeStructureModifyCaster',
+    'YoinkStartSwitch',
+    'YoinkStartCreatePlaceholder',
+    'YoinkStartSet',
+    'YoinkTeleport',
+    'YoinkEnemyStun',
+    'ParasiticBombLM',
+    'ParasiticBombInitialSet',
+    'ParasiticBombApplyBehavior',
+    'ParasiticBombTimerApplyBehavior',
+    'ParasiticBombSearchEffect',
+    'ParasiticBombDotDamage',
+  ]) {
+    assertAnyXmlBlock(texts.effectData, effectId, 'XMAbathur EffectData.xml', `missing Viper effect ${effectId}`);
+  }
+  assertBlockIncludes(getAnyXmlBlock(texts.effectData, 'ViperConsumeStructureCreatePersistent'), 'XMAbathur EffectData.xml', 'PeriodicEffectArray value="ViperConsumeStructurePeriodicSet"', 'Viper consume persistent must periodically damage target and restore caster energy');
+  assertBlockIncludes(getAnyXmlBlock(texts.effectData, 'YoinkStartSwitch'), 'XMAbathur EffectData.xml', 'EffectArray value="YoinkTeleport"', 'Yoink chain must move the target');
+  assertBlockIncludes(getAnyXmlBlock(texts.effectData, 'YoinkStartSwitch'), 'XMAbathur EffectData.xml', 'EffectArray value="YoinkEnemyStun"', 'Yoink chain must apply stun support behavior');
+  assertBlockIncludes(getAnyXmlBlock(texts.effectData, 'ParasiticBombInitialSet'), 'XMAbathur EffectData.xml', 'EffectArray value="ParasiticBombApplyBehavior"', 'ParasiticBomb must apply its damage behavior');
+
+  for (const behaviorId of ['ViperConsumeStructure', 'YoinkEnemyStun', 'ParasiticBomb', 'ParasiticBombTimer']) {
+    assertXmlBlock(texts.behaviorData, 'CBehaviorBuff', behaviorId, 'XMAbathur BehaviorData.xml', `missing Viper behavior ${behaviorId}`);
+  }
+
+  for (const unitId of ['ViperConsumeStructureWeapon', 'ParasiticBombMissile']) {
+    assertXmlBlock(texts.unitData, 'CUnit', unitId, 'XMAbathur UnitData.xml', `missing Viper support unit ${unitId}`);
+  }
+
+  const infestationPitResearch = getXmlBlock(texts.abilData, 'CAbilResearch', 'InfestationPitResearch');
+  assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'InfoArray index="Research9" Time="60" Upgrade="ViperImprovedCastRange"', 'InfestationPitResearch Research9 must research ViperImprovedCastRange');
+  assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'DefaultButtonFace="EvolveViperImprovedCastRange" State="Restricted" Requirements="LearnViperImprovedCastRange"', 'ViperImprovedCastRange research must use the Learn requirement');
+  assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'InfoArray index="Research10" Time="60" Upgrade="ViperAbductImprovedStun"', 'InfestationPitResearch Research10 must research ViperAbductImprovedStun');
+  assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'DefaultButtonFace="EvolveViperAbductImprovedStun" State="Restricted" Requirements="LearnViperAbductImprovedStun"', 'ViperAbductImprovedStun research must use the Learn requirement');
+
+  const castRangeUpgrade = getXmlBlock(texts.upgradeData, 'CUpgrade', 'ViperImprovedCastRange');
+  for (const abilityReference of ['Abil,Yoink,Range[0]', 'Abil,ViperConsumeStructure,Range[0]', 'Abil,ParasiticBomb,Range[0]']) {
+    assertBlockIncludes(castRangeUpgrade, 'XMAbathur UpgradeData.xml', `Reference="${abilityReference}" Value="4"`, `ViperImprovedCastRange must affect ${abilityReference}`);
+  }
+
+  const stunUpgrade = getXmlBlock(texts.upgradeData, 'CUpgrade', 'ViperAbductImprovedStun');
+  assertBlockIncludes(stunUpgrade, 'XMAbathur UpgradeData.xml', 'Reference="Behavior,YoinkEnemyStun,Duration" Value="5.000000"', 'ViperAbductImprovedStun must extend YoinkEnemyStun duration');
+
+  for (const requirementId of ['LearnViperImprovedCastRange', 'LearnViperAbductImprovedStun']) {
+    assertXmlBlock(texts.requirementData, 'CRequirement', requirementId, 'XMAbathur RequirementData.xml', `missing Viper learn requirement ${requirementId}`);
+  }
+  for (const requirementId of ['HaveViperImprovedCastRange', 'HaveViperAbductImprovedStun']) {
+    if (!getXmlBlock(texts.requirementData, 'CRequirement', requirementId) && !getXmlBlock(texts.finalRequirementData, 'CRequirement', requirementId)) {
+      errors.push(`XMAbathur/XMFinal RequirementData.xml: missing Viper passive requirement ${requirementId}`);
+    }
+  }
+  for (const nodeId of [
+    'CountUpgradeViperImprovedCastRangeQueuedOrBetter',
+    'CountUpgradeViperAbductImprovedStunQueuedOrBetter',
+    'NotCountUpgradeViperImprovedCastRangeQueuedOrBetter',
+    'NotCountUpgradeViperAbductImprovedStunQueuedOrBetter',
+  ]) {
+    assertAnyXmlBlock(texts.requirementNodeData, nodeId, 'XMAbathur RequirementNodeData.xml', `missing Viper learn requirement node ${nodeId}`);
+  }
+}
+
 function validateToxicNestClosure() {
   assertXmlBlock(texts.unitData, 'CUnit', 'ToxicNest', 'XMAbathur UnitData.xml', 'missing ToxicNest');
   assertXmlBlock(texts.unitData, 'CUnit', 'ToxicNestBurrowed', 'XMAbathur UnitData.xml', 'missing ToxicNestBurrowed');
@@ -218,7 +502,24 @@ function validateRuntimeFullLevelClosure() {
 }
 
 function validateRuntimePollutionGuard() {
-  for (const unitId of ['NydusNetwork', 'GreaterNydusWorm', 'Roach', 'RoachCorpser', 'Ravager']) {
+  const blockedPublicUnits = [
+    'NydusNetwork',
+    'GreaterNydusWorm',
+    'Roach',
+    'RoachCorpser',
+    'Ravager',
+    'SwarmHost',
+    'SwarmHostBurrowed',
+    'Mutalisk',
+    'GuardianMP',
+    'Devourer',
+    'Viper',
+    'Brutalisk',
+    'BrutaliskBurrowed',
+    'HotSLeviathan',
+  ];
+
+  for (const unitId of blockedPublicUnits) {
     assertIncludes(
       texts.runtime,
       'XMFinal LibE0EAE146_AbathurRuntime.galaxy',
@@ -227,7 +528,40 @@ function validateRuntimePollutionGuard() {
     );
   }
 
-  for (const unitId of ['HatcheryAbathur', 'LarvaAbathur', 'DroneAbathur', 'RoachVile', 'RavagerAbathur', 'RavagerAbathurBurrowed', 'ToxicNest', 'ToxicNestBurrowed']) {
+  const allowedPrivateUnits = [
+    'HatcheryAbathur',
+    'LairAbathur',
+    'HiveAbathur',
+    'LarvaAbathur',
+    'DroneAbathur',
+    'OverlordAbathur',
+    'ExtractorAbathur',
+    'SpawningPoolAbathur',
+    'EvolutionChamberAbathur',
+    'RoachWarrenAbathur',
+    'InfestationPitAbathur',
+    'SpireAbathur',
+    'GreaterSpireAbathur',
+    'SpineCrawlerAbathur',
+    'SporeCrawlerAbathur',
+    'QueenCoopAbathur',
+    'MutaliskAbathur',
+    'DevourerAbathur',
+    'AbathurGuardian',
+    'SwarmHostAbathur',
+    'SwarmHostAbathurBurrowed',
+    'ViperAbathur',
+    'RoachVile',
+    'RavagerAbathur',
+    'RavagerAbathurBurrowed',
+    'BrutaliskAbathur',
+    'BrutaliskAbathurBurrowed',
+    'LeviathanAbathur',
+    'ToxicNest',
+    'ToxicNestBurrowed',
+  ];
+
+  for (const unitId of allowedPrivateUnits) {
     assertIncludes(
       texts.runtime,
       'XMFinal LibE0EAE146_AbathurRuntime.galaxy',
@@ -236,7 +570,39 @@ function validateRuntimePollutionGuard() {
     );
   }
 
-  for (const abilityId of ['MorphRoachVileToRavager', 'RavagerAbathurCorrosiveBile', 'BurrowRavagerAbathurDown', 'BurrowRavagerAbathurUp']) {
+  const allowedPrivateAbilities = [
+    'MorphRoachVileToRavager',
+    'RavagerAbathurCorrosiveBile',
+    'BurrowRavagerAbathurDown',
+    'BurrowRavagerAbathurUp',
+    'MutaliskMorphToDevourer',
+    'MutaliskMorphToGuardian',
+    'MorphToSwarmHostBurrowedAbathur',
+    'MorphToSwarmHostAbathur',
+    'EvolveToBrutaliskRoachVile',
+    'EvolveToBrutaliskRavager',
+    'EvolveToBrutaliskSwarmHost',
+    'EvolveToLeviathanMutalisk',
+    'EvolveToLeviathanGuardianMP',
+    'EvolveToLeviathanDevourer',
+    'EvolveToLeviathanViper',
+    'AbathurDeepTunnel',
+    'AbathurDeepTunnelImproved',
+    'BrutaliskDeepTunnel',
+    'SymbioteCarapace',
+    'BurrowBrutaliskAbathurDown',
+    'BurrowBrutaliskAbathurUp',
+    'CorrosiveAcid',
+    'LocustLaunch',
+    'ViperConsumeStructure',
+    'Yoink',
+    'ParasiticBomb',
+    'SpawnToxicNest',
+    'AbathurMend',
+    'BiomassTargetMark',
+  ];
+
+  for (const abilityId of allowedPrivateAbilities) {
     assertIncludes(
       texts.runtime,
       'XMFinal LibE0EAE146_AbathurRuntime.galaxy',
@@ -244,6 +610,61 @@ function validateRuntimePollutionGuard() {
       `Abathur runtime must allow ${abilityId}`,
     );
   }
+}
+
+function validateRuntimeSquadClosure() {
+  const abathurStartSquads = getFunctionBlock(texts.commanderStartSquads, 'libE0EAE146_gf_AbathurCreateMapStartSquad');
+  const abathurCargoSquads = getFunctionBlock(texts.commanderStartSquads, 'libE0EAE146_gf_AbathurCreateCargoSquad');
+  const combined = `${abathurStartSquads}\n${abathurCargoSquads}`;
+
+  for (const unitId of [
+    'RoachVile',
+    'RavagerAbathur',
+    'SwarmHostAbathur',
+    'QueenCoopAbathur',
+    'MutaliskAbathur',
+    'AbathurGuardian',
+    'DevourerAbathur',
+    'ViperAbathur',
+    'BrutaliskAbathur',
+    'LeviathanAbathur',
+  ]) {
+    assertIncludes(combined, 'XMFinal LibE0EAE146_CommanderStartSquads.galaxy', `"${unitId}"`, `Abathur start/cargo squads must reference ${unitId}`);
+  }
+
+  for (const unitId of ['"Roach"', '"RoachCorpser"', '"Viper"', '"Brutalisk"', '"HotSLeviathan"', '"SwarmHost"', '"QueenCoop"', '"Mutalisk"', '"GuardianMP"', '"DevourerMP"']) {
+    assertNotIncludes(combined, 'XMFinal LibE0EAE146_CommanderStartSquads.galaxy', unitId, `Abathur start/cargo squads must not create shared ${unitId}`);
+  }
+}
+
+function validateTestBenchAbilitySmoke() {
+  const abathurSmoke = getFunctionBlock(texts.commanderUnitAbilities, 'libE0EAE146_gf_XMTestBench_AbathurUnitAbilities');
+
+  const smokeEntryCount = countOccurrences(abathurSmoke, 'XMTestBench_CheckAbilityProfileEntry');
+  if (smokeEntryCount !== 67) {
+    errors.push(`XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy: Abathur smoke expected 67 entries, actual ${smokeEntryCount}`);
+  }
+
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', 'XMTestBench_LogAbilityProfileDone(lp_player, "Abathur", lp_scenarioKind, 67)', 'Abathur smoke done count must match the private-chain entry count');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"DevourerAbathur", "CorrosiveAcidDevourer", "CorrosiveAcid"', 'Abathur Devourer smoke must check CorrosiveAcid');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"DevourerAbathur", "EvolveToLeviathan", "EvolveToLeviathanDevourer"', 'Abathur Devourer smoke must check private Leviathan evolution');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"AbathurGuardian", "EvolveToLeviathan", "EvolveToLeviathanGuardianMP"', 'Abathur Guardian smoke must check private Leviathan evolution');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"MutaliskAbathur", "MorphToGuardian", "MutaliskMorphToGuardian"', 'Abathur Mutalisk smoke must check Guardian morph');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"MutaliskAbathur", "EvolveToLeviathan", "EvolveToLeviathanMutalisk"', 'Abathur Mutalisk smoke must check private Leviathan evolution');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"SwarmHostAbathur", "EvolveToBrutalisk", "EvolveToBrutaliskSwarmHost"', 'Abathur SwarmHost smoke must check private Brutalisk evolution');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"SwarmHostAbathurBurrowed", "EvolveToBrutalisk", "EvolveToBrutaliskSwarmHost"', 'Abathur burrowed SwarmHost smoke must check private Brutalisk evolution');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"RoachVile", "EvolveToBrutalisk", "EvolveToBrutaliskRoachVile"', 'Abathur RoachVile smoke must check private Brutalisk evolution');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"RavagerAbathur", "EvolveToBrutalisk", "EvolveToBrutaliskRavager"', 'Abathur Ravager smoke must check private Brutalisk evolution');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"ViperAbathur", "ViperConsume", "ViperConsumeStructure"', 'Abathur Viper smoke must check ViperConsumeStructure');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"ViperAbathur", "EvolveToLeviathan", "EvolveToLeviathanViper"', 'Abathur Viper smoke must check private Leviathan evolution');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"BrutaliskAbathur", "BurrowDown", "BurrowBrutaliskAbathurDown"', 'Abathur Brutalisk smoke must check private burrow down');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"BrutaliskAbathurBurrowed", "BurrowUp", "BurrowBrutaliskAbathurUp"', 'Abathur burrowed Brutalisk smoke must check private burrow up');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"LeviathanAbathur", "SymbioteCarapace", "SymbioteCarapace"', 'Abathur Leviathan smoke must check SymbioteCarapace');
+  assertIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"LeviathanAbathur", "AbathurBrutaliskLeviathanSymbiote", "", "HaveBrutaliskLeviathanSymbiote"', 'Abathur Leviathan smoke must check symbiote passive');
+  assertNotIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"DevourerAbathur", "", "", "", "unit_card_no_specials"', 'Abathur Devourer smoke must not claim no special card entries');
+  assertNotIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"BrutaliskAbathur", "BurrowDown", "BurrowBrutaliskDown"', 'Abathur Brutalisk smoke must not check public BurrowBrutaliskDown');
+  assertNotIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"BrutaliskAbathur", "CommanderAbathurBrutaliskSymbiote"', 'Abathur Brutalisk smoke must not use missing CommanderAbathurBrutaliskSymbiote button');
+  assertNotIncludes(abathurSmoke, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', '"ViperAbathur", "ViperConsume", "ViperConsumption"', 'Abathur Viper smoke must not check the obsolete ViperConsumption chain');
 }
 
 function readText(filePath) {
@@ -258,8 +679,8 @@ function getXmlBlock(text, tag, id) {
   const activeText = stripXmlComments(text);
   const escapedId = escapeRegExp(id);
   return (
-    activeText.match(new RegExp(`<${tag}\\s+[^>]*id="${escapedId}"[^>]*/\\s*>`))?.[0] ??
     activeText.match(new RegExp(`<${tag}\\s+[^>]*id="${escapedId}"[^>]*>[\\s\\S]*?<\\/${tag}>`))?.[0] ??
+    activeText.match(new RegExp(`<${tag}\\s+[^>]*id="${escapedId}"[^>]*/\\s*>`))?.[0] ??
     ''
   );
 }
@@ -271,6 +692,36 @@ function getUserInstance(text, userId, instanceId) {
   }
 
   return userBlock.match(new RegExp(`<Instances\\s+Id="${escapeRegExp(instanceId)}"[\\s\\S]*?<\\/Instances>`))?.[0] ?? '';
+}
+
+function getFunctionBlock(text, functionName) {
+  const start = text.indexOf(`${functionName} `);
+  if (start === -1) {
+    errors.push(`Galaxy source: missing function ${functionName}`);
+    return '';
+  }
+
+  const bodyStart = text.indexOf('{', start);
+  if (bodyStart === -1) {
+    errors.push(`Galaxy source: missing function body for ${functionName}`);
+    return '';
+  }
+
+  let depth = 0;
+  for (let index = bodyStart; index < text.length; index += 1) {
+    const char = text[index];
+    if (char === '{') {
+      depth += 1;
+    } else if (char === '}') {
+      depth -= 1;
+      if (depth === 0) {
+        return text.slice(start, index + 1);
+      }
+    }
+  }
+
+  errors.push(`Galaxy source: unterminated function body for ${functionName}`);
+  return '';
 }
 
 function openerField(instanceBlock, field) {
@@ -290,12 +741,54 @@ function assertXmlBlock(text, tag, id, source, message) {
   }
 }
 
+function getAnyXmlBlock(text, id) {
+  for (const tag of [
+    'CAbilEffectTarget',
+    'CEffectLaunchMissile',
+    'CEffectCreatePersistent',
+    'CEffectApplyBehavior',
+    'CEffectRemoveBehavior',
+    'CEffectSet',
+    'CEffectModifyUnit',
+    'CEffectCreateUnit',
+    'CEffectTeleport',
+    'CEffectEnumArea',
+    'CEffectDamage',
+    'CBehaviorBuff',
+    'CUnit',
+    'CUpgrade',
+    'CRequirement',
+    'CRequirementCountUpgrade',
+    'CRequirementNot',
+    'CButton',
+  ]) {
+    const block = getXmlBlock(text, tag, id);
+    if (block) {
+      return block;
+    }
+  }
+
+  return '';
+}
+
+function assertAnyXmlBlock(text, id, source, message) {
+  if (!getAnyXmlBlock(text, id)) {
+    errors.push(`${source}: ${message}`);
+  }
+}
+
 function assertBlockIncludes(block, source, needle, message) {
   if (!block) {
     errors.push(`${source}: ${message}; source block is missing`);
     return;
   }
   assertIncludes(block, source, needle, message);
+}
+
+function assertNotIncludes(text, source, needle, message) {
+  if (text.includes(needle)) {
+    errors.push(`${source}: ${message}`);
+  }
 }
 
 function assertBlockNotIncludes(block, source, needle, message) {
@@ -318,6 +811,10 @@ function assertNoMatch(text, pattern, message) {
   if (pattern.test(text)) {
     errors.push(message);
   }
+}
+
+function countOccurrences(text, needle) {
+  return text.split(needle).length - 1;
 }
 
 function escapeRegExp(value) {

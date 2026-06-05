@@ -3732,7 +3732,41 @@
     <CmdButtonArray index="Execute" DefaultButtonFace="NovaWeaponImprovedCanisterRifleSnipe" Requirements="HaveNovaStealthSuit" />
     <Effect index="0" value="NovaWeaponImprovedCanisterRifleSnipeSet" />
   </CAbilEffectTarget>
-  <CAbilMorph id="ObserverSiegeMorphtoObserver">
+  <CAbilMorph id="ObserverMorphtoObserverSiegeArtanis">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="MorphtoObserverSiege">
+      <Flags index="ToSelection" value="1" />
+    </CmdButtonArray>
+    <Flags index="BestUnit" value="1" />
+    <Flags index="DisableAbils" value="1" />
+    <Flags index="FastBuild" value="1" />
+    <Flags index="IgnoreFacing" value="1" />
+    <!--Flags index="Transient" value="1"/-->
+    <RefundFraction>
+      <Resource index="Minerals" value="0" />
+      <Resource index="Vespene" value="0" />
+      <Resource index="Terrazine" value="0" />
+      <Resource index="Custom" value="0" />
+    </RefundFraction>
+    <InfoArray Score="1" Unit="ObserverSiegeModeArtanis">
+      <SectionArray index="Abils">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Mover">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Duration" value="0.75" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="ObserverSiegeMorphtoObserverArtanis">
     <EditorCategories value="Race:Terran,AbilityorEffectType:Units" />
     <CmdButtonArray index="Execute" DefaultButtonFace="MorphtoObserver">
       <Flags index="ToSelection" value="1" />
@@ -3748,7 +3782,7 @@
       <Resource index="Terrazine" value="0" />
       <Resource index="Custom" value="0" />
     </RefundFraction>
-    <InfoArray Score="1" Unit="Observer">
+    <InfoArray Score="1" Unit="ObserverArtanis">
       <SectionArray index="Abils">
         <DurationArray index="Duration" value="0.75" />
       </SectionArray>
@@ -4322,7 +4356,7 @@
     </InfoArray>
   </CAbilTrain>
   <CAbilWarpTrain id="RoboticsFacilityWarpTrain">
-    <InfoArray index="Train2" Unit="Observer" />
+    <InfoArray index="Train2" removed="1" />
     <InfoArray index="Train3" Unit="Reaver" />
     <InfoArray index="Train4" Unit="ImmortalAiur" />
   </CAbilWarpTrain>
@@ -6086,7 +6120,7 @@
   <CAbilTrain id="RoboticsFacilityTrainArtanis" parent="RoboticsFacilityTrain">
     <InfoArray index="Train2">
       <Button DefaultButtonFace="Observer" State="Available" />
-      <Unit value="Observer" />
+      <Unit value="ObserverArtanis" />
     </InfoArray>
     <InfoArray index="Train4">
       <Button DefaultButtonFace="Immortal" State="Available" />
@@ -6106,7 +6140,7 @@
   <CAbilWarpTrain id="RoboticsFacilityWarpTrainArtanis" parent="RoboticsFacilityWarpTrain">
     <InfoArray index="Train2">
       <Button DefaultButtonFace="Observer" State="Available" />
-      <Unit value="Observer" />
+      <Unit value="ObserverArtanis" />
     </InfoArray>
     <InfoArray index="Train4">
       <Button DefaultButtonFace="Immortal" State="Available" />

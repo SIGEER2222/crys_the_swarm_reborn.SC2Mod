@@ -119,6 +119,78 @@ const protossClosures = {
   Zeratul: { nexusTrain: 'NexusTrainZeratul', build: 'ZeratulBuild' },
 };
 
+const protossObserverClosures = {
+  Artanis: {
+    normal: 'ObserverArtanis',
+    siege: 'ObserverSiegeModeArtanis',
+    forwardMorph: 'ObserverMorphtoObserverSiegeArtanis',
+    backMorph: 'ObserverSiegeMorphtoObserverArtanis',
+    trainAbilities: [
+      { tag: 'CAbilTrain', id: 'RoboticsFacilityTrainArtanis' },
+      { tag: 'CAbilWarpTrain', id: 'RoboticsFacilityWarpTrainArtanis' },
+    ],
+    productionBuildings: ['RoboticsFacilityArtanis', 'RoboticsFacilityWarpArtanis'],
+    runtimeCount: 13,
+    observerIndex: 2,
+    siegeIndex: 12,
+    startSquadObserver: 'ObserverArtanis',
+    upgradeChecks: [
+      {
+        id: 'MasteryArtanisShieldRegen',
+        includes: [
+          'Reference="Unit,ObserverArtanis,ShieldRegenRate"',
+          '<AffectedUnitArray value="ObserverArtanis" />',
+        ],
+      },
+    ],
+  },
+  Fenix: {
+    normal: 'ObserverFenix',
+    siege: 'ObserverSiegeModeFenix',
+    forwardMorph: 'ObserverMorphtoObserverSiegeFenix',
+    backMorph: 'ObserverSiegeMorphtoObserverFenix',
+    trainAbilities: [{ tag: 'CAbilTrain', id: 'RoboticsFacilityTrainFenix' }],
+    productionBuildings: ['RoboticsFacilityFenix'],
+    runtimeCount: 13,
+    observerIndex: 2,
+    siegeIndex: 12,
+    startSquadObserver: 'ObserverFenix',
+    upgradeChecks: [
+      {
+        id: 'CommanderPrestigeFenixDataWeb',
+        includes: [
+          'Reference="Unit,ObserverFenix,CostResource[Minerals]"',
+          'Reference="Unit,ObserverSiegeModeFenix,LifeMax"',
+        ],
+      },
+      {
+        id: 'FenixCommander',
+        includes: [
+          'Reference="Unit,ObserverFenix,Description"',
+          'Reference="Unit,ObserverSiegeModeFenix,CostResource[Minerals]"',
+        ],
+      },
+    ],
+  },
+  Karax: {
+    normal: 'ObserverKarax',
+    siege: 'ObserverSiegeModeKarax',
+    forwardMorph: 'ObserverMorphtoObserverSiegeKarax',
+    backMorph: 'ObserverSiegeMorphtoObserverKarax',
+    trainAbilities: [{ tag: 'CAbilTrain', id: 'RoboticsFacilityTrainKarax' }],
+    productionBuildings: ['RoboticsFacilityKarax'],
+    runtimeCount: 15,
+    observerIndex: 1,
+    siegeIndex: 14,
+    upgradeChecks: [
+      {
+        id: 'KaraxCommander',
+        includes: ['Reference="Unit,ObserverKarax,Description"'],
+      },
+    ],
+  },
+};
+
 const terranClosures = {
   Raynor: {
     commandCenterTrain: 'CommandCenterTrainRaynor',
@@ -372,6 +444,39 @@ function assertMatches(text, source, pattern, message) {
   }
 }
 
+function assertNotMatches(text, source, pattern, message) {
+  if (pattern.test(text)) {
+    errors.push(`${source}: ${message}`);
+  }
+}
+
+function extractGalaxyFunction(text, signature) {
+  const start = text.indexOf(signature);
+  if (start < 0) {
+    return '';
+  }
+
+  const firstBrace = text.indexOf('{', start);
+  if (firstBrace < 0) {
+    return '';
+  }
+
+  let depth = 0;
+  for (let index = firstBrace; index < text.length; index += 1) {
+    const char = text[index];
+    if (char === '{') {
+      depth += 1;
+    } else if (char === '}') {
+      depth -= 1;
+      if (depth === 0) {
+        return text.slice(start, index + 1);
+      }
+    }
+  }
+
+  return '';
+}
+
 function validateDependencies() {
   const activeDocumentInfo = stripXmlComments(readText(path.join(xmFinalRoot, 'DocumentInfo')));
   const documentHeaderDependencies = parseDocumentHeaderDependencies(path.join(xmFinalRoot, 'DocumentHeader'));
@@ -533,6 +638,135 @@ function validateProtossClosures() {
       new RegExp(`<AbilArray[^>]*Link="${escapeRegExp(closure.build)}"`),
       `${opener.Worker} must mount ${closure.build}`,
     );
+  }
+}
+
+function validateProtossObserverUnitData(commander, closure, unitData) {
+  const source = `XM${commander} UnitData.xml`;
+  const normalUnitBlock = getXmlBlock(unitData, 'CUnit', closure.normal);
+  const siegeUnitBlock = getXmlBlock(unitData, 'CUnit', closure.siege);
+
+  assertMatches(normalUnitBlock, source, new RegExp(`<CUnit\\s+id="${escapeRegExp(closure.normal)}"\\s+parent="Observer"`), `${closure.normal} must be a private Observer-derived unit`);
+  assertMatches(normalUnitBlock, source, new RegExp(`<AbilArray[^>]*Link="${escapeRegExp(closure.forwardMorph)}"`), `${closure.normal} must mount ${closure.forwardMorph}`);
+  assertMatches(normalUnitBlock, source, new RegExp(`<LayoutButtons[^>]*AbilCmd="${escapeRegExp(closure.forwardMorph)},Execute"`), `${closure.normal} command card must expose ${closure.forwardMorph}`);
+  assertNotMatches(normalUnitBlock, source, /Link="ObserverMorphtoObserverSiege"/, `${closure.normal} must not mount the generic Observer surveillance morph`);
+
+  assertMatches(siegeUnitBlock, source, new RegExp(`<CUnit\\s+id="${escapeRegExp(closure.siege)}"\\s+parent="${escapeRegExp(closure.normal)}"`), `${closure.siege} must derive from ${closure.normal}`);
+  assertMatches(siegeUnitBlock, source, new RegExp(`<AbilArray[^>]*Link="${escapeRegExp(closure.backMorph)}"`), `${closure.siege} must mount ${closure.backMorph}`);
+  assertMatches(siegeUnitBlock, source, new RegExp(`<LayoutButtons[^>]*AbilCmd="${escapeRegExp(closure.backMorph)},Execute"`), `${closure.siege} command card must expose ${closure.backMorph}`);
+  assertNotMatches(siegeUnitBlock, source, /Link="ObserverSiegeMorphtoObserver"/, `${closure.siege} must not mount the generic Observer back-morph`);
+}
+
+function validateProtossObserverMorphs(commander, closure, abilData) {
+  const source = `XM${commander} AbilData.xml`;
+  const forwardMorphBlock = getXmlBlock(abilData, 'CAbilMorph', closure.forwardMorph);
+  const backMorphBlock = getXmlBlock(abilData, 'CAbilMorph', closure.backMorph);
+
+  assertMatches(forwardMorphBlock, source, new RegExp(`<InfoArray[^>]*Unit="${escapeRegExp(closure.siege)}"`), `${closure.forwardMorph} must morph into ${closure.siege}`);
+  assertNotMatches(forwardMorphBlock, source, /<InfoArray[^>]*Unit="ObserverSiegeMode"/, `${closure.forwardMorph} must not morph into the generic ObserverSiegeMode`);
+  assertMatches(backMorphBlock, source, new RegExp(`<InfoArray[^>]*Unit="${escapeRegExp(closure.normal)}"`), `${closure.backMorph} must morph back into ${closure.normal}`);
+  assertNotMatches(backMorphBlock, source, /<InfoArray[^>]*Unit="Observer"/, `${closure.backMorph} must not morph back into the generic Observer`);
+}
+
+function validateProtossObserverProduction(commander, closure, unitData, abilData) {
+  for (const trainAbility of closure.trainAbilities) {
+    const trainBlock = getXmlBlock(abilData, trainAbility.tag, trainAbility.id);
+    assertMatches(trainBlock, `XM${commander} AbilData.xml`, new RegExp(`<Unit\\s+value="${escapeRegExp(closure.normal)}"\\s*/>`), `${trainAbility.id} must produce ${closure.normal}`);
+    assertNotMatches(trainBlock, `XM${commander} AbilData.xml`, /<Unit\s+value="Observer"\s*\/>/, `${trainAbility.id} must not produce the generic Observer`);
+  }
+
+  for (const [index, productionBuilding] of closure.productionBuildings.entries()) {
+    const trainAbility = closure.trainAbilities[Math.min(index, closure.trainAbilities.length - 1)];
+    const productionBlock = getXmlBlock(unitData, 'CUnit', productionBuilding);
+    assertMatches(productionBlock, `XM${commander} UnitData.xml`, new RegExp(`<AbilArray[^>]*Link="${escapeRegExp(trainAbility.id)}"`), `${productionBuilding} must mount ${trainAbility.id}`);
+    assertMatches(productionBlock, `XM${commander} UnitData.xml`, new RegExp(`<TechTreeProducedUnitArray\\s+value="${escapeRegExp(closure.normal)}"`), `${productionBuilding} must advertise ${closure.normal} as produced`);
+    assertNotMatches(productionBlock, `XM${commander} UnitData.xml`, /<TechTreeProducedUnitArray\s+value="Observer"\s*\/>/, `${productionBuilding} must not advertise the generic Observer as produced`);
+  }
+}
+
+function validateProtossObserverActor(commander, closure, actorData) {
+  const actorBlock = getXmlBlock(actorData, 'CActorUnit', closure.normal);
+  assertMatches(actorBlock, `XM${commander} ActorData.xml`, new RegExp(`<CActorUnit\\s+id="${escapeRegExp(closure.normal)}"\\s+parent="Observer"\\s+unitName="${escapeRegExp(closure.normal)}"`), `${closure.normal} actor must bind to the private unit`);
+
+  for (const actorNeedle of [`UnitBirth.${closure.siege}`, `MorphFrom ${closure.normal}; MorphTo ${closure.siege}`, `MorphFrom ${closure.siege}; MorphTo ${closure.normal}`]) {
+    assertIncludes(actorBlock, `XM${commander} ActorData.xml`, actorNeedle, `${closure.normal} actor must handle ${actorNeedle}`);
+  }
+}
+
+function validateProtossObserverUpgrades(commander, closure, upgradeData) {
+  for (const upgradeCheck of closure.upgradeChecks ?? []) {
+    const upgradeBlock = getXmlBlock(upgradeData, 'CUpgrade', upgradeCheck.id);
+    if (!upgradeBlock) {
+      errors.push(`XM${commander} UpgradeData.xml: missing ${upgradeCheck.id}`);
+      continue;
+    }
+
+    for (const requiredText of upgradeCheck.includes) {
+      assertIncludes(upgradeBlock, `XM${commander} UpgradeData.xml`, requiredText, `${upgradeCheck.id} must affect the private observer chain through ${requiredText}`);
+    }
+    assertNotMatches(upgradeBlock, `XM${commander} UpgradeData.xml`, /Reference="Unit,Observer,/, `${upgradeCheck.id} must not affect the generic Observer`);
+    assertNotMatches(upgradeBlock, `XM${commander} UpgradeData.xml`, /Reference="Unit,ObserverSiegeMode,/, `${upgradeCheck.id} must not affect the generic ObserverSiegeMode`);
+  }
+}
+
+function validateProtossObserverXmFinalRoster(commander, closure, rosterText) {
+  const rosterFunction = extractGalaxyFunction(rosterText, `bool libE0EAE146_gf_XMTestBench_${commander}Roster`);
+  assertIncludes(rosterFunction, 'XMFinal LibE0EAE146_CommanderRosters.galaxy', `libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "Observer", "${closure.normal}"`, `${commander} runtime roster must resolve official Observer to ${closure.normal}`);
+  assertIncludes(rosterFunction, 'XMFinal LibE0EAE146_CommanderRosters.galaxy', `"${closure.siege}"`, `${commander} runtime roster must include ${closure.siege}`);
+  assertNotMatches(rosterFunction, 'XMFinal LibE0EAE146_CommanderRosters.galaxy', /CreateRosterUnit\(lp_player,\s*"Observer"/, `${commander} runtime roster must not create the generic Observer directly`);
+}
+
+function validateProtossObserverXmFinalAbilities(commander, closure, unitAbilityText) {
+  const unitAbilityFunction = extractGalaxyFunction(unitAbilityText, `bool libE0EAE146_gf_XMTestBench_${commander}UnitAbilities`);
+  assertIncludes(unitAbilityFunction, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', `"${closure.normal}", "MorphtoObserverSiege", "${closure.forwardMorph}"`, `${commander} unit-ability smoke must check ${closure.normal} -> ${closure.siege}`);
+  assertIncludes(unitAbilityFunction, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', `"${closure.siege}", "MorphtoObserver", "${closure.backMorph}"`, `${commander} unit-ability smoke must check ${closure.siege} -> ${closure.normal}`);
+  assertNotMatches(unitAbilityFunction, 'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy', new RegExp(`CheckAbilityProfileEntry\\(lp_player,\\s*"${escapeRegExp(commander)}",\\s*lp_scenarioKind,\\s*"Observer"`), `${commander} unit-ability smoke must not validate the generic Observer chain`);
+}
+
+function validateProtossObserverStartSquads(commander, closure, startSquadText) {
+  const mapStartFunction = extractGalaxyFunction(startSquadText, `void libE0EAE146_gf_${commander}CreateMapStartSquad`);
+  const cargoFunction = extractGalaxyFunction(startSquadText, `void libE0EAE146_gf_${commander}CreateCargoSquad`);
+
+  if (closure.startSquadObserver) {
+    assertIncludes(mapStartFunction, 'XMFinal LibE0EAE146_CommanderStartSquads.galaxy', `"${closure.startSquadObserver}"`, `${commander} map start squad must use ${closure.startSquadObserver}`);
+    assertIncludes(cargoFunction, 'XMFinal LibE0EAE146_CommanderStartSquads.galaxy', `"${closure.startSquadObserver}"`, `${commander} cargo squad must use ${closure.startSquadObserver}`);
+  }
+  assertNotMatches(mapStartFunction, 'XMFinal LibE0EAE146_CommanderStartSquads.galaxy', /CreateUnitsWithDefaultFacing\(1,\s*"Observer"/, `${commander} map start squad must not spawn the generic Observer`);
+  assertNotMatches(cargoFunction, 'XMFinal LibE0EAE146_CommanderStartSquads.galaxy', /UnitCargoCreate\(lp_container,\s*"Observer"/, `${commander} cargo squad must not load the generic Observer`);
+}
+
+function validateProtossObserverRuntimeRoster(commander, closure, xmFinalUserData) {
+  const runtimeRosterBlock = getUserInstance(xmFinalUserData, 'CommanderRuntimeRoster', commander);
+  const source = `XMFinal GameData/UserData.xml CommanderRuntimeRoster/${commander}`;
+
+  assertMatches(runtimeRosterBlock, source, new RegExp(`<Int Int="${closure.runtimeCount}"><Field Id="Count"\\/><\\/Int>`), `${commander} runtime roster count must include private observer forms`);
+  assertMatches(runtimeRosterBlock, source, new RegExp(`<String String="Observer"><Field Id="OfficialId" Index="${closure.observerIndex}"\\/><\\/String>\\s*<Unit Unit="${escapeRegExp(closure.normal)}"><Field Id="RuntimeUnit" Index="${closure.observerIndex}"\\/><\\/Unit>`), `${commander} official Observer slot must map to ${closure.normal}`);
+  assertMatches(runtimeRosterBlock, source, new RegExp(`<String String="${escapeRegExp(closure.siege)}"><Field Id="OfficialId" Index="${closure.siegeIndex}"\\/><\\/String>\\s*<Unit Unit="${escapeRegExp(closure.siege)}"><Field Id="RuntimeUnit" Index="${closure.siegeIndex}"\\/><\\/Unit>`), `${commander} runtime roster must include ${closure.siege}`);
+  assertNotMatches(runtimeRosterBlock, source, /<Unit Unit="Observer"><Field Id="RuntimeUnit"/, `${commander} runtime roster must not expose generic Observer as a runtime unit`);
+}
+
+function validateProtossObserverPrivateClosures() {
+  const xmFinalBase = path.join(xmFinalRoot, 'Base.SC2Data');
+  const rosterText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderRosters.galaxy'));
+  const unitAbilityText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderUnitAbilities.galaxy'));
+  const startSquadText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderStartSquads.galaxy'));
+  const xmFinalUserData = readText(path.join(xmFinalBase, 'GameData', 'UserData.xml'));
+
+  for (const [commander, closure] of Object.entries(protossObserverClosures)) {
+    const unitData = readText(gameDataPath(commander, 'UnitData.xml'));
+    const abilData = readText(gameDataPath(commander, 'AbilData.xml'));
+    const actorData = readText(gameDataPath(commander, 'ActorData.xml'));
+    const upgradeData = stripXmlComments(readText(gameDataPath(commander, 'UpgradeData.xml')));
+
+    validateProtossObserverUnitData(commander, closure, unitData);
+    validateProtossObserverMorphs(commander, closure, abilData);
+    validateProtossObserverProduction(commander, closure, unitData, abilData);
+    validateProtossObserverActor(commander, closure, actorData);
+    validateProtossObserverUpgrades(commander, closure, upgradeData);
+    validateProtossObserverXmFinalRoster(commander, closure, rosterText);
+    validateProtossObserverXmFinalAbilities(commander, closure, unitAbilityText);
+    validateProtossObserverStartSquads(commander, closure, startSquadText);
+    validateProtossObserverRuntimeRoster(commander, closure, xmFinalUserData);
   }
 }
 
@@ -849,17 +1083,146 @@ function validateHeroReviveRuntime() {
   }
 }
 
+function validateZeratulRuntimeClosure() {
+  const xmFinalBase = path.join(xmFinalRoot, 'Base.SC2Data');
+  const xmFinalHeader = readText(path.join(xmFinalBase, 'LibE0EAE146_h.galaxy'));
+  const zeratulRuntime = readText(path.join(xmFinalBase, 'LibE0EAE146_ZeratulRuntime.galaxy'));
+  const rosterText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderRosters.galaxy'));
+  const heroAbilityText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderHeroAbilities.galaxy'));
+  const unitAbilityText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderUnitAbilities.galaxy'));
+  const xmFinalUserData = readText(path.join(xmFinalBase, 'GameData', 'UserData.xml'));
+  const runtimeRosterBlock = getUserInstance(xmFinalUserData, 'CommanderRuntimeRoster', 'Zeratul');
+  const zeratulRosterFunction = extractGalaxyFunction(rosterText, 'bool libE0EAE146_gf_XMTestBench_ZeratulRoster');
+  const zeratulHeroAbilityFunction = extractGalaxyFunction(heroAbilityText, 'bool libE0EAE146_gf_XMTestBench_ZeratulHeroAbilities');
+  const zeratulUnitAbilityFunction = extractGalaxyFunction(unitAbilityText, 'bool libE0EAE146_gf_XMTestBench_ZeratulUnitAbilities');
+
+  assertIncludes(
+    xmFinalHeader,
+    'XMFinal LibE0EAE146_h.galaxy',
+    'int libE0EAE146_gv_zeratulRuntimePlayer;',
+    'Zeratul runtime player state must be declared',
+  );
+  assertIncludes(
+    zeratulRuntime,
+    'XMFinal LibE0EAE146_ZeratulRuntime.galaxy',
+    'libE0EAE146_gv_zeratulRuntimePlayer = lp_player;',
+    'Zeratul runtime init must bind artifact/panel events to the actual runtime player',
+  );
+
+  const forbiddenRuntimePatterns = [
+    [/TechTreeUpgradeAddLevel\(1,\s*\("ZeratulArtifactTier/, 'artifact tier upgrades must not be granted to hard-coded player 1'],
+    [/TechTreeUpgradeAddLevel\(1,\s*"ProphecyArtifactsDiscovered"/, 'prophecy completion upgrade must not be granted to hard-coded player 1'],
+    [/lib67C0F0E7_gf_ZeratulPanelControl\(1,/, 'Zeratul panel state must not be updated for hard-coded player 1'],
+    [/lib67C0F0E7_gv_cU_GPPanel\[1\]/, 'Zeratul panel animation must not target hard-coded player 1'],
+    [/EventPlayer\(\) == 1/, 'Zeratul upgrade trigger must not filter only hard-coded player 1'],
+    [/UnitGetOwner\(EventUnit\(\)\) == 1/, 'Zeratul prophecy trigger must not filter only hard-coded player 1'],
+    [/libE0EAE146_gf_ZeratulPlaceArtifact\(1\)/, 'Zeratul artifact replacement must not respawn for hard-coded player 1'],
+  ];
+  for (const [pattern, message] of forbiddenRuntimePatterns) {
+    assertNotMatches(zeratulRuntime, 'XMFinal LibE0EAE146_ZeratulRuntime.galaxy', pattern, message);
+  }
+
+  assertIncludes(
+    zeratulRosterFunction,
+    'XMFinal LibE0EAE146_CommanderRosters.galaxy',
+    'libE0EAE146_gf_XMTestBench_CreateRosterUnitAlias(lp_player, "Observer", "ZeratulObserver"',
+    'Zeratul runtime roster must resolve the official Observer slot to private ZeratulObserver',
+  );
+  assertIncludes(
+    zeratulRosterFunction,
+    'XMFinal LibE0EAE146_CommanderRosters.galaxy',
+    '"ZeratulObserverSiegeMode"',
+    'Zeratul runtime roster must include the private observer surveillance form',
+  );
+  assertIncludes(
+    zeratulRosterFunction,
+    'XMFinal LibE0EAE146_CommanderRosters.galaxy',
+    '"ZeratulWarpPrismPhasing"',
+    'Zeratul runtime roster must include the private Void Array phasing form',
+  );
+  assertNotMatches(
+    zeratulRosterFunction,
+    'XMFinal LibE0EAE146_CommanderRosters.galaxy',
+    /CreateRosterUnit\(lp_player,\s*"Observer"/,
+    'Zeratul runtime roster must not create the generic Observer directly',
+  );
+
+  assertNotMatches(
+    zeratulHeroAbilityFunction,
+    'XMFinal LibE0EAE146_CommanderHeroAbilities.galaxy',
+    /TEST_COMMANDER_ABILITIES_EMPTY.*commander=Zeratul/,
+    'Zeratul hero ability smoke must not be treated as empty',
+  );
+  for (const requiredHeroAbility of [
+    '"ZeratulCoop"',
+    '"ZeratulBlink"',
+    '"ZeratulShadowCleave"',
+    '"ZeratulTeleport"',
+    '"ProphecyVision"',
+    '"CommanderPrestigeZeratulVoidSeeker"',
+  ]) {
+    assertIncludes(
+      zeratulHeroAbilityFunction,
+      'XMFinal LibE0EAE146_CommanderHeroAbilities.galaxy',
+      requiredHeroAbility,
+      `Zeratul hero ability smoke must include ${requiredHeroAbility}`,
+    );
+  }
+
+  assertNotMatches(
+    zeratulUnitAbilityFunction,
+    'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy',
+    /CheckAbilityProfileEntry\(lp_player,\s*"Zeratul",\s*lp_scenarioKind,\s*"Observer"/,
+    'Zeratul unit ability smoke must not validate the generic Observer chain',
+  );
+  assertIncludes(
+    zeratulUnitAbilityFunction,
+    'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy',
+    '"ZeratulObserverSiegeMode"',
+    'Zeratul unit ability smoke must include the private observer surveillance form',
+  );
+
+  assertMatches(
+    runtimeRosterBlock,
+    'XMFinal GameData/UserData.xml CommanderRuntimeRoster/Zeratul',
+    /<Int Int="13"><Field Id="Count"\/><\/Int>/,
+    'Zeratul runtime roster count must include observer and Void Array alternate forms',
+  );
+  assertMatches(
+    runtimeRosterBlock,
+    'XMFinal GameData/UserData.xml CommanderRuntimeRoster/Zeratul',
+    /<String String="Observer"><Field Id="OfficialId" Index="2"\/><\/String>\s*<Unit Unit="ZeratulObserver"><Field Id="RuntimeUnit" Index="2"\/><\/Unit>/,
+    'Zeratul official Observer slot must map to private ZeratulObserver',
+  );
+  assertNotMatches(
+    runtimeRosterBlock,
+    'XMFinal GameData/UserData.xml CommanderRuntimeRoster/Zeratul',
+    /<Unit Unit="Observer"><Field Id="RuntimeUnit"/,
+    'Zeratul runtime roster must not expose generic Observer as a runtime unit',
+  );
+  for (const requiredUnit of ['ZeratulObserverSiegeMode', 'ZeratulWarpPrismPhasing']) {
+    assertIncludes(
+      runtimeRosterBlock,
+      'XMFinal GameData/UserData.xml CommanderRuntimeRoster/Zeratul',
+      `Unit="${requiredUnit}"`,
+      `Zeratul runtime roster must include ${requiredUnit}`,
+    );
+  }
+}
+
 validateDependencies();
 validateCommanderAch();
 validateZergClosures();
 validateNoActiveGlobalLarvaUpgradeRefs();
 validateProtossClosures();
+validateProtossObserverPrivateClosures();
 validateSwannClosure();
 validateTerranClosures();
 validateWelcomeToJungleMapInit();
 validateTargetRuntimeInitializers();
 validateHeroStructureRuntime();
 validateHeroReviveRuntime();
+validateZeratulRuntimeClosure();
 
 if (errors.length > 0) {
   console.error('FAIL: private commander opener validation failed');

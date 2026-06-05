@@ -2359,8 +2359,14 @@
     <EffectArray Operation="Subtract" Reference="Unit,Brutalisk,CostResource[Vespene]" Value="300" />
     <EffectArray Operation="Subtract" Reference="Unit,BrutaliskBurrowed,CostResource[Minerals]" Value="500" />
     <EffectArray Operation="Subtract" Reference="Unit,BrutaliskBurrowed,CostResource[Vespene]" Value="300" />
+    <EffectArray Operation="Subtract" Reference="Unit,BrutaliskAbathur,CostResource[Minerals]" Value="500" />
+    <EffectArray Operation="Subtract" Reference="Unit,BrutaliskAbathur,CostResource[Vespene]" Value="300" />
+    <EffectArray Operation="Subtract" Reference="Unit,BrutaliskAbathurBurrowed,CostResource[Minerals]" Value="500" />
+    <EffectArray Operation="Subtract" Reference="Unit,BrutaliskAbathurBurrowed,CostResource[Vespene]" Value="300" />
     <EffectArray Operation="Set" Reference="Unit,Brutalisk,Food" Value="-2" />
     <EffectArray Operation="Set" Reference="Unit,BrutaliskBurrowed,Food" Value="-2" />
+    <EffectArray Operation="Set" Reference="Unit,BrutaliskAbathur,Food" Value="-2" />
+    <EffectArray Operation="Set" Reference="Unit,BrutaliskAbathurBurrowed,Food" Value="-2" />
     <!--EffectArray Operation="Set" Reference="Behavior,AbathurBrutaliskLeviathanFoodUse8,Modification.Food" Value="-8"/-->
     <EffectArray Operation="Set" Reference="Button,RoachWarren,Tooltip" Value="Button/Tooltip/ACAbathurRoachWarren" />
     <EffectArray Operation="Set" Reference="Button,EvolutionChamber,Tooltip" Value="Button/Tooltip/ACAbathurEvolutionChamber" />
@@ -2377,6 +2383,7 @@
     <EffectArray Operation="Set" Reference="Unit,Lair,Description" Value="Button/Tooltip/ACAbathurLair" />
     <EffectArray Operation="Set" Reference="Unit,Hive,Description" Value="Button/Tooltip/ACAbathurHive" />
     <EffectArray Operation="Set" Reference="Unit,HotSLeviathan,Food" Value="-2" />
+    <EffectArray Operation="Set" Reference="Unit,LeviathanAbathur,Food" Value="-2" />
     <LeaderAlias value="" />
     <!--EffectArray Operation="Set" Reference="Actor,RoachVile,CustomUnitStatusAttachment" Value="Ref_Origin"/>
         <EffectArray Operation="Set" Reference="Actor,RoachVile,CustomUnitStatusFrame" Value="Coop_UnitStatus/BiomassUnitStatusFrameRoach"/>
@@ -2406,12 +2413,17 @@
     <EditorCategories value="Race:Zerg" />
     <AffectedUnitArray value="SwarmHost" />
     <AffectedUnitArray value="SwarmHostBurrowed" />
+    <AffectedUnitArray value="SwarmHostAbathur" />
+    <AffectedUnitArray value="SwarmHostAbathurBurrowed" />
   </CUpgrade>
   <CUpgrade id="AbathurEnableSymbiote">
     <EffectArray Reference="Abil,AbathurSymbioteHangerBrutalisk,InfoArray[Ammo1].CountStart" Value="1" />
     <EffectArray Reference="Abil,AbathurSymbioteHangerLeviathan,InfoArray[Ammo1].CountStart" Value="1" />
     <AffectedUnitArray value="Brutalisk" />
     <AffectedUnitArray value="HotSLeviathan" />
+    <AffectedUnitArray value="BrutaliskAbathur" />
+    <AffectedUnitArray value="BrutaliskAbathurBurrowed" />
+    <AffectedUnitArray value="LeviathanAbathur" />
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="AbathurEnemyDeathCreateLocusts">
@@ -2475,8 +2487,12 @@
     <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="37" />
     <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Minerals]" Value="75" />
     <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,DevourerAbathur,CostResource[Minerals]" Value="75" />
+    <EffectArray Operation="Subtract" Reference="Unit,DevourerAbathur,CostResource[Vespene]" Value="25" />
     <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Minerals]" Value="25" />
     <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Vespene]" Value="50" />
+    <EffectArray Operation="Subtract" Reference="Unit,AbathurGuardian,CostResource[Minerals]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,AbathurGuardian,CostResource[Vespene]" Value="50" />
     <!--EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build1].Time" Value="30"/>
         <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build2].Time" Value="7.5"/>
         <EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build3].Time" Value="15"/>
@@ -2503,6 +2519,9 @@
     <AffectedUnitArray value="Roach" />
     <AffectedUnitArray value="RoachVile" />
     <AffectedUnitArray value="Mutalisk" />
+    <AffectedUnitArray value="MutaliskAbathur" />
+    <AffectedUnitArray value="DevourerAbathur" />
+    <AffectedUnitArray value="AbathurGuardian" />
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="AbathurMutaliskHealthScalingUpgrade">
@@ -2708,6 +2727,7 @@
     <EffectArray Operation="Set" Reference="Effect,DevourerSearchSet,EffectArray[0]" Value="DevourerAoeDamage" />
     <EditorCategories value="Race:Zerg" />
     <AffectedUnitArray value="Devourer" />
+    <AffectedUnitArray value="DevourerAbathur" />
   </CUpgrade>
   <CUpgrade id="GenerateCreepHealingUpgrade">
     <AffectedUnitArray value="Overlord" />
@@ -2718,6 +2738,7 @@
     <EffectArray Reference="Weapon,GuardianMPWeapon,Range" Value="3" />
     <EditorCategories value="Race:Zerg" />
     <AffectedUnitArray value="GuardianMP" />
+    <AffectedUnitArray value="AbathurGuardian" />
   </CUpgrade>
   <CUpgrade id="HaveGuardian">
     <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
@@ -2896,6 +2917,7 @@
     <EffectArray Reference="Effect,GlaiveWurmU6,AttributeBonus[Armored]" Value="1" />
     <EditorCategories value="Race:Zerg,UpgradeType:SpellResearch" />
     <AffectedUnitArray value="MutaliskBroodlord" />
+    <AffectedUnitArray value="MutaliskAbathur" />
     <Icon value="Assets\Textures\btn-upgrade-zerg-explosiveglaive.dds" />
   </CUpgrade>
   <CUpgrade id="RavagerCorrosiveBileDamageIncrease">
@@ -3524,7 +3546,7 @@
     <LeaderAlias value="ZagaraGroundAttacksLevel1" />
     <LeaderLevel value="3" />
   </CUpgrade>
-<CUpgrade id="ZagaraGroundAttacksLevel5">
+  <CUpgrade id="ZagaraGroundAttacksLevel5">
     <Name value="Button/Name/ZergGroundAttacksLevel3" />
     <WebPriority value="0" />
     <Race value="Zerg" />
@@ -3593,5 +3615,17 @@
     <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
     <LeaderAlias value="ZagaraGroundAttacksLevel1" />
     <LeaderLevel value="3" />
+  </CUpgrade>
+  <CUpgrade id="ViperImprovedCastRange">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-castrange.dds" />
+    <EffectArray Reference="Abil,Yoink,Range[0]" Value="4" />
+    <EffectArray Reference="Abil,ViperConsumeStructure,Range[0]" Value="4" />
+    <EffectArray Reference="Abil,ParasiticBomb,Range[0]" Value="4" />
+  </CUpgrade>
+  <CUpgrade id="ViperAbductImprovedStun">
+    <Flags index="UpgradeCheat" value="0" />
+    <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-abduct.dds" />
+    <EffectArray Reference="Behavior,YoinkEnemyStun,Duration" Value="5.000000" />
   </CUpgrade>
 </Catalog>

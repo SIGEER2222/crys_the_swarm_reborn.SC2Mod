@@ -2980,6 +2980,19 @@
       </SectionArray>
     </InfoArray>
   </CAbilMorph>
+  <CAbilMorph id="BurrowBrutaliskAbathurDown" parent="BurrowBrutaliskDown">
+    <InfoArray Unit="BrutaliskAbathurBurrowed" RandomDelayMax="0.25">
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="2" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Delay" value="1.5" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Delay" value="1.8332" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
   <CAbilMorph id="BurrowBrutaliskUp">
     <AbilSetId value="BrwU" />
     <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
@@ -2991,6 +3004,13 @@
     <Flags index="IgnoreFacing" value="1" />
     <Flags index="SuppressMovement" value="1" />
     <InfoArray Unit="Brutalisk" RandomDelayMax="0.5">
+      <SectionArray index="Actor">
+        <DurationArray index="Duration" value="2" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
+  <CAbilMorph id="BurrowBrutaliskAbathurUp" parent="BurrowBrutaliskUp">
+    <InfoArray Unit="BrutaliskAbathur" RandomDelayMax="0.5">
       <SectionArray index="Actor">
         <DurationArray index="Duration" value="2" />
       </SectionArray>
@@ -3298,6 +3318,7 @@
   <CAbilTrain id="EvolveToBrutaliskRavager" parent="EvolveToBrutalisk">
     <MorphUnit value="BrutaliskCocoonRavager" />
     <InfoArray index="Train1">
+      <Unit value="BrutaliskAbathur" />
       <Flags index="AutoCastOn" value="0" />
     </InfoArray>
   </CAbilTrain>
@@ -3306,9 +3327,15 @@
   </CAbilTrain>
   <CAbilTrain id="EvolveToBrutaliskRoachVile" parent="EvolveToBrutalisk">
     <MorphUnit value="BrutaliskCocoonRoachVile" />
+    <InfoArray index="Train1">
+      <Unit value="BrutaliskAbathur" />
+    </InfoArray>
   </CAbilTrain>
   <CAbilTrain id="EvolveToBrutaliskSwarmHost" parent="EvolveToBrutalisk">
     <MorphUnit value="BrutaliskCocoonSwarmhost" />
+    <InfoArray index="Train1">
+      <Unit value="BrutaliskAbathur" />
+    </InfoArray>
   </CAbilTrain>
   <CAbilTrain id="EvolveToLeviathan">
     <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
@@ -3326,10 +3353,26 @@
       <Flags index="IgnorePlacement" value="1" />
     </InfoArray>
   </CAbilTrain>
-  <CAbilTrain id="EvolveToLeviathanDevourer" parent="EvolveToLeviathan" />
-  <CAbilTrain id="EvolveToLeviathanGuardianMP" parent="EvolveToLeviathan" />
-  <CAbilTrain id="EvolveToLeviathanMutalisk" parent="EvolveToLeviathan" />
-  <CAbilTrain id="EvolveToLeviathanViper" parent="EvolveToLeviathan" />
+  <CAbilTrain id="EvolveToLeviathanDevourer" parent="EvolveToLeviathan">
+    <InfoArray index="Train1">
+      <Unit value="LeviathanAbathur" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="EvolveToLeviathanGuardianMP" parent="EvolveToLeviathan">
+    <InfoArray index="Train1">
+      <Unit value="LeviathanAbathur" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="EvolveToLeviathanMutalisk" parent="EvolveToLeviathan">
+    <InfoArray index="Train1">
+      <Unit value="LeviathanAbathur" />
+    </InfoArray>
+  </CAbilTrain>
+  <CAbilTrain id="EvolveToLeviathanViper" parent="EvolveToLeviathan">
+    <InfoArray index="Train1">
+      <Unit value="LeviathanAbathur" />
+    </InfoArray>
+  </CAbilTrain>
   <CAbilEffectTarget id="heal">
     <TargetFilters index="0" value="Biological,Visible;Self,Enemy,Missile,UnderConstruction,Dead,Hidden" />
     <AutoCastValidatorArray value="MedicHealAutoCastValidator" />
@@ -4087,4 +4130,44 @@
     <InfoArray index="Build26" removed="1" />
     <InfoArray index="Build27" removed="1" />
   </CAbilBuild>
+  <CAbilEffectTarget id="ViperConsumeStructure">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Effect index="0" value="ViperConsumeStructureLaunchMissile" />
+    <Flags index="AllowMovement" value="1" />
+    <Flags index="DeferCooldown" value="1" />
+    <Flags index="NoDeceleration" value="1" />
+    <Cost>
+      <Cooldown TimeUse="1" />
+    </Cost>
+    <TargetFilters value="Structure;Ally,Neutral,Enemy,Missile,Stasis,UnderConstruction,Dead,Hidden" />
+    <Range value="7" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="ViperConsume" />
+    <Alignment value="Positive" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="Yoink">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Effect index="0" value="YoinkStartSwitch" />
+    <Flags index="AllowMovement" value="1" />
+    <Flags index="NoDeceleration" value="1" />
+    <Cost>
+      <Vital index="Energy" value="75" />
+    </Cost>
+    <TargetFilters value="-;Self,Neutral,Structure,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable" />
+    <Range value="9" />
+    <AINotifyEffect value="FaceEmbrace" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="FaceEmbrace" />
+    <UninterruptibleArray index="Cast" value="1" />
+    <UninterruptibleArray index="Channel" value="1" />
+    <UninterruptibleArray index="Finish" value="1" />
+  </CAbilEffectTarget>
+  <CAbilEffectTarget id="ParasiticBomb">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
+    <Effect index="0" value="ParasiticBombLM" />
+    <Cost>
+      <Vital index="Energy" value="125" />
+    </Cost>
+    <TargetFilters value="Air,Visible;Self,Player,Ally,Neutral,Structure,Stasis,Invulnerable" />
+    <Range value="8" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="ParasiticBomb" />
+  </CAbilEffectTarget>
 </Catalog>

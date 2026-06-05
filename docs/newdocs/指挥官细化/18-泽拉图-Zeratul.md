@@ -1,17 +1,19 @@
 # 泽拉图（Zeratul）指挥官细化
 
 日期：2026-05-27
+最近复核：2026-06-05
 
 ## 当前口径
 
 本文件统一按满级 `power_fusion` 口径编写：正文只讨论满级指挥官的最终态，不再把 1 级与 15 级拆成两套玩法态；等级 1-15 只保留为解锁门槛和审计锚点。精通默认 6 项全部 30 点，三个威望按正收益融合展开，不直接启用官方 `PlayerPrestige`。`initial` 仅用于官方基础状态审计和差异对照，默认测试和玩法都看 `power_fusion` 最终状态。
 
-本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理 泽拉图。依据 `游戏数据/官方合作指挥官/commanders/Zeratul/` 的当前 JSON 生成；具体 Ability、Behavior、Weapon、Actor、Effect、Requirement 闭包仍需继续追 `游戏数据/官方SC2原始文本镜像/` 或实机 `[XM_DBG]` 日志。
+本文件按 `docs/newdocs/模块拆分` 的 11 个模块整理泽拉图。`游戏数据/官方合作指挥官/commanders/Zeratul/` 的 JSON 是索引入口，不等于完整玩法闭包；其中 `heroes.json` 数量为 0 是导出事实，但官方/当前模块实际英雄闭包需要继续追 raw XML，当前有效英雄为 `ZeratulCoop`。
 
 ## 链路提醒
 
 - 泽拉图当前官方正向建筑是 `DarkShrine`、`Gateway`、`PhotonCannon`、`RoboticsWarp`；古代吸纳舱来自 `SOAAutoAssimilator` / 泽拉图经济机制，不应反推到其它神族指挥官。
-- 泽拉图正向兵种按 `DisruptorZeratul`、`ImmortalZeratul`、`Observer`、`ObserverZeratul`、`SentryZeratul`、`StalkerZeratul`、`WarpPrismZeratul`、`ZealotZeratul` 过滤。
+- 泽拉图正向兵种按 `DisruptorZeratul`、`ImmortalZeratul`、`ObserverZeratul`、`SentryZeratul`、`StalkerZeratul`、`WarpPrismZeratul`、`ZealotZeratul` 过滤；`Observer` 只能作为官方槽位/旧导出线索，当前 runtime 正向单位必须落到私有 `ZeratulObserver`。
+- 泽拉图形态闭包要把 `ZeratulObserverSiegeMode` 和 `ZeratulWarpPrismPhasing` 作为正向补充单位记录；它们不应被当作额外通用单位污染，也不应从 `Observer` / 普通 `WarpPrism` 反推。
 - `VorazunLevel*`、`AlarakLevel*`、`KaraxTurret*` 等共享神族候选在泽拉图页只能作为污染项；泽拉图专属技能链应优先看 `ZeratulArtifact*`、`ZeratulRoboticsFacilityTrain*` 和对应 raw XML 闭包。
 
 ## 官方数据摘要
@@ -23,7 +25,7 @@
 | 默认升级 | `ZeratulCommander`, `SOAAutoAssimilator`, `ZeratulTopBarZealotSquad`, `ZeratulTopBarVoidRaySquad` |
 | 默认能力命令 | `ZeratulBuild:1`, `NexusBuild:` |
 | 威望 ID | `CommanderPrestigeZeratulVoidSeeker`, `CommanderPrestigeZeratulArtifactFragments`, `CommanderPrestigeZeratulTornadoes` |
-| heroes.json 数量 | 0 |
+| heroes.json 数量 | 0，表示官方 JSON 导出未列英雄，不表示玩法无英雄 |
 | roster.json 数量 | 12 |
 | units.json 数量 | 8 |
 | buildings.json 数量 | 4 |
@@ -37,6 +39,8 @@ roster 样例：
 ```text
 DarkShrine, DisruptorZeratul, Gateway, ImmortalZeratul, Observer, ObserverZeratul, PhotonCannon, RoboticsWarp, SentryZeratul, StalkerZeratul, WarpPrismZeratul, ZealotZeratul
 ```
+
+runtime 解释：上面的 `Observer` 是官方/导出槽位，当前 Mod 正向 runtime roster 应映射为 `Observer -> ZeratulObserver`，并补充 `ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing` 两个形态。
 
 ## 15 级解锁摘要
 
@@ -126,19 +130,24 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 官方 heroes.json 暂无条目；召唤物、形态、特殊英雄需从 progression、command_cards 或官方原始文本镜像继续追。 |
+| 泽拉图 | `ZeratulCoop` | `ZeratulCoop` | Hero; Protoss; Psionic | 当前 raw XML 闭包为准 | `heroes.json=0` 只是官方 JSON 导出未列英雄；当前 `XMZeratul` raw XML 在 `commanders/futurecommanders.xml` 定义 `CUnit id="ZeratulCoop"`。 |
 
 ### 英雄技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | command_cards.json 未命中 heroes.json 对象按钮；英雄技能需从官方原始文本镜像或实机日志补。 |
+| `ZeratulCoop` | `ZeratulBlink` | 闪现 | `ZeratulBlink,Execute` | - | 英雄本体闪现/位移链；受神器等级和精通/威望收益影响时要看对应 Upgrade/Effect。 |
+| `ZeratulCoop` | `ZeratulShadowCleave` | 暗影顺劈 | `ZeratulShadowCleave,Execute` | - | 英雄范围伤害技能；威望 `CommanderPrestigeZeratulTornadoes` 还会扩展旋风类收益。 |
+| `ZeratulCoop` | `ZeratulSummonVoidSeeker` | 召唤虚空追寻者 | `ZeratulTeleport,Execute` | `NotCommanderPrestigeZeratulVoidSeeker` | 非 P1/默认正向链，按钮 Face 与 Ability 名不同，不能只按 Face 搜 Ability。 |
+| `ZeratulCoop` | `CommanderPrestigeZeratulVoidSeekerSummon` | 黎明使徒召唤 | `CommanderPrestigeZeratulVoidSeeker,Execute` | `CommanderPrestigeZeratulVoidSeeker` | P1 正收益链；当前 `power_fusion` 只取正收益时需避免误套官方负面代价。 |
+| `ZeratulCoop` | `ProphecyVision` | 预言视觉 | `ProphecyVision,Execute` | `HaveProphecyArtifactsRemaining` | 寻找神器碎片的核心技能；当前 Mod 已补 `ProphecyVision` / `ProphecyArtifactHide` 兼容目录并在 runtime 监听预言施放。 |
 
 ### 英雄形态/模式候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 未自动命中英雄形态或模式按钮。 |
+| `ZeratulCoop` | `ZeratulSummonVoidSeeker` | 默认虚空追寻者投送 | `ZeratulTeleport,Execute` | `NotCommanderPrestigeZeratulVoidSeeker` | 这是英雄支援/传送链，不是第二个常驻英雄形态。 |
+| `ZeratulCoop` | `CommanderPrestigeZeratulVoidSeekerSummon` | 黎明使徒威望变体 | `CommanderPrestigeZeratulVoidSeeker,Execute` | `CommanderPrestigeZeratulVoidSeeker` | 威望能力替换链；需要同时验证按钮、Ability、Effect、Requirement。 |
 
 ### 英雄相关等级解锁
 
@@ -160,9 +169,9 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | Lv14 | 纯粹完美 | `ZeratulTalentUltimatePurity` | `ZeratulHeroResearch:3`, `ZeratulHeroResearch2:20`, `ZeratulHeroResearch:7`, `ZeratulHeroResearch2:2` | 形体化身获得一项能力，可以召唤能独自施放微型灵能风暴的充能水晶。精华化身获得一项能力，可以将一个大范围内的所有敌人变形成更低一级的进化形态。 |
 | Lv15 | 纯粹意志 | - | `ZeratulEngineeringBayResearch:11`, `ZeratulEngineeringBayResearch:12`, `ZeratulEngineeringBayResearch:6`, `ZeratulEngineeringBayResearch:7` | 泽拉图每找到一块神器碎片，就会获得额外的护盾、暗影顺劈伤害提高以及额外的闪现使用次数。 |
 
-口径：官方玩法存在泽拉图本体，但当前 heroes.json 未列出，需要从官方原始文本镜像/实机补 HeroProfile、神器碎片和技能闭包。
+口径：官方玩法存在泽拉图本体，`heroes.json` 未列只是 JSON 导出缺口；当前有效英雄闭包以 `XMZeratul.SC2Mod/Base.SC2Data/GameData/commanders/futurecommanders.xml` 的 `ZeratulCoop` 为准。当前 Mod 烟测已经按 `ZeratulCoop -> ZeratulBlink / ZeratulShadowCleave / ZeratulTeleport / ProphecyVision / CommanderPrestigeZeratulVoidSeeker` 检查，不再输出 `heroes=0` 的空英雄口径。
 
-待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
+待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。当前静态口径已确认标准复活 loop 由 `LibE0EAE146_HeroRevive.galaxy` 负责：泽拉图死亡后应在主基地附近创建 `HeroReviveUnit`，计时后复活 `ZeratulCoop`；还需实机验证计时 UI 和复活点。
 
 ## 03. 普通单位技能及其进化功能
 
@@ -180,11 +189,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 萨尔纳加执行者 | `HaveZeratulImmortalRange` | 原力炮 | - | `HaveZeratulArtifactTier2AndRoboticsBay` | 该单位的对空武器可以击退敌方空中单位，并且对轰击路线沿途的单位造成{Effect,ZeratulPhaseDisruptorsAir,AreaArray[0].Fraction*100}%伤害。 |
 | 萨尔纳加执行者 | `HaveZeratulImmortalImprovedBarrier` | 永恒屏障 | - | `HaveZeratulArtifactTier3AndRoboticsBay` | 萨尔纳加执行者屏障吸收的伤害量提高{$UpgradeEffectArrayValue:ZeratulArtifactTier3_RoboticsBay:Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit$/Beha... |
 | 萨尔纳加执行者 | `ImmortalBarrierBase` | - | `ZeratulImmortalBarrierBase,Execute` | - | 最多可吸收{Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit}点伤害，持续{Behavior,ImmortalBarrierBase,Duration}秒。 |
-| 侦测器 | `AcquireMove` | 搜索移动 | `move,AcquireMove` | - | 命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。 |
-| 侦测器 | `MorphtoObserverSiege` | 监察模式 | `ObserverMorphtoObserverSiege,Execute` | - | 把侦测器变形为监察模式。视野提高{(Unit,ObserverSiegeMode,Sight/Unit,Observer,Sight-1)*100}%，但无法移动且不再隐形。 |
-| 侦测器 | `Detector` | 侦测单位 | - | - | 该单位能够侦测到隐形、潜地和幻像单位。 |
-| 侦测器 | `HaveGraviticBoosters` | 重力加速器 | - | `HaveGraviticBoosters` | 提高侦测器的移动速度50%。 |
-| 侦测器 | `-` | - | - | - | - |
+| 官方侦测器槽位 | `Observer` | 导出槽位/污染项 | - | - | 不作为泽拉图正向 runtime 技能链；当前 Mod 必须把该槽位映射到 `ZeratulObserver`，不要再检查通用 `ObserverMorphtoObserverSiege` / `HaveGraviticBoosters`。 |
 | 萨尔纳加观察者 | `AcquireMove` | 搜索移动 | `move,AcquireMove` | - | 命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。 |
 | 萨尔纳加观察者 | `ZeratulGraviticBoostersPassive` | 重力加速器 | - | `HaveZeratulArtifactTier2AndRoboticsBay` | 萨尔纳加观察者的移动速度提高{$UpgradeEffectArrayValue:ZeratulArtifactTier2_RoboticsBay:Unit,ZeratulObserver,Speed$/Unit,ZeratulObserver,Speed*100}% |
 | 萨尔纳加观察者 | `ZeratulObserverSightRange` | 感应器阵列 | - | `HaveZeratulArtifactTier3AndRoboticsBay` | 萨尔纳加观察者的视野范围扩大{$UpgradeEffectArrayValue:ZeratulArtifactTier3_RoboticsBay:Unit,ZeratulObserver,Sight$/Unit,ZeratulObserver,Sight*100}%。 |
@@ -210,9 +215,10 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 侦测器 | `MorphtoObserverSiege` | 监察模式 | `ObserverMorphtoObserverSiege,Execute` | - | 把侦测器变形为监察模式。视野提高{(Unit,ObserverSiegeMode,Sight/Unit,Observer,Sight-1)*100}%，但无法移动且不再隐形。 |
 | 萨尔纳加观察者 | `MorphtoZeratulObserverSiege` | 监察模式 | `ZeratulObserverMorphtoZeratulObserverSiege,Execute` | - | 使萨尔纳加观察者变形，进入监察模式。观察者的视野扩大{Unit,ZeratulObserverSiegeMode,Sight/Unit,ZeratulObserver,Sight-1*100}%，但失去移动能力。 |
+| 萨尔纳加观察者-监察模式 | `MorphtoZeratulObserver` | 回到移动模式 | `ZeratulObserverSiegeMorphtoZeratulObserver,Execute` | - | 从 `ZeratulObserverSiegeMode` 回变到 `ZeratulObserver`，这是私有观察者形态闭包的另一半。 |
 | 萨尔纳加虚空阵列船 | `ZeratulWarpPrismWormholeMode` | 虫洞模式 | `ZeratulPhasingMode,Execute` | - | 命令萨尔纳加虚空阵列船变形成虫洞模式，使其可以在不同的虚空阵列船之间传输单位。该单位在该模式下无法移动。 |
+| 萨尔纳加虚空阵列船-虫洞模式 | `ZeratulTransportMode` | 回到移动模式 | `ZeratulTransportMode,Execute` | - | 从 `ZeratulWarpPrismPhasing` 回到 `ZeratulWarpPrism`；当前 runtime roster 要把两种形态都纳入正向闭包。 |
 
 实现备注：单位自身声明技能、被动、武器、Behavior 和升级后替换关系；科技建筑只触发研究，不在科技建筑内部判断所有兵种 if/else。
 
@@ -256,11 +262,13 @@ Owner：`CommanderRosterProfile`、`CommanderUnitFactoryProfile`、`CommanderUni
 |---|---|---|---|---|---|
 | 萨尔纳加禁绝者 | `DisruptorZeratul` | `ZeratulDisruptor` | Ground; Armored/Mechanical; Unit; FactionXelNaga | 矿:450 气:450 人口:-3 生命:200 护盾:200 能量:- | 机械干扰型单位。可以使用净化新星造成大量范围性伤害。 / 可以对地。 |
 | 萨尔纳加执行者 | `ImmortalZeratul` | `ZeratulImmortal` | Ground; Armored/Mechanical; Unit; FactionXelNaga | 矿:750 气:300 人口:-4 生命:400 护盾:200 能量:- | 步战机甲。可以使用屏障吸收伤害并击退敌方空中单位。 / 可以对空和对地。 |
-| 侦测器 | `Observer` | `Observer` | Air; Light/Mechanical; Unit; Melee | 矿:25 气:75 人口:-1 生命:40 护盾:30 能量:- | 间谍型空中单位。拥有永久隐形的能力。 / 侦测单位 |
-| 萨尔纳加观察者 | `ObserverZeratul` | `ZeratulObserver, Observer` | Air; Light/Mechanical; Unit; FactionXelNaga | 矿:25 气:75 人口:-1 生命:40 护盾:20 能量:- | 间谍型空中单位。敌人没有侦测手段将无法看到隐形单位。 / 侦测单位 |
+| 官方侦测器槽位 | `Observer` | `ZeratulObserver` | Air; Light/Mechanical; Unit; FactionXelNaga | 矿:25 气:75 人口:-1 生命:40 护盾:20 能量:- | `Observer` 是官方/导出槽位；当前 Mod runtime 必须 alias 到私有 `ZeratulObserver`，不能直接创建通用 `Observer`。 |
+| 萨尔纳加观察者 | `ObserverZeratul` | `ZeratulObserver` | Air; Light/Mechanical; Unit; FactionXelNaga | 矿:25 气:75 人口:-1 生命:40 护盾:20 能量:- | 间谍型空中单位。敌人没有侦测手段将无法看到隐形单位。 / 侦测单位 |
+| 萨尔纳加观察者-监察模式 | `ZeratulObserverSiegeMode` | `ZeratulObserverSiegeMode` | Air; Light/Mechanical; Unit; FactionXelNaga | 同观察者形态 | 由 `ZeratulObserverMorphtoZeratulObserverSiege` 进入，再由 `ZeratulObserverSiegeMorphtoZeratulObserver` 回变；这是私有形态闭包。 |
 | 萨尔纳加光盾卫士 | `SentryZeratul` | `ZeratulSentry` | Ground; Light/Mechanical/Psionic; Unit; FactionXelNaga | 矿:75 气:150 人口:-2 生命:120 护盾:120 能量:200 | 机械支援单位。可以使用护盾充能与反射护盾。 / 可以对空和对地。 |
 | 萨尔纳加伏击者 | `StalkerZeratul` | `ZeratulStalker` | Ground; Armored/Mechanical; Unit; FactionXelNaga | 矿:300 气:50 人口:-2 生命:100 护盾:100 能量:- | 远程支援型步战机甲。受到威胁时会自动使用预判闪现。 / 可以对空和对地。 |
 | 萨尔纳加虚空阵列船 | `WarpPrismZeratul` | `ZeratulWarpPrism` | Air; Armored/Mechanical/Psionic; Unit; FactionXelNaga | 矿:150 气:- 人口:-1 生命:200 护盾:200 能量:- | 飞行虫洞发生器。同一时间建造两个。可以部署后在萨尔纳加虚空阵列船之间生成数据链。 |
+| 萨尔纳加虚空阵列船-虫洞模式 | `ZeratulWarpPrismPhasing` | `ZeratulWarpPrismPhasing` | Air; Armored/Mechanical/Psionic; Unit; FactionXelNaga | 同虚空阵列船形态 | 由 `ZeratulPhasingMode` 进入，含 `ZeratulWarpPrismPhasingRegenAura` 护盾恢复光环；这是私有形态闭包。 |
 | 狂热者 | `ZealotZeratul` | `ZeratulSummonZealot` | Ground; Biological/Light; Unit; FactionXelNaga | 矿:100 气:- 人口:- 生命:100 护盾:50 能量:- | - |
 
 ### roster 中未归入 units/buildings/heroes 的对象
@@ -269,7 +277,7 @@ Owner：`CommanderRosterProfile`、`CommanderUnitFactoryProfile`、`CommanderUni
 |---|---|---|---|---|
 | - | - | - | - | roster 中没有额外未分类对象。 |
 
-口径：`units.json` 是当前提取出的兵种清单；`roster.json` 仍作为审计入口，用于发现满级后新增、替换、召唤或特殊形态对象。满级之后兵种会变化，测试台默认使用 `power_fusion` 而不是基础 `initial`。
+口径：`units.json` 是官方 JSON 索引入口；当前 Mod 的 `power_fusion` runtime roster 以私有单位为准，已把 `Observer` 官方槽位映射到 `ZeratulObserver`，并显式加入 `ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing`。满级之后兵种会变化，测试台默认使用 `power_fusion` 而不是基础 `initial`。
 
 ## 06. 指挥官精通
 
@@ -596,17 +604,17 @@ personal_mechanic_smoke
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Zeratul levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Zeratul levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Zeratul stage=power_fusion units=8 buildings=4 heroes=0 result=ok
-[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Zeratul heroes=0 result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Zeratul stage=power_fusion official_json_units=8 buildings=4 official_json_heroes=0 runtime_heroes=1 hero=ZeratulCoop observer_alias=Observer->ZeratulObserver forms=ZeratulObserverSiegeMode,ZeratulWarpPrismPhasing result=ok
+[XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Zeratul official_json_heroes=0 runtime_heroes=1 hero=ZeratulCoop abilities=ZeratulBlink,ZeratulShadowCleave,ZeratulTeleport,ProphecyVision,CommanderPrestigeZeratulVoidSeeker result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Zeratul module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Zeratul module=<module> object=<object> result=needs-casc-audit
 ```
 
 ## 第一轮待审计项
 
-- 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
-- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包。
-- `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
+- 顶部技能的 caster、按钮、冷却、充能、目标转发闭包；尤其神器碎片拾取、预言技能、面板状态不能写死玩家 1。
+- 英雄 `ZeratulCoop` 的 Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包；当前静态烟测已覆盖五个英雄技能 ID，仍需实机点击验证效果和冷却。
+- `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系；当前静态口径已把 `Observer -> ZeratulObserver`、`ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing` 纳入正向 runtime。
 - 6 项精通的真实作用对象和最终数值。
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
