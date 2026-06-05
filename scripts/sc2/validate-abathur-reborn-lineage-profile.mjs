@@ -13,14 +13,29 @@ const targetRoot = path.join(
   'Base.SC2Data',
   'GameData',
 );
+const xmFinalDataRoot = path.join(
+  repoRoot,
+  '合作指挥官版起义狂潮',
+  'Mods',
+  'XM',
+  'XMFinal.SC2Mod',
+  'Base.SC2Data',
+);
 const sourceRoot = path.join(repoRoot, 'crys_the_swarm_reborn.SC2Mod', 'Base.SC2Data', 'GameData');
 
 const files = {
   user: path.join(targetRoot, 'UserData.xml'),
   targetButton: path.join(targetRoot, 'ButtonData.xml'),
   targetUnit: path.join(targetRoot, 'UnitData.xml'),
+  targetWeapon: path.join(targetRoot, 'WeaponData.xml'),
   targetAbil: path.join(targetRoot, 'AbilData.xml'),
   targetEffect: path.join(targetRoot, 'EffectData.xml'),
+  targetBehavior: path.join(targetRoot, 'BehaviorData.xml'),
+  targetActor: path.join(targetRoot, 'ActorData.xml'),
+  targetModel: path.join(targetRoot, 'ModelData.xml'),
+  targetMover: path.join(targetRoot, 'MoverData.xml'),
+  targetSound: path.join(targetRoot, 'SoundData.xml'),
+  targetValidator: path.join(targetRoot, 'ValidatorData.xml'),
   targetRequirement: path.join(targetRoot, 'RequirementData.xml'),
   targetRequirementNode: path.join(targetRoot, 'RequirementNodeData.xml'),
   targetUpgrade: path.join(targetRoot, 'UpgradeData.xml'),
@@ -35,6 +50,9 @@ const files = {
     'GameStrings.txt',
   ),
   targetRuntime: path.join(repoRoot, '合作指挥官版起义狂潮', 'Mods', 'XM', 'XMAbathurReborn.SC2Mod', 'Base.SC2Data', 'LibA1BA7A9F.galaxy'),
+  xmFinalLib: path.join(xmFinalDataRoot, 'LibE0EAE146.galaxy'),
+  xmFinalLibHeader: path.join(xmFinalDataRoot, 'LibE0EAE146_h.galaxy'),
+  xmFinalAbathurRebornRuntime: path.join(xmFinalDataRoot, 'LibE0EAE146_AbathurRebornRuntime.galaxy'),
   doc: path.join(repoRoot, 'docs', 'newdocs', '额外指挥官', '03-重生阿巴瑟-兵种融入设计.md'),
   sourceUnit: path.join(sourceRoot, 'UnitData.xml'),
 };
@@ -49,8 +67,8 @@ const expectedLineages = [
     candidates: [
       ['Raptorling', 'HotSRaptor', 'ready'],
       ['Swarmling', 'HotSSwarmling', 'ready'],
-      ['Pygalisk', 'Pygalisk', 'planned'],
-      ['Toxic', 'ZerglingToxic', 'planned'],
+      ['Pygalisk', 'Pygalisk', 'ready'],
+      ['Toxic', 'ZerglingToxic', 'ready'],
     ],
   },
   {
@@ -62,8 +80,8 @@ const expectedLineages = [
     candidates: [
       ['Hunter', 'HotSHunter', 'ready'],
       ['Splitter', 'HotSSplitterlingBig', 'ready'],
-      ['Frost Fiend', 'FrostFiend', 'planned'],
-      ['Bile Titan', 'BileTitan', 'planned'],
+      ['Frost Fiend', 'FrostFiend', 'ready'],
+      ['Bile Titan', 'BileTitan', 'ready'],
     ],
   },
   {
@@ -75,7 +93,7 @@ const expectedLineages = [
     candidates: [
       ['Vile', 'RoachVile', 'ready'],
       ['Corpser', 'RoachCorpser', 'ready'],
-      ['Igniter', 'Igniter', 'planned'],
+      ['Igniter', 'Igniter', 'ready'],
       ['Ravager', 'Ravager', 'ready'],
     ],
   },
@@ -89,7 +107,7 @@ const expectedLineages = [
       ['Lurker', 'HydraliskLurker', 'ready'],
       ['Impaler', 'HydraliskImpaler', 'ready'],
       ['Hunter-Killer', 'HunterKiller', 'ready'],
-      ['Toxic', 'Hydralisk2', 'planned'],
+      ['Toxic', 'Hydralisk2', 'ready'],
     ],
   },
   {
@@ -99,10 +117,10 @@ const expectedLineages = [
     baseUnit: 'Mutalisk',
     techStructure: 'Spire',
     candidates: [
-      ['Char', 'MutaliskChar', 'planned'],
-      ['Mamba', 'Mamba', 'planned'],
-      ['Ankylos', 'MutaliskAnkylos', 'planned'],
-      ['Mesmer', 'Mesmer', 'planned'],
+      ['Char', 'MutaliskChar', 'ready'],
+      ['Mamba', 'Mamba', 'ready'],
+      ['Ankylos', 'MutaliskAnkylos', 'ready'],
+      ['Mesmer', 'Mesmer', 'ready'],
     ],
   },
   {
@@ -114,8 +132,8 @@ const expectedLineages = [
     candidates: [
       ['Carrion', 'SwarmHostSplitA', 'ready'],
       ['Creeper', 'SwarmHostSplitB', 'ready'],
-      ['Bane', 'BaneHost', 'planned'],
-      ['Vespid', 'VespidHost', 'planned'],
+      ['Bane', 'BaneHost', 'ready'],
+      ['Vespid', 'VespidHost', 'ready'],
     ],
   },
   {
@@ -126,9 +144,9 @@ const expectedLineages = [
     techStructure: 'UltraliskCavern',
     candidates: [
       ['Torrasque', 'HotSTorrasque', 'ready'],
-      ['Noxious', 'HotSNoxious', 'planned'],
-      ['Savage', 'UltraliskSavage', 'planned'],
-      ['Indra', 'UltraliskKaldir', 'planned'],
+      ['Noxious', 'HotSNoxious', 'ready'],
+      ['Savage', 'UltraliskSavage', 'ready'],
+      ['Indra', 'UltraliskKaldir', 'ready'],
     ],
   },
   {
@@ -139,9 +157,9 @@ const expectedLineages = [
     techStructure: 'GreaterSpire',
     candidates: [
       ['Brood Lord', 'BroodLord', 'ready'],
-      ['Guardian', 'IzshaGuardian', 'planned'],
+      ['Guardian', 'IzshaGuardian', 'ready'],
       ['Devourer', 'Devourer', 'ready'],
-      ['Kraken', 'Kraken', 'planned'],
+      ['Kraken', 'Kraken', 'ready'],
     ],
   },
   {
@@ -156,6 +174,42 @@ const expectedLineages = [
       ['Defiler', 'DefilerMP', 'ready'],
     ],
   },
+];
+
+const expectedRuntimeReplacements = [
+  ['Zergling', 'Raptorling', 'HotSRaptor'],
+  ['Zergling', 'Swarmling', 'HotSSwarmling'],
+  ['Zergling', 'Pygalisk', 'Pygalisk'],
+  ['Zergling', 'Toxic', 'ZerglingToxic'],
+  ['Baneling', 'Hunter', 'HotSHunter'],
+  ['Baneling', 'Splitter', 'HotSSplitterlingBig'],
+  ['Baneling', 'Frost Fiend', 'FrostFiend'],
+  ['Baneling', 'Bile Titan', 'BileTitan'],
+  ['Roach', 'Vile', 'RoachVile'],
+  ['Roach', 'Corpser', 'RoachCorpser'],
+  ['Roach', 'Igniter', 'Igniter'],
+  ['Roach', 'Ravager', 'Ravager'],
+  ['Hydralisk', 'Lurker', 'HydraliskLurker'],
+  ['Hydralisk', 'Impaler', 'HydraliskImpaler'],
+  ['Hydralisk', 'Hunter-Killer', 'HunterKiller'],
+  ['Hydralisk', 'Toxic', 'Hydralisk2'],
+  ['Mutalisk', 'Char', 'MutaliskChar'],
+  ['Mutalisk', 'Mamba', 'Mamba'],
+  ['Mutalisk', 'Ankylos', 'MutaliskAnkylos'],
+  ['Mutalisk', 'Mesmer', 'Mesmer'],
+  ['SwarmHost', 'Carrion', 'SwarmHostSplitA'],
+  ['SwarmHost', 'Creeper', 'SwarmHostSplitB'],
+  ['SwarmHost', 'Bane', 'BaneHost'],
+  ['SwarmHost', 'Vespid', 'VespidHost'],
+  ['Ultralisk', 'Torrasque', 'HotSTorrasque'],
+  ['Ultralisk', 'Noxious', 'HotSNoxious'],
+  ['Ultralisk', 'Savage', 'UltraliskSavage'],
+  ['Ultralisk', 'Indra', 'UltraliskKaldir'],
+  ['BroodLord', 'Guardian', 'IzshaGuardian'],
+  ['BroodLord', 'Devourer', 'Devourer'],
+  ['BroodLord', 'Kraken', 'Kraken'],
+  ['Infestor', 'Viper', 'Viper'],
+  ['Infestor', 'Defiler', 'DefilerMP'],
 ];
 
 const expectedLarvaTrainButtons = [
@@ -246,20 +300,40 @@ const warnings = [];
 const userText = readRequired(files.user);
 const targetButtonText = readRequired(files.targetButton);
 const targetUnitText = readRequired(files.targetUnit);
+const targetWeaponText = readRequired(files.targetWeapon);
 const targetAbilText = readRequired(files.targetAbil);
 const targetEffectText = readRequired(files.targetEffect);
+const targetBehaviorText = readRequired(files.targetBehavior);
+const targetActorText = readRequired(files.targetActor);
+const targetModelText = readRequired(files.targetModel);
+const targetMoverText = readRequired(files.targetMover);
+const targetSoundText = readRequired(files.targetSound);
+const targetValidatorText = readRequired(files.targetValidator);
 const targetRequirementText = readRequired(files.targetRequirement);
 const targetRequirementNodeText = readRequired(files.targetRequirementNode);
 const targetUpgradeText = readRequired(files.targetUpgrade);
 const targetGameStringsText = readRequired(files.targetGameStrings);
 const targetRuntimeText = readRequired(files.targetRuntime);
+const xmFinalLibText = readRequired(files.xmFinalLib);
+const xmFinalLibHeaderText = readRequired(files.xmFinalLibHeader);
+const xmFinalAbathurRebornRuntimeText = readRequired(files.xmFinalAbathurRebornRuntime);
 const sourceUnitText = readRequired(files.sourceUnit);
 const docText = readOptional(files.doc);
 
 const targetUnits = collectCatalogIds(targetUnitText, /<CUnit\s+id="([^"]+)"/g);
 const sourceUnits = collectCatalogIds(sourceUnitText, /<CUnit\s+id="([^"]+)"/g);
+const targetButtons = collectCatalogIds(targetButtonText, /<CButton\s+id="([^"]+)"/g);
+const targetWeapons = collectCatalogIds(targetWeaponText, /<CWeapon[A-Za-z]*\s+id="([^"]+)"/g);
 const targetAbilities = collectCatalogIds(targetAbilText, /<CAbil[A-Za-z]*\s+id="([^"]+)"/g);
 const targetEffects = collectCatalogIds(targetEffectText, /<CEffect[A-Za-z]*\s+id="([^"]+)"/g);
+const targetBehaviors = collectCatalogIds(targetBehaviorText, /<CBehavior[A-Za-z]*\s+id="([^"]+)"/g);
+const targetActors = collectCatalogIds(targetActorText, /<CActor[A-Za-z]*\s+id="([^"]+)"/g);
+const targetModels = collectCatalogIds(targetModelText, /<CModel\s+id="([^"]+)"/g);
+const targetMovers = collectCatalogIds(targetMoverText, /<CMover[A-Za-z]*\s+id="([^"]+)"/g);
+const targetSounds = collectCatalogIds(targetSoundText, /<CSound\s+id="([^"]+)"/g);
+const targetValidators = collectCatalogIds(targetValidatorText, /<CValidator[A-Za-z]*\s+id="([^"]+)"/g);
+const targetRequirements = collectCatalogIds(targetRequirementText, /<CRequirement\s+id="([^"]+)"/g);
+const targetRequirementNodes = collectCatalogIds(targetRequirementNodeText, /<CRequirement[A-Za-z]*\s+id="([^"]+)"/g);
 
 const profile = parseUserProfile(userText, 'AbathurRebornLineageProfile');
 validateProfile(profile);
@@ -267,7 +341,18 @@ validateNoAllLarvaPool();
 validateLarvaBaseProduction(profile);
 validateWorkerBuildWhitelist();
 validateNoBiomassGameplayEntrypoints();
+validateCommanderAchNoBiomassGrants();
+validateXmFinalRuntimeClosure(profile);
 validateRavagerClosure(profile);
+validateUnitPurchaseClosure();
+validateMutaliskVariantClosure();
+validateFinalFourVariantClosure();
+validateNoxiousUltraliskClosure();
+validateFrostFiendClosure();
+validateBileTitanClosure();
+validateAbathurRebornSwarmHostVariantClosure();
+validateAbathurRebornUltraliskVariantClosure();
+validateAbathurRebornMonstrousFlierVariantClosure();
 validateFiveTierUpgradeClosure();
 validateDocSurface();
 printSummary(profile);
@@ -369,68 +454,126 @@ function validateNoAllLarvaPool() {
 }
 
 function validateLarvaBaseProduction(instances) {
-  const larvaBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'Larva');
+  if (/<CUnit\s+id="Larva"/.test(targetUnitText)) {
+    errors.push('当前 XMAbathurReborn 不能覆盖共享 CUnit id="Larva"，必须使用 LarvaAbathurReborn');
+  }
+
+  const larvaBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'LarvaAbathurReborn');
   if (!larvaBlock) {
-    errors.push('当前 UnitData 缺少 CUnit id="Larva"');
+    errors.push('当前 UnitData 缺少 CUnit id="LarvaAbathurReborn"');
     return;
   }
 
-  if (!/AbilArray\s+Link="LarvaTrain"/.test(larvaBlock)) {
-    errors.push('Larva 必须显式挂载 AbilArray Link="LarvaTrain"');
+  if (!/parent="Larva"/.test(larvaBlock)) {
+    errors.push('LarvaAbathurReborn 必须继承 Larva 后重载专属训练能力');
+  }
+  if (!/AbilArray\s+index="0"\s+Link="LarvaTrainAbathurReborn"/.test(larvaBlock)) {
+    errors.push('LarvaAbathurReborn 必须显式挂载 AbilArray index="0" Link="LarvaTrainAbathurReborn"');
   }
   for (const forbidden of forbiddenLarvaPositiveTokens) {
     if (larvaBlock.includes(forbidden)) {
-      errors.push(`Larva 本地卡面不能正向引用 ${forbidden}`);
+      errors.push(`LarvaAbathurReborn 本地卡面不能正向引用 ${forbidden}`);
     }
   }
 
   const layoutButtons = parseLayoutButtons(larvaBlock);
-  const visibleLarvaTrainButtons = layoutButtons.filter((button) => button.AbilCmd?.startsWith('LarvaTrain,'));
+  const visibleLarvaTrainButtons = layoutButtons.filter((button) => button.AbilCmd?.startsWith('LarvaTrainAbathurReborn,'));
   if (visibleLarvaTrainButtons.length !== expectedLarvaTrainButtons.length) {
-    errors.push(`Larva 本地 LarvaTrain 按钮数 ${visibleLarvaTrainButtons.length} 与期望 ${expectedLarvaTrainButtons.length} 不一致`);
+    errors.push(`LarvaAbathurReborn 本地 LarvaTrainAbathurReborn 按钮数 ${visibleLarvaTrainButtons.length} 与期望 ${expectedLarvaTrainButtons.length} 不一致`);
   }
 
   for (const expected of expectedLarvaTrainButtons) {
-    const abilCmd = `LarvaTrain,${expected.command}`;
+    const abilCmd = `LarvaTrainAbathurReborn,${expected.command}`;
     const button = visibleLarvaTrainButtons.find((candidate) => candidate.AbilCmd === abilCmd);
     if (!button) {
-      errors.push(`Larva 本地卡面缺少 ${abilCmd}`);
+      errors.push(`LarvaAbathurReborn 本地卡面缺少 ${abilCmd}`);
       continue;
     }
     if (button.Face !== expected.face) {
-      errors.push(`Larva ${abilCmd} Face=${button.Face || '<missing>'}, expected ${expected.face}`);
+      errors.push(`LarvaAbathurReborn ${abilCmd} Face=${button.Face || '<missing>'}, expected ${expected.face}`);
     }
   }
 
-  const trainBlock = extractCatalogBlock(targetAbilText, 'CAbilTrain', 'LarvaTrain');
+  const trainBlock = extractCatalogBlock(targetAbilText, 'CAbilTrain', 'LarvaTrainAbathurReborn');
   if (!trainBlock) {
-    errors.push('当前 AbilData 缺少 CAbilTrain id="LarvaTrain"');
+    errors.push('当前 AbilData 缺少 CAbilTrain id="LarvaTrainAbathurReborn"');
     return;
+  }
+  if (!/parent="LarvaTrain"/.test(trainBlock)) {
+    errors.push('LarvaTrainAbathurReborn 应继承 LarvaTrain 后显式收敛基础入口');
   }
 
   for (const forbidden of ['Scourge', 'QueenClassic', 'Corruptor', 'DefilerMP', 'Viper', 'SwarmHostMP', 'Brutalisk', 'Leviathan']) {
     if (trainBlock.includes(`value="${forbidden}"`)) {
-      errors.push(`LarvaTrain 不应产出 ${forbidden}`);
+      errors.push(`LarvaTrainAbathurReborn 不应产出 ${forbidden}`);
     }
   }
 
   for (const expected of expectedLarvaTrainButtons) {
     const info = extractInfoArrayBlock(trainBlock, expected.command);
     if (!info) {
-      errors.push(`LarvaTrain 缺少 ${expected.command}`);
+      errors.push(`LarvaTrainAbathurReborn 缺少 ${expected.command}`);
       continue;
     }
     const units = collectTagValues(info, 'Unit');
     if (!units.includes(expected.unit)) {
-      errors.push(`LarvaTrain ${expected.command} 产出 ${units.join(', ') || '<none>'}, expected includes ${expected.unit}`);
+      errors.push(`LarvaTrainAbathurReborn ${expected.command} 产出 ${units.join(', ') || '<none>'}, expected includes ${expected.unit}`);
     }
   }
+
+  for (let index = 12; index <= 30; index += 1) {
+    const info = extractInfoArrayBlock(trainBlock, `Train${index}`);
+    if (!/removed="1"/.test(info)) {
+      errors.push(`LarvaTrainAbathurReborn 必须显式移除继承 Train${index}，防止全量候选池外露`);
+    }
+  }
+
+  validatePrivateTownHallLarvaClosure();
 
   const baseUnits = new Set([...instances.values()].map((fields) => scalarValue(fields, 'BaseUnit')).filter(Boolean));
   const trainedUnits = new Set(expectedLarvaTrainButtons.map((button) => button.unit));
   for (const baseUnit of baseUnits) {
     if (!trainedUnits.has(baseUnit)) {
       errors.push(`族系 BaseUnit ${baseUnit} 没有对应 LarvaTrain 基础入口`);
+    }
+  }
+}
+
+function validatePrivateTownHallLarvaClosure() {
+  for (const [unitId, morphAbility] of [
+    ['HatcheryAbathurReborn', 'UpgradeToLairAbathurReborn'],
+    ['LairAbathurReborn', 'UpgradeToHiveAbathurReborn'],
+    ['HiveAbathurReborn', ''],
+  ]) {
+    const block = extractCatalogBlock(targetUnitText, 'CUnit', unitId);
+    if (!block) {
+      errors.push(`当前 UnitData 缺少私有基地 ${unitId}`);
+      continue;
+    }
+    if (!block.includes('BehaviorArray index="1" Link="SpawnLarvaAbathurReborn"')) {
+      errors.push(`${unitId} 必须挂载 SpawnLarvaAbathurReborn，不能继承共享 SpawnLarva`);
+    }
+    if (morphAbility && !block.includes(`AbilArray Link="${morphAbility}"`)) {
+      errors.push(`${unitId} 必须挂载私有升级能力 ${morphAbility}`);
+    }
+  }
+
+  const spawnBlock = extractCatalogBlock(targetBehaviorText, 'CBehaviorSpawn', 'SpawnLarvaAbathurReborn');
+  if (!spawnBlock) {
+    errors.push('当前 BehaviorData 缺少 SpawnLarvaAbathurReborn');
+  } else if (!spawnBlock.includes('Unit="LarvaAbathurReborn"')) {
+    errors.push('SpawnLarvaAbathurReborn 必须产出 LarvaAbathurReborn');
+  }
+
+  for (const [abilityId, unitId] of [
+    ['UpgradeToLairAbathurReborn', 'LairAbathurReborn'],
+    ['UpgradeToHiveAbathurReborn', 'HiveAbathurReborn'],
+  ]) {
+    const abilityBlock = extractCatalogBlock(targetAbilText, 'CAbilMorph', abilityId);
+    if (!abilityBlock) {
+      errors.push(`当前 AbilData 缺少 ${abilityId}`);
+    } else if (!abilityBlock.includes(`InfoArray Unit="${unitId}"`)) {
+      errors.push(`${abilityId} 必须升级为 ${unitId}`);
     }
   }
 }
@@ -597,6 +740,290 @@ function validateNoBiomassGameplayEntrypoints() {
   }
 }
 
+function validateCommanderAchNoBiomassGrants() {
+  const commanderAchBlock = extractUserBlock(userText, 'CommanderAch');
+  const rebornBlock = extractInstanceBlock(commanderAchBlock, 'AbathurReborn');
+  if (!rebornBlock) {
+    errors.push('CommanderAch 缺少 AbathurReborn 实例，无法验证正向加点');
+    return;
+  }
+
+  for (const match of rebornBlock.matchAll(/<Upgrade\s+Upgrade="([^"]+)"[^>]*>\s*<Field\s+Id="(Upg|Poi)"(?:\s+Index="[^"]+")?\s*\/>\s*<\/Upgrade>/g)) {
+    const [, upgradeId, fieldId] = match;
+    if (/Biomass/i.test(upgradeId)) {
+      errors.push(`CommanderAch/AbathurReborn ${fieldId} 不允许正向授予 Biomass 升级: ${upgradeId}`);
+    }
+    if (!targetUpgradeText.includes(`id="${upgradeId}"`)) {
+      errors.push(`CommanderAch/AbathurReborn ${fieldId} 指向不存在的 Upgrade: ${upgradeId}`);
+    }
+  }
+}
+
+function validateXmFinalRuntimeClosure(instances) {
+  if (!xmFinalLibText.includes('include "LibE0EAE146_AbathurRebornRuntime"')) {
+    errors.push('XMFinal LibE0EAE146.galaxy 缺少 include "LibE0EAE146_AbathurRebornRuntime"');
+  }
+  if (!xmFinalLibHeaderText.includes('bool libE0EAE146_gv_abathurRebornRuntimeInitialized;')) {
+    errors.push('XMFinal LibE0EAE146_h.galaxy 缺少 abathurRebornRuntimeInitialized 声明');
+  }
+  if (!xmFinalLibHeaderText.includes('bool libE0EAE146_gv_abathurRebornEvolutionTriggersReady;')) {
+    errors.push('XMFinal LibE0EAE146_h.galaxy 缺少 abathurRebornEvolutionTriggersReady 声明');
+  }
+  if (!xmFinalLibHeaderText.includes('int libE0EAE146_gv_abathurRebornRuntimePlayer;')) {
+    errors.push('XMFinal LibE0EAE146_h.galaxy 缺少 abathurRebornRuntimePlayer 声明');
+  }
+  if (!xmFinalLibHeaderText.includes('void libE0EAE146_gf_AbathurRebornRuntimeInit')) {
+    errors.push('XMFinal LibE0EAE146_h.galaxy 缺少 AbathurRebornRuntimeInit 声明');
+  }
+  if (!xmFinalLibText.includes('libE0EAE146_gv_abathurRebornRuntimeInitialized = false;')) {
+    errors.push('XMFinal LibE0EAE146.galaxy 初始化时必须重置 abathurRebornRuntimeInitialized');
+  }
+  if (!xmFinalLibText.includes('libE0EAE146_gv_abathurRebornEvolutionTriggersReady = false;')) {
+    errors.push('XMFinal LibE0EAE146.galaxy 初始化时必须重置 abathurRebornEvolutionTriggersReady');
+  }
+  if (!xmFinalLibText.includes('libE0EAE146_gv_abathurRebornRuntimePlayer = 0;')) {
+    errors.push('XMFinal LibE0EAE146.galaxy 初始化时必须重置 abathurRebornRuntimePlayer');
+  }
+  if (!/auto09490B45_val\s*==\s*"AbathurReborn"[\s\S]{0,180}libE0EAE146_gf_AbathurRebornRuntimeInit\(1,\s*lp_secondUnit,\s*lp_createHero\)/.test(xmFinalLibText)) {
+    errors.push('XMFinal InitializeBase 缺少 AbathurReborn -> AbathurRebornRuntimeInit 分支');
+  }
+
+  const runtimeText = xmFinalAbathurRebornRuntimeText;
+  const requiredRuntimeTokens = [
+    'void libE0EAE146_gf_AbathurRebornRuntimeInit',
+    'libE0EAE146_gv_abathurRebornRuntimeInitialized',
+    '"CoopCasterAbathurReborn"',
+    'lib67C0F0E7_gf_CU_GPInit(lp_player, "AbathurReborn"',
+    '"AbathurRebornCommander", 1',
+    '"CommanderLevel", 16',
+    'libE0EAE146_gf_AbathurRebornApplyTechWhitelist',
+    'libE0EAE146_gf_AbathurRebornReplacementUnitForBase',
+    'libE0EAE146_gf_AbathurRebornReplaceUnitIfNeeded',
+    'libE0EAE146_gf_AbathurRebornReplaceExistingUnits',
+    'libNtve_gf_ReplaceUnit',
+    'TriggerAddEventUnitRegion',
+    'TriggerAddEventTimePeriodic',
+    'libE0EAE146_gv_commander == "AbathurReborn"',
+    'libE0EAE146_gv_abathurRebornRuntimePlayer',
+  ];
+  for (const token of requiredRuntimeTokens) {
+    if (!runtimeText.includes(token)) {
+      errors.push(`AbathurRebornRuntime 缺少关键运行时片段: ${token}`);
+    }
+  }
+
+  for (const forbidden of ['InitializeAbathurBiomass', 'BiomassPickup', 'AbathurRebornCollectBiomass', 'UnitAddCustomValue']) {
+    if (runtimeText.includes(forbidden)) {
+      errors.push(`AbathurRebornRuntime 不允许包含生物质运行时入口: ${forbidden}`);
+    }
+  }
+
+  for (const match of runtimeText.matchAll(/AbilityCommand\("([^"]+)",\s*0\)/g)) {
+    const abilityId = match[1];
+    if (!targetAbilities.has(abilityId)) {
+      errors.push(`AbathurRebornRuntime 不应 TechTreeAbilityAllow 未在 XMAbathurReborn 定义的 Ability: ${abilityId}`);
+    }
+  }
+
+  for (const unitId of expectedLarvaTrainButtons.map((button) => button.unit)) {
+    if (!runtimeText.includes(`TechTreeUnitAllow(lp_player, "${unitId}", true)`)) {
+      errors.push(`AbathurRebornRuntime 必须开放基础生产单位: ${unitId}`);
+    }
+  }
+
+  for (const expected of expectedLineages) {
+    const actual = instances.get(expected.id);
+    if (!actual) {
+      continue;
+    }
+
+    expected.candidates.forEach(([, unitId, status]) => {
+      const allowTrue = `TechTreeUnitAllow(lp_player, "${unitId}", true)`;
+      if (status === 'ready') {
+        if (!runtimeText.includes(allowTrue)) {
+          errors.push(`AbathurRebornRuntime 必须在选择闭包中开放 ready 候选: ${expected.id}/${unitId}`);
+        }
+      } else if (runtimeText.includes(allowTrue)) {
+        errors.push(`AbathurRebornRuntime 不允许开放 planned 候选: ${expected.id}/${unitId}`);
+      }
+    });
+  }
+
+  for (const forbiddenUnit of ['NydusNetwork', 'GreaterNydusWorm', 'Brutalisk', 'Omegalisk', 'Blightbringer', 'HotSLeviathan', 'Leviathan', 'Naktul']) {
+    if (runtimeText.includes(`TechTreeUnitAllow(lp_player, "${forbiddenUnit}", true)`)) {
+      errors.push(`AbathurRebornRuntime 不允许开放负例单位: ${forbiddenUnit}`);
+    }
+    if (!runtimeText.includes(`TechTreeUnitAllow(lp_player, "${forbiddenUnit}", false)`)) {
+      errors.push(`AbathurRebornRuntime 必须显式禁用负例单位: ${forbiddenUnit}`);
+    }
+  }
+
+  for (const abilityId of [
+    'RavagerCorrosiveBile',
+    'MorphRoachToRavager',
+    'MorphRoachVileToRavager',
+  ]) {
+    if (!runtimeText.includes(`AbilityCommand("${abilityId}", 0)`)) {
+      errors.push(`AbathurRebornRuntime 缺少破坏者能力白名单: ${abilityId}`);
+    }
+  }
+
+  validateRuntimeReplacementClosure(runtimeText, instances);
+}
+
+function validateRuntimeReplacementClosure(runtimeText, instances) {
+  const readyUnits = new Set();
+  const plannedUnits = new Set();
+  for (const expected of expectedLineages) {
+    const actual = instances.get(expected.id);
+    if (!actual) {
+      continue;
+    }
+    const units = indexedValues(actual, 'CandidateUnit');
+    const statuses = indexedValues(actual, 'CandidateStatus');
+    units.forEach((unitId, index) => {
+      if (statuses[index] === 'ready') {
+        readyUnits.add(unitId);
+      } else if (statuses[index] === 'planned') {
+        plannedUnits.add(unitId);
+      }
+    });
+  }
+
+  for (const [baseUnit, selection, replacementUnit] of expectedRuntimeReplacements) {
+    if (!readyUnits.has(replacementUnit)) {
+      errors.push(`运行时替换表引用的 ready 单位未在 profile 中标记 ready: ${baseUnit}/${selection} -> ${replacementUnit}`);
+    }
+    const replacementPattern = new RegExp(
+      `lp_baseUnit\\s*==\\s*"${escapeRegExp(baseUnit)}"[\\s\\S]{0,700}lv_selection\\s*==\\s*"${escapeRegExp(selection)}"[\\s\\S]{0,180}return\\s+"${escapeRegExp(replacementUnit)}"`,
+    );
+    if (!replacementPattern.test(runtimeText)) {
+      errors.push(`AbathurRebornRuntime 缺少单位替换映射: ${baseUnit}/${selection} -> ${replacementUnit}`);
+    }
+  }
+
+  for (const baseUnit of new Set(expectedRuntimeReplacements.map(([baseUnit]) => baseUnit))) {
+    if (!runtimeText.includes(`libE0EAE146_gf_AbathurRebornReplaceUnitsOfType(lp_player, "${baseUnit}")`)) {
+      errors.push(`AbathurRebornRuntime 周期扫描缺少基础单位: ${baseUnit}`);
+    }
+  }
+
+  for (const unitId of plannedUnits) {
+    if (runtimeText.includes(`return "${unitId}"`)) {
+      errors.push(`AbathurRebornRuntime 不允许把 planned 候选作为替换产物: ${unitId}`);
+    }
+  }
+
+  if (!runtimeText.includes('libE0EAE146_gf_AbathurRebornReplaceExistingUnits(lp_player);')) {
+    errors.push('AbathurRebornRuntime 初始化后必须立即扫描已有基础单位，避免开局单位漏替换');
+  }
+}
+
+function validateUnitPurchaseClosure() {
+  const purchaseAbilityIds = new Set(
+    [...targetUnitText.matchAll(/AbilCmd="([^"]+Purchase),Execute"/g)].map((match) => match[1]),
+  );
+
+  for (const match of targetUnitText.matchAll(/<CUnit\s+id="([^"]+)"[^>]*>[\s\S]*?<\/CUnit>/g)) {
+    const [, unitId] = match;
+    const unitBlock = match[0];
+    const unitAbilities = new Set([...unitBlock.matchAll(/<AbilArray[^>]*\bLink="([^"]+)"/g)].map((abilityMatch) => abilityMatch[1]));
+    const unitPurchaseButtons = [...unitBlock.matchAll(/AbilCmd="([^"]+Purchase),Execute"/g)].map((buttonMatch) => buttonMatch[1]);
+    for (const abilityId of unitPurchaseButtons) {
+      if (!unitAbilities.has(abilityId)) {
+        errors.push(`${unitId}: 购买按钮 ${abilityId},Execute 所在单位缺少 AbilArray Link="${abilityId}"`);
+      }
+    }
+  }
+
+  for (const abilityId of purchaseAbilityIds) {
+    if (!targetAbilities.has(abilityId)) {
+      errors.push(`单位购买按钮 ${abilityId},Execute 缺少对应 AbilData 定义`);
+      continue;
+    }
+
+    const abilityBlock = extractCatalogBlockByPrefix(targetAbilText, 'CAbil', abilityId);
+    const effectIds = collectAttributeValues(abilityBlock, 'Effect', 'value');
+    const requirementIds = collectInlineAttributeValues(abilityBlock, 'Requirements');
+    if (effectIds.length === 0) {
+      errors.push(`${abilityId}: 购买能力缺少 Effect`);
+    }
+    if (requirementIds.length === 0) {
+      errors.push(`${abilityId}: 购买能力缺少 NotPurchased Requirement，可能允许重复购买`);
+    }
+
+    for (const effectId of effectIds) {
+      validateEffectClosure(effectId, `${abilityId}`);
+    }
+    for (const requirementId of requirementIds) {
+      validateRequirementClosure(requirementId, `${abilityId}`);
+    }
+  }
+}
+
+function validateEffectClosure(effectId, context, seen = new Set()) {
+  if (seen.has(effectId)) {
+    return;
+  }
+  seen.add(effectId);
+
+  if (!targetEffects.has(effectId)) {
+    errors.push(`${context}: 缺少 Effect=${effectId}`);
+    return;
+  }
+
+  const effectBlock = extractCatalogBlockByPrefix(targetEffectText, 'CEffect', effectId);
+  for (const nestedEffectId of collectEffectReferenceValues(effectBlock)) {
+    validateEffectClosure(nestedEffectId, `${context} -> ${effectId}`, seen);
+  }
+  for (const behaviorId of collectBehaviorReferenceValues(effectBlock)) {
+    if (!targetBehaviors.has(behaviorId)) {
+      errors.push(`${context} -> ${effectId}: 缺少 Behavior=${behaviorId}`);
+    }
+  }
+}
+
+function validateRequirementClosure(requirementId, context) {
+  if (!targetRequirements.has(requirementId)) {
+    errors.push(`${context}: 缺少 Requirement=${requirementId}`);
+    return;
+  }
+
+  const requirementBlock = extractCatalogBlock(targetRequirementText, 'CRequirement', requirementId);
+  for (const nodeId of collectInlineAttributeValues(requirementBlock, 'Link')) {
+    validateRequirementNodeClosure(nodeId, `${context} -> ${requirementId}`);
+  }
+}
+
+function validateRequirementNodeClosure(nodeId, context, seen = new Set()) {
+  if (seen.has(nodeId)) {
+    return;
+  }
+  seen.add(nodeId);
+
+  if (!targetRequirementNodes.has(nodeId)) {
+    errors.push(`${context}: 缺少 RequirementNode=${nodeId}`);
+    return;
+  }
+
+  const nodeBlock = extractCatalogBlockByPrefix(targetRequirementNodeText, 'CRequirement', nodeId);
+  if (/^<CRequirementCountBehavior\b/.test(nodeBlock)) {
+    const behaviorIds = collectAttributeValues(nodeBlock, 'Count', 'Link');
+    for (const behaviorId of behaviorIds) {
+      if (!targetBehaviors.has(behaviorId)) {
+        errors.push(`${context} -> ${nodeId}: CountBehavior 指向不存在的 Behavior=${behaviorId}`);
+      }
+    }
+  }
+
+  for (const operandId of collectOperandValues(nodeBlock)) {
+    if (isRequirementLiteral(operandId)) {
+      continue;
+    }
+    validateRequirementNodeClosure(operandId, `${context} -> ${nodeId}`, seen);
+  }
+}
+
 function validateRavagerClosure(instances) {
   const roach = instances.get('Roach');
   if (!roach) {
@@ -677,6 +1104,1092 @@ function validateRavagerClosure(instances) {
       if (!launchSetBlock.includes(`value="${ref}"`)) {
         errors.push(`RavagerCorrosiveBileAoeLaunchSet 未引用 ${ref}`);
       }
+    }
+  }
+}
+
+function validateMutaliskVariantClosure() {
+  expectIdsPresent('飞龙变体 ButtonData', targetButtons, [
+    'AcidSplash',
+    'Blink2',
+    'ChargeGlaives',
+    'Enshroud',
+    'Unveiled',
+    'MutaliskRapidRegeneration',
+    'OsteodermPlating',
+    'Recuperation',
+    'SynapticDisintegration',
+    'Incinerate',
+    'MorphtoMutaliskChar',
+    'MorphtoMamba',
+    'MorphtoAnkylos',
+    'MorphtoMesmer',
+  ]);
+  expectIdsPresent('飞龙变体 WeaponData', targetWeapons, ['Fireball', 'DegenerationRay', 'CorrosiveStream']);
+  expectIdsPresent('飞龙变体 EffectData', targetEffects, [
+    'FireballDamage',
+    'FireballLM',
+    'DegenerationRay',
+    'DegenerationRayBounceSet',
+    'MambaSet',
+    'MambaChain',
+    'ApplySynapticDisintegration',
+    'SynapticDisintegration',
+    'AnkylosDamage',
+    'AnkylosLM',
+  ]);
+  expectIdsPresent('飞龙变体 BehaviorData', targetBehaviors, [
+    'MutaliskBaseRegeneration',
+    'ChargedGlaives',
+    'Enshrouded',
+    'SynapticDisintegration',
+    'AbathurMutaliskExplosiveGlaiveBuff',
+    'AbathurMutaliskViciousGlaiveBuff',
+    'AbathurMutaliskRapidRegenerationBuff',
+  ]);
+  expectIdsPresent('飞龙变体 AbilData', targetAbilities, [
+    'ChargedGlaives',
+    'NeuralCamouflage',
+    'Teleport',
+    'AbathurMutaliskExplosiveGlaivePurchase',
+    'AbathurMutaliskViciousGlaivePurchase',
+    'AbathurMutaliskRapidRegenerationPurchase',
+  ]);
+  expectIdsPresent('飞龙变体 ActorData', targetActors, [
+    'DegenerationRayAttack',
+    'DegenerationRayBeam',
+    'FireballAttackMissile',
+    'AnkylosAttack',
+    'AnkylosAttackMissile',
+    'Mutalisk2',
+    'Mamba',
+    'MutaliskMesmer',
+    'MutaliskAnkylos',
+  ]);
+  expectIdsPresent('飞龙变体 ModelData', targetModels, [
+    'DegenerationRay',
+    'Mamba',
+    'MambaPortrait',
+    'Mutalisk2',
+    'MutaliskPortrait2',
+    'MutaliskAnkylos',
+    'MutaliskAnkylosPortrait',
+    'MutaliskMesmer',
+    'MutaliskMesmerPortrait',
+  ]);
+  expectIdsPresent('飞龙变体 ValidatorData', targetValidators, [
+    'CasterNotInCombat5',
+    'HaveAbathurMutaliskViciousGlaiveBuff',
+  ]);
+
+  const variantSpecs = [
+    {
+      unit: 'MutaliskChar',
+      weapon: 'Fireball',
+      buttons: ['Incinerate', 'Recuperation'],
+    },
+    {
+      unit: 'Mamba',
+      weapon: 'DegenerationRay',
+      behaviors: ['MutaliskBaseRegeneration'],
+      buttons: ['SynapticDisintegration', 'Recuperation'],
+    },
+    {
+      unit: 'Mesmer',
+      weapon: 'GlaiveWurm',
+      abilities: ['NeuralCamouflage', 'Teleport', 'ChargedGlaives'],
+      behaviors: ['MutaliskBaseRegeneration'],
+      buttons: ['Enshroud', 'Unveiled', 'Blink2', 'ChargeGlaives', 'Cancel', 'Recuperation'],
+    },
+    {
+      unit: 'MutaliskAnkylos',
+      weapon: 'CorrosiveStream',
+      behaviors: ['MutaliskBaseRegeneration'],
+      buttons: ['OsteodermPlating', 'AcidSplash', 'Recuperation'],
+    },
+  ];
+
+  for (const spec of variantSpecs) {
+    const block = extractCatalogBlock(targetUnitText, 'CUnit', spec.unit);
+    if (!block) {
+      errors.push(`飞龙变体缺少 CUnit id="${spec.unit}"`);
+      continue;
+    }
+
+    for (const abilityId of [
+      'AbathurMutaliskExplosiveGlaivePurchase',
+      'AbathurMutaliskViciousGlaivePurchase',
+      'AbathurMutaliskRapidRegenerationPurchase',
+    ]) {
+      if (!block.includes(`AbilArray Link="${abilityId}"`)) {
+        errors.push(`${spec.unit}: 缺少兵种科技购买 AbilArray ${abilityId}`);
+      }
+      if (!block.includes(`AbilCmd="${abilityId},Execute"`)) {
+        errors.push(`${spec.unit}: 缺少兵种科技购买按钮 ${abilityId},Execute`);
+      }
+    }
+
+    if (spec.weapon && !block.includes(`WeaponArray`) && spec.weapon !== 'GlaiveWurm') {
+      errors.push(`${spec.unit}: 缺少 WeaponArray`);
+    }
+    if (spec.weapon && !block.includes(`Link="${spec.weapon}"`)) {
+      errors.push(`${spec.unit}: 未挂载武器 ${spec.weapon}`);
+    }
+    for (const abilityId of spec.abilities ?? []) {
+      if (!block.includes(`AbilArray Link="${abilityId}"`)) {
+        errors.push(`${spec.unit}: 缺少 AbilArray ${abilityId}`);
+      }
+    }
+    for (const behaviorId of spec.behaviors ?? []) {
+      if (!block.includes(`BehaviorArray Link="${behaviorId}"`)) {
+        errors.push(`${spec.unit}: 缺少 BehaviorArray ${behaviorId}`);
+      }
+    }
+    for (const face of spec.buttons ?? []) {
+      if (!block.includes(`Face="${face}"`)) {
+        errors.push(`${spec.unit}: 单位面板缺少按钮 Face=${face}`);
+      }
+    }
+
+    if (/Link="MutaliskRapidRegen"|Requirements="HaveHotS(ExplosiveGlaive|ViciousGlaive|RapidRegeneration)"/.test(block)) {
+      errors.push(`${spec.unit}: 不应继承 source 的 HotS 升级型飞龙科技口径，应使用当前兵种购买 Buff`);
+    }
+
+    expectGameString(spec.unit, `Unit/Name/${spec.unit}`);
+  }
+
+  const mambaSet = extractCatalogBlock(targetEffectText, 'CEffectSet', 'MambaSet');
+  for (const ref of ['DegenerationRay', 'MambaChain', 'ApplySynapticDisintegration']) {
+    if (!mambaSet.includes(`value="${ref}"`)) {
+      errors.push(`MambaSet 未引用 ${ref}`);
+    }
+  }
+
+  const mambaChain = extractCatalogBlock(targetEffectText, 'CEffectEnumArea', 'MambaChain');
+  if (!mambaChain.includes('ValidatorArray value="HaveAbathurMutaliskViciousGlaiveBuff"')) {
+    errors.push('MambaChain 必须由 AbathurMutaliskViciousGlaiveBuff 购买行为驱动');
+  }
+  if (!mambaChain.includes('Effect="DegenerationRayBounceSet"')) {
+    errors.push('MambaChain 未指向 DegenerationRayBounceSet');
+  }
+
+  const synapticBehavior = extractCatalogBlock(targetBehaviorText, 'CBehaviorBuff', 'SynapticDisintegration');
+  if (!synapticBehavior.includes('PeriodicEffect value="SynapticDisintegration"')) {
+    errors.push('SynapticDisintegration Behavior 未周期性触发同名伤害效果');
+  }
+
+  const neuralCamouflage = extractCatalogBlock(targetAbilText, 'CAbilBehavior', 'NeuralCamouflage');
+  if (!neuralCamouflage.includes('BehaviorArray value="Enshrouded"')) {
+    errors.push('NeuralCamouflage 未挂载 Enshrouded 行为');
+  }
+  const chargedGlaives = extractCatalogBlock(targetAbilText, 'CAbilBehavior', 'ChargedGlaives');
+  if (!chargedGlaives.includes('BehaviorArray value="ChargedGlaives"')) {
+    errors.push('ChargedGlaives Ability 未挂载同名行为');
+  }
+
+  for (const key of [
+    'Button/Name/Incinerate',
+    'Button/Name/SynapticDisintegration',
+    'Button/Name/Enshroud',
+    'Button/Name/Blink2',
+    'Button/Name/ChargeGlaives',
+    'Button/Tooltip/Mamba',
+    'Button/Tooltip/Mesmer',
+    'Button/Tooltip/MutaliskAnkylos',
+    'Button/Tooltip/MutaliskChar',
+  ]) {
+    expectGameString('飞龙变体本地化', key);
+  }
+}
+
+function validateFinalFourVariantClosure() {
+  const zerglingPurchases = [
+    'AbathurZerglingStealthlingPurchase',
+    'AbathurZerglingKetamineInfusionPurchase',
+    'AbathurZerglingKleptomaniaPurchase',
+    'AbathurZerglingMoonragePurchase',
+    'AbathurZerglingArmoredCarapacePurchase',
+  ];
+  const roachPurchases = [
+    'AbathurRoachMeleeStrainPurchase',
+    'AbathurRoachBanelingGestationPurchase',
+    'AbathurRoachRoachlingInfestationPurchase',
+    'AbathurRoachBileShieldPurchase',
+    'AbathurRoachAdrenalineOverdosePurchase',
+  ];
+  const hydraliskPurchases = [
+    'AbathurHydraliskCripplePurchase',
+    'AbathurHydraliskBroodlingsPurchase',
+    'AbathurHydraliskMechanicalPurchase',
+    'AbathurHydraliskRangePurchase',
+    'AbathurHydraliskMeleePurchase',
+  ];
+
+  expectIdsPresent('重生阿巴瑟最终四变体 UnitData', targetUnits, [
+    'Pygalisk',
+    'ZerglingToxic',
+    'ToxicZerglingBurrowed',
+    'Igniter',
+    'IgniterBurrowed',
+    'Hydralisk2',
+    'HydraliskParalyticBurrowed',
+  ]);
+  expectIdsPresent('重生阿巴瑟最终四变体 AbilData', targetAbilities, [
+    ...zerglingPurchases,
+    ...roachPurchases,
+    ...hydraliskPurchases,
+    'AbathurToxicZerglingBurrow',
+    'AbathurUnburrowToxicZergling',
+    'AbathurBurrowIgniter',
+    'AbathurUnburrowIgniter',
+    'AbathurBurrowParalyticHydralisk',
+    'AbathurUnburrowToxicHydralisk',
+  ]);
+  expectIdsPresent('重生阿巴瑟最终四变体 WeaponData', targetWeapons, [
+    'AbathurZerglingPoisonedFangs',
+    'AbathurIgniterFireBreath',
+    'AbathurHydraliskParalyticSpines',
+  ]);
+  expectIdsPresent('重生阿巴瑟最终四变体 EffectData', targetEffects, [
+    'AbathurZerglingPoisonClawsSet',
+    'AbathurZerglingPoisonClawsApply',
+    'AbathurZerglingPoisonClawsDamage',
+    'AbathurIgniterAttackSet',
+    'AbathurIgniterEffectSet',
+    'AbathurIgniterAttackSearch',
+    'AbathurIgniterAttackDamage',
+    'AbathurIgniterApplyScorch',
+    'AbathurIgniterApplyMolten',
+    'AbathurIgniterBurnDamage',
+    'AbathurRebornRoachlingSpawn',
+    'AbathurRebornRoachlingTimedLifeAB',
+    'AbathurHydraliskParalyticSet',
+    'AbathurHydraliskParalyticSpinesLM',
+    'AbathurHydraliskParalyticSpinesDamage',
+    'AbathurHydraliskInfestBroodlingsApply',
+    'AbathurHydraliskInfestBroodlingsDeathCU',
+    'AbathurHydraliskCrippledApply',
+  ]);
+  expectIdsPresent('重生阿巴瑟最终四变体 BehaviorData', targetBehaviors, [
+    'AbathurPygaliskResistanceBuff',
+    'AbathurZerglingEvasionBuff',
+    'AbathurZerglingStealthlingBuff',
+    'AbathurZerglingPoisonFangBuff',
+    'AbathurRoachRoachlingInfestationBuff',
+    'AbathurRebornRoachlingTimedLife',
+    'AbathurIgniterScorchingBreathBuff',
+    'AbathurIgniterMoltenBreathBuff',
+    'AbathurHydraliskBroodlingsBuff',
+    'AbathurHydraliskInfestBroodlings',
+    'AbathurHydraliskCrippleBuff',
+    'AbathurHydraliskCrippledBuff',
+  ]);
+  expectIdsPresent('重生阿巴瑟最终四变体 ValidatorData', targetValidators, [
+    'AbathurHydraliskCripplePurchased',
+    'AbathurHydraliskBroodlingsPurchased',
+  ]);
+  expectIdsPresent('重生阿巴瑟最终四变体 ActorData', targetActors, [
+    'ToxicZergling',
+    'ZerglingAttack2',
+    'ParalyticHydralisk',
+    'ParalyticHydraliskAttack',
+    'Igniter',
+    'AbathurIgniterAttackImpact',
+    'AbathurIgniterAttackLaunch',
+  ]);
+  expectIdsPresent('重生阿巴瑟最终四变体 ModelData', targetModels, [
+    'ParalyticHydralisk',
+    'ParalyticHydraliskDeath',
+    'ParalyticHydraliskPortrait',
+    'AbathurIgniterAttackImpactModel',
+    'AbathurIgniterAttackLaunchModel',
+  ]);
+
+  const unitSpecs = [
+    {
+      unit: 'Pygalisk',
+      purchases: zerglingPurchases,
+      behaviors: ['AbathurPygaliskResistanceBuff', 'AbathurZerglingEvasionBuff'],
+      buttons: ['AbathurZerglingStealthling', 'AbathurZerglingArmoredCarapace', 'AbathurPygaliskMinorSplash'],
+    },
+    {
+      unit: 'ZerglingToxic',
+      purchases: zerglingPurchases,
+      abilities: ['AbathurToxicZerglingBurrow'],
+      behaviors: ['AbathurZerglingEvasionBuff'],
+      weapon: 'AbathurZerglingPoisonedFangs',
+      buttons: ['AbathurZerglingPoisonedFangs', 'AbathurZerglingEvasion', 'BurrowDown'],
+    },
+    {
+      unit: 'Igniter',
+      purchases: roachPurchases,
+      abilities: ['AbathurBurrowIgniter'],
+      behaviors: ['AbathurRoachAdaptivePlatingLowBuff', 'AbathurRoachAdaptivePlatingHighBuff'],
+      weapon: 'AbathurIgniterFireBreath',
+      buttons: ['AbathurIgniterScorchingBreath', 'AbathurRoachPlatedExoskeleton', 'BurrowDown'],
+    },
+    {
+      unit: 'Hydralisk2',
+      purchases: hydraliskPurchases,
+      abilities: ['AbathurBurrowParalyticHydralisk', 'HydraliskFrenzy'],
+      weapon: 'AbathurHydraliskParalyticSpines',
+      buttons: ['AbathurHydraliskVenomSpines', 'HydraliskFrenzy', 'BurrowDown'],
+    },
+  ];
+
+  for (const spec of unitSpecs) {
+    const block = extractCatalogBlock(targetUnitText, 'CUnit', spec.unit);
+    if (!block) {
+      continue;
+    }
+    for (const abilityId of [...(spec.purchases ?? []), ...(spec.abilities ?? [])]) {
+      if (!block.includes(`AbilArray Link="${abilityId}"`)) {
+        errors.push(`${spec.unit}: 缺少 AbilArray Link="${abilityId}"`);
+      }
+    }
+    for (const abilityId of spec.purchases ?? []) {
+      if (!block.includes(`AbilCmd="${abilityId},Execute"`)) {
+        errors.push(`${spec.unit}: 单位面板缺少购买按钮 ${abilityId},Execute`);
+      }
+    }
+    if (spec.weapon && !block.includes(`WeaponArray Link="${spec.weapon}"`)) {
+      errors.push(`${spec.unit}: 未挂载武器 ${spec.weapon}`);
+    }
+    for (const behaviorId of spec.behaviors ?? []) {
+      if (!block.includes(`BehaviorArray`) || !block.includes(`Link="${behaviorId}"`)) {
+        errors.push(`${spec.unit}: 缺少 BehaviorArray ${behaviorId}`);
+      }
+    }
+    for (const face of spec.buttons ?? []) {
+      if (!block.includes(`Face="${face}"`)) {
+        errors.push(`${spec.unit}: 单位面板缺少按钮 Face=${face}`);
+      }
+    }
+    if (/Requirements="Zagara"|HaveDehakaGlevigRoachFireBreath|K5InfestBroodlings/.test(block)) {
+      errors.push(`${spec.unit}: 不应保留 Zagara/Dehaka/Kerrigan 跨指挥官依赖`);
+    }
+    if (/HotSRoachDamage|HotSRoachShield|HotSRedundantMembranes|HotSZerglingFrenzy|HotSMetabolicBoost|HaveHotSGroovedSpines|HaveHotSHydraliskHealth/.test(block)) {
+      errors.push(`${spec.unit}: 不应保留 source/HotS 升级显示口径，应使用本地购买 Buff`);
+    }
+  }
+
+  const burrowChecks = [
+    ['ToxicZerglingBurrowed', 'AbathurUnburrowToxicZergling'],
+    ['IgniterBurrowed', 'AbathurUnburrowIgniter'],
+    ['HydraliskParalyticBurrowed', 'AbathurUnburrowToxicHydralisk'],
+  ];
+  for (const [unitId, abilityId] of burrowChecks) {
+    const block = extractCatalogBlock(targetUnitText, 'CUnit', unitId);
+    if (!block.includes(`AbilArray Link="${abilityId}"`) || !block.includes(`AbilCmd="${abilityId},Execute"`)) {
+      errors.push(`${unitId}: 潜地形态缺少反潜 Ability/Button ${abilityId}`);
+    }
+    if (/HotSRoachDamage|HotSRoachShield|HotSRedundantMembranes|HotSZerglingFrenzy|HotSMetabolicBoost/.test(block)) {
+      errors.push(`${unitId}: 潜地形态不应保留 source/HotS 升级显示口径`);
+    }
+  }
+
+  const poisonWeapon = extractCatalogBlockByPrefix(targetWeaponText, 'CWeapon', 'AbathurZerglingPoisonedFangs');
+  if (!poisonWeapon.includes('Effect value="AbathurZerglingPoisonClawsSet"')) {
+    errors.push('AbathurZerglingPoisonedFangs 未指向 AbathurZerglingPoisonClawsSet');
+  }
+  const poisonSet = extractCatalogBlock(targetEffectText, 'CEffectSet', 'AbathurZerglingPoisonClawsSet');
+  for (const ref of ['AbathurZerglingPoisonClawsApply', 'AbathurZerglingPoisonClawsDamage']) {
+    if (!poisonSet.includes(`value="${ref}"`)) {
+      errors.push(`AbathurZerglingPoisonClawsSet 未引用 ${ref}`);
+    }
+  }
+
+  const igniterWeapon = extractCatalogBlockByPrefix(targetWeaponText, 'CWeapon', 'AbathurIgniterFireBreath');
+  if (!igniterWeapon.includes('Effect value="AbathurIgniterAttackSet"')) {
+    errors.push('AbathurIgniterFireBreath 未指向 AbathurIgniterAttackSet');
+  }
+  const igniterSet = extractCatalogBlock(targetEffectText, 'CEffectSet', 'AbathurIgniterEffectSet');
+  for (const ref of ['AbathurIgniterAttackDamage', 'AbathurIgniterApplyMolten', 'AbathurIgniterApplyScorch']) {
+    if (!igniterSet.includes(`value="${ref}"`)) {
+      errors.push(`AbathurIgniterEffectSet 未引用 ${ref}`);
+    }
+  }
+  if (/HaveDehakaGlevigRoachFireBreath/.test(targetActorText) || /HaveDehakaGlevigRoachFireBreath/.test(targetEffectText)) {
+    errors.push('Igniter 链路不允许引入 Dehaka/Glevig 火焰吐息 Validator');
+  }
+
+  const hydraWeapon = extractCatalogBlockByPrefix(targetWeaponText, 'CWeapon', 'AbathurHydraliskParalyticSpines');
+  if (!hydraWeapon.includes('Effect value="AbathurHydraliskParalyticSpinesLM"')) {
+    errors.push('AbathurHydraliskParalyticSpines 未指向 AbathurHydraliskParalyticSpinesLM');
+  }
+  const hydraSet = extractCatalogBlock(targetEffectText, 'CEffectSet', 'AbathurHydraliskParalyticSet');
+  for (const ref of ['AbathurHydraliskParalyticSpinesDamage', 'AbathurHydraliskVenomStrikeApply', 'AbathurHydraliskInfestBroodlingsApply', 'AbathurHydraliskCrippledApply']) {
+    if (!hydraSet.includes(`value="${ref}"`)) {
+      errors.push(`AbathurHydraliskParalyticSet 未引用 ${ref}`);
+    }
+  }
+  const broodlingApply = extractCatalogBlock(targetEffectText, 'CEffectApplyBehavior', 'AbathurHydraliskInfestBroodlingsApply');
+  if (!broodlingApply.includes('Behavior value="AbathurHydraliskInfestBroodlings"')) {
+    errors.push('AbathurHydraliskInfestBroodlingsApply 未挂本地 AbathurHydraliskInfestBroodlings 行为');
+  }
+  const broodlingBehavior = extractCatalogBlock(targetBehaviorText, 'CBehaviorBuff', 'AbathurHydraliskInfestBroodlings');
+  if (!broodlingBehavior.includes('DeathResponse Chance="1" Effect="AbathurHydraliskInfestBroodlingsDeathCU"')) {
+    errors.push('AbathurHydraliskInfestBroodlings 未在目标死亡时触发本地 DeathCU');
+  }
+  const broodlingDeath = extractCatalogBlock(targetEffectText, 'CEffectCreateUnit', 'AbathurHydraliskInfestBroodlingsDeathCU');
+  if (!broodlingDeath.includes('SpawnUnit value="Broodling"')) {
+    errors.push('AbathurHydraliskInfestBroodlingsDeathCU 未产出 Broodling');
+  }
+  if (/K5InfestBroodlings/.test(targetEffectText) || /K5InfestBroodlings/.test(targetBehaviorText)) {
+    errors.push('Hydralisk2 巢虫链不应直接引用 Kerrigan K5InfestBroodlings');
+  }
+
+  const roachlingBuff = extractCatalogBlock(targetBehaviorText, 'CBehaviorBuff', 'AbathurRoachRoachlingInfestationBuff');
+  if (!roachlingBuff.includes('DamageResponse Handled="AbathurRebornRoachlingSpawn"')) {
+    errors.push('AbathurRoachRoachlingInfestationBuff 未通过 DamageResponse 生成小蟑螂');
+  }
+  const roachlingSpawn = extractCatalogBlock(targetEffectText, 'CEffectCreateUnit', 'AbathurRebornRoachlingSpawn');
+  if (!roachlingSpawn.includes('SpawnUnit value="Roachling"') || !roachlingSpawn.includes('SpawnEffect value="AbathurRebornRoachlingTimedLifeAB"')) {
+    errors.push('AbathurRebornRoachlingSpawn 必须产出 Roachling 并挂本地 TimedLife');
+  }
+}
+
+function validateNoxiousUltraliskClosure() {
+  expectIdsPresent('Noxious 雷兽 ButtonData', targetButtons, ['Strider']);
+
+  const unitBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'HotSNoxious');
+  if (!unitBlock) {
+    errors.push('Noxious 雷兽缺少 CUnit id="HotSNoxious"');
+    return;
+  }
+
+  for (const token of [
+    'Collide index="Ground" value="0"',
+    'Collide index="Structure" value="1"',
+    'Collide index="Small" value="0"',
+    'LayoutButtons Face="Strider" Type="Passive"',
+  ]) {
+    if (!unitBlock.includes(token)) {
+      errors.push(`HotSNoxious 单位覆盖缺少源 Mod 关键字段: ${token}`);
+    }
+  }
+
+  expectGameString('Noxious 雷兽本地化', 'Button/Name/Strider');
+  expectGameString('Noxious 雷兽本地化', 'Button/Tooltip/Strider');
+}
+
+function validateBileTitanClosure() {
+  expectIdsPresent('BileTitan UnitData', targetUnits, ['BileTitan', 'SpewMissile']);
+  expectIdsPresent('BileTitan ButtonData', targetButtons, ['Spew', 'Suicide', 'Strider']);
+  expectIdsPresent('BileTitan WeaponData', targetWeapons, ['Spew']);
+  expectIdsPresent('BileTitan BehaviorData', targetBehaviors, ['Explode', 'ImmobilizeBileTitan', 'ToxicAcid']);
+  expectIdsPresent('BileTitan EffectData', targetEffects, [
+    'Dummy',
+    'ExplodeRemoveBehavior',
+    'ExplodeSearchArea',
+    'ExplodeSet',
+    'BileTitanAcidDamage',
+    'SpewApplyDebuff',
+    'SpewApplyImmobilizeBehavior',
+    'SpewCreatePersistent',
+    'SpewLaunchMissile',
+    'SpewRemoveImmobilizeBehavior',
+    'SpewSearchArea',
+  ]);
+  expectIdsPresent('BileTitan ValidatorData', targetValidators, ['CasterNotDeadandTargetNotInvulnerable']);
+  expectIdsPresent('BileTitan ModelData', targetModels, [
+    'AcidPool',
+    'BileTitan',
+    'BileTitanAcidDebuff',
+    'BileTitanDeath',
+    'BileTitanPortrait',
+    'SpewMissile',
+  ]);
+  expectIdsPresent('BileTitan ActorData', targetActors, [
+    'AcidDebuff',
+    'AcidPool',
+    'AcidPoolSound',
+    'BileTitan',
+    'Left2Die_Kaboomer_Ambience',
+    'Spew',
+    'SpewInitialLaunch',
+    'SpewMissile',
+  ]);
+  expectIdsPresent('BileTitan MoverData', targetMovers, ['Spew']);
+  expectIdsPresent('BileTitan SoundData', targetSounds, [
+    'Kaboomer_Suicide',
+    'Left2Die_Kaboomer_Ambience',
+    'Left2Die_Kaboomer_Attack',
+    'SpewImpact',
+  ]);
+
+  const unitBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'BileTitan');
+  if (!unitBlock) {
+    errors.push('BileTitan 缺少 CUnit id="BileTitan"');
+    return;
+  }
+  for (const token of [
+    'BehaviorArray Link="Explode"',
+    'WeaponArray Link="Spew"',
+    'Face="Spew" Type="Passive"',
+    'Face="Suicide" Type="Passive"',
+    'Face="Strider" Type="Passive"',
+  ]) {
+    if (!unitBlock.includes(token)) {
+      errors.push(`BileTitan 单位面板/能力闭包缺少: ${token}`);
+    }
+  }
+
+  const spewWeapon = extractCatalogBlock(targetWeaponText, 'CWeaponLegacy', 'Spew');
+  if (!spewWeapon.includes('Effect value="SpewCreatePersistent"')) {
+    errors.push('BileTitan/Spew 武器必须指向 SpewCreatePersistent');
+  }
+  if (!spewWeapon.includes('DisplayEffect value="BileTitanAcidDamage"')) {
+    errors.push('BileTitan/Spew 武器必须显示 BileTitanAcidDamage');
+  }
+
+  const persistent = extractCatalogBlock(targetEffectText, 'CEffectCreatePersistent', 'SpewCreatePersistent');
+  for (const token of [
+    'PeriodicValidator value="CasterNotDeadandTargetNotInvulnerable"',
+    'PeriodicEffectArray value="SpewLaunchMissile"',
+    'PeriodicEffectArray value="SpewSearchArea"',
+  ]) {
+    if (!persistent.includes(token)) {
+      errors.push(`SpewCreatePersistent 缺少: ${token}`);
+    }
+  }
+
+  const missileEffect = extractCatalogBlock(targetEffectText, 'CEffectLaunchMissile', 'SpewLaunchMissile');
+  if (!missileEffect.includes('AmmoUnit value="SpewMissile"')) {
+    errors.push('SpewLaunchMissile 必须发射 SpewMissile');
+  }
+
+  const search = extractCatalogBlock(targetEffectText, 'CEffectEnumArea', 'SpewSearchArea');
+  if (!search.includes('AreaArray Radius="1.2" Effect="SpewApplyDebuff"')) {
+    errors.push('SpewSearchArea 必须在范围内应用 SpewApplyDebuff');
+  }
+
+  const debuff = extractCatalogBlock(targetBehaviorText, 'CBehaviorBuff', 'ToxicAcid');
+  if (!debuff.includes('PeriodicEffect value="BileTitanAcidDamage"')) {
+    errors.push('ToxicAcid 必须周期性触发 BileTitanAcidDamage');
+  }
+
+  const explodeSet = extractCatalogBlock(targetEffectText, 'CEffectSet', 'ExplodeSet');
+  for (const ref of ['ExplodeRemoveBehavior', 'ExplodeSearchArea', 'Suicide']) {
+    if (!explodeSet.includes(`value="${ref}"`)) {
+      errors.push(`ExplodeSet 未引用 ${ref}`);
+    }
+  }
+
+  expectGameString('BileTitan 本地化', 'Unit/Name/BileTitan');
+  expectGameString('BileTitan 本地化', 'Unit/Name/SpewMissile');
+  expectGameString('BileTitan 本地化', 'Button/Name/Spew');
+  expectGameString('BileTitan 本地化', 'Button/Tooltip/Spew');
+  expectGameString('BileTitan 本地化', 'Button/Tooltip/BileTitan');
+  expectGameString('BileTitan 本地化', 'Behavior/Name/ToxicAcid');
+}
+
+function validateFrostFiendClosure() {
+  expectIdsPresent('FrostFiend UnitData', targetUnits, ['FrostFiend', 'FrostFiendBurrowed', 'FrozenShards']);
+  expectIdsPresent('FrostFiend AbilData', targetAbilities, ['FrostFiendBurrow', 'FrostFiendUnburrow']);
+  expectIdsPresent('FrostFiend WeaponData', targetWeapons, ['FrozenShards']);
+  expectIdsPresent('FrostFiend EffectData', targetEffects, [
+    'FrostFiendBoltLM',
+    'FrozenShardsDamage',
+    'FrozenShardsMissile',
+  ]);
+  expectIdsPresent('FrostFiend BehaviorData', targetBehaviors, ['BanelingLifesteal']);
+  expectIdsPresent('FrostFiend ButtonData', targetButtons, ['PiercingShards']);
+  expectIdsPresent('FrostFiend ModelData', targetModels, [
+    'FrostFiend',
+    'FrostFiendBolt',
+    'FrostFiendDeath',
+    'FrostFiendPortrait',
+  ]);
+  expectIdsPresent('FrostFiend ActorData', targetActors, ['FrostFiend', 'FrostFiendBolt']);
+
+  const unitBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'FrostFiend');
+  if (!unitBlock) {
+    errors.push('FrostFiend 缺少 CUnit id="FrostFiend"');
+    return;
+  }
+  for (const token of [
+    'AbilArray Link="FrostFiendBurrow"',
+    'BehaviorArray Link="BanelingLifesteal"',
+    'WeaponArray Link="FrozenShards"',
+    'Face="PiercingShards" Type="Passive"',
+  ]) {
+    if (!unitBlock.includes(token)) {
+      errors.push(`FrostFiend 单位闭包缺少: ${token}`);
+    }
+  }
+
+  const burrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'FrostFiendBurrow');
+  if (!burrow.includes('InfoArray Unit="FrostFiendBurrowed"')) {
+    errors.push('FrostFiendBurrow 必须变形为 FrostFiendBurrowed');
+  }
+  const unburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'FrostFiendUnburrow');
+  if (!unburrow.includes('InfoArray Unit="FrostFiend"')) {
+    errors.push('FrostFiendUnburrow 必须变回 FrostFiend');
+  }
+
+  const weapon = extractCatalogBlock(targetWeaponText, 'CWeaponLegacy', 'FrozenShards');
+  if (!weapon.includes('Effect value="FrostFiendBoltLM"')) {
+    errors.push('FrozenShards 武器必须指向 FrostFiendBoltLM');
+  }
+  const persistent = extractCatalogBlock(targetEffectText, 'CEffectCreatePersistent', 'FrostFiendBoltLM');
+  if (!persistent.includes('PeriodicEffectArray value="FrozenShardsMissile"')) {
+    errors.push('FrostFiendBoltLM 必须周期性发射 FrozenShardsMissile');
+  }
+  const missile = extractCatalogBlock(targetEffectText, 'CEffectLaunchMissile', 'FrozenShardsMissile');
+  if (!missile.includes('AmmoUnit value="FrozenShards"')) {
+    errors.push('FrozenShardsMissile 必须使用 FrozenShards 弹体');
+  }
+
+  expectGameString('FrostFiend 本地化', 'Unit/Name/FrostFiend');
+  expectGameString('FrostFiend 本地化', 'Unit/Name/FrozenShards');
+  expectGameString('FrostFiend 本地化', 'Button/Name/PiercingShards');
+  expectGameString('FrostFiend 本地化', 'Button/Tooltip/FrostFiend');
+  expectGameString('FrostFiend 本地化', 'Button/Tooltip/PiercingShards');
+  expectGameString('FrostFiend 本地化', 'Weapon/Name/FrozenShards');
+}
+
+function validateAbathurRebornSwarmHostVariantClosure() {
+  expectIdsPresent('重生阿巴瑟宿主变体 UnitData', targetUnits, [
+    'BaneHost',
+    'BaneHostBurrowed',
+    'VespidHost',
+    'Vespid',
+    'VespidWeapon',
+  ]);
+  expectIdsPresent('重生阿巴瑟宿主变体 AbilData', targetAbilities, [
+    'BanelingLaunch',
+    'BurrowBaneHost',
+    'UnburrowBaneHost',
+    'VespidHangar',
+  ]);
+  expectIdsPresent('重生阿巴瑟宿主变体 WeaponData', targetWeapons, [
+    'BanelingSpawn',
+    'VespidAcid',
+    'AcidSpit',
+  ]);
+  expectIdsPresent('重生阿巴瑟宿主变体 EffectData', targetEffects, [
+    'BaneHostCreateSet',
+    'BaneHostEggAnimationAB',
+    'BaneHostCreateUnitA',
+    'BaneHostCreateUnitB',
+    'BaneHostCreateSetA',
+    'BaneHostCreateSetB',
+    'BaneHostMakePrecursorBaneling',
+    'BaneHostSpawnerActive',
+    'BaneHostCreateLMA',
+    'BaneHostCreateLMB',
+    'BaneHostCreateLMImpactSetA',
+    'BaneHostCreateLMImpactSetB',
+    'BaneHostRemovePrecursorBaneling',
+    'BaneHostIssueOrder',
+    'BaneHostCollisionNegate',
+    'BaneHostTimedLife',
+    'VespidDamage',
+    'VespidLaunchMissile',
+  ]);
+  expectIdsPresent('重生阿巴瑟宿主变体 ButtonData', targetButtons, [
+    'BaneMobileSpawner',
+    'UnburrowBaneHost',
+  ]);
+  expectIdsPresent('重生阿巴瑟宿主变体 RequirementData', targetRequirements, ['ArmVespidEscort']);
+  expectIdsPresent('重生阿巴瑟宿主变体 RequirementNodeData', targetRequirementNodes, [
+    'CountUnitVespidQueuedOrBetterAtUnit',
+    'LTCountUnitVespidQueuedOrBetterAtUnit2',
+  ]);
+  expectIdsPresent('重生阿巴瑟宿主变体 ActorData', targetActors, [
+    'BaneHost',
+    'BanelingEggAAttack',
+    'BanelingEggBAttack',
+    'VespidHost',
+    'VespidWeapon',
+    'VespidAttack',
+  ]);
+  expectIdsPresent('重生阿巴瑟宿主变体 ModelData', targetModels, [
+    'BaneHost',
+    'BaneHostDeath',
+    'BaneHostPortrait',
+    'VespidHost',
+    'VespidHostPortrait',
+  ]);
+
+  const baneHost = extractCatalogBlock(targetUnitText, 'CUnit', 'BaneHost');
+  const baneHostBurrowed = extractCatalogBlock(targetUnitText, 'CUnit', 'BaneHostBurrowed');
+  const vespidHost = extractCatalogBlock(targetUnitText, 'CUnit', 'VespidHost');
+  const vespid = extractCatalogBlock(targetUnitText, 'CUnit', 'Vespid');
+  for (const [unitId, block] of [
+    ['BaneHost', baneHost],
+    ['BaneHostBurrowed', baneHostBurrowed],
+    ['VespidHost', vespidHost],
+    ['Vespid', vespid],
+  ]) {
+    if (/Requirements="(?:HaveHotS|ShowHeavyAir|Zagara)/.test(block)) {
+      errors.push(`${unitId}: 不应保留 source-only Requirement`);
+    }
+  }
+
+  for (const token of [
+    'AbilArray Link="BanelingLaunch"',
+    'AbilArray Link="BurrowBaneHost"',
+    'AbilArray Link="AbathurHostRapidIncubationPurchase"',
+    'AbilArray Link="AbathurHostLocustSpeedPurchase"',
+    'AbilArray Link="AbathurHostPressurizedGlandsPurchase"',
+    'WeaponArray Link="BanelingSpawn"',
+    'Face="BaneMobileSpawner" Type="Passive"',
+  ]) {
+    if (!baneHost.includes(token)) {
+      errors.push(`BaneHost 单位闭包缺少: ${token}`);
+    }
+  }
+
+  const burrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'BurrowBaneHost');
+  if (burrow.includes('HaveHotSBurrowSwarmHost')) {
+    errors.push('BurrowBaneHost 不应继续依赖 HaveHotSBurrowSwarmHost');
+  }
+  if (!burrow.includes('InfoArray Unit="BaneHostBurrowed"')) {
+    errors.push('BurrowBaneHost 必须变形为 BaneHostBurrowed');
+  }
+  const unburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'UnburrowBaneHost');
+  if (!unburrow.includes('InfoArray Unit="BaneHost"')) {
+    errors.push('UnburrowBaneHost 必须变回 BaneHost');
+  }
+
+  const banelingLaunch = extractCatalogBlock(targetAbilText, 'CAbilEffectTarget', 'BanelingLaunch');
+  if (!banelingLaunch.includes('Effect index="0" value="BaneHostCreateSet"')) {
+    errors.push('BanelingLaunch 必须指向 BaneHostCreateSet');
+  }
+  const baneSet = extractCatalogBlock(targetEffectText, 'CEffectSet', 'BaneHostCreateSet');
+  for (const ref of ['BaneHostEggAnimationAB', 'BaneHostCreateUnitA', 'BaneHostCreateUnitB']) {
+    if (!baneSet.includes(`value="${ref}"`)) {
+      errors.push(`BaneHostCreateSet 未引用 ${ref}`);
+    }
+  }
+  const baneSetA = extractCatalogBlock(targetEffectText, 'CEffectSet', 'BaneHostCreateSetA');
+  for (const ref of ['BaneHostMakePrecursorBaneling', 'BaneHostSpawnerActive', 'BaneHostCreateLMA']) {
+    if (!baneSetA.includes(`value="${ref}"`)) {
+      errors.push(`BaneHostCreateSetA 未引用 ${ref}`);
+    }
+  }
+  const baneSetB = extractCatalogBlock(targetEffectText, 'CEffectSet', 'BaneHostCreateSetB');
+  for (const ref of ['BaneHostMakePrecursorBaneling', 'BaneHostCreateLMB']) {
+    if (!baneSetB.includes(`value="${ref}"`)) {
+      errors.push(`BaneHostCreateSetB 未引用 ${ref}`);
+    }
+  }
+  const launchA = extractCatalogBlock(targetEffectText, 'CEffectLaunchMissile', 'BaneHostCreateLMA');
+  if (!launchA.includes('AmmoUnit value="AbathurRebornLocustEggAMissileWeapon"')) {
+    errors.push('BaneHostCreateLMA 必须使用 AbathurRebornLocustEggAMissileWeapon');
+  }
+  const launchB = extractCatalogBlock(targetEffectText, 'CEffectLaunchMissile', 'BaneHostCreateLMB');
+  if (!launchB.includes('AmmoUnit value="AbathurRebornLocustEggBMissileWeapon"')) {
+    errors.push('BaneHostCreateLMB 必须使用 AbathurRebornLocustEggBMissileWeapon');
+  }
+
+  for (const token of [
+    'AbilArray Link="VespidHangar"',
+    'AbilArray Link="AbathurHostRapidIncubationPurchase"',
+    'AbilArray Link="AbathurHostLocustSpeedPurchase"',
+    'AbilArray Link="AbathurHostPressurizedGlandsPurchase"',
+    'WeaponArray Link="VespidAcid"',
+  ]) {
+    if (!vespidHost.includes(token)) {
+      errors.push(`VespidHost 单位闭包缺少: ${token}`);
+    }
+  }
+  const hangar = extractCatalogBlock(targetAbilText, 'CAbilArmMagazine', 'VespidHangar');
+  if (!hangar.includes('InfoArray index="Ammo1"') || !hangar.includes('Unit="Vespid"')) {
+    errors.push('VespidHangar 必须挂载 Ammo1=Vespid');
+  }
+  if (!hangar.includes('Requirements="ArmVespidEscort"')) {
+    errors.push('VespidHangar 必须使用 ArmVespidEscort 限制护航弹药数量');
+  }
+  const vespidLaunch = extractCatalogBlock(targetEffectText, 'CEffectLaunchMissile', 'VespidLaunchMissile');
+  if (!vespidLaunch.includes('ImpactEffect value="VespidDamage"')) {
+    errors.push('VespidLaunchMissile 必须指向 VespidDamage');
+  }
+  if (!vespidLaunch.includes('AmmoUnit value="VespidWeapon"')) {
+    errors.push('VespidLaunchMissile 必须使用本地 VespidWeapon 弹体');
+  }
+
+  for (const key of [
+    'Unit/Name/BaneHost',
+    'Unit/Name/BaneHostBurrowed',
+    'Unit/Name/VespidHost',
+    'Unit/Name/Vespid',
+    'Button/Name/BaneMobileSpawner',
+    'Button/Name/UnburrowBaneHost',
+    'Button/Tooltip/BaneMobileSpawner',
+    'Button/Tooltip/VespidHost',
+    'Weapon/Name/BanelingSpawn',
+    'Weapon/Name/VespidAcid',
+  ]) {
+    expectGameString('重生阿巴瑟宿主变体本地化', key);
+  }
+}
+
+function validateAbathurRebornUltraliskVariantClosure() {
+  expectIdsPresent('重生阿巴瑟雷兽变体 UnitData', targetUnits, [
+    'UltraliskSavage',
+    'SavageBurrowed',
+    'UltraliskKaldir',
+  ]);
+  expectIdsPresent('重生阿巴瑟雷兽变体 AbilData', targetAbilities, [
+    'SavageBurrow',
+    'SavageUnburrow',
+    'ElectromagneticImplosion',
+  ]);
+  expectIdsPresent('重生阿巴瑟雷兽变体 EffectData', targetEffects, [
+    'IndraSearch',
+    'IndraPullBy2',
+    'IndraPull2PHSet',
+    'IndraPull2AB',
+    'IndraPull2LM',
+    'IndraPull2CP',
+    'IndraPull2RB',
+    'IndraSlow',
+    'IndraStun',
+  ]);
+  expectIdsPresent('重生阿巴瑟雷兽变体 BehaviorData', targetBehaviors, [
+    'FirstbornStrain',
+    'IndraSlow',
+    'IndraStun',
+  ]);
+  expectIdsPresent('重生阿巴瑟雷兽变体 ButtonData', targetButtons, [
+    'SavageStrain',
+    'ElectromagneticImplosion',
+  ]);
+  expectIdsPresent('重生阿巴瑟雷兽变体 ActorData', targetActors, [
+    'Ultralisk2',
+    'Indra',
+    'IndraExplosion',
+    'IndraExplosionImpactModel',
+  ]);
+  expectIdsPresent('重生阿巴瑟雷兽变体 ModelData', targetModels, [
+    'Indra',
+    'IndraPortrait',
+    'IndraExplosion',
+  ]);
+  expectIdsPresent('重生阿巴瑟雷兽变体 MoverData', targetMovers, ['TychusShredderGrenadeUnitKnockbackMover']);
+
+  const savage = extractCatalogBlock(targetUnitText, 'CUnit', 'UltraliskSavage');
+  const kaldir = extractCatalogBlock(targetUnitText, 'CUnit', 'UltraliskKaldir');
+  for (const [unitId, block] of [
+    ['UltraliskSavage', savage],
+    ['UltraliskKaldir', kaldir],
+  ]) {
+    if (/Requirements="(?:HaveHotS|ShowHeavyAir|Zagara)/.test(block)) {
+      errors.push(`${unitId}: 不应保留 source-only Requirement`);
+    }
+  }
+  for (const token of [
+    'AbilArray Link="SavageBurrow"',
+    'BehaviorArray Link="FirstbornStrain"',
+    'WeaponArray Link="KaiserBlades"',
+    'Face="SavageStrain" Type="Passive"',
+  ]) {
+    if (!savage.includes(token)) {
+      errors.push(`UltraliskSavage 单位闭包缺少: ${token}`);
+    }
+  }
+  const savageBurrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'SavageBurrow');
+  if (!savageBurrow.includes('InfoArray Unit="SavageBurrowed"')) {
+    errors.push('SavageBurrow 必须变形为 SavageBurrowed');
+  }
+  const savageUnburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'SavageUnburrow');
+  if (!savageUnburrow.includes('InfoArray Unit="UltraliskSavage"')) {
+    errors.push('SavageUnburrow 必须变回 UltraliskSavage');
+  }
+
+  if (!kaldir.includes('AbilArray Link="ElectromagneticImplosion"')) {
+    errors.push('UltraliskKaldir 必须挂载 ElectromagneticImplosion');
+  }
+  const implosion = extractCatalogBlock(targetAbilText, 'CAbilAugment', 'ElectromagneticImplosion');
+  if (!implosion.includes('Effect value="IndraSearch"')) {
+    errors.push('ElectromagneticImplosion 必须指向 IndraSearch');
+  }
+  const indraSearch = extractCatalogBlock(targetEffectText, 'CEffectEnumArea', 'IndraSearch');
+  if (!indraSearch.includes('AreaArray Radius="4" Effect="IndraPullBy2"')) {
+    errors.push('IndraSearch 必须在 4 范围内触发 IndraPullBy2');
+  }
+  const indraPull = extractCatalogBlock(targetEffectText, 'CEffectCreateUnit', 'IndraPullBy2');
+  if (!indraPull.includes('SpawnEffect value="IndraPull2PHSet"')) {
+    errors.push('IndraPullBy2 必须通过 IndraPull2PHSet 继续拉拽闭包');
+  }
+  const indraSet = extractCatalogBlock(targetEffectText, 'CEffectSet', 'IndraPull2PHSet');
+  for (const ref of ['PrecursorUnitKnockbackAB', 'IndraStun', 'IndraSlow', 'IndraPull2AB', 'IndraPull2LM']) {
+    if (!indraSet.includes(`value="${ref}"`)) {
+      errors.push(`IndraPull2PHSet 未引用 ${ref}`);
+    }
+  }
+  const indraLm = extractCatalogBlock(targetEffectText, 'CEffectLaunchMissile', 'IndraPull2LM');
+  if (!indraLm.includes('ImpactEffect value="IndraPull2CP"')) {
+    errors.push('IndraPull2LM 必须命中 IndraPull2CP');
+  }
+  if (!indraLm.includes('Movers Link="TychusShredderGrenadeUnitKnockbackMover"')) {
+    errors.push('IndraPull2LM 必须使用 TychusShredderGrenadeUnitKnockbackMover');
+  }
+  if (indraLm.includes('TychusSGPullBy2PHLMNotDead')) {
+    errors.push('IndraPull2LM 不应保留源 Mod 中未定义的 TychusSGPullBy2PHLMNotDead validator');
+  }
+  const indraCp = extractCatalogBlock(targetEffectText, 'CEffectCreatePersistent', 'IndraPull2CP');
+  if (!indraCp.includes('PeriodicEffectArray value="IndraPull2RB"')) {
+    errors.push('IndraPull2CP 必须周期性触发 IndraPull2RB');
+  }
+
+  for (const key of [
+    'Unit/Name/UltraliskSavage',
+    'Unit/Name/SavageBurrowed',
+    'Unit/Name/UltraliskKaldir',
+    'Button/Name/SavageStrain',
+    'Button/Tooltip/SavageStrain',
+    'Button/Name/ElectromagneticImplosion',
+    'Button/Tooltip/ElectromagneticImplosion',
+  ]) {
+    expectGameString('重生阿巴瑟雷兽变体本地化', key);
+  }
+}
+
+function validateAbathurRebornMonstrousFlierVariantClosure() {
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 UnitData', targetUnits, [
+    'IzshaGuardian',
+    'Kraken',
+    'AcidBarrage',
+  ]);
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 WeaponData', targetWeapons, [
+    'AcidSpores',
+    'AcidBarrage',
+  ]);
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 AbilData', targetAbilities, [
+    'AbathurKrakenAcidBarragePurchase',
+    'AbathurKrakenOsteolyticAcidPurchase',
+    'AbathurKrakenTitanicCarapacePurchase',
+  ]);
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 EffectData', targetEffects, [
+    'AbathurKrakenAcidBarragePurchaseEffect',
+    'AbathurKrakenOsteolyticAcidPurchaseEffect',
+    'AbathurKrakenTitanicCarapacePurchaseEffect',
+    'AcidBarrageDamage',
+    'AcidBarrageLaunchMissile',
+    'AcidBarragePersistent',
+  ]);
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 BehaviorData', targetBehaviors, [
+    'AbathurKrakenAcidBarrageBuff',
+    'AbathurKrakenOsteolyticAcidBuff',
+    'AbathurKrakenTitanicCarapaceBuff',
+  ]);
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 RequirementData', targetRequirements, [
+    'NotAbathurKrakenAcidBarragePurchased',
+    'NotAbathurKrakenOsteolyticAcidPurchased',
+    'NotAbathurKrakenTitanicCarapacePurchased',
+  ]);
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 RequirementNodeData', targetRequirementNodes, [
+    'CountBehaviorAbathurKrakenAcidBarrageBuffCompleteOnlyAtUnit',
+    'CountBehaviorAbathurKrakenOsteolyticAcidBuffCompleteOnlyAtUnit',
+    'CountBehaviorAbathurKrakenTitanicCarapaceBuffCompleteOnlyAtUnit',
+    'Eq2852615412CountBehaviorAbathurKrakenAcidBarrageBuffCompleteOnlyAtUnit0',
+    'Eq2852615412CountBehaviorAbathurKrakenOsteolyticAcidBuffCompleteOnlyAtUnit0',
+    'Eq2852615412CountBehaviorAbathurKrakenTitanicCarapaceBuffCompleteOnlyAtUnit0',
+  ]);
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 ActorData', targetActors, [
+    'GuardianIzsha',
+    'Kraken',
+    'SwarmGuardianAttack',
+    'SwarmGuardianAttackMissile',
+  ]);
+  expectIdsPresent('重生阿巴瑟巨型飞行变体 ModelData', targetModels, [
+    'IzshaGuardianDeath',
+    'IzshaGuardianModel',
+    'IzshaGuardianPortrait',
+    'SwarmGuardian',
+    'SwarmGuardianMissile',
+    'SwarmGuardianPortrait',
+  ]);
+
+  const guardian = extractCatalogBlock(targetUnitText, 'CUnit', 'IzshaGuardian');
+  const kraken = extractCatalogBlock(targetUnitText, 'CUnit', 'Kraken');
+  for (const [unitId, block] of [
+    ['IzshaGuardian', guardian],
+    ['Kraken', kraken],
+  ]) {
+    if (/Requirements="(?:HaveHotS|ShowHeavyAir|Zagara)/.test(block)) {
+      errors.push(`${unitId}: 不应保留 source-only Requirement`);
+    }
+  }
+  for (const token of [
+    'AbilArray Link="AbathurGuardianExtendedSpinesPurchase"',
+    'AbilArray Link="AbathurGuardianCorrosiveBombardmentPurchase"',
+    'AbilArray Link="AbathurGuardianRegenerativeSacsPurchase"',
+    'WeaponArray Link="AcidSpores"',
+    'WeaponArray Link="AcidSporesAir"',
+  ]) {
+    if (!guardian.includes(token)) {
+      errors.push(`IzshaGuardian 单位闭包缺少: ${token}`);
+    }
+  }
+  for (const token of [
+    'AbilArray Link="AbathurKrakenAcidBarragePurchase"',
+    'AbilArray Link="AbathurKrakenOsteolyticAcidPurchase"',
+    'AbilArray Link="AbathurKrakenTitanicCarapacePurchase"',
+    'WeaponArray Link="AcidBarrage"',
+  ]) {
+    if (!kraken.includes(token)) {
+      errors.push(`Kraken 单位闭包缺少: ${token}`);
+    }
+  }
+
+  for (const [abilityId, effectId, requirementId, behaviorId] of [
+    ['AbathurKrakenAcidBarragePurchase', 'AbathurKrakenAcidBarragePurchaseEffect', 'NotAbathurKrakenAcidBarragePurchased', 'AbathurKrakenAcidBarrageBuff'],
+    ['AbathurKrakenOsteolyticAcidPurchase', 'AbathurKrakenOsteolyticAcidPurchaseEffect', 'NotAbathurKrakenOsteolyticAcidPurchased', 'AbathurKrakenOsteolyticAcidBuff'],
+    ['AbathurKrakenTitanicCarapacePurchase', 'AbathurKrakenTitanicCarapacePurchaseEffect', 'NotAbathurKrakenTitanicCarapacePurchased', 'AbathurKrakenTitanicCarapaceBuff'],
+  ]) {
+    const ability = extractCatalogBlockByPrefix(targetAbilText, 'CAbil', abilityId);
+    if (!ability.includes(`Effect index="0" value="${effectId}"`)) {
+      errors.push(`${abilityId}: 未指向 ${effectId}`);
+    }
+    if (!ability.includes(`Requirements="${requirementId}"`)) {
+      errors.push(`${abilityId}: 未绑定 ${requirementId}`);
+    }
+    const effect = extractCatalogBlock(targetEffectText, 'CEffectApplyBehavior', effectId);
+    if (!effect.includes(`Behavior value="${behaviorId}"`)) {
+      errors.push(`${effectId}: 未应用 ${behaviorId}`);
+    }
+  }
+
+  const barrageWeapon = extractCatalogBlock(targetWeaponText, 'CWeaponLegacy', 'AcidBarrage');
+  if (!barrageWeapon.includes('Effect value="AcidBarragePersistent"')) {
+    errors.push('AcidBarrage 武器必须指向 AcidBarragePersistent');
+  }
+  const barragePersistent = extractCatalogBlock(targetEffectText, 'CEffectCreatePersistent', 'AcidBarragePersistent');
+  if (!barragePersistent.includes('PeriodicEffectArray value="AcidBarrageLaunchMissile"')) {
+    errors.push('AcidBarragePersistent 必须发射 AcidBarrageLaunchMissile');
+  }
+  const barrageLaunch = extractCatalogBlock(targetEffectText, 'CEffectLaunchMissile', 'AcidBarrageLaunchMissile');
+  if (!barrageLaunch.includes('AmmoUnit value="AcidBarrage"')) {
+    errors.push('AcidBarrageLaunchMissile 必须使用 AcidBarrage 弹体');
+  }
+
+  for (const key of [
+    'Unit/Name/IzshaGuardian',
+    'Unit/Name/Kraken',
+    'Unit/Name/AcidBarrage',
+    'Button/Tooltip/IzshaGuardian',
+    'Button/Tooltip/Kraken',
+    'Button/Name/AbathurKrakenAcidBarrage',
+    'Button/Tooltip/AbathurKrakenAcidBarrage',
+    'Button/Name/AbathurKrakenOsteolyticAcid',
+    'Button/Tooltip/AbathurKrakenOsteolyticAcid',
+    'Button/Name/AbathurKrakenTitanicCarapace',
+    'Button/Tooltip/AbathurKrakenTitanicCarapace',
+    'Weapon/Name/AcidBarrage',
+  ]) {
+    expectGameString('重生阿巴瑟巨型飞行变体本地化', key);
+  }
+}
+
+function expectIdsPresent(label, idSet, ids) {
+  for (const id of ids) {
+    if (!idSet.has(id)) {
+      errors.push(`${label}: 缺少 ${id}`);
     }
   }
 }
@@ -960,7 +2473,7 @@ function parseInfoArrays(block) {
 }
 
 function extractInfoArrayBlock(trainBlock, index) {
-  const re = new RegExp(`<InfoArray\\s+index="${escapeRegExp(index)}"[^>]*>[\\s\\S]*?<\\/InfoArray>`);
+  const re = new RegExp(`<InfoArray\\s+index="${escapeRegExp(index)}"[^>]*(?:\\/>|>[\\s\\S]*?<\\/InfoArray>)`);
   return trainBlock.match(re)?.[0] ?? '';
 }
 
@@ -978,8 +2491,18 @@ function extractUserBlock(text, userId) {
   return text.match(userRe)?.[0] ?? '';
 }
 
+function extractInstanceBlock(userBlock, instanceId) {
+  const instanceRe = new RegExp(`<Instances\\s+Id="${escapeRegExp(instanceId)}"[^>]*>[\\s\\S]*?<\\/Instances>`);
+  return userBlock.match(instanceRe)?.[0] ?? '';
+}
+
 function extractCatalogBlock(text, tagName, id) {
   const re = new RegExp(`<${tagName}\\s+id="${escapeRegExp(id)}"[^>]*>[\\s\\S]*?<\\/${tagName}>`);
+  return text.match(re)?.[0] ?? '';
+}
+
+function extractCatalogBlockByPrefix(text, tagPrefix, id) {
+  const re = new RegExp(`<${tagPrefix}[A-Za-z]*\\s+id="${escapeRegExp(id)}"[^>]*>[\\s\\S]*?<\\/${tagPrefix}[A-Za-z]*>`);
   return text.match(re)?.[0] ?? '';
 }
 
@@ -1051,6 +2574,47 @@ function collectCatalogIds(text, re) {
     ids.add(match[1]);
   }
   return ids;
+}
+
+function collectAttributeValues(block, tagName, attrName) {
+  const values = [];
+  const re = new RegExp(`<${tagName}[^>]*\\s${attrName}="([^"]+)"`, 'g');
+  for (const match of block.matchAll(re)) {
+    values.push(match[1]);
+  }
+  return values;
+}
+
+function collectInlineAttributeValues(block, attrName) {
+  const values = [];
+  const re = new RegExp(`\\s${attrName}="([^"]+)"`, 'g');
+  for (const match of block.matchAll(re)) {
+    values.push(match[1]);
+  }
+  return values.filter(Boolean);
+}
+
+function collectOperandValues(block) {
+  return [...block.matchAll(/<OperandArray\b[^>]*\svalue="([^"]+)"/g)]
+    .map((match) => match[1])
+    .filter(Boolean);
+}
+
+function isRequirementLiteral(value) {
+  return /^-?\d+(?:\.\d+)?$/.test(value);
+}
+
+function collectEffectReferenceValues(effectBlock) {
+  return collectInlineAttributeValues(effectBlock, 'value')
+    .filter((value) => targetEffects.has(value));
+}
+
+function collectBehaviorReferenceValues(effectBlock) {
+  const values = [];
+  for (const match of effectBlock.matchAll(/Behavior(?:Link)?\s+value="([^"]+)"|Behavior="([^"]+)"|BehaviorLink="([^"]+)"/g)) {
+    values.push(match[1] || match[2] || match[3]);
+  }
+  return values.filter(Boolean);
 }
 
 function readRequired(filePath) {

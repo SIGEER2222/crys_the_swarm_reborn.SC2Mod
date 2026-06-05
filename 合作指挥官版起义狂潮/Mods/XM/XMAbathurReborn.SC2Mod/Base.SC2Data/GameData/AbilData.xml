@@ -2277,7 +2277,7 @@
     <FidgetDelayMax value="10" />
     <ConstructionMover value="Construction" />
   </CAbilBuild>
-  <CAbilTrain id="LarvaTrain">
+  <CAbilTrain id="LarvaTrainAbathurReborn" parent="LarvaTrain">
     <InfoArray index="Train1" Time="12">
       <Button DefaultButtonFace="Drone" State="Available" />
       <Unit value="DroneAbathurReborn" />
@@ -2323,6 +2323,25 @@
       <Button DefaultButtonFace="BroodLord" State="Restricted" Requirements="HaveGreaterSpire" />
       <Unit value="BroodLord" />
     </InfoArray>
+    <InfoArray index="Train12" removed="1" />
+    <InfoArray index="Train13" removed="1" />
+    <InfoArray index="Train14" removed="1" />
+    <InfoArray index="Train15" removed="1" />
+    <InfoArray index="Train16" removed="1" />
+    <InfoArray index="Train17" removed="1" />
+    <InfoArray index="Train18" removed="1" />
+    <InfoArray index="Train19" removed="1" />
+    <InfoArray index="Train20" removed="1" />
+    <InfoArray index="Train21" removed="1" />
+    <InfoArray index="Train22" removed="1" />
+    <InfoArray index="Train23" removed="1" />
+    <InfoArray index="Train24" removed="1" />
+    <InfoArray index="Train25" removed="1" />
+    <InfoArray index="Train26" removed="1" />
+    <InfoArray index="Train27" removed="1" />
+    <InfoArray index="Train28" removed="1" />
+    <InfoArray index="Train29" removed="1" />
+    <InfoArray index="Train30" removed="1" />
   </CAbilTrain>
   <CAbilTrain id="LarvaTrainSwarm">
     <InfoArray index="Train3">
@@ -4062,6 +4081,12 @@
     <InfoArray index="Build29" removed="1" />
     <InfoArray index="Build30" removed="1" />
   </CAbilBuild>
+  <CAbilMorph id="UpgradeToHiveAbathurReborn" parent="UpgradeToHive">
+    <InfoArray Unit="HiveAbathurReborn" />
+  </CAbilMorph>
+  <CAbilMorph id="UpgradeToLairAbathurReborn" parent="UpgradeToLair">
+    <InfoArray Unit="LairAbathurReborn" />
+  </CAbilMorph>
   <CAbilResearch id="AbathurRebornCrawlerResearch">
     <EditorCategories value="Race:Zerg,AbilityorEffectType:Structures" />
     <InfoArray index="Research1" Time="90" Upgrade="CrawlerDefense">
@@ -4129,5 +4154,1577 @@
       <Resource index="Vespene" value="25" />
     </Cost>
     <CmdButtonArray index="Execute" DefaultButtonFace="AcidMortar" State="Restricted" Requirements="NotCrawlerAcidMortar" />
+  </CAbilEffectInstant>
+  <!-- AbathurReborn unit-purchase ability closure -->
+  <CAbilEffectInstant id="AbathurBroodLordDoubleSacOvipositionPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurBroodLordDoubleSacOvipositionPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurBroodLordDoubleSacOviposition" Requirements="NotAbathurBroodLordDoubleSacOvipositionPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurBroodLordParasiteFrenzyPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurBroodLordParasiteFrenzyPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurBroodLordParasiteFrenzy" Requirements="NotAbathurBroodLordParasiteFrenzyPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurBroodLordThickEmbryoMembranePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurBroodLordThickEmbryoMembranePurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurBroodLordThickEmbryoMembrane" Requirements="NotAbathurBroodLordThickEmbryoMembranePurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurCasterBrainPoolPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurCasterBrainPoolPurchaseSet"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurCasterBrainPool" Requirements="NotAbathurCasterBrainPool">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurCasterFleshReactorPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurCasterFleshReactorPurchaseSet"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurCasterFleshReactor" Requirements="NotAbathurCasterFleshReactor">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurCasterMimeticMembranePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurCasterMimeticMembranePurchase"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurCasterMimeticMembrane" Requirements="NotAbathurCasterMimeticMembrane">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurCasterNeuralTethersPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurCasterNeuralTethersPurchase"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurCasterNeuralTethers" Requirements="NotAbathurCasterNeuralTethers">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurDevourerAcidCloudSacsPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurDevourerAcidCloudSacsPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurDevourerAcidCloudSacs" Requirements="NotAbathurDevourerAcidCloudSacsPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurDevourerCorrosiveGlandsPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurDevourerCorrosiveGlandsPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurDevourerCorrosiveGlands" Requirements="NotAbathurDevourerCorrosiveGlandsPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurDevourerStomachOverloadPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurDevourerStomachOverloadPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurDevourerStomachOverload" Requirements="NotAbathurDevourerStomachOverloadPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurGuardianCorrosiveBombardmentPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurGuardianCorrosiveBombardmentPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurGuardianCorrosiveBombardment" Requirements="NotAbathurGuardianCorrosiveBombardmentPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurGuardianExtendedSpinesPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurGuardianExtendedSpinesPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurGuardianExtendedSpines" Requirements="NotAbathurGuardianExtendedSpinesPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurGuardianRegenerativeSacsPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurGuardianRegenerativeSacsPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurGuardianRegenerativeSacs" Requirements="NotAbathurGuardianRegenerativeSacsPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurHostLocustSpeedPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurHostLocustSpeedPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurHostLocustSpeed" Requirements="NotAbathurHostLocustSpeedPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurHostPressurizedGlandsPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurHostPressurizedGlandsPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurHostPressurizedGlands" Requirements="NotAbathurHostPressurizedGlandsPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurHostRapidIncubationPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurHostRapidIncubationPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurHostRapidIncubation" Requirements="NotAbathurHostRapidIncubationPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurImpalerAftershockImpalePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurImpalerAftershockImpalePurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurImpalerAftershockImpale" Requirements="NotAbathurImpalerAftershockImpalePurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurImpalerArmorPiercingSpinesPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurImpalerArmorPiercingSpinesPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurImpalerArmorPiercingSpines" Requirements="NotAbathurImpalerArmorPiercingSpinesPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurImpalerEarthveinGlidePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurImpalerEarthveinGlidePurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurImpalerEarthveinGlide" Requirements="NotAbathurImpalerEarthveinGlidePurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurLurkerRiftSpinesPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurLurkerRiftSpinesPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurLurkerRiftSpines" Requirements="NotAbathurLurkerRiftSpinesPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurLurkerStalkerGlidePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurLurkerStalkerGlidePurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurLurkerStalkerGlide" Requirements="NotAbathurLurkerStalkerGlidePurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurLurkerVenomAmbushPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurLurkerVenomAmbushPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="50"/>
+
+              <Resource index="Vespene" value="50"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="AbathurLurkerVenomAmbush" Requirements="NotAbathurLurkerVenomAmbushPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurMutaliskExplosiveGlaivePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurMutaliskExplosiveGlaivePurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="ExplosiveGlaive" Requirements="NotAbathurMutaliskExplosiveGlaivePurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurMutaliskRapidRegenerationPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurMutaliskRapidRegenerationPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="MutaliskRapidRegeneration" Requirements="NotAbathurMutaliskRapidRegenerationPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurMutaliskViciousGlaivePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="AbathurMutaliskViciousGlaivePurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="25"/>
+
+              <Resource index="Vespene" value="25"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="ViciousGlaive" Requirements="NotAbathurMutaliskViciousGlaivePurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="BrutaliskFleshRecompositionPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="BrutaliskFleshRecompositionPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="100"/>
+
+              <Resource index="Vespene" value="100"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskFleshRecomposition" Requirements="NotBrutaliskFleshRecompositionPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="BrutaliskSavageRendPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="BrutaliskSavageRendPurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="100"/>
+
+              <Resource index="Vespene" value="100"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskSavageRend" Requirements="NotBrutaliskSavageRendPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="BrutaliskTramplingCarapacePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="BrutaliskTramplingCarapacePurchaseEffect"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="100"/>
+
+              <Resource index="Vespene" value="100"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="BrutaliskTramplingCarapace" Requirements="NotBrutaliskTramplingCarapacePurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="UltraliskElectricShockPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="UltraliskElectricShockSet"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="120"/>
+
+              <Resource index="Vespene" value="120"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="UltraliskElectricShock" Requirements="NotUltraliskElectricShockPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="UltraliskHighVoltagePurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="UltraliskHighVoltageSet"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="120"/>
+
+              <Resource index="Vespene" value="120"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="UltraliskHighVoltage" Requirements="NotUltraliskHighVoltagePurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="UltraliskLightningRaidPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="UltraliskLightningRaidSet"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="150"/>
+
+              <Resource index="Vespene" value="150"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="UltraliskLightningRaid" Requirements="NotUltraliskLightningRaidPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+  <CAbilEffectInstant id="UltraliskThunderstormPurchase">
+
+          <EditorCategories value="AbilityorEffectType:Units"/>
+
+          <Levels value="1"/>
+
+          <Effect index="0" value="UltraliskThunderstormSet"/>
+
+          <Flags index="BestUnit" value="1"/>
+
+          <Cost>
+
+              <Resource index="Minerals" value="180"/>
+
+              <Resource index="Vespene" value="180"/>
+
+              <Charge CountMax="1" CountStart="1" CountUse="1"/>
+
+          </Cost>
+
+          <CmdButtonArray index="Execute" DefaultButtonFace="UltraliskThunderstorm" Requirements="NotUltraliskThunderstormPurchased">
+
+              <Flags index="UseDefaultButton" value="1"/>
+
+              <Flags index="CreateDefaultButton" value="1"/>
+
+          </CmdButtonArray>
+
+      </CAbilEffectInstant>
+
+    <CAbilBehavior id="ChargedGlaives">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="ChargeGlaives">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="Cancel">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="ChargedGlaives"/>
+    </CAbilBehavior>
+
+    <CAbilBehavior id="NeuralCamouflage">
+        <AbilSetId value="Clok"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="Enshroud">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="Unveiled">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="Enshrouded"/>
+    </CAbilBehavior>
+
+    <CAbilEffectTarget id="Teleport">
+        <AbilSetId value="Blnk"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="ZeratulBlink"/>
+        <Flags index="BestUnit" value="0"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+        <AINotifyEffect value="ZeratulBlink"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ZeratulBlink">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilMorph id="FrostFiendBurrow">
+        <AbilSetId value="BrwD"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+        <ActorKey value="BurrowDown"/>
+        <Flags index="Interruptible" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnorePlacement" value="0"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="FrostFiendBurrowed" RandomDelayMax="0.3703">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+            <SectionArray index="Collide">
+                <DurationArray index="Delay" value="0.5556"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="1"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilMorph id="FrostFiendUnburrow">
+        <AbilSetId value="BrwU"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <ActorKey value="BurrowUp"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="FrostFiend" RandomDelayMax="0.5">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+        </InfoArray>
+        <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastRange value="1"/>
+        <AutoCastCountMin value="1"/>
+    </CAbilMorph>
+    <CAbilMorph id="SavageBurrow">
+        <AbilSetId value="BrwD"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <ActorKey value="BurrowDown"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnorePlacement" value="0"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="SavageBurrowed" RandomDelayMax="0.25">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="2"/>
+            </SectionArray>
+            <SectionArray index="Collide">
+                <DurationArray index="Delay" value="1.5"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="1.8332"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilMorph id="SavageUnburrow">
+        <AbilSetId value="BrwU"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <ActorKey value="BurrowUp"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="UltraliskSavage" RandomDelayMax="0.5">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="2"/>
+            </SectionArray>
+        </InfoArray>
+        <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastRange value="2"/>
+        <AutoCastCountMin value="1"/>
+    </CAbilMorph>
+    <CAbilAugment id="ElectromagneticImplosion">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ElectromagneticImplosion"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AbilCmd value="attack,Execute"/>
+        <Cost>
+            <Cooldown TimeUse="3"/>
+        </Cost>
+        <Effect value="IndraSearch"/>
+        <AutoCastFilters value="Visible;Self,Player,Ally,Neutral,Air,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AutoCastValidatorArray value="DistanceLessThan1"/>
+    </CAbilAugment>
+    <CAbilEffectInstant id="AbathurKrakenAcidBarragePurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="AbathurKrakenAcidBarragePurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="50"/>
+            <Resource index="Vespene" value="50"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AbathurKrakenAcidBarrage" Requirements="NotAbathurKrakenAcidBarragePurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AbathurKrakenOsteolyticAcidPurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="AbathurKrakenOsteolyticAcidPurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="50"/>
+            <Resource index="Vespene" value="50"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AbathurKrakenOsteolyticAcid" Requirements="NotAbathurKrakenOsteolyticAcidPurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AbathurKrakenTitanicCarapacePurchase">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Levels value="1"/>
+        <Effect index="0" value="AbathurKrakenTitanicCarapacePurchaseEffect"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Resource index="Minerals" value="100"/>
+            <Resource index="Vespene" value="100"/>
+            <Charge CountMax="1" CountStart="1" CountUse="1"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AbathurKrakenTitanicCarapace" Requirements="NotAbathurKrakenTitanicCarapacePurchased">
+            <Flags index="UseDefaultButton" value="1"/>
+            <Flags index="CreateDefaultButton" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="BanelingLaunch">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="BaneHostCreateSet"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="BestUnit" value="0"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Cooldown Location="Unit" TimeUse="25"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+        <AutoCastRange value="15"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BaneMobileSpawner">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilMorph id="BurrowBaneHost">
+        <AbilSetId value="BrwDc"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Burrow">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <ActorKey value="BurrowDown"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnorePlacement" value="0"/>
+        <Flags index="RallyReset" value="1"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="BaneHostBurrowed" RallyResetPhase="Delay" RandomDelayMax="0.25">
+            <SectionArray index="Abils">
+                <DurationArray index="Delay" value="0.5"/>
+            </SectionArray>
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="1.5"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="1.5"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilMorph id="UnburrowBaneHost">
+        <AbilSetId value="BrwUc"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UnburrowBaneHost">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <ActorKey value="BurrowUp"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="RallyReset" value="1"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <Flags index="WaitUntilStopped" value="0"/>
+        <InfoArray Unit="BaneHost" RandomDelayMax="0.5">
+            <SectionArray index="Abils">
+                <DurationArray index="Delay" value="0.1"/>
+            </SectionArray>
+            <SectionArray index="Actor">
+                <DurationArray index="Delay" value="0.1"/>
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+            <SectionArray index="Mover">
+                <DurationArray index="Delay" value="0.1"/>
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="0.1"/>
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilArmMagazine id="VespidHangar">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Launch value="ReleaseAtSource"/>
+        <Flags index="AutoCastOffOwnerLeave" value="0"/>
+        <Flags index="Retarget" value="1"/>
+        <Leash value="0.5"/>
+        <InfoArray index="Ammo1" Time="10" CountStart="2" Distance="1" Manage="Recall" Unit="Vespid">
+            <Charge Link="Abil/##id##"/>
+            <Cooldown Link="Abil/##id##"/>
+            <Button DefaultButtonFace="Broodling" Requirements="ArmVespidEscort"/>
+            <Flags index="AutoBuild" value="1"/>
+            <Flags index="AutoBuildOn" value="1"/>
+            <Flags index="External" value="1"/>
+        </InfoArray>
+        <Alert value=""/>
+        <EffectArray index="Release" value="KillsToCaster"/>
+        <ExternalAngle value="59.9963"/>
+        <ExternalAngle value="299.9926"/>
+    </CAbilArmMagazine>
+    <CAbilMorph id="AbathurToxicZerglingBurrow">
+        <AbilSetId value="BrwD"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+        <ActorKey value="BurrowDown"/>
+        <Flags index="Interruptible" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnorePlacement" value="0"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="ToxicZerglingBurrowed" RandomDelayMax="0.3703">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="1.333"/>
+            </SectionArray>
+            <SectionArray index="Collide">
+                <DurationArray index="Duration" value="0.5556"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilMorph id="AbathurUnburrowToxicZergling">
+        <AbilSetId value="BrwU"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <DataCollection value="BurrowHotSRaptorUp"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <ActorKey value="BurrowUp"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <InfoArray Unit="ZerglingToxic" RandomDelayMax="0.5">
+            <SectionArray index="Abils">
+                <DurationArray index="Duration" value="1.0625"/>
+            </SectionArray>
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+        </InfoArray>
+        <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral,Air,Missile,Stasis,Dead,Hidden"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastRange value="2"/>
+        <AutoCastCountMin value="1"/>
+    </CAbilMorph>
+    <CAbilMorph id="AbathurBurrowIgniter">
+        <AbilSetId value="BrwD"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+        <ActorKey value="BurrowDown"/>
+        <Flags index="Interruptible" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnorePlacement" value="0"/>
+        <InfoArray Unit="IgniterBurrowed" RandomDelayMax="0.1">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="0.5556"/>
+            </SectionArray>
+            <SectionArray index="Collide">
+                <DurationArray index="Delay" value="0.5556"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="0.5556"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilMorph id="AbathurUnburrowIgniter">
+        <AbilSetId value="BrwU"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <ActorKey value="BurrowUp"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="Igniter" RandomDelayMax="0.1">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="0.4443"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Duration" value="0.4443"/>
+            </SectionArray>
+        </InfoArray>
+        <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral,Air,Missile,Stasis,Dead,Hidden"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastRange value="2"/>
+        <AutoCastCountMin value="1"/>
+    </CAbilMorph>
+    <CAbilMorph id="AbathurBurrowParalyticHydralisk">
+        <AbilSetId value="BrwD"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowDown">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+        <ActorKey value="BurrowDown"/>
+        <Flags index="Interruptible" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="IgnorePlacement" value="0"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="HydraliskParalyticBurrowed" RandomDelayMax="0.3703">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="1.333"/>
+            </SectionArray>
+            <SectionArray index="Collide">
+                <DurationArray index="Delay" value="0.5556"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="1.166"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilMorph id="AbathurUnburrowToxicHydralisk">
+        <AbilSetId value="BrwU"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <ActorKey value="BurrowUp"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <Flags index="SuppressMovement" value="1"/>
+        <InfoArray Unit="Hydralisk2" RandomDelayMax="0.1">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="1"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Duration" value="0.4443"/>
+            </SectionArray>
+        </InfoArray>
+        <AutoCastFilters value="Ground,Visible;Player,Ally,Neutral,Air,Missile,Stasis,Dead,Hidden"/>
+        <AutoCastValidatorArray value="TargetNotChangeling"/>
+        <AutoCastRange value="2"/>
+        <AutoCastCountMin value="1"/>
+    </CAbilMorph>
+  <CAbilEffectInstant id="AbathurZerglingStealthlingPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurZerglingStealthlingPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="10"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurZerglingStealthling" Requirements="NotAbathurZerglingStealthlingPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurZerglingKetamineInfusionPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurZerglingKetamineInfusionPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="20"/>
+      <Resource index="Vespene" value="10"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurZerglingKetamineInfusion" Requirements="NotAbathurZerglingKetamineInfusionPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurZerglingKleptomaniaPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurZerglingKleptomaniaPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurZerglingKleptomania" Requirements="NotAbathurZerglingKleptomaniaPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurZerglingMoonragePurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurZerglingMoonragePurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurZerglingMoonrage" Requirements="NotAbathurZerglingMoonragePurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurZerglingArmoredCarapacePurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurZerglingArmoredCarapacePurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="35"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurZerglingArmoredCarapace" Requirements="NotAbathurZerglingArmoredCarapacePurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurRoachMeleeStrainPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurRoachMeleeStrainPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="50"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurRoachMeleeStrain" Requirements="NotAbathurRoachMeleeStrainPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurRoachBanelingGestationPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurRoachBanelingGestationPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="50"/>
+      <Resource index="Vespene" value="75"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurRoachBanelingGestation" Requirements="NotAbathurRoachBanelingGestationPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurRoachRoachlingInfestationPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurRoachRoachlingInfestationPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurRoachRoachlingInfestation" Requirements="NotAbathurRoachRoachlingInfestationPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurRoachBileShieldPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurRoachBileShieldPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurRoachBileShield" Requirements="NotAbathurRoachBileShieldPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurRoachAdrenalineOverdosePurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurRoachAdrenalineOverdosePurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurRoachAdrenalineOverdose" Requirements="NotAbathurRoachAdrenalineOverdosePurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurHydraliskCripplePurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurHydraliskCripplePurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurHydraliskCripple" Requirements="NotAbathurHydraliskCripplePurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurHydraliskBroodlingsPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurHydraliskBroodlingsPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="50"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurHydraliskBroodlings" Requirements="NotAbathurHydraliskBroodlingsPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurHydraliskMechanicalPurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurHydraliskMechanicalPurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurHydraliskMechanical" Requirements="NotAbathurHydraliskMechanicalPurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurHydraliskRangePurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurHydraliskRangePurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurHydraliskRange" Requirements="NotAbathurHydraliskRangePurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
+  </CAbilEffectInstant>
+  <CAbilEffectInstant id="AbathurHydraliskMeleePurchase">
+    <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+    <Levels value="1"/>
+    <Effect index="0" value="AbathurHydraliskMeleePurchaseEffect"/>
+    <Flags index="BestUnit" value="1"/>
+    <Cost>
+      <Resource index="Minerals" value="25"/>
+      <Resource index="Vespene" value="25"/>
+      <Charge CountMax="1" CountStart="1" CountUse="1"/>
+    </Cost>
+    <CmdButtonArray index="Execute" DefaultButtonFace="AbathurHydraliskMelee" Requirements="NotAbathurHydraliskMeleePurchased">
+      <Flags index="UseDefaultButton" value="1"/>
+      <Flags index="CreateDefaultButton" value="1"/>
+    </CmdButtonArray>
   </CAbilEffectInstant>
 </Catalog>

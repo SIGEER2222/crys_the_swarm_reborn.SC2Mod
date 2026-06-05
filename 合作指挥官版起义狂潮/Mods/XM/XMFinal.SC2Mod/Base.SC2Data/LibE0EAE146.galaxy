@@ -11,6 +11,7 @@ include "Lib4B62E36B"
 include "Lib975E2FE9"
 
 include "LibE0EAE146_h"
+include "LibE0EAE146_AbathurRebornRuntime"
 include "LibE0EAE146_AlarakRuntime"
 include "LibE0EAE146_ArtanisRuntime"
 include "LibE0EAE146_FenixRuntime"
@@ -48,6 +49,9 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_gv_zeratulHero = null;
     libE0EAE146_gv_zeratulArtifactNumber = 1;
     libE0EAE146_gv_zeratulRuntimeInitialized = false;
+    libE0EAE146_gv_abathurRebornRuntimeInitialized = false;
+    libE0EAE146_gv_abathurRebornEvolutionTriggersReady = false;
+    libE0EAE146_gv_abathurRebornRuntimePlayer = 0;
     libE0EAE146_gv_alarakRuntimeInitialized = false;
     libE0EAE146_gv_artanisRuntimeInitialized = false;
     libE0EAE146_gv_fenixRuntimeInitialized = false;
@@ -386,6 +390,9 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
         lib975E2FE9_gf_PowerFieldTrigger(1, BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(2)));
         lib67C0F0E7_gf_ShowChooseButton();
+    }
+    else if (auto09490B45_val == "AbathurReborn") {
+        libE0EAE146_gf_AbathurRebornRuntimeInit(1, lp_secondUnit, lp_createHero);
     }
     else if (auto09490B45_val == "Alarak") {
         libE0EAE146_gf_AlarakRuntimeInit(1, lp_secondUnit, lp_createHero);

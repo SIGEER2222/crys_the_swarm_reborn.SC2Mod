@@ -600,4 +600,23 @@
     <CombineArray value="TargetisAnyCommander" />
     <CombineArray value="TargetIsAllyorPlayer" />
   </CValidatorCombine>
+
+    <CValidatorUnitCompareDamageTakenTime id="CasterNotInCombat5">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="5"/>
+    </CValidatorUnitCompareDamageTakenTime>
+
+  <CValidatorUnitCompareBehaviorCount id="HaveAbathurMutaliskViciousGlaiveBuff">
+    <WhichUnit Value="Caster" />
+    <Compare value="GT" />
+    <Behavior value="AbathurMutaliskViciousGlaiveBuff" />
+  </CValidatorUnitCompareBehaviorCount>
+  <CValidatorCombine id="CasterNotDeadandTargetNotInvulnerable">
+    <Type value="And"/>
+    <CombineArray value="CasterNotDead"/>
+    <CombineArray value="NotInvulnerable"/>
+  </CValidatorCombine>
+  <CValidatorUnitCompareBehaviorCount id="AbathurHydraliskCripplePurchased"><WhichUnit Value="Caster"/><Compare value="GT"/><Behavior value="AbathurHydraliskCrippleBuff"/></CValidatorUnitCompareBehaviorCount>
+  <CValidatorUnitCompareBehaviorCount id="AbathurHydraliskBroodlingsPurchased"><WhichUnit Value="Caster"/><Compare value="GT"/><Behavior value="AbathurHydraliskBroodlingsBuff"/></CValidatorUnitCompareBehaviorCount>
 </Catalog>

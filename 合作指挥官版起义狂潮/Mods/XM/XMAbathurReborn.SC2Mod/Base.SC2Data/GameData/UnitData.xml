@@ -5,6 +5,42 @@
     <Race value="Zerg" />
     <Mob value="Campaign" />
     <FlagArray index="PreventDefeat" value="1" />
+    <AbilArray Link="UpgradeToLairAbathurReborn" />
+    <BehaviorArray index="1" Link="SpawnLarvaAbathurReborn" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Lair" Type="AbilCmd" AbilCmd="UpgradeToLairAbathurReborn,Execute" Row="0" Column="2" />
+      <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="RallyHatchery,Rally3" Row="1" Column="3" />
+      <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="UpgradeToLairAbathurReborn,Cancel" Row="2" Column="4" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="LairAbathurReborn" parent="Lair">
+    <TechAliasArray value="Alias_Hatchery" />
+    <TechAliasArray value="Alias_Lair" />
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <AbilArray Link="UpgradeToHiveAbathurReborn" />
+    <BehaviorArray index="1" Link="SpawnLarvaAbathurReborn" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Hive" Type="AbilCmd" AbilCmd="UpgradeToHiveAbathurReborn,Execute" Row="0" Column="2" />
+      <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="RallyHatchery,Rally3" Row="1" Column="3" />
+      <LayoutButtons Face="overlordspeed" Type="AbilCmd" AbilCmd="LairResearch,Research7" Row="1" Column="0" />
+      <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="UpgradeToHiveAbathurReborn,Cancel" Row="2" Column="4" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="HiveAbathurReborn" parent="Hive">
+    <TechAliasArray value="Alias_Hatchery" />
+    <TechAliasArray value="Alias_Lair" />
+    <TechAliasArray value="Alias_Hive" />
+    <Race value="Zerg" />
+    <Mob value="Campaign" />
+    <BehaviorArray index="1" Link="SpawnLarvaAbathurReborn" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="RallyEgg" Type="AbilCmd" AbilCmd="RallyHatchery,Rally3" Row="1" Column="3" />
+      <LayoutButtons Face="overlordspeed" Type="AbilCmd" AbilCmd="LairResearch,Research7" Row="1" Column="0" />
+    </CardLayouts>
   </CUnit>
   <CUnit id="DroneAbathurReborn" parent="Drone">
     <Race value="Zerg" />
@@ -1290,20 +1326,21 @@
     <FlagArray index="TownStructureTownHall" value="1" />
     <!--BehaviorArray Link="AutoInjectLarva"/-->
   </CUnit>
-  <CUnit id="Larva">
-    <AbilArray Link="LarvaTrain" />
+  <CUnit id="LarvaAbathurReborn" parent="Larva">
+    <AbilArray index="0" Link="LarvaTrainAbathurReborn" />
+    <CardLayouts index="0" removed="1" />
     <CardLayouts index="0">
-      <LayoutButtons index="0" Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train1" Row="0" Column="0" />
-      <LayoutButtons index="1" Face="Overlord" Type="AbilCmd" AbilCmd="LarvaTrain,Train2" Row="0" Column="1" />
-      <LayoutButtons index="2" Face="Zergling" Type="AbilCmd" AbilCmd="LarvaTrain,Train3" Row="0" Column="2" />
-      <LayoutButtons index="3" Face="Baneling" Type="AbilCmd" AbilCmd="LarvaTrain,Train4" Row="0" Column="3" />
-      <LayoutButtons index="4" Face="Roach" Type="AbilCmd" AbilCmd="LarvaTrain,Train5" Row="1" Column="0" />
-      <LayoutButtons index="5" Face="Hydralisk" Type="AbilCmd" AbilCmd="LarvaTrain,Train6" Row="1" Column="1" />
-      <LayoutButtons index="6" Face="Mutalisk" Type="AbilCmd" AbilCmd="LarvaTrain,Train7" Row="1" Column="2" />
-      <LayoutButtons index="7" Face="SwarmHostMP" Type="AbilCmd" AbilCmd="LarvaTrain,Train8" Row="1" Column="3" />
-      <LayoutButtons index="8" Face="Ultralisk" Type="AbilCmd" AbilCmd="LarvaTrain,Train9" Row="2" Column="0" />
-      <LayoutButtons index="9" Face="Infestor" Type="AbilCmd" AbilCmd="LarvaTrain,Train10" Row="2" Column="1" />
-      <LayoutButtons index="10" Face="BroodLord" Type="AbilCmd" AbilCmd="LarvaTrain,Train11" Row="2" Column="2" />
+      <LayoutButtons index="0" Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train1" Row="0" Column="0" />
+      <LayoutButtons index="1" Face="Overlord" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train2" Row="0" Column="1" />
+      <LayoutButtons index="2" Face="Zergling" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train3" Row="0" Column="2" />
+      <LayoutButtons index="3" Face="Baneling" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train4" Row="0" Column="3" />
+      <LayoutButtons index="4" Face="Roach" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train5" Row="1" Column="0" />
+      <LayoutButtons index="5" Face="Hydralisk" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train6" Row="1" Column="1" />
+      <LayoutButtons index="6" Face="Mutalisk" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train7" Row="1" Column="2" />
+      <LayoutButtons index="7" Face="SwarmHostMP" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train8" Row="1" Column="3" />
+      <LayoutButtons index="8" Face="Ultralisk" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train9" Row="2" Column="0" />
+      <LayoutButtons index="9" Face="Infestor" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train10" Row="2" Column="1" />
+      <LayoutButtons index="10" Face="BroodLord" Type="AbilCmd" AbilCmd="LarvaTrainAbathurReborn,Train11" Row="2" Column="2" />
       <LayoutButtons index="11" Face="Cancel" Type="AbilCmd" AbilCmd="que1,CancelLast" Row="2" Column="4" />
       <LayoutButtons index="12" Row="2" Column="3"></LayoutButtons>
       <LayoutButtons index="13" Row="2" Column="3"></LayoutButtons>
@@ -5878,6 +5915,15 @@
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="112" />
+  </CUnit>
+  <CUnit id="HotSNoxious">
+    <Collide index="Ground" value="0" />
+    <Collide index="Structure" value="1" />
+    <Collide index="Small" value="0" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Strider" Type="Passive" Row="1" Column="0" />
+    </CardLayouts>
+    <KillXP value="160" />
   </CUnit>
   <CUnit id="Hydralisk">
     <!--BehaviorArray Link="Supply2"/-->
@@ -11311,4 +11357,1527 @@
   <CUnit id="LocustFlying">
     <FlagArray index="ArmySelect" value="0"/>
   </CUnit>
+
+    <CUnit id="Fireball" parent="MISSILE">
+        <Race value="Zerg"/>
+        <Mover value="MissileDefault"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
+    </CUnit>
+
+    <CUnit id="AnkylosWeapon" parent="MISSILE">
+        <Race value="Zerg"/>
+        <Mover value="PrimalRoachWeapon"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
+    </CUnit>
+
+    <CUnit id="MutaliskChar" parent="Mutalisk">
+        <Name value="Unit/Name/MutaliskChar"/>
+        <Subtitle value="MutaliskChar"/>
+        <Description value="Button/Tooltip/MutaliskChar"/>
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
+        <WeaponArray index="0" Link="Fireball"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons index="8" Face="Incinerate"/>
+            <LayoutButtons Face="Recuperation" Type="Passive" Row="2" Column="1"/>
+        </CardLayouts>
+        <LeaderAlias value="MutaliskChar"/>
+        <HotkeyAlias value="MutaliskChar"/>
+        <SelectAlias value="MutaliskChar"/>
+        <SubgroupAlias value="MutaliskChar"/>
+        <KillXP value="50"/>
+        <ReviveType value="MutaliskChar"/>
+    </CUnit>
+
+    <CUnit id="Mamba">
+        <Subtitle value="Mamba"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <Collide index="Flying" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="120"/>
+        <LifeMax value="120"/>
+        <LifeRegenRate value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergAirArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Mover value="Fly"/>
+        <Speed value="3.75"/>
+        <Acceleration value="3.25"/>
+        <StationaryTurningRate value="1499.9414"/>
+        <TurningRate value="1499.9414"/>
+        <Sight value="11"/>
+        <Height value="3.75"/>
+        <VisionHeight value="4"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="100"/>
+        <CostResource index="Vespene" value="100"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="50"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
+        <BehaviorArray Link="MutaliskBaseRegeneration"/>
+        <WeaponArray Link="DegenerationRay"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="SynapticDisintegration" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Recuperation" Type="Passive" Row="2" Column="1"/>
+        </CardLayouts>
+        <ScoreMake value="200"/>
+        <ScoreKill value="200"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="13"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="130"/>
+        <GlossaryStrongArray value="VikingFighter"/>
+        <GlossaryStrongArray value="BroodLord"/>
+        <GlossaryStrongArray value="VoidRay"/>
+        <GlossaryWeakArray value="Thor"/>
+        <GlossaryWeakArray value="Corruptor"/>
+        <GlossaryWeakArray value="Phoenix"/>
+        <HotkeyCategory value="Unit/Category/ZergUnits"/>
+    </CUnit>
+
+    <CUnit id="Mesmer">
+        <Subtitle value="Mesmer"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <Collide index="Flying" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="120"/>
+        <LifeMax value="120"/>
+        <LifeRegenRate value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergAirArmor"/>
+        <EnergyMax value="40"/>
+        <EnergyRegenDelay value="5"/>
+        <EnergyRegenRate value="2"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Mover value="Fly"/>
+        <Speed value="4.25"/>
+        <Acceleration value="3.25"/>
+        <StationaryTurningRate value="1499.9414"/>
+        <TurningRate value="1499.9414"/>
+        <Sight value="11"/>
+        <Height value="3.75"/>
+        <VisionHeight value="4"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="100"/>
+        <CostResource index="Vespene" value="100"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="50"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="NeuralCamouflage"/>
+        <AbilArray Link="Teleport"/>
+        <AbilArray Link="ChargedGlaives"/>
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
+        <BehaviorArray Link="MutaliskBaseRegeneration"/>
+        <WeaponArray Link="GlaiveWurm"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Enshroud" Type="AbilCmd" AbilCmd="NeuralCamouflage,On" Row="2" Column="0"/>
+            <LayoutButtons Face="Unveiled" Type="AbilCmd" AbilCmd="NeuralCamouflage,Off" Row="2" Column="0"/>
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Blink2" Type="AbilCmd" AbilCmd="Teleport,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="ChargeGlaives" Type="AbilCmd" AbilCmd="ChargedGlaives,On" Row="2" Column="1"/>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="ChargedGlaives,Off" Row="2" Column="1"/>
+            <LayoutButtons Face="Recuperation" Type="Passive" Row="2" Column="3"/>
+        </CardLayouts>
+        <ScoreMake value="200"/>
+        <ScoreKill value="200"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="50"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="130"/>
+        <GlossaryStrongArray value="VikingFighter"/>
+        <GlossaryStrongArray value="BroodLord"/>
+        <GlossaryStrongArray value="VoidRay"/>
+        <GlossaryWeakArray value="Thor"/>
+        <GlossaryWeakArray value="Corruptor"/>
+        <GlossaryWeakArray value="Phoenix"/>
+        <HotkeyCategory value="Unit/Category/ZergUnits"/>
+    </CUnit>
+
+    <CUnit id="MutaliskAnkylos">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <Collide index="Flying" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="180"/>
+        <LifeMax value="180"/>
+        <LifeArmor value="2"/>
+        <LifeRegenRate value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergAirArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Mover value="Fly"/>
+        <Speed value="3.75"/>
+        <Acceleration value="3.25"/>
+        <StationaryTurningRate value="1499.9414"/>
+        <TurningRate value="1499.9414"/>
+        <Sight value="11"/>
+        <Height value="3.75"/>
+        <VisionHeight value="4"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="100"/>
+        <CostResource index="Vespene" value="100"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="50"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
+        <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
+        <BehaviorArray Link="MutaliskBaseRegeneration"/>
+        <WeaponArray Link="CorrosiveStream"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="MutaliskRapidRegeneration" Type="AbilCmd" AbilCmd="AbathurMutaliskRapidRegenerationPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="OsteodermPlating" Type="Passive" Row="2" Column="1"/>
+            <LayoutButtons Face="AcidSplash" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="Recuperation" Type="Passive" Row="2" Column="2"/>
+        </CardLayouts>
+        <ScoreMake value="200"/>
+        <ScoreKill value="200"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="13"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="130"/>
+        <GlossaryStrongArray value="VikingFighter"/>
+        <GlossaryStrongArray value="BroodLord"/>
+        <GlossaryStrongArray value="VoidRay"/>
+        <GlossaryWeakArray value="Thor"/>
+        <GlossaryWeakArray value="Corruptor"/>
+    <GlossaryWeakArray value="Phoenix"/>
+    <HotkeyCategory value="Unit/Category/ZergUnits"/>
+  </CUnit>
+  <CUnit id="FrostFiend">
+    <DeathRevealRadius value="3"/>
+    <Facing value="45"/>
+    <Race value="Zerg"/>
+    <Mob value="Multiplayer"/>
+    <FlagArray index="PreventDestroy" value="1"/>
+    <FlagArray index="UseLineOfSight" value="1"/>
+    <FlagArray index="ArmySelect" value="1"/>
+    <PlaneArray index="Ground" value="1"/>
+    <Collide index="Ground" value="1"/>
+    <Collide index="ForceField" value="1"/>
+    <Collide index="Small" value="1"/>
+    <Attributes index="Biological" value="1"/>
+    <LifeStart value="50"/>
+    <LifeMax value="50"/>
+    <LifeRegenRate value="0.2734"/>
+    <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+    <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+    <Speed value="2.5"/>
+    <SpeedMultiplierCreep value="1.3"/>
+    <Acceleration value="1000"/>
+    <LateralAcceleration value="46.0625"/>
+    <StationaryTurningRate value="999.8437"/>
+    <TurningRate value="999.8437"/>
+    <Sight value="8"/>
+    <Food value="-0.5"/>
+    <CostCategory value="Army"/>
+    <CostResource index="Minerals" value="50"/>
+    <CostResource index="Vespene" value="25"/>
+    <AttackTargetPriority value="15"/>
+    <DamageDealtXP value="1"/>
+    <DamageTakenXP value="1"/>
+    <KillXP value="30"/>
+    <AbilArray Link="stop"/>
+    <AbilArray Link="attack"/>
+    <AbilArray Link="move"/>
+    <AbilArray Link="FrostFiendBurrow"/>
+    <BehaviorArray Link="BanelingLifesteal"/>
+    <BehaviorArray Link="BanelingExplode"/>
+    <WeaponArray Link="FrozenShards"/>
+    <CardLayouts>
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+      <LayoutButtons Row="0" Column="0"/>
+      <LayoutButtons Row="0" Column="0"/>
+      <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+      <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+      <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+      <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="FrostFiendBurrow,Execute" Row="2" Column="4"/>
+      <LayoutButtons Face="PiercingShards" Type="Passive" Row="2" Column="0"/>
+      <LayoutButtons Face="BanelingCorrosiveBile" Type="Passive" Requirements="HaveHotSBanelingCorrosiveBile" Row="2" Column="1"/>
+      <LayoutButtons Face="RuptureUpgrade" Type="Passive" Requirements="HaveHotSRupture" Row="2" Column="1"/>
+      <LayoutButtons Face="BanelingHeal" Type="Passive" Requirements="HaveHotSBanelingHeal" Row="2" Column="1"/>
+    </CardLayouts>
+    <Radius value="0.375"/>
+    <SeparationRadius value="0.375"/>
+    <InnerRadius value="0.375"/>
+    <CargoOverlapFilters value="-;Player,Ally,Neutral,Structure"/>
+    <CargoSize value="2"/>
+    <ScoreMake value="50"/>
+    <ScoreKill value="75"/>
+    <ScoreResult value="BuildOrder"/>
+    <SubgroupPriority value="16"/>
+    <MinimapRadius value="0.375"/>
+    <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    <TacticalAI value="Marine"/>
+    <GlossaryCategory value="Unit/Category/ZergUnits"/>
+    <GlossaryPriority value="60"/>
+    <GlossaryStrongArray value="Marine"/>
+    <GlossaryStrongArray value="Zergling"/>
+    <GlossaryStrongArray value="Zealot"/>
+    <GlossaryWeakArray value="Marauder"/>
+    <GlossaryWeakArray value="Roach"/>
+    <GlossaryWeakArray value="Stalker"/>
+    <HotkeyCategory value="Unit/Category/ZergUnits"/>
+    <KillDisplay value="Always"/>
+    <RankDisplay value="Always"/>
+  </CUnit>
+  <CUnit id="FrostFiendBurrowed">
+    <Name value="Unit/Name/FrostFiend"/>
+    <Description value="Button/Tooltip/Baneling"/>
+    <DeathRevealRadius value="3"/>
+    <ReviveType value="BanelingBurrowed"/>
+    <Race value="Zerg"/>
+    <Mob value="Multiplayer"/>
+    <FlagArray index="PreventDestroy" value="1"/>
+    <FlagArray index="UseLineOfSight" value="1"/>
+    <FlagArray index="Cloaked" value="1"/>
+    <FlagArray index="Buried" value="1"/>
+    <FlagArray index="AIThreatGround" value="1"/>
+    <FlagArray index="ArmySelect" value="1"/>
+    <PlaneArray index="Ground" value="1"/>
+    <Collide index="Burrow" value="1"/>
+    <Attributes index="Biological" value="1"/>
+    <LifeStart value="35"/>
+    <LifeMax value="35"/>
+    <LifeRegenRate value="0.2734"/>
+    <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+    <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+    <Mover value="Burrowed"/>
+    <Sight value="8"/>
+    <Food value="-0.5"/>
+    <CostCategory value="Army"/>
+    <CostResource index="Minerals" value="50"/>
+    <CostResource index="Vespene" value="25"/>
+    <AttackTargetPriority value="20"/>
+    <DamageDealtXP value="1"/>
+    <DamageTakenXP value="1"/>
+    <KillXP value="20"/>
+    <AbilArray Link="FrostFiendUnburrow"/>
+    <AbilArray Link="move"/>
+    <BehaviorArray Link="BurrowCracks"/>
+    <CardLayouts>
+      <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="FrostFiendUnburrow,Execute" Row="2" Column="4"/>
+      <LayoutButtons Face="BanelingCorrosiveBile" Type="Passive" Requirements="HaveHotSBanelingCorrosiveBile" Row="1" Column="0"/>
+      <LayoutButtons Face="BanelingHeal" Type="Passive" Requirements="HaveHotSBanelingHeal" Row="1" Column="1"/>
+      <LayoutButtons Face="RuptureUpgrade" Type="Passive" Requirements="HaveHotSRupture" Row="1" Column="2"/>
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="3"/>
+    </CardLayouts>
+    <Radius value="0.375"/>
+    <SeparationRadius value="0.375"/>
+    <InnerRadius value="0.375"/>
+    <ScoreKill value="75"/>
+    <SubgroupPriority value="16"/>
+    <MinimapRadius value="0.375"/>
+    <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    <TacticalAI value="BanelingBurrowed"/>
+    <TacticalAIThink value="AIThinkBaneling"/>
+    <KillXP value="30"/>
+    <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+  </CUnit>
+  <CUnit id="FrozenShards" parent="MISSILE">
+    <Race value="Zerg"/>
+    <Mover value="MissileDefault"/>
+    <EditorCategories value="ObjectFamily:Campaign,ObjectType:Unit"/>
+  </CUnit>
+  <CUnit id="BileTitan">
+    <DeathRevealRadius value="3"/>
+    <Facing value="45"/>
+    <Race value="Zerg"/>
+    <FlagArray index="PreventDestroy" value="1"/>
+    <FlagArray index="UseLineOfSight" value="1"/>
+    <FlagArray index="AISplash" value="1"/>
+    <FlagArray index="AIHighPrioTarget" value="1"/>
+    <FlagArray index="AIFleeDamageDisabled" value="1"/>
+    <FlagArray index="ArmySelect" value="1"/>
+    <PlaneArray index="Ground" value="1"/>
+    <Collide index="Colossus" value="1"/>
+    <Collide index="ForceField" value="1"/>
+    <Attributes index="Armored" value="1"/>
+    <Attributes index="Biological" value="1"/>
+    <LifeStart value="600"/>
+    <LifeMax value="600"/>
+    <LifeRegenRate value="0.2734"/>
+    <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+    <Speed value="2"/>
+    <SpeedMultiplierCreep value="1.3"/>
+    <Acceleration value="1000"/>
+    <LateralAcceleration value="46.0625"/>
+    <Sight value="8"/>
+    <Food value="-6"/>
+    <CostCategory value="Army"/>
+    <CostResource index="Minerals" value="300"/>
+    <CostResource index="Vespene" value="200"/>
+    <AttackTargetPriority value="20"/>
+    <DamageDealtXP value="1"/>
+    <DamageTakenXP value="1"/>
+    <AbilArray Link="stop"/>
+    <AbilArray Link="move"/>
+    <AbilArray Link="attack"/>
+    <BehaviorArray Link="Explode"/>
+    <WeaponArray Link="Spew"/>
+    <CardLayouts>
+      <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+      <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+      <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+      <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+      <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+      <LayoutButtons Face="Spew" Type="Passive" Row="2" Column="0"/>
+      <LayoutButtons Face="Suicide" Type="Passive" Row="2" Column="1"/>
+      <LayoutButtons Face="BanelingHeal" Type="Passive" Requirements="HaveHotSBanelingHeal" Row="2" Column="2"/>
+      <LayoutButtons Face="RuptureUpgrade" Type="Passive" Requirements="HaveHotSRupture" Row="2" Column="2"/>
+      <LayoutButtons Face="BanelingCorrosiveBile" Type="Passive" Requirements="HaveHotSBanelingCorrosiveBile" Row="2" Column="2"/>
+      <LayoutButtons Face="Strider" Type="Passive" Row="2" Column="4"/>
+    </CardLayouts>
+    <Radius value="1"/>
+    <SeparationRadius value="1"/>
+    <InnerRadius value="0.375"/>
+    <CargoSize value="2"/>
+    <ScoreResult value="BuildOrder"/>
+    <SubgroupPriority value="16"/>
+    <MinimapRadius value="1.5"/>
+    <AIEvalFactor value="3"/>
+    <GlossaryCategory value="Unit/Category/ZergUnits"/>
+    <GlossaryPriority value="30"/>
+    <KillDisplay value="Always"/>
+    <KillXP value="200"/>
+  </CUnit>
+  <CUnit id="SpewMissile" parent="MISSILE_INVULNERABLE">
+    <Race value="Zerg"/>
+    <Mover value="Spew"/>
+  </CUnit>
+    <CUnit id="UltraliskSavage">
+        <Subtitle value="UnitSubtitle/UltraliskSavage"/>
+        <DeathRevealRadius value="3"/>
+        <Facing value="315"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="TurnBeforeMove" value="1"/>
+        <FlagArray index="AISplash" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Colossus" value="1"/>
+        <Collide index="Structure" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <LifeStart value="600"/>
+        <LifeMax value="600"/>
+        <LifeArmor value="2"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="3.5"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <TurningRate value="499.9218"/>
+        <Sight value="9"/>
+        <Food value="-6"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="300"/>
+        <CostResource index="Vespene" value="200"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="160"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="SavageBurrow"/>
+        <AbilArray Link="UltraliskBurrowCharge"/>
+        <BehaviorArray Link="Frenzy"/>
+        <BehaviorArray Link="MassiveVoidRayVulnerability"/>
+        <BehaviorArray Link="UltraliskOutOfCombat1"/>
+        <BehaviorArray Link="FirstbornStrain"/>
+        <WeaponArray Link="KaiserBlades"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="2" Column="3"/>
+            <LayoutButtons Face="SavageStrain" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="SavageBurrow,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="Strider" Type="Passive" Row="2" Column="2"/>
+            <LayoutButtons Face="BurrowChargeCampaign" Type="AbilCmd" AbilCmd="UltraliskBurrowCharge,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="TheHungerUltralisk" Type="Passive" Row="2" Column="1"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <SeparationRadius value="1"/>
+        <InnerRadius value="0.75"/>
+        <CargoSize value="8"/>
+        <ScoreMake value="800"/>
+        <ScoreKill value="1600"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="12"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="182"/>
+        <GlossaryStrongArray value="Marauder"/>
+        <GlossaryWeakArray value="Banshee"/>
+        <HotkeyCategory value="Unit/Category/ZergStory"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="50"/>
+            <ChanceArray index="Idle" value="50"/>
+        </Fidget>
+        <TauntDuration index="Cheer" value="5"/>
+        <TauntDuration index="Dance" value="5"/>
+    </CUnit>
+    <CUnit id="SavageBurrowed" parent="UltraliskBurrowed">
+        <Name value="Unit/Name/SavageBurrowed"/>
+        <AbilArray index="0" Link="SavageUnburrow"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="1" AbilCmd="SavageUnburrow,Execute"/>
+            <LayoutButtons index="3" removed="1"/>
+            <LayoutButtons index="4" removed="1"/>
+            <LayoutButtons index="5" removed="1"/>
+        </CardLayouts>
+        <SubgroupPriority value="12"/>
+    </CUnit>
+    <CUnit id="UltraliskKaldir">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="TurnBeforeMove" value="1"/>
+        <FlagArray index="AISplash" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Colossus" value="1"/>
+        <Collide index="Structure" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <LifeStart value="500"/>
+        <LifeMax value="500"/>
+        <LifeArmor value="3"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="2.9531"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <TurningRate value="360"/>
+        <Sight value="9"/>
+        <Food value="-6"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="300"/>
+        <CostResource index="Vespene" value="200"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="160"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="BurrowUltraliskDown"/>
+        <AbilArray Link="UltraliskBurrowCharge"/>
+        <AbilArray Link="ElectromagneticImplosion"/>
+        <BehaviorArray Link="MassiveVoidRayVulnerability"/>
+        <BehaviorArray Link="Frenzy"/>
+        <BehaviorArray Link="UltraliskOutOfCombat1"/>
+        <WeaponArray Link="KaiserBlades"/>
+        <WeaponArray/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowUltraliskDown,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="Frenzied" Type="Passive" Behavior="Frenzy" Row="2" Column="3"/>
+            <LayoutButtons Face="ElectromagneticImplosion" Type="AbilCmd" AbilCmd="ElectromagneticImplosion,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="BurrowChargeCampaign" Type="AbilCmd" AbilCmd="UltraliskBurrowCharge,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Strider" Type="Passive" Row="2" Column="2"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <SeparationRadius value="1"/>
+        <InnerRadius value="0.75"/>
+        <CargoSize value="8"/>
+        <ScoreMake value="500"/>
+        <ScoreKill value="500"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="12"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="Ultralisk"/>
+        <TacticalAIThink value="AIThinkUltralisk"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="180"/>
+        <GlossaryStrongArray value="Marauder"/>
+        <GlossaryStrongArray value="Roach"/>
+        <GlossaryStrongArray value="Stalker"/>
+        <GlossaryWeakArray value="Banshee"/>
+        <GlossaryWeakArray value="Mutalisk"/>
+        <GlossaryWeakArray value="VoidRay"/>
+        <HotkeyCategory value="Unit/Category/ZergUnits"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="50"/>
+            <ChanceArray index="Idle" value="50"/>
+        </Fidget>
+        <TauntDuration index="Cheer" value="5"/>
+        <TauntDuration index="Dance" value="5"/>
+    </CUnit>
+    <CUnit id="IzshaGuardian">
+        <Subtitle value="UnitSubtitle/IzshaGuardian"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <Collide index="Flying" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="150"/>
+        <LifeMax value="150"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergAirArmor"/>
+        <Mover value="Fly"/>
+        <Speed value="3.25"/>
+        <Acceleration value="3.25"/>
+        <StationaryTurningRate value="1499.9414"/>
+        <Sight value="9"/>
+        <Height value="3.75"/>
+        <VisionHeight value="4"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="250"/>
+        <CostResource index="Vespene" value="200"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="AbathurGuardianExtendedSpinesPurchase"/>
+        <AbilArray Link="AbathurGuardianCorrosiveBombardmentPurchase"/>
+        <AbilArray Link="AbathurGuardianRegenerativeSacsPurchase"/>
+        <WeaponArray Link="AcidSpores"/>
+        <WeaponArray Link="AcidSporesAir"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AbathurGuardianExtendedSpines" Type="AbilCmd" AbilCmd="AbathurGuardianExtendedSpinesPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurGuardianCorrosiveBombardment" Type="AbilCmd" AbilCmd="AbathurGuardianCorrosiveBombardmentPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurGuardianRegenerativeSacs" Type="AbilCmd" AbilCmd="AbathurGuardianRegenerativeSacsPurchase,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+        <Radius value="0.75"/>
+        <SeparationRadius value="0.75"/>
+        <MinimapRadius value="0.75"/>
+        <EditorCategories value="ObjectFamily:Campaign,ObjectType:Unit"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="200"/>
+        <GlossaryStrongArray value="Roach"/>
+        <GlossaryWeakArray value="Mutalisk"/>
+        <KillXP value="100"/>
+    </CUnit>
+    <CUnit id="Kraken">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <Collide index="Flying" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <LifeStart value="500"/>
+        <LifeMax value="500"/>
+        <LifeArmor value="2"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergAirArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Mover value="Fly"/>
+        <Speed value="2"/>
+        <Acceleration value="1.0625"/>
+        <Sight value="12"/>
+        <Height value="3.75"/>
+        <VisionHeight value="4"/>
+        <Food value="-6"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="400"/>
+        <CostResource index="Vespene" value="300"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="200"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="AbathurKrakenAcidBarragePurchase"/>
+        <AbilArray Link="AbathurKrakenOsteolyticAcidPurchase"/>
+        <AbilArray Link="AbathurKrakenTitanicCarapacePurchase"/>
+        <BehaviorArray Link="MassiveVoidRayVulnerability"/>
+        <WeaponArray Link="AcidBarrage"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="AbathurKrakenAcidBarrage" Type="AbilCmd" AbilCmd="AbathurKrakenAcidBarragePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurKrakenOsteolyticAcid" Type="AbilCmd" AbilCmd="AbathurKrakenOsteolyticAcidPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurKrakenTitanicCarapace" Type="AbilCmd" AbilCmd="AbathurKrakenTitanicCarapacePurchase,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <SeparationRadius value="1"/>
+        <ScoreMake value="550"/>
+        <ScoreKill value="550"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="14"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <AIEvalFactor value="1.5"/>
+        <Mass value="0.6"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="190"/>
+        <GlossaryStrongArray value="Marine"/>
+        <GlossaryStrongArray value="Hydralisk"/>
+        <GlossaryStrongArray value="Stalker"/>
+        <GlossaryWeakArray value="VikingFighter"/>
+        <GlossaryWeakArray value="Corruptor"/>
+        <GlossaryWeakArray value="VoidRay"/>
+        <HotkeyCategory value="Unit/Category/ZergUnits"/>
+    </CUnit>
+    <CUnit id="AcidBarrage" parent="MISSILE">
+        <Race value="Zerg"/>
+        <Mover value="AcidSporesMissile"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="BaneHost">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="AIHighPrioTarget" value="1"/>
+        <FlagArray index="AIPressForwardDisabled" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="120"/>
+        <LifeMax value="120"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="2.25"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Acceleration value="1000"/>
+        <TurningRate value="360"/>
+        <Sight value="10"/>
+        <Food value="-3"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="200"/>
+        <CostResource index="Vespene" value="100"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="BurrowBaneHost"/>
+        <AbilArray Link="BanelingLaunch"/>
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
+        <BehaviorArray Link="LocustLaunchDisabled"/>
+        <BehaviorArray Link="SwarmHostPressurizedGlands"/>
+        <WeaponArray Link="BanelingSpawn"/>
+        <WeaponArray Link="BanelingSpawn"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="Burrow" Type="AbilCmd" AbilCmd="BurrowBaneHost,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="BaneMobileSpawner" Type="Passive" AbilCmd="BanelingLaunch,Execute" Row="2" Column="0"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <SeparationRadius value="1"/>
+        <InnerRadius value="1"/>
+        <CargoSize value="4"/>
+        <SubgroupPriority value="18"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="SwarmHost"/>
+        <Mass value="0.6"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="146"/>
+        <GlossaryStrongArray value="Marine"/>
+        <GlossaryStrongArray value="Stalker"/>
+        <GlossaryStrongArray value="Roach"/>
+        <GlossaryWeakArray value="Hellion"/>
+        <GlossaryWeakArray value="Archon"/>
+        <HotkeyCategory value="Unit/Category/ZergStory"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <KillXP value="50"/>
+    </CUnit>
+    <CUnit id="BaneHostBurrowed">
+        <Description value="Button/Tooltip/SwarmHost"/>
+        <DeathRevealRadius value="3"/>
+        <ReviveType value="SwarmHostBurrowed"/>
+        <Facing value="45"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="Buried" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="AIHighPrioTarget" value="1"/>
+        <FlagArray index="AIPressForwardDisabled" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="120"/>
+        <LifeMax value="120"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <TurningRate value="360"/>
+        <Sight value="10"/>
+        <Food value="-3"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="200"/>
+        <CostResource index="Vespene" value="100"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="que1"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="UnburrowBaneHost"/>
+        <AbilArray Link="BanelingLaunch"/>
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
+        <BehaviorArray Link="SwarmHostPressurizedGlands"/>
+        <WeaponArray Link="BanelingSpawn"/>
+        <WeaponArray Link="BanelingSpawn"/>
+        <CardLayouts>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="UnburrowBaneHost" Type="AbilCmd" AbilCmd="UnburrowBaneHost,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="AttackBuilding" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.8125"/>
+        <SeparationRadius value="0"/>
+        <InnerRadius value="0.5"/>
+        <SubgroupPriority value="18"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="SwarmHostBurrowed"/>
+        <LeaderAlias value="SwarmHost"/>
+        <HotkeyAlias value="SwarmHost"/>
+        <SelectAlias value="SwarmHostBurrowed"/>
+        <SubgroupAlias value="SwarmHostBurrowed"/>
+        <TechAliasArray value="Alias_SwarmHost"/>
+        <GlossaryAlias value="SwarmHost"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <AIEvaluateAlias value="SwarmHost"/>
+        <ReviveInfoBase>
+            <Charge Link="SwarmHostBurrowed/Revive"/>
+            <Cooldown Link="SwarmHostBurrowed/Revive"/>
+        </ReviveInfoBase>
+        <KillXP value="50"/>
+    </CUnit>
+    <CUnit id="VespidHost">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="AIHighPrioTarget" value="1"/>
+        <FlagArray index="AIPressForwardDisabled" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="120"/>
+        <LifeMax value="120"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="2.25"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Acceleration value="1000"/>
+        <TurningRate value="360"/>
+        <Sight value="10"/>
+        <Food value="-3"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="200"/>
+        <CostResource index="Vespene" value="100"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="VespidHangar"/>
+        <AbilArray Link="BroodLordQueue2"/>
+        <AbilArray Link="AbathurHostRapidIncubationPurchase"/>
+        <AbilArray Link="AbathurHostLocustSpeedPurchase"/>
+        <AbilArray Link="AbathurHostPressurizedGlandsPurchase"/>
+        <BehaviorArray Link="LocustLaunchDisabled"/>
+        <BehaviorArray Link="SwarmHostPressurizedGlands"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AbathurHostRapidIncubation" Type="AbilCmd" AbilCmd="AbathurHostRapidIncubationPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHostLocustSpeed" Type="AbilCmd" AbilCmd="AbathurHostLocustSpeedPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHostPressurizedGlands" Type="AbilCmd" AbilCmd="AbathurHostPressurizedGlandsPurchase,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <SeparationRadius value="1"/>
+        <InnerRadius value="1"/>
+        <CargoSize value="4"/>
+        <SubgroupPriority value="15"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="SwarmHost"/>
+        <Mass value="0.6"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="146"/>
+        <GlossaryStrongArray value="Marine"/>
+        <GlossaryStrongArray value="Stalker"/>
+        <GlossaryStrongArray value="Roach"/>
+        <GlossaryWeakArray value="Hellion"/>
+        <GlossaryWeakArray value="Archon"/>
+        <HotkeyCategory value="Unit/Category/ZergStory"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <WeaponArray Link="VespidAcid"/>
+        <KillXP value="50"/>
+    </CUnit>
+    <CUnit id="Vespid">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <FlagArray index="NoScore" value="1"/>
+        <FlagArray index="AILifetime" value="1"/>
+        <FlagArray index="AcquireRally" value="1"/>
+        <FlagArray index="IgnoreAttackAlert" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <Collide index="Flying" value="1"/>
+        <Response value="Nothing"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Summoned" value="1"/>
+        <LifeStart value="50"/>
+        <LifeMax value="50"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Mover value="Fly"/>
+        <Speed value="3"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <Sight value="10"/>
+        <Height value="3.75"/>
+        <VisionHeight value="4"/>
+        <CostCategory value="Army"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="20"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <BehaviorArray Link="SwarmHostPressurizedGlands"/>
+        <WeaponArray Link="AcidSpit"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+        </CardLayouts>
+        <Radius value="0.375"/>
+        <SeparationRadius value="0.375"/>
+        <CargoSize value="1"/>
+        <SubgroupPriority value="1"/>
+        <MinimapRadius value="0.375"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <HotkeyAlias value="Locust"/>
+        <HotkeyCategory value="Unit/Category/ZergStory"/>
+        <KillDisplay value="Never"/>
+        <RankDisplay value="Never"/>
+    </CUnit>
+    <CUnit id="VespidWeapon" parent="MISSILE">
+        <Race value="Zerg"/>
+        <Mover value="AcidSalivaWeapon"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="Pygalisk">
+        <Attributes index="Armored" value="0"/>
+        <LifeStart value="150"/>
+        <LifeMax value="150"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Food value="-2"/>
+        <CostResource index="Minerals" value="75"/>
+        <CostResource index="Vespene" value="25"/>
+        <AbilArray index="3" removed="1"/>
+        <AbilArray Link="AbathurZerglingStealthlingPurchase"/>
+        <AbilArray Link="AbathurZerglingKetamineInfusionPurchase"/>
+        <AbilArray Link="AbathurZerglingKleptomaniaPurchase"/>
+        <AbilArray Link="AbathurZerglingMoonragePurchase"/>
+        <AbilArray Link="AbathurZerglingArmoredCarapacePurchase"/>
+        <BehaviorArray index="0" Link="AbathurPygaliskResistanceBuff"/>
+        <BehaviorArray index="1" Link="AbathurZerglingEvasionBuff"/>
+        <CardLayouts index="0" removed="1"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="AbathurPygaliskAblativePlating" Type="Passive" Row="2" Column="1"/>
+            <LayoutButtons Face="AbathurZerglingStealthling" Type="AbilCmd" AbilCmd="AbathurZerglingStealthlingPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurZerglingKetamineInfusion" Type="AbilCmd" AbilCmd="AbathurZerglingKetamineInfusionPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurZerglingKleptomania" Type="AbilCmd" AbilCmd="AbathurZerglingKleptomaniaPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="AbathurZerglingMoonrage" Type="AbilCmd" AbilCmd="AbathurZerglingMoonragePurchase,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="AbathurZerglingArmoredCarapace" Type="AbilCmd" AbilCmd="AbathurZerglingArmoredCarapacePurchase,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="AbathurPygaliskMinorSplash" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="AbathurZerglingEvasion" Type="Passive" Row="2" Column="3"/>
+        </CardLayouts>
+        <FlagArray index="ArmySelect" value="1"/>
+        <LifeRegenRate value="1"/>
+        <KillXP value="10"/>
+    </CUnit>
+    <CUnit id="ZerglingToxic">
+        <Subtitle value="UnitSubtitle/ZerglingToxic"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="35"/>
+        <LifeMax value="35"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="2.9531"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <StationaryTurningRate value="999.8437"/>
+        <TurningRate value="999.8437"/>
+        <Sight value="8"/>
+        <Food value="-0.5"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="25"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="5"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="que1"/>
+        <AbilArray Link="AbathurToxicZerglingBurrow"/>
+        <AbilArray Link="AbathurZerglingStealthlingPurchase"/>
+        <AbilArray Link="AbathurZerglingKetamineInfusionPurchase"/>
+        <AbilArray Link="AbathurZerglingKleptomaniaPurchase"/>
+        <AbilArray Link="AbathurZerglingMoonragePurchase"/>
+        <AbilArray Link="AbathurZerglingArmoredCarapacePurchase"/>
+        <BehaviorArray Link="AbathurZerglingEvasionBuff"/>
+        <WeaponArray Link="AbathurZerglingPoisonedFangs"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="AbathurZerglingStealthling" Type="AbilCmd" AbilCmd="AbathurZerglingStealthlingPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurZerglingKetamineInfusion" Type="AbilCmd" AbilCmd="AbathurZerglingKetamineInfusionPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurZerglingKleptomania" Type="AbilCmd" AbilCmd="AbathurZerglingKleptomaniaPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="AbathurZerglingMoonrage" Type="AbilCmd" AbilCmd="AbathurZerglingMoonragePurchase,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="AbathurZerglingArmoredCarapace" Type="AbilCmd" AbilCmd="AbathurZerglingArmoredCarapacePurchase,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="AbathurZerglingPoisonedFangs" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurToxicZerglingBurrow,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="AbathurZerglingEvasion" Type="Passive" Row="2" Column="2"/>
+        </CardLayouts>
+        <Radius value="0.375"/>
+        <SeparationRadius value="0.375"/>
+        <CargoSize value="1"/>
+        <ScoreMake value="25"/>
+        <ScoreKill value="50"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="8"/>
+        <MinimapRadius value="0.375"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="51"/>
+        <GlossaryStrongArray value="Marauder"/>
+        <GlossaryStrongArray value="Stalker"/>
+        <GlossaryStrongArray value="Hydralisk"/>
+        <GlossaryWeakArray value="Hellion"/>
+        <GlossaryWeakArray value="Archon"/>
+        <GlossaryWeakArray value="Baneling"/>
+        <HotkeyCategory value="Unit/Category/ZergStory"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="33"/>
+            <ChanceArray index="Idle" value="33"/>
+            <ChanceArray index="Turn" value="33"/>
+        </Fidget>
+        <TauntDuration index="Cheer" value="5"/>
+        <TauntDuration index="Dance" value="5"/>
+    </CUnit>
+    <CUnit id="ToxicZerglingBurrowed">
+        <Description value="Button/Tooltip/Zergling"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="Buried" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="35"/>
+        <LifeMax value="35"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Mover value="Burrowed"/>
+        <Sight value="4"/>
+        <Food value="-0.5"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="25"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="5"/>
+        <AbilArray Link="AbathurUnburrowToxicZergling"/>
+        <CardLayouts>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowToxicZergling,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.375"/>
+        <SeparationRadius value="0"/>
+        <ScoreKill value="25"/>
+        <SubgroupPriority value="8"/>
+        <MinimapRadius value="0.375"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="ZerglingBurrowed"/>
+        <LeaderAlias value="Zergling"/>
+        <HotkeyAlias value="Zergling"/>
+        <SelectAlias value="ZerglingBurrowed"/>
+        <SubgroupAlias value="ZerglingBurrowed"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <AIEvaluateAlias value="Zergling"/>
+        <ReviveInfoBase>
+            <Charge Link="ZerglingBurrowed/Revive"/>
+            <Cooldown Link="ZerglingBurrowed/Revive"/>
+        </ReviveInfoBase>
+    </CUnit>
+    <CUnit id="Igniter">
+        <Subtitle value="UnitSubtitle/Igniter"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="160"/>
+        <LifeMax value="160"/>
+        <LifeArmor value="3"/>
+        <LifeRegenRate value="2"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="2.5"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <StationaryTurningRate value="999.8437"/>
+        <TurningRate value="999.8437"/>
+        <Sight value="9"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="75"/>
+        <CostResource index="Vespene" value="25"/>
+        <AttackTargetPriority value="21"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="20"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="AbathurBurrowIgniter"/>
+        <AbilArray Link="AbathurRoachMeleeStrainPurchase"/>
+        <AbilArray Link="AbathurRoachBanelingGestationPurchase"/>
+        <AbilArray Link="AbathurRoachRoachlingInfestationPurchase"/>
+        <AbilArray Link="AbathurRoachBileShieldPurchase"/>
+        <AbilArray Link="AbathurRoachAdrenalineOverdosePurchase"/>
+        <BehaviorArray Link="AbathurRoachAdaptivePlatingLowBuff"/>
+        <BehaviorArray Link="AbathurRoachAdaptivePlatingHighBuff"/>
+        <WeaponArray Link="AbathurIgniterFireBreath"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="AbathurRoachMeleeStrain" Type="AbilCmd" AbilCmd="AbathurRoachMeleeStrainPurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurRoachBanelingGestation" Type="AbilCmd" AbilCmd="AbathurRoachBanelingGestationPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurRoachRoachlingInfestation" Type="AbilCmd" AbilCmd="AbathurRoachRoachlingInfestationPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="AbathurRoachBileShield" Type="AbilCmd" AbilCmd="AbathurRoachBileShieldPurchase,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="AbathurRoachAdrenalineOverdose" Type="AbilCmd" AbilCmd="AbathurRoachAdrenalineOverdosePurchase,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurBurrowIgniter,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="AbathurIgniterScorchingBreath" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="AbathurRoachPlatedExoskeleton" Type="Passive" Row="2" Column="1"/>
+        </CardLayouts>
+        <InnerRadius value="0.625"/>
+        <CargoSize value="2"/>
+        <ScoreMake value="75"/>
+        <ScoreKill value="150"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="15"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="67"/>
+        <GlossaryStrongArray value="Hellion"/>
+        <GlossaryStrongArray value="Zealot"/>
+        <GlossaryStrongArray value="Zergling"/>
+        <GlossaryWeakArray value="Marauder"/>
+        <GlossaryWeakArray value="Immortal"/>
+        <GlossaryWeakArray value="Ultralisk"/>
+        <HotkeyCategory value="Unit/Category/ZergStory"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="33"/>
+            <ChanceArray index="Idle" value="33"/>
+            <ChanceArray index="Turn" value="33"/>
+        </Fidget>
+    </CUnit>
+    <CUnit id="IgniterBurrowed">
+        <Subtitle value="UnitSubtitle/RoachCorpser"/>
+        <Description value="Button/Tooltip/RoachCorpser"/>
+        <DeathRevealRadius value="3"/>
+        <ReviveType value="RoachCorpserBurrowed"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="Buried" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="RoachBurrow" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="160"/>
+        <LifeMax value="160"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="5"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Mover value="Burrowed"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Acceleration value="1000"/>
+        <Sight value="5"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="75"/>
+        <CostResource index="Vespene" value="25"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="15"/>
+        <AbilArray Link="AbathurUnburrowIgniter"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="burrowedStop"/>
+        <BehaviorArray Link="AbathurRoachBurrowRegenBuff"/>
+
+        <CardLayouts>
+            <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowIgniter,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons>
+                <Face value="StopRoachBurrowed"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="burrowedStop,Stop"/>
+                <Row value="0"/>
+                <Column value="1"/>
+            </LayoutButtons>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+        </CardLayouts>
+        <InnerRadius value="0.625"/>
+        <ScoreKill value="150"/>
+        <SubgroupPriority value="15"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="RoachCorpserBurrowed"/>
+        <LeaderAlias value="Roach"/>
+        <HotkeyAlias value="RoachCorpser"/>
+        <SelectAlias value="RoachCorpserBurrowed"/>
+        <SubgroupAlias value="RoachCorpserBurrowed"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <AIEvaluateAlias value="Roach"/>
+        <ReviveInfoBase>
+            <Charge Link="RoachCorpserBurrowed/Revive"/>
+            <Cooldown Link="RoachCorpserBurrowed/Revive"/>
+        </ReviveInfoBase>
+    </CUnit>
+    <CUnit id="Hydralisk2">
+        <Subtitle value="UnitSubtitle/Hydralisk2"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="80"/>
+        <LifeMax value="80"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="2.25"/>
+        <SpeedMultiplierCreep value="1.3"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46"/>
+        <StationaryTurningRate value="999.8437"/>
+        <TurningRate value="999.8437"/>
+        <Sight value="9"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="100"/>
+        <CostResource index="Vespene" value="50"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="25"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="que1"/>
+        <AbilArray Link="AbathurBurrowParalyticHydralisk"/>
+        <AbilArray Link="HydraliskFrenzy"/>
+        <AbilArray Link="AbathurHydraliskCripplePurchase"/>
+        <AbilArray Link="AbathurHydraliskBroodlingsPurchase"/>
+        <AbilArray Link="AbathurHydraliskMechanicalPurchase"/>
+        <AbilArray Link="AbathurHydraliskRangePurchase"/>
+        <AbilArray Link="AbathurHydraliskMeleePurchase"/>
+                <WeaponArray Link="AbathurHydraliskParalyticSpines"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="AbathurHydraliskCripple" Type="AbilCmd" AbilCmd="AbathurHydraliskCripplePurchase,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="AbathurHydraliskBroodlings" Type="AbilCmd" AbilCmd="AbathurHydraliskBroodlingsPurchase,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="AbathurHydraliskMechanical" Type="AbilCmd" AbilCmd="AbathurHydraliskMechanicalPurchase,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="AbathurHydraliskRange" Type="AbilCmd" AbilCmd="AbathurHydraliskRangePurchase,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="AbathurHydraliskMelee" Type="AbilCmd" AbilCmd="AbathurHydraliskMeleePurchase,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="AbathurBurrowParalyticHydralisk,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="AbathurHydraliskVenomSpines" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="HydraliskFrenzy" Type="AbilCmd" AbilCmd="HydraliskFrenzy,Execute" Row="2" Column="1"/>
+        </CardLayouts>
+        <Radius value="0.625"/>
+        <InnerRadius value="0.375"/>
+        <CargoSize value="2"/>
+        <ScoreMake value="100"/>
+        <ScoreKill value="200"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="16"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <AIEvalFactor value="2"/>
+        <GlossaryCategory value="Unit/Category/ZergUnits"/>
+        <GlossaryPriority value="71"/>
+        <GlossaryStrongArray value="Battlecruiser"/>
+        <GlossaryStrongArray value="VoidRay"/>
+        <GlossaryStrongArray value="Mutalisk"/>
+        <GlossaryWeakArray value="Marine"/>
+        <GlossaryWeakArray value="Zealot"/>
+        <GlossaryWeakArray value="Zergling"/>
+        <HotkeyCategory value="Unit/Category/ZergStory"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <TauntDuration index="Cheer" value="5"/>
+        <TauntDuration index="Dance" value="5"/>
+    </CUnit>
+    <CUnit id="HydraliskParalyticBurrowed">
+        <Name value="Unit/Name/Hydralisk"/>
+        <Subtitle value="UnitSubtitle/HydraliskLurker"/>
+        <Description value="Button/Tooltip/Hydralisk"/>
+        <DeathRevealRadius value="3"/>
+        <ReviveType value="HydraliskLurkerBurrowed"/>
+        <Race value="Zerg"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="Buried" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="80"/>
+        <LifeMax value="80"/>
+        <LifeRegenRate value="0.2734"/>
+        <LifeArmorName value="Unit/LifeArmorName/ZergGroundArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Mover value="Burrowed"/>
+        <Sight value="5"/>
+        <Food value="-2"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="100"/>
+        <CostResource index="Vespene" value="50"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="20"/>
+        <AbilArray Link="AbathurUnburrowToxicHydralisk"/>
+        <AbilArray Link="HydraliskFrenzy"/>
+        <CardLayouts>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="AbathurUnburrowToxicHydralisk,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.625"/>
+        <SeparationRadius value="0"/>
+        <InnerRadius value="0.375"/>
+        <ScoreKill value="200"/>
+        <SubgroupPriority value="16"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="HydraliskLurkerBurrowed"/>
+        <LeaderAlias value="Hydralisk"/>
+        <HotkeyAlias value="HydraliskLurker"/>
+        <SelectAlias value="HydraliskLurkerBurrowed"/>
+        <SubgroupAlias value="HydraliskLurkerBurrowed"/>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <AIEvaluateAlias value="Hydralisk"/>
+        <ReviveInfoBase>
+            <Charge Link="HydraliskLurkerBurrowed/Revive"/>
+            <Cooldown Link="HydraliskLurkerBurrowed/Revive"/>
+        </ReviveInfoBase>
+    </CUnit>
 </Catalog>

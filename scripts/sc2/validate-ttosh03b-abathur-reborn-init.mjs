@@ -60,6 +60,7 @@ const files = {
   xmFinalGalaxy: path.join(xmFinalBaseData, 'LibE0EAE146.galaxy'),
   xmFinalHeaderGalaxy: path.join(xmFinalBaseData, 'LibE0EAE146_h.galaxy'),
   xmFinalRuntimeSafetyGalaxy: path.join(xmFinalBaseData, 'LibE0EAE146_RuntimeSafety.galaxy'),
+  xmFinalAbathurRebornRuntimeGalaxy: path.join(xmFinalBaseData, 'LibE0EAE146_AbathurRebornRuntime.galaxy'),
   xmFinalZeratulRuntimeGalaxy: path.join(xmFinalBaseData, 'LibE0EAE146_ZeratulRuntime.galaxy'),
   xmFinalAbilData: path.join(xmFinalGameData, 'AbilData.xml'),
   xmFinalActorData: path.join(xmFinalGameData, 'ActorData.xml'),
@@ -71,6 +72,7 @@ const files = {
   userData: path.join(rebornGameData, 'UserData.xml'),
   unitData: path.join(rebornGameData, 'UnitData.xml'),
   abilData: path.join(rebornGameData, 'AbilData.xml'),
+  behaviorData: path.join(rebornGameData, 'BehaviorData.xml'),
   runtimeGalaxy: path.join(
     repoRoot,
     '合作指挥官版起义狂潮',
@@ -368,7 +370,13 @@ const unitData = readText(files.unitData);
 requireContains('XMAbathurReborn UnitData.xml', unitData, '<CUnit id="HatcheryAbathurReborn"');
 requireContains('XMAbathurReborn UnitData.xml', unitData, '<CUnit id="DroneAbathurReborn"');
 requireContains('XMAbathurReborn UnitData.xml', unitData, '<CUnit id="OverlordAbathurReborn"');
+requireContains('XMAbathurReborn UnitData.xml', unitData, '<CUnit id="LarvaAbathurReborn" parent="Larva">');
+requireContains('XMAbathurReborn UnitData.xml', unitData, '<BehaviorArray index="1" Link="SpawnLarvaAbathurReborn" />');
+requireContains('XMAbathurReborn UnitData.xml', unitData, '<AbilArray index="0" Link="LarvaTrainAbathurReborn" />');
 requireContains('XMAbathurReborn UnitData.xml', unitData, '<CUnit id="CoopCasterAbathurReborn"');
+if (/<CUnit\s+id="Larva"/.test(unitData)) {
+  errors.push('XMAbathurReborn UnitData.xml: must not override shared CUnit id="Larva"');
+}
 if (/<LayoutButtons[^>]*(?:Biomass|CommanderPrestigeAbathurReborn[^>]*Biomass)[^>]*>/.test(unitData)) {
   errors.push('XMAbathurReborn UnitData.xml: AbathurReborn must not expose visible biomass buttons');
 }
@@ -386,8 +394,13 @@ requireContains('XMAbathurReborn UnitData.xml', unitData, '<CUnit id="Ravager">'
 requireContains('XMAbathurReborn UnitData.xml', unitData, '<AbilArray Link="RavagerCorrosiveBile" />');
 
 const abilData = readText(files.abilData);
+requireContains('XMAbathurReborn AbilData.xml', abilData, '<CAbilTrain id="LarvaTrainAbathurReborn" parent="LarvaTrain">');
 requireContains('XMAbathurReborn AbilData.xml', abilData, '<CAbilEffectTarget id="RavagerCorrosiveBile">');
 requireContains('XMAbathurReborn AbilData.xml', abilData, '<Cooldown Link="Abil/RavagerCorrosiveBile" TimeUse="15" />');
+
+const behaviorData = readText(files.behaviorData);
+requireContains('XMAbathurReborn BehaviorData.xml', behaviorData, '<CBehaviorSpawn id="SpawnLarvaAbathurReborn" parent="SpawnLarva">');
+requireContains('XMAbathurReborn BehaviorData.xml', behaviorData, 'Unit="LarvaAbathurReborn"');
 
 const runtimeGalaxy = readText(files.runtimeGalaxy);
 if (/CreateUnitsWithDefaultFacing\([^;\n]*"BiomassPickup"/.test(runtimeGalaxy)) {
@@ -422,9 +435,16 @@ if (/CreateUnitsWithDefaultFacing\([^;\n]*"BiomassPickup"/.test(xmFinalCompatGal
 
 const xmFinalGalaxy = readText(files.xmFinalGalaxy);
 requireContains('XMFinal LibE0EAE146.galaxy', xmFinalGalaxy, 'include "LibE0EAE146_RuntimeSafety"');
+requireContains('XMFinal LibE0EAE146.galaxy', xmFinalGalaxy, 'include "LibE0EAE146_AbathurRebornRuntime"');
 requireContains('XMFinal LibE0EAE146.galaxy', xmFinalGalaxy, 'libE0EAE146_gf_CommanderAchUnit("CommandCenter")');
 requireContains('XMFinal LibE0EAE146.galaxy', xmFinalGalaxy, 'libE0EAE146_gf_CommanderAchUnit("Worker")');
 requireContains('XMFinal LibE0EAE146.galaxy', xmFinalGalaxy, 'libE0EAE146_gf_CommanderAchUnit("SecondUnit")');
+requireRegex(
+  'XMFinal LibE0EAE146.galaxy',
+  xmFinalGalaxy,
+  /auto09490B45_val\s*==\s*"AbathurReborn"[\s\S]{0,180}libE0EAE146_gf_AbathurRebornRuntimeInit\(1,\s*lp_secondUnit,\s*lp_createHero\)/,
+  'InitializeBase must branch AbathurReborn to AbathurRebornRuntimeInit',
+);
 if (/CreateUnitsWithDefaultFacing\([^;\n]*UserDataGetUnit\("CommanderAch"/.test(xmFinalGalaxy)) {
   errors.push('XMFinal LibE0EAE146.galaxy: base creation must use libE0EAE146_gf_CommanderAchUnit so empty CommanderAch fields cannot create unit type ""');
 }
@@ -432,6 +452,20 @@ if (/CreateUnitsWithDefaultFacing\([^;\n]*UserDataGetUnit\("CommanderAch"/.test(
 const xmFinalHeaderGalaxy = readText(files.xmFinalHeaderGalaxy);
 requireContains('XMFinal LibE0EAE146_h.galaxy', xmFinalHeaderGalaxy, 'void libE0EAE146_gf_SeedDefaultCommanderBankIfEmpty (string lp_defaultCommander);');
 requireContains('XMFinal LibE0EAE146_h.galaxy', xmFinalHeaderGalaxy, 'string libE0EAE146_gf_CommanderAchUnit (string lp_field);');
+requireContains('XMFinal LibE0EAE146_h.galaxy', xmFinalHeaderGalaxy, 'bool libE0EAE146_gv_abathurRebornRuntimeInitialized;');
+requireContains('XMFinal LibE0EAE146_h.galaxy', xmFinalHeaderGalaxy, 'void libE0EAE146_gf_AbathurRebornRuntimeInit (int lp_player, point lp_heroPoint, bool lp_createHero);');
+
+const xmFinalAbathurRebornRuntimeGalaxy = readText(files.xmFinalAbathurRebornRuntimeGalaxy);
+requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, 'void libE0EAE146_gf_AbathurRebornRuntimeInit');
+requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, '"CoopCasterAbathurReborn"');
+requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, 'lib67C0F0E7_gf_CU_GPInit(lp_player, "AbathurReborn"');
+requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, '"CommanderLevel", 16');
+requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, '"AbathurRebornCommander", 1');
+requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, 'TechTreeUnitAllow(lp_player, "NydusNetwork", false);');
+requireContains('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy', xmFinalAbathurRebornRuntimeGalaxy, 'AbilityCommand("RavagerCorrosiveBile", 0)');
+if (/InitializeAbathurBiomass|BiomassPickup|AbathurRebornCollectBiomass/.test(xmFinalAbathurRebornRuntimeGalaxy)) {
+  errors.push('XMFinal LibE0EAE146_AbathurRebornRuntime.galaxy: AbathurReborn runtime must not initialize biomass');
+}
 
 const xmFinalRuntimeSafetyGalaxy = readText(files.xmFinalRuntimeSafetyGalaxy);
 requireContains('XMFinal LibE0EAE146_RuntimeSafety.galaxy', xmFinalRuntimeSafetyGalaxy, 'void libE0EAE146_gf_SeedDefaultCommanderBankIfEmpty');
