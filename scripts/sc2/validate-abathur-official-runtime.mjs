@@ -38,6 +38,7 @@ validateDependencyGate();
 validateCommanderAch();
 validatePrivateLarvaClosure();
 validateWorkerBuildClosure();
+validatePrivateTechResearchClosure();
 validateLarvaTrainClosure();
 validateRavagerClosure();
 validatePrivateCombatAndEvolutionClosure();
@@ -135,6 +136,125 @@ function validateWorkerBuildClosure() {
     'SporeCrawlerAbathur',
   ]) {
     assertBlockIncludes(buildBlock, 'XMAbathur AbilData.xml', `Unit="${expected}"`, `ZergBuildAbathur must build ${expected}`);
+  }
+}
+
+function validatePrivateTechResearchClosure() {
+  const privateResearchAbilities = {
+    EvolutionChamberResearchAbathur: [
+      'InfoArray index="Research10" Upgrade="AberrationArmorAura"',
+      'InfoArray index="Research11" Time="60" Upgrade="AbathurHatcheryDoubleQueue"',
+      'InfoArray index="Research12" Time="60" Upgrade="AbathurBioMechanicalTransfusion"',
+      'InfoArray index="Research13" Time="160" Upgrade="ZagaraGroundAttacksLevel1"',
+      'InfoArray index="Research17" Time="220" Upgrade="ZagaraGroundAttacksLevel5"',
+    ],
+    RoachWarrenResearchAbathur: [
+      'InfoArray index="Research5" Time="110" Upgrade="HotSRoachDamage"',
+      'InfoArray index="Research7" Time="90" Upgrade="RavagerCorrosiveBileRadiusIncrease"',
+      'InfoArray index="Research8" Time="120" Upgrade="RavagerCorrosiveBileDamageIncrease"',
+      'InfoArray index="Research10" Time="60" Upgrade="AbathurRoachRangeScalingUpgrade"',
+    ],
+    InfestationPitResearchAbathur: [
+      'InfoArray index="Research9" Time="60" Upgrade="ViperImprovedCastRange"',
+      'InfoArray index="Research10" Time="60" Upgrade="ViperAbductImprovedStun"',
+      'InfoArray index="Research11" Time="60" Upgrade="HotSCreepGeneration"',
+      'InfoArray index="Research12" Time="120" Upgrade="AbathurDeepTunnel"',
+    ],
+    SpireResearchAbathur: [
+      'InfoArray index="Research7" Time="90" Upgrade="HotSViciousGlaive"',
+      'InfoArray index="Research10" Time="60" Upgrade="HotSRapidRegeneration"',
+      'InfoArray index="Research11" Time="90" Upgrade="GuardianAttackRangeIncrease"',
+      'InfoArray index="Research12" Time="90" Upgrade="DevourerAoEDamage"',
+      'InfoArray index="Research13" Time="60" Upgrade="AbathurMutaliskHealthScalingUpgrade"',
+    ],
+  };
+
+  for (const [abilityId, tokens] of Object.entries(privateResearchAbilities)) {
+    const block = getXmlBlock(texts.abilData, 'CAbilResearch', abilityId);
+    for (const token of tokens) {
+      assertBlockIncludes(block, 'XMAbathur AbilData.xml', token, `${abilityId} must define ${token}`);
+    }
+  }
+
+  const buildingResearchLinks = [
+    {
+      unitId: 'EvolutionChamberAbathur',
+      abilityId: 'EvolutionChamberResearchAbathur',
+      sharedAbilityId: 'evolutionchamberresearch',
+      command: 'EvolutionChamberResearchAbathur,Research11',
+    },
+    {
+      unitId: 'RoachWarrenAbathur',
+      abilityId: 'RoachWarrenResearchAbathur',
+      sharedAbilityId: 'RoachWarrenResearch',
+      command: 'RoachWarrenResearchAbathur,Research10',
+    },
+    {
+      unitId: 'InfestationPitAbathur',
+      abilityId: 'InfestationPitResearchAbathur',
+      sharedAbilityId: 'InfestationPitResearch',
+      command: 'InfestationPitResearchAbathur,Research9',
+    },
+    {
+      unitId: 'SpireAbathur',
+      abilityId: 'SpireResearchAbathur',
+      sharedAbilityId: 'SpireResearch',
+      command: 'SpireResearchAbathur,Research13',
+    },
+    {
+      unitId: 'GreaterSpireAbathur',
+      abilityId: 'SpireResearchAbathur',
+      sharedAbilityId: 'SpireResearch',
+      command: 'SpireResearchAbathur,Research13',
+    },
+  ];
+
+  for (const { unitId, abilityId, sharedAbilityId, command } of buildingResearchLinks) {
+    const block = getXmlBlock(texts.unitData, 'CUnit', unitId);
+    assertBlockIncludes(block, 'XMAbathur UnitData.xml', `AbilArray Link="${abilityId}"`, `${unitId} must mount private ${abilityId}`);
+    assertBlockIncludes(block, 'XMAbathur UnitData.xml', `AbilCmd="${command}"`, `${unitId} command card must use ${command}`);
+    assertBlockNotIncludes(block, 'XMAbathur UnitData.xml', `AbilArray Link="${sharedAbilityId}"`, `${unitId} must not mount shared ${sharedAbilityId}`);
+    assertBlockNotIncludes(block, 'XMAbathur UnitData.xml', `AbilCmd="${sharedAbilityId},`, `${unitId} command card must not use shared ${sharedAbilityId}`);
+  }
+
+  const masteryBlock = getXmlBlock(texts.upgradeData, 'CUpgrade', 'MasteryAbathurTechFastBuild');
+  for (const reference of [
+    'Abil,UpgradeToLairAbathur,InfoArray[0].SectionArray[0].DurationArray[0]',
+    'Abil,UpgradeToHiveAbathur,InfoArray[0].SectionArray[0].DurationArray[0]',
+    'Abil,UpgradeToGreaterSpireAbathur,InfoArray[0].SectionArray[0].DurationArray[0]',
+    'Abil,ZergBuildAbathur,InfoArray[Build1].Time',
+    'Abil,ZergBuildAbathur,InfoArray[Build14].Time',
+    'Abil,EvolutionChamberResearchAbathur,InfoArray[Research11].Time',
+    'Abil,RoachWarrenResearchAbathur,InfoArray[Research10].Time',
+    'Abil,InfestationPitResearchAbathur,InfoArray[Research9].Time',
+    'Abil,SpireResearchAbathur,InfoArray[Research13].Time',
+  ]) {
+    assertBlockIncludes(masteryBlock, 'XMAbathur UpgradeData.xml', `Reference="${reference}"`, `MasteryAbathurTechFastBuild must affect private ${reference}`);
+  }
+
+  const mutaliskScaling = getXmlBlock(texts.upgradeData, 'CUpgrade', 'AbathurMutaliskHealthScalingUpgrade');
+  for (const token of [
+    'Reference="Unit,MutaliskAbathur,LifeMax" Value="25"',
+    'Reference="Unit,MutaliskAbathur,LifeStart" Value="25"',
+    'Reference="Unit,AbathurGuardian,LifeMax" Value="25"',
+    'Reference="Unit,DevourerAbathur,LifeMax" Value="25"',
+    'Reference="Abil,SpireResearchAbathur,InfoArray[Research13].Time" Value="30.000000"',
+    'AffectedUnitArray value="MutaliskAbathur"',
+    'AffectedUnitArray value="AbathurGuardian"',
+    'AffectedUnitArray value="DevourerAbathur"',
+  ]) {
+    assertBlockIncludes(mutaliskScaling, 'XMAbathur UpgradeData.xml', token, `AbathurMutaliskHealthScalingUpgrade must affect private chain via ${token}`);
+  }
+
+  const roachScaling = getXmlBlock(texts.upgradeData, 'CUpgrade', 'AbathurRoachRangeScalingUpgrade');
+  for (const token of [
+    'Reference="Abil,RoachWarrenResearchAbathur,InfoArray[Research10].Resource[Minerals]" Value="50"',
+    'Reference="Abil,RoachWarrenResearchAbathur,InfoArray[Research10].Resource[Vespene]" Value="50"',
+    'Reference="Abil,RoachWarrenResearchAbathur,InfoArray[Research10].Time" Value="30.000000"',
+    'AffectedUnitArray value="RoachVile"',
+    'AffectedUnitArray value="RoachVileBurrowed"',
+  ]) {
+    assertBlockIncludes(roachScaling, 'XMAbathur UpgradeData.xml', token, `AbathurRoachRangeScalingUpgrade must affect private chain via ${token}`);
   }
 }
 
@@ -319,6 +439,9 @@ function validatePrivateCombatAndEvolutionClosure() {
     ['AbathurEnableSymbiote', 'AffectedUnitArray value="BrutaliskAbathur"'],
     ['AbathurEnableSymbiote', 'AffectedUnitArray value="BrutaliskAbathurBurrowed"'],
     ['AbathurEnableSymbiote', 'AffectedUnitArray value="LeviathanAbathur"'],
+    ['AbathurMorphTimeCostReduced', 'Reference="Abil,MorphRoachVileToRavager,InfoArray[Train1].Time"'],
+    ['AbathurMorphTimeCostReduced', 'AffectedUnitArray value="RavagerAbathur"'],
+    ['AbathurMorphTimeCostReduced', 'AffectedUnitArray value="RavagerAbathurBurrowed"'],
     ['AbathurMorphTimeCostReduced', 'Reference="Unit,DevourerAbathur,CostResource[Minerals]"'],
     ['AbathurMorphTimeCostReduced', 'Reference="Unit,AbathurGuardian,CostResource[Minerals]"'],
     ['AbathurMorphTimeCostReduced', 'AffectedUnitArray value="MutaliskAbathur"'],
@@ -349,6 +472,19 @@ function validateViperSkillAndResearchClosure() {
   }
   assertBlockIncludes(viperBlock, 'XMAbathur UnitData.xml', 'Face="ViperImprovedCastRangePassive" Type="Passive" Requirements="HaveViperImprovedCastRange"', 'ViperAbathur must show improved cast range passive after research');
   assertBlockIncludes(viperBlock, 'XMAbathur UnitData.xml', 'Face="ViperAbductImprovedStunPassive" Type="Passive" Requirements="HaveViperAbductImprovedStun"', 'ViperAbathur must show improved abduct stun passive after research');
+
+  for (const forbiddenToken of [
+    'AbilArray Link="DisablingCloud"',
+    'AbilArray Link="BlindingCloud"',
+    'AbilArray Link="ViperConsumption"',
+    'Face="DisablingCloud"',
+    'Face="BlindingCloud"',
+    'AbilCmd="DisablingCloud',
+    'AbilCmd="BlindingCloud',
+    'AbilCmd="ViperConsumption',
+  ]) {
+    assertBlockNotIncludes(viperBlock, 'XMAbathur UnitData.xml', forbiddenToken, `ViperAbathur must not expose non-Abathur Viper chain token ${forbiddenToken}`);
+  }
 
   const sharedViperBlock = getXmlBlock(texts.unitData, 'CUnit', 'Viper');
   assertBlockNotIncludes(sharedViperBlock, 'XMAbathur UnitData.xml', 'Face="ViperConsume" Type="AbilCmd" AbilCmd="ViperConsumeStructure,Execute"', 'shared Viper must not be the Abathur consume command-card owner');
@@ -418,10 +554,10 @@ function validateViperSkillAndResearchClosure() {
     assertXmlBlock(texts.unitData, 'CUnit', unitId, 'XMAbathur UnitData.xml', `missing Viper support unit ${unitId}`);
   }
 
-  const infestationPitResearch = getXmlBlock(texts.abilData, 'CAbilResearch', 'InfestationPitResearch');
-  assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'InfoArray index="Research9" Time="60" Upgrade="ViperImprovedCastRange"', 'InfestationPitResearch Research9 must research ViperImprovedCastRange');
+  const infestationPitResearch = getXmlBlock(texts.abilData, 'CAbilResearch', 'InfestationPitResearchAbathur');
+  assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'InfoArray index="Research9" Time="60" Upgrade="ViperImprovedCastRange"', 'InfestationPitResearchAbathur Research9 must research ViperImprovedCastRange');
   assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'DefaultButtonFace="EvolveViperImprovedCastRange" State="Restricted" Requirements="LearnViperImprovedCastRange"', 'ViperImprovedCastRange research must use the Learn requirement');
-  assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'InfoArray index="Research10" Time="60" Upgrade="ViperAbductImprovedStun"', 'InfestationPitResearch Research10 must research ViperAbductImprovedStun');
+  assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'InfoArray index="Research10" Time="60" Upgrade="ViperAbductImprovedStun"', 'InfestationPitResearchAbathur Research10 must research ViperAbductImprovedStun');
   assertBlockIncludes(infestationPitResearch, 'XMAbathur AbilData.xml', 'DefaultButtonFace="EvolveViperAbductImprovedStun" State="Restricted" Requirements="LearnViperAbductImprovedStun"', 'ViperAbductImprovedStun research must use the Learn requirement');
 
   const castRangeUpgrade = getXmlBlock(texts.upgradeData, 'CUpgrade', 'ViperImprovedCastRange');
