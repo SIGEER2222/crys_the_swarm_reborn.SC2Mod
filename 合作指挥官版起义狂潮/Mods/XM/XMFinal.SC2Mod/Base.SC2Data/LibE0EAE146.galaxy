@@ -11,11 +11,15 @@ include "Lib4B62E36B"
 include "Lib975E2FE9"
 
 include "LibE0EAE146_h"
+include "LibE0EAE146_HeroRevive"
+include "LibE0EAE146_HeroStructures"
+include "LibE0EAE146_AbathurRuntime"
 include "LibE0EAE146_AbathurRebornRuntime"
 include "LibE0EAE146_AlarakRuntime"
 include "LibE0EAE146_ArtanisRuntime"
 include "LibE0EAE146_FenixRuntime"
 include "LibE0EAE146_KaraxRuntime"
+include "LibE0EAE146_KerriganRuntime"
 include "LibE0EAE146_RuntimeSafety"
 include "LibE0EAE146_VorazunRuntime"
 include "LibE0EAE146_ZagaraRuntime"
@@ -49,6 +53,7 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_gv_zeratulHero = null;
     libE0EAE146_gv_zeratulArtifactNumber = 1;
     libE0EAE146_gv_zeratulRuntimeInitialized = false;
+    libE0EAE146_gv_abathurRuntimeInitialized = false;
     libE0EAE146_gv_abathurRebornRuntimeInitialized = false;
     libE0EAE146_gv_abathurRebornEvolutionTriggersReady = false;
     libE0EAE146_gv_abathurRebornRuntimePlayer = 0;
@@ -56,8 +61,10 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_gv_artanisRuntimeInitialized = false;
     libE0EAE146_gv_fenixRuntimeInitialized = false;
     libE0EAE146_gv_karaxRuntimeInitialized = false;
+    libE0EAE146_gv_kerriganRuntimeInitialized = false;
     libE0EAE146_gv_vorazunRuntimeInitialized = false;
     libE0EAE146_gv_zagaraRuntimeInitialized = false;
+    libE0EAE146_gv_commanderHeroReviveInitialized = false;
 }
 
 // Functions
@@ -372,7 +379,13 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         libC0F50AA6_gf_InitlizeMengsk();
     }
     else if (auto09490B45_val == "Swann") {
-        lib4B62E36B_gf_DrakkenLaserDrillUnit(UnitLastCreated(), 1);
+        lv_u = libE0EAE146_gf_CreateCommanderHeroStructure(1, "Swann");
+        if (UnitIsValid(lv_u) == true) {
+            lib4B62E36B_gf_DrakkenLaserDrillUnit(lv_u, 1);
+        }
+        else {
+            lib4B62E36B_gf_DrakkenLaserDrillUnit(UnitLastCreated(), 1);
+        }
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "CasterSwann", c_unitCreateIgnorePlacement, 1, RegionGetBoundsMin(RegionEntireMap()));
         lib67C0F0E7_gf_CU_GPInit(1, "Swann", UnitLastCreated(), null);
         lib67C0F0E7_gf_CU_GPShowHide(true, 1, c_transitionDurationDefault);
@@ -391,8 +404,14 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
         lib975E2FE9_gf_PowerFieldTrigger(1, BankValueGetAsInt(BankLastCreated(), libE0EAE146_gv_commander, IntToString(2)));
         lib67C0F0E7_gf_ShowChooseButton();
     }
+    else if (auto09490B45_val == "Abathur") {
+        libE0EAE146_gf_AbathurRuntimeInit(1, lp_secondUnit, lp_createHero);
+    }
     else if (auto09490B45_val == "AbathurReborn") {
         libE0EAE146_gf_AbathurRebornRuntimeInit(1, lp_secondUnit, lp_createHero);
+    }
+    else if (auto09490B45_val == "Kerrigan") {
+        libE0EAE146_gf_KerriganRuntimeInit(1, lp_secondUnit, lp_createHero);
     }
     else if (auto09490B45_val == "Alarak") {
         libE0EAE146_gf_AlarakRuntimeInit(1, lp_secondUnit, lp_createHero);

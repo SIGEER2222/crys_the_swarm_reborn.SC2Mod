@@ -107,8 +107,8 @@
     <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="37" />
     <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Minerals]" Value="12" />
     <EffectArray Operation="Subtract" Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="37" />
-    <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Minerals]" Value="75" />
-    <EffectArray Operation="Subtract" Reference="Unit,Devourer,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,DevourerAbathurReborn,CostResource[Minerals]" Value="75" />
+    <EffectArray Operation="Subtract" Reference="Unit,DevourerAbathurReborn,CostResource[Vespene]" Value="25" />
     <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Minerals]" Value="25" />
     <EffectArray Operation="Subtract" Reference="Unit,GuardianMP,CostResource[Vespene]" Value="50" />
     <!--EffectArray Operation="Subtract" Reference="Abil,ZergBuild,InfoArray[Build1].Time" Value="30"/>
@@ -134,19 +134,19 @@
         <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="30.000000"/>
         <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="30.000000"/>
         <EffectArray Operation="Subtract" Reference="Abil,UpgradeToHive,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="30.000000"/-->
-    <AffectedUnitArray value="Roach" />
-    <AffectedUnitArray value="RoachVile" />
-    <AffectedUnitArray value="Mutalisk" />
+    <AffectedUnitArray value="RoachAbathurReborn" />
+    <AffectedUnitArray value="RoachVileAbathurReborn" />
+    <AffectedUnitArray value="MutaliskAbathurReborn" />
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="AbathurRebornMutaliskHealthScalingUpgrade">
-    <EffectArray Reference="Unit,Mutalisk,LifeMax" Value="25" />
+    <EffectArray Reference="Unit,MutaliskAbathurReborn,LifeMax" Value="25" />
     <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Resource[Minerals]" Value="50" />
-    <EffectArray Reference="Unit,Mutalisk,LifeStart" Value="25" />
+    <EffectArray Reference="Unit,MutaliskAbathurReborn,LifeStart" Value="25" />
     <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Resource[Vespene]" Value="50" />
     <EffectArray Reference="Abil,SpireResearch,InfoArray[Research13].Time" Value="30.000000" />
     <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Mutalisk" />
+    <AffectedUnitArray value="MutaliskAbathurReborn" />
     <AffectedUnitArray value="MutaliskBroodlord" />
     <AffectedUnitArray value="MutaliskViper" />
     <MaxLevel value="10" />
@@ -166,11 +166,11 @@
     <EffectArray Reference="Abil,RoachWarrenResearch,InfoArray[Research10].Resource[Vespene]" Value="50" />
     <EffectArray Reference="Abil,RoachWarrenResearch,InfoArray[Research10].Time" Value="30.000000" />
     <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachAbathurReborn" />
     <AffectedUnitArray value="RoachBurrowed" />
-    <AffectedUnitArray value="RoachCorpser" />
+    <AffectedUnitArray value="RoachCorpserAbathurReborn" />
     <AffectedUnitArray value="RoachCorpserBurrowed" />
-    <AffectedUnitArray value="RoachVile" />
+    <AffectedUnitArray value="RoachVileAbathurReborn" />
     <AffectedUnitArray value="RoachVileBurrowed" />
     <MaxLevel value="10" />
   </CUpgrade>
@@ -266,7 +266,7 @@
     <Icon value="Assets\Textures\btn-upgrade-zerg-abathur-devourer-corrosivespray.dds" />
     <EffectArray Operation="Set" Reference="Effect,DevourerSearchSet,EffectArray[0]" Value="DevourerAoeDamage" />
     <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="Devourer" />
+    <AffectedUnitArray value="DevourerAbathurReborn" />
   </CUpgrade>
   <CUpgrade id="GenerateCreepHealingUpgrade">
     <AffectedUnitArray value="Overlord" />
@@ -300,14 +300,14 @@
     <EffectArray index="0" Operation="Multiply" Value="1.601500" />
     <EffectArray index="1" Operation="Multiply" Value="1.601500" />
     <EffectArray index="2" Operation="Multiply" Value="1.601500" />
-    <EffectArray Operation="Multiply" Reference="Unit,ZerglingToxic,Speed" Value="1.601500" />
-    <EffectArray Operation="Multiply" Reference="Unit,Pygalisk,Speed" Value="1.660100" />
-    <EffectArray Operation="Multiply" Reference="Unit,Pygalisk,InnerRadius" Value="0.66" />
-    <EffectArray Operation="Multiply" Reference="Unit,HotSRaptor,Radius" Value="0.66" />
-    <EffectArray Operation="Multiply" Reference="Unit,Pygalisk,Radius" Value="0.66" />
-    <EffectArray Operation="Multiply" Reference="Unit,HotSSwarmling,Radius" Value="0.66" />
-    <EffectArray Operation="Multiply" Reference="Unit,ZerglingToxic,Radius" Value="0.66" />
-    <EffectArray Operation="Multiply" Reference="Unit,Zergling,Radius" Value="0.66" />
+    <EffectArray Operation="Multiply" Reference="Unit,ZerglingToxicAbathurReborn,Speed" Value="1.601500" />
+    <EffectArray Operation="Multiply" Reference="Unit,PygaliskAbathurReborn,Speed" Value="1.660100" />
+    <EffectArray Operation="Multiply" Reference="Unit,PygaliskAbathurReborn,InnerRadius" Value="0.66" />
+    <EffectArray Operation="Multiply" Reference="Unit,HotSRaptorAbathurReborn,Radius" Value="0.66" />
+    <EffectArray Operation="Multiply" Reference="Unit,PygaliskAbathurReborn,Radius" Value="0.66" />
+    <EffectArray Operation="Multiply" Reference="Unit,HotSSwarmlingAbathurReborn,Radius" Value="0.66" />
+    <EffectArray Operation="Multiply" Reference="Unit,ZerglingToxicAbathurReborn,Radius" Value="0.66" />
+    <EffectArray Operation="Multiply" Reference="Unit,ZerglingAbathurReborn,Radius" Value="0.66" />
     <EffectArray Operation="Multiply" Reference="Unit,SpawnedZergling,Speed" Value="1.601500" />
     <EffectArray Operation="Multiply" Reference="Unit,SpawnedZergling,Radius" Value="0.6875" />
     <Flags index="TechTreeCheat" value="1" />
@@ -342,11 +342,11 @@
     <Alert value="ResearchComplete" />
     <Race value="Zerg" />
     <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Hydralisk" />
+    <AffectedUnitArray value="HydraliskAbathurReborn" />
     <AffectedUnitArray value="HydraliskBurrowed" />
-    <AffectedUnitArray value="HydraliskImpaler" />
+    <AffectedUnitArray value="HydraliskImpalerAbathurReborn" />
     <AffectedUnitArray value="HydraliskImpalerBurrowed" />
-    <AffectedUnitArray value="HydraliskLurker" />
+    <AffectedUnitArray value="HydraliskLurkerAbathurReborn" />
     <AffectedUnitArray value="HydraliskLurkerBurrowed" />
   </CUpgrade>
   <CUpgrade id="ImpalerGenerateCreep">
@@ -406,12 +406,12 @@
   </CUpgrade>
   <CUpgrade id="KerriganVoidCoopBroodlordSpeed">
     <Icon value="Assets\Textures\btn-upgrade-kerrigan-broodlordspeed.dds" />
-    <EffectArray Reference="Unit,BroodLord,Speed" Value="1.406200" />
-    <EffectArray Reference="Unit,BroodLord,Acceleration" Value="0.812500" />
-    <EffectArray Reference="Unit,BroodLord,LifeMax" Value="100" />
-    <EffectArray Reference="Unit,BroodLord,LifeStart" Value="100" />
+    <EffectArray Reference="Unit,BroodLordAbathurReborn,Speed" Value="1.406200" />
+    <EffectArray Reference="Unit,BroodLordAbathurReborn,Acceleration" Value="0.812500" />
+    <EffectArray Reference="Unit,BroodLordAbathurReborn,LifeMax" Value="100" />
+    <EffectArray Reference="Unit,BroodLordAbathurReborn,LifeStart" Value="100" />
     <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="BroodLord" />
+    <AffectedUnitArray value="BroodLordAbathurReborn" />
   </CUpgrade>
   <CUpgrade id="KerriganVoidCoopEnergyRegen">
     <EffectArray Reference="Unit,K5Kerrigan,EnergyRegenRate" Value="3.330000" />
@@ -659,20 +659,20 @@
     <AffectedUnitArray value="MutaliskBroodlord" />
     <Icon value="Assets\Textures\btn-upgrade-zerg-explosiveglaive.dds" />
   </CUpgrade>
-  <CUpgrade id="RavagerCorrosiveBileDamageIncrease">
+  <CUpgrade id="RavagerCorrosiveBileDamageIncreaseAbathurReborn" parent="RavagerCorrosiveBileDamageIncrease">
     <EffectArray Reference="Effect,RavagerCorrosiveBileAoeDamage,Amount" Value="40" />
-    <AffectedUnitArray value="RavagerAbathur" />
-    <AffectedUnitArray value="RavagerAbathurBurrowed" />
+    <AffectedUnitArray value="RavagerAbathurLegacyAbathurReborn" />
+    <AffectedUnitArray value="RavagerAbathurBurrowedLegacyAbathurReborn" />
     <EditorCategories value="Race:Zerg" />
     <Icon value="Assets\Textures\potentbile_coop.dds" />
   </CUpgrade>
-  <CUpgrade id="RavagerCorrosiveBileRadiusIncrease">
+  <CUpgrade id="RavagerCorrosiveBileRadiusIncreaseAbathurReborn" parent="RavagerCorrosiveBileRadiusIncrease">
     <EffectArray Operation="Set" Reference="Effect,RavagerCorrosiveBileAoeCursorDummy,AreaArray[0].Radius" Value="1.5" />
     <EffectArray Operation="Set" Reference="Effect,RavagerCorrosiveBileAoeSearch,AreaArray[0].Radius" Value="1.5" />
     <EffectArray Operation="Set" Reference="Actor,RavagerCorrosiveBileAoePrecursor,Scale" Value="2" />
     <EffectArray Operation="Set" Reference="Actor,RavagerCorrosiveBileMissile,Scale" Value="2" />
-    <AffectedUnitArray value="RavagerAbathur" />
-    <AffectedUnitArray value="RavagerAbathurBurrowed" />
+    <AffectedUnitArray value="RavagerAbathurLegacyAbathurReborn" />
+    <AffectedUnitArray value="RavagerAbathurBurrowedLegacyAbathurReborn" />
     <EditorCategories value="Race:Zerg" />
     <Icon value="Assets\Textures\btn-ability-zerg-abathur-corrosivebilelarge.dds" />
   </CUpgrade>
@@ -801,21 +801,21 @@
     <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
     <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
     <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
-    <AffectedUnitArray value="Zergling" />
+    <AffectedUnitArray value="ZerglingAbathurReborn" />
     <AffectedUnitArray value="ZerglingBurrowed" />
-    <AffectedUnitArray value="HotSSwarmling" />
+    <AffectedUnitArray value="HotSSwarmlingAbathurReborn" />
     <AffectedUnitArray value="HotSSwarmlingBurrowed" />
-    <AffectedUnitArray value="Baneling" />
+    <AffectedUnitArray value="BanelingAbathurReborn" />
     <AffectedUnitArray value="BanelingBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingBig" />
+    <AffectedUnitArray value="HotSSplitterlingBigAbathurReborn" />
     <AffectedUnitArray value="HotSSplitterlingMedium" />
     <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
     <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
     <AffectedUnitArray value="InfestedAbomination" />
     <AffectedUnitArray value="InfestedAbominationBurrowed" />
-    <AffectedUnitArray value="HunterKiller" />
+    <AffectedUnitArray value="HunterKillerAbathurReborn" />
     <AffectedUnitArray value="HunterKillerBurrowed" />
-    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachAbathurReborn" />
     <AffectedUnitArray value="RoachBurrowed" />
     <AffectedUnitArray value="QueenCoop" />
     <AffectedUnitArray value="QueenCoopBurrowed" />
@@ -872,21 +872,21 @@
     <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
     <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
     <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
-    <AffectedUnitArray value="Zergling" />
+    <AffectedUnitArray value="ZerglingAbathurReborn" />
     <AffectedUnitArray value="ZerglingBurrowed" />
-    <AffectedUnitArray value="HotSSwarmling" />
+    <AffectedUnitArray value="HotSSwarmlingAbathurReborn" />
     <AffectedUnitArray value="HotSSwarmlingBurrowed" />
-    <AffectedUnitArray value="Baneling" />
+    <AffectedUnitArray value="BanelingAbathurReborn" />
     <AffectedUnitArray value="BanelingBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingBig" />
+    <AffectedUnitArray value="HotSSplitterlingBigAbathurReborn" />
     <AffectedUnitArray value="HotSSplitterlingMedium" />
     <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
     <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
     <AffectedUnitArray value="InfestedAbomination" />
     <AffectedUnitArray value="InfestedAbominationBurrowed" />
-    <AffectedUnitArray value="HunterKiller" />
+    <AffectedUnitArray value="HunterKillerAbathurReborn" />
     <AffectedUnitArray value="HunterKillerBurrowed" />
-    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachAbathurReborn" />
     <AffectedUnitArray value="RoachBurrowed" />
     <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level2.dds" />
     <LeaderAlias value="ZagaraGroundAttacksLevel1" />
@@ -942,21 +942,21 @@
     <EffectArray Reference="Effect,Talons,Amount" Value="1.000000" />
     <EffectArray Reference="Effect,AcidSpines,Amount" Value="1.000000" />
     <EditorCategories value="Race:Zerg,UpgradeType:AttackBonus" />
-    <AffectedUnitArray value="Zergling" />
+    <AffectedUnitArray value="ZerglingAbathurReborn" />
     <AffectedUnitArray value="ZerglingBurrowed" />
-    <AffectedUnitArray value="HotSSwarmling" />
+    <AffectedUnitArray value="HotSSwarmlingAbathurReborn" />
     <AffectedUnitArray value="HotSSwarmlingBurrowed" />
-    <AffectedUnitArray value="Baneling" />
+    <AffectedUnitArray value="BanelingAbathurReborn" />
     <AffectedUnitArray value="BanelingBurrowed" />
-    <AffectedUnitArray value="HotSSplitterlingBig" />
+    <AffectedUnitArray value="HotSSplitterlingBigAbathurReborn" />
     <AffectedUnitArray value="HotSSplitterlingMedium" />
     <AffectedUnitArray value="HotSSplitterlingBigBurrowed" />
     <AffectedUnitArray value="HotSSplitterlingMediumBurrowed" />
     <AffectedUnitArray value="InfestedAbomination" />
     <AffectedUnitArray value="InfestedAbominationBurrowed" />
-    <AffectedUnitArray value="HunterKiller" />
+    <AffectedUnitArray value="HunterKillerAbathurReborn" />
     <AffectedUnitArray value="HunterKillerBurrowed" />
-    <AffectedUnitArray value="Roach" />
+    <AffectedUnitArray value="RoachAbathurReborn" />
     <AffectedUnitArray value="RoachBurrowed" />
     <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds" />
     <LeaderAlias value="ZagaraGroundAttacksLevel1" />
@@ -1008,25 +1008,25 @@
     <Race value="Zerg" />
     <ScoreResult value="BuildOrder" />
     <EditorCategories value="Race:Zerg,UpgradeType:Talents" />
-    <AffectedUnitArray value="Zergling" />
-    <AffectedUnitArray value="HotSRaptor" />
-    <AffectedUnitArray value="HotSSwarmling" />
+    <AffectedUnitArray value="ZerglingAbathurReborn" />
+    <AffectedUnitArray value="HotSRaptorAbathurReborn" />
+    <AffectedUnitArray value="HotSSwarmlingAbathurReborn" />
   </CUpgrade>
   <CUpgrade id="AbathurRebornCommander">
     <Flags index="UpgradeCheat" value="0" />
     <EffectArray Operation="Subtract" Reference="Behavior,SpawnLarvaAbathurReborn,InfoArray[0].Delay" Value="6" />
     <EffectArray Reference="Behavior,SpawnLarvaAbathurReborn,InfoArray[0].MaxCount" Value="3" />
-    <EffectArray Reference="Unit,Roach,CostResource[Minerals]" Value="25" />
+    <EffectArray Reference="Unit,RoachAbathurReborn,CostResource[Minerals]" Value="25" />
     <EffectArray Reference="Unit,RoachBurrowed,CostResource[Minerals]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,Roach,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachAbathurReborn,CostResource[Vespene]" Value="25" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachBurrowed,CostResource[Vespene]" Value="25" />
-    <EffectArray Reference="Unit,RoachCorpser,CostResource[Minerals]" Value="25" />
+    <EffectArray Reference="Unit,RoachCorpserAbathurReborn,CostResource[Minerals]" Value="25" />
     <EffectArray Reference="Unit,RoachCorpserBurrowed,CostResource[Minerals]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserAbathurReborn,CostResource[Vespene]" Value="25" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Vespene]" Value="25" />
-    <EffectArray Reference="Unit,RoachVile,CostResource[Minerals]" Value="25" />
+    <EffectArray Reference="Unit,RoachVileAbathurReborn,CostResource[Minerals]" Value="25" />
     <EffectArray Reference="Unit,RoachVileBurrowed,CostResource[Minerals]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachVile,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachVileAbathurReborn,CostResource[Vespene]" Value="25" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Vespene]" Value="25" />
     <EffectArray Operation="Set" Reference="Abil,UpgradeToLair,CmdButtonArray[Execute].Requirements" Value="HaveBanelingNest2" />
     <EffectArray Operation="Set" Reference="Abil,UpgradeToHive,CmdButtonArray[Execute].Requirements" Value="HaveInfestationPit" />
@@ -1076,7 +1076,7 @@
     <Flags index="UpgradeCheat" value="0" />
     <Icon value="Assets\Textures\btn-ability-zerg-deeptunnel.dds" />
     <EditorCategories value="Race:Zerg" />
-    <AffectedUnitArray value="SwarmHost" />
+    <AffectedUnitArray value="SwarmHostAbathurReborn" />
     <AffectedUnitArray value="SwarmHostBurrowed" />
   </CUpgrade>
   <CUpgrade id="AlarakCommander">
@@ -1277,16 +1277,16 @@
     <EffectArray Reference="Weapon,Locust,Range" Value="1" />
     <EffectArray Reference="Weapon,LocustPressurizedGlands,Range" Value="1" />
     <EffectArray Reference="Behavior,LocustTimedLife,Duration" Value="6.000000" />
-    <EffectArray Reference="Unit,Devourer,CostResource[Vespene]" Value="38" />
+    <EffectArray Reference="Unit,DevourerAbathurReborn,CostResource[Vespene]" Value="38" />
     <EffectArray Reference="Unit,GuardianMP,CostResource[Vespene]" Value="50" />
-    <EffectArray Reference="Unit,Mutalisk,CostResource[Vespene]" Value="25" />
+    <EffectArray Reference="Unit,MutaliskAbathurReborn,CostResource[Vespene]" Value="25" />
     <EffectArray Reference="Unit,Queen,CostResource[Vespene]" Value="13" />
     <EffectArray Reference="Unit,QueenBurrowed,CostResource[Vespene]" Value="13" />
     <EffectArray Reference="Unit,RavagerAbathur,CostResource[Vespene]" Value="19" />
     <EffectArray Reference="Unit,RavagerAbathurBurrowed,CostResource[Vespene]" Value="19" />
-    <EffectArray Reference="Unit,SwarmHost,CostResource[Vespene]" Value="25" />
+    <EffectArray Reference="Unit,SwarmHostAbathurReborn,CostResource[Vespene]" Value="25" />
     <EffectArray Reference="Unit,SwarmHostBurrowed,CostResource[Vespene]" Value="25" />
-    <EffectArray Reference="Unit,Viper,CostResource[Vespene]" Value="50" />
+    <EffectArray Reference="Unit,ViperAbathurReborn,CostResource[Vespene]" Value="50" />
     <EffectArray Operation="Set" Reference="Button,SwarmHostDeepBurrow,Tooltip" Value="Button/Tooltip/SwarmHostDeepBurrowPrestige" />
   </CUpgrade>
   <CUpgrade id="CommanderPrestigeAlarakDeathFleet" parent="CommanderPrestige">
@@ -2119,7 +2119,7 @@
   <CUpgrade id="HotSLurker">
     <LeaderAlias value="" />
   </CUpgrade>
-  <CUpgrade id="HotSTorrasque">
+  <CUpgrade id="HotSTorrasqueAbathurReborn" parent="HotSTorrasque">
     <LeaderAlias value="" />
   </CUpgrade>
   <CUpgrade id="K5PrimalSlash">
@@ -2254,17 +2254,17 @@
     <EffectArray Operation="Set" Reference="Unit,UltraliskCavern,Description" Value="Button/Tooltip/ACKerriganUltraliskCavern" />
     <EffectArray Operation="Set" Reference="Unit,Lair,Description" Value="Button/Tooltip/ACKerriganLair" />
     <EffectArray Operation="Set" Reference="Unit,Hive,Description" Value="Button/Tooltip/ACKerriganHive" />
-    <EffectArray Operation="Set" Reference="Unit,Zergling,Description" Value="Button/Tooltip/ZerglingACKerrigan" />
-    <EffectArray Operation="Set" Reference="Unit,HotSRaptor,Description" Value="Button/Tooltip/HotSRaptorACKerrigan" />
+    <EffectArray Operation="Set" Reference="Unit,ZerglingAbathurReborn,Description" Value="Button/Tooltip/ZerglingACKerrigan" />
+    <EffectArray Operation="Set" Reference="Unit,HotSRaptorAbathurReborn,Description" Value="Button/Tooltip/HotSRaptorACKerrigan" />
     <EffectArray Operation="Set" Reference="Button,Zergling,Tooltip" Value="Button/Tooltip/ZerglingACKerrigan" />
     <EffectArray Operation="Set" Reference="Button,MorphToRaptor,Tooltip" Value="Button/Tooltip/MorphToRaptorACKerrigan" />
     <EffectArray Reference="Abil,BroodLordHangar,InfoArray[Ammo1].Count" Value="1" />
     <LeaderAlias value="" />
-    <!--EffectArray Operation="Subtract" Reference="Unit,Roach,CostResource[Vespene]" Value="25"/>
+    <!--EffectArray Operation="Subtract" Reference="Unit,RoachAbathurReborn,CostResource[Vespene]" Value="25"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachBurrowed,CostResource[Vespene]" Value="25"/>
-        <EffectArray Operation="Subtract" Reference="Unit,RoachVile,CostResource[Vespene]" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Unit,RoachVileAbathurReborn,CostResource[Vespene]" Value="25"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Vespene]" Value="25"/>
-        <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Vespene]" Value="25"/>
+        <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserAbathurReborn,CostResource[Vespene]" Value="25"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Vespene]" Value="25"/>
         <EffectArray Reference="Unit,Overlord,LifeMax" Value="40"/>
         <EffectArray Reference="Unit,Overlord,LifeStart" Value="40"/>
@@ -2276,74 +2276,74 @@
         <EffectArray Reference="Unit,Queen,LifeStart" Value="30"/>
         <EffectArray Reference="Unit,QueenBurrowed,LifeMax" Value="30"/>
         <EffectArray Reference="Unit,QueenBurrowed,LifeStart" Value="30"/>
-        <EffectArray Reference="Unit,Roach,LifeMax" Value="29"/>
-        <EffectArray Reference="Unit,Roach,LifeStart" Value="29"/>
+        <EffectArray Reference="Unit,RoachAbathurReborn,LifeMax" Value="29"/>
+        <EffectArray Reference="Unit,RoachAbathurReborn,LifeStart" Value="29"/>
         <EffectArray Reference="Unit,RoachBurrowed,LifeMax" Value="29"/>
         <EffectArray Reference="Unit,RoachBurrowed,LifeStart" Value="29"/>
-        <EffectArray Reference="Unit,RoachVile,LifeMax" Value="29"/>
-        <EffectArray Reference="Unit,RoachVile,LifeStart" Value="29"/>
+        <EffectArray Reference="Unit,RoachVileAbathurReborn,LifeMax" Value="29"/>
+        <EffectArray Reference="Unit,RoachVileAbathurReborn,LifeStart" Value="29"/>
         <EffectArray Reference="Unit,RoachVileBurrowed,LifeMax" Value="29"/>
         <EffectArray Reference="Unit,RoachVileBurrowed,LifeStart" Value="29"/>
-        <EffectArray Reference="Unit,RoachCorpser,LifeMax" Value="29"/>
-        <EffectArray Reference="Unit,RoachCorpser,LifeStart" Value="29"/>
+        <EffectArray Reference="Unit,RoachCorpserAbathurReborn,LifeMax" Value="29"/>
+        <EffectArray Reference="Unit,RoachCorpserAbathurReborn,LifeStart" Value="29"/>
         <EffectArray Reference="Unit,RoachCorpserBurrowed,LifeMax" Value="29"/>
         <EffectArray Reference="Unit,RoachCorpserBurrowed,LifeStart" Value="29"/>
-        <EffectArray Reference="Unit,Hydralisk,LifeMax" Value="16"/>
-        <EffectArray Reference="Unit,Hydralisk,LifeStart" Value="16"/>
+        <EffectArray Reference="Unit,HydraliskAbathurReborn,LifeMax" Value="16"/>
+        <EffectArray Reference="Unit,HydraliskAbathurReborn,LifeStart" Value="16"/>
         <EffectArray Reference="Unit,HydraliskBurrowed,LifeMax" Value="16"/>
         <EffectArray Reference="Unit,HydraliskBurrowed,LifeStart" Value="16"/>
-        <EffectArray Reference="Unit,HydraliskLurker,LifeMax" Value="16"/>
-        <EffectArray Reference="Unit,HydraliskLurker,LifeStart" Value="16"/>
+        <EffectArray Reference="Unit,HydraliskLurkerAbathurReborn,LifeMax" Value="16"/>
+        <EffectArray Reference="Unit,HydraliskLurkerAbathurReborn,LifeStart" Value="16"/>
         <EffectArray Reference="Unit,HydraliskLurkerBurrowed,LifeMax" Value="16"/>
         <EffectArray Reference="Unit,HydraliskLurkerBurrowed,LifeStart" Value="16"/>
-        <EffectArray Reference="Unit,HydraliskImpaler,LifeMax" Value="16"/>
-        <EffectArray Reference="Unit,HydraliskImpaler,LifeStart" Value="16"/>
+        <EffectArray Reference="Unit,HydraliskImpalerAbathurReborn,LifeMax" Value="16"/>
+        <EffectArray Reference="Unit,HydraliskImpalerAbathurReborn,LifeStart" Value="16"/>
         <EffectArray Reference="Unit,HydraliskImpalerBurrowed,LifeMax" Value="16"/>
         <EffectArray Reference="Unit,HydraliskImpalerBurrowed,LifeStart" Value="16"/>
-        <EffectArray Reference="Unit,Infestor,LifeMax" Value="18"/>
-        <EffectArray Reference="Unit,Infestor,LifeStart" Value="18"/>
+        <EffectArray Reference="Unit,InfestorAbathurReborn,LifeMax" Value="18"/>
+        <EffectArray Reference="Unit,InfestorAbathurReborn,LifeStart" Value="18"/>
         <EffectArray Reference="Unit,InfestorBurrowed,LifeMax" Value="18"/>
         <EffectArray Reference="Unit,InfestorBurrowed,LifeStart" Value="18"/>
-        <EffectArray Reference="Unit,Ultralisk,LifeMax" Value="100"/>
-        <EffectArray Reference="Unit,Ultralisk,LifeStart" Value="100"/>
+        <EffectArray Reference="Unit,UltraliskAbathurReborn,LifeMax" Value="100"/>
+        <EffectArray Reference="Unit,UltraliskAbathurReborn,LifeStart" Value="100"/>
         <EffectArray Reference="Unit,UltraliskBurrowed,LifeMax" Value="100"/>
         <EffectArray Reference="Unit,UltraliskBurrowed,LifeStart" Value="100"/>
-        <EffectArray Reference="Unit,HotSTorrasque,LifeMax" Value="100"/>
-        <EffectArray Reference="Unit,HotSTorrasque,LifeStart" Value="100"/>
-        <EffectArray Reference="Unit,HotSTorrasqueBurrowed,LifeMax" Value="100"/>
-        <EffectArray Reference="Unit,HotSTorrasqueBurrowed,LifeStart" Value="100"/>
-        <EffectArray Reference="Unit,HotSNoxious,LifeMax" Value="100"/>
-        <EffectArray Reference="Unit,HotSNoxious,LifeStart" Value="100"/>
+        <EffectArray Reference="Unit,HotSTorrasqueAbathurReborn,LifeMax" Value="100"/>
+        <EffectArray Reference="Unit,HotSTorrasqueAbathurReborn,LifeStart" Value="100"/>
+        <EffectArray Reference="Unit,HotSTorrasqueBurrowedAbathurReborn,LifeMax" Value="100"/>
+        <EffectArray Reference="Unit,HotSTorrasqueBurrowedAbathurReborn,LifeStart" Value="100"/>
+        <EffectArray Reference="Unit,HotSNoxiousAbathurReborn,LifeMax" Value="100"/>
+        <EffectArray Reference="Unit,HotSNoxiousAbathurReborn,LifeStart" Value="100"/>
         <EffectArray Reference="Unit,HotSNoxiousBurrowed,LifeMax" Value="100"/>
         <EffectArray Reference="Unit,HotSNoxiousBurrowed,LifeStart" Value="100"/>
-        <EffectArray Reference="Unit,SwarmHost,LifeMax" Value="24"/>
-        <EffectArray Reference="Unit,SwarmHost,LifeStart" Value="24"/>
+        <EffectArray Reference="Unit,SwarmHostAbathurReborn,LifeMax" Value="24"/>
+        <EffectArray Reference="Unit,SwarmHostAbathurReborn,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostBurrowed,LifeMax" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostBurrowed,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostRooted,LifeMax" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostRooted,LifeStart" Value="24"/>
-        <EffectArray Reference="Unit,SwarmHostSplitA,LifeMax" Value="24"/>
-        <EffectArray Reference="Unit,SwarmHostSplitA,LifeStart" Value="24"/>
+        <EffectArray Reference="Unit,SwarmHostSplitAAbathurReborn,LifeMax" Value="24"/>
+        <EffectArray Reference="Unit,SwarmHostSplitAAbathurReborn,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostSplitABurrowed,LifeMax" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostSplitABurrowed,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostSplitARooted,LifeMax" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostSplitARooted,LifeStart" Value="24"/>
-        <EffectArray Reference="Unit,SwarmHostSplitB,LifeMax" Value="24"/>
-        <EffectArray Reference="Unit,SwarmHostSplitB,LifeStart" Value="24"/>
+        <EffectArray Reference="Unit,SwarmHostSplitBAbathurReborn,LifeMax" Value="24"/>
+        <EffectArray Reference="Unit,SwarmHostSplitBAbathurReborn,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostSplitBBurrowed,LifeMax" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostSplitBBurrowed,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostSplitBRooted,LifeMax" Value="24"/>
         <EffectArray Reference="Unit,SwarmHostSplitBRooted,LifeStart" Value="24"/>
-        <EffectArray Reference="Unit,Mutalisk,LifeMax" Value="24"/>
-        <EffectArray Reference="Unit,Mutalisk,LifeStart" Value="24"/>
+        <EffectArray Reference="Unit,MutaliskAbathurReborn,LifeMax" Value="24"/>
+        <EffectArray Reference="Unit,MutaliskAbathurReborn,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,MutaliskViper,LifeMax" Value="24"/>
         <EffectArray Reference="Unit,MutaliskViper,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,MutaliskBroodlord,LifeMax" Value="24"/>
         <EffectArray Reference="Unit,MutaliskBroodlord,LifeStart" Value="24"/>
         <EffectArray Reference="Unit,Corruptor,LifeMax" Value="45"/>
         <EffectArray Reference="Unit,Corruptor,LifeStart" Value="45"/>
-        <EffectArray Reference="Unit,BroodLord,LifeMax" Value="45"/>
-        <EffectArray Reference="Unit,BroodLord,LifeStart" Value="45"/-->
+        <EffectArray Reference="Unit,BroodLordAbathurReborn,LifeMax" Value="45"/>
+        <EffectArray Reference="Unit,BroodLordAbathurReborn,LifeStart" Value="45"/-->
     <!-- Hide Spawning pool, set roach warren to no reqs, Spine Crawler, Spore Crawler, Queen and lair req Roach Warren -->
     <!--EffectArray Operation="Set" Reference="Abil,ZergBuild,InfoArray[Build4].Button.Requirements" Value="AlwaysHidden"/>
         <EffectArray Operation="Set" Reference="Abil,ZergBuild,InfoArray[Build14].Button.Requirements"/>
@@ -2839,7 +2839,7 @@
     <Race value="Protoss" />
     <ScoreResult value="BuildOrder" />
     <EditorCategories value="Race:Terran,UpgradeType:Talents" />
-    <AffectedUnitArray value="SwarmHost" />
+    <AffectedUnitArray value="SwarmHostAbathurReborn" />
     <AffectedUnitArray value="SwarmHostMP" />
     <AffectedUnitArray value="DehakaSwarmHost" />
     <AffectedUnitArray value="DehakaPrimalSwarmHost" />
@@ -3004,89 +3004,89 @@
     <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train28].Time" Value="18" />
     <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Time" Value="18" />
     <!--  Zagara Unit Cost Reduction  -->
-    <EffectArray Operation="Subtract" Reference="Unit,Zergling,CostResource[Minerals]" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Unit,ZerglingAbathurReborn,CostResource[Minerals]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,ZerglingBurrowed,CostResource[Minerals]" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSRaptor,CostResource[Minerals]" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSRaptorAbathurReborn,CostResource[Minerals]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSRaptorBurrowed,CostResource[Minerals]" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSSwarmling,CostResource[Minerals]" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSSwarmlingAbathurReborn,CostResource[Minerals]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSSwarmlingBurrowed,CostResource[Minerals]" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Unit,Baneling,CostResource[Minerals]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,BanelingAbathurReborn,CostResource[Minerals]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,BanelingBurrowed,CostResource[Minerals]" Value="5" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBig,CostResource[Minerals]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigAbathurReborn,CostResource[Minerals]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigBurrowed,CostResource[Minerals]" Value="5" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSHunter,CostResource[Minerals]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSHunterAbathurReborn,CostResource[Minerals]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSHunterBurrowed,CostResource[Minerals]" Value="5" />
-    <EffectArray Operation="Subtract" Reference="Unit,Baneling,CostResource[Vespene]" Value="1" />
+    <EffectArray Operation="Subtract" Reference="Unit,BanelingAbathurReborn,CostResource[Vespene]" Value="1" />
     <EffectArray Operation="Subtract" Reference="Unit,BanelingBurrowed,CostResource[Vespene]" Value="1" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBig,CostResource[Vespene]" Value="1" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigAbathurReborn,CostResource[Vespene]" Value="1" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigBurrowed,CostResource[Vespene]" Value="1" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSHunter,CostResource[Vespene]" Value="1" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSHunterAbathurReborn,CostResource[Vespene]" Value="1" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSHunterBurrowed,CostResource[Vespene]" Value="1" />
-    <EffectArray Operation="Subtract" Reference="Unit,Hydralisk,CostResource[Minerals]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,HydraliskAbathurReborn,CostResource[Minerals]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,HydraliskBurrowed,CostResource[Minerals]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurker,CostResource[Minerals]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurkerAbathurReborn,CostResource[Minerals]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurkerBurrowed,CostResource[Minerals]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpaler,CostResource[Minerals]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpalerAbathurReborn,CostResource[Minerals]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpalerBurrowed,CostResource[Minerals]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,Hydralisk,CostResource[Vespene]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,HydraliskAbathurReborn,CostResource[Vespene]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,HydraliskBurrowed,CostResource[Vespene]" Value="5" />
-    <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurker,CostResource[Vespene]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurkerAbathurReborn,CostResource[Vespene]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurkerBurrowed,CostResource[Vespene]" Value="5" />
-    <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpaler,CostResource[Vespene]" Value="5" />
+    <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpalerAbathurReborn,CostResource[Vespene]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpalerBurrowed,CostResource[Vespene]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,QueenClassic,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,QueenClassic,CostResource[Minerals]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,Roach,CostResource[Minerals]" Value="7" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachAbathurReborn,CostResource[Minerals]" Value="7" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachBurrowed,CostResource[Minerals]" Value="7" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachVile,CostResource[Minerals]" Value="7" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachVileAbathurReborn,CostResource[Minerals]" Value="7" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Minerals]" Value="7" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Minerals]" Value="7" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserAbathurReborn,CostResource[Minerals]" Value="7" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Minerals]" Value="7" />
-    <EffectArray Operation="Subtract" Reference="Unit,Roach,CostResource[Vespene]" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachAbathurReborn,CostResource[Vespene]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachBurrowed,CostResource[Vespene]" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachVile,CostResource[Vespene]" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachVileAbathurReborn,CostResource[Vespene]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Vespene]" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Vespene]" Value="2" />
+    <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserAbathurReborn,CostResource[Vespene]" Value="2" />
     <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Vespene]" Value="2" />
-    <EffectArray Operation="Subtract" Reference="Unit,Ultralisk,CostResource[Minerals]" Value="30" />
+    <EffectArray Operation="Subtract" Reference="Unit,UltraliskAbathurReborn,CostResource[Minerals]" Value="30" />
     <EffectArray Operation="Subtract" Reference="Unit,UltraliskBurrowed,CostResource[Minerals]" Value="30" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasque,CostResource[Minerals]" Value="30" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueBurrowed,CostResource[Minerals]" Value="30" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSNoxious,CostResource[Minerals]" Value="30" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueAbathurReborn,CostResource[Minerals]" Value="30" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueBurrowedAbathurReborn,CostResource[Minerals]" Value="30" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSNoxiousAbathurReborn,CostResource[Minerals]" Value="30" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSNoxiousBurrowed,CostResource[Minerals]" Value="30" />
-    <EffectArray Operation="Subtract" Reference="Unit,Ultralisk,CostResource[Vespene]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,UltraliskAbathurReborn,CostResource[Vespene]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,UltraliskBurrowed,CostResource[Vespene]" Value="20" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasque,CostResource[Vespene]" Value="20" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueBurrowed,CostResource[Vespene]" Value="20" />
-    <EffectArray Operation="Subtract" Reference="Unit,HotSNoxious,CostResource[Vespene]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueAbathurReborn,CostResource[Vespene]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueBurrowedAbathurReborn,CostResource[Vespene]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,HotSNoxiousAbathurReborn,CostResource[Vespene]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,HotSNoxiousBurrowed,CostResource[Vespene]" Value="20" />
-    <EffectArray Operation="Subtract" Reference="Unit,SwarmHost,CostResource[Minerals]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostAbathurReborn,CostResource[Minerals]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostBurrowed,CostResource[Minerals]" Value="20" />
-    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitA,CostResource[Minerals]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitAAbathurReborn,CostResource[Minerals]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitABurrowed,CostResource[Minerals]" Value="20" />
-    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitB,CostResource[Minerals]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBAbathurReborn,CostResource[Minerals]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBBurrowed,CostResource[Minerals]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostRooted,CostResource[Minerals]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitARooted,CostResource[Minerals]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBRooted,CostResource[Minerals]" Value="20" />
-    <EffectArray Operation="Subtract" Reference="Unit,SwarmHost,CostResource[Vespene]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostAbathurReborn,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostBurrowed,CostResource[Vespene]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitA,CostResource[Vespene]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitAAbathurReborn,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitABurrowed,CostResource[Vespene]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitB,CostResource[Vespene]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBAbathurReborn,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBBurrowed,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostRooted,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitARooted,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBRooted,CostResource[Vespene]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,Mutalisk,CostResource[Minerals]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,MutaliskAbathurReborn,CostResource[Minerals]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,MutaliskBroodlord,CostResource[Minerals]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,MutaliskViper,CostResource[Minerals]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,Mutalisk,CostResource[Vespene]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,MutaliskAbathurReborn,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,MutaliskBroodlord,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,MutaliskViper,CostResource[Vespene]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,Infestor,CostResource[Minerals]" Value="10" />
+    <EffectArray Operation="Subtract" Reference="Unit,InfestorAbathurReborn,CostResource[Minerals]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Unit,InfestorBurrowed,CostResource[Minerals]" Value="10" />
-    <EffectArray Operation="Subtract" Reference="Unit,Infestor,CostResource[Vespene]" Value="15" />
+    <EffectArray Operation="Subtract" Reference="Unit,InfestorAbathurReborn,CostResource[Vespene]" Value="15" />
     <EffectArray Operation="Subtract" Reference="Unit,InfestorBurrowed,CostResource[Vespene]" Value="15" />
     <EffectArray Operation="Subtract" Reference="Unit,InfestedAbomination,CostResource[Minerals]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationBurrowed,CostResource[Minerals]" Value="20" />
@@ -3096,10 +3096,10 @@
     <EffectArray Operation="Subtract" Reference="Unit,Overseer,CostResource[Vespene]" Value="6" />
     <EffectArray Operation="Subtract" Reference="Unit,OverseerSiegeMode,CostResource[Minerals]" Value="5" />
     <EffectArray Operation="Subtract" Reference="Unit,OverseerSiegeMode,CostResource[Vespene]" Value="6" />
-    <EffectArray Operation="Subtract" Reference="Unit,BroodLord,CostResource[Minerals]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,BroodLord,CostResource[Vespene]" Value="25" />
-    <EffectArray Operation="Subtract" Reference="Unit,Viper,CostResource[Minerals]" Value="20" />
-    <EffectArray Operation="Subtract" Reference="Unit,Viper,CostResource[Vespene]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,BroodLordAbathurReborn,CostResource[Minerals]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,BroodLordAbathurReborn,CostResource[Vespene]" Value="25" />
+    <EffectArray Operation="Subtract" Reference="Unit,ViperAbathurReborn,CostResource[Minerals]" Value="20" />
+    <EffectArray Operation="Subtract" Reference="Unit,ViperAbathurReborn,CostResource[Vespene]" Value="20" />
     <EffectArray Operation="Subtract" Reference="Unit,ZagaraCorruptor,CostResource[Minerals]" Value="15" />
     <EffectArray Operation="Subtract" Reference="Unit,ZagaraCorruptor,CostResource[Vespene]" Value="10" />
     <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Minerals]" Value="2" />
@@ -3108,87 +3108,87 @@
     <!--EffectArray Operation="Subtract" Reference="Unit,Drone,CostResource[Minerals]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,DroneBurrowed,CostResource[Minerals]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,Overlord,CostResource[Minerals]" Value="20"/-->
-    <!--EffectArray Operation="Subtract" Reference="Unit,Zergling,CostResource[Minerals]" Value="5"/>
+    <!--EffectArray Operation="Subtract" Reference="Unit,ZerglingAbathurReborn,CostResource[Minerals]" Value="5"/>
         <EffectArray Operation="Subtract" Reference="Unit,ZerglingBurrowed,CostResource[Minerals]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSRaptor,CostResource[Minerals]" Value="5"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSRaptorAbathurReborn,CostResource[Minerals]" Value="5"/>
         <EffectArray Operation="Subtract" Reference="Unit,HotSRaptorBurrowed,CostResource[Minerals]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSSwarmling,CostResource[Minerals]" Value="5"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSSwarmlingAbathurReborn,CostResource[Minerals]" Value="5"/>
         <EffectArray Operation="Subtract" Reference="Unit,HotSSwarmlingBurrowed,CostResource[Minerals]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Baneling,CostResource[Minerals]" Value="10"/>
+        <EffectArray Operation="Subtract" Reference="Unit,BanelingAbathurReborn,CostResource[Minerals]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,BanelingBurrowed,CostResource[Minerals]" Value="10"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBig,CostResource[Minerals]" Value="10"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigAbathurReborn,CostResource[Minerals]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigBurrowed,CostResource[Minerals]" Value="10"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSHunter,CostResource[Minerals]" Value="10"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSHunterAbathurReborn,CostResource[Minerals]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,HotSHunterBurrowed,CostResource[Minerals]" Value="10"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Baneling,CostResource[Vespene]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Unit,BanelingAbathurReborn,CostResource[Vespene]" Value="3"/>
         <EffectArray Operation="Subtract" Reference="Unit,BanelingBurrowed,CostResource[Vespene]" Value="3"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBig,CostResource[Vespene]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigAbathurReborn,CostResource[Vespene]" Value="3"/>
         <EffectArray Operation="Subtract" Reference="Unit,HotSSplitterlingBigBurrowed,CostResource[Vespene]" Value="3"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSHunter,CostResource[Vespene]" Value="3"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSHunterAbathurReborn,CostResource[Vespene]" Value="3"/>
         <EffectArray Operation="Subtract" Reference="Unit,HotSHunterBurrowed,CostResource[Vespene]" Value="3"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Hydralisk,CostResource[Minerals]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HydraliskAbathurReborn,CostResource[Minerals]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,HydraliskBurrowed,CostResource[Minerals]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurker,CostResource[Minerals]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurkerAbathurReborn,CostResource[Minerals]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurkerBurrowed,CostResource[Minerals]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpaler,CostResource[Minerals]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpalerAbathurReborn,CostResource[Minerals]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpalerBurrowed,CostResource[Minerals]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Hydralisk,CostResource[Vespene]" Value="10"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HydraliskAbathurReborn,CostResource[Vespene]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,HydraliskBurrowed,CostResource[Vespene]" Value="10"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurker,CostResource[Vespene]" Value="10"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurkerAbathurReborn,CostResource[Vespene]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,HydraliskLurkerBurrowed,CostResource[Vespene]" Value="10"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpaler,CostResource[Vespene]" Value="10"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpalerAbathurReborn,CostResource[Vespene]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,HydraliskImpalerBurrowed,CostResource[Vespene]" Value="10"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Roach,CostResource[Minerals]" Value="15"/>
+        <EffectArray Operation="Subtract" Reference="Unit,RoachAbathurReborn,CostResource[Minerals]" Value="15"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachBurrowed,CostResource[Minerals]" Value="15"/>
-        <EffectArray Operation="Subtract" Reference="Unit,RoachVile,CostResource[Minerals]" Value="15"/>
+        <EffectArray Operation="Subtract" Reference="Unit,RoachVileAbathurReborn,CostResource[Minerals]" Value="15"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Minerals]" Value="15"/>
-        <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Minerals]" Value="15"/>
+        <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserAbathurReborn,CostResource[Minerals]" Value="15"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Minerals]" Value="15"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Roach,CostResource[Vespene]" Value="5"/>
+        <EffectArray Operation="Subtract" Reference="Unit,RoachAbathurReborn,CostResource[Vespene]" Value="5"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachBurrowed,CostResource[Vespene]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Unit,RoachVile,CostResource[Vespene]" Value="5"/>
+        <EffectArray Operation="Subtract" Reference="Unit,RoachVileAbathurReborn,CostResource[Vespene]" Value="5"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachVileBurrowed,CostResource[Vespene]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Unit,RoachCorpser,CostResource[Vespene]" Value="5"/>
+        <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserAbathurReborn,CostResource[Vespene]" Value="5"/>
         <EffectArray Operation="Subtract" Reference="Unit,RoachCorpserBurrowed,CostResource[Vespene]" Value="5"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Ultralisk,CostResource[Minerals]" Value="60"/>
+        <EffectArray Operation="Subtract" Reference="Unit,UltraliskAbathurReborn,CostResource[Minerals]" Value="60"/>
         <EffectArray Operation="Subtract" Reference="Unit,UltraliskBurrowed,CostResource[Minerals]" Value="60"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasque,CostResource[Minerals]" Value="60"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueBurrowed,CostResource[Minerals]" Value="60"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSNoxious,CostResource[Minerals]" Value="60"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueAbathurReborn,CostResource[Minerals]" Value="60"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueBurrowedAbathurReborn,CostResource[Minerals]" Value="60"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSNoxiousAbathurReborn,CostResource[Minerals]" Value="60"/>
         <EffectArray Operation="Subtract" Reference="Unit,HotSNoxiousBurrowed,CostResource[Minerals]" Value="60"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Ultralisk,CostResource[Vespene]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,UltraliskAbathurReborn,CostResource[Vespene]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,UltraliskBurrowed,CostResource[Vespene]" Value="40"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasque,CostResource[Vespene]" Value="40"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueBurrowed,CostResource[Vespene]" Value="40"/>
-        <EffectArray Operation="Subtract" Reference="Unit,HotSNoxious,CostResource[Vespene]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueAbathurReborn,CostResource[Vespene]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSTorrasqueBurrowedAbathurReborn,CostResource[Vespene]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,HotSNoxiousAbathurReborn,CostResource[Vespene]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,HotSNoxiousBurrowed,CostResource[Vespene]" Value="40"/>
-        <EffectArray Operation="Subtract" Reference="Unit,SwarmHost,CostResource[Minerals]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostAbathurReborn,CostResource[Minerals]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostBurrowed,CostResource[Minerals]" Value="40"/>
-        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitA,CostResource[Minerals]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitAAbathurReborn,CostResource[Minerals]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitABurrowed,CostResource[Minerals]" Value="40"/>
-        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitB,CostResource[Minerals]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBAbathurReborn,CostResource[Minerals]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBBurrowed,CostResource[Minerals]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostRooted,CostResource[Minerals]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitARooted,CostResource[Minerals]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBRooted,CostResource[Minerals]" Value="40"/>
-        <EffectArray Operation="Subtract" Reference="Unit,SwarmHost,CostResource[Vespene]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostAbathurReborn,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostBurrowed,CostResource[Vespene]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitA,CostResource[Vespene]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitAAbathurReborn,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitABurrowed,CostResource[Vespene]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitB,CostResource[Vespene]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBAbathurReborn,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBBurrowed,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostRooted,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitARooted,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,SwarmHostSplitBRooted,CostResource[Vespene]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Mutalisk,CostResource[Minerals]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,MutaliskAbathurReborn,CostResource[Minerals]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,MutaliskBroodlord,CostResource[Minerals]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,MutaliskViper,CostResource[Minerals]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Mutalisk,CostResource[Vespene]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,MutaliskAbathurReborn,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,MutaliskBroodlord,CostResource[Vespene]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,MutaliskViper,CostResource[Vespene]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Infestor,CostResource[Minerals]" Value="20"/>
+        <EffectArray Operation="Subtract" Reference="Unit,InfestorAbathurReborn,CostResource[Minerals]" Value="20"/>
         <EffectArray Operation="Subtract" Reference="Unit,InfestorBurrowed,CostResource[Minerals]" Value="20"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Infestor,CostResource[Vespene]" Value="30"/>
+        <EffectArray Operation="Subtract" Reference="Unit,InfestorAbathurReborn,CostResource[Vespene]" Value="30"/>
         <EffectArray Operation="Subtract" Reference="Unit,InfestorBurrowed,CostResource[Vespene]" Value="30"/>
         <EffectArray Operation="Subtract" Reference="Unit,InfestedAbomination,CostResource[Minerals]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationBurrowed,CostResource[Minerals]" Value="40"/>
@@ -3196,10 +3196,10 @@
         <EffectArray Operation="Subtract" Reference="Unit,InfestedAbominationBurrowed,CostResource[Vespene]" Value="15"/>
         <EffectArray Operation="Subtract" Reference="Unit,Overseer,CostResource[Minerals]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,Overseer,CostResource[Vespene]" Value="12"/>
-        <EffectArray Operation="Subtract" Reference="Unit,BroodLord,CostResource[Minerals]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,BroodLord,CostResource[Vespene]" Value="50"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Viper,CostResource[Minerals]" Value="40"/>
-        <EffectArray Operation="Subtract" Reference="Unit,Viper,CostResource[Vespene]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,BroodLordAbathurReborn,CostResource[Minerals]" Value="50"/>
+        <EffectArray Operation="Subtract" Reference="Unit,BroodLordAbathurReborn,CostResource[Vespene]" Value="50"/>
+        <EffectArray Operation="Subtract" Reference="Unit,ViperAbathurReborn,CostResource[Minerals]" Value="40"/>
+        <EffectArray Operation="Subtract" Reference="Unit,ViperAbathurReborn,CostResource[Vespene]" Value="40"/>
         <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Minerals]" Value="5"/>
         <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Vespene]" Value="10"/>
         <EffectArray Operation="Subtract" Reference="Unit,Hatchery,CostResource[Minerals]" Value="10"/>
@@ -3252,7 +3252,7 @@
     <EffectArray Operation="Set" Reference="Abil,LarvaTrain,InfoArray[Train12].Unit[0]" Value="ZagaraCorruptor" />
     <EffectArray Reference="Unit,QueenCoop,Food" Value="1" />
     <EffectArray Reference="Unit,QueenCoopBurrowed,Food" Value="1" />
-    <EffectArray Reference="Unit,Roach,Speed" Value="0.750000" />
+    <EffectArray Reference="Unit,RoachAbathurReborn,Speed" Value="0.750000" />
     <AffectedUnitArray value="ZagaraVoidCoop" />
     <AffectedUnitArray value="ZagaraVoidCoopBurrowed" />
     <LeaderAlias value="" />
@@ -3492,7 +3492,7 @@
     <EffectArray Operation="Multiply" Reference="Weapon,LocustMPMelee,RateMultiplier" Value="1.33"/>
     <EffectArray Operation="Multiply" Reference="Weapon,LocustFlyingPressurizedGlands,RateMultiplier" Value="1.33"/>
     <EffectArray Operation="Multiply" Reference="Weapon,LocustMP,RateMultiplier" Value="1.33"/>
-    <EffectArray Operation="Set" Reference="Unit,Baneling,Speed" Value="4.000000"/>
+    <EffectArray Operation="Set" Reference="Unit,BanelingAbathurReborn,Speed" Value="4.000000"/>
     <EffectArray Operation="Set" Reference="Weapon,AcidSpit,RateMultiplier" Value="1.33"/>
     <EffectArray Operation="Set" Reference="Unit,Vespid,Speed" Value="4.000000"/>
   </CUpgrade>

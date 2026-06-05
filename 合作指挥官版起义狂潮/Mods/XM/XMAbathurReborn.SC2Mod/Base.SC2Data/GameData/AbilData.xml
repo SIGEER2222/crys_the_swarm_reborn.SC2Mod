@@ -260,7 +260,7 @@
       </SectionArray>
     </InfoArray>
   </CAbilMorph>
-  <CAbilMorph id="BurrowRavagerAbathurUp">
+  <CAbilMorph id="BurrowRavagerAbathurUpLegacyAbathurReborn" parent="BurrowRavagerAbathurUp">
     <AbilSetId value="BrwU" />
     <EditorCategories value="Race:Zerg,AbilityorEffectType:MorphsandBurrows" />
     <CmdButtonArray index="Execute" DefaultButtonFace="BurrowUp">
@@ -270,7 +270,7 @@
     <Flags index="AutoCast" value="1" />
     <Flags index="IgnoreFacing" value="1" />
     <Flags index="SuppressMovement" value="1" />
-    <InfoArray Unit="RavagerAbathur" RandomDelayMax="0.1">
+    <InfoArray Unit="RavagerAbathurLegacyAbathurReborn" RandomDelayMax="0.1">
       <SectionArray index="Actor">
         <DurationArray index="Duration" value="0.4443" />
       </SectionArray>
@@ -619,25 +619,25 @@
   <CAbilEffectTarget id="QueenBurstHeal">
     <CmdButtonArray index="Execute" Requirements="NotHaveBioMechanicalTransfusion" />
   </CAbilEffectTarget>
-  <CAbilEffectTarget id="RavagerAbathurCorrosiveBile">
+  <CAbilEffectTarget id="RavagerAbathurCorrosiveBileLegacyAbathurReborn" parent="RavagerAbathurCorrosiveBile">
     <Alignment value="Negative" />
     <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
-    <Effect index="0" value="RavagerCorrosiveBileAoeLaunchSet" />
+    <Effect index="0" value="RavagerCorrosiveBileAoeLaunchSetAbathurReborn" />
     <Cost>
       <Cooldown TimeUse="10" />
     </Cost>
     <Range value="12" />
-    <CursorEffect value="RavagerCorrosiveBileAoeCursorDummy" />
+    <CursorEffect value="RavagerCorrosiveBileAoeCursorDummyAbathurReborn" />
     <CmdButtonArray index="Execute" DefaultButtonFace="RavagerAbathurCorrosiveBile" />
   </CAbilEffectTarget>
-  <CAbilEffectTarget id="RavagerCorrosiveBile">
-    <Effect index="0" value="RavagerCorrosiveBileAoeLaunchSet" />
+  <CAbilEffectTarget id="RavagerCorrosiveBileAbathurReborn" parent="RavagerCorrosiveBile">
+    <Effect index="0" value="RavagerCorrosiveBileAoeLaunchSetAbathurReborn" />
     <Cost>
-      <Charge Link="Abil/RavagerCorrosiveBile" />
-      <Cooldown Link="Abil/RavagerCorrosiveBile" TimeUse="15" />
+      <Charge Link="Abil/RavagerCorrosiveBileAbathurReborn" />
+      <Cooldown Link="Abil/RavagerCorrosiveBileAbathurReborn" TimeUse="15" />
     </Cost>
     <Range value="9" />
-    <CursorEffect value="RavagerCorrosiveBileAoeCursorDummy" />
+    <CursorEffect value="RavagerCorrosiveBileAoeCursorDummyAbathurReborn" />
   </CAbilEffectTarget>
   <CAbilResearch id="RoachWarrenResearch">
     <InfoArray index="Research2">
@@ -658,12 +658,12 @@
       <Resource index="Vespene" value="100" />
       <Button DefaultButtonFace="EvolveAdaptivePlating" Requirements="LearnAdaptivePlating" />
     </InfoArray>
-    <InfoArray index="Research7" Time="90" Upgrade="RavagerCorrosiveBileRadiusIncrease">
+    <InfoArray index="Research7" Time="90" Upgrade="RavagerCorrosiveBileRadiusIncreaseAbathurReborn">
       <Resource index="Minerals" value="150" />
       <Resource index="Vespene" value="150" />
       <Button DefaultButtonFace="EvolveCorrosiveBileRadiusIncrease" Requirements="LearnCorrosiveBileRadiusIncrease" />
     </InfoArray>
-    <InfoArray index="Research8" Time="120" Upgrade="RavagerCorrosiveBileDamageIncrease">
+    <InfoArray index="Research8" Time="120" Upgrade="RavagerCorrosiveBileDamageIncreaseAbathurReborn">
       <Resource index="Minerals" value="200" />
       <Resource index="Vespene" value="200" />
       <Button DefaultButtonFace="EvolveCorrosiveBileDamageIncrease" Requirements="LearnCorrosiveBileDamageIncrease" />
@@ -2288,40 +2288,40 @@
     </InfoArray>
     <InfoArray index="Train3" Time="17">
       <Button DefaultButtonFace="Zergling" State="Restricted" Requirements="HaveSpawningPool" />
-      <Unit value="Zergling" />
-      <Unit value="Zergling" />
+      <Unit value="ZerglingAbathurReborn" />
+      <Unit value="ZerglingAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train4" Time="20">
       <Button DefaultButtonFace="Baneling" State="Restricted" Requirements="HaveBanelingNest" />
-      <Unit value="Baneling" />
+      <Unit value="BanelingAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train5" Time="27">
       <Button DefaultButtonFace="Roach" State="Restricted" Requirements="HaveRoachWarren" />
-      <Unit value="Roach" />
+      <Unit value="RoachAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train6" Time="30">
       <Button DefaultButtonFace="Hydralisk" State="Restricted" Requirements="HaveHydraliskDen" />
-      <Unit value="Hydralisk" />
+      <Unit value="HydraliskAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train7" Time="33">
       <Button DefaultButtonFace="Mutalisk" State="Restricted" Requirements="HaveSpire" />
-      <Unit value="Mutalisk" />
+      <Unit value="MutaliskAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train8" Time="40">
       <Button DefaultButtonFace="SwarmHostMP" State="Restricted" Requirements="HaveInfestationPit" />
-      <Unit value="SwarmHost" />
+      <Unit value="SwarmHostAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train9" Time="60">
       <Button DefaultButtonFace="Ultralisk" State="Restricted" Requirements="HaveUltraliskCavern" />
-      <Unit value="Ultralisk" />
+      <Unit value="UltraliskAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train10" Time="50">
       <Button DefaultButtonFace="Infestor" State="Restricted" Requirements="HaveInfestationPit" />
-      <Unit value="Infestor" />
+      <Unit value="InfestorAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train11" Time="60">
       <Button DefaultButtonFace="BroodLord" State="Restricted" Requirements="HaveGreaterSpire" />
-      <Unit value="BroodLord" />
+      <Unit value="BroodLordAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train12" removed="1" />
     <InfoArray index="Train13" removed="1" />
@@ -2346,7 +2346,7 @@
   <CAbilTrain id="LarvaTrainSwarm">
     <InfoArray index="Train3">
       <Button DefaultButtonFace="Defiler" State="Restricted" />
-      <Unit index="0" value="DefilerMP" />
+      <Unit index="0" value="DefilerMPAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train7">
       <Button State="Restricted" />
@@ -2407,7 +2407,7 @@
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />
   </CAbilTrain>
-  <CAbilTrain id="MorphRoachToRavager">
+  <CAbilTrain id="MorphRoachToRavagerAbathurReborn" parent="MorphRoachToRavager">
     <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
     <RefundFraction>
       <Resource index="Minerals" value="-0.75" />
@@ -2419,15 +2419,15 @@
     <Flags index="KillOnFinish" value="1" />
     <Flags index="Select" value="1" />
     <Flags index="WaitForFood" value="0" />
-    <MorphUnit value="RavagerAbathurCocoon" />
+    <MorphUnit value="RavagerAbathurCocoonLegacyAbathurReborn" />
     <InfoArray index="Train1" Time="9" Alert="MorphComplete_Zerg" Effect="CopyOrdersRavagerMorph">
       <Button DefaultButtonFace="Ravager" State="Restricted" Requirements="HaveLair" />
-      <Unit value="Ravager" />
+      <Unit value="RavagerAbathurReborn" />
       <Flags index="IgnorePlacement" value="1" />
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />
   </CAbilTrain>
-  <CAbilTrain id="MorphRoachVileToRavager">
+  <CAbilTrain id="MorphRoachVileToRavagerAbathurReborn" parent="MorphRoachVileToRavager">
     <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
     <RefundFraction>
       <Resource index="Minerals" value="-0.75" />
@@ -2442,7 +2442,7 @@
     <MorphUnit value="RavagerVileAbathurRebornCocoon" />
     <InfoArray index="Train1" Time="9" Alert="MorphComplete_Zerg" Effect="CopyOrdersRavagerMorph">
       <Button DefaultButtonFace="Ravager" State="Restricted" Requirements="HaveLair" />
-      <Unit value="Ravager" />
+      <Unit value="RavagerAbathurReborn" />
       <Flags index="IgnorePlacement" value="1" />
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />
@@ -2470,7 +2470,7 @@
       <Button DefaultButtonFace="MorphtoDevourer" State="Restricted" Requirements="HaveGreaterSpire">
         <Flags index="ShowInGlossary" value="1" />
       </Button>
-      <Unit value="Devourer" />
+      <Unit value="DevourerAbathurReborn" />
     </InfoArray>
     <Alert value="MorphComplete_Zerg" />
     <ActorKey value="GuardianAspect" />
@@ -3011,7 +3011,7 @@
     </InfoArray>
     <InfoArray index="Train2" Time="50">
       <Button DefaultButtonFace="Infestor" Requirements="HaveInfestationPit" />
-      <Unit value="Infestor" />
+      <Unit value="InfestorAbathurReborn" />
     </InfoArray>
     <InfoArray index="Train3" Time="25">
       <Button DefaultButtonFace="Overlord" />
@@ -3019,8 +3019,8 @@
     </InfoArray>
     <InfoArray index="Train4" Time="24">
       <Button DefaultButtonFace="Zergling" Requirements="HaveInfestedBarracks" />
-      <Unit value="Zergling" />
-      <Unit value="Zergling" />
+      <Unit value="ZerglingAbathurReborn" />
+      <Unit value="ZerglingAbathurReborn" />
     </InfoArray>
   </CAbilTrain>
   <CAbilTrain id="SIStarportTrain">
@@ -5163,7 +5163,7 @@
         <Flags index="AutoCast" value="1"/>
         <Flags index="IgnoreFacing" value="1"/>
         <Flags index="SuppressMovement" value="1"/>
-        <InfoArray Unit="FrostFiend" RandomDelayMax="0.5">
+        <InfoArray Unit="FrostFiendAbathurReborn" RandomDelayMax="0.5">
             <SectionArray index="Actor">
                 <DurationArray index="Duration" value="1"/>
             </SectionArray>
@@ -5205,7 +5205,7 @@
         <Flags index="AutoCast" value="1"/>
         <Flags index="IgnoreFacing" value="1"/>
         <Flags index="SuppressMovement" value="1"/>
-        <InfoArray Unit="UltraliskSavage" RandomDelayMax="0.5">
+        <InfoArray Unit="UltraliskSavageAbathurReborn" RandomDelayMax="0.5">
             <SectionArray index="Actor">
                 <DurationArray index="Duration" value="2"/>
             </SectionArray>
@@ -5325,7 +5325,7 @@
         <Flags index="RallyReset" value="1"/>
         <Flags index="SuppressMovement" value="1"/>
         <Flags index="WaitUntilStopped" value="0"/>
-        <InfoArray Unit="BaneHost" RandomDelayMax="0.5">
+        <InfoArray Unit="BaneHostAbathurReborn" RandomDelayMax="0.5">
             <SectionArray index="Abils">
                 <DurationArray index="Delay" value="0.1"/>
             </SectionArray>
@@ -5396,7 +5396,7 @@
         <ActorKey value="BurrowUp"/>
         <Flags index="AutoCast" value="1"/>
         <Flags index="IgnoreFacing" value="1"/>
-        <InfoArray Unit="ZerglingToxic" RandomDelayMax="0.5">
+        <InfoArray Unit="ZerglingToxicAbathurReborn" RandomDelayMax="0.5">
             <SectionArray index="Abils">
                 <DurationArray index="Duration" value="1.0625"/>
             </SectionArray>
@@ -5442,7 +5442,7 @@
         <Flags index="AutoCast" value="1"/>
         <Flags index="IgnoreFacing" value="1"/>
         <Flags index="SuppressMovement" value="1"/>
-        <InfoArray Unit="Igniter" RandomDelayMax="0.1">
+        <InfoArray Unit="IgniterAbathurReborn" RandomDelayMax="0.1">
             <SectionArray index="Actor">
                 <DurationArray index="Duration" value="0.4443"/>
             </SectionArray>
@@ -5489,7 +5489,7 @@
         <Flags index="AutoCast" value="1"/>
         <Flags index="IgnoreFacing" value="1"/>
         <Flags index="SuppressMovement" value="1"/>
-        <InfoArray Unit="Hydralisk2" RandomDelayMax="0.1">
+        <InfoArray Unit="Hydralisk2AbathurReborn" RandomDelayMax="0.1">
             <SectionArray index="Actor">
                 <DurationArray index="Duration" value="1"/>
             </SectionArray>

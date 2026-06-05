@@ -126,29 +126,29 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 凯瑞甘 | `K5ZerglingRespawn` | K5ZerglingRespawn | - | - | - |
-| 凯瑞甘 | `K5Cooldowns` | K5Cooldowns | - | `HaveK5Cooldowns` | - |
+| 凯瑞甘 | `K5ZerglingRespawn` | 跳虫重组 | - | - | 阵亡的跳虫会在主孵化场免费复活；每 30 秒至多重组一批阵亡跳虫，直到全部回到战场。 |
+| 凯瑞甘 | `K5Cooldowns` | 技能专精 | - | `HaveK5Cooldowns` | 凯瑞甘的技能冷却时间和能量消耗降低 20%。 |
 | 凯瑞甘 | `CommanderKerriganKerriganEnergyRegeneration` | 刀锋女王 | - | `HaveKerriganVoidCoopEnergyRegen` | 凯瑞甘的能量恢复速度提高50%。 |
 | 凯瑞甘 | `KerriganChainLightning` | 连锁反应 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
-| 凯瑞甘 | `SpawnBanelings` | SpawnBanelings | `SpawnBanelings,Execute` | - | - |
-| 凯瑞甘 | `K5DropPods` | K5DropPods | `K5DropPods,Execute` | - | - |
-| 凯瑞甘 | `K5Fury` | K5Fury | - | `HaveK5Fury` | - |
-| 凯瑞甘 | `PrimalSlash` | - | `PrimalSlash,Execute` | - | 凯瑞甘跳向目标并造成{Effect,PrimalSlash,Amount}点伤害。可以不指定目标发动技能来迅速移动。 |
-| 凯瑞甘 | `MindBolt` | - | `MindBolt,Execute` | - | - |
-| 凯瑞甘 | `K5HeroicFortitude` | K5HeroicFortitude | - | `HaveK5HeroicFortitude` | - |
-| 凯瑞甘 | `PsiStrike` | - | `PsiStrikeWalk,Execute` | - | 凯瑞甘飞速掠过敌人，并对其行进路线上的所有敌人造成{Effect,PsiStrikeDamage,Amount}点伤害。 |
-| 凯瑞甘 | `PsionicLift` | - | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
+| 凯瑞甘 | `SpawnBanelings` | 孵化爆虫 | `SpawnBanelings,Execute` | - | 官方 `heroes.json`、`roster.json` 和 raw unit card 都收录该按钮；凯瑞甘会召唤 6 只限时生命的爆虫。 |
+| 凯瑞甘 | `K5DropPods` | 空投囊 | `K5DropPods,Execute` | - | 官方 hero/roster/raw unit card 都收录该按钮；向目标区域投送限时生命的原始异虫部队，内容包括跳虫、蟑螂和刺蛇。 |
+| 凯瑞甘 | `K5Fury` | 狂怒 | - | `HaveK5Fury` | 凯瑞甘每次攻击都会暂时提高攻击速度，可叠层到更高上限。 |
+| 凯瑞甘 | `PrimalSlash` | 跳击 | `PrimalSlash,Execute` | - | 凯瑞甘跳向目标并造成{Effect,PrimalSlash,Amount}点伤害。可以不指定目标发动技能来迅速移动。 |
+| 凯瑞甘 | `MindBolt` | 动能冲击 | `MindBolt,Execute` | - | 官方 hero/roster/raw unit card 都能看到该按钮；威望 3 会显式启用此技。凯瑞甘远程对目标单位或建筑造成{Effect,MindBoltDamage,Amount}点伤害。 |
+| 凯瑞甘 | `K5HeroicFortitude` | 英勇刚毅 | - | `HaveK5HeroicFortitude` | 凯瑞甘最大生命值提高 200 点，生命恢复速度提高 100%。 |
+| 凯瑞甘 | `PsiStrike` | 灵能位移 | `PsiStrikeWalk,Execute` | - | 凯瑞甘飞速掠过敌人，并对其行进路线上的所有敌人造成{Effect,PsiStrikeDamage,Amount}点伤害。 |
+| 凯瑞甘 | `PsionicLift` | 粉碎勒握 | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
 | 凯瑞甘 | `KerriganVoidCoopEconDrop` | 吸收光环 | `KerriganVoidCoopEconDrop,Execute` | - | 附近所有被消灭的敌人掉落资源。效果持续{Behavior,KerriganVoidCoopEconDropCaster,Duration}秒。 |
-| 凯瑞甘 | `PrimalHeal` | PrimalHeal | `PrimalHeal,Execute` | - | - |
-| 凯瑞甘 | `WildMutation` | WildMutation | `WildMutation,Execute` | - | - |
-| 凯瑞甘 | `ChainReaction` | ChainReaction | - | `HaveK5ChainLightning` | - |
+| 凯瑞甘 | `PrimalHeal` | 愈合 | `PrimalHeal,Execute` | - | 为凯瑞甘恢复大量生命值，为附近友方生物单位恢复较少生命值，并在后续 15 秒内继续回复一部分治疗量。 |
+| 凯瑞甘 | `WildMutation` | 野性突变 | `WildMutation,Execute` | - | 使目标区域内的友方异虫单位提高最大生命值和攻击速度；对空中单位或英雄单位无效。 |
+| 凯瑞甘 | `ChainReaction` | 连锁反应 | - | `HaveK5ChainLightning` | 凯瑞甘的普通攻击会弹射到附近额外目标，最多可命中 4 个追加目标。 |
 | 凯瑞甘 | `K5CooldownsLocked` | 技能专精 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
 
 ### 英雄形态/模式候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
 |---|---|---|---|---|---|
-| 凯瑞甘 | `PsionicLift` | - | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
+| 凯瑞甘 | `PsionicLift` | 粉碎勒握 | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
 
 ### 英雄相关等级解锁
 
@@ -172,7 +172,7 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 口径：heroes.json 已列出英雄条目，英雄单位、英雄技能和英雄形态都归本模块。
 
-待审计：Hero Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生、能量/资源、形态切换和威望改写闭包。
+当前静态闭环已覆盖 Hero Unit、主按钮、核心 Ability/Effect、复活壳、形态切换和威望技能改写主链；Actor/Sound 细节与部分继承型卡面技能是否完整生效，移到文末“剩余风险 / 需实机验证项”统一跟踪。
 
 ### 形态与技能链路补充
 
@@ -192,7 +192,7 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | `PsiStrike` | `PsiStrike` | `PsiStrikeWalk,Execute` | `PsiStrikeWalk` 是 transient，50 能量，`Cooldown Location="Unit"`，`PrepTime=0.01`，`Range=500`，`HaveK5PsiStrike`。 | `PsiStrikeTargetSearch` -> `PsiStrikeTargetSet` -> `PsiStrikeDamage` + `KerriganPsiStrikeDamageAB` -> `KerriganPsiStrikeDamaged` |
 | `PsionicLift` | 官方英雄页显示 `PsionicLift`，raw unit card 里是 `KerriganVoidCoopCrushingGripWave` | `PsionicLift,Execute` / `KerriganVoidCoopCrushingGripWave,Execute` | `PsionicLift` 在 coop 层是 75 能量、0 冷却；`KerriganVoidCoopCrushingGripWave` 是 600 起手、180 玩家冷却、0.25 秒 finish、Cast/Finish 都不可打断。 | `PsionicLiftRaiseSearch` / `KerriganVoidCoopCrushingGripWaveDelayCP` -> `KerriganVoidCoopCrushingGripWaveSearch` -> `KerriganVoidCoopCrushingGripWaveDummyCP` -> `KerriganVoidCoopCrushingGripWaveSet` |
 | `KerriganVoidCoopEconDrop` | `KerriganVoidCoopEconDrop` | `KerriganVoidCoopEconDrop,Execute` | 玩家冷却 120 秒。 | `KerriganVoidCoopEconDropCasterAB` -> `KerriganVoidCoopEconDropCaster` -> `KerriganVoidCoopEconDropSearch` -> `KerriganVoidCoopEconDropSet` -> `KerriganVoidCoopEconDropAB` |
-| `MindBolt` | raw unit card 有，但默认 hero JSON 不把它当主面板核心技。 | `MindBolt,Execute` | 10 秒冷却，9 距离，允许移动且无减速；`MindBoltDamage` 在 coop 层是 150。 | `MindBoltLaunchMissile` -> `MindBoltDamageSet` -> `MindBoltDamage` + `K5InfestBroodlings` |
+| `MindBolt` | 官方 `heroes.json`、`roster.json` 与 raw unit card 都能看到该按钮；威望 3 会显式启用。 | `MindBolt,Execute` | 10 秒冷却，9 距离，允许移动且无减速；`MindBoltDamage` 在 coop 层是 150。 | `MindBoltLaunchMissile` -> `MindBoltDamageSet` -> `MindBoltDamage` + `K5InfestBroodlings` |
 
 补充：`CommanderPrestigeKerriganAssimilationAura` 会禁用 `PsiStrikeWalk` 和 `PrimalSlash`，同时启用 `PsionicLift` 与 `MindBolt`。因此 `MindBolt` 应按威望切换技理解，不要和默认主面板技能混写。
 
@@ -216,6 +216,56 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 
 Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderUnitEvolutionProfile`、`CommanderUnitBehaviorProfile`、`CommanderUnitWeaponProfile`。
 
+### 2026-06-05 当前 Mod 单位技能与进化链复核
+
+#### 当前 Mod 核心技能/按钮速查
+
+| 单位 | 按钮/入口 | AbilityCmd / Ability | 当前结果 | 备注 |
+|---|---|---|---|---|
+| `OverlordKerrigan` | `MorphToOverseer` | `MorphToOverseerKerrigan,Execute` | 变异为 `OverseerKerrigan` | 开局第二单位也是这条私有链。 |
+| `OverseerKerrigan` | 监察王虫形态切换 | `OverseerMorphtoOverseerSiegeKerrigan` / `OverseerSiegeMorphtoOverseerKerrigan` | `OverseerKerrigan <-> OverseerSiegeModeKerrigan` | 当前 runtime 名册已纳入两种形态。 |
+| `HydraliskKerrigan` | `MorphToHydraliskLurker` / `HydraliskFrenzy` | `MorphHydraliskToLurkerKerrigan,Train1` / `HydraliskFrenzy,Execute` | 变异为 `HydraliskLurkerKerrigan`；狂暴由 `HaveFrenzyHydralisk` 控制 | 当前单位卡和 Ability 都是凯瑞甘私有链。 |
+| `HydraliskLurkerKerrigan` | 潜地 / 出地 | `BurrowHydraliskLurkerDownKerrigan` / `BurrowHydraliskLurkerUpKerrigan` | `HydraliskLurkerKerrigan <-> HydraliskLurkerBurrowedKerrigan` | 属于满级兵种闭包。 |
+| `MutaliskKerrigan` | `BroodLord` | `MutaliskMorphToBroodLordKerrigan,Train1` | 变异为 `BroodLordKerrigan` | 需要 `HaveGreaterSpire`。 |
+| `UltraliskKerrigan` | `BurrowChargeCampaign` | `UltraliskBurrowCharge,Execute` | 雷兽潜地冲锋 | 能力本体已在当前 Mod 中，是否可点由雷兽洞研究/升级解锁。 |
+| `UltraliskKerrigan` / `HotSTorrasque` | `TissueAssimilation` | `HaveHotSTissueAssimilation` | 雷兽普通攻击吸血被动已挂载 | 研究来自 `UltraliskCavernResearch,Research5`；当前单位卡和需求链都已接通，实际回血沿用官方 `TissueAssimilation` / `TissueAssimilationSecondary` 命中效果。 |
+| `ZerglingKerrigan` | 护甲撕裂被动 | `ZerglingArmorShred` | 跳虫攻击可削甲 | `Baneling` 相关共享污染不计入凯瑞甘主链。 |
+| `NydusNetworkKerrigan` | `SummonNydusWorm` / `SummonNydusCanalAttacker` / `SummonNydusCanalCreeper` | `BuildNydusCanalKerrigan,Build1/2/3` | 召唤 `NydusCanalKerrigan` 系列 | 这条建筑技能也已切到私有坑道虫。 |
+| `SpineCrawlerKerrigan` | `SpineCrawlerUproot` | `SpineCrawlerUprootKerrigan,Execute` | 站起为 `SpineCrawlerUprootedKerrigan` | 回根由 `SpineCrawlerRootKerrigan` 处理。 |
+| `SporeCrawlerKerrigan` | `SporeCrawlerUproot` | `SporeCrawlerUprootKerrigan,Execute` | 站起为 `SporeCrawlerUprootedKerrigan` | 回根由 `SporeCrawlerRootKerrigan` 处理。 |
+
+#### 当前 Mod 主要进化 / 形态链
+
+| 起点 | 链路 | 终点 | 说明 |
+|---|---|---|---|
+| `OverlordKerrigan` | `MorphToOverseerKerrigan` | `OverseerKerrigan` | 开局补给单位直接接到凯瑞甘私有侦测链。 |
+| `OverseerKerrigan` | `OverseerMorphtoOverseerSiegeKerrigan` | `OverseerSiegeModeKerrigan` | 监察王虫可展开为炮台模式，再由 `OverseerSiegeMorphtoOverseerKerrigan` 收回。 |
+| `HydraliskKerrigan` | `MorphHydraliskToLurkerKerrigan` | `HydraliskLurkerKerrigan` | 需要 `LurkerDenKerrigan` 科技。 |
+| `HydraliskLurkerKerrigan` | `BurrowHydraliskLurkerDownKerrigan` | `HydraliskLurkerBurrowedKerrigan` | 潜伏者通过潜地/出地切换作战形态。 |
+| `MutaliskKerrigan` | `MutaliskMorphToBroodLordKerrigan` | `BroodLordKerrigan` | 需要大龙脊。 |
+| `NydusNetworkKerrigan` | `BuildNydusCanalKerrigan` | `NydusCanalKerrigan` | 当前坑道虫召唤链已私有化。 |
+| `SpineCrawlerKerrigan` | `SpineCrawlerUprootKerrigan` | `SpineCrawlerUprootedKerrigan` | 防御塔可站起移动，再由 root ability 回根。 |
+| `SporeCrawlerKerrigan` | `SporeCrawlerUprootKerrigan` | `SporeCrawlerUprootedKerrigan` | 防空塔可站起移动，再由 root ability 回根。 |
+
+#### 暴龙兽 / 雷兽复活闭包补充
+
+| 环节 | ID / 数据 | 当前静态结论 |
+|---|---|---|
+| 等级 14 进化入口 | `KerriganUltraEvo` | `UserData.xml` 把 Lv14 雷兽进化按钮挂到 `CommanderKerriganUltraliskEvolutionTorrasque`，对应升级是 `HotSTorrasque`。 |
+| 复活形态单位 | `HotSTorrasque` / `HotSTorrasqueBurrowed` | 当前 `XMKerrigan` 已有专门暴龙兽单位，不是普通 `UltraliskKerrigan` 复用名字。单位卡上还挂了 `TorrasqueChrysalisFakeTimer` 与 `TorrasqueTimerBehavior` 的被动显示。 |
+| 致命伤害拦截 | `TorrasqueDontDie` | `DamageResponse.Fatal=1` 时不直接死亡，而是把致命伤害交给 `TorrasqueCorpse` 处理；禁用条件是 `TorrasqueCantRevive` 与 `HaveHotSTorrasque`。 |
+| 60 秒复活窗口 | `TorrasqueTimerBehavior` | 持续时间和冷却都为 60 秒。`InitialEffect=TorrasqueCorpseRemoveDeathBehavior`，`ExpireEffect=TorrasqueCorpseApplyDeathBehavior`，意思是复活后进入 60 秒冷却，冷却结束才重新获得“再死一次可复活”的资格。 |
+| 尸体 / 茧效果链 | `TorrasqueCorpseRevive`、`TorrasqueCorpseApplyTimerBehavior`、`TorrasqueCorpseSet`、`TorrasqueCorpseDelayPersistent`、`TorrasqueCorpseIssueOrder` | 暴龙兽被击杀后会转入 `TorrasqueCorpse` / `TorrasqueChrysalis` 这条链，再通过 revive set 把单位拉回场上，并补上新的 60 秒计时。 |
+| 死亡防止总开关 | `OnDeathControllerDeathPrevent` | 当前效果表里明确写了 `CaseArray Validator="TorrasqueReviveCombine" Effect="TorrasqueCorpse"`，说明“死亡转茧并复活”不是描述文本，而是实际接在死亡控制器上的效果分支。 |
+
+当前补充结论：
+
+- 你提的这个点是对的，凯瑞甘的“雷兽可复活”在数据上不是泛泛描述，而是 `HotSTorrasque -> TorrasqueDontDie -> TorrasqueCorpse -> TorrasqueTimerBehavior` 这条专门闭包。
+- 但当前 old-line Mod 的量产链还要单独看。`LarvaTrainKerrigan` 现在静态上产出的仍是 `UltraliskKerrigan`，不是 `HotSTorrasque`。
+- 同时 `LibE0EAE146_KerriganRuntime.galaxy` 目前只负责凯瑞甘英雄 / caster 初始化，未见显式 `SetUpgradeLevelForPlayer(..., "HotSTorrasque", 1)` 或 `TechTreeUnitAllow(..., "HotSTorrasque", true)`。
+- 这和 13 级雷兽升级包要区分看：`HotSTissueAssimilation` 这条“普通攻击吸血”研究在当前 Mod 静态链上是挂上的，问题集中在 14 级暴龙兽量产切换，而不是 13 级吸血本身。
+- 所以可以确认“暴龙兽复活闭包存在，而且开局小队也能直接创建 `HotSTorrasque`”，但“普通量产雷兽已经稳定切到可复活暴龙兽”这一点，当前还不能只靠静态文本直接下结论，后续应继续补 runtime 授权或做实机验证。
+
 ### 单位技能按钮候选
 
 | 对象 | 按钮/Face | 显示名 | AbilityCmd | Requirement | 说明 |
@@ -228,29 +278,25 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 刺蛇 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
 | 刺蛇 | `FrenzyLocked` | 狂暴 | - | `KerriganLevel06` | 该技能将在指挥官等级6时解锁。 |
 | 刺蛇 | `MuscularAugmentsCoop` | 肌腱扩增 | - | `HaveGroovedSpines` | 提高刺蛇的移动速度，并使其射程增加1。 |
-| 刺蛇 | `-` | - | - | - | - |
-| 异龙 | `-` | - | - | - | - |
 | 异龙 | `SeveringGlave` | 削铁刃虫 | - | `HaveKerriganSunderingGlaive` | 异龙的每次后续弹射攻击不再降低伤害。 |
-| 异龙 | `-` | - | - | `HaveKerriganViciousGlaive` | - |
+| 异龙 | `KerriganViciousGlaive` | 残暴龙爪 | - | `HaveKerriganViciousGlaive` | 异龙攻击会额外弹射 3 次，最多击中 6 个目标，且弹射距离更远。 |
 | 雷兽 | `EvolveChitinousPlating` | 进化骨板 | - | `HaveUltraliskChitnousPlating` | 雷兽的护甲提高{$UpgradeEffectArrayValue:ChitinousPlating:Unit,Ultralisk,LifeArmor$}点。 |
 | 雷兽 | `EvolveAnabolicSynthesis2` | 进化合成代谢 | - | `HaveUltraliskAnabolicSynthesis` | 提高雷兽在菌毯外的移动速度。 |
 | 雷兽 | `Frenzied` | 狂暴 | - | - | 免疫减速、昏迷、精神控制和位移效果。 |
 | 雷兽 | `HaveChitinousPlating` | 骨板 | - | `HaveHotSChitinousPlating` | 使雷兽的护甲值提高2点。 |
 | 雷兽 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
 | 雷兽 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
-| 雷兽 | `TissueAssimilation` | TissueAssimilation | - | `HaveHotSTissueAssimilation` | - |
-| 雷兽 | `-` | - | - | - | - |
-| 雷兽 | `BurrowChargeCampaign` | BurrowChargeCampaign | `UltraliskBurrowCharge,Execute` | - | - |
-| 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级14时解锁。 |
-| 跳虫 | `-` | - | - | `HaveMPMetabolicBoost` | - |
-| 跳虫 | `-` | - | - | - | - |
+| 雷兽 | `TissueAssimilation` | 组织同化 | - | `HaveHotSTissueAssimilation` | 雷兽普通攻击造成伤害的 40% 会转化为自身生命值。 |
+| 雷兽 | `BurrowChargeCampaign` | 潜地冲锋 | `UltraliskBurrowCharge,Execute` | - | 雷兽潜入地下并冲向目标；对应 13 级雷兽升级包解锁的主动技。 |
+| 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级13时解锁。 |
+| 跳虫 | `Requirement-only` | 代谢加速 | - | `HaveMPMetabolicBoost` | 代谢加速被动已命中；提高移动速度，当前没有单独的主动按钮 Face。 |
 | 跳虫 | `ZerglingArmorShred` | 切割利爪 | - | `HaveZerglingArmorShred` | 跳虫的攻击会使目标的护甲降低到0，持续{Behavior,ZerglingArmorShredTarget,Duration}秒。 |
 | 跳虫（排除：扎加拉污染） | `ZagaraVoidCoopZerglingDodge` | 闪避 | - | `HaveMasteryZagaraZerglingDodgeChance` | 扎加拉跳虫精通被动污染；不计入凯瑞甘满级单位技能。 |
-| 跳虫 | `-` | - | - | `HaveMPAdrenalGlands` | - |
+| 跳虫 | `Requirement-only` | 肾上腺体 | - | `HaveMPAdrenalGlands` | 肾上腺体被动已命中；提高移动与攻击节奏，当前没有单独的主动按钮 Face。 |
 | 跳虫（排除：非凯瑞甘） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异污染；`Baneling` 不在凯瑞甘满级 `units.json` / `roster.json` 主链中。 |
 | 跳虫 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
 | 跳虫 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
-| 跳虫（排除：非凯瑞甘） | `-` | - | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异污染；不计入凯瑞甘满级单位技能。 |
+| 跳虫（排除：非凯瑞甘） | `MorphToBaneling` | 变异为爆虫 | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异污染；不计入凯瑞甘满级单位技能。 |
 
 ### 进化/形态/切换候选
 
@@ -265,7 +311,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 雷兽 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
 | 雷兽 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
 | 雷兽 | `BurrowChargeCampaign` | BurrowChargeCampaign | `UltraliskBurrowCharge,Execute` | - | - |
-| 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级14时解锁。 |
+| 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级13时解锁。 |
 | 跳虫 | `-` | - | - | `HaveMPAdrenalGlands` | - |
 | 跳虫（排除：非凯瑞甘） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异污染；`Baneling` 不在凯瑞甘满级 `units.json` / `roster.json` 主链中。 |
 | 跳虫 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
@@ -278,6 +324,45 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 ## 04. 初始化基地与特殊建筑
 
 Owner：`CommanderBaseInitProfile`、`CommanderOpeningLoadoutProfile`、`CommanderSpecialStructureProfile`、`CommanderInitHookProfile`。
+
+### 2026-06-05 当前 Mod 地图初始化闭包复核
+
+| 项 | 当前 Mod 实现 | 代码 / 数据锚点 | 说明 |
+|---|---|---|---|
+| 开局基地 | `HatcheryKerrigan` | `CommanderAch/Kerrigan/CommandCenter` | 地图初始化通过 `CommanderAchUnit("CommandCenter")` 取私有主基地。 |
+| 开局工蜂 | `DroneKerrigan` | `CommanderAch/Kerrigan/Worker` | 统一初始化入口取私有工蜂。 |
+| 开局补给单位 | `OverlordKerrigan` | `CommanderAch/Kerrigan/SecondUnit` | 当前开局第二单位已不是公共王虫。 |
+| 英雄创建 | `K5Kerrigan` | `KerriganRuntimeInit(lp_createHero=true)` | 创建英雄时会直接在英雄点生成凯瑞甘本体。 |
+| 面板 / caster | `K5Kerrigan` 或 `CoopCasterKerrigan` | `lv_caster = UnitLastCreated(); CU_GPInit(..., lv_caster, null)` | 当前如果创建英雄，`CU_GPInit` 接到的是 `K5Kerrigan` 本体，不再额外补一个隐藏 caster。 |
+| 英雄复活锚点 | `HatcheryKerrigan -> LairKerrigan -> HiveKerrigan` | `FindFirstPlayerUnitOfType` in HeroRevive | 当前复活优先挂在凯瑞甘私有主基地链上。 |
+| 复活壳与计时 | `KerriganReviveCocoon`、`KerriganFirstReviveTimer`、`KerriganNormalReviveTimer` | Hero revive runtime | 复活结构和冷却行为也已单独给到凯瑞甘。 |
+
+地图级实证：
+
+- `欢迎来到丛林` 对应 [ttosh02.SC2Map/MapScript.galaxy](/D:/MyWork/新建文件夹/mom.report.client/src/MyMod/crys_the_swarm_reborn.SC2Mod/合作指挥官版起义狂潮/Maps/XM/ttosh02.SC2Map/MapScript.galaxy#L952)，`Intro Sequence` 直接调用 `libE0EAE146_gf_InitializeBase(PointFromId(922334820), 7, null, true)`。
+- `InitializeBase` 的 worker 循环是 `for (lv_i = 0; lv_i <= lp_worker; lv_i += 1)`，所以这张图传入 `7` 时，实际会创建 `8` 个 `DroneKerrigan`，再加 `1` 个 `HatcheryKerrigan`、`1` 个 `OverlordKerrigan`，并在同一 `lp_secondUnit` 点位继续走 `KerriganRuntimeInit(..., true)` 生成 `K5Kerrigan`。
+
+### 2026-06-05 当前 Mod 工蜂建造闭包复核
+
+`DroneKerrigan` 当前挂的是 `ZergBuildKerrigan`，工蜂直接可变形/建造的私有建筑如下：
+
+| Build 槽位 | 建筑 | 说明 |
+|---|---|---|
+| `Build1` | `HatcheryKerrigan` | 分矿主基地。 |
+| `Build3` | `ExtractorKerrigan` | 气矿。 |
+| `Build4` | `SpawningPoolKerrigan` | 跳虫 / 虫后前置。 |
+| `Build5` | `EvolutionChamberKerrigan` | 攻防与英雄升级前置。 |
+| `Build6` | `HydraliskDenKerrigan` | 刺蛇科技前置。 |
+| `Build7` | `SpireKerrigan` | 异龙科技前置。 |
+| `Build8` | `UltraliskCavernKerrigan` | 雷兽科技前置。 |
+| `Build10` | `NydusNetworkKerrigan` | 虫道网络。 |
+| `Build15` | `SpineCrawlerKerrigan` | 对地防御塔。 |
+| `Build16` | `SporeCrawlerKerrigan` | 对空防御塔。 |
+
+补充：
+
+- 主基地后续形态链不是工蜂直接建造，而是 `HatcheryKerrigan -> UpgradeToLairKerrigan -> LairKerrigan -> UpgradeToHiveKerrigan -> HiveKerrigan`。
+- 潜伏者巢穴也不是工蜂直接建造，而是 `HydraliskDenKerrigan -> UpgradeToLurkerDenKerrigan -> LurkerDenKerrigan`。
 
 ### 初始化建筑候选
 
@@ -299,6 +384,23 @@ Owner：`CommanderBaseInitProfile`、`CommanderOpeningLoadoutProfile`、`Command
 
 Owner：`CommanderRosterProfile`、`CommanderUnitFactoryProfile`、`CommanderUnitReplacementProfile`、`CommanderLevelStageRosterProfile`。
 
+### 2026-06-05 当前 Mod 基地产兵闭包复核
+
+| 生产入口 | Ability / 行为 | 产出 | 前置 |
+|---|---|---|---|
+| `HatcheryKerrigan` | `SpawnLarvaKerrigan` | `LarvaKerrigan` | 无 |
+| `LairKerrigan` | `SpawnLarvaKerrigan` | `LarvaKerrigan` | `UpgradeToLairKerrigan` |
+| `HiveKerrigan` | `SpawnLarvaKerrigan` | `LarvaKerrigan` | `UpgradeToHiveKerrigan` |
+| `LarvaKerrigan` | `LarvaTrainKerrigan,Train1` | `DroneKerrigan` | 无 |
+| `LarvaKerrigan` | `LarvaTrainKerrigan,Train2` | `ZerglingKerrigan` | `HaveSpawningPool` |
+| `LarvaKerrigan` | `LarvaTrainKerrigan,Train3` | `OverlordKerrigan` | 无 |
+| `LarvaKerrigan` | `LarvaTrainKerrigan,Train4` | `HydraliskKerrigan` | `HaveHydraliskDen` |
+| `LarvaKerrigan` | `LarvaTrainKerrigan,Train11` | `MutaliskKerrigan` | `HaveSpire` |
+| `LarvaKerrigan` | `LarvaTrainKerrigan,Train7` | `UltraliskKerrigan` | `HaveUltraliskCavern` |
+| `HatcheryKerrigan / LairKerrigan / HiveKerrigan` | `TrainQueenKerrigan,Train4` | `QueenCoopKerrigan` | `HaveSpawningPool` |
+
+结论：当前“基地出兵”不是主基地直接产出整套部队，而是主基地负责刷 `LarvaKerrigan`，真正的兵种生产由 `LarvaTrainKerrigan` 完成；主基地自己只额外挂了 `TrainQueenKerrigan` 这条虫后链。
+
 ### 当前 units.json 兵种清单
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
@@ -314,7 +416,7 @@ Owner：`CommanderRosterProfile`、`CommanderUnitFactoryProfile`、`CommanderUni
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 备注 |
 |---|---|---|---|---|
-| - | - | - | - | roster 中没有额外未分类对象。 |
+| 无额外对象 | 无 | 无 | 无 | roster 中没有额外未分类对象。 |
 
 口径：`units.json` 是当前提取出的兵种清单；`roster.json` 仍作为审计入口，用于发现满级后新增、替换、召唤或特殊形态对象。满级之后兵种会变化，测试台默认使用 `power_fusion` 而不是基础 `initial`。
 
@@ -357,14 +459,11 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 虫道网络 | `SetRallyPoint` | 设定集结点 | `Rally,Rally1` | - | 将单位派往指定地点，派往资源点的工作单位会自动开始采集。 |
 | 虫道网络 | `NydusCanalLoad` | 装载 | `NydusCanalTransport,Load` | - | 将单位装载进虫道网络。 |
 | 虫道网络 | `NydusWormIncreasedArmorPassive` | 钻地鳞片 | - | - | 坑道虫在从地面钻出时拥有{Behavior,NydusWormArmor,Modification.LifeArmorBonus+1}点护甲。 |
-| 虫道网络 | `-` | - | - | - | - |
-| 虫道网络 | `-` | - | `RallyNydus,Rally1` | - | - |
-| 虫道网络 | `ZagaraVoidCoopNydusWorm` | 召唤坑道虫 | - | - | 在目标位置召唤一只坑道虫。 / 友方地面单位可借助虫道网络在任何该玩家拥有的坑道虫或虫道网络间穿梭。生成菌毯，可满足附近异虫建筑的存活需求。 / 效果加成：异虫在菌毯上的移动速度更快。 |
+| 虫道网络 | `RallyNydus` | 内部集结变体 | `RallyNydus,Rally1` | - | 内部 rally 变体；用于虫道网络的集结逻辑，不是额外玩法按钮。 |
+| 虫道网络（排除：扎加拉污染） | `ZagaraVoidCoopNydusWorm` | 召唤坑道虫 | - | - | 共享扎加拉坑道按钮文本污染；当前凯瑞甘主链仍以 `SummonNydusWorm` / `BuildNydusCanal,Build1` 为准。 |
 | 脊针爬虫 | `SpineCrawlerUproot` | 站起 | `SpineCrawlerUproot,Execute` | - | 使脊针爬虫站起。站起的脊针爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
-| 脊针爬虫 | `-` | - | - | - | - |
 | 孢子爬虫 | `SporeCrawlerUproot` | 站起 | `SporeCrawlerUproot,Execute` | - | 使孢子爬虫站起。站起的孢子爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
 | 孢子爬虫 | `Detector` | 侦测单位 | - | `NotUnderConstruction` | 该单位能够侦测到隐形、潜地和幻像单位。 |
-| 孢子爬虫 | `-` | - | - | - | - |
 
 实现备注：建筑自己的技能、生产队列、变形、起飞/降落、特殊自动施法由建筑 profile 声明；地图和科技建筑不持有跨指挥官判断。
 
@@ -509,8 +608,8 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 - 精通 凯瑞甘 自动攻击伤害 (`MasteryKerriganAutoAttackDamage`)
 - 精通 凯瑞甘 能量恢复 (`MasteryKerriganEnergyRegen`)
 - 专精凯瑞甘定身波伤害 (`MasteryKerriganImmobilizationWaveDamage`)
+- 精通 凯瑞甘 研究速度和消耗 (`MasteryKerriganResearchSpeedandCost`)
 - 主要技能伤害和攻击速度 (`MasteryKerriganPrimarySpeedDamage`)
-- 还有 2 项，后续从源 JSON 继续展开。
 
 ### 特殊机制按钮候选
 
@@ -520,25 +619,25 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 刺蛇 | `BuildLurkerLocked` | 变异为潜伏者 | - | `KerriganLevel06` | 该单位将在指挥官等级5时解锁。 |
 | 刺蛇 | `FrenzyLocked` | 狂暴 | - | `KerriganLevel06` | 该技能将在指挥官等级6时解锁。 |
 | 异龙 | `SeveringGlave` | 削铁刃虫 | - | `HaveKerriganSunderingGlaive` | 异龙的每次后续弹射攻击不再降低伤害。 |
-| 异龙 | `-` | - | - | `HaveKerriganViciousGlaive` | - |
-| 雷兽 | `TissueAssimilation` | TissueAssimilation | - | `HaveHotSTissueAssimilation` | - |
-| 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级14时解锁。 |
-| 凯瑞甘 | `K5ZerglingRespawn` | K5ZerglingRespawn | - | - | - |
-| 凯瑞甘 | `K5Cooldowns` | K5Cooldowns | - | `HaveK5Cooldowns` | - |
+| 异龙 | `KerriganViciousGlaive` | 残暴龙爪 | - | `HaveKerriganViciousGlaive` | 异龙攻击会额外弹射 3 次，最多击中 6 个目标，且弹射距离更远。 |
+| 雷兽 | `TissueAssimilation` | 组织同化 | - | `HaveHotSTissueAssimilation` | 雷兽普通攻击造成伤害的 40% 会转化为自身生命值。 |
+| 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级13时解锁。 |
+| 凯瑞甘 | `K5ZerglingRespawn` | 跳虫重组 | - | - | 阵亡的跳虫会在主孵化场免费复活；每 30 秒至多重组一批阵亡跳虫，直到全部回到战场。 |
+| 凯瑞甘 | `K5Cooldowns` | 技能专精 | - | `HaveK5Cooldowns` | 凯瑞甘的技能冷却时间和能量消耗降低 20%。 |
 | 凯瑞甘 | `CommanderKerriganKerriganEnergyRegeneration` | 刀锋女王 | - | `HaveKerriganVoidCoopEnergyRegen` | 凯瑞甘的能量恢复速度提高50%。 |
 | 凯瑞甘 | `KerriganChainLightning` | 连锁反应 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
-| 凯瑞甘 | `SpawnBanelings` | SpawnBanelings | `SpawnBanelings,Execute` | - | - |
-| 凯瑞甘 | `K5DropPods` | K5DropPods | `K5DropPods,Execute` | - | - |
-| 凯瑞甘 | `K5Fury` | K5Fury | - | `HaveK5Fury` | - |
-| 凯瑞甘 | `PrimalSlash` | - | `PrimalSlash,Execute` | - | 凯瑞甘跳向目标并造成{Effect,PrimalSlash,Amount}点伤害。可以不指定目标发动技能来迅速移动。 |
-| 凯瑞甘 | `MindBolt` | - | `MindBolt,Execute` | - | - |
-| 凯瑞甘 | `K5HeroicFortitude` | K5HeroicFortitude | - | `HaveK5HeroicFortitude` | - |
-| 凯瑞甘 | `PsiStrike` | - | `PsiStrikeWalk,Execute` | - | 凯瑞甘飞速掠过敌人，并对其行进路线上的所有敌人造成{Effect,PsiStrikeDamage,Amount}点伤害。 |
-| 凯瑞甘 | `PsionicLift` | - | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
+| 凯瑞甘 | `SpawnBanelings` | 孵化爆虫 | `SpawnBanelings,Execute` | - | 官方 `heroes.json`、`roster.json` 和 raw unit card 都收录该按钮；凯瑞甘会召唤 6 只限时生命的爆虫。 |
+| 凯瑞甘 | `K5DropPods` | 空投囊 | `K5DropPods,Execute` | - | 官方 hero/roster/raw unit card 都收录该按钮；向目标区域投送限时生命的原始异虫部队，内容包括跳虫、蟑螂和刺蛇。 |
+| 凯瑞甘 | `K5Fury` | 狂怒 | - | `HaveK5Fury` | 凯瑞甘每次攻击都会暂时提高攻击速度，可叠层到更高上限。 |
+| 凯瑞甘 | `PrimalSlash` | 跳击 | `PrimalSlash,Execute` | - | 凯瑞甘跳向目标并造成{Effect,PrimalSlash,Amount}点伤害。可以不指定目标发动技能来迅速移动。 |
+| 凯瑞甘 | `MindBolt` | 动能冲击 | `MindBolt,Execute` | - | 官方 hero/roster/raw unit card 都能看到该按钮；威望 3 会显式启用此技。凯瑞甘远程对目标单位或建筑造成{Effect,MindBoltDamage,Amount}点伤害。 |
+| 凯瑞甘 | `K5HeroicFortitude` | 英勇刚毅 | - | `HaveK5HeroicFortitude` | 凯瑞甘最大生命值提高 200 点，生命恢复速度提高 100%。 |
+| 凯瑞甘 | `PsiStrike` | 灵能位移 | `PsiStrikeWalk,Execute` | - | 凯瑞甘飞速掠过敌人，并对其行进路线上的所有敌人造成{Effect,PsiStrikeDamage,Amount}点伤害。 |
+| 凯瑞甘 | `PsionicLift` | 粉碎勒握 | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
 | 凯瑞甘 | `KerriganVoidCoopEconDrop` | 吸收光环 | `KerriganVoidCoopEconDrop,Execute` | - | 附近所有被消灭的敌人掉落资源。效果持续{Behavior,KerriganVoidCoopEconDropCaster,Duration}秒。 |
-| 凯瑞甘 | `PrimalHeal` | PrimalHeal | `PrimalHeal,Execute` | - | - |
-| 凯瑞甘 | `WildMutation` | WildMutation | `WildMutation,Execute` | - | - |
-| 凯瑞甘 | `ChainReaction` | ChainReaction | - | `HaveK5ChainLightning` | - |
+| 凯瑞甘 | `PrimalHeal` | 愈合 | `PrimalHeal,Execute` | - | 为凯瑞甘恢复大量生命值，为附近友方生物单位恢复较少生命值，并在后续 15 秒内继续回复一部分治疗量。 |
+| 凯瑞甘 | `WildMutation` | 野性突变 | `WildMutation,Execute` | - | 使目标区域内的友方异虫单位提高最大生命值和攻击速度；对空中单位或英雄单位无效。 |
+| 凯瑞甘 | `ChainReaction` | 连锁反应 | - | `HaveK5ChainLightning` | 凯瑞甘的普通攻击会弹射到附近额外目标，最多可命中 4 个追加目标。 |
 | 凯瑞甘 | `K5CooldownsLocked` | 技能专精 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
 
 实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
@@ -553,9 +652,9 @@ Owner：`CommanderPersonalMechanicProfile`、`CommanderPersonalMechanicEffectPro
 
 | 威望 ID | 名称 | Primary Upgrade | 禁用单位 | 启用单位 | 禁用 Ability | 补充 Upgrade |
 |---|---|---|---|---|---|---|
-| `CommanderPrestigeKerriganCreep` | - | `CommanderPrestigeKerriganCreep` | `NydusNetwork` | - | - | `KerriganCreep1` |
-| `CommanderPrestigeKerriganAbilities` | - | `CommanderPrestigeKerriganAbilities` | - | - | - | `KerriganAbilities1`, `KerriganAbilities2`, `KerriganAbilities3` |
-| `CommanderPrestigeKerriganAssimilationAura` | - | `CommanderPrestigeKerriganAssimilationAura` | - | - | `PsiStrikeWalk:`, `PrimalSlash:` | - |
+| `CommanderPrestigeKerriganCreep` | 恶毒族长 | `CommanderPrestigeKerriganCreep` | `NydusNetwork` | 无 | 无 | `KerriganCreep1` |
+| `CommanderPrestigeKerriganAbilities` | 人类的愚行 | `CommanderPrestigeKerriganAbilities` | 无 | 无 | 无 | `KerriganAbilities1`, `KerriganAbilities2`, `KerriganAbilities3` |
+| `CommanderPrestigeKerriganAssimilationAura` | 荒寂女王 | `CommanderPrestigeKerriganAssimilationAura` | 无 | 无 | `PsiStrikeWalk:`, `PrimalSlash:` | 无 |
 
 融合规则：只取正面收益，跳过负面代价、禁用项、费用/冷却/上限惩罚；不能直接启用官方 `PlayerPrestige`。禁用项在本表中保留是为了审计，不代表最终要执行。
 
@@ -598,12 +697,10 @@ personal_mechanic_smoke
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Kerrigan module=<module> object=<object> result=needs-casc-audit
 ```
 
-## 第一轮待审计项
+## 当前剩余风险 / 需实机验证项
 
-- 顶部技能的 caster、按钮、冷却、充能、目标转发闭包。
-- 英雄或特殊英雄的 Unit、Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包。
-- `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系。
-- 6 项精通的真实作用对象和最终数值。
-- 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
-- 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。
-- 特殊机制、英雄成长和个性化机制是否需要 runtime hook。
+- `LarvaTrainKerrigan` 的普通量产雷兽是否会在 Lv14 后稳定切到 `HotSTorrasque`，当前静态链只确认了暴龙兽复活闭包本身存在。
+- 顶部技能与隐藏 caster 的玩家冷却、充能、目标转发和地图触发接线，仍需对照 `[XM_DBG]` 日志或实机测试。
+- `SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation` 这些官方 hero/raw card 继承技能，当前文档已确认按钮与数据源存在，但 old-line Mod 里是否全部“可点击且生效”仍需实机验证。
+- `power_fusion` 最终 roster 与 `level15` roster 的替换/变体关系，仍应结合地图初始化和运输场景继续校验。
+- 6 项精通与 3 个威望的正向融合数值，当前已完成静态提取，最终 runtime 套用幅度仍需落日志核对。

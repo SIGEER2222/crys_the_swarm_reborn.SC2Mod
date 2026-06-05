@@ -702,6 +702,7 @@ bool gt_Initialization_Func (bool testConds, bool runActions) {
 
     PlayerModifyPropertyInt(gv_p1_USER, c_playerPropMinerals, c_playerPropOperSetTo, 300);
     PlayerModifyPropertyInt(gv_p1_USER, c_playerPropVespene, c_playerPropOperSetTo, 100);
+    libE0EAE146_gf_SeedDefaultCommanderBankIfEmpty("Raynor");
     libE0EAE146_gf_Initialize(false);
     TriggerExecute(gt_Init01Technology, true, false);
     TriggerExecute(gt_Init02Players, true, true);

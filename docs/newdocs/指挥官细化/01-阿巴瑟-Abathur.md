@@ -19,6 +19,30 @@
 - 2026-06-03 修正：官方 `buildings.json` 只列出 `SpineCrawler` 和 `SporeCrawler`。`NydusNetwork` 即使在共享 `ZergBuild` 或继承链里有痕迹，也不计入阿巴瑟有效建筑/科技链。
 - 2026-06-04 当前 Mod runtime 已按满级口径收敛：`XMFinal CommanderRuntimeRoster` 不再把 `Roach` / `RoachCorpser` 当正链单位，只保留 `RoachVile -> MorphRoachVileToRavager -> RavagerAbathur`，并显式纳入 `SwarmHostAbathurBurrowed`、`RavagerAbathurBurrowed`、`ToxicNest`、`ToxicNestBurrowed`。测试台单位名册和能力 smoke 也同步切到 `AbathurGuardian / DevourerAbathur / MutaliskAbathur / SwarmHostAbathur / ViperAbathur / BrutaliskAbathur` 等当前 Mod ID；后续不要再把 `Roach/RoachCorpser` 补回 runtime 正链。
 
+## 当前 Mod 实现闭包复核（2026-06-05）
+
+范围：这里只复核官方合作指挥官阿巴瑟 `XMAbathur.SC2Mod`，不包含重生阿巴瑟 `XMAbathurReborn.SC2Mod`。
+
+### 已闭合链路
+
+- 依赖入口：`XMFinal.SC2Mod/DocumentHeader` 与 `DocumentInfo` 已加载 `file:Mods\XM\XMAbathur.SC2Mod`；`LibE0EAE146.galaxy` 已 include `LibE0EAE146_AbathurRuntime`，并在 `InitializeBase` 的 `Abathur` 分支调用 `libE0EAE146_gf_AbathurRuntimeInit(1, lp_secondUnit, lp_createHero)`。
+- 开局三件套：`CommanderAch/Abathur` 指向 `HatcheryAbathur / DroneAbathur / OverlordAbathur`，不是通用 `Hatchery / Drone / Overlord`。
+- 私有幼虫链：`HatcheryAbathur / LairAbathur / HiveAbathur` 挂载 `SpawnLarvaAbathur`；`SpawnLarvaAbathur` 生成 `LarvaAbathur`；`LarvaAbathur` 挂载 `LarvaTrainAbathur` 与 `LarvaTrainSwarmAbathur`。
+- 工蜂建造链：`DroneAbathur` 使用 `ZergBuildAbathur`；`Build10` 已 removed，排除 `NydusNetwork` 与 `GreaterNydusWorm`，不允许把共享坑道链计入阿巴瑟正链。阿巴瑟可建造链保留 `HatcheryAbathur / ExtractorAbathur / SpawningPoolAbathur / EvolutionChamberAbathur / RoachWarrenAbathur / InfestationPitAbathur / SpireAbathur / SpineCrawlerAbathur / SporeCrawlerAbathur`。
+- 满级训练链：`LarvaTrainSwarmAbathur,Train1` 生产 `RoachVile`，不生产通用 `Roach` 或 `RoachCorpser`；`RoachVile` 通过 `MorphRoachVileToRavager,Train1` 变异为 `RavagerAbathur`。
+- 破坏者技能链：`RavagerAbathur` 挂载 `RavagerAbathurCorrosiveBile`、`BurrowRavagerAbathurDown`；`RavagerAbathurBurrowed` 挂载 `BurrowRavagerAbathurUp`。腐蚀胆汁使用 `RavagerAbathurCorrosiveBile,Execute`，有独立按钮、冷却与效果入口，不接普通 `RavagerCorrosiveBile`。
+- 满级/精通兜底：`LibE0EAE146_AbathurRuntime.galaxy` 在初始化时强制 `CommanderLevel=16`、`AbathurCommander=1`，并补齐阿巴瑟 15 级核心升级与六项精通 30 点，避免 Bank 未满级时出现按钮显示但 Requirement 不满足。
+- 污染防线：runtime 显式禁用 `NydusNetwork / GreaterNydusWorm / Roach / RoachCorpser / Ravager`，同时显式允许 `HatcheryAbathur / LarvaAbathur / DroneAbathur / RoachVile / RavagerAbathur / RavagerAbathurBurrowed / ToxicNest / ToxicNestBurrowed` 等正链单位。
+
+### 本次根因
+
+旧判断只证明了 `CommanderAch` 和 Catalog 私有入口存在，没有证明 `XMFinal` live dependency、`InitializeBase` runtime 分支、满级升级、精通和污染防线同时生效。阿巴瑟旧 runtime 只创建 `CoopCasterAbathur`、初始化面板和生物质；如果玩家 Bank 不是满级，`RoachVile`、破坏者、毒巢、共生体、精通等 Requirement 仍可能缺升级，表现就是按钮可见但点击后没有完整效果。
+
+### 仍保留的边界
+
+- 当前不直接启用 `CommanderPrestigeAbathurBiomass`、`CommanderPrestigeAbathurDeepTunnel`、`CommanderPrestigeAbathurUltEvo` 这些官方威望主升级，因为它们同时携带负面效果或禁用终极进化。威望正向融合如果以后要做，应单独做 shim，而不是直接开官方主升级。
+- 本轮是静态闭包验证，不等同于 SC2 编辑器内实机测试。实机仍需重点测 `RoachVile -> RavagerAbathur`、腐蚀胆汁、潜地/出地、毒巢、愈合、生物质、终极进化。
+
 ## 误判复盘（2026-06-03）
 
 这次把 `NydusNetwork` 混入阿巴瑟链路的直接原因，是补官方生产闭包时读到了共享原始镜像里的 `ZergBuild,Build10`、`ArmyCategory NydusNetwork`、`TechUnit/NydusNetwork` 和相关 Unit/Effect/Upgrade 定义，却没有再用 `commanders/Abathur/buildings.json` 与满级 `power_fusion` 有效名册做归属过滤。

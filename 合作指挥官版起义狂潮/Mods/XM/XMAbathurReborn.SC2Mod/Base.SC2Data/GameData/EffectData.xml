@@ -739,19 +739,19 @@
   <CEffectEnumArea id="QueenMPEnsnareSearch">
     <AreaArray index="0" Radius="3" />
   </CEffectEnumArea>
-  <CEffectCreatePersistent id="RavagerCorrosiveBileAoeCP">
+  <CEffectCreatePersistent id="RavagerCorrosiveBileAoeCPAbathurReborn" parent="RavagerCorrosiveBileAoeCP">
     <EditorCategories value="Race:Zerg" />
     <InitialEffect value="RavagerCorrosiveBileAoeLaunchUp" />
     <ExpireDelay value="0.625" />
     <ExpireEffect value="RavagerCorrosiveBileAoeLaunchDown" />
-    <AINotifyEffect value="RavagerCorrosiveBileAoeSearch" />
+    <AINotifyEffect value="RavagerCorrosiveBileAoeSearchAbathurReborn" />
   </CEffectCreatePersistent>
-  <CEffectEnumArea id="RavagerCorrosiveBileAoeCursorDummy">
+  <CEffectEnumArea id="RavagerCorrosiveBileAoeCursorDummyAbathurReborn" parent="RavagerCorrosiveBileAoeCursorDummy">
     <EditorCategories value="Race:Zerg" />
     <SearchFilters value="-;Missile,Stasis,Dead,Hidden,Invulnerable" />
     <AreaArray Radius="0.5" />
   </CEffectEnumArea>
-  <CEffectDamage id="RavagerCorrosiveBileAoeDamage">
+  <CEffectDamage id="RavagerCorrosiveBileAoeDamageAbathurReborn" parent="RavagerCorrosiveBileAoeDamage">
     <ValidatorArray value="NotInvulnerable" />
     <EditorCategories value="Race:Zerg" />
     <ResponseFlags index="Acquire" value="1" />
@@ -759,13 +759,13 @@
     <Flags index="Notification" value="1" />
     <Amount value="60" />
   </CEffectDamage>
-  <CEffectSet id="RavagerCorrosiveBileAoeLaunchSet">
+  <CEffectSet id="RavagerCorrosiveBileAoeLaunchSetAbathurReborn" parent="RavagerCorrosiveBileAoeLaunchSet">
     <EditorCategories value="Race:Zerg" />
-    <EffectArray value="RavagerCorrosiveBileAoeCP" />
-    <EffectArray value="RavagerCorrosiveBileAoeWarningDummySearch" />
+    <EffectArray value="RavagerCorrosiveBileAoeCPAbathurReborn" />
+    <EffectArray value="RavagerCorrosiveBileAoeWarningDummySearchAbathurReborn" />
     <TargetLocationType value="Point" />
   </CEffectSet>
-  <CEffectEnumArea id="RavagerCorrosiveBileAoeSearch">
+  <CEffectEnumArea id="RavagerCorrosiveBileAoeSearchAbathurReborn" parent="RavagerCorrosiveBileAoeSearch">
     <EditorCategories value="Race:Zerg" />
     <SearchFilters value="-;Player,Ally,Missile,Stasis,Dead,Hidden" />
     <AreaArray Radius="0.5" Effect="RavagerCorrosiveBileAoeSet" />
@@ -773,7 +773,7 @@
     <AINotifyFlags index="HurtEnemy" value="1" />
     <AINotifyFlags index="MajorDanger" value="1" />
   </CEffectEnumArea>
-  <CEffectEnumArea id="RavagerCorrosiveBileAoeWarningDummySearch">
+  <CEffectEnumArea id="RavagerCorrosiveBileAoeWarningDummySearchAbathurReborn" parent="RavagerCorrosiveBileAoeWarningDummySearch">
     <EditorCategories value="Race:Zerg" />
     <SearchFilters value="-;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable" />
     <AreaArray Radius="1" Effect="RavagerCorrosiveBileAoeWarningDummyDamage" />

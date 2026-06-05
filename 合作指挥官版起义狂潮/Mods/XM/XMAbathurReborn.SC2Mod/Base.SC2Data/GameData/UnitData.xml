@@ -653,8 +653,8 @@
     <EditorCategories value="ObjectType:Structure,ObjectFamily:Melee" />
     <TechAliasArray value="Alias_RoachWarren" />
     <GlossaryPriority value="33" />
-    <TechTreeUnlockedUnitArray value="Roach" />
-    <TechTreeUnlockedUnitArray value="Ravager" />
+    <TechTreeUnlockedUnitArray value="RoachAbathurReborn" />
+    <TechTreeUnlockedUnitArray value="RavagerAbathurReborn" />
   </CUnit>
   <CUnit id="GreaterSpire">
     <CardLayouts index="0">
@@ -790,7 +790,7 @@
     <KillDisplay value="Default" />
     <GlossaryPriority value="3" />
   </CUnit>
-  <CUnit id="HotSSplitterlingBig">
+  <CUnit id="HotSSplitterlingBigAbathurReborn" parent="HotSSplitterlingBig">
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="NoScrapDrop" />
     <AbilArray Link="Explode" />
@@ -879,7 +879,7 @@
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="116" />
   </CUnit>
-  <CUnit id="HunterKiller">
+  <CUnit id="HunterKillerAbathurReborn" parent="HunterKiller">
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="ZagaraOwned" />
     <LifeStart value="150" />
@@ -904,7 +904,7 @@
     <DamageDealtXP value="0" />
     <DamageTakenXP value="0" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
-    <HotkeyAlias value="HunterKiller" />
+    <HotkeyAlias value="HunterKillerAbathurReborn" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <GlossaryPriority value="7" />
     <SubgroupPriority value="157" />
@@ -1498,7 +1498,7 @@
     <SubgroupAlias value="NovaBoombot" />
     <TechAliasArray value="Alias_NovaBoombot" />
     <GlossaryStrongArray value="Marauder" />
-    <GlossaryStrongArray value="Roach" />
+    <GlossaryStrongArray value="RoachAbathurReborn" />
     <GlossaryStrongArray value="Immortal" />
     <KillDisplay value="Never" />
     <RankDisplay value="Always" />
@@ -1672,10 +1672,10 @@
     <GlossaryCategory value="Unit/Category/ZergUnits" />
     <GlossaryPriority value="217" />
     <GlossaryStrongArray value="Hellion" />
-    <GlossaryStrongArray value="Mutalisk" />
+    <GlossaryStrongArray value="MutaliskAbathurReborn" />
     <GlossaryStrongArray value="VoidRay" />
     <GlossaryWeakArray value="Marine" />
-    <GlossaryWeakArray value="Zergling" />
+    <GlossaryWeakArray value="ZerglingAbathurReborn" />
     <GlossaryWeakArray value="Zealot" />
     <HotkeyCategory value="Unit/Category/ZergUnits" />
     <KillDisplay value="Always" />
@@ -1746,21 +1746,21 @@
     <RankDisplay value="Always" />
     <AIEvaluateAlias value="Queen" />
   </CUnit>
-  <CUnit id="Ravager">
+  <CUnit id="RavagerAbathurReborn" parent="Ravager">
     <ScoreMake value="0" />
     <ScoreKill value="0" />
     <CostResource index="Vespene" value="0" />
     <CostResource index="Terrazine" value="50" />
     <BehaviorArray Link="AllUnitBehaviorController" />
     <SubgroupPriority value="119" />
-    <AbilArray Link="RavagerCorrosiveBile" />
+    <AbilArray Link="RavagerCorrosiveBileAbathurReborn" />
     <CardLayouts index="0">
-      <LayoutButtons Face="RavagerCorrosiveBile" Type="AbilCmd" AbilCmd="RavagerCorrosiveBile,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="RavagerCorrosiveBile" Type="AbilCmd" AbilCmd="RavagerCorrosiveBileAbathurReborn,Execute" Row="2" Column="0" />
     </CardLayouts>
     <TacticalAIThink value="AIThinkRavager" />
     <HotkeyCategory value="" />
   </CUnit>
-  <CUnit id="RavagerAbathur">
+  <CUnit id="RavagerAbathurLegacyAbathurReborn" parent="RavagerAbathur">
     <DeathRevealRadius value="3" />
     <Race value="Zerg" />
     <Mob value="Multiplayer" />
@@ -1793,8 +1793,8 @@
     <AbilArray Link="attack" />
     <AbilArray Link="move" />
     <AbilArray Link="que1" />
-    <AbilArray Link="BurrowRavagerAbathurDown" />
-    <AbilArray Link="RavagerAbathurCorrosiveBile" />
+    <AbilArray Link="BurrowRavagerAbathurDownLegacyAbathurReborn" />
+    <AbilArray Link="RavagerAbathurCorrosiveBileLegacyAbathurReborn" />
     <AbilArray Link="EvolveToBrutaliskRavager" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <BehaviorArray Link="AllUnitBehaviorController" />
@@ -1806,8 +1806,8 @@
       <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2" />
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
       <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3" />
-      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurDown,Execute" Row="2" Column="4" />
-      <LayoutButtons Face="RavagerAbathurCorrosiveBile" Type="AbilCmd" AbilCmd="RavagerAbathurCorrosiveBile,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="BurrowDown" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurDownLegacyAbathurReborn,Execute" Row="2" Column="4" />
+      <LayoutButtons Face="RavagerAbathurCorrosiveBile" Type="AbilCmd" AbilCmd="RavagerAbathurCorrosiveBileLegacyAbathurReborn,Execute" Row="2" Column="0" />
       <LayoutButtons Face="CorrosiveBileRadiusIncrease" Type="Passive" Requirements="HaveCorrosiveBileRadiusIncrease" Row="1" Column="0" />
       <LayoutButtons Face="CorrosiveBileDamageIncrease" Type="Passive" Requirements="HaveCorrosiveBileDamageIncrease" Row="1" Column="1" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRavager,Train1" Row="2" Column="2" />
@@ -1829,14 +1829,14 @@
     <GlossaryStrongArray value="LurkerMP" />
     <GlossaryStrongArray value="Sentry" />
     <GlossaryWeakArray value="Marauder" />
-    <GlossaryWeakArray value="Ultralisk" />
+    <GlossaryWeakArray value="UltraliskAbathurReborn" />
     <GlossaryWeakArray value="Immortal" />
     <HotkeyCategory value="Unit/Category/ZergUnits" />
     <KillDisplay value="Always" />
     <RankDisplay value="Always" />
-    <Description value="Button/Tooltip/Ravager" />
+    <Description value="Button/Tooltip/RavagerAbathurReborn" />
   </CUnit>
-  <CUnit id="RavagerAbathurBurrowed">
+  <CUnit id="RavagerAbathurBurrowedLegacyAbathurReborn" parent="RavagerAbathurBurrowed">
     <DeathRevealRadius value="3" />
     <Race value="Zerg" />
     <Mob value="Multiplayer" />
@@ -1864,7 +1864,7 @@
     <CostResource index="Minerals" value="125" />
     <CostResource index="Vespene" value="75" />
     <AttackTargetPriority value="20" />
-    <AbilArray Link="BurrowRavagerAbathurUp" />
+    <AbilArray Link="BurrowRavagerAbathurUpLegacyAbathurReborn" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <AbilArray Link="que1" />
     <BehaviorArray Link="AllUnitBehaviorController" />
@@ -1872,7 +1872,7 @@
     <CardLayouts>
       <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4" />
       <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4" />
-      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurUp,Execute" Row="2" Column="4" />
+      <LayoutButtons Face="BurrowUp" Type="AbilCmd" AbilCmd="BurrowRavagerAbathurUpLegacyAbathurReborn,Execute" Row="2" Column="4" />
       <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0" />
       <LayoutButtons>
         <Face value="StopRoachBurrowed" />
@@ -1896,16 +1896,16 @@
     <SubgroupPriority value="119" />
     <MinimapRadius value="0.75" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
-    <LeaderAlias value="Ravager" />
-    <HotkeyAlias value="RavagerAbathur" />
+    <LeaderAlias value="RavagerAbathurReborn" />
+    <HotkeyAlias value="RavagerAbathurLegacyAbathurReborn" />
     <KillDisplay value="Always" />
     <RankDisplay value="Always" />
-    <Description value="Button/Tooltip/Ravager" />
-    <SelectAlias value="RavagerAbathur" />
-    <SubgroupAlias value="RavagerAbathur" />
+    <Description value="Button/Tooltip/RavagerAbathurReborn" />
+    <SelectAlias value="RavagerAbathurLegacyAbathurReborn" />
+    <SubgroupAlias value="RavagerAbathurLegacyAbathurReborn" />
     <HotkeyCategory value="Unit/Category/ZergUnits" />
   </CUnit>
-  <CUnit id="RavagerCocoon">
+  <CUnit id="RavagerCocoonLegacyAbathurReborn" parent="RavagerCocoon">
     <AbilArray index="1" Link="que1" />
     <CardLayouts index="0">
       <LayoutButtons index="0" AbilCmd="que1,CancelLast" />
@@ -2472,7 +2472,7 @@
   <CUnit id="AutoTurret">
     <RepairTime value="22.5" />
   </CUnit>
-  <CUnit id="Baneling">
+  <CUnit id="BanelingAbathurReborn" parent="Baneling">
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="SupplyLT1" />
     <BehaviorArray Link="NoScrapDrop" />
@@ -2595,7 +2595,7 @@
     <GlossaryPriority value="221" />
     <GlossaryStrongArray value="Ghost" />
     <GlossaryStrongArray value="Stalker" />
-    <GlossaryWeakArray value="Hydralisk" />
+    <GlossaryWeakArray value="HydraliskAbathurReborn" />
     <GlossaryWeakArray value="Phoenix" />
     <GlossaryWeakArray value="Marine" />
     <HotkeyCategory value="Unit/Category/TerranCovertOps" />
@@ -2726,7 +2726,7 @@
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <GlossaryPriority value="30" />
   </CUnit>
-  <CUnit id="BroodLord">
+  <CUnit id="BroodLordAbathurReborn" parent="BroodLord">
     <!--BehaviorArray Link="Supply4"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <AbilArray Link="AbathurBroodLordDoubleSacOvipositionPurchase" />
@@ -3494,7 +3494,7 @@
   <CUnit id="Defiler">
     <SubgroupPriority value="100" />
   </CUnit>
-  <CUnit id="DefilerMP">
+  <CUnit id="DefilerMPAbathurReborn" parent="DefilerMP">
     <AbilArray Link="InfestorConsumption" />
     <AbilArray Link="EvolveToBrutaliskDefiler" />
     <AbilArray Link="que1" />
@@ -3557,7 +3557,7 @@
     <HotkeyCategory value="Unit/Category/ZergPrimal" />
     <Radius value="0.75" />
   </CUnit>
-  <CUnit id="Devourer">
+  <CUnit id="DevourerAbathurReborn" parent="Devourer">
     <AbilArray Link="AbathurDevourerAcidCloudSacsPurchase" />
     <AbilArray Link="AbathurDevourerCorrosiveGlandsPurchase" />
     <AbilArray Link="AbathurDevourerStomachOverloadPurchase" />
@@ -4026,7 +4026,7 @@
     <EquipmentArray Weapon="FenixClolarionBombersDummy" />
     <GlossaryCategory value="Unit/Category/ProtossUnits" />
     <GlossaryPriority value="9" />
-    <GlossaryStrongArray value="Mutalisk" />
+    <GlossaryStrongArray value="MutaliskAbathurReborn" />
     <GlossaryStrongArray value="Phoenix" />
     <GlossaryWeakArray value="VikingFighter" />
     <GlossaryWeakArray value="VoidRay" />
@@ -4116,10 +4116,10 @@
     <GlossaryPriority value="4" />
     <GlossaryStrongArray value="Marauder" />
     <GlossaryStrongArray value="Immortal" />
-    <GlossaryStrongArray value="Hydralisk" />
+    <GlossaryStrongArray value="HydraliskAbathurReborn" />
     <GlossaryWeakArray value="Hellion" />
     <GlossaryWeakArray value="Colossus" />
-    <GlossaryWeakArray value="Baneling" />
+    <GlossaryWeakArray value="BanelingAbathurReborn" />
     <HotkeyCategory value="Unit/Category/ProtossPurifier" />
     <Fidget>
       <ChanceArray index="Anim" value="20" />
@@ -4197,11 +4197,11 @@
     <GlossaryCategory value="Unit/Category/ProtossUnits" />
     <GlossaryPriority value="8" />
     <GlossaryStrongArray value="Battlecruiser" />
-    <GlossaryStrongArray value="BroodLord" />
+    <GlossaryStrongArray value="BroodLordAbathurReborn" />
     <GlossaryWeakArray value="VikingFighter" />
     <GlossaryWeakArray value="Goliath" />
     <GlossaryWeakArray value="MissileTurret" />
-    <GlossaryWeakArray value="Mutalisk" />
+    <GlossaryWeakArray value="MutaliskAbathurReborn" />
     <BehaviorArray Link="AllUnitBehaviorController" />
     <ReviveInfoBase>
       <Charge Link="Abil/KerriganRevive" />
@@ -4285,10 +4285,10 @@
     <GlossaryPriority value="6" />
     <GlossaryStrongArray value="SiegeTankSieged" />
     <GlossaryStrongArray value="Stalker" />
-    <GlossaryStrongArray value="Roach" />
+    <GlossaryStrongArray value="RoachAbathurReborn" />
     <GlossaryWeakArray value="Marine" />
     <GlossaryWeakArray value="Zealot" />
-    <GlossaryWeakArray value="Zergling" />
+    <GlossaryWeakArray value="ZerglingAbathurReborn" />
     <HotkeyCategory value="Unit/Category/ProtossPurifier" />
     <Fidget>
       <ChanceArray index="Anim" value="5" />
@@ -4372,10 +4372,10 @@
     <TacticalAIThink value="AIThinkFenixTalisAdept" />
     <GlossaryCategory value="Unit/Category/ProtossUnits" />
     <GlossaryPriority value="5" />
-    <GlossaryStrongArray value="Zergling" />
+    <GlossaryStrongArray value="ZerglingAbathurReborn" />
     <GlossaryStrongArray value="Stalker" />
     <GlossaryStrongArray value="Marine" />
-    <GlossaryWeakArray value="Roach" />
+    <GlossaryWeakArray value="RoachAbathurReborn" />
     <GlossaryWeakArray value="Zealot" />
     <GlossaryWeakArray value="Marauder" />
     <HotkeyCategory value="Unit/Category/ProtossPurifier" />
@@ -4464,7 +4464,7 @@
     <GlossaryCategory value="Unit/Category/ProtossUnits" />
     <GlossaryPriority value="7" />
     <GlossaryStrongArray value="Marine" />
-    <GlossaryStrongArray value="Zergling" />
+    <GlossaryStrongArray value="ZerglingAbathurReborn" />
     <GlossaryStrongArray value="Zealot" />
     <GlossaryWeakArray value="VikingFighter" />
     <GlossaryWeakArray value="Corruptor" />
@@ -4747,10 +4747,10 @@
     <GlossaryPriority value="181" />
     <GlossaryStrongArray value="Battlecruiser" />
     <GlossaryStrongArray value="Carrier" />
-    <GlossaryStrongArray value="BroodLord" />
+    <GlossaryStrongArray value="BroodLordAbathurReborn" />
     <GlossaryWeakArray value="Marauder" />
     <GlossaryWeakArray value="Zealot" />
-    <GlossaryWeakArray value="Zergling" />
+    <GlossaryWeakArray value="ZerglingAbathurReborn" />
     <Fidget>
       <ChanceArray index="Anim" value="33" />
       <ChanceArray index="Idle" value="33" />
@@ -4931,9 +4931,9 @@
     <TacticalAIThink value="AIThinkHellionTank" />
     <GlossaryCategory value="Unit/Category/TerranUnits" />
     <GlossaryPriority value="81" />
-    <GlossaryStrongArray value="Zergling" />
+    <GlossaryStrongArray value="ZerglingAbathurReborn" />
     <GlossaryStrongArray value="Zealot" />
-    <GlossaryWeakArray value="Baneling" />
+    <GlossaryWeakArray value="BanelingAbathurReborn" />
     <GlossaryWeakArray value="Stalker" />
     <GlossaryWeakArray value="Marauder" />
     <HotkeyCategory value="Unit/Category/TerranCovertOps" />
@@ -5124,7 +5124,7 @@
     <GlossaryCategory value="Unit/Category/TerranUnits" />
     <GlossaryPriority value="80" />
     <GlossaryStrongArray value="Thor" />
-    <GlossaryStrongArray value="Mutalisk" />
+    <GlossaryStrongArray value="MutaliskAbathurReborn" />
     <GlossaryStrongArray value="Carrier" />
     <GlossaryWeakArray value="VikingFighter" />
     <GlossaryWeakArray value="Corruptor" />
@@ -5329,7 +5329,7 @@
     <GlossaryCategory value="Unit/Category/TerranUnits" />
     <GlossaryPriority value="70" />
     <GlossaryStrongArray value="Banshee" />
-    <GlossaryStrongArray value="Roach" />
+    <GlossaryStrongArray value="RoachAbathurReborn" />
     <GlossaryStrongArray value="DarkTemplar" />
     <GlossaryWeakArray value="Ghost" />
     <GlossaryWeakArray value="Corruptor" />
@@ -5747,7 +5747,7 @@
     <Level value="15" />
     <!--BehaviorArray Link="WarpInAttackSpeedBehavior"/-->
   </CUnit>
-  <CUnit id="HotSHunter">
+  <CUnit id="HotSHunterAbathurReborn" parent="HotSHunter">
     <AbilArray Link="Explode" />
     <!--BehaviorArray Link="Supply1"/-->
     <CardLayouts index="0">
@@ -5781,7 +5781,7 @@
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="116" />
   </CUnit>
-  <CUnit id="HotSRaptor">
+  <CUnit id="HotSRaptorAbathurReborn" parent="HotSRaptor">
     <BehaviorArray Link="SupplyLT1" />
     <BehaviorArray Link="AllUnitBehaviorController" />
     <!--BehaviorArray Link="ZerglingArmorShredPassive"/-->
@@ -5818,7 +5818,7 @@
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="108" />
   </CUnit>
-  <CUnit id="HotSSwarmling">
+  <CUnit id="HotSSwarmlingAbathurReborn" parent="HotSSwarmling">
     <BehaviorArray Link="SupplyLT1" />
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="MasteryZagaraZerglingDodgeChance" />
@@ -5864,7 +5864,7 @@
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="108" />
   </CUnit>
-  <CUnit id="HotSTorrasque">
+  <CUnit id="HotSTorrasqueAbathurReborn" parent="HotSTorrasque">
     <LifeArmor value="1" />
     <BehaviorArray index="2" Link="UltraliskOutOfCombat1" />
     <BehaviorArray index="3" Link="AllUnitBehaviorController" />
@@ -5897,7 +5897,7 @@
     <SubgroupPriority value="112" />
     <Collide index="Small" value="0" />
   </CUnit>
-  <CUnit id="HotSTorrasqueBurrowed">
+  <CUnit id="HotSTorrasqueBurrowedAbathurReborn" parent="HotSTorrasqueBurrowed">
     <LifeArmor value="1" />
     <BehaviorArray index="2" Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
@@ -5916,7 +5916,7 @@
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="112" />
   </CUnit>
-  <CUnit id="HotSNoxious">
+  <CUnit id="HotSNoxiousAbathurReborn" parent="HotSNoxious">
     <Collide index="Ground" value="0" />
     <Collide index="Structure" value="1" />
     <Collide index="Small" value="0" />
@@ -5925,7 +5925,7 @@
     </CardLayouts>
     <KillXP value="160" />
   </CUnit>
-  <CUnit id="Hydralisk">
+  <CUnit id="HydraliskAbathurReborn" parent="Hydralisk">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
@@ -5956,7 +5956,7 @@
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <SubgroupPriority value="116" />
   </CUnit>
-  <CUnit id="HydraliskImpaler">
+  <CUnit id="HydraliskImpalerAbathurReborn" parent="HydraliskImpaler">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <AbilArray Link="AbathurImpalerArmorPiercingSpinesPurchase" />
@@ -6001,7 +6001,7 @@
     <SubgroupPriority value="117" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
   </CUnit>
-  <CUnit id="HydraliskLurker">
+  <CUnit id="HydraliskLurkerAbathurReborn" parent="HydraliskLurker">
     <DamageDealtXP value="0" />
     <DamageTakenXP value="0" />
     <KillXP value="0" />
@@ -6158,7 +6158,7 @@
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="109" />
   </CUnit>
-  <CUnit id="Infestor">
+  <CUnit id="InfestorAbathurReborn" parent="Infestor">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <ScoreMake value="0" />
@@ -6425,10 +6425,10 @@
     <GlossaryCategory value="Unit/Category/TerranUnits" />
     <GlossaryPriority value="310" />
     <GlossaryStrongArray value="Banshee" />
-    <GlossaryStrongArray value="Mutalisk" />
+    <GlossaryStrongArray value="MutaliskAbathurReborn" />
     <GlossaryStrongArray value="VoidRay" />
     <GlossaryWeakArray value="Marine" />
-    <GlossaryWeakArray value="Zergling" />
+    <GlossaryWeakArray value="ZerglingAbathurReborn" />
     <GlossaryWeakArray value="Zealot" />
     <HotkeyCategory value="Unit/Category/TerranRaider" />
   </CUnit>
@@ -6570,7 +6570,7 @@
     <GlossaryCategory value="Unit/Category/TerranUnits" />
     <GlossaryPriority value="188" />
     <GlossaryStrongArray value="VikingFighter" />
-    <GlossaryStrongArray value="Mutalisk" />
+    <GlossaryStrongArray value="MutaliskAbathurReborn" />
     <GlossaryStrongArray value="Phoenix" />
     <GlossaryWeakArray value="Battlecruiser" />
     <GlossaryWeakArray value="Corruptor" />
@@ -6652,10 +6652,10 @@
     <GlossaryPriority value="51" />
     <GlossaryStrongArray value="Thor" />
     <GlossaryStrongArray value="Stalker" />
-    <GlossaryStrongArray value="Roach" />
+    <GlossaryStrongArray value="RoachAbathurReborn" />
     <GlossaryWeakArray value="Marine" />
     <GlossaryWeakArray value="Zealot" />
-    <GlossaryWeakArray value="Zergling" />
+    <GlossaryWeakArray value="ZerglingAbathurReborn" />
     <AIEvaluateAlias value="Marauder" />
     <KillDisplay value="Always" />
     <RankDisplay value="Never" />
@@ -6737,10 +6737,10 @@
     <GlossaryPriority value="31" />
     <GlossaryStrongArray value="Marauder" />
     <GlossaryStrongArray value="Immortal" />
-    <GlossaryStrongArray value="Hydralisk" />
+    <GlossaryStrongArray value="HydraliskAbathurReborn" />
     <GlossaryWeakArray value="SiegeTankSieged" />
     <GlossaryWeakArray value="Colossus" />
-    <GlossaryWeakArray value="Baneling" />
+    <GlossaryWeakArray value="BanelingAbathurReborn" />
     <AIEvaluateAlias value="Marine" />
     <Fidget>
       <ChanceArray index="Anim" value="33" />
@@ -6887,7 +6887,7 @@
     <SubgroupPriority value="125" />
     <Level value="12" />
   </CUnit>
-  <CUnit id="Mutalisk">
+  <CUnit id="MutaliskAbathurReborn" parent="Mutalisk">
     <CardLayouts index="0">
       <LayoutButtons Face="ExplosiveGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskExplosiveGlaivePurchase,Execute" Row="1" Column="0" />
       <LayoutButtons Face="ViciousGlaive" Type="AbilCmd" AbilCmd="AbathurMutaliskViciousGlaivePurchase,Execute" Row="1" Column="1" />
@@ -7569,7 +7569,7 @@
     <SubgroupPriority value="113" />
     <Attributes index="Psionic" value="1" />
   </CUnit>
-  <CUnit id="RavagerAbathurCocoon">
+  <CUnit id="RavagerAbathurCocoonLegacyAbathurReborn" parent="RavagerAbathurCocoon">
     <DeathRevealRadius value="3" />
     <Race value="Zerg" />
     <Mob value="Multiplayer" />
@@ -7728,7 +7728,7 @@
     <GlossaryCategory value="Unit/Category/TerranUnits" />
     <GlossaryPriority value="190" />
     <GlossaryStrongArray value="Banshee" />
-    <GlossaryStrongArray value="Roach" />
+    <GlossaryStrongArray value="RoachAbathurReborn" />
     <GlossaryStrongArray value="DarkTemplar" />
     <GlossaryWeakArray value="Ghost" />
     <GlossaryWeakArray value="Corruptor" />
@@ -7792,12 +7792,12 @@
     <DamageTakenXP value="0" />
     <SubgroupPriority value="109" />
   </CUnit>
-  <CUnit id="Roach">
+  <CUnit id="RoachAbathurReborn" parent="Roach">
     <DamageDealtXP value="0" />
     <DamageTakenXP value="0" />
     <KillXP value="0" />
     <AbilArray Link="que1" />
-    <AbilArray Link="MorphRoachToRavager" />
+    <AbilArray Link="MorphRoachToRavagerAbathurReborn" />
     <AbilArray Link="EvolveToBrutaliskRoach" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <!--BehaviorArray Link="Supply2"/-->
@@ -7810,7 +7810,7 @@
       <LayoutButtons index="8" Face="HotSRoachShield" Requirements="HaveHotSRoachShield" Row="1" Column="4" />
       <LayoutButtons index="9" Face="HotSRoachDamage" Requirements="HaveHotSRoachDamage" Row="1" Column="3" />
       <LayoutButtons Face="GlialReconstitutionPassive" Type="Passive" Requirements="HaveGlialReconstitution" Row="1" Column="1" />
-      <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachToRavager,Train1" Row="2" Column="0" />
+      <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachToRavagerAbathurReborn,Train1" Row="2" Column="0" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoach,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
       <LayoutButtons Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Row="2" Column="1" />
@@ -7850,7 +7850,7 @@
     <AbilArray Link="que1" />
     <SubgroupPriority value="115" />
   </CUnit>
-  <CUnit id="RoachCorpser">
+  <CUnit id="RoachCorpserAbathurReborn" parent="RoachCorpser">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <TacticalAIThink value="AIThinkRoach" />
@@ -7865,13 +7865,13 @@
       <LayoutButtons index="8" Row="1" Column="2" />
       <LayoutButtons index="9" Row="1" Column="3" />
       <LayoutButtons index="10" Row="1" Column="4" />
-      <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachToRavager,Train1" Row="2" Column="0" />
+      <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachToRavagerAbathurReborn,Train1" Row="2" Column="0" />
     </CardLayouts>
     <LifeStart value="145" />
     <LifeMax value="145" />
     <SubgroupPriority value="116" />
     <AbilArray Link="que1" />
-    <AbilArray Link="MorphRoachToRavager" />
+    <AbilArray Link="MorphRoachToRavagerAbathurReborn" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
   </CUnit>
   <CUnit id="RoachCorpserBurrowed">
@@ -7897,7 +7897,7 @@
     <AbilArray index="2" Link="stop" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
   </CUnit>
-  <CUnit id="RoachVile">
+  <CUnit id="RoachVileAbathurReborn" parent="RoachVile">
     <!--BehaviorArray Link="Supply2"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="AbathurRebornPropArmor" />
@@ -7915,7 +7915,7 @@
       <LayoutButtons index="10" Face="BrutaliskDeepTunnel" Type="AbilCmd" AbilCmd="AbathurRebornDeepTunnelImproved,Execute" Column="1" />
       <LayoutButtons Face="DeepTunnelLocked" Type="Passive" Requirements="AbathurRebornLevel09DeepTunnelImproved" Row="2" Column="1" />
       <LayoutButtons Face="GlialReconstitutionPassive" Type="Passive" Requirements="HaveGlialReconstitution" Row="1" Column="1" />
-      <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachVileToRavager,Train1" Row="2" Column="0" />
+      <LayoutButtons Face="Ravager" Type="AbilCmd" AbilCmd="MorphRoachVileToRavagerAbathurReborn,Train1" Row="2" Column="0" />
       <LayoutButtons Face="EvolveToBrutalisk" Type="AbilCmd" AbilCmd="EvolveToBrutaliskRoachVile,Train1" Row="2" Column="2" />
       <LayoutButtons Face="EvolveToBrutaliskLocked" Type="Passive" Requirements="AbathurRebornLevel02" Row="2" Column="2" />
     </CardLayouts>
@@ -7923,7 +7923,7 @@
     <LifeMax value="145" />
     <SubgroupPriority value="116" />
     <AbilArray Link="que1" />
-    <AbilArray Link="MorphRoachVileToRavager" />
+    <AbilArray Link="MorphRoachVileToRavagerAbathurReborn" />
     <AbilArray Link="EvolveToBrutaliskRoachVile" />
     <AbilArray Link="AbathurRebornDeepTunnelImproved" />
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
@@ -8352,10 +8352,10 @@
     <TacticalAIThink value="AIThinkSentry" />
     <GlossaryCategory value="Unit/Category/ProtossUnits" />
     <GlossaryPriority value="25" />
-    <GlossaryStrongArray value="Zergling" />
+    <GlossaryStrongArray value="ZerglingAbathurReborn" />
     <GlossaryStrongArray value="Zealot" />
     <GlossaryWeakArray value="Reaper" />
-    <GlossaryWeakArray value="Hydralisk" />
+    <GlossaryWeakArray value="HydraliskAbathurReborn" />
     <GlossaryWeakArray value="Stalker" />
     <HotkeyCategory value="Unit/Category/ProtossPurifier" />
     <Fidget>
@@ -8431,10 +8431,10 @@
     <SubgroupAlias value="SentryFenix" />
     <GlossaryCategory value="Unit/Category/ProtossUnits" />
     <GlossaryPriority value="25" />
-    <GlossaryStrongArray value="Zergling" />
+    <GlossaryStrongArray value="ZerglingAbathurReborn" />
     <GlossaryStrongArray value="Zealot" />
     <GlossaryWeakArray value="Reaper" />
-    <GlossaryWeakArray value="Hydralisk" />
+    <GlossaryWeakArray value="HydraliskAbathurReborn" />
     <GlossaryWeakArray value="Stalker" />
     <HotkeyCategory value="Unit/Category/ProtossPurifier" />
     <AIEvaluateAlias value="Sentry" />
@@ -8971,10 +8971,10 @@
     <GlossaryPriority value="142" />
     <GlossaryStrongArray value="Marine" />
     <GlossaryStrongArray value="Stalker" />
-    <GlossaryStrongArray value="Hydralisk" />
+    <GlossaryStrongArray value="HydraliskAbathurReborn" />
     <GlossaryWeakArray value="Thor" />
     <GlossaryWeakArray value="Immortal" />
-    <GlossaryWeakArray value="Zergling" />
+    <GlossaryWeakArray value="ZerglingAbathurReborn" />
     <AIEvaluateAlias value="SiegeTank" />
     <Fidget>
       <ChanceArray index="Anim" value="33" />
@@ -10213,10 +10213,10 @@
     <TacticalAIThink value="AIThinkAdept" />
     <GlossaryCategory value="Unit/Category/ProtossUnits" />
     <GlossaryPriority value="20" />
-    <GlossaryStrongArray value="Zergling" />
+    <GlossaryStrongArray value="ZerglingAbathurReborn" />
     <GlossaryStrongArray value="Stalker" />
     <GlossaryStrongArray value="Marine" />
-    <GlossaryWeakArray value="Roach" />
+    <GlossaryWeakArray value="RoachAbathurReborn" />
     <GlossaryWeakArray value="Zealot" />
     <GlossaryWeakArray value="Marauder" />
     <HotkeyCategory value="Unit/Category/ProtossTaldarim" />
@@ -10238,7 +10238,7 @@
     <DamageTakenXP value="0" />
     <HotkeyCategory value="" />
   </CUnit>
-  <CUnit id="SwarmHost">
+  <CUnit id="SwarmHostAbathurReborn" parent="SwarmHost">
     <!--BehaviorArray Link="Supply3"/-->
     <WeaponArray Link="SwarmHostFakeWeapon" />
     <BehaviorArray index="0" Link="SwarmHostPressurizedGlands" />
@@ -10304,7 +10304,7 @@
     <Radius value="0.75" />
     <HotkeyCategory value="Unit/Category/ZergUnits" />
     <SubgroupPriority value="118" />
-    <SelectAlias value="SwarmHost" />
+    <SelectAlias value="SwarmHostAbathurReborn" />
   </CUnit>
   <CUnit id="SwarmHostRooted">
     <!--BehaviorArray Link="Supply3"/-->
@@ -10321,9 +10321,9 @@
     <Radius value="0.75" />
     <HotkeyCategory value="Unit/Category/ZergUnits" />
     <SubgroupPriority value="118" />
-    <SelectAlias value="SwarmHost" />
+    <SelectAlias value="SwarmHostAbathurReborn" />
   </CUnit>
-  <CUnit id="SwarmHostSplitA">
+  <CUnit id="SwarmHostSplitAAbathurReborn" parent="SwarmHostSplitA">
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
@@ -10354,7 +10354,7 @@
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="118" />
-    <SelectAlias value="SwarmHostSplitA" />
+    <SelectAlias value="SwarmHostSplitAAbathurReborn" />
   </CUnit>
   <CUnit id="SwarmHostSplitARooted">
     <!--BehaviorArray Link="Supply3"/-->
@@ -10371,9 +10371,9 @@
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="118" />
-    <SelectAlias value="SwarmHostSplitA" />
+    <SelectAlias value="SwarmHostSplitAAbathurReborn" />
   </CUnit>
-  <CUnit id="SwarmHostSplitB">
+  <CUnit id="SwarmHostSplitBAbathurReborn" parent="SwarmHostSplitB">
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
@@ -10406,7 +10406,7 @@
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="118" />
-    <SelectAlias value="SwarmHostSplitB" />
+    <SelectAlias value="SwarmHostSplitBAbathurReborn" />
   </CUnit>
   <CUnit id="SwarmHostSplitBRooted">
     <!--BehaviorArray Link="Supply3"/-->
@@ -10424,7 +10424,7 @@
     <EditorCategories value="ObjectType:Unit,ObjectFamily:FactionEvolved" />
     <HotkeyCategory value="Unit/Category/ZergEvolved" />
     <SubgroupPriority value="118" />
-    <SelectAlias value="SwarmHostSplitB" />
+    <SelectAlias value="SwarmHostSplitBAbathurReborn" />
   </CUnit>
   <CUnit id="SwarmQueen">
     <DamageDealtXP value="0" />
@@ -10663,7 +10663,7 @@
             <LayoutButtons index="16" removed="1"/>
             <LayoutButtons index="17" removed="1"/-->
   </CUnit>
-  <CUnit id="Ultralisk">
+  <CUnit id="UltraliskAbathurReborn" parent="Ultralisk">
     <LifeArmor value="1" />
     <BehaviorArray index="1" Link="UltraliskOutOfCombat1" />
     <BehaviorArray index="2" Link="" />
@@ -10786,7 +10786,7 @@
     <EffectArray index="Create" value="CommanderPrestigeRaynorAirTriggerAdd" />
     <EffectArray index="Death" value="CommanderPrestigeRaynorAirTriggerRemove" />
   </CUnit>
-  <CUnit id="Viper">
+  <CUnit id="ViperAbathurReborn" parent="Viper">
     <!--BehaviorArray Link="Supply3"/-->
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="AbathurRebornPropArmor" />
@@ -11315,7 +11315,7 @@
     <DamageTakenXP value="0" />
     <HotkeyCategory value="" />
   </CUnit>
-  <CUnit id="Zergling">
+  <CUnit id="ZerglingAbathurReborn" parent="Zergling">
     <BehaviorArray Link="SupplyLT1" />
     <BehaviorArray Link="AllUnitBehaviorController" />
     <BehaviorArray Link="MasteryZagaraZerglingDodgeChance" />
@@ -11370,10 +11370,10 @@
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
     </CUnit>
 
-    <CUnit id="MutaliskChar" parent="Mutalisk">
-        <Name value="Unit/Name/MutaliskChar"/>
-        <Subtitle value="MutaliskChar"/>
-        <Description value="Button/Tooltip/MutaliskChar"/>
+    <CUnit id="MutaliskCharAbathurReborn" parent="Mutalisk">
+        <Name value="Unit/Name/MutaliskCharAbathurReborn"/>
+        <Subtitle value="MutaliskCharAbathurReborn"/>
+        <Description value="Button/Tooltip/MutaliskCharAbathurReborn"/>
         <AbilArray Link="AbathurMutaliskExplosiveGlaivePurchase"/>
         <AbilArray Link="AbathurMutaliskViciousGlaivePurchase"/>
         <AbilArray Link="AbathurMutaliskRapidRegenerationPurchase"/>
@@ -11385,16 +11385,16 @@
             <LayoutButtons index="8" Face="Incinerate"/>
             <LayoutButtons Face="Recuperation" Type="Passive" Row="2" Column="1"/>
         </CardLayouts>
-        <LeaderAlias value="MutaliskChar"/>
-        <HotkeyAlias value="MutaliskChar"/>
-        <SelectAlias value="MutaliskChar"/>
-        <SubgroupAlias value="MutaliskChar"/>
+        <LeaderAlias value="MutaliskCharAbathurReborn"/>
+        <HotkeyAlias value="MutaliskCharAbathurReborn"/>
+        <SelectAlias value="MutaliskCharAbathurReborn"/>
+        <SubgroupAlias value="MutaliskCharAbathurReborn"/>
         <KillXP value="50"/>
-        <ReviveType value="MutaliskChar"/>
+        <ReviveType value="MutaliskCharAbathurReborn"/>
     </CUnit>
 
-    <CUnit id="Mamba">
-        <Subtitle value="Mamba"/>
+    <CUnit id="MambaAbathurReborn" parent="Mamba">
+        <Subtitle value="MambaAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -11454,7 +11454,7 @@
         <GlossaryCategory value="Unit/Category/ZergUnits"/>
         <GlossaryPriority value="130"/>
         <GlossaryStrongArray value="VikingFighter"/>
-        <GlossaryStrongArray value="BroodLord"/>
+        <GlossaryStrongArray value="BroodLordAbathurReborn"/>
         <GlossaryStrongArray value="VoidRay"/>
         <GlossaryWeakArray value="Thor"/>
         <GlossaryWeakArray value="Corruptor"/>
@@ -11462,8 +11462,8 @@
         <HotkeyCategory value="Unit/Category/ZergUnits"/>
     </CUnit>
 
-    <CUnit id="Mesmer">
-        <Subtitle value="Mesmer"/>
+    <CUnit id="MesmerAbathurReborn" parent="Mesmer">
+        <Subtitle value="MesmerAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -11533,7 +11533,7 @@
         <GlossaryCategory value="Unit/Category/ZergUnits"/>
         <GlossaryPriority value="130"/>
         <GlossaryStrongArray value="VikingFighter"/>
-        <GlossaryStrongArray value="BroodLord"/>
+        <GlossaryStrongArray value="BroodLordAbathurReborn"/>
         <GlossaryStrongArray value="VoidRay"/>
         <GlossaryWeakArray value="Thor"/>
         <GlossaryWeakArray value="Corruptor"/>
@@ -11541,7 +11541,7 @@
         <HotkeyCategory value="Unit/Category/ZergUnits"/>
     </CUnit>
 
-    <CUnit id="MutaliskAnkylos">
+    <CUnit id="MutaliskAnkylosAbathurReborn" parent="MutaliskAnkylos">
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -11603,14 +11603,14 @@
         <GlossaryCategory value="Unit/Category/ZergUnits"/>
         <GlossaryPriority value="130"/>
         <GlossaryStrongArray value="VikingFighter"/>
-        <GlossaryStrongArray value="BroodLord"/>
+        <GlossaryStrongArray value="BroodLordAbathurReborn"/>
         <GlossaryStrongArray value="VoidRay"/>
         <GlossaryWeakArray value="Thor"/>
         <GlossaryWeakArray value="Corruptor"/>
     <GlossaryWeakArray value="Phoenix"/>
     <HotkeyCategory value="Unit/Category/ZergUnits"/>
   </CUnit>
-  <CUnit id="FrostFiend">
+  <CUnit id="FrostFiendAbathurReborn" parent="FrostFiend">
     <DeathRevealRadius value="3"/>
     <Facing value="45"/>
     <Race value="Zerg"/>
@@ -11679,18 +11679,18 @@
     <GlossaryCategory value="Unit/Category/ZergUnits"/>
     <GlossaryPriority value="60"/>
     <GlossaryStrongArray value="Marine"/>
-    <GlossaryStrongArray value="Zergling"/>
+    <GlossaryStrongArray value="ZerglingAbathurReborn"/>
     <GlossaryStrongArray value="Zealot"/>
     <GlossaryWeakArray value="Marauder"/>
-    <GlossaryWeakArray value="Roach"/>
+    <GlossaryWeakArray value="RoachAbathurReborn"/>
     <GlossaryWeakArray value="Stalker"/>
     <HotkeyCategory value="Unit/Category/ZergUnits"/>
     <KillDisplay value="Always"/>
     <RankDisplay value="Always"/>
   </CUnit>
   <CUnit id="FrostFiendBurrowed">
-    <Name value="Unit/Name/FrostFiend"/>
-    <Description value="Button/Tooltip/Baneling"/>
+    <Name value="Unit/Name/FrostFiendAbathurReborn"/>
+    <Description value="Button/Tooltip/BanelingAbathurReborn"/>
     <DeathRevealRadius value="3"/>
     <ReviveType value="BanelingBurrowed"/>
     <Race value="Zerg"/>
@@ -11747,7 +11747,7 @@
     <Mover value="MissileDefault"/>
     <EditorCategories value="ObjectFamily:Campaign,ObjectType:Unit"/>
   </CUnit>
-  <CUnit id="BileTitan">
+  <CUnit id="BileTitanAbathurReborn" parent="BileTitan">
     <DeathRevealRadius value="3"/>
     <Facing value="45"/>
     <Race value="Zerg"/>
@@ -11813,8 +11813,8 @@
     <Race value="Zerg"/>
     <Mover value="Spew"/>
   </CUnit>
-    <CUnit id="UltraliskSavage">
-        <Subtitle value="UnitSubtitle/UltraliskSavage"/>
+    <CUnit id="UltraliskSavageAbathurReborn" parent="UltraliskSavage">
+        <Subtitle value="UnitSubtitle/UltraliskSavageAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Facing value="315"/>
         <Race value="Zerg"/>
@@ -11908,7 +11908,7 @@
         </CardLayouts>
         <SubgroupPriority value="12"/>
     </CUnit>
-    <CUnit id="UltraliskKaldir">
+    <CUnit id="UltraliskKaldirAbathurReborn" parent="UltraliskKaldir">
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -11976,15 +11976,15 @@
         <SubgroupPriority value="12"/>
         <MinimapRadius value="1"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
-        <TacticalAI value="Ultralisk"/>
+        <TacticalAI value="UltraliskAbathurReborn"/>
         <TacticalAIThink value="AIThinkUltralisk"/>
         <GlossaryCategory value="Unit/Category/ZergUnits"/>
         <GlossaryPriority value="180"/>
         <GlossaryStrongArray value="Marauder"/>
-        <GlossaryStrongArray value="Roach"/>
+        <GlossaryStrongArray value="RoachAbathurReborn"/>
         <GlossaryStrongArray value="Stalker"/>
         <GlossaryWeakArray value="Banshee"/>
-        <GlossaryWeakArray value="Mutalisk"/>
+        <GlossaryWeakArray value="MutaliskAbathurReborn"/>
         <GlossaryWeakArray value="VoidRay"/>
         <HotkeyCategory value="Unit/Category/ZergUnits"/>
         <KillDisplay value="Always"/>
@@ -11996,8 +11996,8 @@
         <TauntDuration index="Cheer" value="5"/>
         <TauntDuration index="Dance" value="5"/>
     </CUnit>
-    <CUnit id="IzshaGuardian">
-        <Subtitle value="UnitSubtitle/IzshaGuardian"/>
+    <CUnit id="IzshaGuardianAbathurReborn" parent="IzshaGuardian">
+        <Subtitle value="UnitSubtitle/IzshaGuardianAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <FlagArray index="PreventDestroy" value="1"/>
@@ -12047,11 +12047,11 @@
         <EditorCategories value="ObjectFamily:Campaign,ObjectType:Unit"/>
         <GlossaryCategory value="Unit/Category/ZergUnits"/>
         <GlossaryPriority value="200"/>
-        <GlossaryStrongArray value="Roach"/>
-        <GlossaryWeakArray value="Mutalisk"/>
+        <GlossaryStrongArray value="RoachAbathurReborn"/>
+        <GlossaryWeakArray value="MutaliskAbathurReborn"/>
         <KillXP value="100"/>
     </CUnit>
-    <CUnit id="Kraken">
+    <CUnit id="KrakenAbathurReborn" parent="Kraken">
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -12115,7 +12115,7 @@
         <GlossaryCategory value="Unit/Category/ZergUnits"/>
         <GlossaryPriority value="190"/>
         <GlossaryStrongArray value="Marine"/>
-        <GlossaryStrongArray value="Hydralisk"/>
+        <GlossaryStrongArray value="HydraliskAbathurReborn"/>
         <GlossaryStrongArray value="Stalker"/>
         <GlossaryWeakArray value="VikingFighter"/>
         <GlossaryWeakArray value="Corruptor"/>
@@ -12127,7 +12127,7 @@
         <Mover value="AcidSporesMissile"/>
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
     </CUnit>
-    <CUnit id="BaneHost">
+    <CUnit id="BaneHostAbathurReborn" parent="BaneHost">
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -12189,13 +12189,13 @@
         <CargoSize value="4"/>
         <SubgroupPriority value="18"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
-        <TacticalAI value="SwarmHost"/>
+        <TacticalAI value="SwarmHostAbathurReborn"/>
         <Mass value="0.6"/>
         <GlossaryCategory value="Unit/Category/ZergUnits"/>
         <GlossaryPriority value="146"/>
         <GlossaryStrongArray value="Marine"/>
         <GlossaryStrongArray value="Stalker"/>
-        <GlossaryStrongArray value="Roach"/>
+        <GlossaryStrongArray value="RoachAbathurReborn"/>
         <GlossaryWeakArray value="Hellion"/>
         <GlossaryWeakArray value="Archon"/>
         <HotkeyCategory value="Unit/Category/ZergStory"/>
@@ -12204,7 +12204,7 @@
         <KillXP value="50"/>
     </CUnit>
     <CUnit id="BaneHostBurrowed">
-        <Description value="Button/Tooltip/SwarmHost"/>
+        <Description value="Button/Tooltip/SwarmHostAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <ReviveType value="SwarmHostBurrowed"/>
         <Facing value="45"/>
@@ -12261,22 +12261,22 @@
         <SubgroupPriority value="18"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
         <TacticalAI value="SwarmHostBurrowed"/>
-        <LeaderAlias value="SwarmHost"/>
-        <HotkeyAlias value="SwarmHost"/>
+        <LeaderAlias value="SwarmHostAbathurReborn"/>
+        <HotkeyAlias value="SwarmHostAbathurReborn"/>
         <SelectAlias value="SwarmHostBurrowed"/>
         <SubgroupAlias value="SwarmHostBurrowed"/>
         <TechAliasArray value="Alias_SwarmHost"/>
-        <GlossaryAlias value="SwarmHost"/>
+        <GlossaryAlias value="SwarmHostAbathurReborn"/>
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
-        <AIEvaluateAlias value="SwarmHost"/>
+        <AIEvaluateAlias value="SwarmHostAbathurReborn"/>
         <ReviveInfoBase>
             <Charge Link="SwarmHostBurrowed/Revive"/>
             <Cooldown Link="SwarmHostBurrowed/Revive"/>
         </ReviveInfoBase>
         <KillXP value="50"/>
     </CUnit>
-    <CUnit id="VespidHost">
+    <CUnit id="VespidHostAbathurReborn" parent="VespidHost">
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -12335,13 +12335,13 @@
         <CargoSize value="4"/>
         <SubgroupPriority value="15"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
-        <TacticalAI value="SwarmHost"/>
+        <TacticalAI value="SwarmHostAbathurReborn"/>
         <Mass value="0.6"/>
         <GlossaryCategory value="Unit/Category/ZergUnits"/>
         <GlossaryPriority value="146"/>
         <GlossaryStrongArray value="Marine"/>
         <GlossaryStrongArray value="Stalker"/>
-        <GlossaryStrongArray value="Roach"/>
+        <GlossaryStrongArray value="RoachAbathurReborn"/>
         <GlossaryWeakArray value="Hellion"/>
         <GlossaryWeakArray value="Archon"/>
         <HotkeyCategory value="Unit/Category/ZergStory"/>
@@ -12408,7 +12408,7 @@
         <Mover value="AcidSalivaWeapon"/>
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
     </CUnit>
-    <CUnit id="Pygalisk">
+    <CUnit id="PygaliskAbathurReborn" parent="Pygalisk">
         <Attributes index="Armored" value="0"/>
         <LifeStart value="150"/>
         <LifeMax value="150"/>
@@ -12439,8 +12439,8 @@
         <LifeRegenRate value="1"/>
         <KillXP value="10"/>
     </CUnit>
-    <CUnit id="ZerglingToxic">
-        <Subtitle value="UnitSubtitle/ZerglingToxic"/>
+    <CUnit id="ZerglingToxicAbathurReborn" parent="ZerglingToxic">
+        <Subtitle value="UnitSubtitle/ZerglingToxicAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -12512,10 +12512,10 @@
         <GlossaryPriority value="51"/>
         <GlossaryStrongArray value="Marauder"/>
         <GlossaryStrongArray value="Stalker"/>
-        <GlossaryStrongArray value="Hydralisk"/>
+        <GlossaryStrongArray value="HydraliskAbathurReborn"/>
         <GlossaryWeakArray value="Hellion"/>
         <GlossaryWeakArray value="Archon"/>
-        <GlossaryWeakArray value="Baneling"/>
+        <GlossaryWeakArray value="BanelingAbathurReborn"/>
         <HotkeyCategory value="Unit/Category/ZergStory"/>
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
@@ -12528,7 +12528,7 @@
         <TauntDuration index="Dance" value="5"/>
     </CUnit>
     <CUnit id="ToxicZerglingBurrowed">
-        <Description value="Button/Tooltip/Zergling"/>
+        <Description value="Button/Tooltip/ZerglingAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -12568,20 +12568,20 @@
         <MinimapRadius value="0.375"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
         <TacticalAI value="ZerglingBurrowed"/>
-        <LeaderAlias value="Zergling"/>
-        <HotkeyAlias value="Zergling"/>
+        <LeaderAlias value="ZerglingAbathurReborn"/>
+        <HotkeyAlias value="ZerglingAbathurReborn"/>
         <SelectAlias value="ZerglingBurrowed"/>
         <SubgroupAlias value="ZerglingBurrowed"/>
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
-        <AIEvaluateAlias value="Zergling"/>
+        <AIEvaluateAlias value="ZerglingAbathurReborn"/>
         <ReviveInfoBase>
             <Charge Link="ZerglingBurrowed/Revive"/>
             <Cooldown Link="ZerglingBurrowed/Revive"/>
         </ReviveInfoBase>
     </CUnit>
-    <CUnit id="Igniter">
-        <Subtitle value="UnitSubtitle/Igniter"/>
+    <CUnit id="IgniterAbathurReborn" parent="Igniter">
+        <Subtitle value="UnitSubtitle/IgniterAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -12653,10 +12653,10 @@
         <GlossaryPriority value="67"/>
         <GlossaryStrongArray value="Hellion"/>
         <GlossaryStrongArray value="Zealot"/>
-        <GlossaryStrongArray value="Zergling"/>
+        <GlossaryStrongArray value="ZerglingAbathurReborn"/>
         <GlossaryWeakArray value="Marauder"/>
         <GlossaryWeakArray value="Immortal"/>
-        <GlossaryWeakArray value="Ultralisk"/>
+        <GlossaryWeakArray value="UltraliskAbathurReborn"/>
         <HotkeyCategory value="Unit/Category/ZergStory"/>
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
@@ -12667,8 +12667,8 @@
         </Fidget>
     </CUnit>
     <CUnit id="IgniterBurrowed">
-        <Subtitle value="UnitSubtitle/RoachCorpser"/>
-        <Description value="Button/Tooltip/RoachCorpser"/>
+        <Subtitle value="UnitSubtitle/RoachCorpserAbathurReborn"/>
+        <Description value="Button/Tooltip/RoachCorpserAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <ReviveType value="RoachCorpserBurrowed"/>
         <Race value="Zerg"/>
@@ -12725,20 +12725,20 @@
         <SubgroupPriority value="15"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
         <TacticalAI value="RoachCorpserBurrowed"/>
-        <LeaderAlias value="Roach"/>
-        <HotkeyAlias value="RoachCorpser"/>
+        <LeaderAlias value="RoachAbathurReborn"/>
+        <HotkeyAlias value="RoachCorpserAbathurReborn"/>
         <SelectAlias value="RoachCorpserBurrowed"/>
         <SubgroupAlias value="RoachCorpserBurrowed"/>
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
-        <AIEvaluateAlias value="Roach"/>
+        <AIEvaluateAlias value="RoachAbathurReborn"/>
         <ReviveInfoBase>
             <Charge Link="RoachCorpserBurrowed/Revive"/>
             <Cooldown Link="RoachCorpserBurrowed/Revive"/>
         </ReviveInfoBase>
     </CUnit>
-    <CUnit id="Hydralisk2">
-        <Subtitle value="UnitSubtitle/Hydralisk2"/>
+    <CUnit id="Hydralisk2AbathurReborn" parent="Hydralisk2">
+        <Subtitle value="UnitSubtitle/Hydralisk2AbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <Race value="Zerg"/>
         <Mob value="Multiplayer"/>
@@ -12811,10 +12811,10 @@
         <GlossaryPriority value="71"/>
         <GlossaryStrongArray value="Battlecruiser"/>
         <GlossaryStrongArray value="VoidRay"/>
-        <GlossaryStrongArray value="Mutalisk"/>
+        <GlossaryStrongArray value="MutaliskAbathurReborn"/>
         <GlossaryWeakArray value="Marine"/>
         <GlossaryWeakArray value="Zealot"/>
-        <GlossaryWeakArray value="Zergling"/>
+        <GlossaryWeakArray value="ZerglingAbathurReborn"/>
         <HotkeyCategory value="Unit/Category/ZergStory"/>
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
@@ -12822,9 +12822,9 @@
         <TauntDuration index="Dance" value="5"/>
     </CUnit>
     <CUnit id="HydraliskParalyticBurrowed">
-        <Name value="Unit/Name/Hydralisk"/>
-        <Subtitle value="UnitSubtitle/HydraliskLurker"/>
-        <Description value="Button/Tooltip/Hydralisk"/>
+        <Name value="Unit/Name/HydraliskAbathurReborn"/>
+        <Subtitle value="UnitSubtitle/HydraliskLurkerAbathurReborn"/>
+        <Description value="Button/Tooltip/HydraliskAbathurReborn"/>
         <DeathRevealRadius value="3"/>
         <ReviveType value="HydraliskLurkerBurrowed"/>
         <Race value="Zerg"/>
@@ -12868,13 +12868,13 @@
         <SubgroupPriority value="16"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
         <TacticalAI value="HydraliskLurkerBurrowed"/>
-        <LeaderAlias value="Hydralisk"/>
-        <HotkeyAlias value="HydraliskLurker"/>
+        <LeaderAlias value="HydraliskAbathurReborn"/>
+        <HotkeyAlias value="HydraliskLurkerAbathurReborn"/>
         <SelectAlias value="HydraliskLurkerBurrowed"/>
         <SubgroupAlias value="HydraliskLurkerBurrowed"/>
         <KillDisplay value="Always"/>
         <RankDisplay value="Always"/>
-        <AIEvaluateAlias value="Hydralisk"/>
+        <AIEvaluateAlias value="HydraliskAbathurReborn"/>
         <ReviveInfoBase>
             <Charge Link="HydraliskLurkerBurrowed/Revive"/>
             <Cooldown Link="HydraliskLurkerBurrowed/Revive"/>

@@ -287,12 +287,68 @@ const forbiddenWorkerBuildTokens = new Set([
 const forbiddenPositiveUnits = new Set(['NydusNetwork', 'Naktul', 'Leviathan']);
 const expectedStatuses = new Set(['ready', 'planned']);
 const requiredRavagerEffects = [
-  'RavagerCorrosiveBileAoeCP',
-  'RavagerCorrosiveBileAoeDamage',
-  'RavagerCorrosiveBileAoeLaunchSet',
-  'RavagerCorrosiveBileAoeSearch',
-  'RavagerCorrosiveBileAoeWarningDummySearch',
+  'RavagerCorrosiveBileAoeCPAbathurReborn',
+  'RavagerCorrosiveBileAoeDamageAbathurReborn',
+  'RavagerCorrosiveBileAoeLaunchSetAbathurReborn',
+  'RavagerCorrosiveBileAoeSearchAbathurReborn',
+  'RavagerCorrosiveBileAoeWarningDummySearchAbathurReborn',
 ];
+
+const privateCatalogIdMap = new Map(Object.entries({
+  Zergling: 'ZerglingAbathurReborn',
+  Baneling: 'BanelingAbathurReborn',
+  Roach: 'RoachAbathurReborn',
+  Hydralisk: 'HydraliskAbathurReborn',
+  Mutalisk: 'MutaliskAbathurReborn',
+  SwarmHost: 'SwarmHostAbathurReborn',
+  Ultralisk: 'UltraliskAbathurReborn',
+  BroodLord: 'BroodLordAbathurReborn',
+  Infestor: 'InfestorAbathurReborn',
+  HotSRaptor: 'HotSRaptorAbathurReborn',
+  HotSSwarmling: 'HotSSwarmlingAbathurReborn',
+  Pygalisk: 'PygaliskAbathurReborn',
+  ZerglingToxic: 'ZerglingToxicAbathurReborn',
+  HotSHunter: 'HotSHunterAbathurReborn',
+  HotSSplitterlingBig: 'HotSSplitterlingBigAbathurReborn',
+  FrostFiend: 'FrostFiendAbathurReborn',
+  BileTitan: 'BileTitanAbathurReborn',
+  RoachVile: 'RoachVileAbathurReborn',
+  RoachCorpser: 'RoachCorpserAbathurReborn',
+  Igniter: 'IgniterAbathurReborn',
+  Ravager: 'RavagerAbathurReborn',
+  HydraliskLurker: 'HydraliskLurkerAbathurReborn',
+  HydraliskImpaler: 'HydraliskImpalerAbathurReborn',
+  HunterKiller: 'HunterKillerAbathurReborn',
+  Hydralisk2: 'Hydralisk2AbathurReborn',
+  MutaliskChar: 'MutaliskCharAbathurReborn',
+  Mamba: 'MambaAbathurReborn',
+  MutaliskAnkylos: 'MutaliskAnkylosAbathurReborn',
+  Mesmer: 'MesmerAbathurReborn',
+  SwarmHostSplitA: 'SwarmHostSplitAAbathurReborn',
+  SwarmHostSplitB: 'SwarmHostSplitBAbathurReborn',
+  BaneHost: 'BaneHostAbathurReborn',
+  VespidHost: 'VespidHostAbathurReborn',
+  HotSTorrasque: 'HotSTorrasqueAbathurReborn',
+  HotSNoxious: 'HotSNoxiousAbathurReborn',
+  UltraliskSavage: 'UltraliskSavageAbathurReborn',
+  UltraliskKaldir: 'UltraliskKaldirAbathurReborn',
+  IzshaGuardian: 'IzshaGuardianAbathurReborn',
+  Devourer: 'DevourerAbathurReborn',
+  Kraken: 'KrakenAbathurReborn',
+  Viper: 'ViperAbathurReborn',
+  DefilerMP: 'DefilerMPAbathurReborn',
+  RavagerCorrosiveBile: 'RavagerCorrosiveBileAbathurReborn',
+  MorphRoachToRavager: 'MorphRoachToRavagerAbathurReborn',
+  MorphRoachVileToRavager: 'MorphRoachVileToRavagerAbathurReborn',
+  RavagerCorrosiveBileAoeCP: 'RavagerCorrosiveBileAoeCPAbathurReborn',
+  RavagerCorrosiveBileAoeDamage: 'RavagerCorrosiveBileAoeDamageAbathurReborn',
+  RavagerCorrosiveBileAoeLaunchSet: 'RavagerCorrosiveBileAoeLaunchSetAbathurReborn',
+  RavagerCorrosiveBileAoeSearch: 'RavagerCorrosiveBileAoeSearchAbathurReborn',
+  RavagerCorrosiveBileAoeWarningDummySearch: 'RavagerCorrosiveBileAoeWarningDummySearchAbathurReborn',
+  RavagerCorrosiveBileAoeCursorDummy: 'RavagerCorrosiveBileAoeCursorDummyAbathurReborn',
+  RavagerAbathur: 'RavagerAbathurLegacyAbathurReborn',
+  RavagerAbathurCorrosiveBile: 'RavagerAbathurCorrosiveBileLegacyAbathurReborn',
+}));
 
 const errors = [];
 const warnings = [];
@@ -337,6 +393,7 @@ const targetRequirementNodes = collectCatalogIds(targetRequirementNodeText, /<CR
 
 const profile = parseUserProfile(userText, 'AbathurRebornLineageProfile');
 validateProfile(profile);
+validatePrivatePositiveCatalogIsolation(profile);
 validateNoAllLarvaPool();
 validateLarvaBaseProduction(profile);
 validateWorkerBuildWhitelist();
@@ -400,16 +457,17 @@ function validateProfile(instances) {
       continue;
     }
 
+    const expectedBaseUnit = privateCatalogId(expected.baseUnit);
     expectScalar(actual, 'Lineage', expected.lineage, expected.id);
     expectScalar(actual, 'BankKey', expected.bankKey, expected.id);
-    expectScalar(actual, 'BaseUnit', expected.baseUnit, expected.id);
-    expectScalar(actual, 'TrainUnit', expected.baseUnit, expected.id);
+    expectScalar(actual, 'BaseUnit', expectedBaseUnit, expected.id);
+    expectScalar(actual, 'TrainUnit', expectedBaseUnit, expected.id);
     expectScalar(actual, 'ProductionMode', 'BaseOnly', expected.id);
     expectScalar(actual, 'DefaultSelection', 'Base', expected.id);
     expectScalar(actual, 'TechStructure', expected.techStructure, expected.id);
 
-    if (!targetUnits.has(expected.baseUnit)) {
-      errors.push(`${expected.id}: BaseUnit ${expected.baseUnit} 不在当前 XMAbathurReborn UnitData 中`);
+    if (!targetUnits.has(expectedBaseUnit)) {
+      errors.push(`${expected.id}: BaseUnit ${expectedBaseUnit} 不在当前 XMAbathurReborn UnitData 中`);
     }
 
     const selections = indexedValues(actual, 'Selection');
@@ -427,8 +485,9 @@ function validateProfile(instances) {
     }
 
     expected.candidates.forEach(([selection, unitId, status], index) => {
+      const expectedUnitId = privateCatalogId(unitId);
       expectIndexed(actual, 'Selection', index, selection, expected.id);
-      expectIndexed(actual, 'CandidateUnit', index, unitId, expected.id);
+      expectIndexed(actual, 'CandidateUnit', index, expectedUnitId, expected.id);
       expectIndexed(actual, 'CandidateStatus', index, status, expected.id);
 
       if (forbiddenPositiveUnits.has(unitId)) {
@@ -437,13 +496,89 @@ function validateProfile(instances) {
       if (!expectedStatuses.has(valueAt(actual, 'CandidateStatus', index))) {
         errors.push(`${expected.id}: CandidateStatus[${index}] 只能是 ready/planned`);
       }
-      if (status === 'ready' && !targetUnits.has(unitId)) {
-        errors.push(`${expected.id}: ready 候选 ${unitId} 不在当前 XMAbathurReborn UnitData 中`);
+      if (status === 'ready' && !targetUnits.has(expectedUnitId)) {
+        errors.push(`${expected.id}: ready 候选 ${expectedUnitId} 不在当前 XMAbathurReborn UnitData 中`);
       }
-      if (status === 'planned' && !sourceUnits.has(unitId) && !targetUnits.has(unitId)) {
+      if (status === 'planned' && !sourceUnits.has(unitId) && !targetUnits.has(expectedUnitId)) {
         errors.push(`${expected.id}: planned 候选 ${unitId} 在源 Mod 和当前模块中都未找到`);
       }
     });
+  }
+}
+
+function validatePrivatePositiveCatalogIsolation(instances) {
+  const positiveBareUnitIds = new Set();
+  for (const expected of expectedLineages) {
+    positiveBareUnitIds.add(expected.baseUnit);
+    for (const [, unitId] of expected.candidates) {
+      positiveBareUnitIds.add(unitId);
+    }
+  }
+
+  for (const bareUnitId of positiveBareUnitIds) {
+    const privateUnitId = privateCatalogId(bareUnitId);
+    if (privateUnitId === bareUnitId) {
+      continue;
+    }
+    if (targetUnits.has(bareUnitId)) {
+      errors.push(`重生阿巴瑟正向单位必须私有化，UnitData 不应定义普通 ID: ${bareUnitId}`);
+    }
+    if (!targetUnits.has(privateUnitId)) {
+      errors.push(`重生阿巴瑟正向单位缺少私有 ID: ${privateUnitId}`);
+      continue;
+    }
+    const block = extractCatalogBlock(targetUnitText, 'CUnit', privateUnitId);
+    if (!/<CUnit\s+id="[^"]+"\s+parent="[^"]+"/.test(block)) {
+      errors.push(`${privateUnitId} 应通过 parent 继承源单位后重载私有链路`);
+    }
+    if (xmFinalAbathurRebornRuntimeText.includes(`TechTreeUnitAllow(lp_player, "${bareUnitId}", true)`)) {
+      errors.push(`AbathurRebornRuntime 不允许开放普通正向单位: ${bareUnitId}`);
+    }
+    if (xmFinalAbathurRebornRuntimeText.includes(`return "${bareUnitId}"`)) {
+      errors.push(`AbathurRebornRuntime 不允许把普通单位作为替换产物: ${bareUnitId}`);
+    }
+  }
+
+  for (const expected of expectedLineages) {
+    const actual = instances.get(expected.id);
+    if (!actual) {
+      continue;
+    }
+    for (const unitId of [scalarValue(actual, 'BaseUnit'), scalarValue(actual, 'TrainUnit'), ...indexedValues(actual, 'CandidateUnit')]) {
+      if (!unitId.endsWith('AbathurReborn')) {
+        errors.push(`${expected.id}: 正向 Catalog 单位必须使用私有 ID，发现 ${unitId}`);
+      }
+    }
+  }
+
+  const privateRavagerAbilityIds = [
+    'RavagerCorrosiveBileAbathurReborn',
+    'MorphRoachToRavagerAbathurReborn',
+    'MorphRoachVileToRavagerAbathurReborn',
+  ];
+  for (const abilityId of privateRavagerAbilityIds) {
+    if (!targetAbilities.has(abilityId)) {
+      errors.push(`破坏者正向技能缺少私有 Ability: ${abilityId}`);
+    }
+  }
+  for (const abilityId of ['RavagerCorrosiveBile', 'MorphRoachToRavager', 'MorphRoachVileToRavager']) {
+    if (targetAbilities.has(abilityId)) {
+      errors.push(`破坏者正向技能不应在重生阿巴瑟模块中继续定义普通 Ability ID: ${abilityId}`);
+    }
+  }
+  for (const effectId of [
+    'RavagerCorrosiveBileAoeCP',
+    'RavagerCorrosiveBileAoeDamage',
+    'RavagerCorrosiveBileAoeLaunchSet',
+    'RavagerCorrosiveBileAoeSearch',
+    'RavagerCorrosiveBileAoeWarningDummySearch',
+  ]) {
+    if (targetEffects.has(effectId)) {
+      errors.push(`破坏者胆汁效果不应在重生阿巴瑟模块中继续定义普通 Effect ID: ${effectId}`);
+    }
+    if (!targetEffects.has(privateCatalogId(effectId))) {
+      errors.push(`破坏者胆汁效果缺少私有 Effect: ${privateCatalogId(effectId)}`);
+    }
   }
 }
 
@@ -511,13 +646,14 @@ function validateLarvaBaseProduction(instances) {
 
   for (const expected of expectedLarvaTrainButtons) {
     const info = extractInfoArrayBlock(trainBlock, expected.command);
+    const expectedUnit = privateCatalogId(expected.unit);
     if (!info) {
       errors.push(`LarvaTrainAbathurReborn 缺少 ${expected.command}`);
       continue;
     }
     const units = collectTagValues(info, 'Unit');
-    if (!units.includes(expected.unit)) {
-      errors.push(`LarvaTrainAbathurReborn ${expected.command} 产出 ${units.join(', ') || '<none>'}, expected includes ${expected.unit}`);
+    if (!units.includes(expectedUnit)) {
+      errors.push(`LarvaTrainAbathurReborn ${expected.command} 产出 ${units.join(', ') || '<none>'}, expected includes ${expectedUnit}`);
     }
   }
 
@@ -531,7 +667,7 @@ function validateLarvaBaseProduction(instances) {
   validatePrivateTownHallLarvaClosure();
 
   const baseUnits = new Set([...instances.values()].map((fields) => scalarValue(fields, 'BaseUnit')).filter(Boolean));
-  const trainedUnits = new Set(expectedLarvaTrainButtons.map((button) => button.unit));
+  const trainedUnits = new Set(expectedLarvaTrainButtons.map((button) => privateCatalogId(button.unit)));
   for (const baseUnit of baseUnits) {
     if (!trainedUnits.has(baseUnit)) {
       errors.push(`族系 BaseUnit ${baseUnit} 没有对应 LarvaTrain 基础入口`);
@@ -825,7 +961,7 @@ function validateXmFinalRuntimeClosure(instances) {
     }
   }
 
-  for (const unitId of expectedLarvaTrainButtons.map((button) => button.unit)) {
+  for (const unitId of expectedLarvaTrainButtons.map((button) => privateCatalogId(button.unit))) {
     if (!runtimeText.includes(`TechTreeUnitAllow(lp_player, "${unitId}", true)`)) {
       errors.push(`AbathurRebornRuntime 必须开放基础生产单位: ${unitId}`);
     }
@@ -838,13 +974,14 @@ function validateXmFinalRuntimeClosure(instances) {
     }
 
     expected.candidates.forEach(([, unitId, status]) => {
-      const allowTrue = `TechTreeUnitAllow(lp_player, "${unitId}", true)`;
+      const catalogUnitId = privateCatalogId(unitId);
+      const allowTrue = `TechTreeUnitAllow(lp_player, "${catalogUnitId}", true)`;
       if (status === 'ready') {
         if (!runtimeText.includes(allowTrue)) {
-          errors.push(`AbathurRebornRuntime 必须在选择闭包中开放 ready 候选: ${expected.id}/${unitId}`);
+          errors.push(`AbathurRebornRuntime 必须在选择闭包中开放 ready 候选: ${expected.id}/${catalogUnitId}`);
         }
       } else if (runtimeText.includes(allowTrue)) {
-        errors.push(`AbathurRebornRuntime 不允许开放 planned 候选: ${expected.id}/${unitId}`);
+        errors.push(`AbathurRebornRuntime 不允许开放 planned 候选: ${expected.id}/${catalogUnitId}`);
       }
     });
   }
@@ -863,8 +1000,9 @@ function validateXmFinalRuntimeClosure(instances) {
     'MorphRoachToRavager',
     'MorphRoachVileToRavager',
   ]) {
-    if (!runtimeText.includes(`AbilityCommand("${abilityId}", 0)`)) {
-      errors.push(`AbathurRebornRuntime 缺少破坏者能力白名单: ${abilityId}`);
+    const catalogAbilityId = privateCatalogId(abilityId);
+    if (!runtimeText.includes(`AbilityCommand("${catalogAbilityId}", 0)`)) {
+      errors.push(`AbathurRebornRuntime 缺少破坏者能力白名单: ${catalogAbilityId}`);
     }
   }
 
@@ -891,25 +1029,29 @@ function validateRuntimeReplacementClosure(runtimeText, instances) {
   }
 
   for (const [baseUnit, selection, replacementUnit] of expectedRuntimeReplacements) {
-    if (!readyUnits.has(replacementUnit)) {
-      errors.push(`运行时替换表引用的 ready 单位未在 profile 中标记 ready: ${baseUnit}/${selection} -> ${replacementUnit}`);
+    const baseCatalogUnit = privateCatalogId(baseUnit);
+    const replacementCatalogUnit = privateCatalogId(replacementUnit);
+    if (!readyUnits.has(replacementCatalogUnit)) {
+      errors.push(`运行时替换表引用的 ready 单位未在 profile 中标记 ready: ${baseUnit}/${selection} -> ${replacementCatalogUnit}`);
     }
     const replacementPattern = new RegExp(
-      `lp_baseUnit\\s*==\\s*"${escapeRegExp(baseUnit)}"[\\s\\S]{0,700}lv_selection\\s*==\\s*"${escapeRegExp(selection)}"[\\s\\S]{0,180}return\\s+"${escapeRegExp(replacementUnit)}"`,
+      `lp_baseUnit\\s*==\\s*"${escapeRegExp(baseCatalogUnit)}"[\\s\\S]{0,700}lv_selection\\s*==\\s*"${escapeRegExp(selection)}"[\\s\\S]{0,180}return\\s+"${escapeRegExp(replacementCatalogUnit)}"`,
     );
     if (!replacementPattern.test(runtimeText)) {
-      errors.push(`AbathurRebornRuntime 缺少单位替换映射: ${baseUnit}/${selection} -> ${replacementUnit}`);
+      errors.push(`AbathurRebornRuntime 缺少单位替换映射: ${baseCatalogUnit}/${selection} -> ${replacementCatalogUnit}`);
     }
   }
 
   for (const baseUnit of new Set(expectedRuntimeReplacements.map(([baseUnit]) => baseUnit))) {
-    if (!runtimeText.includes(`libE0EAE146_gf_AbathurRebornReplaceUnitsOfType(lp_player, "${baseUnit}")`)) {
-      errors.push(`AbathurRebornRuntime 周期扫描缺少基础单位: ${baseUnit}`);
+    const baseCatalogUnit = privateCatalogId(baseUnit);
+    if (!runtimeText.includes(`libE0EAE146_gf_AbathurRebornReplaceUnitsOfType(lp_player, "${baseCatalogUnit}")`)) {
+      errors.push(`AbathurRebornRuntime 周期扫描缺少基础单位: ${baseCatalogUnit}`);
     }
   }
 
   for (const unitId of plannedUnits) {
-    if (runtimeText.includes(`return "${unitId}"`)) {
+    const catalogUnitId = privateCatalogId(unitId);
+    if (runtimeText.includes(`return "${catalogUnitId}"`)) {
       errors.push(`AbathurRebornRuntime 不允许把 planned 候选作为替换产物: ${unitId}`);
     }
   }
@@ -1035,21 +1177,21 @@ function validateRavagerClosure(instances) {
   const forbiddenUnits = new Set(indexedValues(roach, 'ForbiddenUnit'));
   const forbiddenAbilities = new Set(indexedValues(roach, 'ForbiddenAbility'));
 
-  if (!requiredAbilities.has('RavagerCorrosiveBile')) {
-    errors.push('Roach/Ravager 分支必须声明 RequiredAbility=RavagerCorrosiveBile');
+  if (!requiredAbilities.has('RavagerCorrosiveBileAbathurReborn')) {
+    errors.push('Roach/Ravager 分支必须声明 RequiredAbility=RavagerCorrosiveBileAbathurReborn');
   }
-  if (!requiredEffects.has('RavagerCorrosiveBileAoeLaunchSet')) {
-    errors.push('Roach/Ravager 分支必须声明 RequiredEffect=RavagerCorrosiveBileAoeLaunchSet');
+  if (!requiredEffects.has('RavagerCorrosiveBileAoeLaunchSetAbathurReborn')) {
+    errors.push('Roach/Ravager 分支必须声明 RequiredEffect=RavagerCorrosiveBileAoeLaunchSetAbathurReborn');
   }
-  if (!forbiddenUnits.has('RavagerAbathur')) {
-    errors.push('Roach/Ravager 分支必须显式排除 ForbiddenUnit=RavagerAbathur');
+  if (!forbiddenUnits.has('RavagerAbathurLegacyAbathurReborn')) {
+    errors.push('Roach/Ravager 分支必须显式排除 ForbiddenUnit=RavagerAbathurLegacyAbathurReborn');
   }
-  if (!forbiddenAbilities.has('RavagerAbathurCorrosiveBile')) {
-    errors.push('Roach/Ravager 分支必须显式排除 ForbiddenAbility=RavagerAbathurCorrosiveBile');
+  if (!forbiddenAbilities.has('RavagerAbathurCorrosiveBileLegacyAbathurReborn')) {
+    errors.push('Roach/Ravager 分支必须显式排除 ForbiddenAbility=RavagerAbathurCorrosiveBileLegacyAbathurReborn');
   }
 
-  if (!targetAbilities.has('RavagerCorrosiveBile')) {
-    errors.push('当前 AbilData 缺少 RavagerCorrosiveBile');
+  if (!targetAbilities.has('RavagerCorrosiveBileAbathurReborn')) {
+    errors.push('当前 AbilData 缺少 RavagerCorrosiveBileAbathurReborn');
   }
   for (const effectId of requiredRavagerEffects) {
     if (!targetEffects.has(effectId)) {
@@ -1059,50 +1201,51 @@ function validateRavagerClosure(instances) {
 
   const ravagerUnitBlock = extractCatalogBlock(targetUnitText, 'CUnit', 'Ravager');
   if (!ravagerUnitBlock) {
-    errors.push('当前 UnitData 缺少 CUnit id="Ravager"');
+    errors.push('当前 UnitData 缺少 CUnit id="RavagerAbathurReborn"');
   } else {
-    if (!/AbilArray\s+Link="RavagerCorrosiveBile"/.test(ravagerUnitBlock)) {
-      errors.push('Ravager 单位卡缺少 AbilArray Link="RavagerCorrosiveBile"');
+    if (!/AbilArray\s+Link="RavagerCorrosiveBileAbathurReborn"/.test(ravagerUnitBlock)) {
+      errors.push('RavagerAbathurReborn 单位卡缺少 AbilArray Link="RavagerCorrosiveBileAbathurReborn"');
     }
-    if (!/AbilCmd="RavagerCorrosiveBile,Execute"/.test(ravagerUnitBlock)) {
-      errors.push('Ravager 单位卡缺少 RavagerCorrosiveBile,Execute 按钮命令');
+    if (!/AbilCmd="RavagerCorrosiveBileAbathurReborn,Execute"/.test(ravagerUnitBlock)) {
+      errors.push('RavagerAbathurReborn 单位卡缺少 RavagerCorrosiveBileAbathurReborn,Execute 按钮命令');
     }
-    if (/RavagerAbathur/.test(ravagerUnitBlock)) {
-      errors.push('普通 Ravager 单位卡不应引用 RavagerAbathur*');
+    if (/RavagerAbathurCorrosiveBileLegacyAbathurReborn|RavagerAbathur,Execute/.test(ravagerUnitBlock)) {
+      errors.push('RavagerAbathurReborn 正向单位卡不应引用旧阿巴瑟破坏者能力');
     }
   }
 
   const bileBlock = extractCatalogBlock(targetAbilText, 'CAbilEffectTarget', 'RavagerCorrosiveBile');
   if (!bileBlock) {
-    errors.push('当前 AbilData 缺少 CAbilEffectTarget id="RavagerCorrosiveBile"');
+    errors.push('当前 AbilData 缺少 CAbilEffectTarget id="RavagerCorrosiveBileAbathurReborn"');
   } else {
-    if (!/Effect\s+index="0"\s+value="RavagerCorrosiveBileAoeLaunchSet"/.test(bileBlock)) {
-      errors.push('RavagerCorrosiveBile 未指向 RavagerCorrosiveBileAoeLaunchSet');
+    if (!/Effect\s+index="0"\s+value="RavagerCorrosiveBileAoeLaunchSetAbathurReborn"/.test(bileBlock)) {
+      errors.push('RavagerCorrosiveBileAbathurReborn 未指向 RavagerCorrosiveBileAoeLaunchSetAbathurReborn');
     }
-    if (!/Cooldown\s+Link="Abil\/RavagerCorrosiveBile"\s+TimeUse="15"/.test(bileBlock)) {
-      errors.push('RavagerCorrosiveBile 冷却不是 15 秒或未显式绑定自身冷却');
+    if (!/Cooldown\s+Link="Abil\/RavagerCorrosiveBileAbathurReborn"\s+TimeUse="15"/.test(bileBlock)) {
+      errors.push('RavagerCorrosiveBileAbathurReborn 冷却不是 15 秒或未显式绑定自身私有冷却');
     }
   }
 
   for (const abilityId of ['MorphRoachToRavager', 'MorphRoachVileToRavager']) {
+    const catalogAbilityId = privateCatalogId(abilityId);
     const block = extractCatalogBlock(targetAbilText, 'CAbilTrain', abilityId);
     if (!block) {
-      errors.push(`当前 AbilData 缺少 ${abilityId}`);
+      errors.push(`当前 AbilData 缺少 ${catalogAbilityId}`);
       continue;
     }
-    if (!/<Unit\s+value="Ravager"\s*\/>/.test(block)) {
-      errors.push(`${abilityId} 产出目标必须是 Ravager`);
+    if (!/<Unit\s+value="RavagerAbathurReborn"\s*\/>/.test(block)) {
+      errors.push(`${catalogAbilityId} 产出目标必须是 RavagerAbathurReborn`);
     }
     if (/<Unit\s+value="RavagerAbathur"\s*\/>/.test(block)) {
-      errors.push(`${abilityId} 不能产出 RavagerAbathur`);
+      errors.push(`${catalogAbilityId} 不能产出 RavagerAbathur`);
     }
   }
 
   const launchSetBlock = extractCatalogBlock(targetEffectText, 'CEffectSet', 'RavagerCorrosiveBileAoeLaunchSet');
   if (launchSetBlock) {
-    for (const ref of ['RavagerCorrosiveBileAoeCP', 'RavagerCorrosiveBileAoeWarningDummySearch']) {
+    for (const ref of ['RavagerCorrosiveBileAoeCPAbathurReborn', 'RavagerCorrosiveBileAoeWarningDummySearchAbathurReborn']) {
       if (!launchSetBlock.includes(`value="${ref}"`)) {
-        errors.push(`RavagerCorrosiveBileAoeLaunchSet 未引用 ${ref}`);
+        errors.push(`RavagerCorrosiveBileAoeLaunchSetAbathurReborn 未引用 ${ref}`);
       }
     }
   }
@@ -1724,8 +1867,8 @@ function validateFrostFiendClosure() {
     errors.push('FrostFiendBurrow 必须变形为 FrostFiendBurrowed');
   }
   const unburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'FrostFiendUnburrow');
-  if (!unburrow.includes('InfoArray Unit="FrostFiend"')) {
-    errors.push('FrostFiendUnburrow 必须变回 FrostFiend');
+  if (!unburrow.includes(unitReferenceToken('InfoArray Unit', 'FrostFiend'))) {
+    errors.push('FrostFiendUnburrow 必须变回 FrostFiendAbathurReborn');
   }
 
   const weapon = extractCatalogBlock(targetWeaponText, 'CWeaponLegacy', 'FrozenShards');
@@ -1850,8 +1993,8 @@ function validateAbathurRebornSwarmHostVariantClosure() {
     errors.push('BurrowBaneHost 必须变形为 BaneHostBurrowed');
   }
   const unburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'UnburrowBaneHost');
-  if (!unburrow.includes('InfoArray Unit="BaneHost"')) {
-    errors.push('UnburrowBaneHost 必须变回 BaneHost');
+  if (!unburrow.includes(unitReferenceToken('InfoArray Unit', 'BaneHost'))) {
+    errors.push('UnburrowBaneHost 必须变回 BaneHostAbathurReborn');
   }
 
   const banelingLaunch = extractCatalogBlock(targetAbilText, 'CAbilEffectTarget', 'BanelingLaunch');
@@ -1996,8 +2139,8 @@ function validateAbathurRebornUltraliskVariantClosure() {
     errors.push('SavageBurrow 必须变形为 SavageBurrowed');
   }
   const savageUnburrow = extractCatalogBlock(targetAbilText, 'CAbilMorph', 'SavageUnburrow');
-  if (!savageUnburrow.includes('InfoArray Unit="UltraliskSavage"')) {
-    errors.push('SavageUnburrow 必须变回 UltraliskSavage');
+  if (!savageUnburrow.includes(unitReferenceToken('InfoArray Unit', 'UltraliskSavage'))) {
+    errors.push('SavageUnburrow 必须变回 UltraliskSavageAbathurReborn');
   }
 
   if (!kaldir.includes('AbilArray Link="ElectromagneticImplosion"')) {
@@ -2188,7 +2331,7 @@ function validateAbathurRebornMonstrousFlierVariantClosure() {
 
 function expectIdsPresent(label, idSet, ids) {
   for (const id of ids) {
-    if (!idSet.has(id)) {
+    if (!hasCatalogId(idSet, id)) {
       errors.push(`${label}: 缺少 ${id}`);
     }
   }
@@ -2497,20 +2640,34 @@ function extractInstanceBlock(userBlock, instanceId) {
 }
 
 function extractCatalogBlock(text, tagName, id) {
-  const re = new RegExp(`<${tagName}\\s+id="${escapeRegExp(id)}"[^>]*>[\\s\\S]*?<\\/${tagName}>`);
-  return text.match(re)?.[0] ?? '';
+  for (const catalogId of catalogIdCandidates(id)) {
+    const re = new RegExp(`<${tagName}\\s+id="${escapeRegExp(catalogId)}"[^>]*>[\\s\\S]*?<\\/${tagName}>`);
+    const match = text.match(re)?.[0];
+    if (match) {
+      return match;
+    }
+  }
+  return '';
 }
 
 function extractCatalogBlockByPrefix(text, tagPrefix, id) {
-  const re = new RegExp(`<${tagPrefix}[A-Za-z]*\\s+id="${escapeRegExp(id)}"[^>]*>[\\s\\S]*?<\\/${tagPrefix}[A-Za-z]*>`);
-  return text.match(re)?.[0] ?? '';
+  for (const catalogId of catalogIdCandidates(id)) {
+    const re = new RegExp(`<${tagPrefix}[A-Za-z]*\\s+id="${escapeRegExp(catalogId)}"[^>]*>[\\s\\S]*?<\\/${tagPrefix}[A-Za-z]*>`);
+    const match = text.match(re)?.[0];
+    if (match) {
+      return match;
+    }
+  }
+  return '';
 }
 
 function extractCatalogBlocks(text, tagName, id) {
   const blocks = [];
-  const re = new RegExp(`<${tagName}\\s+id="${escapeRegExp(id)}"[^>]*>[\\s\\S]*?<\\/${tagName}>`, 'g');
-  for (const match of text.matchAll(re)) {
-    blocks.push(match[0]);
+  for (const catalogId of catalogIdCandidates(id)) {
+    const re = new RegExp(`<${tagName}\\s+id="${escapeRegExp(catalogId)}"[^>]*>[\\s\\S]*?<\\/${tagName}>`, 'g');
+    for (const match of text.matchAll(re)) {
+      blocks.push(match[0]);
+    }
   }
   return blocks;
 }
@@ -2574,6 +2731,23 @@ function collectCatalogIds(text, re) {
     ids.add(match[1]);
   }
   return ids;
+}
+
+function privateCatalogId(id) {
+  return privateCatalogIdMap.get(id) ?? id;
+}
+
+function catalogIdCandidates(id) {
+  const privateId = privateCatalogId(id);
+  return privateId === id ? [id] : [id, privateId];
+}
+
+function hasCatalogId(idSet, id) {
+  return catalogIdCandidates(id).some((candidate) => idSet.has(candidate));
+}
+
+function unitReferenceToken(attributeName, unitId) {
+  return `${attributeName}="${privateCatalogId(unitId)}"`;
 }
 
 function collectAttributeValues(block, tagName, attrName) {

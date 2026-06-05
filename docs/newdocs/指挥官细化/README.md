@@ -19,6 +19,34 @@
 9. `buildings.json` 是官方提取出的建筑名册，不等于劳工实际 command card 的全部建造按钮；人族闭包同时保留 `worker_build_commands`，用于回答 SCV/劳工/冲锋队可以实际点击哪些建筑命令。`raw-only` tech building 可作为功能性前置链，但不能反过来覆盖 official buildings.json 归属。
 10. 当前 Mod 实现口径下，所有指挥官攻防升级均按五档处理；文档和实现必须追完整 `ButtonData -> UnitData CardLayouts -> AbilData Research -> RequirementData -> UpgradeData/Effect` 的 1-5 档闭包。共享 `UpgradeData` / `AbilData` 命中只能作为审计候选，只有当前指挥官自己的科技建筑面板实际暴露并能研究生效时，才计入该指挥官正向攻防链。
 
+## 当前 Mod 开局初始化对照
+
+2026-06-05 复核口径：本表记录 `合作指挥官版起义狂潮` 当前 Mod 实际初始化单位，不反推为官方原始 ID。单指挥官 `04. 初始化基地与特殊建筑` 中的“候选”表仍按官方/闭包候选保留；判断实机开局基地、工人、补给/第二单位时，以本表和 `CommanderAch` 当前实现为准。
+
+验证入口：
+
+```powershell
+node .\scripts\sc2\validate-private-commander-openers.mjs
+```
+
+当前结果：`PASS: private commander opener validation passed commanders=11`。
+
+| 指挥官 | 当前 Mod 模块 | 初始化基地 `CommandCenter` | 初始化工人 `Worker` | 初始化第二单位 `SecondUnit` | 运行时追加对象 |
+|---|---|---|---|---|---|
+| 阿巴瑟 / Abathur | `XMAbathur.SC2Mod` | `HatcheryAbathur` | `DroneAbathur` | `OverlordAbathur` | `CoopCasterAbathur`；生物质初始化由 `LibE0EAE146_AbathurRuntime.galaxy` 承载 |
+| 阿拉纳克 / Alarak | `XMAlarak.SC2Mod` | `NexusAlarak` | `ProbeAlarak` | `PylonAlarak` | `CoopCasterAlarak`；`createHero=true` 时创建 `AlarakCoop` |
+| 阿塔尼斯 / Artanis | `XMArtanis.SC2Mod` | `NexusArtanis` | `ProbeArtanis` | `PylonArtanis` | `SoACasterArtanis`；`createHero=true` 时创建战役英雄 `ArtanisVoid` |
+| 菲尼克斯 / Fenix | `XMFenix.SC2Mod` | `NexusFenix` | `ProbeFenix` | `PylonFenix` | `SoACasterFenix`、`FenixAltarOfPsiStorms`；`createHero=true` 时创建 `FenixCoop` |
+| 凯拉克斯 / Karax | `XMKarax.SC2Mod` | `NexusKarax` | `ProbeKarax` | `PylonKarax` | `SoACasterKarax`、`SolarForgeKarax`；`createHero=true` 时创建 `KaraxChampion` |
+| 凯瑞甘 / Kerrigan | `XMKerrigan.SC2Mod` | `HatcheryKerrigan` | `DroneKerrigan` | `OverlordKerrigan` | `K5Kerrigan` 作为英雄/主 caster；死亡复活锚点为 `KerriganReviveCocoon` |
+| 雷诺 / Raynor | `XMRaynor.SC2Mod` | `CommandCenterRaynor` | `SCVRaynor` | `SupplyDepotRaynor` | 顶部/召唤链继续由 `CoopCasterRaynor`、`HyperionVoidCoop`、`BansheeAirstrike` 等私有链承载 |
+| 斯旺 / Swann | `XMSwann.SC2Mod` | `CommandCenterSwann` | `SCVSwann` | `UnfinishedDrakkenLaserDrillCoop` | `CasterSwann`；钻机通过 `DrakkenLaserDrillUnit` 绑定，并由英雄结构 helper 兜底创建 |
+| 沃拉尊 / Vorazun | `XMVorazun.SC2Mod` | `NexusVorazun` | `ProbeVorazun` | `PylonVorazun` | `SoACasterVorazun`；`createHero=true` 时创建 `VorazunChampion` |
+| 扎加拉 / Zagara | `XMZagara.SC2Mod` | `HatcheryZagara` | `DroneZagara` | `OverlordZagara` | `CoopCasterZagara`；`createHero=true` 时创建 `ZagaraVoidCoop`，死亡复活锚点为 `ZagaraReviveCocoon` |
+| 泽拉图 / Zeratul | `XMZeratul.SC2Mod` | `NexusZeratul` | `ProbeZeratul` | `VoidPylon` | `CoopCasterZeratul`、`CoopCasterZeratulSpecialization`、`ZeratulACArtifact`；`createHero=true` 时创建 `ZeratulCoop` |
+
+防误读结论：`XMCore.SC2Mod` 里仍保留部分通用或旧开局项，例如 `Nexus/Probe/Pylon`、`Hatchery/Drone/Overlord`、`CommandCenter/SCV/SupplyDepot`。当前 `XMFinal` live `DocumentHeader` 已加载各指挥官私有模块，`InitializeBase` 通过 `CommanderAchUnit("CommandCenter"/"Worker"/"SecondUnit")` 取值，且 Zagara 另有 catalog-guarded fallback；因此上述 11 个指挥官的实机初始化不应再落回通用基地和通用兵种。
+
 ## 误归属防线
 
 2026-06-03 阿巴瑟复盘结论：`NydusNetwork` 曾因共享 `ZergBuild,Build10` / `ArmyCategory NydusNetwork` 被误当成阿巴瑟建筑候选。根因不是官方阿巴瑟数据支持它，而是后续补官方闭包时绕过了 `commanders/Abathur/buildings.json` 和满级有效名册过滤。以后做单指挥官科技链时必须按这个顺序判定：
