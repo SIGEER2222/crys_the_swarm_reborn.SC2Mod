@@ -20,6 +20,7 @@ include "LibE0EAE146_ArtanisRuntime"
 include "LibE0EAE146_FenixRuntime"
 include "LibE0EAE146_KaraxRuntime"
 include "LibE0EAE146_KerriganRuntime"
+include "LibE0EAE146_RaynorRuntime"
 include "LibE0EAE146_RuntimeSafety"
 include "LibE0EAE146_VorazunRuntime"
 include "LibE0EAE146_ZagaraRuntime"
@@ -63,6 +64,7 @@ void libE0EAE146_InitVariables () {
     libE0EAE146_gv_fenixRuntimeInitialized = false;
     libE0EAE146_gv_karaxRuntimeInitialized = false;
     libE0EAE146_gv_kerriganRuntimeInitialized = false;
+    libE0EAE146_gv_raynorRuntimeInitialized = false;
     libE0EAE146_gv_vorazunRuntimeInitialized = false;
     libE0EAE146_gv_zagaraRuntimeInitialized = false;
     libE0EAE146_gv_commanderHeroReviveInitialized = false;
@@ -434,6 +436,9 @@ void libE0EAE146_gf_InitializeBase (point lp_secondUnit, int lp_worker, point lp
     }
     else if (auto09490B45_val == "Zeratul") {
         libE0EAE146_gf_ZeratulRuntimeInit(1, lp_secondUnit, lp_createHero);
+    }
+    else if (auto09490B45_val == "Raynor") {
+        libE0EAE146_gf_RaynorRuntimeInit(1, lp_secondUnit, lp_createHero);
     }
     else {
     }
