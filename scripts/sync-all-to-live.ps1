@@ -115,6 +115,147 @@ function Test-FileMatches {
     return $sourceHash -eq $targetHash
 }
 
+function Get-ActiveDocumentInfoDependencies {
+    param([string]$Path)
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        throw "DocumentInfo not found: $Path"
+    }
+
+    $text = Get-Content -LiteralPath $Path -Raw
+    $activeText = [regex]::Replace($text, '<!--[\s\S]*?-->', '')
+    $matches = [regex]::Matches($activeText, '<Value>([^<]+)</Value>')
+    $dependencies = New-Object System.Collections.Generic.List[string]
+
+    foreach ($match in $matches) {
+        $dependencies.Add($match.Groups[1].Value)
+    }
+
+    return $dependencies.ToArray()
+}
+
+function Test-ByteSequenceAt {
+    param(
+        [byte[]]$Bytes,
+        [int]$Offset,
+        [byte[]]$Needle
+    )
+
+    if ($Offset + $Needle.Length -gt $Bytes.Length) {
+        return $false
+    }
+
+    for ($i = 0; $i -lt $Needle.Length; $i++) {
+        if ($Bytes[$Offset + $i] -ne $Needle[$i]) {
+            return $false
+        }
+    }
+
+    return $true
+}
+
+function Find-DocumentHeaderDependencyStart {
+    param([byte[]]$Bytes)
+
+    $markers = @(
+        [System.Text.Encoding]::UTF8.GetBytes("file:"),
+        [System.Text.Encoding]::UTF8.GetBytes("bnet:")
+    )
+
+    for ($offset = 4; $offset -lt $Bytes.Length; $offset++) {
+        foreach ($marker in $markers) {
+            if (-not (Test-ByteSequenceAt -Bytes $Bytes -Offset $offset -Needle $marker)) {
+                continue
+            }
+
+            $count = [System.BitConverter]::ToUInt32($Bytes, $offset - 4)
+            if (($count -gt 0) -and ($count -lt 128)) {
+                return $offset
+            }
+        }
+    }
+
+    throw "DocumentHeader dependency table not found."
+}
+
+function Get-DocumentHeaderDependencies {
+    param(
+        [byte[]]$Bytes,
+        [int]$Start,
+        [uint32]$Count
+    )
+
+    $dependencies = New-Object System.Collections.Generic.List[string]
+    $offset = $Start
+
+    for ($index = 0; $index -lt $Count; $index++) {
+        $end = $offset
+        while (($end -lt $Bytes.Length) -and ($Bytes[$end] -ne 0)) {
+            $end++
+        }
+        if ($end -ge $Bytes.Length) {
+            throw "DocumentHeader dependency string is not null-terminated."
+        }
+
+        $dependencies.Add([System.Text.Encoding]::UTF8.GetString($Bytes, $offset, $end - $offset))
+        $offset = $end + 1
+    }
+
+    return [pscustomobject]@{
+        Dependencies = $dependencies.ToArray()
+        EndOffset = $offset
+    }
+}
+
+function Set-XMFinalLiveDocumentHeaderFromInfo {
+    param([string]$XMFinalRoot)
+
+    $documentInfo = Join-Path $XMFinalRoot "DocumentInfo"
+    $documentHeader = Join-Path $XMFinalRoot "DocumentHeader"
+    $dependencies = Get-ActiveDocumentInfoDependencies -Path $documentInfo
+
+    if ($dependencies.Count -eq 0) {
+        throw "No active dependencies found in $documentInfo"
+    }
+
+    if (-not (Test-Path -LiteralPath $documentHeader)) {
+        throw "DocumentHeader not found: $documentHeader"
+    }
+
+    if ($DryRun) {
+        Write-Output "DRYRUN_NORMALIZE_XMFINAL_DOCUMENTHEADER=$($dependencies.Count)"
+        return
+    }
+
+    [byte[]]$bytes = [System.IO.File]::ReadAllBytes($documentHeader)
+    $dependencyStart = Find-DocumentHeaderDependencyStart -Bytes $bytes
+    $countOffset = $dependencyStart - 4
+    $currentCount = [System.BitConverter]::ToUInt32($bytes, $countOffset)
+    $currentInfo = Get-DocumentHeaderDependencies -Bytes $bytes -Start $dependencyStart -Count $currentCount
+
+    if (($currentInfo.Dependencies.Count -eq $dependencies.Count) -and
+        (($currentInfo.Dependencies -join "`n") -eq ($dependencies -join "`n"))) {
+        Write-Output "NORMALIZED_XMFINAL_DOCUMENTHEADER=unchanged"
+        return
+    }
+
+    $dependencyBytes = [System.Text.Encoding]::UTF8.GetBytes((($dependencies -join "`0") + "`0"))
+    $countBytes = [System.BitConverter]::GetBytes([uint32]$dependencies.Count)
+    $stream = New-Object System.IO.MemoryStream
+
+    $stream.Write($bytes, 0, $countOffset)
+    $stream.Write($countBytes, 0, $countBytes.Length)
+    $stream.Write($dependencyBytes, 0, $dependencyBytes.Length)
+    $stream.Write($bytes, $currentInfo.EndOffset, $bytes.Length - $currentInfo.EndOffset)
+
+    $backupPath = "$documentHeader.bak-sync-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+    Copy-Item -LiteralPath $documentHeader -Destination $backupPath -Force
+    [System.IO.File]::WriteAllBytes($documentHeader, $stream.ToArray())
+
+    Write-Output "NORMALIZED_XMFINAL_DOCUMENTHEADER=$($dependencies.Count)"
+    Write-Output "BACKED_UP_XMFINAL_DOCUMENTHEADER=$backupPath"
+}
+
 function Assert-XMFinalDocumentMetaIsSafeToSkip {
     param(
         [string]$SourceModsRoot,
@@ -257,6 +398,10 @@ if (-not $SkipMods) {
         $target = Join-Path $targetModsRoot $modName
         Invoke-RobocopySync -Source $source -Target $target
         Write-Output "SYNCED_MOD=$modName"
+    }
+
+    if ($MutateXMFinalDocumentMeta -and ($modNames -contains "XMFinal.SC2Mod")) {
+        Set-XMFinalLiveDocumentHeaderFromInfo -XMFinalRoot (Join-Path $targetModsRoot "XMFinal.SC2Mod")
     }
 }
 
