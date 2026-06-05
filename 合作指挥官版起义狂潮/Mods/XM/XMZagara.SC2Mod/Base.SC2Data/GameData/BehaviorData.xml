@@ -1365,9 +1365,15 @@
   <CBehaviorBuff id="SoulAbsorption">
     <BehaviorFlags index="Permanent" value="1" />
   </CBehaviorBuff>
-  <CBehaviorSpawn id="SpawnLarva">
-    <InfoArray index="0" MaxCount="6" StartCount="3" Delay="15" />
-    <InfoArray index="1" MaxCount="18" />
+  <CBehaviorSpawn id="SpawnLarvaZagara" parent="SpawnLarva">
+    <InfoArray index="0">
+      <Unit value="LarvaZagara" />
+      <MaxCount value="6" />
+      <StartCount value="3" />
+      <Delay value="15" />
+    </InfoArray>
+    <InfoArray index="1" Unit="LarvaZagara" MaxCount="18" />
+    <InfoArray index="2" Unit="LarvaZagara" />
     <Limit value="18" />
   </CBehaviorSpawn>
   <CBehaviorBuff id="SpecialDeliveryGroundDrop">

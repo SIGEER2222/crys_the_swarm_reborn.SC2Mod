@@ -11135,8 +11135,8 @@
   <CUnit id="LarvaZagara" parent="Larva">
     <Race value="Zerg" />
     <Mob value="Campaign" />
-    <AbilArray Link="LarvaTrainZagara" />
-    <AbilArray Link="LarvaTrainSwarmZagara" />
+    <AbilArray index="0" Link="LarvaTrainZagara" />
+    <AbilArray index="1" Link="LarvaTrainSwarmZagara" />
     <CardLayouts index="0" removed="1" />
     <CardLayouts index="0">
       <LayoutButtons Face="DroneZagara" Type="AbilCmd" AbilCmd="LarvaTrainZagara,Train1" Row="0" Column="0" />
@@ -11173,6 +11173,7 @@
       <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
     </CardLayouts>
     <BehaviorArray Link="HatcheryLarvaDeath" />
+    <BehaviorArray index="1" Link="SpawnLarvaZagara" />
     <BehaviorArray Link="ChronoBoostTarget" />
     <BehaviorArray Link="HatcheryDoubleQueue" />
     <TechAliasArray value="Alias_Hatchery" />
@@ -11192,6 +11193,7 @@
       <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
     </CardLayouts>
     <BehaviorArray Link="HatcheryLarvaDeath" />
+    <BehaviorArray index="1" Link="SpawnLarvaZagara" />
     <BehaviorArray Link="ChronoBoostTarget" />
     <BehaviorArray Link="HatcheryDoubleQueue" />
     <TechAliasArray value="Alias_Lair" />
@@ -11209,6 +11211,7 @@
       <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
     </CardLayouts>
     <BehaviorArray Link="HatcheryLarvaDeath" />
+    <BehaviorArray index="1" Link="SpawnLarvaZagara" />
     <BehaviorArray Link="ChronoBoostTarget" />
     <BehaviorArray Link="HatcheryDoubleQueue" />
     <TechAliasArray value="Alias_Hive" />

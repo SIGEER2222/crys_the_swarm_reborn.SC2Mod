@@ -1044,9 +1044,15 @@
       <RateMultiplierArray index="Creep" value="1.15" />
     </Modification>
   </CBehaviorBuff>
-  <CBehaviorSpawn id="SpawnLarva">
-    <InfoArray index="0" MaxCount="6" StartCount="3" Delay="15" />
-    <InfoArray index="1" MaxCount="18" />
+  <CBehaviorSpawn id="SpawnLarvaAbathur" parent="SpawnLarva">
+    <InfoArray index="0">
+      <Unit value="LarvaAbathur" />
+      <MaxCount value="6" />
+      <StartCount value="3" />
+      <Delay value="15" />
+    </InfoArray>
+    <InfoArray index="1" Unit="LarvaAbathur" MaxCount="18" />
+    <InfoArray index="2" Unit="LarvaAbathur" />
     <Limit value="18" />
   </CBehaviorSpawn>
   <CBehaviorBuff id="SpawnLavaWormTimedLife">

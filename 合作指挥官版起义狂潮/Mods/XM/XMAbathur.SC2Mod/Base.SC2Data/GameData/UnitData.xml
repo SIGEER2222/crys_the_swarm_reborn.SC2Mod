@@ -8,6 +8,7 @@
     <AbilArray index="11" removed="1"></AbilArray>
     <AbilArray Link="TrainQueenAbathur"></AbilArray>
     <AbilArray Link="UpgradeToLairAbathur"></AbilArray>
+    <BehaviorArray index="1" Link="SpawnLarvaAbathur"></BehaviorArray>
     <CardLayouts index="0" removed="1"></CardLayouts>
     <CardLayouts index="0">
       <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenAbathur,Train4" Row="0" Column="1"></LayoutButtons>
@@ -107,6 +108,7 @@
     <Mob value="Campaign"></Mob>
     <AbilArray Link="TrainQueenAbathur"></AbilArray>
     <AbilArray Link="UpgradeToHiveAbathur"></AbilArray>
+    <BehaviorArray index="1" Link="SpawnLarvaAbathur"></BehaviorArray>
     <CardLayouts index="0" removed="1"></CardLayouts>
     <CardLayouts index="0">
       <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenAbathur,Train4" Row="0" Column="1"></LayoutButtons>
@@ -124,6 +126,7 @@
     <Race value="Zerg"></Race>
     <Mob value="Campaign"></Mob>
     <AbilArray Link="TrainQueenAbathur"></AbilArray>
+    <BehaviorArray index="1" Link="SpawnLarvaAbathur"></BehaviorArray>
     <CardLayouts index="0" removed="1"></CardLayouts>
     <CardLayouts index="0">
       <LayoutButtons Face="QueenCoop" Type="AbilCmd" AbilCmd="TrainQueenAbathur,Train4" Row="0" Column="1"></LayoutButtons>
@@ -9293,9 +9296,10 @@
     <SubgroupPriority value="66"></SubgroupPriority>
     <FlagArray index="TownStructureTownHall" value="1"></FlagArray>
   </CUnit>
-  <CUnit id="Larva">
-    <AbilArray Link="LarvaTrainAbathur"></AbilArray>
-    <AbilArray Link="LarvaTrainSwarmAbathur"></AbilArray>
+  <CUnit id="LarvaAbathur" parent="Larva">
+    <AbilArray index="0" Link="LarvaTrainAbathur"></AbilArray>
+    <AbilArray index="1" Link="LarvaTrainSwarmAbathur"></AbilArray>
+    <CardLayouts index="0" removed="1"></CardLayouts>
     <CardLayouts index="0">
       <LayoutButtons index="0" Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrainAbathur,Train1" Row="0" Column="0"></LayoutButtons>
       <LayoutButtons index="1" Face="Overlord" Type="AbilCmd" AbilCmd="LarvaTrainAbathur,Train3" Row="0" Column="1"></LayoutButtons>
