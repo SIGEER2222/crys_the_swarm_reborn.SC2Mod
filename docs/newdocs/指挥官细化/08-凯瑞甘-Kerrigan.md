@@ -130,8 +130,6 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | 凯瑞甘 | `K5Cooldowns` | 技能专精 | - | `HaveK5Cooldowns` | 凯瑞甘的技能冷却时间和能量消耗降低 20%。 |
 | 凯瑞甘 | `CommanderKerriganKerriganEnergyRegeneration` | 刀锋女王 | - | `HaveKerriganVoidCoopEnergyRegen` | 凯瑞甘的能量恢复速度提高50%。 |
 | 凯瑞甘 | `KerriganChainLightning` | 连锁反应 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
-| 凯瑞甘 | `SpawnBanelings` | 孵化爆虫 | `SpawnBanelings,Execute` | - | 官方 `heroes.json`、`roster.json` 和 raw unit card 都收录该按钮；凯瑞甘会召唤 6 只限时生命的爆虫。 |
-| 凯瑞甘 | `K5DropPods` | 空投囊 | `K5DropPods,Execute` | - | 官方 hero/roster/raw unit card 都收录该按钮；向目标区域投送限时生命的原始异虫部队，内容包括跳虫、蟑螂和刺蛇。 |
 | 凯瑞甘 | `K5Fury` | 狂怒 | - | `HaveK5Fury` | 凯瑞甘每次攻击都会暂时提高攻击速度，可叠层到更高上限。 |
 | 凯瑞甘 | `PrimalSlash` | 跳击 | `PrimalSlash,Execute` | - | 凯瑞甘跳向目标并造成{Effect,PrimalSlash,Amount}点伤害。可以不指定目标发动技能来迅速移动。 |
 | 凯瑞甘 | `MindBolt` | 动能冲击 | `MindBolt,Execute` | - | 官方 hero/roster/raw unit card 都能看到该按钮；威望 3 会显式启用此技。凯瑞甘远程对目标单位或建筑造成{Effect,MindBoltDamage,Amount}点伤害。 |
@@ -139,12 +137,10 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | 凯瑞甘 | `PsiStrike` | 灵能位移 | `PsiStrikeWalk,Execute` | - | 凯瑞甘飞速掠过敌人，并对其行进路线上的所有敌人造成{Effect,PsiStrikeDamage,Amount}点伤害。 |
 | 凯瑞甘 | `PsionicLift` | 粉碎勒握 | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
 | 凯瑞甘 | `KerriganVoidCoopEconDrop` | 吸收光环 | `KerriganVoidCoopEconDrop,Execute` | - | 附近所有被消灭的敌人掉落资源。效果持续{Behavior,KerriganVoidCoopEconDropCaster,Duration}秒。 |
-| 凯瑞甘 | `PrimalHeal` | 愈合 | `PrimalHeal,Execute` | - | 为凯瑞甘恢复大量生命值，为附近友方生物单位恢复较少生命值，并在后续 15 秒内继续回复一部分治疗量。 |
-| 凯瑞甘 | `WildMutation` | 野性突变 | `WildMutation,Execute` | - | 使目标区域内的友方异虫单位提高最大生命值和攻击速度；对空中单位或英雄单位无效。 |
 | 凯瑞甘 | `ChainReaction` | 连锁反应 | - | `HaveK5ChainLightning` | 凯瑞甘的普通攻击会弹射到附近额外目标，最多可命中 4 个追加目标。 |
 | 凯瑞甘 | `K5CooldownsLocked` | 技能专精 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
 
-注：`K5ZerglingRespawn` 虽然仍能在官方 raw 和 `7v1` 的凯瑞甘英雄卡面中看到，但当前只视为战役继承下来的卡面残留；未找到合作模式凯瑞甘的实授 upgrade/运行时闭包，因此不计入凯瑞甘正向技能链。
+排除项：`SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation`、`Apocalypse`、`K5Leviathan`、`K5ZerglingRespawn` 虽然能在 raw unit card 或早期抽取 JSON 中看到，但 `PlayerCommanders/ZergKerrigan.DefaultUpgrades` 不授予 `K5SpawnBanelings`、`K5DropPods`、`K5WildMutation`、`K5Mend` 等战役 K5 技能升级；当前 Mod 也不再为合作凯瑞甘挂载或 runtime 允许这些技能，因此不计入合作指挥官凯瑞甘正向技能链。
 
 ### 英雄形态/模式候选
 
@@ -627,8 +623,6 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 凯瑞甘 | `K5Cooldowns` | 技能专精 | - | `HaveK5Cooldowns` | 凯瑞甘的技能冷却时间和能量消耗降低 20%。 |
 | 凯瑞甘 | `CommanderKerriganKerriganEnergyRegeneration` | 刀锋女王 | - | `HaveKerriganVoidCoopEnergyRegen` | 凯瑞甘的能量恢复速度提高50%。 |
 | 凯瑞甘 | `KerriganChainLightning` | 连锁反应 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
-| 凯瑞甘 | `SpawnBanelings` | 孵化爆虫 | `SpawnBanelings,Execute` | - | 官方 `heroes.json`、`roster.json` 和 raw unit card 都收录该按钮；凯瑞甘会召唤 6 只限时生命的爆虫。 |
-| 凯瑞甘 | `K5DropPods` | 空投囊 | `K5DropPods,Execute` | - | 官方 hero/roster/raw unit card 都收录该按钮；向目标区域投送限时生命的原始异虫部队，内容包括跳虫、蟑螂和刺蛇。 |
 | 凯瑞甘 | `K5Fury` | 狂怒 | - | `HaveK5Fury` | 凯瑞甘每次攻击都会暂时提高攻击速度，可叠层到更高上限。 |
 | 凯瑞甘 | `PrimalSlash` | 跳击 | `PrimalSlash,Execute` | - | 凯瑞甘跳向目标并造成{Effect,PrimalSlash,Amount}点伤害。可以不指定目标发动技能来迅速移动。 |
 | 凯瑞甘 | `MindBolt` | 动能冲击 | `MindBolt,Execute` | - | 官方 hero/roster/raw unit card 都能看到该按钮；威望 3 会显式启用此技。凯瑞甘远程对目标单位或建筑造成{Effect,MindBoltDamage,Amount}点伤害。 |
@@ -636,12 +630,10 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 凯瑞甘 | `PsiStrike` | 灵能位移 | `PsiStrikeWalk,Execute` | - | 凯瑞甘飞速掠过敌人，并对其行进路线上的所有敌人造成{Effect,PsiStrikeDamage,Amount}点伤害。 |
 | 凯瑞甘 | `PsionicLift` | 粉碎勒握 | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
 | 凯瑞甘 | `KerriganVoidCoopEconDrop` | 吸收光环 | `KerriganVoidCoopEconDrop,Execute` | - | 附近所有被消灭的敌人掉落资源。效果持续{Behavior,KerriganVoidCoopEconDropCaster,Duration}秒。 |
-| 凯瑞甘 | `PrimalHeal` | 愈合 | `PrimalHeal,Execute` | - | 为凯瑞甘恢复大量生命值，为附近友方生物单位恢复较少生命值，并在后续 15 秒内继续回复一部分治疗量。 |
-| 凯瑞甘 | `WildMutation` | 野性突变 | `WildMutation,Execute` | - | 使目标区域内的友方异虫单位提高最大生命值和攻击速度；对空中单位或英雄单位无效。 |
 | 凯瑞甘 | `ChainReaction` | 连锁反应 | - | `HaveK5ChainLightning` | 凯瑞甘的普通攻击会弹射到附近额外目标，最多可命中 4 个追加目标。 |
 | 凯瑞甘 | `K5CooldownsLocked` | 技能专精 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
 
-注：上表同样不再把 `K5ZerglingRespawn` 记为凯瑞甘合作模式的确认生效链；它当前仅作为卡面残留信息保留在审计结论中。
+注：上表按合作指挥官凯瑞甘满级正链记录；战役 K5 技能只作为 raw 数据污染来源说明，不再作为候选技能或剩余验证项。
 
 实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
@@ -704,6 +696,6 @@ personal_mechanic_smoke
 
 - `HotSTorrasque` 量产切换、复活、计时与按钮显示链当前已静态闭合，但仍需实机确认量产出的暴龙兽会稳定走完整 revive loop。
 - 顶部技能与隐藏 caster 的玩家冷却、充能、目标转发和地图触发接线，仍需对照 `[XM_DBG]` 日志或实机测试。
-- `SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation` 这些官方 hero/raw card 继承技能，当前文档已确认按钮与数据源存在，但 old-line Mod 里是否全部“可点击且生效”仍需实机验证。
+- 战役 K5 技能污染已静态清理：`SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation`、`Apocalypse`、`K5Leviathan`、`K5ZerglingRespawn` 不应在合作凯瑞甘英雄卡面或 runtime 正链中出现；剩余风险是实机确认按钮面板确实不再显示这些项。
 - `power_fusion` 最终 roster 与 `level15` roster 的替换/变体关系，仍应结合地图初始化和运输场景继续校验。
 - 6 项精通与 3 个威望的正向融合数值，当前已完成静态提取，最终 runtime 套用幅度仍需落日志核对。
