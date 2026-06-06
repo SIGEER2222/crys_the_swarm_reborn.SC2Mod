@@ -258,6 +258,73 @@ Owner：`CommanderBaseInitProfile`、`CommanderOpeningLoadoutProfile`、`Command
 - `lp_createHero=true` 时 runtime 默认创建 `FenixCoop`；`FenixDragoon` / `FenixArbiter` 保持由 `SOASummonFenixDragoon` / `SOASummonFenixArbiter` 面板链进入。
 - `XMFenix.SC2Mod` 的 `CommanderAch/Fenix` 覆盖开局三件套为 `NexusFenix` / `ProbeFenix` / `PylonFenix`，避免测试初始化落回共享 `Nexus` / `Probe` / `Pylon`。
 
+### 2026-06-06 当前 Mod 与 7v1 对比排查
+
+排查输入：
+
+- 当前 Mod 结构化抽取：`tmp/fenix-audit-2026-06-06/fenix-mod-vs-7v1-structured.json`。
+- 当前 Mod 诊断重跑：`tmp/fenix-audit-2026-06-06/mod-rerun/commanders/Fenix-菲尼克斯.md`。
+- 7v1 参考：`游戏数据/其他mod数据/7vs1母巢之战合作指挥官bate版_SC2Replay_94137/s2ma_packages/pkg01/extract/base.sc2data`。
+
+7v1 实现要点：
+
+- `PlayerCommanders/ProtossFenix` 绑定 `CommanderData=Fenix`、`GlobalCastUnit=SoACasterFenix`、`HeroStructure=FenixAltarOfPsiStorms`。
+- `LibCOUI.galaxy` 的 `ProtossFenix` 分支调用 `CU_GPInitFenix`，创建 `Coop_TopBar_Fenix/FenixCasterPanelTemplate` 与 `FenixGlobalCasterCommandPanelTemplate`。
+- 7v1 通过 `CommanderLevel`、`FenixCommander`、Perk、Requirement、`TechUnit.Commander` 等共享壳过滤来点亮单位和研究；它不是“每个指挥官私有单位 ID”的实现模型，只能作为运行时链路参考。
+
+当前 Mod 已闭合项：
+
+- 开局三件套已私有：`NexusFenix` / `ProbeFenix` / `PylonFenix`。
+- 探机建造能力已私有：`ProbeFenix -> ProtossBuildFenix`，正向建筑输出为 `NexusFenix`、`PylonFenix`、`AssimilatorFenix`、`GatewayFenix`、`ForgeFenix`、`PhotonCannonFenix`、`CyberneticsCoreFenix`、`TwilightCouncilFenix`、`RoboticsFacilityFenix`、`RoboticsBayFenix`、`StargateFenix`、`FleetBeaconFenix`。
+- 私有生产建筑已存在：`GatewayFenix` / `WarpGateFenix` / `RoboticsFacilityFenix` / `StargateFenix`，并挂载 `GatewayTrainFenix` / `WarpGateTrainFenix` / `RoboticsFacilityTrainFenix` / `StargateTrainFenix`。
+- 顶部面板已接三套战甲：`SOASummonFenix -> FenixCoop`，`SOASummonFenixDragoon -> FenixDragoon`，`SOASummonFenixArbiter -> FenixArbiter`；面板快捷键校验通过，未发现菲尼克斯面板热键冲突。
+- `FenixAltarOfPsiStorms` 的研究能力与 7v1 对齐：`FenixAltarOfPsiStormsResearch` 六个下载项分别授予 `FenixChampionKaldalisZealot`、`FenixChampionTalisAdept`、`FenixChampionMojoScout`、`FenixChampionTaldarinImmortal`、`FenixChampionWarbringerColossus`、`FenixChampionClolarionCarrier`。
+
+2026-06-06 已修复的历史风险：
+
+- `GatewayTrainFenix/WarpGateTrainFenix` 的使徒产出已从公共 `Adept` 切到私有 `AdeptFenix`。
+- `RoboticsFacilityTrainFenix` 的不朽者/干扰者产出已切到 `ImmortalFenix` / `DisruptorFenix`。
+- `StargateTrainFenix` 的侦察机/航母产出已切到 `ScoutFenix` / `CarrierFenix`。
+- `CommanderRuntimeRoster/Fenix` 已改为记录私有兵种、私有建筑、三套战甲、顶部 caster、六个冠军人格和关键形态。
+- `SentryFenixPhasing` 已进入运行名册；`SentryFenixPhasingMode -> SentryFenixPhasing` 和反向形态已进入测试台技能烟测。
+- `FenixAltarOfPsiStormsResearch` 六个下载项已按 `Upgrade -> Host Morph -> Champion Unit -> Finish Effect` 追到链路；变形需求已补“对应冠军研究完成 + 当前该冠军数量为 0”的门槛，避免只靠“场上无该冠军”绕过下载研究。
+- `LibE0EAE146_FenixRuntime.galaxy` 已补满级、六精通、正向威望、私有单位允许和公共单位屏蔽。
+
+仍需保留的后续风险：
+
+- `ColossusPurifier` / `ZealotPurifier` 仍是官方净化者壳体；当前判定为菲尼克斯正向官方宿主。如果后续要求“所有官方净化者共享壳也必须私有化”，需要新增 `ColossusPurifierFenix` / `ZealotPurifierFenix` 并迁移卡尔达利斯/战争使者链。
+- `FenixChampionSwapImpactUnit*` 当前在本 Mod 中存在但为空 `CEffectSet`；不会阻断变形，但冲击视觉/额外效果是否完整需要实机或官方镜像继续核对。
+
+后续修复优先级：
+
+1. 先补 `FenixRuntimeInit` 的满级授予闭包：`CommanderLevel`、默认升级、15 级 Perk、6 项精通、正收益威望融合。
+2. 再把正向产出从公共 `Adept/Immortal/Scout/Carrier` 迁到私有 `AdeptFenix/ImmortalFenix/ScoutFenix/CarrierFenix`，同步 `TechTreeProducedUnitArray`、`CommanderRuntimeRoster/Fenix`、冠军人格宿主 morph/download 链。
+3. 之后处理建筑运行名册：`GatewayFenix`、`PhotonCannonFenix`、`RoboticsBayFenix`、`TwilightCouncilFenix` 等是否纳入 `XMFinal` 运行名册，避免诊断和运行时仍回到公共建筑。
+4. 最后补保护者相位形态、冠军人格替换链、战术数据网、复仇协议、阿昆德拉/网络管理员/不屈意志等高阶机制的实机验证。
+
+### 2026-06-06 修复进度
+
+本轮目标：按 7v1 参考补齐当前 Mod 的菲尼克斯满级运行时、私有生产链、关键形态和技能闭包。7v1 的共享壳/Requirement 模型只作为参考；当前 Mod 仍以指挥官私有单位链为目标。
+
+| 项目 | 状态 | 进度 |
+|---|---|---|
+| 记录 7v1 差异 | 已完成 | 差异已定位到运行时授予、私有产出、运行名册、保护者相位形态、干扰者技能和冠军人格宿主闭包。 |
+| 运行时满级授予 | 已完成 | `LibE0EAE146_FenixRuntime.galaxy` 已补 `CommanderLevel=16`、`FenixCommander`、`FenixResearchCostReduction`、`FenixNoTechNoGas`、`FenixOfflineSuitRegen`、`FenixChampionSwapBoost`、`FenixNetworkedSuperiority*`、`FenixUnlockDisruptor`、`FenixWarbringerColossusIceBeam`、6 项精通和正向威望融合。 |
+| 私有兵种产出 | 已完成 | `Gateway/WarpGate/RoboticsFacility/Stargate` 已切到 `AdeptFenix`、`ImmortalFenix`、`DisruptorFenix`、`ScoutFenix`、`CarrierFenix`，对应 `TechTreeProducedUnitArray` 已同步。 |
+| 建筑运行名册 | 已完成 | `CommanderRuntimeRoster/Fenix` 已把公共 `Gateway/PhotonCannon/RoboticsBay/TwilightCouncil` 改为 `GatewayFenix/PhotonCannonFenix/RoboticsBayFenix/TwilightCouncilFenix`，并补入 `NexusFenix/ProbeFenix/PylonFenix/AssimilatorFenix/ForgeFenix/CyberneticsCoreFenix/RoboticsFacilityFenix/StargateFenix/FleetBeaconFenix/WarpGateFenix/FenixAltarOfPsiStorms`。 |
+| 形态与技能闭包 | 已完成 | 已补 `SentryFenixPhasing`、`DisruptorFenix`、`FenixCoop/FenixDragoon/FenixArbiter`、`SoACasterFenix`、6 个冠军人格到运行名册；测试台技能烟测已切到私有 `AdeptFenix/ScoutFenix/ImmortalFenix/CarrierFenix/DisruptorFenix`，并补 `SentryFenixPhasing -> SentryFenix` 与 `FenixPurificationNova` / `DisruptorCloakPassive` / `DisruptorSecondExplosion`。`ForgeFenix` / `TwilightCouncilFenix` / `RoboticsBayFenix` 已显式私有 `CardLayouts`。 |
+| Requirement 闭包 | 已完成 | 已新增 `HaveDisruptorPermanentCloak`、`HaveDisruptor2ndExplode` 及其 `CountUpgrade...CompleteOnly` 节点；六个冠军变形需求已从“仅检查冠军数量为 0”改为“对应 `FenixChampion*` 研究完成 + 冠军数量为 0”。 |
+| 面板按钮私有化 | 已完成 | `ForgeFenix` 的五档攻防按钮已从 `ProtossAlarakWeapons/ArmorLevel1-5` 改为 `ProtossFenixWeapons/ArmorLevel1-5`，并补中文名称/说明；底层仍研究 `ProtossGroundWeapons/ArmorsLevel1-5`。 |
+| 校验 | 已完成 | 已新增并通过 `scripts/sc2/validate-fenix-official-runtime.mjs`；已重跑菲尼克斯诊断、私有开局并通过；`LibE0EAE146_FenixRuntime.galaxy` 当前 141 行，低于仓库约定的 1000 行上限；`git diff --check` 仅报告现有 CRLF 警告，没有新增语法空白错误。 |
+
+本轮追加说明：
+
+- 问题已从“公共兵种产出”下钻到“共享科技建筑面板污染”。
+- 已把 `ForgeFenix`、`TwilightCouncilFenix`、`RoboticsBayFenix` 改为显式私有 `CardLayouts`，优先保留菲尼克斯正向研究与通用攻防升级，去掉明显串入的 Karax / Alarak / Artanis / Zeratul 研究按钮。
+- 已把 `XMFinal` 的 `libE0EAE146_gf_XMTestBench_FenixBuildings` 从公共 `Gateway/PhotonCannon/RoboticsBay/TwilightCouncil` 改为私有 `GatewayFenix/PhotonCannonFenix/RoboticsBayFenix/TwilightCouncilFenix`，避免诊断阶段再次把公共建筑壳体带回菲尼克斯报告。
+- 已把冠军人格下载链补成 `FenixAltarOfPsiStormsResearch -> FenixChampion* Upgrade -> 私有/官方宿主 Morph -> FenixChampion* Unit -> FenixChampionSwapImpactSet*`。
+- 当前剩余重点不再是静态按钮是否存在，而是实机验证 `FenixChampionSwapImpactUnit*` 空 Set 是否只缺少视觉/冲击反馈，以及是否需要把 `ZealotPurifier/ColossusPurifier` 继续私有化。
+
 ## 05. 指挥官兵种
 
 Owner：`CommanderRosterProfile`、`CommanderUnitFactoryProfile`、`CommanderUnitReplacementProfile`、`CommanderLevelStageRosterProfile`。

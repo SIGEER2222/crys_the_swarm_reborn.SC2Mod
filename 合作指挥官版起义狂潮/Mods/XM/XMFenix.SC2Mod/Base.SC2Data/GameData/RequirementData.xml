@@ -208,7 +208,7 @@
     <NodeArray index="Use" Link="AndCountUnitArmoryCompleteOnlyTechTreeCheatEq703756952CountUnitDrakkenLaserDrillCoopQueuedOrBetter0" />
   </CRequirement>
   <CRequirement id="FenixChampionImmortalCount">
-    <NodeArray index="Use" Link="EqCountUnitFenixTaldarinImmortalCompleteOnly0" />
+    <NodeArray index="Use" Link="AndCountUpgradeFenixChampionTaldarinImmortalCompleteOnlyEqCountUnitFenixTaldarinImmortalCompleteOnly0" />
   </CRequirement>
   <CRequirement id="FenixClolarionArmBomber">
     <NodeArray index="Use" Link="And1640478685LTCountUnitFenixClolarionBomberQueuedOrBetterAtUnit2CountUpgradeFenixChampionCarrierBombersCompleteOnly" />
@@ -217,10 +217,10 @@
     <NodeArray index="Use" Link="LT2270681000CountUnitFenixClolarionInterceptorQueuedOrBetterAtUnit8" />
   </CRequirement>
   <CRequirement id="FenixClolarionCarrierCount">
-    <NodeArray index="Use" Link="EqCountUnitFenixClolarionCarrierCompleteOnly0" />
+    <NodeArray index="Use" Link="AndCountUpgradeFenixChampionClolarionCarrierCompleteOnlyEqCountUnitFenixClolarionCarrierCompleteOnly0" />
   </CRequirement>
   <CRequirement id="FenixKaldalisZealotCount">
-    <NodeArray index="Use" Link="EqCountUnitFenixKaldalisZealotCompleteOnly0" />
+    <NodeArray index="Use" Link="AndCountUpgradeFenixChampionKaldalisZealotCompleteOnlyEqCountUnitFenixKaldalisZealotCompleteOnly0" />
   </CRequirement>
   <CRequirement id="FenixKaldalisZealotReviveOffCooldown">
     <EditorCategories value="Race:Protoss,TechType:Ability" />
@@ -269,13 +269,13 @@
     <NodeArray index="Show" Link="AndCountUpgradeFenixCommanderCompleteOnlyGT15CountUpgradeCommanderLevelCompleteOnly" />
   </CRequirement>
   <CRequirement id="FenixMojoScoutCount">
-    <NodeArray index="Use" Link="EqCountUnitFenixMojoScoutCompleteOnly0" />
+    <NodeArray index="Use" Link="AndCountUpgradeFenixChampionMojoScoutCompleteOnlyEqCountUnitFenixMojoScoutCompleteOnly0" />
   </CRequirement>
   <CRequirement id="FenixTalisAdeptCount">
-    <NodeArray index="Use" Link="EqCountUnitFenixTalisAdeptCompleteOnly0" />
+    <NodeArray index="Use" Link="AndCountUpgradeFenixChampionTalisAdeptCompleteOnlyEqCountUnitFenixTalisAdeptCompleteOnly0" />
   </CRequirement>
   <CRequirement id="FenixWarbringerColossusCount">
-    <NodeArray index="Use" Link="EqCountUnitFenixWarbringerColossusCompleteOnly0" />
+    <NodeArray index="Use" Link="AndCountUpgradeFenixChampionWarbringerColossusCompleteOnlyEqCountUnitFenixWarbringerColossusCompleteOnly0" />
   </CRequirement>
   <CRequirement id="GenerateCreepHealingUpgrade">
     <NodeArray index="Show" Link="CountUpgradeGenerateCreepHealingUpgradeCompleteOnly" />
@@ -439,7 +439,7 @@
     <NodeArray index="Show" Link="CountUpgradeFenixChampionSwapBoostCompleteOnly" />
   </CRequirement>
   <CRequirement id="HaveFenixClolarionCarrier">
-    <NodeArray index="Show" Link="AndCountUpgradeFenixChampionClolarionCarrierCompleteOnlyNotOrCountUnitCarrierCompleteOnlyCountUnitFenixClolarionCarrierCompleteOnly" />
+    <NodeArray index="Show" Link="AndCountUpgradeFenixChampionClolarionCarrierCompleteOnlyNotOrCountUnitCarrierFenixCompleteOnlyCountUnitFenixClolarionCarrierCompleteOnly" />
   </CRequirement>
   <CRequirement id="HaveFenixClolarionCarrierActive">
     <NodeArray index="Show" Link="CountUpgradeFenixChampionClolarionCarrierCompleteOnly" />
@@ -458,7 +458,7 @@
     <NodeArray index="Show" Link="CountUpgradeFenixChampionKaldalisZealotCompleteOnly" />
   </CRequirement>
   <CRequirement id="HaveFenixMojoScout">
-    <NodeArray index="Show" Link="AndCountUpgradeFenixChampionMojoScoutCompleteOnlyNotOrCountUnitScoutCompleteOnlyCountUnitFenixMojoScoutCompleteOnly" />
+    <NodeArray index="Show" Link="AndCountUpgradeFenixChampionMojoScoutCompleteOnlyNotOrCountUnitScoutFenixCompleteOnlyCountUnitFenixMojoScoutCompleteOnly" />
   </CRequirement>
   <CRequirement id="HaveFenixMojoScoutActive">
     <NodeArray index="Show" Link="CountUpgradeFenixChampionMojoScoutCompleteOnly" />
@@ -511,13 +511,13 @@
     <NodeArray index="Show" Link="CountUpgradeFenixSuitAttackDamageCompleteOnly" />
   </CRequirement>
   <CRequirement id="HaveFenixTaldarinImmortal">
-    <NodeArray index="Show" Link="AndCountUpgradeFenixChampionTaldarinImmortalCompleteOnlyNotOrCountUnitImmortalCompleteOnlyCountUnitFenixTaldarinImmortalCompleteOnly" />
+    <NodeArray index="Show" Link="AndCountUpgradeFenixChampionTaldarinImmortalCompleteOnlyNotOrCountUnitImmortalFenixCompleteOnlyCountUnitFenixTaldarinImmortalCompleteOnly" />
   </CRequirement>
   <CRequirement id="HaveFenixTaldarinImmortalActive">
     <NodeArray index="Show" Link="CountUpgradeFenixChampionTaldarinImmortalCompleteOnly" />
   </CRequirement>
   <CRequirement id="HaveFenixTalisAdept">
-    <NodeArray index="Show" Link="AndCountUpgradeFenixChampionTalisAdeptCompleteOnlyNotOrCountUnitAdeptCompleteOnlyCountUnitFenixTalisAdeptCompleteOnly" />
+    <NodeArray index="Show" Link="AndCountUpgradeFenixChampionTalisAdeptCompleteOnlyNotOrCountUnitAdeptFenixCompleteOnlyCountUnitFenixTalisAdeptCompleteOnly" />
   </CRequirement>
   <CRequirement id="HaveFenixTalisAdeptActive">
     <NodeArray index="Show" Link="CountUpgradeFenixChampionTalisAdeptCompleteOnly" />
@@ -1217,6 +1217,14 @@
   <CRequirement id="LearnDisruptorSecondExplosion">
     <EditorCategories value="Race:Protoss,TechType:Upgrade" />
     <NodeArray index="Show" Link="AndCountUpgradeFenixCommanderCompleteOnlyNotCountUpgradeDisruptorSecondExplosionQueuedOrBetter" />
+  </CRequirement>
+  <CRequirement id="HaveDisruptorPermanentCloak">
+    <EditorCategories value="Race:Protoss,TechType:Upgrade" />
+    <NodeArray index="Show" Link="CountUpgradeDisruptorCloakCompleteOnly" />
+  </CRequirement>
+  <CRequirement id="HaveDisruptor2ndExplode">
+    <EditorCategories value="Race:Protoss,TechType:Upgrade" />
+    <NodeArray index="Show" Link="CountUpgradeDisruptorSecondExplosionCompleteOnly" />
   </CRequirement>
   <CRequirement id="LearnDoubleGravitonBeam">
     <EditorCategories value="Race:Protoss,TechType:Upgrade" />

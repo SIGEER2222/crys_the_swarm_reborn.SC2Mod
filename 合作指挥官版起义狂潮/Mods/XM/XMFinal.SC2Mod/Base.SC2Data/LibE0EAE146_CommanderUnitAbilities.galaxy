@@ -220,23 +220,27 @@ bool libE0EAE146_gf_XMTestBench_FenixUnitAbilities (int lp_player, string lp_sce
     if (lp_scenarioKind != "unit_ability_smoke" && lp_scenarioKind != "unit_evolution_smoke") {
         return false;
     }
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "Adept", "AdeptFenixShadeSpawn", "", "HaveAdeptFenixShadeSpawn", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "Adept", "AdeptPiercingUpgrade", "", "HaveAdeptPiercingAttack", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "AdeptFenix", "AdeptFenixShadeSpawn", "", "HaveAdeptFenixShadeSpawn", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "AdeptFenix", "AdeptPiercingUpgrade", "", "HaveAdeptPiercingAttack", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ColossusPurifier", "", "", "HaveFireBeam", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ObserverFenix", "MorphtoObserverSiege", "ObserverMorphtoObserverSiegeFenix", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ObserverFenix", "Detector", "", "", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ObserverFenix", "HaveGraviticBoosters", "", "HaveGraviticBoosters", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ObserverSiegeModeFenix", "MorphtoObserver", "ObserverSiegeMorphtoObserverFenix", "", "evolution");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ObserverSiegeModeFenix", "Detector", "", "", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "Scout", "HaveFenixScoutWeaponRange", "", "HaveFenixScoutWeaponRange", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ScoutFenix", "HaveFenixScoutWeaponRange", "", "HaveFenixScoutWeaponRange", "passive");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "SentryFenix", "FenixSentryGuardianZone", "FenixSentryGuardianZone", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "SentryFenix", "FenixSentryPhasingMode", "SentryFenixPhasingMode", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "SentryFenixPhasing", "FenixSentryMobileMode", "SentryFenixMobileMode", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ZealotPurifier", "", "", "", "unit_card_no_specials");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "Immortal", "HardenedShield", "", "", "passive");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "Immortal", "ImmortalOverload", "ImmortalOverload", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "Carrier", "Interceptor", "CarrierHangar", "", "ability");
-    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "Carrier", "GravitonCatapult", "", "UseGravitonCatapult", "passive");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Fenix", lp_scenarioKind, 16);
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ImmortalFenix", "HardenedShield", "", "", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "ImmortalFenix", "ImmortalOverload", "ImmortalOverload", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "CarrierFenix", "Interceptor", "CarrierHangar", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "CarrierFenix", "GravitonCatapult", "", "UseGravitonCatapult", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "DisruptorFenix", "FenixPurificationNova", "FenixPurificationNova", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "DisruptorFenix", "DisruptorCloakPassive", "", "HaveDisruptorPermanentCloak", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Fenix", lp_scenarioKind, "DisruptorFenix", "DisruptorSecondExplosion", "", "HaveDisruptor2ndExplode", "passive");
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Fenix", lp_scenarioKind, 20);
     return true;
 }
 
@@ -821,7 +825,12 @@ bool libE0EAE146_gf_XMTestBench_ZeratulUnitAbilities (int lp_player, string lp_s
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zeratul", lp_scenarioKind, "ZeratulWarpPrism", "ZeratulWarpPrismSelectVoidRift", "ZeratulWarpPrismSelectVoidRift", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zeratul", lp_scenarioKind, "ZeratulSummonZealot", "Charge", "ZeratulCharge", "", "ability");
     libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zeratul", lp_scenarioKind, "ZeratulSummonZealot", "VoidZealotWhirlwind", "ZeratulZealotWhirlwind", "", "ability");
-    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Zeratul", lp_scenarioKind, 26);
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zeratul", lp_scenarioKind, "ZeratulDarkTemplar", "ZeratulDarkTemplarBlink", "ZeratulDarkTemplarBlink", "", "ability");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zeratul", lp_scenarioKind, "ZeratulDarkTemplar", "ZeratulDarkTemplarBlinkPassive", "", "HaveZeratulArtifactTier1AndDarkShine", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zeratul", lp_scenarioKind, "ZeratulDarkTemplar", "ZeratulDarkTemplarShadowStrike", "", "HaveZeratulArtifactTier2AndDarkShine", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zeratul", lp_scenarioKind, "ZeratulDarkTemplar", "ZeratulDarkTemplarRetreat", "", "HaveZeratulArtifactTier3AndDarkShine", "passive");
+    libE0EAE146_gf_XMTestBench_CheckAbilityProfileEntry(lp_player, "Zeratul", lp_scenarioKind, "ZeratulDarkTemplar", "PermanentlyCloaked", "", "", "passive");
+    libE0EAE146_gf_XMTestBench_LogAbilityProfileDone(lp_player, "Zeratul", lp_scenarioKind, 31);
     return true;
 }
 
