@@ -52,7 +52,9 @@ function extractXmlBlock(text, tagName, id) {
   return match?.[0] ?? '';
 }
 
-const campaignOnlyUpgrades = [
+// These IDs are valid raw/campaign Catalog data. This guard only prevents them
+// from being treated as current coop Kerrigan positives without a commander grant.
+const campaignSourceUngraftedUpgrades = [
   'K5Apocalypse',
   'K5DropPods',
   'K5Leviathan',
@@ -64,7 +66,7 @@ const campaignOnlyUpgrades = [
   'KerriganVoidCoopWildMutationUpgrade',
 ];
 
-const campaignOnlyAbilities = [
+const campaignSourceUngraftedAbilities = [
   'Apocalypse',
   'K5DropPods',
   'K5Leviathan',
@@ -86,23 +88,23 @@ for (const upgrade of ['KerriganCommander', 'K5PrimalSlash', 'K5PsiStrike']) {
   }
 }
 
-for (const upgrade of campaignOnlyUpgrades) {
+for (const upgrade of campaignSourceUngraftedUpgrades) {
   if (officialKerriganBlock.includes(`<Upgrade Upgrade="${upgrade}"`)) {
-    fail(`official Kerrigan default upgrades unexpectedly include campaign-only upgrade: ${upgrade}`);
+    fail(`official Kerrigan default upgrades now grant a previously unclassified campaign-source upgrade; reclassify before using it: ${upgrade}`);
   }
 }
 
 const runtime = readText(runtimePath);
 
-for (const upgrade of campaignOnlyUpgrades) {
+for (const upgrade of campaignSourceUngraftedUpgrades) {
   if (runtime.includes(`KerriganSetUpgradeAtLeast(lp_player, "${upgrade}"`)) {
-    fail(`runtime grants campaign-only Kerrigan upgrade: ${upgrade}`);
+    fail(`runtime grants campaign-source upgrade without current coop Kerrigan classification: ${upgrade}`);
   }
 }
 
-for (const ability of campaignOnlyAbilities) {
+for (const ability of campaignSourceUngraftedAbilities) {
   if (runtime.includes(`KerriganAllowAbilityIfPresent(lp_player, "${ability}"`)) {
-    fail(`runtime allows campaign-only Kerrigan ability: ${ability}`);
+    fail(`runtime allows campaign-source ability without current coop Kerrigan classification: ${ability}`);
   }
 }
 
@@ -129,9 +131,9 @@ for (const unitId of heroUnitIds) {
     continue;
   }
 
-  for (const ability of campaignOnlyAbilities) {
+  for (const ability of campaignSourceUngraftedAbilities) {
     if (block.includes(`Face="${ability}"`) || block.includes(`value="${ability}"`) || block.includes(`Link="${ability}"`)) {
-      fail(`${unitId} still references campaign-only Kerrigan ability: ${ability}`);
+      fail(`${unitId} still references campaign-source ability without current coop Kerrigan classification: ${ability}`);
     }
   }
 

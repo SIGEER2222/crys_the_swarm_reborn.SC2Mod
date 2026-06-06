@@ -15,7 +15,7 @@
 - 2026-06-04 形态闭包补充：当前 Mod runtime 和测试台已显式纳入 `K5KerriganBurrowed`、`NydusCanalKerrigan`、`SpineCrawlerUprootedKerrigan`、`SporeCrawlerUprootedKerrigan`、`HydraliskLurkerBurrowedKerrigan`、`OverseerSiegeModeKerrigan`。对应 smoke 链路是 `K5Kerrigan <-> K5KerriganBurrowed` 英雄主链、`NydusNetworkKerrigan -> BuildNydusCanalKerrigan -> NydusCanalKerrigan`、`Spine/SporeCrawler* -> *UprootKerrigan -> *UprootedKerrigan -> *RootKerrigan`、`HydraliskLurkerKerrigan -> BurrowHydraliskLurkerDownKerrigan -> HydraliskLurkerBurrowedKerrigan -> BurrowHydraliskLurkerUpKerrigan`、`OverseerKerrigan -> OverseerMorphtoOverseerSiegeKerrigan -> OverseerSiegeModeKerrigan -> OverseerSiegeMorphtoOverseerKerrigan`。
 - 第三威望通过 `KerriganInfestedCosmetic` / `KerriganGhostCosmetic` 切换外观并启用/禁用技能，追形态时要把威望和技能开关一起看。
 - 2026-06-05 runtime 口径修正：第三威望的凯瑞甘能力链 `MindBolt` / `PsionicLift` 先不并入当前 `power_fusion` 运行时，避免与 `PrimalSlash` / `PsiStrike` 的官方互斥卡位冲突。当前 old-line runtime 仅保留 P1 恶变菌毯正收益与 P2 自定义正向 fury 转伤，不再授予 `CommanderPrestigeKerriganAssimilationAura` / `CommanderPrestigeKerriganAssimilationAuraShared`。
-- 凯瑞甘的 `NydusNetwork` 是官方 `buildings.json` 正向建筑，不能套用阿巴瑟的排除结论；但 `ZagaraVoidCoopZerglingDodge`、`MorphZerglingToBaneling`、`MorphToBaneling` 这类扎加拉/普通虫族跳虫链不在凯瑞甘满级名册中，只能作为共享污染排除项。
+- 凯瑞甘的 `NydusNetwork` 是官方 `buildings.json` 正向建筑，不能套用阿巴瑟的排除结论；但 `ZagaraVoidCoopZerglingDodge`、`MorphZerglingToBaneling`、`MorphToBaneling` 这类扎加拉/普通虫族跳虫链需要按来源归类。它们可以存在于 raw/shared Catalog 中，但未被凯瑞甘名册、升级或运行时授权链命中时，不计入凯瑞甘当前正链。
 
 ## 官方数据摘要
 
@@ -140,7 +140,7 @@ Owner：`CommanderHeroProfile`、`CommanderHeroModeProfile`、`CommanderHeroAbil
 | 凯瑞甘 | `ChainReaction` | 连锁反应 | - | `HaveK5ChainLightning` | 凯瑞甘的普通攻击会弹射到附近额外目标，最多可命中 4 个追加目标。 |
 | 凯瑞甘 | `K5CooldownsLocked` | 技能专精 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
 
-排除项：`SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation`、`Apocalypse`、`K5Leviathan`、`K5ZerglingRespawn` 虽然能在 raw unit card 或早期抽取 JSON 中看到，但 `PlayerCommanders/ZergKerrigan.DefaultUpgrades` 不授予 `K5SpawnBanelings`、`K5DropPods`、`K5WildMutation`、`K5Mend` 等战役 K5 技能升级；当前 Mod 也不再为合作凯瑞甘挂载或 runtime 允许这些技能，因此不计入合作指挥官凯瑞甘正向技能链。
+来源分类：`SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation`、`Apocalypse`、`K5Leviathan`、`K5ZerglingRespawn` 可以在 raw unit card、战役 K5 数据或早期抽取 JSON 中看到；这说明它们是可引用的官方/共享数据，不等于合作指挥官凯瑞甘已启用。当前实证链路里，`PlayerCommanders/ZergKerrigan.DefaultUpgrades` 不授予 `K5SpawnBanelings`、`K5DropPods`、`K5WildMutation`、`K5Mend` 等升级，当前 Mod 也不为合作凯瑞甘挂载或 runtime 允许这些技能，所以它们的当前状态是“战役来源/共享候选，非合作凯瑞甘正链”。如果后续设计决定引入其中任一技能，必须单独标为“当前 Mod 自定义引入”，并补齐按钮、技能、效果、冷却、需求和运行时授权链。
 
 ### 英雄形态/模式候选
 
@@ -227,7 +227,7 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | `MutaliskKerrigan` | `BroodLord` | `MutaliskMorphToBroodLordKerrigan,Train1` | 变异为 `BroodLordKerrigan` | 需要 `HaveGreaterSpire`。 |
 | `UltraliskKerrigan` | `BurrowChargeCampaign` | `UltraliskBurrowCharge,Execute` | 雷兽潜地冲锋 | 能力本体已在当前 Mod 中，是否可点由雷兽洞研究/升级解锁。 |
 | `UltraliskKerrigan` / `HotSTorrasque` | `TissueAssimilation` | `HaveHotSTissueAssimilation` | 雷兽普通攻击吸血被动已挂载 | 研究来自 `UltraliskCavernResearch,Research5`；当前单位卡和需求链都已接通，实际回血沿用官方 `TissueAssimilation` / `TissueAssimilationSecondary` 命中效果。 |
-| `ZerglingKerrigan` | 护甲撕裂被动 | `ZerglingArmorShred` | 跳虫攻击可削甲 | `Baneling` 相关共享污染不计入凯瑞甘主链。 |
+| `ZerglingKerrigan` | 护甲撕裂被动 | `ZerglingArmorShred` | 跳虫攻击可削甲 | `Baneling` 相关共享候选不计入凯瑞甘主链，除非后续有凯瑞甘授权链或 Mod 自定义引入说明。 |
 | `NydusNetworkKerrigan` | `SummonNydusWorm` / `SummonNydusCanalAttacker` / `SummonNydusCanalCreeper` | `BuildNydusCanalKerrigan,Build1/2/3` | 召唤 `NydusCanalKerrigan` 系列 | 这条建筑技能也已切到私有坑道虫；runtime 现已显式放开 3 个命令位，官方 `VoidCoopGreaterNydusWorm` 只强化 `Build1/2`。 |
 | `SpineCrawlerKerrigan` | `SpineCrawlerUproot` | `SpineCrawlerUprootKerrigan,Execute` | 站起为 `SpineCrawlerUprootedKerrigan` | 回根由 `SpineCrawlerRootKerrigan` 处理。 |
 | `SporeCrawlerKerrigan` | `SporeCrawlerUproot` | `SporeCrawlerUprootKerrigan,Execute` | 站起为 `SporeCrawlerUprootedKerrigan` | 回根由 `SporeCrawlerRootKerrigan` 处理。 |
@@ -289,12 +289,12 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级13时解锁。 |
 | 跳虫 | `Requirement-only` | 代谢加速 | - | `HaveMPMetabolicBoost` | 代谢加速被动已命中；提高移动速度，当前没有单独的主动按钮 Face。 |
 | 跳虫 | `ZerglingArmorShred` | 切割利爪 | - | `HaveZerglingArmorShred` | 跳虫的攻击会使目标的护甲降低到0，持续{Behavior,ZerglingArmorShredTarget,Duration}秒。 |
-| 跳虫（排除：扎加拉污染） | `ZagaraVoidCoopZerglingDodge` | 闪避 | - | `HaveMasteryZagaraZerglingDodgeChance` | 扎加拉跳虫精通被动污染；不计入凯瑞甘满级单位技能。 |
+| 跳虫（归类：扎加拉链） | `ZagaraVoidCoopZerglingDodge` | 闪避 | - | `HaveMasteryZagaraZerglingDodgeChance` | 扎加拉跳虫精通被动候选；当前不计入凯瑞甘满级单位技能。 |
 | 跳虫 | `Requirement-only` | 肾上腺体 | - | `HaveMPAdrenalGlands` | 肾上腺体被动已命中；提高移动与攻击节奏，当前没有单独的主动按钮 Face。 |
-| 跳虫（排除：非凯瑞甘） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异污染；`Baneling` 不在凯瑞甘满级 `units.json` / `roster.json` 主链中。 |
+| 跳虫（归类：非凯瑞甘） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异候选；`Baneling` 不在凯瑞甘满级 `units.json` / `roster.json` 主链中。 |
 | 跳虫 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
 | 跳虫 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
-| 跳虫（排除：非凯瑞甘） | `MorphToBaneling` | 变异为爆虫 | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异污染；不计入凯瑞甘满级单位技能。 |
+| 跳虫（归类：非凯瑞甘） | `MorphToBaneling` | 变异为爆虫 | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异候选；当前不计入凯瑞甘满级单位技能。 |
 
 ### 进化/形态/切换候选
 
@@ -311,10 +311,10 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 雷兽 | `BurrowChargeCampaign` | BurrowChargeCampaign | `UltraliskBurrowCharge,Execute` | - | - |
 | 雷兽 | `BurrowChargeLocked` | 潜地冲锋 | - | `KerriganLevel13` | 该技能将在指挥官等级13时解锁。 |
 | 跳虫 | `-` | - | - | `HaveMPAdrenalGlands` | - |
-| 跳虫（排除：非凯瑞甘） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异污染；`Baneling` 不在凯瑞甘满级 `units.json` / `roster.json` 主链中。 |
+| 跳虫（归类：非凯瑞甘） | `Baneling` | 变异为爆虫 | `MorphZerglingToBaneling,Train1` | - | 共享普通虫族爆虫变异候选；`Baneling` 不在凯瑞甘满级 `units.json` / `roster.json` 主链中。 |
 | 跳虫 | `BurrowDown` | 潜地 | `BurrowUltraliskDown,Execute` | - | 命令单位潜入地下。单位潜地后无法移动或攻击，但处于隐形状态。 |
 | 跳虫 | `BurrowUp` | 出地 | `BurrowUltraliskUp,Execute` | - | 命令单位钻回地表。 |
-| 跳虫（排除：非凯瑞甘） | `-` | - | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异污染；不计入凯瑞甘进化链。 |
+| 跳虫（归类：非凯瑞甘） | `-` | - | `MorphToBaneling,Execute` | - | 共享普通虫族爆虫变异候选；当前不计入凯瑞甘进化链。 |
 | 凯瑞甘 | `PsionicLift` | - | `PsionicLift,Execute` | - | 目标区域中的敌人会昏迷，且在{time:[d ref='Effect,PsionicLiftControllerShort,Duration'/]}内受到{Effect,PsionicLiftPeriodicDamage,Amount*Effect,PsionicLiftD... |
 
 实现备注：单位自身声明技能、被动、武器、Behavior 和升级后替换关系；科技建筑只触发研究，不在科技建筑内部判断所有兵种 if/else。
@@ -458,7 +458,7 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 虫道网络 | `NydusCanalLoad` | 装载 | `NydusCanalTransport,Load` | - | 将单位装载进虫道网络。 |
 | 虫道网络 | `NydusWormIncreasedArmorPassive` | 钻地鳞片 | - | - | 坑道虫在从地面钻出时拥有{Behavior,NydusWormArmor,Modification.LifeArmorBonus+1}点护甲。 |
 | 虫道网络 | `RallyNydus` | 内部集结变体 | `RallyNydus,Rally1` | - | 内部 rally 变体；用于虫道网络的集结逻辑，不是额外玩法按钮。 |
-| 虫道网络（排除：扎加拉污染） | `ZagaraVoidCoopNydusWorm` | 召唤坑道虫 | - | - | 共享扎加拉坑道按钮文本污染；当前凯瑞甘主链仍以 `SummonNydusWorm` / `BuildNydusCanal,Build1` 为准。 |
+| 虫道网络（归类：扎加拉链） | `ZagaraVoidCoopNydusWorm` | 召唤坑道虫 | - | - | 共享扎加拉坑道按钮文本候选；当前凯瑞甘主链仍以 `SummonNydusWorm` / `BuildNydusCanal,Build1` 为准。 |
 | 脊针爬虫 | `SpineCrawlerUproot` | 站起 | `SpineCrawlerUproot,Execute` | - | 使脊针爬虫站起。站起的脊针爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
 | 孢子爬虫 | `SporeCrawlerUproot` | 站起 | `SporeCrawlerUproot,Execute` | - | 使孢子爬虫站起。站起的孢子爬虫能够移动，但无法攻击。在菌毯上的移动速度大幅提升。 |
 | 孢子爬虫 | `Detector` | 侦测单位 | - | `NotUnderConstruction` | 该单位能够侦测到隐形、潜地和幻像单位。 |
@@ -633,7 +633,7 @@ Owner：`CommanderSpecialMechanicProfile`、`CommanderSpecialResourceProfile`、
 | 凯瑞甘 | `ChainReaction` | 连锁反应 | - | `HaveK5ChainLightning` | 凯瑞甘的普通攻击会弹射到附近额外目标，最多可命中 4 个追加目标。 |
 | 凯瑞甘 | `K5CooldownsLocked` | 技能专精 | - | `KerriganLevel09` | 该科技将在指挥官等级9时解锁。 |
 
-注：上表按合作指挥官凯瑞甘满级正链记录；战役 K5 技能只作为 raw 数据污染来源说明，不再作为候选技能或剩余验证项。
+注：上表按合作指挥官凯瑞甘满级正链记录；战役 K5 技能作为“战役来源/共享候选”保留来源说明，但在没有凯瑞甘官方授权链或当前 Mod 自定义引入说明前，不作为合作凯瑞甘当前正链或剩余验证项。
 
 实现备注：凡是涉及局内状态、资源、堆叠、全局计时器、隐藏 caster、英雄成长或召唤首领的机制，都必须有 runtime hook 和 `[XM_DBG]` 日志。
 
@@ -696,6 +696,6 @@ personal_mechanic_smoke
 
 - `HotSTorrasque` 量产切换、复活、计时与按钮显示链当前已静态闭合，但仍需实机确认量产出的暴龙兽会稳定走完整 revive loop。
 - 顶部技能与隐藏 caster 的玩家冷却、充能、目标转发和地图触发接线，仍需对照 `[XM_DBG]` 日志或实机测试。
-- 战役 K5 技能污染已静态清理：`SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation`、`Apocalypse`、`K5Leviathan`、`K5ZerglingRespawn` 不应在合作凯瑞甘英雄卡面或 runtime 正链中出现；剩余风险是实机确认按钮面板确实不再显示这些项。
+- 战役来源/共享候选技能已按当前合作凯瑞甘授权链静态清理：`SpawnBanelings`、`K5DropPods`、`PrimalHeal`、`WildMutation`、`Apocalypse`、`K5Leviathan`、`K5ZerglingRespawn` 不应在当前合作凯瑞甘英雄卡面或 runtime 正链中出现；剩余风险是实机确认按钮面板确实不再显示这些项。后续若有意引入，必须改按“当前 Mod 自定义引入”重新闭包。
 - `power_fusion` 最终 roster 与 `level15` roster 的替换/变体关系，仍应结合地图初始化和运输场景继续校验。
 - 6 项精通与 3 个威望的正向融合数值，当前已完成静态提取，最终 runtime 套用幅度仍需落日志核对。
