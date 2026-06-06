@@ -14,6 +14,20 @@
 - 凯拉克斯正向兵种按 `ImmortalAiur`、`Observer`、`PhoenixPurifier`、`Scout`、`SentryPurifier`、`ZealotPurifier`、`Colossus`、`Carrier` 过滤。
 - 非泽拉图指挥官不得把 `AutomatedAssimilatorZeratul` / `NexusBuild,Build1` 当作正向经济建筑；候选表里的阿拉纳克、菲尼克斯、沃拉尊锁定项也只能作为共享污染待审计项。
 
+## 2026-06-06 当前 Mod 对齐状态
+
+当前 `XMKarax` 与 `XMFinal` 已按满级有效态做过一次运行时闭包修复，核心结论如下。
+
+- 开局私有链：`CommanderAch/Karax` 与运行时名册使用 `NexusKarax`、`ProbeKarax`、`PylonKarax`，`XMFinal` 的 Karax 运行时名册也显式记录这些 opener-local-alias。
+- 生产私有链：`RoboticsFacilityKarax -> RoboticsFacilityTrainKarax` 现在产出 `ObserverKarax`、`ColossusKarax`、`ImmortalAiur`；`StargateKarax -> StargateTrainKarax` 现在产出 `PhoenixPurifier`、`ScoutKarax`、`CarrierKarax`，不再把公共 `Observer/Colossus/Scout/Carrier` 当正向产物。
+- 建筑面板：`ForgeKarax`、`TwilightCouncilKarax`、`RoboticsBayKarax`、`FleetBeaconKarax`、`SolarForgeKarax` 已移除继承面板并挂回 Karax 研究项；`ForgeKarax` 使用 `ProtossKaraxWeaponsLevel1-5`、`ProtossKaraxArmorLevel1-5` 对应五档攻防。
+- 满级运行时：`LibE0EAE146_KaraxRuntime.galaxy` 直接授予 `CommanderLevel=16`、Karax 满级解锁、研究解锁、六项精通 30 点和三个威望正收益升级，并阻断公共星灵/公共 Karax 重叠单位后再放行私有 Karax 单位。
+- 太阳锻炉需求：`CountUnitSolarForgeQueuedOrBetter` 已改为计数 `SolarForgeKarax`，避免只造私有太阳锻炉时研究需求不满足。
+- 额外英雄：`KaraxChampion` 是本 Mod 额外接入的战役凯拉克斯英雄体，不是官方合作 `heroes.json` 原生英雄；`SoACasterKarax` 仍是顶栏宿主。
+- 验证脚本：`scripts/sc2/validate-karax-official-runtime.mjs` 覆盖 Karax 依赖、运行时授予、私有生产、科技建筑面板、太阳锻炉需求和 smoke 名册；`scripts/sc2/validate-private-commander-openers.mjs` 覆盖私有开局与观察者形态闭包。
+
+剩余风险：上述闭包是静态与 smoke 级验证，仍需实机确认顶栏能量/冷却、`KaraxChampion` 技能点击、私有航母拦截机/维修无人机表现、私有巨像火焰升级、护盾充能器强固屏障自动/手动行为，以及五档攻防研究按钮在 UI 中的热键冲突。
+
 ## 官方数据摘要
 
 | 项 | 值 |
@@ -336,7 +350,7 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 
 实现备注：建筑自己的技能、生产队列、变形、起飞/降落、特殊自动施法由建筑 profile 声明；地图和科技建筑不持有跨指挥官判断。
 
-当前 Mod 下方面板复核：`GatewayKarax` 面板挂 `GatewayTrainKarax`，产出 `ZealotPurifier`、`SentryPurifier`；`WarpGateKarax` 面板挂 `WarpGateTrainKarax`，产出 `ZealotPurifier`、`SentryPurifier`；`RoboticsFacilityKarax` 面板挂 `RoboticsFacilityTrainKarax`，产出 `Observer`、`Colossus`、`ImmortalAiur`；`StargateKarax` 面板挂 `StargateTrainKarax`，产出 `PhoenixPurifier`、`Scout`、`Carrier`。这些是当前 Mod 的有效下方面板落点，不要只看文件前部共享 `Gateway` / `RoboticsFacility` / `Stargate` 块。
+当前 Mod 下方面板复核：`GatewayKarax` 面板挂 `GatewayTrainKarax`，产出 `ZealotPurifier`、`SentryPurifier`；`WarpGateKarax` 面板挂 `WarpGateTrainKarax`，产出 `ZealotPurifier`、`SentryPurifier`；`RoboticsFacilityKarax` 面板挂 `RoboticsFacilityTrainKarax`，产出 `ObserverKarax`、`ColossusKarax`、`ImmortalAiur`；`StargateKarax` 面板挂 `StargateTrainKarax`，产出 `PhoenixPurifier`、`ScoutKarax`、`CarrierKarax`。这些是当前 Mod 的有效下方面板落点，不要只看文件前部共享 `Gateway` / `RoboticsFacility` / `Stargate` 块。
 
 ## 08. 科技建筑及其升级选项
 
@@ -442,9 +456,9 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 | ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
 |---|---|---|---|---|
 | `cargo_light` | ZealotPurifier x6, SentryPurifier x2 | 机械前锋 | 哨兵抗线，激励者补增益。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
-| `cargo_heavy` | ImmortalAiur x2, Colossus x2, SentryPurifier x2 | 机械攻坚 | 不朽者/巨像配激励者。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
-| `cargo_air` | PhoenixPurifier x4, Observer x1 | 空中支援 | 侦察机和侦测器，避免常规给航母。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
-| `bonus_reward` | Carrier x1, Colossus x2 | 后期奖励 | 高价值机械单位用于奖励节点。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_heavy` | ImmortalAiur x2, ColossusKarax x2, SentryPurifier x2 | 机械攻坚 | 不朽者/私有巨像配激励者。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_air` | PhoenixPurifier x4, ObserverKarax x1 | 空中支援 | 幻影战机和私有侦测器，避免常规给航母。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `bonus_reward` | CarrierKarax x1, ColossusKarax x2 | 后期奖励 | 高价值私有机械单位用于奖励节点。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 | `replacement_squad` | ZealotPurifier x8, ImmortalAiur x2 | 自动维修测试 | 适合验证建筑/机械维修光环。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 
 ### 接入规则
