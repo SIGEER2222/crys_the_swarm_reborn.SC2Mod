@@ -237,6 +237,7 @@ function validateRuntimeRoster() {
 function validatePrivateProduction() {
   const larvaTrain = getXmlBlock(texts.abilData, 'CAbilTrain', 'LarvaTrainZagara') ?? '';
   const larvaTrainSwarm = getXmlBlock(texts.abilData, 'CAbilTrain', 'LarvaTrainSwarmZagara') ?? '';
+  const larvaTrainSwarmling = getXmlBlock(texts.abilData, 'CAbilTrain', 'LarvaTrainSwarmling') ?? '';
   const zergling = getXmlBlock(texts.unitData, 'CUnit', 'ZerglingZagara') ?? '';
   const overseer = getXmlBlock(texts.unitData, 'CUnit', 'OverseerZagara') ?? '';
   const overseerSiege = getXmlBlock(texts.unitData, 'CUnit', 'OverseerSiegeModeZagara') ?? '';
@@ -245,6 +246,7 @@ function validatePrivateProduction() {
   assertIncludes(larvaTrain, 'LarvaTrainZagara', '<Unit value="OverlordZagara" />', 'LarvaTrainZagara must produce OverlordZagara');
   assertIncludes(larvaTrain, 'LarvaTrainZagara', '<Unit value="ZerglingZagara" />', 'LarvaTrainZagara must produce ZerglingZagara');
   assertIncludes(larvaTrain, 'LarvaTrainZagara', '<Unit value="ZagaraCorruptor" />', 'LarvaTrainZagara must produce ZagaraCorruptor');
+  assertIncludes(larvaTrainSwarmling, 'LarvaTrainSwarmling', '<Unit value="" />', 'LarvaTrainSwarmling base must stay empty');
   assertIncludes(larvaTrainSwarm, 'LarvaTrainSwarmZagara', '<Unit value="InfestedAbominationZagara" />', 'LarvaTrainSwarmZagara must produce InfestedAbominationZagara');
   assertIncludes(larvaTrainSwarm, 'LarvaTrainSwarmZagara', '<Unit value="ScourgeZagara" />', 'LarvaTrainSwarmZagara must produce ScourgeZagara');
 
@@ -280,13 +282,20 @@ function validateSmokeProfiles() {
 function validatePrestigeReferenceGap() {
   const official = getXmlBlock(texts.officialUpgradeData, 'CUpgrade', 'CommanderPrestigeZagaraZagara') ?? '';
   const local = getXmlBlock(texts.upgradeData, 'CUpgrade', 'CommanderPrestigeZagaraZagara') ?? '';
+  const officialMaxSupply = getXmlBlock(texts.officialUpgradeData, 'CUpgrade', 'CommanderPrestigeZagaraMaxSupply') ?? '';
+  const localMaxSupply = getXmlBlock(texts.upgradeData, 'CUpgrade', 'CommanderPrestigeZagaraMaxSupply') ?? '';
 
-  assertIncludes(official, 'official CommanderPrestigeZagaraZagara', 'LarvaTrainSwarmling,InfoArray[Train1].Resource[Minerals]', 'official data no longer has LarvaTrainSwarmling mineral override; re-audit local mapping');
-  assertIncludes(local, 'local CommanderPrestigeZagaraZagara', 'LarvaTrainZagara,InfoArray[Train2].Resource[Minerals]', 'local prestige block missing private larva-train mineral override');
+  assertIncludes(official, 'official CommanderPrestigeZagaraZagara', 'Abil,LarvaTrainSwarmling,InfoArray[Train1].Resource[Minerals]', 'official data no longer has LarvaTrainSwarmling mineral override; re-audit local mapping');
+  assertIncludes(official, 'official CommanderPrestigeZagaraZagara', 'Abil,LarvaTrain,InfoArray[Train2].Resource[Minerals]', 'official data no longer has LarvaTrain mineral override; re-audit local mapping');
+  assertIncludes(local, 'local CommanderPrestigeZagaraZagara', 'Abil,LarvaTrainSwarmling,InfoArray[Train1].Resource[Minerals]', 'local prestige block missing Swarmling mineral override');
+  assertIncludes(local, 'local CommanderPrestigeZagaraZagara', 'Abil,LarvaTrainZagara,InfoArray[Train2].Resource[Minerals]', 'local prestige block missing private larva-train mineral override');
+  assertIncludes(officialMaxSupply, 'official CommanderPrestigeZagaraMaxSupply', 'Reference="Abil,LarvaTrainSwarmling,InfoArray[Train1].Unit[3]" Value="HotSSwarmling"', 'official max-supply block missing Swarmling HotS unit override');
+  assertIncludes(localMaxSupply, 'local CommanderPrestigeZagaraMaxSupply', 'Reference="Abil,LarvaTrainSwarmling,InfoArray[Train1].Unit[3]" Value="HotSSwarmling"', 'local max-supply block missing Swarmling HotS unit override');
 
-  const duplicateMatches = local.match(/LarvaTrainZagara,InfoArray\[Train2\]\.Resource\[Minerals\]/g) ?? [];
-  if (duplicateMatches.length < 2) {
-    errors.push('local CommanderPrestigeZagaraZagara: expected duplicated LarvaTrainZagara mineral overrides are missing; re-audit prestige mapping');
+  const swarmlingMatches = local.match(/LarvaTrainSwarmling,InfoArray\[Train1\]\.Resource\[Minerals\]/g) ?? [];
+  const zerglingMatches = local.match(/LarvaTrainZagara,InfoArray\[Train2\]\.Resource\[Minerals\]/g) ?? [];
+  if (swarmlingMatches.length !== 1 || zerglingMatches.length !== 1) {
+    errors.push('local CommanderPrestigeZagaraZagara: expected exactly one Swarmling and one private larva mineral override; re-audit prestige mapping');
   }
 }
 

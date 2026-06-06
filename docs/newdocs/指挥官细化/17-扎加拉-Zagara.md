@@ -28,8 +28,9 @@
 - 不计入正链：`ZagaraVoidCoopNydusWorm`、敌方/突变链 `MutatorAmonZagara*`、以及只在公共 Catalog 中可见但没有扎加拉 grant/profile 路径的历史候选。
 - 2026-06-06 补充：`XMFinal` 现已为扎加拉补上满级 runtime 闭包，直接发放 `CommanderLevel=16`、等级解锁升级、6 项精通 30 点和 3 个威望正收益补丁，同时用 tech filter 屏蔽公共 `Drone/Larva/Overlord/Hatchery/.../OverseerSiegeMode`，只放行 `XMZagara` 私有经济、科技、兵种、英雄形态和顶部能力。
 - 2026-06-06 补充：`CommanderRuntimeRoster/Zagara` 已扩到 34 项，现覆盖 `QueenZagara`、`ExtractorZagara`、`SpawningPoolZagara`、`EvolutionChamberZagara`、`SpireZagara`、`BanelingNestZagara`、`ScourgeNestZagara`、`CoopCasterZagara`、`ZagaraReviveCocoon`、`RoachMassDropDummy` 等运行时正链对象；对应 `CommanderBuildings` smoke 也扩到 12 项私有建筑。
+- 2026-06-06 补充：`LarvaTrainSwarmling` 的基线现在已回到空槽，`CommanderPrestigeZagaraMaxSupply` 负责把它注入为 `HotSSwarmling`；`CommanderPrestigeZagaraZagara` 只保留官方 raw 对应的两条价格线拆分，避免继续把裂变虫/普通跳虫的折扣混写到同一个节点上。
 - 2026-06-06 校验结果：`scripts/sc2/validate-zagara-official-runtime.mjs`、`scripts/sc2/validate-zagara-private-opener.mjs`、`scripts/sc2/validate-private-commander-openers.mjs` 当前全部通过。
-- 剩余风险：`CommanderPrestigeZagaraZagara` 在官方 raw 中分别修改 `LarvaTrainSwarmling` 与 `LarvaTrain` 两条产线，而当前私有实现已把跳虫正向产线折叠到 `LarvaTrainZagara,Train2`。现阶段校验只确认“本地没有再回退到公共产线”，尚未把这条威望价格改动拆成两条完全等价的私有实现，后续若实机发现 P3 下裂变虫/跳虫矿物价格异常，需要优先回查这里。
+- 剩余风险：`LarvaTrainSwarmling` 这条链必须继续保持“基线空槽 + 威望注入 `HotSSwarmling`”的形态；如果后续实机发现升级按钮可见但产物异常，优先回查 `CoopZerglingSwarmling`、`CountUpgradeCoopZerglingSwarmlingCompleteOnly` 和 `CommanderPrestigeZagaraMaxSupply`，不要再往 `ZerglingZagara` 上补。
 
 ## 官方数据摘要
 
