@@ -14,10 +14,13 @@ const files = {
   documentInfo: path.join(xmFinalRoot, 'DocumentInfo'),
   documentHeader: path.join(xmFinalRoot, 'DocumentHeader'),
   runtime: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_AbathurRuntime.galaxy'),
+  runtimeSafety: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_RuntimeSafety.galaxy'),
   commanderStartSquads: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_CommanderStartSquads.galaxy'),
   commanderUnitAbilities: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_CommanderUnitAbilities.galaxy'),
   finalGalaxy: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146.galaxy'),
   finalHeader: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_h.galaxy'),
+  ttosh03bMap: path.join(repoRoot, '合作指挥官版起义狂潮', 'Maps', 'XM', 'ttosh03b.SC2Map', 'MapScript.galaxy'),
+  tvalerian01Map: path.join(repoRoot, '合作指挥官版起义狂潮', 'Maps', 'XM', 'tvalerian01.SC2Map', 'MapScript.galaxy'),
   userData: path.join(gameDataRoot, 'UserData.xml'),
   unitData: path.join(gameDataRoot, 'UnitData.xml'),
   buttonData: path.join(gameDataRoot, 'ButtonData.xml'),
@@ -36,6 +39,7 @@ const texts = Object.fromEntries(Object.entries(files).map(([key, filePath]) => 
 
 validateDependencyGate();
 validateCommanderAch();
+validateRuntimeEntryPoints();
 validatePrivateLarvaClosure();
 validateWorkerBuildClosure();
 validatePrivateTechResearchClosure();
@@ -61,7 +65,8 @@ console.log('PASS: Abathur official runtime validation passed');
 
 function validateDependencyGate() {
   const dependency = 'file:Mods\\XM\\XMAbathur.SC2Mod';
-  assertIncludes(texts.documentInfo, 'XMFinal DocumentInfo', `<Value>${dependency}</Value>`, 'XMAbathur dependency is not active');
+  const activeDocumentInfo = stripXmlComments(texts.documentInfo);
+  assertIncludes(activeDocumentInfo, 'XMFinal DocumentInfo', `<Value>${dependency}</Value>`, 'XMAbathur dependency is not active');
 
   const dependencies = parseDocumentHeaderDependencies(files.documentHeader);
   if (!dependencies.includes(dependency)) {
@@ -92,6 +97,52 @@ function validateCommanderAch() {
       errors.push(`XMAbathur UserData.xml: CommanderAch/Abathur ${field} expected ${expectedUnit}, actual ${actual || '<empty>'}`);
     }
     assertXmlBlock(texts.unitData, 'CUnit', expectedUnit, 'XMAbathur UnitData.xml', `missing opener unit ${expectedUnit}`);
+  }
+}
+
+function validateRuntimeEntryPoints() {
+  const openerSafetyBlock = getFunctionBlock(texts.runtimeSafety, 'libE0EAE146_gf_CommanderAchUnit');
+
+  assertIncludes(
+    openerSafetyBlock,
+    'XMFinal LibE0EAE146_RuntimeSafety.galaxy',
+    'libE0EAE146_gv_commander == "Abathur"',
+    'CommanderAchUnit must harden ordinary Abathur before UserData lookup',
+  );
+
+  for (const unitId of ['HatcheryAbathur', 'DroneAbathur', 'OverlordAbathur']) {
+    assertIncludes(
+      openerSafetyBlock,
+      'XMFinal LibE0EAE146_RuntimeSafety.galaxy',
+      `libE0EAE146_gf_CatalogUnitOrEmpty("${unitId}")`,
+      `CommanderAchUnit must prefer private ${unitId}`,
+    );
+  }
+
+  const ttosh03bAbathurBranch = getBranchBlock(
+    texts.ttosh03bMap,
+    'else if (auto2F29E444_val == "Abathur") {',
+    'ttosh03b MapScript.galaxy',
+  );
+  assertIncludes(
+    ttosh03bAbathurBranch,
+    'ttosh03b MapScript.galaxy',
+    'libE0EAE146_gf_AbathurRuntimeInit(1, PointFromId(29), true);',
+    'ordinary Abathur branch must run Abathur runtime init',
+  );
+
+  assertNoMatch(
+    texts.tvalerian01Map,
+    /UserDataGetUnit\("CommanderAch"/,
+    'tvalerian01 MapScript.galaxy: opener creation must use CommanderAchUnit runtime safety wrapper',
+  );
+  for (const field of ['CommandCenter', 'Worker', 'SecondUnit']) {
+    assertIncludes(
+      texts.tvalerian01Map,
+      'tvalerian01 MapScript.galaxy',
+      `libE0EAE146_gf_CommanderAchUnit("${field}")`,
+      `tvalerian01 opener must use CommanderAchUnit for ${field}`,
+    );
   }
 }
 
@@ -857,6 +908,36 @@ function getFunctionBlock(text, functionName) {
   }
 
   errors.push(`Galaxy source: unterminated function body for ${functionName}`);
+  return '';
+}
+
+function getBranchBlock(text, branchStart, source) {
+  const start = text.indexOf(branchStart);
+  if (start === -1) {
+    errors.push(`${source}: missing branch ${branchStart}`);
+    return '';
+  }
+
+  const bodyStart = text.indexOf('{', start);
+  if (bodyStart === -1) {
+    errors.push(`${source}: missing branch body ${branchStart}`);
+    return '';
+  }
+
+  let depth = 0;
+  for (let index = bodyStart; index < text.length; index += 1) {
+    const char = text[index];
+    if (char === '{') {
+      depth += 1;
+    } else if (char === '}') {
+      depth -= 1;
+      if (depth === 0) {
+        return text.slice(start, index + 1);
+      }
+    }
+  }
+
+  errors.push(`${source}: unterminated branch ${branchStart}`);
   return '';
 }
 

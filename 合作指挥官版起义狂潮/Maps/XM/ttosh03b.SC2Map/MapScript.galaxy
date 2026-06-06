@@ -928,6 +928,9 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
         libNtve_gf_CreateUnitsWithDefaultFacing(3, "HydraliskStetmann", 0, 1, PointFromId(29));
         libNtve_gf_CreateUnitsWithDefaultFacing(4, "ZerglingStetmann", 0, 1, PointFromId(29));
     }
+    else if (auto2F29E444_val == "Abathur") {
+        libE0EAE146_gf_AbathurRuntimeInit(1, PointFromId(29), true);
+    }
     else if (auto2F29E444_val == "AbathurReborn") {
         BankLoad("cryswarmcoop", 1);
         TechTreeUpgradeAddLevel(1, "CommanderLevel", 16);

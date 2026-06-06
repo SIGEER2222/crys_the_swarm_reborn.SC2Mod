@@ -23,7 +23,28 @@ string libE0EAE146_gf_CatalogUnitOrEmpty (string lp_unitType) {
 string libE0EAE146_gf_CommanderAchUnit (string lp_field) {
     string lv_unit;
 
-    // XMCore still defines generic Zagara opener slots, so private openers must win before UserData lookup.
+    // Generic XMCore opener slots can win in some runtime paths, so private openers must win before UserData lookup.
+    if (libE0EAE146_gv_commander == "Abathur") {
+        if (lp_field == "CommandCenter") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("HatcheryAbathur");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
+        if (lp_field == "Worker") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("DroneAbathur");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
+        if (lp_field == "SecondUnit") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("OverlordAbathur");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
+    }
+
     if (libE0EAE146_gv_commander == "Zagara") {
         if (lp_field == "CommandCenter") {
             lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("HatcheryZagara");
