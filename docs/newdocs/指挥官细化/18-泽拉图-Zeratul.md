@@ -1,7 +1,7 @@
 # 泽拉图（Zeratul）指挥官细化
 
 日期：2026-05-27
-最近复核：2026-06-05
+最近复核：2026-06-06
 
 ## 当前口径
 
@@ -12,7 +12,8 @@
 ## 链路提醒
 
 - 泽拉图当前官方正向建筑是 `DarkShrine`、`Gateway`、`PhotonCannon`、`RoboticsWarp`；古代吸纳舱来自 `SOAAutoAssimilator` / 泽拉图经济机制，不应反推到其它神族指挥官。
-- 泽拉图正向兵种按 `DisruptorZeratul`、`ImmortalZeratul`、`ObserverZeratul`、`SentryZeratul`、`StalkerZeratul`、`WarpPrismZeratul`、`ZealotZeratul` 过滤；`Observer` 只能作为官方槽位/旧导出线索，当前 runtime 正向单位必须落到私有 `ZeratulObserver`。
+- 泽拉图 JSON 正向兵种按 `DisruptorZeratul`、`ImmortalZeratul`、`ObserverZeratul`、`SentryZeratul`、`StalkerZeratul`、`WarpPrismZeratul`、`ZealotZeratul` 过滤；`Observer` 只能作为官方槽位/旧导出线索，当前 runtime 正向单位必须落到私有 `ZeratulObserver`。
+- 官方 raw `ZeratulGatewayTrain` 明确有 `Train5 -> ZeratulDarkTemplar`，因此 `ZeratulDarkTemplar` 是“官方 raw 正链、JSON 缺口”，不是当前 Mod 污染项。
 - 泽拉图形态闭包要把 `ZeratulObserverSiegeMode` 和 `ZeratulWarpPrismPhasing` 作为正向补充单位记录；它们不应被当作额外通用单位污染，也不应从 `Observer` / 普通 `WarpPrism` 反推。
 - `VorazunLevel*`、`AlarakLevel*`、`KaraxTurret*` 等共享神族候选在泽拉图页只能作为污染项；泽拉图专属技能链应优先看 `ZeratulArtifact*`、`ZeratulRoboticsFacilityTrain*` 和对应 raw XML 闭包。
 
@@ -33,6 +34,7 @@
 | upgrades.json 数量 | 27 |
 | other-tech-entries.json 数量 | 0 |
 | source | `mods/starcoop/starcoop.sc2mod/base.sc2data/gamedata/userdata.xml` |
+| raw PlayerCommanders | `ProtossZeratul` 定义 `HeroUnit=ZeratulCoop`、`HeroStructure=ZeratulACArtifact`、`HeroReviveUnit=ZeratulCoopReviveBeacon`、`GlobalCastUnit=CoopCasterZeratul` |
 
 roster 样例：
 
@@ -40,7 +42,13 @@ roster 样例：
 DarkShrine, DisruptorZeratul, Gateway, ImmortalZeratul, Observer, ObserverZeratul, PhotonCannon, RoboticsWarp, SentryZeratul, StalkerZeratul, WarpPrismZeratul, ZealotZeratul
 ```
 
-runtime 解释：上面的 `Observer` 是官方/导出槽位，当前 Mod 正向 runtime roster 应映射为 `Observer -> ZeratulObserver`，并补充 `ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing` 两个形态。
+runtime 解释：上面的 `Observer` 是官方/导出槽位，当前 Mod 正向 runtime roster 应映射为 `Observer -> ZeratulObserver`，并补充 `ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing` 两个形态。`ZeratulDarkTemplar` 不在 `units.json` / `roster.json` 中，但官方 raw `ZeratulGatewayTrain,Train5` 直接产出它，当前 Mod 按 `raw-positive-json-gap` 纳入 runtime roster 和测试台烟测。
+
+2026-06-06 三层证据口径：
+
+- 官方 JSON：`commander.json` 给出 `ProtossZeratul`、默认升级和默认能力；`units.json` 给出 8 个导出单位，但漏掉 `ZeratulDarkTemplar`；`heroes.json=0` 不能反推“无英雄”。
+- 官方 raw：`userdata.xml/PlayerCommanders/ProtossZeratul` 给出英雄、神器结构、复活信标和全局 caster；`commanders/futurecommanders.xml` 给出 `ZeratulCoop` 五个英雄技能，以及 `ZeratulGatewayTrain -> ZeratulStalker/ZeratulDarkTemplar/ZeratulSentry`。
+- 当前 Mod：`XMZeratul` 负责 `CommanderAch`、`ZeratulGatewayTrain` 和私有单位数据；`XMFinal` runtime roster 当前记录 14 项，包含 `ZeratulDarkTemplar`、`ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing`，并禁止 cargo smoke 直接创建 generic `Observer`。
 
 ## 15 级解锁摘要
 
@@ -189,6 +197,11 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 | 萨尔纳加执行者 | `HaveZeratulImmortalRange` | 原力炮 | - | `HaveZeratulArtifactTier2AndRoboticsBay` | 该单位的对空武器可以击退敌方空中单位，并且对轰击路线沿途的单位造成{Effect,ZeratulPhaseDisruptorsAir,AreaArray[0].Fraction*100}%伤害。 |
 | 萨尔纳加执行者 | `HaveZeratulImmortalImprovedBarrier` | 永恒屏障 | - | `HaveZeratulArtifactTier3AndRoboticsBay` | 萨尔纳加执行者屏障吸收的伤害量提高{$UpgradeEffectArrayValue:ZeratulArtifactTier3_RoboticsBay:Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit$/Beha... |
 | 萨尔纳加执行者 | `ImmortalBarrierBase` | - | `ZeratulImmortalBarrierBase,Execute` | - | 最多可吸收{Behavior,ImmortalBarrierBase,DamageResponse.ModifyLimit}点伤害，持续{Behavior,ImmortalBarrierBase,Duration}秒。 |
+| 虚空圣堂武士 | `ZeratulDarkTemplarBlink` | 闪现 | `ZeratulDarkTemplarBlink,Execute` | - | 官方 raw `ZeratulDarkTemplar` 主动技能；当前烟测检查按钮/Ability 是否存在。 |
+| 虚空圣堂武士 | `ZeratulDarkTemplarBlinkPassive` | 虚空闪现强化 | - | `HaveZeratulArtifactTier1AndDarkShine` | 神器 1 + 黑暗圣坛链路；当前烟测作为 passive 检查。 |
+| 虚空圣堂武士 | `ZeratulDarkTemplarShadowStrike` | 暗影打击 | - | `HaveZeratulArtifactTier2AndDarkShine` | 神器 2 + 黑暗圣坛链路；当前烟测作为 passive 检查。 |
+| 虚空圣堂武士 | `ZeratulDarkTemplarRetreat` | 回撤/虚空恢复 | - | `HaveZeratulArtifactTier3AndDarkShine` | 神器 3 + 黑暗圣坛链路；当前烟测作为 passive 检查。 |
+| 虚空圣堂武士 | `PermanentlyCloaked` | 永久隐形 | - | - | 官方 raw 单位自带隐形闭包，当前烟测覆盖为 passive。 |
 | 官方侦测器槽位 | `Observer` | 导出槽位/污染项 | - | - | 不作为泽拉图正向 runtime 技能链；当前 Mod 必须把该槽位映射到 `ZeratulObserver`，不要再检查通用 `ObserverMorphtoObserverSiege` / `HaveGraviticBoosters`。 |
 | 萨尔纳加观察者 | `AcquireMove` | 搜索移动 | `move,AcquireMove` | - | 命令选中的单位移至目标区域或跟随目标单位。进行搜索移动的单位不会与敌人交战。 |
 | 萨尔纳加观察者 | `ZeratulGraviticBoostersPassive` | 重力加速器 | - | `HaveZeratulArtifactTier2AndRoboticsBay` | 萨尔纳加观察者的移动速度提高{$UpgradeEffectArrayValue:ZeratulArtifactTier2_RoboticsBay:Unit,ZeratulObserver,Speed$/Unit,ZeratulObserver,Speed*100}% |
@@ -226,6 +239,18 @@ Owner：`CommanderUnitAbilityProfile`、`CommanderUnitStatProfile`、`CommanderU
 
 Owner：`CommanderBaseInitProfile`、`CommanderOpeningLoadoutProfile`、`CommanderSpecialStructureProfile`、`CommanderInitHookProfile`。
 
+### 当前 Mod 初始化口径
+
+| 字段 | 当前 ID | 来源/说明 |
+|---|---|---|
+| 开局基地 | `NexusZeratul` | `XMZeratul.SC2Mod` 的 `CommanderAch/Zeratul.CommandCenter` |
+| 开局工人 | `ProbeZeratul` | `XMZeratul.SC2Mod` 的 `CommanderAch/Zeratul.Worker` |
+| 开局第二单位 | `VoidPylon` | `XMZeratul.SC2Mod` 的 `CommanderAch/Zeratul.SecondUnit` |
+| 英雄单位 | `ZeratulCoop` | 官方 raw `PlayerCommanders/ProtossZeratul.HeroUnit`，当前 runtime 由 `LibE0EAE146_ZeratulRuntime.galaxy` 创建/挂接 |
+| 英雄结构 | `ZeratulACArtifact` | 官方 raw `HeroStructure`，当前 runtime 由英雄结构 helper 兜底创建在主基地附近 |
+| 复活信标 | `ZeratulCoopReviveBeacon` | 官方 raw `HeroReviveUnit`；死亡后由 `LibE0EAE146_HeroRevive.galaxy` 标准复活 loop 处理 |
+| 全局 caster | `CoopCasterZeratul` | 官方 raw `GlobalCastUnit`；当前 runtime 还追 `CoopCasterZeratulSpecialization` |
+
 ### 初始化建筑候选
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 费用/人口/生命 | 备注 |
@@ -244,6 +269,9 @@ Owner：`CommanderBaseInitProfile`、`CommanderOpeningLoadoutProfile`、`Command
 | 传送门 | `Stalker` | 折跃追猎者 | `GatewayTrain,Train2` | - | 远程支援型步战机甲。 / 可以对地和对空。 |
 | 传送门 | `WarpInAdept` | 折跃使徒 | `GatewayTrain,Train7` | - | 远程特种单位。可以使用灵能传送。 / 可以对地。 |
 | 传送门 | `DarkTemplar` | 折跃黑暗圣堂武士 | `GatewayTrain,Train5` | - | 致命的近战杀手，该单位永远处于隐形状态，敌人在不借助侦测单位帮助的情况下无法发现他。可以融合为执政官。 / 可以对地。 |
+| 传送门 | `StalkerZeratul` | 折跃萨尔纳加伏击者 | `ZeratulGatewayTrain,Train2` | - | 官方 raw / 当前 `XMZeratul` 正链，产出 `ZeratulStalker`。 |
+| 传送门 | `DarkTemplarZeratul` | 折跃虚空圣堂武士 | `ZeratulGatewayTrain,Train5` | `HaveZeratulDarkShrine` | 官方 raw / 当前 `XMZeratul` 正链，产出 `ZeratulDarkTemplar`；这是 JSON 缺口补充项。 |
+| 传送门 | `SentryZeratul` | 折跃萨尔纳加光盾卫士 | `ZeratulGatewayTrain,Train6` | - | 官方 raw / 当前 `XMZeratul` 正链，产出 `ZeratulSentry`。 |
 | 传送门 | `UpgradeToWarpGate` | 变形为折跃门 | `UpgradeToWarpGate,Execute` | - | 将传送门升级为折跃门，使星灵可以利用折跃技术将地面单位召集到任何有水晶塔或折跃棱镜能量覆盖的区域。 |
 | 折跃机械台 | `ImmortalZeratul` | 折跃萨尔纳加执行者 | `ZeratulRoboticsFacilityTrain,Train6` | - | 步战机甲。可以使用屏障吸收伤害并击退敌方空中单位。 / 可以对空和对地。 |
 | 折跃机械台 | `ZeratulWarpinDisruptor` | 折跃萨尔纳加禁绝者 | `ZeratulRoboticsFacilityTrain,Train7` | - | 机械干扰型单位。可以使用净化新星造成大量范围伤害。 / 可以对地。 |
@@ -267,17 +295,18 @@ Owner：`CommanderRosterProfile`、`CommanderUnitFactoryProfile`、`CommanderUni
 | 萨尔纳加观察者-监察模式 | `ZeratulObserverSiegeMode` | `ZeratulObserverSiegeMode` | Air; Light/Mechanical; Unit; FactionXelNaga | 同观察者形态 | 由 `ZeratulObserverMorphtoZeratulObserverSiege` 进入，再由 `ZeratulObserverSiegeMorphtoZeratulObserver` 回变；这是私有形态闭包。 |
 | 萨尔纳加光盾卫士 | `SentryZeratul` | `ZeratulSentry` | Ground; Light/Mechanical/Psionic; Unit; FactionXelNaga | 矿:75 气:150 人口:-2 生命:120 护盾:120 能量:200 | 机械支援单位。可以使用护盾充能与反射护盾。 / 可以对空和对地。 |
 | 萨尔纳加伏击者 | `StalkerZeratul` | `ZeratulStalker` | Ground; Armored/Mechanical; Unit; FactionXelNaga | 矿:300 气:50 人口:-2 生命:100 护盾:100 能量:- | 远程支援型步战机甲。受到威胁时会自动使用预判闪现。 / 可以对空和对地。 |
+| 虚空圣堂武士 | `ZeratulDarkTemplar` | `ZeratulDarkTemplar` | Ground; Biological/Psionic; Unit; Cloaked | 以 raw Catalog 为准 | 官方 JSON 未列出，但官方 raw `ZeratulGatewayTrain,Train5` 明确产出；当前 Mod runtime roster 以 `raw-positive-json-gap` 纳入。 |
 | 萨尔纳加虚空阵列船 | `WarpPrismZeratul` | `ZeratulWarpPrism` | Air; Armored/Mechanical/Psionic; Unit; FactionXelNaga | 矿:150 气:- 人口:-1 生命:200 护盾:200 能量:- | 飞行虫洞发生器。同一时间建造两个。可以部署后在萨尔纳加虚空阵列船之间生成数据链。 |
 | 萨尔纳加虚空阵列船-虫洞模式 | `ZeratulWarpPrismPhasing` | `ZeratulWarpPrismPhasing` | Air; Armored/Mechanical/Psionic; Unit; FactionXelNaga | 同虚空阵列船形态 | 由 `ZeratulPhasingMode` 进入，含 `ZeratulWarpPrismPhasingRegenAura` 护盾恢复光环；这是私有形态闭包。 |
 | 狂热者 | `ZealotZeratul` | `ZeratulSummonZealot` | Ground; Biological/Light; Unit; FactionXelNaga | 矿:100 气:- 人口:- 生命:100 护盾:50 能量:- | - |
 
-### roster 中未归入 units/buildings/heroes 的对象
+### JSON 外 raw 正链补充对象
 
 | 名称 | Catalog ID | 解析 Unit | 属性 | 备注 |
 |---|---|---|---|---|
-| - | - | - | - | roster 中没有额外未分类对象。 |
+| `ZeratulDarkTemplar` | `ZeratulDarkTemplar` | `ZeratulDarkTemplar` | Ground; Biological/Psionic | 官方 raw 正链但 JSON 缺口；当前 runtime roster 和测试台已作为正向单位追踪。 |
 
-口径：`units.json` 是官方 JSON 索引入口；当前 Mod 的 `power_fusion` runtime roster 以私有单位为准，已把 `Observer` 官方槽位映射到 `ZeratulObserver`，并显式加入 `ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing`。满级之后兵种会变化，测试台默认使用 `power_fusion` 而不是基础 `initial`。
+口径：`units.json` 是官方 JSON 索引入口；当前 Mod 的 `power_fusion` runtime roster 以私有单位为准，已把 `Observer` 官方槽位映射到 `ZeratulObserver`，并显式加入 `ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing`、`ZeratulDarkTemplar`。满级之后兵种会变化，测试台默认使用 `power_fusion` 而不是基础 `initial`。
 
 ## 06. 指挥官精通
 
@@ -444,19 +473,19 @@ Owner：`CommanderCargoLoadoutProfile`、`CommanderMapDropProfile`、`CommanderS
 | 通用 | `原始mod/Maps/XM/thorner04.SC2Map/MapScript.galaxy` | gf_DropKillTeamViaHercules 创建 Hercules、UnitCargoCreate 塞兵、卸货后攻击 | 已有可复用的大力神空投执行器，但主要服务敌方/剧情 kill team。 | 可参考执行流程；不能直接当玩家指挥官 loadout 来源。 |
 | 通用 | `原始mod 全局搜索` | 未命中 XM_CreateCommanderCargoSquad 或 CommanderCargoLoadoutProfile | 原始mod 只有素材和地图硬编码，没有现成的指挥官货舱配置框架。 | 本模块需要新建 profile/factory 抽象，不能照搬地图 if/else。 |
 
-### 场景 loadout 设计草案
+### 当前 XMFinal cargo smoke 口径
 
 | ScenarioKind | 推荐单位 | 用途 | 设计说明 | 来源状态 |
 |---|---|---|---|---|
-| `cargo_light` | ZealotZeratul x6, StalkerZeratul x3 | 萨尔纳加前锋 | 狂热者和伏击者。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
-| `cargo_heavy` | ImmortalZeratul x2, DisruptorZeratul x2, SentryZeratul x2 | 神器科技攻坚 | 执行者、禁绝者和光盾卫士。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
-| `cargo_air` | WarpPrismZeratul x1, ObserverZeratul x1, StalkerZeratul x4 | 虚空阵列投送 | 泽拉图空中场景以虚空阵列船投送地面单位。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
+| `cargo_light` | `ZeratulSummonZealot` x2, `ZeratulDarkTemplar` x1, `ZeratulStalker` x2, `ZeratulSentry` x1 | 萨尔纳加前锋 | 狂热者、虚空圣堂武士、伏击者和光盾卫士。 | 当前 `XMFinal` 静态烟测口径；实机投放数量仍需按地图体验调整。 |
+| `cargo_heavy` | `ZeratulStalker` x2, `ZeratulImmortal` x1, `ZeratulDisruptor` x1, `ZeratulSentry` x1 | 神器科技攻坚 | 执行者、禁绝者和支援单位。 | 当前 `XMFinal` 静态烟测口径；实机投放数量仍需按地图体验调整。 |
+| `cargo_air` | `ZeratulWarpPrism` x1, `ZeratulObserver` x1, `ZeratulObserverSiegeMode` x1 | 虚空阵列投送 | 空中/侦测 cargo 必须使用私有观察者与监察模式，不得直接创建 generic `Observer`。 | 当前 `XMFinal` 静态烟测口径；脚本已拦截 generic `Observer`。 |
 | `bonus_reward` | ImmortalZeratul x3, DisruptorZeratul x2 | 神器奖励 | 高科技单位只在奖励节点出现。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 | `replacement_squad` | ZealotZeratul x8, SentryZeratul x2 | 神器阶段测试 | 用于验证神器碎片后的单位替换。 | 设计草案；需按原始mod地图流程和实机日志继续校验。 |
 
 ### 接入规则
 
-- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位。
+- 本模块不再从 `command_cards.json` 的运输/空投按钮自动推导货舱单位，也不把 `units.json` 全量清单当成可投放单位；`ZeratulDarkTemplar` 这类 raw 正链 JSON 缺口需要显式纳入。
 - 地图只传入 `mapId`、`scenarioKind`、目标点和运输模式；单位组合由 `CommanderCargoLoadoutProfile` 根据当前 commander、15 级 `power_fusion` roster 和场景限制解析。
 - `原始mod` 已有运输机、空投舱、狮鹫运输、医疗运输机、坑道/深挖或感染运输容器时，应优先保留它的流程语义，只把硬编码单位替换为 profile 查询结果。
 - 英雄、首领、终极进化、战列巡航舰、航母等高价值单位默认只能用于 `bonus_reward` 或显式允许英雄的地图场景。
@@ -604,7 +633,7 @@ personal_mechanic_smoke
 ```text
 [XM_DBG][INFO][COMMANDER_PROFILE_LOAD] commander=Zeratul levelMode=FullLevel15 masteryMode=AllSixMax rosterStage=power_fusion result=ok
 [XM_DBG][INFO][POWER_FUSION_APPLY] commander=Zeratul levelMode=FullLevel15 masteryMode=AllSixMax prestigeMode=SelectedPositive result=ok
-[XM_DBG][INFO][ROSTER_LOAD] commander=Zeratul stage=power_fusion official_json_units=8 buildings=4 official_json_heroes=0 runtime_heroes=1 hero=ZeratulCoop observer_alias=Observer->ZeratulObserver forms=ZeratulObserverSiegeMode,ZeratulWarpPrismPhasing result=ok
+[XM_DBG][INFO][ROSTER_LOAD] commander=Zeratul stage=power_fusion official_json_units=8 buildings=4 official_json_heroes=0 runtime_heroes=1 hero=ZeratulCoop observer_alias=Observer->ZeratulObserver raw_positive_json_gap=ZeratulDarkTemplar forms=ZeratulObserverSiegeMode,ZeratulWarpPrismPhasing result=ok
 [XM_DBG][INFO][HERO_PROFILE_LOAD] commander=Zeratul official_json_heroes=0 runtime_heroes=1 hero=ZeratulCoop abilities=ZeratulBlink,ZeratulShadowCleave,ZeratulTeleport,ProphecyVision,CommanderPrestigeZeratulVoidSeeker result=ok
 [XM_DBG][INFO][MODULE_VERIFY] commander=Zeratul module=<01-11> profile=<profile> result=ok
 [XM_DBG][WARN][CASC_AUDIT_REQUIRED] commander=Zeratul module=<module> object=<object> result=needs-casc-audit
@@ -614,7 +643,7 @@ personal_mechanic_smoke
 
 - 顶部技能的 caster、按钮、冷却、充能、目标转发闭包；尤其神器碎片拾取、预言技能、面板状态不能写死玩家 1。
 - 英雄 `ZeratulCoop` 的 Ability、Behavior、Weapon、Actor、Sound、复活/重生闭包；当前静态烟测已覆盖五个英雄技能 ID，仍需实机点击验证效果和冷却。
-- `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系；当前静态口径已把 `Observer -> ZeratulObserver`、`ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing` 纳入正向 runtime。
+- `power_fusion` 最终 roster 与 `level15` roster 的新增、替换、变体关系；当前静态口径已把 `Observer -> ZeratulObserver`、`ZeratulObserverSiegeMode`、`ZeratulWarpPrismPhasing`、`ZeratulDarkTemplar` 纳入正向 runtime。
 - 6 项精通的真实作用对象和最终数值。
 - 3 个威望的正面收益、负面代价、disable/suppress、费用/冷却/上限变化。
 - 科技建筑研究按钮、Requirement、Upgrade effect 是否完整。

@@ -152,7 +152,7 @@ const protossObserverClosures = {
     backMorph: 'ObserverSiegeMorphtoObserverFenix',
     trainAbilities: [{ tag: 'CAbilTrain', id: 'RoboticsFacilityTrainFenix' }],
     productionBuildings: ['RoboticsFacilityFenix'],
-    runtimeCount: 13,
+    runtimeCount: 36,
     observerIndex: 2,
     siegeIndex: 12,
     startSquadObserver: 'ObserverFenix',
@@ -502,6 +502,37 @@ function extractGalaxyFunction(text, signature) {
       depth -= 1;
       if (depth === 0) {
         return text.slice(start, index + 1);
+      }
+    }
+  }
+
+  return '';
+}
+
+function extractCommanderCargoBranch(text, commander) {
+  const functionBlock = extractGalaxyFunction(
+    text,
+    'void libE0EAE146_gf_XMTestBench_CreateTransportCargoProfile',
+  );
+  const start = functionBlock.indexOf(`if (lv_commander == "${commander}")`);
+  if (start < 0) {
+    return '';
+  }
+
+  const firstBrace = functionBlock.indexOf('{', start);
+  if (firstBrace < 0) {
+    return '';
+  }
+
+  let depth = 0;
+  for (let index = firstBrace; index < functionBlock.length; index += 1) {
+    const char = functionBlock[index];
+    if (char === '{') {
+      depth += 1;
+    } else if (char === '}') {
+      depth -= 1;
+      if (depth === 0) {
+        return functionBlock.slice(start, index + 1);
       }
     }
   }
@@ -1199,6 +1230,8 @@ function validateZeratulRuntimeClosure() {
   const rosterText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderRosters.galaxy'));
   const heroAbilityText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderHeroAbilities.galaxy'));
   const unitAbilityText = readText(path.join(xmFinalBase, 'LibE0EAE146_CommanderUnitAbilities.galaxy'));
+  const testBenchCoreText = readText(path.join(xmFinalBase, 'LibE0EAE146_TestBenchCore.galaxy'));
+  const zeratulCargoBranch = extractCommanderCargoBranch(testBenchCoreText, 'Zeratul');
   const xmFinalUserData = readText(path.join(xmFinalBase, 'GameData', 'UserData.xml'));
   const runtimeRosterBlock = getUserInstance(xmFinalUserData, 'CommanderRuntimeRoster', 'Zeratul');
   const zeratulRosterFunction = extractGalaxyFunction(rosterText, 'bool libE0EAE146_gf_XMTestBench_ZeratulRoster');
@@ -1290,12 +1323,30 @@ function validateZeratulRuntimeClosure() {
     '"ZeratulObserverSiegeMode"',
     'Zeratul unit ability smoke must include the private observer surveillance form',
   );
+  assertIncludes(
+    zeratulUnitAbilityFunction,
+    'XMFinal LibE0EAE146_CommanderUnitAbilities.galaxy',
+    '"ZeratulDarkTemplar"',
+    'Zeratul unit ability smoke must include the raw-positive Dark Templar chain',
+  );
+  assertIncludes(
+    zeratulCargoBranch,
+    'XMFinal LibE0EAE146_TestBenchCore.galaxy',
+    'lv_commander == "Zeratul"',
+    'Zeratul cargo smoke branch must exist',
+  );
+  assertNotMatches(
+    zeratulCargoBranch,
+    'XMFinal LibE0EAE146_TestBenchCore.galaxy',
+    /CreateCargoUnit\(lp_player,\s*lp_container,\s*"Observer"/,
+    'Zeratul cargo smoke must not create the generic Observer directly',
+  );
 
   assertMatches(
     runtimeRosterBlock,
     'XMFinal GameData/UserData.xml CommanderRuntimeRoster/Zeratul',
-    /<Int Int="13"><Field Id="Count"\/><\/Int>/,
-    'Zeratul runtime roster count must include observer and Void Array alternate forms',
+    /<Int Int="14"><Field Id="Count"\/><\/Int>/,
+    'Zeratul runtime roster count must include observer, Void Array, and Dark Templar forms',
   );
   assertMatches(
     runtimeRosterBlock,
@@ -1309,7 +1360,7 @@ function validateZeratulRuntimeClosure() {
     /<Unit Unit="Observer"><Field Id="RuntimeUnit"/,
     'Zeratul runtime roster must not expose generic Observer as a runtime unit',
   );
-  for (const requiredUnit of ['ZeratulObserverSiegeMode', 'ZeratulWarpPrismPhasing']) {
+  for (const requiredUnit of ['ZeratulObserverSiegeMode', 'ZeratulWarpPrismPhasing', 'ZeratulDarkTemplar']) {
     assertIncludes(
       runtimeRosterBlock,
       'XMFinal GameData/UserData.xml CommanderRuntimeRoster/Zeratul',

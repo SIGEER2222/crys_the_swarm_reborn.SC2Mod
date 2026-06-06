@@ -80,6 +80,7 @@ node .\scripts\sc2\validate-private-commander-openers.mjs
 - heroes.json 已有条目：德哈卡/Dehaka=4，凯瑞甘/Kerrigan=1，泰凯斯/Tychus=9，扎加拉/Zagara=1。
 - heroes.json 暂无条目：阿巴瑟/Abathur，阿拉纳克/Alarak，阿塔尼斯/Artanis，菲尼克斯/Fenix，霍纳与汉/Horner，凯拉克斯/Karax，蒙斯克/Mengsk，诺娃/Nova，雷诺/Raynor，斯台特曼/Stetmann，斯托科夫/Stukov，斯旺/Swann，沃拉尊/Vorazun，泽拉图/Zeratul。
 - units/buildings 已按最新 JSON 重算；例如阿巴瑟当前是 `heroes=0 / units=12 / buildings=2`，不再沿用上一轮把利维坦写入 heroes.json 的旧判断。
+- 泽拉图有一个明确的 raw 正链 JSON 缺口：`ZeratulDarkTemplar` 不在 `units.json` / `roster.json` 中，但官方 raw `ZeratulGatewayTrain,Train5` 直接产出它；当前 Mod runtime roster 和 smoke test 已按 `raw-positive-json-gap` 单独纳入。
 
 | 序号 | 文档 | 指挥官 | heroes | units | buildings | roster | command cards | upgrades |
 |---|---|---|---|---|---|---|---|---|
