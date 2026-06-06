@@ -25735,10 +25735,12 @@
     <Mob value="Campaign" />
     <TechAliasArray value="Alias_CommandCenter" />
     <AbilArray index="2" Link="CommandCenterTrainRaynor" />
+    <AbilArray index="5" Link="CommandCenterLiftOffRaynor" />
     <AbilArray Link="UpgradeToOrbitalRaynor" />
     <CardLayouts index="0">
       <LayoutButtons index="0" Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrainRaynor,Train1" Row="0" Column="0" />
       <LayoutButtons Face="OrbitalCommand" Type="AbilCmd" AbilCmd="UpgradeToOrbitalRaynor,Execute" Row="2" Column="0" />
+      <LayoutButtons Face="Lift" Type="AbilCmd" AbilCmd="CommandCenterLiftOffRaynor,Execute" Row="2" Column="3" />
     </CardLayouts>
     <TechTreeProducedUnitArray value="SCVRaynor" />
   </CUnit>
@@ -25747,10 +25749,12 @@
     <Mob value="Campaign" />
     <TechAliasArray value="Alias_CommandCenter" />
     <AbilArray index="5" Link="CommandCenterTrainRaynor" />
+    <AbilArray index="7" Link="OrbitalLiftOffRaynor" />
     <AbilArray Link="OrbitalCommandSupplyDepotDropRaynor" />
     <CardLayouts index="0">
       <LayoutButtons index="0" Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrainRaynor,Train1" Row="0" Column="0" />
       <LayoutButtons index="7" Face="OrbitalCommandCalldownSupplyDepot" Type="AbilCmd" AbilCmd="OrbitalCommandSupplyDepotDropRaynor,Build1" />
+      <LayoutButtons Face="Lift" Type="AbilCmd" AbilCmd="OrbitalLiftOffRaynor,Execute" Row="2" Column="3" />
     </CardLayouts>
     <TechTreeProducedUnitArray value="SCVRaynor" />
   </CUnit>
@@ -25758,12 +25762,14 @@
     <Race value="Terr" />
     <Mob value="Campaign" />
     <TechAliasArray value="Alias_Barracks" />
-    <AbilArray Link="BarracksTrainRaynor" />
+    <AbilArray index="2" Link="BarracksTrainRaynor" />
+    <AbilArray index="5" Link="BarracksLiftOffRaynor" />
     <CardLayouts index="0">
       <LayoutButtons Face="Marine" Type="AbilCmd" AbilCmd="BarracksTrainRaynor,Train1" Row="0" Column="0" />
       <LayoutButtons Face="Marauder" Type="AbilCmd" AbilCmd="BarracksTrainRaynor,Train4" Row="0" Column="1" />
       <LayoutButtons Face="Firebat" Type="AbilCmd" AbilCmd="BarracksTrainRaynor,Train6" Row="0" Column="2" />
       <LayoutButtons Face="Medic" Type="AbilCmd" AbilCmd="BarracksTrainRaynor,Train5" Row="0" Column="3" />
+      <LayoutButtons Face="Lift" Type="AbilCmd" AbilCmd="BarracksLiftOffRaynor,Execute" Row="2" Column="3" />
     </CardLayouts>
     <TechTreeProducedUnitArray value="MarineRaynor" />
     <TechTreeProducedUnitArray value="MarauderRaynor" />
@@ -25774,10 +25780,12 @@
     <Race value="Terr" />
     <Mob value="Campaign" />
     <TechAliasArray value="Alias_Factory" />
-    <AbilArray Link="FactoryTrainRaynor" />
+    <AbilArray index="2" Link="FactoryTrainRaynor" />
+    <AbilArray index="5" Link="FactoryLiftOffRaynor" />
     <CardLayouts index="0">
       <LayoutButtons Face="Vulture" Type="AbilCmd" AbilCmd="FactoryTrainRaynor,Train10" Row="0" Column="0" />
       <LayoutButtons Face="SiegeTank" Type="AbilCmd" AbilCmd="FactoryTrainRaynor,Train2" Row="0" Column="2" />
+      <LayoutButtons Face="Lift" Type="AbilCmd" AbilCmd="FactoryLiftOffRaynor,Execute" Row="2" Column="3" />
     </CardLayouts>
     <TechTreeProducedUnitArray value="VultureRaynor" />
     <TechTreeProducedUnitArray value="SiegeTankRaynor" />
@@ -25786,15 +25794,62 @@
     <Race value="Terr" />
     <Mob value="Campaign" />
     <TechAliasArray value="Alias_Starport" />
-    <AbilArray Link="StarportTrainRaynor" />
+    <AbilArray index="2" Link="StarportTrainRaynor" />
+    <AbilArray index="5" Link="StarportLiftOffRaynor" />
     <CardLayouts index="0">
       <LayoutButtons Face="VikingFighter" Type="AbilCmd" AbilCmd="StarportTrainRaynor,Train5" Row="0" Column="0" />
       <LayoutButtons Face="Banshee" Type="AbilCmd" AbilCmd="StarportTrainRaynor,Train2" Row="0" Column="1" />
       <LayoutButtons Face="Battlecruiser" Type="AbilCmd" AbilCmd="StarportTrainRaynor,Train4" Row="0" Column="2" />
+      <LayoutButtons Face="Lift" Type="AbilCmd" AbilCmd="StarportLiftOffRaynor,Execute" Row="2" Column="3" />
     </CardLayouts>
     <TechTreeProducedUnitArray value="VikingRaynor" />
     <TechTreeProducedUnitArray value="BansheeRaynor" />
     <TechTreeProducedUnitArray value="BattlecruiserRaynor" />
+  </CUnit>
+  <CUnit id="CommandCenterFlyingRaynor" parent="CommandCenterFlying">
+    <Race value="Terr" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_CommandCenter" />
+    <AbilArray index="0" Link="CommandCenterLandRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Land" Type="AbilCmd" AbilCmd="CommandCenterLandRaynor,Execute" Row="2" Column="3" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="OrbitalCommandFlyingRaynor" parent="OrbitalCommandFlying">
+    <Race value="Terr" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_CommandCenter" />
+    <AbilArray index="2" Link="OrbitalCommandLandRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Land" Type="AbilCmd" AbilCmd="OrbitalCommandLandRaynor,Execute" Row="2" Column="3" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="BarracksFlyingRaynor" parent="BarracksFlying">
+    <Race value="Terr" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Barracks" />
+    <AbilArray index="0" Link="BarracksLandRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Land" Type="AbilCmd" AbilCmd="BarracksLandRaynor,Execute" Row="2" Column="3" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="FactoryFlyingRaynor" parent="FactoryFlying">
+    <Race value="Terr" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Factory" />
+    <AbilArray index="1" Link="FactoryLandRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Land" Type="AbilCmd" AbilCmd="FactoryLandRaynor,Execute" Row="2" Column="3" />
+    </CardLayouts>
+  </CUnit>
+  <CUnit id="StarportFlyingRaynor" parent="StarportFlying">
+    <Race value="Terr" />
+    <Mob value="Campaign" />
+    <TechAliasArray value="Alias_Starport" />
+    <AbilArray index="1" Link="StarportLandRaynor" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="Land" Type="AbilCmd" AbilCmd="StarportLandRaynor,Execute" Row="2" Column="3" />
+    </CardLayouts>
   </CUnit>
   <CUnit id="SupplyDepotRaynor" parent="SupplyDepot">
     <Race value="Terr" />
@@ -25809,7 +25864,7 @@
     <CUnit id="EngineeringBayRaynor" parent="EngineeringBay">
     <Race value="Terr" />
     <Mob value="Campaign" />
-    <AbilArray Link="EngineeringBayResearchRaynor" />
+    <AbilArray index="2" Link="EngineeringBayResearchRaynor" />
     <CardLayouts index="0" removed="1"></CardLayouts>
     <CardLayouts index="0">
       <LayoutButtons Face="TerranInfantryWeaponsLevel1" Type="AbilCmd" AbilCmd="EngineeringBayResearchRaynor,Research1" Row="0" Column="0" />
@@ -25843,7 +25898,7 @@
     <CUnit id="ArmoryRaynor" parent="Armory">
     <Race value="Terr" />
     <Mob value="Campaign" />
-    <AbilArray Link="ArmoryResearchRaynor" />
+    <AbilArray index="2" Link="ArmoryResearchRaynor" />
     <CardLayouts index="0" removed="1"></CardLayouts>
     <CardLayouts index="0">
       <LayoutButtons Face="TerranVehicleAndShipWeaponsLevel1" Type="AbilCmd" AbilCmd="ArmoryResearchRaynor,Research1" Row="0" Column="0" />

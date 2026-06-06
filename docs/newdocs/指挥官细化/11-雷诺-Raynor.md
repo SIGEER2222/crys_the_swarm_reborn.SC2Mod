@@ -44,6 +44,12 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 
 2026-06-06 7v1 参考排查补充：不要只凭 7v1 的 `TechUnit` 白名单或 `BarracksTrain,Train4` 命中判断 Raynor 实际可造 `Marauder`。本次实机反馈显示 7v1 兵营挂科技实验室后可见火蝠但没有劫掠者；静态复查发现 7v1 `Barracks` 命令卡后续包存在覆盖风险，`Marauder` 按钮没有形成可靠的实际命令卡闭包。详见 `docs/newdocs/指挥官细化/2026-06-06-7v1参考数据排查经验.md`。当前 Mod 的私有 `MarauderRaynor` 正链仍以当前 Mod 自身闭包为准，不从 7v1 共享命令卡反推。
 
+2026-06-06 runtime 修正补充：当前旧线 `LibE0EAE146_RaynorRuntime.galaxy` 已按满级 Raynor 初始化，启动时授予 `CommanderLevel=16`、Raynor 1-15 级核心升级、6 项精通 30 点，以及 P1 的正收益补充升级；不直接授予 `CommanderPrestigeRaynorBio / MechAfterburners / Air` 三个主威望升级，避免矿骡禁用、机械成本压制等负面项混入默认 `power_fusion`。`SCVRaynor` 保持官方 SCV 建造能力槽 `index=5`，用 `TerranBuildRaynor` 替换公共 `TerranBuild`；`BarracksRaynor / FactoryRaynor / StarportRaynor / EngineeringBayRaynor / ArmoryRaynor` 统一在官方生产/研究槽 `index=2` 挂私有 Ability。runtime 同时屏蔽公共 Terran 单位/建筑/形态，并显式允许 `*Raynor` 私有单位、`DuskWing`、`HyperionVoidCoop` 和关键顶栏/形态能力。
+
+2026-06-06 私有升级闭包补充：`RaynorCommander` 的快速招募、机械/空军训练时间、兵营建造时间、战巡初始能量改写已补到 `BarracksTrainRaynor / FactoryTrainRaynor / StarportTrainRaynor / TerranBuildRaynor / BattlecruiserRaynor`。P1 生化正收益补充和 `RaynorTalentedTerranInfantryArmorLevel1-5`、`RaynorTalentedTerranVehicleAndShipPlatingLevel1-5` 均应作用到私有 `*Raynor` 单位；后续验证以 `scripts/sc2/validate-raynor-official-runtime.mjs` 为准，不能只看按钮或公共升级名命中。
+
+2026-06-06 起降闭包补充：`CommandCenterRaynor / OrbitalCommandRaynor / BarracksRaynor / FactoryRaynor / StarportRaynor` 已替换为私有起飞 Ability，并新增 `CommandCenterFlyingRaynor / OrbitalCommandFlyingRaynor / BarracksFlyingRaynor / FactoryFlyingRaynor / StarportFlyingRaynor` 与对应私有 Land Ability。运行时会屏蔽公共 `*Flying` 并允许私有飞行壳，避免玩家点击起飞后回到公共 Terran 建筑。
+
 ## 2026-06-04 闭包复核补充
 
 2026-06-03 的人族闭包已经把 Raynor 的有效链路闭到 official JSON + raw closure 两层，这里补一版便于后续实现直接引用的结论：
@@ -726,6 +732,22 @@ personal_mechanic_smoke
 ```
 
 补充：需要排查官方基础差异时才跑 `initial_units`，不要把它当作默认玩法状态。英雄指挥官还要单独验证 `hero_smoke`、`hero_ability_smoke`、`hero_mode_smoke`。
+
+## 2026-06-06 当前 Mod 直接排查风险项
+
+本节只依据 `XMRaynor.SC2Mod` 当前 Catalog 文件记录，不引用阶段文档结论。后续 AI 继续完善雷诺时，应先复核这些点，再做面板整合或 runtime 提交。
+
+- `MarineRaynor`、`MedicRaynor`、`FirebatRaynor`、`MarauderRaynor`、`VultureRaynor`、`BansheeRaynor`、`BattlecruiserRaynor` 主要是继承父单位技能，不是每个单位都有独立私有 Ability；后续如果要求“每个指挥官单位完全独立”，需要逐个确认是否要私有化这些 Ability/Button/Requirement。
+- `MarauderRaynor` 当前正向命令卡只确认到 `StimpackMarauder`，未确认有独立可点的“震荡弹”技能；`MarauderMagrailMunitions`、`NovaConcussiveShells` 等命中存在共享/诺娃污染风险，不能直接当作雷诺正链。
+- `VultureRaynor` 当前正向单位块只确认到 `VehicleAfterburners`；`DeploySpiderMines`、`MakeVultureSpiderMines`、`MercVultureSpiderMines` 等蜘蛛雷相关命中分散在其它单位/研究链，后续要验证普通雷诺秃鹫实机是否有蜘蛛雷按钮，以及按钮是否能生效。
+- `BattlecruiserRaynor` 当前继承链里同时存在 `HyperjumpNoVision` 与 `Hyperjump` 两条跳跃痕迹；后续面板整合要统一战术跳跃入口，避免同一战巡出现重复按钮或一个按钮无效。
+- `BansheeRaynor` 当前技能依赖继承的 `BansheeCloak` 和 `VehicleAfterburners`；`RaynorCommander` 会改写隐形能量消耗与按钮提示，后续 runtime 满级授权必须保证该升级已授予，否则按钮可见但效果可能不符合满级雷诺。
+- `SiegeTankRaynor` / `SiegeTankSiegedRaynor` 和 `VikingRaynor` / `VikingAssaultRaynor` 已有私有形态能力 `SiegeModeRaynor`、`UnsiegeRaynor`、`AssaultModeRaynor`、`FighterModeRaynor`；后续要保持这些私有 Ability 替换父单位通用形态，不要回落到 `SiegeMode` / `Unsiege` / `AssaultMode` / `FighterMode`。
+- `HyperionVoidCoop` 当前可点技能为 `HyperionVoidCoopHyperjump`、`HyperionVoidCoopYamatoCannon`、`HyperionAdvancedPDD`，并有 `AdvancedTargetingSystems` 被动；这些需要和 `RaynorCommanderHyperionAdvancedTargetingSystems`、`RaynorLevel05/15`、顶栏召唤 `VoidCoopSummonHyperion` 一起验证闭包。
+- `DuskWing` 当前 Mod 内只确认到召唤/壳能力痕迹，没有独立可点战斗技能；女妖空袭的有效性应按 `BansheeAirstrike -> EffectData -> DuskWing` 召唤链验证，不要只看单位存在。
+- 当前工作树曾出现 `LibE0EAE146_RaynorRuntime.galaxy` 非 HEAD 状态；后续提交前必须重新确认雷诺 runtime 文件存在、`XMFinal` include/header/`InitializeBase("Raynor")` 分支仍然闭合。
+- `BarracksRaynor`、`FactoryRaynor`、`StarportRaynor`、`EngineeringBayRaynor`、`ArmoryRaynor` 的私有生产/研究能力必须以官方槽位替换方式挂载，避免继承通用 Terran/Nova/Swann 生产按钮造成运行时污染。
+- `BarracksAddOns / FactoryAddOns / StarportAddOns` 仍属于后续风险项：官方 Raynor 至少有兵营 Reactor/TechReactorAI add-on 正链，当前本轮只闭合起降，不把 add-on 单位、add-on Build ability 和 add-on 后续研究链当作已完全私有。
 
 ## `[XM_DBG]` 日志建议
 

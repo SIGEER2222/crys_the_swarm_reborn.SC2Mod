@@ -6,6 +6,7 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 const xmRoot = path.join(repoRoot, '合作指挥官版起义狂潮', 'Mods', 'XM');
 const xmFinalRoot = path.join(xmRoot, 'XMFinal.SC2Mod');
 const welcomeToJungleMapRoot = path.join(repoRoot, '合作指挥官版起义狂潮', 'Maps', 'XM', 'ttosh02.SC2Map');
+const ghostOfAChanceMapRoot = path.join(repoRoot, '合作指挥官版起义狂潮', 'Maps', 'XM', 'ttosh03b.SC2Map');
 
 const targetDependencies = [
   'file:Mods\\XM\\XMAbathur.SC2Mod',
@@ -195,7 +196,38 @@ const terranClosures = {
   Raynor: {
     commandCenterTrain: 'CommandCenterTrainRaynor',
     workerBuild: 'TerranBuildRaynor',
-    requiredBuildUnits: ['CommandCenterRaynor', 'SupplyDepotRaynor'],
+    requiredBuildUnits: [
+      'CommandCenterRaynor',
+      'SupplyDepotRaynor',
+      'RefineryRaynor',
+      'BarracksRaynor',
+      'EngineeringBayRaynor',
+      'MissileTurretRaynor',
+      'BunkerRaynor',
+      'SensorTowerRaynor',
+      'FactoryRaynor',
+      'StarportRaynor',
+      'ArmoryRaynor',
+      'FusionCoreRaynor',
+    ],
+    privateAbilitySlots: [
+      { unit: 'SCVRaynor', ability: 'TerranBuildRaynor', index: '5' },
+      { unit: 'CommandCenterRaynor', ability: 'CommandCenterLiftOffRaynor', index: '5' },
+      { unit: 'CommandCenterFlyingRaynor', ability: 'CommandCenterLandRaynor', index: '0' },
+      { unit: 'OrbitalCommandRaynor', ability: 'OrbitalLiftOffRaynor', index: '7' },
+      { unit: 'OrbitalCommandFlyingRaynor', ability: 'OrbitalCommandLandRaynor', index: '2' },
+      { unit: 'BarracksRaynor', ability: 'BarracksTrainRaynor', index: '2' },
+      { unit: 'BarracksRaynor', ability: 'BarracksLiftOffRaynor', index: '5' },
+      { unit: 'BarracksFlyingRaynor', ability: 'BarracksLandRaynor', index: '0' },
+      { unit: 'FactoryRaynor', ability: 'FactoryTrainRaynor', index: '2' },
+      { unit: 'FactoryRaynor', ability: 'FactoryLiftOffRaynor', index: '5' },
+      { unit: 'FactoryFlyingRaynor', ability: 'FactoryLandRaynor', index: '1' },
+      { unit: 'StarportRaynor', ability: 'StarportTrainRaynor', index: '2' },
+      { unit: 'StarportRaynor', ability: 'StarportLiftOffRaynor', index: '5' },
+      { unit: 'StarportFlyingRaynor', ability: 'StarportLandRaynor', index: '1' },
+      { unit: 'EngineeringBayRaynor', ability: 'EngineeringBayResearchRaynor', index: '2' },
+      { unit: 'ArmoryRaynor', ability: 'ArmoryResearchRaynor', index: '2' },
+    ],
   },
 };
 
@@ -822,6 +854,16 @@ function validateTerranClosures() {
       `${opener.Worker} must mount ${closure.workerBuild}`,
     );
 
+    for (const slot of closure.privateAbilitySlots ?? []) {
+      const unitBlock = getXmlBlock(unitData, 'CUnit', slot.unit);
+      assertMatches(
+        unitBlock,
+        `XM${commander} UnitData.xml`,
+        new RegExp(`<AbilArray(?=[^>]*\\bindex="${escapeRegExp(slot.index)}")(?=[^>]*\\bLink="${escapeRegExp(slot.ability)}")[^>]*>`),
+        `${slot.unit} must replace ability slot ${slot.index} with ${slot.ability}`,
+      );
+    }
+
     const buildBlock = getXmlBlock(abilData, 'CAbilBuild', closure.workerBuild);
     for (const requiredBuildUnit of closure.requiredBuildUnits) {
       assertMatches(
@@ -926,6 +968,67 @@ function validateTargetRuntimeInitializers() {
         );
       }
     }
+  }
+}
+
+function validateKerriganRuntimeEntryAndEconDrop() {
+  const xmFinalBase = path.join(xmFinalRoot, 'Base.SC2Data');
+  const headerText = readText(path.join(xmFinalBase, 'LibE0EAE146_h.galaxy'));
+  const runtimeSafetyText = readText(path.join(xmFinalBase, 'LibE0EAE146_RuntimeSafety.galaxy'));
+  const kerriganRuntime = readText(path.join(xmFinalBase, 'LibE0EAE146_KerriganRuntime.galaxy'));
+  const ghostMapScript = readText(path.join(ghostOfAChanceMapRoot, 'MapScript.galaxy'));
+  const userDataLookupIndex = runtimeSafetyText.indexOf('UserDataGetUnit("CommanderAch"');
+
+  assertIncludes(
+    headerText,
+    'XMFinal LibE0EAE146_h.galaxy',
+    'unit libE0EAE146_gf_KerriganHeroForPlayer',
+    'Kerrigan runtime must expose a stable hero reference for direct map branches',
+  );
+
+  for (const privateOpenerUnit of ['HatcheryKerrigan', 'DroneKerrigan', 'OverlordKerrigan']) {
+    const privateIndex = runtimeSafetyText.indexOf(`"${privateOpenerUnit}"`);
+    if (privateIndex < 0 || privateIndex > userDataLookupIndex) {
+      errors.push(`XMFinal LibE0EAE146_RuntimeSafety.galaxy: Kerrigan private opener ${privateOpenerUnit} must win before UserDataGetUnit fallback`);
+    }
+  }
+
+  assertIncludes(
+    ghostMapScript,
+    'ttosh03b MapScript.galaxy',
+    'libE0EAE146_gf_KerriganRuntimeInit(1, PointFromId(29), true);',
+    'ttosh03b Kerrigan branch must route through Kerrigan runtime init',
+  );
+  assertIncludes(
+    ghostMapScript,
+    'ttosh03b MapScript.galaxy',
+    'gv_nova = libE0EAE146_gf_KerriganHeroForPlayer(1);',
+    'ttosh03b Kerrigan branch must bind gv_nova to the runtime hero reference',
+  );
+  assertNotMatches(
+    ghostMapScript,
+    'ttosh03b MapScript.galaxy',
+    /else if \(auto2F29E444_val == "Kerrigan"\) \{[\s\S]*?CreateUnitsWithDefaultFacing\(1,\s*"K5Kerrigan"/,
+    'ttosh03b Kerrigan branch must not directly spawn K5Kerrigan',
+  );
+
+  for (const requiredRuntimeText of [
+    'libE0EAE146_gf_KerriganEconDropInit(lp_player);',
+    'TriggerAddEventUnitDied(libE0EAE146_gt_KerriganEconDrop, null);',
+    'UnitHasBehavior2(lv_deadUnit, "KerriganVoidCoopEconDrop")',
+    'return "KerriganVoidCoopEconDropLT1";',
+    'return "KerriganVoidCoopEconDrop5";',
+    'libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "KerriganGhostCosmetic", 0);',
+    'libE0EAE146_gf_KerriganSetUpgradeAtLeast(lp_player, "KerriganInfestedCosmetic", 1);',
+    'libE0EAE146_gf_KerriganStartInReviveFlow(lp_player, lv_caster);',
+    'UnitKill(lp_hero);',
+  ]) {
+    assertIncludes(
+      kerriganRuntime,
+      'XMFinal LibE0EAE146_KerriganRuntime.galaxy',
+      requiredRuntimeText,
+      `Kerrigan runtime must include ${requiredRuntimeText}`,
+    );
   }
 }
 
@@ -1220,6 +1323,7 @@ validateSwannClosure();
 validateTerranClosures();
 validateWelcomeToJungleMapInit();
 validateTargetRuntimeInitializers();
+validateKerriganRuntimeEntryAndEconDrop();
 validateHeroStructureRuntime();
 validateHeroReviveRuntime();
 validateZeratulRuntimeClosure();
