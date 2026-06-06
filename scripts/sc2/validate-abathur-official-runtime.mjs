@@ -15,6 +15,7 @@ const files = {
   documentHeader: path.join(xmFinalRoot, 'DocumentHeader'),
   runtime: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_AbathurRuntime.galaxy'),
   runtimeSafety: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_RuntimeSafety.galaxy'),
+  commanderPanels: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_CommanderPanels.galaxy'),
   commanderStartSquads: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_CommanderStartSquads.galaxy'),
   commanderUnitAbilities: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146_CommanderUnitAbilities.galaxy'),
   finalGalaxy: path.join(xmFinalRoot, 'Base.SC2Data', 'LibE0EAE146.galaxy'),
@@ -31,6 +32,7 @@ const files = {
   upgradeData: path.join(gameDataRoot, 'UpgradeData.xml'),
   requirementData: path.join(gameDataRoot, 'RequirementData.xml'),
   requirementNodeData: path.join(gameDataRoot, 'RequirementNodeData.xml'),
+  finalEffectData: path.join(xmFinalRoot, 'Base.SC2Data', 'GameData', 'EffectData.xml'),
   finalRequirementData: path.join(xmFinalRoot, 'Base.SC2Data', 'GameData', 'RequirementData.xml'),
   finalRequirementNodeData: path.join(xmFinalRoot, 'Base.SC2Data', 'GameData', 'RequirementNodeData.xml'),
 };
@@ -49,6 +51,7 @@ validatePrivateCombatAndEvolutionClosure();
 validateViperSkillAndResearchClosure();
 validateToxicNestClosure();
 validateRuntimeFullLevelClosure();
+validateBiomassRuntimeClosure();
 validateRuntimePollutionGuard();
 validateRuntimeSquadClosure();
 validateTestBenchAbilitySmoke();
@@ -700,6 +703,50 @@ function validateRuntimeFullLevelClosure() {
   assertNoMatch(texts.runtime, /TechTreeUpgradeAddLevel\([^)]*"CommanderPrestigeAbathur/, 'Abathur runtime must not directly add CommanderPrestigeAbathur* primary upgrades');
 }
 
+function validateBiomassRuntimeClosure() {
+  assertXmlBlock(texts.unitData, 'CUnit', 'BiomassPickup', 'XMAbathur UnitData.xml', 'missing BiomassPickup unit');
+  const biomassPickupUnit = getXmlBlock(texts.unitData, 'CUnit', 'BiomassPickup');
+  assertBlockIncludes(biomassPickupUnit, 'XMAbathur UnitData.xml', 'AbilArray Link="BiomassPickup"', 'BiomassPickup unit must mount BiomassPickup ability');
+  assertBlockIncludes(biomassPickupUnit, 'XMAbathur UnitData.xml', 'AbilArray Link="BiomassPickupMarked"', 'BiomassPickup unit must mount marked pickup ability');
+  assertBlockIncludes(biomassPickupUnit, 'XMAbathur UnitData.xml', 'BehaviorArray Link="BiomassCreated"', 'BiomassPickup unit must disable pickup briefly after creation');
+
+  const biomassPickupAbility = getXmlBlock(texts.abilData, 'CAbilEffectTarget', 'BiomassPickup');
+  assertBlockIncludes(biomassPickupAbility, 'XMAbathur AbilData.xml', 'AINotifyEffect value="BiomassBuffPickup"', 'BiomassPickup ability must notify pickup usage');
+  assertBlockIncludes(biomassPickupAbility, 'XMAbathur AbilData.xml', 'AutoCastRange value="0.5"', 'BiomassPickup ability must autocast at melee pickup range');
+  assertXmlBlock(texts.abilData, 'CAbilEffectTarget', 'BiomassPickupMarked', 'XMAbathur AbilData.xml', 'missing BiomassPickupMarked ability');
+
+  const biomassPickupEffect = getXmlBlock(texts.effectData, 'CEffectSet', 'BiomassPickup');
+  assertBlockIncludes(biomassPickupEffect, 'XMAbathur EffectData.xml', 'EffectArray value="BiomassPickupDummy"', 'BiomassPickup effect must route to BiomassPickupDummy');
+  assertXmlBlock(texts.effectData, 'CEffectModifyUnit', 'BiomassPickupDummy', 'XMAbathur EffectData.xml', 'missing XMAbathur BiomassPickupDummy effect');
+  assertXmlBlock(texts.finalEffectData, 'CEffectModifyUnit', 'BiomassPickupDummy', 'XMFinal EffectData.xml', 'missing XMFinal BiomassPickupDummy compatibility shell');
+
+  for (const behaviorId of ['BiomassBuff1', 'BiomassBuff10', 'BiomassBuff100']) {
+    assertXmlBlock(texts.behaviorData, 'CBehaviorBuff', behaviorId, 'XMAbathur BehaviorData.xml', `missing ${behaviorId}`);
+  }
+  assertXmlBlock(texts.behaviorData, 'CBehaviorBuff', 'BiomassTravelling', 'XMAbathur BehaviorData.xml', 'missing BiomassTravelling cleanup marker');
+
+  for (const needle of [
+    'libE0EAE146_gv_abathurBiomassEnabled = true;',
+    'TriggerAddEventUnitDied(libE0EAE146_gt_AbathurBiomassDrop, null);',
+    'libE0EAE146_gf_CreateAbathurBiomassPickup(UnitGetPosition(EventUnit()), lv_stack);',
+    'TriggerAddEventPlayerEffectUsed(libE0EAE146_gt_AbathurBiomassPickup, c_playerAny, libE0EAE146_gv_abathurBiomassEffect);',
+    'lv_pickup = EventPlayerEffectUsedUnit(c_effectUnitCaster);',
+    'if ((UnitGetType(lv_pickup) != "BiomassPickup"))',
+    'lv_applied = libE0EAE146_gf_AbathurAddBiomassStacks(lv_target, lv_stored);',
+    'UnitBehaviorAdd(lv_pickup, "BiomassTravelling", lv_pickup, 1);',
+    'UnitKill(lv_pickup);',
+    'TriggerAddEventUnitDied(libE0EAE146_gt_AbathurBiomassRefund, null);',
+    'TriggerAddEventUnitTrainProgress(libE0EAE146_gt_AbathurBiomassTrain, null, c_unitProgressStageComplete);',
+    'TriggerAddEventUnitBehaviorChange(libE0EAE146_gt_AbathurBiomassScaler, null, "BiomassBuff1", c_unitBehaviorChangeIncrease);',
+  ]) {
+    assertIncludes(texts.runtime, 'XMFinal LibE0EAE146_AbathurRuntime.galaxy', needle, `Abathur runtime biomass closure missing ${needle}`);
+  }
+
+  assertNotIncludes(texts.runtime, 'XMFinal LibE0EAE146_AbathurRuntime.galaxy', 'AbilityCommand("BiomassTargetMark", 0)', 'BiomassTargetMark must not be runtime-whitelisted as a visible positive ability');
+  assertNotIncludes(texts.commanderPanels, 'XMFinal LibE0EAE146_CommanderPanels.galaxy', 'biomass_mark', 'BiomassTargetMark must not be exposed as an Abathur test/top-panel profile');
+  assertNotIncludes(texts.commanderPanels, 'XMFinal LibE0EAE146_CommanderPanels.galaxy', 'BiomassTargetMark', 'BiomassTargetMark raw catalog must stay hidden from Abathur panel smoke');
+}
+
 function validateRuntimePollutionGuard() {
   const blockedPublicUnits = [
     'NydusNetwork',
@@ -798,7 +845,6 @@ function validateRuntimePollutionGuard() {
     'ParasiticBomb',
     'SpawnToxicNest',
     'AbathurMend',
-    'BiomassTargetMark',
   ];
 
   for (const abilityId of allowedPrivateAbilities) {
