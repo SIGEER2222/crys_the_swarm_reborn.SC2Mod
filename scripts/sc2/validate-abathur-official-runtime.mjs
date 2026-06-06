@@ -144,6 +144,18 @@ function validateRuntimeEntryPoints() {
       `tvalerian01 opener must use CommanderAchUnit for ${field}`,
     );
   }
+
+  const tvalerian01AbathurBranch = getBranchBlock(
+    texts.tvalerian01Map,
+    'else if ((libE0EAE146_gv_commander == "Abathur")) {',
+    'tvalerian01 MapScript.galaxy',
+  );
+  assertIncludes(
+    tvalerian01AbathurBranch,
+    'tvalerian01 MapScript.galaxy',
+    'libE0EAE146_gf_AbathurRuntimeInit(1, PointFromId(2061979945), true);',
+    'ordinary Abathur branch must run Abathur runtime init in tvalerian01',
+  );
 }
 
 function validatePrivateLarvaClosure() {

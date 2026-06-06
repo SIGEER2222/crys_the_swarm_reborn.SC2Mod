@@ -1459,6 +1459,9 @@ bool gt_TriggerWarfieldCinematic_Func (bool testConds, bool runActions) {
     if ((libE0EAE146_gv_commander == "Tychus")) {
         lib67C0F0E7_gv_tychusSquadMainBuilding = UnitLastCreated();
     }
+    else if ((libE0EAE146_gv_commander == "Abathur")) {
+        libE0EAE146_gf_AbathurRuntimeInit(1, PointFromId(2061979945), true);
+    }
     else {
         if ((libE0EAE146_gv_commander == "Stukov")) {
             libNtve_gf_CreateUnitsWithDefaultFacing(1, "CoopCasterStukov", 0, 1, RegionGetCenter(RegionEntireMap()));
