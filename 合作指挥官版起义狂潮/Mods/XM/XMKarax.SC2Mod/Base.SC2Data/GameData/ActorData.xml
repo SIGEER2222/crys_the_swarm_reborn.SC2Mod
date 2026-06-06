@@ -9341,6 +9341,21 @@
     </WireframeShield>
     <PlacementModel value="SolarForgePlacement" />
   </CActorUnit>
+  <CActorUnit id="SolarForgeKarax" parent="SolarForge" unitName="SolarForgeKarax">
+    <On Terms="Effect.BrokenSolarForgeIssueOrderKarax.Start; !IsStatus Queuing 0" Send="StatusSet DiedQueueing 1" />
+    <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForgeKarax; MorphFrom SolarForgeKarax; IsStatus DiedQueueing 0" Send="AnimBracketStart StandA Stand,Work,Start,A Stand,Work,A Stand,Work,End,A" />
+    <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForgeKarax; MorphFrom SolarForgeKarax; IsStatus DiedQueueing 0" Send="StatusSet WaitingForAnimBrackets 0" />
+    <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForgeKarax; MorphFrom SolarForgeKarax; IsStatus DiedQueueing 1" Send="StatusSet WaitingForAnimBrackets 1" />
+    <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForgeKarax; MorphFrom SolarForgeKarax" Target="SolarForgeBeam" Send="Destroy" />
+    <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForgeKarax; MorphFrom SolarForgeKarax" Target="SOARepairBeam" Send="Destroy" />
+    <On Terms="AbilMorph.*.Start; MorphTo DamagedSolarForgeKarax; MorphFrom SolarForgeKarax" Target="SOARepairBeamImpact" Send="Destroy" />
+    <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForgeKarax" Send="StatusSet WaitingForAnimBrackets 0" />
+    <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForgeKarax" Send="StatusSet DiedQueueing 0" />
+    <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForgeKarax" Send="AnimBracketStop StandA" />
+    <On Terms="AbilMorph.*.Finish; MorphFrom DamagedSolarForgeKarax" Send="TimerSet 2.000000 CreateBeam" />
+  </CActorUnit>
+  <CActorUnit id="DamagedSolarForgeKarax" parent="SolarForge" unitName="DamagedSolarForgeKarax">
+  </CActorUnit>
   <CActorModel id="SolarForgeBeam" parent="ModelAnimationStyleContinuous">
     <On Terms="ActorCreation; ValidatePlayer KaraxHaveSolarEfficiencyLevel1" Send="AnimBracketStart FirstUpgrade Stand,Work,Start Stand,Work" />
     <On Terms="ActorCreation; ValidatePlayer KaraxHaveSolarEfficiencyLevel2" Send="AnimBracketStart SecondUpgrade Stand,Work,Start,A Stand,Work,A" />
@@ -10946,6 +10961,7 @@
     <IconArcLength value="3.250000" />
   </CActorRange>
   <CActorUnit id="ScoutKarax" parent="Scout" unitName="ScoutKarax" />
+  <CActorUnit id="PhoenixPurifierKarax" parent="PhoenixPurifier" unitName="PhoenixPurifierKarax" />
   <CActorUnit id="CarrierKarax" parent="Carrier" unitName="CarrierKarax" />
   <CActorUnit id="ColossusKarax" parent="Colossus" unitName="ColossusKarax" />
 </Catalog>

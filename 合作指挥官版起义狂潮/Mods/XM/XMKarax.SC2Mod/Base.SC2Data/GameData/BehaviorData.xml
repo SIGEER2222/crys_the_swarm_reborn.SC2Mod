@@ -2379,10 +2379,19 @@
         <PeriodicEffect value="SolarForgeBeamCP"/>
         <DisableValidatorArray value="IsSolarForge"/-->
   </CBehaviorBuff>
+  <CBehaviorBuff id="SolarForgeBeamKarax" parent="SolarForgeBeam">
+    <DisableValidatorArray index="0" removed="1" />
+    <DisableValidatorArray value="IsSolarForgeKarax" />
+  </CBehaviorBuff>
   <CBehaviorBuff id="SolarForgePreventDestroy">
     <Alignment value="Positive" />
     <InfoFlags index="Hidden" value="1" />
     <DamageResponse Fatal="1" Handled="BrokenSolarForgeIssueOrder" ModifyFraction="0">
+      <Chance value="1" />
+    </DamageResponse>
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SolarForgePreventDestroyKarax" parent="SolarForgePreventDestroy">
+    <DamageResponse Fatal="1" Handled="BrokenSolarForgeIssueOrderKarax" ModifyFraction="0">
       <Chance value="1" />
     </DamageResponse>
   </CBehaviorBuff>
@@ -2398,6 +2407,8 @@
     <BehaviorCategories index="User13" value="1" />
     <!--VitalRegenArray index="Shields" value="4.164"/-->
     <RemoveValidatorArray value="CasterLifeNotFull" />
+  </CBehaviorBuff>
+  <CBehaviorBuff id="SolarForgeRepairKarax" parent="SolarForgeRepair">
   </CBehaviorBuff>
   <CBehaviorBuff id="SoulAbsorption">
     <BehaviorFlags index="Permanent" value="1" />

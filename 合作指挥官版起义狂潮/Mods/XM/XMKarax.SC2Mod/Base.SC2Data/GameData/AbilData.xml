@@ -459,6 +459,9 @@
       <Resource index="Custom" value="0" />
     </RefundFraction>
   </CAbilMorph>
+  <CAbilMorph id="BrokenSolarForgeKarax" parent="BrokenSolarForge">
+    <InfoArray Score="1" Unit="DamagedSolarForgeKarax" />
+  </CAbilMorph>
   <CAbilEffectTarget id="BrutaliskDeepTunnel">
     <EditorCategories value="Race:Zerg,AbilityorEffectType:Units" />
     <Effect index="0" value="BrutaliskDeepTunnelCU" />
@@ -4216,6 +4219,24 @@
     </InfoArray>
     <Activity value="UI/Repairing" />
   </CAbilMorph>
+  <CAbilMorph id="RepairSolarForgeKarax" parent="RepairSolarForge">
+    <InfoArray Score="1" Unit="SolarForgeKarax">
+      <SectionArray index="Abils">
+        <DurationArray index="Delay" value="120" />
+      </SectionArray>
+      <SectionArray index="Actor">
+        <DurationArray index="Delay" value="120" />
+      </SectionArray>
+      <SectionArray index="Collide">
+        <DurationArray index="Delay" value="120" />
+      </SectionArray>
+      <SectionArray index="Stats">
+        <DurationArray index="Duration" value="120" />
+        <EffectArray index="Start" value="SolarForgeRepairABKarax" />
+        <EffectArray index="Finish" value="SolarForgeRebuildCompleteSet" />
+      </SectionArray>
+    </InfoArray>
+  </CAbilMorph>
   <CAbilResearch id="RoachWarrenResearch">
     <InfoArray index="Research2">
       <Button State="Available" />
@@ -6219,7 +6240,7 @@
   <CAbilTrain id="StargateTrainKarax" parent="StargateTrain">
     <InfoArray index="Train1">
       <Button DefaultButtonFace="Phoenix" State="Available" />
-      <Unit value="PhoenixPurifier" />
+      <Unit value="PhoenixPurifierKarax" />
     </InfoArray>
     <InfoArray index="Train6">
       <Button DefaultButtonFace="WarpInScout" State="Available" />

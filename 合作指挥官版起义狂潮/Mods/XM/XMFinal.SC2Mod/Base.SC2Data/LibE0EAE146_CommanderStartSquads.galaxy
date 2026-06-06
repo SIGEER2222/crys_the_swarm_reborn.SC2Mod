@@ -1040,7 +1040,7 @@ void libE0EAE146_gf_KaraxCreateMapStartSquad (string lp_kind, int lp_player, poi
         libNtve_gf_CreateUnitsWithDefaultFacing(2, "ImmortalAiur", 0, lp_player, lp_point);
     }
     else if ((lp_kind == "air")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixPurifier", 0, lp_player, lp_point);
+        libNtve_gf_CreateUnitsWithDefaultFacing(2, "PhoenixPurifierKarax", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Scout", 0, lp_player, lp_point);
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "CarrierAiur", 0, lp_player, lp_point);
     }
@@ -1071,7 +1071,7 @@ void libE0EAE146_gf_KaraxCreateCargoSquad (unit lp_container, string lp_kind) {
         UnitCargoCreate(lp_container, "ImmortalAiur", 2);
     }
     else if ((lp_kind == "air")) {
-        UnitCargoCreate(lp_container, "PhoenixPurifier", 2);
+        UnitCargoCreate(lp_container, "PhoenixPurifierKarax", 2);
         UnitCargoCreate(lp_container, "Scout", 1);
         UnitCargoCreate(lp_container, "CarrierAiur", 1);
     }

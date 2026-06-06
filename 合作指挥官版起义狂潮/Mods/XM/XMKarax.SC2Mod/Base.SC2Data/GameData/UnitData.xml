@@ -12265,7 +12265,7 @@
     <Mover value="MissileDefault" />
     <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee" />
   </CUnit>
-  <CUnit id="PhoenixPurifier">
+  <CUnit id="PhoenixPurifierKarax">
     <RepairTime value="23.33" />
     <DamageDealtXP value="0" />
     <DamageTakenXP value="0" />
@@ -12274,7 +12274,7 @@
     <BehaviorArray index="0" Link="AllUnitBehaviorController" />
     <CardLayouts index="0">
       <LayoutButtons index="7" Face="GravitonBeam" AbilCmd="MirageGravitonBeamVoidCampaign,Execute" />
-      <LayoutButtons index="8" Face="GravitonBeamVoidCampaign" AbilCmd="GravitonBeamVoidCampaign,Execute" />
+      <LayoutButtons index="8" removed="1" />
       <LayoutButtons index="9" Requirements="HaveMiragePhaseArmor" Column="2" />
       <LayoutButtons Face="AnionPulseCrystal" Type="Passive" Requirements="HaveKaraxPhoenixRangeUpgrade" Row="2" Column="1" />
     </CardLayouts>
@@ -14664,6 +14664,12 @@
   <CUnit id="SolarForgeKarax" parent="SolarForge">
     <Race value="Prot" />
     <Mob value="Campaign" />
+    <AbilArray index="3" removed="1" />
+    <AbilArray Link="BrokenSolarForgeKarax" />
+    <BehaviorArray index="0" removed="1" />
+    <BehaviorArray index="1" removed="1" />
+    <BehaviorArray Link="SolarForgePreventDestroyKarax" />
+    <BehaviorArray Link="SolarForgeBeamKarax" />
     <CardLayouts index="0" removed="1" />
     <CardLayouts index="0">
       <LayoutButtons Face="ResearchSolarEfficiencyLevel1" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research1" Row="0" Column="0" />
@@ -14674,6 +14680,19 @@
       <LayoutButtons Face="ResearchSOASolarLanceUpgrade" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research6" Row="1" Column="2" />
       <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
     </CardLayouts>
+    <CardLayouts CardId="0002" removed="1" />
+    <CardLayouts CardId="0002">
+      <LayoutButtons Face="BrokenSolarForge" Type="AbilCmd" AbilCmd="BrokenSolarForgeKarax,Execute" Row="0" Column="0" />
+    </CardLayouts>
+    <TechAliasArray value="Alias_SolarForge" />
+  </CUnit>
+  <CUnit id="DamagedSolarForgeKarax" parent="DamagedSolarForge">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+    <AbilArray index="1" removed="1" />
+    <AbilArray Link="RepairSolarForgeKarax" />
+    <BehaviorArray index="1" removed="1" />
+    <BehaviorArray Link="SolarForgePreventDestroyKarax" />
     <TechAliasArray value="Alias_SolarForge" />
   </CUnit>
   <CUnit id="RoboticsFacilityKarax" parent="RoboticsFacility">
@@ -14718,7 +14737,7 @@
       <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
     </CardLayouts>
     <TechAliasArray value="Alias_Stargate" />
-    <TechTreeProducedUnitArray value="PhoenixPurifier" />
+    <TechTreeProducedUnitArray value="PhoenixPurifierKarax" />
     <TechTreeProducedUnitArray value="ScoutKarax" />
     <TechTreeProducedUnitArray value="CarrierKarax" />
   </CUnit>

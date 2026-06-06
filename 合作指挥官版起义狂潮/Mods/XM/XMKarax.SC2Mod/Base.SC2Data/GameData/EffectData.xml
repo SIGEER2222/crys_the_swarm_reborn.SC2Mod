@@ -628,6 +628,9 @@
     <CmdFlags index="Preempt" value="1" />
     <Player Value="Caster" />
   </CEffectIssueOrder>
+  <CEffectIssueOrder id="BrokenSolarForgeIssueOrderKarax" parent="BrokenSolarForgeIssueOrder">
+    <Abil value="BrokenSolarForgeKarax" />
+  </CEffectIssueOrder>
   <CEffectCreateUnit id="BrutaliskDeepTunnelCU">
     <EditorCategories value="Race:Zerg" />
     <WhichLocation Value="TargetPoint" />
@@ -4707,6 +4710,9 @@
   <CEffectApplyBehavior id="SolarForgeRepairAB">
     <EditorCategories value="Race:Terran" />
     <Behavior value="SolarForgeRepair" />
+  </CEffectApplyBehavior>
+  <CEffectApplyBehavior id="SolarForgeRepairABKarax" parent="SolarForgeRepairAB">
+    <Behavior value="SolarForgeRepairKarax" />
   </CEffectApplyBehavior>
   <CEffectModifyUnit id="SolarForgeSolarEfficiency1MU">
     <VitalArray index="Energy">

@@ -21,6 +21,9 @@ const files = {
   unitData: path.join(karaxGameDataRoot, 'UnitData.xml'),
   abilData: path.join(karaxGameDataRoot, 'AbilData.xml'),
   actorData: path.join(karaxGameDataRoot, 'ActorData.xml'),
+  behaviorData: path.join(karaxGameDataRoot, 'BehaviorData.xml'),
+  effectData: path.join(karaxGameDataRoot, 'EffectData.xml'),
+  validatorData: path.join(karaxGameDataRoot, 'ValidatorData.xml'),
   requirementNodeData: path.join(karaxGameDataRoot, 'RequirementNodeData.xml'),
   upgradeData: path.join(karaxGameDataRoot, 'UpgradeData.xml'),
   strings: path.join(xmKaraxRoot, 'zhCN.SC2Data', 'LocalizedData', 'GameStrings.txt'),
@@ -42,6 +45,7 @@ const privateRuntimeUnits = [
   'TwilightCouncilKarax',
   'ShieldBatteryKarax',
   'SolarForgeKarax',
+  'DamagedSolarForgeKarax',
   'RoboticsFacilityKarax',
   'RoboticsBayKarax',
   'StargateKarax',
@@ -49,11 +53,11 @@ const privateRuntimeUnits = [
   'KhaydarinMonolithKarax',
   'ObserverKarax',
   'ObserverSiegeModeKarax',
+  'PhoenixPurifierKarax',
   'ScoutKarax',
   'ColossusKarax',
   'CarrierKarax',
   'ImmortalAiur',
-  'PhoenixPurifier',
   'SentryPurifier',
   'ZealotPurifier',
   'SoACasterKarax',
@@ -73,6 +77,7 @@ const publicBlockedUnits = [
   'TwilightCouncil',
   'ShieldBattery',
   'SolarForge',
+  'DamagedSolarForge',
   'RoboticsFacility',
   'RoboticsBay',
   'Stargate',
@@ -83,6 +88,7 @@ const publicBlockedUnits = [
   'Immortal',
   'Observer',
   'ObserverSiegeMode',
+  'PhoenixPurifier',
   'Phoenix',
   'Scout',
   'Colossus',
@@ -146,6 +152,7 @@ validateRuntime();
 validateRuntimeRoster();
 validatePrivateProduction();
 validateSolarForgeRequirement();
+validateSolarForgeDamageRepairChain();
 validateTechBuildingPanels();
 validateSmokeProfiles();
 validatePrivateAssets();
@@ -193,7 +200,7 @@ function validateRuntime() {
     assertIncludes(texts.runtime, 'Karax runtime', `libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "${unit}");`, `runtime must allow private ${unit}`);
   }
 
-  for (const ability of ['ProtossBuildKarax', 'NexusTrainKarax', 'GatewayTrainKarax', 'WarpGateTrainKarax', 'RoboticsFacilityTrainKarax', 'StargateTrainKarax', 'SolarForgeResearch']) {
+  for (const ability of ['ProtossBuildKarax', 'NexusTrainKarax', 'GatewayTrainKarax', 'WarpGateTrainKarax', 'RoboticsFacilityTrainKarax', 'StargateTrainKarax', 'SolarForgeResearch', 'BrokenSolarForgeKarax', 'RepairSolarForgeKarax']) {
     assertIncludes(texts.runtime, 'Karax runtime', `libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "${ability}", 0);`, `runtime must allow ${ability}`);
   }
 }
@@ -205,7 +212,7 @@ function validateRuntimeRoster() {
     return;
   }
 
-  assertIncludes(block, 'CommanderRuntimeRoster/Karax', '<Int Int="28"><Field Id="Count"/></Int>', 'Karax runtime roster count must include private opener, buildings, caster, hero');
+  assertIncludes(block, 'CommanderRuntimeRoster/Karax', '<Int Int="29"><Field Id="Count"/></Int>', 'Karax runtime roster count must include private opener, buildings, damaged Solar Forge form, caster, hero');
   for (const unit of privateRuntimeUnits) {
     assertIncludes(block, 'CommanderRuntimeRoster/Karax', `<Unit Unit="${unit}">`, `runtime roster missing ${unit}`);
   }
@@ -222,30 +229,84 @@ function validatePrivateProduction() {
   const stargateUnit = getXmlBlock(texts.unitData, 'CUnit', 'StargateKarax') ?? '';
 
   assertIncludes(texts.unitData, 'Karax UnitData', '<CUnit id="ScoutKarax" parent="Scout">', 'missing ScoutKarax private shell');
+  assertIncludes(texts.unitData, 'Karax UnitData', '<CUnit id="PhoenixPurifierKarax">', 'missing PhoenixPurifierKarax private shell');
   assertIncludes(texts.unitData, 'Karax UnitData', '<CUnit id="CarrierKarax" parent="Carrier">', 'missing CarrierKarax private shell');
   assertIncludes(texts.unitData, 'Karax UnitData', '<CUnit id="ColossusKarax" parent="Colossus">', 'missing ColossusKarax private shell');
   assertIncludes(texts.actorData, 'Karax ActorData', 'id="ScoutKarax" parent="Scout" unitName="ScoutKarax"', 'missing ScoutKarax actor');
+  assertIncludes(texts.actorData, 'Karax ActorData', 'id="PhoenixPurifierKarax" parent="PhoenixPurifier" unitName="PhoenixPurifierKarax"', 'missing PhoenixPurifierKarax actor');
   assertIncludes(texts.actorData, 'Karax ActorData', 'id="CarrierKarax" parent="Carrier" unitName="CarrierKarax"', 'missing CarrierKarax actor');
   assertIncludes(texts.actorData, 'Karax ActorData', 'id="ColossusKarax" parent="Colossus" unitName="ColossusKarax"', 'missing ColossusKarax actor');
   assertIncludes(texts.strings, 'Karax GameStrings', 'Unit/Name/ScoutKarax=', 'missing ScoutKarax localized name');
+  assertIncludes(texts.strings, 'Karax GameStrings', 'Unit/Name/PhoenixPurifierKarax=', 'missing PhoenixPurifierKarax localized name');
   assertIncludes(texts.strings, 'Karax GameStrings', 'Unit/Name/CarrierKarax=', 'missing CarrierKarax localized name');
   assertIncludes(texts.strings, 'Karax GameStrings', 'Unit/Name/ColossusKarax=', 'missing ColossusKarax localized name');
 
   assertIncludes(robotics, 'RoboticsFacilityTrainKarax', '<Unit value="ColossusKarax" />', 'robotics facility must train ColossusKarax');
   assertNotIncludes(robotics, 'RoboticsFacilityTrainKarax', '<Unit value="Colossus" />', 'robotics facility must not train public Colossus');
   assertIncludes(stargate, 'StargateTrainKarax', '<Unit value="ScoutKarax" />', 'stargate must train ScoutKarax');
+  assertIncludes(stargate, 'StargateTrainKarax', '<Unit value="PhoenixPurifierKarax" />', 'stargate must train PhoenixPurifierKarax');
   assertIncludes(stargate, 'StargateTrainKarax', '<Unit value="CarrierKarax" />', 'stargate must train CarrierKarax');
+  assertNotIncludes(stargate, 'StargateTrainKarax', '<Unit value="PhoenixPurifier" />', 'stargate must not train public PhoenixPurifier');
   assertNotIncludes(stargate, 'StargateTrainKarax', '<Unit value="Scout" />', 'stargate must not train public Scout');
   assertNotIncludes(stargate, 'StargateTrainKarax', '<Unit value="Carrier" />', 'stargate must not train public Carrier');
   assertIncludes(roboticsFacility, 'RoboticsFacilityKarax', '<TechTreeProducedUnitArray value="ColossusKarax" />', 'RoboticsFacilityKarax tech tree must unlock ColossusKarax');
   assertIncludes(stargateUnit, 'StargateKarax', '<TechTreeProducedUnitArray value="ScoutKarax" />', 'StargateKarax tech tree must unlock ScoutKarax');
+  assertIncludes(stargateUnit, 'StargateKarax', '<TechTreeProducedUnitArray value="PhoenixPurifierKarax" />', 'StargateKarax tech tree must unlock PhoenixPurifierKarax');
   assertIncludes(stargateUnit, 'StargateKarax', '<TechTreeProducedUnitArray value="CarrierKarax" />', 'StargateKarax tech tree must unlock CarrierKarax');
+  assertNotIncludes(stargateUnit, 'StargateKarax', '<TechTreeProducedUnitArray value="PhoenixPurifier" />', 'StargateKarax tech tree must not unlock public PhoenixPurifier');
 }
 
 function validateSolarForgeRequirement() {
   const countNode = getXmlBlock(texts.requirementNodeData, 'CRequirementCountUnit', 'CountUnitSolarForgeQueuedOrBetter') ?? '';
   assertIncludes(countNode, 'CountUnitSolarForgeQueuedOrBetter', '<Count Link="SolarForgeKarax" State="QueuedOrBetter" />', 'SolarForge requirement must count SolarForgeKarax');
   assertNotIncludes(countNode, 'CountUnitSolarForgeQueuedOrBetter', '<Count Link="SolarForge" State="QueuedOrBetter" />', 'SolarForge requirement must not count public SolarForge');
+}
+
+function validateSolarForgeDamageRepairChain() {
+  const solarForge = getXmlBlock(texts.unitData, 'CUnit', 'SolarForgeKarax') ?? '';
+  const damagedSolarForge = getXmlBlock(texts.unitData, 'CUnit', 'DamagedSolarForgeKarax') ?? '';
+  const brokenAbility = getXmlBlock(texts.abilData, 'CAbilMorph', 'BrokenSolarForgeKarax') ?? '';
+  const repairAbility = getXmlBlock(texts.abilData, 'CAbilMorph', 'RepairSolarForgeKarax') ?? '';
+  const beamBehavior = getXmlBlock(texts.behaviorData, 'CBehaviorBuff', 'SolarForgeBeamKarax') ?? '';
+  const preventDestroyBehavior = getXmlBlock(texts.behaviorData, 'CBehaviorBuff', 'SolarForgePreventDestroyKarax') ?? '';
+  const repairBehavior = getXmlBlock(texts.behaviorData, 'CBehaviorBuff', 'SolarForgeRepairKarax') ?? '';
+  const brokenEffect = getXmlBlock(texts.effectData, 'CEffectIssueOrder', 'BrokenSolarForgeIssueOrderKarax') ?? '';
+  const repairEffect = getXmlBlock(texts.effectData, 'CEffectApplyBehavior', 'SolarForgeRepairABKarax') ?? '';
+  const isSolarForge = getXmlBlock(texts.validatorData, 'CValidatorUnitType', 'IsSolarForgeKarax') ?? '';
+  const isDamagedSolarForge = getXmlBlock(texts.validatorData, 'CValidatorUnitType', 'IsDamagedSolarForgeKarax') ?? '';
+  const actor = getXmlBlock(texts.actorData, 'CActorUnit', 'SolarForgeKarax') ?? '';
+  const damagedActor = getXmlBlock(texts.actorData, 'CActorUnit', 'DamagedSolarForgeKarax') ?? '';
+
+  assertIncludes(solarForge, 'SolarForgeKarax', '<AbilArray index="3" removed="1" />', 'SolarForgeKarax must remove inherited public BrokenSolarForge ability');
+  assertIncludes(solarForge, 'SolarForgeKarax', '<AbilArray Link="BrokenSolarForgeKarax" />', 'SolarForgeKarax must use private broken morph ability');
+  assertIncludes(solarForge, 'SolarForgeKarax', '<BehaviorArray index="0" removed="1" />', 'SolarForgeKarax must remove inherited public prevent-destroy behavior');
+  assertIncludes(solarForge, 'SolarForgeKarax', '<BehaviorArray index="1" removed="1" />', 'SolarForgeKarax must remove inherited public beam behavior');
+  assertIncludes(solarForge, 'SolarForgeKarax', '<BehaviorArray Link="SolarForgePreventDestroyKarax" />', 'SolarForgeKarax must use private prevent-destroy behavior');
+  assertIncludes(solarForge, 'SolarForgeKarax', '<BehaviorArray Link="SolarForgeBeamKarax" />', 'SolarForgeKarax must use private beam behavior');
+  assertIncludes(solarForge, 'SolarForgeKarax', 'AbilCmd="BrokenSolarForgeKarax,Execute"', 'SolarForgeKarax damaged card must call private broken morph');
+
+  assertIncludes(damagedSolarForge, 'DamagedSolarForgeKarax', '<AbilArray index="1" removed="1" />', 'DamagedSolarForgeKarax must remove inherited public RepairSolarForge ability');
+  assertIncludes(damagedSolarForge, 'DamagedSolarForgeKarax', '<AbilArray Link="RepairSolarForgeKarax" />', 'DamagedSolarForgeKarax must use private repair ability');
+  assertIncludes(damagedSolarForge, 'DamagedSolarForgeKarax', '<BehaviorArray index="1" removed="1" />', 'DamagedSolarForgeKarax must remove inherited public prevent-destroy behavior');
+  assertIncludes(damagedSolarForge, 'DamagedSolarForgeKarax', '<BehaviorArray Link="SolarForgePreventDestroyKarax" />', 'DamagedSolarForgeKarax must use private prevent-destroy behavior');
+
+  assertIncludes(brokenAbility, 'BrokenSolarForgeKarax', '<InfoArray Score="1" Unit="DamagedSolarForgeKarax" />', 'broken morph must produce DamagedSolarForgeKarax');
+  assertNotIncludes(brokenAbility, 'BrokenSolarForgeKarax', 'Unit="DamagedSolarForge"', 'broken morph must not produce public DamagedSolarForge');
+  assertIncludes(repairAbility, 'RepairSolarForgeKarax', '<InfoArray Score="1" Unit="SolarForgeKarax">', 'repair morph must produce SolarForgeKarax');
+  assertNotIncludes(repairAbility, 'RepairSolarForgeKarax', 'Unit="SolarForge">', 'repair morph must not produce public SolarForge');
+  assertIncludes(repairAbility, 'RepairSolarForgeKarax', 'value="SolarForgeRepairABKarax"', 'repair morph must apply private repair behavior');
+
+  assertIncludes(beamBehavior, 'SolarForgeBeamKarax', '<DisableValidatorArray index="0" removed="1" />', 'private beam must remove inherited public IsSolarForge validator');
+  assertIncludes(beamBehavior, 'SolarForgeBeamKarax', '<DisableValidatorArray value="IsSolarForgeKarax" />', 'private beam must validate SolarForgeKarax');
+  assertIncludes(preventDestroyBehavior, 'SolarForgePreventDestroyKarax', 'Handled="BrokenSolarForgeIssueOrderKarax"', 'private prevent-destroy must issue private broken morph');
+  assertIncludes(repairBehavior, 'SolarForgeRepairKarax', 'parent="SolarForgeRepair"', 'private repair behavior must exist');
+  assertIncludes(brokenEffect, 'BrokenSolarForgeIssueOrderKarax', '<Abil value="BrokenSolarForgeKarax" />', 'private fatal effect must issue private broken morph ability');
+  assertIncludes(repairEffect, 'SolarForgeRepairABKarax', '<Behavior value="SolarForgeRepairKarax" />', 'private repair apply effect must apply private repair behavior');
+  assertIncludes(isSolarForge, 'IsSolarForgeKarax', '<Value value="SolarForgeKarax" />', 'private Solar Forge validator must target SolarForgeKarax');
+  assertIncludes(isDamagedSolarForge, 'IsDamagedSolarForgeKarax', '<Value value="DamagedSolarForgeKarax" />', 'private damaged Solar Forge validator must target DamagedSolarForgeKarax');
+
+  assertIncludes(actor, 'SolarForgeKarax actor', 'MorphTo DamagedSolarForgeKarax; MorphFrom SolarForgeKarax', 'private actor must handle private damaged morph');
+  assertIncludes(damagedActor, 'DamagedSolarForgeKarax actor', 'unitName="DamagedSolarForgeKarax"', 'private damaged Solar Forge actor must exist');
 }
 
 function validateTechBuildingPanels() {
@@ -276,8 +337,10 @@ function validateTechBuildingPanels() {
 
 function validateSmokeProfiles() {
   assertIncludes(texts.finalRosters, 'CommanderRosters Karax', '"ScoutKarax"', 'Karax roster smoke must create ScoutKarax');
+  assertIncludes(texts.finalRosters, 'CommanderRosters Karax', '"PhoenixPurifierKarax"', 'Karax roster smoke must create PhoenixPurifierKarax');
   assertIncludes(texts.finalRosters, 'CommanderRosters Karax', '"ColossusKarax"', 'Karax roster smoke must create ColossusKarax');
   assertIncludes(texts.finalRosters, 'CommanderRosters Karax', '"CarrierKarax"', 'Karax roster smoke must create CarrierKarax');
+  assertNotIncludes(getFunctionBlock(texts.finalRosters, 'libE0EAE146_gf_XMTestBench_KaraxRoster') ?? '', 'CommanderRosters Karax', '"PhoenixPurifier"', 'Karax roster smoke must not create public PhoenixPurifier');
   assertNotIncludes(getFunctionBlock(texts.finalRosters, 'libE0EAE146_gf_XMTestBench_KaraxRoster') ?? '', 'CommanderRosters Karax', '"Scout"', 'Karax roster smoke must not create public Scout');
   assertNotIncludes(getFunctionBlock(texts.finalRosters, 'libE0EAE146_gf_XMTestBench_KaraxRoster') ?? '', 'CommanderRosters Karax', '"Colossus"', 'Karax roster smoke must not create public Colossus');
   assertNotIncludes(getFunctionBlock(texts.finalRosters, 'libE0EAE146_gf_XMTestBench_KaraxRoster') ?? '', 'CommanderRosters Karax', '"Carrier"', 'Karax roster smoke must not create public Carrier');
@@ -290,9 +353,10 @@ function validateSmokeProfiles() {
 
   const unitAbilities = getFunctionBlock(texts.finalUnitAbilities, 'libE0EAE146_gf_XMTestBench_KaraxUnitAbilities') ?? '';
   assertIncludes(unitAbilities, 'CommanderUnitAbilities Karax', '"ScoutKarax"', 'Karax ability smoke must use ScoutKarax');
+  assertIncludes(unitAbilities, 'CommanderUnitAbilities Karax', '"PhoenixPurifierKarax"', 'Karax ability smoke must use PhoenixPurifierKarax');
   assertIncludes(unitAbilities, 'CommanderUnitAbilities Karax', '"ColossusKarax"', 'Karax ability smoke must use ColossusKarax');
   assertIncludes(unitAbilities, 'CommanderUnitAbilities Karax', '"CarrierKarax"', 'Karax ability smoke must use CarrierKarax');
-  for (const publicUnit of ['"Scout"', '"Colossus"', '"Carrier"']) {
+  for (const publicUnit of ['"PhoenixPurifier"', '"Scout"', '"Colossus"', '"Carrier"']) {
     assertNotIncludes(unitAbilities, 'CommanderUnitAbilities Karax', publicUnit, `Karax ability smoke must not use public ${publicUnit}`);
   }
 }
@@ -300,7 +364,9 @@ function validateSmokeProfiles() {
 function validatePrivateAssets() {
   const prestigeArmy = getXmlBlock(texts.upgradeData, 'CUpgrade', 'CommanderPrestigeKaraxArmy') ?? '';
   assertIncludes(prestigeArmy, 'CommanderPrestigeKaraxArmy', 'Unit,ColossusKarax,CostResource[Minerals]', 'army prestige must affect ColossusKarax minerals');
+  assertIncludes(prestigeArmy, 'CommanderPrestigeKaraxArmy', 'Unit,PhoenixPurifierKarax,CostResource[Minerals]', 'army prestige must affect PhoenixPurifierKarax minerals');
   assertIncludes(prestigeArmy, 'CommanderPrestigeKaraxArmy', 'Unit,CarrierKarax,CostResource[Minerals]', 'army prestige must affect CarrierKarax minerals');
+  assertNotIncludes(prestigeArmy, 'CommanderPrestigeKaraxArmy', 'Unit,PhoenixPurifier,CostResource[Minerals]', 'army prestige should not target public PhoenixPurifier');
   assertNotIncludes(prestigeArmy, 'CommanderPrestigeKaraxArmy', 'Unit,Colossus,CostResource[Minerals]', 'army prestige should not target public Colossus');
   assertNotIncludes(prestigeArmy, 'CommanderPrestigeKaraxArmy', 'Unit,Carrier,CostResource[Minerals]', 'army prestige should not target public Carrier');
 }

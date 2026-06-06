@@ -97,6 +97,7 @@ void libE0EAE146_gf_KaraxApplyTechFilter (int lp_player) {
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "TwilightCouncil");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "ShieldBattery");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "SolarForge");
+    libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "DamagedSolarForge");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "RoboticsFacility");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "RoboticsBay");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "Stargate");
@@ -107,6 +108,7 @@ void libE0EAE146_gf_KaraxApplyTechFilter (int lp_player) {
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "Immortal");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "Observer");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "ObserverSiegeMode");
+    libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "PhoenixPurifier");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "Phoenix");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "Scout");
     libE0EAE146_gf_KaraxBlockUnitIfPresent(lp_player, "Colossus");
@@ -124,6 +126,7 @@ void libE0EAE146_gf_KaraxApplyTechFilter (int lp_player) {
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "TwilightCouncilKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "ShieldBatteryKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "SolarForgeKarax");
+    libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "DamagedSolarForgeKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "RoboticsFacilityKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "RoboticsBayKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "StargateKarax");
@@ -134,7 +137,7 @@ void libE0EAE146_gf_KaraxApplyTechFilter (int lp_player) {
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "ImmortalAiur");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "ObserverKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "ObserverSiegeModeKarax");
-    libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "PhoenixPurifier");
+    libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "PhoenixPurifierKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "ScoutKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "ColossusKarax");
     libE0EAE146_gf_KaraxAllowUnitIfPresent(lp_player, "CarrierKarax");
@@ -148,6 +151,8 @@ void libE0EAE146_gf_KaraxApplyTechFilter (int lp_player) {
     libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "RoboticsFacilityTrainKarax", 0);
     libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "StargateTrainKarax", 0);
     libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "SolarForgeResearch", 0);
+    libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "BrokenSolarForgeKarax", 0);
+    libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "RepairSolarForgeKarax", 0);
     libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "SOAOrbitalStrikeKarax", 0);
     libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "SOAThermalLanceActivate", 0);
     libE0EAE146_gf_KaraxAllowAbilityIfPresent(lp_player, "SOAThermalLanceTargetingDummy", 0);
