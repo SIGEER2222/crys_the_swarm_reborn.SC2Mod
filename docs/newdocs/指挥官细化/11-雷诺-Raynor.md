@@ -42,6 +42,8 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 
 2026-06-04 形态闭包补充：`VikingRaynor` 和 `SiegeTankRaynor` 的形态切换已私有化。当前链路是 `AssaultModeRaynor -> VikingAssaultRaynor`、`FighterModeRaynor -> VikingRaynor`、`SiegeModeRaynor -> SiegeTankSiegedRaynor`、`UnsiegeRaynor -> SiegeTankRaynor`；`XMFinal CommanderRuntimeRoster` 和测试台 roster 已把 `VikingAssaultRaynor`、`SiegeTankSiegedRaynor` 纳入 Raynor runtime。对应机械/空军成本、攻速、护甲/生命和攻城模式升级已补到私有形态；不要再让维京突击模式或攻城坦克攻城模式落回共享 `VikingAssault` / `SiegeTankSieged`。
 
+2026-06-06 7v1 参考排查补充：不要只凭 7v1 的 `TechUnit` 白名单或 `BarracksTrain,Train4` 命中判断 Raynor 实际可造 `Marauder`。本次实机反馈显示 7v1 兵营挂科技实验室后可见火蝠但没有劫掠者；静态复查发现 7v1 `Barracks` 命令卡后续包存在覆盖风险，`Marauder` 按钮没有形成可靠的实际命令卡闭包。详见 `docs/newdocs/指挥官细化/2026-06-06-7v1参考数据排查经验.md`。当前 Mod 的私有 `MarauderRaynor` 正链仍以当前 Mod 自身闭包为准，不从 7v1 共享命令卡反推。
+
 ## 2026-06-04 闭包复核补充
 
 2026-06-03 的人族闭包已经把 Raynor 的有效链路闭到 official JSON + raw closure 两层，这里补一版便于后续实现直接引用的结论：
