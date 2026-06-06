@@ -614,6 +614,151 @@
       <Unit value="VikingRaynor" />
     </InfoArray>
   </CAbilTrain>
+  <CAbilBuild id="BarracksAddOnsRaynor" parent="TerranAddOns">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <BuildMorphAbil value="BarracksLiftOffRaynor" />
+    <InfoArray index="Build1" Unit="BarracksTechLabRaynor" Time="25">
+      <Button DefaultButtonFace="TechLabBarracks" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build2" Unit="BarracksReactorRaynor" Time="50">
+      <Button DefaultButtonFace="Reactor" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build3" Unit="">
+      <Button DefaultButtonFace="" />
+    </InfoArray>
+    <InfoArray index="Build4" Unit="">
+      <Button DefaultButtonFace="" />
+    </InfoArray>
+  </CAbilBuild>
+  <CAbilBuild id="FactoryAddOnsRaynor" parent="TerranAddOns">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <BuildMorphAbil value="FactoryLiftOffRaynor" />
+    <InfoArray index="Build1" Unit="FactoryTechLabRaynor" Time="25">
+      <Button DefaultButtonFace="TechLabFactory" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build2" Unit="FactoryReactorRaynor" Time="50">
+      <Button DefaultButtonFace="Reactor" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build3" Unit="">
+      <Button DefaultButtonFace="" />
+    </InfoArray>
+    <InfoArray index="Build4" Unit="">
+      <Button DefaultButtonFace="" />
+    </InfoArray>
+  </CAbilBuild>
+  <CAbilBuild id="StarportAddOnsRaynor" parent="TerranAddOns">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <BuildMorphAbil value="StarportLiftOffRaynor" />
+    <InfoArray index="Build1" Unit="StarportTechLabRaynor" Time="25">
+      <Button DefaultButtonFace="TechLabStarport" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build2" Unit="StarportReactorRaynor" Time="50">
+      <Button DefaultButtonFace="Reactor" State="Available" />
+    </InfoArray>
+    <InfoArray index="Build3" Unit="">
+      <Button DefaultButtonFace="" />
+    </InfoArray>
+    <InfoArray index="Build4" Unit="">
+      <Button DefaultButtonFace="" />
+    </InfoArray>
+  </CAbilBuild>
+  <CAbilMorph id="RaynorTechLabMorphToBarracks">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="TechLabBarracks" Requirements="ShowIfHaveBarrAddOnParent" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="Produce" value="1" />
+    <InfoArray Unit="BarracksTechLabRaynor" />
+  </CAbilMorph>
+  <CAbilMorph id="RaynorTechLabMorphToDetached">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="TechLabBarracks" Requirements="ShowIfHaveNoAddOnParent" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="Produce" value="1" />
+    <InfoArray Unit="TechLabRaynor" />
+  </CAbilMorph>
+  <CAbilMorph id="RaynorTechLabMorphToFactory">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="TechLabFactory" Requirements="ShowIfHaveFactAddOnParent" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="Produce" value="1" />
+    <InfoArray Unit="FactoryTechLabRaynor" />
+  </CAbilMorph>
+  <CAbilMorph id="RaynorTechLabMorphToStarport">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="TechLabStarport" Requirements="ShowIfHaveStarportAddOnParent" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="Produce" value="1" />
+    <InfoArray Unit="StarportTechLabRaynor" />
+  </CAbilMorph>
+  <CAbilMorph id="RaynorReactorMorphToBarracks">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="Reactor" Requirements="ShowIfHaveBarrAddOnParent" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="Produce" value="1" />
+    <InfoArray Unit="BarracksReactorRaynor" />
+  </CAbilMorph>
+  <CAbilMorph id="RaynorReactorMorphToDetached">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="Reactor" Requirements="ShowIfHaveNoAddOnParent" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="Produce" value="1" />
+    <InfoArray Unit="ReactorRaynor" />
+  </CAbilMorph>
+  <CAbilMorph id="RaynorReactorMorphToFactory">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="Reactor" Requirements="ShowIfHaveFactAddOnParent" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="Produce" value="1" />
+    <InfoArray Unit="FactoryReactorRaynor" />
+  </CAbilMorph>
+  <CAbilMorph id="RaynorReactorMorphToStarport">
+    <EditorCategories value="Race:Terran,AbilityorEffectType:Structures" />
+    <CmdButtonArray index="Execute" DefaultButtonFace="Reactor" Requirements="ShowIfHaveStarportAddOnParent" />
+    <Flags index="Automatic" value="1" />
+    <Flags index="Produce" value="1" />
+    <InfoArray Unit="StarportReactorRaynor" />
+  </CAbilMorph>
+  <CAbilResearch id="BarracksTechLabResearchRaynor">
+    <InfoArray index="Research4" Time="60" Upgrade="BearclawNozzles">
+      <Resource index="Minerals" value="50" />
+      <Resource index="Vespene" value="50" />
+      <Button DefaultButtonFace="ResearchIncineratorGauntlets" State="Restricted" Requirements="LearnIncineratorGauntlets" />
+    </InfoArray>
+    <InfoArray index="Research6" Time="60" Upgrade="StabilizerMedPacks">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchStabilizerMedpacks" State="Restricted" Requirements="LearnStabilizerMedPacks" />
+    </InfoArray>
+    <InfoArray index="Research7" Time="60" Upgrade="FirebatJuggernautPlating">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchJuggernautPlating" State="Restricted" Requirements="LearnFirebatJuggernautPlating" />
+    </InfoArray>
+  </CAbilResearch>
+  <CAbilResearch id="FactoryTechLabResearchRaynor">
+    <InfoArray index="Research11" Time="60" Upgrade="CerberusMines">
+      <Resource index="Minerals" value="100" />
+      <Resource index="Vespene" value="100" />
+      <Button DefaultButtonFace="ResearchCerberusMines" State="Restricted" Requirements="LearnCerberusMines" />
+    </InfoArray>
+    <InfoArray index="Research16" Time="90" Upgrade="RaynorImprovedSiegeMode">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchImprovedSiegeMode" State="Restricted" Requirements="LearnImprovedSiegeMode" />
+    </InfoArray>
+  </CAbilResearch>
+  <CAbilResearch id="StarportTechLabResearchRaynor">
+    <InfoArray index="Research10" Time="90" Upgrade="ClusterWarheads">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchShockwaveMissileBattery" State="Restricted" Requirements="LearnShockwaveMissileBattery" />
+    </InfoArray>
+    <InfoArray index="Research19" Time="90" Upgrade="HALORockets">
+      <Resource index="Minerals" value="150" />
+      <Resource index="Vespene" value="150" />
+      <Button DefaultButtonFace="ResearchRipwaveMissiles" State="Restricted" Requirements="LearnRipwaveMissiles" />
+    </InfoArray>
+  </CAbilResearch>
   <CAbilEffectTarget id="CommanderPrestigeVorazunTimeStop">
     <Cost>
       <Cooldown TimeStart="300" TimeUse="300" />

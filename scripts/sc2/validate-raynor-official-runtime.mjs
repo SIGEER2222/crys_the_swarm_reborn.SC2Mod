@@ -79,6 +79,18 @@ const publicBlockedUnits = [
   'SensorTower',
   'Bunker',
   'MissileTurret',
+  'TechLab',
+  'BarracksTechLab',
+  'FactoryTechLab',
+  'StarportTechLab',
+  'Reactor',
+  'BarracksReactor',
+  'FactoryReactor',
+  'StarportReactor',
+  'TechReactor',
+  'BarracksTechReactor',
+  'FactoryTechReactor',
+  'StarportTechReactor',
   'Marine',
   'Medic',
   'Firebat',
@@ -112,6 +124,14 @@ const privateAllowedUnits = [
   'SensorTowerRaynor',
   'BunkerRaynor',
   'MissileTurretRaynor',
+  'TechLabRaynor',
+  'BarracksTechLabRaynor',
+  'FactoryTechLabRaynor',
+  'StarportTechLabRaynor',
+  'ReactorRaynor',
+  'BarracksReactorRaynor',
+  'FactoryReactorRaynor',
+  'StarportReactorRaynor',
   'MarineRaynor',
   'MedicRaynor',
   'FirebatRaynor',
@@ -147,6 +167,17 @@ const privateAllowedAbilities = [
   'StarportLandRaynor',
   'EngineeringBayResearchRaynor',
   'ArmoryResearchRaynor',
+  'BarracksAddOnsRaynor',
+  'FactoryAddOnsRaynor',
+  'StarportAddOnsRaynor',
+  'RaynorTechLabMorphToBarracks',
+  'RaynorTechLabMorphToDetached',
+  'RaynorTechLabMorphToFactory',
+  'RaynorTechLabMorphToStarport',
+  'RaynorReactorMorphToBarracks',
+  'RaynorReactorMorphToDetached',
+  'RaynorReactorMorphToFactory',
+  'RaynorReactorMorphToStarport',
   'UpgradeToOrbitalRaynor',
   'OrbitalCommandSupplyDepotDropRaynor',
   'SiegeModeRaynor',
@@ -155,6 +186,19 @@ const privateAllowedAbilities = [
   'FighterModeRaynor',
   'VoidCoopSummonHyperion',
   'BansheeAirstrike',
+];
+
+const privateAllowedAbilityCommands = [
+  ['BarracksAddOnsRaynor', 1],
+  ['FactoryAddOnsRaynor', 1],
+  ['StarportAddOnsRaynor', 1],
+  ['BarracksTechLabResearchRaynor', 3],
+  ['BarracksTechLabResearchRaynor', 5],
+  ['BarracksTechLabResearchRaynor', 6],
+  ['FactoryTechLabResearchRaynor', 10],
+  ['FactoryTechLabResearchRaynor', 15],
+  ['StarportTechLabResearchRaynor', 9],
+  ['StarportTechLabResearchRaynor', 18],
 ];
 
 validateDependencyGate();
@@ -271,6 +315,15 @@ function validateRuntime() {
     );
   }
 
+  for (const [abilityId, commandIndex] of privateAllowedAbilityCommands) {
+    assertIncludes(
+      texts.runtime,
+      'Raynor runtime',
+      `libE0EAE146_gf_RaynorAllowAbilityIfPresent(lp_player, "${abilityId}", ${commandIndex});`,
+      `runtime must allow ${abilityId} command ${commandIndex}`,
+    );
+  }
+
   for (const call of [
     'libE0EAE146_gf_RaynorApplyFullLevelUpgrades(lp_player);',
     'libE0EAE146_gf_RaynorApplyFullMasteries(lp_player);',
@@ -291,12 +344,15 @@ function validatePrivateProduction() {
     ['OrbitalCommandRaynor', '7', 'OrbitalLiftOffRaynor'],
     ['OrbitalCommandFlyingRaynor', '2', 'OrbitalCommandLandRaynor'],
     ['BarracksRaynor', '2', 'BarracksTrainRaynor'],
+    ['BarracksRaynor', '4', 'BarracksAddOnsRaynor'],
     ['BarracksRaynor', '5', 'BarracksLiftOffRaynor'],
     ['BarracksFlyingRaynor', '0', 'BarracksLandRaynor'],
     ['FactoryRaynor', '2', 'FactoryTrainRaynor'],
+    ['FactoryRaynor', '3', 'FactoryAddOnsRaynor'],
     ['FactoryRaynor', '5', 'FactoryLiftOffRaynor'],
     ['FactoryFlyingRaynor', '1', 'FactoryLandRaynor'],
     ['StarportRaynor', '2', 'StarportTrainRaynor'],
+    ['StarportRaynor', '3', 'StarportAddOnsRaynor'],
     ['StarportRaynor', '5', 'StarportLiftOffRaynor'],
     ['StarportFlyingRaynor', '1', 'StarportLandRaynor'],
     ['EngineeringBayRaynor', '2', 'EngineeringBayResearchRaynor'],
@@ -350,6 +406,14 @@ function validatePrivateProduction() {
   }
 
   const morphExpectations = {
+    RaynorTechLabMorphToBarracks: 'BarracksTechLabRaynor',
+    RaynorTechLabMorphToDetached: 'TechLabRaynor',
+    RaynorTechLabMorphToFactory: 'FactoryTechLabRaynor',
+    RaynorTechLabMorphToStarport: 'StarportTechLabRaynor',
+    RaynorReactorMorphToBarracks: 'BarracksReactorRaynor',
+    RaynorReactorMorphToDetached: 'ReactorRaynor',
+    RaynorReactorMorphToFactory: 'FactoryReactorRaynor',
+    RaynorReactorMorphToStarport: 'StarportReactorRaynor',
     UpgradeToOrbitalRaynor: 'OrbitalCommandRaynor',
     CommandCenterLiftOffRaynor: 'CommandCenterFlyingRaynor',
     OrbitalLiftOffRaynor: 'OrbitalCommandFlyingRaynor',
@@ -382,6 +446,20 @@ function validatePrivateProduction() {
 
   const supplyDropBlock = getXmlBlock(texts.abilData, 'CAbilBuild', 'OrbitalCommandSupplyDepotDropRaynor');
   assertIncludes(supplyDropBlock, 'XMRaynor AbilData.xml', 'Unit="SupplyDepotRaynor"', 'OrbitalCommandSupplyDepotDropRaynor must create SupplyDepotRaynor');
+
+  const addOnExpectations = {
+    BarracksAddOnsRaynor: ['BarracksTechLabRaynor', 'BarracksReactorRaynor'],
+    FactoryAddOnsRaynor: ['FactoryTechLabRaynor', 'FactoryReactorRaynor'],
+    StarportAddOnsRaynor: ['StarportTechLabRaynor', 'StarportReactorRaynor'],
+  };
+
+  for (const [abilityId, unitIds] of Object.entries(addOnExpectations)) {
+    const block = getXmlBlock(texts.abilData, 'CAbilBuild', abilityId);
+    for (const unitId of unitIds) {
+      assertMatches(block, 'XMRaynor AbilData.xml', new RegExp(`<InfoArray[^>]*Unit="${escapeRegExp(unitId)}"`), `${abilityId} must build ${unitId}`);
+    }
+    assertNotMatches(block, 'XMRaynor AbilData.xml', /TechReactor/, `${abilityId} must not expose generic Tech Reactor commands`);
+  }
 }
 
 function validateUpgradePrivateEffects() {
@@ -434,6 +512,22 @@ function validateUpgradePrivateEffects() {
     for (const unitId of vehiclePrivateUnits) {
       assertIncludes(block, 'XMRaynor UpgradeData.xml', `Reference="Unit,${unitId},Life`, `Raynor vehicle/ship plating level ${level} must affect ${unitId}`);
     }
+  }
+
+  const masteryCostBlock = getXmlBlock(texts.upgradeData, 'CUpgrade', 'MasteryRaynorResearchCost');
+  for (const abilityId of ['ArmoryResearchRaynor', 'EngineeringBayResearchRaynor', 'BarracksTechLabResearchRaynor', 'FactoryTechLabResearchRaynor', 'StarportTechLabResearchRaynor']) {
+    assertIncludes(masteryCostBlock, 'XMRaynor UpgradeData.xml', `<AffectedUnitArray value="${abilityId}" />`, `MasteryRaynorResearchCost must affect ${abilityId}`);
+  }
+
+  const masterySpeedBlock = getXmlBlock(texts.upgradeData, 'CUpgrade', 'MasteryRaynorResearchSpeed');
+  for (const reference of [
+    'Abil,ArmoryResearchRaynor,InfoArray[Research1].Time',
+    'Abil,EngineeringBayResearchRaynor,InfoArray[Research1].Time',
+    'Abil,BarracksTechLabResearchRaynor,InfoArray[Research4].Time',
+    'Abil,FactoryTechLabResearchRaynor,InfoArray[Research11].Time',
+    'Abil,StarportTechLabResearchRaynor,InfoArray[Research10].Time',
+  ]) {
+    assertIncludes(masterySpeedBlock, 'XMRaynor UpgradeData.xml', `Reference="${reference}"`, `MasteryRaynorResearchSpeed must affect private ${reference}`);
   }
 }
 

@@ -180,7 +180,7 @@ const protossObserverClosures = {
     backMorph: 'ObserverSiegeMorphtoObserverKarax',
     trainAbilities: [{ tag: 'CAbilTrain', id: 'RoboticsFacilityTrainKarax' }],
     productionBuildings: ['RoboticsFacilityKarax'],
-    runtimeCount: 15,
+    runtimeCount: 28,
     observerIndex: 1,
     siegeIndex: 14,
     upgradeChecks: [
@@ -217,16 +217,24 @@ const terranClosures = {
       { unit: 'OrbitalCommandRaynor', ability: 'OrbitalLiftOffRaynor', index: '7' },
       { unit: 'OrbitalCommandFlyingRaynor', ability: 'OrbitalCommandLandRaynor', index: '2' },
       { unit: 'BarracksRaynor', ability: 'BarracksTrainRaynor', index: '2' },
+      { unit: 'BarracksRaynor', ability: 'BarracksAddOnsRaynor', index: '4' },
       { unit: 'BarracksRaynor', ability: 'BarracksLiftOffRaynor', index: '5' },
       { unit: 'BarracksFlyingRaynor', ability: 'BarracksLandRaynor', index: '0' },
       { unit: 'FactoryRaynor', ability: 'FactoryTrainRaynor', index: '2' },
+      { unit: 'FactoryRaynor', ability: 'FactoryAddOnsRaynor', index: '3' },
       { unit: 'FactoryRaynor', ability: 'FactoryLiftOffRaynor', index: '5' },
       { unit: 'FactoryFlyingRaynor', ability: 'FactoryLandRaynor', index: '1' },
       { unit: 'StarportRaynor', ability: 'StarportTrainRaynor', index: '2' },
+      { unit: 'StarportRaynor', ability: 'StarportAddOnsRaynor', index: '3' },
       { unit: 'StarportRaynor', ability: 'StarportLiftOffRaynor', index: '5' },
       { unit: 'StarportFlyingRaynor', ability: 'StarportLandRaynor', index: '1' },
       { unit: 'EngineeringBayRaynor', ability: 'EngineeringBayResearchRaynor', index: '2' },
       { unit: 'ArmoryRaynor', ability: 'ArmoryResearchRaynor', index: '2' },
+    ],
+    addOnBuilds: [
+      { ability: 'BarracksAddOnsRaynor', units: ['BarracksTechLabRaynor', 'BarracksReactorRaynor'] },
+      { ability: 'FactoryAddOnsRaynor', units: ['FactoryTechLabRaynor', 'FactoryReactorRaynor'] },
+      { ability: 'StarportAddOnsRaynor', units: ['StarportTechLabRaynor', 'StarportReactorRaynor'] },
     ],
   },
 };
@@ -802,7 +810,12 @@ function validateProtossObserverRuntimeRoster(commander, closure, xmFinalUserDat
   const runtimeRosterBlock = getUserInstance(xmFinalUserData, 'CommanderRuntimeRoster', commander);
   const source = `XMFinal GameData/UserData.xml CommanderRuntimeRoster/${commander}`;
 
-  assertMatches(runtimeRosterBlock, source, new RegExp(`<Int Int="${closure.runtimeCount}"><Field Id="Count"\\/><\\/Int>`), `${commander} runtime roster count must include private observer forms`);
+  const countMatch = runtimeRosterBlock.match(/<Int Int="(\d+)"><Field Id="Count"\/><\/Int>/);
+  const runtimeCount = Number(countMatch?.[1] ?? NaN);
+  const minimumCount = Math.max(closure.runtimeCount ?? 0, closure.observerIndex + 1, closure.siegeIndex + 1);
+  if (!Number.isFinite(runtimeCount) || runtimeCount < minimumCount) {
+    errors.push(`${source}: ${commander} runtime roster count must be at least ${minimumCount} to include private observer forms`);
+  }
   assertMatches(runtimeRosterBlock, source, new RegExp(`<String String="Observer"><Field Id="OfficialId" Index="${closure.observerIndex}"\\/><\\/String>\\s*<Unit Unit="${escapeRegExp(closure.normal)}"><Field Id="RuntimeUnit" Index="${closure.observerIndex}"\\/><\\/Unit>`), `${commander} official Observer slot must map to ${closure.normal}`);
   assertMatches(runtimeRosterBlock, source, new RegExp(`<String String="${escapeRegExp(closure.siege)}"><Field Id="OfficialId" Index="${closure.siegeIndex}"\\/><\\/String>\\s*<Unit Unit="${escapeRegExp(closure.siege)}"><Field Id="RuntimeUnit" Index="${closure.siegeIndex}"\\/><\\/Unit>`), `${commander} runtime roster must include ${closure.siege}`);
   assertNotMatches(runtimeRosterBlock, source, /<Unit Unit="Observer"><Field Id="RuntimeUnit"/, `${commander} runtime roster must not expose generic Observer as a runtime unit`);
@@ -903,6 +916,19 @@ function validateTerranClosures() {
         new RegExp(`<InfoArray[^>]*Unit="${escapeRegExp(requiredBuildUnit)}"`),
         `${closure.workerBuild} must build ${requiredBuildUnit}`,
       );
+    }
+
+    for (const addOnBuild of closure.addOnBuilds ?? []) {
+      const addOnBlock = getXmlBlock(abilData, 'CAbilBuild', addOnBuild.ability);
+      for (const unitId of addOnBuild.units) {
+        assertMatches(
+          addOnBlock,
+          `XM${commander} AbilData.xml`,
+          new RegExp(`<InfoArray[^>]*Unit="${escapeRegExp(unitId)}"`),
+          `${addOnBuild.ability} must build ${unitId}`,
+        );
+      }
+      assertNotMatches(addOnBlock, `XM${commander} AbilData.xml`, /TechReactor/, `${addOnBuild.ability} must not expose Tech Reactor`);
     }
   }
 }

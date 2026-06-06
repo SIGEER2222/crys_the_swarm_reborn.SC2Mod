@@ -3946,10 +3946,10 @@
         <Row value="2"></Row>
         <Column value="0"></Column>
       </LayoutButtons>
-      <LayoutButtons Face="ProtossAlarakWeaponsLevel1" Type="AbilCmd" AbilCmd="ForgeResearch,Research18" Row="0" Column="0"></LayoutButtons>
+      <LayoutButtons Face="ProtossGroundWeaponsLevel1" Type="AbilCmd" AbilCmd="ForgeResearch,Research18" Row="0" Column="0"></LayoutButtons>
       <LayoutButtons Face="ProtossAlarakWeaponsLevel2" Type="AbilCmd" AbilCmd="ForgeResearch,Research19" Row="0" Column="0"></LayoutButtons>
       <LayoutButtons Face="ProtossAlarakWeaponsLevel3" Type="AbilCmd" AbilCmd="ForgeResearch,Research20" Row="0" Column="0"></LayoutButtons>
-      <LayoutButtons Face="ProtossAlarakArmorLevel1" Type="AbilCmd" AbilCmd="ForgeResearch,Research21" Row="0" Column="1"></LayoutButtons>
+      <LayoutButtons Face="ProtossGroundArmorLevel1" Type="AbilCmd" AbilCmd="ForgeResearch,Research21" Row="0" Column="1"></LayoutButtons>
       <LayoutButtons Face="ProtossAlarakArmorLevel2" Type="AbilCmd" AbilCmd="ForgeResearch,Research22" Row="0" Column="1"></LayoutButtons>
       <LayoutButtons Face="ProtossAlarakArmorLevel3" Type="AbilCmd" AbilCmd="ForgeResearch,Research23" Row="0" Column="1"></LayoutButtons>
       <LayoutButtons Face="PhotonCannonPassive" Type="Passive" Requirements="HavePhotonCannon" Row="1" Column="0"></LayoutButtons>
@@ -14596,9 +14596,38 @@
     <TechTreeProducedUnitArray value="ZealotPurifier" />
     <TechTreeProducedUnitArray value="SentryPurifier" />
   </CUnit>
+  <CUnit id="ScoutKarax" parent="Scout">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+  </CUnit>
+  <CUnit id="CarrierKarax" parent="Carrier">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+  </CUnit>
+  <CUnit id="ColossusKarax" parent="Colossus">
+    <Race value="Prot" />
+    <Mob value="Campaign" />
+  </CUnit>
   <CUnit id="ForgeKarax" parent="Forge">
     <Race value="Prot" />
     <Mob value="Campaign" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="ProtossKaraxWeaponsLevel1" Type="AbilCmd" AbilCmd="ForgeResearch,Research18" Row="0" Column="0" />
+      <LayoutButtons Face="ProtossKaraxWeaponsLevel2" Type="AbilCmd" AbilCmd="ForgeResearch,Research19" Row="0" Column="1" />
+      <LayoutButtons Face="ProtossKaraxWeaponsLevel3" Type="AbilCmd" AbilCmd="ForgeResearch,Research20" Row="0" Column="2" />
+      <LayoutButtons Face="ProtossKaraxWeaponsLevel4" Type="AbilCmd" AbilCmd="ForgeResearch,Research25" Row="0" Column="3" />
+      <LayoutButtons Face="ProtossKaraxWeaponsLevel5" Type="AbilCmd" AbilCmd="ForgeResearch,Research26" Row="0" Column="4" />
+      <LayoutButtons Face="ProtossKaraxArmorLevel1" Type="AbilCmd" AbilCmd="ForgeResearch,Research21" Row="1" Column="0" />
+      <LayoutButtons Face="ProtossKaraxArmorLevel2" Type="AbilCmd" AbilCmd="ForgeResearch,Research22" Row="1" Column="1" />
+      <LayoutButtons Face="ProtossKaraxArmorLevel3" Type="AbilCmd" AbilCmd="ForgeResearch,Research23" Row="1" Column="2" />
+      <LayoutButtons Face="ProtossKaraxArmorLevel4" Type="AbilCmd" AbilCmd="ForgeResearch,Research27" Row="1" Column="3" />
+      <LayoutButtons Face="ProtossKaraxArmorLevel5" Type="AbilCmd" AbilCmd="ForgeResearch,Research28" Row="1" Column="4" />
+      <LayoutButtons Face="ResearchKaraxTurretRange" Type="AbilCmd" AbilCmd="ForgeResearch,Research10" Row="2" Column="0" />
+      <LayoutButtons Face="ResearchKaraxTurretAttackSpeed" Type="AbilCmd" AbilCmd="ForgeResearch,Research11" Row="2" Column="1" />
+      <LayoutButtons Face="ResearchStructureBarrier" Type="AbilCmd" AbilCmd="ForgeResearch,Research12" Row="2" Column="2" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
     <TechAliasArray value="Alias_Forge" />
   </CUnit>
   <CUnit id="PhotonCannonKarax" parent="PhotonCannon">
@@ -14618,6 +14647,13 @@
   <CUnit id="TwilightCouncilKarax" parent="TwilightCouncil">
     <Race value="Prot" />
     <Mob value="Campaign" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="ZealotPurifierResearchReconstruction" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research10" Row="0" Column="0" />
+      <LayoutButtons Face="ResearchEnergizerReclamation" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research13" Row="0" Column="1" />
+      <LayoutButtons Face="ResearchKaraxEnergyRegenUpgrade" Type="AbilCmd" AbilCmd="TwilightCouncilResearch,Research14" Row="0" Column="2" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
     <TechAliasArray value="Alias_TwilightCouncil" />
   </CUnit>
   <CUnit id="ShieldBatteryKarax" parent="ShieldBattery">
@@ -14628,6 +14664,16 @@
   <CUnit id="SolarForgeKarax" parent="SolarForge">
     <Race value="Prot" />
     <Mob value="Campaign" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="ResearchSolarEfficiencyLevel1" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research1" Row="0" Column="0" />
+      <LayoutButtons Face="ResearchSolarEfficiencyLevel2" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research2" Row="0" Column="1" />
+      <LayoutButtons Face="ResearchSolarEfficiencyLevel3" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research3" Row="0" Column="2" />
+      <LayoutButtons Face="ResearchSOARepairBeamExtraTarget" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research4" Row="1" Column="0" />
+      <LayoutButtons Face="ResearchSOAOrbitalStrikeUpgrade" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research5" Row="1" Column="1" />
+      <LayoutButtons Face="ResearchSOASolarLanceUpgrade" Type="AbilCmd" AbilCmd="SolarForgeResearch,Research6" Row="1" Column="2" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
     <TechAliasArray value="Alias_SolarForge" />
   </CUnit>
   <CUnit id="RoboticsFacilityKarax" parent="RoboticsFacility">
@@ -14644,12 +14690,19 @@
     </CardLayouts>
     <TechAliasArray value="Alias_RoboticsFacility" />
     <TechTreeProducedUnitArray value="ObserverKarax" />
-    <TechTreeProducedUnitArray value="Colossus" />
+    <TechTreeProducedUnitArray value="ColossusKarax" />
     <TechTreeProducedUnitArray value="ImmortalAiur" />
   </CUnit>
   <CUnit id="RoboticsBayKarax" parent="RoboticsBay">
     <Race value="Prot" />
     <Mob value="Campaign" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="ResearchBarrier" Type="AbilCmd" AbilCmd="RoboticsBayResearch,Research9" Row="0" Column="0" />
+      <LayoutButtons Face="ResearchShadowCannon" Type="AbilCmd" AbilCmd="RoboticsBayResearch,Research10" Row="0" Column="1" />
+      <LayoutButtons Face="ResearchFireBeam" Type="AbilCmd" AbilCmd="RoboticsBayResearch,Research12" Row="0" Column="2" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
     <TechAliasArray value="Alias_RoboticsBay" />
   </CUnit>
   <CUnit id="StargateKarax" parent="Stargate">
@@ -14666,12 +14719,19 @@
     </CardLayouts>
     <TechAliasArray value="Alias_Stargate" />
     <TechTreeProducedUnitArray value="PhoenixPurifier" />
-    <TechTreeProducedUnitArray value="Scout" />
-    <TechTreeProducedUnitArray value="Carrier" />
+    <TechTreeProducedUnitArray value="ScoutKarax" />
+    <TechTreeProducedUnitArray value="CarrierKarax" />
   </CUnit>
   <CUnit id="FleetBeaconKarax" parent="FleetBeacon">
     <Race value="Prot" />
     <Mob value="Campaign" />
+    <CardLayouts index="0" removed="1" />
+    <CardLayouts index="0">
+      <LayoutButtons Face="ResearchPhaseArmor" Type="AbilCmd" AbilCmd="FleetBeaconResearch,Research17" Row="0" Column="0" />
+      <LayoutButtons Face="ResearchCarrierRepairDrones" Type="AbilCmd" AbilCmd="FleetBeaconResearch,Research10" Row="0" Column="1" />
+      <LayoutButtons Face="ResearchKaraxCarrerInterceptorLaunchSpeed" Type="AbilCmd" AbilCmd="FleetBeaconResearch,Research18" Row="0" Column="2" />
+      <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="que5notPassive,CancelLast" Row="2" Column="4" />
+    </CardLayouts>
     <TechAliasArray value="Alias_FleetBeacon" />
   </CUnit>
   <CUnit id="WarpGateKarax" parent="WarpGate">

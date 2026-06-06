@@ -50,6 +50,8 @@ Barracks, SupplyDepot, Bunker, Marine, Medic, MissileTurret, Vulture, Firebat, S
 
 2026-06-06 起降闭包补充：`CommandCenterRaynor / OrbitalCommandRaynor / BarracksRaynor / FactoryRaynor / StarportRaynor` 已替换为私有起飞 Ability，并新增 `CommandCenterFlyingRaynor / OrbitalCommandFlyingRaynor / BarracksFlyingRaynor / FactoryFlyingRaynor / StarportFlyingRaynor` 与对应私有 Land Ability。运行时会屏蔽公共 `*Flying` 并允许私有飞行壳，避免玩家点击起飞后回到公共 Terran 建筑。
 
+2026-06-06 add-on 闭包补充：雷诺三座生产建筑不再使用公共 `BarracksAddOns / FactoryAddOns / StarportAddOns`。当前正链改为 `BarracksAddOnsRaynor / FactoryAddOnsRaynor / StarportAddOnsRaynor`，分别产出私有 `*TechLabRaynor` 与 `*ReactorRaynor`，建造时间按官方 Liberty 基线保留为科技实验室 25 秒、反应堆 50 秒。公共 `TechLab / BarracksTechLab / FactoryTechLab / StarportTechLab / Reactor / BarracksReactor / FactoryReactor / StarportReactor / TechReactor*` 在 `LibE0EAE146_RaynorRuntime.galaxy` 中被阻断；私有科技实验室挂 `BarracksTechLabResearchRaynor / FactoryTechLabResearchRaynor / StarportTechLabResearchRaynor`，并纳入 `MasteryRaynorResearchCost` 与 `MasteryRaynorResearchSpeed` 的私有效果改写。
+
 ## 2026-06-04 闭包复核补充
 
 2026-06-03 的人族闭包已经把 Raynor 的有效链路闭到 official JSON + raw closure 两层，这里补一版便于后续实现直接引用的结论：
@@ -373,7 +375,7 @@ Owner：`CommanderBaseInitProfile`、`CommanderOpeningLoadoutProfile`、`Command
 | 兵营（排除：诺娃共享部署污染） | `TrainGhostNova` | 部署特战幽灵 | `BarracksTrainNova,Train3` | - | 诺娃 BlackOps 部署按钮，不计入 Raynor 建筑生产链。 |
 | 兵营 | `Medic` | Medic | `BarracksTrain,Train5` | - | - |
 | 兵营（排除：非 Raynor 满级 units.json） | `Ghost` | 训练幽灵 | `BarracksTrain,Train3` | - | Raynor official units.json 不含 Ghost，不计入默认满级主链。 |
-| 兵营 | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | - |
+| 兵营（排除：共享/AI Tech Reactor 污染） | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | 官方满级雷诺当前只接普通科技实验室/反应堆正链；当前 Mod 已阻断 `TechReactor*`，不计入 Raynor 正向 add-on。 |
 | 兵营 | `Lift` | 升空 | `BarracksLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
 | 兵营 | `Reactor` | 建造反应堆 | `BarracksAddOns,Build2` | - | 使该建筑能够同步生产两个单位。 |
 | 兵营 | `Marauder` | 训练劫掠者 | `BarracksTrain,Train4` | - | 重型突击步兵。 / 可以对地。 |
@@ -456,7 +458,7 @@ Owner：`CommanderBuildingProfile`、`CommanderBuildingAbilityProfile`、`Comman
 | 兵营（排除：诺娃精通污染） | `MasteryNovaArmyAttackSpeedAppend` | 战斗精通 | - | `HaveMasteryNovaArmyAttackSpeed` | 诺娃精通提示，不计入 Raynor 建筑技能链。 |
 | 兵营（排除：诺娃精通污染） | `MasteryNovaArmyOOCRegenSpeedAppend` | 耐力训练 | - | `HaveMasteryNovaArmyOOCRegenSpeed` | 诺娃精通提示，不计入 Raynor 建筑技能链。 |
 | 兵营（排除：非 Raynor 满级 units.json） | `Ghost` | 训练幽灵 | `BarracksTrain,Train3` | - | Raynor official units.json 不含 Ghost，不计入默认满级主链。 |
-| 兵营 | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | - |
+| 兵营（排除：共享/AI Tech Reactor 污染） | `TechReactorAI` | TechReactorAI | `BarracksAddOns,Build3` | - | 官方满级雷诺当前只接普通科技实验室/反应堆正链；当前 Mod 已阻断 `TechReactor*`，不计入 Raynor 正向 add-on。 |
 | 兵营 | `Lift` | 升空 | `BarracksLiftOff,Execute` | - | 将建筑变形为移动速度缓慢的空中单位以便重新部署。建筑在着陆前无法生产单位、研发升级或使用技能。 |
 | 兵营 | `OrbitalDropPodsPassive` | 轨道空投 | - | `HaveOrbitalDropPods` | 兵营、重工厂以及星港中生产的单位会被直接输送到这些建筑的集结点位置。 |
 | 兵营 | `Reactor` | 建造反应堆 | `BarracksAddOns,Build2` | - | 使该建筑能够同步生产两个单位。 |
@@ -516,6 +518,17 @@ Owner：`CommanderTechBuildingProfile`、`CommanderTechOptionProfile`、`Command
 | 13 | 星港升级包 | - | `StarportTechLabResearch:9`, `StarportTechLabResearch:18` | 在星港的科技实验室中解锁以下升级： / 升级女妖的攻击，使其可以沿直线射出多枚飞弹。升级维京战机的飞弹，使其能造成范围伤害。 |
 | 14 | 休伯利安号：高级瞄准系统 | `RaynorCommanderHyperionAdvancedTargetingSystems` | - | 休伯利安号附近的所有友方单位的伤害输出+2。通过顶部面板来召唤休伯利安号。 |
 | 15 | 佣兵军火 | `RaynorCommanderTerranWeaponAttackSpeed` | - | 使雷诺的作战单位与空投单位的攻击速度提高15%。 |
+
+### 当前 Mod 私有 add-on 与研究落点
+
+| 建筑 | 私有 add-on Ability | 私有产出 | 后续研究 Ability | 说明 |
+|---|---|---|---|---|
+| `BarracksRaynor` | `BarracksAddOnsRaynor` | `BarracksTechLabRaynor`, `BarracksReactorRaynor` | `BarracksTechLabResearchRaynor` | 科技实验室研究 `BearclawNozzles`、`StabilizerMedPacks`、`FirebatJuggernautPlating`；反应堆只作为双生产 add-on。 |
+| `FactoryRaynor` | `FactoryAddOnsRaynor` | `FactoryTechLabRaynor`, `FactoryReactorRaynor` | `FactoryTechLabResearchRaynor` | 科技实验室研究 `CerberusMines`、`RaynorImprovedSiegeMode`；反应堆只作为双生产 add-on。 |
+| `StarportRaynor` | `StarportAddOnsRaynor` | `StarportTechLabRaynor`, `StarportReactorRaynor` | `StarportTechLabResearchRaynor` | 科技实验室研究 `ClusterWarheads`、`HALORockets`；反应堆只作为双生产 add-on。 |
+| detached add-on | `RaynorTechLabMorphTo*`, `RaynorReactorMorphTo*` | `TechLabRaynor`, `ReactorRaynor`, `*TechLabRaynor`, `*ReactorRaynor` | - | 起飞/落地后的 add-on 重新吸附也保持 Raynor 私有单位，不回落到公共 `TechLab` / `Reactor`。 |
+
+校验脚本：`scripts/sc2/validate-raynor-official-runtime.mjs` 验证公共 add-on 阻断、私有 add-on 允许、三座生产建筑私有能力挂载、私有研究受精通影响；`scripts/sc2/validate-private-commander-openers.mjs` 验证 Raynor 开局、工人建造、生产建筑 add-on 输出和 `TechReactor` 不外露。
 
 ### Upgrade 摘要
 
@@ -747,7 +760,7 @@ personal_mechanic_smoke
 - `DuskWing` 当前 Mod 内只确认到召唤/壳能力痕迹，没有独立可点战斗技能；女妖空袭的有效性应按 `BansheeAirstrike -> EffectData -> DuskWing` 召唤链验证，不要只看单位存在。
 - 当前工作树曾出现 `LibE0EAE146_RaynorRuntime.galaxy` 非 HEAD 状态；后续提交前必须重新确认雷诺 runtime 文件存在、`XMFinal` include/header/`InitializeBase("Raynor")` 分支仍然闭合。
 - `BarracksRaynor`、`FactoryRaynor`、`StarportRaynor`、`EngineeringBayRaynor`、`ArmoryRaynor` 的私有生产/研究能力必须以官方槽位替换方式挂载，避免继承通用 Terran/Nova/Swann 生产按钮造成运行时污染。
-- `BarracksAddOns / FactoryAddOns / StarportAddOns` 仍属于后续风险项：官方 Raynor 至少有兵营 Reactor/TechReactorAI add-on 正链，当前本轮只闭合起降，不把 add-on 单位、add-on Build ability 和 add-on 后续研究链当作已完全私有。
+- `BarracksAddOns / FactoryAddOns / StarportAddOns` 的公共链已不再作为 Raynor 正向运行时链路。当前正向链路是 `BarracksAddOnsRaynor / FactoryAddOnsRaynor / StarportAddOnsRaynor -> *TechLabRaynor / *ReactorRaynor -> *TechLabResearchRaynor`；剩余风险转为实机验证：建筑起飞、detached add-on 再吸附、取消队列和双生产 UI 是否完全符合 SC2 原生 add-on 行为。
 
 ## `[XM_DBG]` 日志建议
 
