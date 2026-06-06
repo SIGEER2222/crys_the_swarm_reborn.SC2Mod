@@ -19,6 +19,18 @@
 - `MutatorAmonZagaraInfestedPodsImpactCU` 和 `MutatorAmonZagaraSpawnHunterKillersCU` 仍是 Amon/mutator 链，当前不计入玩家扎加拉闭包；排查共享 `Roach` / `HunterKillerBurrowed` 命中时必须先区分 `ZagaraVoidCoop*` 玩家链和 `MutatorAmonZagara*` 敌方/突变链。
 - `ZagaraVoidCoop` 是扎加拉英雄技能的真实 caster；`CoopCasterZagara` 只作为兼容/global caster shell 保留，不能反过来把英雄技能挂到它身上。
 
+## 2026-06-06 当前 Mod 完善状态
+
+- 结论：扎加拉静态闭包已接近完成，但仍需通过实机验证免费爆虫/分裂虫、英雄复活、面板施法和私有形态切换是否全部生效。
+- 本轮修复目标：把 `K5TwoDrones`、`ZagaraCommander`、`CommanderPrestigeZagaraMaxSupply`、`ZagaraScourgeCount` 等会影响正向生产的升级引用，从公共 `LarvaTrain` / `LarvaTrainSwarm` / `Baneling` / `HotSSplitterlingBig` 切到 `LarvaTrainZagara` / `LarvaTrainSwarmZagara` / `BanelingZagara` / `HotSSplitterlingBigZagara`。
+- 本轮修复目标：给 `ZerglingZagara` 显式挂载私有 `MorphZerglingToBanelingZagara`、`MorphZerglingToHunterZagara`、`MorphZerglingToSplitterlingZagara`，避免满级/进化后点击变异按钮仍走公共爆虫、猎手或分裂虫产物。
+- 本轮修复目标：把 `ZagaraVoidCoopBurrowed`、`HotSHunterZagara`、`HotSSplitterlingBigZagara`、`OverseerSiegeModeZagara` 以及扎加拉私有经济/科技建筑补进 `XMFinal` runtime roster 和 smoke 检查，防止以后按钮可见但测试链没有覆盖。
+- 不计入正链：`ZagaraVoidCoopNydusWorm`、敌方/突变链 `MutatorAmonZagara*`、以及只在公共 Catalog 中可见但没有扎加拉 grant/profile 路径的历史候选。
+- 2026-06-06 补充：`XMFinal` 现已为扎加拉补上满级 runtime 闭包，直接发放 `CommanderLevel=16`、等级解锁升级、6 项精通 30 点和 3 个威望正收益补丁，同时用 tech filter 屏蔽公共 `Drone/Larva/Overlord/Hatchery/.../OverseerSiegeMode`，只放行 `XMZagara` 私有经济、科技、兵种、英雄形态和顶部能力。
+- 2026-06-06 补充：`CommanderRuntimeRoster/Zagara` 已扩到 34 项，现覆盖 `QueenZagara`、`ExtractorZagara`、`SpawningPoolZagara`、`EvolutionChamberZagara`、`SpireZagara`、`BanelingNestZagara`、`ScourgeNestZagara`、`CoopCasterZagara`、`ZagaraReviveCocoon`、`RoachMassDropDummy` 等运行时正链对象；对应 `CommanderBuildings` smoke 也扩到 12 项私有建筑。
+- 2026-06-06 校验结果：`scripts/sc2/validate-zagara-official-runtime.mjs`、`scripts/sc2/validate-zagara-private-opener.mjs`、`scripts/sc2/validate-private-commander-openers.mjs` 当前全部通过。
+- 剩余风险：`CommanderPrestigeZagaraZagara` 在官方 raw 中分别修改 `LarvaTrainSwarmling` 与 `LarvaTrain` 两条产线，而当前私有实现已把跳虫正向产线折叠到 `LarvaTrainZagara,Train2`。现阶段校验只确认“本地没有再回退到公共产线”，尚未把这条威望价格改动拆成两条完全等价的私有实现，后续若实机发现 P3 下裂变虫/跳虫矿物价格异常，需要优先回查这里。
+
 ## 官方数据摘要
 
 | 项 | 值 |

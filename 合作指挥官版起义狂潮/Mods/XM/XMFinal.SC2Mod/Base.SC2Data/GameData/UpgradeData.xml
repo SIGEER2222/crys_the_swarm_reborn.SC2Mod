@@ -259,8 +259,8 @@
             <EffectArray Reference="Unit,ZagaraCorruptor,CostResource[Vespene]" Value="23"/>
             <EffectArray Reference="Unit,Scourge,CostResource[Minerals]" Value="3"/>
             <EffectArray Reference="Unit,Scourge,CostResource[Vespene]" Value="9"/>
-            <EffectArray Reference="Abil,LarvaTrainSwarmling,InfoArray[Train1].Resource[Minerals]" Value="11"/>
-            <EffectArray Reference="Abil,LarvaTrain,InfoArray[Train2].Resource[Minerals]" Value="7"/>
+            <EffectArray Reference="Abil,LarvaTrainZagara,InfoArray[Train2].Resource[Minerals]" Value="11"/>
+            <EffectArray Reference="Abil,LarvaTrainZagara,InfoArray[Train2].Resource[Minerals]" Value="7"/>
         </CUpgrade>
     <CUpgrade id="DarkArchonMindControl">
             <Flags index="UpgradeCheat" value="0"/>
@@ -5906,14 +5906,14 @@
             <EffectArray Reference="Unit,InfestedAbominationBurrowed,LifeRegenRate" Value="3.000000"/>
         </CUpgrade>
     <CUpgrade id="CommanderPrestigeZagaraMaxSupply" parent="CommanderPrestige">
-            <EffectArray Operation="Set" Reference="Abil,LarvaTrain,InfoArray[Train2].Unit[2]" Value="Zergling"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train2].Resource[Minerals]" Value="23"/>
-            <EffectArray Operation="Set" Reference="Abil,LarvaTrainSwarmling,InfoArray[Train1].Unit[3]" Value="HotSSwarmling"/>
-            <EffectArray Operation="Set" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Unit[2]" Value="Scourge"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Minerals]" Value="12"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Vespene]" Value="37"/>
-            <EffectArray Operation="Set" Reference="Abil,ZagaraVoidCoopBanelingSpawnerTrain,InfoArray[Train1].Unit[1]" Value="Baneling"/>
-            <EffectArray Operation="Set" Reference="Abil,ZagaraVoidCoopBanelingSpawnerTrain,InfoArray[Train3].Unit[1]" Value="HotSSplitterlingBig"/>
+            <EffectArray Operation="Set" Reference="Abil,LarvaTrainZagara,InfoArray[Train2].Unit[2]" Value="ZerglingZagara"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainZagara,InfoArray[Train2].Resource[Minerals]" Value="23"/>
+            <EffectArray Operation="Set" Reference="Abil,LarvaTrainZagara,InfoArray[Train2].Unit[3]" Value="ZerglingZagara"/>
+            <EffectArray Operation="Set" Reference="Abil,LarvaTrainSwarmZagara,InfoArray[Train30].Unit[2]" Value="ScourgeZagara"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarmZagara,InfoArray[Train30].Resource[Minerals]" Value="12"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarmZagara,InfoArray[Train30].Resource[Vespene]" Value="37"/>
+            <EffectArray Operation="Set" Reference="Abil,ZagaraVoidCoopBanelingSpawnerTrain,InfoArray[Train1].Unit[1]" Value="BanelingZagara"/>
+            <EffectArray Operation="Set" Reference="Abil,ZagaraVoidCoopBanelingSpawnerTrain,InfoArray[Train3].Unit[1]" Value="HotSSplitterlingBigZagara"/>
         </CUpgrade>
     <CUpgrade id="CreepTumorVisible">
             <Flags index="UpgradeCheat" value="0"/>
@@ -6193,21 +6193,22 @@
     <CUpgrade id="K5TwoDrones">
             <AffectedUnitArray value="Drone"/>
             <AffectedUnitArray value="DroneBurrowed"/>
-            <EffectArray Operation="Set" Reference="Abil,LarvaTrain,InfoArray[Train1].Unit[1]" Value="Drone"/>
+            <EffectArray Operation="Set" Reference="Abil,LarvaTrainZagara,InfoArray[Train1].Unit[1]" Value="DroneZagara"/>
             <EffectArray Operation="Set" Reference="Abil,DroneHarvest,ResourceAmountMultiplier[Vespene]" Value="1.0"/>
             <EffectArray Operation="Set" Reference="Effect,AutoHarvestVespene,Resources" Value="-4"/>
-            <EffectArray Operation="Subtract" Reference="Unit,Drone,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,DroneZagara,CostResource[Minerals]" Value="25"/>
             <EffectArray Operation="Subtract" Reference="Unit,DroneBurrowed,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,Hatchery,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,Lair,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,Hive,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,Extractor,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,SpawningPool,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,EvolutionChamber,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,NydusNetwork,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,SporeCrawler,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,HatcheryZagara,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,LairZagara,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,HiveZagara,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,ExtractorZagara,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,SpawningPoolZagara,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,EvolutionChamberZagara,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,BanelingNestZagara,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,ScourgeNestZagara,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,SporeCrawlerZagara,CostResource[Minerals]" Value="25"/>
             <EffectArray Operation="Subtract" Reference="Unit,SporeCrawlerUprooted,CostResource[Minerals]" Value="25"/>
-            <EffectArray Operation="Subtract" Reference="Unit,SpineCrawler,CostResource[Minerals]" Value="25"/>
+            <EffectArray Operation="Subtract" Reference="Unit,SpineCrawlerZagara,CostResource[Minerals]" Value="25"/>
             <EffectArray Operation="Subtract" Reference="Unit,SpineCrawlerUprooted,CostResource[Minerals]" Value="25"/>
             <EffectArray Operation="Subtract" Reference="Unit,RoachWarren,CostResource[Minerals]" Value="25"/>
             <EffectArray Operation="Subtract" Reference="Unit,BanelingNest,CostResource[Minerals]" Value="25"/>
@@ -6336,15 +6337,15 @@
             
             
             
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train2].Time" Value="15"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainZagara,InfoArray[Train2].Time" Value="15"/>
             
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train4].Time" Value="18"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainZagara,InfoArray[Train4].Time" Value="18"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train5].Time" Value="20"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train7].Time" Value="33"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train8].Time" Value="21"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train10].Time" Value="16"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train11].Time" Value="30"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train12].Time" Value="24"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainZagara,InfoArray[Train12].Time" Value="24"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train13].Time" Value="24"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrain,InfoArray[Train15].Time" Value="24"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train1].Time" Value="16"/>
@@ -6363,8 +6364,8 @@
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train25].Time" Value="20"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train26].Time" Value="24"/>
             <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train27].Time" Value="24"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train28].Time" Value="18"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Time" Value="18"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarmZagara,InfoArray[Train28].Time" Value="18"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarmZagara,InfoArray[Train30].Time" Value="18"/>
             
             <EffectArray Operation="Subtract" Reference="Unit,Zergling,CostResource[Minerals]" Value="2"/>
             <EffectArray Operation="Subtract" Reference="Unit,ZerglingBurrowed,CostResource[Minerals]" Value="2"/>
@@ -6464,8 +6465,8 @@
             <EffectArray Operation="Subtract" Reference="Unit,Viper,CostResource[Vespene]" Value="20"/>
             <EffectArray Operation="Subtract" Reference="Unit,ZagaraCorruptor,CostResource[Minerals]" Value="15"/>
             <EffectArray Operation="Subtract" Reference="Unit,ZagaraCorruptor,CostResource[Vespene]" Value="10"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Minerals]" Value="2"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarm,InfoArray[Train30].Resource[Vespene]" Value="7"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarmZagara,InfoArray[Train30].Resource[Minerals]" Value="2"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarmZagara,InfoArray[Train30].Resource[Vespene]" Value="7"/>
             
             
             
@@ -6475,7 +6476,7 @@
             <EffectArray Operation="Set" Reference="Unit,SpawningPool,Description" Value="Button/Tooltip/ACZagaraSpawningPool"/>
             <EffectArray Operation="Set" Reference="Button,EvolutionChamber,Tooltip" Value="Button/Tooltip/ACZagaraEvolutionChamber"/>
             <EffectArray Operation="Set" Reference="Unit,EvolutionChamber,Description" Value="Button/Tooltip/ACZagaraEvolutionChamber"/>
-            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainSwarmling,InfoArray[Train1].Resource[Minerals]" Value="6"/>
+            <EffectArray Operation="Subtract" Reference="Abil,LarvaTrainZagara,InfoArray[Train2].Resource[Minerals]" Value="6"/>
             <EffectArray Operation="Set" Reference="Button,EvolveKerriganHeroicFortitude,Tooltip" Value="Button/Tooltip/EvolveZagaraHeroicFortitude"/>
             <EffectArray Operation="Set" Reference="Unit,Lair,Description" Value="Button/Tooltip/LairZagara"/>
             <EffectArray Operation="Set" Reference="Button,Lair,Tooltip" Value="Button/Tooltip/LairZagara"/>
@@ -6495,7 +6496,7 @@
             <EffectArray Operation="Set" Reference="Weapon,SuicideBuilding,DisplayEffect" Value="ZagaraSuicideDamage"/>
             <EffectArray Operation="Set" Reference="Effect,SuicideSet,EffectArray[0]" Value="ZagaraSuicideDamage"/>
             <EffectArray Reference="Effect,ZagaraVoidCoopRangedSecondaryDamage,Amount" Value="5"/>
-            <EffectArray Operation="Set" Reference="Abil,LarvaTrain,InfoArray[Train12].Unit[0]" Value="ZagaraCorruptor"/>
+            <EffectArray Operation="Set" Reference="Abil,LarvaTrainZagara,InfoArray[Train12].Unit[0]" Value="ZagaraCorruptor"/>
             <EffectArray Reference="Unit,QueenCoop,Food" Value="1"/>
             <EffectArray Reference="Unit,QueenCoopBurrowed,Food" Value="1"/>
             <EffectArray Reference="Unit,Roach,Speed" Value="0.750000"/>
