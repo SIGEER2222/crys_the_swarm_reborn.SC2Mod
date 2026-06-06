@@ -353,8 +353,8 @@ if (/auto2F29E444_val == "AbathurReborn"[\s\S]*?CreateUnitsWithDefaultFacing\([^
 requireRegex(
   'MapScript.galaxy',
   mapScript,
-  /bool gt_ExtremeAggro_Func[\s\S]*?UnitIsValid\(gv_nova\) == false[\s\S]*?return true;/,
-  'ExtremeAggro must ignore ticks until gv_nova/story anchor is valid',
+  /bool gt_ExtremeAggro_Func[\s\S]*?UnitIsValid\(gv_nova\) == false[\s\S]*?return true;[\s\S]*?UnitIsAlive\(gv_nova\) == false[\s\S]*?return true;/,
+  'ExtremeAggro must ignore ticks until gv_nova/story anchor is valid and alive',
 );
 if (/CreateUnitsWithDefaultFacing\([^;\n]*UserDataGetUnit\("CommanderAch"/.test(mapScript)) {
   errors.push('MapScript.galaxy: opener creation must use libE0EAE146_gf_CommanderAchUnit so empty CommanderAch fields cannot create unit type ""');

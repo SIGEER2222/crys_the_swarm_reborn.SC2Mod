@@ -66,6 +66,27 @@ string libE0EAE146_gf_CommanderAchUnit (string lp_field) {
         }
     }
 
+    if (libE0EAE146_gv_commander == "Kerrigan") {
+        if (lp_field == "CommandCenter") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("HatcheryKerrigan");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
+        if (lp_field == "Worker") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("DroneKerrigan");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
+        if (lp_field == "SecondUnit") {
+            lv_unit = libE0EAE146_gf_CatalogUnitOrEmpty("OverlordKerrigan");
+            if (lv_unit != "") {
+                return lv_unit;
+            }
+        }
+    }
+
     if (libE0EAE146_gv_commander == "AbathurReborn") {
         if (lp_field == "CommandCenter") {
             return "HatcheryAbathurReborn";

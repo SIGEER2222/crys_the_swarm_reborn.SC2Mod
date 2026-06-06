@@ -1011,6 +1011,12 @@ function validateKerriganRuntimeEntryAndEconDrop() {
     /else if \(auto2F29E444_val == "Kerrigan"\) \{[\s\S]*?CreateUnitsWithDefaultFacing\(1,\s*"K5Kerrigan"/,
     'ttosh03b Kerrigan branch must not directly spawn K5Kerrigan',
   );
+  assertIncludes(
+    ghostMapScript,
+    'ttosh03b MapScript.galaxy',
+    'UnitIsAlive(gv_nova) == false',
+    'ttosh03b ExtremeAggro must ignore Kerrigan while the initial revive cocoon is still pending',
+  );
 
   for (const requiredRuntimeText of [
     'libE0EAE146_gf_KerriganEconDropInit(lp_player);',

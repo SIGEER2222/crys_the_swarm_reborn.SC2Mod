@@ -872,8 +872,8 @@ bool gt_IntroSequence_Func (bool testConds, bool runActions) {
 
     }
     else if (auto2F29E444_val == "Kerrigan") {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "K5Kerrigan", 0, 1, PointFromId(29));
-        gv_nova = UnitLastCreated();
+        libE0EAE146_gf_KerriganRuntimeInit(1, PointFromId(29), true);
+        gv_nova = libE0EAE146_gf_KerriganHeroForPlayer(1);
     }
     else if (auto2F29E444_val == "Mira") {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "GhostMira", 0, 1, PointFromId(29));
@@ -1119,6 +1119,9 @@ bool gt_ExtremeAggro_Func (bool testConds, bool runActions) {
     }
 
     if (UnitIsValid(gv_nova) == false) {
+        return true;
+    }
+    if (UnitIsAlive(gv_nova) == false) {
         return true;
     }
 
